@@ -3,7 +3,7 @@
 /* ===================================================== */
 
 :root{
-  --pc-radius: 24px;
+  --pc-radius: 22px;
   --pc-pad: 12px;
   --pc-gap: 17px;
 
@@ -24,13 +24,13 @@
   /* Solid samlekort-flate (mørk kull) + lys ramme */
   --pc-surface: #14130f;
   --pc-surface-2: #0d0c0a;
-  --pc-border: rgba(255,255,255,.20);
-  --pc-shadow: 0 22px 60px rgba(0,0,0,.62), 0 2px 0 rgba(255,255,255,.05) inset;
+  --pc-border: rgba(255,255,255,.18);
+  --pc-shadow: 0 18px 45px rgba(0,0,0,.28), 0 2px 0 rgba(255,255,255,.05) inset;
 }
 
 
 /* ===================================================== */
-/* PlaceCard: fast panel mellom header og footer          */
+/* PlaceCard: flytende kort over kartet, med luft rundt   */
 /* ===================================================== */
 
 
@@ -46,23 +46,37 @@
   --pc-popout-top: 96px;
 
   position: fixed;
-  left: 0;
-  right: 0;
+  left: calc(12px + env(safe-area-inset-left, 0px));
+  right: calc(12px + env(safe-area-inset-right, 0px));
 
-  /* Fast panel: fyller nøyaktig sonen mellom header og den faste footeren.
-     Posisjon/lag styres autoritativt i css/layout.css
-     (body.hg-app #placeCard) – verdiene her holdes i synk for robust
-     fallback uten app-spesifisiteten. */
-  top: var(--hg-visual-header-height, 74px);
-  bottom: var(
-    --hg-bottom-nav-height,
-    calc(72px + env(safe-area-inset-bottom, 0px))
+  /* Flytende kort: bunnforankret med luft over footeren, luft på sidene,
+     og aldri helt opp til headeren. Posisjon/lag styres autoritativt i
+     css/layout.css (body.hg-app #placeCard) – verdiene her holdes i synk
+     for robust fallback uten app-spesifisiteten. */
+  top: auto;
+  bottom: calc(
+    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
+    + 14px
   );
 
-  /* top + bottom definerer høyden. Selve kortet klipper innholdet, mens
-     .pc-body scroller internt. */
+  /* Innholdet definerer høyden opp til max-height (26px = 14px luft over
+     footer + minst 12px luft under header). Selve kortet klipper
+     innholdet, mens .pc-body scroller internt. */
   height: auto;
-  max-height: none;
+  max-height: calc(
+    100vh - var(--hg-visual-header-height, 74px) -
+    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
+    - 26px
+  );
+  max-height: calc(
+    100dvh - var(--hg-visual-header-height, 74px) -
+    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
+    - 26px
+  );
+
+  /* Desktop/tablett: modal-lignende kort sentrert med begrenset bredde. */
+  max-width: 760px;
+  margin-inline: auto;
 
   /* Lagrekkefølge eies av css/layout.css: footer > #placeCard. */
   z-index: var(--hg-z-placecard, 100);
@@ -74,9 +88,8 @@
   background-image:
     linear-gradient(180deg, var(--pc-surface) 0%, var(--pc-surface-2) 100%);
   border: 1px solid var(--pc-border);
-  /* Firkantet bunn: nederste hjørner kan ikke slippe kart gjennom.
-     Kun toppen er avrundet. */
-  border-radius: var(--pc-radius) var(--pc-radius) 0 0;
+  /* Frittstående kort: avrundet på alle hjørner, med kartet synlig rundt. */
+  border-radius: var(--pc-radius);
   box-shadow: var(--pc-shadow);
 
   /* Kortlaget klipper innholdet slik at scroll og pop-outs aldri lekker
@@ -758,10 +771,10 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
 
 /* pc-body er PlaceCard sin vertikale scroll-container.
-   Kortet (#placeCard) er fast spent mellom header og footer og klipper med
-   overflow:hidden; .pc-body fyller resten av kortet (flex:1) og scroller
-   internt når innholdet er høyere enn tilgjengelig plass. Innholdet
-   forblir dermed innenfor flaten over footer-laget.
+   Kortet (#placeCard) er et flytende kort begrenset av max-height og
+   klipper med overflow:hidden; .pc-body fyller resten av kortet (flex:1)
+   og scroller internt når innholdet er høyere enn tilgjengelig plass.
+   Innholdet forblir dermed innenfor kortflaten over footer-laget.
    De absolutt-posisjonerte runde-pop-outene har .pc-body som containing
    block og klippes til kortets flate (aldri oppå footer). */
 #placeCard .pc-body{
@@ -1275,9 +1288,10 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   z-index: 10;   /* trenger ikke 100 */
 }
 
-/* collapse */
+/* collapse – ekstra offset dekker luften mellom kortet og footeren,
+   slik at både kortet og skyggen forsvinner bak footer-laget. */
 #placeCard.is-collapsed{
-  transform: translateY(100%);
+  transform: translateY(calc(100% + 60px));
 }
 
 .pc-expand-btn{
