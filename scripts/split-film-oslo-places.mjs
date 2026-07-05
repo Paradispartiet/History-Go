@@ -1,3 +1,4 @@
+// Split data/places/film/oslo/places_oslo_film.json into one file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
