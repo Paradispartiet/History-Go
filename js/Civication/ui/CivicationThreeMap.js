@@ -291,6 +291,40 @@
     if (Array.isArray(window.PLACES)) setPlaces(window.PLACES);
   }
 
+  // --- Groundhopper-visning fra read-modellen (CivicationCityMap) ------------
+  // Kartet leser det curerte grunnlaget for å markere de stedene som er
+  // Groundhopper-relevante (arenaer/baner). Degraderer stille: er ikke
+  // read-modellen tilgjengelig/lastet, skjer ingenting (ingen ring, ingen feil).
+  let _cityMapLoadStarted = false;
+  function ensureCityMapLoaded() {
+    if (_cityMapLoadStarted) return;
+    const api = window.CivicationCityMap;
+    if (!api || typeof api.load !== "function") return;
+    _cityMapLoadStarted = true;
+    Promise.resolve(api.load())
+      .then(() => { rebuildPlaces(); })          // tegn på nytt så ringene dukker opp
+      .catch(() => { _cityMapLoadStarted = false; });
+  }
+  function isGroundhopperPlace(placeId) {
+    const api = window.CivicationCityMap;
+    return !!(api && typeof api.isGroundhopperPlace === "function" &&
+      api.isGroundhopperPlace(placeId));
+  }
+  // Flat ring som legges under en miniatyr/landemerke for å markere
+  // Groundhopper-relevans. Additiv – endrer ikke selve miniatyrgeometrien.
+  function buildGroundhopperRing(scale) {
+    const s = scale || 1;
+    const geo = new THREE.RingGeometry(0.30 * s, 0.40 * s, 28);
+    const mat = new THREE.MeshBasicMaterial({
+      color: 0x6fbf7a, transparent: true, opacity: 0.9,
+      side: THREE.DoubleSide, depthWrite: false
+    });
+    const ring = new THREE.Mesh(geo, mat);
+    ring.rotation.x = -Math.PI / 2;              // legg ringen flatt på bakken
+    ring.userData.groundhopperRing = true;
+    return ring;
+  }
+
   // ---------------------------------------------------------------------------
   // Geometri-hjelpere
   // ---------------------------------------------------------------------------
@@ -2397,6 +2431,10 @@
     _stats.miniatureMeshTotal = 0;
     _stats.detailedMiniatures = 0;
     _stats.lowDetailMiniatures = 0;
+    _stats.groundhopperMarkers = 0;
+    // Kick read-modellen (memoisert); når den er klar, tegnes stedene på nytt
+    // slik at Groundhopper-ringene kommer på.
+    ensureCityMapLoaded();
     if (!_places) { _stats.placeMarkers = 0; _stats.visiblePlaceMiniatures = 0; return; }
 
     const lod = placeLodLevel(zoom);
@@ -2424,6 +2462,13 @@
       hitTargets.push({ id: place.id, place, landmarkId, viaLandmark: true });
       _landmarkPlaceMap[landmarkId] = place.id;
       _stats.clickableLandmarkPlaces.push({ placeId: place.id, landmarkId });
+      if (isGroundhopperPlace(place.id)) {
+        const ring = buildGroundhopperRing(1.0);
+        ring.position.set(nx2x(e.x), baseY + 0.02, ny2z(e.y));
+        ring.userData.groundhopperPlaceId = place.id;
+        placeGroup.add(ring);
+        _stats.groundhopperMarkers += 1;
+      }
     });
     _stats.hiddenDuplicateLandmarkPlaces = dedup.hiddenCount;
 
@@ -2475,6 +2520,16 @@
       node.position.set(nx2x(nx), GROUND_Y, ny2z(ny));
       placeGroup.add(node);
 
+      // Groundhopper-relevante steder får en flat markeringsring under miniatyren.
+      const groundhopper = isGroundhopperPlace(entry.p.id);
+      if (groundhopper) {
+        const ring = buildGroundhopperRing(scale);
+        ring.position.y = 0.02;
+        node.add(ring);
+        node.userData.groundhopperRelevant = true;
+        _stats.groundhopperMarkers += 1;
+      }
+
       // Del 12 – mesh-budsjett-statistikk per miniatyr.
       let meshCount = 0;
       node.traverse((m) => { if (m.isMesh) meshCount++; });
@@ -2482,7 +2537,7 @@
       if (meshCount >= 6) _stats.detailedMiniatures++; else _stats.lowDetailMiniatures++;
 
       hitTargets.push({ id: entry.p.id, place: entry.p, type, viaLandmark: false });
-      _visibleMiniatures.push({ id: entry.p.id, name: entry.p.name, type, priority: entry.prio, x: Number(nx.toFixed(4)), y: Number(ny.toFixed(4)), nudged });
+      _visibleMiniatures.push({ id: entry.p.id, name: entry.p.name, type, priority: entry.prio, x: Number(nx.toFixed(4)), y: Number(ny.toFixed(4)), nudged, groundhopper });
       _stats.placeMiniatureTypes[type] = (_stats.placeMiniatureTypes[type] || 0) + 1;
       drawn++;
     }
@@ -2863,6 +2918,7 @@
     return {
       placeMarkers: _stats.placeMarkers,
       visiblePlaceMiniatures: _stats.visiblePlaceMiniatures || 0,
+      groundhopperMarkers: _stats.groundhopperMarkers || 0,
       placeMiniatureTypes: Object.assign({}, _stats.placeMiniatureTypes),
       averageMeshesPerMiniature: _stats.visiblePlaceMiniatures
         ? Number((_stats.miniatureMeshTotal / _stats.visiblePlaceMiniatures).toFixed(2)) : 0,
@@ -2923,6 +2979,10 @@
     getLandmarkPositions,
     getVisiblePlaceMiniatures: () => _visibleMiniatures.map((m) => Object.assign({}, m)),
     getPlaceMiniatureTypeStats: () => Object.assign({}, _stats.placeMiniatureTypes),
+    // Groundhopper-relevante steder som faktisk er tegnet (miniatyr eller landemerke).
+    getGroundhopperMarkerCount: () => _stats.groundhopperMarkers || 0,
+    isGroundhopperPlace,
+    buildGroundhopperRing,
     // Rene introspeksjons-/testfunksjoner (uten scene/DOM) – speiler nøyaktig
     // logikken renderen bruker, så de kan dekkes av node-tester og dev-konsoll.
     resolvePlaceMiniatureType: (place) => resolvePlaceMiniatureType(normalize(place)),
