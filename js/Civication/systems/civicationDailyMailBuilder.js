@@ -27,6 +27,30 @@
     "consequence"
   ];
 
+  // Avklaringspakkene genereres som varianter av samme story-node: samme
+  // narrative_arc fortalt gjennom ulik mailtype/task_domain (f.eks. «Den
+  // irriterende nabomailen har ett sant punkt: varelevering/støy/tillit …»).
+  // Disse typene deler derfor tråd per narrative_arc. Øvrige typer (job,
+  // people, story, conflict, event) er egne scener med unik tråd per kildemail.
+  const CASE_THREAD_TYPES = new Set(["micro", "followup", "knowledge", "consequence"]);
+  const DAY_PHASE_ORDER = ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
+  // Rangordning for valg av kanonisk case-variant. Rollepakkene bruker to
+  // faseskjemaer om hverandre: dagfaser (morning…day_end) og stadier
+  // (intro…mastery). Begge rangeres slik at casen åpner i sin tidligste form.
+  const REPRESENTATIVE_PHASE_RANK = {
+    morning: 0, intro: 0,
+    forenoon: 1, early: 1,
+    workday: 2, mid: 2,
+    lunch: 3, stable: 3,
+    afternoon: 4,
+    dinner: 5,
+    evening: 6, late: 6,
+    day_end: 7,
+    advanced: 8,
+    mastery: 9
+  };
+  const REPRESENTATIVE_PHASE_RANK_DEFAULT = 10;
+
   const jsonCache = new Map();
 
   function norm(value) {
@@ -45,6 +69,68 @@
 
   function todayKey() {
     return new Date().toISOString().slice(0, 10);
+  }
+
+  // Stabil dedupe-nøkkel per melding/tråd. Eksplisitt thread_key i data vinner;
+  // deretter deler case-typene tråd per (role_scope + narrative_arc); alle andre
+  // får unik tråd per kildemail (source_mail_id før instans-id, slik at daglige
+  // instanser av samme kildemail havner i samme tråd).
+  function threadKeyForMail(mail) {
+    const explicit = norm(mail?.thread_key || mail?.threadKey);
+    if (explicit) return explicit;
+    const scope = slugify(mail?.role_scope) || "role";
+    const arc = slugify(mail?.narrative_arc);
+    if (arc && CASE_THREAD_TYPES.has(norm(mail?.mail_type))) return `${scope}.case.${arc}`;
+    const id = slugify(mail?.source_mail_id || mail?.id);
+    return id ? `${scope}.mail.${id}` : "";
+  }
+
+  function isCaseThreadKey(key) {
+    return norm(key).includes(".case.");
+  }
+
+  // Én kanonisk mail per case-tråd per dagbygg: varianter av samme story-node
+  // kollapses FØR slot-plukking, slik at generatoren aldri kan legge samme case
+  // i flere slots/faser samme dag. Representanten velges deterministisk:
+  // thread_canonical-flagg i data vinner, deretter tidligste dagfase (casen
+  // åpner i sin morgenform), deretter høyest prioritet, deretter laveste id.
+  function representativePhaseRank(mail) {
+    const rank = REPRESENTATIVE_PHASE_RANK[norm(mail?.phase)];
+    return typeof rank === "number" ? rank : REPRESENTATIVE_PHASE_RANK_DEFAULT;
+  }
+
+  function preferAsThreadRepresentative(candidate, current) {
+    if (!current) return true;
+    const canonicalA = candidate?.thread_canonical === true ? 1 : 0;
+    const canonicalB = current?.thread_canonical === true ? 1 : 0;
+    if (canonicalA !== canonicalB) return canonicalA > canonicalB;
+    const rankA = representativePhaseRank(candidate);
+    const rankB = representativePhaseRank(current);
+    if (rankA !== rankB) return rankA < rankB;
+    const prioA = Number(candidate?.priority || 0);
+    const prioB = Number(current?.priority || 0);
+    if (prioA !== prioB) return prioA > prioB;
+    return norm(candidate?.id) < norm(current?.id);
+  }
+
+  function collapsePoolToCanonicalThreads(pool, excludedThreadKeys, consumedIds) {
+    const rest = [];
+    const byThread = new Map();
+    for (const mail of (Array.isArray(pool) ? pool : [])) {
+      const key = threadKeyForMail(mail);
+      const stamped = norm(mail?.thread_key) ? mail : { ...mail, thread_key: key };
+      if (!isCaseThreadKey(key)) {
+        rest.push(stamped);
+        continue;
+      }
+      if (excludedThreadKeys?.has?.(key)) continue;
+      // Konsumerte varianter kan ikke representere tråden — da fortsetter
+      // casen på en senere dag med neste ubrukte variant.
+      if (consumedIds?.has?.(norm(mail?.id))) continue;
+      const current = byThread.get(key);
+      if (preferAsThreadRepresentative(stamped, current)) byThread.set(key, stamped);
+    }
+    return [...rest, ...byThread.values()];
   }
 
   function uniqueStrings(values) {
@@ -509,8 +595,11 @@
           "Hvordan du håndterer slike små øyeblikk avgjør om dagen føles styrt eller bare gjennomført."
         ];
 
+    const generatedId = `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${todayKey()}_${index}${runtimeInstanceKey}`;
+
     return {
-      id: `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${todayKey()}_${index}${runtimeInstanceKey}`,
+      id: generatedId,
+      thread_key: `${resolveRoleScope(active) || "role"}.mail.${slugify(generatedId)}`,
       source: "Civication",
       source_type: "daily_generated",
       mail_type: isDayEnd ? "day_end" : "phase",
@@ -576,6 +665,7 @@
       ...sourceMail,
       id: `${sourceId}__daily_${date}_${phaseId}_${slotId}_${index}${runtimeInstanceKey}`,
       source_mail_id: sourceId,
+      thread_key: norm(sourceMail?.thread_key) || threadKeyForMail(sourceMail),
       source_type: "daily_extra",
       mail_class: "daily_workday",
       phase_tag: phaseId,
@@ -611,6 +701,7 @@
       ...sourceMail,
       source_type: "planned",
       mail_class: "daily_workday",
+      thread_key: norm(sourceMail?.thread_key) || threadKeyForMail(sourceMail),
       phase_tag: phaseId,
       daily_mail_meta: {
         date: todayKey(),
@@ -664,9 +755,11 @@
     const phaseId = norm(phase?.id || base.phase_tag || "morning");
     const slotId = slugify(slot?.slot || slot?.type || `slot_${index}`);
     const date = todayKey();
+    const generatedPhaseId = norm(base.id) ? `${norm(base.id)}${runtimeInstanceKey}` : `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${date}_${index}${runtimeInstanceKey}`;
     return {
       ...base,
-      id: norm(base.id) ? `${norm(base.id)}${runtimeInstanceKey}` : `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${date}_${index}${runtimeInstanceKey}`,
+      id: generatedPhaseId,
+      thread_key: norm(base.thread_key) || `${resolveRoleScope(active) || "role"}.mail.${slugify(generatedPhaseId)}`,
       source: norm(base.source) || "Civication",
       source_type: "daily_generated",
       mail_class: "daily_workday",
@@ -697,7 +790,8 @@
   }
 
   function pickFromPool(pool, wantedTypes, usedSourceIds, seed, phase, count, slot, progressionContext) {
-    const wanted = new Set((Array.isArray(wantedTypes) ? wantedTypes : [wantedTypes]).map(norm).filter(Boolean));
+    const wantedList = (Array.isArray(wantedTypes) ? wantedTypes : [wantedTypes]).map(norm).filter(Boolean);
+    const wanted = new Set(wantedList);
     if (!wanted.size || [...wanted].some(t => t.startsWith("__generated"))) return [];
     const slotPool = filterPoolForDailySlot(pool, phase, slot, progressionContext);
 
@@ -706,6 +800,17 @@
       if (!id || usedSourceIds.has(id)) return false;
       return wanted.has(norm(mail?.mail_type));
     });
+
+    // Case-trådene er kollapset til én representant hver, så det finnes langt
+    // færre micro/followup/knowledge/consequence-kandidater enn før. Når
+    // slotens primærtype er en case-type og har kandidater, får den forrang —
+    // ellers taper kveldens knowledge/consequence-slots hash-loddtrekningen
+    // mot people/job og dagen mister case-innholdet sitt.
+    const primaryType = wantedList[0];
+    if (CASE_THREAD_TYPES.has(primaryType)) {
+      const primaryCandidates = candidates.filter(mail => norm(mail?.mail_type) === primaryType);
+      if (primaryCandidates.length) candidates = primaryCandidates;
+    }
 
     if (!candidates.length && !isStrictSlot(slot)) {
       candidates = slotPool.filter(mail => {
@@ -901,6 +1006,8 @@
     const date=todayKey();
     return {
       id: `${stream.id}__${norm(storylet.id)}__${date}__${ordinal}`,
+      // Alle instanser av samme storylet (uansett dag/injeksjon) deler tråd.
+      thread_key: `${resolveRoleScope(active) || "role"}.narrative.${slugify(stream.id)}.${slugify(storylet.id)}`,
       source: norm(storylet.from || stream.title || "Narrative stream"),
       from: norm(storylet.from),
       source_type: "narrative_stream",
@@ -1155,6 +1262,11 @@
     setState({ [NARRATIVE_KEY]: nextNarrativeState });
     const plannedPrimary = await getPlannedPrimary(active, state);
     const usedSourceIds = consumedSet(state);
+    // Dagens planmail eier sin tråd: er den en case-variant, skal ingen annen
+    // variant av samme case kunne plukkes fra katalogen samme dag.
+    const plannedThreadKey = plannedPrimary ? threadKeyForMail(plannedPrimary) : "";
+    const excludedThreadKeys = new Set(isCaseThreadKey(plannedThreadKey) ? [plannedThreadKey] : []);
+    const dayPool = collapsePoolToCanonicalThreads(pool, excludedThreadKeys, usedSourceIds);
     const progressionContext = getDailyProgressionContext(active, state, plannedPrimary, null, plan);
     const items = [];
     const phases = Array.isArray(program?.day_structure?.phases)
@@ -1204,7 +1316,7 @@
             continue;
           }
 
-          const picked = pickFromPool(pool, wanted, usedSourceIds, seed, phase, 1, slot, progressionContext)[0];
+          const picked = pickFromPool(dayPool, wanted, usedSourceIds, seed, phase, 1, slot, progressionContext)[0];
           if (picked) {
             items.push({
               status: "queued",
@@ -1265,6 +1377,43 @@
     return norm(rt.date) === date && norm(rt.role_scope) === resolveRoleScope(active);
   }
 
+  // Migrering/opprydding for eksisterende saves: en gjenbrukt dagskø kan være
+  // bygd før tråd-dedupe fantes og inneholde flere aktive rader med samme
+  // threadKey. Behold den første (eldste i køen); senere aktive duplikater
+  // undertrykkes. Rader som allerede er besvart beholdes som historikk, men
+  // ubesvarte duplikater av en allerede besvart tråd undertrykkes også.
+  function sweepDuplicateThreadRows(runtime) {
+    const items = Array.isArray(runtime?.items) ? runtime.items : [];
+    if (!items.length) return { runtime, changed: false };
+
+    const keyOfRow = row => norm(row?.event?.thread_key) || threadKeyForMail(row?.event || {});
+    const answeredKeys = new Set();
+    for (const row of items) {
+      if (norm(row?.status) !== "answered" || row?.suppressed_duplicate === true) continue;
+      const key = keyOfRow(row);
+      if (key) answeredKeys.add(key);
+    }
+
+    let changed = false;
+    const seenActive = new Set();
+    const nextItems = items.map(row => {
+      if (norm(row?.status) === "answered") return row;
+      const key = keyOfRow(row);
+      if (!key) return row;
+      if (!answeredKeys.has(key) && !seenActive.has(key)) {
+        seenActive.add(key);
+        return row;
+      }
+      changed = true;
+      console.warn("[Civication mail dedupe] duplicate threadKey suppressed", key, norm(row?.event?.id));
+      try { window.CivicationMailEngine?.suppressDuplicateMail?.(norm(row?.event?.id), key); } catch {}
+      return { ...row, status: "answered", suppressed_duplicate: true, suppressed_at: new Date().toISOString() };
+    });
+
+    if (!changed) return { runtime, changed: false };
+    return { runtime: { ...runtime, items: nextItems, updated_at: new Date().toISOString() }, changed: true };
+  }
+
   async function ensureRuntime(active, options = {}) {
     const roleScope = resolveRoleScope(active);
     const date = norm(options.date || todayKey());
@@ -1277,7 +1426,14 @@
       existing.items.length &&
       options.forceNew !== true;
 
-    if (reusable) return existing;
+    if (reusable) {
+      const swept = sweepDuplicateThreadRows(existing);
+      if (swept.changed) {
+        setRuntime(swept.runtime);
+        return swept.runtime;
+      }
+      return existing;
+    }
 
     const next = await buildQueue(active, { date, forceNew: options.forceNew === true });
     setState({ [DAY_RUNTIME_KEY]: next });
@@ -1402,6 +1558,7 @@
     const deliveredEvent = {
       ...event,
       id: eventId,
+      thread_key: norm(event.thread_key) || threadKeyForMail(event),
       status: norm(row?.status || event.status || "delivered"),
       phase: norm(row?.phase || event.phase || event.phase_tag),
       slot: norm(row?.slot || event.slot),
@@ -1422,6 +1579,9 @@
       });
       if (sent?.ok) return { ok: true, via: "mail_engine" };
       if (sent?.reason === "duplicate_key") return { ok: false, reason: "duplicate_key" };
+      // Tråd-vakten i mail-motoren har avvist et case-duplikat; ikke omgå den
+      // via enqueue-fallbacken.
+      if (sent?.reason === "duplicate_thread") return { ok: false, reason: "duplicate_thread" };
     }
 
     const enqueued = enqueueEvent(engine, deliveredEvent);
@@ -1599,6 +1759,24 @@
     });
 
     if (foundIndex < 0) return runtime;
+
+    // Når en tråd besvares skal eventuelle andre aktive instanser av samme
+    // threadKey ut av dagskøen, slik at samme case ikke dukker opp igjen i en
+    // senere fase. Besvarte rader røres ikke (historikk bevares).
+    const answeredEvent = runtime.items?.[foundIndex]?.event || {};
+    const answeredThreadKey = norm(answeredEvent.thread_key) || threadKeyForMail(answeredEvent);
+    if (answeredThreadKey) {
+      for (let i = 0; i < items.length; i += 1) {
+        if (i === foundIndex) continue;
+        const row = items[i];
+        if (norm(row?.status) === "answered") continue;
+        const key = norm(row?.event?.thread_key) || threadKeyForMail(row?.event || {});
+        if (key !== answeredThreadKey) continue;
+        console.warn("[Civication mail dedupe] duplicate threadKey suppressed", key, norm(row?.event?.id));
+        try { window.CivicationMailEngine?.suppressDuplicateMail?.(norm(row?.event?.id), key); } catch {}
+        items[i] = { ...row, status: "answered", suppressed_duplicate: true, suppressed_at: new Date().toISOString() };
+      }
+    }
 
     let updatedNarrative = null;
     if (norm(runtime.items?.[foundIndex]?.event?.source_type) === "narrative_stream") {
@@ -1899,6 +2077,7 @@
     markAnswered,
     answerBundleItem: markAnswered,
     markHandled,
+    threadKeyForMail,
     isDailyEvent,
     isActionablePendingInboxItem,
     hasBlockingPendingAction: hasPending,

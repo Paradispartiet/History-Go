@@ -7,9 +7,13 @@
 // kvartalsbygd byteppe og håndlagde Oslo-landemerker.
 //
 // Robusthet:
-// - Three.js lastes via dynamisk import() fra CDN (pinnet versjon).
+// - Three.js lastes via dynamisk import() – LOKALT fra js/vendor/three (vendret,
+//   committet, pinnet til three@0.160.0), med CDN kun som fallback. Dermed virker
+//   3D-kartet også offline / bak proxy der CDN er blokkert.
 // - Tar bare over når WebGL + biblioteket lastes OK. Ved enhver feil/offline
 //   forblir det 2D Canvas-kartet aktivt som fallback (ingen blank skjerm).
+// - Flatene bruker MeshStandardMaterial (PBR) med en prosedyral gradient-env
+//   (scene.environment) for mykt, materialrikt anslag i den varme diorama-tonen.
 // - Gjenbruker samme datakilde (DataHub), Oslo-filter og kalibrerte projeksjon
 //   som Canvas-motoren, slik at places havner på samme stiliserte Oslo.
 //
@@ -19,7 +23,18 @@
 
   if (window.CivicationThreeMap) return;
 
-  const THREE_URL = "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+  // Three.js + addons lastes lokalt (vendret, committet) via import map ("three"
+  // / "three/addons/"), så hoved-instansen og postprosesserings-addonene deler
+  // ÉN modul-instans. Absolutt lokal URL og CDN beholdes som fallback for
+  // hoved-three hvis import map / vendret fil skulle mangle (da kjører kartet
+  // uten post-prosessering).
+  const THREE_LOCAL_URL = (typeof document !== "undefined" && document.baseURI)
+    ? new URL("js/vendor/three/three.module.js", document.baseURI).href
+    : "js/vendor/three/three.module.js";
+  const THREE_CDN_URL = "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+  // Postprosesserings-addons (lastes via import map i init; null hvis utilgjengelig).
+  let ADDONS = null;
 
   // ---------------------------------------------------------------------------
   // Konfig
@@ -128,6 +143,16 @@
   let active = false;
   let dirty = true;
   let rafId = 0;
+
+  // Post-prosessering (tilt-shift dybdeskarphet + vignett + varm grade). Egen
+  // minimal komposisjon med core-THREE (ingen addon/CDN): scene rendres til et
+  // render target, deretter en fullskjerms shader til skjermen. Bak et
+  // kvalitetsnivå (_postEnabled) – ved lavt nivå/feil rendres scenen direkte.
+  let _postEnabled = false;
+  let _composer = null;
+  let _ssaoPass = null;
+  let _smaaPass = null;
+  let _tiltPass = null;
 
   let _places = null;
   let _loadStarted = false;
@@ -328,9 +353,19 @@
   // ---------------------------------------------------------------------------
   // Geometri-hjelpere
   // ---------------------------------------------------------------------------
+  // Standard PBR-standardverdier for diorama-flatene: matt (høy ruhet), ikke-
+  // metallisk. Sammen med scene.environment (myk gradient-IBL) gir dette
+  // material-dybde og mykt anslag uten å bryte den varme, dempede paletten.
+  const PBR_ROUGHNESS = 0.82;
+  const PBR_METALNESS = 0.0;
   function toMat(c, opts) {
     if (c && c.isMaterial) return c;
-    return new THREE.MeshLambertMaterial(Object.assign({ color: new THREE.Color(c) }, opts || {}));
+    const params = Object.assign(
+      { roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS },
+      opts || {},
+      { color: new THREE.Color(c) }
+    );
+    return new THREE.MeshStandardMaterial(params);
   }
 
   // Ekstruder et normalisert polygon (liste av [nx,ny]) til en blokk/plate.
@@ -699,8 +734,37 @@
   // ---------------------------------------------------------------------------
   // Del 6 – Lys / atmosfære
   // ---------------------------------------------------------------------------
+  // Myk gradient-IBL (himmel → horisont → varm bakke), generert i minnet via en
+  // liten CanvasTexture + PMREM. Gir MeshStandard-flatene et retningsbestemt,
+  // mykt anslag (image-based lighting) uten å laste ned noen asset.
+  function buildEnvironment() {
+    if (!renderer || typeof THREE.PMREMGenerator !== "function") return;
+    const size = 128;
+    const cvs = document.createElement("canvas");
+    cvs.width = 8;
+    cvs.height = size;
+    const ctx = cvs.getContext("2d");
+    if (!ctx) return;
+    const grad = ctx.createLinearGradient(0, 0, 0, size);
+    grad.addColorStop(0.0, "#e6eef5");   // himmel (topp)
+    grad.addColorStop(0.45, "#c2ccd4");
+    grad.addColorStop(0.55, "#9aa0a2");  // horisont
+    grad.addColorStop(1.0, "#4a443c");   // bakke (bunn, varm)
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 8, size);
+    const tex = new THREE.CanvasTexture(cvs);
+    tex.mapping = THREE.EquirectangularReflectionMapping;
+    if ("colorSpace" in tex) tex.colorSpace = THREE.SRGBColorSpace;
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromEquirectangular(tex).texture;
+    tex.dispose();
+    pmrem.dispose();
+  }
+
   function buildLights() {
-    scene.add(new THREE.HemisphereLight(0xd6e6f2, 0x3a4233, 0.78));
+    // Env-mappet gir nå mykt omgivelseslys, så himmelslyset er dempet litt for
+    // å beholde den varme, dempede tonen (unngå utvasking med PBR-flatene).
+    scene.add(new THREE.HemisphereLight(0xd6e6f2, 0x3a4233, 0.52));
     const sun = new THREE.DirectionalLight(0xfff1da, 1.18);
     sun.position.set(-15, 24, 13); // konsekvent mykt lys oppe-til-venstre
     sun.castShadow = true;
@@ -833,7 +897,7 @@
 
     // Vegger/kropp – ett InstancedMesh.
     const geo = new THREE.BoxGeometry(1, 1, 1);
-    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshLambertMaterial({ color: 0xffffff }), blocks.length);
+    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), blocks.length);
     mesh.castShadow = true; mesh.receiveShadow = true;
     const m = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
@@ -847,7 +911,7 @@
         { depth: 1, bevelEnabled: false }
       );
       rgeo.translate(0, 0, -0.5);
-      roofMesh = new THREE.InstancedMesh(rgeo, new THREE.MeshLambertMaterial({ color: 0xffffff }), roofList.length);
+      roofMesh = new THREE.InstancedMesh(rgeo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), roofList.length);
       roofMesh.castShadow = true; roofMesh.receiveShadow = true;
     }
 
@@ -912,7 +976,7 @@
     if (!pts.length) return;
 
     const geo = new THREE.ConeGeometry(0.17, 1, 7);
-    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshLambertMaterial({ color: 0xffffff }), pts.length);
+    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), pts.length);
     mesh.castShadow = false; mesh.receiveShadow = true; // trær kaster ikke skygge (ytelse)
     const m = new THREE.Matrix4(), q = new THREE.Quaternion();
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
@@ -2666,14 +2730,161 @@
     H = Math.max(1, Math.round(rect.height) || window.innerHeight || 640);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, MAX_DPR));
     renderer.setSize(W, H, false);
+    resizePost();
     updateCamera();
+  }
+
+  // Kvalitetsnivå: eksplisitt window.CIVICATION_MAP_QUALITY ("high"/"low"/"off")
+  // vinner; ellers på som standard, men av på små/lavytelses-enheter.
+  function decidePostEnabled() {
+    const q = String((typeof window !== "undefined" && window.CIVICATION_MAP_QUALITY) || "").toLowerCase();
+    if (q === "high") return true;
+    if (q === "low" || q === "off" || q === "none") return false;
+    const cores = (typeof navigator !== "undefined" && navigator.hardwareConcurrency) || 8;
+    const minSide = Math.min(W || 0, H || 0);
+    if (cores <= 4 && minSide < 520) return false; // konservativt for svake mobiler
+    return true;
+  }
+
+  async function loadPostAddons() {
+    try {
+      const base = "three/addons/postprocessing/";
+      const [ec, rp, sp, ssao, smaa, op] = await Promise.all([
+        import(/* @vite-ignore */ base + "EffectComposer.js"),
+        import(/* @vite-ignore */ base + "RenderPass.js"),
+        import(/* @vite-ignore */ base + "ShaderPass.js"),
+        import(/* @vite-ignore */ base + "SSAOPass.js"),
+        import(/* @vite-ignore */ base + "SMAAPass.js"),
+        import(/* @vite-ignore */ base + "OutputPass.js")
+      ]);
+      return {
+        EffectComposer: ec.EffectComposer, RenderPass: rp.RenderPass, ShaderPass: sp.ShaderPass,
+        SSAOPass: ssao.SSAOPass, SMAAPass: smaa.SMAAPass, OutputPass: op.OutputPass
+      };
+    } catch (e) {
+      console.warn("[CivicationThreeMap] post-addons utilgjengelig – kjører uten post:", (e && e.message) || e);
+      return null;
+    }
+  }
+
+  const POST_VERT = [
+    "varying vec2 vUv;",
+    "void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }"
+  ].join("\n");
+
+  // Tilt-shift-pass (kjører SIST, etter OutputPass, altså på ferdig sRGB): skarpt
+  // bånd rundt uFocusCenter, økende blur mot topp/bunn – signatur-«miniatyrmodell»-
+  // looken. Pluss vignett og en varm grade/kontrast. Ingen sRGB-encode her
+  // (inputen er allerede sRGB fra OutputPass).
+  const POST_FRAG = [
+    "precision highp float;",
+    "uniform sampler2D tDiffuse;",
+    "uniform vec2 uResolution;",
+    "uniform float uMaxBlur, uFocusCenter, uFocusHeight, uFalloff, uVignette, uGrade;",
+    "varying vec2 vUv;",
+    "void main(){",
+    "  float d = abs(vUv.y - uFocusCenter);",
+    "  float blur = smoothstep(uFocusHeight, uFocusHeight + uFalloff, d) * uMaxBlur;",
+    "  vec2 px = 1.0 / uResolution;",
+    "  vec3 acc = texture2D(tDiffuse, vUv).rgb;",
+    "  float wsum = 1.0;",
+    "  if (blur > 0.001) {",
+    "    for (int i = 0; i < 12; i++) {",
+    "      float a = float(i) * 0.5235987756;",           // 30° steg
+    "      float r = (mod(float(i), 2.0) < 0.5) ? 1.0 : 0.55;", // to radier -> disk-aktig
+    "      vec2 o = vec2(cos(a), sin(a)) * blur * r;",
+    "      acc += texture2D(tDiffuse, vUv + o * px).rgb;",
+    "      wsum += 1.0;",
+    "    }",
+    "    acc /= wsum;",
+    "  }",
+    "  vec2 q = vUv - 0.5;",
+    "  float vig = 1.0 - uVignette * dot(q, q) * 1.6;",
+    "  vec3 col = acc * vig;",
+    "  col = mix(col, col * vec3(1.03, 1.0, 0.96), uGrade);", // varm tone
+    "  col = (col - 0.5) * 1.04 + 0.5;",                       // lett kontrast
+    "  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);",
+    "}"
+  ].join("\n");
+
+  function drawingBufferSize() {
+    const v = new THREE.Vector2();
+    if (renderer && typeof renderer.getDrawingBufferSize === "function") renderer.getDrawingBufferSize(v);
+    if (!(v.x > 0 && v.y > 0)) v.set(Math.max(1, W), Math.max(1, H));
+    v.set(Math.max(1, Math.round(v.x)), Math.max(1, Math.round(v.y)));
+    return v;
+  }
+
+  // EffectComposer-kjede: RenderPass → SSAO (kontaktskygger) → SMAA (kanter) →
+  // OutputPass (tonemap+sRGB) → tilt-shift/vignett (til skjerm). Selvstendig
+  // vendret three + addons (import map), ingen CDN.
+  function buildPostPipeline() {
+    _postEnabled = false;
+    _composer = _ssaoPass = _smaaPass = _tiltPass = null;
+    if (!renderer || !THREE || !ADDONS) return;
+    if (!decidePostEnabled()) return;
+    try {
+      const sz = drawingBufferSize();
+      const w = sz.x, h = sz.y;
+      const rt = new THREE.WebGLRenderTarget(w, h, {
+        type: THREE.HalfFloatType, minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter
+      });
+      _composer = new ADDONS.EffectComposer(renderer, rt);
+      _composer.setPixelRatio(1);          // vi mater allerede inn drawingBuffer-størrelse
+      _composer.setSize(w, h);
+      _composer.addPass(new ADDONS.RenderPass(scene, camera));
+
+      _ssaoPass = new ADDONS.SSAOPass(scene, camera, w, h);
+      _ssaoPass.kernelRadius = 8;
+      _ssaoPass.minDistance = 0.0015;
+      _ssaoPass.maxDistance = 0.06;
+      _composer.addPass(_ssaoPass);
+
+      _smaaPass = new ADDONS.SMAAPass(w, h);
+      _composer.addPass(_smaaPass);
+
+      _composer.addPass(new ADDONS.OutputPass());
+
+      _tiltPass = new ADDONS.ShaderPass({
+        uniforms: {
+          tDiffuse: { value: null },
+          uResolution: { value: new THREE.Vector2(w, h) },
+          uMaxBlur: { value: 3.4 },
+          uFocusCenter: { value: 0.46 },
+          uFocusHeight: { value: 0.13 },
+          uFalloff: { value: 0.32 },
+          uVignette: { value: 0.34 },
+          uGrade: { value: 0.6 }
+        },
+        vertexShader: POST_VERT,
+        fragmentShader: POST_FRAG
+      });
+      _composer.addPass(_tiltPass);        // sist → renderToScreen
+
+      _postEnabled = true;
+    } catch (e) {
+      console.warn("[CivicationThreeMap] post-pipeline av (feil ved oppsett):", (e && e.message) || e);
+      _postEnabled = false;
+      _composer = _ssaoPass = _smaaPass = _tiltPass = null;
+    }
+  }
+
+  function resizePost() {
+    if (!_postEnabled || !_composer) return;
+    const sz = drawingBufferSize();
+    _composer.setSize(sz.x, sz.y);         // oppdaterer alle passenes targets
+    if (_tiltPass) _tiltPass.uniforms.uResolution.value.set(sz.x, sz.y);
   }
 
   function loop() {
     rafId = requestAnimationFrame(loop);
     if (!active || !dirty) return;
     dirty = false;
-    renderer.render(scene, camera);
+    if (_postEnabled && _composer) {
+      _composer.render();
+    } else {
+      renderer.render(scene, camera);
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -2845,12 +3056,27 @@
       return;
     }
 
+    // Hoved-three via import map ("three"), med lokal absolutt URL og CDN som
+    // fallback. Addonene (under) MÅ dele instans, så de bruker samme "three"-map.
     try {
-      THREE = await import(/* @vite-ignore */ THREE_URL);
-    } catch (e) {
-      console.warn("[CivicationThreeMap] Klarte ikke laste three.js – beholder Canvas-kartet:", (e && e.message) || e);
-      return;
+      THREE = await import(/* @vite-ignore */ "three");
+    } catch (eMap) {
+      try {
+        THREE = await import(/* @vite-ignore */ THREE_LOCAL_URL);
+      } catch (eLocal) {
+        console.warn("[CivicationThreeMap] lokal three.js feilet, prøver CDN:", (eLocal && eLocal.message) || eLocal);
+        try {
+          THREE = await import(/* @vite-ignore */ THREE_CDN_URL);
+        } catch (e) {
+          console.warn("[CivicationThreeMap] Klarte ikke laste three.js – beholder Canvas-kartet:", (e && e.message) || e);
+          return;
+        }
+      }
     }
+
+    // Postprosesserings-addons (deler three-instans via import map). Feiler stille
+    // til null → kartet kjører uten post-prosessering (fail-safe).
+    ADDONS = await loadPostAddons();
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.domElement.className = "civi-three-canvas";
@@ -2869,6 +3095,7 @@
     // Delt, usynlig (men raycastbar) material for landmark-hit targets.
     INVISIBLE_HIT_MAT = new THREE.MeshBasicMaterial({ visible: false });
 
+    buildEnvironment();
     buildLights();
     buildBoard();
     buildLandscape();
@@ -2886,6 +3113,7 @@
     window.__civiThreeActive = true;
     active = true;
 
+    buildPostPipeline();
     ensureControls();
     bindEvents();
     resize();
@@ -2983,6 +3211,8 @@
     getGroundhopperMarkerCount: () => _stats.groundhopperMarkers || 0,
     isGroundhopperPlace,
     buildGroundhopperRing,
+    // Post-prosessering (tilt-shift/vignett/grade) – status for test/introspeksjon.
+    isPostEnabled: () => _postEnabled === true,
     // Rene introspeksjons-/testfunksjoner (uten scene/DOM) – speiler nøyaktig
     // logikken renderen bruker, så de kan dekkes av node-tester og dev-konsoll.
     resolvePlaceMiniatureType: (place) => resolvePlaceMiniatureType(normalize(place)),

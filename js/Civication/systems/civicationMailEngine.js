@@ -46,6 +46,53 @@
     return String(value || "").trim().toLowerCase();
   }
 
+  function slugifyKey(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 80);
+  }
+
+  // Avklaringspakkene (micro/followup/knowledge/consequence) er varianter av
+  // samme story-node per narrative_arc og deler derfor tråd. Speiler
+  // threadKeyForMail i civicationDailyMailBuilder (builderen stempler
+  // thread_key ved bygging; dette er lesesiden for mailer fra andre motorer
+  // og gamle saves som mangler feltet).
+  const CASE_THREAD_MAIL_TYPES = new Set(["micro", "followup", "knowledge", "consequence"]);
+
+  function threadKeyOf(mailOrEvent) {
+    const event = mailOrEvent?.event || mailOrEvent || {};
+    const explicit = String(event.thread_key || event.threadKey || mailOrEvent?.thread_key || "").trim();
+    if (explicit) return explicit;
+    const scope = slugifyKey(event.role_scope) || "role";
+    const arc = slugifyKey(event.narrative_arc);
+    const type = String(event.mail_type || event.type || "").trim();
+    if (arc && CASE_THREAD_MAIL_TYPES.has(type)) return scope + ".case." + arc;
+    const id = slugifyKey(event.source_mail_id || event.id || mailOrEvent?.id);
+    return id ? scope + ".mail." + id : "";
+  }
+
+  function isActiveThreadItem(m) {
+    if (!m || m.deleted === true || m.archived === true || m.resolved === true) return false;
+    const status = String(m.status || "pending").toLowerCase();
+    return status !== "resolved" && status !== "suppressed";
+  }
+
+  function suppressEnvelope(m, now) {
+    return {
+      ...m,
+      read: true,
+      archived: true,
+      suppressed_duplicate: true,
+      suppressedAt: now,
+      status: "suppressed"
+    };
+  }
+
   function isJobRelatedMail(event) {
     const ev = event || {};
     if (typeof window.CivicationEventChannels?.getMessageChannel === "function") {
@@ -151,6 +198,42 @@
     }
   }
 
+  // Engangsopprydding per økt for eksisterende saves: gamle lagre kan allerede
+  // inneholde flere AKTIVE mailer med samme threadKey (bygd før tråd-dedupe).
+  // Eldste aktive instans beholdes; senere aktive duplikater undertrykkes.
+  // Besvart/arkivert historikk røres ikke.
+  let threadCleanupDone = false;
+  function cleanupDuplicateActiveThreadsOnce(store) {
+    if (threadCleanupDone) return store;
+    threadCleanupDone = true;
+
+    const items = Array.isArray(store?.items) ? store.items : [];
+    const oldestByThread = new Map();
+    for (const m of items) {
+      if (!isActiveThreadItem(m)) continue;
+      const threadKey = threadKeyOf(m);
+      if (!threadKey) continue;
+      const current = oldestByThread.get(threadKey);
+      if (!current || String(m.createdAt || "") < String(current.createdAt || "")) {
+        oldestByThread.set(threadKey, m);
+      }
+    }
+
+    let changed = false;
+    const now = new Date().toISOString();
+    store.items = items.map((m) => {
+      if (!isActiveThreadItem(m)) return m;
+      const threadKey = threadKeyOf(m);
+      if (!threadKey || oldestByThread.get(threadKey) === m) return m;
+      changed = true;
+      console.warn("[Civication mail dedupe] duplicate threadKey suppressed", threadKey, m?.event?.id || m?.id);
+      return suppressEnvelope(m, now);
+    });
+
+    if (changed) saveStore(store, { silent: true });
+    return store;
+  }
+
   function migrateOldInboxIfNeeded() {
     const parsedMailStore = parseMailStore();
 
@@ -158,7 +241,7 @@
     // this is not a migration case. Returning here prevents read-only calls
     // from repeatedly saving an empty store and dispatching civi:inboxChanged.
     if (parsedMailStore && typeof parsedMailStore === "object" && Array.isArray(parsedMailStore.items)) {
-      return normalizeStoreShape(parsedMailStore);
+      return cleanupDuplicateActiveThreadsOnce(normalizeStoreShape(parsedMailStore));
     }
 
     const legacy = getLegacyInbox();
@@ -173,7 +256,7 @@
     const items = legacy.map(normalizeEnvelope);
     const next = normalizeStoreShape({ version: 1, items });
     saveStore(next, { silent: true });
-    return next;
+    return cleanupDuplicateActiveThreadsOnce(next);
   }
 
   function resolveMailMatch(m, mailId, eventId) {
@@ -199,11 +282,14 @@
     const now = new Date().toISOString();
     let changed = false;
     const readIds = [mailId, eventId];
+    const resolvedThreadKeys = new Set();
 
     store.items = (store.items || []).map((m) => {
       if (!resolveMailMatch(m, mailId, eventId)) return m;
       changed = true;
       readIds.push(m?.id, m?.event?.id, m?.key);
+      const threadKey = threadKeyOf(m);
+      if (threadKey) resolvedThreadKeys.add(threadKey);
       return {
         ...m,
         read: true,
@@ -214,10 +300,42 @@
       };
     });
 
+    // Andre aktive instanser av samme tråd skal ikke bli liggende som åpne
+    // saker når casen er besvart — de undertrykkes (arkiveres), historikk
+    // som allerede er besvart beholdes urørt.
+    if (resolvedThreadKeys.size) {
+      store.items = (store.items || []).map((m) => {
+        if (resolveMailMatch(m, mailId, eventId)) return m;
+        if (!isActiveThreadItem(m)) return m;
+        const threadKey = threadKeyOf(m);
+        if (!threadKey || !resolvedThreadKeys.has(threadKey)) return m;
+        changed = true;
+        console.warn("[Civication mail dedupe] duplicate threadKey suppressed", threadKey, m?.event?.id || m?.id);
+        return suppressEnvelope(m, now);
+      });
+    }
+
     if (changed) {
       saveStore(store);
       markJobMailIdsRead(readIds);
     }
+    return changed;
+  }
+
+  function suppressDuplicateMail(mailId, threadKey) {
+    const id = String(mailId || "").trim();
+    if (!id) return false;
+    const store = migrateOldInboxIfNeeded();
+    const now = new Date().toISOString();
+    let changed = false;
+    store.items = (store.items || []).map((m) => {
+      if (!resolveMailMatch(m, id, id)) return m;
+      if (!isActiveThreadItem(m)) return m;
+      changed = true;
+      console.warn("[Civication mail dedupe] duplicate threadKey suppressed", threadKey || threadKeyOf(m), m?.event?.id || m?.id);
+      return suppressEnvelope(m, now);
+    });
+    if (changed) saveStore(store);
     return changed;
   }
 
@@ -262,10 +380,38 @@
     return ordered.slice(0, MAX_INBOX);
   }
 
+  // Defensivt sikkerhetsnett når meldingslisten bygges: skulle to AKTIVE
+  // mailer med samme threadKey likevel finnes samtidig (generator-bug,
+  // race, gammel save midt i en økt), vises kun den eldste. Hovedfiksen er
+  // at generatorene ikke lager duplikater — dette er bare siste skanse.
+  const warnedInboxThreadKeys = new Set();
+  function dedupeActiveInboxItems(items) {
+    const oldestByThread = new Map();
+    for (const m of items) {
+      if (!isActiveThreadItem(m)) continue;
+      const threadKey = threadKeyOf(m);
+      if (!threadKey) continue;
+      const current = oldestByThread.get(threadKey);
+      if (!current || String(m.createdAt || "") < String(current.createdAt || "")) {
+        oldestByThread.set(threadKey, m);
+      }
+    }
+    return items.filter((m) => {
+      if (!isActiveThreadItem(m)) return true;
+      const threadKey = threadKeyOf(m);
+      if (!threadKey || oldestByThread.get(threadKey) === m) return true;
+      if (!warnedInboxThreadKeys.has(threadKey)) {
+        warnedInboxThreadKeys.add(threadKey);
+        console.warn("[Civication mail dedupe] duplicate threadKey suppressed", threadKey, m?.event?.id || m?.id);
+      }
+      return false;
+    });
+  }
+
   const api = {
     getInbox() {
       const store = migrateOldInboxIfNeeded();
-      return (store.items || []).filter((m) => !m.deleted && !m.archived)
+      return dedupeActiveInboxItems((store.items || []).filter((m) => !m.deleted && !m.archived))
         .map((m) => ({
           status: m.status,
           read: !!m.read,
@@ -315,6 +461,23 @@
       const guardType = String(event?.mail_type || event?.type || "system");
       const guardWeek = String(event?.week_key || event?.calendar_week || "").trim();
       if (key && !this.canDeliver(key, { guardType, weekKey: guardWeek })) return { ok: false, reason: "duplicate_key" };
+      // Tråd-vakt: så lenge en AKTIV mail med samme threadKey ligger i
+      // innboksen, avvises nye instanser av samme case (re-send av samme id
+      // er lov — det er en oppdatering, ikke et duplikat).
+      const threadKey = threadKeyOf(mailOrEvent);
+      if (threadKey) {
+        const existingStore = migrateOldInboxIfNeeded();
+        const eventId = String(event?.id || "").trim();
+        const activeSameThread = (existingStore.items || []).find((m) =>
+          isActiveThreadItem(m) &&
+          threadKeyOf(m) === threadKey &&
+          String(m?.event?.id || m?.id || "").trim() !== eventId
+        );
+        if (activeSameThread) {
+          console.warn("[Civication mail dedupe] duplicate threadKey suppressed", threadKey, event?.id || event?.subject);
+          return { ok: false, reason: "duplicate_thread", threadKey };
+        }
+      }
       const store = migrateOldInboxIfNeeded();
       const envelope = normalizeEnvelope(mailOrEvent);
       store.items = mergeByIdPreserveHistory(store.items || [], [envelope]);
@@ -368,6 +531,8 @@
       return result;
     },
     markResolved,
+    suppressDuplicateMail,
+    deriveThreadKey: threadKeyOf,
     replaceInbox(items) {
       const store = migrateOldInboxIfNeeded();
       store.items = mergeByIdPreserveHistory(store.items || [], Array.isArray(items) ? items : []);

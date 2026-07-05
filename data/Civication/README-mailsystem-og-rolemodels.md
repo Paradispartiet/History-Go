@@ -1489,6 +1489,49 @@ tests/civication-arealplanlegger-mail-plan.test.js
 19. Valider JSON og family-koblinger etter hver strukturelle endring.
 20. Ikke bygg ny motor hvis eksisterende runtime kan løse problemet med bedre data.
 
+### 20.1 Tråd-dedupe (threadKey): én story-node = én aktiv melding
+
+Avklaringspakkene (`micro`, `followup`, `knowledge`, `consequence`) genereres som
+varianter av samme story-node: samme `narrative_arc` fortalt gjennom ulik
+mailtype/`task_domain` (f.eks. «Den irriterende nabomailen har ett sant punkt:
+varelevering/støy/tillit …»). Disse variantene deler derfor én stabil trådnøkkel,
+og systemet garanterer at samme case aldri vises som flere nesten-like meldinger.
+
+Nøkkelderivasjon (speilet i `CivicationDailyMailBuilder.threadKeyForMail` og
+`CivicationMailEngine.deriveThreadKey`):
+
+```text
+1. Eksplisitt "thread_key" i mail-data vinner alltid.
+2. Case-typene micro/followup/knowledge/consequence med narrative_arc:
+   {role_scope}.case.{slug(narrative_arc)}
+3. Alle andre mailer: {role_scope}.mail.{slug(source_mail_id || id)}
+```
+
+Regler:
+
+1. `DailyMailBuilder.buildQueue` kollapser katalogen til én kanonisk representant
+   per case-tråd per dag, FØR slot-plukking. Representant velges deterministisk:
+   `thread_canonical: true` i data vinner, deretter tidligste fase
+   (dagfaser og intro/early/mid/…-stadier rangeres om hverandre), deretter
+   høyest `priority`, deretter laveste id. Alle bygde events stemples med
+   `thread_key`.
+2. `MailEngine.sendMail` avviser en ny mail (`reason: "duplicate_thread"`) så
+   lenge en annen AKTIV mail med samme trådnøkkel ligger i innboksen.
+3. Når en tråd besvares (`markAnswered`/`markResolved`) undertrykkes alle andre
+   aktive instanser av samme tråd (arkiveres med `suppressed_duplicate: true`),
+   slik at casen ikke dukker opp igjen i neste fase. Besvart historikk røres aldri.
+4. Gamle saves ryddes ved innlasting: `MailEngine` undertrykker aktive
+   innboks-duplikater (eldste beholdes) én gang per økt, og `DailyMailBuilder`
+   sveiper en gjenbrukt dagskø for aktive duplikat-rader.
+5. `getInbox` har i tillegg et defensivt lesetids-filter. Alle undertrykkinger
+   logger `console.warn("[Civication mail dedupe] duplicate threadKey suppressed", …)`
+   slik at en generator som fortsatt prøver å lage duplikater blir synlig.
+
+Vil du peke en mail utenfor case-typene (f.eks. en `people`-mail som forteller
+samme sak) inn i en case-tråd, sett eksplisitt `thread_key` i mail-data — se
+`by_areal_people_nabo_001`. Vil du velge hvilken variant som er dagens kanoniske
+melding, sett `thread_canonical: true` — se `by_areal_micro_009` (varelevering).
+
 ## 21. Kort arkitekturdiagram
 
 ```text

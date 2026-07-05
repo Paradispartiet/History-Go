@@ -51,6 +51,8 @@
 
   let hitTargets = [];
   let visiblePlaces = [];
+  let _cityMapLoadStarted = false;
+  let _groundhopperMarkers = 0;
 
   // Lyttere for transform-endringer (zoom/pan/resize). Andre kartlag (f.eks.
   // CivicationCityLayer) bruker disse + window-eventet civi:canvasMapTransformChanged
@@ -638,12 +640,45 @@
     return clamp(0.52 + state.zoom * 0.13, 0.52, 1.7);
   }
 
+  // --- Groundhopper-visning fra read-modellen (CivicationCityMap) ------------
+  // Speiler 3D-kartet: markerer Groundhopper-relevante steder (arenaer/baner).
+  // Degraderer stille når read-modellen ikke er tilgjengelig/lastet.
+  function ensureCityMapLoaded() {
+    if (_cityMapLoadStarted) return;
+    const api = window.CivicationCityMap;
+    if (!api || typeof api.load !== "function") return;
+    _cityMapLoadStarted = true;
+    Promise.resolve(api.load())
+      .then(() => { scheduleFrame(); })          // tegn på nytt så ringene kommer på
+      .catch(() => { _cityMapLoadStarted = false; });
+  }
+  function isGroundhopperPlace(placeId) {
+    const api = window.CivicationCityMap;
+    return !!(api && typeof api.isGroundhopperPlace === "function" &&
+      api.isGroundhopperPlace(placeId));
+  }
+  // Flat markeringsring under en miniatyr (samme grønn som 3D-ringen #6fbf7a).
+  function drawGroundhopperRing(ctx, sx, sy, scale) {
+    ctx.save();
+    ctx.translate(sx, sy);
+    ctx.scale(scale, scale);
+    ctx.beginPath();
+    ctx.ellipse(0, 3, 13, 6.5, 0, 0, Math.PI * 2);   // flat, ligger på bakkeplanet
+    ctx.strokeStyle = "rgba(111,191,122,0.95)";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.restore();
+  }
+
   function drawPlaces() {
     const ctx = placesCtx;
     if (!ctx) return;
     ctx.clearRect(0, 0, W, H);
     hitTargets = [];
     visiblePlaces = [];
+    _groundhopperMarkers = 0;
+    // Kick read-modellen (memoisert); når den er klar, tegnes stedene på nytt.
+    ensureCityMapLoaded();
     if (!_places || !_places.length) return;
 
     const scale = placeScale();
@@ -656,6 +691,12 @@
       const s = worldToScreen(projected.x, projected.y);
       // Hopp over de som er godt utenfor synlig flate (lett kulling).
       if (s.x < -40 || s.x > W + 40 || s.y < -50 || s.y > H + 50) return;
+
+      // Groundhopper-ring tegnes UNDER miniatyren så bygget står oppå den.
+      if (isGroundhopperPlace(place.id)) {
+        drawGroundhopperRing(ctx, s.x, s.y, scale);
+        _groundhopperMarkers += 1;
+      }
 
       const assetType = resolveAssetType(place);
       drawMiniature(ctx, s.x, s.y, scale, assetType, place.category);
@@ -987,6 +1028,10 @@
     getZoom,
     getVisiblePlaces: () => visiblePlaces.slice(),
     getHitTargets: () => hitTargets.slice(),
+    // Groundhopper-visning (speiler CivicationThreeMap).
+    getGroundhopperMarkerCount: () => _groundhopperMarkers,
+    isGroundhopperPlace,
+    drawGroundhopperRing,
     getProjectionDebug,
     getCalibrationAnchors,
     // Stabilt projeksjons-API (Del A) – samme projeksjon som canvas tegner med.

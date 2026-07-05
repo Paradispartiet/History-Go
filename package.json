@@ -13,6 +13,8 @@
     "build:web:watch": "node build/build-web.mjs --watch",
     "build:web:check": "npm run build:web && node -e \"const s=require('child_process').execSync('git status --porcelain dist/web').toString().trim(); if(s){console.error('dist/web er ute av sync med kilden \\u2014 kjor npm run build:web og commit:\\n'+s);process.exit(1)} else console.log('dist/web i sync \\u2705')\"",
     "smoke:web": "npm run build:web && node build/smoke-web.mjs",
+    "vendor:three": "cp node_modules/three/build/three.module.js js/vendor/three/three.module.js && cp node_modules/three/LICENSE js/vendor/three/LICENSE && mkdir -p js/vendor/three/addons/postprocessing js/vendor/three/addons/shaders js/vendor/three/addons/math && cp node_modules/three/examples/jsm/postprocessing/{EffectComposer,Pass,RenderPass,ShaderPass,MaskPass,SSAOPass,SMAAPass,OutputPass}.js js/vendor/three/addons/postprocessing/ && cp node_modules/three/examples/jsm/shaders/{CopyShader,SSAOShader,SMAAShader,OutputShader}.js js/vendor/three/addons/shaders/ && cp node_modules/three/examples/jsm/math/SimplexNoise.js js/vendor/three/addons/math/",
+    "vendor:three:check": "npm run vendor:three && node -e \"const s=require('child_process').execSync('git status --porcelain js/vendor/three').toString().trim(); if(s){console.error('js/vendor/three ute av sync med installert three \\u2014 kjor npm run vendor:three og commit:\\n'+s);process.exit(1)} else console.log('js/vendor/three i sync \\u2705')\"",
     "tools:check": "npm run typecheck:tools && npm run build:tools && npm run places:index:check && npm run places:coords:check && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places && npm run audit:civication-place-mapping && npm run audit:civication-city-map-entries",
     "places:coords:audit": "npm run build:tools && node dist/tools/audit-place-coordinates.mjs",
     "places:coords:gate": "npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs",
@@ -47,7 +49,7 @@
     "audit:civication-city-map-entries": "npm run build:scripts && node dist/scripts/audit-civication-city-map-entries.mjs",
     "audit:aha-music": "npm run build:tools && node dist/tools/audit-aha-music.mjs",
     "test:aha-music": "node tests/aha-music-bridge.test.js && node tests/aha-music-unlocks.test.js",
-    "test:civication-map": "node tests/civication-historygo-place-menu.test.js && node tests/civication-city-layer-icon-only-markers.test.js && node tests/civication-three-map-place-miniatures.test.js && node tests/civication-three-map-projection.test.js && node tests/civication-canvas-map-projection.test.js && node tests/civication-city-layer-map-anchor.test.js && node tests/civication-city-layer-three-map-anchor.test.js && node tests/civication-friend-home-anchors.test.js && node tests/civication-city-map-entries-loader.test.js && node tests/civication-city-map-read-model.test.js && node tests/civication-place-menu-city-map-role.test.js && node tests/civication-three-map-groundhopper.test.js",
+    "test:civication-map": "node tests/civication-historygo-place-menu.test.js && node tests/civication-city-layer-icon-only-markers.test.js && node tests/civication-three-map-place-miniatures.test.js && node tests/civication-three-map-projection.test.js && node tests/civication-canvas-map-projection.test.js && node tests/civication-city-layer-map-anchor.test.js && node tests/civication-city-layer-three-map-anchor.test.js && node tests/civication-friend-home-anchors.test.js && node tests/civication-city-map-entries-loader.test.js && node tests/civication-city-map-read-model.test.js && node tests/civication-place-menu-city-map-role.test.js && node tests/civication-three-map-groundhopper.test.js && node tests/civication-canvas-map-groundhopper.test.js && node tests/civication-three-map-postprocess.test.js",
     "test:visual-design-codes": "npm run build:tools && node dist/tools/audit-visual-design-codes.mjs",
     "civication:badge-role-audit": "npm run build:scripts && node dist/scripts/civication-badge-role-audit.mjs",
     "civication:mails:generate": "npm run build:scripts && node dist/scripts/generate-civication-mails.js",
@@ -84,6 +86,7 @@
     "esbuild": "^0.28.1",
     "jsdom": "^29.1.1",
     "playwright": "^1.61.1",
+    "three": "0.160.0",
     "typescript": "^5.9.0"
   }
 }
