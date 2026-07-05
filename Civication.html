@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Civication</title>
 
+  <!-- Import map: lar 3D-kartet (CivicationThreeMap) og three-addonene (SSAO/SMAA/
+       EffectComposer) dele ÉN lokal, vendret three-instans. Må stå før første
+       modullast. Alt lastes lokalt fra js/vendor/three (ingen CDN). -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./js/vendor/three/three.module.js",
+      "three/addons/": "./js/vendor/three/addons/"
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="css/civi.css" />
   <link rel="stylesheet" href="css/civi-refresh.css" />
   <link rel="stylesheet" href="css/civi-dashboard.css" />
