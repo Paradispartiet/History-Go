@@ -74,11 +74,21 @@ function run() {
   global.CivicationMailEngine = {
     getInbox() { return inbox; }
   };
+  // To rytmer: arbeidslivsmail (source_type=workday) er en aktiv handling KUN i
+  // arbeidsdagsfasen. Mocken rapporterer derfor arbeidsdagsfasen slik at den
+  // åpne jobbmailen legitimt kan gjengis som aktiv (i en privat fase ville den
+  // aldri vært aktiv — se NextActionSelector-scopingen).
+  global.CivicationDayFlow = {
+    getCurrentPhase() { return 'workday'; },
+    isPrivatePhase(phase) {
+      return ['morning', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'].includes(String(phase || ''));
+    }
+  };
   global.CivicationDayProgression = {
     inspect() {
       return {
-        phase: 'morning',
-        phaseLabel: 'Morgen',
+        phase: 'workday',
+        phaseLabel: 'Arbeidsdag',
         pendingItem: null,
         nextQueuedItem: null,
         nextActionableItem: null,

@@ -91,14 +91,44 @@
     return Array.isArray(ev?.choices) && ev.choices.length > 0;
   }
 
-  function getOpenInboxActionItems() {
+  // To rytmer: en privat fase blokkeres BARE av private fase-mailer, og
+  // arbeidsdagsfasen blokkeres BARE av arbeidslivsmail. En åpen jobbmail i den
+  // globale innboksen skal ikke stoppe lunsj/middag/kveld/dagslutt, og en åpen
+  // privat mail skal ikke stoppe arbeidsdagen.
+  const PRIVATE_PHASES = new Set(["morning", "lunch", "afternoon", "dinner", "evening", "day_end"]);
+
+  function inboxItemChannel(item) {
+    const ev = inboxEventOf(item) || {};
+    const channels = window.CivicationEventChannels;
+    if (channels?.getMessageChannel) return norm(channels.getMessageChannel(ev)).toLowerCase();
+    // Fallback uten EventChannels: bruk klassene direkte.
+    if (norm(ev.mail_class) === "daily_private" || norm(ev.source_type) === "daily_private_phase") return "private";
+    if (norm(ev.mail_class) === "daily_workday") return "job";
+    return "";
+  }
+
+  // Blokkerer inbox-item denne fasen? En privat fase blokkeres kun av private
+  // mailer; en arbeidsfase kun av jobbmailer. Ukjent kanal blokkerer den fasen
+  // den «hører hjemme» i via faserytmen (privat som standard).
+  function inboxItemBlocksPhase(item, phase) {
+    const channel = inboxItemChannel(item);
+    const phaseIsPrivate = PRIVATE_PHASES.has(norm(phase));
+    if (channel === "job") return !phaseIsPrivate;
+    if (channel === "private") return phaseIsPrivate;
+    // Ukjent: la den blokkere i privat rytme (defensiv), aldri jobbfasen.
+    return phaseIsPrivate;
+  }
+
+  function getOpenInboxActionItems(phase) {
     const answeredRuntimeIds = new Set(
       getRuntimeItems()
         .filter((row) => norm(row?.status).toLowerCase() === "answered")
         .map((row) => norm(row?.event?.id))
         .filter(Boolean)
     );
-    return getInboxItems().filter((item) => isOpenActionableInboxItem(item, answeredRuntimeIds));
+    const openItems = getInboxItems().filter((item) => isOpenActionableInboxItem(item, answeredRuntimeIds));
+    if (!phase) return openItems;
+    return openItems.filter((item) => inboxItemBlocksPhase(item, phase));
   }
 
   function getCurrentPhase() {
@@ -261,7 +291,8 @@
     const deliveredRows = items.filter((row) => belongsToPhase(row, phase) && ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()));
     const nextQueuedRow = queuedRows[0] || null;
     const pendingRow = deliveredRows[0] || null;
-    const openInboxRows = getOpenInboxActionItems();
+    // Kun inbox-mailer som hører til DENNE fasens rytme kan blokkere fasen.
+    const openInboxRows = getOpenInboxActionItems(phase);
     const nextPhase = getNextPhase(phase);
 
     let reason = "ready_to_advance";

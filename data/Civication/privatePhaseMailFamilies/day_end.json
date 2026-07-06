@@ -1,0 +1,105 @@
+{
+  "schema": "civication_private_phase_mail_family_v1",
+  "phase": "day_end",
+  "phase_label": "Dagslutt / Natt",
+  "source_type": "daily_private_phase",
+  "channel": "private",
+  "messageChannel": "private",
+  "mail_class": "daily_private",
+  "role_scope": "",
+  "career_id": "",
+  "role_id": "",
+  "employer_id": "",
+  "workday_related": false,
+  "description": "Private dagslutt-mailer om søvn, hvile, psyke og helse. Aldri jobbinnhold.",
+  "topics": ["søvn", "hvile", "psyke", "helse"],
+  "mails": [
+    {
+      "id": "private_day_end_sovn_001",
+      "topic": "søvn",
+      "subject": "Dagen er over. På tide å sove?",
+      "summary": "Døgnet lukker seg. Du velger hvordan du forbereder deg på natten.",
+      "situation": [
+        "Det er sent. Kroppen har begynt å bli tung.",
+        "Du kan legge deg mens du ennå har søvn i deg, eller strekke kvelden litt til.",
+        "God søvn i kveld er ofte det beste du kan gjøre for morgendagen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg deg mens kroppen er klar for det",
+          "reply": "Jeg legger meg nå mens jeg kjenner søvnen.",
+          "effect": 1,
+          "tags": ["søvn", "helse", "hvile"],
+          "feedback": "Du gir kroppen en ærlig sjanse til å hvile ut."
+        },
+        {
+          "id": "B",
+          "label": "Strekk kvelden litt til",
+          "reply": "Jeg blir oppe litt til.",
+          "effect": 0,
+          "tags": ["tempo", "søvn"],
+          "feedback": "Kvelden varer litt lenger, men natten blir kortere."
+        }
+      ]
+    },
+    {
+      "id": "private_day_end_refleksjon_002",
+      "topic": "psyke",
+      "subject": "Ett øyeblikk før du sovner",
+      "summary": "Før du lukker øynene, kan du la dagen få en rolig avslutning.",
+      "situation": [
+        "Rommet er mørkt. Dagen ligger bak deg.",
+        "Du kan la den siste tanken være noe godt, én ting du er takknemlig for, eller la dagens uro følge deg inn i søvnen.",
+        "Hvordan du avslutter dagen setter ofte tonen for hvordan du sovner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Tenk på én god ting fra dagen",
+          "reply": "Jeg lar den siste tanken være noe godt.",
+          "effect": 1,
+          "tags": ["psyke", "hvile", "søvn"],
+          "feedback": "Du sovner litt lettere med noe varmt i tankene."
+        },
+        {
+          "id": "B",
+          "label": "La tankene surre som de vil",
+          "reply": "Jeg lar tankene gå sin gang.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Hodet får ikke helt landet før søvnen tar over."
+        }
+      ]
+    },
+    {
+      "id": "private_day_end_hvile_003",
+      "topic": "hvile",
+      "subject": "Legg fra deg dagen",
+      "summary": "Det som ikke ble gjort i dag, kan vente. Natten er til for hvile.",
+      "situation": [
+        "Det er alltid noe som ikke ble ferdig i løpet av en dag.",
+        "Du kan la det bli liggende trygt til i morgen, eller la det holde deg våken.",
+        "Å legge fra seg dagen er en ferdighet, ikke en svakhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La det uferdige vente til i morgen",
+          "reply": "Jeg legger fra meg dagen og lar resten vente.",
+          "effect": 1,
+          "tags": ["hvile", "psyke", "søvn"],
+          "feedback": "Du gir deg selv lov til å hvile. Morgendagen tar sitt."
+        },
+        {
+          "id": "B",
+          "label": "Bli liggende og gruble på det uferdige",
+          "reply": "Jeg blir liggende og tenker på det som gjenstår.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Grublingen løser lite, og søvnen kommer senere."
+        }
+      ]
+    }
+  ]
+}

@@ -2304,11 +2304,35 @@ function renderCivicationInbox() {
     }).join("");
   };
 
-  const sectionsHtml = `
+  // To rytmer: i en privat fase (morgen/lunsj/ettermiddag/middag/kveld/dagslutt)
+  // skal Jobbmail ALDRI vises som aktiv handling. Arbeidslivsmail hører kun til
+  // arbeidsdagsfasen (forenoon/workday). I private faser kan jobbmail fortsatt
+  // ligge som arkiv/bakgrunn, men ikke som en aktiv seksjon.
+  const flowState = window.CivicationDayFlow;
+  const currentPhase = String(flowState?.getCurrentPhase?.() || "").trim();
+  const isPrivatePhaseNow = flowState?.isPrivatePhase
+    ? flowState.isPrivatePhase(currentPhase) === true
+    : ["morning", "lunch", "afternoon", "dinner", "evening", "day_end"].includes(currentPhase);
+
+  const jobMailSectionHtml = isPrivatePhaseNow
+    ? ""
+    : `
     <section class="civi-inbox-section civi-jobmail-section">
       <h2>Jobbmail</h2>
       <div id="civiJobMailList">${renderMessageList(jobMails) || '<div class="civi-inbox-empty">Ingen jobbmail akkurat nå.</div>'}</div>
-    </section>
+    </section>`;
+
+  const jobMailArchiveHtml = (isPrivatePhaseNow && jobMails.length)
+    ? `
+    <section class="civi-inbox-section civi-jobmail-archive-section">
+      <h2>Jobbmail (arkiv)</h2>
+      <div class="civi-inbox-hint">Arbeidslivsmail håndteres i arbeidsdagen, ikke i private faser.</div>
+      <div id="civiJobMailArchiveList">${renderMessageList(jobMails)}</div>
+    </section>`
+    : "";
+
+  const sectionsHtml = `
+    ${jobMailSectionHtml}
     <section class="civi-inbox-section civi-private-section">
       <h2>Personlige meldinger</h2>
       <div id="civiPrivateMessageList">${renderMessageList(privateMessages) || '<div class="civi-inbox-empty">Ingen personlige meldinger akkurat nå.</div>'}</div>
@@ -2319,6 +2343,7 @@ function renderCivicationInbox() {
         <div id="civiOtherMessageList">${renderMessageList(otherMessages)}</div>
       </section>
     ` : ""}
+    ${jobMailArchiveHtml}
   `;
 
   if (!ev) {

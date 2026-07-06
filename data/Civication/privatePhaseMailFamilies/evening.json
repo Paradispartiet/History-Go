@@ -1,0 +1,134 @@
+{
+  "schema": "civication_private_phase_mail_family_v1",
+  "phase": "evening",
+  "phase_label": "Kveld",
+  "source_type": "daily_private_phase",
+  "channel": "private",
+  "messageChannel": "private",
+  "mail_class": "daily_private",
+  "role_scope": "",
+  "career_id": "",
+  "role_id": "",
+  "employer_id": "",
+  "workday_related": false,
+  "description": "Private kveld-mailer om hvile, læring, fritid, venner, psyke og sosialt liv. Aldri jobbinnhold.",
+  "topics": ["hvile", "læring", "fritid", "venner", "psyke", "sosialt liv"],
+  "mails": [
+    {
+      "id": "private_evening_hvile_001",
+      "topic": "hvile",
+      "subject": "Kvelden er til for å lande",
+      "summary": "Dagen begynner å slippe taket. Du velger hvordan kvelden skal kjennes.",
+      "situation": [
+        "Det er kveld, og kroppen ber deg roe ned.",
+        "Du kan gi deg selv en myk avslutning på dagen, eller fylle kvelden til randen.",
+        "Hvordan du bruker kvelden farger ofte hvor godt du sover."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skru ned tempoet og la kroppen hvile",
+          "reply": "Jeg lar kvelden være rolig i kveld.",
+          "effect": 1,
+          "tags": ["hvile", "psyke", "søvn"],
+          "feedback": "Kroppen begynner å slippe dagen. Kvelden kjennes myk."
+        },
+        {
+          "id": "B",
+          "label": "Fyll kvelden med skjerm og lyd",
+          "reply": "Jeg kobler av foran skjermen.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Det underholder, men hodet får ikke helt ro."
+        }
+      ]
+    },
+    {
+      "id": "private_evening_laering_002",
+      "topic": "læring",
+      "subject": "En rolig time til å lære noe",
+      "summary": "Kvelden gir rom for å lære noe for din egen del, uten press.",
+      "situation": [
+        "Du har en stille time der ingenting egentlig må gjøres.",
+        "Du kan bruke den på noe du er nysgjerrig på, en bok, et språk, en ferdighet.",
+        "Læring i eget tempo, på egne premisser, kan være ren hvile for hodet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les eller øv litt på noe du liker",
+          "reply": "Jeg bruker litt tid på noe jeg har lyst til å lære.",
+          "effect": 1,
+          "tags": ["læring", "fritid", "psyke"],
+          "feedback": "Hodet får noe å bryne seg på i sitt eget tempo."
+        },
+        {
+          "id": "B",
+          "label": "La kvelden være helt fri",
+          "reply": "Jeg lar kvelden være uten mål i kveld.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "En kveld uten planer kan også være verdifull."
+        }
+      ]
+    },
+    {
+      "id": "private_evening_venn_003",
+      "topic": "venner",
+      "subject": "En prat med noen du er glad i",
+      "summary": "Kvelden er en fin tid for en rolig samtale med en venn eller familie.",
+      "situation": [
+        "Du kjenner en lyst til å høre en kjent stemme.",
+        "En telefon eller en lang melding kan minne deg på at du ikke er alene om dagene dine.",
+        "Sosial kontakt om kvelden gir ofte en god følelse å sovne på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ring noen og ta en ordentlig prat",
+          "reply": "Jeg ringer noen jeg er glad i og prater litt.",
+          "effect": 1,
+          "tags": ["venner", "sosialt liv", "psyke"],
+          "feedback": "En god samtale, og du kjenner deg litt mindre alene."
+        },
+        {
+          "id": "B",
+          "label": "Send en hilsen og ta praten senere",
+          "reply": "Jeg sender en hilsen og ringer en annen kveld.",
+          "effect": 0,
+          "tags": ["venner", "tempo"],
+          "feedback": "Du holder kontakten, men litt på avstand i kveld."
+        }
+      ]
+    },
+    {
+      "id": "private_evening_psyke_004",
+      "topic": "psyke",
+      "subject": "Hvordan har dagen egentlig kjentes?",
+      "summary": "Før kvelden er over, tar du et øyeblikk til å kjenne etter hvordan du har det.",
+      "situation": [
+        "Det er stille nok til at tankene fra dagen melder seg.",
+        "Du kan møte dem rolig, kjenne etter hva som var godt og hva som tynget, eller skyve dem unna.",
+        "Å anerkjenne egne følelser er ofte det som gjør at de slipper taket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta et øyeblikk til å kjenne etter",
+          "reply": "Jeg lar meg selv kjenne etter hvordan dagen var.",
+          "effect": 1,
+          "tags": ["psyke", "hvile"],
+          "feedback": "Du møter deg selv med litt vennlighet. Det letter."
+        },
+        {
+          "id": "B",
+          "label": "Skyv tankene unna for i kveld",
+          "reply": "Jeg lar tankene ligge til en annen gang.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Det gir ro nå, men noe blir liggende uavklart."
+        }
+      ]
+    }
+  ]
+}

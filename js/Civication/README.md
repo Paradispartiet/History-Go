@@ -89,23 +89,59 @@ Civication har **to rytmer**, og de skal holdes adskilt:
 **Jobbinnhold lever i arbeidsrytmen, ikke i alle døgnfaser.** Tidligere bygde
 DailyMailBuilder hele døgnet som én arbeidsdag, slik at rolle-/case-mailer
 (f.eks. Arealplanlegger/Lillebekk/plankart) dukket opp i morgen, lunsj, middag,
-kveld og dagslutt og føltes som spam. Nå gjelder:
+kveld og dagslutt og føltes som spam. Nå er det **to adskilte innholdssystemer**,
+hvert med sin egen builder:
 
-- Morgenen leverer ingen case-mail. Den viser en overgang: *«Du har jobb som
-  {rolle}. Neste handling: Gå til jobb / Start arbeidsdag hos {arbeidsgiver}.»*
-- Rollekatalogen (jobbverdenen til den aktive rollen) fyller **kun** arbeidsfasene.
-  Private faser får personlige narrativer og genererte døgnfase-mailer.
-- Private faser bærer klassen `daily_private` med tom `role_scope`; arbeidsfasene
-  bærer `daily_workday` med rollens `role_scope`. Et defensivt filter holder
-  jobbinnhold ute av private faser også fra gamle saves.
+- **Private fase-mailer** eies av `CivicationPrivatePhaseMailBuilder`. De bygges
+  fra `data/Civication/privatePhaseMailFamilies/<fase>.json` (`morning`, `lunch`,
+  `afternoon`, `dinner`, `evening`, `day_end`) og handler **kun** om livet utenfor
+  jobben: morgenrutine, mat, hvile, økonomi, familie, venner, fritid, helse, søvn,
+  læring, personlig kalender, sosialt liv, energi og psyke. De handler **aldri**
+  om aktiv jobbcase, arbeidsgiveroppgave, plansjef, utvalg, utbygger, plankart,
+  Lillebekk, varelevering, rolleprogresjon, mailPlan, role_scope eller
+  arbeidsleveranse. Builderen bruker **ikke** mailPlan, role mail families,
+  plannedPrimary eller role_scope. Kontrakt: **maks 1 aktiv mail per privat fase.**
+  Alle private fase-mailer bærer:
+  `source_type:"daily_private_phase"`, `channel:"private"`,
+  `messageChannel:"private"`, `mail_class:"daily_private"`, `role_scope:""`,
+  `career_id:""`, `role_id:""`, `employer_id:""`, `workday_related:false`.
+- **Arbeidslivsmail** eies av `CivicationWorkdayMailBuilder`. De bygges fra
+  `mailPlan` + `mailFamilies` (via `CivicationMailRuntime`), er knyttet til
+  arbeidsgiver/rolle/`workday_day_index`, og kan **kun** ha `phase_tag`
+  `forenoon` eller `workday`. De lever kun inne i arbeidsdag-runtime.
+- Morgenen leverer ingen case-mail. Med aktiv jobb viser den en overgang: *«Du
+  har jobb som {rolle}. Neste handling: Gå til jobb / Start arbeidsdag hos
+  {arbeidsgiver}.»*
 - **Arbeidsdag-telleren (`workday_day_index`) er frikoblet fra døgnfase-telleren
   (`calendar.dayIndex`).** Den økes kun når arbeidsdagen faktisk fullføres, aldri
   bare fordi en ny døgnfase starter.
+
+`CivicationDailyMailBuilder` er nå en **adaptor**: den bygger ikke lenger både
+private faser og arbeidsdag i samme runtime selv. Den delegerer de private fasene
+til `CivicationPrivatePhaseMailBuilder` og eier fortsatt dagsrytmen/leveringen,
+mens arbeidslivsmailene bygges av `CivicationWorkdayMailBuilder`.
+
+Kanal-/blokkerings-kontrakten (to rytmer hele veien opp):
+
+- `CivicationEventChannels`: `daily_private`/`daily_private_phase` er **alltid**
+  private; `daily_generated`/`daily_extra` klassifiseres **ikke** automatisk som
+  jobb — jobb krever `daily_workday` eller en reell workday/role/employer-binding.
+- `CivicationDayProgression`: en privat fase blokkeres **bare** av private
+  fase-mailer, og arbeidsdagsfasen **bare** av arbeidslivsmail. En åpen jobbmail i
+  den globale innboksen stopper ikke lunsj/middag/kveld/dagslutt.
+- `CivicationNextActionSelector`: i private faser returneres **aldri**
+  arbeidslivsmail; i arbeidsdagsfasen kan den. Fallback til global innboks scopes
+  etter `DayFlow`.
+- `renderCivicationInbox`: private faser viser ingen aktiv Jobbmail-seksjon
+  (jobbmail kan ligge som arkiv/bakgrunn); arbeidsdagsfasen viser jobbmail/arbeidsdag.
 
 Eierne:
 
 | Motor | Global | Ansvar |
 | --- | --- | --- |
+| PrivatePhaseMailBuilder | `CivicationPrivatePhaseMailBuilder` | Bygger de private fase-mailene fra `data/Civication/privatePhaseMailFamilies/`. Maks 1 aktiv mail per privat fase. Aldri jobb, aldri mailPlan/role families/role_scope. `buildPhaseMail` / `buildPrivatePhaseItems`. |
+| WorkdayMailBuilder | `CivicationWorkdayMailBuilder` | Bygger arbeidslivsmailene fra mailPlan + mailFamilies. `phase_tag` klippes alltid til `forenoon`/`workday`. Stempler `role_scope`/`employer_id`/`workday_day_index`. `buildWorkdayItems`. |
+| DailyMailBuilder | `CivicationDailyMailBuilder` | Adaptor for dagsrytmen: delegerer private faser til PrivatePhaseMailBuilder, eier levering/`enqueueNext`/`inspect`. |
 | DayFlow | `CivicationDayFlow` | Controller for livsrytmen: kjenner `current_day_phase`, `has_active_job`, `workday_completed_today` og oversetter til én neste handling (`go_to_work` i morgenfasen). `goToWork()` starter arbeidsdagen og flytter inn i arbeidsfasen; `finishWorkday()` fullfører og returnerer til privat rytme. |
 | WorkdayRuntime | `CivicationWorkdayRuntime` | Eier arbeidsdag-status (`workday_runtime_v1`): arbeidsgiver (`employer_id`), `role_scope`, og arbeidsdag-telleren. `startWorkday` / `completeWorkday` (idempotent per dato) / `getWorkdayDayIndex`. |
 

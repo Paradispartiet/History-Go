@@ -1,0 +1,134 @@
+{
+  "schema": "civication_private_phase_mail_family_v1",
+  "phase": "lunch",
+  "phase_label": "Lunsj",
+  "source_type": "daily_private_phase",
+  "channel": "private",
+  "messageChannel": "private",
+  "mail_class": "daily_private",
+  "role_scope": "",
+  "career_id": "",
+  "role_id": "",
+  "employer_id": "",
+  "workday_related": false,
+  "description": "Private lunsj-mailer om mat, hvile, energi, venner og sosialt liv. Aldri jobbinnhold.",
+  "topics": ["mat", "hvile", "energi", "venner", "sosialt liv"],
+  "mails": [
+    {
+      "id": "private_lunch_mat_001",
+      "topic": "mat",
+      "subject": "Lunsj: hva blir det til?",
+      "summary": "Midt på dagen trenger kroppen påfyll. Du velger hva slags pause maten skal bli.",
+      "situation": [
+        "Magen minner deg på at det er midt på dagen.",
+        "Du kan lage noe rolig og godt, eller bare fylle på det raskeste du finner.",
+        "Lunsjen er like mye en pause som et måltid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta deg tid til et ordentlig måltid",
+          "reply": "Jeg setter meg ned og spiser skikkelig.",
+          "effect": 1,
+          "tags": ["mat", "hvile", "energi"],
+          "feedback": "Du får både mat og en pause. Ettermiddagen kjennes lettere."
+        },
+        {
+          "id": "B",
+          "label": "Spis raskt og gå videre",
+          "reply": "Jeg tar noe kjapt i farten.",
+          "effect": 0,
+          "tags": ["tempo", "mat"],
+          "feedback": "Du blir mett, men rekker aldri helt å lande."
+        }
+      ]
+    },
+    {
+      "id": "private_lunch_hvile_002",
+      "topic": "hvile",
+      "subject": "En pause midt i dagen",
+      "summary": "Lunsjen kan være mer enn mat. Den kan være et pusterom.",
+      "situation": [
+        "Du har en liten luke der ingen forventer noe av deg.",
+        "Du kan bruke den til å hvile hodet et øyeblikk, eller fylle den med noe.",
+        "Litt hvile nå kan gi mer energi resten av dagen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lukk øynene og pust rolig noen minutter",
+          "reply": "Jeg gir hodet en liten pause.",
+          "effect": 1,
+          "tags": ["hvile", "psyke", "energi"],
+          "feedback": "Skuldrene senker seg litt. Du kjenner deg mer til stede."
+        },
+        {
+          "id": "B",
+          "label": "Bruk pausen på skjermen",
+          "reply": "Jeg scroller litt mens jeg spiser.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Tiden går, men hodet får ikke helt hvilt."
+        }
+      ]
+    },
+    {
+      "id": "private_lunch_venn_003",
+      "topic": "venner",
+      "subject": "En venn skriver i lunsjen",
+      "summary": "En du er glad i sender en kort melding. Det er opp til deg hvor mye rom du gir den.",
+      "situation": [
+        "Telefonen lyser opp: en venn lurer på hvordan det går.",
+        "Det er ikke noe krise, bare et lite tegn på at noen tenker på deg.",
+        "Du kan svare varmt nå, eller ta det senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar og spør hvordan det står til hos dem",
+          "reply": "Jeg svarer og hører hvordan de har det.",
+          "effect": 1,
+          "tags": ["venner", "sosialt liv", "psyke"],
+          "feedback": "En kort samtale, men vennskapet kjennes litt nærmere."
+        },
+        {
+          "id": "B",
+          "label": "Send en rask tommel opp og ta det senere",
+          "reply": "Jeg svarer kort nå og ringer heller i kveld.",
+          "effect": 0,
+          "tags": ["tempo", "venner"],
+          "feedback": "Du holder kontakten så vidt. Det får holde for nå."
+        }
+      ]
+    },
+    {
+      "id": "private_lunch_frisk_004",
+      "topic": "energi",
+      "subject": "Litt luft i lunsjen?",
+      "summary": "En kort tur ute kan gi mer enn selve maten.",
+      "situation": [
+        "Det er lyst ute, og du har noen minutter til overs.",
+        "En liten runde i frisk luft kan vekke kroppen, eller du kan bli sittende.",
+        "Kroppen liker ofte bevegelse midt på dagen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta en kort tur ute",
+          "reply": "Jeg går en liten runde og trekker litt luft.",
+          "effect": 1,
+          "tags": ["energi", "helse", "fritid"],
+          "feedback": "Litt luft og bevegelse, og hodet klarner."
+        },
+        {
+          "id": "B",
+          "label": "Bli sittende innendørs",
+          "reply": "Jeg blir sittende der jeg er.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "Det er behagelig nok, men kroppen får lite påfyll."
+        }
+      ]
+    }
+  ]
+}

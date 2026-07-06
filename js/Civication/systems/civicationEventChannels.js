@@ -80,6 +80,14 @@
     );
   }
 
+  // De private fase-mailene er ALDRI jobb — uansett annet innhold. daily_private
+  // (klasse) og daily_private_phase (source_type) er den private døgnrytmen.
+  function isPrivatePhaseMail(event) {
+    const ev = event || {};
+    return normalize(ev.mail_class) === "daily_private"
+      || normalize(ev.source_type) === "daily_private_phase";
+  }
+
   function isRoleBoundJobMail(event) {
     const ev = event || {};
     const sourceType = normalize(ev.source_type);
@@ -87,9 +95,15 @@
     const mailClass = normalize(ev.mail_class);
     const explicit = normalize(ev.channel || ev.messageChannel);
 
+    // Privat døgnrytme kan aldri være jobb.
+    if (isPrivatePhaseMail(ev)) return false;
+
     if (explicit === "job" || explicit === "jobmail") return true;
+    // Jobb krever daily_workday-klassen eller en reell workday/role/employer-binding.
     if (mailClass === "job_message" || mailClass === "opportunity_blocked" || mailClass === "career_outcome" || mailClass === "daily_workday") return true;
-    if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "daily_generated" || sourceType === "daily_extra" || sourceType === "brand_progression" || sourceType === "role_outcome") return true;
+    if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "brand_progression" || sourceType === "role_outcome") return true;
+    // daily_generated/daily_extra er IKKE automatisk jobb — kun når de bærer en
+    // reell rolle/arbeidsgiver-binding (håndteres av ROLE_BOUND-sjekken under).
     if (ROLE_BOUND_SOURCE_TYPES.has(sourceType) && hasRoleBinding(ev)) return true;
     if (ROLE_BOUND_MAIL_TYPES.has(mailType) && hasRoleBinding(ev)) return true;
 
@@ -108,6 +122,9 @@
     const mailType = normalize(ev.mail_type);
     const taskDomain = normalize(ev.task_domain);
     const mailFamily = normalize(ev.mail_family);
+
+    // Private fase-mailer er personlige meldinger, aldri arbeidsdag/jobb.
+    if (isPrivatePhaseMail(ev)) return "message";
 
     if (
       sourceType === "role_outcome" ||
@@ -162,6 +179,10 @@
 
   function getMessageChannel(event) {
     const ev = event || {};
+    // Private fase-mailer (daily_private / daily_private_phase) er alltid private,
+    // uansett annen metadata. Dette har forrang over alt annet.
+    if (isPrivatePhaseMail(ev)) return "private";
+
     const explicit = normalize(ev.channel || ev.messageChannel);
     if (explicit === "job" || explicit === "jobmail") return "job";
     if (explicit === "private" || explicit === "personal") return "private";
@@ -272,6 +293,7 @@
   window.CivicationEventChannels = {
     classifyEvent: classifyEvent,
     getMessageChannel: getMessageChannel,
+    isPrivatePhaseMail: isPrivatePhaseMail,
     splitInbox: splitInbox,
     splitInboxByMessageChannel: splitInboxByMessageChannel,
     isMessage: isMessage,

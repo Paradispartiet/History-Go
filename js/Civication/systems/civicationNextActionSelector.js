@@ -204,11 +204,48 @@
     return status === "pending" || status === "open";
   }
 
+  // To rytmer: fallback til global innboks scopes etter DayFlow. I en privat fase
+  // kan NextAction ALDRI returnere en arbeidslivsmail; i arbeidsdagsfasen kan den
+  // returnere jobbmail. Ukjent kanal er tillatt i den private rytmen.
+  function currentDayPhase() {
+    const flow = window.CivicationDayFlow;
+    if (flow?.getCurrentPhase) return norm(flow.getCurrentPhase()).toLowerCase();
+    const cal = window.CivicationCalendar;
+    if (cal?.getPhase) return norm(cal.getPhase()).toLowerCase();
+    return "morning";
+  }
+
+  function isPrivatePhaseNow() {
+    const flow = window.CivicationDayFlow;
+    const phase = currentDayPhase();
+    if (flow?.isPrivatePhase) return flow.isPrivatePhase(phase) === true;
+    return ["morning", "lunch", "afternoon", "dinner", "evening", "day_end"].includes(phase);
+  }
+
+  function inboxItemChannel(item) {
+    const ev = eventOf(item) || {};
+    const channels = window.CivicationEventChannels;
+    if (channels?.getMessageChannel) return norm(channels.getMessageChannel(ev)).toLowerCase();
+    if (norm(ev.mail_class) === "daily_private" || norm(ev.source_type) === "daily_private_phase") return "private";
+    if (norm(ev.mail_class) === "daily_workday") return "job";
+    return "";
+  }
+
+  // Passer inbox-mailen inn i gjeldende fases rytme? Privat fase: aldri jobbmail.
+  // Arbeidsfase: kun jobbmail.
+  function inboxItemMatchesPhaseRhythm(item) {
+    const channel = inboxItemChannel(item);
+    if (isPrivatePhaseNow()) return channel !== "job";
+    return channel === "job";
+  }
+
   // Fallback only: an actionable inbox mail that is NOT already covered by a day-phase action.
   function getInboxAction() {
     const inbox = getInbox();
     const hit = (Array.isArray(inbox) ? inbox : []).find(function (item) {
       if (!isOpenInboxItem(item)) return false;
+      // Scope til gjeldende fases rytme: ingen jobbmail i private faser.
+      if (!inboxItemMatchesPhaseRhythm(item)) return false;
       const ev = eventOf(item) || {};
       const choices = Array.isArray(ev?.choices) ? ev.choices : [];
       if (choices.length > 0) return true;
