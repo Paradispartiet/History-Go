@@ -84,9 +84,20 @@ Disse er eksplisitt tillatt, men er **kun read-only inspeksjon** (ingen gameplay
 
 Arbeidsdagen har **én** dagrytme og **ett** sett fase-skrivere. Ikke innfør parallelle.
 
+- **To innholdssystemer (ikke bland):** de **private fase-mailene** (morning, lunch,
+  afternoon, dinner, evening, day_end) eies av `CivicationPrivatePhaseMailBuilder` og bygges
+  fra `data/Civication/privatePhaseMailFamilies/<fase>.json` — aldri jobb, maks 1 aktiv mail
+  per fase, alltid `source_type:"daily_private_phase"` / `mail_class:"daily_private"` /
+  `channel:"private"` med tom `role_scope`/`career_id`/`role_id`/`employer_id` og
+  `workday_related:false`. **Arbeidslivsmailene** eies av `CivicationWorkdayMailBuilder`
+  (mailPlan + mailFamilies), kan kun ha `phase_tag` `forenoon`/`workday`, og bærer
+  `mail_class:"daily_workday"` + rolle/arbeidsgiver/`workday_day_index`. `CivicationEventChannels`,
+  `CivicationDayProgression`, `CivicationNextActionSelector` og `renderCivicationInbox`
+  respekterer skillet: jobbmail er aldri aktiv i en privat fase og blokkerer den ikke.
 - **Dagrytme:** `data/Civication/mailDayProgram.json` + `CivicationDailyMailBuilder` er
-  autoritativt. Builder bygger hele dagen til `mail_day_runtime_v1.items[]` og leverer items
-  ett om gangen via `enqueueNext`. Ingen annen `onAppOpen`-gren skal generere en parallell dag.
+  autoritativt (adaptor). Builder bygger hele dagen til `mail_day_runtime_v1.items[]` og leverer
+  items ett om gangen via `enqueueNext`, men **delegerer de private fasene** til
+  `CivicationPrivatePhaseMailBuilder`. Ingen annen `onAppOpen`-gren skal generere en parallell dag.
 - **Fase-skrivere (kun to):** `DailyMailBuilder.enqueueNext` setter
   `CivicationCalendar.setPhase(item.phase)`, og `CivicationDayProgression.advancePhaseIfReady()`
   avanserer fasen når fasens items er tomme. `dayPatches.answer` skal **ikke** flytte fasen for

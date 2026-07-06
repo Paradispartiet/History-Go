@@ -640,9 +640,13 @@
       mail_type: isDayEnd ? "day_end" : "phase",
       mail_family: isDayEnd ? "daily_day_end" : "daily_phase",
       mail_class: privateScope ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
+      channel: privateScope ? "private" : "job",
+      messageChannel: privateScope ? "private" : "job",
+      workday_related: privateScope ? false : true,
       role_scope: privateScope ? "" : resolveRoleScope(active),
-      career_id: norm(active?.career_id),
-      role_id: norm(active?.role_id),
+      career_id: privateScope ? "" : norm(active?.career_id),
+      role_id: privateScope ? "" : norm(active?.role_id),
+      employer_id: privateScope ? "" : (window.CivicationWorkdayRuntime?.getEmployerId?.(active) || norm(active?.brand_id)),
       stage: "stable",
       phase_tag: phaseId,
       subject,
@@ -708,6 +712,9 @@
       mail_type: "day_transition",
       mail_family: "day_go_to_work",
       mail_class: PRIVATE_MAIL_CLASS,
+      channel: "private",
+      messageChannel: "private",
+      workday_related: false,
       role_scope: "",
       phase_tag: "morning",
       subject: `Du har jobb som ${roleTitle}`,
@@ -753,11 +760,15 @@
       thread_key: norm(sourceMail?.thread_key) || threadKeyForMail(sourceMail),
       source_type: "daily_extra",
       mail_class: privateScope ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
+      channel: privateScope ? "private" : "job",
+      messageChannel: privateScope ? "private" : "job",
+      workday_related: privateScope ? false : true,
       phase_tag: phaseId,
       stage: norm(sourceMail?.stage || "stable") || "stable",
       role_scope: privateScope ? "" : resolveRoleScope(active),
-      career_id: norm(active?.career_id),
-      role_id: norm(active?.role_id),
+      career_id: privateScope ? "" : norm(active?.career_id),
+      role_id: privateScope ? "" : norm(active?.role_id),
+      employer_id: privateScope ? "" : (window.CivicationWorkdayRuntime?.getEmployerId?.(active) || norm(active?.brand_id)),
       choices: normalizeChoices(sourceMail?.choices),
       daily_mail_meta: {
         date,
@@ -786,6 +797,9 @@
       ...sourceMail,
       source_type: "planned",
       mail_class: "daily_workday",
+      channel: "job",
+      messageChannel: "job",
+      workday_related: true,
       thread_key: norm(sourceMail?.thread_key) || threadKeyForMail(sourceMail),
       phase_tag: phaseId,
       daily_mail_meta: {
@@ -848,10 +862,14 @@
       source: norm(base.source) || "Civication",
       source_type: "daily_generated",
       mail_class: isPrivatePhase(phaseId) ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
+      channel: isPrivatePhase(phaseId) ? "private" : "job",
+      messageChannel: isPrivatePhase(phaseId) ? "private" : "job",
+      workday_related: isPrivatePhase(phaseId) ? false : true,
       phase_tag: phaseId,
       role_scope: isPrivatePhase(phaseId) ? "" : resolveRoleScope(active),
-      career_id: norm(active?.career_id),
-      role_id: norm(active?.role_id),
+      career_id: isPrivatePhase(phaseId) ? "" : norm(active?.career_id),
+      role_id: isPrivatePhase(phaseId) ? "" : norm(active?.role_id),
+      employer_id: isPrivatePhase(phaseId) ? "" : (window.CivicationWorkdayRuntime?.getEmployerId?.(active) || norm(active?.brand_id)),
       stage: norm(base.stage || "stable") || "stable",
       // Behold generatorens valg verbatim (day_end leveres bevisst uten valg).
       choices: Array.isArray(base.choices) ? base.choices : [],
@@ -1104,10 +1122,14 @@
       mail_type: norm(storylet.message_type || "story"),
       mail_family: `narrative_${slugify(stream.type||"stream")}`,
       mail_class: privateScope ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
+      channel: privateScope ? "private" : "job",
+      messageChannel: privateScope ? "private" : "job",
+      workday_related: privateScope ? false : true,
       phase_tag: phaseId,
       role_scope: privateScope ? "" : resolveRoleScope(active),
-      career_id: norm(active?.career_id),
-      role_id: norm(active?.role_id),
+      career_id: privateScope ? "" : norm(active?.career_id),
+      role_id: privateScope ? "" : norm(active?.role_id),
+      employer_id: privateScope ? "" : (window.CivicationWorkdayRuntime?.getEmployerId?.(active) || norm(active?.brand_id)),
       subject: norm(storylet.subject),
       situation: Array.isArray(storylet.situation) ? storylet.situation.map(norm).filter(Boolean) : [norm(storylet.situation)].filter(Boolean),
       choices: normalizeChoices(storylet.choices),
@@ -1375,6 +1397,14 @@
       ?? !!norm(active?.career_id);
     let goToWorkInjected = false;
 
+    // Adaptor-modell: de private fasene eies av CivicationPrivatePhaseMailBuilder
+    // (egne fase-familier, maks 1 aktiv mail per fase, alltid daily_private uten
+    // rolle-/arbeidsgiver-binding). Er den lastet, delegerer vi hele den private
+    // fasen dit i stedet for den gamle placeholder-genereringen. Uten modulen
+    // faller vi tilbake til den innebygde genereringen (bakoverkompatibelt).
+    const privatePhaseBuilder = window.CivicationPrivatePhaseMailBuilder;
+    const usePrivatePhaseBuilder = typeof privatePhaseBuilder?.buildPhaseMail === "function";
+
     for (const phase of phases) {
       const phaseId = norm(phase?.id || "morning");
       const privatePhase = isPrivatePhase(phaseId);
@@ -1390,6 +1420,32 @@
           slot: "go_to_work",
           event: makeGoToWorkTransition(active, runtimeInstanceKey)
         });
+      }
+
+      // Delegér den private fasen til CivicationPrivatePhaseMailBuilder: én
+      // dedikert privat fase-mail (mat/hvile/økonomi/familie/…), aldri jobb.
+      // Morgenen med aktiv jobb eies av «Gå til jobb»-overgangen alene.
+      // day_end beholder sin egen dagslutt-/oppsummeringsgenerator (allerede
+      // privat) fordi den driver dagsoppsummerings-UI-et.
+      if (privatePhase && usePrivatePhaseBuilder && phaseId !== "day_end") {
+        const skipMorningContent = phaseId === "morning" && hasActiveJob;
+        if (!skipMorningContent) {
+          const privateEvent = await privatePhaseBuilder.buildPhaseMail(phaseId, active, {
+            date,
+            runtimeInstanceKey
+          });
+          if (privateEvent) {
+            ordinal += 1;
+            items.push({
+              status: "queued",
+              phase: phaseId,
+              slot: norm(privateEvent?.daily_mail_meta?.slot) || `private_${phaseId}`,
+              optional: phaseId === "day_end",
+              event: privateEvent
+            });
+          }
+        }
+        continue;
       }
 
       for (const slot of slots) {

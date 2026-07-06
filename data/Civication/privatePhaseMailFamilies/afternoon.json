@@ -1,0 +1,134 @@
+{
+  "schema": "civication_private_phase_mail_family_v1",
+  "phase": "afternoon",
+  "phase_label": "Ettermiddag",
+  "source_type": "daily_private_phase",
+  "channel": "private",
+  "messageChannel": "private",
+  "mail_class": "daily_private",
+  "role_scope": "",
+  "career_id": "",
+  "role_id": "",
+  "employer_id": "",
+  "workday_related": false,
+  "description": "Private ettermiddag-mailer om familie, venner, fritid, læring og personlig kalender. Aldri jobbinnhold.",
+  "topics": ["familie", "venner", "fritid", "læring", "personlig kalender"],
+  "mails": [
+    {
+      "id": "private_afternoon_familie_001",
+      "topic": "familie",
+      "subject": "En hilsen hjemmefra",
+      "summary": "Noen i familien tar kontakt om en helt hverdagslig ting. Du velger hvor mye du gir den.",
+      "situation": [
+        "En melding fra noen i familien dukker opp: en praktisk ting, en liten nyhet, kanskje bare et hei.",
+        "Det er ikke stort, men det er en tråd tilbake til folkene dine.",
+        "Du kan ta deg tid til det nå, eller vente til du er hjemme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar ordentlig og vis at du bryr deg",
+          "reply": "Jeg svarer og tar meg tid til det.",
+          "effect": 1,
+          "tags": ["familie", "sosialt liv", "psyke"],
+          "feedback": "Den lille kontakten holder båndet varmt."
+        },
+        {
+          "id": "B",
+          "label": "Svar kort og ta det senere",
+          "reply": "Jeg svarer raskt og følger opp i kveld.",
+          "effect": 0,
+          "tags": ["tempo", "familie"],
+          "feedback": "Du holder tråden, men litt overfladisk denne gangen."
+        }
+      ]
+    },
+    {
+      "id": "private_afternoon_fritid_002",
+      "topic": "fritid",
+      "subject": "Ettermiddagen har et lite rom",
+      "summary": "Det åpner seg litt tid som er din egen. Hva vil du gjøre med den?",
+      "situation": [
+        "Ettermiddagen har en luke uten faste planer.",
+        "Du kan bruke den på noe du liker, en hobby eller litt bevegelse, eller la den bare gli forbi.",
+        "Fritid som brukes med mening gir ofte mer enn fritid som forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør noe du faktisk har lyst på",
+          "reply": "Jeg gjør noe jeg har hatt lyst til.",
+          "effect": 1,
+          "tags": ["fritid", "psyke", "energi"],
+          "feedback": "Du gir deg selv noe, og det merkes på humøret."
+        },
+        {
+          "id": "B",
+          "label": "La tiden gå av seg selv",
+          "reply": "Jeg tar det helt med ro.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "Det ble en pause, men ikke helt den du håpet på."
+        }
+      ]
+    },
+    {
+      "id": "private_afternoon_laering_003",
+      "topic": "læring",
+      "subject": "Noe du har lyst til å lære?",
+      "summary": "Det er rom for å lære noe smått som er ditt eget, ikke fordi du må.",
+      "situation": [
+        "Du har kommet over noe du er nysgjerrig på: en podkast, en artikkel, en ferdighet.",
+        "Det handler ikke om å prestere, bare om å vokse litt på egne premisser.",
+        "Litt læring nå kan bli til noe større over tid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk et kvarter på å lære noe nytt",
+          "reply": "Jeg setter av litt tid til å lære noe jeg er nysgjerrig på.",
+          "effect": 1,
+          "tags": ["læring", "psyke", "fritid"],
+          "feedback": "Nysgjerrigheten får litt næring. Det kjennes godt."
+        },
+        {
+          "id": "B",
+          "label": "Legg det til en annen dag",
+          "reply": "Jeg tar det en annen gang.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Det er greit, men ideen blir liggende litt lenger."
+        }
+      ]
+    },
+    {
+      "id": "private_afternoon_venn_004",
+      "topic": "venner",
+      "subject": "En venn vil finne på noe",
+      "summary": "En venn foreslår å møtes. Du velger om ettermiddagen får plass til det.",
+      "situation": [
+        "En venn spør om dere skal ta en kaffe eller en tur senere.",
+        "Det er ikke noe stort, bare et ønske om litt tid sammen.",
+        "Sosial tid koster litt overskudd, men gir ofte mer tilbake."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja og avtal noe konkret",
+          "reply": "Jeg sier ja og foreslår et tidspunkt.",
+          "effect": 1,
+          "tags": ["venner", "sosialt liv", "psyke"],
+          "feedback": "Du har noe å se frem til. Det løfter dagen litt."
+        },
+        {
+          "id": "B",
+          "label": "Foreslå heller en annen dag",
+          "reply": "Jeg tar det gjerne, men litt senere i uka.",
+          "effect": 0,
+          "tags": ["venner", "personlig kalender"],
+          "feedback": "Du holder døra åpen uten å strekke deg for langt i dag."
+        }
+      ]
+    }
+  ]
+}

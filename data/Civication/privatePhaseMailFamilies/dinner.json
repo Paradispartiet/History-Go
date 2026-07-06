@@ -1,0 +1,134 @@
+{
+  "schema": "civication_private_phase_mail_family_v1",
+  "phase": "dinner",
+  "phase_label": "Middag",
+  "source_type": "daily_private_phase",
+  "channel": "private",
+  "messageChannel": "private",
+  "mail_class": "daily_private",
+  "role_scope": "",
+  "career_id": "",
+  "role_id": "",
+  "employer_id": "",
+  "workday_related": false,
+  "description": "Private middag-mailer om mat, familie, økonomi og sosialt liv. Aldri jobbinnhold.",
+  "topics": ["mat", "familie", "økonomi", "sosialt liv"],
+  "mails": [
+    {
+      "id": "private_dinner_mat_001",
+      "topic": "mat",
+      "subject": "Middag: hva blir det i kveld?",
+      "summary": "Dagen går mot kveld, og kroppen vil ha et ordentlig måltid. Du bestemmer hva det skal bli.",
+      "situation": [
+        "Det er middagstid. Kjøkkenet venter.",
+        "Du kan lage noe fra bunnen, eller ta den raske løsningen.",
+        "Middagen er ofte dagens største pause, hvis du lar den være det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag noe godt fra bunnen",
+          "reply": "Jeg lager middag ordentlig i kveld.",
+          "effect": 1,
+          "tags": ["mat", "helse", "hvile"],
+          "feedback": "Maten smaker bedre når du har laget den selv, og kvelden får en rolig start."
+        },
+        {
+          "id": "B",
+          "label": "Ta noe raskt og enkelt",
+          "reply": "Jeg tar noe kjapt i kveld.",
+          "effect": 0,
+          "tags": ["tempo", "mat"],
+          "feedback": "Du blir mett, men middagen ble mer et stopp enn en pause."
+        }
+      ]
+    },
+    {
+      "id": "private_dinner_familie_002",
+      "topic": "familie",
+      "subject": "Middag med folkene dine",
+      "summary": "Rundt middagsbordet er det plass til å være sammen. Du velger hvor mye du er til stede.",
+      "situation": [
+        "Dere er samlet rundt bordet, eller du snakker med noen mens du spiser.",
+        "Det er en av de enkle stundene der man kan høre hvordan dagen har vært.",
+        "Nærvær ved bordet koster ingenting, men betyr ofte mye."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg bort telefonen og vær til stede",
+          "reply": "Jeg legger bort skjermen og spør hvordan dagen har vært.",
+          "effect": 1,
+          "tags": ["familie", "sosialt liv", "psyke"],
+          "feedback": "En helt vanlig middag blir litt varmere fordi du var der."
+        },
+        {
+          "id": "B",
+          "label": "Spis mens du sjekker telefonen",
+          "reply": "Jeg spiser mens jeg tar unna litt på telefonen.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Du fikk spist, men stunden gled litt forbi."
+        }
+      ]
+    },
+    {
+      "id": "private_dinner_okonomi_003",
+      "topic": "økonomi",
+      "subject": "Litt oversikt over pengene",
+      "summary": "Middagen minner deg på hva ting koster. Du kan ta en rolig titt på økonomien.",
+      "situation": [
+        "Mens du rydder etter middagen, husker du på et par utgifter.",
+        "Det er ikke krise, men litt oversikt gjør ofte pengene mindre skumle.",
+        "Du kan ta en rolig titt nå, eller la det ligge."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta fem minutter på å se over økonomien",
+          "reply": "Jeg tar en rolig titt på hva som går ut og inn.",
+          "effect": 1,
+          "tags": ["økonomi", "psyke"],
+          "feedback": "Oversikt gir ro. Pengene føles litt mer på plass."
+        },
+        {
+          "id": "B",
+          "label": "La det ligge til en annen kveld",
+          "reply": "Jeg tar det senere i uka.",
+          "effect": 0,
+          "tags": ["tempo", "økonomi"],
+          "feedback": "Det er greit, men usikkerheten blir liggende litt til."
+        }
+      ]
+    },
+    {
+      "id": "private_dinner_venn_004",
+      "topic": "sosialt liv",
+      "subject": "Middag med en venn?",
+      "summary": "En venn foreslår å spise sammen. Du velger om kvelden får selskap.",
+      "situation": [
+        "En venn spør om dere skal dele en middag, hjemme eller ute.",
+        "Det koster litt planlegging, men gir en kveld med noe innhold.",
+        "Å dele et måltid er en enkel måte å holde vennskap ved like."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja og lag noe enkelt sammen",
+          "reply": "Jeg sier ja, vi finner ut av noe enkelt.",
+          "effect": 1,
+          "tags": ["venner", "sosialt liv", "mat"],
+          "feedback": "Maten blir bedre med selskap, og kvelden får varme."
+        },
+        {
+          "id": "B",
+          "label": "Ta det som en rolig kveld alene",
+          "reply": "Jeg tar en stille kveld for meg selv i kveld.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "En rolig kveld alene kan også være akkurat det du trenger."
+        }
+      ]
+    }
+  ]
+}

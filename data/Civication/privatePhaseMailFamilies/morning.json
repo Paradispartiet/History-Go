@@ -1,0 +1,134 @@
+{
+  "schema": "civication_private_phase_mail_family_v1",
+  "phase": "morning",
+  "phase_label": "Morgen",
+  "source_type": "daily_private_phase",
+  "channel": "private",
+  "messageChannel": "private",
+  "mail_class": "daily_private",
+  "role_scope": "",
+  "career_id": "",
+  "role_id": "",
+  "employer_id": "",
+  "workday_related": false,
+  "description": "Private morgen-mailer om morgenrutine, søvn, energi, helse og personlig kalender. Aldri jobbinnhold.",
+  "topics": ["morgenrutine", "søvn", "energi", "helse", "personlig kalender"],
+  "mails": [
+    {
+      "id": "private_morning_rutine_001",
+      "topic": "morgenrutine",
+      "subject": "Morgenen er din egen",
+      "summary": "Du våkner. Før dagen begynner, bestemmer du hvordan morgenen skal føles.",
+      "situation": [
+        "Alarmen har gått. Rommet er stille, og du har noen minutter helt for deg selv.",
+        "Du kan starte rolig med vann, litt lys og en kort strekk, eller kaste deg rett inn i dagen.",
+        "Hvordan du møter morgenen setter ofte tonen for resten av døgnet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta en rolig start: vann, lys og litt bevegelse",
+          "reply": "Jeg gir meg selv ti rolige minutter før dagen setter i gang.",
+          "effect": 1,
+          "tags": ["helse", "energi", "morgenrutine"],
+          "feedback": "Kroppen våkner i sitt eget tempo. Du kjenner deg litt mer samlet."
+        },
+        {
+          "id": "B",
+          "label": "Hopp rett opp og kom i gang",
+          "reply": "Jeg står opp og går rett på.",
+          "effect": 0,
+          "tags": ["tempo", "energi"],
+          "feedback": "Du kommer raskt i gang, men kroppen henger litt etter."
+        }
+      ]
+    },
+    {
+      "id": "private_morning_sovn_002",
+      "topic": "søvn",
+      "subject": "Hvordan sov du?",
+      "summary": "Nattens søvn følger med inn i morgenen. Du merker hvor mye du har igjen.",
+      "situation": [
+        "Du kjenner etter mens du sitter på sengekanten.",
+        "Noen netter gir overskudd, andre etterlater en tyngde i skuldrene.",
+        "Det du velger nå kan hjelpe deg å ta igjen litt, eller la tyngden bli med videre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Drikk vann og få litt morgenlys før du gjør noe mer",
+          "reply": "Jeg lar kroppen finne seg til rette før dagen begynner.",
+          "effect": 1,
+          "tags": ["søvn", "helse", "energi"],
+          "feedback": "Lyset hjelper kroppen å skjønne at natten er over."
+        },
+        {
+          "id": "B",
+          "label": "Ta en kort ekstra blund",
+          "reply": "Jeg gir meg selv noen minutter til under dyna.",
+          "effect": 0,
+          "tags": ["hvile", "søvn"],
+          "feedback": "Det er fristende, men de ekstra minuttene gjør deg sjelden mer opplagt."
+        }
+      ]
+    },
+    {
+      "id": "private_morning_kalender_003",
+      "topic": "personlig kalender",
+      "subject": "Hva står på din egen plan i dag?",
+      "summary": "Før dagen fylles av andres forventninger, ser du på hva du selv ville rekke.",
+      "situation": [
+        "Kalenderen din er din egen. Her handler det ikke om hva som må gjøres, men om hva du vil huske på.",
+        "Kanskje en telefon til noen du er glad i, en tur, eller bare et pusterom du har lovet deg selv.",
+        "Du velger om du setter av plass til det nå, eller lar dagen styre seg selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett av ett lite punkt til deg selv i dag",
+          "reply": "Jeg skriver inn én ting jeg vil huske på for min egen del.",
+          "effect": 1,
+          "tags": ["personlig kalender", "psyke", "fritid"],
+          "feedback": "Du gir din egen dag litt retning, ikke bare andres."
+        },
+        {
+          "id": "B",
+          "label": "La dagen finne sin egen form",
+          "reply": "Jeg tar dagen som den kommer.",
+          "effect": 0,
+          "tags": ["flyt"],
+          "feedback": "Du holder det åpent. Det kan gi ro, eller la ting gli forbi."
+        }
+      ]
+    },
+    {
+      "id": "private_morning_frokost_004",
+      "topic": "helse",
+      "subject": "Frokost eller ikke?",
+      "summary": "Kroppen trenger noe å gå på. Du bestemmer hva morgenen skal gi den.",
+      "situation": [
+        "Kjøkkenet er stille. Du har tid til litt mat før dagen tar deg.",
+        "En enkel frokost gir energi som varer, eller du kan hoppe over og spare tiden.",
+        "Små valg om mat og energi legger seg oppå hverandre gjennom dagen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag noe enkelt og næringsrikt",
+          "reply": "Jeg tar meg tid til en ordentlig frokost.",
+          "effect": 1,
+          "tags": ["mat", "helse", "energi"],
+          "feedback": "Kroppen får noe å gå på. Formiddagen blir litt jevnere."
+        },
+        {
+          "id": "B",
+          "label": "Ta bare en kaffe og gå",
+          "reply": "Jeg nøyer meg med kaffe i dag.",
+          "effect": 0,
+          "tags": ["tempo", "energi"],
+          "feedback": "Du sparer tid nå, men kan bli tom litt før lunsj."
+        }
+      ]
+    }
+  ]
+}
