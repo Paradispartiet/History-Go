@@ -210,7 +210,10 @@
     if (target.hasAttribute('data-hg-social-meet-tab')) { currentTab = String(target.getAttribute('data-hg-social-meet-tab') || 'pending'); render(currentOptions); return; }
     const mode = String(target.getAttribute('data-hg-social-meet-open') || 'all');
     const placeId = String(target.getAttribute('data-hg-social-meet-place') || '').trim();
-    open({ filter: mode === 'place' ? 'place' : 'all', placeId, sourceSurface: mode === 'place' ? 'placeCardOnSite' : 'globalMenu' });
+    const explicitSource = String(target.getAttribute('data-hg-social-meet-source') || '').trim();
+    const filter = mode === 'place' ? 'place' : 'all';
+    const sourceSurface = explicitSource || (filter === 'place' ? 'placeCardOnSite' : 'globalMenu');
+    open({ filter, placeId, sourceSurface });
   }
 
   function bind(){
