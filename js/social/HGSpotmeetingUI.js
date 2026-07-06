@@ -87,13 +87,7 @@
       #${SHEET_ID} button:disabled{opacity:.55;cursor:default}
       .pc-people-spotmeeting-cta{width:100%;min-height:36px;border-radius:999px;border:1px solid rgba(247,226,163,.42);background:rgba(247,226,163,.12);color:#f7e2a3;font-weight:800;cursor:pointer}
       .pc-people-spotmeeting-note{margin:0;color:rgba(255,255,255,.66);font-size:12px;line-height:1.35}
-      .pc-events-spotmeeting{display:grid;gap:7px;padding:7px 8px 8px;border-radius:14px;border:1px solid rgba(247,226,163,.22);background:rgba(247,226,163,.08)}
-      .pc-events-spotmeeting-head{display:grid;gap:1px}
-      .pc-events-spotmeeting-title{color:#f7e2a3;font-weight:900;font-size:13px;line-height:1.1}
-      .pc-events-spotmeeting-sub{color:rgba(255,255,255,.66);font-size:11px;line-height:1.15}
-      .pc-events-spotmeeting-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-      .pc-events-spotmeeting-action{min-height:30px;padding:0 7px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.24);color:#fff;font-size:11px;font-weight:800;line-height:1.1;cursor:pointer}
-      .pc-events-spotmeeting-action[data-hg-spotmeeting-action="match"]{grid-column:1/-1;background:rgba(247,226,163,.16);color:#f7e2a3;border-color:rgba(247,226,163,.32)}
+      .pc-events-spotmeeting{display:none!important}
     `;
     root.document.head?.appendChild(style);
   }
@@ -109,13 +103,6 @@
     const sectionPlaceId = anchor?.closest?.('[data-hg-spotmeeting-place]')?.getAttribute?.('data-hg-spotmeeting-place');
     const id = String(card?.dataset?.currentPlaceId || sectionPlaceId || '').trim();
     return getPlaceById(id) || { id: id || 'sted', name: id || 'Sted' };
-  }
-
-  function getActivePlaceIdFromOnSiteBox(box){
-    const card = root.document?.getElementById?.('placeCard');
-    const currentPlaceId = String(card?.dataset?.currentPlaceId || '').trim();
-    const inlinePlaceId = String(box?.querySelector?.('[data-knowledge-spot-match]')?.getAttribute?.('data-knowledge-spot-match') || '').trim();
-    return currentPlaceId || inlinePlaceId || 'sted';
   }
 
   function buildContext(placeOrOptions, options = {}){
@@ -146,7 +133,7 @@
       contextId: placeId,
       title,
       reason: String(options.reason || 'Kunnskapsmøte rundt dette stedet'),
-      sourceSurface: String(options.sourceSurface || 'placeCardOnSite'),
+      sourceSurface: String(options.sourceSurface || 'placeCardPeople'),
       preferredAction
     };
   }
@@ -189,27 +176,14 @@
     return `<button class="hg-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}" aria-pressed="${selectedAction === action ? 'true' : 'false'}"><span><strong>${escapeHTML(ACTION_LABELS[action] || action)}</strong><small>${escapeHTML(ACTION_HELPERS[action] || '')}</small></span><span aria-hidden="true">›</span></button>`;
   }
 
-  function onSiteActionButton(action){
-    return `<button class="pc-events-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}">${escapeHTML(ACTION_LABELS[action] || action)}</button>`;
-  }
-
-  function renderOnSitePanel(placeId){
-    return `<section class="pc-events-spotmeeting" data-hg-spotmeeting-onsite="1" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}"><div class="pc-events-spotmeeting-head"><span class="pc-events-spotmeeting-title">Kunnskapsmøte</span><span class="pc-events-spotmeeting-sub">Basert på tema · ikke posisjon</span></div><div class="pc-events-spotmeeting-actions" aria-label="Kunnskapsmøte på stedet">${ACTIONS.map(onSiteActionButton).join('')}</div></section>`;
-  }
-
   function renderStatus(message, kind = 'status'){
     return `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="${escapeHTML(kind)}">${escapeHTML(message)}</p>`;
   }
 
-  // Følg opp / åpne Social Meet fra Kunnskapsmøte-arket. Åpner det egne
-  // Social Meet-arket (HG_SocialMeetUI) via delegert klikk-handler, filtrert
-  // på stedet når konteksten er et sted. Ingen lenke til profile.html.
   function socialMeetFollowUpButton(context, label){
     const placeId = String(context?.contextType === 'place' ? (context.contextId || '') : '').trim();
-    const openAttrs = placeId
-      ? `data-hg-social-meet-open="place" data-hg-social-meet-place="${escapeHTML(placeId)}"`
-      : 'data-hg-social-meet-open="all"';
-    return `<button type="button" class="hg-spotmeeting-link" ${openAttrs} data-hg-social-meet-source="spotmeetingFollowUp">${escapeHTML(label)}</button>`;
+    const attrs = placeId ? `data-hg-social-meet-open="place" data-hg-social-meet-place="${escapeHTML(placeId)}"` : 'data-hg-social-meet-open="all"';
+    return `<button class="hg-spotmeeting-link" type="button" ${attrs}>${escapeHTML(label || 'Åpne Social Meet')}</button>`;
   }
 
   function renderCandidates(context, action){
@@ -227,9 +201,7 @@
       return;
     }
 
-    const contextForAction = Object.assign({}, context, {
-      contextType: CONTEXT_TYPE_BY_ACTION[action] || context.contextType || 'place'
-    });
+    const contextForAction = Object.assign({}, context, { contextType: CONTEXT_TYPE_BY_ACTION[action] || context.contextType || 'place' });
     const result = root.HG_Spotmeeting.getSpotmeetingSuggestions(contextForAction);
     const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
     const presetMessageId = PRESET_BY_ACTION[action] || PRESET_BY_ACTION.match;
@@ -241,7 +213,7 @@
     }
 
     if (!suggestions.length) {
-      target.innerHTML = renderStatus('Ingen demo-kandidater akkurat nå. Seed HG Social demo først.', 'noCandidates');
+      target.innerHTML = `${renderStatus('Ingen demo-kandidater akkurat nå. Seed HG Social demo først.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
 
@@ -250,7 +222,7 @@
       const disabled = duplicate ? ' disabled' : '';
       const status = duplicate ? 'Allerede sendt' : 'Send forslag';
       return `<article class="hg-spotmeeting-candidate"><div><strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Demo-kandidat')}</strong><p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p></div><button type="button" data-hg-spotmeeting-send="1" data-hg-spotmeeting-target="${escapeHTML(candidate.targetUserId)}" data-hg-spotmeeting-preset="${escapeHTML(presetMessageId)}"${disabled}>${status}</button></article>`;
-    }).join('')}</div><p class="hg-spotmeeting-status">TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.</p>`;
+    }).join('')}</div><p class="hg-spotmeeting-status">TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.</p>${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
   }
 
   function render(context, selectedAction = 'match'){
@@ -280,9 +252,7 @@
     if (!button || !currentState || !root.HG_Spotmeeting) return { ok: false, reason: 'missing_runtime' };
     const presetMessageId = String(button.getAttribute('data-hg-spotmeeting-preset') || PRESET_BY_ACTION[currentState.action] || PRESET_BY_ACTION.match);
     const targetUserId = String(button.getAttribute('data-hg-spotmeeting-target') || '').trim();
-    const context = Object.assign({}, currentState.context, {
-      contextType: CONTEXT_TYPE_BY_ACTION[currentState.action] || currentState.context.contextType || 'place'
-    });
+    const context = Object.assign({}, currentState.context, { contextType: CONTEXT_TYPE_BY_ACTION[currentState.action] || currentState.context.contextType || 'place' });
     const duplicate = getDuplicateInvite(targetUserId, context, presetMessageId);
     if (duplicate) {
       root.showToast?.('Kunnskapsmøte er allerede foreslått.');
@@ -302,7 +272,7 @@
     root.dispatchEvent?.(new CustomEvent('hg:spotmeetingChanged', { detail: { invite: result.invite } }));
     root.dispatchEvent?.(new CustomEvent('updateProfile', { detail: { source: 'spotmeeting' } }));
     const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
-    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. ${socialMeetFollowUpButton(currentState.context, 'Følg opp i Social Meet')}</p>`);
+    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`);
     return result;
   }
 
@@ -310,21 +280,8 @@
     return `<button class="pc-people-spotmeeting-cta" type="button" data-hg-spotmeeting-open="people" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}">Foreslå kunnskapsmøte</button><p class="pc-people-spotmeeting-note">Basert på personer og relasjoner her.</p>`;
   }
 
-  function enhanceOnSiteBox(box){
-    if (!box?.querySelector || box.querySelector('[data-hg-spotmeeting-onsite="1"]')) return;
-    const head = box.querySelector('.pc-events-head');
-    const placeId = getActivePlaceIdFromOnSiteBox(box);
-    Array.from(box.children || []).forEach(child => {
-      if (child !== head) child.remove();
-    });
-    box.insertAdjacentHTML('beforeend', renderOnSitePanel(placeId));
-  }
-
-  function enhanceOnSiteBoxes(scope = root.document){
-    const boxes = [];
-    if (scope instanceof HTMLElement && scope.id === 'pcEventsBox') boxes.push(scope);
-    if (scope?.querySelectorAll) boxes.push(...scope.querySelectorAll('#pcEventsBox'));
-    boxes.forEach(enhanceOnSiteBox);
+  function cleanupOnSiteBox(scope = root.document){
+    scope?.querySelectorAll?.('.pc-events-spotmeeting,[data-hg-spotmeeting-onsite="1"]').forEach(node => node.remove());
   }
 
   function canonicalizePlaceCardSections(scope = root.document){
@@ -338,7 +295,7 @@
       wrapper.innerHTML = renderPeopleCta(placeId);
       section.replaceWith(wrapper);
     });
-    enhanceOnSiteBoxes(scope);
+    cleanupOnSiteBox(scope);
     root.document?.getElementById?.('pcExploreTogether')?.remove?.();
   }
 
@@ -347,60 +304,29 @@
     open(buildPlaceContext(place, {
       preferredAction: action || 'match',
       sourceSurface,
-      reason: sourceSurface === 'placeCardPeople'
-        ? 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
-        : 'Kunnskapsmøte rundt dette stedet'
+      reason: sourceSurface === 'placeCardPeople' ? 'Kunnskapsmøte knyttet til personer og relasjoner på stedet' : 'Kunnskapsmøte rundt dette stedet'
     }));
   }
 
   function handleClick(event){
     const target = event.target?.closest?.('[data-hg-spotmeeting-send], [data-hg-spotmeeting-action], [data-hg-spotmeeting-open], [data-knowledge-spot-match], [data-hg-spotmeeting-close], #pcExploreTogether');
     if (!target) return;
-
-    if (target.hasAttribute('data-hg-spotmeeting-close')) {
-      event.preventDefault?.();
-      event.stopPropagation?.();
-      close();
-      return;
-    }
-
-    if (target.id === 'pcExploreTogether') {
-      event.preventDefault?.();
-      event.stopPropagation?.();
-      openForElement(target, 'match', 'placeCardFooterDeprecated');
-      target.remove?.();
-      return;
-    }
-
-    if (target.hasAttribute('data-hg-spotmeeting-send')) {
-      event.preventDefault?.();
-      event.stopPropagation?.();
-      sendInvite(target);
-      return;
-    }
-
+    if (target.hasAttribute('data-hg-spotmeeting-close')) { event.preventDefault?.(); event.stopPropagation?.(); close(); return; }
+    if (target.id === 'pcExploreTogether') { event.preventDefault?.(); event.stopPropagation?.(); openForElement(target, 'match', 'placeCardFooterDeprecated'); target.remove?.(); return; }
+    if (target.hasAttribute('data-hg-spotmeeting-send')) { event.preventDefault?.(); event.stopPropagation?.(); sendInvite(target); return; }
     if (target.hasAttribute('data-hg-spotmeeting-action')) {
+      const sheet = target.closest?.(`#${SHEET_ID}`);
+      if (!sheet) return;
       event.preventDefault?.();
       event.stopPropagation?.();
       const action = String(target.getAttribute('data-hg-spotmeeting-action') || 'match');
-      const sheet = target.closest?.(`#${SHEET_ID}`);
-      if (sheet && currentState) {
+      if (currentState) {
         currentState.action = action;
         render(currentState.context, action);
-        return;
       }
-      const inOnSite = Boolean(target.closest?.('[data-hg-spotmeeting-onsite="1"]'));
-      openForElement(target, action, inOnSite ? 'placeCardOnSite' : 'placeCardPeople');
       return;
     }
-
-    if (target.hasAttribute('data-knowledge-spot-match')) {
-      event.preventDefault?.();
-      event.stopPropagation?.();
-      openForElement(target, 'match', 'placeCardOnSite');
-      return;
-    }
-
+    if (target.hasAttribute('data-knowledge-spot-match')) { event.preventDefault?.(); event.stopPropagation?.(); openForElement(target, 'match', 'placeCardOnSite'); return; }
     if (target.hasAttribute('data-hg-spotmeeting-open')) {
       event.preventDefault?.();
       event.stopPropagation?.();
@@ -425,36 +351,14 @@
   }
 
   function health(){
-    return {
-      ok: true,
-      ui: 'canonical',
-      sheetMounted: Boolean(root.document?.getElementById?.(SHEET_ID)),
-      onSitePanels: root.document?.querySelectorAll?.('[data-hg-spotmeeting-onsite="1"]')?.length || 0,
-      testMode: isTestMode(),
-      hasRuntime: Boolean(root.HG_Spotmeeting)
-    };
+    return { ok: true, ui: 'canonical', sheetMounted: Boolean(root.document?.getElementById?.(SHEET_ID)), onSitePanels: 0, testMode: isTestMode(), hasRuntime: Boolean(root.HG_Spotmeeting) };
   }
 
-  root.HG_SpotmeetingUI = {
-    open,
-    close,
-    buildContext,
-    buildPlaceContext,
-    render,
-    renderCandidates,
-    sendInvite,
-    canonicalizePlaceCardSections,
-    bind,
-    health
-  };
+  root.HG_SpotmeetingUI = { open, close, buildContext, buildPlaceContext, render, renderCandidates, sendInvite, canonicalizePlaceCardSections, bind, health };
 
   root.openSpotMatchList = function openSpotMatchList(placeId){
     const place = getPlaceById(placeId) || { id: placeId || 'sted', name: placeId || 'Sted' };
-    return open(buildPlaceContext(place, {
-      preferredAction: 'match',
-      sourceSurface: 'placeCardOnSite',
-      reason: 'Kunnskapsmøte rundt dette stedet'
-    }));
+    return open(buildPlaceContext(place, { preferredAction: 'match', sourceSurface: 'placeCardPeople', reason: 'Kunnskapsmøte rundt dette stedet' }));
   };
 
   bind();
