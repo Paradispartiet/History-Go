@@ -201,6 +201,17 @@
     return `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="${escapeHTML(kind)}">${escapeHTML(message)}</p>`;
   }
 
+  // Følg opp / åpne Social Meet fra Kunnskapsmøte-arket. Åpner det egne
+  // Social Meet-arket (HG_SocialMeetUI) via delegert klikk-handler, filtrert
+  // på stedet når konteksten er et sted. Ingen lenke til profile.html.
+  function socialMeetFollowUpButton(context, label){
+    const placeId = String(context?.contextType === 'place' ? (context.contextId || '') : '').trim();
+    const openAttrs = placeId
+      ? `data-hg-social-meet-open="place" data-hg-social-meet-place="${escapeHTML(placeId)}"`
+      : 'data-hg-social-meet-open="all"';
+    return `<button type="button" class="hg-spotmeeting-link" ${openAttrs} data-hg-social-meet-source="spotmeetingFollowUp">${escapeHTML(label)}</button>`;
+  }
+
   function renderCandidates(context, action){
     const sheet = ensureSheet();
     const target = sheet.querySelector('[data-hg-spotmeeting-candidates]');
@@ -212,7 +223,7 @@
     }
 
     if (!isTestMode()) {
-      target.innerHTML = `${renderStatus('Ekte Spotmeeting krever trygg backend. Demo kan testes i TEST_MODE.', 'backendDisabled')}<a class="hg-spotmeeting-link" href="profile.html#socialmeet">Åpne Social Meet</a>`;
+      target.innerHTML = `${renderStatus('Ekte Spotmeeting krever trygg backend. Demo kan testes i TEST_MODE.', 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
 
@@ -291,7 +302,7 @@
     root.dispatchEvent?.(new CustomEvent('hg:spotmeetingChanged', { detail: { invite: result.invite } }));
     root.dispatchEvent?.(new CustomEvent('updateProfile', { detail: { source: 'spotmeeting' } }));
     const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
-    if (target) target.insertAdjacentHTML('beforeend', '<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>');
+    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. ${socialMeetFollowUpButton(currentState.context, 'Følg opp i Social Meet')}</p>`);
     return result;
   }
 
