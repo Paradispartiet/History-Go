@@ -12,7 +12,7 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private morgen-mailer om morgenrutine, søvn, energi, helse og personlig kalender. Aldri jobbinnhold.",
-  "topics": ["morgenrutine", "søvn", "energi", "helse", "personlig kalender"],
+  "topics": ["morgenrutine", "søvn", "energi", "helse", "personlig kalender", "trening", "natur", "læring"],
   "mails": [
     {
       "id": "private_morning_rutine_001",
@@ -127,6 +127,130 @@
           "effect": 0,
           "tags": ["tempo", "energi"],
           "feedback": "Du sparer tid nå, men kan bli tom litt før lunsj."
+        }
+      ]
+    },
+    {
+      "id": "private_morning_sport_profile_001",
+      "topic": "trening",
+      "requiresAnyProfileTags": ["sport"],
+      "weightFrom": ["privatePhaseWeights.sport"],
+      "subject": "Morgenlys over en bane du kjenner",
+      "summary": "Kroppen din er vant til bevegelse, og morgenen er åpen.",
+      "situation": [
+        "Du våkner med overskudd, og ruta di kan legges forbi en bane du har besøkt før.",
+        "En kort morgenøkt setter tonen for resten av dagen.",
+        "Du kan også spare kreftene til senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta en lett morgenøkt på veien",
+          "reply": "Jeg legger inn en kort økt før dagen starter.",
+          "effect": 1,
+          "tags": ["trening", "helse", "energi"],
+          "feedback": "Pulsen opp, hodet klart. Dagen begynner på din banehalvdel."
+        },
+        {
+          "id": "B",
+          "label": "Spar kreftene til senere",
+          "reply": "Jeg tar det rolig nå og beveger meg heller i kveld.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "Du holder energien i reserve. Kroppen vet hvor banen ligger."
+        }
+      ]
+    },
+    {
+      "id": "private_morning_natur_profile_002",
+      "topic": "natur",
+      "requiresAnyProfileTags": ["nature", "natur"],
+      "weightFrom": ["privatePhaseWeights.nature"],
+      "subject": "Den grønne veien inn i dagen",
+      "summary": "Du kjenner de grønne rutene i byen bedre enn de fleste.",
+      "situation": [
+        "Morgenen er stille, og en grønn strekning du har gått før ligger nesten på veien din.",
+        "Noen minutter blant trær og vann gjør ofte mer for hodet enn en ekstra kaffe.",
+        "Du velger hvilken vei dagen skal starte med."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta den grønne omveien",
+          "reply": "Jeg går den grønne ruta i dag.",
+          "effect": 1,
+          "tags": ["natur", "psyke", "helse"],
+          "feedback": "Lufta, lyset og roen følger med deg inn i dagen."
+        },
+        {
+          "id": "B",
+          "label": "Ta den raskeste veien",
+          "reply": "Jeg tar korteste vei i dag.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Effektivt, men det grønne får vente til en annen morgen."
+        }
+      ]
+    },
+    {
+      "id": "private_morning_laering_profile_003",
+      "topic": "læring",
+      "requiresAnyProfileTags": ["learning"],
+      "weightFrom": ["privatePhaseWeights.learning"],
+      "subject": "Ti minutter med noe du samler på",
+      "summary": "Du har for vane å lære litt hele tiden — morgenen har plass til det.",
+      "situation": [
+        "Du har ti rolige minutter før dagen tar deg.",
+        "Kunnskapen du har samlet gjør det lett å plukke opp en tråd: et sted, en person, et tema du vil forstå bedre.",
+        "Små morgendrypp blir store samlinger over tid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk ti minutter på å lære noe nytt",
+          "reply": "Jeg leser litt om noe jeg er nysgjerrig på.",
+          "effect": 1,
+          "tags": ["læring", "psyke"],
+          "feedback": "En liten bit til i samlingen din. Hodet liker det."
+        },
+        {
+          "id": "B",
+          "label": "La hodet være tomt litt til",
+          "reply": "Jeg lar morgenen være uten input.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "Stillhet er også en slags læring."
+        }
+      ]
+    },
+    {
+      "id": "private_morning_ro_profile_004",
+      "topic": "hvile",
+      "requiresAnyProfileTags": ["low_energy", "rest"],
+      "weightFrom": ["privatePhaseWeights.rest"],
+      "subject": "En myk start i dag",
+      "summary": "Kroppen ber om en roligere morgen enn vanlig.",
+      "situation": [
+        "Du kjenner at energien ikke er på topp i dag.",
+        "En rolig start — uten hastverk og uten krav — kan være det som redder resten av dagen.",
+        "Ingen ting du har samlet forsvinner av at du tar det med ro."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi deg selv en rolig morgen",
+          "reply": "Jeg starter dagen i lavt tempo.",
+          "effect": 1,
+          "tags": ["hvile", "psyke", "helse"],
+          "feedback": "Skuldrene senker seg. Dagen får en mykere inngang."
+        },
+        {
+          "id": "B",
+          "label": "Press deg gjennom vanlig tempo",
+          "reply": "Jeg kjører på som vanlig.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Det går, men kroppen noterer seg regningen."
         }
       ]
     }

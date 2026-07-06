@@ -12,7 +12,7 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private middag-mailer om mat, familie, økonomi og sosialt liv. Aldri jobbinnhold.",
-  "topics": ["mat", "familie", "økonomi", "sosialt liv"],
+  "topics": ["mat", "familie", "økonomi", "sosialt liv", "nettverk"],
   "mails": [
     {
       "id": "private_dinner_mat_001",
@@ -127,6 +127,99 @@
           "effect": 0,
           "tags": ["hvile"],
           "feedback": "En rolig kveld alene kan også være akkurat det du trenger."
+        }
+      ]
+    },
+    {
+      "id": "private_dinner_nettverk_profile_001",
+      "topic": "nettverk",
+      "requiresAnyProfileTags": ["social", "people"],
+      "weightFrom": ["privatePhaseWeights.social", "capital.social"],
+      "subject": "En invitasjon fra en du har møtt",
+      "summary": "En kontakt fra et sted du tidligere besøkte spør om du vil møtes til middag.",
+      "situation": [
+        "En kontakt fra et sted du tidligere besøkte spør om du vil møtes.",
+        "Det koster energi, men kan styrke nettverket ditt.",
+        "Du kjenner igjen følelsen: relasjoner bygges i akkurat slike valg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja til middagen",
+          "reply": "Ja, la oss møtes til middag.",
+          "effect": 1,
+          "tags": ["nettverk", "sosialt liv", "venner"],
+          "feedback": "En god kveld, og båndet er blitt litt sterkere."
+        },
+        {
+          "id": "B",
+          "label": "Foreslå en annen dag",
+          "reply": "Ikke i kveld, men la oss finne en annen dag.",
+          "effect": 0,
+          "tags": ["hvile", "tempo"],
+          "feedback": "Du holder døren åpen uten å tømme deg selv i kveld."
+        }
+      ]
+    },
+    {
+      "id": "private_dinner_okonomi_profile_002",
+      "topic": "økonomi",
+      "requiresAnyProfileTags": ["economy"],
+      "weightFrom": ["privatePhaseWeights.economy", "capital.economic"],
+      "subject": "Middag som går opp i regnestykket",
+      "summary": "Du ser middagen med økonomiblikket ditt: godt og billig går an samtidig.",
+      "situation": [
+        "Kjøleskapet har nesten alt du trenger til en enkel, billig middag.",
+        "Alternativet er å bestille eller gå ut — hyggelig, men dyrere.",
+        "Du vet nøyaktig hva differansen blir på en måned."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag billig middag av det du har",
+          "reply": "Jeg lager middag av det jeg har hjemme.",
+          "effect": 1,
+          "tags": ["økonomi", "mat"],
+          "feedback": "Mett og med penger igjen. Du liker det regnestykket."
+        },
+        {
+          "id": "B",
+          "label": "Bestill eller gå ut i kveld",
+          "reply": "I kveld kjøper jeg middagen ferdig.",
+          "effect": 0,
+          "tags": ["mat", "fritid"],
+          "feedback": "Lettvint og godt, men det synes på ukesbudsjettet."
+        }
+      ]
+    },
+    {
+      "id": "private_dinner_ro_profile_003",
+      "topic": "hvile",
+      "requiresAnyProfileTags": ["low_energy", "rest"],
+      "weightFrom": ["privatePhaseWeights.rest"],
+      "subject": "En stille middag hjemme",
+      "summary": "Kroppen ber om en rolig kveldsmat uten mer inntrykk.",
+      "situation": [
+        "Energien er lav, og det beste måltidet i kveld er det enkleste.",
+        "En stille middag uten skjerm, avtaler eller krav.",
+        "Du trenger ikke prestere ved ditt eget kjøkkenbord."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spis rolig og la kvelden være enkel",
+          "reply": "Jeg tar en helt rolig middag hjemme.",
+          "effect": 1,
+          "tags": ["hvile", "mat", "psyke"],
+          "feedback": "Enkelt, varmt og stille. Akkurat det du trengte."
+        },
+        {
+          "id": "B",
+          "label": "Press inn litt mer program",
+          "reply": "Jeg fyller på kvelden likevel.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Det gikk, men kroppen hadde ønsket seg roen."
         }
       ]
     }

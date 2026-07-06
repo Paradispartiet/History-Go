@@ -12,7 +12,7 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private ettermiddag-mailer om familie, venner, fritid, læring og personlig kalender. Aldri jobbinnhold.",
-  "topics": ["familie", "venner", "fritid", "læring", "personlig kalender"],
+  "topics": ["familie", "venner", "fritid", "læring", "personlig kalender", "trening", "kultur", "subkultur"],
   "mails": [
     {
       "id": "private_afternoon_familie_001",
@@ -127,6 +127,99 @@
           "effect": 0,
           "tags": ["venner", "personlig kalender"],
           "feedback": "Du holder døra åpen uten å strekke deg for langt i dag."
+        }
+      ]
+    },
+    {
+      "id": "private_afternoon_sport_profile_001",
+      "topic": "trening",
+      "requiresAnyProfileTags": ["sport"],
+      "weightFrom": ["privatePhaseWeights.sport"],
+      "subject": "En bane du kjenner frister",
+      "summary": "En tidligere bane du har besøkt dukker opp som forslag for ettermiddagen.",
+      "situation": [
+        "En tidligere bane du har besøkt dukker opp som forslag.",
+        "Du kan ta en lett økt, møte noen som pleier å være der, eller spare energien.",
+        "Kroppen din kjenner allerede veien dit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta en lett økt på banen",
+          "reply": "Jeg drar innom banen og tar en økt.",
+          "effect": 1,
+          "tags": ["trening", "helse", "sosialt liv"],
+          "feedback": "Godt å være i bevegelse på et sted du kjenner."
+        },
+        {
+          "id": "B",
+          "label": "Spar energien i dag",
+          "reply": "Jeg står over i dag og tar det igjen senere.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "Banen ligger der i morgen også."
+        }
+      ]
+    },
+    {
+      "id": "private_afternoon_kultur_profile_002",
+      "topic": "kultur",
+      "requiresAnyProfileTags": ["culture", "kunst", "litteratur"],
+      "weightFrom": ["privatePhaseWeights.culture", "capital.cultural"],
+      "subject": "En liten kulturell omvei",
+      "summary": "Ruta hjem kan legges forbi et sted som pleier å gi deg noe.",
+      "situation": [
+        "På vei gjennom byen passerer du strøket der du har samlet flere av stedene dine.",
+        "En bokhandel, et galleri eller et vindu du liker å se inn i ligger noen minutter unna.",
+        "Små kulturelle omveier er blitt en del av hvem du er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta omveien innom",
+          "reply": "Jeg tar den lille omveien og ser innom.",
+          "effect": 1,
+          "tags": ["kultur", "fritid", "psyke"],
+          "feedback": "Ti minutter der inne, og du går ut litt rikere."
+        },
+        {
+          "id": "B",
+          "label": "Gå rett hjem i dag",
+          "reply": "Jeg går rett hjem i dag.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Stedet står der fortsatt neste gang du går forbi."
+        }
+      ]
+    },
+    {
+      "id": "private_afternoon_subkultur_profile_003",
+      "topic": "subkultur",
+      "requiresAnyProfileTags": ["subculture", "subkultur"],
+      "weightFrom": ["privatePhaseWeights.subculture", "capital.subculture"],
+      "subject": "Miljøet ditt rører på seg",
+      "summary": "Noe skjer i det miljøet du kjenner fra byens randsoner.",
+      "situation": [
+        "Du plukker opp at det skjer noe i miljøet du kjenner — et sted du har vært før.",
+        "Ingen plakater, ingen store ord, bare de som vet, vet.",
+        "Du kan stikke innom, eller la denne gå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stikk innom miljøet",
+          "reply": "Jeg tar turen innom og ser hvem som er der.",
+          "effect": 1,
+          "tags": ["subkultur", "sosialt liv", "fritid"],
+          "feedback": "Du hører til der på din egen måte. Det gir noe eget."
+        },
+        {
+          "id": "B",
+          "label": "La denne gå",
+          "reply": "Jeg står over denne gangen.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "Miljøet består. Du vet hvor det finnes."
         }
       ]
     }

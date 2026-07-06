@@ -12,7 +12,7 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private lunsj-mailer om mat, hvile, energi, venner og sosialt liv. Aldri jobbinnhold.",
-  "topics": ["mat", "hvile", "energi", "venner", "sosialt liv"],
+  "topics": ["mat", "hvile", "energi", "venner", "sosialt liv", "natur", "nettverk", "økonomi"],
   "mails": [
     {
       "id": "private_lunch_mat_001",
@@ -127,6 +127,99 @@
           "effect": 0,
           "tags": ["hvile"],
           "feedback": "Det er behagelig nok, men kroppen får lite påfyll."
+        }
+      ]
+    },
+    {
+      "id": "private_lunch_natur_profile_001",
+      "topic": "natur",
+      "requiresAnyProfileTags": ["nature", "natur"],
+      "weightFrom": ["privatePhaseWeights.nature"],
+      "subject": "Et grønt sted innen rekkevidde",
+      "summary": "Du har en halvtime, og et grønt sted du kjenner fra kartet ligger nær nok.",
+      "situation": [
+        "Du har en halvtime.",
+        "Et grønt sted du kjenner fra kartet ligger nær nok til at du kan gå dit i stedet for å bli sittende inne.",
+        "Litt himmel over hodet midt på dagen gjør ofte resten av dagen lettere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå til det grønne stedet",
+          "reply": "Jeg tar lunsjpausen ute i det grønne.",
+          "effect": 1,
+          "tags": ["natur", "psyke", "helse"],
+          "feedback": "En halvtime med luft og ro. Du kommer tilbake med nytt blikk."
+        },
+        {
+          "id": "B",
+          "label": "Bli sittende inne",
+          "reply": "Jeg blir inne denne gangen.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Praktisk, men det grønne stedet ligger der fortsatt."
+        }
+      ]
+    },
+    {
+      "id": "private_lunch_nettverk_profile_002",
+      "topic": "nettverk",
+      "requiresAnyProfileTags": ["social", "people"],
+      "weightFrom": ["privatePhaseWeights.social", "capital.social"],
+      "subject": "En kjapp lunsj med en kjenning",
+      "summary": "En du har møtt gjennom byen spør om dere skal spise lunsj sammen.",
+      "situation": [
+        "En kontakt fra et sted du tidligere har besøkt spør om du vil ta lunsjen sammen.",
+        "Nettverket ditt er bygget av akkurat slike små treff.",
+        "Det koster litt av pausen din, men gir ofte noe tilbake."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Møt kjenningen til lunsj",
+          "reply": "Ja, vi tar lunsjen sammen.",
+          "effect": 1,
+          "tags": ["nettverk", "sosialt liv", "venner"],
+          "feedback": "En god prat, og en tråd i nettverket ditt er litt sterkere."
+        },
+        {
+          "id": "B",
+          "label": "Ta pausen for deg selv",
+          "reply": "Jeg trenger pausen alene i dag, vi finner en annen dag.",
+          "effect": 0,
+          "tags": ["hvile"],
+          "feedback": "Du verner om pausen din. Kontakten forstår."
+        }
+      ]
+    },
+    {
+      "id": "private_lunch_okonomi_profile_003",
+      "topic": "økonomi",
+      "requiresAnyProfileTags": ["economy"],
+      "weightFrom": ["privatePhaseWeights.economy", "capital.economic"],
+      "subject": "Lunsj med hodet på budsjettet",
+      "summary": "Du har blikk for hva ting koster, også midt på dagen.",
+      "situation": [
+        "Sulten melder seg, og du ser raskt forskjellen på det dyre og det smarte valget.",
+        "Matpakka eller restene hjemmefra sparer deg for mer enn du tror over en måned.",
+        "Du liker når regnestykket går din vei."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg det billige, smarte alternativet",
+          "reply": "Jeg holder meg til det rimelige i dag.",
+          "effect": 1,
+          "tags": ["økonomi", "mat"],
+          "feedback": "Små valg, stor sum. Budsjettet ditt takker deg."
+        },
+        {
+          "id": "B",
+          "label": "Unn deg noe dyrere i dag",
+          "reply": "I dag kjøper jeg det jeg har lyst på.",
+          "effect": 0,
+          "tags": ["mat"],
+          "feedback": "Godt i øyeblikket. Regnearket får tåle det."
         }
       ]
     }
