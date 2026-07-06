@@ -1,0 +1,31 @@
+name: Split Historie Akershus batch 5 places
+
+on:
+  push:
+    branches:
+      - data/split-historie-akershus-batch5-places-20260706
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-historie-akershus-batch5-places-20260706
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-historie-akershus-batch5-places.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/historie/akershus/places_historie_akershus_batch5 data/places/historie/akershus/places_historie_akershus_batch5_manifest.json data/places/historie/akershus/places_historie_akershus_batch5_index.json data/places/historie/akershus/places_historie_akershus_batch5_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Historie Akershus batch 5 place files"
+            git push
+          fi
