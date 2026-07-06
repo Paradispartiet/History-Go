@@ -175,6 +175,22 @@
       + "</div>";
   }
 
+  /**
+   * v2-headeren: rolle, dag, fase og noen få statusverdier.
+   * @param {any} view
+   */
+  function renderHeaderStatus(view) {
+    const header = document.getElementById("civiLifestoryHeaderStatus");
+    if (!header) return;
+    const m = state.meters;
+    header.textContent = content.role.navn
+      + " · Dag " + state.dag
+      + " · " + (view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase))
+      + " · Psyke " + m.psyke
+      + " · Energi " + m.energi
+      + " · " + m.penger + " PC";
+  }
+
   function render() {
     const panel = getPanel();
     if (!panel || !content || !state) return;
@@ -182,6 +198,7 @@
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const view = Runner.getView(state, content);
 
+    renderHeaderStatus(view);
     panel.innerHTML = renderStatusHtml(view)
       + (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : ""))
       + renderPanelsHtml(view);

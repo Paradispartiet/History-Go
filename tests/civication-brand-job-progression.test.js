@@ -158,10 +158,12 @@ function applyMail(id, tags, brand = 'norli') {
 })();
 
 (function testLoadOrder() {
-  const html = fs.readFileSync(path.join(repoRoot, 'Civication.html'), 'utf8');
-  const stateIdx = html.indexOf('js/Civication/systems/civicationBrandJobState.js');
-  const progressionIdx = html.indexOf('js/Civication/systems/civicationBrandJobProgression.js');
-  const runtimeIdx = html.indexOf('js/Civication/systems/civicationMailRuntime.js');
+  // Lastekontrakten for v1 bor nå i legacy-loaderen (Civication v2 laster ikke
+  // disse i hovedflyten) — se docs/civication-life-story-system.md §11.
+  const { LEGACY_SCRIPTS } = require(path.join(repoRoot, 'js/Civication/civicationLegacyLoader.js'));
+  const stateIdx = LEGACY_SCRIPTS.indexOf('js/Civication/systems/civicationBrandJobState.js');
+  const progressionIdx = LEGACY_SCRIPTS.indexOf('js/Civication/systems/civicationBrandJobProgression.js');
+  const runtimeIdx = LEGACY_SCRIPTS.indexOf('js/Civication/systems/civicationMailRuntime.js');
   assert(stateIdx > -1, 'BrandJobState script missing');
   assert(progressionIdx > -1, 'BrandJobProgression script missing');
   assert(runtimeIdx > -1, 'MailRuntime script missing');

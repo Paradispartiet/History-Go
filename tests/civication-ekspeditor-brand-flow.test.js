@@ -172,7 +172,9 @@ async function scenarioBAndC() {
 }
 
 function verifyLoadOrder() {
-  const html = fs.readFileSync(path.join(repoRoot, 'Civication.html'), 'utf8');
+  // Lastekontrakten for v1 bor nå i legacy-loaderen (Civication v2 laster ikke
+  // disse i hovedflyten) — se docs/civication-life-story-system.md §11.
+  const { LEGACY_SCRIPTS } = require(path.join(repoRoot, 'js/Civication/civicationLegacyLoader.js'));
   const scripts = [
     'js/Civication/core/civicationJobs.js',
     'js/brands/brands_loader.js',
@@ -182,7 +184,7 @@ function verifyLoadOrder() {
     'js/Civication/systems/civicationBrandEmployerBridge.js',
     'js/Civication/merits-and-jobs.js'
   ];
-  const indexes = scripts.map((src) => html.indexOf(src));
+  const indexes = scripts.map((src) => LEGACY_SCRIPTS.indexOf(src));
   indexes.forEach((idx, i) => assert.ok(idx !== -1, `Missing script: ${scripts[i]}`));
   for (let i = 1; i < indexes.length; i += 1) {
     assert.ok(indexes[i - 1] < indexes[i], `${scripts[i - 1]} should load before ${scripts[i]}`);

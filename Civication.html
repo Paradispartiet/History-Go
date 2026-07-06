@@ -7,7 +7,8 @@
 
   <!-- Import map: lar 3D-kartet (CivicationThreeMap) og three-addonene (SSAO/SMAA/
        EffectComposer) dele ÉN lokal, vendret three-instans. Må stå før første
-       modullast. Alt lastes lokalt fra js/vendor/three (ingen CDN). -->
+       modullast. Alt lastes lokalt fra js/vendor/three (ingen CDN). Kartet er
+       legacy (v1), men import-mappen må ligge klar for legacy-loaderen. -->
   <script type="importmap">
   {
     "imports": {
@@ -29,6 +30,14 @@
   <link rel="stylesheet" href="css/fixed-shell.css" />
 </head>
 
+<!-- ============================================================
+     CIVICATION v2 — livsfortellingsspill (Life Story System)
+     Primær spillflyt: Min dag -> scene -> valg -> Player State.
+     Alt merket data-civi-legacy er Civication v1 og lastes/vises
+     KUN når CIVICATION_LEGACY_ENABLED er eksplisitt true
+     (Civication.html?civicationLegacy=1). Se
+     docs/civication-life-story-system.md.
+     ============================================================ -->
 <body class="civi-app">
 
   <header class="topbar">
@@ -36,7 +45,11 @@
       <span class="app-title">Civication</span>
     </div>
 
-    <div class="civi-header-metrics">
+    <!-- v2-header: rolle, dag, fase og noen få statusverdier (fylles av CivicationLifestoryUI) -->
+    <div id="civiLifestoryHeaderStatus" class="civi-lifestory-header-status muted"></div>
+
+    <!-- Legacy-HUD (v1 dashboard-metrics, drevet av CivicationDashboardUI) -->
+    <div class="civi-header-metrics" data-civi-legacy hidden>
       <div class="civi-dashboard-metrics" aria-label="Civication nøkkeltall">
         <div class="civi-dashboard-metric is-primary">
           <span>PC</span>
@@ -71,12 +84,27 @@
 
   <main class="civi-world">
 
-    <div id="civiMapWorld">
+    <!-- v1-kartet (canvas/3D). Legacy: lastes og vises kun i legacy-modus. -->
+    <div id="civiMapWorld" data-civi-legacy hidden>
       <div class="civi-map-layer"></div>
     </div>
 
     <div class="civi-panels">
-      <section id="civiDashboardSection" class="civi-dashboard" aria-label="Civication oversikt">
+
+      <!-- ============ CIVICATION v2: HOVEDFLATEN ============
+           Min dag er spillet: NÅ-scenen med valg, aktive tråder,
+           kalender/senere i dag og arkiv. Innboks er ikke spillet;
+           innboks er arkiv. -->
+      <section id="civiLifestorySection">
+        <h2>Min dag</h2>
+        <div id="civiLifestoryPanel"></div>
+      </section>
+
+      <!-- ============ CIVICATION v1 (LEGACY) UNDER ============
+           Statuspaneler og gamle hovedflater. Skal ikke konkurrere
+           med Min dag; vises kun i legacy-modus. -->
+
+      <section id="civiDashboardSection" class="civi-dashboard" aria-label="Civication oversikt" data-civi-legacy hidden>
         <div class="civi-dashboard-copy">
           <div class="civi-dashboard-kicker">Min situasjon</div>
           <h1 id="civiDashRole">Ingen aktiv rolle</h1>
@@ -89,19 +117,12 @@
         </div>
       </section>
 
-      <section id="civiOnboardingSection">
+      <section id="civiOnboardingSection" data-civi-legacy hidden>
         <h2>Neste steg</h2>
         <div id="civiOnboardingPanel"></div>
       </section>
 
-      <!-- Life Story System: Min dag (pilot: Arealplanlegger, Dag 1).
-           Se docs/civication-life-story-system.md. -->
-      <section id="civiLifestorySection">
-        <h2>Min dag</h2>
-        <div id="civiLifestoryPanel"></div>
-      </section>
-
-      <section class="civi-capital">
+      <section class="civi-capital" data-civi-legacy hidden>
         <h2>Kapital</h2>
         <div class="capital-grid">
           <div class="capital-item"><div class="capital-label">Økonomisk</div><div class="capital-value" id="capEconomic">—</div></div>
@@ -112,7 +133,7 @@
         </div>
       </section>
 
-      <section id="civiIdentitySection" class="civi-identity">
+      <section id="civiIdentitySection" class="civi-identity" data-civi-legacy hidden>
         <h2>Identitet</h2>
         <div id="identityCompass"></div>
         <div id="identityDominant"></div>
@@ -120,7 +141,7 @@
         <div id="identityPerception"></div>
       </section>
 
-      <section id="civiPsyche" class="civi-psyche">
+      <section id="civiPsyche" class="civi-psyche" data-civi-legacy hidden>
         <h2>Psyke</h2>
         <div class="psyche-grid">
           <div class="psyche-item"><div class="psyche-label">Integritet</div><div class="psyche-value" id="psyIntegrity">—</div></div>
@@ -138,56 +159,56 @@
         </div>
       </section>
 
-      <section id="civiHomeStatus">
+      <section id="civiHomeStatus" data-civi-legacy hidden>
         <h2>Hjem</h2>
         <div id="homeStatusContent"></div>
       </section>
 
-      <section id="civiPublicFeedSection">
+      <section id="civiPublicFeedSection" data-civi-legacy hidden>
         <h2>Offentlig</h2>
         <div id="civiPublicFeed"></div>
       </section>
 
-      <section id="activeJobSection">
+      <section id="activeJobSection" data-civi-legacy hidden>
         <h2>Aktiv rolle</h2>
         <div id="activeJobCard"></div>
       </section>
 
-      <section id="civiWorkdaySection">
+      <section id="civiWorkdaySection" data-civi-legacy hidden>
         <h2>Arbeidsdag</h2>
         <div id="civiWorkdayPanel"></div>
       </section>
 
-      <section id="civiDebateSection">
+      <section id="civiDebateSection" data-civi-legacy hidden>
         <h2>Debatt / konfrontasjon</h2>
         <div id="civiDebatePanel"></div>
       </section>
 
-      <section id="civiPeopleSection">
+      <section id="civiPeopleSection" data-civi-legacy hidden>
         <h2>Mennesker du krysser med</h2>
         <div id="civiPeoplePanel"></div>
       </section>
 
-      <section id="civiStoreSection">
+      <section id="civiStoreSection" data-civi-legacy hidden>
         <h2>Butikker og pakker</h2>
         <div id="civiStorePanel"></div>
       </section>
 
-      <div id="civiTrackHUD" class="civi-track-hud">
+      <div id="civiTrackHUD" class="civi-track-hud" data-civi-legacy hidden>
         <div class="civi-track-title">🎯 Aktiv retning</div>
         <div id="civiTrackName">–</div>
         <div id="civiTrackProgress" class="muted">–</div>
         <div id="civiTrackTags" class="civi-track-tags"></div>
       </div>
 
-      <section id="civiInboxSection">
+      <section id="civiInboxSection" data-civi-legacy hidden>
         <h2>Innkommende</h2>
         <div id="civiInbox"></div>
       </section>
 
     </div>
 
-    <div id="districtModal" class="civi-modal" style="display:none;">
+    <div id="districtModal" class="civi-modal" style="display:none;" data-civi-legacy hidden>
       <div class="civi-modal-content">
         <div class="civi-modal-header">
           <h2>Velg nabolag</h2>
@@ -199,178 +220,27 @@
 
   </main>
 
-  <div class="civi-footer">
+  <div class="civi-footer" data-civi-legacy hidden>
     <button id="btnCiviMap" class="civi-btn">Kart</button>
     <button class="civi-btn" data-scroll="#civiDashboardSection">Oversikt</button>
     <button class="civi-btn" data-scroll="#civiHomeStatus">Hjem</button>
     <button class="civi-btn primary" data-scroll="#activeJobSection">Rolle</button>
   </div>
 
-  <!-- State -->
-  <script src="js/Civication/systems/civicationStorageTrace.js"></script>
+  <!-- ============ CIVICATION v2 — det eneste som lastes som standard ============
+       v2-config (legacy-bryter) -> lagring/JSON -> Life Story System -> Min dag-UI.
+       Ingen mailmotorer, ingen next-action, ingen day progression. -->
+  <script src="js/Civication/civicationV2Config.js"></script>
   <script src="js/Civication/core/CivicationStorageAdapter.js"></script>
   <script src="js/Civication/core/civicationJsonStore.js"></script>
-  <script src="js/Civication/core/civicationState.js"></script>
-  <script src="js/Civication/core/CivicationTravelState.js"></script>
-  <script src="js/Civication/systems/civicationMailEngine.js"></script>
-  <script src="js/Civication/systems/civicationActivePositionRecovery.js"></script>
-  <script src="js/Civication/systems/civicationRoleStarter.js"></script>
-
-  <!-- Data / tier / job offers -->
-  <script src="js/Civication/tiersCivi.js"></script>
-  <script src="js/Civication/core/civicationJobs.js"></script>
-  <script src="js/brands/brands_loader.js"></script>
-  <script src="js/Civication/systems/civicationCareerRoleResolver.js"></script>
-  <script src="js/Civication/systems/civicationRolePackDepth.js"></script>
-  <script src="js/Civication/systems/civicationBrandAccess.js"></script>
-  <script src="js/Civication/systems/civicationBlockedJobMessages.js"></script>
-  <script src="js/Civication/systems/civicationBrandEmployerBridge.js"></script>
-  <script src="js/Civication/merits-and-jobs.js"></script>
-
-  <!-- Core engines -->
-  <script src="js/Civication/roleStoryletBridge.js"></script>
-  <script src="js/Civication/core/civicationCalendar.js"></script>
-  <script src="js/Civication/core/civicationTaskEngine.js"></script>
-  <script src="js/Civication/core/civicationEconomyEngine.js"></script>
-  <script src="js/Civication/mailPlanBridge.js"></script>
-  <script src="js/Civication/civicationObligationEngine.js"></script>
-  <script src="js/Civication/utils/storyResolver.js"></script>
-
-  <!-- People / character context -->
-  <script src="js/Civication/systems/day/dayPeopleMeetingGate.js"></script>
-  <script src="js/Civication/systems/day/dayPeopleMeetingRelationshipVariant.js"></script>
-  <script src="js/Civication/systems/day/dayChoiceToneVariants.js"></script>
-  <script src="js/Civication/systems/day/dayCharacterReplyConsequences.js"></script>
-  <script src="js/Civication/systems/day/dayAllianceSystem.js"></script>
-  <script src="js/Civication/systems/day/dayAllianceMailScoring.js"></script>
-  <script src="js/Civication/systems/day/dayFactionConflictSystem.js"></script>
-  <script src="js/Civication/systems/day/dayFactionMailScoring.js"></script>
-  <script src="js/Civication/systems/day/dayFactionVoice.js"></script>
-
-  <!-- Core event engine and domain engines -->
-  <script src="js/Civication/core/civicationEventEngine.js"></script>
-  <script src="js/Civication/utils/conflictLoader.js"></script>
-  <script src="js/Civication/capitalEngine.js"></script>
-  <script src="js/Civication/capitalMaintenanceEngine.js"></script>
-
-  <!-- Identity -->
-  <script src="js/Civication/identityCore.js"></script>
-  <script src="js/Civication/identityCompass.js"></script>
-  <script src="js/Civication/identityEngine.js"></script>
-
-  <!-- Psyche -->
-  <script src="js/Civication/core/CivicationPsyche.js"></script>
-
-  <!-- Lifestyle / commercial -->
-  <script src="js/Civication/civiLifestyle.js"></script>
-  <script src="js/Civication/civicationCommercial.js"></script>
-
-  <!-- Home / public / map -->
-  <script src="js/dataHub.js"></script>
-  <!-- Felles visual designCode-resolver (places/people/articles). Lastes før kartet
-       så miniatyr-resolveren kan bruke den; kartet fungerer også uten via fallback. -->
-  <script src="js/visualDesignCodes.js"></script>
-  <script src="js/Civication/ui/CivicationHome.js"></script>
-  <script src="js/Civication/ui/CivicationPublicLayer.js"></script>
-  <script src="js/Civication/ui/CivicationMapZonesFallback.js"></script>
-  <script src="js/Civication/ui/CivicationMapModel.js"></script>
-  <!-- Canvas-kart er standard for Civication (og fallback for 3D). Må settes før SVG-kartscriptet kjører. -->
-  <script>window.CIVICATION_CANVAS_MAP_ENABLED = true;</script>
-  <!-- 3D-miniatyrkart (Three.js). Tar over når WebGL + biblioteket lastes OK; ellers brukes Canvas. -->
-  <script>window.CIVICATION_THREE_MAP_ENABLED = true;</script>
-  <script src="js/Civication/ui/CivicationMap.js"></script>
-  <script src="js/Civication/ui/CivicationSystemMap.js"></script>
-  <script src="js/Civication/ui/CivicationMapZoom.js"></script>
-  <script src="js/Civication/ui/CivicationHistoryGoPlaceLayer.js"></script>
-  <script src="js/Civication/ui/CivicationOsloMapCalibration.js"></script>
-  <script src="js/Civication/ui/CivicationCanvasMap.js"></script>
-  <script src="js/Civication/ui/CivicationThreeMap.js"></script>
-  <script src="js/Civication/map/CivicationCityMap.js"></script>
-
-  <!-- UI support -->
-  <script src="js/Civication/systems/civicationNPCs.js"></script>
-  <script src="js/Civication/systems/civicationEventChannels.js"></script>
-  <script src="js/Civication/systems/civicationIncomingFlow.js"></script>
-  <script src="js/Civication/ui/CivicationUI.js"></script>
-  <script src="js/Civication/ui/CivicationDashboardUI.js"></script>
-  <script src="js/Civication/ui/CivicationMiniSectionsUI.js"></script>
-  <script src="js/Civication/ui/CivicationInboxTopActionUI.js"></script>
-  <script src="js/Civication/ui/CivicationNextActionUI.js"></script>
-  <script src="js/Civication/ui/CivicationEmptyPanels.js"></script>
-  <script src="js/Civication/systems/civicationDebateEngine.js"></script>
-  <script src="js/Civication/ui/CivicationDebateUI.js"></script>
-  <script src="js/Civication/ui/CivicationPeopleUI.js"></script>
-  <script src="js/Civication/ui/CivicationStoreUI.js"></script>
-  <script src="js/Civication/ui/CivicationOnboardingUI.js"></script>
-
-  <!-- Day / weekly systems -->
-  <script src="js/Civication/systems/day/dayCalendarBridge.js"></script>
-  <script src="js/Civication/systems/day/dayProgressionController.js"></script>
-  <script src="js/Civication/systems/civicationNextActionSelector.js"></script>
-  <script src="js/Civication/systems/civicationDayPlan.js"></script>
-  <script src="js/Civication/ui/CivicationDayPhaseUI.js"></script>
-  <script src="js/Civication/systems/day/dayHistoryGoContexts.js"></script>
-  <script src="js/Civication/systems/civicationPlaceAccessBridge.js"></script>
-  <script src="js/Civication/systems/civicationPeopleEngine.js"></script>
-  <script src="js/Civication/systems/day/dayCarryover.js"></script>
-  <script src="js/Civication/systems/day/dayWeeklyReview.js"></script>
-  <script src="js/Civication/systems/day/dayContacts.js"></script>
-  <script src="js/Civication/systems/day/dayKnowledge.js"></script>
-  <script src="js/Civication/systems/day/dayEvents.js"></script>
-  <script src="js/Civication/systems/day/dayPatches.js"></script>
-  <script src="js/Civication/systems/civicationMailRuntime.js"></script>
-  <script src="js/Civication/systems/civicationCareerOutcomeRuntime.js"></script>
-  <script src="js/Civication/ui/CivicationOutcomeStatusUI.js"></script>
-  <script src="js/Civication/systems/civicationJobLearningRuntime.js"></script>
-  <script src="js/Civication/systems/civicationJobEligibilityRuntime.js"></script>
-  <script src="js/Civication/systems/civicationWorkdayRuntime.js"></script>
-  <script src="js/Civication/systems/civicationDayFlow.js"></script>
-  <script src="js/Civication/systems/civicationProfileSignalBridge.js"></script>
-  <script src="js/Civication/systems/civicationPrivatePhaseMailBuilder.js"></script>
-  <script src="js/Civication/systems/civicationWorkdayMailBuilder.js"></script>
-  <script src="js/Civication/systems/civicationDailyMailBuilder.js"></script>
-  <script src="js/Civication/systems/civicationAnswerPrewarm.js"></script>
-  <script src="js/Civication/systems/civicationMailPlanDebug.js"></script>
-  <script src="js/Civication/ui/CivicationTestModeUI.js"></script>
-  <script src="js/Civication/systems/civicationDailyTaskGates.js"></script>
-  <script src="js/Civication/systems/civicationBrandJobState.js"></script>
-  <script src="js/Civication/ui/CivicationConsequenceFeedback.js"></script>
-  <script src="js/Civication/systems/civicationBrandJobProgression.js"></script>
-  <script src="js/Civication/ui/CivicationMilestoneHighlight.js"></script>
-  <script src="js/Civication/systems/civicationLifeMailRuntime.js"></script>
-  <script src="js/Civication/systems/day/dayChoiceDirector.js"></script>
-  <script src="js/Civication/systems/day/dayConsequences.js"></script>
-  <script src="js/Civication/systems/day/dayConsequencesUI.js"></script>
-  <script src="js/Civication/systems/day/dayNarrativeConsequencesUI.js"></script>
-  <script src="js/Civication/systems/day/dayNpcReactions.js"></script>
-  <script src="js/Civication/systems/day/dayNpcCharacterThreads.js"></script>
-  <script src="js/Civication/ui/CivicationPeopleReactionsUI.js"></script>
-  <script src="js/Civication/systems/day/dayActiveRoleStateSync.js"></script>
-  <script src="js/Civication/systems/day/dayRuntimeDebugPanel.js"></script>
-
-  <script src="js/onboarding/onboardingEngine.js"></script>
-
-  <!-- Civication-by: fasepunkter + simulerte venner (ikke ekte GPS) -->
-  <script src="js/Civication/systems/civicationFriendsEngine.js"></script>
-  <script src="js/Civication/systems/civicationRelationshipEngine.js"></script>
-  <script src="js/Civication/systems/civicationFriendMessages.js"></script>
-  <script src="js/Civication/systems/CivicationSocialConversationEngine.js"></script>
-  <script src="js/Civication/systems/CivicationSocialPlaceResolver.js"></script>
-  <script src="js/Civication/ui/CivicationCityLayer.js"></script>
-
-  <!-- History Go completion bridge: reconciles open tasks on app-open -->
-  <script src="js/Civication/systems/civicationHistoryGoTaskBridge.js"></script>
-  <!-- History Go deep-link: "Gå til History Go"-handling fra åpne tasks -->
-  <script src="js/Civication/ui/CivicationHistoryGoDeepLink.js"></script>
-
-  <!-- Life Story System (nytt fortellingssystem — docs/civication-life-story-system.md) -->
   <script src="js/Civication/lifestory/lifestoryContent.js"></script>
   <script src="js/Civication/lifestory/lifestoryState.js"></script>
   <script src="js/Civication/lifestory/lifestoryRunner.js"></script>
   <script src="js/Civication/ui/CivicationLifestoryUI.js"></script>
 
-  <!-- Boot -->
-  <script src="js/Civication/CivicationBoot.js"></script>
+  <!-- Civication v1 (legacy): hele den gamle scriptkjeden ligger som liste i
+       legacy-loaderen og injiseres KUN når legacy-flagget er på. -->
+  <script src="js/Civication/civicationLegacyLoader.js"></script>
 
 </body>
 </html>

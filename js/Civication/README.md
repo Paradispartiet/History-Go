@@ -10,11 +10,16 @@ Dette er motoroversikten. Selve mail-/rolledatakontrakten (badge → roleModel �
 mailFamily → FWG) er beskrevet i [`data/Civication/README-mailsystem-og-rolemodels.md`](../../data/Civication/README-mailsystem-og-rolemodels.md)
 og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVICATION_WORK_GRAMMAR_STANDARD.md).
 
-> **Nytt system under oppbygging: Life Story System.** Civication tegnes om fra mailspill
-> til livsfortellingsspill — én fortellingsrunner (`js/Civication/lifestory/`) + rene
-> fortellingspakker (`data/Civication/lifestory/`), pilotert som «Min dag» med rollen
-> Arealplanlegger. Motorene under er det gamle systemet; de styrer ikke lenger designet.
-> Nye fortellinger bygges som pakker i Life Story-systemet, aldri som nye motorer.
+> **Civication v2 er ny primærarkitektur: Life Story System.** `Civication.html` laster
+> nå KUN v2-flyten (Min dag): én fortellingsrunner (`js/Civication/lifestory/`) + rene
+> fortellingspakker (`data/Civication/lifestory/`), pilotert med rollen Arealplanlegger.
+> **Alle motorene beskrevet i dette dokumentet er Civication v1 = legacy.** De lastes
+> ikke i hovedflyten; hele v1-kjeden ligger i `js/Civication/civicationLegacyLoader.js`
+> og injiseres kun når `CIVICATION_LEGACY_ENABLED` eksplisitt er true
+> (`Civication.html?civicationLegacy=1`). profile.html og Node-testene bruker fortsatt
+> filene direkte, så de ligger urørt på disk inntil de gjenbrukes rent eller slettes.
+> Nye fortellinger bygges som data i `data/Civication/lifestory/`, aldri som nye motorer.
+> Innboks er arkiv/bakgrunn, ikke primær gameplay.
 > Se [`docs/civication-life-story-system.md`](../../docs/civication-life-story-system.md).
 
 ## Grunnprinsipp: én aktiv handling om gangen

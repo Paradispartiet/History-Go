@@ -269,14 +269,16 @@ async function run() {
     'mail_runtime_v1 must not change from life mails'
   );
 
-  const civicationHtml = fs.readFileSync(path.join(repoRoot, 'Civication.html'), 'utf8');
+  // Lastekontrakten for v1 bor nå i legacy-loaderen (Civication v2 laster ikke
+  // disse i hovedflyten) — se docs/civication-life-story-system.md §11.
+  const { LEGACY_SCRIPTS } = require(path.join(repoRoot, 'js/Civication/civicationLegacyLoader.js'));
   const swJs = fs.readFileSync(path.join(repoRoot, 'sw.js'), 'utf8');
 
   assert(
-    civicationHtml.includes('js/Civication/systems/civicationMailRuntime.js') &&
-      civicationHtml.includes('js/Civication/systems/civicationLifeMailRuntime.js') &&
-      civicationHtml.includes('js/Civication/systems/day/dayPatches.js'),
-    'Civication.html should reference current runtime scripts'
+    LEGACY_SCRIPTS.includes('js/Civication/systems/civicationMailRuntime.js') &&
+      LEGACY_SCRIPTS.includes('js/Civication/systems/civicationLifeMailRuntime.js') &&
+      LEGACY_SCRIPTS.includes('js/Civication/systems/day/dayPatches.js'),
+    'the legacy loader should reference current runtime scripts'
   );
 
   assert(
