@@ -3,13 +3,15 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 
-const html = fs.readFileSync(path.join(__dirname, '..', 'Civication.html'), 'utf8');
-const blockedIdx = html.indexOf('js/Civication/systems/civicationBlockedJobMessages.js');
-const bridgeIdx = html.indexOf('js/Civication/systems/civicationBrandEmployerBridge.js');
-const meritsIdx = html.indexOf('js/Civication/merits-and-jobs.js');
-assert.ok(blockedIdx !== -1, 'blocked-job script should be referenced in Civication.html');
-assert.ok(bridgeIdx !== -1, 'brand-employer bridge script should be referenced in Civication.html');
-assert.ok(meritsIdx !== -1, 'merits-and-jobs script should be referenced in Civication.html');
+// Lastekontrakten for v1 bor nå i legacy-loaderen (Civication v2 laster ikke
+// disse i hovedflyten) — se docs/civication-life-story-system.md §11.
+const { LEGACY_SCRIPTS } = require('../js/Civication/civicationLegacyLoader.js');
+const blockedIdx = LEGACY_SCRIPTS.indexOf('js/Civication/systems/civicationBlockedJobMessages.js');
+const bridgeIdx = LEGACY_SCRIPTS.indexOf('js/Civication/systems/civicationBrandEmployerBridge.js');
+const meritsIdx = LEGACY_SCRIPTS.indexOf('js/Civication/merits-and-jobs.js');
+assert.ok(blockedIdx !== -1, 'blocked-job script should be referenced in the legacy loader');
+assert.ok(bridgeIdx !== -1, 'brand-employer bridge script should be referenced in the legacy loader');
+assert.ok(meritsIdx !== -1, 'merits-and-jobs script should be referenced in the legacy loader');
 assert.ok(blockedIdx < bridgeIdx, 'blocked-job script should load before brand-employer bridge');
 assert.ok(bridgeIdx < meritsIdx, 'brand-employer bridge should load before merits-and-jobs');
 

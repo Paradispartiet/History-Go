@@ -1,0 +1,84 @@
+#!/usr/bin/env node
+// Civication v2 i JSDOM: laster de faktiske v2-scriptene i samme rekkefølge
+// som Civication.html, uten noe legacy, og verifiserer at
+//  - Life Story Runner er primær progresjonskilde (Min dag rendrer og driver dagen),
+//  - legacy-loaderen IKKE injiserer v1-scripts når flagget er av,
+//  - legacy-seksjoner forblir skjult,
+//  - Arealplanlegger dag 1 kan spilles fra morgen til kveld i UI-et.
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+const { JSDOM } = require("jsdom");
+
+const ROOT = path.join(__dirname, "..");
+
+async function main() {
+  const dom = new JSDOM(`<!doctype html><html><body class="civi-app">
+    <header><div id="civiLifestoryHeaderStatus"></div>
+      <div class="civi-header-metrics" data-civi-legacy hidden></div></header>
+    <section id="civiLifestorySection"><h2>Min dag</h2><div id="civiLifestoryPanel"></div></section>
+    <section id="civiInboxSection" data-civi-legacy hidden><div id="civiInbox"></div></section>
+  </body></html>`, { url: "http://localhost/Civication.html", runScripts: "outside-only" });
+
+  const { window } = dom;
+  window.fetch = async (p) => {
+    const abs = path.join(ROOT, String(p).replace(/^\.?\//, ""));
+    if (!fs.existsSync(abs)) return { ok: false, status: 404, json: async () => null, text: async () => "" };
+    const text = fs.readFileSync(abs, "utf8");
+    return { ok: true, status: 200, json: async () => JSON.parse(text), text: async () => text };
+  };
+
+  // Samme kjede som Civication.html (hentet fra v2-allowlisten i main-flow-testen).
+  const V2_CHAIN = [
+    "js/Civication/civicationV2Config.js",
+    "js/Civication/core/CivicationStorageAdapter.js",
+    "js/Civication/core/civicationJsonStore.js",
+    "js/Civication/lifestory/lifestoryContent.js",
+    "js/Civication/lifestory/lifestoryState.js",
+    "js/Civication/lifestory/lifestoryRunner.js",
+    "js/Civication/ui/CivicationLifestoryUI.js",
+    "js/Civication/civicationLegacyLoader.js"
+  ];
+  for (const file of V2_CHAIN) {
+    window.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
+  }
+
+  // Legacy er av: flagget er false og loaderen har ikke injisert noen scripts.
+  assert.strictEqual(window.CIVICATION_LEGACY_ENABLED, false, "legacy-flagget skal være av som standard");
+  assert.strictEqual(window.document.querySelectorAll("script[src]").length, 0,
+    "ingen legacy-scripts skal injiseres når flagget er av");
+  assert.ok(!window.CivicationNextActionUI, "next-action-UI skal ikke finnes i v2");
+  assert.ok(!window.CivicationMailEngine && !window.HG_CiviMail, "mailmotor skal ikke finnes i v2");
+
+  // Vent på at Min dag laster innhold og rendrer.
+  await new Promise((r) => setTimeout(r, 300));
+  const panel = window.document.getElementById("civiLifestoryPanel");
+  assert.ok(panel.querySelector("[data-lifestory-choice]"), "Min dag skal vise en scene med valg");
+
+  // v2-headeren viser rolle/dag/fase/status.
+  const header = window.document.getElementById("civiLifestoryHeaderStatus").textContent;
+  assert.ok(header.includes("Arealplanlegger") && header.includes("Dag 1"), "headerstatus: " + header);
+
+  // Spill hele dagen: Runner er eneste progresjonskilde.
+  let clicks = 0;
+  while (panel.querySelector("[data-lifestory-choice]")) {
+    panel.querySelector("[data-lifestory-choice]").click();
+    assert.ok(++clicks < 30, "dagen må terminere");
+  }
+  assert.ok(panel.innerHTML.includes("Dag 1 er over"), "dagen skal ende i oppsummering");
+  assert.ok(clicks >= 8, "hele dagen (morgen->kveld) skal spilles, fikk " + clicks + " scener");
+  assert.ok(window.document.getElementById("civiLifestoryHeaderStatus").textContent.includes("Dagen er over"));
+
+  // Player State er lagret under v2-nøkkelen; legacy-flater er fortsatt skjult.
+  const stored = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
+  assert.strictEqual(stored.dagFerdig, true, "Player State skal være lagret");
+  assert.ok(window.document.getElementById("civiInboxSection").hasAttribute("hidden"),
+    "innboksen skal forbli skjult i v2");
+
+  console.log("civication v2 min dag ui ok (" + clicks + " scener via UI)");
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

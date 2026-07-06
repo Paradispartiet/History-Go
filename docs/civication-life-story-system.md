@@ -4,6 +4,11 @@ Nytt fortellingssystem for Civication — tegnet som nytt system, ikke som
 reparasjon av det gamle. Dette dokumentet er normativt for alt under
 `js/Civication/lifestory/` og `data/Civication/lifestory/`.
 
+**Life Story System er Civication v2 — den primære systemarkitekturen.**
+`Civication.html` laster kun v2-flyten (Min dag). Alt gammelt maskineri er
+Civication v1 (legacy) og lastes aldri i hovedflyten — se «Civication v2 og
+legacy-gaten» nederst.
+
 ## 1. Kjerneidé
 
 Spilleren lever dager. Dager består av scener. Scener tilhører
@@ -157,3 +162,50 @@ Civication er ikke et mailspill. Civication er et livsfortellingsspill
 der hver stilling er en arbeidslivsfortelling, privatlivet går
 parallelt, dagen er spillbrettet, scener er gameplay og valg former
 livsløpet.
+
+## 11. Civication v2 og legacy-gaten
+
+Civication v1 (mailmotorer, next-action-lås, workday-runtime, day
+progression, innboks som hovedspill) er **legacy**. Det er ikke slettet —
+profile.html og Node-testene bruker fortsatt filene direkte — men det
+styrer ikke lenger spillet.
+
+Hovedflyten i `Civication.html` laster nøyaktig dette, i denne rekkefølgen:
+
+```
+js/Civication/civicationV2Config.js        # setter CIVICATION_LEGACY_ENABLED
+js/Civication/core/CivicationStorageAdapter.js
+js/Civication/core/civicationJsonStore.js
+js/Civication/lifestory/lifestoryContent.js
+js/Civication/lifestory/lifestoryState.js
+js/Civication/lifestory/lifestoryRunner.js
+js/Civication/ui/CivicationLifestoryUI.js
+js/Civication/civicationLegacyLoader.js    # bærer hele v1-kjeden, inert som standard
+```
+
+Rekkefølgen og allowlisten håndheves av
+`tests/civication-v2-main-flow.test.js` — nye script-tags i
+Civication.html er et arkitekturvalg, ikke en drive-by.
+
+Hele den gamle scriptkjeden (122 filer, inkl. `CivicationBoot.js` sist)
+ligger som en ordnet liste i `js/Civication/civicationLegacyLoader.js` og
+injiseres KUN når `window.CIVICATION_LEGACY_ENABLED === true`. Gamle
+seksjoner i Civication.html (dashboard, innboks, arbeidsdag, kart,
+kapital, …) er merket `data-civi-legacy hidden` og vises bare av
+legacy-loaderen.
+
+Legacy slås på eksplisitt, aldri implisitt:
+
+- URL: `Civication.html?civicationLegacy=1`
+- localStorage: `civication_legacy_enabled = "1"`
+  (`CivicationV2Config.enableLegacy()` / `disableLegacy()` i konsollen)
+
+Reglene fremover:
+
+- Nye fortellinger bygges som **data** i `data/Civication/lifestory/`,
+  aldri som nye engines.
+- Innboks er arkiv/bakgrunn, ikke primær gameplay.
+- Ingen nye scripts i v2-hovedflyten uten at dette dokumentet og
+  main-flow-testen oppdateres samtidig.
+- Neste ryddesteg (senere): gjenbruk rent eller slett v1-moduler — men
+  først når profile.html og testene ikke lenger avhenger av dem.

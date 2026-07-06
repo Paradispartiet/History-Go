@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-07-06-v1.3.034";
+const SW_VERSION = "hg-sw-2026-07-06-v1.3.035";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -140,7 +140,9 @@ const PRECACHE_URLS = [
   "js/Civication/core/civicationCalendar.js",
   "js/Civication/core/civicationTaskEngine.js",
 
-  // Civication – Life Story System (Min dag)
+  // Civication v2 – config/legacy-gate + Life Story System (Min dag)
+  "js/Civication/civicationV2Config.js",
+  "js/Civication/civicationLegacyLoader.js",
   "js/Civication/lifestory/lifestoryContent.js",
   "js/Civication/lifestory/lifestoryState.js",
   "js/Civication/lifestory/lifestoryRunner.js",
