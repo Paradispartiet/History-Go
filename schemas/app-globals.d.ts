@@ -110,6 +110,7 @@ declare global {
     CivicationPeopleMeetingGate?: any;
     CivicationPeopleMeetingRelationshipVariant?: any;
     CivicationPeopleUI?: any;
+    CivicationProfileSignalBridge?: any;
     CivicationRoleStarter?: any;
     CivicationRuntimeDebugPanel?: any;
     CivicationStorageTrace?: any;

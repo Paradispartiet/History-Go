@@ -12,7 +12,7 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private dagslutt-mailer om søvn, hvile, psyke og helse. Aldri jobbinnhold.",
-  "topics": ["søvn", "hvile", "psyke", "helse"],
+  "topics": ["søvn", "hvile", "psyke", "helse", "læring"],
   "mails": [
     {
       "id": "private_day_end_sovn_001",
@@ -98,6 +98,68 @@
           "effect": 0,
           "tags": ["tempo"],
           "feedback": "Grublingen løser lite, og søvnen kommer senere."
+        }
+      ]
+    },
+    {
+      "id": "private_day_end_lavenergi_profile_001",
+      "topic": "søvn",
+      "requiresAnyProfileTags": ["low_energy", "rest"],
+      "weightFrom": ["privatePhaseWeights.rest"],
+      "subject": "Legg deg tidligere i natt",
+      "summary": "Kroppen har bedt om det hele dagen: mer søvn.",
+      "situation": [
+        "Dagen har tappet mer enn den ga.",
+        "Å legge seg litt tidligere i natt er den enkleste gaven du kan gi deg selv.",
+        "I morgen møter du byen med mer å gå på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg deg tidlig",
+          "reply": "Jeg legger meg tidlig i natt.",
+          "effect": 1,
+          "tags": ["søvn", "hvile", "helse"],
+          "feedback": "Kroppen sier takk. Natten gjør jobben sin."
+        },
+        {
+          "id": "B",
+          "label": "Skvis ut litt mer av kvelden",
+          "reply": "Jeg er oppe litt til.",
+          "effect": 0,
+          "tags": ["tempo"],
+          "feedback": "Du fikk litt mer kveld, men morgendagen betaler."
+        }
+      ]
+    },
+    {
+      "id": "private_day_end_samling_profile_002",
+      "topic": "læring",
+      "requiresAnyProfileTags": ["learning"],
+      "weightFrom": ["privatePhaseWeights.learning"],
+      "subject": "Et blikk på det du har samlet",
+      "summary": "Før du sover kan du kaste et kort blikk på det du har samlet i det siste.",
+      "situation": [
+        "Dagen er over, og samlingen din har vokst litt igjen.",
+        "Et kort blikk på steder, folk og temaer du har plukket opp hjelper hodet å sortere.",
+        "Så kan natten arkivere resten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta et kort blikk på samlingen",
+          "reply": "Jeg ser kjapt over det jeg har samlet, så sover jeg.",
+          "effect": 1,
+          "tags": ["læring", "psyke", "søvn"],
+          "feedback": "Dagens biter faller på plass. God natt."
+        },
+        {
+          "id": "B",
+          "label": "Gå rett til ro",
+          "reply": "Jeg lar det ligge og legger meg.",
+          "effect": 0,
+          "tags": ["søvn", "hvile"],
+          "feedback": "Hodet sorterer i søvne. Det holder lenge."
         }
       ]
     }

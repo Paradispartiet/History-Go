@@ -17,6 +17,13 @@
 //   Builderen bruker IKKE mailPlan, IKKE role mail families, IKKE plannedPrimary
 //   og IKKE role_scope. Den leser bare data/Civication/privatePhaseMailFamilies/.
 //
+//   Hvor kommer innholdet fra? Fra spillerens History Go-profil, via
+//   CivicationProfileSignalBridge: steder samlet, badges, quiz-styrker, kapital,
+//   identitet, psyke og folk møtt. Mailer med `requiresAnyProfileTags` velges
+//   kun når spillerens profileTags matcher, og vektes via `weightFrom`-stier
+//   inn i signalobjektet (f.eks. "capital.cultural", "privatePhaseWeights.sport").
+//   Mailer uten match-regler er den trygge generiske fallback-poolen.
+//
 //   Kontrakt: maks 1 aktiv privat fase-mail per private fase.
 
 (function () {
@@ -45,7 +52,8 @@
     career_id: "",
     role_id: "",
     employer_id: "",
-    workday_related: false
+    workday_related: false,
+    profile_signal_source: true
   });
 
   // Signaturord/-felt som aldri skal finnes i en privat fase-mail. Brukes både
@@ -53,8 +61,11 @@
   const WORKDAY_FORBIDDEN_TERMS = [
     "lillebekk", "plankart", "utvalg", "plansjef", "utbygger", "varelevering",
     "rolleprogresjon", "mailplan", "role_scope", "arbeidsleveranse",
-    "arbeidsgiveroppgave"
+    "arbeidsgiveroppgave", "arealplanlegger"
   ];
+
+  // Demping av ikke-hvile-mailer når profilen sier «lav energi».
+  const LOW_ENERGY_DAMPING = 0.3;
 
   const jsonCache = new Map();
 
@@ -163,9 +174,116 @@
     return [...direct, ...nested].filter((mail) => mail && typeof mail === "object");
   }
 
-  // Bygger ÉN privat fase-mail for gitt fase. Deterministisk pr. dato + fase, så
-  // dagen er stabil, men roterer over dager. Returnerer null hvis fasen ikke er
-  // privat eller familien mangler innhold.
+  // ------------------------------------------------------------
+  // Profil-signaler (History Go → private fase-mailer)
+  // ------------------------------------------------------------
+
+  // Henter profil-signaler fra CivicationProfileSignalBridge. Mangler broen
+  // (eller feiler den) returneres null, og valget faller tilbake til den
+  // generiske poolen — private mailer skal aldri knekke av manglende profil.
+  async function readProfileSignals(options = {}) {
+    if (options.signals && typeof options.signals === "object") return options.signals;
+    try {
+      const bridge = window.CivicationProfileSignalBridge;
+      if (!bridge?.getSignals) return null;
+      const signals = await bridge.getSignals();
+      return signals && typeof signals === "object" ? signals : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function mailTags(mail) {
+    return Array.isArray(mail?.requiresAnyProfileTags)
+      ? mail.requiresAnyProfileTags.map((t) => norm(t).toLowerCase()).filter(Boolean)
+      : [];
+  }
+
+  function mailAvoidTags(mail) {
+    return Array.isArray(mail?.avoidAnyProfileTags)
+      ? mail.avoidAnyProfileTags.map((t) => norm(t).toLowerCase()).filter(Boolean)
+      : [];
+  }
+
+  // Slår opp en "a.b.c"-sti i signalobjektet. Verdier over 1 tolkes som
+  // 0..100-skala (kapital/psyke) og normaliseres til 0..1.
+  function resolveWeightPath(signals, pathStr) {
+    const parts = norm(pathStr).split(".").filter(Boolean);
+    let node = signals;
+    for (const part of parts) {
+      if (!node || typeof node !== "object") return 0;
+      node = node[part];
+    }
+    const value = Number(node);
+    if (!Number.isFinite(value)) return 0;
+    const normalized = value > 1 ? value / 100 : value;
+    return Math.max(0, Math.min(1, normalized));
+  }
+
+  function scoreProfileMail(mail, signals, profileTagSet) {
+    const tags = mailTags(mail);
+    const matched = tags.filter((tag) => profileTagSet.has(tag));
+
+    let score = 0;
+    const weightFrom = Array.isArray(mail?.weightFrom) ? mail.weightFrom : [];
+    weightFrom.forEach((pathStr) => {
+      score += resolveWeightPath(signals, pathStr);
+    });
+    if (!weightFrom.length) score += 0.3;
+    score += matched.length * 0.05;
+
+    // Lav energi: hvile/søvn/ro skal vinne — aldri mer press. Alt som ikke selv
+    // er hvile dempes, og hvile-mailer løftes.
+    const lowEnergy = profileTagSet.has("low_energy");
+    const isRestMail = tags.includes("rest") || tags.includes("low_energy");
+    if (lowEnergy && !isRestMail) score *= LOW_ENERGY_DAMPING;
+    if (lowEnergy && isRestMail) score += 0.5;
+
+    return { score, matched };
+  }
+
+  // Velger mail ut fra profil-signaler: mailer med requiresAnyProfileTags er
+  // kandidater kun når spillerens profileTags matcher (og avoidAnyProfileTags
+  // ikke gjør det); høyest vektsum vinner deterministisk. Uten profiltreff
+  // brukes den generiske poolen (mailer uten match-regler) med dato-rotasjon.
+  function chooseMail(mails, signals, seed) {
+    const profileTags = Array.isArray(signals?.profileTags) ? signals.profileTags : [];
+    const profileTagSet = new Set(profileTags.map((t) => norm(t).toLowerCase()).filter(Boolean));
+
+    const profilePool = mails.filter((mail) => mailTags(mail).length > 0);
+    const genericPool = mails.filter((mail) => mailTags(mail).length === 0);
+
+    let best = null;
+    if (signals && profileTagSet.size) {
+      for (const mail of profilePool) {
+        if (!mailTags(mail).some((tag) => profileTagSet.has(tag))) continue;
+        if (mailAvoidTags(mail).some((tag) => profileTagSet.has(tag))) continue;
+        const { score, matched } = scoreProfileMail(mail, signals, profileTagSet);
+        // Deterministisk tie-break på mail-id, uavhengig av fil-rekkefølge.
+        const jitter = (hashString(`${seed}:${mail.id}`) % 1000) / 1000000;
+        const total = score + jitter;
+        if (!best || total > best.total) {
+          best = { mail, total, matched };
+        }
+      }
+    }
+
+    if (best) {
+      return { mail: best.mail, profileMatched: true, matchedTags: best.matched };
+    }
+
+    // Trygg generisk fallback: aldri jobbtekst, aldri «som {rolle}» /
+    // «arbeidsdagen» — den generiske poolen består kun av nøytrale privatmailer.
+    const pool = genericPool.length ? genericPool : mails;
+    if (!pool.length) return null;
+    const chosen = pool[hashString(seed) % pool.length];
+    return { mail: chosen, profileMatched: false, matchedTags: [] };
+  }
+
+  // Bygger ÉN privat fase-mail for gitt fase. Profilmatch er deterministisk pr.
+  // profil; generisk fallback er deterministisk pr. dato + fase, så dagen er
+  // stabil, men roterer over dager. Returnerer null hvis fasen ikke er privat
+  // eller familien mangler innhold.
   async function buildPhaseMail(phaseId, active, options = {}) {
     const phase = norm(phaseId);
     if (!isPrivatePhase(phase)) return null;
@@ -177,7 +295,11 @@
     const date = norm(options.date) || todayKey();
     const runtimeInstanceKey = norm(options.runtimeInstanceKey);
     const seed = `${date}:${phase}:${norm(options.rotation || "")}`;
-    const chosen = mails[hashString(seed) % mails.length];
+
+    const signals = await readProfileSignals(options);
+    const selection = chooseMail(mails, signals, seed);
+    if (!selection) return null;
+    const chosen = selection.mail;
 
     const baseId = slugify(chosen?.id || `${phase}_private`);
     const eventId = `${baseId}__private_${date}_${phase}${runtimeInstanceKey}`;
@@ -206,13 +328,16 @@
         source_mail_id: norm(chosen?.id),
         source_family: norm(family?.id),
         advances_role_plan: false,
-        private_phase: true
+        private_phase: true,
+        profile_matched: selection.profileMatched,
+        profile_tags_matched: selection.matchedTags
       },
       mail_tags: [
         "daily_mail",
         "daily_private_phase",
         phase,
-        norm(chosen?.topic)
+        norm(chosen?.topic),
+        ...selection.matchedTags.map((tag) => `profile_${tag}`)
       ].filter(Boolean)
     }, phase);
 
@@ -220,11 +345,14 @@
   }
 
   // Bygger ett kø-item pr. private fase (maks 1 aktiv mail per private fase).
-  // Returnerer runtime-rader klare til å legges inn i dagskøen.
+  // Returnerer runtime-rader klare til å legges inn i dagskøen. Profil-signalene
+  // hentes én gang og gjenbrukes for alle fasene.
   async function buildPrivatePhaseItems(active, options = {}) {
     const items = [];
+    const signals = await readProfileSignals(options);
+    const phaseOptions = signals ? { ...options, signals } : options;
     for (const phase of PRIVATE_PHASES) {
-      const event = await buildPhaseMail(phase, active, options);
+      const event = await buildPhaseMail(phase, active, phaseOptions);
       if (!event) continue;
       items.push({
         status: "queued",
@@ -246,6 +374,9 @@
     stampPrivateFields,
     containsWorkContent,
     loadPhaseFamily,
+    readProfileSignals,
+    resolveWeightPath,
+    chooseMail,
     buildPhaseMail,
     buildPrivatePhaseItems
   };

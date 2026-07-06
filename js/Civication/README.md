@@ -72,6 +72,7 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 | IncomingFlow | `CivicationIncomingFlow` | Binder mailbatcher til dagfaser/kanaler; styrer hvilke innkommende saker som leveres når. |
 | LifeMailRuntime | `CivicationLifeMailRuntime` | **Livshendelser utenfor jobbspor** (arbeidsledig, økonomi, kveld, risiko, sosialt). Brukes når spilleren mangler aktiv jobb eller har eksplisitte life-/identity-tags. Holdes adskilt fra rollebaserte jobbmailer. |
 | RoleModelRuntime | `CivicationRoleModelRuntime` | Dekorerer valgte mailer med roleModel-metadata; endrer ikke mailflyten. |
+| ProfileSignalBridge | `CivicationProfileSignalBridge` | **History Go → private fase-mailer.** Normaliserer spillerens History Go-profil (HG_IdentityCore, `hg_capital_v1`, CivicationPsyche, `visited_places`, `merits_by_category`, `people_collected`, `hg_learning_log_v1`) til `{ identity, capital, psyche, historyGoCollection, profileTags, privatePhaseWeights }`. Leser kun; skriver aldri. Brukes av PrivatePhaseMailBuilder — aldri av jobbmail-sporet. |
 
 Arbeidsdeling i én setning: **MailRuntime velger hvilken mail som skal komme, DailyMailBuilder
 bestemmer dagens rytme, MailEngine lagrer og viser den, EventEngine beregner svaret.**
@@ -104,7 +105,25 @@ hvert med sin egen builder:
   Alle private fase-mailer bærer:
   `source_type:"daily_private_phase"`, `channel:"private"`,
   `messageChannel:"private"`, `mail_class:"daily_private"`, `role_scope:""`,
-  `career_id:""`, `role_id:""`, `employer_id:""`, `workday_related:false`.
+  `career_id:""`, `role_id:""`, `employer_id:""`, `workday_related:false`,
+  `profile_signal_source:true`.
+- **Private fase-mailer er en projeksjon av History Go-profilen.** Hvem er
+  spilleren utenfor jobben? `CivicationProfileSignalBridge` normaliserer det
+  spilleren faktisk har bygget opp i History Go — steder samlet, badges,
+  quiz-styrker, folk møtt, kapital, identitetsfokus og psyke — til
+  `profileTags` og `privatePhaseWeights` (culture, sport, nature, politics,
+  social, learning, economy, rest, family, subculture). Mailer i
+  `privatePhaseMailFamilies/` kan bære match-regler
+  (`requiresAnyProfileTags`, valgfritt `avoidAnyProfileTags`) og vektstier
+  (`weightFrom`, f.eks. `"capital.cultural"` eller
+  `"privatePhaseWeights.sport"`): kulturell profil får kultur-/sted-/
+  læringsmail om kvelden, sport-profil får bane/trening om ettermiddagen,
+  natur-profil får grønne pauser, politisk profil får lokalmøter, sosial
+  profil får invitasjoner fra kontakter — og lav psyke gir hvile/søvn/ro,
+  aldri mer press. To spillere med samme jobb men ulik History Go-profil får
+  dermed ulike private fase-mailer; samme profil med ulik jobb får de samme.
+  Mailer uten match-regler er den trygge generiske fallback-poolen (aldri
+  jobbtekst, aldri «som {rolle}» / «arbeidsdagen»).
 - **Arbeidslivsmail** eies av `CivicationWorkdayMailBuilder`. De bygges fra
   `mailPlan` + `mailFamilies` (via `CivicationMailRuntime`), er knyttet til
   arbeidsgiver/rolle/`workday_day_index`, og kan **kun** ha `phase_tag`
