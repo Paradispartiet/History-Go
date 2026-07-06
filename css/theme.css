@@ -178,9 +178,9 @@ body.hg-app .panel{
 /* ===================================================== */
 
 /* Logo i header */
-.hg-brand{
+body.hg-app header.site-header .hg-brand{
   position: absolute;
-  left: 8px;
+  left: calc(6px + env(safe-area-inset-left));
   top: 2px;
 
   width: 112px;
