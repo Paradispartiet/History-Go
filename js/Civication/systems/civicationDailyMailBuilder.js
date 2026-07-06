@@ -34,6 +34,40 @@
   // people, story, conflict, event) er egne scener med unik tråd per kildemail.
   const CASE_THREAD_TYPES = new Set(["micro", "followup", "knowledge", "consequence"]);
   const DAY_PHASE_ORDER = ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
+
+  // To rytmer (se js/Civication/README.md): de private døgnfasene eier livsrytmen
+  // og skal ALDRI inneholde jobbmailer. Arbeidsfasene (forenoon+workday) eier
+  // jobbøkten hos arbeidsgiver — det er den eneste rytmen jobbmailene lever i.
+  // Denne separasjonen er hovedløsningen; tråd-dedupe er bare et sikkerhetsnett.
+  const PRIVATE_PHASES = new Set(["morning", "lunch", "afternoon", "dinner", "evening", "day_end"]);
+  const WORK_PHASES = new Set(["forenoon", "workday"]);
+  // Narrativ-strømtyper som er jobb/rolleinnhold og derfor ikke hører hjemme i
+  // private faser. «leisure» og øvrige personlige strømmer er tillatt privat.
+  const WORK_STREAM_TYPES = new Set(["work", "class_case", "class_cases", "conflict"]);
+  // Klasse for private døgnfase-mailer. Frikoblet fra "daily_workday" slik at
+  // private faser aldri bærer jobbklassen — det er både separasjonen og det
+  // testene sjekker.
+  const PRIVATE_MAIL_CLASS = "daily_private";
+  const WORK_MAIL_CLASS = "daily_workday";
+
+  function isPrivatePhase(phaseId) {
+    return PRIVATE_PHASES.has(String(phaseId || "").trim());
+  }
+
+  // Jobbinnhold-signatur: brukes som defensivt filter for å holde jobbmailer ute
+  // av private faser selv om et gammelt save eller en ekstern generator skulle
+  // ha lagt dem der. En mail regnes som jobbinnhold hvis den bærer jobbklassen,
+  // er en planlagt rollemail, eller åpenbart tilhører en rolle/arbeidsgiver.
+  function isWorkContentEvent(event) {
+    if (!event || typeof event !== "object") return false;
+    const mailClass = String(event.mail_class || "").trim();
+    if (mailClass === WORK_MAIL_CLASS) return true;
+    const sourceType = String(event.source_type || "").trim();
+    if (sourceType === "planned") return true;
+    const scope = String(event.role_scope || "").trim();
+    if (scope && scope !== "private" && scope !== "unknown") return true;
+    return false;
+  }
   // Rangordning for valg av kanonisk case-variant. Rollepakkene bruker to
   // faseskjemaer om hverandre: dagfaser (morning…day_end) og stadier
   // (intro…mastery). Begge rangeres slik at casen åpner i sin tidligste form.
@@ -596,16 +630,17 @@
         ];
 
     const generatedId = `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${todayKey()}_${index}${runtimeInstanceKey}`;
+    const privateScope = isPrivatePhase(phaseId);
 
     return {
       id: generatedId,
-      thread_key: `${resolveRoleScope(active) || "role"}.mail.${slugify(generatedId)}`,
+      thread_key: `${(privateScope ? "private" : resolveRoleScope(active)) || "role"}.mail.${slugify(generatedId)}`,
       source: "Civication",
       source_type: "daily_generated",
       mail_type: isDayEnd ? "day_end" : "phase",
       mail_family: isDayEnd ? "daily_day_end" : "daily_phase",
-      mail_class: "daily_workday",
-      role_scope: resolveRoleScope(active),
+      mail_class: privateScope ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
+      role_scope: privateScope ? "" : resolveRoleScope(active),
       career_id: norm(active?.career_id),
       role_id: norm(active?.role_id),
       stage: "stable",
@@ -655,11 +690,61 @@
     };
   }
 
+  // Morgenens overgang til arbeidsdag. I stedet for å levere en rolle-/case-mail
+  // rett inn i morgenfasen (som gjorde at Arealplanlegger føltes som spam),
+  // viser morgenen bare at det finnes en jobb og at neste handling er å gå til
+  // jobb. Selve arbeidsdag-mailene bygges/leveres først når spilleren går inn i
+  // arbeidsfasen.
+  function makeGoToWorkTransition(active, runtimeInstanceKey = "") {
+    const roleTitle = norm(active?.title || active?.role_key || "rollen");
+    const employerId = window.CivicationWorkdayRuntime?.getEmployerId?.(active) || norm(active?.brand_id);
+    const employerLabel = employerId ? `hos ${employerId}` : "hos arbeidsgiveren din";
+    const id = `${slugify(active?.role_key || active?.title || "rolle")}_go_to_work_${todayKey()}${runtimeInstanceKey}`;
+    return {
+      id,
+      thread_key: `private.mail.${slugify(id)}`,
+      source: "Civication",
+      source_type: "daily_generated",
+      mail_type: "day_transition",
+      mail_family: "day_go_to_work",
+      mail_class: PRIVATE_MAIL_CLASS,
+      role_scope: "",
+      phase_tag: "morning",
+      subject: `Du har jobb som ${roleTitle}`,
+      summary: `Neste handling: Gå til jobb / Start arbeidsdag ${employerLabel}.`,
+      situation: [
+        `Morgenen er din egen. Du spiser, gjør deg klar og ser på dagen som venter.`,
+        `Du har jobb som ${roleTitle}. Arbeidsdagen skjer ${employerLabel}, ikke i innboksen hjemme.`,
+        `Når du er klar, går du til jobb — da starter arbeidsdagen med dagens saker.`
+      ],
+      task_domain: "day_transition",
+      narrative_arc: "morgen_til_jobb",
+      go_to_work: true,
+      choices: [
+        {
+          id: "go_to_work",
+          label: `Gå til jobb / Start arbeidsdag ${employerLabel}`,
+          effect: 1,
+          tags: ["workday", "transition"],
+          feedback: "Du går til jobb. Arbeidsdagen starter."
+        }
+      ],
+      daily_mail_meta: {
+        date: todayKey(),
+        phase: "morning",
+        phase_label: "Morgen",
+        slot: "go_to_work",
+        advances_role_plan: false
+      }
+    };
+  }
+
   function toDailyExtraMail(active, sourceMail, phase, slot, index, runtimeInstanceKey = "") {
     const phaseId = norm(phase?.id || sourceMail?.phase || "morning");
     const slotId = slugify(slot?.slot || slot?.type || `slot_${index}`);
     const sourceId = norm(sourceMail?.id);
     const date = todayKey();
+    const privateScope = isPrivatePhase(phaseId);
 
     return {
       ...sourceMail,
@@ -667,10 +752,10 @@
       source_mail_id: sourceId,
       thread_key: norm(sourceMail?.thread_key) || threadKeyForMail(sourceMail),
       source_type: "daily_extra",
-      mail_class: "daily_workday",
+      mail_class: privateScope ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
       phase_tag: phaseId,
       stage: norm(sourceMail?.stage || "stable") || "stable",
-      role_scope: resolveRoleScope(active),
+      role_scope: privateScope ? "" : resolveRoleScope(active),
       career_id: norm(active?.career_id),
       role_id: norm(active?.role_id),
       choices: normalizeChoices(sourceMail?.choices),
@@ -762,9 +847,9 @@
       thread_key: norm(base.thread_key) || `${resolveRoleScope(active) || "role"}.mail.${slugify(generatedPhaseId)}`,
       source: norm(base.source) || "Civication",
       source_type: "daily_generated",
-      mail_class: "daily_workday",
+      mail_class: isPrivatePhase(phaseId) ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
       phase_tag: phaseId,
-      role_scope: resolveRoleScope(active),
+      role_scope: isPrivatePhase(phaseId) ? "" : resolveRoleScope(active),
       career_id: norm(active?.career_id),
       role_id: norm(active?.role_id),
       stage: norm(base.stage || "stable") || "stable",
@@ -1004,10 +1089,12 @@
 
   function storyletToEvent(active, phase, slot, stream, storylet, ordinal) {
     const date=todayKey();
+    const phaseId = norm(phase?.id || "morning");
+    const privateScope = isPrivatePhase(phaseId);
     return {
       id: `${stream.id}__${norm(storylet.id)}__${date}__${ordinal}`,
       // Alle instanser av samme storylet (uansett dag/injeksjon) deler tråd.
-      thread_key: `${resolveRoleScope(active) || "role"}.narrative.${slugify(stream.id)}.${slugify(storylet.id)}`,
+      thread_key: `${(privateScope ? "private" : resolveRoleScope(active)) || "role"}.narrative.${slugify(stream.id)}.${slugify(storylet.id)}`,
       source: norm(storylet.from || stream.title || "Narrative stream"),
       from: norm(storylet.from),
       source_type: "narrative_stream",
@@ -1016,9 +1103,9 @@
       narrative_storylet_id: norm(storylet.id),
       mail_type: norm(storylet.message_type || "story"),
       mail_family: `narrative_${slugify(stream.type||"stream")}`,
-      mail_class: "daily_workday",
-      phase_tag: norm(phase?.id || "morning"),
-      role_scope: resolveRoleScope(active),
+      mail_class: privateScope ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
+      phase_tag: phaseId,
+      role_scope: privateScope ? "" : resolveRoleScope(active),
       career_id: norm(active?.career_id),
       role_id: norm(active?.role_id),
       subject: norm(storylet.subject),
@@ -1282,8 +1369,29 @@
         .map(k => `${nextNarrativeState.stream_progress[k].stream_id}::${nextNarrativeState.stream_progress[k].storylet_id}`)
     );
 
+    // Har spilleren en aktiv jobb? Da skal morgenen lede til «Gå til jobb», og
+    // jobbinnhold skal kun fylle arbeidsfasene — ikke de private døgnfasene.
+    const hasActiveJob = window.CivicationWorkdayRuntime?.hasActiveJob?.(active)
+      ?? !!norm(active?.career_id);
+    let goToWorkInjected = false;
+
     for (const phase of phases) {
+      const phaseId = norm(phase?.id || "morning");
+      const privatePhase = isPrivatePhase(phaseId);
       const slots = Array.isArray(phase?.mail_slots) ? phase.mail_slots : [];
+
+      // Morgenens første melding er overgangen til arbeidsdag (ikke en case-mail).
+      if (phaseId === "morning" && hasActiveJob && !goToWorkInjected) {
+        goToWorkInjected = true;
+        ordinal += 1;
+        items.push({
+          status: "queued",
+          phase: "morning",
+          slot: "go_to_work",
+          event: makeGoToWorkTransition(active, runtimeInstanceKey)
+        });
+      }
+
       for (const slot of slots) {
         const count = Math.max(1, Number(slot?.count || 1));
         const wanted = preferredTypesForSlot(slot);
@@ -1293,12 +1401,13 @@
           ordinal += 1;
           const seed = `${date}:${roleScope}:${phase?.id}:${slot?.slot}:${i}:${ordinal}`;
 
-          if (!plannedUsed && (slotType === "job" || slotType === "primary_work_mail") && plannedPrimary) {
+          // Planlagt rollemail (jobbprogresjon) hører KUN til arbeidsfasene.
+          if (!privatePhase && !plannedUsed && (slotType === "job" || slotType === "primary_work_mail") && plannedPrimary) {
             plannedUsed = true;
             usedSourceIds.add(norm(plannedPrimary.id));
             items.push({
               status: "queued",
-              phase: norm(phase?.id || "morning"),
+              phase: phaseId,
               slot: norm(slot?.slot || slot?.type),
               event: toDailyPlannedMail(active, plannedPrimary, phase, slot)
             });
@@ -1306,21 +1415,28 @@
           }
 
           const narrativeUsed = new Set([...answeredNarrativeStorylets, ...queuedNarrativeStorylets]);
-          const narrativeCandidates = storyletsForSlot(candidateStreams, norm(phase?.id), narrativeUsed, active, state, nextNarrativeState);
+          const narrativeCandidates = storyletsForSlot(candidateStreams, phaseId, narrativeUsed, active, state, nextNarrativeState)
+            // Private faser slipper aldri inn jobb/rolle-narrativer (work/class_case/conflict).
+            .filter(pick => !privatePhase || !WORK_STREAM_TYPES.has(slugify(pick?.stream?.type)));
           const narrativePick = narrativeCandidates[0];
           if (narrativePick) {
             const event = storyletToEvent(active, phase, slot, narrativePick.stream, narrativePick.storylet, ordinal);
             const storyletKey = `${norm(narrativePick.stream.id)}::${norm(narrativePick.storylet.id)}`;
             queuedNarrativeStorylets.add(storyletKey);
-            items.push({ status: "queued", phase: norm(phase?.id || "morning"), slot: norm(slot?.slot || slot?.type), event });
+            items.push({ status: "queued", phase: phaseId, slot: norm(slot?.slot || slot?.type), event });
             continue;
           }
 
-          const picked = pickFromPool(dayPool, wanted, usedSourceIds, seed, phase, 1, slot, progressionContext)[0];
+          // Rollekatalogen (dayPool) ER jobbverdenen til den aktive rollen. Den
+          // fyller kun arbeidsfasene. Private faser får personlige narrativer og
+          // genererte fase-mailer, aldri jobbkatalogen.
+          const picked = privatePhase
+            ? null
+            : pickFromPool(dayPool, wanted, usedSourceIds, seed, phase, 1, slot, progressionContext)[0];
           if (picked) {
             items.push({
               status: "queued",
-              phase: norm(phase?.id || "morning"),
+              phase: phaseId,
               slot: norm(slot?.slot || slot?.type),
               event: toDailyExtraMail(active, picked, phase, slot, ordinal, runtimeInstanceKey)
             });
@@ -1330,7 +1446,7 @@
           const generatorKind = phaseGeneratorKind(phase, slot);
           items.push({
             status: "queued",
-            phase: norm(phase?.id || "morning"),
+            phase: phaseId,
             slot: norm(slot?.slot || slot?.type),
             // PR C: fase-/dagslutt-slot regenereres fra dayEvents ved levering. makeGeneratedEvent
             // beholdes som placeholder/fallback dersom dayEvents ikke er tilgjengelig.
@@ -1590,7 +1706,37 @@
 
   function rowsForPhase(runtime, phase) {
     const wanted = norm(phase || window.CivicationCalendar?.getPhase?.() || "morning");
-    return (Array.isArray(runtime?.items) ? runtime.items : []).filter(row => norm(row?.phase || row?.event?.phase_tag) === wanted);
+    const privatePhase = isPrivatePhase(wanted);
+    return (Array.isArray(runtime?.items) ? runtime.items : []).filter(row => {
+      if (norm(row?.phase || row?.event?.phase_tag) !== wanted) return false;
+      // Sikkerhetsnett: en privat fase viser aldri jobbinnhold, selv om et
+      // gammelt save eller en ekstern generator skulle ha lagt det der.
+      if (privatePhase && isWorkContentEvent(row?.event)) return false;
+      return true;
+    });
+  }
+
+  // Er alle påkrevde arbeidsfase-rader (forenoon+workday) besvart? Da er
+  // arbeidsdagen fullført, og arbeidsdag-telleren skal økes én gang.
+  function workPhaseRequiredComplete(runtime) {
+    const items = Array.isArray(runtime?.items) ? runtime.items : [];
+    const workRows = items.filter(row =>
+      WORK_PHASES.has(norm(row?.phase || row?.event?.phase_tag)) && row?.optional !== true);
+    if (!workRows.length) return false;
+    return workRows.every(row => norm(row?.status) === "answered" || row?.suppressed_duplicate === true);
+  }
+
+  // Øk arbeidsdag-telleren når (og bare når) arbeidsdagen faktisk fullføres.
+  // Idempotent: WorkdayRuntime hopper over hvis dagen allerede er registrert.
+  function maybeCompleteWorkday(runtime) {
+    const wr = window.CivicationWorkdayRuntime;
+    if (!wr?.completeWorkday) return;
+    try {
+      const date = norm(runtime?.date) || todayKey();
+      if (wr.isWorkdayCompletedToday?.(date) === true) return;
+      if (!workPhaseRequiredComplete(runtime)) return;
+      wr.completeWorkday({ date });
+    } catch {}
   }
 
   function rowSummary(row) {
@@ -1844,6 +1990,14 @@
       updated_at: new Date().toISOString()
     };
     setRuntime(next);
+    // Morgenens overgang: å besvare «Gå til jobb» starter arbeidsdagen og flytter
+    // livsrytmen inn i arbeidsfasen (DayFlow eier selve overgangen).
+    if (answeredEvent?.go_to_work === true) {
+      try { window.CivicationDayFlow?.goToWork?.({ active: getActive() }); } catch {}
+    }
+    // Arbeidsdag-telleren økes først når arbeidsdagen er fullført — aldri bare
+    // fordi en ny døgnfase starter. Dette holder arbeidsrytmen og døgnrytmen adskilt.
+    maybeCompleteWorkday(next);
     // Innbokskopien må også løses, ellers blir saken stående som åpen innboks-sak
     // og blokkerer faseavansering (dayProgressionController teller åpne innbokssaker).
     if (opts?.resolveMail !== false) {
@@ -2078,6 +2232,10 @@
     answerBundleItem: markAnswered,
     markHandled,
     threadKeyForMail,
+    isPrivatePhase,
+    isWorkContentEvent,
+    workPhaseRequiredComplete,
+    makeGoToWorkTransition,
     isDailyEvent,
     isActionablePendingInboxItem,
     hasBlockingPendingAction: hasPending,

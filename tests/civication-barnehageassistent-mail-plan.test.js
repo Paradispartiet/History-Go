@@ -120,14 +120,22 @@ async function run(){
   }
   const sourceIds=runtime.items.map(row => String(row.event?.source_mail_id || row.event?.id || '').toLowerCase());
   assert(!sourceIds.some(id => /debug|gap|undefined|null/.test(id)), 'ingen debug gaps i source ids');
+  // To rytmer (se js/Civication/README.md): rolleinnholdet lever i arbeidsfasene
+  // (forenoon + workday). De private døgnfasene bærer aldri jobb-role_scope.
+  const WORK_PHASES = ['forenoon', 'workday'];
+  const PRIVATE_PHASES = ['morning', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'];
+  const workText = JSON.stringify(runtime.items.filter(row => WORK_PHASES.includes(row.phase)).map(row => row.event || {})).toLowerCase();
+  for (const term of ['overgang','forelder','observasjon','slitasje','konflikt']) assert(workText.includes(term), `arbeidsdagen skal inneholde rolletemaet ${term}`);
   const dayText=JSON.stringify(runtime.items.map(row => row.event || {})).toLowerCase();
-  for (const term of ['overgang','frilek','forelder','observasjon','slitasje','dagslutt']) assert(dayText.includes(term), `Day 1 should include ${term}`);
-  assert(runtime.items.some(row => row.phase === 'morning' && /levering|overgang|slipper ikke/.test(JSON.stringify(row.event || {}).toLowerCase())), 'morgen åpner med levering/første overgang');
-  assert(runtime.items.some(row => row.phase === 'forenoon' && /slipper ikke|forelder|overgang/.test(JSON.stringify(row.event || {}).toLowerCase())), 'formiddag har barn som strever med å slippe forelder');
-  assert(runtime.items.some(row => row.phase === 'workday' && /frilek|observasjon|konflikt/.test(JSON.stringify(row.event || {}).toLowerCase())), 'arbeidsdag har frilek, observasjon eller konflikt');
-  assert(runtime.items.some(row => row.phase === 'lunch' && /kollega|forelder|barn|relasjon|måltid/.test(JSON.stringify(row.event || {}).toLowerCase())), 'lunsj har kollega/forelder/barn-relasjon');
-  assert(runtime.items.some(row => row.phase === 'afternoon' && /lav bemanning|bemanning|slitasje|sliten|vikar/.test(JSON.stringify(row.event || {}).toLowerCase())), 'ettermiddag viser lav bemanning eller slitasje');
-  assert(runtime.items.some(row => row.phase === 'evening' && ['knowledge','consequence','followup'].includes(row.event?.mail_type)), 'kveld lander i kunnskap, konsekvens eller logisk oppfølging');
+  assert(dayText.includes('dagslutt'), 'Day 1 should close with a dagslutt summary');
+  // Jobb/rolleinnhold skal aldri bære jobbklassen i private faser.
+  for (const row of runtime.items.filter(row => PRIVATE_PHASES.includes(row.phase))) {
+    assert.notStrictEqual(row.event?.role_scope, 'barnehageassistent', `${row.phase}:${row.slot} må ikke bære jobb-role_scope`);
+    assert.notStrictEqual(row.event?.mail_class, 'daily_workday', `${row.phase}:${row.slot} må ikke være en daily_workday-mail`);
+  }
+  assert(runtime.items.some(row => row.phase === 'morning' && row.slot === 'go_to_work' && row.event?.go_to_work === true), 'morgenen skal lede til «Gå til jobb»');
+  assert(runtime.items.some(row => WORK_PHASES.includes(row.phase) && /frilek|observasjon|konflikt/.test(JSON.stringify(row.event || {}).toLowerCase())), 'arbeidsdagen skal ha frilek, observasjon eller konflikt');
+  assert(runtime.items.some(row => WORK_PHASES.includes(row.phase) && ['knowledge','consequence','followup','job'].includes(row.event?.mail_type)), 'arbeidsdagen lander i kunnskap, konsekvens, oppfølging eller jobbleveranse');
   assert(runtime.items.some(row => row.phase === 'day_end' && /hva slags voksen|dagslutt|læringspunkt|omsorg/.test(JSON.stringify(row.event || {}).toLowerCase())), 'dagslutt spør hva slags voksen du var i dag');
 
   const index=fs.readFileSync(path.join(repoRoot, 'docs/CIVICATION_ROLE_PACK_INDEX.md'), 'utf8');

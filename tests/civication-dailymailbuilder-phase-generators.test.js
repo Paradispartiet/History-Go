@@ -142,7 +142,12 @@ async function run() {
   }
 
   function assertDailyEnvelope(ev, phaseId) {
-    assert.strictEqual(ev.mail_class, 'daily_workday', `${phaseId} event should keep mail_class=daily_workday`);
+    // To rytmer: lunsj/kveld/dagslutt er private døgnfaser og bærer derfor
+    // private-klassen, ikke jobbklassen. Arbeidsfasene beholder daily_workday.
+    const expectedClass = ['morning', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'].includes(phaseId)
+      ? 'daily_private'
+      : 'daily_workday';
+    assert.strictEqual(ev.mail_class, expectedClass, `${phaseId} event should carry mail_class=${expectedClass}`);
     assert.strictEqual(ev.source_type, 'daily_generated', `${phaseId} event should be tagged source_type=daily_generated`);
     assert.strictEqual(ev.phase_tag, phaseId, `${phaseId} event should keep phase_tag=${phaseId}`);
     assert(ev.daily_mail_meta && ev.daily_mail_meta.phase === phaseId, `${phaseId} event should carry daily_mail_meta`);
