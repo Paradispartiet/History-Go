@@ -1,8 +1,11 @@
 type CiviRecord = Record<string, unknown>;
 
-type CiviFn = (...args: unknown[]) => unknown;
+// Civication runtime globals are dynamic browser method bags. The return values
+// are intentionally `any` so JS checkJs files can narrow/cast per call site
+// without TS treating every runtime method result as `unknown`.
+type CiviFn = (...args: unknown[]) => any;
 
-type CiviLearningLogFn = (...args: unknown[]) => unknown;
+type CiviLearningLogFn = (...args: unknown[]) => any;
 
 type CiviMethodBag = {
   get?: CiviFn;
@@ -63,6 +66,8 @@ type CiviMethodBag = {
   shiftFocus?: CiviFn;
   getPsycheModifiers?: CiviFn;
   getProfile?: CiviFn;
+  getIdentityState?: CiviFn;
+  getSnapshot?: CiviFn;
   generatePerceptionProfile?: CiviFn;
 
   announceCollapse?: CiviFn;
@@ -124,6 +129,7 @@ declare global {
     CivicationEventChannels?: any;
     CivicationEventEngine?: any;
 
+    HG_IdentityCore?: CiviMethodBag;
     CivicationRoleModelRuntime?: CiviMethodBag;
     CivicationBlockedJobMessages?: CiviMethodBag;
     CivicationCareerRoleResolver?: CiviMethodBag;
@@ -158,56 +164,7 @@ declare global {
     CivicationThreeMap?: any;
     CivicationOsloMapCalibration?: any;
     CivicationHistoryGoPlaceLayer?: CiviMethodBag;
-    CivicationCityLayer?: CiviMethodBag;
-    CivicationMapZoom?: any;
-    CIVI_OSLO_GEO_ANCHORS?: CiviRecord[];
-
-    // Civication map feature-flagg (leses som `=== true`, settes eksternt/i boot).
-    CIVICATION_CANVAS_MAP_ENABLED?: boolean;
-    CIVICATION_THREE_MAP_ENABLED?: boolean;
-    __civiThreeActive?: boolean;
-
-    // Øvrige verifiserte Civication runtime-globaler.
-    CivicationJobEligibilityRuntime?: any;
-    CivicationTravelState?: any;
-    CivicationInboxItemFilters?: any;
-    HG_CiviShop?: CiviMethodBag;
-    HG_Lifestyle?: CiviMethodBag;
-    HG_IdentityCore?: CiviMethodBag;
-    CivicationCalendar?: any;
-    CivicationDayPlan?: any;
-    CivicationDebug?: any;
-    CivicationIncomingFlow?: any;
-    CivicationPhaseBundleView?: any;
-
-    getPrimaryLifestyle?: CiviFn;
-    getPCWallet?: CiviFn;
-    savePCWallet?: CiviFn;
-    ensureCiviCareerRulesLoaded?: CiviFn;
-    hgGetJobOffers?: CiviFn;
-    hgSetJobOffers?: CiviFn;
-    checkTierUpgrades?: CiviFn;
-    calculateWeeklySalary?: CiviFn;
-
-    __CIVI_BOOT_ERROR__?: unknown;
-
-    HGLearningLog?: {
-      add?: CiviLearningLogFn;
-      push?: CiviLearningLogFn;
-      log?: CiviLearningLogFn;
-      record?: CiviLearningLogFn;
-      getQuizHistory?: (...args: unknown[]) => any[];
-      [key: string]: CiviLearningLogFn | undefined;
-    };
   }
-
-  const CivicationState: CiviMethodBag;
-  const CivicationEconomyEngine: CiviMethodBag;
-  const CivicationObligationEngine: CiviMethodBag;
-  const CIVI_ITEMS: unknown[];
-  const CIVI_SYNERGIES: unknown[];
-  const CAREERS: unknown[];
-  const LIFESTYLES: unknown[];
 }
 
 export {};
