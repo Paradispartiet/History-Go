@@ -10,6 +10,13 @@ Dette er motoroversikten. Selve mail-/rolledatakontrakten (badge → roleModel �
 mailFamily → FWG) er beskrevet i [`data/Civication/README-mailsystem-og-rolemodels.md`](../../data/Civication/README-mailsystem-og-rolemodels.md)
 og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVICATION_WORK_GRAMMAR_STANDARD.md).
 
+> **Nytt system under oppbygging: Life Story System.** Civication tegnes om fra mailspill
+> til livsfortellingsspill — én fortellingsrunner (`js/Civication/lifestory/`) + rene
+> fortellingspakker (`data/Civication/lifestory/`), pilotert som «Min dag» med rollen
+> Arealplanlegger. Motorene under er det gamle systemet; de styrer ikke lenger designet.
+> Nye fortellinger bygges som pakker i Life Story-systemet, aldri som nye motorer.
+> Se [`docs/civication-life-story-system.md`](../../docs/civication-life-story-system.md).
+
 ## Grunnprinsipp: én aktiv handling om gangen
 
 Civication hadde tidligere flere flater som konkurrerte om å være «aktiv handling», slik at

@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "id": "arealplanlegger",
+  "navn": "Arealplanlegger",
+  "kjernefantasi": "Du balanserer fag, lovverk, politikk, naboer og utbyggere.",
+  "arbeidsoppgaver": [
+    "lese høringsinnspill",
+    "vurdere reguleringsplaner",
+    "svare på interne avklaringer",
+    "forberede politiske saker",
+    "håndtere utbyggere og naboer"
+  ],
+  "personer": [
+    { "id": "plansjef", "navn": "Plansjefen", "beskrivelse": "Din leder. Vil ha flyt i sakene og minst mulig merarbeid." },
+    { "id": "skolekontakt", "navn": "Skolekontakten", "beskrivelse": "FAU-kontakt ved skolen. Kjenner barnas faktiske skolevei." },
+    { "id": "utbygger", "navn": "Utbyggeren", "beskrivelse": "Vil ha rask avklaring på parkeringskjelleren." },
+    { "id": "utvalgssekretaer", "navn": "Utvalgssekretæren", "beskrivelse": "Holder styr på hva som skal til politisk behandling." },
+    { "id": "nabo", "navn": "Naboen", "beskrivelse": "Skriver lange, detaljerte høringsinnspill." },
+    { "id": "jurist", "navn": "Kommunejuristen", "beskrivelse": "Skiller mellom lovkrav og skjønn." },
+    { "id": "politiker", "navn": "Utvalgslederen", "beskrivelse": "Vil vite hva som egentlig er et politisk valg." }
+  ],
+  "hovedkonflikter": [
+    "faglig integritet vs politisk press",
+    "utbygging vs nærmiljø",
+    "effektivitet vs grundighet",
+    "trafikksikkerhet vs økonomi",
+    "lovverk vs skjønn"
+  ],
+  "endings": [
+    { "id": "faglig_sterk", "navn": "Faglig sterk planlegger" },
+    { "id": "politisk_lydig", "navn": "Politisk lydig saksbehandler" },
+    { "id": "utbrent", "navn": "Utbrent kommunearbeider" },
+    { "id": "varsler", "navn": "Varsler" },
+    { "id": "ledertalent", "navn": "Ledertalent" }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 420,
+      "psyke": 62,
+      "energi": 71,
+      "integritet": 49,
+      "synlighet": 49,
+      "handlingsrom": 50
+    },
+    "relasjoner": {
+      "plansjef": 45,
+      "skolekontakt": 60,
+      "utbygger": 35,
+      "utvalgssekretaer": 50,
+      "nabo": 50,
+      "jurist": 55,
+      "politiker": 40
+    }
+  },
+  "dagsplan": {
+    "1": [
+      { "klokke": "10:00", "tekst": "Intern avklaring" },
+      { "klokke": "13:00", "tekst": "Plansaksmøte" },
+      { "klokke": "17:00", "tekst": "Privat avtale" }
+    ]
+  }
+}
