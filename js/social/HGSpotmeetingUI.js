@@ -1,3 +1,4 @@
+// @ts-nocheck
 (function(){
   'use strict';
 
@@ -6,21 +7,21 @@
   const STYLE_ID = 'hg-spotmeeting-ui-style';
 
   const PRESET_BY_ACTION = Object.freeze({
-    quiz: 'quiz_together',
-    route: 'route_one_day',
-    observation: 'shared_observation',
     match: 'compare_place_learning',
     place: 'compare_place_learning',
+    quiz: 'quiz_together',
+    observation: 'shared_observation',
+    route: 'route_one_day',
     topic: 'meet_topic',
     circle: 'meet_topic'
   });
 
   const CONTEXT_TYPE_BY_ACTION = Object.freeze({
-    quiz: 'quiz',
-    route: 'route',
-    observation: 'observation',
     match: 'place',
     place: 'place',
+    quiz: 'quiz',
+    observation: 'observation',
+    route: 'route',
     topic: 'topic',
     circle: 'circle'
   });
@@ -28,25 +29,25 @@
   const ACTION_LABELS = Object.freeze({
     match: 'Se kunnskapsmatcher',
     quiz: 'Inviter til quiz',
-    route: 'Inviter til rute',
     observation: 'Inviter til observasjon',
+    route: 'Inviter til rute',
     topic: 'Møtes rundt tema'
   });
 
   const ACTION_HELPERS = Object.freeze({
     match: 'Finn folk som matcher stedets tema og kunnskap.',
     quiz: 'Foreslå å ta en quiz sammen senere.',
-    route: 'Foreslå å gå en historisk rute en dag.',
     observation: 'Foreslå en felles observasjon knyttet til stedet.',
+    route: 'Foreslå å gå en historisk rute en dag.',
     topic: 'Foreslå å møtes rundt et felles tema.'
   });
 
-  const ON_SITE_ACTIONS = Object.freeze(['match', 'quiz', 'observation', 'route']);
-
+  const ACTIONS = Object.freeze(['match', 'quiz', 'observation', 'route']);
   let currentState = null;
 
   function isTestMode(){
-    try { return root.localStorage?.getItem('HG_TEST_MODE') === '1'; } catch { return false; }
+    try { return root.localStorage?.getItem('HG_TEST_MODE') === '1'; }
+    catch { return false; }
   }
 
   function escapeHTML(value){
@@ -63,36 +64,36 @@
     const style = root.document.createElement('style');
     style.id = STYLE_ID;
     style.textContent = `
-      #${SHEET_ID}[hidden]{ display:none !important; }
-      #${SHEET_ID}{ position:fixed; inset:0; z-index:3000; display:flex; align-items:flex-end; justify-content:center; background:rgba(0,0,0,.54); color:#fff; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
-      #${SHEET_ID} .hg-spotmeeting-panel{ width:min(560px,100%); max-height:min(82vh,720px); overflow:auto; margin:0 10px 10px; border:1px solid rgba(255,255,255,.18); border-radius:24px; background:#11100d; box-shadow:0 24px 70px rgba(0,0,0,.62); }
-      #${SHEET_ID} .hg-spotmeeting-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; padding:18px 18px 12px; border-bottom:1px solid rgba(255,255,255,.10); }
-      #${SHEET_ID} h2{ margin:0; font-size:22px; line-height:1.05; }
-      #${SHEET_ID} .hg-spotmeeting-context{ margin:6px 0 0; color:rgba(255,255,255,.76); font-size:14px; }
-      #${SHEET_ID} .hg-spotmeeting-close{ width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff; font-size:20px; line-height:1; cursor:pointer; }
-      #${SHEET_ID} .hg-spotmeeting-body{ display:grid; gap:14px; padding:16px 18px 18px; }
-      #${SHEET_ID} .hg-spotmeeting-note{ margin:0; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.07); color:rgba(255,255,255,.82); font-size:14px; line-height:1.35; }
-      #${SHEET_ID} .hg-spotmeeting-actions{ display:grid; gap:8px; }
-      #${SHEET_ID} .hg-spotmeeting-action{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.07); color:#fff; text-align:left; cursor:pointer; }
-      #${SHEET_ID} .hg-spotmeeting-action strong{ display:block; font-size:15px; }
-      #${SHEET_ID} .hg-spotmeeting-action span{ display:block; margin-top:2px; color:rgba(255,255,255,.66); font-size:12px; }
-      #${SHEET_ID} .hg-spotmeeting-action[aria-pressed="true"]{ border-color:rgba(247,226,163,.68); background:rgba(247,226,163,.12); }
-      #${SHEET_ID} .hg-spotmeeting-status{ margin:0; color:rgba(255,255,255,.78); font-size:14px; line-height:1.35; }
-      #${SHEET_ID} .hg-spotmeeting-candidates{ display:grid; gap:10px; }
-      #${SHEET_ID} .hg-spotmeeting-candidate{ display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:11px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.24); }
-      #${SHEET_ID} .hg-spotmeeting-candidate strong{ display:block; }
-      #${SHEET_ID} .hg-spotmeeting-candidate p{ margin:3px 0 0; color:rgba(255,255,255,.66); font-size:13px; line-height:1.3; }
-      #${SHEET_ID} .hg-spotmeeting-candidate button, #${SHEET_ID} .hg-spotmeeting-link{ min-height:36px; padding:0 12px; border-radius:999px; border:1px solid rgba(247,226,163,.42); background:#f7e2a3; color:#241a0d; font-weight:800; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; }
-      #${SHEET_ID} button:disabled{ opacity:.55; cursor:default; }
-      .pc-people-spotmeeting-cta{ width:100%; min-height:36px; border-radius:999px; border:1px solid rgba(247,226,163,.42); background:rgba(247,226,163,.12); color:#f7e2a3; font-weight:800; cursor:pointer; }
-      .pc-people-spotmeeting-note{ margin:0; color:rgba(255,255,255,.66); font-size:12px; line-height:1.35; }
-      .pc-events-spotmeeting{ display:grid; gap:7px; padding:7px 8px 8px; border-radius:14px; border:1px solid rgba(247,226,163,.22); background:rgba(247,226,163,.08); }
-      .pc-events-spotmeeting-head{ display:grid; gap:1px; }
-      .pc-events-spotmeeting-title{ color:#f7e2a3; font-weight:900; font-size:13px; line-height:1.1; }
-      .pc-events-spotmeeting-sub{ color:rgba(255,255,255,.66); font-size:11px; line-height:1.15; }
-      .pc-events-spotmeeting-actions{ display:grid; grid-template-columns:1fr 1fr; gap:5px; }
-      .pc-events-spotmeeting-action{ min-height:30px; padding:0 7px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.24); color:#fff; font-size:11px; font-weight:800; line-height:1.1; cursor:pointer; }
-      .pc-events-spotmeeting-action[data-hg-spotmeeting-action="match"]{ grid-column:1 / -1; background:rgba(247,226,163,.16); color:#f7e2a3; border-color:rgba(247,226,163,.32); }
+      #${SHEET_ID}[hidden]{display:none!important}
+      #${SHEET_ID}{position:fixed;inset:0;z-index:3000;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.54);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+      #${SHEET_ID} .hg-spotmeeting-panel{width:min(560px,100%);max-height:min(82vh,720px);overflow:auto;margin:0 10px 10px;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:#11100d;box-shadow:0 24px 70px rgba(0,0,0,.62)}
+      #${SHEET_ID} .hg-spotmeeting-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:18px 18px 12px;border-bottom:1px solid rgba(255,255,255,.10)}
+      #${SHEET_ID} h2{margin:0;font-size:22px;line-height:1.05}
+      #${SHEET_ID} .hg-spotmeeting-context{margin:6px 0 0;color:rgba(255,255,255,.76);font-size:14px}
+      #${SHEET_ID} .hg-spotmeeting-close{width:36px;height:36px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:20px;line-height:1;cursor:pointer}
+      #${SHEET_ID} .hg-spotmeeting-body{display:grid;gap:14px;padding:16px 18px 18px}
+      #${SHEET_ID} .hg-spotmeeting-note{margin:0;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font-size:14px;line-height:1.35}
+      #${SHEET_ID} .hg-spotmeeting-actions{display:grid;gap:8px}
+      #${SHEET_ID} .hg-spotmeeting-action{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;text-align:left;cursor:pointer}
+      #${SHEET_ID} .hg-spotmeeting-action strong{display:block;font-size:15px}
+      #${SHEET_ID} .hg-spotmeeting-action small{display:block;margin-top:2px;color:rgba(255,255,255,.66);font-size:12px}
+      #${SHEET_ID} .hg-spotmeeting-action[aria-pressed="true"]{border-color:rgba(247,226,163,.68);background:rgba(247,226,163,.12)}
+      #${SHEET_ID} .hg-spotmeeting-status{margin:0;color:rgba(255,255,255,.78);font-size:14px;line-height:1.35}
+      #${SHEET_ID} .hg-spotmeeting-candidates{display:grid;gap:10px}
+      #${SHEET_ID} .hg-spotmeeting-candidate{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:11px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.24)}
+      #${SHEET_ID} .hg-spotmeeting-candidate strong{display:block}
+      #${SHEET_ID} .hg-spotmeeting-candidate p{margin:3px 0 0;color:rgba(255,255,255,.66);font-size:13px;line-height:1.3}
+      #${SHEET_ID} .hg-spotmeeting-candidate button,#${SHEET_ID} .hg-spotmeeting-link{min-height:36px;padding:0 12px;border-radius:999px;border:1px solid rgba(247,226,163,.42);background:#f7e2a3;color:#241a0d;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+      #${SHEET_ID} button:disabled{opacity:.55;cursor:default}
+      .pc-people-spotmeeting-cta{width:100%;min-height:36px;border-radius:999px;border:1px solid rgba(247,226,163,.42);background:rgba(247,226,163,.12);color:#f7e2a3;font-weight:800;cursor:pointer}
+      .pc-people-spotmeeting-note{margin:0;color:rgba(255,255,255,.66);font-size:12px;line-height:1.35}
+      .pc-events-spotmeeting{display:grid;gap:7px;padding:7px 8px 8px;border-radius:14px;border:1px solid rgba(247,226,163,.22);background:rgba(247,226,163,.08)}
+      .pc-events-spotmeeting-head{display:grid;gap:1px}
+      .pc-events-spotmeeting-title{color:#f7e2a3;font-weight:900;font-size:13px;line-height:1.1}
+      .pc-events-spotmeeting-sub{color:rgba(255,255,255,.66);font-size:11px;line-height:1.15}
+      .pc-events-spotmeeting-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+      .pc-events-spotmeeting-action{min-height:30px;padding:0 7px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.24);color:#fff;font-size:11px;font-weight:800;line-height:1.1;cursor:pointer}
+      .pc-events-spotmeeting-action[data-hg-spotmeeting-action="match"]{grid-column:1/-1;background:rgba(247,226,163,.16);color:#f7e2a3;border-color:rgba(247,226,163,.32)}
     `;
     root.document.head?.appendChild(style);
   }
@@ -106,11 +107,8 @@
   function getCurrentPlace(anchor){
     const card = anchor?.closest?.('#placeCard') || root.document?.getElementById?.('placeCard');
     const sectionPlaceId = anchor?.closest?.('[data-hg-spotmeeting-place]')?.getAttribute?.('data-hg-spotmeeting-place');
-    const currentPlaceId = String(card?.dataset?.currentPlaceId || sectionPlaceId || '').trim();
-    return getPlaceById(currentPlaceId) || {
-      id: currentPlaceId || 'sted',
-      name: currentPlaceId || 'Sted'
-    };
+    const id = String(card?.dataset?.currentPlaceId || sectionPlaceId || '').trim();
+    return getPlaceById(id) || { id: id || 'sted', name: id || 'Sted' };
   }
 
   function getActivePlaceIdFromOnSiteBox(box){
@@ -188,34 +186,15 @@
   }
 
   function actionButton(action, selectedAction){
-    return `
-      <button class="hg-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}" aria-pressed="${selectedAction === action ? 'true' : 'false'}">
-        <span><strong>${escapeHTML(ACTION_LABELS[action] || action)}</strong><span>${escapeHTML(ACTION_HELPERS[action] || '')}</span></span>
-        <span aria-hidden="true">›</span>
-      </button>
-    `;
+    return `<button class="hg-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}" aria-pressed="${selectedAction === action ? 'true' : 'false'}"><span><strong>${escapeHTML(ACTION_LABELS[action] || action)}</strong><small>${escapeHTML(ACTION_HELPERS[action] || '')}</small></span><span aria-hidden="true">›</span></button>`;
   }
 
   function onSiteActionButton(action){
-    return `
-      <button class="pc-events-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}">
-        ${escapeHTML(ACTION_LABELS[action] || action)}
-      </button>
-    `;
+    return `<button class="pc-events-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}">${escapeHTML(ACTION_LABELS[action] || action)}</button>`;
   }
 
   function renderOnSitePanel(placeId){
-    return `
-      <section class="pc-events-spotmeeting" data-hg-spotmeeting-onsite="1" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}">
-        <div class="pc-events-spotmeeting-head">
-          <span class="pc-events-spotmeeting-title">Kunnskapsmøte</span>
-          <span class="pc-events-spotmeeting-sub">Basert på tema · ikke posisjon</span>
-        </div>
-        <div class="pc-events-spotmeeting-actions" aria-label="Kunnskapsmøte på stedet">
-          ${ON_SITE_ACTIONS.map(onSiteActionButton).join('')}
-        </div>
-      </section>
-    `;
+    return `<section class="pc-events-spotmeeting" data-hg-spotmeeting-onsite="1" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}"><div class="pc-events-spotmeeting-head"><span class="pc-events-spotmeeting-title">Kunnskapsmøte</span><span class="pc-events-spotmeeting-sub">Basert på tema · ikke posisjon</span></div><div class="pc-events-spotmeeting-actions" aria-label="Kunnskapsmøte på stedet">${ACTIONS.map(onSiteActionButton).join('')}</div></section>`;
   }
 
   function renderStatus(message, kind = 'status'){
@@ -233,10 +212,7 @@
     }
 
     if (!isTestMode()) {
-      target.innerHTML = `
-        ${renderStatus('Ekte Spotmeeting krever trygg backend. Demo kan testes i TEST_MODE.', 'backendDisabled')}
-        <a class="hg-spotmeeting-link" href="profile.html#socialmeet">Åpne Social Meet</a>
-      `;
+      target.innerHTML = `${renderStatus('Ekte Spotmeeting krever trygg backend. Demo kan testes i TEST_MODE.', 'backendDisabled')}<a class="hg-spotmeeting-link" href="profile.html#socialmeet">Åpne Social Meet</a>`;
       return;
     }
 
@@ -258,51 +234,17 @@
       return;
     }
 
-    target.innerHTML = `
-      <p class="hg-spotmeeting-status" data-hg-spotmeeting-state="ready">${escapeHTML(label)}</p>
-      <div class="hg-spotmeeting-candidates">
-        ${suggestions.slice(0, 4).map(candidate => {
-          const duplicate = getDuplicateInvite(candidate.targetUserId, contextForAction, presetMessageId);
-          const disabled = duplicate ? ' disabled' : '';
-          const status = duplicate ? 'Allerede sendt' : 'Send forslag';
-          return `
-            <article class="hg-spotmeeting-candidate">
-              <div>
-                <strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Demo-kandidat')}</strong>
-                <p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p>
-              </div>
-              <button type="button" data-hg-spotmeeting-send="1" data-hg-spotmeeting-target="${escapeHTML(candidate.targetUserId)}" data-hg-spotmeeting-preset="${escapeHTML(presetMessageId)}"${disabled}>${status}</button>
-            </article>
-          `;
-        }).join('')}
-      </div>
-      <p class="hg-spotmeeting-status">TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.</p>
-    `;
+    target.innerHTML = `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="ready">${escapeHTML(label)}</p><div class="hg-spotmeeting-candidates">${suggestions.slice(0, 4).map(candidate => {
+      const duplicate = getDuplicateInvite(candidate.targetUserId, contextForAction, presetMessageId);
+      const disabled = duplicate ? ' disabled' : '';
+      const status = duplicate ? 'Allerede sendt' : 'Send forslag';
+      return `<article class="hg-spotmeeting-candidate"><div><strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Demo-kandidat')}</strong><p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p></div><button type="button" data-hg-spotmeeting-send="1" data-hg-spotmeeting-target="${escapeHTML(candidate.targetUserId)}" data-hg-spotmeeting-preset="${escapeHTML(presetMessageId)}"${disabled}>${status}</button></article>`;
+    }).join('')}</div><p class="hg-spotmeeting-status">TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.</p>`;
   }
 
   function render(context, selectedAction = 'match'){
     const sheet = ensureSheet();
-    const actions = ['match', 'quiz', 'observation', 'route'];
-    sheet.innerHTML = `
-      <section class="hg-spotmeeting-panel">
-        <header class="hg-spotmeeting-head">
-          <div>
-            <h2>Kunnskapsmøte</h2>
-            <p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p>
-          </div>
-          <button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button>
-        </header>
-        <div class="hg-spotmeeting-body">
-          <p class="hg-spotmeeting-note">Basert på tema og kunnskap, ikke live-posisjon. Kun forhåndsvalg.</p>
-          <div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">
-            ${actions.map(action => actionButton(action, selectedAction)).join('')}
-          </div>
-          <div data-hg-spotmeeting-candidates>
-            ${renderStatus('Velg hvordan du vil starte.', 'ready')}
-          </div>
-        </div>
-      </section>
-    `;
+    sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>Kunnskapsmøte</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">Basert på tema og kunnskap, ikke live-posisjon. Kun forhåndsvalg.</p><div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${ACTIONS.map(action => actionButton(action, selectedAction)).join('')}</div><div data-hg-spotmeeting-candidates>${renderStatus('Velg hvordan du vil starte.', 'ready')}</div></div></section>`;
     renderCandidates(context, selectedAction);
   }
 
@@ -331,41 +273,30 @@
       contextType: CONTEXT_TYPE_BY_ACTION[currentState.action] || currentState.context.contextType || 'place'
     });
     const duplicate = getDuplicateInvite(targetUserId, context, presetMessageId);
-
     if (duplicate) {
       root.showToast?.('Kunnskapsmøte er allerede foreslått.');
       button.textContent = 'Allerede sendt';
       button.disabled = true;
       return { ok: false, reason: 'duplicate', invite: duplicate };
     }
-
     const result = root.HG_Spotmeeting.createSpotmeetingInvite(targetUserId, context, presetMessageId);
     if (!result?.ok) {
       const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
       if (target) target.innerHTML = renderStatus(`Kunne ikke sende: ${result?.reason || 'ukjent feil'}`, 'error');
       return result;
     }
-
     button.textContent = 'Sendt';
     button.disabled = true;
     root.showToast?.('Kunnskapsmøte sendt i TEST_MODE.');
     root.dispatchEvent?.(new CustomEvent('hg:spotmeetingChanged', { detail: { invite: result.invite } }));
     root.dispatchEvent?.(new CustomEvent('updateProfile', { detail: { source: 'spotmeeting' } }));
-
     const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
-    if (target) {
-      target.insertAdjacentHTML('beforeend', '<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>');
-    }
+    if (target) target.insertAdjacentHTML('beforeend', '<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>');
     return result;
   }
 
   function renderPeopleCta(placeId){
-    return `
-      <button class="pc-people-spotmeeting-cta" type="button" data-hg-spotmeeting-open="people" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}">
-        Foreslå kunnskapsmøte
-      </button>
-      <p class="pc-people-spotmeeting-note">Basert på personer og relasjoner her.</p>
-    `;
+    return `<button class="pc-people-spotmeeting-cta" type="button" data-hg-spotmeeting-open="people" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}">Foreslå kunnskapsmøte</button><p class="pc-people-spotmeeting-note">Basert på personer og relasjoner her.</p>`;
   }
 
   function enhanceOnSiteBox(box){
@@ -380,7 +311,7 @@
 
   function enhanceOnSiteBoxes(scope = root.document){
     const boxes = [];
-    if (scope?.id === 'pcEventsBox') boxes.push(scope);
+    if (scope instanceof HTMLElement && scope.id === 'pcEventsBox') boxes.push(scope);
     if (scope?.querySelectorAll) boxes.push(...scope.querySelectorAll('#pcEventsBox'));
     boxes.forEach(enhanceOnSiteBox);
   }
@@ -396,11 +327,19 @@
       wrapper.innerHTML = renderPeopleCta(placeId);
       section.replaceWith(wrapper);
     });
-
     enhanceOnSiteBoxes(scope);
+    root.document?.getElementById?.('pcExploreTogether')?.remove?.();
+  }
 
-    const footerButton = root.document?.getElementById?.('pcExploreTogether');
-    footerButton?.remove?.();
+  function openForElement(target, action, sourceSurface){
+    const place = getCurrentPlace(target);
+    open(buildPlaceContext(place, {
+      preferredAction: action || 'match',
+      sourceSurface,
+      reason: sourceSurface === 'placeCardPeople'
+        ? 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
+        : 'Kunnskapsmøte rundt dette stedet'
+    }));
   }
 
   function handleClick(event){
@@ -417,12 +356,7 @@
     if (target.id === 'pcExploreTogether') {
       event.preventDefault?.();
       event.stopPropagation?.();
-      const place = getCurrentPlace(target);
-      open(buildPlaceContext(place, {
-        preferredAction: 'match',
-        sourceSurface: 'placeCardFooterDeprecated',
-        reason: 'Kunnskapsmøte rundt dette stedet'
-      }));
+      openForElement(target, 'match', 'placeCardFooterDeprecated');
       target.remove?.();
       return;
     }
@@ -445,26 +379,14 @@
         return;
       }
       const inOnSite = Boolean(target.closest?.('[data-hg-spotmeeting-onsite="1"]'));
-      const place = getCurrentPlace(target);
-      open(buildPlaceContext(place, {
-        preferredAction: action,
-        sourceSurface: inOnSite ? 'placeCardOnSite' : 'placeCardPeople',
-        reason: inOnSite
-          ? 'Kunnskapsmøte rundt dette stedet'
-          : 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
-      }));
+      openForElement(target, action, inOnSite ? 'placeCardOnSite' : 'placeCardPeople');
       return;
     }
 
     if (target.hasAttribute('data-knowledge-spot-match')) {
       event.preventDefault?.();
       event.stopPropagation?.();
-      const place = getCurrentPlace(target);
-      open(buildPlaceContext(place, {
-        preferredAction: 'match',
-        sourceSurface: 'placeCardOnSite',
-        reason: 'Kunnskapsmøte rundt dette stedet'
-      }));
+      openForElement(target, 'match', 'placeCardOnSite');
       return;
     }
 
@@ -472,14 +394,7 @@
       event.preventDefault?.();
       event.stopPropagation?.();
       const surface = String(target.getAttribute('data-hg-spotmeeting-open') || '') === 'people' ? 'placeCardPeople' : 'placeCardOnSite';
-      const place = getCurrentPlace(target);
-      open(buildPlaceContext(place, {
-        preferredAction: 'match',
-        sourceSurface: surface,
-        reason: surface === 'placeCardPeople'
-          ? 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
-          : 'Kunnskapsmøte rundt dette stedet'
-      }));
+      openForElement(target, 'match', surface);
     }
   }
 
