@@ -65,7 +65,7 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 
 | Motor | Global | Ansvar |
 | --- | --- | --- |
-| DailyMailBuilder | `CivicationDailyMailBuilder` | Bygger **én spillbar arbeidsdag** fra `data/Civication/mailDayProgram.json`: faser (`morning … day_end`), slots, volum og rytme. Velger dagens mailer fra katalogene, holder uke-2-innhold (`_week2_`/`advanced` i id/family) utenfor dag 1 til rolleplanen når det. `buildQueue` / `enqueueNext` / `inspect`. |
+| DailyMailBuilder | `CivicationDailyMailBuilder` | Bygger dagskøen fra `data/Civication/mailDayProgram.json`: faser (`morning … day_end`), slots, volum og rytme. **Ruter jobbinnhold kun til arbeidsfasene (`forenoon`+`workday`); private faser får personlige/genererte mailer** (se «To rytmer»). Holder uke-2-innhold (`_week2_`/`advanced` i id/family) utenfor dag 1 til rolleplanen når det. `buildQueue` / `enqueueNext` / `inspect`. |
 | MailRuntime | `CivicationMailRuntime` | **Langsiktig rolleprogresjon.** Resolver aktiv rolle, leser `mailPlans/{kategori}/{role_scope}_plan.json`, velger neste jobbmail fra stegets `allowed_families`, og fører rolleplanen videre. |
 | MailEngine | `CivicationMailEngine` | **Innboks/lagring.** Mail-envelopes, pending/resolved/read/archive/delete, dedupe, legacy-speil til `hg_civi_inbox_v1`. `answerMail(mailId, choiceId)` kaller EventEngine og markerer resolved. |
 | EventEngine | `CivicationEventEngine` / `HG_CiviEngine` | Generisk hendelsesmotor: `answer`/resolution, choice-effekter (score, strikes, stability, kapital, psyke, task completion, followups, warnings/fired). |
@@ -75,6 +75,42 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 
 Arbeidsdeling i én setning: **MailRuntime velger hvilken mail som skal komme, DailyMailBuilder
 bestemmer dagens rytme, MailEngine lagrer og viser den, EventEngine beregner svaret.**
+
+## To rytmer: privat døgn vs. arbeidsdag
+
+Civication har **to rytmer**, og de skal holdes adskilt:
+
+- **Døgnrytme (privat):** `morning`, `lunch`, `afternoon`, `dinner`, `evening`,
+  `day_end` (natt/dagslutt). Dette er spillerens eget liv — familie, fritid, helse,
+  økonomi, kalender, relasjoner og oppsummering av dagen.
+- **Arbeidsrytme (jobb):** `forenoon` + `workday`. Dette er jobbøkten hos arbeidsgiveren,
+  med rollens saker, konflikter og planmailer.
+
+**Jobbinnhold lever i arbeidsrytmen, ikke i alle døgnfaser.** Tidligere bygde
+DailyMailBuilder hele døgnet som én arbeidsdag, slik at rolle-/case-mailer
+(f.eks. Arealplanlegger/Lillebekk/plankart) dukket opp i morgen, lunsj, middag,
+kveld og dagslutt og føltes som spam. Nå gjelder:
+
+- Morgenen leverer ingen case-mail. Den viser en overgang: *«Du har jobb som
+  {rolle}. Neste handling: Gå til jobb / Start arbeidsdag hos {arbeidsgiver}.»*
+- Rollekatalogen (jobbverdenen til den aktive rollen) fyller **kun** arbeidsfasene.
+  Private faser får personlige narrativer og genererte døgnfase-mailer.
+- Private faser bærer klassen `daily_private` med tom `role_scope`; arbeidsfasene
+  bærer `daily_workday` med rollens `role_scope`. Et defensivt filter holder
+  jobbinnhold ute av private faser også fra gamle saves.
+- **Arbeidsdag-telleren (`workday_day_index`) er frikoblet fra døgnfase-telleren
+  (`calendar.dayIndex`).** Den økes kun når arbeidsdagen faktisk fullføres, aldri
+  bare fordi en ny døgnfase starter.
+
+Eierne:
+
+| Motor | Global | Ansvar |
+| --- | --- | --- |
+| DayFlow | `CivicationDayFlow` | Controller for livsrytmen: kjenner `current_day_phase`, `has_active_job`, `workday_completed_today` og oversetter til én neste handling (`go_to_work` i morgenfasen). `goToWork()` starter arbeidsdagen og flytter inn i arbeidsfasen; `finishWorkday()` fullfører og returnerer til privat rytme. |
+| WorkdayRuntime | `CivicationWorkdayRuntime` | Eier arbeidsdag-status (`workday_runtime_v1`): arbeidsgiver (`employer_id`), `role_scope`, og arbeidsdag-telleren. `startWorkday` / `completeWorkday` (idempotent per dato) / `getWorkdayDayIndex`. |
+
+Tråd-dedupe/threadKey fra den forrige opprydningen beholdes som **sikkerhetsnett**,
+men hovedløsningen er denne separasjonen mellom privat dag og arbeidsdag.
 
 ## Psyke og Psykologrommet
 

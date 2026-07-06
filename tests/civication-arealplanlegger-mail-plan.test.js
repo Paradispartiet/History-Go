@@ -188,9 +188,27 @@ async function run() {
     ['plankart', 'målbildet', 'skolevei', 'grøntdrag', 'støy', 'medvirkning', 'rekkefølgekrav'].some(term => dayOneText.includes(term)),
     'Day 1 should include at least one core Arealplanlegger topic'
   );
+  // To rytmer (se js/Civication/README.md): jobb/rolleinnhold lever KUN i
+  // arbeidsfasene (forenoon + workday). De private døgnfasene skal aldri bære
+  // jobb-role_scope eller daily_workday-klassen.
+  const PRIVATE_PHASES = ['morning', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'];
+  const WORK_PHASES = ['forenoon', 'workday'];
+  for (const row of runtime.items) {
+    if (!PRIVATE_PHASES.includes(row.phase)) continue;
+    assert.notStrictEqual(row.event?.role_scope, 'by_radgiver_plan', `${row.phase}:${row.slot} (${row.event?.id}) må ikke bære jobb-role_scope`);
+    assert.notStrictEqual(row.event?.mail_class, 'daily_workday', `${row.phase}:${row.slot} (${row.event?.id}) må ikke være en daily_workday-mail`);
+  }
   assert(
-    runtime.items.some(row => row.phase === 'evening' && ['knowledge', 'consequence'].includes(row.event?.mail_type)),
-    'Day 1 evening should land in a knowledge or consequence mail'
+    runtime.items.some(row => WORK_PHASES.includes(row.phase) && row.event?.role_scope === 'by_radgiver_plan'),
+    'Arealplanlegger-rollemailene skal ligge i arbeidsfasene (forenoon/workday)'
+  );
+  assert(
+    runtime.items.some(row => row.phase === 'morning' && row.slot === 'go_to_work' && row.event?.go_to_work === true),
+    'morgenen skal lede til «Gå til jobb», ikke en case-mail'
+  );
+  assert(
+    runtime.items.some(row => WORK_PHASES.includes(row.phase) && ['conflict', 'event'].includes(row.event?.mail_type)),
+    'arbeidsdagen skal introdusere en arealplan-konflikt/hendelse'
   );
   assert(
     runtime.items.some(row => row.slot === 'carryover' && row.phase === 'day_end'),
@@ -216,14 +234,14 @@ async function run() {
   );
 
   const auditBySlot = new Map(dayOneAudit.map(row => [`${row.phase}:${row.slot}`, row]));
+  // Arbeidsfase-ankrene er deterministiske: rollekatalogen fyller kun
+  // arbeidsdagen (forenoon + workday), i fast dramaturgisk rekkefølge.
   const expectedDayOneAnchors = {
-    'morning:morning_brief': 'by_areal_story_linje_001',
     'forenoon:primary_work_mail': 'by_areal_job_plankart_001',
-    'workday:conflict_or_event': 'by_areal_event_utvalg_001',
-    'workday:analysis_followup': 'by_areal_people_plansjef_004',
-    'lunch:informal_people_mail': 'by_areal_people_arkitekt_008',
-    'afternoon:family_or_practical': 'by_areal_people_utbygger_001',
-    'evening:consequence_mail': 'by_areal_consequence_002'
+    'workday:main_delivery': 'by_areal_job_plankart_002',
+    'workday:conflict_or_event': 'by_areal_conflict_stoy_001',
+    'workday:analysis_followup': 'by_areal_people_politisk_007',
+    'workday:operational_batch': 'by_areal_micro_009'
   };
   for (const [slotKey, expectedId] of Object.entries(expectedDayOneAnchors)) {
     assert.strictEqual(
@@ -232,6 +250,12 @@ async function run() {
       `Day 1 anchor ${slotKey} should stay deterministic and dramaturgically placed`
     );
   }
+  // Morgenen forankres av overgangen til arbeidsdag, ikke en rolle-/case-mail.
+  assert.strictEqual(
+    auditBySlot.get('morning:go_to_work')?.type,
+    'day_transition',
+    'Day 1 morning should be anchored by the go-to-work transition'
+  );
 
   // Tråd-dedupe: hver case (narrative_arc-variantene i micro/followup/knowledge/
   // consequence-pakkene) skal ha nøyaktig én kanonisk melding per dag — aldri
@@ -265,12 +289,18 @@ async function run() {
     .filter(row => row.phase === phase)
     .map(row => row.event || {})).toLowerCase();
   const hasAny = (text, terms) => terms.some(term => text.includes(term));
-  assert(hasAny(phaseText('morning'), ['lillebekk', 'plankart', 'linje']), 'morning should open Lillebekk/plankart context');
+  const hasNone = (text, terms) => terms.every(term => !text.includes(term));
+  // Morgenen leder til jobb; selve arbeidet skjer i arbeidsfasene.
+  assert(hasAny(phaseText('morning'), ['gå til jobb', 'arbeidsdag', 'du har jobb']), 'morning should lead to the workday, not open a case');
   assert(hasAny(phaseText('forenoon'), ['plankart', 'stedsanalyse', 'analyse', 'nabolag', 'høydeillustrasjon']), 'forenoon should establish plankart/stedsanalyse work');
   assert(hasAny(phaseText('workday'), ['konflikt', 'utvalg', 'frist', 'målkonflikt', 'politisk', 'grøntdrag', 'skolevei', 'støy']), 'workday should introduce area-planning conflict');
-  assert(hasAny(phaseText('lunch'), ['nabo', 'skolekontakt', 'lokal', 'snarveien', 'medvirkning', 'plankonsulent', 'høydeillustrasjon']), 'lunch should add people/local knowledge');
-  assert(hasAny(phaseText('afternoon'), ['utbygger', 'grønnstruktur', 'sol/skygge', 'konflikt', 'press']), 'afternoon should follow up conflict or pressure');
-  assert(hasAny(phaseText('evening'), ['knowledge', 'consequence', 'hensynssone', 'planbestemmelser', 'læring', 'risiko']), 'evening should land in knowledge/consequence');
+  // De private fasene bærer personlig/døgnrytme-innhold, aldri arealplan-jobbsaker.
+  const jobTerms = ['plankart', 'lillebekk', 'utbygger', 'varelevering', 'nabomail', 'reguleringsplan', 'hensynssone', 'rekkefølgekrav', 'utvalgssekretær'];
+  assert(hasNone(phaseText('lunch'), jobTerms), 'lunch må ikke inneholde arealplan-jobbsaker');
+  assert(hasNone(phaseText('afternoon'), jobTerms), 'afternoon må ikke inneholde arealplan-jobbsaker');
+  assert(hasNone(phaseText('dinner'), jobTerms), 'dinner må ikke inneholde arealplan-jobbsaker');
+  assert(hasNone(phaseText('evening'), jobTerms), 'evening må ikke inneholde arealplan-jobbsaker');
+  assert(hasAny(phaseText('dinner'), ['middag', 'mat', 'spise']), 'dinner should carry private meal/day-rhythm content');
   assert(hasAny(phaseText('day_end'), ['følger med', 'carryover', 'i morgen', 'læringspunkt', 'dagslutt']), 'day_end should carry the day forward');
 
   const sourceBackedItems = runtime.items.filter(row => row.event?.source_type !== 'daily_generated');
