@@ -1,0 +1,376 @@
+{
+  "version": 1,
+  "rolle": "arealplanlegger",
+  "scenes": [
+    {
+      "id": "skolevei_01_melding",
+      "threadId": "skolevei_parkeringskjeller",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "skolekontakt",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Skolekontakt peker på snarveien bak parkeringskjelleren",
+      "tekst": "Skolekontakten skriver: «Barna går ikke der planen antar. Den faktiske skoleveien går over tomta, bak den planlagte parkeringskjelleren. Ingen har spurt oss.»",
+      "valg": [
+        {
+          "id": "kartlegging",
+          "tekst": "Be om kartlegging av faktisk skolevei",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "skolekontakt": 10, "plansjef": -3 },
+            "meters": { "integritet": 5, "handlingsrom": -2, "energi": -3 },
+            "flagg": { "tok_skolevei_alvorlig": true }
+          },
+          "laaserOpp": ["skolevei_02_kartlegging"]
+        },
+        {
+          "id": "til_plansjef",
+          "tekst": "Send saken til plansjef",
+          "tone": "forsiktig",
+          "effekter": {
+            "relasjoner": { "plansjef": -5, "skolekontakt": 2 },
+            "meters": { "synlighet": -3, "handlingsrom": -3 },
+            "flagg": { "loeftet_skolevei_til_plansjef": true }
+          },
+          "laaserOpp": ["skolevei_02_plansjef"]
+        },
+        {
+          "id": "avvis",
+          "tekst": "Svar at dette ligger utenfor plansaken",
+          "tone": "avvisende",
+          "effekter": {
+            "relasjoner": { "skolekontakt": -12, "utbygger": 4 },
+            "meters": { "integritet": -6, "psyke": -2 },
+            "flagg": { "avviste_skolevei": true }
+          },
+          "laaserOpp": ["skolevei_02_politisk"]
+        },
+        {
+          "id": "utbygger_kommentar",
+          "tekst": "Be utbygger kommentere",
+          "tone": "avventende",
+          "effekter": {
+            "relasjoner": { "utbygger": 3, "skolekontakt": -4 },
+            "meters": { "handlingsrom": 2, "integritet": -2 },
+            "flagg": { "spurte_utbygger_om_skolevei": true }
+          },
+          "laaserOpp": ["skolevei_02_utbygger"]
+        }
+      ]
+    },
+    {
+      "id": "skolevei_02_kartlegging",
+      "threadId": "skolevei_parkeringskjeller",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": "skolekontakt",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Kartleggingen bekrefter snarveien",
+      "tekst": "Skolekontakten sender bilder og en enkel telling: over 60 barn bruker snarveien hver morgen. Traséen krysser nøyaktig der utbygger vil ha nedkjøring til parkeringskjelleren.",
+      "valg": [
+        {
+          "id": "skriv_notat",
+          "tekst": "Skriv et faglig notat om skoleveien i plansaken",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "skolekontakt": 6, "utbygger": -6 },
+            "meters": { "integritet": 6, "energi": -6, "synlighet": 4 },
+            "flagg": { "skrev_skoleveinotat": true }
+          }
+        },
+        {
+          "id": "vent_med_notat",
+          "tekst": "Legg tallene i skuffen til utbygger har svart",
+          "tone": "avventende",
+          "effekter": {
+            "relasjoner": { "utbygger": 2 },
+            "meters": { "integritet": -4, "psyke": -3 },
+            "flagg": { "holdt_kartlegging_tilbake": true }
+          }
+        }
+      ]
+    },
+    {
+      "id": "skolevei_02_plansjef",
+      "threadId": "skolevei_parkeringskjeller",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "møte",
+      "avsender": "plansjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Plansjefen sender saken tilbake",
+      "tekst": "Plansjefen stikker innom: «Dette er din sak. Ikke send meg ting du kan avgjøre selv. Hva anbefaler du?»",
+      "valg": [
+        {
+          "id": "anbefal_kartlegging",
+          "tekst": "Anbefale kartlegging av skoleveien likevel",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "plansjef": 3, "skolekontakt": 6 },
+            "meters": { "integritet": 5, "energi": -4 },
+            "flagg": { "tok_skolevei_alvorlig": true }
+          }
+        },
+        {
+          "id": "anbefal_ingenting",
+          "tekst": "Si at saken kan gå videre uten endringer",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": { "plansjef": 4, "skolekontakt": -8 },
+            "meters": { "integritet": -6, "handlingsrom": 2 },
+            "flagg": { "lot_skolevei_ligge": true }
+          }
+        }
+      ]
+    },
+    {
+      "id": "skolevei_02_utbygger",
+      "threadId": "skolevei_parkeringskjeller",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "telefon",
+      "avsender": "utbygger",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Utbyggeren avfeier snarveien",
+      "tekst": "Utbyggeren ringer: «Den stien er ikke regulert skolevei. Vi kan ikke planlegge etter hvor folk tilfeldigvis går. Kan vi lukke dette?»",
+      "valg": [
+        {
+          "id": "krev_dokumentasjon",
+          "tekst": "Kreve at utbygger dokumenterer trafikksikker skolevei",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "utbygger": -8, "skolekontakt": 8 },
+            "meters": { "integritet": 6, "synlighet": 3, "energi": -3 },
+            "flagg": { "tok_skolevei_alvorlig": true }
+          }
+        },
+        {
+          "id": "aksepter_svar",
+          "tekst": "Notere svaret og gå videre",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": { "utbygger": 5, "skolekontakt": -6 },
+            "meters": { "integritet": -5, "handlingsrom": 2 },
+            "flagg": { "lot_skolevei_ligge": true }
+          }
+        }
+      ]
+    },
+    {
+      "id": "skolevei_02_politisk",
+      "threadId": "skolevei_parkeringskjeller",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "utvalgssekretaer",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Skoleveien dukker opp politisk likevel",
+      "tekst": "Utvalgssekretæren videresender: skolekontakten har gått rett til utvalgslederen. Nå vil politikerne vite hvorfor administrasjonen avviste innspillet.",
+      "valg": [
+        {
+          "id": "snu_og_utred",
+          "tekst": "Snu: be om at skoleveien utredes i saken",
+          "tone": "ydmyk",
+          "effekter": {
+            "relasjoner": { "skolekontakt": 4, "politiker": 4, "plansjef": -3 },
+            "meters": { "integritet": 3, "synlighet": 5, "psyke": -3 },
+            "flagg": { "tok_skolevei_alvorlig": true }
+          }
+        },
+        {
+          "id": "forsvar_avvisning",
+          "tekst": "Forsvare avvisningen som formelt riktig",
+          "tone": "formell",
+          "effekter": {
+            "relasjoner": { "politiker": -6, "skolekontakt": -6, "jurist": 3 },
+            "meters": { "integritet": -3, "synlighet": 6, "psyke": -4 },
+            "flagg": { "forsvarte_avvisning": true }
+          }
+        }
+      ]
+    },
+    {
+      "id": "plansjef_01_reaksjon",
+      "threadId": "plansjef_merarbeid",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "møte",
+      "avsender": "plansjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Intern avklaring: plansjefen vil ha flyt",
+      "tekst": "På den interne avklaringen klokka ti er plansjefen tydelig: «Vi har tre saker på overtid. Jeg trenger at parkeringskjelleren går glatt gjennom. Ikke lag mer arbeid enn nødvendig.»",
+      "valg": [
+        {
+          "id": "forsvar_grundighet",
+          "tekst": "Si at trafikksikkerhet ikke er merarbeid, men kjernen i saken",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "plansjef": -4 },
+            "meters": { "integritet": 6, "psyke": 2, "synlighet": 2 },
+            "flagg": { "forsvarte_grundighet": true }
+          }
+        },
+        {
+          "id": "foey_deg",
+          "tekst": "Nikke og love å holde tempoet oppe",
+          "tone": "lojal",
+          "effekter": {
+            "relasjoner": { "plansjef": 6 },
+            "meters": { "integritet": -5, "psyke": -3, "handlingsrom": 2 },
+            "flagg": { "lovet_tempo": true }
+          }
+        },
+        {
+          "id": "foresla_kompromiss",
+          "tekst": "Foreslå en rask, avgrenset skoleveivurdering",
+          "tone": "pragmatisk",
+          "effekter": {
+            "relasjoner": { "plansjef": 2, "skolekontakt": 3 },
+            "meters": { "integritet": 2, "energi": -4 },
+            "flagg": { "foreslo_kompromiss": true }
+          }
+        }
+      ]
+    },
+    {
+      "id": "nabomail_01_lang",
+      "threadId": "lang_nabomail",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "nabo",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Nabo har sendt fire sider om byggehøyder",
+      "tekst": "En nabo har sendt et høringsinnspill på fire tettskrevne sider: sol/skygge-diagrammer, feil i støyrapporten, tre presedens-saker og en avslutning om at «ingen i kommunen leser dette uansett».",
+      "valg": [
+        {
+          "id": "grundig_svar",
+          "tekst": "Sette av tiden det tar og svare grundig på hvert punkt",
+          "tone": "grundig",
+          "effekter": {
+            "relasjoner": { "nabo": 10, "plansjef": -2 },
+            "meters": { "energi": -8, "integritet": 4 },
+            "flagg": { "svarte_nabo_grundig": true }
+          }
+        },
+        {
+          "id": "kort_svar",
+          "tekst": "Svare kort at innspillet er mottatt og vurderes samlet",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": { "nabo": -6, "plansjef": 2 },
+            "meters": { "energi": -1, "integritet": -2 },
+            "flagg": { "svarte_nabo_kort": true }
+          }
+        },
+        {
+          "id": "ring_naboen",
+          "tekst": "Ringe naboen og ta de viktigste punktene muntlig",
+          "tone": "personlig",
+          "effekter": {
+            "relasjoner": { "nabo": 6 },
+            "meters": { "energi": -4, "psyke": 2, "synlighet": 2 },
+            "flagg": { "ringte_naboen": true }
+          }
+        }
+      ]
+    },
+    {
+      "id": "utbygger_01_press",
+      "threadId": "utbygger_tidspress",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "møte",
+      "avsender": "utbygger",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Plansaksmøte: utbygger krever dato",
+      "tekst": "På plansaksmøtet klokka tretten legger utbyggeren fram en finansieringsfrist: «Uten avklaring innen fredag ryker lånetilsagnet. Kan dere garantere fremdrift?»",
+      "valg": [
+        {
+          "id": "staa_paa_prosess",
+          "tekst": "Stå på ordinær prosess: ingen garanti før saken er forsvarlig utredet",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "utbygger": -7, "jurist": 4 },
+            "meters": { "integritet": 6, "psyke": -2 },
+            "flagg": { "sto_paa_prosess": true }
+          }
+        },
+        {
+          "id": "gi_delavklaring",
+          "tekst": "Gi en skriftlig delavklaring på det som faktisk er avklart",
+          "tone": "pragmatisk",
+          "effekter": {
+            "relasjoner": { "utbygger": 5, "plansjef": 3 },
+            "meters": { "energi": -5, "handlingsrom": -2 },
+            "flagg": { "ga_delavklaring": true }
+          }
+        },
+        {
+          "id": "eskaler",
+          "tekst": "Løfte fristspørsmålet til plansjefen",
+          "tone": "forsiktig",
+          "effekter": {
+            "relasjoner": { "plansjef": -3, "utbygger": -2 },
+            "meters": { "synlighet": -3, "psyke": 1 },
+            "flagg": { "eskalerte_frist": true }
+          }
+        }
+      ]
+    },
+    {
+      "id": "politisk_01_avklaring",
+      "threadId": "politisk_avklaring",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "telefon",
+      "avsender": "politiker",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Utvalgslederen ringer: «Hva er egentlig politisk her?»",
+      "tekst": "Utvalgslederen ringer direkte: «Dere skriver at byggehøyden er en faglig vurdering. Men er ikke det egentlig et politisk valg? Hvor går grensen?»",
+      "valg": [
+        {
+          "id": "tydelig_faggrense",
+          "tekst": "Forklare tydelig hva som er lovkrav, hva som er fag og hva som er politikk",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "politiker": 6, "jurist": 4 },
+            "meters": { "integritet": 5, "synlighet": 4, "energi": -3 },
+            "flagg": { "trakk_faggrense": true }
+          }
+        },
+        {
+          "id": "gi_politikeren_rom",
+          "tekst": "Si at utvalget selvsagt kan lande høyden politisk",
+          "tone": "lydhør",
+          "effekter": {
+            "relasjoner": { "politiker": 8, "plansjef": -2, "jurist": -4 },
+            "meters": { "integritet": -6, "handlingsrom": -3 },
+            "flagg": { "ga_politikeren_rom": true }
+          }
+        },
+        {
+          "id": "vis_til_jurist",
+          "tekst": "Be om å få komme tilbake etter en runde med juristen",
+          "tone": "forsiktig",
+          "effekter": {
+            "relasjoner": { "jurist": 5, "politiker": -3 },
+            "meters": { "handlingsrom": 2, "energi": -2 },
+            "flagg": { "sendte_sak_til_politisk_behandling": false }
+          }
+        }
+      ]
+    }
+  ]
+}

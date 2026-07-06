@@ -1,0 +1,275 @@
+// js/Civication/lifestory/lifestoryContent.js
+//
+// Civication Life Story System — innholdspakker.
+// Bygger og validerer fortellingspakkene (rolle + privatliv) som Day Runner
+// spiller. Dette er IKKE en motor: filen kan ikke generere innhold, den kan
+// bare sette sammen og kontrollere det som ligger i
+// data/Civication/lifestory/.
+//
+// Validatoren håndhever de fire lovene (docs/civication-life-story-system.md):
+//   1. Ingen valg uten konsekvens.
+//   2. Ingen konsekvens uten state-endring.
+//   3. Ingen scene uten tråd.
+//   4. Ingen tråd uten konflikt.
+// Brudd => FAIL FAST (throw). Ingen normalisering, ingen gjetting.
+//
+// DOM-fri og fetch-fri i kjernen (buildContent/validateContent) slik at den
+// kan testes rett i Node. Kun loadContent() bruker fetch (nettleser).
+
+(function (globalScope) {
+  "use strict";
+
+  const MANIFEST_PATH = "data/Civication/lifestory/manifest.json";
+
+  /** Kanoniske målere i Player State. Andre nøkler i effekter => feil. */
+  const METERS = ["penger", "psyke", "energi", "integritet", "synlighet", "handlingsrom"];
+
+  /** Gyldige visningstyper for en scene (mail er bare én type). */
+  const SCENE_TYPES = [
+    "melding", "møte", "telefon", "kalenderhendelse", "intern vurdering",
+    "privat hendelse", "krise", "samtale", "refleksjon"
+  ];
+
+  /**
+   * @typedef {Object} LifestoryChoice
+   * @property {string} id
+   * @property {string} tekst
+   * @property {string} [tone]
+   * @property {{ relasjoner?: Record<string, number>, meters?: Record<string, number>, flagg?: Record<string, boolean|number|string> }} effekter
+   * @property {string[]} [laaserOpp]
+   *
+   * @typedef {Object} LifestoryScene
+   * @property {string} id
+   * @property {string} threadId
+   * @property {string} fase
+   * @property {number} dag
+   * @property {string} visningstype
+   * @property {string|null} [avsender]
+   * @property {"start"|"laast"} tilgjengelighet
+   * @property {number} [prioritet]
+   * @property {string} tittel
+   * @property {string} tekst
+   * @property {LifestoryChoice[]} valg
+   *
+   * @typedef {Object} LifestoryThread
+   * @property {string} id
+   * @property {string} type
+   * @property {string} tittel
+   * @property {string} tema
+   * @property {string} konflikt
+   * @property {string[]} personer
+   * @property {number} startDag
+   *
+   * @typedef {Object} LifestoryContent
+   * @property {any} role
+   * @property {{ id: string, navn: string, rekkefolge: number }[]} faser
+   * @property {LifestoryThread[]} threads
+   * @property {LifestoryScene[]} scenes
+   */
+
+  /**
+   * Setter sammen rå JSON-filer til én innholdspakke og validerer den.
+   * Kaster ved første strukturelle brudd (fail fast).
+   * @param {{ role: any, phaseDefinitions: any, roleThreads: any, roleScenes: any, lifeThreads: any, lifeScenes: any }} raw
+   * @returns {LifestoryContent}
+   */
+  function buildContent(raw) {
+    if (!raw || typeof raw !== "object") throw new Error("[LifestoryContent] mangler rådata");
+
+    const role = raw.role;
+    const faser = raw.phaseDefinitions && Array.isArray(raw.phaseDefinitions.faser)
+      ? raw.phaseDefinitions.faser.slice().sort((a, b) => a.rekkefolge - b.rekkefolge)
+      : null;
+    const threads = []
+      .concat(Array.isArray(raw.roleThreads?.threads) ? raw.roleThreads.threads : [])
+      .concat(Array.isArray(raw.lifeThreads?.threads) ? raw.lifeThreads.threads : []);
+    const scenes = []
+      .concat(Array.isArray(raw.roleScenes?.scenes) ? raw.roleScenes.scenes : [])
+      .concat(Array.isArray(raw.lifeScenes?.scenes) ? raw.lifeScenes.scenes : []);
+
+    const content = { role, faser, threads, scenes };
+    validateContent(content);
+    return /** @type {LifestoryContent} */ (content);
+  }
+
+  /**
+   * Håndhever de fire lovene + referanseintegritet. Samler ALLE brudd og
+   * kaster én feil med hele listen, så innholdsforfattere ser alt på én gang.
+   * @param {any} content
+   */
+  function validateContent(content) {
+    /** @type {string[]} */
+    const errors = [];
+    const push = (msg) => errors.push(msg);
+
+    if (!content || typeof content !== "object") {
+      throw new Error("[LifestoryContent] innholdspakke mangler");
+    }
+
+    const role = content.role;
+    if (!role || typeof role.id !== "string" || !role.id) push("rolle mangler id");
+    const startMeters = role?.startState?.meters || {};
+    const startRelasjoner = role?.startState?.relasjoner || {};
+    for (const meter of METERS) {
+      if (typeof startMeters[meter] !== "number") push(`rolle ${role?.id}: startState.meters.${meter} mangler`);
+    }
+
+    const faser = content.faser;
+    if (!Array.isArray(faser) || !faser.length) {
+      push("phaseDefinitions mangler eller er tom");
+    }
+    const faseIds = new Set((faser || []).map((f) => f?.id));
+
+    // Tråder: lov 4 — ingen tråd uten konflikt.
+    const threadIds = new Set();
+    for (const thread of content.threads || []) {
+      const tid = thread?.id;
+      if (!tid || typeof tid !== "string") { push("tråd uten id"); continue; }
+      if (threadIds.has(tid)) push(`duplikat tråd-id: ${tid}`);
+      threadIds.add(tid);
+      if (!thread.konflikt || !String(thread.konflikt).trim()) push(`tråd ${tid}: mangler konflikt (lov 4)`);
+      if (!thread.tittel) push(`tråd ${tid}: mangler tittel`);
+      if (thread.type !== "arbeidsliv" && thread.type !== "privatliv") push(`tråd ${tid}: ugyldig type "${thread.type}"`);
+    }
+
+    // Scener: lov 3 — ingen scene uten tråd. Lov 1+2 per valg.
+    const sceneIds = new Set();
+    const scenes = content.scenes || [];
+    for (const scene of scenes) {
+      const sid = scene?.id;
+      if (!sid || typeof sid !== "string") { push("scene uten id"); continue; }
+      if (sceneIds.has(sid)) push(`duplikat scene-id: ${sid}`);
+      sceneIds.add(sid);
+
+      if (!scene.threadId || !threadIds.has(scene.threadId)) {
+        push(`scene ${sid}: threadId "${scene.threadId}" finnes ikke (lov 3)`);
+      }
+      if (!faseIds.has(scene.fase)) push(`scene ${sid}: ukjent fase "${scene.fase}"`);
+      if (typeof scene.dag !== "number" || scene.dag < 1) push(`scene ${sid}: ugyldig dag`);
+      if (SCENE_TYPES.indexOf(scene.visningstype) === -1) push(`scene ${sid}: ukjent visningstype "${scene.visningstype}"`);
+      if (scene.tilgjengelighet !== "start" && scene.tilgjengelighet !== "laast") {
+        push(`scene ${sid}: tilgjengelighet må være "start" eller "laast"`);
+      }
+      if (!scene.tittel || !scene.tekst) push(`scene ${sid}: mangler tittel/tekst`);
+
+      const valg = Array.isArray(scene.valg) ? scene.valg : [];
+      if (!valg.length) push(`scene ${sid}: har ingen valg`);
+      const choiceIds = new Set();
+      for (const choice of valg) {
+        const cid = choice?.id;
+        if (!cid) { push(`scene ${sid}: valg uten id`); continue; }
+        if (choiceIds.has(cid)) push(`scene ${sid}: duplikat valg-id ${cid}`);
+        choiceIds.add(cid);
+        if (!choice.tekst) push(`scene ${sid}/${cid}: valg uten tekst`);
+        errorsForEffects(scene, choice, startRelasjoner, push);
+        for (const target of choice.laaserOpp || []) {
+          if (typeof target !== "string" || !target) push(`scene ${sid}/${cid}: ugyldig laaserOpp-referanse`);
+        }
+      }
+    }
+
+    // Referanseintegritet + rekkevidde for låste scener.
+    const unlockable = new Set();
+    for (const scene of scenes) {
+      for (const choice of scene?.valg || []) {
+        for (const target of choice?.laaserOpp || []) {
+          if (!sceneIds.has(target)) {
+            push(`scene ${scene.id}/${choice.id}: laaserOpp peker på ukjent scene "${target}"`);
+          } else {
+            unlockable.add(target);
+          }
+        }
+      }
+    }
+    for (const scene of scenes) {
+      if (scene?.tilgjengelighet === "laast" && !unlockable.has(scene.id)) {
+        push(`scene ${scene.id}: er "laast" men ingen valg låser den opp (uoppnåelig)`);
+      }
+    }
+
+    if (errors.length) {
+      throw new Error("[LifestoryContent] innholdspakken er ugyldig:\n  - " + errors.join("\n  - "));
+    }
+  }
+
+  /**
+   * Lov 1 + 2: hvert valg må ha effekter, og minst én effekt må faktisk
+   * endre Player State (nullendringer teller ikke).
+   * @param {any} scene
+   * @param {any} choice
+   * @param {Record<string, number>} startRelasjoner
+   * @param {(msg: string) => void} push
+   */
+  function errorsForEffects(scene, choice, startRelasjoner, push) {
+    const where = `scene ${scene.id}/${choice.id}`;
+    const eff = choice?.effekter;
+    if (!eff || typeof eff !== "object") {
+      push(`${where}: valg uten effekter (lov 1)`);
+      return;
+    }
+
+    let changes = 0;
+    for (const [key, value] of Object.entries(eff.meters || {})) {
+      if (METERS.indexOf(key) === -1) push(`${where}: ukjent måler "${key}"`);
+      if (typeof value !== "number") push(`${where}: måler ${key} er ikke et tall`);
+      else if (value !== 0) changes++;
+    }
+    for (const [key, value] of Object.entries(eff.relasjoner || {})) {
+      if (!(key in startRelasjoner)) push(`${where}: ukjent relasjon "${key}" (finnes ikke i rollens startState)`);
+      if (typeof value !== "number") push(`${where}: relasjon ${key} er ikke et tall`);
+      else if (value !== 0) changes++;
+    }
+    changes += Object.keys(eff.flagg || {}).length;
+    if ((choice.laaserOpp || []).length) changes++;
+
+    if (!changes) push(`${where}: ingen effekt endrer state (lov 2)`);
+  }
+
+  /**
+   * Nettleser: last manifest + alle filer for en rolle og bygg validert pakke.
+   * Bruker CivicationJsonStore når den finnes (dedupet fetch), ellers fetch.
+   * @param {string} roleId
+   * @returns {Promise<LifestoryContent>}
+   */
+  async function loadContent(roleId) {
+    const manifest = await fetchJson(MANIFEST_PATH);
+    const roleEntry = manifest?.roles?.[roleId];
+    if (!roleEntry) {
+      throw new Error(`[LifestoryContent] rollen "${roleId}" finnes ikke i ${MANIFEST_PATH}`);
+    }
+    const [role, phaseDefinitions, roleThreads, roleScenes, lifeThreads, lifeScenes] = await Promise.all([
+      fetchJson(roleEntry.role),
+      fetchJson(manifest.shared.phaseDefinitions),
+      fetchJson(roleEntry.threads),
+      fetchJson(roleEntry.scenes),
+      fetchJson(manifest.life.threads),
+      fetchJson(manifest.life.scenes)
+    ]);
+    return buildContent({ role, phaseDefinitions, roleThreads, roleScenes, lifeThreads, lifeScenes });
+  }
+
+  /**
+   * @param {string} path
+   * @returns {Promise<any>}
+   */
+  async function fetchJson(path) {
+    const store = /** @type {any} */ (globalScope).CivicationJsonStore;
+    const json = store?.fetchJson ? await store.fetchJson(path) : await plainFetch(path);
+    if (json == null) throw new Error(`[LifestoryContent] kunne ikke laste ${path}`);
+    return json;
+  }
+
+  /**
+   * @param {string} path
+   * @returns {Promise<any>}
+   */
+  async function plainFetch(path) {
+    const res = await fetch(path, { cache: "no-store" });
+    if (!res.ok) return null;
+    return res.json();
+  }
+
+  const api = { METERS, SCENE_TYPES, MANIFEST_PATH, buildContent, validateContent, loadContent };
+  /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
