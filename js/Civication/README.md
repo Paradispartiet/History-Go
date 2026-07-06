@@ -65,7 +65,7 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 
 | Motor | Global | Ansvar |
 | --- | --- | --- |
-| DailyMailBuilder | `CivicationDailyMailBuilder` | Bygger **én spillbar arbeidsdag** fra `data/Civication/mailDayProgram.json`: faser (`morning … day_end`), slots, volum og rytme. Velger dagens mailer fra katalogene, holder uke-2-innhold (`_week2_`/`advanced` i id/family) utenfor dag 1 til rolleplanen når det. `buildQueue` / `enqueueNext` / `inspect`. |
+| DailyMailBuilder | `CivicationDailyMailBuilder` | Bygger **én spillbar arbeidsdag**. Sjekker FØRST om et episode-script finnes for aktiv rolle/dag (`data/Civication/roleEpisodes/manifest.json`) — da eier scriptet dagen og bygger køen kun fra beats. Ellers bygges dagen fra `data/Civication/mailDayProgram.json`: faser (`morning … day_end`), slots, volum og rytme; velger dagens mailer fra katalogene, holder uke-2-innhold (`_week2_`/`advanced` i id/family) utenfor dag 1 til rolleplanen når det. `buildQueue` / `enqueueNext` / `inspect`. |
 | MailRuntime | `CivicationMailRuntime` | **Langsiktig rolleprogresjon.** Resolver aktiv rolle, leser `mailPlans/{kategori}/{role_scope}_plan.json`, velger neste jobbmail fra stegets `allowed_families`, og fører rolleplanen videre. |
 | MailEngine | `CivicationMailEngine` | **Innboks/lagring.** Mail-envelopes, pending/resolved/read/archive/delete, dedupe, legacy-speil til `hg_civi_inbox_v1`. `answerMail(mailId, choiceId)` kaller EventEngine og markerer resolved. |
 | EventEngine | `CivicationEventEngine` / `HG_CiviEngine` | Generisk hendelsesmotor: `answer`/resolution, choice-effekter (score, strikes, stability, kapital, psyke, task completion, followups, warnings/fired). |
@@ -75,6 +75,32 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 
 Arbeidsdeling i én setning: **MailRuntime velger hvilken mail som skal komme, DailyMailBuilder
 bestemmer dagens rytme, MailEngine lagrer og viser den, EventEngine beregner svaret.**
+
+### Narrativ først, mail som kanal (episode-scripts)
+
+**En rolle-dag er en episode, ikke en inbox-feed.** For scriptede dager er mailmotoren kun
+transportlag — den er ikke dramaturg. Et episode-script
+(`data/Civication/roleEpisodes/<kategori>/<role_scope>_day<N>_<case>.json`, registrert i
+`roleEpisodes/manifest.json`) beskriver dagens beats: hvilken fase, hvilken mail (fra rollens
+eksisterende mailFamilies), hvilken story-node. Finnes et script for aktiv rolle/dag, gjelder
+en **hard guard** i `buildQueue`: køen bygges fra scriptet, og den generelle pool-/slot-
+generatoren kjøres ikke i det hele tatt. Reglene for en scripted day:
+
+- maks **én aktiv beslutningsmail per fase**, og maks én hovedkonflikt om gangen
+- maks **6–7 hovedmailer** per dag
+- maks **én aktiv mail per story-node** — aldri micro-, followup-, consequence- og
+  people-versjonen av samme narrative situasjon samtidig
+- beats som peker på ukjent mail-id eller gjenbrukt story-node hoppes over med
+  `console.error` — de erstattes **aldri** av pool-innhold (FAIL FAST, ingen gjetting)
+- rolleplanen flyttes fortsatt kun gjennom den ekte planlagte kandidaten (`source_type:
+  "planned"`), og day_end-oppsummering leveres av dayEvents-generatoren som før
+
+Mailmotoren beholder infrastrukturen (levering, svarvalg, state, arkiv, konsekvenser, phase
+unlock). thread_key-dedupen (`CASE_THREAD_TYPES`, sendMail-vakten, `sweepDuplicateThreadRows`)
+består som **sikkerhetsnett**, ikke som hovedløsning. Generatoren kan fylle hull på dager uten
+script, men får ikke overstyre en scripted day. Første episode:
+Arealplanlegger dag 1 (`by_radgiver_plan_day1_lillebekk`), pinnet av
+`tests/civication-arealplanlegger-episode-script.test.js`.
 
 ## Psyke og Psykologrommet
 

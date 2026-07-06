@@ -1,0 +1,72 @@
+{
+  "schema": "civication_role_episode_v1",
+  "id": "by_radgiver_plan_day1_lillebekk",
+  "title": "Arealplanlegger dag 1: Lillebekk-planen",
+  "role_scope": "by_radgiver_plan",
+  "career_id": "by",
+  "day": 1,
+  "principle": "Narrativ først, mail som kanal. En rolle-dag er en episode, ikke en inbox-feed. Mailmotoren leverer beats fra dette scriptet og får ikke fylle dagen fra generell mail-pool.",
+  "arc": {
+    "case": "lillebekk",
+    "from": "Du får plankartet for Lillebekk og et tilsynelatende ryddig fortettingsprosjekt.",
+    "to": "Du vet hva du valgte i dag, og hva som følger Lillebekk-saken inn i dag 2."
+  },
+  "rules": {
+    "max_active_decision_mails_per_phase": 1,
+    "max_total_mails": 7,
+    "max_active_mails_per_story_node": 1,
+    "one_main_conflict_at_a_time": true
+  },
+  "beats": [
+    {
+      "beat": 1,
+      "id": "planoppdraget",
+      "phase": "morning",
+      "story_node_id": "lillebekk_planoppdraget",
+      "goal": "Morgen: Planoppdraget i Lillebekk introduseres — du åpner plankartet og ser hva det tier om.",
+      "mail_id": "by_areal_job_plankart_001",
+      "use_planned_primary": true,
+      "advances_role_plan": true
+    },
+    {
+      "beat": 2,
+      "id": "skoleveien",
+      "phase": "forenoon",
+      "story_node_id": "lillebekk_skolevei",
+      "goal": "Formiddag: Skolevei/snarvei blir det første konkrete hensynet — skolekontakten peker på snarveien bak parkeringskjelleren.",
+      "mail_id": "by_areal_people_skolevei_005"
+    },
+    {
+      "beat": 3,
+      "id": "nabomailen",
+      "phase": "workday",
+      "story_node_id": "lillebekk_nabomail_varelevering",
+      "goal": "Midt på dagen: Nabomailen viser ETT reelt problem — varelevering ved gangveien. Kun denne varianten av casen er aktiv i dag.",
+      "mail_id": "by_areal_micro_009"
+    },
+    {
+      "beat": 4,
+      "id": "plansjefens_bestilling",
+      "phase": "afternoon",
+      "story_node_id": "lillebekk_faglig_formulering",
+      "goal": "Ettermiddag: Plansjefen ber om en formulering av faglig risiko som kan brukes videre i utvalget.",
+      "mail_id": "by_areal_people_plansjef_004"
+    },
+    {
+      "beat": 5,
+      "id": "utbyggerpresset",
+      "phase": "evening",
+      "story_node_id": "lillebekk_utbyggerpress",
+      "goal": "Senere: Utbyggeren vil ha rask avklaring — målkonflikten mellom tempo og faglig integritet blir synlig.",
+      "mail_id": "by_areal_people_utbygger_001"
+    },
+    {
+      "beat": 6,
+      "id": "dagslutt",
+      "phase": "day_end",
+      "story_node_id": "lillebekk_dagslutt",
+      "goal": "Dagslutt: Oppsummer hva spilleren valgte i Lillebekk-saken, og hva som går videre til dag 2.",
+      "generator": "day_end"
+    }
+  ]
+}

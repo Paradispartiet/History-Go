@@ -424,6 +424,26 @@ Bare dagens primære planmail skal normalt få `source_type: "planned"` og flytt
 
 Micro-, followup-, knowledge-, consequence- og day_end-mails er dagsinnhold og skal ikke flytte rolePlan alene.
 
+#### Episode-scripts: narrativ først, mail som kanal
+
+**En rolle-dag er en episode, ikke en inbox-feed.** Finnes et episode-script for aktiv
+rolle/dag, eier scriptet dagen — generatoren kan fylle hull på uscriptede dager, men får
+ikke overstyre en scripted day.
+
+```text
+data/Civication/roleEpisodes/manifest.json                  ← register (role_scope + day → path)
+data/Civication/roleEpisodes/by/by_radgiver_plan_day1_lillebekk.json
+```
+
+Skjema `civication_role_episode_v1`: en liste `beats`, hver med `phase`, `story_node_id`,
+`goal` og enten `mail_id` (peker på en eksisterende mail i rollens mailFamilies) eller
+`generator` (f.eks. `day_end` for dagsoppsummeringen). `buildQueue` har en hard guard: når
+scriptet finnes bygges dagskøen KUN fra beats — maks én beslutningsmail per fase, maks 6–7
+hovedmailer, én aktiv mail per story-node, én hovedkonflikt om gangen. Beats med ukjent
+mail-id hoppes over med `console.error` og erstattes aldri av pool-innhold. Beat-en med
+`advances_role_plan: true` bruker MailRuntimes planlagte kandidat når den matcher, slik at
+rolleplanen fortsatt flyttes riktig. thread_key-dedupen består som sikkerhetsnett.
+
 ### 6.4 mailDayProgram
 
 Fil:

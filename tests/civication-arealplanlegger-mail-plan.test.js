@@ -155,28 +155,44 @@ async function run() {
 
   const active = { career_id: 'by', title: 'Arealplanlegger', role_key: 'by_radgiver_plan', role_id: 'by_radgiver_plan' };
   global.CivicationState.setActivePosition(active);
-  const runtime = await global.CivicationDailyMailBuilder.buildQueue(active, { date: '2026-06-22' });
+
+  // Dag 1 er en scripted episode (Lillebekk-planen): scriptet eier dagen, ikke
+  // slot-generatoren. Episodekontrakten pinnes i detalj i
+  // tests/civication-arealplanlegger-episode-script.test.js — her sjekker vi
+  // bare at dag 1 faktisk bygges fra scriptet.
+  const day1 = await global.CivicationDailyMailBuilder.buildQueue(active, { date: '2026-06-22' });
+  assert.strictEqual(day1.episode_mode, true, 'Arealplanlegger day 1 should be built from the Lillebekk episode script');
+  assert.strictEqual(day1.episode_id, 'by_radgiver_plan_day1_lillebekk', 'day 1 should carry the Lillebekk episode id');
+  assert(day1.items.length <= 7, 'scripted day 1 should stay a tight episode, not an inbox feed');
+  console.log('Arealplanlegger dag 1 (episode):');
+  console.table(day1.items.map((row, index) => ({ index, beat: row.episode_beat, phase: row.phase, slot: row.slot, type: row.event?.mail_type, id: row.event?.source_mail_id || row.event?.id, subject: row.event?.subject })));
+
+  // Fra dag 2 (ingen episode registrert ennå) fyller den generelle dagsbyggeren
+  // dagen fra rollens mailpakker. Strukturkontrakten under gjelder den generiske
+  // byggeren — den må fortsatt levere en full, dedupet, faglig dag.
+  const runtime = await global.CivicationDailyMailBuilder.buildQueue(active, { date: '2026-06-22', dayIndex: 2 });
   assert(runtime && runtime.role_scope === 'by_radgiver_plan', 'DailyMailBuilder should build a by_radgiver_plan runtime');
+  assert(!runtime.episode_mode, 'unscripted days should use the generic day builder');
   assert(runtime.items.length > 0, 'DailyMailBuilder should queue mail items');
   assert.deepStrictEqual([...new Set(runtime.items.map(row => row.phase))], ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'], 'runtime should cover the full day');
   const runtimeTypes = new Set(runtime.items.map(row => row.event?.mail_type).filter(Boolean));
   assert(runtimeTypes.size > 2, 'runtime should include several mail family types');
   assert(runtimeTypes.has('job') && [...runtimeTypes].some(type => type !== 'job'), 'runtime should include multiple mail_type values');
-  assert(runtimeTypes.has('job'), 'Day 1 should include at least one job-mail');
-  assert(runtimeTypes.has('people'), 'Day 1 should include at least one people-mail');
+  assert(runtimeTypes.has('job'), 'Generic day should include at least one job-mail');
+  assert(runtimeTypes.has('people'), 'Generic day should include at least one people-mail');
   assert(
     ['micro', 'followup', 'knowledge', 'consequence'].some(type => runtimeTypes.has(type)),
-    'Day 1 should include at least one micro/followup/knowledge/consequence mail'
+    'Generic day should include at least one micro/followup/knowledge/consequence mail'
   );
   assert(
     ['conflict', 'story', 'event'].some(type => runtimeTypes.has(type)),
-    'Day 1 should include at least one conflict-, story- or event-relevant mail'
+    'Generic day should include at least one conflict-, story- or event-relevant mail'
   );
-  const dayOnePhases = [...new Set(runtime.items.map(row => row.phase))];
+  const genericDayPhases = [...new Set(runtime.items.map(row => row.phase))];
   for (const phase of ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end']) {
-    assert(dayOnePhases.includes(phase), `Day 1 should cover phase ${phase}`);
+    assert(genericDayPhases.includes(phase), `Generic day should cover phase ${phase}`);
   }
-  const dayOneText = JSON.stringify(runtime.items.map(row => ({
+  const genericDayText = JSON.stringify(runtime.items.map(row => ({
     id: row.event?.id,
     subject: row.event?.subject,
     summary: row.event?.summary,
@@ -185,19 +201,19 @@ async function run() {
     learning_focus: row.event?.learning_focus
   }))).toLowerCase();
   assert(
-    ['plankart', 'målbildet', 'skolevei', 'grøntdrag', 'støy', 'medvirkning', 'rekkefølgekrav'].some(term => dayOneText.includes(term)),
-    'Day 1 should include at least one core Arealplanlegger topic'
+    ['plankart', 'målbildet', 'skolevei', 'grøntdrag', 'støy', 'medvirkning', 'rekkefølgekrav'].some(term => genericDayText.includes(term)),
+    'Generic day should include at least one core Arealplanlegger topic'
   );
   assert(
     runtime.items.some(row => row.phase === 'evening' && ['knowledge', 'consequence'].includes(row.event?.mail_type)),
-    'Day 1 evening should land in a knowledge or consequence mail'
+    'Generic day evening should land in a knowledge or consequence mail'
   );
   assert(
     runtime.items.some(row => row.slot === 'carryover' && row.phase === 'day_end'),
-    'Day 1 should include a day_end carryover slot'
+    'Generic day should include a day_end carryover slot'
   );
 
-  const dayOneAudit = runtime.items.map((row, index) => ({
+  const genericDayAudit = runtime.items.map((row, index) => ({
     index,
     phase: row.phase,
     slot: row.slot,
@@ -205,18 +221,18 @@ async function run() {
     id: row.event?.source_mail_id || row.event?.id,
     subject: row.event?.subject
   }));
-  console.log('Arealplanlegger Day 1 audit map:');
-  console.table(dayOneAudit);
+  console.log('Arealplanlegger Generic day audit map:');
+  console.table(genericDayAudit);
 
   const expectedPhaseOrder = ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'];
   assert.deepStrictEqual(
-    [...new Set(dayOneAudit.map(row => row.phase))],
+    [...new Set(genericDayAudit.map(row => row.phase))],
     expectedPhaseOrder,
-    'Day 1 should be auditable as one coherent day in the expected phase order'
+    'Generic day should be auditable as one coherent day in the expected phase order'
   );
 
-  const auditBySlot = new Map(dayOneAudit.map(row => [`${row.phase}:${row.slot}`, row]));
-  const expectedDayOneAnchors = {
+  const auditBySlot = new Map(genericDayAudit.map(row => [`${row.phase}:${row.slot}`, row]));
+  const expectedGenericDayAnchors = {
     'morning:morning_brief': 'by_areal_story_linje_001',
     'forenoon:primary_work_mail': 'by_areal_job_plankart_001',
     'workday:conflict_or_event': 'by_areal_event_utvalg_001',
@@ -225,11 +241,11 @@ async function run() {
     'afternoon:family_or_practical': 'by_areal_people_utbygger_001',
     'evening:consequence_mail': 'by_areal_consequence_002'
   };
-  for (const [slotKey, expectedId] of Object.entries(expectedDayOneAnchors)) {
+  for (const [slotKey, expectedId] of Object.entries(expectedGenericDayAnchors)) {
     assert.strictEqual(
       auditBySlot.get(slotKey)?.id,
       expectedId,
-      `Day 1 anchor ${slotKey} should stay deterministic and dramaturgically placed`
+      `Generic day anchor ${slotKey} should stay deterministic and dramaturgically placed`
     );
   }
 
@@ -237,11 +253,11 @@ async function run() {
   // consequence-pakkene) skal ha nøyaktig én kanonisk melding per dag — aldri
   // flere nesten-like mailer om samme sak (Lillebekk/nabomail/varelevering m.fl.).
   const threadKeys = runtime.items.map(row => row.event?.thread_key).filter(Boolean);
-  assert.strictEqual(threadKeys.length, runtime.items.length, 'every Day 1 event should carry a stable thread_key');
-  assert.strictEqual(new Set(threadKeys).size, threadKeys.length, `Day 1 must not queue the same thread_key twice: ${threadKeys.filter((k, i) => threadKeys.indexOf(k) !== i).join(', ')}`);
+  assert.strictEqual(threadKeys.length, runtime.items.length, 'every Generic day event should carry a stable thread_key');
+  assert.strictEqual(new Set(threadKeys).size, threadKeys.length, `Generic day must not queue the same thread_key twice: ${threadKeys.filter((k, i) => threadKeys.indexOf(k) !== i).join(', ')}`);
 
   const nabomailItems = runtime.items.filter(row => String(row.event?.subject || '').includes('Den irriterende nabomailen har ett sant punkt'));
-  assert.strictEqual(nabomailItems.length, 1, 'Day 1 should contain exactly one canonical nabomail/Lillebekk case mail');
+  assert.strictEqual(nabomailItems.length, 1, 'Generic day should contain exactly one canonical nabomail/Lillebekk case mail');
   const nabomail = nabomailItems[0].event;
   assert.strictEqual(nabomail.source_mail_id || nabomail.id, 'by_areal_micro_009', 'the canonical nabomail case should be the varelevering variant');
   assert.strictEqual(nabomail.task_domain, 'varelevering', 'the canonical nabomail case should be about varelevering');
@@ -258,7 +274,7 @@ async function run() {
     caseArcCounts.set(key, (caseArcCounts.get(key) || 0) + 1);
   }
   for (const [caseKey, count] of caseArcCounts) {
-    assert.strictEqual(count, 1, `case thread ${caseKey} should appear at most once on Day 1`);
+    assert.strictEqual(count, 1, `case thread ${caseKey} should appear at most once on Generic day`);
   }
 
   const phaseText = phase => JSON.stringify(runtime.items
@@ -277,18 +293,18 @@ async function run() {
   for (const row of sourceBackedItems) {
     const mail = row.event || {};
     for (const field of ['learning_focus', 'narrative_arc', 'choice_axis', 'consequence_axis']) {
-      assert(mail[field] !== undefined && mail[field] !== null, `${mail.id} should declare ${field} in Day 1 runtime`);
+      assert(mail[field] !== undefined && mail[field] !== null, `${mail.id} should declare ${field} in Generic day runtime`);
     }
-    assert(mail.from || mail.sender || mail.person_id || mail.source, `${mail.id} should have a concrete sender in Day 1 runtime`);
-    assert(mail.task_domain || mail.pressure, `${mail.id} should have a concrete work task or pressure in Day 1 runtime`);
-    assert(Array.isArray(mail.choices) && mail.choices.length >= 2, `${mail.id} should keep a clear choice in Day 1 runtime`);
+    assert(mail.from || mail.sender || mail.person_id || mail.source, `${mail.id} should have a concrete sender in Generic day runtime`);
+    assert(mail.task_domain || mail.pressure, `${mail.id} should have a concrete work task or pressure in Generic day runtime`);
+    assert(Array.isArray(mail.choices) && mail.choices.length >= 2, `${mail.id} should keep a clear choice in Generic day runtime`);
   }
 
   const sourceIds = sourceBackedItems.map(row => String(row.event?.source_mail_id || row.event?.id || '').toLowerCase());
-  assert(!sourceIds.some(id => /week2|second_week|mastery|advanced/.test(id)), 'Day 1 should not pull week2/mastery/advanced source mails');
+  assert(!sourceIds.some(id => /week2|second_week|mastery|advanced/.test(id)), 'Generic day should not pull week2/mastery/advanced source mails');
   const firstFollowupIndex = runtime.items.findIndex(row => row.event?.mail_type === 'followup');
   const firstConflictIndex = runtime.items.findIndex(row => ['conflict', 'event'].includes(row.event?.mail_type));
-  assert(firstFollowupIndex === -1 || (firstConflictIndex !== -1 && firstConflictIndex < firstFollowupIndex), 'followup mails should have a logical conflict/event source earlier in Day 1');
+  assert(firstFollowupIndex === -1 || (firstConflictIndex !== -1 && firstConflictIndex < firstFollowupIndex), 'followup mails should have a logical conflict/event source earlier in Generic day');
   const firstConsequenceIndex = runtime.items.findIndex(row => row.event?.mail_type === 'consequence');
   assert(firstConsequenceIndex === -1 || runtime.items.slice(0, firstConsequenceIndex).some(row => Array.isArray(row.event?.choices) && row.event.choices.length >= 2), 'consequence mail should not arrive before relevant player choices exist');
 

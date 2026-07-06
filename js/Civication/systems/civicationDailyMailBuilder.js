@@ -11,6 +11,7 @@
 
   const DAY_RUNTIME_KEY = "mail_day_runtime_v1";
   const DAY_PROGRAM_PATH = "data/Civication/mailDayProgram.json";
+  const ROLE_EPISODES_MANIFEST_PATH = "data/Civication/roleEpisodes/manifest.json";
   const NARRATIVE_MANIFEST_PATH = "data/Civication/narratives/manifest.json";
   const NARRATIVE_KEY = "narrative_state_v1";
   const PATCHED_FLAG = "__civicationDailyMailBuilderPatched";
@@ -1240,6 +1241,165 @@
     });
   }
 
+  // ── Scripted rolle-dager (episoder) ────────────────────────────────────────
+  // Prinsipp: Narrativ først, mail som kanal. En rolle-dag er en episode, ikke
+  // en inbox-feed. Finnes et episode-script for aktiv rolle/dag (roleEpisodes/
+  // manifest.json), er scriptet AUTORITATIVT: dagskøen bygges kun fra beats, og
+  // den generelle pool/slot-generatoren kjøres ikke i det hele tatt. Mailmotoren
+  // beholder infrastrukturen (levering, svarvalg, state, arkiv, konsekvenser,
+  // phase unlock), men er ikke lenger dramaturg for scriptede dager.
+  // thread_key-dedupen beholdes som sikkerhetsnett, ikke som hovedløsning.
+
+  function episodeDayIndex(options) {
+    const explicit = Number(options?.dayIndex);
+    if (Number.isFinite(explicit) && explicit >= 1) return Math.floor(explicit);
+    const clock = window.CivicationCalendar?.getClock?.() || {};
+    const fromClock = Number(clock.dayIndex);
+    return Number.isFinite(fromClock) && fromClock >= 1 ? Math.floor(fromClock) : 1;
+  }
+
+  async function loadEpisodeForRoleDay(active, dayIndex) {
+    const roleScope = slugify(resolveRoleScope(active));
+    if (!roleScope) return null;
+    const manifest = await loadJson(ROLE_EPISODES_MANIFEST_PATH);
+    const entries = Array.isArray(manifest?.episodes) ? manifest.episodes : [];
+    const entry = entries.find(row => slugify(row?.role_scope) === roleScope && Number(row?.day) === Number(dayIndex));
+    if (!entry || !norm(entry.path)) return null;
+
+    const episode = await loadJson(norm(entry.path));
+    // FAIL FAST (SYSTEM_REGISTRY §regler): et registrert men ugyldig script er
+    // en datafeil som skal synes i konsollen — vi gjetter ikke på innhold.
+    if (!episode || norm(episode.schema) !== "civication_role_episode_v1") {
+      console.error("[CivicationDailyMailBuilder] episode-script registrert i manifest men ugyldig/utilgjengelig:", entry.path);
+      return null;
+    }
+    if (!Array.isArray(episode.beats) || !episode.beats.length) {
+      console.error("[CivicationDailyMailBuilder] episode-script uten beats:", entry.path);
+      return null;
+    }
+    return episode;
+  }
+
+  function withEpisodeMeta(event, episode, beat) {
+    return {
+      ...event,
+      story_node_id: norm(beat?.story_node_id) || norm(event?.story_node_id),
+      episode_meta: {
+        episode_id: norm(episode?.id),
+        beat: Number(beat?.beat || 0),
+        beat_id: norm(beat?.id),
+        story_node_id: norm(beat?.story_node_id),
+        goal: norm(beat?.goal)
+      },
+      mail_tags: uniqueStrings([
+        ...(Array.isArray(event?.mail_tags) ? event.mail_tags : []),
+        "episode_beat",
+        `episode_${slugify(episode?.id)}`
+      ])
+    };
+  }
+
+  // Bygger dagskøen KUN fra episode-scriptets beats: én mail (eller én generert
+  // oppsummering) per beat, maks én hovedkonflikt om gangen. Beats som peker på
+  // en manglende mail-id, en gjenbrukt story-node eller en allerede brukt
+  // case-tråd hoppes over med console.error — de erstattes ALDRI av pool-innhold.
+  async function buildQueueFromEpisodeScript(active, episode, ctx) {
+    const state = ctx.state;
+    const date = ctx.date;
+    const runtimeInstanceKey = ctx.runtimeInstanceKey || "";
+    const roleScope = resolveRoleScope(active);
+    const pool = await loadCatalogMails(active);
+    const poolById = new Map(pool.map(mail => [norm(mail.id), mail]));
+    const plannedPrimary = await getPlannedPrimary(active, state);
+
+    const usedStoryNodes = new Set();
+    const usedThreadKeys = new Set();
+    const items = [];
+    let ordinal = 0;
+
+    for (const beat of episode.beats) {
+      ordinal += 1;
+      const phaseId = norm(beat?.phase || "morning");
+      const phase = { id: phaseId };
+      const slotId = `beat_${Number(beat?.beat || ordinal)}_${slugify(beat?.id) || ordinal}`;
+      const storyNodeId = norm(beat?.story_node_id);
+
+      if (storyNodeId && usedStoryNodes.has(storyNodeId)) {
+        console.error("[CivicationDailyMailBuilder] episode-beat gjenbruker story_node_id — hoppes over:", storyNodeId, norm(beat?.id));
+        continue;
+      }
+
+      const generatorKind = norm(beat?.generator);
+      if (generatorKind) {
+        const slot = { slot: slotId, type: generatorKind };
+        if (storyNodeId) usedStoryNodes.add(storyNodeId);
+        items.push({
+          status: "queued",
+          phase: phaseId,
+          slot: slotId,
+          phase_generator: generatorKind,
+          episode_beat: Number(beat?.beat || ordinal),
+          event: withEpisodeMeta(makeGeneratedEvent(active, phase, slot, ordinal, runtimeInstanceKey), episode, beat)
+        });
+        continue;
+      }
+
+      const mailId = norm(beat?.mail_id);
+      const sourceMail = mailId ? poolById.get(mailId) : null;
+      if (!sourceMail) {
+        console.error("[CivicationDailyMailBuilder] episode-beat peker på ukjent mail_id — hoppes over, INGEN pool-fallback:", mailId, norm(beat?.id));
+        continue;
+      }
+
+      const threadKey = threadKeyForMail(sourceMail);
+      if (threadKey && usedThreadKeys.has(threadKey)) {
+        console.error("[CivicationDailyMailBuilder] episode-beat gjenbruker case-tråd — hoppes over:", threadKey, mailId);
+        continue;
+      }
+
+      const slot = { slot: slotId, type: norm(sourceMail?.mail_type || "job") };
+      // Rolleplanen flyttes bare gjennom den ekte planlagte kandidaten: beat-en
+      // får source_type "planned" kun når MailRuntime faktisk peker på samme mail.
+      const usePlanned = beat?.advances_role_plan === true
+        && beat?.use_planned_primary !== false
+        && plannedPrimary
+        && norm(plannedPrimary.id) === mailId;
+      const event = usePlanned
+        ? toDailyPlannedMail(active, plannedPrimary, phase, slot)
+        : toDailyExtraMail(active, sourceMail, phase, slot, ordinal, runtimeInstanceKey);
+
+      if (storyNodeId) usedStoryNodes.add(storyNodeId);
+      if (threadKey) usedThreadKeys.add(threadKey);
+      items.push({
+        status: "queued",
+        phase: phaseId,
+        slot: slotId,
+        episode_beat: Number(beat?.beat || ordinal),
+        event: withEpisodeMeta(event, episode, beat)
+      });
+    }
+
+    return {
+      version: 1,
+      date,
+      role_scope: roleScope,
+      role_id: norm(active?.role_id),
+      career_id: norm(active?.career_id),
+      role_title: norm(active?.title),
+      episode_mode: true,
+      episode_id: norm(episode?.id),
+      episode_title: norm(episode?.title),
+      episode_day: Number(episode?.day || 1),
+      plan_id: "",
+      generated_at: new Date().toISOString(),
+      delivered_ids: [],
+      answered_ids: [],
+      current_index: 0,
+      runtime_instance_key: runtimeInstanceKey,
+      items
+    };
+  }
+
   async function buildQueue(active, options = {}) {
     const state = getState();
     const date = norm(options.date || todayKey());
@@ -1247,6 +1407,14 @@
       ? `__run_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
       : "";
     const roleScope = resolveRoleScope(active);
+
+    // HARD GUARD: en scripted day eier hele dagskøen. Generell pool/slot-
+    // generering under kjøres kun når ingen episode finnes for rolle/dag.
+    const episodeScript = await loadEpisodeForRoleDay(active, episodeDayIndex(options));
+    if (episodeScript) {
+      return buildQueueFromEpisodeScript(active, episodeScript, { state, date, runtimeInstanceKey });
+    }
+
     const program = await loadJson(DAY_PROGRAM_PATH) || defaultProgram();
     const plan = await loadJson(getPlanPath(active));
     const pool = await loadCatalogMails(active);
@@ -1435,7 +1603,7 @@
       return existing;
     }
 
-    const next = await buildQueue(active, { date, forceNew: options.forceNew === true });
+    const next = await buildQueue(active, { date, forceNew: options.forceNew === true, dayIndex: options.dayIndex });
     setState({ [DAY_RUNTIME_KEY]: next });
     return next;
   }
@@ -2045,12 +2213,20 @@
   async function prewarm(activeOverride) {
     const active = activeOverride || getActive();
     const familyPaths = active ? getFamilyPaths(active) : [];
-    await Promise.all([
+    const [episodesManifest] = await Promise.all([
+      loadJson(ROLE_EPISODES_MANIFEST_PATH),
       loadJson(DAY_PROGRAM_PATH),
       loadNarrativeStreams(),
       active ? loadJson(getPlanPath(active)) : Promise.resolve(null),
       ...familyPaths.map((path) => loadJson(path))
     ]);
+    // Varm også rollens episode-scripts, slik at scripted days aldri venter på nett.
+    const roleScope = active ? slugify(resolveRoleScope(active)) : "";
+    const episodePaths = (Array.isArray(episodesManifest?.episodes) ? episodesManifest.episodes : [])
+      .filter(row => roleScope && slugify(row?.role_scope) === roleScope)
+      .map(row => norm(row?.path))
+      .filter(Boolean);
+    await Promise.all(episodePaths.map((path) => loadJson(path)));
     return { warmed: true };
   }
 
@@ -2083,7 +2259,9 @@
     hasBlockingPendingAction: hasPending,
     hasBuiltDayForActiveRole,
     loadJson,
-    getFamilyPaths
+    getFamilyPaths,
+    ROLE_EPISODES_MANIFEST_PATH,
+    getEpisodeForRoleDay: loadEpisodeForRoleDay
   };
 
   if (document.readyState === "loading") {
