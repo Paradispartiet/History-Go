@@ -13,12 +13,20 @@
   "use strict";
 
   const STORAGE_KEY = "civication_lifestory_v1";
-  const VERSION = 1;
+  const VERSION = 2; // v2: threadState + dagStartThreadStatus erstatter aktiveTraader
 
   /** Målere som klemmes til 0–100. Penger er bevisst uklemt (gjeld finnes). */
   const CLAMPED_METERS = ["psyke", "energi", "integritet", "synlighet", "handlingsrom"];
 
+  /** Gyldige trådstatuser — speiler THREAD_STATUSES i lifestoryContent. */
+  const THREAD_STATUSES = ["active", "completed", "dormant", "escalated"];
+
   /**
+   * @typedef {Object} LifestoryThreadState
+   * @property {"active"|"completed"|"dormant"|"escalated"} status
+   * @property {number} step
+   * @property {string|null} lastSceneId
+   *
    * @typedef {Object} LifestoryArkivEntry
    * @property {number} dag
    * @property {string} fase
@@ -27,6 +35,7 @@
    * @property {string} threadId
    * @property {string} valgId
    * @property {string} valgTekst
+   * @property {string} [konsekvensTekst]
    *
    * @typedef {Object} LifestoryState
    * @property {number} version
@@ -35,18 +44,22 @@
    * @property {string} fase
    * @property {Record<string, number>} meters
    * @property {Record<string, number>} relasjoner
-   * @property {string[]} aktiveTraader
+   * @property {Record<string, LifestoryThreadState>} threadState
    * @property {string[]} opplaasteScener
    * @property {string[]} spilteScener
    * @property {Record<string, boolean|number|string>} tidligereValg
    * @property {LifestoryArkivEntry[]} arkiv
    * @property {Record<string, number>} dagStartMeters
+   * @property {Record<string, string>} dagStartThreadStatus
    * @property {boolean} dagFerdig
    */
 
   /**
    * Ny Player State fra en validert innholdspakke: rollens startState,
-   * dag 1, første fase, tråder som starter dag 1 aktive.
+   * dag 1, første fase. Tråder som starter dag 1 blir aktive; tråder med
+   * senere startDag får IKKE threadState før dagen deres kommer
+   * (startNextDay i runneren aktiverer dem) — slik forveksles de aldri
+   * med tråder spilleren/historien har lagt i dvale (dormant).
    * @param {any} content
    * @returns {LifestoryState}
    */
@@ -55,6 +68,12 @@
       throw new Error("[LifestoryState] innholdspakken mangler role.startState");
     }
     const meters = Object.assign({}, content.role.startState.meters);
+    /** @type {Record<string, LifestoryThreadState>} */
+    const threadState = {};
+    for (const thread of content.threads) {
+      const startDag = typeof thread.startDag === "number" ? thread.startDag : 1;
+      if (startDag <= 1) threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
+    }
     const state = {
       version: VERSION,
       rolle: String(content.role.id),
@@ -62,17 +81,27 @@
       fase: content.faser[0].id,
       meters,
       relasjoner: Object.assign({}, content.role.startState.relasjoner),
-      aktiveTraader: content.threads
-        .filter((t) => (typeof t.startDag === "number" ? t.startDag : 1) <= 1)
-        .map((t) => t.id),
+      threadState,
       opplaasteScener: [],
       spilteScener: [],
       tidligereValg: {},
       arkiv: [],
       dagStartMeters: Object.assign({}, meters),
+      dagStartThreadStatus: snapshotThreadStatus(threadState),
       dagFerdig: false
     };
     return state;
+  }
+
+  /**
+   * @param {Record<string, LifestoryThreadState>} threadState
+   * @returns {Record<string, string>}
+   */
+  function snapshotThreadStatus(threadState) {
+    /** @type {Record<string, string>} */
+    const snapshot = {};
+    for (const [id, ts] of Object.entries(threadState)) snapshot[id] = ts.status;
+    return snapshot;
   }
 
   /**
@@ -80,7 +109,7 @@
    * state). Ukjente nøkler er innholdsfeil og skal ha blitt stoppet av
    * validatoren — her feiler vi fast i stedet for å gjette.
    * @param {LifestoryState} state
-   * @param {{ relasjoner?: Record<string, number>, meters?: Record<string, number>, flagg?: Record<string, boolean|number|string> }} effekter
+   * @param {{ relasjoner?: Record<string, number>, meters?: Record<string, number>, flagg?: Record<string, boolean|number|string>, threads?: Record<string, { status?: string, stepDelta?: number }> }} effekter
    * @returns {LifestoryState}
    */
   function applyEffects(state, effekter) {
@@ -94,6 +123,22 @@
     for (const [key, delta] of Object.entries(effekter.relasjoner || {})) {
       if (!(key in state.relasjoner)) throw new Error(`[LifestoryState] ukjent relasjon "${key}"`);
       state.relasjoner[key] = clamp(state.relasjoner[key] + delta);
+    }
+    for (const [threadId, change] of Object.entries(effekter.threads || {})) {
+      if (!change || typeof change !== "object") throw new Error(`[LifestoryState] ugyldig threads-effekt for "${threadId}"`);
+      let ts = state.threadState[threadId];
+      if (!ts) {
+        // Tråd som ennå ikke har startet kan vekkes/endres av et valg.
+        ts = { status: "dormant", step: 0, lastSceneId: null };
+        state.threadState[threadId] = ts;
+      }
+      if (change.status !== undefined) {
+        if (THREAD_STATUSES.indexOf(change.status) === -1) {
+          throw new Error(`[LifestoryState] ugyldig trådstatus "${change.status}" for "${threadId}"`);
+        }
+        ts.status = /** @type {"active"|"completed"|"dormant"|"escalated"} */ (change.status);
+      }
+      if (typeof change.stepDelta === "number") ts.step += change.stepDelta;
     }
     for (const [key, value] of Object.entries(effekter.flagg || {})) {
       state.tidligereValg[key] = value;
@@ -156,7 +201,7 @@
     getStorage()?.remove(STORAGE_KEY);
   }
 
-  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, createInitialState, applyEffects, save, load, reset };
+  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, applyEffects, snapshotThreadStatus, save, load, reset };
   /** @type {any} */ (globalScope).CivicationLifestoryState = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

@@ -18,6 +18,8 @@
   /** @type {any} */ let content = null;
   /** @type {any} */ let state = null;
   /** @type {Promise<void>|null} */ let loading = null;
+  /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
+  /** @type {{ tekst: string, valgTekst: string }|null} */ let sisteKonsekvens = null;
 
   /**
    * @param {unknown} value
@@ -58,7 +60,12 @@
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
     try {
-      Runner.applyChoice(state, content, sceneId, choiceId);
+      const scene = content.scenes.find((s) => s.id === sceneId);
+      const valg = scene ? (scene.valg || []).find((c) => c.id === choiceId) : null;
+      const result = Runner.applyChoice(state, content, sceneId, choiceId);
+      sisteKonsekvens = result.konsekvensTekst
+        ? { tekst: result.konsekvensTekst, valgTekst: valg ? valg.tekst : "" }
+        : null;
       State.save(state);
       window.dispatchEvent(new Event("civi:lifestoryChanged"));
     } catch (error) {
@@ -67,9 +74,24 @@
     render();
   }
 
+  function onNextDay() {
+    const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
+    const State = /** @type {any} */ (window).CivicationLifestoryState;
+    try {
+      Runner.startNextDay(state, content);
+      sisteKonsekvens = null;
+      State.save(state);
+      window.dispatchEvent(new Event("civi:lifestoryChanged"));
+    } catch (error) {
+      console.error("[CivicationLifestoryUI] neste dag feilet", error);
+    }
+    render();
+  }
+
   function onRestart() {
     const State = /** @type {any} */ (window).CivicationLifestoryState;
     state = State.createInitialState(content);
+    sisteKonsekvens = null;
     State.save(state);
     window.dispatchEvent(new Event("civi:lifestoryChanged"));
     render();
@@ -123,24 +145,61 @@
   }
 
   /**
+   * Fortellingsmessig feedback etter forrige valg (konsekvensTekst).
+   * @returns {string}
+   */
+  function renderKonsekvensHtml() {
+    if (!sisteKonsekvens) return "";
+    return ""
+      + "<div class=\"civi-lifestory-konsekvens\" style=\"border-left:3px solid currentColor;padding:6px 10px;margin:8px 0;\">"
+      + "<div class=\"muted\">Konsekvens av «" + escapeHtml(sisteKonsekvens.valgTekst) + "»:</div>"
+      + "<em>" + escapeHtml(sisteKonsekvens.tekst) + "</em>"
+      + "</div>";
+  }
+
+  /**
+   * @param {string} threadId
+   * @returns {string}
+   */
+  function traadTittel(threadId) {
+    const thread = content.threads.find((t) => t.id === threadId);
+    return thread ? thread.tittel : threadId;
+  }
+
+  /**
    * @param {any} view
    * @returns {string}
    */
   function renderSummaryHtml(view) {
     const summary = view.oppsummering;
     const valgHtml = summary.valg.map((entry) =>
-      "<li>" + escapeHtml(entry.sceneTittel) + " — <em>" + escapeHtml(entry.valgTekst) + "</em></li>"
+      "<li>" + escapeHtml(entry.sceneTittel) + " — <em>" + escapeHtml(entry.valgTekst) + "</em>"
+      + (entry.konsekvensTekst ? "<br><small class=\"muted\">" + escapeHtml(entry.konsekvensTekst) + "</small>" : "")
+      + "</li>"
     ).join("");
     const meterHtml = Object.entries(summary.meterEndringer).map(([key, delta]) =>
       "<span style=\"margin-right:10px;\">" + escapeHtml(key) + " " + (Number(delta) > 0 ? "+" : "") + escapeHtml(delta) + "</span>"
     ).join("");
+    const traadHtml = [
+      [summary.traader.fullfoert, "Fullført"],
+      [summary.traader.eskalert, "Eskalert"],
+      [summary.traader.hvilende, "Lagt i dvale"]
+    ]
+      .filter(([ids]) => ids.length)
+      .map(([ids, label]) =>
+        "<li>" + escapeHtml(label) + ": " + ids.map((id) => escapeHtml(traadTittel(id))).join(", ") + "</li>"
+      ).join("");
     return ""
       + "<div class=\"civi-lifestory-summary\">"
       + "<h3>Dag " + escapeHtml(summary.dag) + " er over</h3>"
       + "<p class=\"muted\">Slik flyttet dagen deg:</p>"
       + "<div>" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
-      + "<ul>" + valgHtml + "</ul>"
-      + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start dagen på nytt</button>"
+      + (traadHtml ? "<h4>Tråder</h4><ul>" + traadHtml + "</ul>" : "")
+      + "<h4>Dagens valg</h4><ul>" + valgHtml + "</ul>"
+      + "<div style=\"display:flex;gap:8px;flex-wrap:wrap;\">"
+      + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
+      + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
+      + "</div>"
       + "</div>";
   }
 
@@ -200,6 +259,7 @@
 
     renderHeaderStatus(view);
     panel.innerHTML = renderStatusHtml(view)
+      + renderKonsekvensHtml()
       + (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : ""))
       + renderPanelsHtml(view);
   }
@@ -217,6 +277,7 @@
         );
         return;
       }
+      if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }
       if (target.closest("[data-lifestory-restart]")) onRestart();
     });
   }

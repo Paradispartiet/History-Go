@@ -61,21 +61,38 @@ async function main() {
 
   // Spill hele dagen: Runner er eneste progresjonskilde.
   let clicks = 0;
+  let saaKonsekvens = false;
   while (panel.querySelector("[data-lifestory-choice]")) {
     panel.querySelector("[data-lifestory-choice]").click();
+    if (panel.querySelector(".civi-lifestory-konsekvens")) saaKonsekvens = true;
     assert.ok(++clicks < 30, "dagen må terminere");
   }
   assert.ok(panel.innerHTML.includes("Dag 1 er over"), "dagen skal ende i oppsummering");
   assert.ok(clicks >= 8, "hele dagen (morgen->kveld) skal spilles, fikk " + clicks + " scener");
+  assert.ok(saaKonsekvens, "konsekvensTekst skal vises som feedback etter minst ett valg");
   assert.ok(window.document.getElementById("civiLifestoryHeaderStatus").textContent.includes("Dagen er over"));
 
+  // Oppsummeringen viser tråder og «Start neste dag».
+  assert.ok(panel.querySelector("[data-lifestory-next-day]"), "oppsummeringen har Start neste dag");
+  assert.ok(panel.innerHTML.includes("Tråder"), "oppsummeringen viser trådstatus");
+
   // Player State er lagret under v2-nøkkelen; legacy-flater er fortsatt skjult.
-  const stored = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
+  let stored = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
   assert.strictEqual(stored.dagFerdig, true, "Player State skal være lagret");
+  const arkivFoer = stored.arkiv.length;
   assert.ok(window.document.getElementById("civiInboxSection").hasAttribute("hidden"),
     "innboksen skal forbli skjult i v2");
 
-  console.log("civication v2 min dag ui ok (" + clicks + " scener via UI)");
+  // Start neste dag: dag 2 starter uten crash og uten å slette arkivet.
+  panel.querySelector("[data-lifestory-next-day]").click();
+  assert.ok(panel.querySelector("[data-lifestory-choice]"), "dag 2 viser en spillbar scene");
+  assert.ok(window.document.getElementById("civiLifestoryHeaderStatus").textContent.includes("Dag 2"), "headeren viser Dag 2");
+  stored = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
+  assert.strictEqual(stored.dag, 2, "state er på dag 2");
+  assert.strictEqual(stored.dagFerdig, false, "dag 2 er ikke ferdig");
+  assert.ok(stored.arkiv.length >= arkivFoer, "arkivet fra dag 1 er beholdt");
+
+  console.log("civication v2 min dag ui ok (" + clicks + " scener via UI + neste dag)");
 }
 
 main().catch((error) => {

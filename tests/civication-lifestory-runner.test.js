@@ -71,7 +71,9 @@ assert.strictEqual(state.dag, 1);
 assert.strictEqual(state.fase, "morgen");
 assert.strictEqual(state.meters.penger, 420);
 assert.strictEqual(state.relasjoner.skolekontakt, 60);
-assert.strictEqual(state.aktiveTraader.length, content.threads.length, "alle dag-1-tråder aktive");
+const dag1Traader = content.threads.filter((t) => (typeof t.startDag === "number" ? t.startDag : 1) <= 1);
+assert.strictEqual(Object.keys(state.threadState).length, dag1Traader.length, "alle dag-1-tråder har threadState");
+assert.ok(Object.values(state.threadState).every((ts) => ts.status === "active"), "alle starter aktive");
 
 // --- Morgen: privat start har høyest prioritet, så skoleveimeldingen ---
 let view = Runner.getView(state, content);
