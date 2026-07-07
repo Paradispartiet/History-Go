@@ -2,7 +2,7 @@
 
 ## Status
 - people: 🔴
-- tasks: 🔴
+- tasks: ✅
 - badges: ✅
 - works: 🔴
 - civication: 🔴
@@ -13,7 +13,6 @@
 
 ## Mangler
 - people: mangler eksplisitt personkobling for Bispelokket; eksisterende helserapport peker også på `missing_people_linkage`.
-- tasks: mangler `tasks_profile` i Bispelokket source-data.
 - works: mangler `works`-liste i Bispelokket source-data.
 - civication: mangler `civication_store` i Bispelokket source-data.
 - brands: mangler eksplisitte merkevare-/aktørkoblinger for stedet.
