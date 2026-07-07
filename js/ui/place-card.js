@@ -168,6 +168,43 @@ function normalizePlaceCardTasksProfile(place) {
   return { title, summary, tasks };
 }
 
+function normalizePlaceCardWorks(place) {
+  return (Array.isArray(place?.works) ? place.works : [])
+    .map((item) => {
+      if (!item || typeof item !== "object") return null;
+      const title = String(item.title || item.name || "").trim();
+      const type = String(item.type || item.kind || "").trim();
+      const kind = String(item.kind || item.type || "").trim();
+      const desc = String(item.desc || item.description || "").trim();
+      const why = String(item.why_here || item.placeSpecificReason || item.why || "").trim();
+      const sourceNote = String(item.source_note || item.sourceNote || "").trim();
+      if (!title && !desc && !why) return null;
+      return {
+        id: String(item.id || title || desc).trim(),
+        title,
+        type,
+        kind,
+        desc,
+        why,
+        sourceNote
+      };
+    })
+    .filter(Boolean);
+}
+
+function renderPlaceCardWorks(place) {
+  const works = normalizePlaceCardWorks(place);
+  return works.map((work) => `
+    <article class="pc-relation-card"${work.id ? ` data-work-id="${escapePlaceCardHTML(work.id)}"` : ""}>
+      ${work.type ? `<div class="pc-relation-chip">${escapePlaceCardHTML(work.type)}</div>` : ""}
+      ${work.title ? `<div class="pc-relation-title">${escapePlaceCardHTML(work.title)}</div>` : ""}
+      ${work.desc ? `<p class="pc-relation-desc">${escapePlaceCardHTML(work.desc)}</p>` : ""}
+      ${work.why ? `<p class="pc-relation-desc"><strong>Hvorfor her:</strong> ${escapePlaceCardHTML(work.why)}</p>` : ""}
+      ${work.sourceNote ? `<p class="pc-relation-desc"><strong>Kildegrunnlag:</strong> ${escapePlaceCardHTML(work.sourceNote)}</p>` : ""}
+    </article>
+  `).join("");
+}
+
 function renderPlaceCardTasksProfile(place) {
   const data = normalizePlaceCardTasksProfile(place);
   if (!data) return `<div class="pc-empty">Ingen oppgaver ennå</div>`;
@@ -2290,11 +2327,13 @@ if (worksEl) {
     clubs.length ? sportRow("Klubb / lag", clubs.join(" / ")) : ""
   ].filter(Boolean);
 
+  const placeWorks = normalizePlaceCardWorks(place);
+  const placeWorksHtml = placeWorks.length ? renderPlaceCardWorks(place) : "";
   const musicHtml = music ? renderPlaceMusic(music, String(place.id || "")) : "";
-  worksEl.innerHTML = [footballRows.join(""), musicHtml].filter(Boolean).join("")
+  worksEl.innerHTML = [placeWorksHtml, footballRows.join(""), musicHtml].filter(Boolean).join("")
     || `<div class="pc-empty">Ingen verk eller prestasjoner ennå</div>`;
 
-  const worksCount = musicCount + (clubs.length || sports.length || (sp ? 1 : 0));
+  const worksCount = placeWorks.length + musicCount + (clubs.length || sports.length || (sp ? 1 : 0));
   setRoundLabel(worksIcon, "🎭", worksCount || "");
 
   worksEl.querySelectorAll("[data-music-unlock-id]").forEach((node) => {
