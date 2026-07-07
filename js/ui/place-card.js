@@ -140,6 +140,61 @@ function normalizePlaceCardForNa(place) {
   };
 }
 
+
+function normalizePlaceCardTasksProfile(place) {
+  const data = (place?.tasks_profile && typeof place.tasks_profile === "object") ? place.tasks_profile : null;
+  if (!data) return null;
+
+  const tasks = (Array.isArray(data.tasks) ? data.tasks : [])
+    .map((task) => {
+      if (!task || typeof task !== "object") return null;
+      const title = String(task.title || "").trim();
+      const instruction = String(task.instruction || task.desc || "").trim();
+      const why = String(task.why || "").trim();
+      if (!title && !instruction && !why) return null;
+      return {
+        id: String(task.id || title || instruction).trim(),
+        title,
+        instruction,
+        why
+      };
+    })
+    .filter(Boolean);
+
+  const title = String(data.title || "Oppgaver").trim();
+  const summary = String(data.summary || "").trim();
+  if (!summary && !tasks.length) return null;
+
+  return { title, summary, tasks };
+}
+
+function renderPlaceCardTasksProfile(place) {
+  const data = normalizePlaceCardTasksProfile(place);
+  if (!data) return `<div class="pc-empty">Ingen oppgaver ennå</div>`;
+
+  const tasksHtml = data.tasks.length
+    ? `
+      <ol class="pc-tasks-list">
+        ${data.tasks.map((task) => `
+          <li class="pc-task-item"${task.id ? ` data-task-id="${escapePlaceCardHTML(task.id)}"` : ""}>
+            ${task.title ? `<h3 class="pc-task-title">${escapePlaceCardHTML(task.title)}</h3>` : ""}
+            ${task.instruction ? `<p class="pc-task-instruction">${escapePlaceCardHTML(task.instruction)}</p>` : ""}
+            ${task.why ? `<p class="pc-task-why"><strong>Hvorfor:</strong> ${escapePlaceCardHTML(task.why)}</p>` : ""}
+          </li>
+        `).join("")}
+      </ol>
+    `
+    : "";
+
+  return `
+    <article class="pc-tasks-card">
+      <h2 class="pc-tasks-title">${escapePlaceCardHTML(data.title)}</h2>
+      ${data.summary ? `<p class="pc-tasks-summary">${escapePlaceCardHTML(data.summary)}</p>` : ""}
+      ${tasksHtml}
+    </article>
+  `;
+}
+
 function renderPlaceCardForNa(place) {
   const data = normalizePlaceCardForNa(place);
   if (!data) return `<div class="pc-empty">Ingen før/nå-innhold ennå</div>`;
@@ -1163,7 +1218,7 @@ if (!card.dataset.pcIconsBound) {
       html = `<div class="pc-empty">Fortellinger lastes ikke ennå</div>`;
     }
 
-    if (kind === "tasks") html = `<div class="pc-empty">Ingen oppgaver ennå</div>`;
+    if (kind === "tasks") html = renderPlaceCardTasksProfile(currentPlace || place);
     if (kind === "observations") html = `<div class="pc-empty">Ingen observasjoner ennå</div>`;
     if (kind === "works") html = `<div class="pc-empty">Ingen verk eller prestasjoner ennå</div>`;
     if (kind === "nature") html = `<div class="pc-empty">Ingen naturinnhold ennå</div>`;
@@ -2279,8 +2334,9 @@ if (fortellingerEl) {
   setRoundLabel(fortellingerIcon, "📖", "");
 }
 if (tasksEl) {
-  tasksEl.innerHTML = `<div class="pc-empty">Ingen oppgaver ennå</div>`;
-  setRoundLabel(tasksIcon, "✅", "");
+  const tasksProfile = normalizePlaceCardTasksProfile(place);
+  tasksEl.innerHTML = renderPlaceCardTasksProfile(place);
+  setRoundLabel(tasksIcon, "✅", tasksProfile?.tasks?.length || "");
 }
 if (observationsEl) {
   observationsEl.innerHTML = `<div class="pc-empty">Ingen observasjoner ennå</div>`;
