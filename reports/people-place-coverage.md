@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-07T12:12:46.015Z
+Generert: 2026-07-07T14:18:55.592Z
 
 ## Sammendrag
 
-- People totalt: **496**
-- Places totalt: **967**
-- Places med people: **217**
-- Places uten people: **750**
-- People-place-lenker: **753**
-- People koblet til flere gyldige steder: **189**
+- People totalt: **499**
+- Places totalt: **975**
+- Places med people: **221**
+- Places uten people: **754**
+- People-place-lenker: **760**
+- People koblet til flere gyldige steder: **192**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **496**
-- People uten image: **147**
-- People uten cardImage: **148**
+- Duplikate place-referanser inne på people: **499**
+- People uten image: **150**
+- People uten cardImage: **151**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -23,7 +23,7 @@ Generert: 2026-07-07T12:12:46.015Z
 |---|---:|---:|---:|---:|---:|
 | by | 92 | 29 | 63 | 117 | 90 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 517 | 57 | 460 | 192 | 104 |
+| historie | 525 | 57 | 468 | 192 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
@@ -34,7 +34,7 @@ Generert: 2026-07-07T12:12:46.015Z
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 64 | 13 | 51 | 46 | 38 |
-| subkultur | 30 | 9 | 21 | 14 | 12 |
+| subkultur | 30 | 13 | 17 | 21 | 16 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
 ## People tags
@@ -45,7 +45,7 @@ Generert: 2026-07-07T12:12:46.015Z
 - naeringsliv: 40
 - norge_for_1500: 40
 - sport: 39
-- subkultur: 34
+- subkultur: 37
 - vitenskap: 34
 - musikk: 30
 - media: 27
@@ -224,7 +224,7 @@ Generert: 2026-07-07T12:12:46.015Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 396 flere
+- ... 399 flere
 
 ## Anbefalt første people-batch
 
