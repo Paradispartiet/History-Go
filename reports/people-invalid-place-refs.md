@@ -1,28 +1,19 @@
 # People invalid place refs audit
 
-Generated: 2026-07-04T09:02:33.908Z
+Generated: 2026-07-07T06:35:43.675Z
 
 ## Sammendrag
 - People-filer lest: **28**
 - People lest: **484**
-- People med ugyldige refs: **1**
-- Ugyldige refs: **1**
-- Unike ugyldige placeId-er: **1**
+- People med ugyldige refs: **0**
+- Ugyldige refs: **0**
+- Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
 - Duplikate interne place-referanser: **484**
 
 ## Ugyldige refs gruppert per fil/person
-### data/people/by/oslo/people_by_oslo.json
-- **hagbarth_schytte_berg** (Hagbarth Schytte-Berg)
-  - fagerborg_kirke @ `places[1]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
-- **fagerborg_kirke** (needs_manual_review, 1 treff)
-  - alvdal_kirke (confidence: low)
-  - asnes_kirke (confidence: low)
-  - aurdal_kirke (confidence: low)
-  - bamble_kirke (confidence: low)
-  - biri_kirke (confidence: low)
 
 ## People uten gyldig sted
 
@@ -513,4 +504,3 @@ Generated: 2026-07-04T09:02:33.908Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: nuno_markl (Nuno Markl) -> lisbon_rtp x2
 
 ## Anbefalt neste ryddebatch
-- fagerborg_kirke (needs_manual_review, 1 treff)

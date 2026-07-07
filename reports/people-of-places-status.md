@@ -1,17 +1,17 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-04T09:02:34.032Z
+Generert: 2026-07-07T06:35:43.797Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-04T09:02:34.032Z |
+| generatedAt | 2026-07-07T06:35:43.797Z |
 | peopleFilesRead | 28 |
 | totalPeople | 484 |
 | uniquePeopleIds | 484 |
 | duplicatePeopleIds | 0 |
-| invalidPlaceRefs | 1 |
+| invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
@@ -22,7 +22,7 @@ Generert: 2026-07-04T09:02:34.032Z
 
 | Fil | Kategori | Geo | People | Dups i fil | Mangler id | Mangler navn | Mangler category | Mangler hovedanker | Invalid refs | Schema |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 1 | standard_placeId_schema |
+| data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/filantroper/oslo/people_filantroper_oslo.json | filantroper | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 13 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/film_tv/oslo/people_film_tv_oslo.json | film_tv | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -85,11 +85,7 @@ Generert: 2026-07-04T09:02:34.032Z
 
 ## Place-ref audit
 
-Invalid refs: 1
-
-| Fil | Person | Felt | Invalid placeId | Foreslått handling |
-|---|---|---|---|---|
-| data/people/by/oslo/people_by_oslo.json | hagbarth_schytte_berg / Hagbarth Schytte-Berg | places[1] | fagerborg_kirke | create_place_later |
+Invalid refs: 0
 
 ## People uten sterkt anker
 
@@ -790,19 +786,17 @@ Mangler filer for image/cardImage/media: 629
 
 ## Manglende steder som blockers
 
-- fagerborg_kirke: 1 forekomster
+- Ingen invalid place IDs ble funnet i manifest-listede people-filer.
 
 ## Anbefalt neste PR
 
 ```json
 {
-  "type": "schema_cleanup",
+  "type": "content_expansion",
   "category": null,
-  "reason": "Audit fant ugyldige place-referanser; cleanup bør tas før nye batches.",
-  "safeBatchSize": 1,
-  "blockers": [
-    "fagerborg_kirke"
-  ]
+  "reason": "Ingen invalid refs, duplikater eller store flate split-kandidater ble funnet.",
+  "safeBatchSize": 10,
+  "blockers": []
 }
 ```
 

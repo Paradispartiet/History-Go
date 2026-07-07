@@ -1,17 +1,17 @@
 # People-place coverage audit
 
-Generert: 2026-07-04T09:02:34.279Z
+Generert: 2026-07-07T06:35:44.031Z
 
 ## Sammendrag
 
 - People totalt: **484**
-- Places totalt: **911**
+- Places totalt: **951**
 - Places med people: **210**
-- Places uten people: **701**
+- Places uten people: **741**
 - People-place-lenker: **736**
 - People koblet til flere gyldige steder: **184**
 - People uten gyldig sted: **0**
-- Ugyldige place-referanser: **1**
+- Ugyldige place-referanser: **0**
 - Duplikate place-referanser inne på people: **484**
 - People uten image: **135**
 - People uten cardImage: **136**
@@ -23,7 +23,7 @@ Generert: 2026-07-04T09:02:34.279Z
 |---|---:|---:|---:|---:|---:|
 | by | 92 | 29 | 63 | 117 | 90 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 461 | 57 | 404 | 192 | 104 |
+| historie | 501 | 57 | 444 | 192 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
@@ -120,7 +120,7 @@ Generert: 2026-07-04T09:02:34.279Z
 
 ## Ugyldige place-referanser
 
-- hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> fagerborg_kirke
+- Ingen ugyldige place-referanser funnet.
 
 ## Duplikate place-referanser inne på people
 

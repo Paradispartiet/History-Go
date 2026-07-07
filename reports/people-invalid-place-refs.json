@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T09:02:33.908Z",
+  "generatedAt": "2026-07-07T06:35:43.675Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -8,68 +8,14 @@
   "summary": {
     "peopleFilesRead": 28,
     "peopleRead": 484,
-    "peopleWithInvalidRefs": 1,
-    "invalidRefs": 1,
-    "uniqueInvalidPlaceIds": 1,
+    "peopleWithInvalidRefs": 0,
+    "invalidRefs": 0,
+    "uniqueInvalidPlaceIds": 0,
     "peopleWithoutValidPlace": 0,
     "duplicateInternalPlaceRefs": 484
   },
-  "invalidRefsGrouped": [
-    {
-      "sourceFile": "data/people/by/oslo/people_by_oslo.json",
-      "people": [
-        {
-          "personId": "hagbarth_schytte_berg",
-          "personName": "Hagbarth Schytte-Berg",
-          "invalidPlaceIds": [
-            "fagerborg_kirke"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/by/oslo/people_by_oslo.json",
-              "personId": "hagbarth_schytte_berg",
-              "personName": "Hagbarth Schytte-Berg",
-              "field": "places[1]",
-              "invalidPlaceId": "fagerborg_kirke"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "uniqueInvalidPlaceIds": [
-    {
-      "invalidPlaceId": "fagerborg_kirke",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/by/oslo/people_by_oslo.json"
-      ],
-      "classification": "needs_manual_review",
-      "suggestions": [
-        {
-          "placeId": "alvdal_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "asnes_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "aurdal_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "bamble_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "biri_kirke",
-          "confidence": "low"
-        }
-      ]
-    }
-  ],
+  "invalidRefsGrouped": [],
+  "uniqueInvalidPlaceIds": [],
   "peopleWithoutValidPlace": [],
   "duplicateInternalPlaceRefs": [
     {
@@ -5397,33 +5343,5 @@
       ]
     }
   ],
-  "recommendedNextBatch": [
-    {
-      "invalidPlaceId": "fagerborg_kirke",
-      "classification": "needs_manual_review",
-      "occurrences": 1,
-      "suggestions": [
-        {
-          "placeId": "alvdal_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "asnes_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "aurdal_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "bamble_kirke",
-          "confidence": "low"
-        },
-        {
-          "placeId": "biri_kirke",
-          "confidence": "low"
-        }
-      ]
-    }
-  ]
+  "recommendedNextBatch": []
 }
