@@ -31,12 +31,18 @@
 </head>
 
 <!-- ============================================================
-     CIVICATION v2 — livsfortellingsspill (Life Story System)
-     Primær spillflyt: Min dag -> scene -> valg -> Player State.
-     Alt merket data-civi-legacy er Civication v1 og lastes/vises
-     KUN når CIVICATION_LEGACY_ENABLED er eksplisitt true
-     (Civication.html?civicationLegacy=1). Se
-     docs/civication-life-story-system.md.
+     CIVICATION — samfunns-/livssimulator (Civication-skall).
+     Standardvisning: hele skallet — kart, dashboard, nabolag,
+     kapital, psyke, identitet, folk, offentlig lag, rolle/
+     arbeidsdag og innboks — MED «Min dag» (Life Story) som
+     primærpanelet øverst. Min dag er ÉN modul i skallet, ikke
+     hele appen.
+
+     Skallet lastes av civicationLegacyLoader.js (shell-loaderen)
+     så snart shell-DOM-en finnes. De TUNGE canvas/3D-kartene er
+     av som standard (skallet bruker SVG-kartet) og slås kun på
+     med Civication.html?civicationLegacy=1 for full gammel debug.
+     Se docs/civication-life-story-system.md.
      ============================================================ -->
 <body class="civi-app">
 
@@ -48,8 +54,8 @@
     <!-- v2-header: rolle, dag, fase og noen få statusverdier (fylles av CivicationLifestoryUI) -->
     <div id="civiLifestoryHeaderStatus" class="civi-lifestory-header-status muted"></div>
 
-    <!-- Legacy-HUD (v1 dashboard-metrics, drevet av CivicationDashboardUI) -->
-    <div class="civi-header-metrics" data-civi-legacy hidden>
+    <!-- Dashboard-HUD (nøkkeltall, drevet av CivicationDashboardUI) -->
+    <div class="civi-header-metrics">
       <div class="civi-dashboard-metrics" aria-label="Civication nøkkeltall">
         <div class="civi-dashboard-metric is-primary">
           <span>PC</span>
@@ -84,27 +90,28 @@
 
   <main class="civi-world">
 
-    <!-- v1-kartet (canvas/3D). Legacy: lastes og vises kun i legacy-modus. -->
-    <div id="civiMapWorld" data-civi-legacy hidden>
+    <!-- Civication-kartet. Standard er det komplette SVG-kartet (CivicationMap);
+         de tunge canvas/3D-rendrerne slås kun på med ?civicationLegacy=1. -->
+    <div id="civiMapWorld">
       <div class="civi-map-layer"></div>
     </div>
 
     <div class="civi-panels">
 
-      <!-- ============ CIVICATION v2: HOVEDFLATEN ============
-           Min dag er spillet: NÅ-scenen med valg, aktive tråder,
-           kalender/senere i dag og arkiv. Innboks er ikke spillet;
-           innboks er arkiv. -->
+      <!-- ============ MIN DAG — primærpanelet i skallet ============
+           Life Story: NÅ-scenen med valg, aktive tråder, kalender/
+           senere i dag og arkiv. Én modul øverst i skallet — de andre
+           panelene under (dashboard, kart, kapital, psyke, folk, rolle
+           …) er resten av Civication-produktet, ikke legacy. -->
       <section id="civiLifestorySection">
         <h2>Min dag</h2>
         <div id="civiLifestoryPanel"></div>
       </section>
 
-      <!-- ============ CIVICATION v1 (LEGACY) UNDER ============
-           Statuspaneler og gamle hovedflater. Skal ikke konkurrere
-           med Min dag; vises kun i legacy-modus. -->
+      <!-- ============ CIVICATION-SKALLET — statuspaneler og flater ============
+           Aktivt produkt, synlig som standard sammen med Min dag. -->
 
-      <section id="civiDashboardSection" class="civi-dashboard" aria-label="Civication oversikt" data-civi-legacy hidden>
+      <section id="civiDashboardSection" class="civi-dashboard" aria-label="Civication oversikt">
         <div class="civi-dashboard-copy">
           <div class="civi-dashboard-kicker">Min situasjon</div>
           <h1 id="civiDashRole">Ingen aktiv rolle</h1>
@@ -117,12 +124,12 @@
         </div>
       </section>
 
-      <section id="civiOnboardingSection" data-civi-legacy hidden>
+      <section id="civiOnboardingSection">
         <h2>Neste steg</h2>
         <div id="civiOnboardingPanel"></div>
       </section>
 
-      <section class="civi-capital" data-civi-legacy hidden>
+      <section class="civi-capital">
         <h2>Kapital</h2>
         <div class="capital-grid">
           <div class="capital-item"><div class="capital-label">Økonomisk</div><div class="capital-value" id="capEconomic">—</div></div>
@@ -133,7 +140,7 @@
         </div>
       </section>
 
-      <section id="civiIdentitySection" class="civi-identity" data-civi-legacy hidden>
+      <section id="civiIdentitySection" class="civi-identity">
         <h2>Identitet</h2>
         <div id="identityCompass"></div>
         <div id="identityDominant"></div>
@@ -141,7 +148,7 @@
         <div id="identityPerception"></div>
       </section>
 
-      <section id="civiPsyche" class="civi-psyche" data-civi-legacy hidden>
+      <section id="civiPsyche" class="civi-psyche">
         <h2>Psyke</h2>
         <div class="psyche-grid">
           <div class="psyche-item"><div class="psyche-label">Integritet</div><div class="psyche-value" id="psyIntegrity">—</div></div>
@@ -159,56 +166,56 @@
         </div>
       </section>
 
-      <section id="civiHomeStatus" data-civi-legacy hidden>
+      <section id="civiHomeStatus">
         <h2>Hjem</h2>
         <div id="homeStatusContent"></div>
       </section>
 
-      <section id="civiPublicFeedSection" data-civi-legacy hidden>
+      <section id="civiPublicFeedSection">
         <h2>Offentlig</h2>
         <div id="civiPublicFeed"></div>
       </section>
 
-      <section id="activeJobSection" data-civi-legacy hidden>
+      <section id="activeJobSection">
         <h2>Aktiv rolle</h2>
         <div id="activeJobCard"></div>
       </section>
 
-      <section id="civiWorkdaySection" data-civi-legacy hidden>
+      <section id="civiWorkdaySection">
         <h2>Arbeidsdag</h2>
         <div id="civiWorkdayPanel"></div>
       </section>
 
-      <section id="civiDebateSection" data-civi-legacy hidden>
+      <section id="civiDebateSection">
         <h2>Debatt / konfrontasjon</h2>
         <div id="civiDebatePanel"></div>
       </section>
 
-      <section id="civiPeopleSection" data-civi-legacy hidden>
+      <section id="civiPeopleSection">
         <h2>Mennesker du krysser med</h2>
         <div id="civiPeoplePanel"></div>
       </section>
 
-      <section id="civiStoreSection" data-civi-legacy hidden>
+      <section id="civiStoreSection">
         <h2>Butikker og pakker</h2>
         <div id="civiStorePanel"></div>
       </section>
 
-      <div id="civiTrackHUD" class="civi-track-hud" data-civi-legacy hidden>
+      <div id="civiTrackHUD" class="civi-track-hud">
         <div class="civi-track-title">🎯 Aktiv retning</div>
         <div id="civiTrackName">–</div>
         <div id="civiTrackProgress" class="muted">–</div>
         <div id="civiTrackTags" class="civi-track-tags"></div>
       </div>
 
-      <section id="civiInboxSection" data-civi-legacy hidden>
+      <section id="civiInboxSection">
         <h2>Innkommende</h2>
         <div id="civiInbox"></div>
       </section>
 
     </div>
 
-    <div id="districtModal" class="civi-modal" style="display:none;" data-civi-legacy hidden>
+    <div id="districtModal" class="civi-modal" style="display:none;">
       <div class="civi-modal-content">
         <div class="civi-modal-header">
           <h2>Velg nabolag</h2>
@@ -220,16 +227,16 @@
 
   </main>
 
-  <div class="civi-footer" data-civi-legacy hidden>
+  <div class="civi-footer">
     <button id="btnCiviMap" class="civi-btn">Kart</button>
     <button class="civi-btn" data-scroll="#civiDashboardSection">Oversikt</button>
     <button class="civi-btn" data-scroll="#civiHomeStatus">Hjem</button>
     <button class="civi-btn primary" data-scroll="#activeJobSection">Rolle</button>
   </div>
 
-  <!-- ============ CIVICATION v2 — det eneste som lastes som standard ============
-       v2-config (legacy-bryter) -> lagring/JSON -> Life Story System -> Min dag-UI.
-       Ingen mailmotorer, ingen next-action, ingen day progression. -->
+  <!-- ============ MIN DAG (Life Story) — primærpanelet, lastes først ============
+       config (canvas/3D-bryter) -> lagring/JSON -> Life Story System -> Min dag-UI.
+       Disse rendrer Min dag raskt og uavhengig av resten av skallet. -->
   <script src="js/Civication/civicationV2Config.js"></script>
   <script src="js/Civication/core/CivicationStorageAdapter.js"></script>
   <script src="js/Civication/core/civicationJsonStore.js"></script>
@@ -238,8 +245,11 @@
   <script src="js/Civication/lifestory/lifestoryRunner.js"></script>
   <script src="js/Civication/ui/CivicationLifestoryUI.js"></script>
 
-  <!-- Civication v1 (legacy): hele den gamle scriptkjeden ligger som liste i
-       legacy-loaderen og injiseres KUN når legacy-flagget er på. -->
+  <!-- ============ CIVICATION-SKALLET — lastes som standard ============
+       Shell-loaderen injiserer hele skallkjeden (kart, dashboard, nabolag,
+       kapital, psyke, folk, rolle/arbeidsdag, innboks, CivicationBoot) og
+       vekker boot. ?civicationLegacy=1 slår i tillegg på de tunge canvas/3D-
+       kartene for full gammel debug. -->
   <script src="js/Civication/civicationLegacyLoader.js"></script>
 
 </body>

@@ -1,15 +1,16 @@
 // js/Civication/civicationV2Config.js
 //
-// Civication v2 — konfigurasjon og legacy-bryter.
-// Lastes som FØRSTE Civication-script på Civication.html og avgjør om det
-// gamle motormaskineriet (mailmotorer, next-action, workday-runtime,
-// day progression osv.) i det hele tatt skal lastes.
+// Civication — konfigurasjon og debug-bryter.
+// Lastes som FØRSTE Civication-script på Civication.html.
 //
 // Regelen (docs/civication-life-story-system.md):
-//   Civication v2 = Life Story System er primær spillflyt.
-//   Civication v1 = legacy. Lastes KUN når legacy-flagget eksplisitt er på.
+//   Civication-skallet (kart, dashboard, paneler, rolle/arbeidsdag …) er
+//   hovedproduktet og lastes som standard. «Min dag» (Life Story) er
+//   primærpanelet — ÉN modul i skallet, ikke hele appen.
 //
-// Legacy slås på eksplisitt, aldri implisitt:
+// Bryteren under gjelder IKKE lenger om skallet lastes (det gjør det alltid).
+// Den slår kun på de TUNGE, eksperimentelle canvas/3D-kartene for full gammel
+// debug; skallet bruker ellers det komplette SVG-kartet. Slås på eksplisitt:
 //   - URL:          Civication.html?civicationLegacy=1
 //   - localStorage: civication_legacy_enabled = "1"
 //   - konsoll:      CivicationV2Config.enableLegacy() + reload
