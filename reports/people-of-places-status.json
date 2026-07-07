@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-04T09:02:34.032Z",
+  "generatedAt": "2026-07-07T06:35:43.797Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-07-04T09:02:34.032Z",
+    "generatedAt": "2026-07-07T06:35:43.797Z",
     "peopleFilesRead": 28,
     "totalPeople": 484,
     "uniquePeopleIds": 484,
     "duplicatePeopleIds": 0,
-    "invalidPlaceRefs": 1,
+    "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 0,
     "peopleWithEmptyPlacesArray": 0,
     "flatPeopleFiles": 0,
@@ -30,7 +30,7 @@
       "missingNameCount": 0,
       "missingCategoryCount": 0,
       "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 1,
+      "invalidPlaceRefCount": 0,
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
@@ -872,30 +872,8 @@
     "flatFilesHoldForSchemaReview": []
   },
   "placeRefAudit": {
-    "invalidPlaceRefs": [
-      {
-        "sourceFile": "data/people/by/oslo/people_by_oslo.json",
-        "personId": "hagbarth_schytte_berg",
-        "personName": "Hagbarth Schytte-Berg",
-        "field": "places[1]",
-        "invalidPlaceId": "fagerborg_kirke",
-        "suggestedAction": "create_place_later"
-      }
-    ],
-    "missingPlaceBlockers": [
-      {
-        "placeId": "fagerborg_kirke",
-        "occurrences": 1,
-        "people": [
-          {
-            "sourceFile": "data/people/by/oslo/people_by_oslo.json",
-            "personId": "hagbarth_schytte_berg",
-            "personName": "Hagbarth Schytte-Berg",
-            "field": "places[1]"
-          }
-        ]
-      }
-    ]
+    "invalidPlaceRefs": [],
+    "missingPlaceBlockers": []
   },
   "peopleWithoutStrongAnchor": [],
   "weakPlaces": [],
@@ -5703,13 +5681,11 @@
     }
   ],
   "recommendedNextPr": {
-    "type": "schema_cleanup",
+    "type": "content_expansion",
     "category": null,
-    "reason": "Audit fant ugyldige place-referanser; cleanup bør tas før nye batches.",
-    "safeBatchSize": 1,
-    "blockers": [
-      "fagerborg_kirke"
-    ]
+    "reason": "Ingen invalid refs, duplikater eller store flate split-kandidater ble funnet.",
+    "safeBatchSize": 10,
+    "blockers": []
   },
   "guardrails": {
     "peopleEntriesAdded": 0,
