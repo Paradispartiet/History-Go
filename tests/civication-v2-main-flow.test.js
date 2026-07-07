@@ -89,6 +89,7 @@ const NON_SHELL_ENGINES = [
   "civicationDailyMailBuilder.js",
   "civicationNextActionSelector.js",
   "CivicationNextActionUI.js",
+  "CivicationDayPhaseUI.js",
   "dayProgressionController.js",
   "CivicationBoot.js"
 ];
@@ -113,6 +114,10 @@ for (const src of [...loader.SHELL_SCRIPTS, ...loader.DAY_SCRIPTS, ...loader.LEG
 assert.ok(loader.SHELL_SCRIPTS.includes("js/Civication/CivicationShellBoot.js"), "shell boot ligger i shell-listen");
 assert.ok(loader.SHELL_SCRIPTS.includes("js/Civication/CivicationBoot.js"), "tynn koordinator ligger i shell-listen");
 assert.ok(loader.DAY_SCRIPTS.includes("js/Civication/CivicationDayBoot.js"), "day boot ligger i day-listen");
+assert.ok(!loader.DAY_SCRIPTS.includes("js/Civication/ui/CivicationDayPhaseUI.js"),
+  "gammel Dagens fase-UI skal ikke autolastes i standard day-listen");
+assert.ok(loader.LEGACY_DEBUG_SCRIPTS.includes("js/Civication/ui/CivicationDayPhaseUI.js"),
+  "gammel Dagens fase-UI skal kun ligge bak legacy/debug-bryteren");
 
 for (const file of ["civicationMailEngine.js", "civicationDailyMailBuilder.js", "dayProgressionController.js", "civicationWorkdayRuntime.js"]) {
   assert.ok(!loader.SHELL_SCRIPTS.some((src) => src.endsWith(file)), `${file} skal ikke ligge i shell-listen`);

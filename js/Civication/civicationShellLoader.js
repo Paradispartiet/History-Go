@@ -115,7 +115,6 @@
     "js/Civication/systems/day/dayProgressionController.js",
     "js/Civication/systems/civicationNextActionSelector.js",
     "js/Civication/systems/civicationDayPlan.js",
-    "js/Civication/ui/CivicationDayPhaseUI.js",
     "js/Civication/systems/day/dayHistoryGoContexts.js",
     "js/Civication/systems/day/dayCarryover.js",
     "js/Civication/systems/day/dayWeeklyReview.js",
@@ -154,7 +153,8 @@
     "js/Civication/ui/CivicationCanvasMap.js",
     "js/Civication/ui/CivicationThreeMap.js",
     "js/Civication/systems/civicationMailPlanDebug.js",
-    "js/Civication/systems/day/dayRuntimeDebugPanel.js"
+    "js/Civication/systems/day/dayRuntimeDebugPanel.js",
+    "js/Civication/ui/CivicationDayPhaseUI.js"
   ];
 
   // Bakoverkompatibel komplett liste i historisk rekkefølge for eldre tester/konsoll.
@@ -233,7 +233,6 @@
     "js/Civication/systems/day/dayProgressionController.js",
     "js/Civication/systems/civicationNextActionSelector.js",
     "js/Civication/systems/civicationDayPlan.js",
-    "js/Civication/ui/CivicationDayPhaseUI.js",
     "js/Civication/systems/day/dayHistoryGoContexts.js",
     "js/Civication/systems/civicationPlaceAccessBridge.js",
     "js/Civication/systems/civicationPeopleEngine.js",

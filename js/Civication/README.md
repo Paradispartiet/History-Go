@@ -21,8 +21,9 @@ og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVI
 > (active/completed/dormant/escalated med step), **day progression**
 > (`startNextDay` beholder arkiv/valg) og **konsekvenstekst** per valg.
 > **Motorene beskrevet i dette dokumentet driver daglaget inne i skallet** (innboks,
-> arbeidsdag, dagfase, rolle …) og lastes fra `DAY_SCRIPTS` etter at shell-boot har
-> startet. Produkt-skallet lastes fra `SHELL_SCRIPTS`; full gammel/debug ligger i
+> arbeidsdag, mail-runtime, rolle …) og lastes fra `DAY_SCRIPTS` etter at shell-boot har
+> startet. Den gamle `CivicationDayPhaseUI` er ikke lenger standard hovedflate; den ligger
+> kun bak `LEGACY_DEBUG_SCRIPTS`/eksplisitt fallback. Produkt-skallet lastes fra `SHELL_SCRIPTS`; full gammel/debug ligger i
 > `LEGACY_DEBUG_SCRIPTS`. Kart/paneler/dashboard er **ikke** legacy — de er aktivt produkt. Den eneste egentlige
 > debug-bryteren som er igjen er de tunge canvas/3D-kartene: av som standard (skallet
 > bruker SVG-kartet), på med `Civication.html?civicationLegacy=1`.
@@ -57,8 +58,8 @@ Ansvarsdelingen og robustheten er dekket av `tests/civication-boot-split.test.js
 (JSDOM): skallet starter selv om dag-motoren kaster, og dag-laget er inert uten sin DOM.
 
 `?civicationLegacy=1` gjelder **kun** tung debug/full legacy-modus (canvas/3D-kart og
-historiske debugpaneler) — det har ingenting med boot-splitten å gjøre. Skallet
-lastes uansett som standard, mens day/mail er et separat lag som ikke kan velte skallet.
+historiske debugpaneler, inkludert gammel `CivicationDayPhaseUI`) — det har ingenting med boot-splitten å gjøre. Skallet
+lastes uansett som standard, mens day/mail er et separat datalag som ikke kan velte skallet eller overta Min dag-flaten.
 
 ## Grunnprinsipp: én aktiv handling om gangen
 
@@ -66,8 +67,10 @@ Civication hadde tidligere flere flater som konkurrerte om å være «aktiv hand
 samme mail og samme svaralternativer dukket opp flere steder. Den ryddede regelen er:
 
 ```text
-Aktive svarvalg eies KUN av NextAction (Neste handling / Neste fase).
-Dagens fase er status/fortelling — den svarer aldri.
+Ny Min dag eies av CivicationLifestoryUI og er øverste, autoritative dagflate.
+Day/mail-motorer leverer data til Min dag, innboks og arkiv — de eier ikke hovedflaten.
+Aktive svarvalg i gamle mail/day-flater eies KUN av NextAction når legacy/debug brukes.
+Gammel Dagens fase / CivicationDayPhaseUI er legacy/debug/fallback — ikke standard hovedvisning.
 Innboksen er arkiv/detalj — den svarer aldri.
 WorkdayPanel og Dashboard er presentasjon — de svarer aldri.
 ```
@@ -82,7 +85,8 @@ NextAction … rendres ALDRI» her).
 | --- | --- | --- | --- |
 | Neste handling | `CivicationNextActionUI` | Eneste svarflate. Viser den aktive sakens valg i en modal. | **Ja** |
 | Hvilken sak er aktiv | `CivicationNextActionSelector` | Read-only utvelger: returnerer nøyaktig én aktiv handling. | — |
-| Dagens fase | `CivicationDayPhaseUI` | Passivt statuskort: hvor i dagen du er, hvor mange åpne saker, hva neste sak heter. | Nei |
+| Min dag | `CivicationLifestoryUI` | Standard og autoritativ dagflate: NÅ-scene, valg, tråder, senere i dag og arkiv. Mailviseren brukeren likte bevares her som primær opplevelse. | Ja, for Life Story-valg |
+| Dagens fase (legacy/debug) | `CivicationDayPhaseUI` | Gammel passiv statusflate. Lastes ikke fra standard `DAY_SCRIPTS`; kan bare vises via `?civicationLegacy=1`/eksplisitt fallback og skal aldri injiseres foran Min dag i normal Civication. | Nei |
 | Innboks | `CivicationInboxTopActionUI` / `CivicationMiniSectionsUI` | Arkiv/detaljvisning av mottatte mailer. | Nei |
 | WorkdayPanel | `renderWorkdayPanel` (`CivicationUI`) | Jobbkontekst: klokke, skift, status, dagens oppgave, ukesprogresjon, kontraktspress. | Nei |
 | Dashboard | `CivicationDashboardUI` | Topp-HUD: PC, status, innboks-teller, rolle/livssituasjon. Ren presentasjon. | Nei |

@@ -359,6 +359,13 @@ js/Civication/lifestory/lifestoryRunner.js
 js/Civication/ui/CivicationLifestoryUI.js
 ```
 
+
+### Autoritativ Min dag-flate (2026-07-07)
+
+`CivicationLifestoryUI` / `#civiLifestoryPanel` er den autoritative **Min dag**-opplevelsen i Civication. Den nye mail-/sceneviseren med NÅ-scene, valg, tråder, senere i dag og arkiv skal ligge øverst i `.civi-panels` og være standard når `Civication.html` åpnes uten URL-parametre.
+
+Den gamle `CivicationDayPhaseUI` / `#civiDayPhasePanel` er bare legacy/debug/fallback. Den lastes ikke fra standard `DAY_SCRIPTS`, og den skal ikke injisere seg foran `#civiLifestorySection` eller vise teksten «Dagens fase» i normal Min dag. Day/mail-motorer kan fortsatt levere data til Life Story, innboks og arkiv, men de skal ikke overta hovedflaten. Hvis gamle debugflater trengs, aktiveres de eksplisitt med `?civicationLegacy=1`.
+
 **2. Skallet**, via shell-loaderen (siste script-tag):
 
 ```
@@ -368,7 +375,7 @@ js/Civication/civicationShellLoader.js     # injiserer produkt-skallet, vekker s
 Shell-loaderen er delt i tre ordnede lister: `SHELL_SCRIPTS` for produkt-skallet
 (kart, dashboard, kapital, psyke, identitet, hjem, folk, offentlig lag, butikk,
 rollepanel, footer/panelnavigasjon og empty states), `DAY_SCRIPTS` for day/mail/
-workday/innboks-logikk, og `LEGACY_DEBUG_SCRIPTS` for eksplisitt full debug.
+workday/innboks-datalag og runtime-logikk, og `LEGACY_DEBUG_SCRIPTS` for eksplisitt full debug. `CivicationDayPhaseUI` ligger i legacy/debug, ikke i standard `DAY_SCRIPTS`.
 Den injiserer `SHELL_SCRIPTS` så snart shell-DOM-en finnes (`#civiMapWorld`),
 vekker shell-boot først, og laster/starter deretter day/mail-laget med egen
 feilisolering. Rene Min dag-flater/enhetstester uten shell-DOM drar ikke inn
