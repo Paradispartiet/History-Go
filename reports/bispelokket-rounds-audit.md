@@ -7,7 +7,7 @@
 - works: 🔴
 - civication: 🔴
 - brands: 🔴
-- før_nå: 🔴
+- før_nå: ✅
 - fortellinger: ✅
 - leksikon: ✅
 
@@ -16,7 +16,6 @@
 - works: mangler `works`-liste i Bispelokket source-data.
 - civication: mangler `civication_store` i Bispelokket source-data.
 - brands: mangler eksplisitte merkevare-/aktørkoblinger for stedet.
-- før_nå: mangler `for_na`-innhold for før/nå-rundingen.
 - badges: har `emne_ids`, og vurderes derfor grønn for rundingens minimumskobling.
 - fortellinger: `data/stories/stories_bispelokket.json` finnes og er koblet med `place_id: "bispelokket"`.
 - leksikon: `data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json` har leksikonoppføring for `place_id: "bispelokket"`.
