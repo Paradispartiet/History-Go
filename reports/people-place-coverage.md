@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-07T14:18:55.592Z
+Generert: 2026-07-07T17:22:28.878Z
 
 ## Sammendrag
 
-- People totalt: **499**
-- Places totalt: **975**
-- Places med people: **221**
-- Places uten people: **754**
-- People-place-lenker: **760**
+- People totalt: **503**
+- Places totalt: **999**
+- Places med people: **222**
+- Places uten people: **777**
+- People-place-lenker: **764**
 - People koblet til flere gyldige steder: **192**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **499**
-- People uten image: **150**
-- People uten cardImage: **151**
+- Duplikate place-referanser inne på people: **503**
+- People uten image: **154**
+- People uten cardImage: **155**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -22,8 +22,8 @@ Generert: 2026-07-07T14:18:55.592Z
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
 | by | 92 | 29 | 63 | 117 | 90 |
-| film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 525 | 57 | 468 | 192 | 104 |
+| film_tv | 8 | 8 | 0 | 46 | 24 |
+| historie | 549 | 57 | 492 | 192 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
@@ -31,7 +31,7 @@ Generert: 2026-07-07T14:18:55.592Z
 | naeringsliv | 55 | 27 | 28 | 55 | 53 |
 | natur | 63 | 5 | 58 | 13 | 13 |
 | politikk | 17 | 7 | 10 | 74 | 61 |
-| populaerkultur | 18 | 4 | 14 | 8 | 8 |
+| populaerkultur | 18 | 5 | 13 | 11 | 11 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 64 | 13 | 51 | 46 | 38 |
 | subkultur | 30 | 13 | 17 | 21 | 16 |
@@ -51,23 +51,23 @@ Generert: 2026-07-07T14:18:55.592Z
 - media: 27
 - by: 26
 - kunst: 26
-- film: 23
+- film: 24
 - film_tv: 23
 - arkitektur: 22
 - natur: 22
+- populaerkultur: 22
 - regissor: 20
-- populaerkultur: 18
+- scene: 19
 - tv: 18
 - filantrop: 17
-- scene: 17
 - filmhistorie: 15
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
+- humor: 12
 - modernisme: 12
 - borgerkrigstiden: 11
 - cinematek: 11
-- humor: 11
 - krig: 11
 - sanger: 11
 - avis: 10
@@ -85,10 +85,10 @@ Generert: 2026-07-07T14:18:55.592Z
 - byutvikling: 7
 - kristning: 7
 - maleri: 7
+- underholdning: 7
 - kanon: 6
 - konsert: 6
 - mesen: 6
-- nasjonalmuseet: 6
 
 ## Steder med flest people
 
@@ -224,7 +224,7 @@ Generert: 2026-07-07T14:18:55.592Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 399 flere
+- ... 403 flere
 
 ## Anbefalt første people-batch
 

@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-07T14:18:55.054Z
+Generated: 2026-07-07T17:22:28.480Z
 
 ## Sammendrag
 - People-filer lest: **28**
-- People lest: **499**
+- People lest: **503**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **499**
+- Duplikate interne place-referanser: **503**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -511,6 +511,10 @@ Generated: 2026-07-07T14:18:55.054Z
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: aud_schonemann (Aud Schønemann) -> nrk_huset_marienlyst x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: wenche_foss (Wenche Foss) -> folketeateret x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: nils_vogt (Nils Vogt) -> nrk_huset_marienlyst x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: house_of_nerds_miljoet (House of Nerds-miljøet) -> house_of_nerds x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: colosseum_premierepublikummet (Colosseum-premierepublikummet) -> colosseum_kino x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: folketeateret_musikalmiljoet (Folketeateret-musikalmiljøet) -> folketeateret x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: latter_standupmiljoet (Latter-standupmiljøet) -> latter x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: herman_jose (Herman José) -> lisbon_rtp x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: ricardo_araujo_pereira (Ricardo Araújo Pereira) -> lisbon_rtp x2

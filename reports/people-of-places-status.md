@@ -1,15 +1,15 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-07T14:18:55.240Z
+Generert: 2026-07-07T17:22:28.609Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-07T14:18:55.240Z |
+| generatedAt | 2026-07-07T17:22:28.609Z |
 | peopleFilesRead | 28 |
-| totalPeople | 499 |
-| uniquePeopleIds | 499 |
+| totalPeople | 503 |
+| uniquePeopleIds | 503 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
@@ -43,7 +43,7 @@ Generert: 2026-07-07T14:18:55.240Z
 | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json | politikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 14 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 18 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json | sport | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 36 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json | subkultur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -66,7 +66,7 @@ Generert: 2026-07-07T14:18:55.240Z
 | naeringsliv | 55 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| populaerkultur | 20 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| populaerkultur | 24 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 39 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 32 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -119,7 +119,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=politikk
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=populaerkultur
-- data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=14/14; source_place_id=0/14; placesArray=14/14; categories=populaerkultur
+- data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=18/18; source_place_id=0/18; placesArray=18/18; categories=populaerkultur
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=sport
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=36/36; source_place_id=0/36; placesArray=36/36; categories=sport
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=subkultur
