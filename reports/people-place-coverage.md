@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-07T17:22:28.878Z
+Generert: 2026-07-07T23:02:24.668Z
 
 ## Sammendrag
 
-- People totalt: **503**
-- Places totalt: **999**
-- Places med people: **222**
-- Places uten people: **777**
-- People-place-lenker: **764**
+- People totalt: **512**
+- Places totalt: **1003**
+- Places med people: **227**
+- Places uten people: **776**
+- People-place-lenker: **773**
 - People koblet til flere gyldige steder: **192**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **503**
-- People uten image: **154**
-- People uten cardImage: **155**
+- Duplikate place-referanser inne på people: **512**
+- People uten image: **163**
+- People uten cardImage: **164**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -27,14 +27,14 @@ Generert: 2026-07-07T17:22:28.878Z
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
-| musikk | 13 | 9 | 4 | 27 | 18 |
+| musikk | 13 | 10 | 3 | 32 | 23 |
 | naeringsliv | 55 | 27 | 28 | 55 | 53 |
 | natur | 63 | 5 | 58 | 13 | 13 |
 | politikk | 17 | 7 | 10 | 74 | 61 |
 | populaerkultur | 18 | 5 | 13 | 11 | 11 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 64 | 13 | 51 | 46 | 38 |
-| subkultur | 30 | 13 | 17 | 21 | 16 |
+| subkultur | 34 | 17 | 17 | 25 | 20 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
 ## People tags
@@ -42,12 +42,12 @@ Generert: 2026-07-07T17:22:28.878Z
 - historie: 112
 - litteratur: 46
 - politikk: 44
+- subkultur: 41
 - naeringsliv: 40
 - norge_for_1500: 40
 - sport: 39
-- subkultur: 37
+- musikk: 35
 - vitenskap: 34
-- musikk: 30
 - media: 27
 - by: 26
 - kunst: 26
@@ -64,8 +64,8 @@ Generert: 2026-07-07T17:22:28.878Z
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
+- modernisme: 13
 - humor: 12
-- modernisme: 12
 - borgerkrigstiden: 11
 - cinematek: 11
 - krig: 11
@@ -75,11 +75,12 @@ Generert: 2026-07-07T17:22:28.878Z
 - fotball: 10
 - presse: 10
 - redaksjon: 10
+- musikkhistorie: 9
 - norsk_film: 9
 - programleder: 9
 - kringkasting: 8
-- musikkhistorie: 8
 - radio: 8
+- teater: 8
 - vikingtid: 8
 - arbeiderbevegelse: 7
 - byutvikling: 7
@@ -88,7 +89,6 @@ Generert: 2026-07-07T17:22:28.878Z
 - underholdning: 7
 - kanon: 6
 - konsert: 6
-- mesen: 6
 
 ## Steder med flest people
 
@@ -224,7 +224,7 @@ Generert: 2026-07-07T17:22:28.878Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 403 flere
+- ... 412 flere
 
 ## Anbefalt første people-batch
 

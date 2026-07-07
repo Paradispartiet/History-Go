@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-07T17:22:28.609Z
+Generert: 2026-07-07T23:02:24.298Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-07T17:22:28.609Z |
-| peopleFilesRead | 28 |
-| totalPeople | 503 |
-| uniquePeopleIds | 503 |
+| generatedAt | 2026-07-07T23:02:24.298Z |
+| peopleFilesRead | 29 |
+| totalPeople | 512 |
+| uniquePeopleIds | 512 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 28 |
+| geographicPeopleFiles | 29 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -35,6 +35,7 @@ Generert: 2026-07-07T17:22:28.609Z
 | data/people/media/europe/portugal/lisbon/people_media_lisbon.json | media | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/oslo/people_media_oslo.json | media | ja | 19 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | musikk | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json | musikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | naeringsliv | ja | 33 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -47,7 +48,7 @@ Generert: 2026-07-07T17:22:28.609Z
 | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json | sport | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 36 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json | subkultur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 29 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 33 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json | vitenskap | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | vitenskap | ja | 21 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
 
@@ -62,18 +63,18 @@ Generert: 2026-07-07T17:22:28.609Z
 | kunst | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 39 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 26 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| musikk | 26 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| musikk | 31 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 55 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 24 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 39 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| subkultur | 32 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| subkultur | 36 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 28
+- Allerede geografisk strukturert: 29
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -111,6 +112,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=media
 - data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=19/19; source_place_id=0/19; placesArray=19/19; categories=media
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=musikk
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=musikk
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=musikk
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=33/33; source_place_id=0/33; placesArray=33/33; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=22/22; placesArray=22/22; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
@@ -123,7 +125,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=sport
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=36/36; source_place_id=0/36; placesArray=36/36; categories=sport
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=subkultur
-- data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=29/29; source_place_id=0/29; placesArray=29/29; categories=subkultur
+- data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=33/33; source_place_id=0/33; placesArray=33/33; categories=subkultur
 - data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=vitenskap
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=21/21; source_place_id=0/21; placesArray=21/21; categories=vitenskap
 
