@@ -1,6 +1,6 @@
 # Civication — motorer og spillvei gjennom dagen
 
-Oppdatert: 2026-06-30
+Oppdatert: 2026-07-07
 
 Civication er en samfunns-/livssimulator som kjøres fra `Civication.html` (og delvis fra
 `index.html`/`profile.html`). Dette dokumentet forklarer **motorene** og **den ene spillveien
@@ -11,18 +11,19 @@ mailFamily → FWG) er beskrevet i [`data/Civication/README-mailsystem-og-rolemo
 og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVICATION_WORK_GRAMMAR_STANDARD.md).
 
 > **Civication-skallet er hovedproduktet; Min dag (Life Story) er primærpanelet i det.**
-> `Civication.html` laster HELE skallet som standard — kart, dashboard, nabolag, kapital,
-> psyke, identitet, folk, offentlig lag, rolle/arbeidsdag og innboks — med Min dag øverst
-> som ÉN modul, ikke hele appen. Life Story er én fortellingsrunner
+> `Civication.html` laster Min dag først og deretter `js/Civication/civicationShellLoader.js`.
+> Shell-loaderen laster produkt-skallet som standard — kart, dashboard, nabolag, kapital,
+> psyke, identitet, folk, offentlig lag, rollepanel, footer/panelnavigasjon og robuste
+> tomtilstander — med Min dag øverst som ÉN modul, ikke hele appen. Life Story er én fortellingsrunner
 > (`js/Civication/lifestory/`) + rene fortellingspakker (`data/Civication/lifestory/`),
 > pilotert med rollen Arealplanlegger. Motoren støtter scene-**conditions**
 > (flagg/meters/relasjoner/thread state), **thread state**
 > (active/completed/dormant/escalated med step), **day progression**
 > (`startNextDay` beholder arkiv/valg) og **konsekvenstekst** per valg.
-> **Motorene beskrevet i dette dokumentet driver skallets paneler** (innboks,
-> arbeidsdag, dagfase, rolle …) og lastes derfor som standard via shell-loaderen
-> `js/Civication/civicationLegacyLoader.js` (hele skallkjeden, `CivicationBoot.js` sist).
-> Kart/paneler/dashboard er **ikke** legacy — de er aktivt produkt. Den eneste egentlige
+> **Motorene beskrevet i dette dokumentet driver daglaget inne i skallet** (innboks,
+> arbeidsdag, dagfase, rolle …) og lastes fra `DAY_SCRIPTS` etter at shell-boot har
+> startet. Produkt-skallet lastes fra `SHELL_SCRIPTS`; full gammel/debug ligger i
+> `LEGACY_DEBUG_SCRIPTS`. Kart/paneler/dashboard er **ikke** legacy — de er aktivt produkt. Den eneste egentlige
 > debug-bryteren som er igjen er de tunge canvas/3D-kartene: av som standard (skallet
 > bruker SVG-kartet), på med `Civication.html?civicationLegacy=1`.
 > Nye fortellinger bygges som **data** i `data/Civication/lifestory/`, aldri som nye motorer.
@@ -55,8 +56,9 @@ kjører alene og fungerer også når shell-DOM mangler.
 Ansvarsdelingen og robustheten er dekket av `tests/civication-boot-split.test.js`
 (JSDOM): skallet starter selv om dag-motoren kaster, og dag-laget er inert uten sin DOM.
 
-`?civicationLegacy=1` gjelder **kun** tung debug/legacy-kartmodus (canvas/3D-kart) — det
-har ingenting med boot-splitten å gjøre. Skallet lastes uansett som standard.
+`?civicationLegacy=1` gjelder **kun** tung debug/full legacy-modus (canvas/3D-kart og
+historiske debugpaneler) — det har ingenting med boot-splitten å gjøre. Skallet
+lastes uansett som standard, mens day/mail er et separat lag som ikke kan velte skallet.
 
 ## Grunnprinsipp: én aktiv handling om gangen
 

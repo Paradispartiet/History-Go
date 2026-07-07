@@ -38,7 +38,7 @@ async function main() {
     "js/Civication/lifestory/lifestoryState.js",
     "js/Civication/lifestory/lifestoryRunner.js",
     "js/Civication/ui/CivicationLifestoryUI.js",
-    "js/Civication/civicationLegacyLoader.js"
+    "js/Civication/civicationShellLoader.js"
   ];
   for (const file of V2_CHAIN) {
     window.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
