@@ -256,44 +256,310 @@
       ]
     },
     {
-      "id": "dag_02_ny_morgen",
+      "id": "dag2_morgen_staa_i_det",
       "threadId": "tviler_paa_jobben",
       "fase": "morgen",
       "dag": 2,
       "visningstype": "refleksjon",
       "avsender": null,
       "tilgjengelighet": "start",
-      "prioritet": 10,
-      "tittel": "Dag 2: en ny morgen",
-      "tekst": "Gårsdagen sitter fortsatt i kroppen. Dag 2 av piloten er ikke skrevet ennå — men du står opp, og valgene dine fra i går er med deg.",
+      "prioritet": 12,
+      "conditions": {
+        "flagg": {
+          "valgte_aa_staa_i_jobben": true
+        }
+      },
+      "tittel": "Dag 2: du bestemte deg for å bli",
+      "tekst": "I går kveld landet du på at jobben betyr noe. Morgenen kjennes lettere for det — men skoleveien og resten venter fortsatt.",
       "valg": [
         {
-          "id": "moet_dagen",
-          "tekst": "Møte dagen med det du lærte i går",
+          "id": "moet_med_ro",
+          "tekst": "Møte dagen med ro og en klar prioritering",
           "tone": "besluttsom",
           "effekter": {
             "meters": {
+              "energi": 4,
+              "psyke": 3,
+              "integritet": 2
+            },
+            "flagg": {
+              "dag2_moett_med_ro": true
+            }
+          },
+          "konsekvensTekst": "Du skriver tre ting på en gul lapp. Bare tre."
+        },
+        {
+          "id": "kast_deg_inn",
+          "tekst": "Kaste deg rett inn i sakene med full gass",
+          "tone": "ivrig",
+          "effekter": {
+            "meters": {
+              "energi": -3,
+              "synlighet": 4,
+              "handlingsrom": -2
+            },
+            "flagg": {
+              "dag2_full_gass": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dag2_morgen_se_seg_om",
+      "threadId": "tviler_paa_jobben",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "conditions": {
+        "flagg": {
+          "begynte_aa_se_seg_om": true
+        }
+      },
+      "tittel": "Dag 2: en fot ute av døra",
+      "tekst": "I går begynte du stille å se deg om etter noe annet. I dag ser du kontoret med litt andre øyne — som noe du kanskje ikke blir i.",
+      "valg": [
+        {
+          "id": "gjoer_jobben_likevel",
+          "tekst": "Gjøre jobben skikkelig så lenge du er her",
+          "tone": "profesjonell",
+          "effekter": {
+            "meters": {
+              "integritet": 4,
+              "psyke": 2,
+              "energi": -2
+            },
+            "flagg": {
+              "dag2_lojal_ut_doera": true
+            }
+          },
+          "konsekvensTekst": "Du bestemmer deg for å gå ut med rak rygg, hvis du går."
+        },
+        {
+          "id": "spar_kreftene",
+          "tekst": "Spare kreftene til det du egentlig vil",
+          "tone": "distansert",
+          "effekter": {
+            "meters": {
               "energi": 3,
+              "synlighet": -3,
+              "integritet": -3
+            },
+            "flagg": {
+              "dag2_sparte_krefter": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dag2_morgen_endre",
+      "threadId": "tviler_paa_jobben",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "conditions": {
+        "flagg": {
+          "vil_endre_arbeidsmaate": true
+        }
+      },
+      "tittel": "Dag 2: du ville jobbe annerledes",
+      "tekst": "I går bestemte du deg for å endre måten du jobber på. Nå står du med sjansen til å gjøre det — eller falle tilbake i det vante.",
+      "valg": [
+        {
+          "id": "sett_grense",
+          "tekst": "Sette en tydelig grense for hva du tar på deg i dag",
+          "tone": "reflektert",
+          "effekter": {
+            "meters": {
+              "psyke": 5,
+              "handlingsrom": 4,
+              "synlighet": -2
+            },
+            "flagg": {
+              "dag2_satte_grense": true
+            }
+          },
+          "konsekvensTekst": "Det kjennes uvant å si nei før noen har spurt."
+        },
+        {
+          "id": "fall_tilbake",
+          "tekst": "Fall tilbake i den vante rytmen — det er tryggere",
+          "tone": "resignert",
+          "effekter": {
+            "meters": {
+              "psyke": -3,
+              "energi": -2,
+              "integritet": -2
+            },
+            "flagg": {
+              "dag2_falt_tilbake": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dag2_oekonomi",
+      "threadId": "stram_oekonomi",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Kontoen tåler ikke mye mer",
+      "tekst": "En regning du hadde glemt dukker opp på telefonen. Det er fortsatt lenge til lønning, og tallet på kontoen gjør deg urolig.",
+      "valg": [
+        {
+          "id": "stram_inn",
+          "tekst": "Stramme inn: matpakke, ingen kaffe ute, gå i stedet for buss",
+          "tone": "nøktern",
+          "effekter": {
+            "meters": {
+              "penger": 60,
+              "psyke": -2,
+              "energi": -2
+            },
+            "flagg": {
+              "dag2_strammet_inn": true
+            },
+            "threads": {
+              "stram_oekonomi": {
+                "status": "dormant"
+              }
+            }
+          },
+          "konsekvensTekst": "Det svir litt, men kontoen puster lettere."
+        },
+        {
+          "id": "la_det_skure",
+          "tekst": "La det skure — du orker ikke tenke på det i dag",
+          "tone": "unnvikende",
+          "effekter": {
+            "meters": {
+              "penger": -30,
               "psyke": 2
             },
             "flagg": {
-              "moette_dag_2": true
+              "dag2_lot_oekonomi_skure": true
+            },
+            "threads": {
+              "stram_oekonomi": {
+                "status": "escalated"
+              }
             }
-          }
+          },
+          "konsekvensTekst": "Uroen legger seg for stunden. Regningen gjør det ikke."
+        }
+      ]
+    },
+    {
+      "id": "dag2_kveld_oekonomi_tung",
+      "threadId": "stram_oekonomi",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "threads": {
+          "stram_oekonomi": "escalated"
         },
+        "meters": {
+          "penger": {
+            "max": 400
+          }
+        }
+      },
+      "tittel": "Kvelden: pengene tynger",
+      "tekst": "Du sitter med kalkulatoren og prøver å få dagene til å strekke til. Jobben er én ting — men det er dette som holder deg våken.",
+      "valg": [
         {
-          "id": "ta_det_rolig",
-          "tekst": "Ta morgenen sakte og la jobben vente litt",
-          "tone": "omsorg",
+          "id": "legg_en_plan",
+          "tekst": "Legge en enkel plan for uka og sove på det",
+          "tone": "ansvarlig",
           "effekter": {
             "meters": {
-              "energi": 5,
-              "synlighet": -1
+              "psyke": 4,
+              "handlingsrom": 3
             },
             "flagg": {
-              "rolig_start_dag_2": true
+              "dag2_la_oekonomiplan": true
+            },
+            "threads": {
+              "stram_oekonomi": {
+                "status": "active"
+              }
             }
-          }
+          },
+          "konsekvensTekst": "Planen er skjør, men den finnes. Det er nok til å slippe taket for kvelden."
+        },
+        {
+          "id": "skyv_det_unna",
+          "tekst": "Skyve det unna en dag til",
+          "tone": "sliten",
+          "effekter": {
+            "meters": {
+              "psyke": -4,
+              "energi": -2
+            },
+            "flagg": {
+              "dag2_skjoev_oekonomi": true
+            }
+          },
+          "konsekvensTekst": "Tallene følger deg inn i søvnen."
+        }
+      ]
+    },
+    {
+      "id": "dag2_kveld_oppsummering",
+      "threadId": "tviler_paa_jobben",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 1,
+      "tittel": "To dager inn: hvem er du på vei til å bli?",
+      "tekst": "To dager som arealplanlegger ligger bak deg. Skoleveien, plansjefen, pengene, tvilen. Du kjenner tydeligere nå hva slags fagperson — og menneske — jobben gjør deg til.",
+      "valg": [
+        {
+          "id": "eier_retningen",
+          "tekst": "Eie retningen: dette er den planleggeren du vil være",
+          "tone": "avklart",
+          "effekter": {
+            "meters": {
+              "psyke": 4,
+              "integritet": 3
+            },
+            "flagg": {
+              "dag2_eier_retningen": true
+            }
+          },
+          "konsekvensTekst": "Du sovner uten å bla i telefonen. Første gang på lenge."
+        },
+        {
+          "id": "fortsatt_i_tvil",
+          "tekst": "Innse at du fortsatt er i tvil — og at det er greit",
+          "tone": "ærlig",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "dag2_fortsatt_i_tvil": true
+            }
+          },
+          "konsekvensTekst": "Tvilen er der ennå, men den skremmer deg mindre."
         }
       ]
     }

@@ -812,6 +812,216 @@
           }
         }
       ]
+    },
+    {
+      "id": "dag2_skolevei_eskalert",
+      "threadId": "skolevei_parkeringskjeller",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "møte",
+      "avsender": "politiker",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "conditions": {
+        "threads": {
+          "skolevei_parkeringskjeller": "escalated"
+        }
+      },
+      "tittel": "Skolevei-saken er på sakskartet",
+      "tekst": "Utvalgslederen har satt skoleveien opp som egen sak. Nå sitter du foran henne og utbyggeren samtidig: «Administrasjonen må velge side. Er dette et faglig krav, eller er det politikk?»",
+      "valg": [
+        {
+          "id": "staa_faglig",
+          "tekst": "Stå på det faglige: trafikksikker skolevei er et krav, ikke et ønske",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": {
+              "politiker": 6,
+              "skolekontakt": 8,
+              "utbygger": -8
+            },
+            "meters": {
+              "integritet": 8,
+              "synlighet": 5,
+              "energi": -5
+            },
+            "flagg": {
+              "sto_faglig_dag2": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Utvalgslederen noterer. «Da tar vi det som premiss.» Utbyggeren reiser seg uten å ta deg i hånden."
+        },
+        {
+          "id": "gi_etter",
+          "tekst": "Legge det fram som et politisk valg utvalget kan lande",
+          "tone": "lydhør",
+          "effekter": {
+            "relasjoner": {
+              "politiker": 5,
+              "utbygger": 6,
+              "skolekontakt": -10
+            },
+            "meters": {
+              "integritet": -8,
+              "handlingsrom": -4,
+              "psyke": -3
+            },
+            "flagg": {
+              "ga_etter_dag2": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Saken lander raskt. Du kjenner at noe forskyver seg i hvordan du ser på deg selv."
+        }
+      ]
+    },
+    {
+      "id": "dag2_skolevei_fortsett",
+      "threadId": "skolevei_parkeringskjeller",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": "skolekontakt",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "threads": {
+          "skolevei_parkeringskjeller": "active"
+        }
+      },
+      "tittel": "Skoleveien trenger et neste steg",
+      "tekst": "Saken lever fortsatt, men står stille. Skolekontakten spør forsiktig om det er noe nytt. Du kan ta den videre — eller la den gli.",
+      "valg": [
+        {
+          "id": "ferdigstill_notat",
+          "tekst": "Ferdigstille skoleveivurderingen og legge den i saken",
+          "tone": "grundig",
+          "effekter": {
+            "relasjoner": {
+              "skolekontakt": 8,
+              "plansjef": -2
+            },
+            "meters": {
+              "integritet": 6,
+              "energi": -6,
+              "synlighet": 3
+            },
+            "flagg": {
+              "ferdigstilte_skolevei_dag2": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Vurderingen er endelig inne. Skolekontakten svarer med tre utropstegn."
+        },
+        {
+          "id": "la_den_gli",
+          "tekst": "La saken gli — du har annet som haster mer",
+          "tone": "oppgitt",
+          "effekter": {
+            "relasjoner": {
+              "skolekontakt": -6
+            },
+            "meters": {
+              "integritet": -4,
+              "psyke": -2,
+              "handlingsrom": 3
+            },
+            "flagg": {
+              "lot_skolevei_gli_dag2": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "dormant"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lukker fanen. Følelsen av at det ikke er ferdig, blir liggende."
+        }
+      ]
+    },
+    {
+      "id": "dag2_plansjef_gjenaapner",
+      "threadId": "plansjef_merarbeid",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "møte",
+      "avsender": "plansjef",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "threads": {
+          "skolevei_parkeringskjeller": "dormant"
+        }
+      },
+      "tittel": "Plansjefen tar opp skoleveien igjen",
+      "tekst": "Plansjefen har fått en telefon fra skolen. «Den skoleveisaken du la til side — den er tilbake. Jeg vil ikke ha den i avisa. Ta tak i den, men gjør det ryddig.»",
+      "valg": [
+        {
+          "id": "gjenaapne_grundig",
+          "tekst": "Gjenåpne saken og gjøre den ordentlig denne gangen",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": {
+              "plansjef": 3,
+              "skolekontakt": 7
+            },
+            "meters": {
+              "integritet": 6,
+              "energi": -5
+            },
+            "flagg": {
+              "gjenaapnet_skolevei_dag2": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Saken er levende igjen. Det føles nesten som en ny sjanse."
+        },
+        {
+          "id": "minimer",
+          "tekst": "Gjøre det minimale for å lukke støyen",
+          "tone": "pragmatisk",
+          "effekter": {
+            "relasjoner": {
+              "plansjef": 5,
+              "skolekontakt": -4
+            },
+            "meters": {
+              "integritet": -5,
+              "psyke": -2
+            },
+            "flagg": {
+              "minimerte_skolevei_dag2": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Støyen stilner. Skolekontakten skjønner at ingenting egentlig endret seg."
+        }
+      ]
     }
   ]
 }

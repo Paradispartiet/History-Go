@@ -167,9 +167,20 @@ Når siste fase er tom, avslutter runneren dagen (`completeDay`) og
 `fullfoert` / `eskalert` / `hvilende`, ved siden av `meterEndringer` og
 dagens `valg`.
 
-Dag 2 trenger ikke fullt innhold ennå: Arealplanlegger har en trygg
-stub-scene (`dag_02_ny_morgen`) som beviser overgangen. En helt tom dag
-avsluttes trygt i stedet for å krasje.
+Arealplanlegger har nå et ekte **dag 2** som leser dag 1:
+
+- **Morgenen** forgrenes på gårsdagens kveldsrefleksjon: flaggene
+  `valgte_aa_staa_i_jobben` / `begynte_aa_se_seg_om` / `vil_endre_arbeidsmaate`
+  gir tre ulike morgenscener (`conditions.flagg`).
+- **Formiddagen** forgrenes på skolevei-trådens status
+  (`conditions.threads`): `escalated` gir en politisk konfrontasjon,
+  `active` gir en fortsettelse, `dormant` gir en scene der plansjefen
+  gjenåpner saken (den scenen ligger på den aktive `plansjef_merarbeid`-
+  tråden og kan sette skolevei tilbake til `active`).
+- **Kvelden** forgrenes på økonomi-tråden og pengemåleren, og lukkes med
+  en to-dagers refleksjon.
+
+En helt tom dag avsluttes fortsatt trygt i stedet for å krasje.
 
 ## 5c. Consequence feedback
 
@@ -258,10 +269,10 @@ De gamle motorene slettes ikke med én gang, men de styrer ikke lenger
 designet. Nye fortellinger bygges som pakker i
 `data/Civication/lifestory/`, aldri som nye motorer.
 
-## 9. Pilot: Arealplanlegger, Dag 1
+## 9. Pilot: Arealplanlegger, Dag 1 og Dag 2
 
-Piloten skal bevise én ting: kan spilleren leve én dag som
-arealplanlegger, med arbeidstråder, privatliv, valg og konsekvenser?
+Piloten beviser at spilleren kan leve dager som arealplanlegger, med
+arbeidstråder, privatliv, valg og konsekvenser — og at dag 2 leser dag 1.
 
 Arbeidstråder dag 1:
 
@@ -277,6 +288,12 @@ Privattråder dag 1:
 2. Økonomien er stram
 3. Noen forventer svar i kveld
 4. Du vurderer om jobben passer deg
+
+Dag 2 er ekte innhold (ikke lenger en stub) og forgrenes på dag 1 via
+`conditions` — se §5b. Morgenen leser identitetsvalget fra kvelden,
+formiddagen leser skolevei-trådens status, kvelden leser økonomi-tråden
+og pengemåleren. Dag 3+ er fortsatt uskrevet; en tom dag avsluttes
+trygt.
 
 ## 10. Regelen for Civication
 
