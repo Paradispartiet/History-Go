@@ -5,7 +5,7 @@
 - tasks: ✅
 - badges: ✅
 - works: 🔴
-- civication: 🔴
+- civication: ✅
 - brands: 🔴
 - før_nå: ✅
 - fortellinger: ✅
@@ -14,7 +14,7 @@
 ## Mangler
 - people: mangler eksplisitt personkobling for Bispelokket; eksisterende helserapport peker også på `missing_people_linkage`.
 - works: mangler `works`-liste i Bispelokket source-data.
-- civication: mangler `civication_store` i Bispelokket source-data.
+- civication: har stedsspesifikke `civication_store`-items i Bispelokket source-data.
 - brands: mangler eksplisitte merkevare-/aktørkoblinger for stedet.
 - badges: har `emne_ids`, og vurderes derfor grønn for rundingens minimumskobling.
 - fortellinger: `data/stories/stories_bispelokket.json` finnes og er koblet med `place_id: "bispelokket"`.
