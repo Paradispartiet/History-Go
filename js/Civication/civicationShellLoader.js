@@ -10,16 +10,26 @@
 // at skallet er startet. Feil i DAY-laget logges, men skal aldri vise
 // «Civication kunne ikke starte» når skallet allerede er oppe.
 //
-// Full gammel/debug-kjede (tunge canvas/3D-kart og debugpaneler) er eksplisitt
+// Rich runtime-kart (Canvas + WebGL/Three) lastes som standard. Det enkle
+// SVG-skallkartet beholdes som fallback/test/lite-modus. Debugpaneler er eksplisitte
 // og krever Civication.html?civicationLegacy=1.
 
 (function (globalScope) {
   "use strict";
 
-  const LEGACY_FLAGS = {
+  const RICH_MAP_FLAGS = {
     CIVICATION_CANVAS_MAP_ENABLED: true,
     CIVICATION_THREE_MAP_ENABLED: true
   };
+
+  const LITE_MAP_FLAGS = {
+    CIVICATION_CANVAS_MAP_ENABLED: false,
+    CIVICATION_THREE_MAP_ENABLED: false
+  };
+
+  // Bakoverkompatibelt navn for eldre tester/konsoll. Flagget betyr nå
+  // «rich map aktivt», ikke at legacy-modus er på.
+  const LEGACY_FLAGS = RICH_MAP_FLAGS;
 
   /** Produkt-skallet: data/state, kart/SVG, dashboard, kapital, psyke, identitet, hjem, folk, butikk, rollepanel, footer og boot-koordinator. */
   const SHELL_SCRIPTS = [
@@ -148,11 +158,15 @@
     "js/Civication/CivicationDayBoot.js"
   ];
 
-  /** Eksplisitt full legacy/debug: tunge canvas/3D-kart, kalibrering og historiske debugpaneler. */
-  const LEGACY_DEBUG_SCRIPTS = [
+  /** Rich runtime-kartet: Canvas først, Three/WebGL overtar når det er trygt. */
+  const RICH_MAP_SCRIPTS = [
     "js/Civication/ui/CivicationOsloMapCalibration.js",
     "js/Civication/ui/CivicationCanvasMap.js",
-    "js/Civication/ui/CivicationThreeMap.js",
+    "js/Civication/ui/CivicationThreeMap.js"
+  ];
+
+  /** Eksplisitt legacy/debug: historiske debugpaneler, ikke nødvendig for rich map. */
+  const LEGACY_DEBUG_SCRIPTS = [
     "js/Civication/systems/civicationMailPlanDebug.js",
     "js/Civication/systems/day/dayRuntimeDebugPanel.js"
   ];
@@ -286,6 +300,43 @@
     "js/Civication/CivicationBoot.js"
   ];
 
+
+  function queryFlagEnabled(name) {
+    try {
+      const params = new URLSearchParams(String((/** @type {any} */ (globalScope).location?.search) || ""));
+      const raw = params.get(name);
+      return raw === "1" || raw === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  function isExplicitLiteMode() {
+    return queryFlagEnabled("civicationLite") || /** @type {any} */ (globalScope).CIVICATION_LITE_MAP_ENABLED === true;
+  }
+
+  function isTestOrMockedRuntime() {
+    const g = /** @type {any} */ (globalScope);
+    const nav = g.navigator || {};
+    return g.CIVICATION_TEST_MODE === true ||
+      g.PLAYWRIGHT_TEST === true ||
+      g.__playwright === true ||
+      g.__pwInitScripts === true ||
+      nav.webdriver === true ||
+      (typeof process !== "undefined" && !!process.env && (process.env.PLAYWRIGHT_TEST || process.env.NODE_ENV === "test"));
+  }
+
+  function isCanvasDisabledForSafeRuntime() {
+    const g = /** @type {any} */ (globalScope);
+    // __ECHO_DISABLE_CANVAS_MAP__ is a test/mock escape hatch. Ignore it for
+    // normal production/runtime so users are not downgraded by stale globals.
+    return g.__ECHO_DISABLE_CANVAS_MAP__ === true && isTestOrMockedRuntime();
+  }
+
+  function shouldLoadRichMap() {
+    return !isExplicitLiteMode() && !isCanvasDisabledForSafeRuntime();
+  }
+
   function isEnabled() {
     return /** @type {any} */ (globalScope).CIVICATION_LEGACY_ENABLED === true;
   }
@@ -334,12 +385,22 @@
   async function load() {
     console.info("[CivicationShellLoader] laster Civication-skallet (kart, dashboard, paneler, Min dag-ramme).");
     revealLegacySections();
+    const richMap = shouldLoadRichMap();
+    Object.assign(globalScope, richMap ? RICH_MAP_FLAGS : LITE_MAP_FLAGS);
     await loadScripts(SHELL_SCRIPTS);
+    if (richMap) {
+      try {
+        await loadScripts(RICH_MAP_SCRIPTS);
+      } catch (error) {
+        console.warn("[CivicationShellLoader] rich map feilet — beholder lett SVG-skallkart", error);
+        Object.assign(globalScope, LITE_MAP_FLAGS);
+        try { /** @type {any} */ (globalScope).CivicationMap?.render?.(); } catch (_) { /* fallback best effort */ }
+      }
+    }
     wakeBootListeners();
 
     if (isEnabled()) {
-      console.warn("[CivicationShellLoader] civicationLegacy=1 — slår på tung canvas/3D-debug og full legacy/debug-kjede.");
-      Object.assign(globalScope, LEGACY_FLAGS);
+      console.warn("[CivicationShellLoader] civicationLegacy=1 — slår på legacy/debug-paneler (rich map er allerede standard).");
       try {
         await loadScripts(LEGACY_DEBUG_SCRIPTS);
       } catch (error) {
@@ -354,9 +415,16 @@
   const api = {
     SHELL_SCRIPTS,
     DAY_SCRIPTS,
+    RICH_MAP_SCRIPTS,
     LEGACY_DEBUG_SCRIPTS,
     LEGACY_SCRIPTS,
+    RICH_MAP_FLAGS,
+    LITE_MAP_FLAGS,
     LEGACY_FLAGS,
+    isExplicitLiteMode,
+    isTestOrMockedRuntime,
+    isCanvasDisabledForSafeRuntime,
+    shouldLoadRichMap,
     isEnabled,
     shouldAutoLoadShell,
     load

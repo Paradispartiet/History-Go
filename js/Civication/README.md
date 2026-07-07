@@ -25,7 +25,7 @@ og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVI
 > startet. Produkt-skallet lastes fra `SHELL_SCRIPTS`; full gammel/debug ligger i
 > `LEGACY_DEBUG_SCRIPTS`. Kart/paneler/dashboard er **ikke** legacy — de er aktivt produkt. Den eneste egentlige
 > debug-bryteren som er igjen er de tunge canvas/3D-kartene: av som standard (skallet
-> bruker SVG-kartet), på med `Civication.html?civicationLegacy=1`.
+> bruker rich Canvas/WebGL-kartet i normal runtime), lite fallback med `Civication.html?civicationLite=1`.
 > Nye fortellinger bygges som **data** i `data/Civication/lifestory/`, aldri som nye motorer.
 > Min dag er primærpanelet: statuslinje, nå-scene, valg, konsekvensfeedback, trådoversikt,
 > senere-i-dag og arkiv. Mail er bare én scenevisning; innboks er arkiv/bakgrunn, ikke
@@ -56,7 +56,7 @@ kjører alene og fungerer også når shell-DOM mangler.
 Ansvarsdelingen og robustheten er dekket av `tests/civication-boot-split.test.js`
 (JSDOM): skallet starter selv om dag-motoren kaster, og dag-laget er inert uten sin DOM.
 
-`?civicationLegacy=1` gjelder **kun** tung debug/full legacy-modus (canvas/3D-kart og
+`?civicationLegacy=1` gjelder **kun** ekstra debug/full legacy-modus (debugpaneler; canvas/3D-kart er standard) og
 historiske debugpaneler) — det har ingenting med boot-splitten å gjøre. Skallet
 lastes uansett som standard, mens day/mail er et separat lag som ikke kan velte skallet.
 

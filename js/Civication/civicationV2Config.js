@@ -9,8 +9,8 @@
 //   primærpanelet — ÉN modul i skallet, ikke hele appen.
 //
 // Bryteren under gjelder IKKE lenger om skallet lastes (det gjør det alltid).
-// Den slår kun på de TUNGE, eksperimentelle canvas/3D-kartene for full gammel
-// debug; skallet bruker ellers det komplette SVG-kartet. Slås på eksplisitt:
+// Den slår kun på ekstra legacy/debugpaneler. Det rike Canvas/WebGL-kartet
+// er standard i normal runtime; ?civicationLite=1 eller test-mock gir lett fallback. Debug slås på eksplisitt:
 //   - URL:          Civication.html?civicationLegacy=1
 //   - localStorage: civication_legacy_enabled = "1"
 //   - konsoll:      CivicationV2Config.enableLegacy() + reload

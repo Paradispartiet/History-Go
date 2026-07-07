@@ -5,7 +5,7 @@
 // Min dag er ÉN modul i skallet, ikke hele appen. Skallet er ikke legacy.
 //
 // Den eneste egentlige debug-bryteren som er igjen er de tunge canvas/3D-
-// kartene: av som standard, på med Civication.html?civicationLegacy=1.
+// kartene: på som standard i normal runtime, av bare i test/fallback/lite-modus.
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
@@ -107,7 +107,7 @@ assert.ok(Array.isArray(loader.DAY_SCRIPTS) && loader.DAY_SCRIPTS.length >= 20,
   "day/mail-scripts skal ligge i egen liste");
 assert.ok(Array.isArray(loader.LEGACY_DEBUG_SCRIPTS) && loader.LEGACY_DEBUG_SCRIPTS.length >= 1,
   "legacy/debug-scripts skal ligge i egen eksplisitt liste");
-for (const src of [...loader.SHELL_SCRIPTS, ...loader.DAY_SCRIPTS, ...loader.LEGACY_DEBUG_SCRIPTS]) {
+for (const src of [...loader.SHELL_SCRIPTS, ...loader.DAY_SCRIPTS, ...loader.RICH_MAP_SCRIPTS, ...loader.LEGACY_DEBUG_SCRIPTS]) {
   assert.ok(fs.existsSync(path.join(ROOT, src)), `Civication-script mangler på disk: ${src}`);
 }
 assert.ok(loader.SHELL_SCRIPTS.includes("js/Civication/CivicationShellBoot.js"), "shell boot ligger i shell-listen");
@@ -119,21 +119,42 @@ for (const file of ["civicationMailEngine.js", "civicationDailyMailBuilder.js", 
   assert.ok(loader.DAY_SCRIPTS.some((src) => src.endsWith(file)), `${file} skal ligge i day-listen`);
 }
 assert.ok(!loader.SHELL_SCRIPTS.some((src) => src.includes("CivicationCanvasMap") || src.includes("CivicationThreeMap")),
-  "tunge canvas/3D-kart skal ikke ligge i standard shell-listen");
+  "rich map-script ligger i egen runtime-liste, ikke i shell-listen");
+assert.ok(loader.RICH_MAP_SCRIPTS.includes("js/Civication/ui/CivicationCanvasMap.js"),
+  "Canvas-kartet skal lastes som standard rich runtime-kart");
+assert.ok(loader.RICH_MAP_SCRIPTS.includes("js/Civication/ui/CivicationThreeMap.js"),
+  "Three/WebGL-kartet skal prøves som standard rich runtime-kart");
 
 // Ingen dobbeltlasting: intet script i både statiske tags og loader-listene.
-for (const src of [...loader.SHELL_SCRIPTS, ...loader.DAY_SCRIPTS, ...loader.LEGACY_DEBUG_SCRIPTS]) {
+for (const src of [...loader.SHELL_SCRIPTS, ...loader.DAY_SCRIPTS, ...loader.RICH_MAP_SCRIPTS, ...loader.LEGACY_DEBUG_SCRIPTS]) {
   assert.ok(STATIC_SCRIPTS.indexOf(src) === -1, `${src} kan ikke være både statisk tag og loader-liste`);
 }
 
-// De tunge canvas/3D-kartene er den eneste egentlige debug-gaten.
-assert.ok(loader.LEGACY_FLAGS.CIVICATION_CANVAS_MAP_ENABLED === true &&
-  loader.LEGACY_FLAGS.CIVICATION_THREE_MAP_ENABLED === true,
-  "debug-flaggene styrer canvas/3D-kartene");
+// Rich map er standard; legacy-flagget er bare bakoverkompatibelt alias.
+assert.ok(loader.RICH_MAP_FLAGS.CIVICATION_CANVAS_MAP_ENABLED === true &&
+  loader.RICH_MAP_FLAGS.CIVICATION_THREE_MAP_ENABLED === true,
+  "rich map-flaggene styrer canvas/3D-kartene");
+assert.strictEqual(loader.shouldLoadRichMap(), true, "normal runtime skal laste rich map som default");
+global.__ECHO_DISABLE_CANVAS_MAP__ = true;
+assert.strictEqual(loader.shouldLoadRichMap(), true, "__ECHO_DISABLE_CANVAS_MAP__ ignoreres uten test/mock-runtime");
+global.CIVICATION_TEST_MODE = true;
+assert.strictEqual(loader.shouldLoadRichMap(), false, "test/mock-runtime kan deaktivere canvas/WebGL trygt");
+delete global.__ECHO_DISABLE_CANVAS_MAP__;
+delete global.CIVICATION_TEST_MODE;
 
 // --- 6. Debug-bryteren er av som standard (Node har verken URL eller storage) ---
 const config = require("../js/Civication/civicationV2Config.js");
 assert.strictEqual(config.resolveLegacyEnabled(), false, "canvas/3D-debug skal være av uten eksplisitt flagg");
 assert.strictEqual(loader.isEnabled(), false, "loaderen skal se at debug-flagget er av");
 
-console.log("civication main flow ok (skall + Min dag som standard, " + loader.SHELL_SCRIPTS.length + " shell-scripts, " + loader.DAY_SCRIPTS.length + " day-scripts)");
+// --- 7. Rich-map DOM-signaler og subpage-entry ---
+const mapSource = fs.readFileSync(path.join(ROOT, "js/Civication/ui/CivicationMap.js"), "utf8");
+assert.ok(mapSource.includes("civi-map-landmark") && mapSource.includes("civi-map-urban-texture") && mapSource.includes("civi-map-hg-places") === false,
+  "standardkartet skal ha rike landemerke-/bystruktur-lag, ikke bare en forenklet listevisning");
+assert.ok(mapSource.includes("civi:mapRendered"), "standardkartet skal sende DOM-event når rich SVG-fallback er rendret");
+const subpageHtml = fs.readFileSync(path.join(ROOT, "subpages/civication.html"), "utf8");
+assert.ok(subpageHtml.includes("../Civication.html"), "/subpages/civication.html skal rute normal runtime til hoved-Civication");
+assert.ok(subpageHtml.includes("window.location.search") && subpageHtml.includes("window.location.hash"),
+  "subpage-entry skal bevare query/hash, inkludert civicationLite og debug-flagg");
+
+console.log("civication main flow ok (rich map + skall + Min dag som standard, " + loader.SHELL_SCRIPTS.length + " shell-scripts, " + loader.DAY_SCRIPTS.length + " day-scripts)");
