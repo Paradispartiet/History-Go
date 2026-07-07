@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-07T07:20:12.200Z
+Generert: 2026-07-07T08:52:10.809Z
 
 ## Sammendrag
 
-- People totalt: **488**
+- People totalt: **492**
 - Places totalt: **959**
-- Places med people: **211**
-- Places uten people: **748**
-- People-place-lenker: **741**
-- People koblet til flere gyldige steder: **185**
+- Places med people: **213**
+- Places uten people: **746**
+- People-place-lenker: **748**
+- People koblet til flere gyldige steder: **188**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **488**
-- People uten image: **139**
-- People uten cardImage: **140**
+- Duplikate place-referanser inne på people: **492**
+- People uten image: **143**
+- People uten cardImage: **144**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -33,7 +33,7 @@ Generert: 2026-07-07T07:20:12.200Z
 | politikk | 17 | 7 | 10 | 74 | 61 |
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 64 | 11 | 53 | 39 | 34 |
+| sport | 64 | 13 | 51 | 46 | 38 |
 | subkultur | 30 | 5 | 25 | 9 | 8 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
@@ -44,7 +44,7 @@ Generert: 2026-07-07T07:20:12.200Z
 - politikk: 44
 - naeringsliv: 40
 - norge_for_1500: 40
-- sport: 35
+- sport: 39
 - vitenskap: 34
 - musikk: 30
 - subkultur: 30
@@ -72,11 +72,11 @@ Generert: 2026-07-07T07:20:12.200Z
 - sanger: 11
 - avis: 10
 - fado: 10
+- fotball: 10
 - presse: 10
 - redaksjon: 10
 - norsk_film: 9
 - programleder: 9
-- fotball: 8
 - kringkasting: 8
 - musikkhistorie: 8
 - radio: 8
@@ -224,7 +224,7 @@ Generert: 2026-07-07T07:20:12.200Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 388 flere
+- ... 392 flere
 
 ## Anbefalt første people-batch
 
