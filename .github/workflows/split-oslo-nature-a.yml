@@ -1,0 +1,22 @@
+name: Split Oslo nature A
+
+on:
+  push:
+    branches:
+      - data/split-natur-oslo-alna-places-20260708
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-natur-oslo-alna-places-20260708
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-natur-oslo-alna-places.mjs
+      - run: git status --short
