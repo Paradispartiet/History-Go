@@ -125,7 +125,6 @@
     "js/Civication/systems/day/dayProgressionController.js",
     "js/Civication/systems/civicationNextActionSelector.js",
     "js/Civication/systems/civicationDayPlan.js",
-    "js/Civication/ui/CivicationDayPhaseUI.js",
     "js/Civication/systems/day/dayHistoryGoContexts.js",
     "js/Civication/systems/day/dayCarryover.js",
     "js/Civication/systems/day/dayWeeklyReview.js",
@@ -167,6 +166,7 @@
 
   /** Eksplisitt legacy/debug: historiske debugpaneler, ikke nødvendig for rich map. */
   const LEGACY_DEBUG_SCRIPTS = [
+    "js/Civication/ui/CivicationDayPhaseUI.js",
     "js/Civication/systems/civicationMailPlanDebug.js",
     "js/Civication/systems/day/dayRuntimeDebugPanel.js"
   ];
