@@ -369,7 +369,7 @@ const PLACE_ROUND_REGISTRY = [
   { id: "works",        label: "Verk",          fallbackIcon: "🎭", iconId: "pcWorksIcon",           listId: "pcWorksList",           kind: "works", aliases: ["football", "music"] },
   { id: "civication",   label: "Civication",    fallbackIcon: "🏛", iconId: "pcCivicationStoreIcon", listId: "pcCivicationStoreList", kind: "civication" },
   { id: "brands",       label: "Aktører",       fallbackIcon: "🏷️", iconId: "pcBrandsIcon",          listId: "pcBrandsList",          kind: "brands" },
-  { id: "routes",       label: "Ruter",         fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
+  { id: "før_nå",      label: "Før / nå",     fallbackIcon: "🕰️", iconId: "pcForNaIcon",          listId: "pcForNaList",          kind: "før_nå", aliases: ["routes"] },
   { id: "fortellinger", label: "Fortellinger",  fallbackIcon: "📖", iconId: "pcFortellingerIcon",    listId: "pcFortellingerList",    kind: "fortellinger", aliases: ["stories", "story"] },
   { id: "leksikon",     label: "Leksikon",      fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["lexicon", "wonderkammer"] },
   { id: "play",         label: "Lek",           fallbackIcon: "🛝", iconId: "pcPlayIcon",            listId: "pcPlayList",            kind: "play" },
@@ -378,20 +378,20 @@ const PLACE_ROUND_REGISTRY = [
 ];
 
 const CATEGORY_ROUND_PROFILES = Object.freeze({
-  by: ["people", "nature", "badges", "works", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  historie: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
-  historisk: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
-  natur: ["tasks", "nature", "badges", "training", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  sport: ["people", "training", "badges", "works", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  lekeplass: ["play", "nature", "badges", "tasks", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  trening: ["people", "nature", "badges", "training", "civication", "brands", "routes", "tasks", "leksikon"],
-  politikk: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
-  kunst: ["people", "works", "badges", "nature", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  litteratur: ["people", "works", "badges", "nature", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  musikk: ["people", "works", "badges", "nature", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  subkultur: ["people", "works", "badges", "play", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  naeringsliv: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
-  transport: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"]
+  by: ["people", "nature", "badges", "works", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  historie: ["people", "works", "badges", "før_nå", "civication", "brands", "nature", "fortellinger", "leksikon"],
+  historisk: ["people", "works", "badges", "før_nå", "civication", "brands", "nature", "fortellinger", "leksikon"],
+  natur: ["tasks", "nature", "badges", "training", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  sport: ["people", "training", "badges", "works", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  lekeplass: ["play", "nature", "badges", "tasks", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  trening: ["people", "nature", "badges", "training", "civication", "brands", "før_nå", "tasks", "leksikon"],
+  politikk: ["people", "works", "badges", "før_nå", "civication", "brands", "nature", "fortellinger", "leksikon"],
+  kunst: ["people", "works", "badges", "nature", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  litteratur: ["people", "works", "badges", "nature", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  musikk: ["people", "works", "badges", "nature", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  subkultur: ["people", "works", "badges", "play", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  naeringsliv: ["people", "works", "badges", "før_nå", "civication", "brands", "nature", "fortellinger", "leksikon"],
+  transport: ["people", "works", "badges", "før_nå", "civication", "brands", "nature", "fortellinger", "leksikon"]
 });
 
 const DEFAULT_PLACE_ROUNDS = CATEGORY_ROUND_PROFILES.by.slice();
@@ -469,12 +469,21 @@ function applyPlaceRounds(place) {
     el.style.order = String(active.findIndex(activeDef => activeDef.id === def.id));
   }
 
-  for (const legacyIconId of ["pcWonderkammerIcon", "pcObservationsIcon", "pcFootballIcon", "pcMusicIcon"]) {
+  for (const legacyIconId of ["pcWonderkammerIcon", "pcObservationsIcon", "pcFootballIcon", "pcMusicIcon", "pcRoutesIcon"]) {
     if (canonicalIconIds.has(legacyIconId)) continue;
     const el = document.getElementById(legacyIconId);
     if (!el) continue;
     el.hidden = true;
     el.style.order = "";
+  }
+
+  const canonicalListIds = new Set(PLACE_ROUND_REGISTRY.map(def => def.listId));
+  for (const legacyListId of ["pcRoutesList"]) {
+    if (canonicalListIds.has(legacyListId)) continue;
+    const el = document.getElementById(legacyListId);
+    if (!el) continue;
+    el.classList?.remove("is-open");
+    el.hidden = true;
   }
 }
 
@@ -892,6 +901,7 @@ const badgesIcon          = document.getElementById("pcBadgesIcon");
 const natureIcon          = document.getElementById("pcNatureIcon");
 const playIcon            = document.getElementById("pcPlayIcon");
 const trainingIcon        = document.getElementById("pcTrainingIcon");
+const forNaIcon           = document.getElementById("pcForNaIcon");
 const routesIcon          = document.getElementById("pcRoutesIcon");
 const tasksIcon           = document.getElementById("pcTasksIcon");
 // Legacy DOM hook only: observations are not a canonical round in the registry.
@@ -917,6 +927,7 @@ const badgesEl          = document.getElementById("pcBadgesList");
 const natureEl          = document.getElementById("pcNatureList");
 const playEl            = document.getElementById("pcPlayList");
 const trainingEl        = document.getElementById("pcTrainingList");
+const forNaEl            = document.getElementById("pcForNaList");
 const routesEl          = document.getElementById("pcRoutesList");
 const tasksEl           = document.getElementById("pcTasksList");
 // Legacy list hook only; observations are not a canonical round in the registry.
@@ -953,6 +964,7 @@ if (!card.dataset.pcIconsBound) {
     natureEl?.classList.remove("is-open");
     playEl?.classList.remove("is-open");
     trainingEl?.classList.remove("is-open");
+    forNaEl?.classList.remove("is-open");
     routesEl?.classList.remove("is-open");
     tasksEl?.classList.remove("is-open");
     observationsEl?.classList.remove("is-open");
@@ -983,8 +995,7 @@ if (!card.dataset.pcIconsBound) {
       return;
     }
 
-    // Ruter-rundingen åpner eksisterende rute-funksjonalitet direkte
-    // (ikke et generisk popup-kort).
+    // Legacy: If an older template still binds a route round, open the separate route flow.
     if (kind === "routes") {
       if (typeof window.showNavRouteToPlace === "function") {
         void window.showNavRouteToPlace(currentPlace || place);
@@ -1094,6 +1105,7 @@ if (!card.dataset.pcIconsBound) {
     if (kind === "nature") html = `<div class="pc-empty">Ingen naturinnhold ennå</div>`;
     if (kind === "play") html = `<div class="pc-empty">Ingen lekeforslag ennå</div>`;
     if (kind === "training") html = `<div class="pc-empty">Ingen treningsinnhold ennå</div>`;
+    if (kind === "før_nå") html = `<div class="pc-empty">Ingen før/nå-innhold ennå</div>`;
 
     if (typeof window.showPlaceCardRoundPopup === "function") {
       window.showPlaceCardRoundPopup({
@@ -1118,6 +1130,7 @@ bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
 bindRoundPopup(natureIcon, natureEl, "Natur", "nature");
 bindRoundPopup(playIcon, playEl, "Lek", "play");
 bindRoundPopup(trainingIcon, trainingEl, "Trening", "training");
+bindRoundPopup(forNaIcon, forNaEl, "Før / nå", "før_nå");
 bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
 bindRoundPopup(tasksIcon, tasksEl, "Oppgaver", "tasks");
 bindRoundPopup(observationsIcon, observationsEl, "Observasjoner", "observations");
@@ -1133,6 +1146,7 @@ badgesEl?.addEventListener("click", (e) => e.stopPropagation());
 natureEl?.addEventListener("click", (e) => e.stopPropagation());
 playEl?.addEventListener("click", (e) => e.stopPropagation());
 trainingEl?.addEventListener("click", (e) => e.stopPropagation());
+forNaEl?.addEventListener("click", (e) => e.stopPropagation());
 routesEl?.addEventListener("click", (e) => e.stopPropagation());
 tasksEl?.addEventListener("click", (e) => e.stopPropagation());
 observationsEl?.addEventListener("click", (e) => e.stopPropagation());
@@ -2183,7 +2197,13 @@ if (worksEl) {
   });
 }
 
-// --- ROUTES LIST + ICON (åpner eksisterende rute-flyt, se bindRoundPopup) ---
+// --- FØR/NÅ LIST + ICON ---
+if (forNaEl) {
+  forNaEl.innerHTML = `<div class="pc-empty">Ingen før/nå-innhold ennå</div>`;
+  setRoundLabel(forNaIcon, "🕰️", "");
+}
+
+// Legacy route round DOM, if present in old templates, is not canonical.
 if (routesEl) {
   routesEl.innerHTML = `<div class="pc-empty">${tt("ui.routes.openForPlace", "Åpne ruter for dette stedet")}</div>`;
   setRoundLabel(routesIcon, "🧭", "");

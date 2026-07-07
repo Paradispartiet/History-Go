@@ -16,7 +16,7 @@ Canonical PlaceCard-rundinger i poolen er:
 - `works`
 - `civication`
 - `brands`
-- `routes`
+- `før_nå`
 - `fortellinger`
 - `leksikon`
 - `play`
@@ -32,71 +32,71 @@ id-er som finnes i denne poolen.
 by:
 people | nature | badges
 works | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 historie:
 people | works | badges
-routes | civication | brands
+før_nå | civication | brands
 nature | fortellinger | leksikon
 
 historisk:
 people | works | badges
-routes | civication | brands
+før_nå | civication | brands
 nature | fortellinger | leksikon
 
 natur:
 tasks | nature | badges
 training | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 sport:
 people | training | badges
 works | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 lekeplass:
 play | nature | badges
 tasks | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 trening:
 people | nature | badges
 training | civication | brands
-routes | tasks | leksikon
+før_nå | tasks | leksikon
 
 politikk:
 people | works | badges
-routes | civication | brands
+før_nå | civication | brands
 nature | fortellinger | leksikon
 
 kunst:
 people | works | badges
 nature | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 litteratur:
 people | works | badges
 nature | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 musikk:
 people | works | badges
 nature | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 subkultur:
 people | works | badges
 play | civication | brands
-routes | fortellinger | leksikon
+før_nå | fortellinger | leksikon
 
 naeringsliv:
 people | works | badges
-routes | civication | brands
+før_nå | civication | brands
 nature | fortellinger | leksikon
 
 transport:
 people | works | badges
-routes | civication | brands
+før_nå | civication | brands
 nature | fortellinger | leksikon
 ```
 
@@ -109,9 +109,10 @@ knekker:
 - `stories` / `story` -> `fortellinger`
 - `wonderkammer` -> `leksikon`
 - `football` / `music` -> `works`
+- `routes` er legacy alias for `før_nå`, men skal ikke brukes som ny canonical runding.
 - `observations` er legacy og skal ikke brukes som ny canonical runding.
 
-Nye data skal bruke canonical id-er hvis metadatafeltet fortsatt trengs.
+Nye data skal bruke canonical id-er hvis metadatafeltet fortsatt trengs. `routes` er ikke PlaceCard-runding fordi ruter håndteres av egen Rute-knapp/footer, Nearby/Utforsk og ruteflyt.
 
 ## Leksikon og Wonderkammer
 
@@ -204,11 +205,10 @@ Aktører: institusjoner, organisasjoner, klubber, museer, medier, butikker,
 scener, offentlige aktører, bedrifter, idrettslag og andre navngitte
 systemaktører. `brands` betyr ikke bare kommersielle merkevarer.
 
-### routes
+### før_nå
 
-Ruter stedet inngår i: historiske ruter, byvandringer, ferdselslinjer,
-transportlinjer, pilegrimsruter, handelsruter, elveruter, havneruter, politiske
-ruter, kulturvandringer, krigs-/motstandsruter, idretts- eller musikkruter.
+Visuelt og stedlig før/etter-innhold: historiske bilder, dagens bilde,
+transformasjon, og endringer i bruk, uttrykk og fysisk miljø.
 
 ### fortellinger
 

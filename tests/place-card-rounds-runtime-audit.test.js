@@ -8,10 +8,10 @@ const placeCardJs = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf
 const indexHtml = fs.readFileSync(path.join(repo, 'index.html'), 'utf8');
 const placeCardCss = fs.readFileSync(path.join(repo, 'css/placeCard.css'), 'utf8');
 
-const POOL = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon', 'play', 'training', 'tasks'];
-const BY = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
-const SPORT = ['people', 'training', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
-const LEKEPLASS = ['play', 'nature', 'badges', 'tasks', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
+const POOL = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon', 'play', 'training', 'tasks'];
+const BY = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon'];
+const SPORT = ['people', 'training', 'badges', 'works', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon'];
+const LEKEPLASS = ['play', 'nature', 'badges', 'tasks', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon'];
 const TASKS_ALLOWED_PROFILES = ['natur', 'lekeplass', 'trening'];
 const TASKS_FORBIDDEN_PROFILES = ['historie', 'historisk', 'politikk', 'kunst', 'litteratur', 'musikk', 'subkultur', 'naeringsliv', 'transport'];
 const GET_ROUNDS_NINE_SAMPLE_CATEGORIES = ['by', 'natur', 'lekeplass', 'trening', 'politikk', 'transport'];
@@ -50,6 +50,9 @@ assert.deepStrictEqual(Array.from(harness.sandbox.window.HGPlaceRounds.defaults)
 for (const oldId of ['wonderkammer', 'observations', 'football', 'music', 'stories', 'story', 'lexicon']) {
   assert(!registryIds.includes(oldId), `${oldId} skal ikke være canonical PlaceCard-round id`);
 }
+
+assert(!registryIds.includes('routes'), 'routes skal ikke være canonical PlaceCard-round id');
+assert.strictEqual(harness.sandbox.window.HGPlaceRounds.byId?.routes?.id, 'før_nå', 'routes kan bare mappe som legacy alias til før_nå');
 
 assert.deepStrictEqual(idsFor({ id: 'fallback_default' }), BY, 'ukjent/blank kategori skal bruke by-profil');
 assert.deepStrictEqual(idsFor({ id: 'sport_profile', category: 'sport' }), SPORT, 'sport skal bruke fast sportprofil');
@@ -110,16 +113,20 @@ for (const [index, id] of SPORT.entries()) {
   assert.strictEqual(el.hidden, false, `${def.id} skal vises`);
   assert.strictEqual(el.style.order, String(index), `${def.id} skal ha kategori-order ${index}`);
 }
-for (const legacyIconId of ['pcWonderkammerIcon', 'pcObservationsIcon', 'pcFootballIcon', 'pcMusicIcon']) {
+for (const legacyIconId of ['pcWonderkammerIcon', 'pcObservationsIcon', 'pcFootballIcon', 'pcMusicIcon', 'pcRoutesIcon']) {
   const el = harness.elements.get(legacyIconId);
   assert(el, `${legacyIconId} skal håndteres som legacy DOM hvis den finnes`);
   assert.strictEqual(el.hidden, true, `${legacyIconId} skal skjules som legacy/ikke-canonical DOM`);
 }
 
-for (const id of ['People', 'Nature', 'Works', 'Badges', 'Tasks', 'CivicationStore', 'Brands', 'Routes', 'Fortellinger', 'Leksikon', 'Play', 'Training']) {
+for (const id of ['People', 'Nature', 'Works', 'Badges', 'Tasks', 'CivicationStore', 'Brands', 'ForNa', 'Fortellinger', 'Leksikon', 'Play', 'Training']) {
   assert(indexHtml.includes(`id="pc${id}Icon"`), `pc${id}Icon skal finnes i DOM-kontrakten`);
   assert(indexHtml.includes(`id="pc${id}List"`), `pc${id}List skal finnes i DOM-kontrakten`);
 }
+assert(!indexHtml.includes('pcRoutesIcon'), 'pcRoutesIcon skal ikke finnes som canonical DOM-runding');
+assert(!indexHtml.includes('pcRoutesList'), 'pcRoutesList skal ikke finnes som canonical DOM-runding');
+assert(indexHtml.includes('pcRoute'), 'Separat Rute-knapp/rutefunksjon kan fortsatt finnes utenfor runding-gridet');
+
 for (const id of ['Wonderkammer', 'Observations', 'Football', 'Music']) {
   assert(!indexHtml.includes(`pc${id}Icon`), `pc${id}Icon skal ikke være canonical DOM-runding`);
   assert(!indexHtml.includes(`pc${id}List`), `pc${id}List skal ikke være canonical DOM-runding`);
