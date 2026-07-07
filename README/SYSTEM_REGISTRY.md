@@ -618,6 +618,17 @@ Deprecations
 - Profile/shop renderers may read these contracts but must not redefine wallet logic, inventory logic, badge gating, prices, or data.
 ---
 
+## Civication shell/day/debug loader contract
+
+- `Civication.html` loads Life Story / Min dag first, then `js/Civication/civicationShellLoader.js` as the standard Civication loader.
+- Civication shell is the main product: map, dashboard, capital, psyche, identity, home/neighborhood, public layer, people, store, role panel, footer/panel navigation, and robust empty panel states. These surfaces are not legacy.
+- Life Story / Min dag is the primary storytelling panel inside the shell, not the whole app.
+- Day/mail is a separate layer inside the shell, loaded from `DAY_SCRIPTS` after shell boot; failures there must not show the shell boot-error state after the shell is up.
+- Full legacy/debug is explicit via `Civication.html?civicationLegacy=1`, which enables heavy canvas/3D/debug scripts from `LEGACY_DEBUG_SCRIPTS`.
+- `js/Civication/civicationLegacyLoader.js` remains only as a compatibility wrapper/alias for older tests or console usage.
+
+---
+
 ## Civication debug helper contract
 
 - `window.HG_CiviDebug` is an allowed global exposed by `js/Civication/CivicationBoot.js` for browser-console inspection only.

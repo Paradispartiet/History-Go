@@ -362,20 +362,23 @@ js/Civication/ui/CivicationLifestoryUI.js
 **2. Skallet**, via shell-loaderen (siste script-tag):
 
 ```
-js/Civication/civicationLegacyLoader.js    # injiserer hele skallkjeden + vekker boot
+js/Civication/civicationShellLoader.js     # injiserer produkt-skallet, vekker shell-boot, laster day/mail etterpå
 ```
 
-Shell-loaderen bærer hele skallkjeden (122 filer, inkl. `CivicationBoot.js`
-sist) som en ordnet liste og injiserer den så snart shell-DOM-en finnes
-(`#civiMapWorld`). Rene Min dag-flater/enhetstester uten shell-DOM drar ikke
-inn skallet. Rekkefølgen og allowlisten håndheves av
-`tests/civication-v2-main-flow.test.js`.
+Shell-loaderen er delt i tre ordnede lister: `SHELL_SCRIPTS` for produkt-skallet
+(kart, dashboard, kapital, psyke, identitet, hjem, folk, offentlig lag, butikk,
+rollepanel, footer/panelnavigasjon og empty states), `DAY_SCRIPTS` for day/mail/
+workday/innboks-logikk, og `LEGACY_DEBUG_SCRIPTS` for eksplisitt full debug.
+Den injiserer `SHELL_SCRIPTS` så snart shell-DOM-en finnes (`#civiMapWorld`),
+vekker shell-boot først, og laster/starter deretter day/mail-laget med egen
+feilisolering. Rene Min dag-flater/enhetstester uten shell-DOM drar ikke inn
+skallet. Rekkefølgen og allowlisten håndheves av `tests/civication-v2-main-flow.test.js`.
 
 Skallseksjonene i Civication.html er **synlige som standard** — de er ikke
 merket `data-civi-legacy` lenger. De er aktivt produkt.
 
-**Den eneste egentlige debug-bryteren** som er igjen er de TUNGE, eksperimen-
-telle canvas/3D-kart-rendrerne. De er av som standard (skallet bruker det
+**Full gammel/debug-modus er eksplisitt.** Debug-bryteren slår på de TUNGE,
+eksperimentelle canvas/3D-kart-rendrerne og historiske debugpaneler. De er av som standard (skallet bruker det
 komplette SVG-kartet i `CivicationMap`) og slås kun på eksplisitt:
 
 - URL: `Civication.html?civicationLegacy=1`
@@ -386,8 +389,9 @@ Reglene fremover:
 
 - Nye fortellinger bygges som **data** i `data/Civication/lifestory/`,
   aldri som nye engines.
-- Innboks er arkiv/bakgrunn, ikke primær gameplay — men den er del av skallet
-  og lastes/vises som standard.
+- Innboks er arkiv/bakgrunn, ikke primær gameplay. Skallet viser robuste tomme
+  panelstates som standard; day/mail-laget fyller innholdet etterpå og kan ikke
+  velte skallet.
 - Ingen nye statiske script-tags i Civication.html uten at dette dokumentet og
   main-flow-testen oppdateres samtidig.
 - Boot er nå delt i to lag (se under). Mail/dag kan ikke lenger velte skallet.

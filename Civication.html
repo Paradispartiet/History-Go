@@ -7,8 +7,8 @@
 
   <!-- Import map: lar 3D-kartet (CivicationThreeMap) og three-addonene (SSAO/SMAA/
        EffectComposer) dele ÉN lokal, vendret three-instans. Må stå før første
-       modullast. Alt lastes lokalt fra js/vendor/three (ingen CDN). Kartet er
-       legacy (v1), men import-mappen må ligge klar for legacy-loaderen. -->
+       modullast. Alt lastes lokalt fra js/vendor/three (ingen CDN). Tunge 3D-kart er
+       eksplisitt debug; import-mappen må ligge klar for debug-loaderen. -->
   <script type="importmap">
   {
     "imports": {
@@ -38,8 +38,8 @@
      primærpanelet øverst. Min dag er ÉN modul i skallet, ikke
      hele appen.
 
-     Skallet lastes av civicationLegacyLoader.js (shell-loaderen)
-     så snart shell-DOM-en finnes. De TUNGE canvas/3D-kartene er
+     Skallet lastes av civicationShellLoader.js så snart shell-DOM-en
+     finnes. Day/mail lastes etterpå som eget lag. De TUNGE canvas/3D-kartene er
      av som standard (skallet bruker SVG-kartet) og slås kun på
      med Civication.html?civicationLegacy=1 for full gammel debug.
      Se docs/civication-life-story-system.md.
@@ -246,11 +246,11 @@
   <script src="js/Civication/ui/CivicationLifestoryUI.js"></script>
 
   <!-- ============ CIVICATION-SKALLET — lastes som standard ============
-       Shell-loaderen injiserer hele skallkjeden (kart, dashboard, nabolag,
-       kapital, psyke, folk, rolle/arbeidsdag, innboks, CivicationBoot) og
-       vekker boot. ?civicationLegacy=1 slår i tillegg på de tunge canvas/3D-
-       kartene for full gammel debug. -->
-  <script src="js/Civication/civicationLegacyLoader.js"></script>
+       Shell-loaderen injiserer produkt-skallet (kart, dashboard, nabolag,
+       kapital, psyke, folk, rollepanel, footer og tomtilstander), vekker
+       shell-boot først og laster deretter day/mail som separat lag.
+       ?civicationLegacy=1 slår på tung full debug. -->
+  <script src="js/Civication/civicationShellLoader.js"></script>
 
 </body>
 </html>

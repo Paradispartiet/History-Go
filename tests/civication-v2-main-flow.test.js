@@ -24,7 +24,7 @@ const STATIC_SCRIPTS = [
   "js/Civication/lifestory/lifestoryState.js",
   "js/Civication/lifestory/lifestoryRunner.js",
   "js/Civication/ui/CivicationLifestoryUI.js",
-  "js/Civication/civicationLegacyLoader.js"
+  "js/Civication/civicationShellLoader.js"
 ];
 
 const loadedScripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((m) => m[1]);
@@ -36,7 +36,7 @@ assert.deepStrictEqual(
 
 // config står først (setter flagget), shell-loaderen sist.
 assert.strictEqual(loadedScripts[0], "js/Civication/civicationV2Config.js");
-assert.strictEqual(loadedScripts[loadedScripts.length - 1], "js/Civication/civicationLegacyLoader.js");
+assert.strictEqual(loadedScripts[loadedScripts.length - 1], "js/Civication/civicationShellLoader.js");
 
 // --- 2. Skallet er SYNLIG som standard (ikke skjult, ikke merket legacy) ---
 // Dette er kjernen i reparasjonen: kart, dashboard, innboks, arbeidsdag, rolle
@@ -99,19 +99,31 @@ for (const file of NON_SHELL_ENGINES) {
   );
 }
 
-// --- 5. Shell-loaderen finnes fortsatt og bærer hele skallkjeden ---
-const loader = require("../js/Civication/civicationLegacyLoader.js");
-assert.ok(Array.isArray(loader.LEGACY_SCRIPTS) && loader.LEGACY_SCRIPTS.length >= 100,
-  "shell-loaderen skal bære hele skallkjeden");
-for (const src of loader.LEGACY_SCRIPTS) {
-  assert.ok(fs.existsSync(path.join(ROOT, src)), `skall-script mangler på disk: ${src}`);
+// --- 5. Shell-loaderen deler produkt-skall, day/mail og legacy/debug ---
+const loader = require("../js/Civication/civicationShellLoader.js");
+assert.ok(Array.isArray(loader.SHELL_SCRIPTS) && loader.SHELL_SCRIPTS.length >= 40,
+  "shell-loaderen skal bære produkt-skallet");
+assert.ok(Array.isArray(loader.DAY_SCRIPTS) && loader.DAY_SCRIPTS.length >= 20,
+  "day/mail-scripts skal ligge i egen liste");
+assert.ok(Array.isArray(loader.LEGACY_DEBUG_SCRIPTS) && loader.LEGACY_DEBUG_SCRIPTS.length >= 1,
+  "legacy/debug-scripts skal ligge i egen eksplisitt liste");
+for (const src of [...loader.SHELL_SCRIPTS, ...loader.DAY_SCRIPTS, ...loader.LEGACY_DEBUG_SCRIPTS]) {
+  assert.ok(fs.existsSync(path.join(ROOT, src)), `Civication-script mangler på disk: ${src}`);
 }
-assert.strictEqual(loader.LEGACY_SCRIPTS[loader.LEGACY_SCRIPTS.length - 1],
-  "js/Civication/CivicationBoot.js", "CivicationBoot skal lastes sist i skallkjeden");
+assert.ok(loader.SHELL_SCRIPTS.includes("js/Civication/CivicationShellBoot.js"), "shell boot ligger i shell-listen");
+assert.ok(loader.SHELL_SCRIPTS.includes("js/Civication/CivicationBoot.js"), "tynn koordinator ligger i shell-listen");
+assert.ok(loader.DAY_SCRIPTS.includes("js/Civication/CivicationDayBoot.js"), "day boot ligger i day-listen");
 
-// Ingen dobbeltlasting: intet script i både statiske tags og shell-kjeden.
-for (const src of loader.LEGACY_SCRIPTS) {
-  assert.ok(STATIC_SCRIPTS.indexOf(src) === -1, `${src} kan ikke være både statisk tag og shell-kjede`);
+for (const file of ["civicationMailEngine.js", "civicationDailyMailBuilder.js", "dayProgressionController.js", "civicationWorkdayRuntime.js"]) {
+  assert.ok(!loader.SHELL_SCRIPTS.some((src) => src.endsWith(file)), `${file} skal ikke ligge i shell-listen`);
+  assert.ok(loader.DAY_SCRIPTS.some((src) => src.endsWith(file)), `${file} skal ligge i day-listen`);
+}
+assert.ok(!loader.SHELL_SCRIPTS.some((src) => src.includes("CivicationCanvasMap") || src.includes("CivicationThreeMap")),
+  "tunge canvas/3D-kart skal ikke ligge i standard shell-listen");
+
+// Ingen dobbeltlasting: intet script i både statiske tags og loader-listene.
+for (const src of [...loader.SHELL_SCRIPTS, ...loader.DAY_SCRIPTS, ...loader.LEGACY_DEBUG_SCRIPTS]) {
+  assert.ok(STATIC_SCRIPTS.indexOf(src) === -1, `${src} kan ikke være både statisk tag og loader-liste`);
 }
 
 // De tunge canvas/3D-kartene er den eneste egentlige debug-gaten.
@@ -124,4 +136,4 @@ const config = require("../js/Civication/civicationV2Config.js");
 assert.strictEqual(config.resolveLegacyEnabled(), false, "canvas/3D-debug skal være av uten eksplisitt flagg");
 assert.strictEqual(loader.isEnabled(), false, "loaderen skal se at debug-flagget er av");
 
-console.log("civication main flow ok (skall + Min dag som standard, " + loader.LEGACY_SCRIPTS.length + " scripts i skallkjeden)");
+console.log("civication main flow ok (skall + Min dag som standard, " + loader.SHELL_SCRIPTS.length + " shell-scripts, " + loader.DAY_SCRIPTS.length + " day-scripts)");
