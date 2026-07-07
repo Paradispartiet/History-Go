@@ -76,3 +76,9 @@ Rot-README er bare inngang. Den skal ikke være idébibel, historisk lager eller
 - hovedoversikt: `README/README.md`
 
 Gamle tekstblokker skal konsolideres inn i riktig dokument, ikke kopieres videre i nye README-filer.
+
+## AHAavisa local publishing boundary
+
+AHAavisa lagrer artikler lokalt i `aha_articles_v1`. Statusen `published_local` betyr bare at artikkelen er markert som publisert i denne nettleseren, og `public_candidate` betyr bare lokal kandidatmerking for senere vurdering.
+
+AHAavisa gjør ingen ekstern publisering, bruker ingen backend, aktiverer ikke EchoNet og slår ikke på database-sync uten eksplisitt `AHA_CONFIG.avisa.enableDatabaseSync === true`. Referanser skal peke til eksisterende lokale AHA-objekter som insights, lists, paths, notes eller groups.

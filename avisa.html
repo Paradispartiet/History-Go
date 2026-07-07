@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="no">
+<head><meta charset="utf-8"><title>AHAavisa</title></head>
+<body>
+  <main id="aha-avisa-module">
+    <p>Lokale artikkelutkast og publiserte-lokalt tekster. AHAavisa organiserer egne AHA-notater og referanser, men publiserer ikke eksternt.</p>
+    <button>Nytt utkast</button>
+    <button>Oppdater</button>
+    <a href="AHA/">Tilbake til AHA Home</a>
+    <button>Lag artikkelutkast</button>
+    <details open>
+      <summary>Local-only publiseringsgrense</summary>
+      <p>AHAavisa er local-only. “Publiser lokalt” markerer bare en artikkel som publisert i denne nettleseren. Ingen data sendes ut, ingen backend brukes, og EchoNet er ikke aktivert.</p>
+      <p>Offentlig kandidat er bare lokal merking for senere vurdering. Det publiserer ikke artikkelen.</p>
+    </details>
+    <div class="statuslinje" data-avisa-ref-status="${article.id}" aria-live="polite"></div>
+  </main>
+  <script src="js/ahaAvisa.js"></script>
+</body>
+</html>
