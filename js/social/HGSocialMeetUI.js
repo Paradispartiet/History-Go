@@ -49,6 +49,10 @@
       #${SHEET_ID} .hg-social-card{display:grid;gap:4px;padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.055)}
       #${SHEET_ID} .hg-social-card strong{font-size:14px}
       #${SHEET_ID} .hg-social-card p{margin:0;color:rgba(255,255,255,.68);font-size:12px;line-height:1.35}
+      #${SHEET_ID} .hg-social-meet-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+      #${SHEET_ID} .hg-social-meet-action{min-height:32px;border-radius:999px;border:1px solid rgba(247,226,163,.38);background:rgba(247,226,163,.14);color:#f7e2a3;font-size:12px;font-weight:900;cursor:pointer;padding:0 12px}
+      #${SHEET_ID} .hg-social-meet-action[data-hg-social-meet-action=decline],#${SHEET_ID} .hg-social-meet-action[data-hg-social-meet-action=cancel]{border-color:rgba(255,255,255,.20);background:rgba(255,255,255,.08);color:rgba(255,255,255,.82)}
+      #${SHEET_ID} .hg-social-meet-action:disabled{opacity:.55;cursor:wait}
       #${SHEET_ID} .hg-social-empty{margin:0;color:rgba(255,255,255,.60);font-size:13px;line-height:1.35}
       .pc-events-spotmeeting{display:none!important}
       .pc-events-social-meet{display:grid;gap:6px;padding:8px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.055)}
@@ -156,6 +160,14 @@
     return { pending, accepted, active, label };
   }
 
+  function inviteId(invite){
+    return String(invite?.inviteId || invite?.id || '').trim();
+  }
+
+  function statusValue(invite){
+    return String(invite?.status || 'pending').toLowerCase();
+  }
+
   function statusText(status){
     if (status === 'pending') return 'Venter på svar.';
     if (status === 'accepted') return 'Avtalt.';
@@ -165,11 +177,25 @@
     return 'Status ukjent.';
   }
 
+  function actionButton(action, label, id){
+    return `<button class="hg-social-meet-action" type="button" data-hg-social-meet-action="${escapeHTML(action)}" data-hg-social-meet-invite-id="${escapeHTML(id)}">${escapeHTML(label)}</button>`;
+  }
+
+  function inviteActions(invite){
+    const id = inviteId(invite);
+    if (!id) return '';
+    const status = statusValue(invite);
+    if (status === 'pending') return `<div class="hg-social-meet-actions">${actionButton('accept', 'Godta', id)}${actionButton('decline', 'Avslå', id)}</div>`;
+    if (status === 'accepted') return `<div class="hg-social-meet-actions">${actionButton('complete', 'Marker gjennomført', id)}${actionButton('cancel', 'Avbryt', id)}</div>`;
+    return '';
+  }
+
   function inviteCard(invite){
     const title = invite?.context?.title || invite?.context?.contextId || 'Sted';
     const person = invite?.targetDisplayName || invite?.targetUserId || 'Person';
     const preset = invite?.presetLabel || invite?.presetMessageId || 'Kunnskapsmøte';
-    return `<article class="hg-social-card"><strong>${escapeHTML(title)}</strong><p>${escapeHTML([person, preset].filter(Boolean).join(' · '))}</p><p>${escapeHTML(statusText(invite?.status))}</p></article>`;
+    const status = statusValue(invite);
+    return `<article class="hg-social-card"><strong>${escapeHTML(title)}</strong><p>${escapeHTML([person, preset].filter(Boolean).join(' · '))}</p><p>${escapeHTML(statusText(status))}</p>${inviteActions(invite)}</article>`;
   }
 
   function renderBlock(title, items, empty){
@@ -293,12 +319,89 @@
     boxes.forEach(enhanceEventsBox);
   }
 
+
+  function statusForAction(action){
+    if (action === 'accept') return 'accepted';
+    if (action === 'decline') return 'declined';
+    if (action === 'cancel') return 'cancelled';
+    if (action === 'complete') return 'completed';
+    return '';
+  }
+
+  function methodForAction(action){
+    if (action === 'accept') return 'acceptInvite';
+    if (action === 'decline') return 'declineInvite';
+    if (action === 'cancel') return 'cancelInvite';
+    if (action === 'complete') return 'completeInvite';
+    return '';
+  }
+
+  function localMethodForAction(action){
+    if (action === 'accept') return 'acceptSpotmeetingInvite';
+    if (action === 'decline') return 'declineSpotmeetingInvite';
+    if (action === 'cancel') return 'cancelSpotmeetingInvite';
+    if (action === 'complete') return 'confirmSpotmeetingCompleted';
+    return '';
+  }
+
+  async function callStatusAction(action, id){
+    const backendMethod = methodForAction(action);
+    const localMethod = localMethodForAction(action);
+    const adapters = [root.HG_SocialMeetBackend, root.HG_SocialMeetAdapter].filter(Boolean);
+    for (const adapter of adapters) {
+      if (typeof adapter?.[backendMethod] !== 'function') continue;
+      try {
+        const result = await adapter[backendMethod](id);
+        if (result?.ok === false) throw new Error(result.reason || 'social_meet_status_error');
+        return { ok: true, mode: 'backend', result };
+      } catch (_err) {
+        break;
+      }
+    }
+    if (typeof root.HG_Spotmeeting?.[localMethod] === 'function') {
+      try {
+        const result = await root.HG_Spotmeeting[localMethod](id);
+        if (result?.ok === false) throw new Error(result.reason || 'spotmeeting_status_error');
+        return { ok: true, mode: 'local', result };
+      } catch (_err) {
+        return { ok: false };
+      }
+    }
+    return { ok: false };
+  }
+
+  async function refreshAfterStatusAction(inviteId, status){
+    const loaded = await loadInbox(currentOptions);
+    currentData = loaded.inbox;
+    currentWarning = loaded.warning || '';
+    render(currentOptions);
+    root.dispatchEvent?.(new root.CustomEvent('hg:spotmeetingChanged', { detail: { source: 'socialMeetStatusAction', inviteId, status } }));
+    root.dispatchEvent?.(new root.CustomEvent('updateProfile', { detail: { source: 'socialMeetStatusAction' } }));
+  }
+
+  async function handleStatusClick(target){
+    const action = String(target.getAttribute('data-hg-social-meet-action') || '').trim();
+    const inviteId = String(target.getAttribute('data-hg-social-meet-invite-id') || '').trim();
+    const status = statusForAction(action);
+    if (!inviteId || !status) return;
+    target.disabled = true;
+    currentWarning = '';
+    const result = await callStatusAction(action, inviteId);
+    if (!result.ok) {
+      currentWarning = 'Kunne ikke oppdatere møteforslaget akkurat nå.';
+      render(currentOptions);
+      return;
+    }
+    await refreshAfterStatusAction(inviteId, status);
+  }
+
   function handleClick(event){
-    const target = event.target?.closest?.('[data-hg-social-meet-open], [data-hg-social-meet-close]');
+    const target = event.target?.closest?.('[data-hg-social-meet-open], [data-hg-social-meet-close], [data-hg-social-meet-action]');
     if (!target) return;
     event.preventDefault?.();
     event.stopPropagation?.();
     if (target.hasAttribute('data-hg-social-meet-close')) { close(); return; }
+    if (target.hasAttribute('data-hg-social-meet-action')) { handleStatusClick(target); return; }
     const mode = String(target.getAttribute('data-hg-social-meet-open') || 'all');
     const placeId = String(target.getAttribute('data-hg-social-meet-place') || '').trim();
     const filter = mode === 'place' ? 'place' : 'all';
