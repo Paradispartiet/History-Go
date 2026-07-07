@@ -1085,3 +1085,188 @@ body.civi-mapmode .civi-panels{
 .civi-test-startpoint-label { font-weight: 700; margin-bottom: 6px; }
 .civi-test-weeks { display: flex; flex-wrap: wrap; gap: 12px; }
 .civi-test-week { display: flex; align-items: center; gap: 6px; font-weight: 500; }
+
+/* ------------------------------------------------------------
+   CIVICATION v2 — MIN DAG / LIFE STORY
+------------------------------------------------------------ */
+#civiLifestoryPanel{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.civi-lifestory-status{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+
+.civi-lifestory-status-chip,
+.civi-lifestory-scene,
+.civi-lifestory-konsekvens,
+.civi-lifestory-summary,
+.civi-lifestory-panels > section{
+  background:var(--card2);
+  border:1px solid var(--line2);
+  border-radius:14px;
+}
+
+.civi-lifestory-status-chip{
+  padding:8px 10px;
+}
+
+.civi-lifestory-status-chip small,
+.civi-lifestory-section-label,
+.civi-lifestory-kicker,
+.civi-lifestory-choice small{
+  display:block;
+  color:var(--ink3);
+  font-size:var(--civi-font-meta);
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.civi-lifestory-status-chip strong{
+  display:block;
+  font-size:15px;
+}
+
+.civi-lifestory-scene,
+.civi-lifestory-konsekvens,
+.civi-lifestory-summary{
+  padding:14px;
+}
+
+.civi-lifestory-kicker{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.civi-lifestory-kicker span,
+.civi-thread-badge,
+.civi-lifestory-delta{
+  border:1px solid var(--line2);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  padding:3px 8px;
+}
+
+.civi-lifestory-scene h3,
+.civi-lifestory-summary h3{
+  margin:8px 0;
+  font-size:24px;
+  line-height:1.2;
+}
+
+.civi-lifestory-scene p,
+.civi-lifestory-konsekvens p,
+.civi-lifestory-summary p{
+  margin:8px 0 12px;
+  color:var(--ink2);
+}
+
+.civi-lifestory-threadline{
+  margin:10px 0 12px;
+  color:var(--ink2);
+}
+
+.civi-lifestory-choices,
+.civi-lifestory-actions,
+.civi-lifestory-deltas{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.civi-lifestory-choices{
+  flex-direction:column;
+}
+
+.civi-lifestory-choice{
+  width:100%;
+  min-height:48px;
+  text-align:left;
+  padding:12px 14px;
+  border-radius:13px;
+  border:1px solid var(--btn-border);
+  background:var(--btn-bg);
+  color:var(--ink);
+  font:inherit;
+  font-weight:850;
+  cursor:pointer;
+}
+
+.civi-lifestory-choice:hover{
+  background:var(--btn-bg-hover);
+  border-color:var(--civi-accent-border);
+}
+
+.civi-lifestory-konsekvens{
+  border-color:var(--civi-accent-border);
+  background:linear-gradient(180deg,var(--civi-accent-soft),rgba(255,255,255,.04));
+}
+
+.civi-lifestory-delta{
+  color:var(--ink2);
+  font-size:14px;
+  font-weight:800;
+}
+
+.civi-lifestory-delta.is-positive{ border-color:rgba(74,222,128,.35); }
+.civi-lifestory-delta.is-negative{ border-color:rgba(248,113,113,.38); }
+
+.civi-lifestory-panels{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+
+.civi-lifestory-panels > section{
+  padding:10px;
+}
+
+.civi-lifestory-panels h4,
+.civi-lifestory-summary h4{
+  margin:0 0 8px;
+  font-size:15px;
+}
+
+.civi-lifestory-panels ul,
+.civi-lifestory-summary ul{
+  margin:0;
+  padding-left:18px;
+}
+
+.civi-thread-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin:5px 0;
+}
+
+.civi-thread-row.is-completed,
+.civi-thread-row.is-dormant{
+  opacity:.72;
+}
+
+.civi-thread-badge{
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:900;
+}
+
+.civi-thread-badge.is-active{ border-color:rgba(96,165,250,.45); }
+.civi-thread-badge.is-escalated{ border-color:rgba(248,113,113,.55); color:#fecaca; }
+.civi-thread-badge.is-completed{ border-color:rgba(74,222,128,.40); }
+.civi-thread-badge.is-dormant{ border-color:rgba(148,163,184,.35); color:#cbd5e1; }
+
+@media (max-width: 720px){
+  .topbar{ align-items:flex-start; gap:8px; }
+  .civi-lifestory-status{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .civi-lifestory-panels{ grid-template-columns:1fr; }
+  .civi-lifestory-scene h3,
+  .civi-lifestory-summary h3{ font-size:21px; }
+}

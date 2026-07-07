@@ -184,6 +184,13 @@ En helt tom dag avsluttes fortsatt trygt i stedet for å krasje.
 
 ## 5c. Consequence feedback
 
+Min dag viser konsekvens som spillfeedback, ikke som debug. Når spilleren tar
+et valg, tar UI-et en liten før/etter-snapshot av målere og relasjoner rundt
+`applyChoice`. `konsekvensTekst` vises som hovedtekst, og målbare endringer
+vises som små menneskelige chips som «Psyke +2», «Energi -4» eller
+«Skolekontakten +8». Rå flagg, intern JSON og tekniske tråd-id-er skal ikke
+vises som hovedfeedback.
+
 Et valg kan ha et valgfritt `konsekvensTekst` — fortellingsmessig
 tilbakemelding som vises etter valget og lagres i arkivet:
 
@@ -197,17 +204,35 @@ Tom/blank tekst avvises av validatoren.
 
 ## 6. UI-modellen
 
-Hovedskjermen er **Min dag** (`CivicationLifestoryUI`):
+Hovedskjermen er **Min dag** (`CivicationLifestoryUI`). Den er primær
+gameplay-flate i Civication v2: spilleren står i én nå-scene, tar ett valg,
+ser konsekvensen og går videre i dagen. Innboks er ikke gameplay; innboks er
+arkiv/bakgrunn.
 
-- **NÅ** — scenen spilleren står i, med valgene.
+Min dag består av:
+
+- **Statuslinje** — rolle, dag, fase, psyke, energi og penger, med tydelig
+  «Dagen er over» når runneren har avsluttet dagen.
+- **NÅ** — scenen spilleren står i, med fase-label, visningstype,
+  avsender/person når det finnes, tittel, brødtekst og trådens spillstatus.
+- **VALG** — store mobilvennlige knapper/kort. Tone kan vises diskret på
+  knappen, men valget er hovedhandlingen.
 - **KONSEKVENS** — fortellingsmessig feedback (`konsekvensTekst`) etter
-  forrige valg.
-- **AKTIVE TRÅDER** — spillbare historier (active/escalated), med status.
-- **KALENDER / SENERE I DAG** — det som venter i senere faser.
-- **ARKIV** — tidligere valg med konsekvenstekst. Innboks er ikke
-  spillet; innboks er arkiv.
-- **DAGSOPPSUMMERING** — når dagen er over: meter-endringer, tråder som
-  ble fullført/eskalert/lagt i dvale, dagens valg, og **Start neste dag**.
+  forrige valg, pluss små før/etter-chips for målere og relasjoner. Dette
+  kommer fra valget og Player State-endringer, ikke fra v1-mailmotorer.
+- **TRÅDPANEL** — status/oversikt, ikke en ekstra motor. Thread state vises
+  med menneskelige titler og norske labels: active = Aktiv, escalated =
+  Eskalert, dormant = Hvilende, completed = Fullført. Active/escalated
+  prioriteres visuelt over completed/dormant.
+- **KALENDER / SENERE I DAG** — enkel oversikt over kommende faser/scener
+  uten å spoile brødtekst.
+- **ARKIV / TIDLIGERE VALG** — siste valg og eventuell konsekvenstekst,
+  kompakt nok til ikke å dominere nå-scenen.
+- **DAGSOPPSUMMERING** — når dagen er over: «Dag X er over», viktige valg,
+  meter-endringer siden morgenen, tråder som ble fullført/eskalert/lagt
+  hvilende, kort narrativ oppsummering fra konsekvenstekst, og den tydelige
+  knappen **Start neste dag**. `startNextDay` beholder arkiv/tidligere valg,
+  setter riktig dag/fase og gir ny spillbar scene når dag 2 har innhold.
 
 ## 6b. Slik flettes privatliv og arbeidsliv
 

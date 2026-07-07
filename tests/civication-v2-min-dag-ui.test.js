@@ -53,7 +53,12 @@ async function main() {
   // Vent på at Min dag laster innhold og rendrer.
   await new Promise((r) => setTimeout(r, 300));
   const panel = window.document.getElementById("civiLifestoryPanel");
-  assert.ok(panel.querySelector("[data-lifestory-choice]"), "Min dag skal vise en scene med valg");
+  assert.ok(panel.querySelector(".civi-lifestory-scene"), "Min dag skal vise nå-scenen");
+  assert.ok(panel.querySelector("button.civi-lifestory-choice[data-lifestory-choice]"), "Min dag skal vise store klikkbare valg");
+  assert.ok(panel.querySelector(".civi-lifestory-status-chip"), "Min dag skal vise statuslinje med statuschips");
+  assert.ok(panel.textContent.includes("Skoleveien bak parkeringskjelleren"), "trådtittel skal være menneskelig");
+  assert.ok(panel.textContent.includes("Aktiv"), "trådstatus skal ha norsk label");
+  assert.ok(!panel.textContent.includes("skolevei_parkeringskjeller"), "tekniske tråd-id-er skal ikke dominere UI");
 
   // v2-headeren viser rolle/dag/fase/status.
   const header = window.document.getElementById("civiLifestoryHeaderStatus").textContent;
@@ -64,7 +69,11 @@ async function main() {
   let saaKonsekvens = false;
   while (panel.querySelector("[data-lifestory-choice]")) {
     panel.querySelector("[data-lifestory-choice]").click();
-    if (panel.querySelector(".civi-lifestory-konsekvens")) saaKonsekvens = true;
+    if (panel.querySelector(".civi-lifestory-konsekvens")) {
+      saaKonsekvens = true;
+      assert.ok(panel.querySelector(".civi-lifestory-delta"), "konsekvensfeedback viser meter-/relasjonschips");
+      assert.ok(!panel.textContent.includes("{") && !panel.textContent.includes("tidligereValg"), "feedback skal ikke vise rå JSON/flagg");
+    }
     assert.ok(++clicks < 30, "dagen må terminere");
   }
   assert.ok(panel.innerHTML.includes("Dag 1 er over"), "dagen skal ende i oppsummering");
@@ -75,6 +84,8 @@ async function main() {
   // Oppsummeringen viser tråder og «Start neste dag».
   assert.ok(panel.querySelector("[data-lifestory-next-day]"), "oppsummeringen har Start neste dag");
   assert.ok(panel.innerHTML.includes("Tråder"), "oppsummeringen viser trådstatus");
+  assert.ok(panel.textContent.includes("Meter-endringer siden morgenen"), "oppsummeringen viser meter-endringer");
+  assert.ok(panel.textContent.includes("Viktige valg i dag"), "oppsummeringen viser viktige valg");
 
   // Player State er lagret under v2-nøkkelen; legacy-flater er fortsatt skjult.
   let stored = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
