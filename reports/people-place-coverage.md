@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-07T08:52:10.809Z
+Generert: 2026-07-07T12:12:46.015Z
 
 ## Sammendrag
 
-- People totalt: **492**
-- Places totalt: **959**
-- Places med people: **213**
-- Places uten people: **746**
-- People-place-lenker: **748**
-- People koblet til flere gyldige steder: **188**
+- People totalt: **496**
+- Places totalt: **967**
+- Places med people: **217**
+- Places uten people: **750**
+- People-place-lenker: **753**
+- People koblet til flere gyldige steder: **189**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **492**
-- People uten image: **143**
-- People uten cardImage: **144**
+- Duplikate place-referanser inne på people: **496**
+- People uten image: **147**
+- People uten cardImage: **148**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -23,7 +23,7 @@ Generert: 2026-07-07T08:52:10.809Z
 |---|---:|---:|---:|---:|---:|
 | by | 92 | 29 | 63 | 117 | 90 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 509 | 57 | 452 | 192 | 104 |
+| historie | 517 | 57 | 460 | 192 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
@@ -34,7 +34,7 @@ Generert: 2026-07-07T08:52:10.809Z
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 64 | 13 | 51 | 46 | 38 |
-| subkultur | 30 | 5 | 25 | 9 | 8 |
+| subkultur | 30 | 9 | 21 | 14 | 12 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
 ## People tags
@@ -45,9 +45,9 @@ Generert: 2026-07-07T08:52:10.809Z
 - naeringsliv: 40
 - norge_for_1500: 40
 - sport: 39
+- subkultur: 34
 - vitenskap: 34
 - musikk: 30
-- subkultur: 30
 - media: 27
 - by: 26
 - kunst: 26
@@ -59,8 +59,8 @@ Generert: 2026-07-07T08:52:10.809Z
 - populaerkultur: 18
 - tv: 18
 - filantrop: 17
+- scene: 17
 - filmhistorie: 15
-- scene: 15
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
@@ -224,7 +224,7 @@ Generert: 2026-07-07T08:52:10.809Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 392 flere
+- ... 396 flere
 
 ## Anbefalt første people-batch
 

@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-07T08:52:10.424Z
+Generated: 2026-07-07T12:12:45.470Z
 
 ## Sammendrag
 - People-filer lest: **28**
-- People lest: **492**
+- People lest: **496**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **492**
+- Duplikate interne place-referanser: **496**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -385,6 +385,10 @@ Generated: 2026-07-07T08:52:10.424Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: tommy_tee (Tommy Tee) -> youngstorget x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: warlocks_oslo (Warlocks) -> torggata x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: skur13_miljoet (Skur 13-miljøet) -> skur13 x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: gamlebyen_sport_og_fritid_miljoet (Gamlebyen Sport og Fritid-miljøet) -> gamlebyen_sport_og_fritid x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: kafe_haerverk_miljoet (Kafé Hærverk-miljøet) -> kafe_haerverk x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: vaterland_bar_scene_miljoet (Vaterland Bar & Scene-miljøet) -> vaterland_bar_scene x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: dj_marfox (DJ Marfox) -> lisbon_bairro_alto x2
