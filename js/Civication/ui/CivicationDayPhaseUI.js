@@ -3,6 +3,16 @@
 
   const PANEL_ID = "civiDayPhasePanel";
 
+  function isLegacyDebugEnabled() {
+    return window.CivicationShellLoader?.isEnabled?.() === true
+      || window.CivicationLegacyLoader?.isEnabled?.() === true
+      || window.CIVICATION_LEGACY_ENABLED === true;
+  }
+
+  function shouldSuppressForLifestory() {
+    return !isLegacyDebugEnabled() && !!document.getElementById("civiLifestoryPanel");
+  }
+
   function escapeHtml(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -219,6 +229,7 @@
   }
 
   function ensurePanel() {
+    if (shouldSuppressForLifestory()) return null;
     const panels = document.querySelector(".civi-panels");
     let panel = document.getElementById(PANEL_ID);
     if (!panels) return panel || null;
@@ -344,6 +355,7 @@
   }
 
   function render() {
+    if (shouldSuppressForLifestory()) return false;
     const progression = window.CivicationDayProgression;
     if (!progression?.inspect) return false;
 

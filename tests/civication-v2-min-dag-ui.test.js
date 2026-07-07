@@ -58,11 +58,20 @@ async function main() {
   await new Promise((r) => setTimeout(r, 300));
   const panel = window.document.getElementById("civiLifestoryPanel");
   assert.ok(panel.querySelector(".civi-lifestory-scene"), "Min dag skal vise nå-scenen");
+  assert.ok(panel.querySelector(".civi-lifestory-choices"), "Min dag skal vise valgflaten");
+  assert.ok(panel.querySelector(".civi-lifestory-panels"), "Min dag skal vise tråder/senere/arkiv-panelene");
   assert.ok(panel.querySelector("button.civi-lifestory-choice[data-lifestory-choice]"), "Min dag skal vise store klikkbare valg");
   assert.ok(panel.querySelector(".civi-lifestory-status-chip"), "Min dag skal vise statuslinje med statuschips");
   assert.ok(panel.textContent.includes("Skoleveien bak parkeringskjelleren"), "trådtittel skal være menneskelig");
   assert.ok(panel.textContent.includes("Aktiv"), "trådstatus skal ha norsk label");
   assert.ok(!panel.textContent.includes("skolevei_parkeringskjeller"), "tekniske tråd-id-er skal ikke dominere UI");
+
+  // Selv om legacyfilen lastes manuelt, skal normal Min dag ikke få et konkurrerende day-phase-panel.
+  window.CivicationDayProgression = { inspect: () => ({ phaseLabel: "Morgen", phase: "morning", dayIndex: 1, openItemsInPhase: 1 }) };
+  window.eval(fs.readFileSync(path.join(ROOT, "js/Civication/ui/CivicationDayPhaseUI.js"), "utf8"));
+  assert.strictEqual(window.CivicationDayPhaseUI.render(), false, "day-phase UI skal være sperret når Min dag er standardflate");
+  assert.ok(!window.document.getElementById("civiDayPhasePanel"), "normal boot skal ikke lage civiDayPhasePanel");
+  assert.ok(!window.document.body.textContent.includes("Dagens fase"), "gammel day-phase-tekst skal ikke vises i normal Min dag");
 
   // v2-headeren viser rolle/dag/fase/status.
   const header = window.document.getElementById("civiLifestoryHeaderStatus").textContent;
