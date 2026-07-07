@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-07T06:35:44.031Z
+Generert: 2026-07-07T07:20:12.200Z
 
 ## Sammendrag
 
-- People totalt: **484**
-- Places totalt: **951**
-- Places med people: **210**
-- Places uten people: **741**
-- People-place-lenker: **736**
-- People koblet til flere gyldige steder: **184**
+- People totalt: **488**
+- Places totalt: **959**
+- Places med people: **211**
+- Places uten people: **748**
+- People-place-lenker: **741**
+- People koblet til flere gyldige steder: **185**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **484**
-- People uten image: **135**
-- People uten cardImage: **136**
+- Duplikate place-referanser inne på people: **488**
+- People uten image: **139**
+- People uten cardImage: **140**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -23,7 +23,7 @@ Generert: 2026-07-07T06:35:44.031Z
 |---|---:|---:|---:|---:|---:|
 | by | 92 | 29 | 63 | 117 | 90 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 501 | 57 | 444 | 192 | 104 |
+| historie | 509 | 57 | 452 | 192 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
@@ -33,7 +33,7 @@ Generert: 2026-07-07T06:35:44.031Z
 | politikk | 17 | 7 | 10 | 74 | 61 |
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 64 | 10 | 54 | 34 | 30 |
+| sport | 64 | 11 | 53 | 39 | 34 |
 | subkultur | 30 | 5 | 25 | 9 | 8 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
@@ -44,8 +44,8 @@ Generert: 2026-07-07T06:35:44.031Z
 - politikk: 44
 - naeringsliv: 40
 - norge_for_1500: 40
+- sport: 35
 - vitenskap: 34
-- sport: 31
 - musikk: 30
 - subkultur: 30
 - media: 27
@@ -76,6 +76,7 @@ Generert: 2026-07-07T06:35:44.031Z
 - redaksjon: 10
 - norsk_film: 9
 - programleder: 9
+- fotball: 8
 - kringkasting: 8
 - musikkhistorie: 8
 - radio: 8
@@ -84,7 +85,6 @@ Generert: 2026-07-07T06:35:44.031Z
 - byutvikling: 7
 - kristning: 7
 - maleri: 7
-- fotball: 6
 - kanon: 6
 - konsert: 6
 - mesen: 6
@@ -112,9 +112,9 @@ Generert: 2026-07-07T06:35:44.031Z
 - kristkirken_bergenhus (Kristkirken på Bergenhus) – 10
 - lisbon_museu_do_fado (Museu do Fado) – 10
 - bislett_stadion (Bislett Stadion) – 9
+- ullevaal_stadion (Ullevaal Stadion) – 9
 - eidsvolls_plass (Eidsvolls plass) – 8
 - tjuvholmen (Tjuvholmen) – 8
-- ullevaal_stadion (Ullevaal Stadion) – 8
 - nasjonalmuseet (Nasjonalmuseet) – 7
 - naturhistorisk_museum (Naturhistorisk museum) – 7
 
@@ -224,7 +224,7 @@ Generert: 2026-07-07T06:35:44.031Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 384 flere
+- ... 388 flere
 
 ## Anbefalt første people-batch
 
