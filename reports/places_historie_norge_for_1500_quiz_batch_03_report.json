@@ -1,8 +1,8 @@
 {
-  "status": "quiz_file_created_manifest_entries_staged",
+  "status": "applied",
   "quizFile": "data/quiz/historie/places_historie_norge_for_1500_batch_03_sets.json",
   "manifestEntriesFile": "data/quiz/historie/places_historie_norge_for_1500_batch_03_manifest_entries.json",
-  "manifestUpdated": false,
+  "manifestUpdated": true,
   "setCount": 10,
   "targetIds": [
     "nordnes_bergen",
@@ -37,7 +37,26 @@
     "peopleDataChanged": false,
     "peopleManifestChanged": false,
     "placesManifestChanged": false,
-    "coordinateCaveat": "audunborg_hegrenes retains needs_manual_coordinate_check status from place data"
+    "coordinateCaveat": "audunborg_hegrenes retains needs_manual_coordinate_check status from place data",
+    "manifestJsonParses": true,
+    "quizSetsJsonParses": true,
+    "allStagingSetIdsInManifestSets": true,
+    "allTargetIdsInManifestWithCorrectFileAndSetId": true,
+    "activatedTargetIdsNotDuplicated": true,
+    "skippedExistingTargetIds": []
   },
-  "note": "Third Norge før 1500 place intro quiz batch created in chat. Manifest entries are staged separately for technical activation. Remaining batch3 place targets are deferred to the next place quiz batch."
+  "note": "Place quiz data was produced in chat; Codex only activated manifest entries.",
+  "activatedTargetIds": [
+    "nordnes_bergen",
+    "audunborg_hegrenes",
+    "varteig_kirke",
+    "elgeseter_kloster",
+    "talgje_kyrkje",
+    "nidaros_erkebispegarden",
+    "kristkirken_bergenhus",
+    "hakonshella_bauta",
+    "frostatinget_logtun",
+    "kalvskinnet_slagsted"
+  ],
+  "skippedExistingTargetIds": []
 }
