@@ -214,11 +214,11 @@ const content = Content.buildContent(raw);
   assert.strictEqual(Object.keys(s.tidligereValg).length, valgFoer, "tidligere valg beholdes");
   assert.deepStrictEqual(s.dagStartMeters, s.meters, "dagStartMeters nullstilt til nåværende");
 
-  // Dag 2 har en stub-scene -> spillbar, ikke krasj
+  // Dag 2 har ekte innhold -> en spillbar dag-2-scene, ikke krasj
   const view = Runner.getView(s, content);
-  assert.ok(view.scene, "dag 2 har en scene (stub)");
+  assert.ok(view.scene, "dag 2 har en scene");
   assert.strictEqual(view.scene.dag, 2);
-  assert.strictEqual(view.scene.id, "dag_02_ny_morgen");
+  assert.ok(view.dagsplan.length === 2, "dagsplanen for dag 2 vises");
 
   // Fullførte/dvale-tråder fra dag 1 dominerer ikke dag 2
   const aktiveTraaderDag2 = view.aktiveTraader.map((t) => t.id);
@@ -228,11 +228,72 @@ const content = Content.buildContent(raw);
   // startNextDay på en ikke-ferdig dag skal kaste
   assert.throws(() => Runner.startNextDay(s, content), /ikke ferdig/, "kan ikke hoppe til neste dag midt i dagen");
 
-  // Spill dag 2-stubben og bekreft at den kan fullføres uten krasj
-  Runner.applyChoice(s, content, "dag_02_ny_morgen", "moet_dagen");
-  assert.strictEqual(s.dagFerdig, true, "dag 2-stub kan fullføres");
+  // Spill hele dag 2 deterministisk og bekreft at den kan fullføres uten krasj
+  guard = 0;
+  while (!s.dagFerdig) {
+    const scene = Runner.selectNextScene(s, content);
+    assert.ok(scene, "dag 2 har scener til den er ferdig");
+    assert.strictEqual(scene.dag, 2, "kun dag-2-scener spilles på dag 2");
+    Runner.applyChoice(s, content, scene.id, scene.valg[0].id);
+    assert.ok(++guard < 50);
+  }
   const summary2 = Runner.getDaySummary(s);
   assert.strictEqual(summary2.dag, 2);
+  assert.ok(summary2.valg.every((e) => e.dag === 2), "dag 2-oppsummering viser kun dag-2-valg");
+  assert.ok(summary2.valg.length >= 3, "dag 2 spilte flere scener");
+})();
+
+// Dag 2 leser dag-1-flagg: kveldsrefleksjonens valg avgjør dag-2-morgenen.
+(function dag2ReadsDay1Flags() {
+  const paths = [
+    ["staa_i_det", "dag2_morgen_staa_i_det"],
+    ["se_deg_om", "dag2_morgen_se_seg_om"],
+    ["endre_maaten", "dag2_morgen_endre"]
+  ];
+  for (const [kveldValg, forventetMorgen] of paths) {
+    const s = State.createInitialState(content);
+    s.meters.energi = 80;
+    // Spill dag 1 til oppsummeringen, velg der eksplisitt.
+    let guard = 0;
+    while (!s.dagFerdig) {
+      const scene = Runner.selectNextScene(s, content);
+      const valg = scene.id === "dag_01_oppsummering" ? kveldValg : scene.valg[0].id;
+      Runner.applyChoice(s, content, scene.id, valg);
+      assert.ok(++guard < 50);
+    }
+    Runner.startNextDay(s, content);
+    const morgen = Runner.selectNextScene(s, content);
+    assert.strictEqual(morgen.id, forventetMorgen, `kveldsvalg ${kveldValg} -> ${forventetMorgen}`);
+  }
+})();
+
+// Dag 2 leser trådstatus: eskalert skolevei gir en annen formiddag enn dvale.
+(function dag2ReadsThreadState() {
+  // Eskalert skolevei -> dag2_skolevei_eskalert er kandidat på formiddagen.
+  let s = State.createInitialState(content);
+  s.dag = 2; s.fase = "formiddag";
+  s.threadState.skolevei_parkeringskjeller.status = "escalated";
+  let ids = Runner.getCandidateScenes(s, content).map((x) => x.id);
+  assert.ok(ids.includes("dag2_skolevei_eskalert"), "eskalert -> eskalert-scene");
+  assert.ok(!ids.includes("dag2_skolevei_fortsett") && !ids.includes("dag2_plansjef_gjenaapner"), "eskalert utelukker de andre");
+
+  // Dvale skolevei -> plansjefen gjenåpner (scenen ligger på en aktiv tråd).
+  s = State.createInitialState(content);
+  s.dag = 2; s.fase = "formiddag";
+  s.threadState.skolevei_parkeringskjeller.status = "dormant";
+  ids = Runner.getCandidateScenes(s, content).map((x) => x.id);
+  assert.ok(ids.includes("dag2_plansjef_gjenaapner"), "dvale -> plansjef gjenåpner");
+  assert.ok(!ids.includes("dag2_skolevei_eskalert") && !ids.includes("dag2_skolevei_fortsett"), "dvale utelukker skolevei-scenene");
+  // ...og valget der kan vekke tråden igjen (dormant -> active).
+  Runner.applyChoice(s, content, "dag2_plansjef_gjenaapner", "gjenaapne_grundig");
+  assert.strictEqual(s.threadState.skolevei_parkeringskjeller.status, "active", "gjenåpning vekker tråden");
+
+  // Aktiv skolevei -> fortsett-scenen.
+  s = State.createInitialState(content);
+  s.dag = 2; s.fase = "formiddag";
+  s.threadState.skolevei_parkeringskjeller.status = "active";
+  ids = Runner.getCandidateScenes(s, content).map((x) => x.id);
+  assert.ok(ids.includes("dag2_skolevei_fortsett"), "aktiv -> fortsett-scene");
 })();
 
 // ============================================================
