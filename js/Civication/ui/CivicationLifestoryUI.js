@@ -19,7 +19,7 @@
   /** @type {any} */ let state = null;
   /** @type {Promise<void>|null} */ let loading = null;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
-  /** @type {{ tekst: string, valgTekst: string }|null} */ let sisteKonsekvens = null;
+  /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }> }|null} */ let sisteKonsekvens = null;
 
   /**
    * @param {unknown} value
@@ -29,6 +29,50 @@
     return String(value == null ? "" : value)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  function humanizeId(id) {
+    return String(id || "")
+      .replace(/[_-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/^./, (c) => c.toUpperCase());
+  }
+
+  function formatThreadStatus(status) {
+    return ({ active: "Aktiv", escalated: "Eskalert", dormant: "Hvilende", completed: "Fullført" })[status] || humanizeId(status);
+  }
+
+  function formatThreadTitle(thread) {
+    if (!thread) return "Ukjent tråd";
+    return thread.tittel || humanizeId(thread.id);
+  }
+
+  function formatMeterName(key) {
+    const person = (content?.role?.personer || []).find((p) => p.id === key);
+    if (person) return person.navn;
+    return ({ psyke: "Psyke", energi: "Energi", penger: "Penger", integritet: "Integritet", synlighet: "Synlighet", handlingsrom: "Handlingsrom" })[key] || humanizeId(key);
+  }
+
+  function formatMeterDelta(delta) {
+    const value = Number(delta.delta);
+    return formatMeterName(delta.key) + " " + (value > 0 ? "+" : "") + value;
+  }
+
+  function snapshotMetersAndRelations() {
+    return { meters: Object.assign({}, state.meters), relasjoner: Object.assign({}, state.relasjoner) };
+  }
+
+  function diffMetersAndRelations(before) {
+    const deltas = [];
+    for (const group of ["meters", "relasjoner"]) {
+      for (const [key, oldValue] of Object.entries(before[group] || {})) {
+        const nextValue = group === "meters" ? state.meters[key] : state.relasjoner[key];
+        const delta = Number(nextValue) - Number(oldValue);
+        if (delta !== 0) deltas.push({ key, label: formatMeterName(key), delta });
+      }
+    }
+    return deltas;
   }
 
   function getPanel() {
@@ -62,9 +106,11 @@
     try {
       const scene = content.scenes.find((s) => s.id === sceneId);
       const valg = scene ? (scene.valg || []).find((c) => c.id === choiceId) : null;
+      const before = snapshotMetersAndRelations();
       const result = Runner.applyChoice(state, content, sceneId, choiceId);
-      sisteKonsekvens = result.konsekvensTekst
-        ? { tekst: result.konsekvensTekst, valgTekst: valg ? valg.tekst : "" }
+      const deltas = diffMetersAndRelations(before);
+      sisteKonsekvens = result.konsekvensTekst || deltas.length
+        ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas }
         : null;
       State.save(state);
       window.dispatchEvent(new Event("civi:lifestoryChanged"));
@@ -103,15 +149,13 @@
    */
   function renderStatusHtml(view) {
     const m = state.meters;
-    return ""
-      + "<div class=\"civi-lifestory-status muted\">"
-      + "Rolle: " + escapeHtml(content.role.navn)
-      + " · Dag " + escapeHtml(state.dag)
-      + " · " + escapeHtml(view.fase ? view.fase.navn : state.fase)
-      + " · Psyke " + escapeHtml(m.psyke)
-      + " · Energi " + escapeHtml(m.energi)
-      + " · " + escapeHtml(m.penger) + " PC"
-      + "</div>";
+    const items = [
+      ["Rolle", content.role.navn], ["Dag", state.dag], ["Fase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
+      ["Psyke", m.psyke], ["Energi", m.energi], ["Penger", m.penger + " PC"]
+    ];
+    return "<div class=\"civi-lifestory-status\" aria-label=\"Statuslinje\">" + items.map(([label, value]) =>
+      "<span class=\"civi-lifestory-status-chip\"><small>" + escapeHtml(label) + "</small><strong>" + escapeHtml(value) + "</strong></span>"
+    ).join("") + "</div>";
   }
 
   /**
@@ -119,26 +163,34 @@
    * @returns {string}
    */
   function renderSceneHtml(scene) {
+    const thread = content.threads.find((t) => t.id === scene.threadId);
+    const ts = state.threadState[scene.threadId];
     const valgHtml = (scene.valg || []).map((valg) =>
-      "<button class=\"civi-btn\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
+      "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
       + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\">"
-      + escapeHtml(valg.tekst) + "</button>"
+      + "<span>" + escapeHtml(valg.tekst) + "</span>"
+      + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
+      + "</button>"
     ).join("");
     return ""
-      + "<div class=\"civi-lifestory-scene\">"
-      + "<div class=\"civi-lifestory-kicker muted\">NÅ · " + escapeHtml(scene.visningstype)
-      + (scene.avsender ? " · fra " + escapeHtml(personNavn(scene.avsender)) : "")
-      + "</div>"
+      + "<article class=\"civi-lifestory-scene\" aria-label=\"Nå-scene\">"
+      + "<div class=\"civi-lifestory-kicker\"><span>NÅ</span><span>" + escapeHtml(viewPhaseName(scene.fase)) + "</span><span>" + escapeHtml(scene.visningstype) + "</span>" + (scene.avsender ? "<span>Fra " + escapeHtml(personNavn(scene.avsender)) + "</span>" : "") + "</div>"
       + "<h3>" + escapeHtml(scene.tittel) + "</h3>"
       + "<p>" + escapeHtml(scene.tekst) + "</p>"
-      + "<div class=\"civi-lifestory-choices\" style=\"display:flex;flex-direction:column;gap:8px;\">" + valgHtml + "</div>"
-      + "</div>";
+      + "<div class=\"civi-lifestory-threadline\">Tråd: <strong>" + escapeHtml(formatThreadTitle(thread || { id: scene.threadId })) + "</strong>" + (ts ? " <span class=\"civi-thread-badge is-" + escapeHtml(ts.status) + "\">" + escapeHtml(formatThreadStatus(ts.status)) + "</span>" : "") + "</div>"
+      + "<div class=\"civi-lifestory-choices\" aria-label=\"Valg\">" + valgHtml + "</div>"
+      + "</article>";
   }
 
   /**
    * @param {string} personId
    * @returns {string}
    */
+  function viewPhaseName(phaseId) {
+    const phase = (content?.faser || []).find((f) => f.id === phaseId);
+    return phase ? phase.navn : humanizeId(phaseId);
+  }
+
   function personNavn(personId) {
     const person = (content.role.personer || []).find((p) => p.id === personId);
     return person ? person.navn : personId;
@@ -150,11 +202,16 @@
    */
   function renderKonsekvensHtml() {
     if (!sisteKonsekvens) return "";
+    const chips = (sisteKonsekvens.deltas || []).map((delta) =>
+      "<span class=\"civi-lifestory-delta " + (delta.delta > 0 ? "is-positive" : "is-negative") + "\">" + escapeHtml(formatMeterDelta(delta)) + "</span>"
+    ).join("");
     return ""
-      + "<div class=\"civi-lifestory-konsekvens\" style=\"border-left:3px solid currentColor;padding:6px 10px;margin:8px 0;\">"
-      + "<div class=\"muted\">Konsekvens av «" + escapeHtml(sisteKonsekvens.valgTekst) + "»:</div>"
-      + "<em>" + escapeHtml(sisteKonsekvens.tekst) + "</em>"
-      + "</div>";
+      + "<section class=\"civi-lifestory-konsekvens\" aria-live=\"polite\">"
+      + "<div class=\"civi-lifestory-section-label\">Konsekvens</div>"
+      + (sisteKonsekvens.valgTekst ? "<div class=\"muted\">Etter «" + escapeHtml(sisteKonsekvens.valgTekst) + "»</div>" : "")
+      + "<p>" + escapeHtml(sisteKonsekvens.tekst) + "</p>"
+      + (chips ? "<div class=\"civi-lifestory-deltas\">" + chips + "</div>" : "")
+      + "</section>";
   }
 
   /**
@@ -173,34 +230,36 @@
   function renderSummaryHtml(view) {
     const summary = view.oppsummering;
     const valgHtml = summary.valg.map((entry) =>
-      "<li>" + escapeHtml(entry.sceneTittel) + " — <em>" + escapeHtml(entry.valgTekst) + "</em>"
-      + (entry.konsekvensTekst ? "<br><small class=\"muted\">" + escapeHtml(entry.konsekvensTekst) + "</small>" : "")
+      "<li><strong>" + escapeHtml(entry.sceneTittel) + "</strong><br><em>" + escapeHtml(entry.valgTekst) + "</em>"
+      + (entry.konsekvensTekst ? "<p>" + escapeHtml(entry.konsekvensTekst) + "</p>" : "")
       + "</li>"
-    ).join("");
+    ).join("") || "<li class=\"muted\">Ingen valg ble tatt.</li>";
     const meterHtml = Object.entries(summary.meterEndringer).map(([key, delta]) =>
-      "<span style=\"margin-right:10px;\">" + escapeHtml(key) + " " + (Number(delta) > 0 ? "+" : "") + escapeHtml(delta) + "</span>"
+      "<span class=\"civi-lifestory-delta " + (Number(delta) > 0 ? "is-positive" : "is-negative") + "\">" + escapeHtml(formatMeterDelta({ key, delta })) + "</span>"
     ).join("");
     const traadHtml = [
       [summary.traader.fullfoert, "Fullført"],
       [summary.traader.eskalert, "Eskalert"],
-      [summary.traader.hvilende, "Lagt i dvale"]
+      [summary.traader.hvilende, "Hvilende"]
     ]
       .filter(([ids]) => ids.length)
       .map(([ids, label]) =>
-        "<li>" + escapeHtml(label) + ": " + ids.map((id) => escapeHtml(traadTittel(id))).join(", ") + "</li>"
+        "<li><strong>" + escapeHtml(label) + ":</strong> " + ids.map((id) => escapeHtml(traadTittel(id))).join(", ") + "</li>"
       ).join("");
+    const narrative = summary.valg.filter((entry) => entry.konsekvensTekst).slice(-2).map((entry) => entry.konsekvensTekst).join(" ");
     return ""
-      + "<div class=\"civi-lifestory-summary\">"
+      + "<section class=\"civi-lifestory-summary\" aria-label=\"Dagsoppsummering\">"
+      + "<div class=\"civi-lifestory-section-label\">Dagsoppsummering</div>"
       + "<h3>Dag " + escapeHtml(summary.dag) + " er over</h3>"
-      + "<p class=\"muted\">Slik flyttet dagen deg:</p>"
-      + "<div>" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
-      + (traadHtml ? "<h4>Tråder</h4><ul>" + traadHtml + "</ul>" : "")
-      + "<h4>Dagens valg</h4><ul>" + valgHtml + "</ul>"
-      + "<div style=\"display:flex;gap:8px;flex-wrap:wrap;\">"
+      + (narrative ? "<p>" + escapeHtml(narrative) + "</p>" : "<p class=\"muted\">Dagen er avsluttet og valgene dine er lagret i arkivet.</p>")
+      + "<h4>Meter-endringer siden morgenen</h4><div class=\"civi-lifestory-deltas\">" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
+      + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
+      + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul>"
+      + "<div class=\"civi-lifestory-actions\">"
       + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
       + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
       + "</div>"
-      + "</div>";
+      + "</section>";
   }
 
   /**
@@ -208,30 +267,39 @@
    * @returns {string}
    */
   function renderPanelsHtml(view) {
-    const traaderHtml = view.aktiveTraader.map((thread) =>
-      "<li>" + escapeHtml(thread.tittel) + "</li>"
-    ).join("");
+    const allThreads = Object.entries(state.threadState || {}).map(([id, ts]) => {
+      const thread = content.threads.find((t) => t.id === id) || { id };
+      return Object.assign({}, thread, { status: ts.status, step: ts.step });
+    }).sort((a, b) => {
+      const rank = { escalated: 0, active: 1, dormant: 2, completed: 3 };
+      return (rank[a.status] ?? 9) - (rank[b.status] ?? 9);
+    });
+    const hiddenCount = Math.max(0, allThreads.length - 6);
+    const traaderHtml = allThreads.slice(0, 6).map((thread) =>
+      "<li class=\"civi-thread-row is-" + escapeHtml(thread.status) + "\"><span>" + escapeHtml(formatThreadTitle(thread)) + "</span><span class=\"civi-thread-badge is-" + escapeHtml(thread.status) + "\">" + escapeHtml(formatThreadStatus(thread.status)) + "</span></li>"
+    ).join("") + (hiddenCount ? "<li class=\"muted\">+ " + hiddenCount + " flere tråder</li>" : "");
 
     const kalenderHtml = view.dagsplan.map((avtale) =>
-      "<li>" + escapeHtml(avtale.klokke) + " " + escapeHtml(avtale.tekst) + "</li>"
+      "<li><span class=\"muted\">" + escapeHtml(avtale.klokke) + "</span> " + escapeHtml(avtale.tekst) + "</li>"
     ).join("");
     const senereHtml = view.senereIDag.map((scene) =>
-      "<li class=\"muted\">" + escapeHtml(scene.tittel) + "</li>"
+      "<li><span class=\"muted\">" + escapeHtml(viewPhaseName(scene.fase)) + "</span> " + escapeHtml(scene.tittel || scene.visningstype) + "</li>"
     ).join("");
 
     const arkivHtml = view.arkiv.length
-      ? view.arkiv.slice().reverse().map((entry) =>
-          "<li>" + escapeHtml(entry.fase) + ": " + escapeHtml(entry.sceneTittel)
-          + " — <em>" + escapeHtml(entry.valgTekst) + "</em></li>"
+      ? view.arkiv.slice(-4).reverse().map((entry) =>
+          "<li><strong>" + escapeHtml(viewPhaseName(entry.fase)) + ": " + escapeHtml(entry.sceneTittel)
+          + "</strong><br><em>" + escapeHtml(entry.valgTekst) + "</em>"
+          + (entry.konsekvensTekst ? "<br><small>" + escapeHtml(entry.konsekvensTekst) + "</small>" : "") + "</li>"
         ).join("")
       : "<li class=\"muted\">Ingen valg tatt ennå.</li>";
 
     return ""
-      + "<div class=\"civi-lifestory-panels\">"
-      + "<h4>Aktive tråder</h4><ul>" + traaderHtml + "</ul>"
-      + "<h4>Kalender / senere i dag</h4><ul>" + kalenderHtml + senereHtml + "</ul>"
-      + "<h4>Arkiv</h4><ul>" + arkivHtml + "</ul>"
-      + "</div>";
+      + "<aside class=\"civi-lifestory-panels\" aria-label=\"Oversikt\">"
+      + "<section><h4>Aktive tråder</h4><ul>" + (traaderHtml || "<li class=\"muted\">Ingen tråder ennå.</li>") + "</ul></section>"
+      + "<section><h4>Senere i dag</h4><ul>" + (kalenderHtml + senereHtml || "<li class=\"muted\">Ingen flere planlagte scener.</li>") + "</ul></section>"
+      + "<section><h4>Arkiv / tidligere valg</h4><ul>" + arkivHtml + "</ul></section>"
+      + "</aside>";
   }
 
   /**

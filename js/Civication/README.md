@@ -23,7 +23,10 @@ og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVI
 > (`Civication.html?civicationLegacy=1`). profile.html og Node-testene bruker fortsatt
 > filene direkte, så de ligger urørt på disk inntil de gjenbrukes rent eller slettes.
 > Nye fortellinger bygges som **data** i `data/Civication/lifestory/`, aldri som nye motorer.
-> Innboks er arkiv/bakgrunn, ikke primær gameplay.
+> Min dag er primær gameplay-flate: statuslinje, nå-scene, valg, konsekvensfeedback,
+> trådoversikt, senere-i-dag og arkiv. Innboks er arkiv/bakgrunn, ikke primær gameplay.
+> Konsekvensfeedback kommer fra valgets `konsekvensTekst` og før/etter-endringer i
+> Player State (målere/relasjoner), ikke fra v1-mailmotorer.
 > Se [`docs/civication-life-story-system.md`](../../docs/civication-life-story-system.md).
 
 ## Grunnprinsipp: én aktiv handling om gangen
