@@ -1,8 +1,8 @@
 {
-  "status": "quiz_file_created_manifest_entries_staged",
+  "status": "applied",
   "quizFile": "data/quiz/historie/places_historie_norge_for_1500_batch_05_sets.json",
   "manifestEntriesFile": "data/quiz/historie/places_historie_norge_for_1500_batch_05_manifest_entries.json",
-  "manifestUpdated": false,
+  "manifestUpdated": true,
   "setCount": 3,
   "targetIds": [
     "stamford_bridge_battlefield",
@@ -18,7 +18,19 @@
     "placesDataChanged": false,
     "peopleDataChanged": false,
     "peopleManifestChanged": false,
-    "placesManifestChanged": false
+    "placesManifestChanged": false,
+    "quizManifestParses": true,
+    "quizSetsFileParses": true,
+    "allStagingSetIdsInQuizManifest": true,
+    "allTargetIdsInQuizManifestWithCorrectFileAndSetId": true,
+    "noActivatedTargetIdDuplicatesInQuizManifest": true,
+    "summary": "Validated JSON parsing, staged set_id activation, targetId file/set_id mappings, no duplicates for activated targetIds, and no changes to people/places manifests."
   },
-  "note": "Final Norge før 1500 place mini-batch before final coverage report. Manifest entries are staged separately for technical activation."
+  "note": "Place quiz data was produced in chat; Codex only activated manifest entries.",
+  "activatedTargetIds": [
+    "stamford_bridge_battlefield",
+    "jelling_kongsgard",
+    "orkney_birsay"
+  ],
+  "skippedExistingTargetIds": []
 }
