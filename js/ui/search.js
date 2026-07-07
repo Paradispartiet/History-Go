@@ -114,7 +114,11 @@
       .slice(0, MAX_PER_SECTION)
       .map(row => row.item);
 
-    let placeMatches = (window.PLACES || [])
+    const localizedPlaces = (typeof window.HG_I18N?.localizePlaces === "function")
+      ? window.HG_I18N.localizePlaces(window.PLACES || [])
+      : (window.PLACES || []);
+
+    let placeMatches = localizedPlaces
       .filter(place => !place.hidden)
       .map(place => {
         const cat = getCategory(place.category);
