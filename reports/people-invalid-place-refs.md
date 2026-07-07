@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-07T12:12:45.470Z
+Generated: 2026-07-07T14:18:55.054Z
 
 ## Sammendrag
 - People-filer lest: **28**
-- People lest: **496**
+- People lest: **499**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **496**
+- Duplikate interne place-referanser: **499**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -372,7 +372,7 @@ Generated: 2026-07-07T12:12:45.470Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: viggo_tigeren (Viggo (byen som tiger)) -> tigeren x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: tinashe_williamson (Tinashe Williamson) -> aker_brygge x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
-- data/people/subkultur/oslo/people_subkultur_oslo.json :: blitz_miljoet (Blitz-miljøet) -> youngstorget x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: blitz_miljoet (Blitz-miljøet) -> blitzhuset x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: hausmania_miljoet (Hausmania-miljøet) -> hausmania x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: oslo_pride_skeive_dager (Oslo Pride / Skeive dager) -> radhusplassen x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: radi_orakel (RadiOrakel) -> youngstorget x2
@@ -389,6 +389,9 @@ Generated: 2026-07-07T12:12:45.470Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: gamlebyen_sport_og_fritid_miljoet (Gamlebyen Sport og Fritid-miljøet) -> gamlebyen_sport_og_fritid x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kafe_haerverk_miljoet (Kafé Hærverk-miljøet) -> kafe_haerverk x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: vaterland_bar_scene_miljoet (Vaterland Bar & Scene-miljøet) -> vaterland_bar_scene x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: bla_miljoet (Blå-miljøet) -> bla x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: brenneriveien_ingens_gate_miljoet (Brenneriveien / Ingens gate-miljøet) -> brenneriveien_ingens_gate x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: xray_ungdomskulturhus_miljoet (X-Ray Ungdomskulturhus-miljøet) -> xray_ungdomskulturhus x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: dj_marfox (DJ Marfox) -> lisbon_bairro_alto x2
