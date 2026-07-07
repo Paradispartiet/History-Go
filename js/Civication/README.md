@@ -10,23 +10,25 @@ Dette er motoroversikten. Selve mail-/rolledatakontrakten (badge → roleModel �
 mailFamily → FWG) er beskrevet i [`data/Civication/README-mailsystem-og-rolemodels.md`](../../data/Civication/README-mailsystem-og-rolemodels.md)
 og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVICATION_WORK_GRAMMAR_STANDARD.md).
 
-> **Civication v2 er ny primærarkitektur: Life Story System.** `Civication.html` laster
-> nå KUN v2-flyten (Min dag): én fortellingsrunner (`js/Civication/lifestory/`) + rene
-> fortellingspakker (`data/Civication/lifestory/`), pilotert med rollen Arealplanlegger.
-> Motoren støtter scene-**conditions** (flagg/meters/relasjoner/thread state),
-> **thread state** (active/completed/dormant/escalated med step), **day progression**
-> (`startNextDay` beholder arkiv/valg) og **konsekvenstekst** per valg. Privatliv og
-> arbeidsliv flettes med conditions + thread state, ikke med mailmotorer.
-> **Alle motorene beskrevet i dette dokumentet er Civication v1 = legacy.** De lastes
-> ikke i hovedflyten; hele v1-kjeden ligger i `js/Civication/civicationLegacyLoader.js`
-> og injiseres kun når `CIVICATION_LEGACY_ENABLED` eksplisitt er true
-> (`Civication.html?civicationLegacy=1`). profile.html og Node-testene bruker fortsatt
-> filene direkte, så de ligger urørt på disk inntil de gjenbrukes rent eller slettes.
+> **Civication-skallet er hovedproduktet; Min dag (Life Story) er primærpanelet i det.**
+> `Civication.html` laster HELE skallet som standard — kart, dashboard, nabolag, kapital,
+> psyke, identitet, folk, offentlig lag, rolle/arbeidsdag og innboks — med Min dag øverst
+> som ÉN modul, ikke hele appen. Life Story er én fortellingsrunner
+> (`js/Civication/lifestory/`) + rene fortellingspakker (`data/Civication/lifestory/`),
+> pilotert med rollen Arealplanlegger. Motoren støtter scene-**conditions**
+> (flagg/meters/relasjoner/thread state), **thread state**
+> (active/completed/dormant/escalated med step), **day progression**
+> (`startNextDay` beholder arkiv/valg) og **konsekvenstekst** per valg.
+> **Motorene beskrevet i dette dokumentet driver skallets paneler** (innboks,
+> arbeidsdag, dagfase, rolle …) og lastes derfor som standard via shell-loaderen
+> `js/Civication/civicationLegacyLoader.js` (hele skallkjeden, `CivicationBoot.js` sist).
+> Kart/paneler/dashboard er **ikke** legacy — de er aktivt produkt. Den eneste egentlige
+> debug-bryteren som er igjen er de tunge canvas/3D-kartene: av som standard (skallet
+> bruker SVG-kartet), på med `Civication.html?civicationLegacy=1`.
 > Nye fortellinger bygges som **data** i `data/Civication/lifestory/`, aldri som nye motorer.
-> Min dag er primær gameplay-flate: statuslinje, nå-scene, valg, konsekvensfeedback,
-> trådoversikt, senere-i-dag og arkiv. Innboks er arkiv/bakgrunn, ikke primær gameplay.
-> Konsekvensfeedback kommer fra valgets `konsekvensTekst` og før/etter-endringer i
-> Player State (målere/relasjoner), ikke fra v1-mailmotorer.
+> Min dag er primærpanelet: statuslinje, nå-scene, valg, konsekvensfeedback, trådoversikt,
+> senere-i-dag og arkiv. Mail er bare én scenevisning; innboks er arkiv/bakgrunn, ikke
+> hovedspillet — men den er del av skallet og vises som standard.
 > Se [`docs/civication-life-story-system.md`](../../docs/civication-life-story-system.md).
 
 ## Grunnprinsipp: én aktiv handling om gangen

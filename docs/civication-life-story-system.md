@@ -4,10 +4,15 @@ Nytt fortellingssystem for Civication — tegnet som nytt system, ikke som
 reparasjon av det gamle. Dette dokumentet er normativt for alt under
 `js/Civication/lifestory/` og `data/Civication/lifestory/`.
 
-**Life Story System er Civication v2 — den primære systemarkitekturen.**
-`Civication.html` laster kun v2-flyten (Min dag). Alt gammelt maskineri er
-Civication v1 (legacy) og lastes aldri i hovedflyten — se «Civication v2 og
-legacy-gaten» nederst.
+**Life Story System er fortellingslaget i Civication — «Min dag».** Det er
+primærpanelet, men det er ikke hele appen. `Civication.html` laster HELE
+Civication-skallet som standard (kart, dashboard, nabolag, kapital, psyke,
+identitet, folk, offentlig lag, rolle/arbeidsdag, innboks) med Min dag øverst
+som ÉN modul i skallet. Se «Civication-skallet og Min dag» nederst.
+
+Mail er bare én scenevisning blant flere (melding, møte, telefon, krise,
+samtale …). Kart, paneler og dashboard er aktivt Civication-produkt — ikke
+legacy.
 
 ## 1. Kjerneidé
 
@@ -327,38 +332,51 @@ der hver stilling er en arbeidslivsfortelling, privatlivet går
 parallelt, dagen er spillbrettet, scener er gameplay og valg former
 livsløpet.
 
-## 11. Civication v2 og legacy-gaten
+## 11. Civication-skallet og Min dag
 
-Civication v1 (mailmotorer, next-action-lås, workday-runtime, day
-progression, innboks som hovedspill) er **legacy**. Det er ikke slettet —
-profile.html og Node-testene bruker fortsatt filene direkte — men det
-styrer ikke lenger spillet.
+Civication-skallet — kart, dashboard, nabolag, kapital, psyke, identitet,
+folk, offentlig lag, rolle/arbeidsdag og innboks — er **hovedproduktet** og
+lastes som standard. Min dag (Life Story) er **primærpanelet**, men eier ikke
+siden alene. Innboks/mail er ett panel blant mange, ikke hovedspillet.
 
-Hovedflyten i `Civication.html` laster nøyaktig dette, i denne rekkefølgen:
+> **Historikk:** En tidligere v2-rydding gjorde Min dag til eneste standard-
+> visning og gjemte hele skallet bak `data-civi-legacy hidden`. Det var en
+> arkitekturfeil: Min dag skulle være én flate inne i skallet, ikke erstatte
+> det. Skallet er nå hentet ut av «legacy-buret» og er igjen standard.
+
+`Civication.html` laster to ting:
+
+**1. Min dag-modulen** (statiske script-tags, rendrer primærpanelet raskt og
+uavhengig av resten av skallet):
 
 ```
-js/Civication/civicationV2Config.js        # setter CIVICATION_LEGACY_ENABLED
+js/Civication/civicationV2Config.js        # setter debug-flagget (canvas/3D)
 js/Civication/core/CivicationStorageAdapter.js
 js/Civication/core/civicationJsonStore.js
 js/Civication/lifestory/lifestoryContent.js
 js/Civication/lifestory/lifestoryState.js
 js/Civication/lifestory/lifestoryRunner.js
 js/Civication/ui/CivicationLifestoryUI.js
-js/Civication/civicationLegacyLoader.js    # bærer hele v1-kjeden, inert som standard
 ```
 
-Rekkefølgen og allowlisten håndheves av
-`tests/civication-v2-main-flow.test.js` — nye script-tags i
-Civication.html er et arkitekturvalg, ikke en drive-by.
+**2. Skallet**, via shell-loaderen (siste script-tag):
 
-Hele den gamle scriptkjeden (122 filer, inkl. `CivicationBoot.js` sist)
-ligger som en ordnet liste i `js/Civication/civicationLegacyLoader.js` og
-injiseres KUN når `window.CIVICATION_LEGACY_ENABLED === true`. Gamle
-seksjoner i Civication.html (dashboard, innboks, arbeidsdag, kart,
-kapital, …) er merket `data-civi-legacy hidden` og vises bare av
-legacy-loaderen.
+```
+js/Civication/civicationLegacyLoader.js    # injiserer hele skallkjeden + vekker boot
+```
 
-Legacy slås på eksplisitt, aldri implisitt:
+Shell-loaderen bærer hele skallkjeden (122 filer, inkl. `CivicationBoot.js`
+sist) som en ordnet liste og injiserer den så snart shell-DOM-en finnes
+(`#civiMapWorld`). Rene Min dag-flater/enhetstester uten shell-DOM drar ikke
+inn skallet. Rekkefølgen og allowlisten håndheves av
+`tests/civication-v2-main-flow.test.js`.
+
+Skallseksjonene i Civication.html er **synlige som standard** — de er ikke
+merket `data-civi-legacy` lenger. De er aktivt produkt.
+
+**Den eneste egentlige debug-bryteren** som er igjen er de TUNGE, eksperimen-
+telle canvas/3D-kart-rendrerne. De er av som standard (skallet bruker det
+komplette SVG-kartet i `CivicationMap`) og slås kun på eksplisitt:
 
 - URL: `Civication.html?civicationLegacy=1`
 - localStorage: `civication_legacy_enabled = "1"`
@@ -368,8 +386,12 @@ Reglene fremover:
 
 - Nye fortellinger bygges som **data** i `data/Civication/lifestory/`,
   aldri som nye engines.
-- Innboks er arkiv/bakgrunn, ikke primær gameplay.
-- Ingen nye scripts i v2-hovedflyten uten at dette dokumentet og
+- Innboks er arkiv/bakgrunn, ikke primær gameplay — men den er del av skallet
+  og lastes/vises som standard.
+- Ingen nye statiske script-tags i Civication.html uten at dette dokumentet og
   main-flow-testen oppdateres samtidig.
-- Neste ryddesteg (senere): gjenbruk rent eller slett v1-moduler — men
-  først når profile.html og testene ikke lenger avhenger av dem.
+- Skallet og motorene er tett koblet: `CivicationBoot` er én orkestrator som
+  bygger både panelene og mail-/dagsmotorene. Å skille ut en ren «shell-only»
+  boot uten mail-/dagsmaskineriet er et større, separat ryddesteg — ikke gjort
+  her. Poenget nå er at skallet + Min dag er standard, og at mail ikke
+  dominerer flaten.

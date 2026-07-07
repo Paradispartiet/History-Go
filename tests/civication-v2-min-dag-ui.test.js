@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-// Civication v2 i JSDOM: laster de faktiske v2-scriptene i samme rekkefølge
-// som Civication.html, uten noe legacy, og verifiserer at
-//  - Life Story Runner er primær progresjonskilde (Min dag rendrer og driver dagen),
-//  - legacy-loaderen IKKE injiserer v1-scripts når flagget er av,
-//  - legacy-seksjoner forblir skjult,
+// Min dag (Life Story) i JSDOM: laster Min dag-modulen fra Civication.html i
+// isolasjon — UTEN shell-DOM (ingen #civiMapWorld) — og verifiserer at
+//  - Min dag er en uavhengig modul: den rendrer og driver dagen alene,
+//  - shell-loaderen holder seg inert når shell-DOM-en ikke finnes
+//    (ingen skallkjede injiseres, ingen mailmotor/next-action dukker opp),
 //  - Arealplanlegger dag 1 kan spilles fra morgen til kveld i UI-et.
+// (Selve skallet + Min dag som standard dekkes av civication-v2-main-flow.test.js.)
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
@@ -13,11 +14,11 @@ const { JSDOM } = require("jsdom");
 const ROOT = path.join(__dirname, "..");
 
 async function main() {
+  // Bevisst UTEN shell-DOM (#civiMapWorld): dette er en isolert Min dag-flate,
+  // så shell-loaderen skal holde seg inert.
   const dom = new JSDOM(`<!doctype html><html><body class="civi-app">
-    <header><div id="civiLifestoryHeaderStatus"></div>
-      <div class="civi-header-metrics" data-civi-legacy hidden></div></header>
+    <header><div id="civiLifestoryHeaderStatus"></div></header>
     <section id="civiLifestorySection"><h2>Min dag</h2><div id="civiLifestoryPanel"></div></section>
-    <section id="civiInboxSection" data-civi-legacy hidden><div id="civiInbox"></div></section>
   </body></html>`, { url: "http://localhost/Civication.html", runScripts: "outside-only" });
 
   const { window } = dom;
@@ -43,12 +44,15 @@ async function main() {
     window.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
   }
 
-  // Legacy er av: flagget er false og loaderen har ikke injisert noen scripts.
-  assert.strictEqual(window.CIVICATION_LEGACY_ENABLED, false, "legacy-flagget skal være av som standard");
+  // Shell-loaderen er inert uten shell-DOM: den skal ikke auto-laste skallet,
+  // og canvas/3D-debug er av som standard.
+  assert.strictEqual(window.CIVICATION_LEGACY_ENABLED, false, "canvas/3D-debug skal være av som standard");
+  assert.strictEqual(window.CivicationShellLoader.shouldAutoLoadShell(), false,
+    "shell-loaderen skal ikke auto-laste uten shell-DOM (#civiMapWorld)");
   assert.strictEqual(window.document.querySelectorAll("script[src]").length, 0,
-    "ingen legacy-scripts skal injiseres når flagget er av");
-  assert.ok(!window.CivicationNextActionUI, "next-action-UI skal ikke finnes i v2");
-  assert.ok(!window.CivicationMailEngine && !window.HG_CiviMail, "mailmotor skal ikke finnes i v2");
+    "ingen skallkjede skal injiseres når shell-DOM-en mangler");
+  assert.ok(!window.CivicationNextActionUI, "next-action-UI skal ikke finnes i isolert Min dag");
+  assert.ok(!window.CivicationMailEngine && !window.HG_CiviMail, "mailmotor skal ikke finnes i isolert Min dag");
 
   // Vent på at Min dag laster innhold og rendrer.
   await new Promise((r) => setTimeout(r, 300));
@@ -87,12 +91,12 @@ async function main() {
   assert.ok(panel.textContent.includes("Meter-endringer siden morgenen"), "oppsummeringen viser meter-endringer");
   assert.ok(panel.textContent.includes("Viktige valg i dag"), "oppsummeringen viser viktige valg");
 
-  // Player State er lagret under v2-nøkkelen; legacy-flater er fortsatt skjult.
+  // Player State er lagret under Min dag-nøkkelen; shell-loaderen forble inert.
   let stored = JSON.parse(window.localStorage.getItem("civication_lifestory_v1"));
   assert.strictEqual(stored.dagFerdig, true, "Player State skal være lagret");
   const arkivFoer = stored.arkiv.length;
-  assert.ok(window.document.getElementById("civiInboxSection").hasAttribute("hidden"),
-    "innboksen skal forbli skjult i v2");
+  assert.strictEqual(window.document.querySelectorAll("script[src]").length, 0,
+    "Min dag skal ha spilt hele dagen uten å laste skallkjeden");
 
   // Start neste dag: dag 2 starter uten crash og uten å slette arkivet.
   panel.querySelector("[data-lifestory-next-day]").click();

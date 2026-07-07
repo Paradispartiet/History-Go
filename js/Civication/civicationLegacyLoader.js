@@ -1,30 +1,42 @@
 // js/Civication/civicationLegacyLoader.js
 //
-// Civication v1 (legacy) — lasteren.
-// Hele det gamle Civication-maskineriet (mailmotorer, next-action, workday-
-// runtime, day progression, kart, dashboards, CivicationBoot) er tatt UT av
-// Civication.html og ligger nå kun som denne listen. Ingenting av det lastes
-// med mindre CIVICATION_LEGACY_ENABLED === true (satt av civicationV2Config).
+// Civication shell-loader (het tidligere «legacy-loader»).
+//
+// Denne lasteren henter HELE Civication-skallet — kart, dashboard, nabolag,
+// kapital, psyke, identitet, folk, offentlig lag, rolle/arbeidsdag, innboks og
+// CivicationBoot — og er nå STANDARD på Civication.html. Skallet er ikke
+// legacy: det er selve Civication-produktet. Life Story / «Min dag» lastes
+// som egne v2-script-tags i Civication.html og er ÉN modul (primærpanelet)
+// inne i dette skallet, ikke hele appen.
+//
+// Skallet lastes automatisk så snart shell-DOM-en finnes (Civication.html har
+// #civiMapWorld). Rene Min dag-flater/enhetstester uten shell-DOM drar derfor
+// ikke inn skallet — se shouldAutoLoadShell().
+//
+// Den eneste egentlige «legacy»-gaten som er igjen er de TUNGE, eksperimentelle
+// kart-rendrerne (canvas/3D). De er av som standard (skallet bruker det
+// komplette SVG-kartet i CivicationMap) og slås kun på med
+// Civication.html?civicationLegacy=1 for full gammel debug — se LEGACY_FLAGS.
 //
 // Rekkefølgen under er identisk med den gamle <script>-rekkefølgen i
 // Civication.html — den er en lastekontrakt, ikke en anbefaling. Ikke
 // resorter, ikke legg til nye motorer. Nye fortellinger bygges som data i
 // data/Civication/lifestory/, aldri her.
-//
-// Filene ligger fortsatt på sine gamle stier (js/Civication/systems, ui, …)
-// fordi profile.html og Node-testene fortsatt bruker dem direkte. Flytting/
-// sletting er et senere ryddesteg; denne gaten er steg 1 og 2.
 
 (function (globalScope) {
   "use strict";
 
-  /** Inline-flagg som i gamle Civication.html sto som egne script-tags. */
+  /**
+   * Tunge, eksperimentelle kart-rendrere. AV som standard: skallet bruker det
+   * komplette SVG-kartet (CivicationMap) som fungerer uten disse. Slås kun på
+   * med Civication.html?civicationLegacy=1 for full gammel debug.
+   */
   const LEGACY_FLAGS = {
     CIVICATION_CANVAS_MAP_ENABLED: true,
     CIVICATION_THREE_MAP_ENABLED: true
   };
 
-  /** Gammel lastekontrakt — samme rekkefølge som før ryddingen. */
+  /** Shell-lastekontrakt — samme rekkefølge som det gamle Civication-skallet. */
   const LEGACY_SCRIPTS = [
     "js/Civication/systems/civicationStorageTrace.js",
     "js/Civication/core/civicationState.js",
@@ -150,12 +162,32 @@
     "js/Civication/CivicationBoot.js"
   ];
 
-  /** @returns {boolean} */
+  /**
+   * @returns {boolean}
+   * True kun når den eksplisitte «full gammel debug»-bryteren er på
+   * (Civication.html?civicationLegacy=1). Styrer BARE de tunge canvas/3D-
+   * kartene — ikke om skallet lastes. Skallet lastes uansett.
+   */
   function isEnabled() {
     return /** @type {any} */ (globalScope).CIVICATION_LEGACY_ENABLED === true;
   }
 
-  /** Vis seksjonene som er merket som legacy i Civication.html. */
+  /**
+   * @returns {boolean}
+   * Skallet skal auto-lastes når shell-DOM-en er til stede. Civication.html
+   * har #civiMapWorld; rene Min dag-flater/enhetstester har det ikke og skal
+   * ikke dra inn hele skallet.
+   */
+  function shouldAutoLoadShell() {
+    const doc = /** @type {any} */ (globalScope).document;
+    return !!doc && typeof doc.getElementById === "function" && !!doc.getElementById("civiMapWorld");
+  }
+
+  /**
+   * Defensivt: vis eventuelle seksjoner som fortsatt måtte være merket
+   * data-civi-legacy. Skallseksjonene i Civication.html er ikke lenger merket
+   * slik (de er synlige som standard), så dette er normalt et no-op.
+   */
   function revealLegacySections() {
     const doc = /** @type {any} */ (globalScope).document;
     if (!doc) return;
@@ -175,32 +207,38 @@
       el.src = src;
       el.async = false;
       el.onload = () => resolve();
-      el.onerror = () => reject(new Error(`[CivicationLegacyLoader] kunne ikke laste ${src}`));
+      el.onerror = () => reject(new Error(`[CivicationShellLoader] kunne ikke laste ${src}`));
       doc.body.appendChild(el);
     });
   }
 
-  /** Laster hele v1-kjeden sekvensielt og vekker CivicationBoot. */
+  /** Laster hele Civication-skallet sekvensielt og vekker CivicationBoot. */
   async function load() {
-    if (!isEnabled()) return false;
-    console.warn("[CivicationLegacyLoader] CIVICATION_LEGACY_ENABLED=true — laster Civication v1 (legacy).");
-    Object.assign(globalScope, LEGACY_FLAGS);
+    console.info("[CivicationShellLoader] laster Civication-skallet (kart, dashboard, paneler, rolle/arbeidsdag).");
+    // Tunge canvas/3D-kart er av som standard; kun full gammel debug slår dem på.
+    if (isEnabled()) {
+      console.warn("[CivicationShellLoader] civicationLegacy=1 — slår på tunge canvas/3D-kart (full gammel debug).");
+      Object.assign(globalScope, LEGACY_FLAGS);
+    }
     revealLegacySections();
     for (const src of LEGACY_SCRIPTS) {
       await injectScript(src);
     }
-    // Legacy-modulene (inkl. CivicationBoot) venter på DOMContentLoaded, som
+    // Skallmodulene (inkl. CivicationBoot) venter på DOMContentLoaded, som
     // allerede har fyrt. Et syntetisk event vekker lytterne deres.
     const doc = /** @type {any} */ (globalScope).document;
     doc.dispatchEvent(new Event("DOMContentLoaded", { bubbles: true }));
     return true;
   }
 
-  const api = { LEGACY_SCRIPTS, LEGACY_FLAGS, isEnabled, load };
+  const api = { LEGACY_SCRIPTS, LEGACY_FLAGS, isEnabled, shouldAutoLoadShell, load };
+  // Skall-loaderen har fått nytt navn, men beholder det gamle globalnavnet for
+  // bakoverkompat (sw.js, testene, konsoll).
+  /** @type {any} */ (globalScope).CivicationShellLoader = api;
   /** @type {any} */ (globalScope).CivicationLegacyLoader = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 
-  if (typeof window !== "undefined" && isEnabled()) {
-    load().catch((error) => console.error("[CivicationLegacyLoader] legacy-lasting feilet", error));
+  if (typeof window !== "undefined" && shouldAutoLoadShell()) {
+    load().catch((error) => console.error("[CivicationShellLoader] skall-lasting feilet", error));
   }
 })(typeof window !== "undefined" ? window : globalThis);
