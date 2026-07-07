@@ -17,7 +17,7 @@
 - `people` har Torggata-personkoblinger i eksisterende people-data, og PlaceCard kan vise personlisten/personrelasjoner.
 - `tasks` har stedsspesifikt `tasks_profile` med 3 oppgaver.
 - `badges` har grunninnhold gjennom kategori/emner (`by`, `em_by_gentrifisering_eiendom`, `em_by_styring_forvaltning_planmakt`).
-- `works` åpner PlaceCard-popup og Torggata har nå stedsspesifikke `works`-items i place-dataene som PlaceCard leser: Torggata Bad/Rockefeller-komplekset, Rockefeller, John Dee, Eldorado som kino-/bokhandelombruk og miljøgateombyggingen.
+- `works` åpner PlaceCard-popup og Torggata har nå 5 stedsspesifikke `works`-items i `place.works`, som er feltet PlaceCard leser for `pcWorksList`: Torggata Bad/Rockefeller-komplekset, Rockefeller, John Dee, Eldorado som kino-/bokhandelombruk og miljøgateombyggingen.
 - `civication` åpner PlaceCard-popup og Torggata har nå stedsspesifikke `civication_store`-items i place-dataene som PlaceCard leser: gateskilt, sykkel-/gågatesymbol, serveringssone-markør og før/nå-bildekort for miljøgate-transformasjonen.
 - `brands` har stedskoblinger i `data/brands/brands_by_place.json`.
 - `før_nå` har komplett `for_na`-innhold.
