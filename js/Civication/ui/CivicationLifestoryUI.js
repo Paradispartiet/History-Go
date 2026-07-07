@@ -183,7 +183,7 @@
   }
 
   /**
-   * @param {string} personId
+   * @param {string} phaseId
    * @returns {string}
    */
   function viewPhaseName(phaseId) {

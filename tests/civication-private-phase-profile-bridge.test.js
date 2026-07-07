@@ -135,17 +135,40 @@ async function run() {
   assert(builder, 'CivicationPrivatePhaseMailBuilder skal finnes');
 
   // ============================================================
+  // A0) Bridge-API: eksporterer nøyaktig det påkrevde offentlige API-et
+  // ============================================================
+  for (const method of ['getSignals', 'getProfileTags', 'getPrivatePhaseWeights', 'inspect']) {
+    assert.strictEqual(typeof bridge[method], 'function', `CivicationProfileSignalBridge.${method} skal være en funksjon`);
+  }
+
+  // ============================================================
   // A) Bridgen: rent signalobjekt, trygg ved tomme kilder
   // ============================================================
   global.localStorage.clear();
   const emptySignals = await bridge.getSignals();
   assert(emptySignals.identity && typeof emptySignals.identity.focus === 'object', 'identity.focus skal alltid finnes');
+  // identity.focus skal alltid ha alle 7 dimensjonene (inkl. institutional).
+  for (const key of ['economic', 'cultural', 'social', 'symbolic', 'political', 'institutional', 'subculture']) {
+    assert(Number.isFinite(emptySignals.identity.focus[key]), `identity.focus.${key} skal være tall også ved tom profil`);
+  }
+  // psyche har energy-feltet; ukjent energi er null (ikke 0), så «lav energi» og
+  // «ingen energidata» kan skilles.
+  assert('energy' in emptySignals.psyche, 'psyche skal ha energy-felt');
+  assert.strictEqual(emptySignals.psyche.energy, null, 'ukjent energi skal være null');
   assert.deepStrictEqual(emptySignals.historyGoCollection.placesVisited, [], 'tom profil skal gi tom placesVisited');
   assert.deepStrictEqual(emptySignals.historyGoCollection.peopleMet, [], 'tom profil skal gi tom peopleMet');
   assert(Array.isArray(emptySignals.profileTags), 'profileTags skal være array');
   for (const key of ['culture', 'sport', 'nature', 'politics', 'social', 'learning', 'economy', 'rest', 'family', 'subculture']) {
     assert(Number.isFinite(emptySignals.privatePhaseWeights[key]), `privatePhaseWeights.${key} skal være tall`);
   }
+
+  // getProfileTags() / getPrivatePhaseWeights() skal returnere nøyaktig det
+  // samme som getSignals()-projeksjonene (én sannhet).
+  assert.deepStrictEqual(await bridge.getProfileTags(), emptySignals.profileTags, 'getProfileTags speiler getSignals().profileTags');
+  assert.deepStrictEqual(await bridge.getPrivatePhaseWeights(), emptySignals.privatePhaseWeights, 'getPrivatePhaseWeights speiler getSignals().privatePhaseWeights');
+  const emptyInspect = await bridge.inspect();
+  assert(Array.isArray(emptyInspect.topWeights) && emptyInspect.topWeights.length === 3, 'inspect() skal gi topp-3 vekter');
+  assert('restWeight' in emptyInspect && 'energy' in emptyInspect, 'inspect() skal rapportere hvilevekt og energi');
 
   setProfile(PROFILES.culture);
   const cultureSignals = await bridge.getSignals();
@@ -222,6 +245,22 @@ async function run() {
   assert.strictEqual(lowMails.day_end.source_mail_id, 'private_day_end_lavenergi_profile_001',
     'lav psyke skal gi søvn/ro i day_end');
   assert.strictEqual(lowMails.evening.topic, 'hvile', 'lavenergi-mailen skal handle om hvile');
+
+  // E2) Eksplisitt lav energy (0..100) skal drive hvilevekten opp uavhengig av
+  //     autonomi/integritet — og gi hvile-mail i evening, ikke mer press.
+  setProfile(PROFILES.culture, { hg_psyche_v1: { integrity: 60, visibility: 40, economicRoom: 60, energy: 8 } });
+  const tiredSignals = await bridge.getSignals();
+  assert.strictEqual(tiredSignals.psyche.energy, 8, 'energy skal leses fra hg_psyche_v1');
+  assert(tiredSignals.privatePhaseWeights.rest >= 0.6, 'lav energi skal gi høy hvilevekt selv med grei integritet');
+  assert(tiredSignals.profileTags.includes('low_energy'), 'lav energi skal gi profile-tag low_energy');
+  const tiredMails = await buildItems(JOB_A);
+  assert.strictEqual(tiredMails.evening.topic, 'hvile', 'lav energi skal gi hvile-mail i evening');
+
+  // E3) Kjent, god energi skal IKKE tvinge fram hvile.
+  setProfile(PROFILES.culture, { hg_psyche_v1: { integrity: 60, visibility: 40, economicRoom: 60, energy: 90 } });
+  const restedSignals = await bridge.getSignals();
+  assert.strictEqual(restedSignals.psyche.energy, 90, 'høy energi skal leses');
+  assert(!restedSignals.profileTags.includes('low_energy'), 'høy energi skal ikke gi low_energy-tag');
 
   // ============================================================
   // F) Kontrakt: felter og forbudte arbeidslivsord

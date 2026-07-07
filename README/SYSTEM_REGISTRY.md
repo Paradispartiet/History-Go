@@ -94,6 +94,17 @@ Arbeidsdagen har **én** dagrytme og **ett** sett fase-skrivere. Ikke innfør pa
   `mail_class:"daily_workday"` + rolle/arbeidsgiver/`workday_day_index`. `CivicationEventChannels`,
   `CivicationDayProgression`, `CivicationNextActionSelector` og `renderCivicationInbox`
   respekterer skillet: jobbmail er aldri aktiv i en privat fase og blokkerer den ikke.
+- **Private fase-mailer er en projeksjon av History Go-profilen** — ikke av jobben. De skal
+  speile hva spilleren har samlet, besøkt, lært og bygget opp; arbeidslivsmail tilhører bare
+  arbeidsdagen (`forenoon`/`workday`). `CivicationProfileSignalBridge` (offentlig API:
+  `getSignals`, `getProfileTags`, `getPrivatePhaseWeights`, `inspect`) normaliserer identitet,
+  kapital, psyke (inkl. `energy`) og History Go-samlingen til `profileTags` +
+  `privatePhaseWeights` (culture, sport, nature, politics, social, learning, economy, rest,
+  family, subculture). Builderen velger mail etter disse; **profilmatch slår dato-rotasjon**,
+  og uten profiltreff brukes en trygg generisk fallback. Broen leser **kun** profilen — aldri
+  `mailPlan`, role mail families, `plannedPrimary`, `role_scope`, `employer_id` eller
+  `workday_day_index`. Konsekvens: samme jobb + ulik profil ⇒ ulike private mailer; samme
+  profil + ulik jobb ⇒ samme private mailer.
 - **Dagrytme:** `data/Civication/mailDayProgram.json` + `CivicationDailyMailBuilder` er
   autoritativt (adaptor). Builder bygger hele dagen til `mail_day_runtime_v1.items[]` og leverer
   items ett om gangen via `enqueueNext`, men **delegerer de private fasene** til
