@@ -13,6 +13,9 @@
   ]);
 
   let currentOptions = { filter: 'all', placeId: '', sourceSurface: 'unknown' };
+  let currentData = makeEmptyInbox();
+  let currentWarning = '';
+  let currentRequestId = 0;
 
   function escapeHTML(value){
     return String(value ?? '')
@@ -58,10 +61,58 @@
 
   function list(value){ return Array.isArray(value) ? value : []; }
 
-  function getInbox(){
-    return root.HG_Spotmeeting?.getSpotmeetingInbox?.() || {
-      pending: [], accepted: [], completed: [], declined: [], cancelled: [], declinedCancelled: []
-    };
+  function makeEmptyInbox(){
+    return { pending: [], accepted: [], completed: [], declined: [], cancelled: [], declinedCancelled: [] };
+  }
+
+  function normalizeInbox(inbox){
+    const base = makeEmptyInbox();
+    const source = inbox && typeof inbox === 'object' ? inbox : {};
+    base.pending = list(source.pending);
+    base.accepted = list(source.accepted);
+    base.completed = list(source.completed);
+    base.declined = list(source.declined);
+    base.cancelled = list(source.cancelled);
+    base.declinedCancelled = list(source.declinedCancelled).concat(base.declined, base.cancelled);
+    return base;
+  }
+
+  function localInbox(){
+    try {
+      return normalizeInbox(root.HG_Spotmeeting?.getSpotmeetingInbox?.());
+    } catch (_err) {
+      return makeEmptyInbox();
+    }
+  }
+
+  function bucketInvites(invites){
+    const inbox = makeEmptyInbox();
+    list(invites).forEach(invite => {
+      const status = String(invite?.status || 'pending');
+      if (status === 'accepted') inbox.accepted.push(invite);
+      else if (status === 'completed') inbox.completed.push(invite);
+      else if (status === 'declined') inbox.declined.push(invite);
+      else if (status === 'cancelled') inbox.cancelled.push(invite);
+      else inbox.pending.push(invite);
+    });
+    inbox.declinedCancelled = inbox.declined.concat(inbox.cancelled);
+    return inbox;
+  }
+
+  async function loadInbox(options){
+    const requestOptions = normalizeOptions(options);
+    const backend = root.HG_SocialMeetBackend;
+    if (backend?.listInvites) {
+      try {
+        const result = await backend.listInvites({ filter: requestOptions.filter, placeId: requestOptions.placeId, sourceSurface: requestOptions.sourceSurface });
+        if (result?.ok === false) throw new Error(result.reason || 'social_meet_backend_error');
+        if (result && Array.isArray(result.invites)) return { inbox: bucketInvites(result.invites), warning: '', mode: backend.health?.()?.mode || backend.health?.()?.backend || 'backend' };
+        return { inbox: normalizeInbox(result), warning: '', mode: backend.health?.()?.mode || backend.health?.()?.backend || 'backend' };
+      } catch (_err) {
+        return { inbox: localInbox(), warning: 'Kunne ikke laste Social Meet. Viser lokal demo hvis tilgjengelig.', mode: 'fallback' };
+      }
+    }
+    return { inbox: localInbox(), warning: '', mode: 'local' };
   }
 
   function normalizeOptions(options = {}){
@@ -87,7 +138,7 @@
   }
 
   function sourceForStatus(status, options){
-    const inbox = getInbox();
+    const inbox = currentData;
     const source = status === 'declinedCancelled' ? getDeclinedCancelled(inbox) : inbox[status];
     return filterInvites(source, options);
   }
@@ -137,6 +188,7 @@
           <span class="section-meta">Kunnskapsmøter, læringssirkler og sosial læringshistorikk.</span>
         </div>
         <p class="muted">Personvern styres i ⚙️ Innstillinger.</p>
+        ${currentWarning ? `<p class="muted" role="status">${escapeHTML(currentWarning)}</p>` : ''}
         <div class="social-mini-profile-anchor">MiniProfile</div>
         <div id="hg-meet-invite-inbox">${renderBlock('Møteforslag', pending, 'Ingen møteforslag akkurat nå.')}</div>
         <div id="hg-spotmeeting-inbox">${renderBlock('Kunnskapsmøter', pending, 'Ingen ventende kunnskapsmøter.')}</div>
@@ -164,25 +216,44 @@
     return sheet;
   }
 
+  function renderLoading(options = currentOptions){
+    const sheet = ensureSheet();
+    const title = options.filter === 'place' ? getPlaceTitle(options.placeId) : 'Alle møter';
+    sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Social Meet</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body"><p class="muted" role="status">Laster Social Meet …</p></div></section>`;
+  }
+
   function render(options = currentOptions){
     const sheet = ensureSheet();
     const title = options.filter === 'place' ? getPlaceTitle(options.placeId) : 'Alle møter';
     sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Social Meet</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body">${renderProfileSocialContent(options)}</div></section>`;
   }
 
-  function open(options = {}){
+  async function open(options = {}){
     currentOptions = normalizeOptions(options);
     const sheet = ensureSheet();
-    render(currentOptions);
+    const requestId = ++currentRequestId;
+    renderLoading(currentOptions);
     sheet.hidden = false;
     const closeButton = sheet.querySelector('[data-hg-social-meet-close]');
     if (closeButton instanceof HTMLElement) closeButton.focus();
-    return { ok: true, options: currentOptions };
+    const loaded = await loadInbox(currentOptions);
+    if (requestId !== currentRequestId) return { ok: true, options: currentOptions, stale: true };
+    currentData = loaded.inbox;
+    currentWarning = loaded.warning || '';
+    render(currentOptions);
+    return { ok: true, options: currentOptions, mode: loaded.mode };
   }
 
   function close(){
     const sheet = root.document?.getElementById?.(SHEET_ID);
     if (sheet) sheet.hidden = true;
+  }
+
+  async function refreshPlaceSummaryElement(element, placeId){
+    const loaded = await loadInbox({ filter: 'place', placeId, sourceSurface: 'placeCardOnSite' });
+    currentData = loaded.inbox;
+    const html = renderPlaceSummary(placeId);
+    if (element?.outerHTML !== html) element.outerHTML = html;
   }
 
   function renderPlaceSummary(placeId){
@@ -208,8 +279,10 @@
     const html = renderPlaceSummary(placeId);
     if (existing) {
       if (existing.outerHTML !== html) existing.outerHTML = html;
+      refreshPlaceSummaryElement(box.querySelector('[data-hg-social-meet-onsite="1"]'), placeId);
     } else {
       box.insertAdjacentHTML('beforeend', html);
+      refreshPlaceSummaryElement(box.querySelector('[data-hg-social-meet-onsite="1"]'), placeId);
     }
   }
 
@@ -237,7 +310,7 @@
     root.__HG_SOCIAL_MEET_UI_BOUND__ = true;
     injectStyles();
     root.document?.addEventListener?.('click', handleClick, true);
-    root.addEventListener?.('hg:spotmeetingChanged', () => enhanceOnSiteLinks());
+    root.addEventListener?.('hg:spotmeetingChanged', () => { enhanceOnSiteLinks(); const sheet = root.document?.getElementById?.(SHEET_ID); if (sheet && !sheet.hidden) open(currentOptions); });
     enhanceOnSiteLinks();
   }
 
