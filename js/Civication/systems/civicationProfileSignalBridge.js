@@ -29,8 +29,11 @@
     "economic", "cultural", "social", "symbolic", "political", "institutional", "subculture"
   ];
 
+  // Identity-fokusnøkler. Speiler CAPITAL_KEYS (inkl. institutional) slik at
+  // getSignals().identity.focus alltid har de samme 7 dimensjonene, også når
+  // en kilde bare fyller noen av dem.
   const IDENTITY_FOCUS_KEYS = [
-    "economic", "cultural", "social", "symbolic", "subculture", "political"
+    "economic", "cultural", "social", "symbolic", "political", "institutional", "subculture"
   ];
 
   // Kulturbærende History Go-domener (matcher canonical domains + historiske varianter).
@@ -122,18 +125,34 @@
   // ------------------------------------------------------------
   // Psyke (CivicationPsyche.getSnapshot → hg_psyche_v1 → nøytral)
   // ------------------------------------------------------------
+  // energy holdes bevisst adskilt fra de utledede 0..100-dimensjonene: den er
+  // et rått signal (0..100) når en kilde faktisk oppgir det, ellers null
+  // (ukjent). Da kan hvile-vekten skille «lav energi» fra «ingen energidata».
+  function readEnergy(snap, raw) {
+    const candidates = [snap?.energy, snap?.energyPercent, raw?.energy];
+    for (const value of candidates) {
+      const n = Number(value);
+      if (Number.isFinite(n)) return Math.max(0, Math.min(100, n));
+    }
+    return null;
+  }
+
   function readPsyche() {
+    let snap = null;
     try {
-      const snap = window.CivicationPsyche?.getSnapshot?.();
-      if (snap && typeof snap === "object") {
-        return {
-          autonomy: clamp0100(snap.autonomy, 50),
-          integrity: clamp0100(snap.integrity, 50),
-          visibility: clamp0100(snap.visibility, 50),
-          trust: clamp0100(snap.trustSummary?.avgPercent, 50)
-        };
-      }
-    } catch {}
+      snap = window.CivicationPsyche?.getSnapshot?.() || null;
+    } catch {
+      snap = null;
+    }
+    if (snap && typeof snap === "object") {
+      return {
+        autonomy: clamp0100(snap.autonomy, 50),
+        integrity: clamp0100(snap.integrity, 50),
+        visibility: clamp0100(snap.visibility, 50),
+        trust: clamp0100(snap.trustSummary?.avgPercent, 50),
+        energy: readEnergy(snap, null)
+      };
+    }
 
     const raw = readJson("hg_psyche_v1", {});
     const integrity = clamp0100(raw?.integrity, 50);
@@ -152,7 +171,7 @@
       ? clamp0100(raw.autonomyOverride, 50)
       : clamp0100(economicRoom * 0.4 + trust * 0.3 + integrity * 0.2 - visibility * 0.2, 50);
 
-    return { autonomy, integrity, visibility, trust };
+    return { autonomy, integrity, visibility, trust, energy: readEnergy(null, raw) };
   }
 
   // ------------------------------------------------------------
@@ -306,7 +325,12 @@
       0.5 * focus.economic + 0.5 * cap("economic")
     );
     // Lav autonomi/integritet → høy hvilevekt. Nøytral psyke (50/50) → 0.5.
-    const rest = clamp01(1 - (psyche.autonomy + psyche.integrity) / 200);
+    // Når energy faktisk er kjent (ikke null) vektes lav energi rett inn:
+    // tom energi skal presse hvile opp, uavhengig av autonomi/integritet.
+    const psycheRest = 1 - (psyche.autonomy + psyche.integrity) / 200;
+    const rest = psyche.energy == null
+      ? clamp01(psycheRest)
+      : clamp01(0.5 * psycheRest + 0.5 * (1 - clamp01(psyche.energy / 100)));
     const family = clamp01(0.3 + 0.4 * focus.social);
     const subculture = clamp01(
       0.4 * focus.subculture + 0.4 * cap("subculture") + 0.5 * domainSignal(collection, ["subkultur"])
@@ -368,12 +392,51 @@
     };
   }
 
+  // Bekvemmelighets-API: tags og vekter uten at kalleren må plukke dem ut av
+  // hele signalobjektet. Begge er utledet fra nøyaktig samme kilder som
+  // getSignals (én sannhet), og er async fordi steds-indeksen lastes én gang.
+  async function getProfileTags() {
+    return (await getSignals()).profileTags;
+  }
+
+  async function getPrivatePhaseWeights() {
+    return (await getSignals()).privatePhaseWeights;
+  }
+
+  // Kompakt feilsøkings-snapshot: hva broen faktisk leser ut av profilen akkurat
+  // nå. Leser kun; endrer ingenting. Brukes fra konsollen og av tester.
+  async function inspect() {
+    const signals = await getSignals();
+    const weights = signals.privatePhaseWeights;
+    const topWeights = Object.entries(weights)
+      .sort((a, b) => Number(b[1]) - Number(a[1]))
+      .slice(0, 3)
+      .map(([key, value]) => `${key}:${Number(value).toFixed(2)}`);
+    return {
+      dominant: signals.identity.dominant,
+      profileTags: signals.profileTags,
+      topWeights,
+      weights,
+      placesVisited: signals.historyGoCollection.placesVisited.length,
+      placeCategories: signals.historyGoCollection.placeCategories,
+      badges: signals.historyGoCollection.badges,
+      peopleMet: signals.historyGoCollection.peopleMet.length,
+      energy: signals.psyche.energy,
+      restWeight: weights.rest
+    };
+  }
+
   function invalidateCache() {
     placeIndexPromise = null;
   }
 
   window.CivicationProfileSignalBridge = {
+    // Påkrevd offentlig API (se js/Civication/README.md «Private fase-mailer»):
     getSignals,
+    getProfileTags,
+    getPrivatePhaseWeights,
+    inspect,
+    // Interne byggeklosser — eksponert for tester/feilsøking, ikke for runtime.
     readIdentity,
     readCapital,
     readPsyche,
