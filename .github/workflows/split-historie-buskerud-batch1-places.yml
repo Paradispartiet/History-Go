@@ -1,0 +1,34 @@
+name: Split Historie Buskerud batch 1 places
+
+# Split aggregate batch 1 into per-place files on this data branch.
+# Touch workflow to trigger generated split outputs.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/split-historie-buskerud-batch1-places-20260707
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-historie-buskerud-batch1-places-20260707
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-historie-buskerud-batch1-places.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/historie/buskerud/places_historie_buskerud_batch1 data/places/historie/buskerud/places_historie_buskerud_batch1_manifest.json data/places/historie/buskerud/places_historie_buskerud_batch1_index.json data/places/historie/buskerud/places_historie_buskerud_batch1_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Historie Buskerud batch 1 place files"
+            git push
+          fi
