@@ -101,11 +101,15 @@
     return { ok:true, invite:mapInvite(data) };
   }
 
-  async function listInvites(){
+  async function listInvites(options = {}){
     const client = sb();
     const { data, error } = await client.from('hg_spotmeeting_invites').select('*').order('created_at', { ascending:false });
     if (error) return { ok:false, reason:'supabase_error', error, invites:[] };
-    return { ok:true, invites:list(data).map(mapInvite) };
+    const mapped = list(data).map(mapInvite).filter(Boolean);
+    const filter = String(options?.filter || '').toLowerCase();
+    const placeId = str(options?.placeId || options?.contextId);
+    const invites = filter === 'place' && placeId ? mapped.filter(invite => String(invite?.context?.contextId || '') === placeId) : mapped;
+    return { ok:true, invites };
   }
 
   async function transitionInvite(id, nextStatus){
@@ -132,7 +136,9 @@
   async function leaveCircle(id){ const client=sb(); const userId=await getUserId(client); if(!userId)return{ok:false,reason:'not_authenticated'}; const {error}=await client.from('hg_learning_circle_members').delete().eq('circle_id',id).eq('user_id',userId); return error?{ok:false,reason:'supabase_error',error}:{ok:true}; }
   async function listActivity(){ const client=sb(); const {data,error}=await client.from('hg_social_activity').select('*').order('created_at',{ascending:false}); return error?{ok:false,reason:'supabase_error',error,activity:[]}:{ok:true,activity:list(data)}; }
 
-  function health(){ const clientHealth = root.HG_SocialMeetSupabaseClient?.health?.() || { ok:false, reason:'supabase_client_missing' }; return { ok: backendMode() === 'local' || clientHealth.ok, backend:backendMode(), supabase:clientHealth, privacyFieldsBlocked:true, presetOnly:true, statusMachine:'client_enforced' }; }
+  function health(){ const clientHealth = root.HG_SocialMeetSupabaseClient?.health?.() || { ok:false, reason:'supabase_client_missing' }; const mode = backendMode(); return { ok: mode === 'local' || clientHealth.ok, mode, backend:mode, supabase:clientHealth, privacyFieldsBlocked:true, presetOnly:true, statusMachine:'client_enforced' }; }
 
-  root.HG_SocialMeetAdapter = { backendMode, scanForbiddenFields, normalizeContext, mapInvite, presetMessages:clone(PRESETS), getMyProfile, upsertMyProfile, createInvite, listInvites, acceptInvite, declineInvite, cancelInvite, completeInvite, listCircles, joinCircle, leaveCircle, listActivity, health };
+  const api = { backendMode, scanForbiddenFields, normalizeContext, mapInvite, presetMessages:clone(PRESETS), getMyProfile, upsertMyProfile, createInvite, listInvites, acceptInvite, declineInvite, cancelInvite, completeInvite, listCircles, joinCircle, leaveCircle, listActivity, health };
+  root.HG_SocialMeetAdapter = api;
+  root.HG_SocialMeetBackend = root.HG_SocialMeetBackend || api;
 }());
