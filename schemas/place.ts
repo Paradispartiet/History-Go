@@ -48,13 +48,13 @@ export interface Place {
   wonderkammer?: unknown;
   /**
    * Legacy/kuratorisk metadata for PlaceCard-rundinger. PlaceCard-gridet er
-   * nå fast og viser alltid disse 9 canonical rundingene i denne rekkefølgen:
-   * people, works, badges, tasks, civication, brands, routes, fortellinger,
-   * leksikon. `rounds`/`rundinger` styrer ikke lenger visuell order. Runtime
-   * støtter fortsatt legacy aliases for bakoverkompatibilitet: lexicon ->
-   * leksikon, stories/story -> fortellinger, wonderkammer/nature -> leksikon,
-   * football/music -> works, observations -> tasks. Nye data trenger normalt
-   * ikke å sette `rounds`. Se js/ui/place-card.js.
+   * nå fast og viser 9 canonical rundinger fra kategoriens profil, for eksempel:
+   * people, tasks, badges, works, civication, brands, før_nå, fortellinger,
+   * leksikon. `rounds`/`rundinger` kan fortsatt brukes som manuell override,
+   * men må bruke canonical IDs. Runtime støtter fortsatt legacy aliases for
+   * bakoverkompatibilitet: routes -> før_nå, lexicon -> leksikon,
+   * stories/story -> fortellinger, wonderkammer -> leksikon, football/music ->
+   * works. Nye data trenger normalt ikke å sette `rounds`. Se js/ui/place-card.js.
    */
   rounds?: string[];
   /** Alias for `rounds` (legacy). Foretrekk `rounds` i nye data. */

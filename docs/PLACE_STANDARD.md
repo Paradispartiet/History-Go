@@ -142,7 +142,7 @@ PlaceCard bør vise:
 - people
 - works
 - badges
-- routes
+- før_nå
 - fortellinger
 - leksikon
 - favoritt
@@ -164,6 +164,8 @@ Viktige regler:
 - `wonderkammer` er ikke egen hovedrunding; Wonderkammer-innhold ligger under `leksikon`-flowen / leksikon-huben.
 - `observations` er ikke egen hovedrunding; observasjoner er handling/flyt utenfor gridet.
 - `tasks` brukes bare når brukeren faktisk kan gjøre en konkret fysisk oppgave på stedet.
+- `før_nå` dekker visuelt/stedlig før/etter-innhold, historiske bilder, dagens bilde og transformasjon.
+- `routes` er ikke PlaceCard-runding; ruter håndteres i egen Rute-knapp/footer, Nearby/Utforsk og ruteflyt.
 
 ---
 
