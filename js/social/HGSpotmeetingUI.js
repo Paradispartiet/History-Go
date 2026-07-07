@@ -183,7 +183,58 @@
   function socialMeetFollowUpButton(context, label){
     const placeId = String(context?.contextType === 'place' ? (context.contextId || '') : '').trim();
     const attrs = placeId ? `data-hg-social-meet-open="place" data-hg-social-meet-place="${escapeHTML(placeId)}"` : 'data-hg-social-meet-open="all"';
-    return `<button class="hg-spotmeeting-link" type="button" ${attrs}>${escapeHTML(label || 'Åpne Social Meet')}</button>`;
+    return `<button class="hg-spotmeeting-link" type="button" ${attrs} data-hg-spotmeeting-social-followup="1">${escapeHTML(label || 'Åpne Social Meet')}</button>`;
+  }
+
+  function socialMeetOpenOptions(context){
+    const placeId = String(context?.contextType === 'place' ? (context.contextId || '') : '').trim();
+    return placeId
+      ? { filter: 'place', placeId, sourceSurface: 'spotmeetingSent' }
+      : { filter: 'all', sourceSurface: 'spotmeetingSent' };
+  }
+
+  function openSocialMeetFollowUp(context){
+    return root.HG_SocialMeetUI?.open?.(socialMeetOpenOptions(context));
+  }
+
+  function inviteContextForBackend(context){
+    return {
+      contextType: String(context?.contextType || '').trim(),
+      contextId: String(context?.contextId || '').trim(),
+      title: String(context?.title || '').trim(),
+      sourceSurface: String(context?.sourceSurface || '').trim()
+    };
+  }
+
+  function canTryBackendInvite(){
+    const backend = root.HG_SocialMeetBackend;
+    if (typeof backend?.createInvite !== 'function') return false;
+    const mode = typeof backend.backendMode === 'function' ? String(backend.backendMode() || '').toLowerCase() : '';
+    return mode !== 'local';
+  }
+
+  function shouldFallbackToLocal(result){
+    if (!result || result.ok) return false;
+    return !['invalid_preset_message', 'forbidden_privacy_field', 'missing_target_user', 'invalid_context_type', 'missing_context_id'].includes(String(result.reason || ''));
+  }
+
+  function createLocalInvite(targetUserId, context, presetMessageId){
+    if (typeof root.HG_Spotmeeting?.createSpotmeetingInvite !== 'function') return { ok: false, reason: 'missing_runtime' };
+    return root.HG_Spotmeeting.createSpotmeetingInvite(targetUserId, context, presetMessageId);
+  }
+
+  function createInviteWithBackendFallback(targetUserId, context, presetMessageId){
+    const safeContext = inviteContextForBackend(context);
+    if (canTryBackendInvite()) {
+      try {
+        return Promise.resolve(root.HG_SocialMeetBackend.createInvite(safeContext, targetUserId, presetMessageId))
+          .then(backendResult => (backendResult?.ok || !shouldFallbackToLocal(backendResult)) ? backendResult : createLocalInvite(targetUserId, context, presetMessageId))
+          .catch(() => createLocalInvite(targetUserId, context, presetMessageId));
+      } catch (error) {
+        // Fall through to local/demo mode without exposing backend details to the user.
+      }
+    }
+    return createLocalInvite(targetUserId, context, presetMessageId);
   }
 
   function renderCandidates(context, action){
@@ -248,8 +299,27 @@
     if (sheet) sheet.hidden = true;
   }
 
+  function finishSendInvite(button, context, presetMessageId, result){
+    if (!result?.ok) {
+      button.disabled = false;
+      const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
+      if (target) target.innerHTML = renderStatus('Kunne ikke sende møteforslag akkurat nå.', 'error');
+      return result;
+    }
+    button.textContent = 'Sendt';
+    button.disabled = true;
+    root.showToast?.('Kunnskapsmøte sendt.');
+    const detail = { invite: result.invite, source: 'spotmeeting', context: inviteContextForBackend(context), presetMessageId };
+    root.dispatchEvent?.(new CustomEvent('hg:spotmeetingChanged', { detail }));
+    root.dispatchEvent?.(new CustomEvent('updateProfile', { detail }));
+    if (currentState) currentState.lastSentContext = context;
+    const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
+    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`);
+    return result;
+  }
+
   function sendInvite(button){
-    if (!button || !currentState || !root.HG_Spotmeeting) return { ok: false, reason: 'missing_runtime' };
+    if (!button || !currentState) return { ok: false, reason: 'missing_runtime' };
     const presetMessageId = String(button.getAttribute('data-hg-spotmeeting-preset') || PRESET_BY_ACTION[currentState.action] || PRESET_BY_ACTION.match);
     const targetUserId = String(button.getAttribute('data-hg-spotmeeting-target') || '').trim();
     const context = Object.assign({}, currentState.context, { contextType: CONTEXT_TYPE_BY_ACTION[currentState.action] || currentState.context.contextType || 'place' });
@@ -260,20 +330,10 @@
       button.disabled = true;
       return { ok: false, reason: 'duplicate', invite: duplicate };
     }
-    const result = root.HG_Spotmeeting.createSpotmeetingInvite(targetUserId, context, presetMessageId);
-    if (!result?.ok) {
-      const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
-      if (target) target.innerHTML = renderStatus(`Kunne ikke sende: ${result?.reason || 'ukjent feil'}`, 'error');
-      return result;
-    }
-    button.textContent = 'Sendt';
     button.disabled = true;
-    root.showToast?.('Kunnskapsmøte sendt i TEST_MODE.');
-    root.dispatchEvent?.(new CustomEvent('hg:spotmeetingChanged', { detail: { invite: result.invite } }));
-    root.dispatchEvent?.(new CustomEvent('updateProfile', { detail: { source: 'spotmeeting' } }));
-    const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
-    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`);
-    return result;
+    const result = createInviteWithBackendFallback(targetUserId, context, presetMessageId);
+    if (result && typeof result.then === 'function') return result.then(finalResult => finishSendInvite(button, context, presetMessageId, finalResult));
+    return finishSendInvite(button, context, presetMessageId, result);
   }
 
   function renderPeopleCta(placeId){
@@ -309,11 +369,12 @@
   }
 
   function handleClick(event){
-    const target = event.target?.closest?.('[data-hg-spotmeeting-send], [data-hg-spotmeeting-action], [data-hg-spotmeeting-open], [data-knowledge-spot-match], [data-hg-spotmeeting-close], #pcExploreTogether');
+    const target = event.target?.closest?.('[data-hg-spotmeeting-send], [data-hg-spotmeeting-action], [data-hg-spotmeeting-open], [data-hg-spotmeeting-social-followup], [data-knowledge-spot-match], [data-hg-spotmeeting-close], #pcExploreTogether');
     if (!target) return;
     if (target.hasAttribute('data-hg-spotmeeting-close')) { event.preventDefault?.(); event.stopPropagation?.(); close(); return; }
     if (target.id === 'pcExploreTogether') { event.preventDefault?.(); event.stopPropagation?.(); openForElement(target, 'match', 'placeCardFooterDeprecated'); target.remove?.(); return; }
     if (target.hasAttribute('data-hg-spotmeeting-send')) { event.preventDefault?.(); event.stopPropagation?.(); sendInvite(target); return; }
+    if (target.hasAttribute('data-hg-spotmeeting-social-followup')) { event.preventDefault?.(); event.stopPropagation?.(); openSocialMeetFollowUp(currentState?.lastSentContext || currentState?.context || {}); return; }
     if (target.hasAttribute('data-hg-spotmeeting-action')) {
       const sheet = target.closest?.(`#${SHEET_ID}`);
       if (!sheet) return;
