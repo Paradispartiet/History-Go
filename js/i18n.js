@@ -269,25 +269,68 @@
     });
   }
 
-  function getOriginalPlaceText(place) {
+  const HG_PLACE_TRANSLATABLE_FIELDS = new Set([
+    "title",
+    "name",
+    "label",
+    "description",
+    "desc",
+    "popupDesc",
+    "popupdesc",
+    "summary",
+    "shortDescription",
+    "shortDesc",
+    "subtitle",
+    "intro",
+    "body",
+    "facts",
+    "why",
+    "tasks_profile",
+    "for_na",
+    "leksikon",
+    "stories",
+    "works",
+    "badges"
+  ]);
+
+  const HG_PLACE_TRANSLATION_META_FIELDS = new Set(["_sourceHash", "_status"]);
+
+  function clonePlaceI18nValue(value) {
+    if (Array.isArray(value)) return value.map(clonePlaceI18nValue);
+    if (value && typeof value === "object") {
+      return Object.fromEntries(
+        Object.entries(value).map(([key, nestedValue]) => [key, clonePlaceI18nValue(nestedValue)])
+      );
+    }
+    return value;
+  }
+
+  function getPlaceTranslationKeys(tr) {
+    if (!tr || typeof tr !== "object") return [];
+    return Object.keys(tr).filter((key) =>
+      HG_PLACE_TRANSLATABLE_FIELDS.has(key) && !HG_PLACE_TRANSLATION_META_FIELDS.has(key)
+    );
+  }
+
+  function getOriginalPlaceText(place, tr) {
     const existing = place && place.__hgI18nOriginal;
     if (existing && typeof existing === "object") return existing;
 
-    return {
-      name: place?.name,
-      desc: place?.desc,
-      popupDesc: place?.popupDesc,
-      popupdesc: place?.popupdesc
-    };
+    const original = {};
+    getPlaceTranslationKeys(tr).forEach((key) => {
+      original[key] = clonePlaceI18nValue(place?.[key]);
+    });
+    return original;
   }
 
   function applyOriginalPlaceText(out, original) {
     if (!out || !original || typeof original !== "object") return out;
 
-    if (typeof original.name === "string" && original.name.trim()) out.name = original.name;
-    if (typeof original.desc === "string" && original.desc.trim()) out.desc = original.desc;
-    if (typeof original.popupDesc === "string" && original.popupDesc.trim()) out.popupDesc = original.popupDesc;
-    if (typeof original.popupdesc === "string" && original.popupdesc.trim()) out.popupdesc = original.popupdesc;
+    Object.entries(original).forEach(([key, value]) => {
+      if (!HG_PLACE_TRANSLATABLE_FIELDS.has(key)) return;
+      if (value === undefined) delete out[key];
+      else out[key] = clonePlaceI18nValue(value);
+    });
 
     return out;
   }
@@ -314,18 +357,21 @@
     const id = String(place.id || "").trim();
     if (!id) return place;
 
-    const original = getOriginalPlaceText(place);
-    const out = attachOriginalPlaceText({ ...place }, original);
     const tr = currentPlaceDict && currentPlaceDict[id];
+    const original = getOriginalPlaceText(place, tr);
+    const out = attachOriginalPlaceText({ ...place }, original);
 
     if (!tr || typeof tr !== "object") {
       return applyOriginalPlaceText(out, original);
     }
 
-    if (typeof tr.name === "string" && tr.name.trim()) out.name = tr.name;
-    if (typeof tr.desc === "string" && tr.desc.trim()) out.desc = tr.desc;
-    if (typeof tr.popupDesc === "string" && tr.popupDesc.trim()) out.popupDesc = tr.popupDesc;
-    if (typeof tr.popupdesc === "string" && tr.popupdesc.trim()) out.popupdesc = tr.popupdesc;
+    applyOriginalPlaceText(out, original);
+    getPlaceTranslationKeys(tr).forEach((key) => {
+      const value = tr[key];
+      if (typeof value === "string" && !value.trim()) return;
+      if (value == null) return;
+      out[key] = clonePlaceI18nValue(value);
+    });
 
     return out;
   }
@@ -362,6 +408,12 @@
   }
 
   function rerenderLocalizedSurfaces() {
+    try {
+      if (typeof window.HGMap?.refreshMarkers === "function") window.HGMap.refreshMarkers();
+    } catch (err) {
+      console.warn("[HG_I18N] Could not rerender map place markers after language change.", err);
+    }
+
     try {
       if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
     } catch (err) {

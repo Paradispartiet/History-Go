@@ -614,8 +614,12 @@
       return;
     }
 
+    const places = (typeof window.HG_I18N?.localizePlaces === "function")
+      ? window.HG_I18N.localizePlaces(PLACES)
+      : PLACES;
+
     const features = [];
-    for (const p of PLACES) {
+    for (const p of places) {
       const lat = num(p?.lat);
       const lon = num(p?.lon);
       if (lat == null || lon == null) continue;

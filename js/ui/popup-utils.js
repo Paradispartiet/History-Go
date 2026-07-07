@@ -1503,6 +1503,9 @@ function renderWonderkammerDossier(doc) {
 
 window.showPlacePopup = function(place) {
   if (!place) return;
+  if (typeof window.HG_I18N?.localizePlace === "function") {
+    place = window.HG_I18N.localizePlace(place);
+  }
 
   // History Go read-signal: fortellingene som vises for stedet teller som read_story.
   // Civication-broen matcher hg_reads_v1.stories på placeId.
