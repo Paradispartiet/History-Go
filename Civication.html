@@ -39,9 +39,9 @@
      hele appen.
 
      Skallet lastes av civicationShellLoader.js så snart shell-DOM-en
-     finnes. Day/mail lastes etterpå som eget lag. De TUNGE canvas/3D-kartene er
-     av som standard (skallet bruker SVG-kartet) og slås kun på
-     med Civication.html?civicationLegacy=1 for full gammel debug.
+     finnes. Day/mail lastes etterpå som eget lag. Det rike Canvas/WebGL-kartet er standard for normal runtime.
+     Det lette SVG-skallkartet brukes bare som fallback/test/lite-modus
+     (for eksempel Civication.html?civicationLite=1).
      Se docs/civication-life-story-system.md.
      ============================================================ -->
 <body class="civi-app">
@@ -90,8 +90,8 @@
 
   <main class="civi-world">
 
-    <!-- Civication-kartet. Standard er det komplette SVG-kartet (CivicationMap);
-         de tunge canvas/3D-rendrerne slås kun på med ?civicationLegacy=1. -->
+    <!-- Civication-kartet. Normal runtime laster rikt Canvas/WebGL-kart;
+         dette SVG-kartet er trygg fallback/test/lite-modus. -->
     <div id="civiMapWorld">
       <div class="civi-map-layer"></div>
     </div>
@@ -249,7 +249,7 @@
        Shell-loaderen injiserer produkt-skallet (kart, dashboard, nabolag,
        kapital, psyke, folk, rollepanel, footer og tomtilstander), vekker
        shell-boot først og laster deretter day/mail som separat lag.
-       ?civicationLegacy=1 slår på tung full debug. -->
+       ?civicationLegacy=1 slår kun på ekstra debugpaneler; rich map er standard. -->
   <script src="js/Civication/civicationShellLoader.js"></script>
 
 </body>

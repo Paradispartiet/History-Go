@@ -947,10 +947,22 @@
   // ---------------------------------------------------------------------------
   // Init / render
   // ---------------------------------------------------------------------------
+  function fallbackToSvgMap(reason) {
+    try {
+      window.CIVICATION_CANVAS_MAP_ENABLED = false;
+      window.CIVICATION_THREE_MAP_ENABLED = false;
+      host?.classList?.remove("is-canvas-map");
+      baseCanvas?.remove?.();
+      placesCanvas?.remove?.();
+      window.CivicationMap?.render?.();
+      console.warn("[CivicationCanvasMap] Canvas utilgjengelig – bruker SVG-fallback:", reason || "unknown");
+    } catch (_e) { /* best effort fallback */ }
+  }
+
   function init() {
     if (!flagOn()) return;
     if (_inited) { resize(); return; }
-    if (!ensureCanvases()) return;
+    if (!ensureCanvases()) { fallbackToSvgMap("2d context unavailable"); return; }
     _inited = true;
     console.info("[CivicationCanvasMap] Canvas map active");
     ensureControls();
