@@ -14,6 +14,25 @@ Mail er bare én scenevisning blant flere (melding, møte, telefon, krise,
 samtale …). Kart, paneler og dashboard er aktivt Civication-produkt — ikke
 legacy.
 
+## Migreringsmål: én fortellingsmotor
+
+Life Story Runner er fremtidig eneste autoritative fortellingsmotor for
+Civication-dagen. «Min dag» er derfor den normale dagflaten, og eldre
+`CivicationDayPhaseUI`/day-mail-flater skal ikke opprette konkurrerende
+toppaneler i normal runtime.
+
+Mail skal migreres til en **sceneform** i Life Story Runner, ikke beholdes som
+egen motor. Arbeidsliv og privatliv skal leveres som **scene packs** som mater
+samme runner med scener, valg, konsekvenser og tråder.
+
+Den gamle day/mail-runtime-kjeden (`civicationMailEngine`,
+`civicationDailyMailBuilder`, `dayProgressionController`,
+`civicationNextActionSelector`, `civicationWorkdayRuntime`,
+`civicationPrivatePhaseMailBuilder`, `civicationWorkdayMailBuilder`) beholdes
+midlertidig som migreringskilde og kompatibilitetslag. Den er ikke ønsket
+sluttarkitektur og skal flyttes ut etter hvert som funksjonene blir scene packs
+i Life Story.
+
 ## 1. Kjerneidé
 
 Spilleren lever dager. Dager består av scener. Scener tilhører

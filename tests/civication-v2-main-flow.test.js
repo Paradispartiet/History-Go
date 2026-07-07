@@ -114,6 +114,11 @@ assert.ok(loader.SHELL_SCRIPTS.includes("js/Civication/CivicationShellBoot.js"),
 assert.ok(loader.SHELL_SCRIPTS.includes("js/Civication/CivicationBoot.js"), "tynn koordinator ligger i shell-listen");
 assert.ok(loader.DAY_SCRIPTS.includes("js/Civication/CivicationDayBoot.js"), "day boot ligger i day-listen");
 
+assert.ok(!loader.DAY_SCRIPTS.includes("js/Civication/ui/CivicationDayPhaseUI.js"),
+  "gammel DayPhaseUI skal ikke ligge i standard DAY_SCRIPTS");
+assert.ok(loader.LEGACY_DEBUG_SCRIPTS.includes("js/Civication/ui/CivicationDayPhaseUI.js"),
+  "gammel DayPhaseUI kan bare lastes via eksplisitt legacy/debug-liste");
+
 for (const file of ["civicationMailEngine.js", "civicationDailyMailBuilder.js", "dayProgressionController.js", "civicationWorkdayRuntime.js"]) {
   assert.ok(!loader.SHELL_SCRIPTS.some((src) => src.endsWith(file)), `${file} skal ikke ligge i shell-listen`);
   assert.ok(loader.DAY_SCRIPTS.some((src) => src.endsWith(file)), `${file} skal ligge i day-listen`);

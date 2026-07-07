@@ -2,6 +2,15 @@
   "use strict";
 
   const PANEL_ID = "civiDayPhasePanel";
+  const LIFESTORY_PANEL_ID = "civiLifestoryPanel";
+
+  function isLegacyEnabled() {
+    return window.CIVICATION_LEGACY_ENABLED === true;
+  }
+
+  function isBlockedByLifestory() {
+    return !isLegacyEnabled() && !!document.getElementById(LIFESTORY_PANEL_ID);
+  }
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -219,6 +228,8 @@
   }
 
   function ensurePanel() {
+    if (isBlockedByLifestory()) return null;
+
     const panels = document.querySelector(".civi-panels");
     let panel = document.getElementById(PANEL_ID);
     if (!panels) return panel || null;
@@ -344,6 +355,8 @@
   }
 
   function render() {
+    if (isBlockedByLifestory()) return false;
+
     const progression = window.CivicationDayProgression;
     if (!progression?.inspect) return false;
 
@@ -383,6 +396,8 @@
   }
 
   function setupEvents() {
+    if (isBlockedByLifestory()) return;
+
     document.addEventListener("DOMContentLoaded", refresh);
     window.addEventListener("civi:dayPhaseChanged", refresh);
     window.addEventListener("civi:inboxChanged", refresh);
@@ -394,6 +409,8 @@
 
   window.CivicationDayPhaseUI = {
     render,
-    refresh
+    refresh,
+    isLegacyEnabled,
+    isBlockedByLifestory
   };
 })();
