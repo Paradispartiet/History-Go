@@ -136,7 +136,7 @@ body.civi-app.civi-mini-mode .civi-dashboard-metric small {
    NB: #civiLifeHomeControls er en egen home-sone, ikke et minikort.
 ------------------------------------------------------------ */
 
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
 body.civi-app.civi-mini-mode #civiTrackHUD {
   grid-column: span 4;
   min-height: 220px;
@@ -258,7 +258,7 @@ body.civi-app.civi-mini-mode .needs-feedback .civi-mini-action {
   color: rgba(255,236,180,0.98) !important;
 }
 
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel)::before {
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel)::before {
   top: 14px;
   bottom: 14px;
   width: 3px;
@@ -273,10 +273,46 @@ body.civi-app.civi-mini-mode .civi-section-body.is-in-popup {
   display: block;
 }
 
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel) > h2,
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel) > :not(.civi-mini-card):not(.civi-section-body),
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel) > h2,
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel) > :not(.civi-mini-card):not(.civi-section-body),
 body.civi-app.civi-mini-mode #civiTrackHUD > :not(.civi-mini-card):not(.civi-section-body) {
   display: none;
+}
+
+/* Min dag / Life Story er primær fortellingsflate, ikke et minikort.
+   Den må derfor være eksplisitt synlig også etter at mini-mode er aktivert. */
+body.civi-app.civi-mini-mode #civiLifestorySection {
+  grid-column: 1 / -1;
+  min-height: auto;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--line2);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.045),
+    0 10px 24px rgba(0,0,0,0.18);
+  overflow: visible;
+}
+
+body.civi-app.civi-mini-mode #civiLifestorySection > h2 {
+  display: block;
+}
+
+body.civi-app.civi-mini-mode #civiLifestoryPanel,
+body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-scene,
+body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-choices,
+body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-panels {
+  display: flex;
+}
+
+body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-panels {
+  display: grid;
+}
+
+@media (min-width: 1100px) {
+  body.civi-app.civi-mini-mode #civiLifestorySection {
+    grid-column: span 8;
+  }
 }
 
 /* ------------------------------------------------------------
@@ -484,7 +520,7 @@ body.civi-app .district-card {
 ------------------------------------------------------------ */
 
 @media (max-width: 1040px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
   body.civi-app.civi-mini-mode #civiTrackHUD {
     grid-column: span 6;
   }
@@ -505,7 +541,7 @@ body.civi-app .district-card {
     width: 100%;
   }
 
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
   body.civi-app.civi-mini-mode #civiTrackHUD {
     grid-column: 1 / -1;
   }
@@ -611,11 +647,11 @@ body.civi-app.civi-mini-mode .civi-category-empty h3 { margin:0 0 6px; color:var
 body.civi-app.civi-mini-mode .civi-category-empty p { margin:0; }
 
 @media (max-width: 900px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
   body.civi-app.civi-mini-mode #civiTrackHUD { grid-column: span 6; }
 }
 @media (max-width: 680px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
   body.civi-app.civi-mini-mode #civiTrackHUD { grid-column: 1 / -1; }
 }
 body.civi-app.civi-mini-mode .civi-top-action-card.is-milestone {
@@ -652,12 +688,12 @@ body.civi-app.civi-mini-mode .civi-inbox-answer-meta span{
 
 
 @media (max-width: 1200px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
   body.civi-app.civi-mini-mode #civiTrackHUD { grid-column: span 6; }
 }
 
 @media (max-width: 760px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
   body.civi-app.civi-mini-mode #civiTrackHUD { grid-column: 1 / -1; }
 }
 
@@ -690,7 +726,7 @@ body.civi-app.civi-mini-mode .civi-mini-action:hover {
 
 /* Hviletilstand: kort med bare plassholdertekst dempes og får stiplet
    ramme, så øyet går til kortene med ekte innhold. */
-body.civi-app.civi-mini-mode .civi-panels > section.is-idle:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+body.civi-app.civi-mini-mode .civi-panels > section.is-idle:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
 body.civi-app.civi-mini-mode #civiTrackHUD.is-idle {
   border-style: dashed;
   box-shadow: none;
@@ -701,7 +737,7 @@ body.civi-app.civi-mini-mode #civiTrackHUD.is-idle .civi-mini-summary {
   opacity: 0.78;
 }
 
-body.civi-app.civi-mini-mode .civi-panels > section.is-idle::before {
+body.civi-app.civi-mini-mode .civi-panels > section.is-idle:not(#civiLifestorySection)::before {
   opacity: 0.4;
 }
 

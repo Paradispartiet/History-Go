@@ -955,6 +955,7 @@
   function ensureMiniStructure(section, key, config) {
     if (!section || section.dataset.civiMiniReady === "1") return;
     if (section.id === "civiDashboardSection") return;
+    if (section.id === "civiLifestorySection") return;
 
     const existingChildren = Array.from(section.childNodes);
     const body = document.createElement("div");

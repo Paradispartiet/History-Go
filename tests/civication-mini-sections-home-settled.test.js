@@ -13,8 +13,21 @@ function loadScript(relPath) {
 }
 
 function run() {
+  const miniCss = fs.readFileSync(path.join(repoRoot, "css/civi-mini.css"), "utf8");
   const dom = new JSDOM(`<!doctype html><html><body>
     <main class="civi-panels">
+      <section id="civiLifestorySection">
+        <h2>Min dag</h2>
+        <div id="civiLifestoryPanel">
+          <article class="civi-lifestory-scene">
+            <h3>Nå</h3>
+            <div class="civi-lifestory-choices">
+              <button type="button" class="civi-lifestory-choice">Velg</button>
+            </div>
+          </article>
+          <aside class="civi-lifestory-panels"><section><h4>Tråder</h4></section></aside>
+        </div>
+      </section>
       <section id="civiHomeStatus">
         <div id="homeStatusContent">
           <p>Du bor på Sagene.</p>
@@ -56,6 +69,29 @@ function run() {
   assert.ok(!section.classList.contains("needs-feedback"), "settled home section should not have needs-feedback class");
   assert.ok(section.textContent.includes("Bytt nabolag"), "ordinary change-district button should remain rendered");
   assert.ok(section.textContent.includes("Betal husleie"), "ordinary rent button should remain rendered");
+
+  const lifestorySection = document.getElementById("civiLifestorySection");
+  const lifestoryPanel = document.getElementById("civiLifestoryPanel");
+  assert.ok(document.body.classList.contains("civi-mini-mode"), "mini-mode should be active");
+  assert.ok(!lifestorySection.querySelector(":scope > .civi-mini-card"), "Min dag section should not get a mini card");
+  assert.ok(lifestorySection.querySelector(":scope > h2"), "Min dag header should remain a direct visible header");
+  assert.ok(lifestoryPanel.querySelector(".civi-lifestory-scene"), "Min dag panel should keep the scene after mini boot");
+  assert.ok(lifestoryPanel.querySelector(".civi-lifestory-choices"), "Min dag panel should keep choices after mini boot");
+  assert.ok(lifestoryPanel.querySelector(".civi-lifestory-panels"), "Min dag panel should keep overview panels after mini boot");
+  assert.ok(!document.getElementById("civiDayPhasePanel"), "legacy day phase panel should not be created in normal mini boot");
+
+  assert.ok(
+    miniCss.includes(".civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel) > h2"),
+    "mini CSS should exclude Min dag before hiding section h2 headings"
+  );
+  assert.ok(
+    miniCss.includes(".civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel) > :not(.civi-mini-card):not(.civi-section-body)"),
+    "mini CSS should exclude Min dag before hiding ordinary direct children"
+  );
+  assert.ok(
+    miniCss.includes("body.civi-app.civi-mini-mode #civiLifestoryPanel"),
+    "mini CSS should explicitly keep the Life Story panel visible"
+  );
 
   console.log("PASS: Civication mini home settled actions are not urgent.");
 }
