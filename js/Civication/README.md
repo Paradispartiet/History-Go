@@ -31,6 +31,33 @@ og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVI
 > hovedspillet — men den er del av skallet og vises som standard.
 > Se [`docs/civication-life-story-system.md`](../../docs/civication-life-story-system.md).
 
+## Boot-arkitektur: skall-boot vs. dag-/life-story-boot
+
+`CivicationBoot` er ikke lenger én stor orkestrator. Den er en **tynn koordinator**
+som kjører to tydelig adskilte lag i rekkefølge, slik at mail/dag aldri kan velte
+selve produktet:
+
+| Lag | Fil | Ansvar | Robusthet |
+| --- | --- | --- | --- |
+| **Skall-boot** | `CivicationShellBoot.js` | Selve Civication-produktet: data (badges/careers), økonomi-tick, career-role-resolver og `CivicationUI.init()` (kart, dashboard, nabolag/kapital, psyke, identitet, hjem, offentlig feed, aktiv rolle, folk, butikk, track-HUD, footer, panelnavigasjon, empty states). | Kjøres **først**. Egen try/catch. Skal **alltid** kunne starte. |
+| **Dag-/life-story-boot** | `CivicationDayBoot.js` | Dag-/fortellingslaget: hendelsesmotoren (`HG_CiviEngine`), rolle-modell-runtime, blokkerte jobbmeldinger, forpliktelser og `onAppOpen()` (bygger dagens mail-/innboks-scener). | Kjøres **etterpå**. **Inert** uten dag-DOM (`#civiInboxSection`). Egen try/catch — en feil her logges, men velter aldri skallet, og viser aldri boot-error-boksen. |
+
+Koordinatoren (`CivicationBoot.js`) kaller `CivicationShellBoot.start()` og deretter
+`CivicationDayBoot.start()`, med et ekstra sikkerhetsnett rundt dag-laget. `HG_CiviDebug`
+(konsoll-diagnostikk) ligger fortsatt i `CivicationBoot.js`.
+
+**Mail/innboks/arbeidsdag er paneler inne i skallet — ikke skallet selv.** Skallet
+rendrer disse panelene med robuste empty states, og dag-laget fyller dem etterpå via
+`updateProfile`. **«Min dag» (Life Story) er en egen, uavhengig modul**
+(`CivicationLifestoryUI`) og bootes ikke fra `CivicationBoot` i det hele tatt — den
+kjører alene og fungerer også når shell-DOM mangler.
+
+Ansvarsdelingen og robustheten er dekket av `tests/civication-boot-split.test.js`
+(JSDOM): skallet starter selv om dag-motoren kaster, og dag-laget er inert uten sin DOM.
+
+`?civicationLegacy=1` gjelder **kun** tung debug/legacy-kartmodus (canvas/3D-kart) — det
+har ingenting med boot-splitten å gjøre. Skallet lastes uansett som standard.
+
 ## Grunnprinsipp: én aktiv handling om gangen
 
 Civication hadde tidligere flere flater som konkurrerte om å være «aktiv handling», slik at

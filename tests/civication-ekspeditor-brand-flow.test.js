@@ -190,7 +190,8 @@ function verifyLoadOrder() {
     assert.ok(indexes[i - 1] < indexes[i], `${scripts[i - 1]} should load before ${scripts[i]}`);
   }
 
-  const boot = fs.readFileSync(path.join(repoRoot, 'js/Civication/CivicationBoot.js'), 'utf8');
+  // Etter boot-splitten bor script-once-dedupen i CivicationShellBoot.
+  const boot = fs.readFileSync(path.join(repoRoot, 'js/Civication/CivicationShellBoot.js'), 'utf8');
   // Implementation-agnostic dedup check: the loader scans existing scripts
   // (document.scripts) and short-circuits before appending. Assert behaviour
   // rather than an exact source string so equivalent refactors don't break it.

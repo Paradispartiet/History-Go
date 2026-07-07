@@ -159,6 +159,8 @@
     "js/Civication/ui/CivicationCityLayer.js",
     "js/Civication/systems/civicationHistoryGoTaskBridge.js",
     "js/Civication/ui/CivicationHistoryGoDeepLink.js",
+    "js/Civication/CivicationShellBoot.js",
+    "js/Civication/CivicationDayBoot.js",
     "js/Civication/CivicationBoot.js"
   ];
 
