@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-07T17:22:28.480Z
+Generated: 2026-07-07T23:02:24.115Z
 
 ## Sammendrag
-- People-filer lest: **28**
-- People lest: **503**
+- People-filer lest: **29**
+- People lest: **512**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **503**
+- Duplikate interne place-referanser: **512**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -392,6 +392,10 @@ Generated: 2026-07-07T17:22:28.480Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: bla_miljoet (Blå-miljøet) -> bla x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: brenneriveien_ingens_gate_miljoet (Brenneriveien / Ingens gate-miljøet) -> brenneriveien_ingens_gate x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: xray_ungdomskulturhus_miljoet (X-Ray Ungdomskulturhus-miljøet) -> xray_ungdomskulturhus x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: helvete_neseblod_miljoet (Helvete / Neseblod-miljøet) -> helvete_neseblod_records x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: last_train_miljoet (Last Train-miljøet) -> last_train_oslo x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: rock_in_miljoet (Rock In-miljøet) -> rock_in_oslo x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: club_7_miljoet (Club 7-miljøet) -> club_7_vika x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: dj_marfox (DJ Marfox) -> lisbon_bairro_alto x2
@@ -487,6 +491,11 @@ Generated: 2026-07-07T17:22:28.480Z
 - data/people/musikk/oslo/people_musikk_oslo.json :: arif (Arif) -> stovnertarnet x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: edvard_grieg (Edvard Grieg) -> operahuset x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: rikard_nordraak (Rikard Nordraak) -> var_frelsers_gravlund x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: hulda_garborg (Hulda Garborg) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: rasmus_rasmussen (Rasmus Rasmussen) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: edvard_drablos (Edvard Drabløs) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: agnes_mowinckel (Agnes Mowinckel) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: lars_tvinde (Lars Tvinde) -> det_norske_teatret x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_severa (Maria Severa) -> lisbon_mouraria_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2
