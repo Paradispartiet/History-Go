@@ -1,15 +1,14 @@
 # Social Meet backend (Supabase)
 
-Status: **First backend foundation — schema + RLS + docs only.** No frontend
-is wired to Supabase yet. This document describes the database contract added
-in `supabase/migrations/001_social_meet.sql` and how the History Go frontend
-will connect to it later through an adapter.
+Status: **Backend foundation + frontend adapter.** The schema/RLS contract lives
+in `supabase/migrations/001_social_meet.sql`, and the frontend adapter layer now
+lives in `js/social/HGSocialMeetSupabaseClient.js` and
+`js/social/HGSocialMeetAdapter.js`.
 
-This is deliberately the *first* Supabase PR: it establishes a safe, privacy-
-governed database contract and nothing more. It does not change any existing
-frontend (`js/social/HGSocialMeetUI.js`, `js/social/HGSpotmeetingUI.js`,
-`profile.html`, etc.), and it does not add Supabase credentials, edge
-functions, or a message/chat table.
+The original Supabase PR established a safe, privacy-governed database contract.
+This follow-up adds the frontend adapter layer while still avoiding committed
+Supabase credentials, service-role keys, edge functions, and message/chat
+tables.
 
 Related, more detailed contracts already in the repo:
 
@@ -217,30 +216,28 @@ revisit `docs/HG_SOCIAL_ARCHITECTURE.md` first.
 
 ## 5. How the frontend connects later (adapter step)
 
-The frontend is **not** connected in this PR. When it is, it should go through a
-thin **adapter** rather than calling Supabase from UI files directly, keeping
-History Go's rule that UI never owns truth.
+The frontend must go through a thin **adapter** rather than calling Supabase from
+UI files directly, keeping History Go's rule that UI never owns truth. The
+adapter has now landed with this shape:
 
-Planned shape:
-
-1. Add a Supabase client module (e.g. `js/social/supabase/HGSupabaseClient`)
-   that reads a **public** anon key + project URL from runtime config — never
-   committed, never a service-role key.
-2. Add a `SocialMeetAdapter` with a small, typed surface, e.g.
-   `getMyProfile()`, `upsertMyProfile()`, `createInvite(context, presetId)`,
+1. `js/social/HGSocialMeetSupabaseClient.js` reads a **public** anon key +
+   project URL from runtime config (`window.HG_SOCIAL_MEET_SUPABASE`,
+   `window.HG_SUPABASE_CONFIG`, or meta tags) — never committed, never a
+   service-role key.
+2. `js/social/HGSocialMeetAdapter.js` exposes the small typed surface:
+   `getMyProfile()`, `upsertMyProfile()`, `createInvite(context, targetUserId, presetId)`,
    `listInvites()`, `acceptInvite(id)`, `declineInvite(id)`, `cancelInvite(id)`,
    `completeInvite(id)`, `listCircles()`, `joinCircle(id)`, `leaveCircle(id)`,
    `listActivity()`.
 3. The adapter enforces the **status state-machine** (creator cancels; target
-   accepts/declines; completion rules) and rejects any free-text input before
-   it reaches the network.
+   accepts/declines; completion rules) and rejects free-text/chat/location/feed
+   fields before they reach the network.
 4. `HGSpotmeetingUI` (Kunnskapsmøte — start a proposal) and `HGSocialMeetUI`
    (Social Meet — follow-ups/history/circles) call the adapter, not Supabase
    directly.
 5. The adapter maps preset message ids to localized Norwegian labels at read
    time; the database only ever stores the id.
 
-None of these files are created or changed in this PR.
 
 ---
 
