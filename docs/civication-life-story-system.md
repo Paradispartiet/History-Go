@@ -390,8 +390,25 @@ Reglene fremover:
   og lastes/vises som standard.
 - Ingen nye statiske script-tags i Civication.html uten at dette dokumentet og
   main-flow-testen oppdateres samtidig.
-- Skallet og motorene er tett koblet: `CivicationBoot` er én orkestrator som
-  bygger både panelene og mail-/dagsmotorene. Å skille ut en ren «shell-only»
-  boot uten mail-/dagsmaskineriet er et større, separat ryddesteg — ikke gjort
-  her. Poenget nå er at skallet + Min dag er standard, og at mail ikke
-  dominerer flaten.
+- Boot er nå delt i to lag (se under). Mail/dag kan ikke lenger velte skallet.
+
+### Boot-splitten: skall-boot vs. dag-/life-story-boot
+
+`CivicationBoot` er en **tynn koordinator**, ikke lenger én stor orkestrator:
+
+1. **`CivicationShellBoot`** — selve produktet/skallet: data (badges/careers),
+   økonomi-tick, career-role-resolver og `CivicationUI.init()` (kart, dashboard,
+   nabolag/kapital, psyke, identitet, hjem, offentlig feed, aktiv rolle, folk,
+   butikk, track-HUD, footer, empty states). Kjøres **først** og skal **alltid**
+   kunne starte.
+2. **`CivicationDayBoot`** — dag-/fortellingslaget: hendelsesmotoren
+   (`HG_CiviEngine`), rolle-modell-runtime, blokkerte jobbmeldinger, forpliktelser
+   og `onAppOpen()` (bygger dagens mail-/innboks-scener). Kjøres **etterpå**, er
+   **inert** uten dag-DOM (`#civiInboxSection`), og en feil her velter **aldri**
+   skallet (egen try/catch, ingen boot-error-boks).
+
+Mail/innboks/arbeidsdag er paneler inne i skallet, som skallet rendrer med empty
+states og dag-laget fyller etterpå via `updateProfile`. Min dag (Life Story) er en
+egen, uavhengig modul (`CivicationLifestoryUI`) og bootes ikke fra `CivicationBoot`.
+Ansvarsdelingen er dekket av `tests/civication-boot-split.test.js`. `HG_CiviDebug`
+(konsoll-diagnostikk) ligger fortsatt i `CivicationBoot.js`.

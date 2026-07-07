@@ -161,6 +161,8 @@ const PRECACHE_URLS = [
   "js/Civication/civicationCommercial.js",
   "js/Civication/roleStoryletBridge.js",
   "js/Civication/mailPlanBridge.js",
+  "js/Civication/CivicationShellBoot.js",
+  "js/Civication/CivicationDayBoot.js",
   "js/Civication/CivicationBoot.js",
 
   // Civication – ui

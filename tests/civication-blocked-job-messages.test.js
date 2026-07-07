@@ -61,20 +61,24 @@ assert.strictEqual(inbox.length, 1);
 const directShapeWrites = inbox.filter(item => item && item.source_type === 'blocked_job');
 assert.strictEqual(directShapeWrites.length, 0);
 
-const bootSource = fs.readFileSync(path.join(__dirname, '..', 'js/Civication/CivicationBoot.js'), 'utf8');
+// Ansvarsdelingen etter boot-splitten: script-once-dedupen bor i
+// CivicationShellBoot (skallets datalaster), mens blocked-job ensure-loaderen
+// bor i CivicationDayBoot (dag-/mail-laget).
+const shellBootSource = fs.readFileSync(path.join(__dirname, '..', 'js/Civication/CivicationShellBoot.js'), 'utf8');
+const dayBootSource = fs.readFileSync(path.join(__dirname, '..', 'js/Civication/CivicationDayBoot.js'), 'utf8');
 // Implementation-agnostic: the loader must detect an already-present <script>
 // and skip re-appending. It currently scans document.scripts (more robust than
 // a querySelector match), so assert the dedup *behaviour*, not an exact string.
 assert.ok(
-  /document\.scripts|querySelector\(\s*`?script\[src/.test(bootSource),
+  /document\.scripts|querySelector\(\s*`?script\[src/.test(shellBootSource),
   'boot loader should look for an already-loaded script before appending'
 );
 assert.ok(
-  /if\s*\(\s*existing\s*\)/.test(bootSource),
+  /if\s*\(\s*existing\s*\)/.test(shellBootSource),
   'boot loader should short-circuit when the script already exists'
 );
 assert.ok(
-  bootSource.includes('if (window.CivicationBlockedJobMessages?.enqueueNoUnlockedBrandEmployerMessage) return true;'),
+  dayBootSource.includes('if (window.CivicationBlockedJobMessages?.enqueueNoUnlockedBrandEmployerMessage) return true;'),
   'blocked-job ensure-loader should short-circuit when runtime already exists'
 );
 
