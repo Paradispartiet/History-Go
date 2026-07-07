@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-07T06:35:43.675Z
+Generated: 2026-07-07T07:20:11.753Z
 
 ## Sammendrag
 - People-filer lest: **28**
-- People lest: **484**
+- People lest: **488**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **484**
+- Duplikate interne place-referanser: **488**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -352,6 +352,10 @@ Generated: 2026-07-07T06:35:43.675Z
 - data/people/sport/oslo/people_sport_oslo.json :: lyn_fotball (Lyn Fotball) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: skeid_fotball (Skeid Fotball) -> nordre_aasen_idrettspark x2
 - data/people/sport/oslo/people_sport_oslo.json :: oslo_skoiteklub (Oslo Skøiteklub) -> frogner_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: espen_knutsen (Espen Knutsen) -> jordal_amfi x2
+- data/people/sport/oslo/people_sport_oslo.json :: roy_johansen (Roy Johansen) -> jordal_amfi x2
+- data/people/sport/oslo/people_sport_oslo.json :: daniel_braaten (Daniel Braaten) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/people_sport_oslo.json :: johannes_moesgaard (Johannes Moesgaard) -> kfum_arena x2
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: eusebio (Eusébio) -> lisbon_estadio_da_luz x2
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: jose_alvalade (José Alvalade) -> lisbon_estadio_jose_alvalade x2
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: mario_moniz_pereira (Mário Moniz Pereira) -> lisbon_estadio_universitario x2
