@@ -20,10 +20,70 @@
     || (typeof require === "function" ? require("./lifestoryState.js") : null);
   if (!State) throw new Error("[LifestoryRunner] CivicationLifestoryState mangler (lastes før runneren)");
 
+  /** Trådstatuser som gjør at trådens scener kan spilles. */
+  const PLAYABLE_THREAD_STATUSES = ["active", "escalated"];
+
+  /**
+   * Er en tråd spillbar akkurat nå? Krever threadState med status
+   * active/escalated. Tråder uten threadState har ikke startet ennå;
+   * completed/dormant-tråder gir ingen nye scener.
+   * @param {any} state
+   * @param {string} threadId
+   * @returns {boolean}
+   */
+  function isThreadPlayable(state, threadId) {
+    const ts = state.threadState[threadId];
+    return !!ts && PLAYABLE_THREAD_STATUSES.indexOf(ts.status) !== -1;
+  }
+
+  /**
+   * Evaluerer scene.conditions mot Player State. Strukturen er validert
+   * av lifestoryContent (fail fast der); her evalueres den bare.
+   *  - flagg: literal => tidligereValg[k] === verdi;
+   *           { finnes: true/false } => nøkkelen må (ikke) finnes.
+   *  - meters/relasjoner: { min?, max? } inklusive grenser.
+   *  - threads: threadState[id].status må være nøyaktig oppgitt status
+   *    (tråd uten threadState teller som "dormant" — ikke startet).
+   * @param {any} state
+   * @param {any} scene
+   * @returns {boolean}
+   */
+  function conditionsMet(state, scene) {
+    const cond = scene.conditions;
+    if (!cond) return true;
+
+    for (const [flag, expected] of Object.entries(cond.flagg || {})) {
+      const exists = flag in state.tidligereValg;
+      if (expected && typeof expected === "object") {
+        if (expected.finnes !== exists) return false;
+      } else if (!exists || state.tidligereValg[flag] !== expected) {
+        return false;
+      }
+    }
+    for (const [key, range] of Object.entries(cond.meters || {})) {
+      const value = state.meters[key];
+      if (typeof value !== "number") throw new Error(`[LifestoryRunner] ukjent måler i conditions: "${key}"`);
+      if (range.min !== undefined && value < range.min) return false;
+      if (range.max !== undefined && value > range.max) return false;
+    }
+    for (const [key, range] of Object.entries(cond.relasjoner || {})) {
+      const value = state.relasjoner[key];
+      if (typeof value !== "number") throw new Error(`[LifestoryRunner] ukjent relasjon i conditions: "${key}"`);
+      if (range.min !== undefined && value < range.min) return false;
+      if (range.max !== undefined && value > range.max) return false;
+    }
+    for (const [threadId, requiredStatus] of Object.entries(cond.threads || {})) {
+      const actual = state.threadState[threadId] ? state.threadState[threadId].status : "dormant";
+      if (actual !== requiredStatus) return false;
+    }
+    return true;
+  }
+
   /**
    * Scener spilleren kan stå i akkurat nå: riktig dag og fase, tråden er
-   * aktiv, scenen er ikke spilt, og den er enten en start-scene eller
-   * eksplisitt låst opp av et tidligere valg.
+   * spillbar (active/escalated), scenen er ikke spilt, conditions er
+   * oppfylt, og den er enten en start-scene eller eksplisitt låst opp av
+   * et tidligere valg.
    * @param {any} state
    * @param {any} content
    * @returns {any[]}
@@ -32,9 +92,10 @@
     return content.scenes.filter((scene) =>
       scene.dag === state.dag &&
       scene.fase === state.fase &&
-      state.aktiveTraader.indexOf(scene.threadId) !== -1 &&
+      isThreadPlayable(state, scene.threadId) &&
       state.spilteScener.indexOf(scene.id) === -1 &&
-      (scene.tilgjengelighet === "start" || state.opplaasteScener.indexOf(scene.id) !== -1)
+      (scene.tilgjengelighet === "start" || state.opplaasteScener.indexOf(scene.id) !== -1) &&
+      conditionsMet(state, scene)
     );
   }
 
@@ -60,7 +121,7 @@
    * @param {any} content
    * @param {string} sceneId
    * @param {string} choiceId
-   * @returns {{ state: any, laasteOpp: string[], faseSkifte: boolean, dagFerdig: boolean }}
+   * @returns {{ state: any, laasteOpp: string[], faseSkifte: boolean, dagFerdig: boolean, konsekvensTekst: string|null }}
    */
   function applyChoice(state, content, sceneId, choiceId) {
     const scene = content.scenes.find((s) => s.id === sceneId);
@@ -73,6 +134,11 @@
 
     State.applyEffects(state, choice.effekter);
 
+    // Runneren fører trådens spor: siste scene. Steg (step) endres kun
+    // eksplisitt via effekter.threads.stepDelta — ingen gjetting.
+    const ts = state.threadState[scene.threadId];
+    if (ts) ts.lastSceneId = scene.id;
+
     const laasteOpp = [];
     for (const target of choice.laaserOpp || []) {
       if (state.opplaasteScener.indexOf(target) === -1 && state.spilteScener.indexOf(target) === -1) {
@@ -82,7 +148,7 @@
     }
 
     state.spilteScener.push(scene.id);
-    state.arkiv.push({
+    const entry = {
       dag: state.dag,
       fase: state.fase,
       sceneId: scene.id,
@@ -90,15 +156,23 @@
       threadId: scene.threadId,
       valgId: choice.id,
       valgTekst: choice.tekst
-    });
+    };
+    if (choice.konsekvensTekst) entry.konsekvensTekst = choice.konsekvensTekst;
+    state.arkiv.push(entry);
 
     const progress = advance(state, content);
-    return { state, laasteOpp, faseSkifte: progress.faseSkifte, dagFerdig: state.dagFerdig };
+    return {
+      state,
+      laasteOpp,
+      faseSkifte: progress.faseSkifte,
+      dagFerdig: state.dagFerdig,
+      konsekvensTekst: choice.konsekvensTekst || null
+    };
   }
 
   /**
    * Går videre i dagen: hopper over tomme faser til det finnes en scene,
-   * eller markerer dagen som ferdig når siste fase er tom.
+   * eller avslutter dagen når siste fase er tom.
    * @param {any} state
    * @param {any} content
    * @returns {{ faseSkifte: boolean }}
@@ -109,7 +183,7 @@
       const index = content.faser.findIndex((f) => f.id === state.fase);
       if (index === -1) throw new Error(`[LifestoryRunner] ukjent fase "${state.fase}"`);
       if (index >= content.faser.length - 1) {
-        state.dagFerdig = true;
+        completeDay(state);
         return { faseSkifte };
       }
       state.fase = content.faser[index + 1].id;
@@ -119,10 +193,50 @@
   }
 
   /**
-   * Oppsummering av dagen: hva spilleren gjorde og hvordan målerne flyttet
-   * seg siden morgenen. Brukes av kveldsvisningen — leser bare state.
+   * Avslutter dagen (idempotent) og returnerer oppsummeringen.
    * @param {any} state
-   * @returns {{ dag: number, valg: any[], meterEndringer: Record<string, number> }}
+   * @returns {ReturnType<typeof getDaySummary>}
+   */
+  function completeDay(state) {
+    state.dagFerdig = true;
+    return getDaySummary(state);
+  }
+
+  /**
+   * Starter neste dag: dag+1, første fase, nye dagsnapshot. Tråder hvis
+   * startDag nå er nådd og som aldri har fått threadState, aktiveres.
+   * Tråder som er completed/dormant/escalated beholder statusen sin —
+   * de vekkes bare av eksplisitte threads-effekter, aldri automatisk.
+   * Arkiv, tidligere valg og relasjoner beholdes urørt.
+   * @param {any} state
+   * @param {any} content
+   * @returns {any} state
+   */
+  function startNextDay(state, content) {
+    if (!state.dagFerdig) throw new Error("[LifestoryRunner] dagen er ikke ferdig — kan ikke starte neste dag");
+    state.dag += 1;
+    state.fase = content.faser[0].id;
+    state.dagFerdig = false;
+    for (const thread of content.threads) {
+      const startDag = typeof thread.startDag === "number" ? thread.startDag : 1;
+      if (startDag <= state.dag && !state.threadState[thread.id]) {
+        state.threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
+      }
+    }
+    state.dagStartMeters = Object.assign({}, state.meters);
+    state.dagStartThreadStatus = State.snapshotThreadStatus(state.threadState);
+    // Hopp frem til første fase med innhold; en tom dag avsluttes trygt
+    // (dagFerdig igjen) i stedet for å krasje.
+    advance(state, content);
+    return state;
+  }
+
+  /**
+   * Oppsummering av dagen: hva spilleren gjorde, hvordan målerne flyttet
+   * seg siden morgenen, og hvilke tråder som skiftet status i løpet av
+   * dagen. Leser bare state.
+   * @param {any} state
+   * @returns {{ dag: number, valg: any[], meterEndringer: Record<string, number>, traader: { fullfoert: string[], eskalert: string[], hvilende: string[] } }}
    */
   function getDaySummary(state) {
     /** @type {Record<string, number>} */
@@ -131,10 +245,20 @@
       const delta = (state.meters[key] || 0) - startValue;
       if (delta !== 0) meterEndringer[key] = delta;
     }
+    /** @type {{ fullfoert: string[], eskalert: string[], hvilende: string[] }} */
+    const traader = { fullfoert: [], eskalert: [], hvilende: [] };
+    const startStatus = state.dagStartThreadStatus || {};
+    for (const [id, ts] of Object.entries(state.threadState || {})) {
+      if (ts.status === startStatus[id]) continue;
+      if (ts.status === "completed") traader.fullfoert.push(id);
+      else if (ts.status === "escalated") traader.eskalert.push(id);
+      else if (ts.status === "dormant") traader.hvilende.push(id);
+    }
     return {
       dag: state.dag,
       valg: state.arkiv.filter((entry) => entry.dag === state.dag),
-      meterEndringer
+      meterEndringer,
+      traader
     };
   }
 
@@ -150,8 +274,12 @@
     const faseIndex = content.faser.findIndex((f) => f.id === state.fase);
     const scene = state.dagFerdig ? null : selectNextScene(state, content);
 
-    const aktiveTraader = state.aktiveTraader
-      .map((id) => content.threads.find((t) => t.id === id))
+    const aktiveTraader = Object.entries(state.threadState)
+      .filter(([, ts]) => PLAYABLE_THREAD_STATUSES.indexOf(ts.status) !== -1)
+      .map(([id, ts]) => {
+        const thread = content.threads.find((t) => t.id === id);
+        return thread ? Object.assign({}, thread, { status: ts.status, step: ts.step }) : null;
+      })
       .filter(Boolean);
 
     const senereFaser = content.faser.slice(faseIndex + 1).map((f) => f.id);
@@ -159,6 +287,7 @@
       s.dag === state.dag &&
       senereFaser.indexOf(s.fase) !== -1 &&
       s.tilgjengelighet === "start" &&
+      isThreadPlayable(state, s.threadId) &&
       state.spilteScener.indexOf(s.id) === -1
     );
 
@@ -176,7 +305,18 @@
     };
   }
 
-  const api = { getCandidateScenes, selectNextScene, applyChoice, advance, getDaySummary, getView };
+  const api = {
+    conditionsMet,
+    isThreadPlayable,
+    getCandidateScenes,
+    selectNextScene,
+    applyChoice,
+    advance,
+    completeDay,
+    startNextDay,
+    getDaySummary,
+    getView
+  };
   /** @type {any} */ (globalScope).CivicationLifestoryRunner = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

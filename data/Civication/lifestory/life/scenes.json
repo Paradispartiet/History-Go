@@ -18,8 +18,19 @@
           "tekst": "Ta en rolig start: frokost, dusj, gå til jobben",
           "tone": "omsorg",
           "effekter": {
-            "meters": { "energi": 4, "psyke": 3, "penger": -40 },
-            "flagg": { "tok_rolig_morgen": true }
+            "meters": {
+              "energi": 4,
+              "psyke": 3,
+              "penger": -40
+            },
+            "flagg": {
+              "tok_rolig_morgen": true
+            },
+            "threads": {
+              "daarlig_soevn": {
+                "status": "completed"
+              }
+            }
           }
         },
         {
@@ -27,8 +38,19 @@
           "tekst": "Svelge en kaffe og rekke det tidlige toget",
           "tone": "effektiv",
           "effekter": {
-            "meters": { "energi": -3, "synlighet": 2, "penger": -10 },
-            "flagg": { "stresset_morgen": true }
+            "meters": {
+              "energi": -3,
+              "synlighet": 2,
+              "penger": -10
+            },
+            "flagg": {
+              "stresset_morgen": true
+            },
+            "threads": {
+              "daarlig_soevn": {
+                "status": "completed"
+              }
+            }
           }
         },
         {
@@ -36,9 +58,20 @@
           "tekst": "Droppe frokosten for å spare penger",
           "tone": "sparsom",
           "effekter": {
-            "meters": { "energi": -5, "psyke": -2 },
-            "flagg": { "sparte_paa_frokost": true }
-          }
+            "meters": {
+              "energi": -5,
+              "psyke": -2
+            },
+            "flagg": {
+              "sparte_paa_frokost": true
+            },
+            "threads": {
+              "daarlig_soevn": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Magen rumler allerede på vei til trikken. Du sparte førti kroner."
         }
       ]
     },
@@ -59,17 +92,39 @@
           "tekst": "Svare ærlig, selv om det koster krefter",
           "tone": "ærlig",
           "effekter": {
-            "meters": { "psyke": 5, "energi": -4, "integritet": 3 },
-            "flagg": { "svarte_aerlig_privat": true }
-          }
+            "meters": {
+              "psyke": 5,
+              "energi": -4,
+              "integritet": 3
+            },
+            "flagg": {
+              "svarte_aerlig_privat": true
+            },
+            "threads": {
+              "venter_paa_svar": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Svaret koster deg mer enn du trodde å skrive — men når du trykker send, er skuldrene lavere."
         },
         {
           "id": "utsett",
           "tekst": "Skrive «kan vi ta det i morgen?»",
           "tone": "unnvikende",
           "effekter": {
-            "meters": { "psyke": -4, "energi": 2 },
-            "flagg": { "utsatte_privat_svar": true }
+            "meters": {
+              "psyke": -4,
+              "energi": 2
+            },
+            "flagg": {
+              "utsatte_privat_svar": true
+            },
+            "threads": {
+              "venter_paa_svar": {
+                "status": "dormant"
+              }
+            }
           }
         },
         {
@@ -77,9 +132,69 @@
           "tekst": "Sende et raskt, halvhjertet svar mens du tenker på jobb",
           "tone": "fraværende",
           "effekter": {
-            "meters": { "psyke": -2, "energi": -1, "synlighet": -1 },
-            "flagg": { "svarte_halvhjertet_privat": true }
+            "meters": {
+              "psyke": -2,
+              "energi": -1,
+              "synlighet": -1
+            },
+            "flagg": {
+              "svarte_halvhjertet_privat": true
+            },
+            "threads": {
+              "venter_paa_svar": {
+                "status": "completed"
+              }
+            }
           }
+        }
+      ]
+    },
+    {
+      "id": "kveld_jobben_ble_med_hjem",
+      "threadId": "tviler_paa_jobben",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "threads": {
+          "skolevei_parkeringskjeller": "escalated"
+        }
+      },
+      "tittel": "Jobben ble med hjem",
+      "tekst": "Du står på kjøkkenet og tar deg i å formulere forsvar for skolevei-saken til ingen. Konflikten fra i dag ligger som en dur under alt du gjør.",
+      "valg": [
+        {
+          "id": "skriv_det_ned",
+          "tekst": "Skrive ned argumentene og legge saken fra deg til i morgen",
+          "tone": "ryddig",
+          "effekter": {
+            "meters": {
+              "psyke": 4,
+              "energi": -2
+            },
+            "flagg": {
+              "la_jobben_fra_seg": true
+            }
+          },
+          "konsekvensTekst": "To sider i notatboka. Duren blir svakere — den er der fortsatt, men den har fått en plass."
+        },
+        {
+          "id": "gruble_videre",
+          "tekst": "La tankene male videre utover kvelden",
+          "tone": "urolig",
+          "effekter": {
+            "meters": {
+              "psyke": -5,
+              "energi": -4
+            },
+            "flagg": {
+              "grublet_over_saken": true
+            }
+          },
+          "konsekvensTekst": "Klokka blir mye. Du legger deg med utvalgslederens stemme i hodet."
         }
       ]
     },
@@ -100,8 +215,13 @@
           "tekst": "Bli og stå i det — dette er jobben din, og den betyr noe",
           "tone": "besluttsom",
           "effekter": {
-            "meters": { "psyke": 3, "integritet": 2 },
-            "flagg": { "valgte_aa_staa_i_jobben": true }
+            "meters": {
+              "psyke": 3,
+              "integritet": 2
+            },
+            "flagg": {
+              "valgte_aa_staa_i_jobben": true
+            }
           }
         },
         {
@@ -109,8 +229,13 @@
           "tekst": "Begynne stille å se deg om etter noe annet",
           "tone": "tvilende",
           "effekter": {
-            "meters": { "psyke": -2, "handlingsrom": 3 },
-            "flagg": { "begynte_aa_se_seg_om": true }
+            "meters": {
+              "psyke": -2,
+              "handlingsrom": 3
+            },
+            "flagg": {
+              "begynte_aa_se_seg_om": true
+            }
           }
         },
         {
@@ -118,8 +243,56 @@
           "tekst": "Bestemme deg for å endre måten du jobber på fra i morgen",
           "tone": "reflektert",
           "effekter": {
-            "meters": { "psyke": 2, "energi": -1, "integritet": 1 },
-            "flagg": { "vil_endre_arbeidsmaate": true }
+            "meters": {
+              "psyke": 2,
+              "energi": -1,
+              "integritet": 1
+            },
+            "flagg": {
+              "vil_endre_arbeidsmaate": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dag_02_ny_morgen",
+      "threadId": "tviler_paa_jobben",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Dag 2: en ny morgen",
+      "tekst": "Gårsdagen sitter fortsatt i kroppen. Dag 2 av piloten er ikke skrevet ennå — men du står opp, og valgene dine fra i går er med deg.",
+      "valg": [
+        {
+          "id": "moet_dagen",
+          "tekst": "Møte dagen med det du lærte i går",
+          "tone": "besluttsom",
+          "effekter": {
+            "meters": {
+              "energi": 3,
+              "psyke": 2
+            },
+            "flagg": {
+              "moette_dag_2": true
+            }
+          }
+        },
+        {
+          "id": "ta_det_rolig",
+          "tekst": "Ta morgenen sakte og la jobben vente litt",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "energi": 5,
+              "synlighet": -1
+            },
+            "flagg": {
+              "rolig_start_dag_2": true
+            }
           }
         }
       ]

@@ -19,44 +19,107 @@
           "tekst": "Be om kartlegging av faktisk skolevei",
           "tone": "faglig",
           "effekter": {
-            "relasjoner": { "skolekontakt": 10, "plansjef": -3 },
-            "meters": { "integritet": 5, "handlingsrom": -2, "energi": -3 },
-            "flagg": { "tok_skolevei_alvorlig": true }
+            "relasjoner": {
+              "skolekontakt": 10,
+              "plansjef": -3
+            },
+            "meters": {
+              "integritet": 5,
+              "handlingsrom": -2,
+              "energi": -3
+            },
+            "flagg": {
+              "tok_skolevei_alvorlig": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "stepDelta": 1
+              }
+            }
           },
-          "laaserOpp": ["skolevei_02_kartlegging"]
+          "konsekvensTekst": "Skolekontakten svarer raskt og lover å telle barna i morgen tidlig. Plansjefen virker mindre begeistret.",
+          "laaserOpp": [
+            "skolevei_02_kartlegging"
+          ]
         },
         {
           "id": "til_plansjef",
           "tekst": "Send saken til plansjef",
           "tone": "forsiktig",
           "effekter": {
-            "relasjoner": { "plansjef": -5, "skolekontakt": 2 },
-            "meters": { "synlighet": -3, "handlingsrom": -3 },
-            "flagg": { "loeftet_skolevei_til_plansjef": true }
+            "relasjoner": {
+              "plansjef": -5,
+              "skolekontakt": 2
+            },
+            "meters": {
+              "synlighet": -3,
+              "handlingsrom": -3
+            },
+            "flagg": {
+              "loeftet_skolevei_til_plansjef": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "stepDelta": 1
+              }
+            }
           },
-          "laaserOpp": ["skolevei_02_plansjef"]
+          "laaserOpp": [
+            "skolevei_02_plansjef"
+          ]
         },
         {
           "id": "avvis",
           "tekst": "Svar at dette ligger utenfor plansaken",
           "tone": "avvisende",
           "effekter": {
-            "relasjoner": { "skolekontakt": -12, "utbygger": 4 },
-            "meters": { "integritet": -6, "psyke": -2 },
-            "flagg": { "avviste_skolevei": true }
+            "relasjoner": {
+              "skolekontakt": -12,
+              "utbygger": 4
+            },
+            "meters": {
+              "integritet": -6,
+              "psyke": -2
+            },
+            "flagg": {
+              "avviste_skolevei": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "stepDelta": 1
+              }
+            }
           },
-          "laaserOpp": ["skolevei_02_politisk"]
+          "laaserOpp": [
+            "skolevei_02_politisk"
+          ],
+          "konsekvensTekst": "Du sender et kort avslag. Ti minutter senere ser du at skolekontakten har videresendt hele tråden til utvalgslederen."
         },
         {
           "id": "utbygger_kommentar",
           "tekst": "Be utbygger kommentere",
           "tone": "avventende",
           "effekter": {
-            "relasjoner": { "utbygger": 3, "skolekontakt": -4 },
-            "meters": { "handlingsrom": 2, "integritet": -2 },
-            "flagg": { "spurte_utbygger_om_skolevei": true }
+            "relasjoner": {
+              "utbygger": 3,
+              "skolekontakt": -4
+            },
+            "meters": {
+              "handlingsrom": 2,
+              "integritet": -2
+            },
+            "flagg": {
+              "spurte_utbygger_om_skolevei": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "stepDelta": 1
+              }
+            }
           },
-          "laaserOpp": ["skolevei_02_utbygger"]
+          "laaserOpp": [
+            "skolevei_02_utbygger"
+          ]
         }
       ]
     },
@@ -77,20 +140,48 @@
           "tekst": "Skriv et faglig notat om skoleveien i plansaken",
           "tone": "faglig",
           "effekter": {
-            "relasjoner": { "skolekontakt": 6, "utbygger": -6 },
-            "meters": { "integritet": 6, "energi": -6, "synlighet": 4 },
-            "flagg": { "skrev_skoleveinotat": true }
-          }
+            "relasjoner": {
+              "skolekontakt": 6,
+              "utbygger": -6
+            },
+            "meters": {
+              "integritet": 6,
+              "energi": -6,
+              "synlighet": 4
+            },
+            "flagg": {
+              "skrev_skoleveinotat": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Notatet blir en del av plansaken. Utbyggerens rådgiver ringer plansjefen før du har lagret dokumentet."
         },
         {
           "id": "vent_med_notat",
           "tekst": "Legg tallene i skuffen til utbygger har svart",
           "tone": "avventende",
           "effekter": {
-            "relasjoner": { "utbygger": 2 },
-            "meters": { "integritet": -4, "psyke": -3 },
-            "flagg": { "holdt_kartlegging_tilbake": true }
-          }
+            "relasjoner": {
+              "utbygger": 2
+            },
+            "meters": {
+              "integritet": -4,
+              "psyke": -3
+            },
+            "flagg": {
+              "holdt_kartlegging_tilbake": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "dormant"
+              }
+            }
+          },
+          "konsekvensTekst": "Tallene blir liggende i skuffen. Saken blir stille — foreløpig."
         }
       ]
     },
@@ -111,9 +202,22 @@
           "tekst": "Anbefale kartlegging av skoleveien likevel",
           "tone": "faglig",
           "effekter": {
-            "relasjoner": { "plansjef": 3, "skolekontakt": 6 },
-            "meters": { "integritet": 5, "energi": -4 },
-            "flagg": { "tok_skolevei_alvorlig": true }
+            "relasjoner": {
+              "plansjef": 3,
+              "skolekontakt": 6
+            },
+            "meters": {
+              "integritet": 5,
+              "energi": -4
+            },
+            "flagg": {
+              "tok_skolevei_alvorlig": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "stepDelta": 1
+              }
+            }
           }
         },
         {
@@ -121,10 +225,24 @@
           "tekst": "Si at saken kan gå videre uten endringer",
           "tone": "effektiv",
           "effekter": {
-            "relasjoner": { "plansjef": 4, "skolekontakt": -8 },
-            "meters": { "integritet": -6, "handlingsrom": 2 },
-            "flagg": { "lot_skolevei_ligge": true }
-          }
+            "relasjoner": {
+              "plansjef": 4,
+              "skolekontakt": -8
+            },
+            "meters": {
+              "integritet": -6,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "lot_skolevei_ligge": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "dormant"
+              }
+            }
+          },
+          "konsekvensTekst": "Plansjefen nikker fornøyd. Skolekontakten får et standardsvar."
         }
       ]
     },
@@ -145,19 +263,48 @@
           "tekst": "Kreve at utbygger dokumenterer trafikksikker skolevei",
           "tone": "faglig",
           "effekter": {
-            "relasjoner": { "utbygger": -8, "skolekontakt": 8 },
-            "meters": { "integritet": 6, "synlighet": 3, "energi": -3 },
-            "flagg": { "tok_skolevei_alvorlig": true }
-          }
+            "relasjoner": {
+              "utbygger": -8,
+              "skolekontakt": 8
+            },
+            "meters": {
+              "integritet": 6,
+              "synlighet": 3,
+              "energi": -3
+            },
+            "flagg": {
+              "tok_skolevei_alvorlig": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "escalated",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Utbyggeren blir taus i to sekunder. «Da må vi nok ta dette et nivå opp,» sier han og legger på."
         },
         {
           "id": "aksepter_svar",
           "tekst": "Notere svaret og gå videre",
           "tone": "effektiv",
           "effekter": {
-            "relasjoner": { "utbygger": 5, "skolekontakt": -6 },
-            "meters": { "integritet": -5, "handlingsrom": 2 },
-            "flagg": { "lot_skolevei_ligge": true }
+            "relasjoner": {
+              "utbygger": 5,
+              "skolekontakt": -6
+            },
+            "meters": {
+              "integritet": -5,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "lot_skolevei_ligge": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "dormant"
+              }
+            }
           }
         }
       ]
@@ -179,9 +326,24 @@
           "tekst": "Snu: be om at skoleveien utredes i saken",
           "tone": "ydmyk",
           "effekter": {
-            "relasjoner": { "skolekontakt": 4, "politiker": 4, "plansjef": -3 },
-            "meters": { "integritet": 3, "synlighet": 5, "psyke": -3 },
-            "flagg": { "tok_skolevei_alvorlig": true }
+            "relasjoner": {
+              "skolekontakt": 4,
+              "politiker": 4,
+              "plansjef": -3
+            },
+            "meters": {
+              "integritet": 3,
+              "synlighet": 5,
+              "psyke": -3
+            },
+            "flagg": {
+              "tok_skolevei_alvorlig": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "stepDelta": 1
+              }
+            }
           }
         },
         {
@@ -189,10 +351,27 @@
           "tekst": "Forsvare avvisningen som formelt riktig",
           "tone": "formell",
           "effekter": {
-            "relasjoner": { "politiker": -6, "skolekontakt": -6, "jurist": 3 },
-            "meters": { "integritet": -3, "synlighet": 6, "psyke": -4 },
-            "flagg": { "forsvarte_avvisning": true }
-          }
+            "relasjoner": {
+              "politiker": -6,
+              "skolekontakt": -6,
+              "jurist": 3
+            },
+            "meters": {
+              "integritet": -3,
+              "synlighet": 6,
+              "psyke": -4
+            },
+            "flagg": {
+              "forsvarte_avvisning": true
+            },
+            "threads": {
+              "skolevei_parkeringskjeller": {
+                "status": "escalated",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Utvalgslederen takker kjølig for svaret. Saken settes på sakskartet — nå som konflikt, ikke som innspill."
         }
       ]
     },
@@ -213,19 +392,46 @@
           "tekst": "Si at trafikksikkerhet ikke er merarbeid, men kjernen i saken",
           "tone": "faglig",
           "effekter": {
-            "relasjoner": { "plansjef": -4 },
-            "meters": { "integritet": 6, "psyke": 2, "synlighet": 2 },
-            "flagg": { "forsvarte_grundighet": true }
-          }
+            "relasjoner": {
+              "plansjef": -4
+            },
+            "meters": {
+              "integritet": 6,
+              "psyke": 2,
+              "synlighet": 2
+            },
+            "flagg": {
+              "forsvarte_grundighet": true
+            },
+            "threads": {
+              "plansjef_merarbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Det blir stille rundt bordet. Plansjefen noterer noe — du vet ikke hva."
         },
         {
           "id": "foey_deg",
           "tekst": "Nikke og love å holde tempoet oppe",
           "tone": "lojal",
           "effekter": {
-            "relasjoner": { "plansjef": 6 },
-            "meters": { "integritet": -5, "psyke": -3, "handlingsrom": 2 },
-            "flagg": { "lovet_tempo": true }
+            "relasjoner": {
+              "plansjef": 6
+            },
+            "meters": {
+              "integritet": -5,
+              "psyke": -3,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "lovet_tempo": true
+            },
+            "threads": {
+              "plansjef_merarbeid": {
+                "stepDelta": 1
+              }
+            }
           }
         },
         {
@@ -233,9 +439,120 @@
           "tekst": "Foreslå en rask, avgrenset skoleveivurdering",
           "tone": "pragmatisk",
           "effekter": {
-            "relasjoner": { "plansjef": 2, "skolekontakt": 3 },
-            "meters": { "integritet": 2, "energi": -4 },
-            "flagg": { "foreslo_kompromiss": true }
+            "relasjoner": {
+              "plansjef": 2,
+              "skolekontakt": 3
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -4
+            },
+            "flagg": {
+              "foreslo_kompromiss": true
+            },
+            "threads": {
+              "plansjef_merarbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "meters": {
+          "energi": {
+            "min": 70
+          }
+        }
+      }
+    },
+    {
+      "id": "plansjef_01_reaksjon_sliten",
+      "threadId": "plansjef_merarbeid",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "møte",
+      "avsender": "plansjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "conditions": {
+        "meters": {
+          "energi": {
+            "max": 69
+          }
+        }
+      },
+      "tittel": "Intern avklaring: plansjefen vil ha flyt — og du er tom",
+      "tekst": "På den interne avklaringen klokka ti er plansjefen tydelig: «Jeg trenger at parkeringskjelleren går glatt gjennom.» Du kjenner den dårlige natten i kroppen; ordene hans glir forbi mens du prøver å holde tråden.",
+      "valg": [
+        {
+          "id": "press_gjennom",
+          "tekst": "Bite tennene sammen og love å holde tempoet",
+          "tone": "utmattet",
+          "effekter": {
+            "relasjoner": {
+              "plansjef": 4
+            },
+            "meters": {
+              "energi": -6,
+              "psyke": -4,
+              "integritet": -3
+            },
+            "flagg": {
+              "presset_seg_gjennom_moetet": true
+            },
+            "threads": {
+              "plansjef_merarbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sier ja til mer enn du har krefter til. Resten av møtet husker du knapt."
+        },
+        {
+          "id": "innroem_sliten",
+          "tekst": "Være ærlig: du sov dårlig og trenger å prioritere hardt i dag",
+          "tone": "ærlig",
+          "effekter": {
+            "relasjoner": {
+              "plansjef": -2
+            },
+            "meters": {
+              "psyke": 4,
+              "integritet": 3,
+              "synlighet": -2
+            },
+            "flagg": {
+              "innroemmet_sliten": true
+            },
+            "threads": {
+              "plansjef_merarbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Plansjefen ser opp fra papirene, litt overrasket. «Greit. Ta kjelleren først, resten venter.»"
+        },
+        {
+          "id": "be_om_utsettelse",
+          "tekst": "Be om å få ta avklaringen etter lunsj",
+          "tone": "forsiktig",
+          "effekter": {
+            "relasjoner": {
+              "plansjef": -4
+            },
+            "meters": {
+              "energi": 3,
+              "synlighet": -3
+            },
+            "flagg": {
+              "utsatte_avklaring": true
+            },
+            "threads": {
+              "plansjef_merarbeid": {
+                "stepDelta": 1
+              }
+            }
           }
         }
       ]
@@ -257,19 +574,46 @@
           "tekst": "Sette av tiden det tar og svare grundig på hvert punkt",
           "tone": "grundig",
           "effekter": {
-            "relasjoner": { "nabo": 10, "plansjef": -2 },
-            "meters": { "energi": -8, "integritet": 4 },
-            "flagg": { "svarte_nabo_grundig": true }
-          }
+            "relasjoner": {
+              "nabo": 10,
+              "plansjef": -2
+            },
+            "meters": {
+              "energi": -8,
+              "integritet": 4
+            },
+            "flagg": {
+              "svarte_nabo_grundig": true
+            },
+            "threads": {
+              "lang_nabomail": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Naboen svarer samme kveld: «Tusen takk. Dette er første gang noen faktisk har lest det jeg skrev.»"
         },
         {
           "id": "kort_svar",
           "tekst": "Svare kort at innspillet er mottatt og vurderes samlet",
           "tone": "effektiv",
           "effekter": {
-            "relasjoner": { "nabo": -6, "plansjef": 2 },
-            "meters": { "energi": -1, "integritet": -2 },
-            "flagg": { "svarte_nabo_kort": true }
+            "relasjoner": {
+              "nabo": -6,
+              "plansjef": 2
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": -2
+            },
+            "flagg": {
+              "svarte_nabo_kort": true
+            },
+            "threads": {
+              "lang_nabomail": {
+                "status": "completed"
+              }
+            }
           }
         },
         {
@@ -277,10 +621,24 @@
           "tekst": "Ringe naboen og ta de viktigste punktene muntlig",
           "tone": "personlig",
           "effekter": {
-            "relasjoner": { "nabo": 6 },
-            "meters": { "energi": -4, "psyke": 2, "synlighet": 2 },
-            "flagg": { "ringte_naboen": true }
-          }
+            "relasjoner": {
+              "nabo": 6
+            },
+            "meters": {
+              "energi": -4,
+              "psyke": 2,
+              "synlighet": 2
+            },
+            "flagg": {
+              "ringte_naboen": true
+            },
+            "threads": {
+              "lang_nabomail": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Samtalen tar tjue minutter. Naboen er fortsatt uenig, men takker for at du ringte."
         }
       ]
     },
@@ -301,9 +659,22 @@
           "tekst": "Stå på ordinær prosess: ingen garanti før saken er forsvarlig utredet",
           "tone": "faglig",
           "effekter": {
-            "relasjoner": { "utbygger": -7, "jurist": 4 },
-            "meters": { "integritet": 6, "psyke": -2 },
-            "flagg": { "sto_paa_prosess": true }
+            "relasjoner": {
+              "utbygger": -7,
+              "jurist": 4
+            },
+            "meters": {
+              "integritet": 6,
+              "psyke": -2
+            },
+            "flagg": {
+              "sto_paa_prosess": true
+            },
+            "threads": {
+              "utbygger_tidspress": {
+                "stepDelta": 1
+              }
+            }
           }
         },
         {
@@ -311,20 +682,48 @@
           "tekst": "Gi en skriftlig delavklaring på det som faktisk er avklart",
           "tone": "pragmatisk",
           "effekter": {
-            "relasjoner": { "utbygger": 5, "plansjef": 3 },
-            "meters": { "energi": -5, "handlingsrom": -2 },
-            "flagg": { "ga_delavklaring": true }
-          }
+            "relasjoner": {
+              "utbygger": 5,
+              "plansjef": 3
+            },
+            "meters": {
+              "energi": -5,
+              "handlingsrom": -2
+            },
+            "flagg": {
+              "ga_delavklaring": true
+            },
+            "threads": {
+              "utbygger_tidspress": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Utbyggeren puster ut og takker. Delavklaringen din blir sitert i lånesøknaden før dagen er omme."
         },
         {
           "id": "eskaler",
           "tekst": "Løfte fristspørsmålet til plansjefen",
           "tone": "forsiktig",
           "effekter": {
-            "relasjoner": { "plansjef": -3, "utbygger": -2 },
-            "meters": { "synlighet": -3, "psyke": 1 },
-            "flagg": { "eskalerte_frist": true }
-          }
+            "relasjoner": {
+              "plansjef": -3,
+              "utbygger": -2
+            },
+            "meters": {
+              "synlighet": -3,
+              "psyke": 1
+            },
+            "flagg": {
+              "eskalerte_frist": true
+            },
+            "threads": {
+              "utbygger_tidspress": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Plansjefen tar saken — men gir deg et blikk som sier at dette burde du ha landet selv."
         }
       ]
     },
@@ -345,19 +744,48 @@
           "tekst": "Forklare tydelig hva som er lovkrav, hva som er fag og hva som er politikk",
           "tone": "faglig",
           "effekter": {
-            "relasjoner": { "politiker": 6, "jurist": 4 },
-            "meters": { "integritet": 5, "synlighet": 4, "energi": -3 },
-            "flagg": { "trakk_faggrense": true }
-          }
+            "relasjoner": {
+              "politiker": 6,
+              "jurist": 4
+            },
+            "meters": {
+              "integritet": 5,
+              "synlighet": 4,
+              "energi": -3
+            },
+            "flagg": {
+              "trakk_faggrense": true
+            },
+            "threads": {
+              "politisk_avklaring": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "«Endelig et klart svar,» sier utvalgslederen. Du hører at hun noterer."
         },
         {
           "id": "gi_politikeren_rom",
           "tekst": "Si at utvalget selvsagt kan lande høyden politisk",
           "tone": "lydhør",
           "effekter": {
-            "relasjoner": { "politiker": 8, "plansjef": -2, "jurist": -4 },
-            "meters": { "integritet": -6, "handlingsrom": -3 },
-            "flagg": { "ga_politikeren_rom": true }
+            "relasjoner": {
+              "politiker": 8,
+              "plansjef": -2,
+              "jurist": -4
+            },
+            "meters": {
+              "integritet": -6,
+              "handlingsrom": -3
+            },
+            "flagg": {
+              "ga_politikeren_rom": true
+            },
+            "threads": {
+              "politisk_avklaring": {
+                "status": "completed"
+              }
+            }
           }
         },
         {
@@ -365,9 +793,22 @@
           "tekst": "Be om å få komme tilbake etter en runde med juristen",
           "tone": "forsiktig",
           "effekter": {
-            "relasjoner": { "jurist": 5, "politiker": -3 },
-            "meters": { "handlingsrom": 2, "energi": -2 },
-            "flagg": { "sendte_sak_til_politisk_behandling": false }
+            "relasjoner": {
+              "jurist": 5,
+              "politiker": -3
+            },
+            "meters": {
+              "handlingsrom": 2,
+              "energi": -2
+            },
+            "flagg": {
+              "sendte_sak_til_politisk_behandling": false
+            },
+            "threads": {
+              "politisk_avklaring": {
+                "stepDelta": 1
+              }
+            }
           }
         }
       ]

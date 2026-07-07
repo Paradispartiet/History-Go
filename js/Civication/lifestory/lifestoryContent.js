@@ -30,12 +30,19 @@
     "privat hendelse", "krise", "samtale", "refleksjon"
   ];
 
+  /** Gyldige trådstatuser (thread state). */
+  const THREAD_STATUSES = ["active", "completed", "dormant", "escalated"];
+
+  /** Gyldige toppnøkler i scene.conditions. */
+  const CONDITION_KEYS = ["flagg", "meters", "relasjoner", "threads"];
+
   /**
    * @typedef {Object} LifestoryChoice
    * @property {string} id
    * @property {string} tekst
    * @property {string} [tone]
-   * @property {{ relasjoner?: Record<string, number>, meters?: Record<string, number>, flagg?: Record<string, boolean|number|string> }} effekter
+   * @property {{ relasjoner?: Record<string, number>, meters?: Record<string, number>, flagg?: Record<string, boolean|number|string>, threads?: Record<string, { status?: string, stepDelta?: number }> }} effekter
+   * @property {string} [konsekvensTekst]
    * @property {string[]} [laaserOpp]
    *
    * @typedef {Object} LifestoryScene
@@ -152,6 +159,10 @@
       }
       if (!scene.tittel || !scene.tekst) push(`scene ${sid}: mangler tittel/tekst`);
 
+      if (scene.conditions !== undefined) {
+        errorsForConditions(scene, startRelasjoner, threadIds, push);
+      }
+
       const valg = Array.isArray(scene.valg) ? scene.valg : [];
       if (!valg.length) push(`scene ${sid}: har ingen valg`);
       const choiceIds = new Set();
@@ -161,7 +172,11 @@
         if (choiceIds.has(cid)) push(`scene ${sid}: duplikat valg-id ${cid}`);
         choiceIds.add(cid);
         if (!choice.tekst) push(`scene ${sid}/${cid}: valg uten tekst`);
-        errorsForEffects(scene, choice, startRelasjoner, push);
+        if (choice.konsekvensTekst !== undefined &&
+            (typeof choice.konsekvensTekst !== "string" || !choice.konsekvensTekst.trim())) {
+          push(`scene ${sid}/${cid}: konsekvensTekst må være en ikke-tom streng`);
+        }
+        errorsForEffects(scene, choice, startRelasjoner, threadIds, push);
         for (const target of choice.laaserOpp || []) {
           if (typeof target !== "string" || !target) push(`scene ${sid}/${cid}: ugyldig laaserOpp-referanse`);
         }
@@ -198,9 +213,10 @@
    * @param {any} scene
    * @param {any} choice
    * @param {Record<string, number>} startRelasjoner
+   * @param {Set<string>} threadIds
    * @param {(msg: string) => void} push
    */
-  function errorsForEffects(scene, choice, startRelasjoner, push) {
+  function errorsForEffects(scene, choice, startRelasjoner, threadIds, push) {
     const where = `scene ${scene.id}/${choice.id}`;
     const eff = choice?.effekter;
     if (!eff || typeof eff !== "object") {
@@ -219,10 +235,88 @@
       if (typeof value !== "number") push(`${where}: relasjon ${key} er ikke et tall`);
       else if (value !== 0) changes++;
     }
+    for (const [threadId, change] of Object.entries(eff.threads || {})) {
+      if (!threadIds.has(threadId)) push(`${where}: threads-effekt peker på ukjent tråd "${threadId}"`);
+      if (!change || typeof change !== "object") {
+        push(`${where}: threads-effekt for ${threadId} må være et objekt`);
+        continue;
+      }
+      const keys = Object.keys(change);
+      if (!keys.length) push(`${where}: threads-effekt for ${threadId} er tom`);
+      for (const key of keys) {
+        if (key !== "status" && key !== "stepDelta") push(`${where}: ukjent threads-effektnøkkel "${key}"`);
+      }
+      if (change.status !== undefined && THREAD_STATUSES.indexOf(change.status) === -1) {
+        push(`${where}: ugyldig trådstatus "${change.status}"`);
+      }
+      if (change.stepDelta !== undefined && typeof change.stepDelta !== "number") {
+        push(`${where}: stepDelta for ${threadId} er ikke et tall`);
+      }
+      if (change.status !== undefined || (typeof change.stepDelta === "number" && change.stepDelta !== 0)) changes++;
+    }
     changes += Object.keys(eff.flagg || {}).length;
     if ((choice.laaserOpp || []).length) changes++;
 
     if (!changes) push(`${where}: ingen effekt endrer state (lov 2)`);
+  }
+
+  /**
+   * Validerer scene.conditions strukturelt: kjente toppnøkler, kjente
+   * målere/relasjoner/tråder, gyldige former. Ukjent nøkkel => feil
+   * (ingen gjetting). Flagg-betingelser: literal verdi (må være lik)
+   * eller { "finnes": true/false } (må finnes / må ikke finnes).
+   * Meters/relasjoner: { min?, max? } med minst én grense.
+   * @param {any} scene
+   * @param {Record<string, number>} startRelasjoner
+   * @param {Set<string>} threadIds
+   * @param {(msg: string) => void} push
+   */
+  function errorsForConditions(scene, startRelasjoner, threadIds, push) {
+    const where = `scene ${scene.id}: conditions`;
+    const cond = scene.conditions;
+    if (!cond || typeof cond !== "object" || Array.isArray(cond)) {
+      push(`${where} må være et objekt`);
+      return;
+    }
+    for (const key of Object.keys(cond)) {
+      if (CONDITION_KEYS.indexOf(key) === -1) push(`${where}: ukjent nøkkel "${key}"`);
+    }
+    for (const [flag, expected] of Object.entries(cond.flagg || {})) {
+      const type = typeof expected;
+      if (type === "boolean" || type === "number" || type === "string") continue;
+      if (expected && type === "object" && !Array.isArray(expected)) {
+        const keys = Object.keys(expected);
+        if (keys.length === 1 && keys[0] === "finnes" && typeof expected.finnes === "boolean") continue;
+      }
+      push(`${where}.flagg.${flag}: må være literal verdi eller { "finnes": true/false }`);
+    }
+    for (const [group, known, label] of [
+      [cond.meters || {}, (k) => METERS.indexOf(k) !== -1, "meters"],
+      [cond.relasjoner || {}, (k) => k in startRelasjoner, "relasjoner"]
+    ]) {
+      for (const [key, range] of Object.entries(group)) {
+        if (!known(key)) push(`${where}.${label}: ukjent nøkkel "${key}"`);
+        if (!range || typeof range !== "object" || Array.isArray(range)) {
+          push(`${where}.${label}.${key}: må være { min?, max? }`);
+          continue;
+        }
+        const hasMin = range.min !== undefined;
+        const hasMax = range.max !== undefined;
+        if (!hasMin && !hasMax) push(`${where}.${label}.${key}: mangler både min og max`);
+        for (const bound of Object.keys(range)) {
+          if (bound !== "min" && bound !== "max") push(`${where}.${label}.${key}: ukjent grense "${bound}"`);
+        }
+        if (hasMin && typeof range.min !== "number") push(`${where}.${label}.${key}: min er ikke et tall`);
+        if (hasMax && typeof range.max !== "number") push(`${where}.${label}.${key}: max er ikke et tall`);
+        if (hasMin && hasMax && typeof range.min === "number" && typeof range.max === "number" && range.min > range.max) {
+          push(`${where}.${label}.${key}: min > max`);
+        }
+      }
+    }
+    for (const [threadId, status] of Object.entries(cond.threads || {})) {
+      if (!threadIds.has(threadId)) push(`${where}.threads: ukjent tråd "${threadId}"`);
+      if (THREAD_STATUSES.indexOf(status) === -1) push(`${where}.threads.${threadId}: ugyldig status "${status}"`);
+    }
   }
 
   /**
@@ -269,7 +363,7 @@
     return res.json();
   }
 
-  const api = { METERS, SCENE_TYPES, MANIFEST_PATH, buildContent, validateContent, loadContent };
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, MANIFEST_PATH, buildContent, validateContent, loadContent };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

@@ -13,12 +13,16 @@ og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVI
 > **Civication v2 er ny primærarkitektur: Life Story System.** `Civication.html` laster
 > nå KUN v2-flyten (Min dag): én fortellingsrunner (`js/Civication/lifestory/`) + rene
 > fortellingspakker (`data/Civication/lifestory/`), pilotert med rollen Arealplanlegger.
+> Motoren støtter scene-**conditions** (flagg/meters/relasjoner/thread state),
+> **thread state** (active/completed/dormant/escalated med step), **day progression**
+> (`startNextDay` beholder arkiv/valg) og **konsekvenstekst** per valg. Privatliv og
+> arbeidsliv flettes med conditions + thread state, ikke med mailmotorer.
 > **Alle motorene beskrevet i dette dokumentet er Civication v1 = legacy.** De lastes
 > ikke i hovedflyten; hele v1-kjeden ligger i `js/Civication/civicationLegacyLoader.js`
 > og injiseres kun når `CIVICATION_LEGACY_ENABLED` eksplisitt er true
 > (`Civication.html?civicationLegacy=1`). profile.html og Node-testene bruker fortsatt
 > filene direkte, så de ligger urørt på disk inntil de gjenbrukes rent eller slettes.
-> Nye fortellinger bygges som data i `data/Civication/lifestory/`, aldri som nye motorer.
+> Nye fortellinger bygges som **data** i `data/Civication/lifestory/`, aldri som nye motorer.
 > Innboks er arkiv/bakgrunn, ikke primær gameplay.
 > Se [`docs/civication-life-story-system.md`](../../docs/civication-life-story-system.md).
 
