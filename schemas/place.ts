@@ -7,6 +7,16 @@ export interface PlaceNatureProfile {
   [key: string]: unknown;
 }
 
+export interface PlaceForNaProfile {
+  title?: string;
+  before?: string;
+  now?: string;
+  change?: string;
+  lookFor?: string[];
+  sources?: string[];
+  [key: string]: unknown;
+}
+
 export interface PlaceSportProfile {
   groundhopper_relevant?: boolean;
   sports?: string[];
@@ -43,6 +53,7 @@ export interface Place {
   sport_profile?: PlaceSportProfile;
   quiz_profile?: Record<string, unknown>;
   nature_profile?: PlaceNatureProfile;
+  for_na?: PlaceForNaProfile;
   relations?: unknown[];
   people?: unknown[];
   wonderkammer?: unknown;

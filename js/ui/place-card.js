@@ -24,6 +24,7 @@
  *   badges?: unknown[],
  *   relations?: unknown[],
  *   nature?: unknown[],
+ *   for_na?: PlaceCardRecord,
  *   tags?: string[],
  *   wonderkammer?: unknown[],
  *   rounds?: string[],
@@ -115,6 +116,69 @@ function normalizePlaceCardStringList(value) {
     .filter(Boolean);
 }
 
+
+
+function normalizePlaceCardForNa(place) {
+  const data = (place?.for_na && typeof place.for_na === "object") ? place.for_na : null;
+  if (!data) return null;
+
+  const before = String(data.before || "").trim();
+  const now = String(data.now || "").trim();
+  const change = String(data.change || "").trim();
+  const lookFor = normalizePlaceCardStringList(data.lookFor || data.look_for || data.observe || data.observer);
+  const sources = normalizePlaceCardStringList(data.sources || data.kilder || data.source);
+
+  if (!before && !now && !change && !lookFor.length) return null;
+
+  return {
+    title: String(data.title || "Før / nå").trim(),
+    before,
+    now,
+    change,
+    lookFor,
+    sources
+  };
+}
+
+function renderPlaceCardForNa(place) {
+  const data = normalizePlaceCardForNa(place);
+  if (!data) return `<div class="pc-empty">Ingen før/nå-innhold ennå</div>`;
+
+  const section = (label, value) => value
+    ? `
+      <section class="pc-forna-section">
+        <h3 class="pc-forna-section-title">${escapePlaceCardHTML(label)}</h3>
+        <p>${escapePlaceCardHTML(value)}</p>
+      </section>
+    `
+    : "";
+
+  const lookForHtml = data.lookFor.length
+    ? `
+      <section class="pc-forna-section">
+        <h3 class="pc-forna-section-title">Observér i dag</h3>
+        <ul class="pc-forna-list">
+          ${data.lookFor.map(item => `<li>${escapePlaceCardHTML(item)}</li>`).join("")}
+        </ul>
+      </section>
+    `
+    : "";
+
+  const sourcesHtml = data.sources.length
+    ? `<div class="pc-forna-sources">Kilder: ${data.sources.map(escapePlaceCardHTML).join(" · ")}</div>`
+    : "";
+
+  return `
+    <article class="pc-forna-card">
+      <h2 class="pc-forna-title">${escapePlaceCardHTML(data.title)}</h2>
+      ${section("Før", data.before)}
+      ${section("Nå", data.now)}
+      ${section("Endring", data.change)}
+      ${lookForHtml}
+      ${sourcesHtml}
+    </article>
+  `;
+}
 
 function isPlaceCardPlaceComplete(place) {
   if (!place || typeof place !== "object") return false;
@@ -1105,7 +1169,7 @@ if (!card.dataset.pcIconsBound) {
     if (kind === "nature") html = `<div class="pc-empty">Ingen naturinnhold ennå</div>`;
     if (kind === "play") html = `<div class="pc-empty">Ingen lekeforslag ennå</div>`;
     if (kind === "training") html = `<div class="pc-empty">Ingen treningsinnhold ennå</div>`;
-    if (kind === "før_nå") html = `<div class="pc-empty">Ingen før/nå-innhold ennå</div>`;
+    if (kind === "før_nå") html = renderPlaceCardForNa(currentPlace || place);
 
     if (typeof window.showPlaceCardRoundPopup === "function") {
       window.showPlaceCardRoundPopup({
@@ -2199,8 +2263,9 @@ if (worksEl) {
 
 // --- FØR/NÅ LIST + ICON ---
 if (forNaEl) {
-  forNaEl.innerHTML = `<div class="pc-empty">Ingen før/nå-innhold ennå</div>`;
-  setRoundLabel(forNaIcon, "🕰️", "");
+  const forNaData = normalizePlaceCardForNa(place);
+  forNaEl.innerHTML = renderPlaceCardForNa(place);
+  setRoundLabel(forNaIcon, "🕰️", forNaData ? 1 : "");
 }
 
 // Legacy route round DOM, if present in old templates, is not canonical.
