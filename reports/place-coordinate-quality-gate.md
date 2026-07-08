@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-07T17:27:01.092Z
+Generert: 2026-07-08T11:21:03.451Z
 
 ## Oppsummering
-- Aktive filer validert: **137**
-- Antall steder validert: **1003**
+- Aktive filer validert: **217**
+- Antall steder validert: **1088**
 - Harde feil: **0**
-- Varsler: **274**
-- Coordinate review candidates: **577** signaler fordelt på **442** steder
+- Varsler: **326**
+- Coordinate review candidates: **659** signaler fordelt på **494** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -113,6 +113,86 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/agder/hornnes_kirke.json
 - data/places/historie/agder/lyngdal_kirke.json
 - data/places/historie/agder/hidra_kirke_flekkefjord.json
+- data/places/historie/agder/arendal_gamle_radhus.json
+- data/places/historie/agder/kristiansand_gamle_tollbod.json
+- data/places/historie/agder/oksoy_fyr_kristiansand.json
+- data/places/historie/agder/gronningen_fyr_kristiansand.json
+- data/places/historie/agder/gjerstad_kirke.json
+- data/places/historie/agder/kvinesdal_kirke.json
+- data/places/historie/agder/feda_kirke_kvinesdal.json
+- data/places/historie/agder/haegebostad_kirke.json
+- data/places/historie/agder/risor_kirke_byhistorie.json
+- data/places/historie/agder/sondeled_kirke_risor.json
+- data/places/historie/agder/vegarshei_kirke.json
+- data/places/historie/agder/birkenes_kirke.json
+- data/places/historie/agder/iveland_kirke.json
+- data/places/historie/agder/eiken_kirke_haegebostad.json
+- data/places/historie/agder/konsmo_kirke_lyngdal.json
+- data/places/historie/agder/tonstad_kirke_sirdal.json
+- data/places/historie/agder/vestre_moland_kirke_lillesand.json
+- data/places/historie/agder/hovag_kirke_lillesand.json
+- data/places/historie/agder/herefoss_kirke_birkenes.json
+- data/places/historie/agder/mykland_kirke_froland.json
+- data/places/historie/agder/dampskipet_bjoren_bygland.json
+- data/places/historie/agder/nordberg_fort_lista.json
+- data/places/historie/agder/flekkefjord_museum.json
+- data/places/historie/agder/lillesand_by_og_sjofartsmuseum.json
+- data/places/historie/agder/torungen_fyr_arendal.json
+- data/places/historie/agder/homborsund_fyr_grimstad.json
+- data/places/historie/agder/nelaug_stasjon_amli.json
+- data/places/historie/agder/lillesand_flaksvandbanen.json
+- data/places/historie/agder/kristiansand_stasjon.json
+- data/places/historie/agder/agder_naturmuseum_kristiansand.json
+- data/places/historie/agder/bomuldsfabriken_arendal.json
+- data/places/historie/agder/lista_flystasjon_farsund.json
+- data/places/historie/agder/oyestad_kirke_arendal.json
+- data/places/historie/agder/austre_moland_kirke_arendal.json
+- data/places/historie/agder/grimstad_kirke_byhistorie.json
+- data/places/historie/agder/arendal_stasjon.json
+- data/places/historie/agder/grimstad_stasjon_grimstadbanen.json
+- data/places/historie/agder/tonstad_kraftverk_sirdal.json
+- data/places/historie/agder/kristiansand_katedralskole.json
+- data/places/historie/agder/lund_batteri_kristiansand.json
+- data/places/historie/agder/trefoldighetskirken_arendal.json
+- data/places/historie/agder/flosta_kirke_arendal.json
+- data/places/historie/agder/landvik_kirke_grimstad.json
+- data/places/historie/agder/eide_kirke_grimstad.json
+- data/places/historie/agder/vanse_kirke_farsund.json
+- data/places/historie/agder/farsund_kirke_byhistorie.json
+- data/places/historie/agder/flekkefjord_kirke_byhistorie.json
+- data/places/historie/agder/justoy_kystkultur_lillesand.json
+- data/places/historie/agder/tingvatn_fornminnepark_haegebostad.json
+- data/places/historie/agder/rygnestadtunet_valle.json
+- data/places/historie/agder/ravnedalen_kristiansand.json
+- data/places/historie/agder/vest_agder_museet_kongsgard.json
+- data/places/historie/agder/fullriggeren_sorlandet_kristiansand.json
+- data/places/historie/agder/spangereidkanalen_lindesnes.json
+- data/places/historie/agder/pusnes_mekaniske_verksted_arendal.json
+- data/places/historie/agder/arendal_tollbod.json
+- data/places/historie/agder/vigeland_hovedgard_lindesnes.json
+- data/places/historie/agder/furulunden_mandal_kulturpark.json
+- data/places/historie/agder/kristiansand_kanonmuseum_movik.json
+- data/places/historie/agder/evje_mineralsti.json
+- data/places/historie/agder/setesdal_mineralpark_evje.json
+- data/places/historie/agder/valle_sylvsmie_handverkshistorie.json
+- data/places/historie/agder/risor_museum.json
+- data/places/historie/agder/arendal_sjofartsmuseum.json
+- data/places/historie/agder/boen_gard_kristiansand.json
+- data/places/historie/agder/sogne_gamle_prestegard.json
+- data/places/historie/agder/kristiansand_lufthavn_kjevik.json
+- data/places/historie/agder/hollen_brygge_sogne.json
+- data/places/historie/agder/skjernoy_kystkultur_lindesnes.json
+- data/places/historie/agder/byremo_tingsted_lyngdal.json
+- data/places/historie/agder/arendal_kulturhus.json
+- data/places/historie/agder/lindesnes_bygdemuseum.json
+- data/places/historie/agder/kilden_teater_konserthus_kristiansand.json
+- data/places/historie/agder/fiskebrygga_kristiansand.json
+- data/places/historie/agder/baneheia_kristiansand_bypark.json
+- data/places/historie/agder/dommesmoen_grimstad.json
+- data/places/historie/agder/laudal_kraftverk_lindesnes.json
+- data/places/historie/agder/brokke_kraftverk_valle.json
+- data/places/historie/agder/holen_kraftverk_bykle.json
+- data/places/historie/agder/audnedal_stasjon_lyngdal.json
 - data/places/historie/norge/places_historie_norge_for_1500_batch1.json
 - data/places/historie/norge/places_historie_norge_for_1500_batch2.json
 - data/places/historie/norge/places_historie_norge_for_1500_batch3.json
@@ -299,6 +379,58 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/agder/boylefoss_kraftverk_froland.json#boylefoss_kraftverk_froland: stort område uten coordNote/coordStatus
 - data/places/historie/agder/lyngdal_kirke.json#lyngdal_kirke: stort område uten coordNote/coordStatus
 - data/places/historie/agder/hidra_kirke_flekkefjord.json#hidra_kirke_flekkefjord: stort område uten coordNote/coordStatus
+- data/places/historie/agder/arendal_gamle_radhus.json#arendal_gamle_radhus: stort område uten coordNote/coordStatus
+- data/places/historie/agder/kristiansand_gamle_tollbod.json#kristiansand_gamle_tollbod: lineært sted uten anchors
+- data/places/historie/agder/oksoy_fyr_kristiansand.json#oksoy_fyr_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/oksoy_fyr_kristiansand.json#oksoy_fyr_kristiansand: stort område uten coordNote/coordStatus
+- data/places/historie/agder/gronningen_fyr_kristiansand.json#gronningen_fyr_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/kvinesdal_kirke.json#kvinesdal_kirke: stort område uten coordNote/coordStatus
+- data/places/historie/agder/kvinesdal_kirke.json#kvinesdal_kirke: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/agder/feda_kirke_kvinesdal.json#feda_kirke_kvinesdal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/konsmo_kirke_lyngdal.json#konsmo_kirke_lyngdal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/tonstad_kirke_sirdal.json#tonstad_kirke_sirdal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/flekkefjord_museum.json#flekkefjord_museum: stort område uten coordNote/coordStatus
+- data/places/historie/agder/torungen_fyr_arendal.json#torungen_fyr_arendal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/kristiansand_stasjon.json#kristiansand_stasjon: lineært sted uten anchors
+- data/places/historie/agder/agder_naturmuseum_kristiansand.json#agder_naturmuseum_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/bomuldsfabriken_arendal.json#bomuldsfabriken_arendal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/lista_flystasjon_farsund.json#lista_flystasjon_farsund: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/agder/oyestad_kirke_arendal.json#oyestad_kirke_arendal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/austre_moland_kirke_arendal.json#austre_moland_kirke_arendal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/arendal_stasjon.json#arendal_stasjon: stort område uten coordNote/coordStatus
+- data/places/historie/agder/grimstad_stasjon_grimstadbanen.json#grimstad_stasjon_grimstadbanen: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/agder/tonstad_kraftverk_sirdal.json#tonstad_kraftverk_sirdal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/kristiansand_katedralskole.json#kristiansand_katedralskole: lineært sted uten anchors
+- data/places/historie/agder/kristiansand_katedralskole.json#kristiansand_katedralskole: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/agder/lund_batteri_kristiansand.json#lund_batteri_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/trefoldighetskirken_arendal.json#trefoldighetskirken_arendal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/flosta_kirke_arendal.json#flosta_kirke_arendal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/flekkefjord_kirke_byhistorie.json#flekkefjord_kirke_byhistorie: stort område uten coordNote/coordStatus
+- data/places/historie/agder/justoy_kystkultur_lillesand.json#justoy_kystkultur_lillesand: stort område uten coordNote/coordStatus
+- data/places/historie/agder/tingvatn_fornminnepark_haegebostad.json#tingvatn_fornminnepark_haegebostad: stort område uten coordNote/coordStatus
+- data/places/historie/agder/ravnedalen_kristiansand.json#ravnedalen_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/ravnedalen_kristiansand.json#ravnedalen_kristiansand: stort område uten coordNote/coordStatus
+- data/places/historie/agder/fullriggeren_sorlandet_kristiansand.json#fullriggeren_sorlandet_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/fullriggeren_sorlandet_kristiansand.json#fullriggeren_sorlandet_kristiansand: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/agder/pusnes_mekaniske_verksted_arendal.json#pusnes_mekaniske_verksted_arendal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/arendal_tollbod.json#arendal_tollbod: stort område uten coordNote/coordStatus
+- data/places/historie/agder/furulunden_mandal_kulturpark.json#furulunden_mandal_kulturpark: stort område uten coordNote/coordStatus
+- data/places/historie/agder/kristiansand_kanonmuseum_movik.json#kristiansand_kanonmuseum_movik: lineært sted uten anchors
+- data/places/historie/agder/evje_mineralsti.json#evje_mineralsti: lineært sted uten anchors
+- data/places/historie/agder/setesdal_mineralpark_evje.json#setesdal_mineralpark_evje: stort område uten coordNote/coordStatus
+- data/places/historie/agder/arendal_sjofartsmuseum.json#arendal_sjofartsmuseum: stort område uten coordNote/coordStatus
+- data/places/historie/agder/boen_gard_kristiansand.json#boen_gard_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/kristiansand_lufthavn_kjevik.json#kristiansand_lufthavn_kjevik: lineært sted uten anchors
+- data/places/historie/agder/skjernoy_kystkultur_lindesnes.json#skjernoy_kystkultur_lindesnes: stort område uten coordNote/coordStatus
+- data/places/historie/agder/byremo_tingsted_lyngdal.json#byremo_tingsted_lyngdal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/arendal_kulturhus.json#arendal_kulturhus: stort område uten coordNote/coordStatus
+- data/places/historie/agder/kilden_teater_konserthus_kristiansand.json#kilden_teater_konserthus_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/fiskebrygga_kristiansand.json#fiskebrygga_kristiansand: lineært sted uten anchors
+- data/places/historie/agder/baneheia_kristiansand_bypark.json#baneheia_kristiansand_bypark: lineært sted uten anchors
+- data/places/historie/agder/baneheia_kristiansand_bypark.json#baneheia_kristiansand_bypark: stort område uten coordNote/coordStatus
+- data/places/historie/agder/laudal_kraftverk_lindesnes.json#laudal_kraftverk_lindesnes: stort område uten coordNote/coordStatus
+- data/places/historie/agder/audnedal_stasjon_lyngdal.json#audnedal_stasjon_lyngdal: stort område uten coordNote/coordStatus
+- data/places/historie/agder/audnedal_stasjon_lyngdal.json#audnedal_stasjon_lyngdal: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/norge/places_historie_norge_for_1500_batch1.json#stiklestad: lineært sted uten anchors
 - data/places/historie/norge/places_historie_norge_for_1500_batch1.json#stiklestad: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/norge/places_historie_norge_for_1500_batch3.json#sekken_slagsted: lav koordinatpresisjon (<4 desimaler)
@@ -437,22 +569,22 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 659 signaler fordelt på 494 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| lav koordinatpresisjon (<4 desimaler) | 102 |
-| lineært sted uten anchors | 56 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 86 |
+| lav koordinatpresisjon (<4 desimaler) | 108 |
+| lineært sted uten anchors | 72 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 96 |
 | coordStatus=verified uten coordPrecisionM | 2 |
-| park/stort område uten anchors eller coordNote | 103 |
-| svært stor r (>=500 m) uten coordNote | 36 |
+| park/stort område uten anchors eller coordNote | 133 |
+| svært stor r (>=500 m) uten coordNote | 56 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 16 |
 | ligger svært langt fra de andre stedene i samme fil | 176 |
 
-### lav koordinatpresisjon (<4 desimaler) (102)
+### lav koordinatpresisjon (<4 desimaler) (108)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -479,6 +611,12 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | tvedestrand_byhistorie_og_havn | Tvedestrand byhistorie og havn | historie | data/places/historie/agder/tvedestrand_byhistorie_og_havn.json | 58.622 | 8.9303 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | flot_gruve_evje | Flåt gruve Evje | historie | data/places/historie/agder/flot_gruve_evje.json | 58.587 | 7.8135 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | spangereid_kirke_lindesnes | Spangereid kirke Lindesnes | historie | data/places/historie/agder/spangereid_kirke_lindesnes.json | 58.038 | 7.1275 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| kvinesdal_kirke | Kvinesdal kirke | historie | data/places/historie/agder/kvinesdal_kirke.json | 58.3164 | 6.96 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| lista_flystasjon_farsund | Lista flystasjon Farsund | historie | data/places/historie/agder/lista_flystasjon_farsund.json | 58.099 | 6.626 | 620 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| grimstad_stasjon_grimstadbanen | Grimstad stasjon / Grimstadbanen | historie | data/places/historie/agder/grimstad_stasjon_grimstadbanen.json | 58.342 | 8.5938 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| kristiansand_katedralskole | Kristiansand katedralskole | historie | data/places/historie/agder/kristiansand_katedralskole.json | 58.1469 | 7.995 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| fullriggeren_sorlandet_kristiansand | Fullriggeren Sørlandet Kristiansand | historie | data/places/historie/agder/fullriggeren_sorlandet_kristiansand.json | 58.144 | 7.9941 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | historie | data/places/historie/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | stiklestad | Stiklestad | historie | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | 63.7956 | 11.559 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | sekken_slagsted | Sekken slagsted og minnestein | historie | data/places/historie/norge/places_historie_norge_for_1500_batch3.json | 62.647 | 7.3678 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | holmengra_hvaler | Holmengrå ved Hvaler | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.027 | 11.045 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -559,7 +697,7 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_champalimaud_foundation | Fundação Champalimaud | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.6935 | -9.219 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_feira_do_livro | Feira do Livro de Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.727 | -9.1542 | 350 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### lineært sted uten anchors (56)
+### lineært sted uten anchors (72)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -586,6 +724,22 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | posebyen_kristiansand_trehusby | Posebyen Kristiansand | historie | data/places/historie/agder/posebyen_kristiansand_trehusby.json | 58.1501 | 8.0002 | 360 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | oddernes_kirke_kristiansand | Oddernes kirke Kristiansand | historie | data/places/historie/agder/oddernes_kirke_kristiansand.json | 58.1646 | 8.0346 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ds_hestmanden_kristiansand | D/S Hestmanden Kristiansand | historie | data/places/historie/agder/ds_hestmanden_kristiansand.json | 58.1139 | 7.9847 | 340 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kristiansand_gamle_tollbod | Kristiansand gamle tollbod | historie | data/places/historie/agder/kristiansand_gamle_tollbod.json | 58.1446 | 7.9967 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| oksoy_fyr_kristiansand | Oksøy fyr Kristiansand | historie | data/places/historie/agder/oksoy_fyr_kristiansand.json | 58.0737 | 8.0539 | 520 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| gronningen_fyr_kristiansand | Grønningen fyr Kristiansand | historie | data/places/historie/agder/gronningen_fyr_kristiansand.json | 58.0808 | 8.0226 | 480 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kristiansand_stasjon | Kristiansand stasjon | historie | data/places/historie/agder/kristiansand_stasjon.json | 58.1457 | 7.9875 | 360 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| agder_naturmuseum_kristiansand | Agder naturmuseum Kristiansand | historie | data/places/historie/agder/agder_naturmuseum_kristiansand.json | 58.1635 | 8.0035 | 340 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kristiansand_katedralskole | Kristiansand katedralskole | historie | data/places/historie/agder/kristiansand_katedralskole.json | 58.1469 | 7.995 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lund_batteri_kristiansand | Lund batteri Kristiansand | historie | data/places/historie/agder/lund_batteri_kristiansand.json | 58.1489 | 8.0169 | 340 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ravnedalen_kristiansand | Ravnedalen Kristiansand | historie | data/places/historie/agder/ravnedalen_kristiansand.json | 58.1597 | 7.9778 | 520 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| fullriggeren_sorlandet_kristiansand | Fullriggeren Sørlandet Kristiansand | historie | data/places/historie/agder/fullriggeren_sorlandet_kristiansand.json | 58.144 | 7.9941 | 360 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kristiansand_kanonmuseum_movik | Kristiansand kanonmuseum Møvik | historie | data/places/historie/agder/kristiansand_kanonmuseum_movik.json | 58.0826 | 7.9633 | 620 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| evje_mineralsti | Evje mineralsti | historie | data/places/historie/agder/evje_mineralsti.json | 58.5807 | 7.7901 | 520 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| boen_gard_kristiansand | Boen gård Kristiansand | historie | data/places/historie/agder/boen_gard_kristiansand.json | 58.2014 | 8.1118 | 420 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kristiansand_lufthavn_kjevik | Kristiansand lufthavn Kjevik | historie | data/places/historie/agder/kristiansand_lufthavn_kjevik.json | 58.2042 | 8.0854 | 650 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kilden_teater_konserthus_kristiansand | Kilden teater og konserthus Kristiansand | historie | data/places/historie/agder/kilden_teater_konserthus_kristiansand.json | 58.1442 | 7.9896 | 360 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| fiskebrygga_kristiansand | Fiskebrygga Kristiansand | historie | data/places/historie/agder/fiskebrygga_kristiansand.json | 58.1449 | 7.9918 | 320 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | historie | data/places/historie/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | stiklestad | Stiklestad | historie | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | 63.7956 | 11.559 | 220 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | vagar_lofoten_storvagan | Vågar i Storvågan/Kabelvåg | historie | data/places/historie/norge/places_historie_norge_for_1500_batch3.json | 68.2145 | 14.4759 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | data/places/media/oslo/places_oslo_media.json | 59.917 | 10.756 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -620,7 +774,7 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_instituto_ricardo_jorge | Instituto Nacional de Saúde Doutor Ricardo Jorge | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7693 | -9.1789 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (86)
+### stasjon/park/gate/torg/elv uten coordinate metadata (96)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -672,6 +826,16 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | kragero_stasjon_kragerobanen | Kragerø stasjon / Kragerøbanen | historie | data/places/historie/telemark/places_historie_telemark_batch7.json | 58.8699 | 9.4107 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | treungen_stasjon_treungenbanen | Treungen stasjon / Treungenbanen | historie | data/places/historie/telemark/places_historie_telemark_batch7.json | 59.0215 | 8.5215 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | bo_stasjon_sorlandsbanen | Bø stasjon / Sørlandsbanen | historie | data/places/historie/telemark/places_historie_telemark_batch7.json | 59.4128 | 9.066 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| nelaug_stasjon_amli | Nelaug stasjon Åmli | historie | data/places/historie/agder/nelaug_stasjon_amli.json | 58.6592 | 8.6318 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kristiansand_stasjon | Kristiansand stasjon | historie | data/places/historie/agder/kristiansand_stasjon.json | 58.1457 | 7.9875 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| lista_flystasjon_farsund | Lista flystasjon Farsund | historie | data/places/historie/agder/lista_flystasjon_farsund.json | 58.099 | 6.626 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| arendal_stasjon | Arendal stasjon | historie | data/places/historie/agder/arendal_stasjon.json | 58.4619 | 8.7723 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| grimstad_stasjon_grimstadbanen | Grimstad stasjon / Grimstadbanen | historie | data/places/historie/agder/grimstad_stasjon_grimstadbanen.json | 58.342 | 8.5938 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| tingvatn_fornminnepark_haegebostad | Tingvatn fornminnepark Hægebostad | historie | data/places/historie/agder/tingvatn_fornminnepark_haegebostad.json | 58.3752 | 7.2049 | 520 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| furulunden_mandal_kulturpark | Furulunden Mandal kulturpark | historie | data/places/historie/agder/furulunden_mandal_kulturpark.json | 58.0207 | 7.4525 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| setesdal_mineralpark_evje | Setesdal mineralpark Evje | historie | data/places/historie/agder/setesdal_mineralpark_evje.json | 58.5949 | 7.7867 | 460 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | historie | data/places/historie/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | historie | data/places/historie/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | ekebergparken | Ekebergparken skulpturpark | kunst | data/places/kunst/oslo/places_kunst.json | 59.8997 | 10.7753 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | inger_hagerups_plass | Inger Hagerups plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9427 | 10.8553 | 130 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
@@ -718,7 +882,7 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | data/places/historie/oslo/places_historie.json | 59.9236 | 10.7474 | 190 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### park/stort område uten anchors eller coordNote (103)
+### park/stort område uten anchors eller coordNote (133)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -814,6 +978,36 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | boylefoss_kraftverk_froland | Bøylefoss kraftverk Froland | historie | data/places/historie/agder/boylefoss_kraftverk_froland.json | 58.5689 | 8.6412 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | lyngdal_kirke | Lyngdal kirke | historie | data/places/historie/agder/lyngdal_kirke.json | 58.1379 | 7.0704 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | hidra_kirke_flekkefjord | Hidra kirke Flekkefjord | historie | data/places/historie/agder/hidra_kirke_flekkefjord.json | 58.2266 | 6.5727 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| arendal_gamle_radhus | Arendal gamle rådhus | historie | data/places/historie/agder/arendal_gamle_radhus.json | 58.4593 | 8.7661 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| oksoy_fyr_kristiansand | Oksøy fyr Kristiansand | historie | data/places/historie/agder/oksoy_fyr_kristiansand.json | 58.0737 | 8.0539 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| kvinesdal_kirke | Kvinesdal kirke | historie | data/places/historie/agder/kvinesdal_kirke.json | 58.3164 | 6.96 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| feda_kirke_kvinesdal | Feda kirke Kvinesdal | historie | data/places/historie/agder/feda_kirke_kvinesdal.json | 58.2673 | 6.8261 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| konsmo_kirke_lyngdal | Konsmo kirke Lyngdal | historie | data/places/historie/agder/konsmo_kirke_lyngdal.json | 58.2876 | 7.3591 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| tonstad_kirke_sirdal | Tonstad kirke Sirdal | historie | data/places/historie/agder/tonstad_kirke_sirdal.json | 58.6629 | 6.7162 | 340 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| flekkefjord_museum | Flekkefjord museum | historie | data/places/historie/agder/flekkefjord_museum.json | 58.2971 | 6.6592 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| torungen_fyr_arendal | Torungen fyr Arendal | historie | data/places/historie/agder/torungen_fyr_arendal.json | 58.3994 | 8.7907 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| bomuldsfabriken_arendal | Bomuldsfabriken Arendal | historie | data/places/historie/agder/bomuldsfabriken_arendal.json | 58.4564 | 8.7467 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| oyestad_kirke_arendal | Øyestad kirke Arendal | historie | data/places/historie/agder/oyestad_kirke_arendal.json | 58.4299 | 8.7009 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| austre_moland_kirke_arendal | Austre Moland kirke Arendal | historie | data/places/historie/agder/austre_moland_kirke_arendal.json | 58.5084 | 8.7988 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| arendal_stasjon | Arendal stasjon | historie | data/places/historie/agder/arendal_stasjon.json | 58.4619 | 8.7723 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| tonstad_kraftverk_sirdal | Tonstad kraftverk Sirdal | historie | data/places/historie/agder/tonstad_kraftverk_sirdal.json | 58.6622 | 6.7169 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| trefoldighetskirken_arendal | Trefoldighetskirken Arendal | historie | data/places/historie/agder/trefoldighetskirken_arendal.json | 58.4611 | 8.7668 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| flosta_kirke_arendal | Flosta kirke Arendal | historie | data/places/historie/agder/flosta_kirke_arendal.json | 58.4854 | 9.0167 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| flekkefjord_kirke_byhistorie | Flekkefjord kirke / byhistorie | historie | data/places/historie/agder/flekkefjord_kirke_byhistorie.json | 58.2978 | 6.6602 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| justoy_kystkultur_lillesand | Justøy kystkultur Lillesand | historie | data/places/historie/agder/justoy_kystkultur_lillesand.json | 58.2076 | 8.2864 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| tingvatn_fornminnepark_haegebostad | Tingvatn fornminnepark Hægebostad | historie | data/places/historie/agder/tingvatn_fornminnepark_haegebostad.json | 58.3752 | 7.2049 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| ravnedalen_kristiansand | Ravnedalen Kristiansand | historie | data/places/historie/agder/ravnedalen_kristiansand.json | 58.1597 | 7.9778 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| pusnes_mekaniske_verksted_arendal | Pusnes mekaniske verksted Arendal | historie | data/places/historie/agder/pusnes_mekaniske_verksted_arendal.json | 58.4647 | 8.8222 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| arendal_tollbod | Arendal tollbod | historie | data/places/historie/agder/arendal_tollbod.json | 58.4589 | 8.7674 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| furulunden_mandal_kulturpark | Furulunden Mandal kulturpark | historie | data/places/historie/agder/furulunden_mandal_kulturpark.json | 58.0207 | 7.4525 | 620 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| setesdal_mineralpark_evje | Setesdal mineralpark Evje | historie | data/places/historie/agder/setesdal_mineralpark_evje.json | 58.5949 | 7.7867 | 460 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| arendal_sjofartsmuseum | Arendal sjøfartsmuseum | historie | data/places/historie/agder/arendal_sjofartsmuseum.json | 58.4595 | 8.7668 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| skjernoy_kystkultur_lindesnes | Skjernøy kystkultur Lindesnes | historie | data/places/historie/agder/skjernoy_kystkultur_lindesnes.json | 58.0008 | 7.5207 | 620 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| byremo_tingsted_lyngdal | Byremo tingsted Lyngdal | historie | data/places/historie/agder/byremo_tingsted_lyngdal.json | 58.4182 | 7.3837 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| arendal_kulturhus | Arendal kulturhus | historie | data/places/historie/agder/arendal_kulturhus.json | 58.4607 | 8.7665 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | historie | data/places/historie/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| laudal_kraftverk_lindesnes | Laudal kraftverk Lindesnes | historie | data/places/historie/agder/laudal_kraftverk_lindesnes.json | 58.2695 | 7.5093 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | historie | data/places/historie/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | bryn_industriomrade | Bryn industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9129 | 10.8251 | 250 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
@@ -826,7 +1020,7 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | finnskogbanen | Finnskogbanen | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.4513 | 12.1864 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 
-### svært stor r (>=500 m) uten coordNote (36)
+### svært stor r (>=500 m) uten coordNote (56)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -849,6 +1043,26 @@ Totalt 577 signaler fordelt på 442 steder. Et sted kan ha flere signaler. Kandi
 | merdo_uthavn_arendal | Merdø uthavn Arendal | historie | data/places/historie/agder/merdo_uthavn_arendal.json | 58.4158 | 8.7995 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | ryvingen_fyr_mandal | Ryvingen fyr Mandal | historie | data/places/historie/agder/ryvingen_fyr_mandal.json | 57.9692 | 7.4997 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | evjemoen_leir_evje | Evjemoen leir | historie | data/places/historie/agder/evjemoen_leir_evje.json | 58.5894 | 7.8038 | 500 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| oksoy_fyr_kristiansand | Oksøy fyr Kristiansand | historie | data/places/historie/agder/oksoy_fyr_kristiansand.json | 58.0737 | 8.0539 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| nordberg_fort_lista | Nordberg fort Lista | historie | data/places/historie/agder/nordberg_fort_lista.json | 58.0907 | 6.6212 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| torungen_fyr_arendal | Torungen fyr Arendal | historie | data/places/historie/agder/torungen_fyr_arendal.json | 58.3994 | 8.7907 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| homborsund_fyr_grimstad | Homborsund fyr Grimstad | historie | data/places/historie/agder/homborsund_fyr_grimstad.json | 58.2598 | 8.5503 | 500 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| lista_flystasjon_farsund | Lista flystasjon Farsund | historie | data/places/historie/agder/lista_flystasjon_farsund.json | 58.099 | 6.626 | 620 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| tonstad_kraftverk_sirdal | Tonstad kraftverk Sirdal | historie | data/places/historie/agder/tonstad_kraftverk_sirdal.json | 58.6622 | 6.7169 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| justoy_kystkultur_lillesand | Justøy kystkultur Lillesand | historie | data/places/historie/agder/justoy_kystkultur_lillesand.json | 58.2076 | 8.2864 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| tingvatn_fornminnepark_haegebostad | Tingvatn fornminnepark Hægebostad | historie | data/places/historie/agder/tingvatn_fornminnepark_haegebostad.json | 58.3752 | 7.2049 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| ravnedalen_kristiansand | Ravnedalen Kristiansand | historie | data/places/historie/agder/ravnedalen_kristiansand.json | 58.1597 | 7.9778 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| spangereidkanalen_lindesnes | Spangereidkanalen Lindesnes | historie | data/places/historie/agder/spangereidkanalen_lindesnes.json | 58.0372 | 7.1268 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| furulunden_mandal_kulturpark | Furulunden Mandal kulturpark | historie | data/places/historie/agder/furulunden_mandal_kulturpark.json | 58.0207 | 7.4525 | 620 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| kristiansand_kanonmuseum_movik | Kristiansand kanonmuseum Møvik | historie | data/places/historie/agder/kristiansand_kanonmuseum_movik.json | 58.0826 | 7.9633 | 620 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| evje_mineralsti | Evje mineralsti | historie | data/places/historie/agder/evje_mineralsti.json | 58.5807 | 7.7901 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| kristiansand_lufthavn_kjevik | Kristiansand lufthavn Kjevik | historie | data/places/historie/agder/kristiansand_lufthavn_kjevik.json | 58.2042 | 8.0854 | 650 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| skjernoy_kystkultur_lindesnes | Skjernøy kystkultur Lindesnes | historie | data/places/historie/agder/skjernoy_kystkultur_lindesnes.json | 58.0008 | 7.5207 | 620 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | historie | data/places/historie/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| dommesmoen_grimstad | Dømmesmoen Grimstad | historie | data/places/historie/agder/dommesmoen_grimstad.json | 58.3566 | 8.5714 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| laudal_kraftverk_lindesnes | Laudal kraftverk Lindesnes | historie | data/places/historie/agder/laudal_kraftverk_lindesnes.json | 58.2695 | 7.5093 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| brokke_kraftverk_valle | Brokke kraftverk Valle | historie | data/places/historie/agder/brokke_kraftverk_valle.json | 59.0677 | 7.5249 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
+| holen_kraftverk_bykle | Holen kraftverk Bykle | historie | data/places/historie/agder/holen_kraftverk_bykle.json | 59.4422 | 7.3834 | 560 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | rudskogen_motorsenter | Rudskogen Motorsenter | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 59.3759 | 11.2552 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | lisbon_city | Lisboa | by | data/places/by/europe/portugal/lisbon/places_lisbon_by.json | 38.7223 | -9.1393 | 3000 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | lisbon_alfama | Alfama | by | data/places/by/europe/portugal/lisbon/places_lisbon_by.json | 38.7115 | -9.13 | 500 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
