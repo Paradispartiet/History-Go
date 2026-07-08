@@ -124,6 +124,7 @@ Actual repo counts match the expected batch-8 baseline plus 20 new manifest-back
 
 - JSON parse result: `place content json ok`.
 - Selected ids present in all three files: `selected place translations ok`.
+- Selected-id validation used the exact 20 ids listed in the Source placeIds table.
 - No empty values among new entries.
 - No missing selected ids.
 - No runtime files changed.
