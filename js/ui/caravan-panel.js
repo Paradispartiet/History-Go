@@ -773,6 +773,62 @@
     return `<div class="hg-caravan-consequence"><strong>Konsekvens for ${esc(readableMode(selectedMode))}:</strong>${formatEffects(effects)}${appliedText}${alreadyText}<button type="button" class="hg-caravan-apply-consequence" data-caravan-apply-consequence="${attr(choiceId)}" data-caravan-event-id="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}" ${disabled ? "disabled" : ""}>${applied ? "Konsekvens brukt" : "Bruk konsekvens"}</button>${applied ? `<button type="button" class="hg-caravan-clear-consequence" data-caravan-clear-consequence="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}">Nullstill anvendt konsekvens</button>` : ""}</div>`;
   }
 
+
+  function stageHasProgress(stage, mode = activeTravelMode) {
+    const status = getStageProgressStatus(stage, mode);
+    return Boolean(status && status !== "none");
+  }
+
+  function stageHasResourceEffectsPending(stage, mode = activeTravelMode) {
+    const selected = normalizeTravelMode(mode);
+    if (!stage || selected === "all") return false;
+    return getEventsForStage(cleanText(stage.id), selected).some((event) => {
+      const logged = getLoggedChoice(cleanText(event?.route_id), cleanText(stage.id), cleanText(event?.id), selected);
+      const choice = asArray(event?.choices).find((item) => cleanText(item?.id) === cleanText(logged?.choice_id));
+      if (!effectsForChoice(choice, selected)) return false;
+      return !getConsequencesRuntime()?.getApplied?.(cleanText(event?.route_id), cleanText(stage.id), cleanText(event?.id), selected);
+    });
+  }
+
+  function stageHasUnhandledEventChoice(stage, mode = activeTravelMode) {
+    const selected = normalizeTravelMode(mode);
+    if (!stage || selected === "all") return false;
+    return getEventsForStage(cleanText(stage.id), selected).some((event) => !getLoggedChoice(cleanText(event?.route_id), cleanText(stage.id), cleanText(event?.id), selected));
+  }
+
+  function isRouteComplete(routeId = selectedRouteId, mode = activeTravelMode) {
+    const selected = normalizeTravelMode(mode);
+    if (!cleanText(routeId) || selected === "all") return false;
+    const stages = getVisibleStagesForMode(routeId, selected);
+    return Boolean(stages.length) && stages.every((stage) => getStageProgressStatus(stage, selected) === "completed");
+  }
+
+  function getCaravanNextAction() {
+    const routeId = cleanText(selectedRouteId);
+    if (!routeId) return { kind: "select_route", title: "Velg rute", body: "Velg en karavanerute for å se etapper og starte reisen." };
+
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return { kind: "select_mode", title: "Velg reisebrille", body: "Velg Til fots, Hest eller Sykkel for å lagre progresjon og valg." };
+
+    if (isRouteComplete(routeId, mode)) return { kind: "route_complete", title: "Ruten er fullført", body: "Alle etapper for denne reisebrillen er fullført. Du kan se gjennom logg, dagbok og merker." };
+
+    const stage = getStage(activeStageId);
+    if (!stage || cleanText(stage.route_id) !== routeId) return { kind: "select_stage", title: "Velg etappe", body: "Velg neste etappe i ruten for å se detaljer, status og hendelser." };
+
+    if (!stageHasProgress(stage, mode)) return { kind: "set_progress", title: "Sett status", body: "Sett status for etappen før du håndterer valg og fortsetter reisen." };
+
+    if (stageHasUnhandledEventChoice(stage, mode)) return { kind: "choose_event", title: "Ta et valg på etappen", body: "Etappen har hendelser. Velg ett alternativ for hver relevant hendelse." };
+
+    if (stageHasResourceEffectsPending(stage, mode)) return { kind: "apply_consequence", title: "Bruk konsekvens", body: "Valget har ressurskonsekvenser. Bruk konsekvensen for å oppdatere reisestatus." };
+
+    return { kind: "continue_stage", title: "Fortsett reisen", body: "Etappen er håndtert. Velg en ny etappe eller fullfør resten av ruten." };
+  }
+
+  function renderNextAction() {
+    const action = getCaravanNextAction();
+    return `<section class="hg-caravan-next-action" data-caravan-next-action="${attr(action.kind)}" aria-label="Neste steg"><h3>Neste steg</h3><p class="hg-caravan-next-action-title">${esc(action.title)}</p><p class="hg-caravan-next-action-body">${esc(action.body)}</p></section>`;
+  }
+
   function renderStageEvents(stageId, mode = activeTravelMode) {
     const events = getEventsForStage(stageId, mode);
     const selectedMode = normalizeTravelMode(mode);
@@ -850,6 +906,7 @@
 
     panel.innerHTML = shell(`
       <div class="hg-caravan-intro"><strong>Europakaravanen</strong><span>Fra Oslo til Roma, Lisboa og Constanța uten bil</span>${resumeNotice ? `<span>${esc(resumeNotice)}</span>` : ""}</div>
+      ${renderNextAction()}
       <section class="hg-caravan-routes"><h3>Ruter</h3>${routes.map(routeCard).join("") || `<p class="hg-caravan-empty">Ingen ruter funnet.</p>`}</section>
       ${stagesHtml}
     `);
@@ -1238,7 +1295,7 @@
     });
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, openResume, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), openDiary, getDiary, getStageDiary, exportDiaryJson, showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence, evaluateBadges, getUnlockedBadges, resetCaravanBadges, getLastView, setLastView, clearLastView, getResumeTarget };
+  window.HG_CARAVAN_UI_DEBUG = { open, openResume, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), openDiary, getDiary, getStageDiary, exportDiaryJson, showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence, evaluateBadges, getUnlockedBadges, resetCaravanBadges, getLastView, setLastView, clearLastView, getResumeTarget, getNextAction: getCaravanNextAction };
 
   window.HG_CARAVAN_HEADER_DEBUG = { open: openResume, getLastView, setLastView, clearLastView, getResumeTarget };
 
