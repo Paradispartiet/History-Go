@@ -1,4 +1,4 @@
-// Split Oslo nature capitals aggregate into one JSON file per place.
+// Split Oslo nature hovedsteder aggregate into one JSON file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
