@@ -1,9 +1,9 @@
 // js/Civication/ui/CivicationTestModeUI.js
-// Civication testmodus: alltid synlig "Test"-knapp + testpanel for å starte ALLE roller,
+// Civication testmodus: dev-/flagget "Test"-knapp + testpanel for å starte ALLE roller,
 // ikke bare Controller, uten konsoll.
 //
 // Prinsipp:
-// - Knappen monteres alltid i Civication-headeren som et permanent utviklerverktøy.
+// - Knappen monteres bare i dev/localhost eller når flagget er eksplisitt aktivert.
 // - Rollelisten bygges datadrevet fra data/Civication/roleModels/manifest.json.
 // - Roller startes via eksisterende CivicationRoleStarter.
 // - Arbeidsdagen bygges via eksisterende CivicationDailyMailBuilder.
@@ -69,7 +69,13 @@
   }
 
   function isEnabled() {
-    return true;
+    var queryEnabled = false;
+    try { queryEnabled = new URLSearchParams(window.location.search || "").has("civiTest"); } catch (e) {}
+    var host = String(window.location?.hostname || "");
+    var localHost = host === "localhost" || host === "127.0.0.1" || host === "";
+    var stored = false;
+    try { stored = localStorage.getItem(FLAG_KEY) === "true"; } catch (e) {}
+    return queryEnabled || stored || localHost;
   }
 
   async function loadJson(path) {
@@ -293,7 +299,7 @@
       return null;
     }
     registerRoleForStarter(role);
-    const started = window.CivicationRoleStarter?.startRole?.(role.role_key, { clearInbox: true });
+    const started = window.CivicationRoleStarter?.startRole?.(role.role_key, { clearInbox: true, started_by: "test_mode", is_test_session: true });
     state.selectedKey = role.role_key;
     renderRoles();
     renderStatus(started ? `Startet ${role.title}.` : `Kunne ikke starte ${role.title}.`);
@@ -350,10 +356,19 @@
   function resetDay() {
     if (window.CivicationDailyMailBuilder?.resetToday) window.CivicationDailyMailBuilder.resetToday();
     else window.CivicationState?.setState?.({ mail_day_runtime_v1: null, narrative_day_state_v1: null });
+    try { localStorage.removeItem("mail_day_runtime_v1"); } catch (e) { /* ignore */ }
+    try { localStorage.removeItem("workday_runtime_v1"); } catch (e) { /* ignore */ }
     window.CivicationState?.setInbox?.([]);
     try { window.dispatchEvent(new Event("updateInbox")); } catch (e) { /* ignore */ }
-    renderStatus("Testdag nullstilt.");
+    renderStatus("Dag nullstilt.");
     return true;
+  }
+
+  function resetTestPlayer() {
+    const reset = window.CivicationRoleSession?.clearActiveRoleSession?.({ reason: "test_player_reset" });
+    renderRoles();
+    renderStatus(reset ? "Aktiv rolle og testspiller-state er nullstilt." : "Rolle-session helper mangler.");
+    return !!reset;
   }
 
   function setFilter(filter) {
@@ -508,7 +523,8 @@
         <button type="button" id="civiTestStartRole">Start rolle</button>
         <button type="button" id="civiTestStartDay">Start dag</button>
         <button type="button" id="civiTestOpenNextAction">Åpne Neste handling</button>
-        <button type="button" id="civiTestResetDay">Nullstill Civication test-state</button>
+        <button type="button" id="civiTestResetDay">Nullstill dag</button>
+        <button type="button" id="civiTestResetPlayer">Avslutt aktiv rolle / Nullstill testspiller</button>
       </div>
       <div id="${STATUS_ID}" class="civi-test-status"></div>`;
   }
@@ -537,6 +553,7 @@
       document.getElementById("civiTestStartDay")?.addEventListener("click", async () => { await startDay(); });
       document.getElementById("civiTestOpenNextAction")?.addEventListener("click", openNextAction);
       document.getElementById("civiTestResetDay")?.addEventListener("click", resetDay);
+      document.getElementById("civiTestResetPlayer")?.addEventListener("click", resetTestPlayer);
       panel.querySelectorAll?.("[data-civi-test-filter]").forEach((/** @type {any} */ button) => {
         button.addEventListener("click", () => { state.filter = button.dataset?.civiTestFilter || "all"; renderRoles(); });
       });
@@ -632,6 +649,7 @@
 
   function mount() {
     if (!hasDom()) return;
+    if (!isEnabled()) return;
     ensureButton();
     loadRolesAsync();
   }
@@ -664,6 +682,8 @@
     startRole,
     startDay,
     resetDay,
+    resetTestPlayer,
+    clearActiveRoleSession: resetTestPlayer,
     openNextAction,
     setFilter,
     inspect,

@@ -127,7 +127,9 @@
 
   function getBackupActivePosition() {
     var backup = safeParse(localStorage.getItem(BACKUP_KEY), null);
-    return validActive(backup) ? backup : null;
+    if (!validActive(backup)) return null;
+    if (window.CivicationRoleSession?.isOlderThanReset?.(backup.backed_up_at)) return null;
+    return backup;
   }
 
   function inferRoleKey(state) {
@@ -143,8 +145,11 @@
     var msPlan = norm(state && state.mail_system && state.mail_system.role_plan_id);
     if (PLAN_TO_ROLE[msPlan]) return PLAN_TO_ROLE[msPlan];
 
+    // mail_plan_progress er bare progresjon og kan være gammel test-state.
+    // Den skal ikke alene vekke en rolle etter reset/ny spiller.
     var mpPlan = norm(state && state.mail_plan_progress && state.mail_plan_progress.role_plan_id);
-    if (PLAN_TO_ROLE[mpPlan]) return PLAN_TO_ROLE[mpPlan];
+    var hasExplicitRoleHint = !!(forced || direct || msPlan);
+    if (hasExplicitRoleHint && PLAN_TO_ROLE[mpPlan]) return PLAN_TO_ROLE[mpPlan];
 
     return null;
   }
