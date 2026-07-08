@@ -163,6 +163,15 @@
     }
 
     localStorage.setItem("hg_civi_forced_role_key_v1", roleKey);
+    if (window.CivicationRoleSession?.markRoleStarted) {
+      window.CivicationRoleSession.markRoleStarted({
+        role_key: roleKey,
+        role_id: role.role_id,
+        title: role.title,
+        started_by: opts?.started_by || "role_starter",
+        is_test_session: opts?.is_test_session === true
+      });
+    }
     window.dispatchEvent(new Event("updateProfile"));
     return role;
   }
