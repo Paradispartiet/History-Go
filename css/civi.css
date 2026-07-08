@@ -15,11 +15,25 @@
   --ink: #ffffff;        /* main text / tall / overskrifter */
   --ink2:#f2f3f5;        /* brødtekst — solid, aldri gjennomsiktig grå */
   --ink3:#9aa3ad;        /* meta/labels — dempet, men solid (ikke grå) */
-  --civi-font-base: 17px;
-  --civi-font-small: 14px;
-  --civi-font-meta: 13px;
-  --civi-font-card-title: 20px;
-  --civi-line-base: 1.5;
+  --civi-font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --civi-text-xs: clamp(12.5px, 0.74rem + 0.12vw, 13.5px);
+  --civi-text-sm: clamp(13.5px, 0.80rem + 0.18vw, 14.5px);
+  --civi-text-base: clamp(15.8px, 0.93rem + 0.22vw, 16.6px);
+  --civi-text-md: clamp(16.5px, 0.98rem + 0.28vw, 18px);
+  --civi-text-lg: clamp(18px, 1.05rem + 0.45vw, 20px);
+  --civi-text-xl: clamp(20px, 1.15rem + 0.85vw, 24px);
+  --civi-text-title: clamp(24px, 1.32rem + 1.65vw, 30px);
+  --civi-leading-tight: 1.18;
+  --civi-leading-base: 1.52;
+  --civi-leading-relaxed: 1.6;
+  --civi-label-tracking: 0.045em;
+
+  /* Bakoverkompatible aliaser for eksisterende Civication-regler. */
+  --civi-font-base: var(--civi-text-base);
+  --civi-font-small: var(--civi-text-sm);
+  --civi-font-meta: var(--civi-text-xs);
+  --civi-font-card-title: var(--civi-text-lg);
+  --civi-line-base: var(--civi-leading-base);
 
   /* Linjer/borders */
   --line:  rgba(255,255,255,0.14);
@@ -79,7 +93,7 @@ body.civi-app{
   -webkit-overflow-scrolling:touch;
 
   color:var(--ink);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-family: var(--civi-font-sans);
   font-size: var(--civi-font-base);
   line-height: var(--civi-line-base);
   text-rendering: optimizeLegibility;
@@ -140,7 +154,7 @@ a:hover{
 
 .back-link{
   font-weight:700;
-  font-size:15px;
+  font-size: var(--civi-text-sm);
   color:var(--ink);
   opacity:0.9;
 }
@@ -213,8 +227,10 @@ body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-three-canvas{
 
 .civi-panels h2{
   margin:0 0 12px 0;
-  font-size:20px;
-  letter-spacing:0.2px;
+  font-size: var(--civi-text-xl);
+  line-height: var(--civi-leading-tight);
+  font-weight: 800;
+  letter-spacing:-0.01em;
 }
 
 /* ------------------------------------------------------------
@@ -455,7 +471,7 @@ body.civi-mapmode .civi-panels{
   border-radius: 12px;
   padding: 10px 12px;
   margin-bottom: 12px;
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
 }
 
 .civi-track-title{
@@ -475,7 +491,7 @@ body.civi-mapmode .civi-panels{
   background: rgba(255,255,255,0.10);
   padding: 2px 6px;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: var(--civi-text-xs);
 }
 
 /* ------------------------------------------------------------
@@ -802,8 +818,8 @@ body.civi-mapmode .civi-panels{
 }
 
 #toast .toast-body{
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: var(--civi-text-lg);
+  line-height: var(--civi-leading-relaxed);
   font-weight: 600;
   white-space: pre-wrap;
 }
@@ -823,7 +839,7 @@ body.civi-mapmode .civi-panels{
   }
 
   #toast .toast-body{
-    font-size: 17px;
+    font-size: var(--civi-text-md);
   }
 }
 

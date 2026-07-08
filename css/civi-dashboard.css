@@ -101,13 +101,27 @@ body.civi-app .civi-header-chip {
   background: rgba(255,255,255,0.055);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
   color: var(--ink2);
-  font-size: 12px;
-  font-weight: 750;
+  font-size: var(--civi-text-xs);
+  font-weight: 760;
   line-height: 1.15;
   letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+body.civi-app .civi-panels,
+body.civi-app .civi-panels *,
+body.civi-app .civi-track-hud * {
+  overflow-wrap: break-word;
+}
+
+body.civi-app .civi-panels h2,
+body.civi-app .civi-inbox-card h4,
+body.civi-app .civi-day-phase-title,
+body.civi-app .civi-day-phase-mail-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 body.civi-app .civi-header-chip--role {
@@ -182,8 +196,10 @@ body.civi-app .civi-panels > section::before {
 }
 
 body.civi-app .civi-panels h2 {
-  font-size: 16px;
-  letter-spacing: 0.06em;
+  font-size: var(--civi-text-lg);
+  font-weight: 800;
+  line-height: var(--civi-leading-tight);
+  letter-spacing: var(--civi-label-tracking);
   margin-bottom: 12px;
   color: rgba(255,255,255,0.84);
 }
@@ -223,16 +239,16 @@ body.civi-app .civi-panels h2 {
   background: rgba(214,170,58,0.16);
   border: 1px solid rgba(214,170,58,0.26);
   color: rgba(255,230,160,0.96);
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   font-weight: 850;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
 }
 
 #civiDashRole {
   margin: 0;
   max-width: 260px;
-  font-size: clamp(17px, 2vw, 20px);
+  font-size: clamp(18px, 2vw, 21px);
   line-height: 1.15;
   letter-spacing: -0.01em;
   font-weight: 780;
@@ -245,8 +261,8 @@ body.civi-app .civi-panels h2 {
   margin: 0;
   max-width: 320px;
   color: rgba(255,255,255,0.78);
-  font-size: 15px;
-  line-height: 1.2;
+  font-size: var(--civi-text-base);
+  line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -267,16 +283,16 @@ body.civi-app .civi-panels h2 {
 .civi-dashboard-focus-label {
   margin-bottom: 0;
   color: var(--ink3);
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   font-weight: 850;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
 }
 
 #civiDashFocus {
   color: rgba(255,255,255,0.9);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--civi-text-sm);
+  font-weight: 720;
   white-space: nowrap;
 }
 
@@ -310,16 +326,16 @@ body.civi-app .civi-panels h2 {
 
 .civi-dashboard-metric span {
   color: var(--ink3);
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 850;
-  letter-spacing: 0.07em;
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
 }
 
 .civi-dashboard-metric strong {
   margin-top: 0;
   color: #fff;
-  font-size: clamp(12px, 1.2vw, 14px);
+  font-size: clamp(13px, 1.2vw, 14.5px);
   line-height: 1.05;
   font-weight: 850;
   letter-spacing: -0.01em;
@@ -330,8 +346,8 @@ body.civi-app .civi-panels h2 {
 .civi-dashboard-metric small {
   margin-top: 0;
   color: var(--ink3);
-  font-size: 11px;
-  line-height: 1;
+  font-size: 12.5px;
+  line-height: 1.05;
   white-space: nowrap;
 }
 
@@ -386,8 +402,8 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-day-phase-kicker {
-  font-size: 13px;
-  letter-spacing: .06em;
+  font-size: var(--civi-text-xs);
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
   opacity: .7;
   white-space: nowrap;
@@ -395,8 +411,8 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-phase-title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 800;
+  font-size: var(--civi-text-lg);
+  font-weight: 820;
   color: var(--ink);
   line-height: 1.2;
 }
@@ -404,7 +420,7 @@ body.civi-app .civi-panels h2 {
 .civi-day-phase-meta,
 .civi-day-phase-status {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
   color: var(--ink2);
   opacity: .88;
 }
@@ -414,8 +430,9 @@ body.civi-app .civi-panels h2 {
   padding-left: 16px;
   display: grid;
   gap: 2px;
-  font-size: 15px;
-  opacity: .85;
+  font-size: var(--civi-text-base);
+  line-height: var(--civi-leading-base);
+  opacity: .88;
 }
 
 /* Åpen sak: et lite strukturert kort med gull venstrekant,
@@ -434,9 +451,9 @@ body.civi-app .civi-panels h2 {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .07em;
+  font-size: var(--civi-text-xs);
+  font-weight: 820;
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
   color: rgba(255,230,160,0.9);
 }
@@ -448,13 +465,13 @@ body.civi-app .civi-panels h2 {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
   color: var(--ink3);
-  font-size: 11px;
-  letter-spacing: .05em;
+  font-size: 12.5px;
+  letter-spacing: 0.035em;
 }
 
 .civi-day-phase-mail-title {
   margin: 0;
-  font-size: 16px;
+  font-size: var(--civi-text-md);
   font-weight: 800;
   color: var(--ink);
   line-height: 1.25;
@@ -463,7 +480,7 @@ body.civi-app .civi-panels h2 {
 .civi-day-phase-mail-status,
 .civi-day-phase-mail-count {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
   color: var(--ink2);
 }
 
@@ -484,14 +501,15 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-complete-title {
   margin: 0;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--civi-text-base);
+  font-weight: 720;
   color: var(--ink);
 }
 
 .civi-day-complete-text {
   margin: 2px 0 0;
-  font-size: 15px;
+  font-size: var(--civi-text-base);
+  line-height: var(--civi-leading-base);
   color: var(--ink2);
   opacity: .9;
 }
@@ -511,15 +529,15 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-complete-grid dt {
   margin: 0;
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   text-transform: uppercase;
-  letter-spacing: .05em;
+  letter-spacing: var(--civi-label-tracking);
   color: var(--ink3);
 }
 
 .civi-day-complete-grid dd {
   margin: 1px 0 0;
-  font-size: 15px;
+  font-size: var(--civi-text-base);
   color: var(--ink);
 }
 
@@ -533,8 +551,8 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-outcome-kicker {
-  font-size: 13px;
-  letter-spacing: .06em;
+  font-size: var(--civi-text-xs);
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
   opacity: .7;
 }
@@ -563,13 +581,14 @@ body.civi-app .civi-panels h2 {
 .civi-outcome-indicator[data-outcome-kind="morning_choices_expand"] { border-left-color: #e0c06f; }
 
 .civi-outcome-indicator-label {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--civi-text-base);
+  font-weight: 720;
   color: var(--ink);
 }
 
 .civi-outcome-indicator-text {
-  font-size: 15px;
+  font-size: var(--civi-text-base);
+  line-height: var(--civi-leading-base);
   color: var(--ink2);
   opacity: .9;
 }
@@ -584,8 +603,8 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-learning-kicker {
-  font-size: 13px;
-  letter-spacing: .06em;
+  font-size: var(--civi-text-xs);
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
   opacity: .7;
 }
@@ -607,13 +626,14 @@ body.civi-app .civi-panels h2 {
 .civi-learning-status[data-learning-status="routine"] { border-left-color: #e0c06f; }
 
 .civi-learning-label {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--civi-text-base);
+  font-weight: 720;
   color: var(--ink);
 }
 
 .civi-learning-detail {
-  font-size: 15px;
+  font-size: var(--civi-text-base);
+  line-height: var(--civi-leading-base);
   color: var(--ink2);
   opacity: .9;
 }
@@ -628,8 +648,8 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-reentry-lock-kicker {
-  font-size: 13px;
-  letter-spacing: .06em;
+  font-size: var(--civi-text-xs);
+  letter-spacing: var(--civi-label-tracking);
   text-transform: uppercase;
   opacity: .7;
 }
@@ -652,13 +672,14 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-reentry-lock-label {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--civi-text-base);
+  font-weight: 720;
   color: var(--ink);
 }
 
 .civi-reentry-lock-detail {
-  font-size: 15px;
+  font-size: var(--civi-text-base);
+  line-height: var(--civi-leading-base);
   color: var(--ink2);
   opacity: .9;
 }
@@ -725,7 +746,7 @@ body.civi-app .civi-panels h2 {
 
 #activeJobCard strong,
 #homeStatusContent strong {
-  font-size: 18px;
+  font-size: var(--civi-text-lg);
   letter-spacing: -0.02em;
 }
 
@@ -755,15 +776,16 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-offer-eligibility-label {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .04em;
+  font-size: var(--civi-text-xs);
+  font-weight: 750;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
   opacity: .75;
 }
 
 .civi-offer-eligibility-muted {
-  font-size: 15px;
+  font-size: var(--civi-text-base);
+  line-height: var(--civi-leading-base);
   color: var(--ink2);
 }
 
@@ -918,7 +940,7 @@ body.civi-app .civi-panels h2 {
 
   body.civi-app .app-title,
   body.civi-app .back-link {
-    font-size: 13px;
+    font-size: var(--civi-text-xs);
   }
 
   .civi-dashboard-metric {
@@ -927,11 +949,11 @@ body.civi-app .civi-panels h2 {
   }
 
   .civi-dashboard-metric span {
-    font-size: 10px;
+    font-size: 12.5px;
   }
 
   .civi-dashboard-metric strong {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   body.civi-app .topbar-right {
@@ -963,7 +985,7 @@ body.civi-app .civi-panels h2 {
   .civi-btn {
     min-height: 38px;
     padding-inline: 8px;
-    font-size: 15px;
+    font-size: var(--civi-text-sm);
   }
 }
 
@@ -998,7 +1020,7 @@ body.civi-app .civi-panels h2 {
   body.civi-app .civi-header-chip {
     min-height: 24px;
     padding: 3px 8px;
-    font-size: 11px;
+    font-size: 12.5px;
   }
 
   body.civi-app .civi-header-chip--role {

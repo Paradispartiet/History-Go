@@ -16,7 +16,7 @@
   pointer-events: none;
   display: none;
   color: #fff;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--civi-font-sans);
 }
 
 body.civi-mapmode .civi-city-layer {
@@ -64,7 +64,7 @@ body.civi-mapmode .civi-city-layer {
   height: 34px;
   display: grid;
   place-items: center;
-  font-size: 18px;
+  font-size: var(--civi-text-lg);
   line-height: 1;
   border-radius: 12px;
   background: rgba(18, 26, 36, 0.76);
@@ -104,7 +104,7 @@ body.civi-mapmode .civi-city-layer {
   height: 26px;
   display: grid;
   place-items: center;
-  font-size: 12px;
+  font-size: var(--civi-text-xs);
   font-weight: 700;
   color: #11151c;
   border-radius: 50%;
@@ -150,7 +150,7 @@ body.civi-mapmode .civi-city-layer {
   gap: 6px;
   padding: 6px 13px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   line-height: 1.3;
   background: rgba(18, 26, 36, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -166,7 +166,7 @@ body.civi-mapmode .civi-city-layer {
 }
 
 .civi-city-self-icon {
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   line-height: 1;
 }
 
@@ -220,7 +220,7 @@ body.civi-mapmode .civi-city-layer {
 }
 
 .civi-city-detail-kicker {
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   letter-spacing: 0.03em;
   text-transform: uppercase;
   opacity: 0.75;
@@ -233,20 +233,20 @@ body.civi-mapmode .civi-city-layer {
 
 .civi-city-detail h4 {
   margin: 0 0 6px;
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
   opacity: 0.85;
 }
 
 .civi-city-detail-desc {
   margin: 0 0 10px;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: var(--civi-text-sm);
+  line-height: var(--civi-leading-base);
   opacity: 0.9;
 }
 
 .civi-city-detail-status {
   display: inline-block;
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 999px;
@@ -276,7 +276,7 @@ body.civi-mapmode .civi-city-layer {
 
 .civi-friend-relation-blurb {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
   line-height: 1.45;
   opacity: 0.88;
 }
@@ -290,7 +290,7 @@ body.civi-mapmode .civi-city-layer {
 }
 
 .civi-friend-relation-stage {
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   font-weight: 600;
   letter-spacing: 0.02em;
   opacity: 0.95;
@@ -298,14 +298,14 @@ body.civi-mapmode .civi-city-layer {
 
 .civi-friend-relation-live-blurb {
   margin: 4px 0 0;
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
   line-height: 1.45;
   opacity: 0.88;
 }
 
 .civi-friend-relation-meta {
   margin: 4px 0 0;
-  font-size: 12px;
+  font-size: var(--civi-text-xs);
   line-height: 1.35;
   opacity: 0.75;
 }
@@ -317,7 +317,7 @@ body.civi-mapmode .civi-city-layer {
 }
 
 .civi-city-chip {
-  font-size: 12px;
+  font-size: var(--civi-text-xs);
   padding: 4px 10px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.07);
@@ -331,7 +331,7 @@ body.civi-mapmode .civi-city-layer {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
 }
 
 .civi-city-detail-list .muted {
@@ -356,20 +356,20 @@ body.civi-mapmode .civi-city-layer {
 }
 
 .civi-city-detail-cell span {
-  font-size: 11px;
+  font-size: 12.5px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   opacity: 0.7;
 }
 
 .civi-city-detail-cell strong {
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
   font-weight: 600;
 }
 
 .civi-city-detail-hint {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   opacity: 0.82;
   line-height: 1.45;
 }
@@ -388,7 +388,7 @@ body.civi-mapmode .civi-city-layer {
 
 .civi-city-detail-feedback {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: var(--civi-text-xs);
   line-height: 1.45;
   color: #bfe6c9;
 }
@@ -410,8 +410,8 @@ body.civi-mapmode .civi-city-layer {
 }
 
 .civi-city-encounters .civi-city-encounter-line {
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: var(--civi-text-sm);
+  line-height: var(--civi-leading-base);
 }
 
 .civi-city-encounters .civi-city-approach {
@@ -522,7 +522,7 @@ body.civi-mapmode .civi-city-layer {
 
 .civi-city-phase-choice-group h5 {
   margin: 2px 0 0;
-  font-size: 12px;
+  font-size: var(--civi-text-xs);
   line-height: 1.2;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -576,13 +576,13 @@ body.civi-mapmode .civi-city-layer {
 }
 
 .civi-city-phase-choice-copy strong {
-  font-size: 14px;
+  font-size: var(--civi-text-sm);
   line-height: 1.3;
 }
 
 .civi-city-phase-choice-copy small,
 .civi-city-fallback-choice small {
-  font-size: 12px;
+  font-size: var(--civi-text-xs);
   opacity: 0.76;
 }
 
@@ -604,7 +604,7 @@ body.civi-mapmode .civi-city-layer {
 
 .civi-city-phase-choice-more {
   margin: 0;
-  font-size: 12px;
+  font-size: var(--civi-text-xs);
 }
 
 /* Status-chip i stedskortet: dette stedet er spillerens lagrede fasevalg. */
