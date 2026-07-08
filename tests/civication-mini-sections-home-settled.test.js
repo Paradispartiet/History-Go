@@ -61,6 +61,15 @@ function run() {
   window.CivicationMiniSectionsUI.boot();
   window.CivicationMiniSectionsUI.refresh();
 
+  const tabs = Array.from(document.querySelectorAll(".civi-category-tab"));
+  assert.deepStrictEqual(
+    tabs.map((tab) => tab.textContent),
+    ["Min dag", "Personlig", "Karriere", "Fritid", "Kommers", "Kultur"],
+    "category nav should show Min dag first followed by life areas"
+  );
+  assert.strictEqual(tabs[0].dataset.category, "minDag", "Min dag tab should use minDag category key");
+  assert.ok(tabs[0].classList.contains("is-active"), "Min dag should be the default active category");
+
   const section = document.getElementById("civiHomeStatus");
   const status = section.querySelector("[data-civi-mini-status]");
 
@@ -73,12 +82,26 @@ function run() {
   const lifestorySection = document.getElementById("civiLifestorySection");
   const lifestoryPanel = document.getElementById("civiLifestoryPanel");
   assert.ok(document.body.classList.contains("civi-mini-mode"), "mini-mode should be active");
+  assert.ok(!lifestorySection.classList.contains("civi-hidden-by-category"), "Min dag section should be visible when minDag is active");
+  assert.strictEqual(lifestorySection.dataset.civiLifeCategory, "minDag", "Min dag section should participate in category filtering");
   assert.ok(!lifestorySection.querySelector(":scope > .civi-mini-card"), "Min dag section should not get a mini card");
   assert.ok(lifestorySection.querySelector(":scope > h2"), "Min dag header should remain a direct visible header");
   assert.ok(lifestoryPanel.querySelector(".civi-lifestory-scene"), "Min dag panel should keep the scene after mini boot");
   assert.ok(lifestoryPanel.querySelector(".civi-lifestory-choices"), "Min dag panel should keep choices after mini boot");
   assert.ok(lifestoryPanel.querySelector(".civi-lifestory-panels"), "Min dag panel should keep overview panels after mini boot");
   assert.ok(!document.getElementById("civiDayPhasePanel"), "legacy day phase panel should not be created in normal mini boot");
+
+  tabs.find((tab) => tab.dataset.category === "personlig").click();
+  assert.ok(lifestorySection.classList.contains("civi-hidden-by-category"), "Min dag section should be hidden in Personlig tab");
+  assert.ok(!section.classList.contains("civi-hidden-by-category"), "Personlig home section should be visible in Personlig tab");
+
+  tabs.find((tab) => tab.dataset.category === "karriere").click();
+  assert.ok(lifestorySection.classList.contains("civi-hidden-by-category"), "Min dag section should be hidden in Karriere tab");
+  assert.ok(section.classList.contains("civi-hidden-by-category"), "Personlig home section should be hidden in Karriere tab");
+
+  tabs[0].click();
+  assert.ok(!lifestorySection.classList.contains("civi-hidden-by-category"), "Min dag section should be visible again when Min dag tab is selected");
+  assert.ok(!lifestoryPanel.classList.contains("civi-hidden-by-category"), "Life Story panel itself should remain visible in Min dag tab");
 
   assert.ok(
     miniCss.includes(".civi-panels > section:not(#civiLifestorySection):not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel) > h2"),
@@ -91,6 +114,10 @@ function run() {
   assert.ok(
     miniCss.includes("body.civi-app.civi-mini-mode #civiLifestoryPanel"),
     "mini CSS should explicitly keep the Life Story panel visible"
+  );
+  assert.ok(
+    miniCss.includes("#civiLifestorySection.civi-hidden-by-category"),
+    "mini CSS should hide Life Story only through the category filter class"
   );
 
   console.log("PASS: Civication mini home settled actions are not urgent.");
