@@ -72,36 +72,6 @@ function routeToPlace(placeId) {
   }
 }
 
-function updateFavoriteButtonState(btn, placeId) {
-  if (!btn) return;
-  const active = !!window.HGFavoritePlaces?.has?.(placeId);
-  btn.classList.toggle("is-active", active);
-  btn.textContent = active ? "★" : "☆";
-  const label = active ? "Fjern favoritt" : "Legg til favoritt";
-  btn.setAttribute("aria-label", label);
-  btn.title = label;
-}
-
-function createNearbyFavoriteButton(placeId) {
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "nearby-favorite-btn";
-  updateFavoriteButtonState(btn, placeId);
-  btn.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!window.HGFavoritePlaces) return;
-    window.HGFavoritePlaces.toggle(placeId);
-    updateFavoriteButtonState(btn, placeId);
-    if (typeof window.rerenderActiveLeftPanelMode === "function") {
-      window.rerenderActiveLeftPanelMode();
-    } else if (typeof window.renderLeftFavoritesList === "function") {
-      window.renderLeftFavoritesList();
-    }
-  });
-  return btn;
-}
-
 function categoryNameForBadgeFilter() {
   const id = getActiveLeftBadgeFilter();
   const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
@@ -279,8 +249,6 @@ function renderNearbyPlaces() {
         </div>
     `;
 
-    item.appendChild(createNearbyFavoriteButton(place.id));
-
     item.addEventListener("click", () => {
       routeToPlace(place.id);
     });
@@ -316,7 +284,7 @@ function renderLeftFavoritesList() {
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">☆</div>
         <div class="hg-empty-guide-title">Ingen favoritter ennå</div>
-        <div class="hg-empty-guide-text">Ingen favoritter ennå. Trykk på stjernen ved et sted for å lagre det her.</div>
+        <div class="hg-empty-guide-text">Favoritter vises her når du lagrer steder.</div>
         <button class="hg-empty-guide-action" type="button" data-leftmode-target="nearby">Vis steder</button>
       </div>
     `;
@@ -346,7 +314,6 @@ function renderLeftFavoritesList() {
         <div class="nearby-meta">${escapeHTML(parts.join(" · "))}</div>
       </div>
     `;
-    item.appendChild(createNearbyFavoriteButton(place.id));
     item.addEventListener("click", () => routeToPlace(place.id));
     listEl.appendChild(item);
   });
