@@ -36,6 +36,15 @@ function run() {
         </div>
       </section>
     </main>
+    <div class="civi-footer">
+      <button id="btnCiviMap" class="civi-btn civi-map-icon-btn" type="button" aria-label="Kart">🗺️</button>
+      <button class="civi-btn civi-category-tab" type="button" data-category="minDag">Min dag</button>
+      <button class="civi-btn civi-category-tab" type="button" data-category="personlig">Personlig</button>
+      <button class="civi-btn civi-category-tab" type="button" data-category="karriere">Karriere</button>
+      <button class="civi-btn civi-category-tab" type="button" data-category="fritid">Fritid</button>
+      <button class="civi-btn civi-category-tab" type="button" data-category="kommers">Kommers</button>
+      <button class="civi-btn civi-category-tab" type="button" data-category="kultur">Kultur</button>
+    </div>
   </body></html>`, { url: "https://example.test/Civication.html" });
 
   global.window = dom.window;
@@ -61,11 +70,12 @@ function run() {
   window.CivicationMiniSectionsUI.boot();
   window.CivicationMiniSectionsUI.refresh();
 
-  const tabs = Array.from(document.querySelectorAll(".civi-category-tab"));
+  const tabs = Array.from(document.querySelectorAll(".civi-footer .civi-category-tab"));
+  assert.strictEqual(document.querySelectorAll(".civi-panels .civi-category-tab").length, 0, "category nav should not render above the panels");
   assert.deepStrictEqual(
     tabs.map((tab) => tab.textContent),
     ["Min dag", "Personlig", "Karriere", "Fritid", "Kommers", "Kultur"],
-    "category nav should show Min dag first followed by life areas"
+    "footer category nav should show Min dag first followed by life areas"
   );
   assert.strictEqual(tabs[0].dataset.category, "minDag", "Min dag tab should use minDag category key");
   assert.ok(tabs[0].classList.contains("is-active"), "Min dag should be the default active category");

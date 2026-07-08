@@ -444,7 +444,7 @@ function testArbeidsledigNavMailChoicesVisible() {
 function testTopMailViewerRemovedFromHomeControls() {
   const source = fs.readFileSync(path.join(repoRoot, 'js/Civication/ui/CivicationMiniSectionsUI.js'), 'utf8');
   assert(!source.includes('<article id="civiTopActionCard"'), 'home controls no longer create the competing top mail viewer');
-  assert(source.includes('civi-category-nav'), 'life-area category navigation remains available outside the removed mail viewer');
+  assert(source.includes('button[data-category]'), 'life-area category navigation remains available through footer category buttons');
   console.log('  ✓ topp-mailviser: civiTopActionCard is no longer rendered as a home-controls main section');
 }
 

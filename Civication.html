@@ -227,11 +227,14 @@
 
   </main>
 
-  <div class="civi-footer">
-    <button id="btnCiviMap" class="civi-btn">Kart</button>
-    <button class="civi-btn" data-scroll="#civiDashboardSection">Oversikt</button>
-    <button class="civi-btn" data-scroll="#civiHomeStatus">Hjem</button>
-    <button class="civi-btn primary" data-scroll="#activeJobSection">Rolle</button>
+  <div class="civi-footer" aria-label="Civication-navigasjon">
+    <button id="btnCiviMap" class="civi-btn civi-map-icon-btn" type="button" aria-label="Kart" title="Kart">🗺️</button>
+    <button class="civi-btn civi-category-tab" type="button" data-category="minDag">Min dag</button>
+    <button class="civi-btn civi-category-tab" type="button" data-category="personlig">Personlig</button>
+    <button class="civi-btn civi-category-tab" type="button" data-category="karriere">Karriere</button>
+    <button class="civi-btn civi-category-tab" type="button" data-category="fritid">Fritid</button>
+    <button class="civi-btn civi-category-tab" type="button" data-category="kommers">Kommers</button>
+    <button class="civi-btn civi-category-tab" type="button" data-category="kultur">Kultur</button>
   </div>
 
   <!-- ============ MIN DAG (Life Story) — primærpanelet, lastes først ============

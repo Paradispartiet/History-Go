@@ -703,44 +703,29 @@
   }
 
   function ensureHomeControls() {
-    const panels = document.querySelector(".civi-panels");
-    if (!panels) return null;
-
-    let controls = document.getElementById("civiLifeHomeControls");
-    if (!controls) {
-      controls = document.createElement("section");
-      controls.id = "civiLifeHomeControls";
-      controls.className = "civi-home-controls";
-      controls.innerHTML = `
-        <nav class="civi-category-nav" aria-label="Civication livsområder"></nav>
-      `;
-    }
-
-    if (controls.parentElement !== panels || panels.firstElementChild !== controls) {
-      panels.insertBefore(controls, panels.firstElementChild);
-    }
-
-    return controls;
+    // Kategori-navigasjonen ligger i den faste footeren. Ikke opprett en
+    // ekstra tab-rad over panelene; innholdet skal starte høyere på mobil.
+    return document.getElementById("civiLifeHomeControls");
   }
 
   function refreshCategoryNav() {
-    const nav = ensureHomeControls()?.querySelector(".civi-category-nav");
-    if (!nav) return;
+    const footer = document.querySelector(".civi-footer");
+    if (!footer) return;
 
-    nav.innerHTML = "";
     Object.entries(CATEGORY_CONFIG).forEach(function ([key, item]) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "civi-category-tab" + (key === selectedCategory ? " is-active" : "");
-      btn.dataset.category = key;
-      btn.textContent = item.label;
-      btn.addEventListener("click", function () {
-        setSelectedCategory(key);
-        refreshCategoryNav();
-        applyCategoryFilter();
-        refreshSummaries();
-      });
-      nav.appendChild(btn);
+      let btn = footer.querySelector(`button[data-category="${key}"]`);
+      if (!btn) {
+        btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "civi-btn civi-category-tab";
+        btn.dataset.category = key;
+        btn.textContent = item.label;
+        footer.appendChild(btn);
+      }
+      btn.classList.toggle("is-active", key === selectedCategory);
+      btn.setAttribute("aria-label", item.label || key);
+      if (key === selectedCategory) btn.setAttribute("aria-current", "page");
+      else btn.removeAttribute("aria-current");
     });
   }
 
@@ -761,14 +746,14 @@
       return config.category === selectedCategory && !!resolveSection(key, config);
     });
 
-    const controls = ensureHomeControls();
     let empty = document.getElementById("civiCategoryEmptyCard");
     if (!empty) {
       empty = document.createElement("article");
       empty.id = "civiCategoryEmptyCard";
       empty.className = "civi-category-empty";
       empty.innerHTML = "<h3>Ingen aktive fritidsvalg akkurat nå.</h3><p>Fritid kan senere kobles til sport, natur, steder og aktiviteter.</p>";
-      controls?.insertAdjacentElement("afterend", empty);
+      const panels = document.querySelector(".civi-panels");
+      if (panels) panels.insertBefore(empty, panels.firstElementChild);
     }
 
     empty.classList.toggle("is-visible", selectedCategory === "fritid" && !hasVisible);
@@ -1084,9 +1069,9 @@
 
   let footerNavBound = false;
 
-  /* Footer-knappene med data-scroll hadde ingen handler — de gjorde
-     ingenting. Nå: bytt til seksjonens livsområde hvis den er skjult av
-     kategorifilteret, scroll dit, og marker aktiv knapp. */
+  /* Footeren er primærnavigasjonen: kartknappen beholder eksisterende
+     kart-handlerne, mens kategoriknappene bruker samme state/filter som de
+     tidligere topp-tabsene. */
   function bindFooterNav() {
     if (footerNavBound) return;
     const footer = document.querySelector(".civi-footer");
@@ -1095,33 +1080,21 @@
 
     footer.addEventListener("click", function (event) {
       const target = /** @type {Element} */ (event.target);
-      const btn = target?.closest?.("button[data-scroll]");
+      const btn = target?.closest?.("button[data-category]");
       if (!btn || !footer.contains(btn)) return;
 
-      const selector = btn.getAttribute("data-scroll") || "";
-      const section = selector ? document.querySelector(selector) : null;
-      if (!section) return;
+      const category = btn.getAttribute("data-category") || "";
+      if (!CATEGORY_CONFIG[category]) return;
 
       // Forlat kartmodus hvis vi står i den — ellers er panelene usynlige.
       document.body.classList.remove("civi-mapmode");
+      setSelectedCategory(category);
+      refreshCategoryNav();
+      applyCategoryFilter();
+      refreshSummaries();
 
-      const category = section instanceof HTMLElement ? (section.dataset.civiLifeCategory || "") : "";
-      const categories = /** @type {Record<string, { label?: string }>} */ (CATEGORY_CONFIG);
-      if (category && category !== "system" && categories[category] && category !== selectedCategory) {
-        setSelectedCategory(category);
-        refreshCategoryNav();
-        applyCategoryFilter();
-        refreshSummaries();
-      }
-
-      section.scrollIntoView({ block: "start", behavior: "smooth" });
-
-      footer.querySelectorAll(".civi-btn").forEach(function (el) {
-        const isActive = el === btn;
-        el.classList.toggle("is-active", isActive);
-        if (isActive) el.setAttribute("aria-current", "true");
-        else el.removeAttribute("aria-current");
-      });
+      const firstVisible = document.querySelector(`.civi-panels > [data-civi-life-category="${category}"]:not(.civi-hidden-by-category)`);
+      firstVisible?.scrollIntoView?.({ block: "start", behavior: "smooth" });
     });
   }
 

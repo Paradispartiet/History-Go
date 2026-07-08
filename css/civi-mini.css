@@ -779,3 +779,59 @@ body.civi-app.civi-mapmode #btnCiviMap {
   border-color: rgba(255,255,255,0.42) !important;
   color: #ffffff !important;
 }
+
+/* Civication mobile category nav now lives in the fixed footer. */
+body.civi-app .civi-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+body.civi-app .civi-footer::-webkit-scrollbar { display: none; }
+
+body.civi-app .civi-footer .civi-btn,
+body.civi-app .civi-footer .civi-category-tab {
+  flex: 0 0 auto;
+  min-height: 38px;
+  max-width: none;
+  padding: 8px 11px;
+  border: 1px solid var(--civi-mini-border, rgba(255,255,255,0.14));
+  background: rgba(255,255,255,0.065);
+  color: var(--civi-mini-muted, rgba(255,255,255,0.74));
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+body.civi-app .civi-footer .civi-map-icon-btn {
+  width: 40px;
+  min-width: 40px;
+  padding-inline: 0;
+  font-size: 17px;
+}
+
+body.civi-app .civi-footer .civi-category-tab.is-active {
+  --tab-accent: var(--civi-accent, #d6aa3a);
+  color: #fff4c9 !important;
+  border-color: color-mix(in srgb, var(--tab-accent) 58%, rgba(255,255,255,0.1)) !important;
+  background: color-mix(in srgb, var(--tab-accent) 24%, rgba(255,255,255,0.08)) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+body.civi-app .civi-footer .civi-category-tab.is-active[data-category="personlig"] { --tab-accent: var(--civi-hue-personlig); }
+body.civi-app .civi-footer .civi-category-tab.is-active[data-category="karriere"]  { --tab-accent: var(--civi-hue-karriere); }
+body.civi-app .civi-footer .civi-category-tab.is-active[data-category="fritid"]    { --tab-accent: var(--civi-hue-fritid); }
+body.civi-app .civi-footer .civi-category-tab.is-active[data-category="kommers"]   { --tab-accent: var(--civi-hue-kommers); }
+body.civi-app .civi-footer .civi-category-tab.is-active[data-category="kultur"]    { --tab-accent: var(--civi-hue-kultur); }
+
+body.civi-app.civi-mapmode #btnCiviMap {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.42) !important;
+  color: #ffffff !important;
+}
