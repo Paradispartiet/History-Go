@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-echo "== People JSON parse =="
+echo "== People JSON parse and duplicate ID check =="
 node <<'NODE'
 const fs = require('fs');
 const path = require('path');
@@ -28,15 +28,57 @@ if (!manifest || !Array.isArray(manifest.files)) {
 }
 
 const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
+const seenPeopleIds = new Map();
+const duplicatePeopleIds = [];
+let peopleCount = 0;
+
 for (const file of files) {
   if (!fs.existsSync(file)) {
     console.error(`Missing expected file: ${file}`);
     process.exit(1);
   }
-  readJson(file);
+
+  const data = readJson(file);
+  if (!file.startsWith('data/people/')) continue;
+
+  if (!Array.isArray(data)) {
+    console.error(`People file must contain an array: ${file}`);
+    process.exit(1);
+  }
+
+  for (const [index, entry] of data.entries()) {
+    peopleCount += 1;
+    if (!entry || typeof entry !== 'object') {
+      console.error(`Invalid people entry at ${file}[${index}]`);
+      process.exit(1);
+    }
+
+    if (typeof entry.id !== 'string' || !entry.id.trim()) {
+      console.error(`Missing people id at ${file}[${index}]`);
+      process.exit(1);
+    }
+
+    const previous = seenPeopleIds.get(entry.id);
+    if (previous) {
+      duplicatePeopleIds.push({ id: entry.id, first: previous, second: `${file}[${index}]` });
+    } else {
+      seenPeopleIds.set(entry.id, `${file}[${index}]`);
+    }
+  }
+}
+
+if (duplicatePeopleIds.length > 0) {
+  console.error('Duplicate people IDs found:');
+  for (const duplicate of duplicatePeopleIds) {
+    console.error(`- ${duplicate.id}`);
+    console.error(`  first:  ${duplicate.first}`);
+    console.error(`  second: ${duplicate.second}`);
+  }
+  process.exit(1);
 }
 
 console.log(`json ok (${files.length} files)`);
+console.log(`people ids ok (${peopleCount} entries, ${seenPeopleIds.size} unique ids)`);
 NODE
 
 echo "== Build tools =="
