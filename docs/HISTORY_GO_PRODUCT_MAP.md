@@ -2,7 +2,7 @@
 
 Dette dokumentet er styringskartet for å gjøre History GO ferdig som spillbar app.
 
-Det gjelder **History GO-spillet**: kart, steder, PlaceCard, quiz, badges, profil, people/relations, Wonderkammer, Nearby, favoritter, ruter, natur/sport/musikk/kunst/by/litteratur/politikk/vitenskap/næringsliv/subkultur, HG Social og Spotmeeting.
+Det gjelder **History GO-spillet**: kart, steder, PlaceCard, innsjekk, quiz, badges, profil, people/relations, Wonderkammer, Nearby, favoritter, ruter, natur/sport/musikk/kunst/by/litteratur/politikk/vitenskap/næringsliv/subkultur, HG Social og Spotmeeting.
 
 **Civication er eget prosjekt** og er ikke del av dette ferdigstillelseskartet. Eventuelle koblinger mellom History GO og Civication skal behandles som integrasjon senere, ikke som del av History GO-hovedløypen.
 
@@ -31,34 +31,39 @@ Prosjektet har allerede et stort spillgrunnlag:
 
 History GO er derfor ikke en liten prototype. Det er et stort spillunivers med mange bygde systemer, men uten ferdig produktforsegling.
 
-Den viktigste oppgaven nå er å samle systemene til ett spill:
+Den viktigste oppgaven nå er å samle systemene til ett spill om oppdagelse, læring og samling:
 
 ```text
-Kart → Sted / PlaceCard → Innsjekk → Quiz / oppgave → Belønning → Profil / Wonderkammer → Neste sted / rute
+Kart → Sted / PlaceCard → Oppdagelse / innsjekk → Læring → Samling i profil → Wonderkammer-fordypning → Neste nysgjerrighet
 ```
 
-Steder er navet. Profilen er spillerkortet. Wonderkammer er samlingen. Ruter er kampanjer. Social og Spotmeeting skal handle om steder, ruter, funn og trygg offentlig møtebruk.
+Steder er navet. Profilen er spillerkortet, samlingen og progresjonsflaten. Wonderkammer er et eget fordypnings- og kuriositetsrom, ikke spillerens hovedsamling. Ruter er valgfrie læringsløp. Social og Spotmeeting skal handle om steder, ruter, funn og trygg offentlig møtebruk.
 
 ---
 
 ## Hva mangler?
 
-### A. Ferdig spillmodell
+### A. Ferdig lærings- og samlingsmodell
 
 Det største som mangler er en praktisk definisjon av hva History GO er som spill.
 
+History GO skal ikke først og fremst bygges rundt runder som skal fullføres. Spillet skal bygges rundt oppdagelse, samling og gradvis kunnskapsvekst.
+
+Målet for spilleren er ikke å bli ferdig med byen. Målet er å forstå stadig mer av den.
+
 Avklaringer som må låses:
 
-- Hva er en runde?
-- Hva er et funn?
-- Hva betyr det å fullføre et sted?
-- Hva betyr bronse, sølv og gull?
-- Hva er forskjellen på sted, person, rute, badge, oppdrag og samlingsobjekt?
-- Hva er minimum et sted må ha for å være spillbart?
-- Hva skjer etter at man har fullført et sted?
-- Hvordan påvirker handlingen profil, Wonderkammer, ruter, social og Spotmeeting?
+- Hva betyr det å oppdage et sted?
+- Hva betyr det å lære noe på et sted?
+- Hva betyr det å samle et sted, en person, et funn, et badge eller en kunnskap?
+- Hva betyr bronse, sølv og gull som kunnskapsnivåer?
+- Hva er forskjellen på sted, person, rute, badge, oppdrag, profilfunn og Wonderkammer-fordypning?
+- Hva er minimum et sted må ha for å gi spilleren verdi?
+- Hva skjer etter at spilleren har lært noe eller samlet noe?
+- Hvordan påvirker handlingen profil, ruter, social og Spotmeeting?
+- Hva skal åpne en Wonderkammer-fordypning, og hvordan skiller den seg fra profilens samling?
 
-Uten dette blir History GO mange funksjoner. Med dette blir det et spill.
+Uten dette blir History GO mange funksjoner. Med dette blir det et åpent lærings- og samlingsspill.
 
 ---
 
@@ -68,14 +73,17 @@ History GO trenger én samlet progresjonsmodell på tvers av systemene.
 
 Minimum:
 
+- `discoveredPlaces`
 - `visitedPlaces`
 - `checkedInPlaces`
-- `completedPlaces`
+- `learnedPlaces`
+- `masteredPlaces`
 - `attemptedQuizzes`
 - `completedQuizzes`
 - `earnedBadges`
 - `unlockedPeople`
-- `unlockedWonderItems`
+- `collectedFinds`
+- `unlockedWonderEntries`
 - `favoritePlaces`
 - `activeRoutes`
 - `completedRoutes`
@@ -85,6 +93,10 @@ Minimum:
 - `categoryProgress`
 
 Dette er ryggraden. Alt annet bør lese fra eller skrive til denne modellen.
+
+Viktig produktregel:
+
+> Profilen viser samlingen og progresjonen. Wonderkammer viser fordypningene, kuriositetene og de skjulte kunnskapsrommene.
 
 ---
 
@@ -100,11 +112,12 @@ Førstegangsopplevelsen bør avklare:
 2. Velg offentlig hjemsted
 3. Se steder i nærheten
 4. Velg første sted
-5. Sjekk inn
-6. Ta første quiz / oppgave
-7. Få første badge / funn
+5. Sjekk inn eller oppdag stedet
+6. Lær noe gjennom tekst, quiz, oppgave, person eller funn
+7. Få første badge, personkort eller profilfunn
 8. Se profilen oppdatert
-9. Få neste anbefalte sted eller rute
+9. Åpne eventuell Wonderkammer-fordypning
+10. Få neste anbefalte sted, tema eller rute
 
 ---
 
@@ -121,33 +134,36 @@ Et komplett PlaceCard bør kunne vise:
 - lang forklaring
 - innsjekkstatus
 - quizstatus
-- badge / belønning
+- badge / kunnskapsnivå
 - personer / relasjoner
 - relaterte steder
 - ruter som inkluderer stedet
-- Wonderkammer-funn
+- profilfunn
+- Wonderkammer-koblinger / fordypning
 - favorittstatus
 - social-aktivitet
 - Spotmeeting-mulighet
 - kategori-spesifikke handlinger, for eksempel naturfunn, sportshistorie eller kunstobservasjon
 
-Normen bør være: hvert sted må ha en tydelig spillhandling og en tydelig belønning.
+Normen bør være: hvert sted må ha en tydelig læringshandling og en tydelig progresjonseffekt.
 
 ---
 
 ### E. Ferdig profil
 
-Profilen må være spillerens hovedkort.
+Profilen må være spillerens hovedkort, samling og progresjonsflate.
 
 Den skal vise:
 
 - hvem spilleren er i History GO
+- oppdagede steder
 - besøkte steder
-- fullførte steder
+- sjekkede steder
+- lærte / mestrede steder
 - badges
 - kategoriprogresjon
 - låste og opplåste personer
-- Wonderkammer-funn
+- profilfunn
 - aktive og fullførte ruter
 - favoritter
 - offentlig hjemsted
@@ -155,49 +171,52 @@ Den skal vise:
 - Spotmeeting-status
 - neste anbefalte mål
 
-Profilen er bindeleddet mellom alle systemene. Hvis noe ikke vises i profil eller Wonderkammer, føles det ikke som en belønning.
+Profilen er ikke bare en konto- eller innstillingsside. Den er spillerens samling, status og identitet i History GO.
+
+Hvis en belønning ikke vises i profilen, føles den ikke som en del av spillerens progresjon.
 
 ---
 
 ### F. Ferdig Wonderkammer
 
-Wonderkammer skal være spillerens samling og arkiv.
+Wonderkammer er ikke spillerens hovedsamling. Samlingen ligger på profilsiden.
 
-Det bør samle:
+Wonderkammer er et eget kunnskapsrom: et kuriositetskammer der steder, personer, hendelser, objekter, ideer og rare forbindelser kan åpnes som fordypning.
 
-- steder
-- personer
-- badges
-- ruter
-- historiske koblinger
-- kunstverk
-- litterære spor
-- naturfunn
-- sportshistorie
-- politiske hendelser
-- musikksteder
-- næringslivshistorie
-- byfenomener
-- spesielle funn
+Wonderkammer bør brukes til:
 
-Wonderkammer bør ha filtre:
+- merkelige historiske koblinger
+- skjulte lag ved steder
+- objekter og funn med fortelling
+- sitater, spor og fragmenter
+- «visste du at»-kunnskap
+- tematiske rom
+- små historiske mysterier
+- koblinger mellom steder, personer og epoker
+- kulturhistoriske, vitenskapelige eller kunstneriske perspektiver
+- byens hemmelige skuffer
+
+Wonderkammer bør kunne filtrere eller strukturere fordypninger etter:
 
 - Alle
 - Steder
 - Personer
 - Funn
-- Badges
-- Ruter
+- Tema
 - Kategorier
-- Favoritter
+- Epoker
+- Ruter
+- Kuriositeter
 
-Wonderkammer er ikke ekstra pynt. Det er grunnen til at samling gir mening.
+Wonderkammer er ikke ekstra pynt og ikke en kopi av profilen. Det er stedet der kunnskapen får dybde, overraskelse og egen atmosfære.
 
 ---
 
 ### G. Ferdige ruter
 
-Ruter gjør History GO til et spill med kampanjer.
+Ruter gjør History GO til et spill med organiserte læringsløp.
+
+En rute er ikke hovedmålet i seg selv. En rute er en måte å sette steder, personer, funn og kunnskap i sammenheng.
 
 En rute bør ha:
 
@@ -208,10 +227,10 @@ En rute bør ha:
 - anbefalt rekkefølge
 - kartlinje
 - progresjon
-- oppgaver per stopp
-- sluttspørsmål eller sluttbadge
+- læringshandling per stopp
+- sluttspørsmål, sluttbadge eller profilfunn
 - visning i profil
-- Wonderkammer-funn
+- eventuell Wonderkammer-fordypning
 
 Tidlige ruter som bør finnes:
 
@@ -231,7 +250,7 @@ Tidlige ruter som bør finnes:
 
 ### H. Ferdig Nearby / favoritter
 
-Nearby bør være spillets svar på: Hva kan jeg gjøre nå?
+Nearby bør være spillets svar på: Hva kan jeg oppdage nå?
 
 Nearby bør prioritere:
 
@@ -239,7 +258,7 @@ Nearby bør prioritere:
 - nærmeste sted i aktiv rute
 - sted med ufullført quiz
 - sted som låser opp person
-- sted som fullfører kategori
+- sted som styrker en kategori
 - sted som passer valgt interesse
 - favoritter i nærheten
 - kort tur / lang tur
@@ -269,7 +288,8 @@ Personer bør kunne ha:
 - låst / ulåst status
 - sitat / funn
 - kobling til ruter
-- kobling til Wonderkammer
+- kobling til profil
+- eventuell kobling til Wonderkammer-fordypning
 
 Eksempler:
 
@@ -365,8 +385,8 @@ Prioritet:
 
 1. Felles progresjonssystem
 2. PlaceCard-standard
-3. Profil
-4. Wonderkammer
+3. Profil som samling og progresjonsflate
+4. Wonderkammer som fordypningsrom
 5. Nearby / favoritter
 6. Ruter
 7. Innholdsstandard per kategori
@@ -429,9 +449,9 @@ Et History GO-sted bør ha modenhetsnivå.
 | Stub | finnes bare som peker |
 | Basis | kart + kort tekst |
 | Spillbart | innsjekk + quiz + badge |
-| Rikt | personer + emner + Wonderkammer |
-| Kampanje | del av rute + full progresjon |
-| Premium | bilde, lang tekst, quizprofil, personkort, rute, funn |
+| Rikt | personer + emner + profilfunn + Wonderkammer-koblinger |
+| Læringsløp | del av rute + full progresjon |
+| Premium | bilde, lang tekst, quizprofil, personkort, rute, funn og fordypning |
 
 Målet er ikke at alle steder skal være Premium med én gang. Målet er at appen vet hva hvert sted kan gjøre.
 
@@ -441,19 +461,22 @@ Målet er ikke at alle steder skal være Premium med én gang. Målet er at appe
 
 Forslag til belønningsstige:
 
-- Stedsmerke: sted fullført
-- Kategorimerke: flere steder i kategori fullført
-- Rutemerke: rute fullført
+- Stedsmerke: sted oppdaget, besøkt eller mestret
+- Kategorimerke: flere steder i kategori lært / mestret
+- Rutemerke: rute gjennomført
 - Personkort: person låst opp
-- Funn: kuriositet, objekt, historisk spor eller særskilt kobling
+- Profilfunn: objekt, historisk spor, kuriositet eller særskilt kobling som legges i spillerens samling
+- Wonderkammer-åpning: fordypning, mysterium, kobling eller kunnskapsrom som åpnes
 - Diplom: større prøve eller kategorinivå
 - Tittel: samlet nivå
 
 Bronse / sølv / gull bør konkretiseres slik:
 
-- Bronse: besøkt eller sjekket inn
-- Sølv: quiz fullført
-- Gull: quiz + relatert funn/person/ruteoppgave fullført
+- Bronse: oppdaget, besøkt eller sjekket inn
+- Sølv: hovedfortelling forstått og quiz / læringshandling fullført
+- Gull: sted koblet til person, funn, ruteoppgave eller dypere kunnskap
+
+Et sted er derfor ikke «ferdig» i absolutt forstand. Det kan alltid få flere lag senere. Men spilleren kan oppnå et synlig mestringsnivå som viser hvor godt stedet er utforsket.
 
 ---
 
@@ -540,11 +563,13 @@ For hvert sted:
 5. Legg bilde og kortbilde
 6. Knytt til emner
 7. Lag 3–5 quizspørsmål
-8. Knytt person / funn der relevant
-9. Legg til rute der relevant
-10. Test PlaceCard
-11. Test quiz
-12. Test profil / Wonderkammer-belønning
+8. Knytt person / profilfunn der relevant
+9. Legg til Wonderkammer-fordypning der relevant
+10. Legg til rute der relevant
+11. Test PlaceCard
+12. Test quiz
+13. Test profil-belønning
+14. Test Wonderkammer-fordypning
 
 Dette er den redaksjonelle løypen som gjør steder ferdige uten kaos.
 
@@ -588,18 +613,22 @@ Dette betyr ikke at noe skal bort. Det betyr at ferdigstillelse må ha rekkeføl
 
 ---
 
-## Definisjonen av ferdig
+## Definisjonen av progresjon
 
-Den viktigste mangelen er én felles definisjon av fullført:
+Den viktigste mangelen er én felles definisjon av progresjon:
 
-- fullført sted
-- fullført rute
-- fullført kategori
-- fullført person
-- fullført funn
-- fullført profilnivå
-- fullført social-handling
-- fullført Spotmeeting
+- oppdaget sted
+- besøkt / sjekket sted
+- lært sted
+- mestret sted
+- gjennomført rute
+- utviklet kategori
+- opplåst person
+- samlet profilfunn
+- åpnet Wonderkammer-fordypning
+- endret profilnivå
+- gjennomført social-handling
+- gjennomført Spotmeeting
 
 Når dette er definert, kan alle systemene kobles.
 
@@ -616,9 +645,11 @@ Det betyr:
 - ikke skjul hovedsystemer som produktstrategi
 - ikke bygg videre tilfeldig
 - ikke la hvert system være sin egen øy
-- koble alt til steder, progresjon, profil og Wonderkammer
+- koble alt til steder, progresjon, profil og relevante fordypninger
+- la profilen være samlingen
+- la Wonderkammer være fordypningsrommet
 - fullfør grunnmodellen før nye store lag bygges
 
 Kjernesetning:
 
-> History GO er ikke et lite spill som må kuttes ned. Det er et stort spill som må få ferdig progresjon, ferdige belønninger og ferdige koblinger mellom systemene.
+> History GO er ikke et lite spill som må kuttes ned. Det er et stort lærings- og samlingsspill som må få ferdig progresjon, ferdige belønninger og ferdige koblinger mellom systemene.
