@@ -155,6 +155,33 @@ async function loadPlacesBase(opts = {}) {
   return places;
 }
 
+
+  function normalizePlaceSourceFile(value) {
+    const raw = String(value || "").trim().replace(/^\.?\//, "");
+    if (!raw) return "";
+    const withoutData = raw.replace(/^data\//, "");
+    return withoutData.startsWith("places/") ? withoutData : `places/${withoutData.replace(/^places\//, "")}`;
+  }
+
+  async function resolvePlaceSourceFile(id, opts = {}) {
+    const fromOpt = normalizePlaceSourceFile(opts?.sourceFile || opts?._sourceFile || opts?.file || opts?.place?.sourceFile || opts?.place?._sourceFile || opts?.place?.file);
+    if (fromOpt) return fromOpt;
+
+    const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+    const basePlace = places.find((p) => String(p?.id || "").trim() === id);
+    const fromBase = normalizePlaceSourceFile(basePlace?.sourceFile || basePlace?._sourceFile || basePlace?.file);
+    if (fromBase) return fromBase;
+
+    try {
+      const index = await fetchJSON(pData("places/places_index.json"), opts);
+      const row = (Array.isArray(index) ? index : []).find((p) => String(p?.id || "").trim() === id);
+      const fromIndex = normalizePlaceSourceFile(row?.sourceFile || row?._sourceFile || row?.file);
+      if (fromIndex) return fromIndex;
+    } catch {}
+
+    return "";
+  }
+
   async function loadPlaceManifestFiles(opts = {}) {
     if (!_placeManifestFilesPromise) {
       _placeManifestFilesPromise = fetchJSON(pData("places/manifest.json"), opts)
@@ -189,8 +216,14 @@ async function loadPlacesBase(opts = {}) {
     if (!id) return null;
     if (_fullPlaceCache.has(id)) return _fullPlaceCache.get(id);
 
-    const byId = await loadPlaceFileById(opts);
-    const file = byId.get(id);
+    let file = await resolvePlaceSourceFile(id, opts);
+
+    // Fallback: older indexes do not expose sourceFile yet. This keeps existing
+    // behavior working, but it is no longer the first choice for PlaceCard.
+    if (!file) {
+      const byId = await loadPlaceFileById(opts);
+      file = byId.get(id) || "";
+    }
     if (!file) return null;
 
     const data = await fetchJSON(pData(file), opts);

@@ -25,12 +25,13 @@ type PlaceRow = JsonObject & {
   hidden?: unknown;
   stub?: unknown;
   groundhopper?: unknown;
+  sourceFile?: unknown;
 };
 type LightField = keyof PlaceRow;
 type LightPlace = Partial<Record<LightField, unknown>>;
 
 const LIGHT_FIELDS: LightField[] = [
-  'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper'
+  'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper','sourceFile'
 ];
 
 function hasObjectType(value: unknown): value is JsonObject {
@@ -45,11 +46,12 @@ function isPlaceRow(value: unknown): value is PlaceRow {
   return hasObjectType(value);
 }
 
-function pickLight(place: PlaceRow): LightPlace {
+function pickLight(place: PlaceRow, sourceFile = ''): LightPlace {
   const out: LightPlace = {};
   for (const key of LIGHT_FIELDS) {
     if (Object.prototype.hasOwnProperty.call(place, key)) out[key] = place[key];
   }
+  if (sourceFile) out.sourceFile = sourceFile;
   return out;
 }
 
@@ -69,7 +71,7 @@ async function main(): Promise<void> {
     const places = Array.isArray(data) ? data : (hasObjectType(data) && Array.isArray(data.places) ? data.places : []);
     for (const place of places) {
       if (!isPlaceRow(place)) continue;
-      out.push(pickLight(place));
+      out.push(pickLight(place, rel as string));
     }
   }
 
