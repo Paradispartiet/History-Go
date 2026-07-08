@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HG Football Manager — Klubbdrift</title>
+  <link rel="stylesheet" href="./club-operations.css" />
+</head>
+<body>
+  <main class="fm-shell" data-view="office">
+    <header class="fm-hero">
+      <p class="eyebrow">HG Football Manager</p>
+      <h1>Managerrommet</h1>
+      <p>Led klubben gjennom stab, styre, fasiliteter, speiding og lokal identitet — bygget på History Go-funnene dine.</p>
+    </header>
+
+    <nav class="fm-nav" aria-label="Managerrom">
+      <button data-target="office" class="active">Kontor</button>
+      <button data-target="squad">Lag</button>
+      <button data-target="tactics">Taktikk</button>
+      <button data-target="matchday">Kampdag</button>
+      <button data-target="staff">Stab</button>
+      <button data-target="club">Klubb</button>
+    </nav>
+
+    <section id="office" class="view active" aria-labelledby="office-title">
+      <div class="section-heading"><p>Kontor</p><h2 id="office-title">Ukens klubbstatus</h2></div>
+      <div class="signal-grid">
+        <article class="signal-card primary"><h3>Assistentens råd</h3><p>Assistenten anbefaler defensiv organisering før neste kamp.</p><a href="#tactics" data-action="tactics">Åpne taktikk</a></article>
+        <article class="signal-card"><h3>Styrets forventning</h3><p>Styret forventer øvre halvdel og at unge spillere får sjansen.</p><a href="#board" data-club-tab="board">Se styremål</a></article>
+        <article class="signal-card"><h3>Fysio-varsel</h3><p>Fysio melder høy belastning på to spillere.</p><a href="#squad" data-action="squad">Se tropp</a></article>
+        <article class="signal-card"><h3>Speiderfunn</h3><p>Speideren har funnet en midtbanespiller fra samlingen din.</p><a href="#scouting" data-club-tab="scouting">Finn flere spillere</a></article>
+        <article class="signal-card"><h3>Neste kamp</h3><p>Lokaloppgjør hjemme. Supporterne forventer tydelig klubbprofil.</p><a href="#matchday" data-action="matchday">Forbered kamp</a></article>
+        <article class="signal-card"><h3>Neste beslutning</h3><p>Velg ukens fokus: organisering, restitusjon eller rekruttering via History Go.</p><button data-next-week>Gå til neste uke</button></article>
+      </div>
+    </section>
+
+    <section id="squad" class="view"><div class="section-heading"><p>Lag</p><h2>Tropp og ellever</h2></div><article class="panel"><p>Varsler fra staben vises her før du tar ut laget. Ingen ny laguttaksmotor er lagt til.</p><a href="#staff" data-action="staff">Spør assistenten</a></article></section>
+    <section id="tactics" class="view"><div class="section-heading"><p>Taktikk</p><h2>Ukens fokus</h2></div><article class="panel"><p>Foreslått fokus: defensiv organisering og keeper som sweeper der det passer spillerprofilen.</p><a href="#matchday" data-action="matchday">Forbered kamp</a></article></section>
+    <section id="matchday" class="view"><div class="section-heading"><p>Kampdag</p><h2>Kampforberedelse</h2></div><article class="panel"><p>Etter kamp gir assistenten enkel analyse, styret en ukesvurdering og supporterstemningen oppdateres som klubbcopy.</p><a href="#office" data-action="office">Til kontoret</a></article></section>
+
+    <section id="staff" class="view" aria-labelledby="staff-title">
+      <div class="section-heading"><p>Stab</p><h2 id="staff-title">Personene rundt laget</h2></div>
+      <div class="card-grid staff-grid" id="staffGrid"></div>
+    </section>
+
+    <section id="club" class="view" aria-labelledby="club-title">
+      <div class="section-heading"><p>Klubb</p><h2 id="club-title">Klubbdrift</h2></div>
+      <nav class="club-tabs" aria-label="Klubbavdelinger">
+        <button data-club-panel="board" class="active">Styret</button>
+        <button data-club-panel="facilities">Fasiliteter</button>
+        <button data-club-panel="admin">Administrasjon</button>
+        <button data-club-panel="scouting">Speiding</button>
+        <button data-club-panel="identity">Identitet</button>
+      </nav>
+      <div id="clubPanels"></div>
+    </section>
+  </main>
+  <script src="./club-operations.js"></script>
+</body>
+</html>
