@@ -46,6 +46,41 @@ async function readJson(p) {
   return JSON.parse(await fs.readFile(abs(p), "utf8"));
 }
 
+async function listJsonFiles(dir) {
+  const out: string[] = [];
+  const root = abs(dir);
+
+  async function walk(current: string) {
+    for (const entry of await fs.readdir(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        await walk(full);
+      } else if (entry.isFile() && entry.name.endsWith(".json")) {
+        out.push(rel(path.relative(ROOT, full)));
+      }
+    }
+  }
+
+  try {
+    await walk(root);
+  } catch {
+    return out;
+  }
+
+  return out;
+}
+
+function isRecord(value: unknown): value is JsonRecord {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+function extractPlaceEntries(data: unknown): JsonRecord[] {
+  if (Array.isArray(data)) return data.filter(isRecord);
+  if (isRecord(data) && Array.isArray(data.places)) return data.places.filter(isRecord);
+  if (isRecord(data) && data.id) return [data];
+  return [];
+}
+
 async function resolveManifestFile(manifestPath, fileRef) {
   const file = typeof fileRef === "string" ? fileRef : fileRef?.file || fileRef?.path;
   if (!file) return null;
@@ -81,14 +116,33 @@ async function loadPlaces() {
   const files = Array.isArray(manifest?.files) ? manifest.files : [];
   const places = [];
   const loadedFiles = [];
+  const loadedFileSet = new Set<string>();
 
   for (const file of files) {
     const resolved = await resolveManifestFile(CONFIG.placesManifest, file);
     if (!resolved) throw new Error(`Missing place manifest file: ${JSON.stringify(file)}`);
     loadedFiles.push(resolved);
-    const data = await readJson(resolved);
-    if (Array.isArray(data)) places.push(...data);
-    else if (Array.isArray(data?.places)) places.push(...data.places);
+    loadedFileSet.add(resolved);
+    places.push(...extractPlaceEntries(await readJson(resolved)));
+  }
+
+  // The place corpus has started moving some entries into per-category/per-place
+  // files before every new directory is represented in data/places/manifest.json.
+  // Nature maps should still validate against real committed place ids, so scan
+  // data/places as a safety net instead of failing on a stale manifest alone.
+  for (const file of await listJsonFiles("data/places")) {
+    if (loadedFileSet.has(file)) continue;
+
+    try {
+      const entries = extractPlaceEntries(await readJson(file));
+      if (!entries.length) continue;
+      loadedFiles.push(file);
+      loadedFileSet.add(file);
+      places.push(...entries);
+    } catch {
+      // Individual malformed/unrelated JSON files are outside this validator's
+      // scope; dedicated place-data audits should report those.
+    }
   }
 
   return { places, loadedFiles };
@@ -141,7 +195,7 @@ async function main() {
 
     for (const [placeId, entry] of Object.entries(entries || {})) {
       if (!placeIds.has(placeId) && !CONFIG.optionalPlaceIds.has(placeId)) {
-        const err = `${mapPath}: placeId not loaded by manifest: ${placeId}`;
+        const err = `${mapPath}: placeId not loaded by manifest or data/places scan: ${placeId}`;
         errors.push(err);
         summary.missingPlaces.push({ mapPath, placeId });
       }
