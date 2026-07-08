@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-07T23:02:24.115Z
+Generated: 2026-07-08T07:07:25.743Z
 
 ## Sammendrag
-- People-filer lest: **29**
-- People lest: **512**
+- People-filer lest: **33**
+- People lest: **531**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **512**
+- Duplikate interne place-referanser: **531**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -396,6 +396,10 @@ Generated: 2026-07-07T23:02:24.115Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: last_train_miljoet (Last Train-miljøet) -> last_train_oslo x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: rock_in_miljoet (Rock In-miljøet) -> rock_in_oslo x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: club_7_miljoet (Club 7-miljøet) -> club_7_vika x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: oystein_euronymous_aarseth (Øystein “Euronymous” Aarseth) -> helvete_neseblod_records x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: kate_naess (Kate Næss) -> club_7_vika x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: sossen_krohg (Sossen Krohg) -> club_7_vika x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: attila_horvath (Attila Horvath) -> club_7_vika x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: dj_marfox (DJ Marfox) -> lisbon_bairro_alto x2
@@ -496,6 +500,21 @@ Generated: 2026-07-07T23:02:24.115Z
 - data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: edvard_drablos (Edvard Drabløs) -> det_norske_teatret x2
 - data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: agnes_mowinckel (Agnes Mowinckel) -> det_norske_teatret x2
 - data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: lars_tvinde (Lars Tvinde) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: tormod_skagestad (Tormod Skagestad) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: egil_monn_iversen (Egil Monn-Iversen) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: svein_erik_brodal (Svein Erik Brodal) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: hans_jacob_nilsen (Hans Jacob Nilsen) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: knut_hergel (Knut Hergel) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: otto_homlung (Otto Homlung) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: vidar_sandem (Vidar Sandem) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: erik_ulfsby (Erik Ulfsby) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: kjersti_horn (Kjersti Horn) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: arne_lygre (Arne Lygre) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: sigurd_eldegard (Sigurd Eldegard) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: amund_rydland (Amund Rydland) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: ingjald_haaland (Ingjald Haaland) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: olav_hoprekstad (Olav Hoprekstad) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: harald_saeverud (Harald Sæverud) -> det_norske_teatret x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_severa (Maria Severa) -> lisbon_mouraria_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2

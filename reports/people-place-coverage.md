@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-07T23:02:24.668Z
+Generert: 2026-07-08T07:07:26.020Z
 
 ## Sammendrag
 
-- People totalt: **512**
-- Places totalt: **1003**
+- People totalt: **531**
+- Places totalt: **1051**
 - Places med people: **227**
-- Places uten people: **776**
-- People-place-lenker: **773**
+- Places uten people: **824**
+- People-place-lenker: **792**
 - People koblet til flere gyldige steder: **192**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **512**
-- People uten image: **163**
-- People uten cardImage: **164**
+- Duplikate place-referanser inne på people: **531**
+- People uten image: **182**
+- People uten cardImage: **183**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -23,30 +23,30 @@ Generert: 2026-07-07T23:02:24.668Z
 |---|---:|---:|---:|---:|---:|
 | by | 92 | 29 | 63 | 117 | 90 |
 | film_tv | 8 | 8 | 0 | 46 | 24 |
-| historie | 549 | 57 | 492 | 192 | 104 |
+| historie | 597 | 57 | 540 | 192 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
-| musikk | 13 | 10 | 3 | 32 | 23 |
+| musikk | 13 | 10 | 3 | 47 | 38 |
 | naeringsliv | 55 | 27 | 28 | 55 | 53 |
 | natur | 63 | 5 | 58 | 13 | 13 |
 | politikk | 17 | 7 | 10 | 74 | 61 |
 | populaerkultur | 18 | 5 | 13 | 11 | 11 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 64 | 13 | 51 | 46 | 38 |
-| subkultur | 34 | 17 | 17 | 25 | 20 |
+| subkultur | 34 | 17 | 17 | 29 | 24 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
 ## People tags
 
 - historie: 112
+- musikk: 50
 - litteratur: 46
+- subkultur: 45
 - politikk: 44
-- subkultur: 41
 - naeringsliv: 40
 - norge_for_1500: 40
 - sport: 39
-- musikk: 35
 - vitenskap: 34
 - media: 27
 - by: 26
@@ -56,8 +56,10 @@ Generert: 2026-07-07T23:02:24.668Z
 - arkitektur: 22
 - natur: 22
 - populaerkultur: 22
-- regissor: 20
+- regissor: 22
+- teater: 22
 - scene: 19
+- scenekunst: 19
 - tv: 18
 - filantrop: 17
 - filmhistorie: 15
@@ -65,6 +67,7 @@ Generert: 2026-07-07T23:02:24.668Z
 - journalistikk: 14
 - middelalder: 14
 - modernisme: 13
+- teatersjef: 13
 - humor: 12
 - borgerkrigstiden: 11
 - cinematek: 11
@@ -73,22 +76,19 @@ Generert: 2026-07-07T23:02:24.668Z
 - avis: 10
 - fado: 10
 - fotball: 10
+- musikkhistorie: 10
 - presse: 10
 - redaksjon: 10
-- musikkhistorie: 9
 - norsk_film: 9
 - programleder: 9
+- skuespiller: 9
 - kringkasting: 8
+- nynorsk: 8
 - radio: 8
-- teater: 8
 - vikingtid: 8
 - arbeiderbevegelse: 7
 - byutvikling: 7
 - kristning: 7
-- maleri: 7
-- underholdning: 7
-- kanon: 6
-- konsert: 6
 
 ## Steder med flest people
 
@@ -96,6 +96,7 @@ Generert: 2026-07-07T23:02:24.668Z
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
 - akerhus_slott (Akerhus Slott) – 20
+- det_norske_teatret (Det Norske Teatret) – 20
 - universitetsplassen (Universitetsplassen) – 19
 - youngstorget (Youngstorget) – 17
 - oslo_domkirke (Oslo domkirke) – 15
@@ -116,7 +117,6 @@ Generert: 2026-07-07T23:02:24.668Z
 - eidsvolls_plass (Eidsvolls plass) – 8
 - tjuvholmen (Tjuvholmen) – 8
 - nasjonalmuseet (Nasjonalmuseet) – 7
-- naturhistorisk_museum (Naturhistorisk museum) – 7
 
 ## Ugyldige place-referanser
 
@@ -224,7 +224,7 @@ Generert: 2026-07-07T23:02:24.668Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 412 flere
+- ... 431 flere
 
 ## Anbefalt første people-batch
 
