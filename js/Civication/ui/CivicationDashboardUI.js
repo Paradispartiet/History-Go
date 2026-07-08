@@ -5,6 +5,11 @@
 // Laster også Civication Mini Mode som presentasjonslag.
 // ============================================================
 
+/**
+ * @typedef {{ kind: string, label: string }} CiviHeaderChip
+ * @typedef {{ state?: any, view?: any, includeEmptyRole?: boolean }} CiviHeaderStatusOptions
+ */
+
 (function () {
   function $(id) {
     return document.getElementById(id);
@@ -119,11 +124,6 @@
   function getCanonicalActiveRoleTitle() {
     return getActiveRoleTitle(getActivePosition());
   }
-
-  /**
-   * @typedef {{ kind: string, label: string }} CiviHeaderChip
-   * @typedef {{ state?: any, view?: any, includeEmptyRole?: boolean }} CiviHeaderStatusOptions
-   */
 
   /**
    * Builds the compact Civication header from the same active-position source as
