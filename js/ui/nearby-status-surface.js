@@ -122,7 +122,6 @@
 
   function annotateAll() {
     annotateList("nearbyList");
-    annotateList("leftFavoritesList");
   }
 
   function wrapRender(name, after) {
@@ -144,8 +143,7 @@
   function install() {
     if (global[BOUND_FLAG]) return true;
     const nearbyWrapped = wrapRender("renderNearbyPlaces", () => annotateList("nearbyList"));
-    const favoritesWrapped = wrapRender("renderLeftFavoritesList", () => annotateList("leftFavoritesList"));
-    if (!nearbyWrapped && !favoritesWrapped) return false;
+    if (!nearbyWrapped) return false;
 
     global[BOUND_FLAG] = true;
     global.HGNearbyStatusSurface = { annotateAll, annotateList };

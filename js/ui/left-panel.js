@@ -51,10 +51,12 @@ function updateNearbyControlVisibility() {
   const btn = document.getElementById("nearbyFilterBtn");
   const badgeBtn = document.getElementById("nearbyBadgeFilterBtn");
   const sortBtn = document.getElementById("nearbySortBtn");
+  const favoritesBtn = document.getElementById("nearbyFavoritesFilterBtn");
 
   if (btn) btn.style.display = (mode === "nearby" || mode === "nature") ? "inline-flex" : "none";
   if (badgeBtn) badgeBtn.style.display = (mode === "nature") ? "none" : "inline-flex";
-  if (sortBtn) sortBtn.style.display = (mode === "nearby" || mode === "favorites") ? "inline-flex" : "none";
+  if (sortBtn) sortBtn.style.display = (mode === "nearby") ? "inline-flex" : "none";
+  if (favoritesBtn) favoritesBtn.style.display = (mode === "nearby") ? "inline-flex" : "none";
 }
 
 let _leftPanelRenderRaf = 0;
@@ -64,10 +66,8 @@ function renderActiveLeftPanelModeNow() {
   const mode = hgActiveLeftPanelMode();
 
   if (mode === "nearby" && typeof renderNearbyPlaces === "function") renderNearbyPlaces();
-  if (mode === "favorites" && typeof renderLeftFavoritesList === "function") renderLeftFavoritesList();
   if (mode === "people" && typeof renderNearbyPeople === "function") renderNearbyPeople();
   if (mode === "nature" && typeof renderNearbyNature === "function") renderNearbyNature();
-  if (mode === "music" && typeof renderNearbyMusic === "function") renderNearbyMusic();
   if (mode === "routes" && typeof renderLeftRoutesList === "function") renderLeftRoutesList();
   if (mode === "badges" && typeof renderLeftBadges === "function") renderLeftBadges();
 }
@@ -99,13 +99,13 @@ function rerenderActiveLeftPanelMode() {
 function setLeftPanelMode(mode) {
   const listIdsByMode = {
     nearby: "nearbyList",
-    favorites: "leftFavoritesList",
     people: "leftPeopleList",
     nature: "leftNatureList",
-    music: "leftMusicList",
     routes: "leftRoutesList",
     badges: "leftBadgesList",
   };
+
+  if (!Object.prototype.hasOwnProperty.call(listIdsByMode, mode)) mode = "nearby";
 
   Object.entries(listIdsByMode).forEach(([key, id]) => {
     const list = hg$(id);
@@ -124,10 +124,9 @@ function setLeftPanelMode(mode) {
   } catch {}
 
   document.querySelectorAll(".nearby-tab").forEach(btn => {
-    btn.classList.toggle(
-      "is-active",
-      btn.getAttribute("data-leftmode") === mode
-    );
+    const active = btn.getAttribute("data-leftmode") === mode;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-selected", active ? "true" : "false");
   });
 
   if (typeof window.updateNearbyFilterButton === "function") {
@@ -376,6 +375,24 @@ function ensureNearbyBadgeFilterButton(placeFilterBtn) {
   return btn;
 }
 
+function ensureNearbyFavoritesFilterButton(placeFilterBtn) {
+  if (!placeFilterBtn) return null;
+
+  const controls = getNearbyControlsContainer(placeFilterBtn);
+  if (!controls) return null;
+
+  let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbyFavoritesFilterBtn"));
+  if (!btn) {
+    btn = document.createElement("button");
+    btn.id = "nearbyFavoritesFilterBtn";
+    btn.className = "nearby-filter-icon nearby-favorites-filter-icon";
+    btn.type = "button";
+  }
+
+  controls.appendChild(btn);
+  return btn;
+}
+
 function ensureNearbySortButton(placeFilterBtn) {
   if (!placeFilterBtn) return null;
 
@@ -417,6 +434,8 @@ function initLeftPanel() {
       normalizeBadgeFilter(localStorage.getItem("hg_nearby_badge_filter_v1") || "all");
     window.HG_NEARBY_SORT =
       normalizeNearbySort(localStorage.getItem("hg_nearby_sort_v1") || "distance");
+    window.HG_NEARBY_FAVORITES_ONLY =
+      localStorage.getItem("hg_nearby_favorites_filter_v1") === "1";
 
     window.HG_NATURE_FILTER =
       localStorage.getItem("hg_nature_filter_v1") || "all";
@@ -502,6 +521,7 @@ function initLeftPanel() {
 
   const btn = document.getElementById("nearbyFilterBtn");
   const badgeBtn = ensureNearbyBadgeFilterButton(btn);
+  const favoritesBtn = ensureNearbyFavoritesFilterButton(btn);
   const sortBtn = ensureNearbySortButton(btn);
   updateNearbyControlVisibility();
 
@@ -565,10 +585,23 @@ function initLeftPanel() {
   }
   window.updateNearbyFilterButton = updateFilterButton;
 
+  function updateNearbyFavoritesFilterButton() {
+    if (!favoritesBtn) return;
+    const active = !!window.HG_NEARBY_FAVORITES_ONLY;
+    favoritesBtn.classList.toggle("is-active", active);
+    favoritesBtn.textContent = active ? "★" : "☆";
+    const label = active ? "Favorittfilter: på" : "Favorittfilter: av";
+    favoritesBtn.title = label;
+    favoritesBtn.setAttribute("aria-label", label);
+    favoritesBtn.setAttribute("aria-pressed", active ? "true" : "false");
+    updateNearbyControlVisibility();
+  }
+  window.updateNearbyFavoritesFilterButton = updateNearbyFavoritesFilterButton;
+
   function updateNearbySortButton() {
     if (!sortBtn) return;
     const mode = hgActiveLeftPanelMode();
-    const isSortableMode = mode === "nearby" || mode === "favorites";
+    const isSortableMode = mode === "nearby";
     updateNearbyControlVisibility();
     if (!isSortableMode) return;
 
@@ -612,10 +645,20 @@ function initLeftPanel() {
     });
   }
 
+  if (favoritesBtn) {
+    favoritesBtn.addEventListener("click", () => {
+      if (hgActiveLeftPanelMode() !== "nearby") return;
+      window.HG_NEARBY_FAVORITES_ONLY = !window.HG_NEARBY_FAVORITES_ONLY;
+      try { localStorage.setItem("hg_nearby_favorites_filter_v1", window.HG_NEARBY_FAVORITES_ONLY ? "1" : "0"); } catch {}
+      updateNearbyFavoritesFilterButton();
+      rerenderActiveLeftPanelMode();
+    });
+  }
+
   if (sortBtn) {
     sortBtn.addEventListener("click", () => {
       const mode = hgActiveLeftPanelMode();
-      if (mode !== "nearby" && mode !== "favorites") return;
+      if (mode !== "nearby") return;
 
       const current = normalizeNearbySort(window.HG_NEARBY_SORT);
       const i = SORT_ORDER.indexOf(current);
@@ -629,6 +672,7 @@ function initLeftPanel() {
 
   updateFilterButton();
   updateBadgeFilterButton();
+  updateNearbyFavoritesFilterButton();
   updateNearbySortButton();
   updateNearbyControlVisibility();
 }
