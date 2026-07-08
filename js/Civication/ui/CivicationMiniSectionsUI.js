@@ -11,6 +11,7 @@
   const CATEGORY_STORAGE_KEY = "hg_civi_selected_life_category_v1";
 
   const CATEGORY_CONFIG = {
+    minDag: { label: "Min dag" },
     personlig: { label: "Personlig" },
     karriere: { label: "Karriere" },
     fritid: { label: "Fritid" },
@@ -19,6 +20,13 @@
   };
 
   const SECTION_CONFIG = {
+    civiLifestorySection: {
+      category: "minDag",
+      label: "Min dag",
+      source: "civiLifestoryPanel",
+      noMiniCard: true
+    },
+
     activeJobSection: {
       category: "karriere",
       label: "Aktiv rolle",
@@ -373,8 +381,7 @@
   let selectedCategory = null;
 
   function getPreferredDefaultCategory() {
-    const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.());
-    return active ? "karriere" : "personlig";
+    return "minDag";
   }
 
   function getSelectedCategory() {
@@ -955,7 +962,7 @@
   function ensureMiniStructure(section, key, config) {
     if (!section || section.dataset.civiMiniReady === "1") return;
     if (section.id === "civiDashboardSection") return;
-    if (section.id === "civiLifestorySection") return;
+    if (config.noMiniCard || section.id === "civiLifestorySection") return;
 
     const existingChildren = Array.from(section.childNodes);
     const body = document.createElement("div");

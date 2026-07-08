@@ -279,8 +279,7 @@ body.civi-app.civi-mini-mode #civiTrackHUD > :not(.civi-mini-card):not(.civi-sec
   display: none;
 }
 
-/* Min dag / Life Story er primær fortellingsflate, ikke et minikort.
-   Den må derfor være eksplisitt synlig også etter at mini-mode er aktivert. */
+/* Min dag / Life Story er egen kategori/fane, ikke et permanent toppkort eller minikort. */
 body.civi-app.civi-mini-mode #civiLifestorySection {
   grid-column: 1 / -1;
   min-height: auto;
@@ -292,10 +291,17 @@ body.civi-app.civi-mini-mode #civiLifestorySection {
     inset 0 1px 0 rgba(255,255,255,0.045),
     0 10px 24px rgba(0,0,0,0.18);
   overflow: visible;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 body.civi-app.civi-mini-mode #civiLifestorySection > h2 {
   display: block;
+}
+
+body.civi-app.civi-mini-mode #civiLifestorySection.civi-hidden-by-category {
+  display: none !important;
 }
 
 body.civi-app.civi-mini-mode #civiLifestoryPanel,
@@ -324,11 +330,6 @@ body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-choice {
   min-width: 0;
 }
 
-@media (min-width: 1100px) {
-  body.civi-app.civi-mini-mode #civiLifestorySection {
-    grid-column: span 8;
-  }
-}
 
 /* ------------------------------------------------------------
    Popup for Civication-seksjoner.
