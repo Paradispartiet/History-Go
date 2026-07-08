@@ -23,6 +23,9 @@ type PlaceRow = JsonObject & {
   groundhopper?: unknown;
   sourceFile?: unknown;
 };
+type PlaceExclusions = JsonObject & {
+  disabledPlaceIds?: unknown[];
+};
 type LightField = keyof PlaceRow;
 type LightPlace = Partial<Record<LightField, unknown>>;
 type IndexDiff = {
@@ -37,6 +40,7 @@ type IndexDiff = {
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
 const ACTUAL_INDEX_PATH = path.join(ROOT, 'data/places/places_index.json');
+const EXCLUSIONS_PATH = path.join(ROOT, 'data/places/place_exclusions.json');
 
 const LIGHT_FIELDS: LightField[] = [
   'id',
@@ -70,6 +74,10 @@ function isPlaceManifest(value: unknown): value is PlaceManifest {
   return isJsonObject(value) && (!Object.prototype.hasOwnProperty.call(value, 'files') || Array.isArray(value.files));
 }
 
+function isPlaceExclusions(value: unknown): value is PlaceExclusions {
+  return isJsonObject(value) && (!Object.prototype.hasOwnProperty.call(value, 'disabledPlaceIds') || Array.isArray(value.disabledPlaceIds));
+}
+
 function isPlaceRow(value: unknown): value is PlaceRow {
   return isJsonObject(value);
 }
@@ -86,6 +94,18 @@ function pickLight(place: PlaceRow, sourceFile = ''): LightPlace {
 async function readJson(filePath: string): Promise<unknown> {
   const raw = await fs.readFile(filePath, 'utf8');
   return JSON.parse(raw) as unknown;
+}
+
+async function readDisabledPlaceIds(): Promise<Set<string>> {
+  try {
+    const exclusions = await readJson(EXCLUSIONS_PATH);
+    if (!isPlaceExclusions(exclusions) || !Array.isArray(exclusions.disabledPlaceIds)) return new Set();
+    return new Set(exclusions.disabledPlaceIds.filter((id): id is string => typeof id === 'string' && id.trim().length > 0));
+  } catch (error: unknown) {
+    const code = hasObjectType(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Set();
+    throw error;
+  }
 }
 
 function formatValue(value: unknown): string | undefined {
@@ -179,6 +199,7 @@ function compareEntries(expectedEntry: unknown, actualEntry: unknown, idx: numbe
 async function buildExpectedIndex(): Promise<LightPlace[]> {
   const manifest = await readJson(MANIFEST_PATH);
   const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
+  const disabledPlaceIds = await readDisabledPlaceIds();
   const out: LightPlace[] = [];
 
   for (const rel of files) {
@@ -188,6 +209,8 @@ async function buildExpectedIndex(): Promise<LightPlace[]> {
 
     for (const place of places) {
       if (!isPlaceRow(place)) continue;
+      const id = typeof place.id === 'string' ? place.id : '';
+      if (id && disabledPlaceIds.has(id)) continue;
       out.push(pickLight(place, rel as string));
     }
   }
@@ -197,7 +220,16 @@ async function buildExpectedIndex(): Promise<LightPlace[]> {
 
 async function main(): Promise<void> {
   const expectedIndex = await buildExpectedIndex();
-  const actualIndex = await readJson(ACTUAL_INDEX_PATH);
+  const actualIndexRaw = await readJson(ACTUAL_INDEX_PATH);
+  const disabledPlaceIds = await readDisabledPlaceIds();
+
+  const actualIndex = Array.isArray(actualIndexRaw)
+    ? actualIndexRaw.filter((entry) => {
+        if (!isJsonObject(entry)) return true;
+        const id = typeof entry.id === 'string' ? entry.id : '';
+        return !id || !disabledPlaceIds.has(id);
+      })
+    : actualIndexRaw;
 
   const diffs: IndexDiff[] = [];
 
@@ -238,7 +270,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  console.log('places_index.json is in sync with source place files.');
+  console.log('places_index.json is in sync with source place files after disabled-place filtering.');
   process.exit(0);
 }
 
