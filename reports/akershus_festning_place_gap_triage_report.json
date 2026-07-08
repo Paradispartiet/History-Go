@@ -3,13 +3,15 @@
   "quizReference": {
     "targetId": "akershus_festning",
     "quizFile": "data/quiz/historie/akershus_festning_sets.json",
+    "quizFileExists": true,
+    "quizFileTopLevelTargetId": "akershus_festning",
     "questionPlaceIdsActuallyUsed": [
       "akershus_festning"
     ],
     "questionScopesActuallyUsed": [
       "place"
     ],
-    "conclusion": "quiz/manifest are internally consistent: the quiz top-level targetId is akershus_festning and the questions consistently use placeId akershus_festning with question_scope place. The gap is missing canonical place data, not a quiz or manifest mismatch."
+    "conclusion": "Quiz and manifest are internally consistent."
   },
   "existingCandidatePlaces": [
     {
@@ -20,11 +22,11 @@
       "category": "historie",
       "sourceFile": "data/places/historie/oslo/places_historie.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": false,
-        "typoCandidate": true,
-        "possibleAlias": true,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": false,
+        "typo_candidate": true,
+        "possible_alias": true,
+        "should_not_be_reused": true,
         "notes": "This entry describes the Akershus slott/festning site and has Wikidata Q644464 coordinates, but both id and name are misspelled as Akerhus. It is the strongest existing candidate for later data cleanup, but reusing it directly would leave the quiz target akershus_festning unresolved and preserve a typo id."
       }
     },
@@ -36,11 +38,11 @@
       "category": "naeringsliv",
       "sourceFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": true,
-        "typoCandidate": false,
-        "possibleAlias": false,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": true,
+        "typo_candidate": false,
+        "possible_alias": false,
+        "should_not_be_reused": true,
         "notes": "Shares the Akershus string and is geographically nearby, but it is quay/harbor infrastructure with naeringsliv quiz profile, not the fortress/slott place targeted by the quiz."
       }
     },
@@ -52,11 +54,11 @@
       "category": "naeringsliv",
       "sourceFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": true,
-        "typoCandidate": false,
-        "possibleAlias": false,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": true,
+        "typo_candidate": false,
+        "possible_alias": false,
+        "should_not_be_reused": true,
         "notes": "References Akershus slott in the id, but the entry is for a bakery/production site by Akershus rather than the fortress itself."
       }
     },
@@ -68,11 +70,11 @@
       "category": "naeringsliv",
       "sourceFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": true,
-        "typoCandidate": false,
-        "possibleAlias": false,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": true,
+        "typo_candidate": false,
+        "possible_alias": false,
+        "should_not_be_reused": true,
         "notes": "Shares Akershus in the organization name, but is not Akershus festning/slott."
       }
     },
@@ -84,11 +86,11 @@
       "category": "historie",
       "sourceFile": "data/places/historie/oslo/places_historie.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": true,
-        "typoCandidate": false,
-        "possibleAlias": false,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": true,
+        "typo_candidate": false,
+        "possible_alias": false,
+        "should_not_be_reused": true,
         "notes": "Contains the slott naming pattern, but refers to the Royal Palace, a different Oslo place."
       }
     },
@@ -100,11 +102,11 @@
       "category": "by",
       "sourceFile": "data/places/by/oslo/places_by.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": true,
-        "typoCandidate": false,
-        "possibleAlias": false,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": true,
+        "typo_candidate": false,
+        "possible_alias": false,
+        "should_not_be_reused": true,
         "notes": "Contains slott in the name/id, but refers to Slottsparken by the Royal Palace, not Akershus festning."
       }
     },
@@ -116,11 +118,11 @@
       "category": "populaerkultur",
       "sourceFile": "data/places/popkultur/oslo/places_oslo_populaerkultur.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": true,
-        "typoCandidate": false,
-        "possibleAlias": false,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": true,
+        "typo_candidate": false,
+        "possible_alias": false,
+        "should_not_be_reused": true,
         "notes": "Contains slott in the name/id, but is the palace square, not Akershus festning."
       }
     },
@@ -132,11 +134,11 @@
       "category": "historie",
       "sourceFile": "data/places/historie/akershus/places_historie_akershus_batch1.json",
       "assessment": {
-        "exactMatch": false,
-        "wrongPlace": true,
-        "typoCandidate": false,
-        "possibleAlias": false,
-        "shouldNotBeReused": true,
+        "exact_match": false,
+        "wrong_place": true,
+        "typo_candidate": false,
+        "possible_alias": false,
+        "should_not_be_reused": true,
         "notes": "A fortress candidate from Akershus county history data, but it is Oscarsborg, not Akershus festning."
       }
     }
@@ -176,6 +178,7 @@
     "automaticFixesApplied": false
   },
   "sourceFilesReviewed": [
+    "reports/quiz_manifest_v2_audit_report.json",
     "reports/quiz_manifest_v2_unresolved_targets_triage_report.json",
     "data/quiz/historie/akershus_festning_sets.json",
     "data/places/places_index.json",
