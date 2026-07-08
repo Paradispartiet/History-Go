@@ -1093,12 +1093,16 @@ body.civi-mapmode .civi-panels{
   display:flex;
   flex-direction:column;
   gap:12px;
+  max-width:100%;
+  min-width:0;
+  overflow-x:hidden;
 }
 
 .civi-lifestory-status{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
+  min-width:0;
 }
 
 .civi-lifestory-status-chip,
@@ -1135,7 +1139,15 @@ body.civi-mapmode .civi-panels{
 .civi-lifestory-scene,
 .civi-lifestory-konsekvens,
 .civi-lifestory-summary{
+  min-width:0;
+  max-width:100%;
   padding:14px;
+  overflow-wrap:anywhere;
+}
+
+.civi-lifestory-scene{
+  display:flex;
+  flex-direction:column;
 }
 
 .civi-lifestory-kicker{
@@ -1168,6 +1180,11 @@ body.civi-mapmode .civi-panels{
 }
 
 .civi-lifestory-threadline{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  min-width:0;
   margin:10px 0 12px;
   color:var(--ink2);
 }
@@ -1182,10 +1199,16 @@ body.civi-mapmode .civi-panels{
 
 .civi-lifestory-choices{
   flex-direction:column;
+  width:100%;
+  max-width:100%;
+  min-width:0;
 }
 
 .civi-lifestory-choice{
+  box-sizing:border-box;
   width:100%;
+  max-width:100%;
+  min-width:0;
   min-height:48px;
   text-align:left;
   padding:12px 14px;
@@ -1196,6 +1219,8 @@ body.civi-mapmode .civi-panels{
   font:inherit;
   font-weight:850;
   cursor:pointer;
+  white-space:normal;
+  overflow-wrap:anywhere;
 }
 
 .civi-lifestory-choice:hover{
@@ -1221,10 +1246,14 @@ body.civi-mapmode .civi-panels{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:10px;
+  min-width:0;
+  max-width:100%;
 }
 
 .civi-lifestory-panels > section{
+  min-width:0;
   padding:10px;
+  overflow-wrap:anywhere;
 }
 
 .civi-lifestory-panels h4,
@@ -1262,6 +1291,19 @@ body.civi-mapmode .civi-panels{
 .civi-thread-badge.is-escalated{ border-color:rgba(248,113,113,.55); color:#fecaca; }
 .civi-thread-badge.is-completed{ border-color:rgba(74,222,128,.40); }
 .civi-thread-badge.is-dormant{ border-color:rgba(148,163,184,.35); color:#cbd5e1; }
+
+@media (max-width: 1100px){
+  .civi-lifestory-scene{
+    flex-direction:column;
+  }
+  .civi-lifestory-choices{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .civi-lifestory-panels{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
 
 @media (max-width: 720px){
   .topbar{ align-items:flex-start; gap:8px; }
