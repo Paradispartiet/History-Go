@@ -6,7 +6,7 @@ Kort oppsummering:
 
 - Data-only translation batch.
 - 20 placeIds translated to en/es/pt.
-- Priority: Oslo nature/route places first, then next visible Oslo knowledge/media/civic places where Oslo nature candidates were exhausted.
+- Priority: next missing Oslo/Østlandet-region places after the Oslo nature/route priority files were already translated.
 - No runtime changes.
 - No UI dictionary changes.
 - No canonical place-data changes.
@@ -23,36 +23,36 @@ Files changed:
 
 ## Selection method
 
-The 20 ids were selected from canonical ids in `data/places/manifest.json` source files, then compared against `data/i18n/content/places/en.json`, `data/i18n/content/places/es.json` and `data/i18n/content/places/pt.json`.
-
-Selection prioritized Oslo nature/route source files. The main Akerselva, Alnaelva, Alna, Bygdøy and Oslo nature hub files were already translated in all three languages, so the batch used the remaining untranslated Oslo salamander-pond nature file first. The remaining slots were filled with next visible Oslo science/nature-knowledge, media and civic places that had direct visible `name`, `desc` and `popupDesc` fields.
-
-Already translated ids, stale translation-only ids, non-manifest ids and entries without direct visible canonical fields were excluded.
+- Canonical ids were read from `data/places/manifest.json` and the manifest-listed source files under `data/places/**`.
+- Candidate ids were compared against `data/i18n/content/places/en.json`, `data/i18n/content/places/es.json` and `data/i18n/content/places/pt.json`.
+- The Oslo nature/route priority source files were checked first. Their visible direct fields were already translated in all three language files in this branch, so no new missing ids remained there.
+- The batch then selected the next 20 missing manifest-backed Østlandet/Oslo-region placeIds from the audit order, prioritizing visible public-history, waterway, route, landscape, defence and urban-culture places with direct `name`, `desc` and `popupDesc` fields.
+- Already translated ids, stale translation-only ids, non-manifest ids and entries without canonical visible direct fields were excluded.
 
 ## Source placeIds
 
 | placeId | Canonical source file | Selection reason | Fields translated |
 |---|---|---|---|
-| `bygdoy_kongsgard_salamanderdam` | `data/places/natur/oslo/places_oslo_natur_salamanderdammer.json` | Oslo nature; remaining untranslated salamander pond | `name`, `desc`, `popupDesc` |
-| `bantjern_salamanderlokalitet` | `data/places/natur/oslo/places_oslo_natur_salamanderdammer.json` | Oslo nature; remaining untranslated salamander site | `name`, `desc`, `popupDesc` |
-| `tjernsmyr_salamanderlokalitet` | `data/places/natur/oslo/places_oslo_natur_salamanderdammer.json` | Oslo nature; remaining untranslated wetland/amphibian site | `name`, `desc`, `popupDesc` |
-| `blindern_forskningsparken_salamanderdam` | `data/places/natur/oslo/places_oslo_natur_salamanderdammer.json` | Oslo nature; remaining untranslated urban amphibian pond | `name`, `desc`, `popupDesc` |
-| `naturhistorisk_museum` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo science/nature-knowledge place | `name`, `desc`, `popupDesc` |
-| `botanisk_hage` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo science/nature-knowledge place | `name`, `desc`, `popupDesc` |
-| `forskningsparken` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo visible knowledge place | `name`, `desc`, `popupDesc` |
-| `meteorologisk_institutt` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo science/nature-data place | `name`, `desc`, `popupDesc` |
-| `universitetet_i_oslo_blindern` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo visible knowledge place | `name`, `desc`, `popupDesc` |
-| `teknisk_museum` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo science/history place | `name`, `desc`, `popupDesc` |
-| `rikshospitalet` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo science/medical knowledge place | `name`, `desc`, `popupDesc` |
-| `radiumhospitalet` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo science/medical knowledge place | `name`, `desc`, `popupDesc` |
-| `oslo_met_pilestredet` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo visible knowledge place | `name`, `desc`, `popupDesc` |
-| `arkitektur_og_designhogskolen` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo visible knowledge place | `name`, `desc`, `popupDesc` |
-| `bi_nydalen` | `data/places/vitenskap/oslo/places_vitenskap.json` | Oslo visible knowledge place | `name`, `desc`, `popupDesc` |
-| `nrk_huset_marienlyst` | `data/places/media/oslo/places_oslo_media.json` | Oslo visible media/culture place | `name`, `desc`, `popupDesc` |
-| `aftenposten_akersgata` | `data/places/media/oslo/places_oslo_media.json` | Oslo visible media/history place | `name`, `desc`, `popupDesc` |
-| `dagbladet_akersgata` | `data/places/media/oslo/places_oslo_media.json` | Oslo visible media/history place | `name`, `desc`, `popupDesc` |
-| `klassekampen_redaksjon` | `data/places/media/oslo/places_oslo_media.json` | Oslo visible media/history place | `name`, `desc`, `popupDesc` |
-| `hoyesteretts_hus` | `data/places/politikk/oslo/places_politikk.json` | Oslo visible civic/history place | `name`, `desc`, `popupDesc` |
+| `hoytorp_fort` | `data/places/historie/ostfold/places_historie_ostfold_batch2.json` | Next missing Østlandet defence/landscape place after Oslo nature files were already translated | `name`, `desc`, `popupDesc` |
+| `orje_sluser_haldenkanalen` | `data/places/historie/ostfold/places_historie_ostfold_batch2.json` | Next missing Østlandet waterway/route infrastructure place | `name`, `desc`, `popupDesc` |
+| `basmo_festning` | `data/places/historie/ostfold/places_historie_ostfold_batch2.json` | Next missing Østlandet border-landscape heritage place | `name`, `desc`, `popupDesc` |
+| `eidsberg_kirke` | `data/places/historie/ostfold/places_historie_ostfold_batch2.json` | Next missing Østlandet medieval church place | `name`, `desc`, `popupDesc` |
+| `rygge_kirke` | `data/places/historie/ostfold/places_historie_ostfold_batch2.json` | Next missing Østlandet pilgrim-route/church place | `name`, `desc`, `popupDesc` |
+| `hvaler_kirke` | `data/places/historie/ostfold/places_historie_ostfold_batch2.json` | Next missing Østlandet coastal church and maritime-landscape place | `name`, `desc`, `popupDesc` |
+| `askim_gummivarefabrikk` | `data/places/historie/ostfold/places_historie_ostfold_batch2.json` | Next missing Østlandet industrial-history place | `name`, `desc`, `popupDesc` |
+| `borregaard_sarpsborg_industri` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet river/industry place | `name`, `desc`, `popupDesc` |
+| `sarpsfossen` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet waterfall, town-foundation and industry place | `name`, `desc`, `popupDesc` |
+| `spydeberg_prestegard_1814` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet 1814 public-history place | `name`, `desc`, `popupDesc` |
+| `skjeberg_kirke` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet ancient-landscape/church place | `name`, `desc`, `popupDesc` |
+| `tistedalen_saugbrugsforeningen` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet watercourse/industrial landscape place | `name`, `desc`, `popupDesc` |
+| `indreroed_gard_fredrikstad` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet cultural-landscape/farm-history place | `name`, `desc`, `popupDesc` |
+| `varne_kloster` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet monastery/estate-history place | `name`, `desc`, `popupDesc` |
+| `onsøy_kirke` | `data/places/historie/ostfold/places_historie_ostfold_batch3.json` | Next missing Østlandet rural church-place entry | `name`, `desc`, `popupDesc` |
+| `isegran_fort_verft` | `data/places/historie/ostfold/places_historie_ostfold_batch4.json` | Next missing Østlandet river-defence and maritime-craft place | `name`, `desc`, `popupDesc` |
+| `akeroya_fort` | `data/places/historie/ostfold/places_historie_ostfold_batch4.json` | Next missing Østlandet coastal-defence/nature-landscape place | `name`, `desc`, `popupDesc` |
+| `trogstad_fort` | `data/places/historie/ostfold/places_historie_ostfold_batch4.json` | Next missing Østlandet inland fortification place | `name`, `desc`, `popupDesc` |
+| `rodenes_kirke` | `data/places/historie/ostfold/places_historie_ostfold_batch4.json` | Next missing Østlandet lake-landscape/church place | `name`, `desc`, `popupDesc` |
+| `fredrikshalds_teater` | `data/places/historie/ostfold/places_historie_ostfold_batch4.json` | Next missing Østlandet visible urban-culture place | `name`, `desc`, `popupDesc` |
 
 ## Skipped candidates
 
@@ -60,7 +60,6 @@ Already translated ids, stale translation-only ids, non-manifest ids and entries
 |---|---|
 | `frysjadammen` | already translated |
 | `alnsjoen_alna_kilde` | already translated |
-| `alnaelva` | already translated |
 | `bygdoy_kongeskogen` | already translated |
 | `ostensjovannet` | already translated |
 | `ljanselva` | already translated |
@@ -69,66 +68,66 @@ Already translated ids, stale translation-only ids, non-manifest ids and entries
 
 | Language | File | Entries before | Entries after | Added entries |
 |---|---|---:|---:|---:|
-| English | `data/i18n/content/places/en.json` | 488 canonical / 494 total | 508 canonical / 514 total | 20 |
-| Spanish | `data/i18n/content/places/es.json` | 488 canonical / 494 total | 508 canonical / 514 total | 20 |
-| Portuguese | `data/i18n/content/places/pt.json` | 488 canonical / 494 total | 508 canonical / 514 total | 20 |
+| English | `data/i18n/content/places/en.json` | 508 canonical / 514 total | 528 canonical / 534 total | 20 |
+| Spanish | `data/i18n/content/places/es.json` | 508 canonical / 514 total | 528 canonical / 534 total | 20 |
+| Portuguese | `data/i18n/content/places/pt.json` | 508 canonical / 514 total | 528 canonical / 534 total | 20 |
 
 ## Added translations
 
 | placeId | en | es | pt | Notes |
 |---|---|---|---|---|
-| `bygdoy_kongsgard_salamanderdam` | Bygdøy Kongsgård salamander pond | Estanque de salamandras de Bygdøy Kongsgård | Lagoa de salamandras de Bygdøy Kongsgård | Salamander pond |
-| `bantjern_salamanderlokalitet` | Båntjern salamander site | Lugar de salamandras de Båntjern | Local de salamandras de Båntjern | Amphibian site |
-| `tjernsmyr_salamanderlokalitet` | Tjernsmyr salamander site | Lugar de salamandras de Tjernsmyr | Local de salamandras de Tjernsmyr | Wetland |
-| `blindern_forskningsparken_salamanderdam` | Blindern/Forskningsparken salamander pond | Estanque de salamandras de Blindern/Forskningsparken | Lagoa de salamandras de Blindern/Forskningsparken | Urban pond |
-| `naturhistorisk_museum` | Natural History Museum | Museo de Historia Natural | Museu de História Natural | Nature science |
-| `botanisk_hage` | Botanical Garden | Jardín Botánico | Jardim Botânico | Plants |
-| `forskningsparken` | Forskningsparken | Forskningsparken | Forskningsparken | Knowledge cluster |
-| `meteorologisk_institutt` | Norwegian Meteorological Institute | Instituto Meteorológico de Noruega | Instituto Meteorológico da Noruega | Weather/climate data |
-| `universitetet_i_oslo_blindern` | University of Oslo, Blindern | Universidad de Oslo, Blindern | Universidade de Oslo, Blindern | Campus |
-| `teknisk_museum` | Norwegian Museum of Science and Technology | Museo Noruego de Ciencia y Tecnología | Museu Norueguês de Ciência e Tecnologia | Technology/science |
-| `rikshospitalet` | Rikshospitalet | Rikshospitalet | Rikshospitalet | Medical research |
-| `radiumhospitalet` | Radiumhospitalet | Radiumhospitalet | Radiumhospitalet | Oncology |
-| `oslo_met_pilestredet` | OsloMet, Pilestredet | OsloMet, Pilestredet | OsloMet, Pilestredet | Applied research |
-| `arkitektur_og_designhogskolen` | Oslo School of Architecture and Design | Escuela de Arquitectura y Diseño de Oslo | Escola de Arquitetura e Design de Oslo | Built environment |
-| `bi_nydalen` | BI in Nydalen | BI en Nydalen | BI em Nydalen | Social science |
-| `nrk_huset_marienlyst` | The NRK building at Marienlyst | El edificio de NRK en Marienlyst | O edifício da NRK em Marienlyst | Broadcasting |
-| `aftenposten_akersgata` | Aftenposten in Akersgata | Aftenposten en Akersgata | Aftenposten em Akersgata | Press history |
-| `dagbladet_akersgata` | Dagbladet in Akersgata | Dagbladet en Akersgata | Dagbladet em Akersgata | Press history |
-| `klassekampen_redaksjon` | The Klassekampen editorial office (Hausmanns gate) | Redacción de Klassekampen (Hausmanns gate) | Redação do Klassekampen (Hausmanns gate) | Editorial history |
-| `hoyesteretts_hus` | The Supreme Court building | El edificio del Tribunal Supremo | O edifício do Supremo Tribunal | Civic history |
+| `hoytorp_fort` | Høytorp Fort | Fuerte de Høytorp | Forte de Høytorp | Defence landscape |
+| `orje_sluser_haldenkanalen` | Ørje Locks / Halden Canal | Esclusas de Ørje / canal de Halden | Eclusas de Ørje / Canal de Halden | Waterway route |
+| `basmo_festning` | Basmo Fortress | Fortaleza de Basmo | Fortaleza de Basmo | Border fortress |
+| `eidsberg_kirke` | Eidsberg Church | Iglesia de Eidsberg | Igreja de Eidsberg | Medieval church |
+| `rygge_kirke` | Rygge Church | Iglesia de Rygge | Igreja de Rygge | Pilgrim-route church |
+| `hvaler_kirke` | Hvaler Church | Iglesia de Hvaler | Igreja de Hvaler | Coastal church |
+| `askim_gummivarefabrikk` | Askim Rubber Factory / Viking | Fábrica de caucho de Askim / Viking | Fábrica de borracha de Askim / Viking | Industrial history |
+| `borregaard_sarpsborg_industri` | Borregaard Sarpsborg | Borregaard Sarpsborg | Borregaard Sarpsborg | River industry |
+| `sarpsfossen` | Sarpsfossen | Sarpsfossen | Sarpsfossen | Waterfall/town |
+| `spydeberg_prestegard_1814` | Spydeberg Parsonage / 1814 meeting | Casa parroquial de Spydeberg / reunión de 1814 | Casa paroquial de Spydeberg / reunião de 1814 | 1814 site |
+| `skjeberg_kirke` | Skjeberg Church | Iglesia de Skjeberg | Igreja de Skjeberg | Ancient landscape |
+| `tistedalen_saugbrugsforeningen` | Tistedalen / Saugbrugsforeningen | Tistedalen / Saugbrugsforeningen | Tistedalen / Saugbrugsforeningen | Watercourse industry |
+| `indreroed_gard_fredrikstad` | Indre Rød Farm | Granja Indre Rød | Quinta Indre Rød | Farm landscape |
+| `varne_kloster` | Værne Monastery | Monasterio de Værne | Mosteiro de Værne | Monastery/estate |
+| `onsøy_kirke` | Onsøy Church | Iglesia de Onsøy | Igreja de Onsøy | Rural church |
+| `isegran_fort_verft` | Isegran Fort and Maritime Centre | Fuerte de Isegran y centro marítimo | Forte de Isegran e Centro Marítimo | River/maritime heritage |
+| `akeroya_fort` | Akerøya Fort | Fuerte de Akerøya | Forte de Akerøya | Coastal defence |
+| `trogstad_fort` | Trøgstad Fort | Fuerte de Trøgstad | Forte de Trøgstad | Inland fort |
+| `rodenes_kirke` | Rødenes Church | Iglesia de Rødenes | Igreja de Rødenes | Lake church |
+| `fredrikshalds_teater` | Fredrikshald Theatre | Teatro de Fredrikshald | Teatro de Fredrikshald | Theatre history |
 
 ## Fields translated
 
 | placeId | name | desc | popupDesc | Other fields |
 |---|---:|---:|---:|---|
-| `bygdoy_kongsgard_salamanderdam` | yes | yes | yes | none |
-| `bantjern_salamanderlokalitet` | yes | yes | yes | none |
-| `tjernsmyr_salamanderlokalitet` | yes | yes | yes | none |
-| `blindern_forskningsparken_salamanderdam` | yes | yes | yes | none |
-| `naturhistorisk_museum` | yes | yes | yes | none |
-| `botanisk_hage` | yes | yes | yes | none |
-| `forskningsparken` | yes | yes | yes | none |
-| `meteorologisk_institutt` | yes | yes | yes | none |
-| `universitetet_i_oslo_blindern` | yes | yes | yes | none |
-| `teknisk_museum` | yes | yes | yes | none |
-| `rikshospitalet` | yes | yes | yes | none |
-| `radiumhospitalet` | yes | yes | yes | none |
-| `oslo_met_pilestredet` | yes | yes | yes | none |
-| `arkitektur_og_designhogskolen` | yes | yes | yes | none |
-| `bi_nydalen` | yes | yes | yes | none |
-| `nrk_huset_marienlyst` | yes | yes | yes | none |
-| `aftenposten_akersgata` | yes | yes | yes | none |
-| `dagbladet_akersgata` | yes | yes | yes | none |
-| `klassekampen_redaksjon` | yes | yes | yes | none |
-| `hoyesteretts_hus` | yes | yes | yes | none |
+| `hoytorp_fort` | yes | yes | yes | none |
+| `orje_sluser_haldenkanalen` | yes | yes | yes | none |
+| `basmo_festning` | yes | yes | yes | none |
+| `eidsberg_kirke` | yes | yes | yes | none |
+| `rygge_kirke` | yes | yes | yes | none |
+| `hvaler_kirke` | yes | yes | yes | none |
+| `askim_gummivarefabrikk` | yes | yes | yes | none |
+| `borregaard_sarpsborg_industri` | yes | yes | yes | none |
+| `sarpsfossen` | yes | yes | yes | none |
+| `spydeberg_prestegard_1814` | yes | yes | yes | none |
+| `skjeberg_kirke` | yes | yes | yes | none |
+| `tistedalen_saugbrugsforeningen` | yes | yes | yes | none |
+| `indreroed_gard_fredrikstad` | yes | yes | yes | none |
+| `varne_kloster` | yes | yes | yes | none |
+| `onsøy_kirke` | yes | yes | yes | none |
+| `isegran_fort_verft` | yes | yes | yes | none |
+| `akeroya_fort` | yes | yes | yes | none |
+| `trogstad_fort` | yes | yes | yes | none |
+| `rodenes_kirke` | yes | yes | yes | none |
+| `fredrikshalds_teater` | yes | yes | yes | none |
 
 ## Quality checks
 
 - JSON parse result: `place content json ok`.
 - Selected ids present in all three files: `selected place translations ok`.
-- No empty values among new entries: covered by selected-id check.
-- No missing selected ids: covered by selected-id check.
+- No empty values among new entries: covered by selected-id coverage check.
+- No missing selected ids: covered by selected-id coverage check.
 - No runtime files changed: `git diff -- js` produced no diff.
 - No UI dictionaries changed: `git diff -- data/i18n/ui` produced no diff.
 - No canonical place data changed: `git diff -- data/places` produced no diff.
