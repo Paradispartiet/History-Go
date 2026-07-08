@@ -128,27 +128,43 @@
    * @param {{ state?: any, view?: any, includeEmptyRole?: boolean }} [options]
    * @returns {string}
    */
-  function renderCivicationHeaderStatus(options) {
+  function getHeaderStatusChips(options) {
     const opts = options || {};
     const lifeState = opts.state || {};
     const view = opts.view || {};
     const meters = lifeState.meters || {};
     const activeRoleTitle = getCanonicalActiveRoleTitle();
-    const parts = [];
+    const chips = [];
 
     if (activeRoleTitle) {
-      parts.push(activeRoleTitle);
+      chips.push({ kind: "role", label: activeRoleTitle });
     } else if (opts.includeEmptyRole !== false) {
-      parts.push("Ingen aktiv rolle");
+      chips.push({ kind: "role is-empty", label: "Ingen aktiv rolle" });
     }
 
-    parts.push("Dag " + asNumber(lifeState.dag, 1));
-    parts.push(view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen"));
-    parts.push("Psyke " + asNumber(meters.psyke, 62));
-    parts.push("Energi " + asNumber(meters.energi, 71));
-    parts.push(asNumber(meters.penger, getWalletPC()) + " PC");
+    chips.push({ kind: "day", label: "Dag " + asNumber(lifeState.dag, 1) });
+    chips.push({ kind: "phase", label: view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen") });
+    chips.push({ kind: "meter", label: "Psyke " + asNumber(meters.psyke, 62) });
+    chips.push({ kind: "meter", label: "Energi " + asNumber(meters.energi, 71) });
+    chips.push({ kind: "pc", label: asNumber(meters.penger, getWalletPC()) + " PC" });
 
-    return parts.filter(Boolean).join(" · ");
+    return chips.filter(function (chip) { return chip && chip.label; });
+  }
+
+  /**
+   * @param {{ state?: any, view?: any, includeEmptyRole?: boolean }} [options]
+   * @returns {string}
+   */
+  function renderCivicationHeaderStatus(options) {
+    return getHeaderStatusChips(options).map(function (chip) { return chip.label; }).join(" · ");
+  }
+
+  function renderHeaderChip(chip) {
+    const span = document.createElement("span");
+    span.className = "civi-header-chip civi-header-chip--" + String(chip.kind || "status").replace(/\s+/g, " civi-header-chip--");
+    span.textContent = chip.label;
+    span.title = chip.label;
+    return span;
   }
 
   let lastHeaderStatusOptions = null;
@@ -157,7 +173,9 @@
     if (options) lastHeaderStatusOptions = options;
     const header = $("civiLifestoryHeaderStatus");
     if (!header) return;
-    header.textContent = renderCivicationHeaderStatus(options || lastHeaderStatusOptions || undefined);
+    const chips = getHeaderStatusChips(options || lastHeaderStatusOptions || undefined);
+    header.textContent = "";
+    chips.map(renderHeaderChip).forEach(function (chip) { header.appendChild(chip); });
   }
 
   function getCiviState() {
