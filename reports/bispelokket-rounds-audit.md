@@ -4,7 +4,7 @@
 - people: 🔴
 - tasks: ✅
 - badges: ✅
-- works: 🔴
+- works: ✅
 - civication: ✅
 - brands: 🔴
 - før_nå: ✅
@@ -13,7 +13,7 @@
 
 ## Mangler
 - people: mangler eksplisitt personkobling for Bispelokket; eksisterende helserapport peker også på `missing_people_linkage`.
-- works: mangler `works`-liste i Bispelokket source-data.
+- works: har stedsspesifikk `works`-liste i Bispelokket source-data med infrastrukturverk, konstruksjon, byplaninngrep, infrastrukturgrep og byutviklingsverk.
 - civication: har stedsspesifikke `civication_store`-items i Bispelokket source-data.
 - brands: mangler eksplisitte merkevare-/aktørkoblinger for stedet.
 - badges: har `emne_ids`, og vurderes derfor grønn for rundingens minimumskobling.
@@ -21,4 +21,4 @@
 - leksikon: `data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json` har leksikonoppføring for `place_id: "bispelokket"`.
 
 ## Anbefalt neste steg
-Fyll `tasks` først med en manuell `tasks_profile` for Bispelokket. Den kan bygge direkte på stedets kjerne som revet trafikkmaskin, barriere og skifte fra bilby til Fjordbyen, og vil gi en tydelig interaktiv runding uten å kreve at alle øvrige innholdstyper ferdigstilles samtidig.
+Fyll `brands` med eksplisitte merkevare-/aktørkoblinger for Bispelokket, siden dette nå er neste strukturelle hull etter at `tasks`, `works`, `civication`, `før_nå`, `fortellinger` og `leksikon` er dekket.
