@@ -316,12 +316,22 @@
     }
 
     const m = state.meters;
-    header.textContent = "Ingen aktiv rolle"
-      + " · Dag " + state.dag
-      + " · " + (view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase))
-      + " · Psyke " + m.psyke
-      + " · Energi " + m.energi
-      + " · " + m.penger + " PC";
+    const chips = [
+      ["role is-empty", "Ingen aktiv rolle"],
+      ["day", "Dag " + state.dag],
+      ["phase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
+      ["meter", "Psyke " + m.psyke],
+      ["meter", "Energi " + m.energi],
+      ["pc", m.penger + " PC"]
+    ];
+    header.textContent = "";
+    chips.map(function (chip) {
+      const el = document.createElement("span");
+      el.className = "civi-header-chip civi-header-chip--" + chip[0].replace(/\s+/g, " civi-header-chip--");
+      el.textContent = chip[1];
+      el.title = chip[1];
+      return el;
+    }).forEach(function (chip) { header.appendChild(chip); });
   }
 
   function render() {
