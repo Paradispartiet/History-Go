@@ -1440,8 +1440,8 @@ if (!card) return;
       updatePlaceCardFavorite();
       if (typeof window.rerenderActiveLeftPanelMode === "function") {
         window.rerenderActiveLeftPanelMode();
-      } else if (typeof window.renderLeftFavoritesList === "function") {
-        window.renderLeftFavoritesList();
+      } else if (typeof window.renderNearbyPlaces === "function") {
+        window.renderNearbyPlaces();
       }
     };
   }

@@ -95,8 +95,8 @@ function createNearbyFavoriteButton(placeId) {
     updateFavoriteButtonState(btn, placeId);
     if (typeof window.rerenderActiveLeftPanelMode === "function") {
       window.rerenderActiveLeftPanelMode();
-    } else if (typeof window.renderLeftFavoritesList === "function") {
-      window.renderLeftFavoritesList();
+    } else if (typeof window.renderNearbyPlaces === "function") {
+      window.renderNearbyPlaces();
     }
   });
   return btn;
@@ -188,6 +188,10 @@ function renderNearbyPlaces() {
    items = items.filter(p => visited[p.id]);
   }
 
+  if (window.HG_NEARBY_FAVORITES_ONLY) {
+    items = items.filter(p => window.HGFavoritePlaces?.has?.(p.id));
+  }
+
   // 🔹 FILTER: badge/kategori
   if (isLeftBadgeFilterActive()) {
     items = items.filter(placeMatchesActiveBadge);
@@ -222,6 +226,7 @@ function renderNearbyPlaces() {
     filterMode,
     sortMode,
     badge: window.HG_NEARBY_BADGE_FILTER || "all",
+    favoritesOnly: !!window.HG_NEARBY_FAVORITES_ONLY,
     freshPlaceId,
     distances: items.map(p => p._d ?? null)
   });
@@ -232,7 +237,17 @@ function renderNearbyPlaces() {
   listEl.innerHTML = "";
 
   if (!items.length) {
-    renderBadgeFilterEmpty(listEl, tUI("ui.noun.places", "steder"));
+    if (window.HG_NEARBY_FAVORITES_ONLY) {
+      listEl.innerHTML = `
+        <div class="hg-empty-guide">
+          <div class="hg-empty-guide-icon">☆</div>
+          <div class="hg-empty-guide-title">Ingen favoritter ennå</div>
+          <div class="hg-empty-guide-text">Slå av favorittfilteret eller trykk på stjernen ved et sted for å lagre det som favoritt.</div>
+        </div>
+      `;
+    } else {
+      renderBadgeFilterEmpty(listEl, tUI("ui.noun.places", "steder"));
+    }
     return;
   }
 
@@ -288,126 +303,6 @@ function renderNearbyPlaces() {
     listEl.appendChild(item);
   });
 }
-
-function renderLeftFavoritesList() {
-  const listEl = document.getElementById("leftFavoritesList");
-  if (!listEl) return;
-
-  const ids = window.HGFavoritePlaces?.getIds?.() || [];
-  const placesById = placesByIdMap();
-  const pos = window.getPos?.();
-  let items = ids
-    .map((id, index) => ({ place: placesById.get(String(id || "").trim()), index }))
-    .filter((item) => item.place && placeMatchesActiveBadge(item.place))
-    .map((item) => ({ ...item, distance: getPlaceDistanceMeters(item.place, pos) }));
-
-  items.sort((a, b) => {
-    const aHasDistance = Number.isFinite(a.distance);
-    const bHasDistance = Number.isFinite(b.distance);
-    if (aHasDistance && bHasDistance && a.distance !== b.distance) return a.distance - b.distance;
-    if (aHasDistance !== bHasDistance) return aHasDistance ? -1 : 1;
-    return a.index - b.index || String(a.place.name || "").localeCompare(String(b.place.name || ""), "nb");
-  });
-
-  listEl.innerHTML = "";
-
-  if (!ids.length) {
-    listEl.innerHTML = `
-      <div class="hg-empty-guide">
-        <div class="hg-empty-guide-icon">☆</div>
-        <div class="hg-empty-guide-title">Ingen favoritter ennå</div>
-        <div class="hg-empty-guide-text">Ingen favoritter ennå. Trykk på stjernen ved et sted for å lagre det her.</div>
-        <button class="hg-empty-guide-action" type="button" data-leftmode-target="nearby">Vis steder</button>
-      </div>
-    `;
-    listEl.querySelector("[data-leftmode-target='nearby']")?.addEventListener("click", () => window.setLeftPanelMode?.("nearby"));
-    return;
-  }
-
-  if (!items.length) {
-    renderBadgeFilterEmpty(listEl, "favoritter");
-    return;
-  }
-
-  items.forEach(({ place, distance }) => {
-    const img = place.image || place.cardImage || "";
-    const parts = [];
-    if (Number.isFinite(distance)) parts.push(`${distance} m`);
-
-    const item = document.createElement("div");
-    item.className = "nearby-item";
-    item.innerHTML = `
-      <div class="nearby-thumbWrap">
-        <img class="nearby-thumb" src="${escapeHTML(img)}" alt="${escapeHTML(place.name || "")}" loading="lazy" decoding="async">
-        <img class="nearby-badge" src="bilder/merker/${escapeHTML(place.category || "")}.PNG" alt="">
-      </div>
-      <div class="nearby-content">
-        <div class="nearby-title">${escapeHTML(place.name || place.id || "")}</div>
-        <div class="nearby-meta">${escapeHTML(parts.join(" · "))}</div>
-      </div>
-    `;
-    item.appendChild(createNearbyFavoriteButton(place.id));
-    item.addEventListener("click", () => routeToPlace(place.id));
-    listEl.appendChild(item);
-  });
-}
-
-window.renderLeftFavoritesList = renderLeftFavoritesList;
-
-function renderNearbyMusic() {
-  const listEl = document.getElementById("leftMusicList");
-  if (!listEl) return;
-
-  const musicByPlace = window.HGAhaMusic?.state?.musicByPlace || {};
-  const places = (window.PLACES || [])
-    .map(place => ({
-      place,
-      music: musicByPlace[String(place?.id || "").trim()],
-      distance: Infinity
-    }))
-    .filter(item => item.music && (item.music.artists.length || item.music.tracks.length));
-  const pos = window.getPos?.();
-
-  places.forEach(item => {
-    item.distance = pos && typeof window.distMeters === "function"
-      ? window.distMeters(pos, { lat: item.place.lat, lon: item.place.lon })
-      : Infinity;
-  });
-  places.sort((a, b) => a.distance - b.distance || String(a.place.name).localeCompare(String(b.place.name), "nb"));
-
-  if (!places.length) {
-    listEl.innerHTML = `
-      <div class="hg-empty-guide">
-        <div class="hg-empty-guide-icon">♫</div>
-        <div class="hg-empty-guide-title">Ingen steder med musikk ennå</div>
-        <div class="hg-empty-guide-text">Steder vises her når AHA Music-relasjoner har en gyldig History Go placeId.</div>
-      </div>
-    `;
-    return;
-  }
-
-  listEl.innerHTML = "";
-  places.forEach(({ place, music, distance }) => {
-    const item = document.createElement("div");
-    item.className = "nearby-item nearby-music-item";
-    const distanceText = Number.isFinite(distance) ? `${Math.round(distance)} m · ` : "";
-    item.innerHTML = `
-      <div class="nearby-thumbWrap"><div class="nearby-thumb nearby-thumb-icon" aria-hidden="true">♫</div></div>
-      <div class="nearby-content">
-        <div class="nearby-title">${escapeHTML(place.name || place.id)}</div>
-        <div class="nearby-meta">${distanceText}${music.artists.length} artister · ${music.tracks.length} sanger</div>
-      </div>
-    `;
-    item.addEventListener("click", () => {
-      const next = `#/place/${encodeURIComponent(place.id)}`;
-      if (window.HGAppRouter?.navigate) window.HGAppRouter.navigate(next);
-      else location.hash = next;
-    });
-    listEl.appendChild(item);
-  });
-}
-
-window.renderNearbyMusic = renderNearbyMusic;
 
 function renderNearbyPeople() {
   const listEl = document.getElementById("leftPeopleList");
