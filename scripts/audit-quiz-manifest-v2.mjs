@@ -128,7 +128,7 @@ if (manifest) {
       if (!hasText(q?.categoryId)) addInvalid('legacy', file, id, 'missing categoryId');
       if (!hasText(q?.question)) addInvalid('legacy', file, id, 'missing question');
       if (!Array.isArray(q?.options) || q.options.length < 2) addInvalid('legacy', file, id, 'options must contain at least 2 choices');
-      if (!hasText(q?.answer)) addInvalid('legacy', file, id, 'missing answer');
+      if (!answerIsValid(q)) addInvalid('legacy', file, id, 'missing answer/answerIndex or answer does not match an option');
       if (!hasText(q?.targetId) && !hasText(q?.personId) && !hasText(q?.placeId)) addInvalid('legacy', file, id, 'missing targetId/personId/placeId');
     }
   }
@@ -145,6 +145,11 @@ if (manifest) {
     let data;
     try { data = await readJson(entry.file); } catch (error) { report.missingFiles.push({ file: entry.file, scope: 'sets', reason: `JSON parse failed: ${error.message}` }); continue; }
     checkedFiles.add(entry.file);
+    const entryTargetId = hasText(entry?.targetId) ? String(entry.targetId) : '';
+    const entryTargetKind = placeIds.has(entryTargetId) ? 'place' : peopleIds.has(entryTargetId) ? 'person' : null;
+    if (hasText(entryTargetId) && entryTargetKind === null) {
+      addInvalid('sets', entry.file, entryTargetId, 'manifest targetId does not resolve to a place or person');
+    }
     const sets = asArray(data?.sets);
     if (!sets.length) report.missingFiles.push({ file: entry.file, scope: 'sets', reason: 'missing or empty sets[]' });
     const blocks = hasText(entry.set_id) ? sets.filter((s) => s?.set_id === entry.set_id) : sets;
@@ -156,8 +161,7 @@ if (manifest) {
       report.setBlocksChecked += 1;
       const questions = asArray(block?.questions);
       if (!questions.length) report.missingSetIds.push({ file: entry.file, targetId: entry.targetId, set_id: block?.set_id || entry.set_id || null, reason: 'set has no questions' });
-      const entryTargetKind = placeIds.has(String(entry.targetId)) ? 'place' : peopleIds.has(String(entry.targetId)) ? 'person' : null;
-      for (const q of questions) { report.setQuestionsChecked += 1; validateQuestion(q, { file: entry.file, scope: 'sets', entryTargetId: entry.targetId, entryTargetKind }); }
+      for (const q of questions) { report.setQuestionsChecked += 1; validateQuestion(q, { file: entry.file, scope: 'sets', entryTargetId, entryTargetKind }); }
     }
   }
   report.setFilesChecked = checkedFiles.size;
