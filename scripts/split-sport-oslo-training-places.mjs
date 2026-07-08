@@ -1,4 +1,4 @@
-// Split Oslo training and playground aggregate into one JSON file per place.
+// Split Oslo playground and training aggregate into one JSON file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
