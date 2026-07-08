@@ -309,6 +309,21 @@ body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-panels {
   display: grid;
 }
 
+body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-scene,
+body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-choices {
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+body.civi-app.civi-mini-mode #civiLifestoryPanel .civi-lifestory-choice {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 @media (min-width: 1100px) {
   body.civi-app.civi-mini-mode #civiLifestorySection {
     grid-column: span 8;
