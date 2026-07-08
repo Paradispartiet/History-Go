@@ -1,0 +1,31 @@
+name: Split Oslo training places
+
+on:
+  push:
+    branches:
+      - data/split-sport-oslo-training-places-20260708
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-sport-oslo-training-places-20260708
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-sport-oslo-training-places.mjs
+      - run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add data/places/sport/europa/norway/places_oslo_lekeplasser_trening data/places/sport/europa/norway/places_oslo_lekeplasser_trening_manifest.json data/places/sport/europa/norway/places_oslo_lekeplasser_trening_index.json data/places/sport/europa/norway/places_oslo_lekeplasser_trening_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Oslo training place files"
+            git push
+          fi
