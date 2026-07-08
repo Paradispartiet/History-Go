@@ -5,6 +5,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
 const OUTPUT_PATH = path.join(ROOT, 'data/places/places_index.json');
+const EXCLUSIONS_PATH = path.join(ROOT, 'data/places/place_exclusions.json');
 
 type JsonObject = Record<string, unknown>;
 type PlaceManifest = JsonObject & {
@@ -27,6 +28,9 @@ type PlaceRow = JsonObject & {
   groundhopper?: unknown;
   sourceFile?: unknown;
 };
+type PlaceExclusions = JsonObject & {
+  disabledPlaceIds?: unknown[];
+};
 type LightField = keyof PlaceRow;
 type LightPlace = Partial<Record<LightField, unknown>>;
 
@@ -40,6 +44,10 @@ function hasObjectType(value: unknown): value is JsonObject {
 
 function isPlaceManifest(value: unknown): value is PlaceManifest {
   return hasObjectType(value) && (!Object.prototype.hasOwnProperty.call(value, 'files') || Array.isArray(value.files));
+}
+
+function isPlaceExclusions(value: unknown): value is PlaceExclusions {
+  return hasObjectType(value) && (!Object.prototype.hasOwnProperty.call(value, 'disabledPlaceIds') || Array.isArray(value.disabledPlaceIds));
 }
 
 function isPlaceRow(value: unknown): value is PlaceRow {
@@ -60,10 +68,24 @@ async function readJson(p: string): Promise<unknown> {
   return JSON.parse(raw) as unknown;
 }
 
+async function readDisabledPlaceIds(): Promise<Set<string>> {
+  try {
+    const exclusions = await readJson(EXCLUSIONS_PATH);
+    if (!isPlaceExclusions(exclusions) || !Array.isArray(exclusions.disabledPlaceIds)) return new Set();
+    return new Set(exclusions.disabledPlaceIds.filter((id): id is string => typeof id === 'string' && id.trim().length > 0));
+  } catch (error: unknown) {
+    const code = hasObjectType(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Set();
+    throw error;
+  }
+}
+
 async function main(): Promise<void> {
   const manifest = await readJson(MANIFEST_PATH);
   const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
+  const disabledPlaceIds = await readDisabledPlaceIds();
   const out: LightPlace[] = [];
+  let skipped = 0;
 
   for (const rel of files) {
     const fullPath = path.join(ROOT, 'data', rel as string);
@@ -71,12 +93,18 @@ async function main(): Promise<void> {
     const places = Array.isArray(data) ? data : (hasObjectType(data) && Array.isArray(data.places) ? data.places : []);
     for (const place of places) {
       if (!isPlaceRow(place)) continue;
+      const id = typeof place.id === 'string' ? place.id : '';
+      if (id && disabledPlaceIds.has(id)) {
+        skipped += 1;
+        continue;
+      }
       out.push(pickLight(place, rel as string));
     }
   }
 
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8');
-  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}`);
+  const skippedText = skipped ? `; skipped ${skipped} disabled place(s)` : '';
+  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}${skippedText}`);
 }
 
 main().catch((err: unknown) => {
