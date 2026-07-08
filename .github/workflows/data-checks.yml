@@ -1,0 +1,109 @@
+name: Data checks
+
+on:
+  pull_request:
+    paths:
+      - 'data/people/**'
+      - 'data/places/**'
+      - 'scripts/check-people.sh'
+      - 'scripts/check-places.sh'
+      - 'tools/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.tools*.json'
+      - '.github/workflows/data-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  people:
+    name: People data
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(join(github.event.pull_request.changed_files, ','), 'data/people') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'scripts/check-people.sh') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'tools/') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'package.json') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'package-lock.json')
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run people check
+        run: bash scripts/check-people.sh
+
+  places:
+    name: Places data
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(join(github.event.pull_request.changed_files, ','), 'data/places') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'scripts/check-places.sh') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'tools/') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'package.json') ||
+      contains(join(github.event.pull_request.changed_files, ','), 'package-lock.json')
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run places check
+        run: |
+          if [ -f scripts/check-places.sh ]; then
+            bash scripts/check-places.sh
+          else
+            echo "scripts/check-places.sh not found; using inline places checks"
+            node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          function readJson(file) {
+            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+            catch (error) {
+              console.error(`JSON parse failed: ${file}`);
+              console.error(error.message);
+              process.exit(1);
+            }
+          }
+          const manifestPath = 'data/places/manifest.json';
+          const placesIndexPath = 'data/places/places_index.json';
+          const manifest = readJson(manifestPath);
+          if (!manifest || !Array.isArray(manifest.files)) {
+            console.error(`${manifestPath} must contain a files array`);
+            process.exit(1);
+          }
+          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
+          for (const file of files) {
+            if (!fs.existsSync(file)) {
+              console.error(`Missing expected file: ${file}`);
+              process.exit(1);
+            }
+            readJson(file);
+          }
+          console.log(`json ok (${files.length} files)`);
+          NODE
+            npm run places:index:build
+            npm run build:tools
+            npm run places:index:check
+            npm run places:emner:check
+            npm run places:coords:check
+          fi
