@@ -121,12 +121,17 @@
   }
 
   /**
+   * @typedef {{ kind: string, label: string }} CiviHeaderChip
+   * @typedef {{ state?: any, view?: any, includeEmptyRole?: boolean }} CiviHeaderStatusOptions
+   */
+
+  /**
    * Builds the compact Civication header from the same active-position source as
    * Min situasjon, Aktiv rolle and Arbeidsdag. Lifestory day/meters may be passed
    * in by the Life Story UI, but the role label is never read from pilot/demo
    * content.
-   * @param {{ state?: any, view?: any, includeEmptyRole?: boolean }} [options]
-   * @returns {string}
+   * @param {CiviHeaderStatusOptions} [options]
+   * @returns {CiviHeaderChip[]}
    */
   function getHeaderStatusChips(options) {
     const opts = options || {};
@@ -134,6 +139,7 @@
     const view = opts.view || {};
     const meters = lifeState.meters || {};
     const activeRoleTitle = getCanonicalActiveRoleTitle();
+    /** @type {CiviHeaderChip[]} */
     const chips = [];
 
     if (activeRoleTitle) {
@@ -152,13 +158,17 @@
   }
 
   /**
-   * @param {{ state?: any, view?: any, includeEmptyRole?: boolean }} [options]
+   * @param {CiviHeaderStatusOptions} [options]
    * @returns {string}
    */
   function renderCivicationHeaderStatus(options) {
     return getHeaderStatusChips(options).map(function (chip) { return chip.label; }).join(" · ");
   }
 
+  /**
+   * @param {CiviHeaderChip} chip
+   * @returns {HTMLSpanElement}
+   */
   function renderHeaderChip(chip) {
     const span = document.createElement("span");
     span.className = "civi-header-chip civi-header-chip--" + String(chip.kind || "status").replace(/\s+/g, " civi-header-chip--");
@@ -167,8 +177,12 @@
     return span;
   }
 
+  /** @type {CiviHeaderStatusOptions | null} */
   let lastHeaderStatusOptions = null;
 
+  /**
+   * @param {CiviHeaderStatusOptions} [options]
+   */
   function updateHeaderStatus(options) {
     if (options) lastHeaderStatusOptions = options;
     const header = $("civiLifestoryHeaderStatus");
