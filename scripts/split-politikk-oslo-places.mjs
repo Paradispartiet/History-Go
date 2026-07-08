@@ -1,4 +1,4 @@
-// Split Oslo politikk aggregate into one JSON file per place.
+// Split Oslo politics aggregate into one JSON file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
