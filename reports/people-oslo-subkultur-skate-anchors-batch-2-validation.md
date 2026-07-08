@@ -4,47 +4,40 @@ Dato: 2026-07-09
 
 ## Scope
 
-Denne batchen legger til tre kollektive subkultur-/skate-miljøankre for eksisterende Oslo-steder:
+Denne batchfilen skal nå bare inneholde det ene miljøankeret som ikke allerede fantes fra tidligere merget subkultur-batch:
 
-- `skur13`
-- `gamlebyen_sport_og_fritid`
 - `oslo_skatehall`
 
 Dette er ikke en places-batch. Ingen nye places opprettes.
 
-## Implementering
+## Cleanup 2026-07-09
 
-Ny people-fil:
-
-- `data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json`
-
-Manifest oppdatert:
-
-- `data/people/manifest.json`
-
-## Added entries
-
-| peopleId | primary placeId | category | type | status |
-|---|---|---|---|---|
-| `skur13_miljoet` | `skur13` | `subkultur` | kollektivt miljøanker | added |
-| `gamlebyen_sport_og_fritid_miljoet` | `gamlebyen_sport_og_fritid` | `subkultur` | kollektivt miljøanker | added |
-| `oslo_skatehall_miljoet` | `oslo_skatehall` | `subkultur` | kollektivt miljøanker | added |
-
-## Gate checks
-
-Repo-søk før opprettelse fant eksisterende place-filer for:
-
-- `skur13`
-- `gamlebyen_sport_og_fritid`
-- `oslo_skatehall`
-
-Repo-søk fant ikke eksisterende miljøanker-ID-er for:
+Etter merge ble det oppdaget at to av entryene i batchfilen allerede fantes fra PR #1737 i `data/people/subkultur/oslo/people_subkultur_oslo.json`:
 
 - `skur13_miljoet`
 - `gamlebyen_sport_og_fritid_miljoet`
-- `oslo_skatehall_miljoet`
 
-Alle tre nye entries er skrevet som kollektive miljøer, ikke navngitte personer.
+De to duplikatene er derfor fjernet fra `data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json`.
+
+## Implementering
+
+People-fil:
+
+- `data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json`
+
+Manifest:
+
+- `data/people/manifest.json`
+
+Manifestet beholdes uendret fordi filen fortsatt inneholder `oslo_skatehall_miljoet`.
+
+## Current entries
+
+| peopleId | primary placeId | category | type | status |
+|---|---|---|---|---|
+| `oslo_skatehall_miljoet` | `oslo_skatehall` | `subkultur` | kollektivt miljøanker | kept |
+| `skur13_miljoet` | `skur13` | `subkultur` | kollektivt miljøanker | removed duplicate; already in PR #1737 |
+| `gamlebyen_sport_og_fritid_miljoet` | `gamlebyen_sport_og_fritid` | `subkultur` | kollektivt miljøanker | removed duplicate; already in PR #1737 |
 
 ## Ikke endret
 
@@ -67,16 +60,14 @@ bash scripts/check-people.sh
 
 Forventet:
 
-- nye collective people anchors: 3
-- nye named people: 0
-- nye places: 0
+- current entries in this batch file: 1
 - duplicatePeopleIds = 0
 - invalidPlaceRefs = 0
 - peopleWithoutValidPrimaryAnchor = 0
 - peopleWithEmptyPlacesArray = 0
 
-## Endrede filer
+## Endrede filer i cleanup
 
 - `data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json`
-- `data/people/manifest.json`
 - `reports/people-oslo-subkultur-skate-anchors-batch-2-validation.md`
+- `scripts/check-people.sh`
