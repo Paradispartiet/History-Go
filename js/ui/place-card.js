@@ -272,6 +272,31 @@ function renderPlaceCardForNa(place) {
   `;
 }
 
+
+const PLACE_CARD_PROGRESSIVE_LOADS = { full: new Set(), lesespor: new Set(), quiz: new Set(), music: new Set(), nature: new Set(), nav: new Set(), social: new Set() };
+function placeCardPerfEnabled() { return window.HG_DEBUG_PLACECARD_PERF === true; }
+function placeCardPerfMark(placeId, label, start) {
+  if (!placeCardPerfEnabled()) return;
+  const elapsed = Number.isFinite(start) ? Math.round(performance.now() - start) : 0;
+  console.debug(`[placeCard:perf] ${label}`, { placeId, ms: elapsed });
+}
+function isCurrentPlaceCard(placeId) {
+  return String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim() === String(placeId || "").trim();
+}
+function mergePlaceIntoPlaces(placeId, patch) {
+  if (!patch || typeof patch !== "object") return null;
+  const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
+  const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === String(placeId || "").trim());
+  const merged = idx >= 0 ? ({ ...placesArr[idx], ...patch }) : patch;
+  if (idx >= 0) placesArr[idx] = merged;
+  return merged;
+}
+function reopenCurrentPlaceCard(placeId, patch) {
+  if (!isCurrentPlaceCard(placeId)) return;
+  const merged = mergePlaceIntoPlaces(placeId, patch);
+  if (merged && typeof window.openPlaceCard === "function") void window.openPlaceCard(merged);
+}
+
 function isPlaceCardPlaceComplete(place) {
   if (!place || typeof place !== "object") return false;
   const id = String(place.id || "").trim();
@@ -1001,7 +1026,8 @@ async function setPlaceCardQuizBack(card, quizImgEl, quizContentEl, place) {
  * @returns {Promise<boolean>}
  */
 window.openPlaceCard = async function (place) {
-  console.trace("[placeCard] openPlaceCard", { placeId: place?.id, placeName: place?.name });
+  const pcStart = performance.now();
+  if (window.HG_DEBUG_PLACECARD_PERF === true) console.debug("[placeCard] openPlaceCard", { placeId: place?.id, placeName: place?.name });
   if (!place || !isPlacesDataReady()) {
     hidePlaceCardUntilReady();
     return false;
@@ -1013,30 +1039,27 @@ window.openPlaceCard = async function (place) {
     return false;
   }
 
-  if (window.DataHub?.loadFullPlace) {
-    try {
-      const fullPlace = await window.DataHub.loadFullPlace(placeId, { cache: "default" });
-      if (fullPlace && typeof fullPlace === "object") {
-        place = /** @type {PlaceCardPlace} */ ({ ...place, ...fullPlace });
-        const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
-        const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === placeId);
-        if (idx >= 0) placesArr[idx] = place;
-      }
-    } catch (e) {
-      console.warn("[openPlaceCard.loadFullPlace]", e);
-    }
+  if (window.DataHub?.loadFullPlace && !PLACE_CARD_PROGRESSIVE_LOADS.full.has(placeId)) {
+    PLACE_CARD_PROGRESSIVE_LOADS.full.add(placeId);
+    const fullStart = performance.now();
+    void window.DataHub.loadFullPlace(placeId, { cache: "default", place })
+      .then((fullPlace) => {
+        placeCardPerfMark(placeId, "fullPlace loaded", fullStart);
+        if (fullPlace && typeof fullPlace === "object") reopenCurrentPlaceCard(placeId, fullPlace);
+      })
+      .catch((e) => console.warn("[openPlaceCard.loadFullPlace]", e));
   }
 
   if (!isPlaceCardPlaceComplete(place)) {
     hidePlaceCardUntilReady();
     return false;
   }
-  if (!Array.isArray(window.LESESPOR) && window.DataHub?.loadLesespor) {
-    try {
-      await /** @type {any} */ (window.DataHub.loadLesespor)({ cache: "default" });
-    } catch (e) {
-      console.warn("[openPlaceCard.loadLesespor]", e);
-    }
+  if (!Array.isArray(window.LESESPOR) && window.DataHub?.loadLesespor && !PLACE_CARD_PROGRESSIVE_LOADS.lesespor.has(placeId)) {
+    PLACE_CARD_PROGRESSIVE_LOADS.lesespor.add(placeId);
+    const lesesporStart = performance.now();
+    void /** @type {any} */ (window.DataHub.loadLesespor)({ cache: "default" })
+      .then(() => { placeCardPerfMark(placeId, "lesespor loaded", lesesporStart); reopenCurrentPlaceCard(placeId, place); })
+      .catch((e) => console.warn("[openPlaceCard.loadLesespor]", e));
   }
 
   const tt = tUI;
@@ -1390,7 +1413,11 @@ if (!card) return;
 
   // Basic content
   setPlaceCardImgSrcStable(frontImgEl, place.frontImage || place.cardImage || place.image || "");
-  await setPlaceCardQuizBack(frontCardFlipEl, quizCardImgEl, quizCardContentEl, place);
+  setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
+  const quizStart = performance.now();
+  void setPlaceCardQuizBack(frontCardFlipEl, quizCardImgEl, quizCardContentEl, place)
+    .then(() => placeCardPerfMark(placeId, "quiz loaded", quizStart))
+    .catch((e) => console.warn("[openPlaceCard.quiz]", e));
   // ---- MINI PREVIEW BILDE ----
   const miniImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcMiniImg"));
   setPlaceCardImgSrcStable(miniImgEl, frontImgEl?.getAttribute("src") || String(place.image ?? ""));
@@ -1464,8 +1491,13 @@ if (!card) return;
     (Array.isArray(window.PEOPLE) ? window.PEOPLE : []);
 
   const persons = getPeopleForPlace(place.id);
-  if (!window.HGAhaMusic?.state?.loaded) await window.HGAhaMusic?.load?.();
-  const music = window.HGAhaMusic?.getForPlace?.(place.id);
+  if (!window.HGAhaMusic?.state?.loaded && !PLACE_CARD_PROGRESSIVE_LOADS.music.has(placeId)) {
+    PLACE_CARD_PROGRESSIVE_LOADS.music.add(placeId);
+    void window.HGAhaMusic?.load?.()
+      .then(() => { placeCardPerfMark(placeId, "music loaded", pcStart); reopenCurrentPlaceCard(placeId, place); })
+      .catch((e) => console.warn("[openPlaceCard.music]", e));
+  }
+  const music = window.HGAhaMusic?.state?.loaded ? window.HGAhaMusic?.getForPlace?.(place.id) : null;
 
   const musicUnlockables = window.HGAhaMusic?.getUnlockableObjectsForPlace?.(String(place.id || "")) || { artists: [], tracks: [] };
   const musicCount = (musicUnlockables.artists?.length || 0) + (musicUnlockables.tracks?.length || 0);
@@ -1476,12 +1508,14 @@ if (!card) return;
     (Array.isArray(window.FLORA) ? window.FLORA : []);
 
   // Hvis flora ikke er lastet globalt ennå: last via DataHub og cache på window.FLORA
-  if (!FLORA_LIST.length && window.DataHub?.loadNature) {
-    try {
-      await window.DataHub.loadNature();
-      if (Array.isArray(window.FLORA)) FLORA_LIST = window.FLORA;
-    } catch {}
+  if (!FLORA_LIST.length && window.DataHub?.loadNature && !PLACE_CARD_PROGRESSIVE_LOADS.nature.has(placeId)) {
+    PLACE_CARD_PROGRESSIVE_LOADS.nature.add(placeId);
+    const natureStart = performance.now();
+    void window.DataHub.loadNature()
+      .then(() => { placeCardPerfMark(placeId, "nature loaded", natureStart); reopenCurrentPlaceCard(placeId, place); })
+      .catch((e) => console.warn("[openPlaceCard.nature]", e));
   }
+  if (Array.isArray(window.FLORA)) FLORA_LIST = window.FLORA;
 
   const floraIds = Array.isArray(place.flora) ? place.flora : [];
   const floraHere = floraIds
@@ -1503,13 +1537,19 @@ try {
 
   const nearbyPlaces = Array.isArray(window.NEARBY_PLACES) ? window.NEARBY_PLACES : [];
 
-  const tri = (window.HGNavigator && typeof window.HGNavigator.buildForPlace === "function")
-    ? await window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere: persons })
-    : null;
-
   window.dispatchEvent(new CustomEvent("hg:mpNextUp", {
-    detail: { tri, becauseLine }
+    detail: { tri: null, becauseLine }
   }));
+
+  if (window.HGNavigator && typeof window.HGNavigator.buildForPlace === "function" && !PLACE_CARD_PROGRESSIVE_LOADS.nav.has(placeId)) {
+    PLACE_CARD_PROGRESSIVE_LOADS.nav.add(placeId);
+    void window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere: persons })
+      .then((tri) => {
+        if (!isCurrentPlaceCard(placeId)) return;
+        window.dispatchEvent(new CustomEvent("hg:mpNextUp", { detail: { tri, becauseLine } }));
+      })
+      .catch((e) => console.warn("[mpNextUp]", e));
+  }
 } catch (e) {
   console.warn("[mpNextUp]", e);
 }
@@ -2198,8 +2238,14 @@ async function loadCanonicalSocialEvents() {
 
 // --- EVENTS BOX (ikke runding) ---
 if (eventsBox) {
-  const socialData = await loadPlaceSocialData(String(place.id));
-  const canonicalEvents = await loadCanonicalSocialEvents();
+  const socialData = window.__HG_PLACE_SOCIAL_CACHE__?.[String(place.id)] || null;
+  const canonicalEvents = Array.isArray(window.__HG_CANONICAL_SOCIAL_EVENTS__) ? window.__HG_CANONICAL_SOCIAL_EVENTS__ : [];
+  if (!PLACE_CARD_PROGRESSIVE_LOADS.social.has(placeId)) {
+    PLACE_CARD_PROGRESSIVE_LOADS.social.add(placeId);
+    void Promise.all([loadPlaceSocialData(String(place.id)), loadCanonicalSocialEvents()])
+      .then(() => reopenCurrentPlaceCard(placeId, place))
+      .catch((e) => console.warn("[openPlaceCard.social]", e));
+  }
 
   const defaultSocialData = {
     place_id: place.id,
@@ -2670,6 +2716,7 @@ requestAnimationFrame(() => {
 });
 
 forcePlaceCardOpenState(card, nextPlaceId);
+placeCardPerfMark(placeId, "first paint", pcStart);
 return true;
 };
 
