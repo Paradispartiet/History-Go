@@ -1,0 +1,144 @@
+{
+  "status": "triage_only",
+  "unresolvedTargetIdsCount": 2,
+  "sourceReports": [
+    "reports/quiz_manifest_v2_audit_report.json",
+    "reports/quiz_manifest_v2_audit_triage_report.json",
+    "reports/quiz_manifest_v2_safe_scope_stragglers_fix_report.json"
+  ],
+  "targets": [
+    {
+      "targetId": "akershus_festning",
+      "manifestEntries": [
+        {
+          "targetId": "akershus_festning",
+          "file": "data/quiz/historie/akershus_festning_sets.json"
+        }
+      ],
+      "file": "data/quiz/historie/akershus_festning_sets.json",
+      "set_id": [
+        "by_akershus_festning_set_1",
+        "by_akershus_festning_set_2",
+        "by_akershus_festning_set_3",
+        "by_akershus_festning_set_4",
+        "by_akershus_festning_set_5"
+      ],
+      "quizFileExists": true,
+      "quizFileTopLevelTargetId": "akershus_festning",
+      "questionTargetIdsActuallyUsed": {
+        "targetId": [],
+        "placeId": [
+          "akershus_festning"
+        ],
+        "personId": [],
+        "natureId": [],
+        "questionScopes": [
+          "place"
+        ]
+      },
+      "probablePlaceOrPersonIdsInData": {
+        "exactPlaceIdExists": false,
+        "exactPersonIdExists": false,
+        "probablePlaceIds": [
+          {
+            "id": "akershus_kaier",
+            "name": "Akershuskaiene",
+            "files": [
+              "data/places/places_index.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv/akershus_kaier.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json"
+            ],
+            "assessment": "Name shares Akershus but is a quay/business-area place, not Akershus Fortress."
+          },
+          {
+            "id": "akershus_slott_bakeriet",
+            "name": "Bakeriet ved Akershus",
+            "files": [
+              "data/places/places_index.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv/akershus_slott_bakeriet.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+              "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json"
+            ],
+            "assessment": "Name references Akershus but describes the bakery by Akershus, not the fortress target used by quiz questions."
+          }
+        ],
+        "probablePersonIds": []
+      },
+      "classification": "manglende place/person data",
+      "analysis": "Manifest and quiz file agree on akershus_festning, and every question uses placeId akershus_festning with place scope. No exact place id or person id akershus_festning exists under data/places or data/people. Nearby Akershus place ids are different places, so this does not look like a manifest typo or quiz-file target typo.",
+      "recommendedNextAction": "In a later data PR, add or activate a canonical data/places entry for Akershus festning with id akershus_festning, or intentionally introduce a supported alias only if an existing canonical fortress id is added/found. Do not change the manifest targetId as the quiz file and questions are internally consistent."
+    },
+    {
+      "targetId": "cecilie_ekeberg",
+      "manifestEntries": [
+        {
+          "targetId": "cecilie_ekeberg",
+          "file": "data/quiz/by/cecilie_malm_brundtland_sets.json"
+        }
+      ],
+      "file": "data/quiz/by/cecilie_malm_brundtland_sets.json",
+      "set_id": [
+        "by_cecilie_malm_brundtland_set_1",
+        "by_cecilie_malm_brundtland_set_2"
+      ],
+      "quizFileExists": true,
+      "quizFileTopLevelTargetId": "cecilie_malm_brundtland",
+      "questionTargetIdsActuallyUsed": {
+        "targetId": [
+          "cecilie_malm_brundtland"
+        ],
+        "placeId": [],
+        "personId": [
+          "cecilie_malm_brundtland"
+        ],
+        "natureId": [],
+        "questionScopes": [
+          "person"
+        ]
+      },
+      "probablePlaceOrPersonIdsInData": {
+        "exactPlaceIdExists": false,
+        "exactPersonIdExists": false,
+        "probablePlaceIds": [],
+        "probablePersonIds": [
+          {
+            "id": "cecilie_malm_brundtland",
+            "name": "Cecilie Malm Brundtland",
+            "files": [
+              "data/people/kunst/oslo/people_kunst_oslo.json",
+              "data/people/kunst/oslo/people_kunst_oslo_UPGRADED (1).json"
+            ],
+            "assessment": "Exact canonical person id used by the quiz file top-level targetId and by all question personId/targetId references."
+          }
+        ],
+        "relatedAssetOnlyReferences": [
+          "bilder/kort/people/cecilie_ekeberg.PNG"
+        ]
+      },
+      "classification": "feil manifest targetId",
+      "analysis": "Manifest targetId cecilie_ekeberg points to the cecilie_malm_brundtland quiz file. The quiz file top-level targetId and all question references use cecilie_malm_brundtland. Person data contains cecilie_malm_brundtland, while cecilie_ekeberg appears only as an image/card asset filename, not as a person/place id.",
+      "recommendedNextAction": "In a later manifest-only fix PR, change the manifest entry targetId from cecilie_ekeberg to cecilie_malm_brundtland. Treat cecilie_ekeberg as an incorrect legacy/asset-derived name rather than adding a person alias, unless product requirements explicitly require backwards-compatible lookup for that legacy id."
+    }
+  ],
+  "recommendedNextPr": {
+    "scope": "fix_data_references_after_triage",
+    "actions": [
+      "Add or activate canonical place data for akershus_festning, because the manifest and quiz questions are internally consistent but no matching place id exists.",
+      "Update only the quiz manifest targetId cecilie_ekeberg to cecilie_malm_brundtland, because the quiz file and people data already use cecilie_malm_brundtland."
+    ],
+    "avoid": [
+      "Do not change quiz question data as part of this triage report.",
+      "Do not add aliases or duplicate legacy ids in this triage report."
+    ]
+  },
+  "constraintsObserved": {
+    "quizDataChanged": false,
+    "manifestChanged": false,
+    "peopleDataChanged": false,
+    "placesDataChanged": false,
+    "automaticFixesApplied": false
+  }
+}
