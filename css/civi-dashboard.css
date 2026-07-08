@@ -49,9 +49,11 @@ body.civi-app .civi-footer {
 body.civi-app .topbar {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  grid-template-areas: "left metrics right";
+  grid-template-areas:
+    "left metrics right"
+    "status status status";
   align-items: center;
-  gap: 8px 12px;
+  gap: 6px 12px;
 }
 
 body.civi-app .topbar-left {
@@ -61,6 +63,19 @@ body.civi-app .topbar-left {
 body.civi-app .civi-header-metrics {
   grid-area: metrics;
   min-width: 0;
+}
+
+body.civi-app .civi-lifestory-header-status {
+  grid-area: status;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.25;
+  color: var(--ink3);
+  overflow-wrap: anywhere;
 }
 
 body.civi-app .civi-header-metrics .civi-dashboard-metrics {
@@ -775,7 +790,9 @@ body.civi-app .civi-panels h2 {
 @media (max-width: 920px) {
   body.civi-app .topbar {
     grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas: "left metrics right";
+    grid-template-areas:
+      "left metrics right"
+      "status status status";
     align-items: center;
   }
 
@@ -897,5 +914,23 @@ body.civi-app .civi-panels h2 {
   body.civi-app .civi-track-hud:hover {
     transform: translateY(-1px);
     border-color: color-mix(in srgb, var(--sec-accent, #ffffff) 42%, rgba(255,255,255,0.10));
+  }
+}
+
+@media (max-width: 760px) {
+  body.civi-app .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "left right"
+      "status status"
+      "metrics metrics";
+  }
+
+  body.civi-app .civi-header-metrics .civi-dashboard-metrics {
+    justify-content: flex-start;
+  }
+
+  body.civi-app .civi-lifestory-header-status {
+    font-size: 11px;
   }
 }

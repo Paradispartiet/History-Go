@@ -111,6 +111,55 @@
     return /** @type {any} */ (window.CivicationState?.getActivePosition?.() || null);
   }
 
+  function getActiveRoleTitle(active) {
+    if (!active || typeof active !== "object") return "";
+    return String(active.title || active.role_title || active.roleName || active.positionTitle || "").trim();
+  }
+
+  function getCanonicalActiveRoleTitle() {
+    return getActiveRoleTitle(getActivePosition());
+  }
+
+  /**
+   * Builds the compact Civication header from the same active-position source as
+   * Min situasjon, Aktiv rolle and Arbeidsdag. Lifestory day/meters may be passed
+   * in by the Life Story UI, but the role label is never read from pilot/demo
+   * content.
+   * @param {{ state?: any, view?: any, includeEmptyRole?: boolean }} [options]
+   * @returns {string}
+   */
+  function renderCivicationHeaderStatus(options) {
+    const opts = options || {};
+    const lifeState = opts.state || {};
+    const view = opts.view || {};
+    const meters = lifeState.meters || {};
+    const activeRoleTitle = getCanonicalActiveRoleTitle();
+    const parts = [];
+
+    if (activeRoleTitle) {
+      parts.push(activeRoleTitle);
+    } else if (opts.includeEmptyRole !== false) {
+      parts.push("Ingen aktiv rolle");
+    }
+
+    parts.push("Dag " + asNumber(lifeState.dag, 1));
+    parts.push(view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen"));
+    parts.push("Psyke " + asNumber(meters.psyke, 62));
+    parts.push("Energi " + asNumber(meters.energi, 71));
+    parts.push(asNumber(meters.penger, getWalletPC()) + " PC");
+
+    return parts.filter(Boolean).join(" · ");
+  }
+
+  let lastHeaderStatusOptions = null;
+
+  function updateHeaderStatus(options) {
+    if (options) lastHeaderStatusOptions = options;
+    const header = $("civiLifestoryHeaderStatus");
+    if (!header) return;
+    header.textContent = renderCivicationHeaderStatus(options || lastHeaderStatusOptions || undefined);
+  }
+
   function getCiviState() {
     return window.CivicationState?.getState?.() || safeJSON("hg_civi_state_v1", {});
   }
@@ -268,6 +317,8 @@
     document.body.classList.toggle("civi-has-active-role", !!active);
     document.body.classList.toggle("civi-has-inbox", inboxCount > 0);
 
+    updateHeaderStatus();
+
     window.CivicationMiniSectionsUI?.refresh?.();
     window.CivicationBrandJobUI?.refresh?.();
   }
@@ -279,7 +330,7 @@
     window.setTimeout(render, 120);
   }
 
-  window.CivicationDashboardUI = { render };
+  window.CivicationDashboardUI = { render, renderCivicationHeaderStatus, updateHeaderStatus, getCanonicalActiveRoleTitle };
 
   document.addEventListener("DOMContentLoaded", scheduleRender);
 
@@ -291,7 +342,8 @@
     "civi:homeChanged",
     "civiPublicUpdated",
     "civi:travelStateUpdated",
-    "civi:travelDestinationSet"
+    "civi:travelDestinationSet",
+    "civi:lifestoryChanged"
   ].forEach(function (eventName) {
     window.addEventListener(eventName, scheduleRender);
   });

@@ -309,8 +309,14 @@
   function renderHeaderStatus(view) {
     const header = document.getElementById("civiLifestoryHeaderStatus");
     if (!header) return;
+
+    if (window.CivicationDashboardUI?.updateHeaderStatus) {
+      window.CivicationDashboardUI.updateHeaderStatus({ state, view });
+      return;
+    }
+
     const m = state.meters;
-    header.textContent = content.role.navn
+    header.textContent = "Ingen aktiv rolle"
       + " · Dag " + state.dag
       + " · " + (view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase))
       + " · Psyke " + m.psyke

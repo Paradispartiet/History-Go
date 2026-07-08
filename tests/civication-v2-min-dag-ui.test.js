@@ -64,9 +64,10 @@ async function main() {
   assert.ok(panel.textContent.includes("Aktiv"), "trådstatus skal ha norsk label");
   assert.ok(!panel.textContent.includes("skolevei_parkeringskjeller"), "tekniske tråd-id-er skal ikke dominere UI");
 
-  // v2-headeren viser rolle/dag/fase/status.
+  // v2-headeren viser dag/fase/status, men ingen demo-rolle når canonical aktiv rolle mangler.
   const header = window.document.getElementById("civiLifestoryHeaderStatus").textContent;
-  assert.ok(header.includes("Arealplanlegger") && header.includes("Dag 1"), "headerstatus: " + header);
+  assert.ok(header.includes("Ingen aktiv rolle") && header.includes("Dag 1"), "headerstatus: " + header);
+  assert.ok(!header.includes("Arealplanlegger"), "headeren skal ikke vise pilotrollen uten aktiv rolle: " + header);
 
   // Spill hele dagen: Runner er eneste progresjonskilde.
   let clicks = 0;
