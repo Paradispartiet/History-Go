@@ -11,23 +11,25 @@
 
   function setState(next){
     if (!el) return;
-    if (next === state) return;
 
     el.classList.remove("is-open", "is-collapsed", "is-hidden");
 
-switch(next){
-  case STATES.OPEN:
-    el.classList.add("is-open");
-    break;
+    switch(next){
+      case STATES.OPEN:
+        el.classList.add("is-open");
+        el.setAttribute("aria-hidden", "false");
+        break;
 
-  case STATES.COLLAPSED:
-    el.classList.add("is-collapsed");
-    break;
+      case STATES.COLLAPSED:
+        el.classList.add("is-collapsed");
+        el.setAttribute("aria-hidden", "true");
+        break;
 
-  case STATES.HIDDEN:
-    el.classList.add("is-hidden");
-    break;
-}
+      case STATES.HIDDEN:
+        el.classList.add("is-hidden");
+        el.setAttribute("aria-hidden", "true");
+        break;
+    }
 
     state = next;
   }
@@ -35,19 +37,16 @@ switch(next){
   function open(){
     console.trace("[bottomSheetController] open");
     setState(STATES.OPEN);
-    if (el) el.setAttribute("aria-hidden", "false");
   }
 
   function collapse(){
   console.trace("[bottomSheetController] collapse");
   setState(STATES.COLLAPSED);
-  if (el) el.setAttribute("aria-hidden", "true");
 }
 
 function hide(){
   console.trace("[bottomSheetController] hide");
   setState(STATES.HIDDEN);
-  if (el) el.setAttribute("aria-hidden", "true");
 }
 
   function toggle(){

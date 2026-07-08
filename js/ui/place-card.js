@@ -312,6 +312,21 @@ function hidePlaceCardUntilReady() {
   }
 }
 
+function forcePlaceCardOpenState(card, placeId) {
+  if (!card) return;
+
+  card.classList.remove("is-hidden", "is-collapsed");
+  card.classList.add("is-open");
+  card.setAttribute("aria-hidden", "false");
+  card.dataset.currentPlaceId = String(placeId || "").trim();
+
+  if (window.bottomSheetController?.open) {
+    window.bottomSheetController.open();
+  } else if (window.bottomSheetController?.setState) {
+    window.bottomSheetController.setState("open");
+  }
+}
+
 function renderHGSpotmeetingPlaceCardSection(place) {
   // People-rundingen får kun én liten sekundær CTA. Selve valgene
   // (kunnskapsmatcher/quiz/observasjon/rute) eies av HG_SpotmeetingUI-sheetet.
@@ -1001,18 +1016,14 @@ window.openPlaceCard = async function (place) {
   if (window.DataHub?.loadFullPlace) {
     try {
       const fullPlace = await window.DataHub.loadFullPlace(placeId, { cache: "default" });
-      if (!fullPlace || typeof fullPlace !== "object") {
-        hidePlaceCardUntilReady();
-        return false;
+      if (fullPlace && typeof fullPlace === "object") {
+        place = /** @type {PlaceCardPlace} */ ({ ...place, ...fullPlace });
+        const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
+        const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === placeId);
+        if (idx >= 0) placesArr[idx] = place;
       }
-      place = /** @type {PlaceCardPlace} */ ({ ...place, ...fullPlace });
-      const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
-      const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === placeId);
-      if (idx >= 0) placesArr[idx] = place;
     } catch (e) {
       console.warn("[openPlaceCard.loadFullPlace]", e);
-      hidePlaceCardUntilReady();
-      return false;
     }
   }
 
@@ -2658,8 +2669,7 @@ requestAnimationFrame(() => {
   card.classList.remove("is-switching");
 });
 
-card.setAttribute("aria-hidden", "false");
-expandPlaceCard();
+forcePlaceCardOpenState(card, nextPlaceId);
 return true;
 };
 
