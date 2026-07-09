@@ -1,6 +1,6 @@
 # Places manifest split audit
 
-Generated at: 2026-07-09T17:07:47.508Z
+Generated at: 2026-07-09T17:08:38.981Z
 
 ## Summary
 
@@ -9,10 +9,23 @@ Generated at: 2026-07-09T17:07:47.508Z
 - JSON object/scalar entries: 0
 - Array entries with split manifest: 93
 - Array entries missing split manifest: 185
+- Actual multi-place arrays missing split manifest: 4
+- Single-place arrays without split manifest: 181
 - Missing source files: 0
 - Parse errors: 0
 
-## Array entries missing split manifest
+## Actual multi-place arrays missing split manifest
+
+| Source | Places | First place id | Expected split manifest |
+| --- | ---: | --- | --- |
+| `data/places/historie/norge/places_historie_norge_for_1500_batch1.json` | 10 | `hafrsfjord` | `data/places/historie/norge/places_historie_norge_for_1500_batch1_manifest.json` |
+| `data/places/historie/norge/places_historie_norge_for_1500_batch2.json` | 15 | `stein_ringerike_halvdanshaugen` | `data/places/historie/norge/places_historie_norge_for_1500_batch2_manifest.json` |
+| `data/places/historie/norge/places_historie_norge_for_1500_batch3.json` | 12 | `nidaros_erkebispegarden` | `data/places/historie/norge/places_historie_norge_for_1500_batch3_manifest.json` |
+| `data/places/historie/norge/places_historie_norge_for_1500_batch4.json` | 6 | `york_jorvik` | `data/places/historie/norge/places_historie_norge_for_1500_batch4_manifest.json` |
+
+## Single-place arrays without split manifest
+
+These are already one manifest entry per place, but the file body is still a one-element JSON array rather than a plain object or a split-manifest directory.
 
 | Source | Places | First place id | Expected split manifest |
 | --- | ---: | --- | --- |
@@ -136,10 +149,6 @@ Generated at: 2026-07-09T17:07:47.508Z
 | `data/places/historie/agder/vest_agder_museet_kongsgard.json` | 1 | `vest_agder_museet_kongsgard` | `data/places/historie/agder/vest_agder_museet_kongsgard_manifest.json` |
 | `data/places/historie/agder/vestre_moland_kirke_lillesand.json` | 1 | `vestre_moland_kirke_lillesand` | `data/places/historie/agder/vestre_moland_kirke_lillesand_manifest.json` |
 | `data/places/historie/agder/vigeland_hovedgard_lindesnes.json` | 1 | `vigeland_hovedgard_lindesnes` | `data/places/historie/agder/vigeland_hovedgard_lindesnes_manifest.json` |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch1.json` | 10 | `hafrsfjord` | `data/places/historie/norge/places_historie_norge_for_1500_batch1_manifest.json` |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch2.json` | 15 | `stein_ringerike_halvdanshaugen` | `data/places/historie/norge/places_historie_norge_for_1500_batch2_manifest.json` |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch3.json` | 12 | `nidaros_erkebispegarden` | `data/places/historie/norge/places_historie_norge_for_1500_batch3_manifest.json` |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch4.json` | 6 | `york_jorvik` | `data/places/historie/norge/places_historie_norge_for_1500_batch4_manifest.json` |
 | `data/places/kunst/agder/arendal_kulturhus.json` | 1 | `arendal_kulturhus` | `data/places/kunst/agder/arendal_kulturhus_manifest.json` |
 | `data/places/kunst/agder/kilden_teater_konserthus_kristiansand.json` | 1 | `kilden_teater_konserthus_kristiansand` | `data/places/kunst/agder/kilden_teater_konserthus_kristiansand_manifest.json` |
 | `data/places/kunst/agder/valle_sylvsmie_handverkshistorie.json` | 1 | `valle_sylvsmie_handverkshistorie` | `data/places/kunst/agder/valle_sylvsmie_handverkshistorie_manifest.json` |
