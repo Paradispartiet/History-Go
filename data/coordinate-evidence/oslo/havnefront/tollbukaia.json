@@ -1,0 +1,43 @@
+{
+  "placeId": "tollbukaia",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.90825,
+    "lon": 10.74105,
+    "r": 130,
+    "coordStatus": "needs_source",
+    "coordSource": "legacy_manual_map_check",
+    "coordType": "quay_semantic_anchor",
+    "coordNote": "Semantisk kaianker for Tollbukaia/tollområdet langs kai- og gatefronten vest for Havnelageret; ikke inne i Grev Wedels plass og ikke på østsiden ved Langkaia/SALT. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+  },
+  "identity": {
+    "currentName": "Tollbukaia",
+    "resolvedIdentity": null,
+    "identityStatus": "unresolved",
+    "identityProblem": "Lineært kai-/tollområde må kildefestes som geometri eller dokumentert anker, ikke tilfeldig punkt.",
+    "locatorTypeCandidate": "quay",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "official_map eller OSM/kommunal geometri",
+    "geometry eller anchors",
+    "coordRole line_anchor eller area_anchor"
+  ],
+  "evidence": [],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Lineært kaiområde kan ikke være verified som tilfeldig punkt.",
+    "nextAction": "Finn offisiell/OSM/kommunal geometri eller dokumentert kaianker før koordinat kan endres eller verifiseres."
+  },
+  "notes": [
+    "Dette er et quay/linear_area-problem, ikke vanlig building/site_center.",
+    "Neste koordinat-PR må dokumentere hvorfor valgt anchor representerer Tollbukaia."
+  ]
+}
