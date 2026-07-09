@@ -6,6 +6,7 @@ const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
 const OUTPUT_PATH = path.join(ROOT, 'data/places/places_index.json');
 const EXCLUSIONS_PATH = path.join(ROOT, 'data/places/place_exclusions.json');
+const COORDINATE_OVERRIDES_PATH = path.join(ROOT, 'data/places/coordinate_overrides.json');
 
 type JsonObject = Record<string, unknown>;
 type PlaceManifest = JsonObject & {
@@ -35,9 +36,19 @@ type PlaceExclusions = JsonObject & {
 type LightField = Exclude<keyof PlaceRow, 'lng'>;
 type LightPlace = Partial<Record<LightField, unknown>>;
 
+type CoordinateOverride = JsonObject & {
+  id: string;
+  lat: number;
+  lon: number;
+};
+
 const LIGHT_FIELDS: LightField[] = [
   'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper','sourceFile'
 ];
+
+const COORDINATE_OVERRIDE_FIELDS = [
+  'lat','lon','r','coordType','coordStatus','coordSource','coordSourceId','coordSourceUrl','coordPrecisionM','coordVerifiedAt','coordNote'
+] as const;
 
 function hasObjectType(value: unknown): value is JsonObject {
   return Boolean(value) && typeof value === 'object';
@@ -53,6 +64,14 @@ function isPlaceExclusions(value: unknown): value is PlaceExclusions {
 
 function isPlaceRow(value: unknown): value is PlaceRow {
   return hasObjectType(value);
+}
+
+function isNum(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function isCoordinateOverride(value: unknown): value is CoordinateOverride {
+  return hasObjectType(value) && typeof value.id === 'string' && value.id.trim().length > 0 && isNum(value.lat) && isNum(value.lon);
 }
 
 function placeIdForError(place: PlaceRow): string {
@@ -91,10 +110,36 @@ async function readDisabledPlaceIds(): Promise<Set<string>> {
   }
 }
 
+async function readCoordinateOverrides(): Promise<Map<string, CoordinateOverride>> {
+  try {
+    const data = await readJson(COORDINATE_OVERRIDES_PATH);
+    const list = Array.isArray(data) ? data.filter(isCoordinateOverride) : [];
+    return new Map(list.map((override) => [override.id.trim(), override]));
+  } catch (error: unknown) {
+    const code = hasObjectType(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Map();
+    throw error;
+  }
+}
+
+function applyCoordinateOverride(place: PlaceRow, overrides: Map<string, CoordinateOverride>): PlaceRow {
+  const id = typeof place.id === 'string' ? place.id.trim() : '';
+  const override = id ? overrides.get(id) : null;
+  if (!override) return place;
+
+  const out: PlaceRow = { ...place };
+  for (const key of COORDINATE_OVERRIDE_FIELDS) {
+    if (Object.prototype.hasOwnProperty.call(override, key)) out[key] = override[key];
+  }
+  if (Object.prototype.hasOwnProperty.call(out, 'lng')) delete out.lng;
+  return out;
+}
+
 async function main(): Promise<void> {
   const manifest = await readJson(MANIFEST_PATH);
   const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
   const disabledPlaceIds = await readDisabledPlaceIds();
+  const coordinateOverrides = await readCoordinateOverrides();
   const out: LightPlace[] = [];
   let skipped = 0;
 
@@ -104,8 +149,9 @@ async function main(): Promise<void> {
     const fullPath = path.join(ROOT, 'data', sourceFile);
     const data = await readJson(fullPath);
     const places = Array.isArray(data) ? data : (hasObjectType(data) && Array.isArray(data.places) ? data.places : []);
-    for (const place of places) {
-      if (!isPlaceRow(place)) continue;
+    for (const rawPlace of places) {
+      if (!isPlaceRow(rawPlace)) continue;
+      const place = applyCoordinateOverride(rawPlace, coordinateOverrides);
       assertNoLegacyLng(place, sourceFile);
       const id = typeof place.id === 'string' ? place.id : '';
       if (id && disabledPlaceIds.has(id)) {
@@ -118,7 +164,8 @@ async function main(): Promise<void> {
 
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8');
   const skippedText = skipped ? `; skipped ${skipped} disabled place(s)` : '';
-  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}${skippedText}`);
+  const overrideText = coordinateOverrides.size ? `; applied ${coordinateOverrides.size} coordinate override(s)` : '';
+  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}${skippedText}${overrideText}`);
 }
 
 main().catch((err: unknown) => {
