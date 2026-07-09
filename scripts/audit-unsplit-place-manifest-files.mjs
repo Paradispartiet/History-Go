@@ -1,4 +1,4 @@
-// Audit data/places manifest JSON arrays that still lack split sidecar manifests.
+// Audit data/places manifest JSON arrays and separate actual multi-place aggregates from single-place array files.
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, basename } from 'node:path';
 
@@ -36,6 +36,12 @@ function firstPlaceId(value) {
   return typeof first?.id === 'string' ? first.id : null;
 }
 
+function rowTable(rows) {
+  if (!rows.length) return '_None._';
+  return '| Source | Places | First place id | Expected split manifest |\n| --- | ---: | --- | --- |\n'
+    + rows.map((row) => `| \`${row.source_path}\` | ${row.place_count} | \`${row.first_place_id ?? ''}\` | \`${row.expected_split_manifest}\` |`).join('\n');
+}
+
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
 
 if (!Array.isArray(manifest.files)) {
@@ -52,6 +58,8 @@ const audit = {
   parse_errors: [],
   arrays_with_split_manifest: [],
   arrays_missing_split_manifest: [],
+  multi_place_arrays_missing_split_manifest: [],
+  single_place_arrays_without_split_manifest: [],
 };
 
 for (const entry of manifest.files) {
@@ -88,11 +96,22 @@ for (const entry of manifest.files) {
     audit.arrays_with_split_manifest.push(row);
   } else {
     audit.arrays_missing_split_manifest.push(row);
+    if (parsed.length > 1) {
+      audit.multi_place_arrays_missing_split_manifest.push(row);
+    } else {
+      audit.single_place_arrays_without_split_manifest.push(row);
+    }
   }
 }
 
-audit.arrays_missing_split_manifest.sort((a, b) => a.source_path.localeCompare(b.source_path));
-audit.arrays_with_split_manifest.sort((a, b) => a.source_path.localeCompare(b.source_path));
+for (const key of [
+  'arrays_missing_split_manifest',
+  'arrays_with_split_manifest',
+  'multi_place_arrays_missing_split_manifest',
+  'single_place_arrays_without_split_manifest',
+]) {
+  audit[key].sort((a, b) => a.source_path.localeCompare(b.source_path));
+}
 
 await mkdir(dirname(reportPath), { recursive: true });
 await writeFile(jsonReportPath, `${JSON.stringify(audit, null, 2)}\n`, 'utf8');
@@ -109,15 +128,20 @@ const md = [
   `- JSON object/scalar entries: ${audit.json_object_or_scalar_entries}`,
   `- Array entries with split manifest: ${audit.arrays_with_split_manifest.length}`,
   `- Array entries missing split manifest: ${audit.arrays_missing_split_manifest.length}`,
+  `- Actual multi-place arrays missing split manifest: ${audit.multi_place_arrays_missing_split_manifest.length}`,
+  `- Single-place arrays without split manifest: ${audit.single_place_arrays_without_split_manifest.length}`,
   `- Missing source files: ${audit.missing_source_files.length}`,
   `- Parse errors: ${audit.parse_errors.length}`,
   '',
-  '## Array entries missing split manifest',
+  '## Actual multi-place arrays missing split manifest',
   '',
-  audit.arrays_missing_split_manifest.length
-    ? '| Source | Places | First place id | Expected split manifest |\n| --- | ---: | --- | --- |\n'
-      + audit.arrays_missing_split_manifest.map((row) => `| \`${row.source_path}\` | ${row.place_count} | \`${row.first_place_id ?? ''}\` | \`${row.expected_split_manifest}\` |`).join('\n')
-    : '_None._',
+  rowTable(audit.multi_place_arrays_missing_split_manifest),
+  '',
+  '## Single-place arrays without split manifest',
+  '',
+  'These are already one manifest entry per place, but the file body is still a one-element JSON array rather than a plain object or a split-manifest directory.',
+  '',
+  rowTable(audit.single_place_arrays_without_split_manifest),
   '',
   '## Missing source files',
   '',
@@ -142,5 +166,6 @@ const md = [
 await writeFile(reportPath, md, 'utf8');
 
 console.log(`Manifest entries checked: ${audit.total_manifest_entries}`);
-console.log(`Array entries missing split manifest: ${audit.arrays_missing_split_manifest.length}`);
+console.log(`Actual multi-place arrays missing split manifest: ${audit.multi_place_arrays_missing_split_manifest.length}`);
+console.log(`Single-place arrays without split manifest: ${audit.single_place_arrays_without_split_manifest.length}`);
 console.log(`Report written: ${rel(reportPath)}`);
