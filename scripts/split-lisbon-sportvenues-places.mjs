@@ -1,4 +1,4 @@
-// Split Lisbon sport venues aggregate into one JSON file per place.
+// Split Lisbon sport-venue aggregate into one JSON file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
