@@ -166,18 +166,71 @@ function placesFromPlaceData(data) {
   return [];
 }
 
-function placesFromPlaceData(data) {
-  if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.places)) return data.places;
-  if (data && typeof data === "object" && !Array.isArray(data) && typeof data.id === "string") return [data];
-  return [];
+function normalizePlaceManifestPath(entry) {
+  const raw = String(entry || "").trim().replace(/^\.?\//, "");
+  if (!raw) return "";
+  const withoutData = raw.replace(/^data\//, "");
+  return withoutData.startsWith("places/") ? withoutData : `places/${withoutData.replace(/^places\//, "")}`;
 }
 
-function placesFromPlaceData(data) {
-  if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.places)) return data.places;
-  if (data && typeof data === "object" && !Array.isArray(data) && typeof data.id === "string") return [data];
-  return [];
+function splitManifestPathFor(file) {
+  const normalized = normalizePlaceManifestPath(file);
+  const slash = normalized.lastIndexOf("/");
+  const dir = slash >= 0 ? normalized.slice(0, slash + 1) : "";
+  const name = slash >= 0 ? normalized.slice(slash + 1) : normalized;
+  const dot = name.lastIndexOf(".");
+  const stem = dot >= 0 ? name.slice(0, dot) : name;
+  const ext = dot >= 0 ? name.slice(dot) : ".json";
+  return `${dir}${stem}_manifest${ext}`;
+}
+
+function isValidSplitManifest(data) {
+  return data && typeof data === "object" && !Array.isArray(data)
+    && Array.isArray(data.places)
+    && data.places.some((row) => row && typeof row === "object" && typeof row.file === "string" && row.file.trim());
+}
+
+function resolveRelativePlaceFile(baseFile, childFile) {
+  const child = String(childFile || "").trim().replace(/^\.?\//, "");
+  if (!child) return "";
+  if (child.startsWith("places/")) return child;
+  if (child.startsWith("data/places/")) return child.replace(/^data\//, "");
+  const slash = baseFile.lastIndexOf("/");
+  const dir = slash >= 0 ? baseFile.slice(0, slash + 1) : "";
+  return `${dir}${child}`;
+}
+
+async function preferSiblingSplitManifest(file, opts = {}) {
+  const normalized = normalizePlaceManifestPath(file);
+  if (!normalized) return null;
+  const splitFile = splitManifestPathFor(normalized);
+  try {
+    const data = await fetchJSON(pData(splitFile), opts);
+    return isValidSplitManifest(data) ? { file: splitFile, data } : null;
+  } catch {
+    return null;
+  }
+}
+
+async function loadPlaceEntriesFromManifestFile(file, opts = {}) {
+  const normalized = normalizePlaceManifestPath(file);
+  if (!normalized) return [];
+
+  const split = await preferSiblingSplitManifest(normalized, opts);
+  if (split) {
+    const entries = [];
+    for (const row of split.data.places) {
+      if (!row || typeof row !== "object" || typeof row.file !== "string" || !row.file.trim()) continue;
+      const childFile = resolveRelativePlaceFile(split.file, row.file);
+      if (!childFile) continue;
+      const data = await fetchJSON(pData(childFile), opts);
+      for (const place of placesFromPlaceData(data)) entries.push({ place, file: childFile });
+    }
+    return entries;
+  }
+
+  const data = await fetchJSON(pData(normalized), opts);
+  return placesFromPlaceData(data).map((place) => ({ place, file: normalized }));
 }
 
 async function loadPlacesBase(opts = {}) {
@@ -189,9 +242,9 @@ async function loadPlacesBase(opts = {}) {
   const manifest = await fetchJSON(pData("places/manifest.json"), opts);
   const places = [];
 
-  for (const file of manifest.files) {
-    const data = await fetchJSON(pData(file), opts);
-    places.push(...placesFromPlaceData(data));
+  for (const file of (Array.isArray(manifest?.files) ? manifest.files : [])) {
+    const entries = await loadPlaceEntriesFromManifestFile(file, opts);
+    places.push(...entries.map((entry) => ({ ...entry.place, sourceFile: entry.file })));
   }
   return filterActivePlaces(places, opts);
 }
@@ -243,11 +296,10 @@ async function loadPlacesBase(opts = {}) {
       const map = new Map();
 
       for (const file of files) {
-        const data = await fetchJSON(pData(file), opts);
-        const places = placesFromPlaceData(data);
-        for (const p of places) {
-          const id = String(p?.id || "").trim();
-          if (id && !disabled.has(id) && !map.has(id)) map.set(id, file);
+        const entries = await loadPlaceEntriesFromManifestFile(file, opts);
+        for (const { place, file: actualFile } of entries) {
+          const id = String(place?.id || "").trim();
+          if (id && !disabled.has(id) && !map.has(id)) map.set(id, actualFile);
         }
       }
       return map;
@@ -272,6 +324,10 @@ async function loadPlacesBase(opts = {}) {
       file = byId.get(id) || "";
     }
     if (!file) return null;
+
+    const splitEntries = await loadPlaceEntriesFromManifestFile(file, opts).catch(() => []);
+    const splitEntry = splitEntries.find((entry) => String(entry?.place?.id || "").trim() === id);
+    if (splitEntry?.file) file = splitEntry.file;
 
     const data = await fetchJSON(pData(file), opts);
     const places = placesFromPlaceData(data);

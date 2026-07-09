@@ -46,13 +46,40 @@ function addRowsToSourceMap(map, file) {
   }
 }
 
+
+function splitManifestPathFor(file) {
+  const parsed = path.parse(file);
+  return path.join(parsed.dir, `${parsed.name}_manifest${parsed.ext || '.json'}`);
+}
+
+function isValidSplitManifest(data) {
+  return data && typeof data === 'object' && !Array.isArray(data)
+    && Array.isArray(data.places)
+    && data.places.some((row) => row && typeof row === 'object' && typeof row.file === 'string' && row.file.trim());
+}
+
+function addRowsFromManifestEntryToSourceMap(map, file) {
+  const splitManifestPath = splitManifestPathFor(file);
+  if (fs.existsSync(splitManifestPath)) {
+    const splitManifest = readJson(splitManifestPath);
+    if (isValidSplitManifest(splitManifest)) {
+      for (const entry of splitManifest.places) {
+        if (!entry || typeof entry !== 'object' || typeof entry.file !== 'string' || !entry.file.trim()) continue;
+        addRowsToSourceMap(map, path.join(path.dirname(splitManifestPath), entry.file));
+      }
+      return;
+    }
+  }
+  addRowsToSourceMap(map, file);
+}
+
 function buildMainSourceMap() {
   const manifest = readJson(MAIN_MANIFEST);
   const files = Array.isArray(manifest.files) ? manifest.files : [];
   const map = new Map();
   for (const manifestPath of files) {
     if (typeof manifestPath !== 'string' || !manifestPath.trim()) continue;
-    addRowsToSourceMap(map, path.join(ROOT, 'data', manifestPath));
+    addRowsFromManifestEntryToSourceMap(map, path.join(ROOT, 'data', manifestPath));
   }
   return map;
 }
