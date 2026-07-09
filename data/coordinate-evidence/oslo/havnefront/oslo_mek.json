@@ -1,0 +1,43 @@
+{
+  "placeId": "oslo_mek",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/oslo_mek.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_historical_source",
+  "currentCoordinate": {
+    "lat": 59.90745,
+    "lon": 10.75195,
+    "r": 140,
+    "coordStatus": "needs_source",
+    "coordSource": "legacy_manual_map_check",
+    "coordType": "historic_site_anchor",
+    "coordNote": "Historisk anker: Historisk anleggspunkt for verksted-/industriområdet i Bjørvika slik desc/popupDesc beskriver, lagt på land ved tidligere Nylands/verkstedområde under dagens Bjørvika/Opera-område; ikke dagens bar-navnebruk og ikke vannflate. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+  },
+  "identity": {
+    "currentName": "Oslo Mekaniske Verksted",
+    "resolvedIdentity": null,
+    "identityStatus": "ambiguous",
+    "identityProblem": "Dagens Oslo Mek-navnebruk og historisk mekanisk verksted/industrihistorie må ikke blandes.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": true,
+    "splitReason": "Dagens Oslo Mek-navnebruk og historisk mekanisk verksted/industrihistorie må ikke blandes."
+  },
+  "requiredEvidence": [
+    "historisk kilde",
+    "historisk kart eller manual_research med kilde",
+    "avklaring av om dette skal være dagens Oslo Mek venue eller historisk verksted"
+  ],
+  "evidence": [],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Identitet er uavklart. Koordinat kan ikke fikses før dagens venue vs historisk sted er avgjort.",
+    "nextAction": "Avklar identitet og finn historisk kilde/historisk kart før koordinat kan endres eller verifiseres."
+  },
+  "notes": [
+    "Dette er identitetsproblem før koordinatproblem.",
+    "Hvis dagens Oslo Mek venue skal inn, bør det vurderes som egen current_place/poi med adressekilde."
+  ]
+}
