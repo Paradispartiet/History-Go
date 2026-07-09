@@ -159,6 +159,13 @@ async function filterActivePlaces(places, opts = {}) {
   });
 }
 
+function placesFromPlaceData(data) {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.places)) return data.places;
+  if (data && typeof data === "object" && !Array.isArray(data) && typeof data.id === "string") return [data];
+  return [];
+}
+
 async function loadPlacesBase(opts = {}) {
   try {
     const index = await fetchJSON(pData("places/places_index.json"), opts);
@@ -170,8 +177,7 @@ async function loadPlacesBase(opts = {}) {
 
   for (const file of manifest.files) {
     const data = await fetchJSON(pData(file), opts);
-    if (Array.isArray(data)) places.push(...data);
-    else if (Array.isArray(data?.places)) places.push(...data.places);
+    places.push(...placesFromPlaceData(data));
   }
   return filterActivePlaces(places, opts);
 }
@@ -224,7 +230,7 @@ async function loadPlacesBase(opts = {}) {
 
       for (const file of files) {
         const data = await fetchJSON(pData(file), opts);
-        const places = Array.isArray(data) ? data : (Array.isArray(data?.places) ? data.places : []);
+        const places = placesFromPlaceData(data);
         for (const p of places) {
           const id = String(p?.id || "").trim();
           if (id && !disabled.has(id) && !map.has(id)) map.set(id, file);
