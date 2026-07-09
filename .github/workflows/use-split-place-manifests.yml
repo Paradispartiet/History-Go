@@ -1,0 +1,31 @@
+name: Use split place manifests
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/use-split-place-manifests
+
+permissions:
+  contents: write
+
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/use-split-place-manifests
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: node scripts/use-split-place-manifests.mjs
+      - run: npm run places:index:build
+      - run: npm run places:index:check
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/manifest.json data/places/places_index.json js/dataHub.js tools/build_places_index.mts reports/use-split-place-manifests-report.json
+          git commit -m "Use split place manifests as active place sources" || exit 0
+          git push
