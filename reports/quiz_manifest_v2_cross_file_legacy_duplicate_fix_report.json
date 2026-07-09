@@ -1,0 +1,319 @@
+{
+  "status": "applied",
+  "scope": "cross-file legacy duplicate quiz ids only",
+  "sourceReports": [
+    "reports/quiz_manifest_v2_legacy_duplicate_triage_report.json",
+    "reports/quiz_manifest_v2_same_file_legacy_duplicate_fix_report.json"
+  ],
+  "strategy": "keep earliest manifest.files occurrence, rename later file occurrences with category suffix",
+  "filesChanged": [
+    "data/quiz/quiz_litteratur.json",
+    "data/quiz/quiz_musikk.json",
+    "data/quiz/quiz_natur.json",
+    "data/quiz/quiz_politikk.json",
+    "data/quiz/quiz_subkultur.json",
+    "data/quiz/quiz_populaerkultur.json"
+  ],
+  "filesNotChanged": [
+    "data/quiz/manifest.json",
+    "scripts/audit-quiz-manifest-v2.mjs",
+    "data/places",
+    "data/people",
+    "manifest.sets quiz files"
+  ],
+  "renamedIds": [
+    {
+      "file": "data/quiz/quiz_litteratur.json",
+      "oldId": "knut_hamsun_quiz_1",
+      "newId": "knut_hamsun_quiz_1_litteratur"
+    },
+    {
+      "file": "data/quiz/quiz_litteratur.json",
+      "oldId": "knut_hamsun_quiz_2",
+      "newId": "knut_hamsun_quiz_2_litteratur"
+    },
+    {
+      "file": "data/quiz/quiz_litteratur.json",
+      "oldId": "knut_hamsun_quiz_3",
+      "newId": "knut_hamsun_quiz_3_litteratur"
+    },
+    {
+      "file": "data/quiz/quiz_litteratur.json",
+      "oldId": "linn_ullmann_quiz_1",
+      "newId": "linn_ullmann_quiz_1_litteratur"
+    },
+    {
+      "file": "data/quiz/quiz_litteratur.json",
+      "oldId": "linn_ullmann_quiz_2",
+      "newId": "linn_ullmann_quiz_2_litteratur"
+    },
+    {
+      "file": "data/quiz/quiz_litteratur.json",
+      "oldId": "linn_ullmann_quiz_3",
+      "newId": "linn_ullmann_quiz_3_litteratur"
+    },
+    {
+      "file": "data/quiz/quiz_musikk.json",
+      "oldId": "stephen_butkus_quiz_1",
+      "newId": "stephen_butkus_quiz_1_musikk"
+    },
+    {
+      "file": "data/quiz/quiz_musikk.json",
+      "oldId": "stephen_butkus_quiz_2",
+      "newId": "stephen_butkus_quiz_2_musikk"
+    },
+    {
+      "file": "data/quiz/quiz_musikk.json",
+      "oldId": "stephen_butkus_quiz_3",
+      "newId": "stephen_butkus_quiz_3_musikk"
+    },
+    {
+      "file": "data/quiz/quiz_musikk.json",
+      "oldId": "stephen_butkus_quiz_4",
+      "newId": "stephen_butkus_quiz_4_musikk"
+    },
+    {
+      "file": "data/quiz/quiz_musikk.json",
+      "oldId": "stephen_butkus_quiz_5",
+      "newId": "stephen_butkus_quiz_5_musikk"
+    },
+    {
+      "file": "data/quiz/quiz_natur.json",
+      "oldId": "ekebergparken_quiz_1",
+      "newId": "ekebergparken_quiz_1_natur"
+    },
+    {
+      "file": "data/quiz/quiz_natur.json",
+      "oldId": "ekebergparken_quiz_2",
+      "newId": "ekebergparken_quiz_2_natur"
+    },
+    {
+      "file": "data/quiz/quiz_natur.json",
+      "oldId": "ekebergparken_quiz_3",
+      "newId": "ekebergparken_quiz_3_natur"
+    },
+    {
+      "file": "data/quiz/quiz_natur.json",
+      "oldId": "ekebergparken_quiz_4",
+      "newId": "ekebergparken_quiz_4_natur"
+    },
+    {
+      "file": "data/quiz/quiz_natur.json",
+      "oldId": "ekebergparken_quiz_5",
+      "newId": "ekebergparken_quiz_5_natur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "tinashe_williamson_quiz_1",
+      "newId": "tinashe_williamson_quiz_1_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "tinashe_williamson_quiz_2",
+      "newId": "tinashe_williamson_quiz_2_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "tinashe_williamson_quiz_3",
+      "newId": "tinashe_williamson_quiz_3_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "tinashe_williamson_quiz_4",
+      "newId": "tinashe_williamson_quiz_4_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "tinashe_williamson_quiz_5",
+      "newId": "tinashe_williamson_quiz_5_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "stephen_butkus_quiz_1",
+      "newId": "stephen_butkus_quiz_1_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "stephen_butkus_quiz_2",
+      "newId": "stephen_butkus_quiz_2_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "stephen_butkus_quiz_3",
+      "newId": "stephen_butkus_quiz_3_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "stephen_butkus_quiz_4",
+      "newId": "stephen_butkus_quiz_4_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "stephen_butkus_quiz_5",
+      "newId": "stephen_butkus_quiz_5_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "astrid_christensen_quiz_1",
+      "newId": "astrid_christensen_quiz_1_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "astrid_christensen_quiz_2",
+      "newId": "astrid_christensen_quiz_2_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "astrid_christensen_quiz_3",
+      "newId": "astrid_christensen_quiz_3_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "ulrikke_brandstorp_quiz_1",
+      "newId": "ulrikke_brandstorp_quiz_1_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "ulrikke_brandstorp_quiz_2",
+      "newId": "ulrikke_brandstorp_quiz_2_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_populaerkultur.json",
+      "oldId": "ulrikke_brandstorp_quiz_3",
+      "newId": "ulrikke_brandstorp_quiz_3_populaerkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "bla_quiz_1",
+      "newId": "bla_quiz_1_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "bla_quiz_2",
+      "newId": "bla_quiz_2_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "bla_quiz_3",
+      "newId": "bla_quiz_3_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "bla_quiz_4",
+      "newId": "bla_quiz_4_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "bla_quiz_5",
+      "newId": "bla_quiz_5_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "karpe_quiz_1",
+      "newId": "karpe_quiz_1_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "karpe_quiz_2",
+      "newId": "karpe_quiz_2_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "karpe_quiz_3",
+      "newId": "karpe_quiz_3_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "akerselva_quiz_1",
+      "newId": "akerselva_quiz_1_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "akerselva_quiz_2",
+      "newId": "akerselva_quiz_2_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "youngstorget_quiz_1",
+      "newId": "youngstorget_quiz_1_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "youngstorget_quiz_2",
+      "newId": "youngstorget_quiz_2_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "youngstorget_quiz_3",
+      "newId": "youngstorget_quiz_3_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "youngstorget_quiz_4",
+      "newId": "youngstorget_quiz_4_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "youngstorget_quiz_5",
+      "newId": "youngstorget_quiz_5_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "klanen_quiz_1",
+      "newId": "klanen_quiz_1_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "klanen_quiz_2",
+      "newId": "klanen_quiz_2_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_subkultur.json",
+      "oldId": "klanen_quiz_3",
+      "newId": "klanen_quiz_3_subkultur"
+    },
+    {
+      "file": "data/quiz/quiz_politikk.json",
+      "oldId": "nobelinstituttet_quiz_1",
+      "newId": "nobelinstituttet_quiz_1_politikk"
+    },
+    {
+      "file": "data/quiz/quiz_politikk.json",
+      "oldId": "nobelinstituttet_quiz_2",
+      "newId": "nobelinstituttet_quiz_2_politikk"
+    },
+    {
+      "file": "data/quiz/quiz_politikk.json",
+      "oldId": "nobelinstituttet_quiz_3",
+      "newId": "nobelinstituttet_quiz_3_politikk"
+    },
+    {
+      "file": "data/quiz/quiz_politikk.json",
+      "oldId": "nobelinstituttet_quiz_4",
+      "newId": "nobelinstituttet_quiz_4_politikk"
+    },
+    {
+      "file": "data/quiz/quiz_politikk.json",
+      "oldId": "nobelinstituttet_quiz_5",
+      "newId": "nobelinstituttet_quiz_5_politikk"
+    }
+  ],
+  "removedObjects": [],
+  "sameFileDuplicatesTouched": false,
+  "crossFileDuplicateReportsBefore": 50,
+  "crossFileDuplicateReportsAfter": 0,
+  "duplicateQuizItemIdsAfter": 0,
+  "missingFilesAfter": 0,
+  "missingSetIdsAfter": 0,
+  "invalidQuestionsAfter": 0,
+  "targetMismatchQuestionsAfter": 0,
+  "duplicateSetKeysAfter": 0,
+  "manifestChanged": false,
+  "manifestSetsChanged": false,
+  "setQuizFilesChanged": false,
+  "placeDataChanged": false,
+  "peopleDataChanged": false,
+  "auditScriptChanged": false,
+  "auditRan": true,
+  "expectedAuditStatusAfter": "passed"
+}
