@@ -1,0 +1,43 @@
+{
+  "placeId": "akershus_kaier",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/akershus_kaier.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.90715,
+    "lon": 10.73705,
+    "r": 200,
+    "coordStatus": "needs_source",
+    "coordSource": "legacy_manual_map_check",
+    "coordType": "quay_semantic_anchor",
+    "coordNote": "Semantisk kaianker for den lineære Akershuskaiene-fronten langs Akershus festning/Pipervika; punktet er ikke et tilfeldig Vippetangen- eller havnebassengpunkt. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+  },
+  "identity": {
+    "currentName": "Akershuskaiene",
+    "resolvedIdentity": null,
+    "identityStatus": "unresolved",
+    "identityProblem": "Lineær kai-/sjøfront må kildefestes som geometri eller dokumentert anker, ikke ett tilfeldig punkt.",
+    "locatorTypeCandidate": "quay",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "official_map eller OSM/kommunal geometri",
+    "geometry eller anchors",
+    "coordRole line_anchor eller area_anchor"
+  ],
+  "evidence": [],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Lineært kaiområde langs Akershus/Pipervika krever geometri eller dokumentert anker.",
+    "nextAction": "Finn geometri eller dokumentert kai-/områdeanker før koordinat kan endres eller verifiseres."
+  },
+  "notes": [
+    "Dette skal ikke behandles som site_center for et bygg.",
+    "Neste koordinat-PR må dokumentere representasjonsanker eller geometry."
+  ]
+}
