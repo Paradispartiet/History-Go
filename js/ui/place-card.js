@@ -1445,6 +1445,12 @@ if (!card) return;
       }
     };
   }
+  const coordinateTrust = typeof window.HGCoordinateTrust?.getCoordinateTrust === "function"
+    ? window.HGCoordinateTrust.getCoordinateTrust(place)
+    : (typeof window.HGMap?.getCoordinateTrust === "function" ? window.HGMap.getCoordinateTrust(place) : (place.coordinateTrust || "unknown"));
+  place.coordinateTrust = coordinateTrust;
+  if (card) card.dataset.coordinateTrust = String(coordinateTrust || "unknown");
+
   const categoryLabel = (window.CATEGORY_LIST || []).find(c => String(c?.id || "").trim() === String(place.category || "").trim())?.name || place.category || "";
   const sportProfile = /** @type {any} */ ((place?.category === "sport" && place?.sport_profile && typeof place.sport_profile === "object") ? place.sport_profile : null);
   if (metaEl) {
@@ -1463,6 +1469,13 @@ if (!card) return;
       row.textContent = String(line || "");
       return row;
     });
+    if (coordinateTrust === "review" || coordinateTrust === "unknown") {
+      const qaRow = document.createElement("div");
+      qaRow.className = "pc-coordinate-trust-note";
+      qaRow.dataset.coordinateTrust = coordinateTrust;
+      qaRow.textContent = "Koordinat trenger kontroll";
+      lineNodes.push(qaRow);
+    }
     metaEl.replaceChildren(...lineNodes);
   }
   if (descEl)  descEl.textContent  = String(place.desc || "");
