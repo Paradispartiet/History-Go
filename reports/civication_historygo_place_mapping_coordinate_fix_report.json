@@ -1,0 +1,73 @@
+{
+  "status": "applied",
+  "reason": "tools:check was blocked by Civication History Go place mapping coordinate mismatches",
+  "sourceFailure": {
+    "command": "npm run tools:check",
+    "failureStage": "audit:civication-place-mapping",
+    "reportedMismatchArea": {
+      "by": [
+        "map_bispelokket",
+        "map_tigeren"
+      ],
+      "historie": [
+        "map_middelalder_oslo",
+        "map_gamle_trikkestallen",
+        "map_sofienberg_kirke"
+      ],
+      "musikk": [
+        "map_salt"
+      ],
+      "naeringsliv": [
+        "map_havnelageret",
+        "map_tollbukaia",
+        "map_akershus_kaier",
+        "map_oslo_mek"
+      ]
+    }
+  },
+  "diagnosis": {
+    "auditUsesAggregateSourceFiles": true,
+    "checkedSplitPlaceFiles": true,
+    "sourceDriftFound": true
+  },
+  "fixedMappings": [
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.by.json","mappingId":"map_bispelokket","historyGoPlaceId":"bispelokket","oldMappingLat":59.9078,"oldMappingLon":10.7538,"auditSourceLat":59.90806,"auditSourceLon":10.75528,"splitSourceLat":59.90806,"splitSourceLon":10.75528,"action":"updated mapping coordinates to aggregate audit source; aggregate and split source agreed"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.by.json","mappingId":"map_tigeren","historyGoPlaceId":"tigeren","oldMappingLat":59.9113,"oldMappingLon":10.7514,"auditSourceLat":59.9112,"auditSourceLon":10.75,"splitSourceLat":59.9113,"splitSourceLon":10.7514,"action":"updated mapping coordinates to aggregate audit source because places_index check treats aggregate/index as current canonical source in this repo state"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.historie.json","mappingId":"map_middelalder_oslo","historyGoPlaceId":"middelalder_oslo","oldMappingLat":59.9048,"oldMappingLon":10.7605,"auditSourceLat":59.90418,"auditSourceLon":10.76366,"splitSourceLat":59.9048,"splitSourceLon":10.7605,"action":"updated mapping coordinates to aggregate audit source because places_index check treats aggregate/index as current canonical source in this repo state"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.historie.json","mappingId":"map_gamle_trikkestallen","historyGoPlaceId":"gamle_trikkestallen","oldMappingLat":59.9396,"oldMappingLon":10.7543,"auditSourceLat":59.932818,"auditSourceLon":10.768157,"splitSourceLat":59.9396,"splitSourceLon":10.7543,"action":"updated mapping coordinates to aggregate audit source because places_index check treats aggregate/index as current canonical source in this repo state"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.historie.json","mappingId":"map_sofienberg_kirke","historyGoPlaceId":"sofienberg_kirke","oldMappingLat":59.9225,"oldMappingLon":10.7604,"auditSourceLat":59.92255,"auditSourceLon":10.766086,"splitSourceLat":59.9225,"splitSourceLon":10.7604,"action":"updated mapping coordinates to aggregate audit source because places_index check treats aggregate/index as current canonical source in this repo state"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.musikk.json","mappingId":"map_salt","historyGoPlaceId":"salt","oldMappingLat":59.9078,"oldMappingLon":10.7525,"auditSourceLat":59.90765,"auditSourceLon":10.7449,"splitSourceLat":59.90765,"splitSourceLon":10.7449,"action":"updated mapping coordinates to aggregate audit source; aggregate and split source agreed"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.naeringsliv.json","mappingId":"map_havnelageret","historyGoPlaceId":"havnelageret","oldMappingLat":59.9092,"oldMappingLon":10.7429,"auditSourceLat":59.90845,"auditSourceLon":10.74305,"splitSourceLat":null,"splitSourceLon":null,"action":"updated mapping coordinates to aggregate audit source; no split source file found"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.naeringsliv.json","mappingId":"map_tollbukaia","historyGoPlaceId":"tollbukaia","oldMappingLat":59.9078,"oldMappingLon":10.7421,"auditSourceLat":59.90825,"auditSourceLon":10.74105,"splitSourceLat":null,"splitSourceLon":null,"action":"updated mapping coordinates to aggregate audit source; no split source file found"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.naeringsliv.json","mappingId":"map_akershus_kaier","historyGoPlaceId":"akershus_kaier","oldMappingLat":59.9059,"oldMappingLon":10.7423,"auditSourceLat":59.90715,"auditSourceLon":10.73705,"splitSourceLat":null,"splitSourceLon":null,"action":"updated mapping coordinates to aggregate audit source; no split source file found"},
+    {"mappingFile":"data/Civication/map/historyGoPlaceMapping.naeringsliv.json","mappingId":"map_oslo_mek","historyGoPlaceId":"oslo_mek","oldMappingLat":59.9055,"oldMappingLon":10.7469,"auditSourceLat":59.90745,"auditSourceLon":10.75195,"splitSourceLat":null,"splitSourceLon":null,"action":"updated mapping coordinates to aggregate audit source; no split source file found"}
+  ],
+  "filesChanged": [
+    "data/Civication/map/historyGoPlaceMapping.by.json",
+    "data/Civication/map/historyGoPlaceMapping.historie.json",
+    "data/Civication/map/historyGoPlaceMapping.musikk.json",
+    "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+    "reports/civication_historygo_place_mapping_coordinate_fix_report.json"
+  ],
+  "civicationMappingChanged": true,
+  "aggregatePlaceSourceChanged": false,
+  "splitPlaceSourceChanged": false,
+  "quizDataChanged": false,
+  "quizManifestChanged": false,
+  "placesIndexChanged": false,
+  "peopleDataChanged": false,
+  "auditScriptChanged": false,
+  "validation": {
+    "civicationPlaceMappingAuditRan": true,
+    "civicationPlaceMappingAuditStatus": "passed",
+    "quizManifestV2AuditStatus": "passed",
+    "placesIndexCheckStatus": "failed_unrelated",
+    "toolsCheckRan": true,
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "audit:civication-place-mapping also reported four naeringsliv coordinate mismatches; these were fixed to the aggregate audit source to make the full audit pass.",
+    "For map_tigeren and the three historie targets, Civication mapping and split place files agreed while the aggregate source and existing places_index agreed. No approved aggregate-from-split sync script was found or run, and places_index was explicitly left unchanged, so the mapping was aligned to the audit aggregate source.",
+    "places:index:check now fails later on an unrelated pre-existing sync class beginning at index=302: expected land_museum_dokka but actual kistefos_tresliperi_jevnaker, followed by subsequent id/value mismatches. tools:check stops at the same places:index:check gate before reaching later checks."
+  ]
+}
