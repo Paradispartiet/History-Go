@@ -1,0 +1,31 @@
+name: Split Norge før 1500 batch 3 places
+
+on:
+  push:
+    branches:
+      - data/split-norge-for-1500-batch3-places-20260709
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-norge-for-1500-batch3-places-20260709
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-norge-for-1500-batch3-places.mjs
+      - run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch3 data/places/historie/norge/places_historie_norge_for_1500_batch3_manifest.json data/places/historie/norge/places_historie_norge_for_1500_batch3_index.json data/places/historie/norge/places_historie_norge_for_1500_batch3_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Norge før 1500 batch 3 place files"
+            git push
+          fi
