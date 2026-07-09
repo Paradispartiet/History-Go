@@ -1,27 +1,22 @@
 # Places manifest split audit
 
-Generated at: 2026-07-09T17:09:43.997Z
+Generated at: 2026-07-09T18:57:13.129Z
 
 ## Summary
 
-- Manifest entries checked: 278
-- JSON array entries: 278
+- Manifest entries checked: 285
+- JSON array entries: 285
 - JSON object/scalar entries: 0
-- Array entries with split manifest: 93
-- Array entries missing split manifest: 185
-- Actual multi-place arrays missing split manifest: 4
-- Single-place arrays without split manifest: 181
+- Array entries with split manifest: 97
+- Array entries missing split manifest: 188
+- Actual multi-place arrays missing split manifest: 0
+- Single-place arrays without split manifest: 188
 - Missing source files: 0
 - Parse errors: 0
 
 ## Actual multi-place arrays missing split manifest
 
-| Source | Places | First place id | Expected split manifest |
-| --- | ---: | --- | --- |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch1.json` | 10 | `hafrsfjord` | `data/places/historie/norge/places_historie_norge_for_1500_batch1_manifest.json` |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch2.json` | 15 | `stein_ringerike_halvdanshaugen` | `data/places/historie/norge/places_historie_norge_for_1500_batch2_manifest.json` |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch3.json` | 12 | `nidaros_erkebispegarden` | `data/places/historie/norge/places_historie_norge_for_1500_batch3_manifest.json` |
-| `data/places/historie/norge/places_historie_norge_for_1500_batch4.json` | 6 | `york_jorvik` | `data/places/historie/norge/places_historie_norge_for_1500_batch4_manifest.json` |
+_None._
 
 ## Single-place arrays without split manifest
 
@@ -173,11 +168,18 @@ These are already one manifest entry per place, but the file body is still a one
 | `data/places/naeringsliv/agder/sjolingstad_ullvarefabrikk.json` | 1 | `sjolingstad_ullvarefabrikk` | `data/places/naeringsliv/agder/sjolingstad_ullvarefabrikk_manifest.json` |
 | `data/places/naeringsliv/agder/tonstad_kraftverk_sirdal.json` | 1 | `tonstad_kraftverk_sirdal` | `data/places/naeringsliv/agder/tonstad_kraftverk_sirdal_manifest.json` |
 | `data/places/naeringsliv/innlandet/atlungstad_brenneri.json` | 1 | `atlungstad_brenneri` | `data/places/naeringsliv/innlandet/atlungstad_brenneri_manifest.json` |
+| `data/places/naeringsliv/innlandet/brumunddal_molle_industri.json` | 1 | `brumunddal_molle_industri` | `data/places/naeringsliv/innlandet/brumunddal_molle_industri_manifest.json` |
 | `data/places/naeringsliv/innlandet/femundshytten_smeltverk.json` | 1 | `femundshytten_smeltverk` | `data/places/naeringsliv/innlandet/femundshytten_smeltverk_manifest.json` |
 | `data/places/naeringsliv/innlandet/folldal_gruver.json` | 1 | `folldal_gruver` | `data/places/naeringsliv/innlandet/folldal_gruver_manifest.json` |
+| `data/places/naeringsliv/innlandet/kapp_melkefabrikk.json` | 1 | `kapp_melkefabrikk` | `data/places/naeringsliv/innlandet/kapp_melkefabrikk_manifest.json` |
+| `data/places/naeringsliv/innlandet/kistefos_tresliperi_jevnaker.json` | 1 | `kistefos_tresliperi_jevnaker` | `data/places/naeringsliv/innlandet/kistefos_tresliperi_jevnaker_manifest.json` |
 | `data/places/naeringsliv/innlandet/klevfos_cellulose.json` | 1 | `klevfos_cellulose` | `data/places/naeringsliv/innlandet/klevfos_cellulose_manifest.json` |
 | `data/places/naeringsliv/innlandet/kvikne_kobberverk.json` | 1 | `kvikne_kobberverk` | `data/places/naeringsliv/innlandet/kvikne_kobberverk_manifest.json` |
+| `data/places/naeringsliv/innlandet/lillehammer_bryggeri_historisk_miljo.json` | 1 | `lillehammer_bryggeri_historisk_miljo` | `data/places/naeringsliv/innlandet/lillehammer_bryggeri_historisk_miljo_manifest.json` |
+| `data/places/naeringsliv/innlandet/loiten_braenderi.json` | 1 | `loiten_braenderi` | `data/places/naeringsliv/innlandet/loiten_braenderi_manifest.json` |
 | `data/places/naeringsliv/innlandet/magnor_glassverk.json` | 1 | `magnor_glassverk` | `data/places/naeringsliv/innlandet/magnor_glassverk_manifest.json` |
+| `data/places/naeringsliv/innlandet/mesna_kraft_og_industri.json` | 1 | `mesna_kraft_og_industri` | `data/places/naeringsliv/innlandet/mesna_kraft_og_industri_manifest.json` |
+| `data/places/naeringsliv/innlandet/mustad_hunnselva_gjovik.json` | 1 | `mustad_hunnselva_gjovik` | `data/places/naeringsliv/innlandet/mustad_hunnselva_gjovik_manifest.json` |
 | `data/places/naeringsliv/innlandet/raufoss_industripark_ammunisjon.json` | 1 | `raufoss_industripark_ammunisjon` | `data/places/naeringsliv/innlandet/raufoss_industripark_ammunisjon_manifest.json` |
 | `data/places/naeringsliv/telemark/dalen_hotel_tokke.json` | 1 | `dalen_hotel_tokke` | `data/places/naeringsliv/telemark/dalen_hotel_tokke_manifest.json` |
 | `data/places/naeringsliv/telemark/heroya_industripark_porsgrunn.json` | 1 | `heroya_industripark_porsgrunn` | `data/places/naeringsliv/telemark/heroya_industripark_porsgrunn_manifest.json` |
@@ -240,8 +242,8 @@ _None._
 - `data/places/historie/buskerud/places_historie_buskerud_batch6.json` (8) -> `data/places/historie/buskerud/places_historie_buskerud_batch6_manifest.json`
 - `data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json` (20) -> `data/places/historie/europe/portugal/lisbon/places_lisbon_historie_manifest.json`
 - `data/places/historie/innlandet/places_historie_innlandet_batch1.json` (5) -> `data/places/historie/innlandet/places_historie_innlandet_batch1_manifest.json`
-- `data/places/historie/innlandet/places_historie_innlandet_batch10.json` (7) -> `data/places/historie/innlandet/places_historie_innlandet_batch10_manifest.json`
-- `data/places/historie/innlandet/places_historie_innlandet_batch11.json` (8) -> `data/places/historie/innlandet/places_historie_innlandet_batch11_manifest.json`
+- `data/places/historie/innlandet/places_historie_innlandet_batch10.json` (4) -> `data/places/historie/innlandet/places_historie_innlandet_batch10_manifest.json`
+- `data/places/historie/innlandet/places_historie_innlandet_batch11.json` (6) -> `data/places/historie/innlandet/places_historie_innlandet_batch11_manifest.json`
 - `data/places/historie/innlandet/places_historie_innlandet_batch12.json` (8) -> `data/places/historie/innlandet/places_historie_innlandet_batch12_manifest.json`
 - `data/places/historie/innlandet/places_historie_innlandet_batch13.json` (8) -> `data/places/historie/innlandet/places_historie_innlandet_batch13_manifest.json`
 - `data/places/historie/innlandet/places_historie_innlandet_batch14.json` (8) -> `data/places/historie/innlandet/places_historie_innlandet_batch14_manifest.json`
@@ -256,7 +258,11 @@ _None._
 - `data/places/historie/innlandet/places_historie_innlandet_batch6.json` (7) -> `data/places/historie/innlandet/places_historie_innlandet_batch6_manifest.json`
 - `data/places/historie/innlandet/places_historie_innlandet_batch7.json` (6) -> `data/places/historie/innlandet/places_historie_innlandet_batch7_manifest.json`
 - `data/places/historie/innlandet/places_historie_innlandet_batch8.json` (7) -> `data/places/historie/innlandet/places_historie_innlandet_batch8_manifest.json`
-- `data/places/historie/innlandet/places_historie_innlandet_batch9.json` (8) -> `data/places/historie/innlandet/places_historie_innlandet_batch9_manifest.json`
+- `data/places/historie/innlandet/places_historie_innlandet_batch9.json` (6) -> `data/places/historie/innlandet/places_historie_innlandet_batch9_manifest.json`
+- `data/places/historie/norge/places_historie_norge_for_1500_batch1.json` (10) -> `data/places/historie/norge/places_historie_norge_for_1500_batch1_manifest.json`
+- `data/places/historie/norge/places_historie_norge_for_1500_batch2.json` (15) -> `data/places/historie/norge/places_historie_norge_for_1500_batch2_manifest.json`
+- `data/places/historie/norge/places_historie_norge_for_1500_batch3.json` (12) -> `data/places/historie/norge/places_historie_norge_for_1500_batch3_manifest.json`
+- `data/places/historie/norge/places_historie_norge_for_1500_batch4.json` (6) -> `data/places/historie/norge/places_historie_norge_for_1500_batch4_manifest.json`
 - `data/places/historie/oslo/places_historie_added_batch_01.json` (7) -> `data/places/historie/oslo/places_historie_added_batch_01_manifest.json`
 - `data/places/historie/oslo/places_historie.json` (18) -> `data/places/historie/oslo/places_historie_manifest.json`
 - `data/places/historie/ostfold/places_historie_ostfold_batch1.json` (9) -> `data/places/historie/ostfold/places_historie_ostfold_batch1_manifest.json`
