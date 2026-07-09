@@ -1,0 +1,2296 @@
+{
+  "targetId": "st_halvard_bryggeri",
+  "categoryId": "naeringsliv",
+  "source_quiz_file": "data/quiz/quiz_naeringsliv.json",
+  "generator_version": "v5_1_external_priority_chat_merged_naeringsliv_5x6",
+  "size_class": "normal_place",
+  "generated_from": [
+    "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "data/quiz/quiz_naeringsliv.json",
+    "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+    "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+    "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+    "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+    "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri",
+    "https://www.sthallvards.no/",
+    "https://www.bryggeribrak.no/bryggeriene.html"
+  ],
+  "merge_notes": {
+    "existing_quiz_status": "Expected set-file data/quiz/naeringsliv/st_halvard_bryggeri_sets_merged.json returned 404. Place-file has a target entry, but it conflicts with external sources.",
+    "kept": "Kept only the general place-file idea that this is a brewery/industrial business target connected to work, production, local industry and city economy.",
+    "corrected": "Strong correction: place-file says year 1843 and describes an østkant/sosialt samlingspunkt target, but source-backed St. Halvards Bryggeri was established in 1877 in Pilestredet 75c as Nora Bryggeri, later tied to Nora Mineralvand-Fabrik, Rosenborg Bryggeri, St. Halvards Bryggeri og Nora Mineralvandfabrik, and Nora Fabrikker. The set uses the source-backed timeline and flags the repo data as needing correction.",
+    "not_continued": "Did not preserve unsupported 1843, not preserve unsupported east-side location/social-center wording, no promotional or consumption questions, no generic tourist questions.",
+    "added": "Added 5 sets x 6 questions: establishment 1877, Pilestredet 75c, Nora Bryggeri, Salve Olsen, Ole Fredrichsen, Nora-øl, bayerøl, Nora Mineralvand-Fabrik, Rosenborg Bryggeri, 1905 reorganization, mineral-water expansion, 130 employees, 1918 closure, Nora Fabrikker, modern St. Hallvards distinction and repo data correction."
+  },
+  "profile_snapshot": {
+    "place_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+    "subtype": "st_halvards_bryggeri_nora_pilestredet",
+    "signature_features": [
+      "source-backed St. Halvards Bryggeri in Pilestredet 75c",
+      "established in 1877 as Nora Bryggeri",
+      "Nora Mineralvand-Fabrik from 1882",
+      "Rosenborg Bryggeri in 1896 and St. Halvards Bryggeri og Nora Mineralvandfabrik from 1905",
+      "brewery closure in 1918 and Nora Fabrikker A/S continuation"
+    ],
+    "primary_angles": [
+      "produksjon",
+      "arbeid",
+      "mineralvann",
+      "omorganisering",
+      "kildekritikk"
+    ],
+    "must_include": [
+      "flag that repo year/location profile likely needs correction",
+      "avoid alcohol promotion/consumption framing",
+      "distinguish historic St. Halvards from modern St. Hallvards 2014"
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_st_halvard_bryggeri_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "history_intro_story",
+      "questions": [
+        {
+          "id": "st_halvard_bryggeri_quiz_1",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Når ble kildeverifisert St. Halvards Bryggeri etablert?",
+          "options": [
+            "1877",
+            "1843",
+            "2014"
+          ],
+          "answer": "1877",
+          "answerIndex": 0,
+          "dimension": "targetkorreksjon",
+          "topic": "etablert 1877",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver St. Halvards Bryggeri som etablert i 1877 i Pilestredet 75c.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1877,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "St. Halvards Bryggeri",
+            "1877",
+            "Pilestredet 75c"
+          ],
+          "concept_focus": [
+            "St. Halvards Bryggeri",
+            "1877"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1877",
+            "st_halvard",
+            "kildekorreksjon"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_2",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvor lå St. Halvards Bryggeri ifølge Oslo byleksikon og Lokalhistoriewiki?",
+          "options": [
+            "Pilestredet 75c",
+            "Stålfjæra / Østre Aker vei 210 F",
+            "Thorvald Meyers gate 2"
+          ],
+          "answer": "Pilestredet 75c",
+          "answerIndex": 0,
+          "dimension": "lokalisering",
+          "topic": "Pilestredet 75c",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki plasserer historiske St. Halvards Bryggeri i Pilestredet 75c.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1877,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Pilestredet 75c",
+            "Nora-bakken",
+            "bryggerianlegg"
+          ],
+          "concept_focus": [
+            "Pilestredet 75c",
+            "Nora-bakken"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "pilestredet_75c",
+            "nora",
+            "bryggeri"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_3",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilket aksjeselskap var knyttet til etableringen i 1877?",
+          "options": [
+            "Nora Bryggeri",
+            "Ringnes & Co.",
+            "Schous Bryggeri"
+          ],
+          "answer": "Nora Bryggeri",
+          "answerIndex": 0,
+          "dimension": "selskapsstruktur",
+          "topic": "Nora Bryggeri",
+          "knowledge": "Oslo byleksikon beskriver St. Halvards Bryggeri som etablert i 1877 som aksjeselskapet Nora Bryggeri.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1877,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Nora Bryggeri",
+            "aksjeselskap",
+            "Pilestredet 75c"
+          ],
+          "concept_focus": [
+            "Nora Bryggeri",
+            "aksjeselskap"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "nora_bryggeri",
+            "aksjeselskap",
+            "1877"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_4",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvem var disponent ved etableringen?",
+          "options": [
+            "Salve Olsen",
+            "Amund Ringnes",
+            "Halvor Schou"
+          ],
+          "answer": "Salve Olsen",
+          "answerIndex": 0,
+          "dimension": "personhistorie",
+          "topic": "Salve Olsen",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki oppgir Salve Olsen som disponent, tidligere ansatt i Egers Bryggeri.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1877,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Salve Olsen",
+            "disponent",
+            "Egers Bryggeri"
+          ],
+          "concept_focus": [
+            "Salve Olsen",
+            "disponent"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "salve_olsen",
+            "disponent",
+            "egers_bryggeri"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_5",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilken tidligere arbeidsplass hadde Salve Olsen?",
+          "options": [
+            "Egers Bryggeri",
+            "Akers mekaniske Verksted",
+            "Christiania Seildugsfabrik"
+          ],
+          "answer": "Egers Bryggeri",
+          "answerIndex": 0,
+          "dimension": "arbeidserfaring",
+          "topic": "Egers Bryggeri",
+          "knowledge": "Kildene beskriver Salve Olsen som tidligere ansatt i Egers Bryggeri.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1877,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Egers Bryggeri",
+            "bryggerierfaring",
+            "disponent"
+          ],
+          "concept_focus": [
+            "Egers Bryggeri",
+            "bryggerierfaring"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "egers_bryggeri",
+            "salve_olsen",
+            "arbeid"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_6",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilken næringslivslesning passer best for `st_halvard_bryggeri`?",
+          "options": [
+            "Et kildekorrigert bryggeri- og mineralvannstarget der Nora Bryggeri, Pilestredet, søttøl, bayerøl, mineralvann, omorganisering og Nora Fabrikker må leses sammen",
+            "Et T-baneknutepunkt foran Oslo S",
+            "Et offentlig kornmagasin på Akershus"
+          ],
+          "answer": "Et kildekorrigert bryggeri- og mineralvannstarget der Nora Bryggeri, Pilestredet, søttøl, bayerøl, mineralvann, omorganisering og Nora Fabrikker må leses sammen",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "samlet St. Halvard-analyse",
+          "knowledge": "Targetet bør leses som en kildekorrigert bryggeri-/mineralvannslinje, ikke som 1843-østkanttarget slik place-filen antyder.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Nora Bryggeri",
+            "mineralvann",
+            "omorganisering",
+            "Nora Fabrikker"
+          ],
+          "concept_focus": [
+            "Nora Bryggeri",
+            "mineralvann"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "st_halvard",
+            "nora",
+            "kildekorreksjon"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_st_halvard_bryggeri_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "local_history_buildings_events",
+      "questions": [
+        {
+          "id": "st_halvard_bryggeri_quiz_7",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva var bryggeriet opprinnelig ment å produsere?",
+          "options": [
+            "Overgjæret søttøl, gjerne kalt «Nora-øl»",
+            "Telefonkabler og sentralbord",
+            "Kornmel til kommunekjøkken"
+          ],
+          "answer": "Overgjæret søttøl, gjerne kalt «Nora-øl»",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "Nora-øl",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at bryggeriet opprinnelig skulle produsere overgjæret søttøl, gjerne kalt Nora-øl.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1877,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "overgjæret søttøl",
+            "Nora-øl",
+            "bryggeriproduksjon"
+          ],
+          "concept_focus": [
+            "overgjæret søttøl",
+            "Nora-øl"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "søttøl",
+            "nora_øl",
+            "produksjon"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_8",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilken øltype begynte bryggeriet snart også å produsere?",
+          "options": [
+            "Bayerøl",
+            "Brus med appelsinsmak",
+            "Knekkebrød"
+          ],
+          "answer": "Bayerøl",
+          "answerIndex": 0,
+          "dimension": "produksjonsendring",
+          "topic": "bayerøl",
+          "knowledge": "Kildene skriver at bryggeriet snart også begynte å brygge bayerøl.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1880,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "bayerøl",
+            "produktutvidelse",
+            "bryggeri"
+          ],
+          "concept_focus": [
+            "bayerøl",
+            "produktutvidelse"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "bayerøl",
+            "produksjon",
+            "st_halvard"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_9",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva ble startet som søsterselskap i 1882?",
+          "options": [
+            "Nora Mineralvand-Fabrik",
+            "Ringnes Brygghus",
+            "Kunsthøgskolen i Oslo"
+          ],
+          "answer": "Nora Mineralvand-Fabrik",
+          "answerIndex": 0,
+          "dimension": "selskapsutvidelse",
+          "topic": "Nora Mineralvand-Fabrik",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver Nora Mineralvand-Fabrik som søsterselskap/mineralvannfabrikk fra 1882.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1882,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Nora Mineralvand-Fabrik",
+            "1882",
+            "mineralvann"
+          ],
+          "concept_focus": [
+            "Nora Mineralvand-Fabrik",
+            "1882"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "nora_mineralvand",
+            "1882",
+            "mineralvann"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_10",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvem etterfulgte Salve Olsen og sikret seg etter hvert alle aksjene?",
+          "options": [
+            "Ole Fredrichsen",
+            "Axel Heiberg",
+            "Ellef Ringnes"
+          ],
+          "answer": "Ole Fredrichsen",
+          "answerIndex": 0,
+          "dimension": "personhistorie",
+          "topic": "Ole Fredrichsen",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver Ole Fredrichsen som etterfølgeren som sikret seg alle aksjene og var eneeier ved sin død.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1893,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Ole Fredrichsen",
+            "aksjer",
+            "eneeier"
+          ],
+          "concept_focus": [
+            "Ole Fredrichsen",
+            "aksjer"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ole_fredrichsen",
+            "aksjer",
+            "eneeier"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_11",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Når døde Ole Fredrichsen?",
+          "options": [
+            "1893",
+            "1877",
+            "1918"
+          ],
+          "answer": "1893",
+          "answerIndex": 0,
+          "dimension": "personhistorie",
+          "topic": "Ole Fredrichsen død",
+          "knowledge": "Kildene oppgir Ole Fredrichsen som 1841–1893 og skriver at han var eneeier ved sin død.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1893,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Ole Fredrichsen",
+            "1841–1893",
+            "eierskap"
+          ],
+          "concept_focus": [
+            "Ole Fredrichsen",
+            "1841–1893"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ole_fredrichsen",
+            "1893",
+            "eierskap"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_12",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilken produktlinje gjorde targetet bredere enn et vanlig bryggeri?",
+          "options": [
+            "Koblingen mellom ølproduksjon og Nora mineralvann",
+            "Koblingen mellom jernbane og T-bane",
+            "Koblingen mellom skipsverft og offshore"
+          ],
+          "answer": "Koblingen mellom ølproduksjon og Nora mineralvann",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "øl og mineralvann",
+          "knowledge": "St. Halvards/Nora-linjen er næringshistorisk interessant fordi bryggeri, mineralvann og senere Nora Fabrikker danner én utviklingslinje.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": null,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "ølproduksjon",
+            "mineralvann",
+            "Nora Fabrikker"
+          ],
+          "concept_focus": [
+            "ølproduksjon",
+            "mineralvann"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "øl",
+            "mineralvann",
+            "nora"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_st_halvard_bryggeri_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "humor_curiosities_life",
+      "questions": [
+        {
+          "id": "st_halvard_bryggeri_quiz_13",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva ble bryggeriet omdannet til i 1896?",
+          "options": [
+            "Rosenborg Bryggeri",
+            "Ringnes Park",
+            "Oslo Kornmagasin"
+          ],
+          "answer": "Rosenborg Bryggeri",
+          "answerIndex": 0,
+          "dimension": "selskapsendring",
+          "topic": "Rosenborg Bryggeri 1896",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at bryggeriet i 1896 ble omdannet til nytt aksjeselskap under navnet Rosenborg Bryggeri.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1896,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Rosenborg Bryggeri",
+            "1896",
+            "aksjeselskap"
+          ],
+          "concept_focus": [
+            "Rosenborg Bryggeri",
+            "1896"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1896",
+            "rosenborg_bryggeri",
+            "omorganisering"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_14",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva skjedde i 1905 med Rosenborg/St. Halvards-linjen?",
+          "options": [
+            "Den ble reorganisert med Frydenlund og Ringnes som eiere",
+            "Den ble T-banestasjon",
+            "Den flyttet til Gjelleråsen"
+          ],
+          "answer": "Den ble reorganisert med Frydenlund og Ringnes som eiere",
+          "answerIndex": 0,
+          "dimension": "selskapsendring",
+          "topic": "reorganisering 1905",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver en reorganisering i 1905 med Frydenlund og Ringnes som eiere.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1905,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Frydenlund",
+            "Ringnes",
+            "reorganisering"
+          ],
+          "concept_focus": [
+            "Frydenlund",
+            "Ringnes"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1905",
+            "frydenlund",
+            "ringnes"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_15",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilket navn fikk selskapet ved reorganiseringen i 1905?",
+          "options": [
+            "St. Halvards Bryggeri og Nora Mineralvandfabrik",
+            "Nora Bryggeri og Ringnes Park",
+            "Stålfjæra Mikrobryggeri"
+          ],
+          "answer": "St. Halvards Bryggeri og Nora Mineralvandfabrik",
+          "answerIndex": 0,
+          "dimension": "selskapsnavn",
+          "topic": "St. Halvards og Nora Mineralvandfabrik",
+          "knowledge": "Oslo byleksikon oppgir navnet St. Halvards Bryggeri og Nora Mineralvandfabrik ved reorganiseringen i 1905.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1905,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "St. Halvards Bryggeri",
+            "Nora Mineralvandfabrik",
+            "1905"
+          ],
+          "concept_focus": [
+            "St. Halvards Bryggeri",
+            "Nora Mineralvandfabrik"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "st_halvard",
+            "nora_mineralvandfabrik",
+            "1905"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_16",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva ble utvidet kraftig etter reorganiseringen?",
+          "options": [
+            "Mineralvannfabrikken",
+            "T-banetunnelen",
+            "Skipsverftet"
+          ],
+          "answer": "Mineralvannfabrikken",
+          "answerIndex": 0,
+          "dimension": "produksjonsutvidelse",
+          "topic": "mineralvannfabrikk utvidet",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at mineralvannfabrikken ble betydelig utvidet etter reorganiseringen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1905,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "mineralvannfabrikken",
+            "utvidelse",
+            "Nora"
+          ],
+          "concept_focus": [
+            "mineralvannfabrikken",
+            "utvidelse"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "mineralvann",
+            "utvidelse",
+            "nora"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_17",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Når var mineralvannfabrikken allerede blitt for liten?",
+          "options": [
+            "1912",
+            "1877",
+            "2004"
+          ],
+          "answer": "1912",
+          "answerIndex": 0,
+          "dimension": "kapasitetsproblem",
+          "topic": "for liten i 1912",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at mineralvannfabrikken allerede i 1912 var blitt for liten.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1912,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "1912",
+            "kapasitetsbehov",
+            "mineralvannfabrikk"
+          ],
+          "concept_focus": [
+            "1912",
+            "kapasitetsbehov"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1912",
+            "kapasitet",
+            "mineralvann"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_18",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva ble anlagt etter at mineralvannfabrikken ble for liten?",
+          "options": [
+            "En ny mineralvannfabrikk som var blant de største i Skandinavia",
+            "En ny flyplass på Fornebu",
+            "Et kornmagasin ved Akershus"
+          ],
+          "answer": "En ny mineralvannfabrikk som var blant de største i Skandinavia",
+          "answerIndex": 0,
+          "dimension": "produksjonsutvidelse",
+          "topic": "ny mineralvannfabrikk",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki beskriver den nye mineralvannfabrikken som en av de største i Skandinavia.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1912,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "ny mineralvannfabrikk",
+            "Skandinavia",
+            "kapasitetsutvidelse"
+          ],
+          "concept_focus": [
+            "ny mineralvannfabrikk",
+            "Skandinavia"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "skandinavia",
+            "mineralvannfabrikk",
+            "nora"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_st_halvard_bryggeri_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_facts_architecture",
+      "questions": [
+        {
+          "id": "st_halvard_bryggeri_quiz_19",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_4_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvor mange ansatte hadde virksomheten rundt den store mineralvannsutvidelsen?",
+          "options": [
+            "130 ansatte",
+            "13 ansatte",
+            "1300 ansatte"
+          ],
+          "answer": "130 ansatte",
+          "answerIndex": 0,
+          "dimension": "arbeidsliv",
+          "topic": "130 ansatte",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at bryggeriet på denne tiden hadde 130 ansatte.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1912,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "130 ansatte",
+            "arbeidsplass",
+            "mineralvannfabrikk"
+          ],
+          "concept_focus": [
+            "130 ansatte",
+            "arbeidsplass"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "130_ansatte",
+            "arbeidsliv",
+            "nora"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_20",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_4_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Når ble bryggerivirksomheten nedlagt?",
+          "options": [
+            "1918",
+            "1905",
+            "1877"
+          ],
+          "answer": "1918",
+          "answerIndex": 0,
+          "dimension": "nedleggelse",
+          "topic": "bryggeridrift nedlagt",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at bryggerivirksomheten ble lagt ned i 1918.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1918,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "bryggerivirksomhet",
+            "nedlagt",
+            "1918"
+          ],
+          "concept_focus": [
+            "bryggerivirksomhet",
+            "nedlagt"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1918",
+            "nedleggelse",
+            "bryggeri"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_21",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_4_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva ble stiftet samtidig som bryggerivirksomheten ble lagt ned?",
+          "options": [
+            "Nora Fabrikker A/S",
+            "Ringnes & Co.",
+            "Kristiania Brødfabrik"
+          ],
+          "answer": "Nora Fabrikker A/S",
+          "answerIndex": 0,
+          "dimension": "selskapsendring",
+          "topic": "Nora Fabrikker 1918",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at Nora Fabrikker A/S ble stiftet samtidig, med mineralvann som hovedprodukt.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1918,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Nora Fabrikker A/S",
+            "mineralvann",
+            "1918"
+          ],
+          "concept_focus": [
+            "Nora Fabrikker A/S",
+            "mineralvann"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "nora_fabrikker",
+            "1918",
+            "mineralvann"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_22",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_4_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva var Nora Fabrikker A/S sitt hovedprodukt ved etableringen?",
+          "options": [
+            "Mineralvann",
+            "Skipsmotorer",
+            "Telefonkabler"
+          ],
+          "answer": "Mineralvann",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "Nora mineralvann",
+          "knowledge": "Kildene beskriver Nora Fabrikker A/S som etablert med mineralvann som hovedprodukt.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1918,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "mineralvann",
+            "Nora Fabrikker",
+            "hovedprodukt"
+          ],
+          "concept_focus": [
+            "mineralvann",
+            "Nora Fabrikker"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "mineralvann",
+            "nora_fabrikker",
+            "hovedprodukt"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_23",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_4_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvor flyttet Nora Fabrikker A/S i 1918?",
+          "options": [
+            "Til det nedlagte Christiania Bryggeri i Maridalsveien 3",
+            "Til Thorvald Meyers gate 2",
+            "Til Jernbanetorget T"
+          ],
+          "answer": "Til det nedlagte Christiania Bryggeri i Maridalsveien 3",
+          "answerIndex": 0,
+          "dimension": "flytting",
+          "topic": "Maridalsveien 3",
+          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at Nora Fabrikker flyttet til det nedlagte Christiania Bryggeri i Maridalsveien 3.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1918,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Christiania Bryggeri",
+            "Maridalsveien 3",
+            "Nora Fabrikker"
+          ],
+          "concept_focus": [
+            "Christiania Bryggeri",
+            "Maridalsveien 3"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "maridalsveien_3",
+            "christiania_bryggeri",
+            "nora"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_24",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_4_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilken industrihistorisk overgang skjedde i 1918?",
+          "options": [
+            "Bryggeridriften ble lagt ned, mens Nora-linjen fortsatte som mineralvannfabrikk",
+            "Ringnes flyttet til Gjelleråsen",
+            "Oslotunnelen åpnet"
+          ],
+          "answer": "Bryggeridriften ble lagt ned, mens Nora-linjen fortsatte som mineralvannfabrikk",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "bryggeri til mineralvann",
+          "knowledge": "1918 markerer overgangen fra St. Halvards som bryggeri til Nora Fabrikker som mineralvannsindustri.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1918,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "bryggeridrift",
+            "mineralvannfabrikk",
+            "omstilling"
+          ],
+          "concept_focus": [
+            "bryggeridrift",
+            "mineralvannfabrikk"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1918",
+            "nora",
+            "omstilling"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_st_halvard_bryggeri_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {
+          "id": "st_halvard_bryggeri_quiz_25",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_5_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilken moderne virksomhet må ikke forveksles med historiske St. Halvards Bryggeri?",
+          "options": [
+            "St. Hallvards Bryggeri fra 2014",
+            "Nora Bryggeri fra 1877",
+            "Rosenborg Bryggeri fra 1896"
+          ],
+          "answer": "St. Hallvards Bryggeri fra 2014",
+          "answerIndex": 0,
+          "dimension": "kildekritikk",
+          "topic": "ikke forveksle 2014",
+          "knowledge": "Lokalhistoriewiki presiserer at historiske St. Halvards Bryggeri ikke må forveksles med St. Hallvards Bryggeri fra 2014.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2014,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "St. Hallvards Bryggeri",
+            "2014",
+            "navneforveksling"
+          ],
+          "concept_focus": [
+            "St. Hallvards Bryggeri",
+            "2014"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "st_hallvards_2014",
+            "kildekritikk",
+            "navn"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri",
+            "https://www.sthallvards.no/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_26",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_5_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvor ligger moderne St. Hallvards Bryggeri ifølge egen nettside?",
+          "options": [
+            "Østre Aker vei 210 F / Stålfjæra-området",
+            "Pilestredet 75c",
+            "Maridalsveien 3"
+          ],
+          "answer": "Østre Aker vei 210 F / Stålfjæra-området",
+          "answerIndex": 0,
+          "dimension": "modern_context",
+          "topic": "moderne St. Hallvards",
+          "knowledge": "Den moderne St. Hallvards-nettsiden oppgir Østre Aker vei 210 F, og beskriver bryggeriet som liggende i industriområdet Stålfjæra.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2014,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Østre Aker vei 210 F",
+            "Stålfjæra",
+            "moderne bryggeri"
+          ],
+          "concept_focus": [
+            "Østre Aker vei 210 F",
+            "Stålfjæra"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "østre_aker_vei",
+            "stålfjæra",
+            "modern"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.sthallvards.no/",
+            "https://www.bryggeribrak.no/bryggeriene.html"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_27",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_5_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva er hovedforskjellen mellom historiske St. Halvards og moderne St. Hallvards?",
+          "options": [
+            "Det historiske lå i Pilestredet og var knyttet til Nora; det moderne ligger i Stålfjæra/Østre Aker vei og viderefører navnet",
+            "Begge er samme virksomhet fra 1877 uten avbrudd",
+            "Det historiske var en T-banestasjon"
+          ],
+          "answer": "Det historiske lå i Pilestredet og var knyttet til Nora; det moderne ligger i Stålfjæra/Østre Aker vei og viderefører navnet",
+          "answerIndex": 0,
+          "dimension": "kildekritikk",
+          "topic": "historisk vs moderne",
+          "knowledge": "Kildene skiller mellom historiske St. Halvards/Nora i Pilestredet og moderne St. Hallvards fra 2014 i Stålfjæra/Østre Aker vei.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2014,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Pilestredet 75c",
+            "Nora",
+            "Stålfjæra",
+            "2014"
+          ],
+          "concept_focus": [
+            "Pilestredet 75c",
+            "Nora"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "historisk_modern",
+            "nora",
+            "stålfjæra"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri",
+            "https://www.sthallvards.no/",
+            "https://www.bryggeribrak.no/bryggeriene.html"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_28",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_5_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilket repo-avvik bør rettes i place-dataene?",
+          "options": [
+            "Året 1843 og østkantformuleringen bør kontrolleres mot kilder som sier 1877 og Pilestredet 75c",
+            "Thorvald Meyers gate 2 bør byttes til Dokkveien 1",
+            "Nora Mineralvand-Fabrik bør fjernes fra historien"
+          ],
+          "answer": "Året 1843 og østkantformuleringen bør kontrolleres mot kilder som sier 1877 og Pilestredet 75c",
+          "answerIndex": 0,
+          "dimension": "kildekritikk",
+          "topic": "repo-avvik",
+          "knowledge": "Place-filen sier 1843 og østkant/sosialt samlingspunkt, mens Oslo byleksikon og Lokalhistoriewiki gir 1877, Pilestredet 75c og Nora-linjen.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 1877,
+          "epoke_id": "st_halvard_nora_bryggeri_mineralvann_pilestredet",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "repo-avvik",
+            "1843",
+            "1877",
+            "Pilestredet 75c"
+          ],
+          "concept_focus": [
+            "repo-avvik",
+            "1843"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "repo_avvik",
+            "1843",
+            "1877"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_29",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_5_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hva skiller St. Halvards fra Ringnes som næringslivstarget?",
+          "options": [
+            "St. Halvards blir særlig en Nora-/mineralvann- og omorganiseringslinje, mens Ringnes blir en større merkevare- og konsernlinje",
+            "St. Halvards var et kornmagasin, mens Ringnes var en T-banestasjon",
+            "Det finnes ingen forskjell"
+          ],
+          "answer": "St. Halvards blir særlig en Nora-/mineralvann- og omorganiseringslinje, mens Ringnes blir en større merkevare- og konsernlinje",
+          "answerIndex": 0,
+          "dimension": "kontrast",
+          "topic": "St. Halvards vs Ringnes",
+          "knowledge": "St. Halvards/Nora-linjen ender i Nora Fabrikker og mineralvann, mens Ringnes utvikler seg mot større bryggeri-/drikkevarekonsern og Carlsberg-eierskap.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "St. Halvards",
+            "Nora",
+            "Ringnes",
+            "konsern"
+          ],
+          "concept_focus": [
+            "St. Halvards",
+            "Nora"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ringnes",
+            "st_halvard",
+            "kontrast"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "st_halvard_bryggeri_quiz_30",
+          "quiz_id": "naeringsliv_st_halvard_bryggeri_set_5_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "st_halvard_bryggeri",
+          "personId": "",
+          "natureId": "",
+          "targetId": "st_halvard_bryggeri",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for `st_halvard_bryggeri`?",
+          "options": [
+            "Et kildekorrigert Pilestredet-target der Nora Bryggeri, søttøl, bayerøl, mineralvann, Rosenborg-navnet, St. Halvards-navnet, nedleggelse og Nora Fabrikker danner én næringshistorisk linje",
+            "Et østkantbryggeri fra 1843 uten kildebelegg",
+            "Et offentlig kornmagasin for matberedskap"
+          ],
+          "answer": "Et kildekorrigert Pilestredet-target der Nora Bryggeri, søttøl, bayerøl, mineralvann, Rosenborg-navnet, St. Halvards-navnet, nedleggelse og Nora Fabrikker danner én næringshistorisk linje",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "samlet næringslivsanalyse",
+          "knowledge": "St. Halvards-targetet må bygges rundt kildeverifisert bryggeri- og mineralvannshistorie, med eksplisitt korreksjon av repoets 1843/østkant-avvik.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "st_halvard_nora_fabrikker_og_moderne_navnebruk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emners": [],
+          "related_emner": [],
+          "core_concepts": [
+            "Nora Bryggeri",
+            "Rosenborg Bryggeri",
+            "St. Halvards",
+            "Nora Fabrikker"
+          ],
+          "concept_focus": [
+            "Nora Bryggeri",
+            "Rosenborg Bryggeri"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "st_halvard",
+            "nora",
+            "mineralvann"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+            "https://lokalhistoriewiki.no/wiki/St._Halvards_Bryggeri",
+            "https://www.sthallvards.no/"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "historic_brewery_mineral_water_factory_and_nora_industrial_line",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        }
+      ]
+    }
+  ]
+}
