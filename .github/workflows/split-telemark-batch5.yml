@@ -1,0 +1,28 @@
+name: Split Telemark batch 5
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/split-telemark-batch5-places
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-telemark-batch5-places
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-telemark-historie-batch5-places.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/historie/telemark/places_historie_telemark_batch5 data/places/historie/telemark/places_historie_telemark_batch5_manifest.json data/places/historie/telemark/places_historie_telemark_batch5_index.json data/places/historie/telemark/places_historie_telemark_batch5_split_report.txt
+          git commit -m "Generate split Telemark history batch 5 place files" || exit 0
+          git push
