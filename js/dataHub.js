@@ -166,6 +166,13 @@ function placesFromPlaceData(data) {
   return [];
 }
 
+function placesFromPlaceData(data) {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.places)) return data.places;
+  if (data && typeof data === "object" && !Array.isArray(data) && typeof data.id === "string") return [data];
+  return [];
+}
+
 async function loadPlacesBase(opts = {}) {
   try {
     const index = await fetchJSON(pData("places/places_index.json"), opts);
@@ -260,7 +267,7 @@ async function loadPlacesBase(opts = {}) {
     if (!file) return null;
 
     const data = await fetchJSON(pData(file), opts);
-    const places = Array.isArray(data) ? data : (Array.isArray(data?.places) ? data.places : []);
+    const places = placesFromPlaceData(data);
     const fullPlace = places.find((p) => String(p?.id || "").trim() === id) || null;
 
     if (fullPlace) _fullPlaceCache.set(id, fullPlace);
