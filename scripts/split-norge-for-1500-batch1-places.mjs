@@ -1,4 +1,4 @@
-// Split Norge før 1500 batch 1 aggregate into one JSON file per place.
+// Split Norway before 1500 batch 1 aggregate into one JSON file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
