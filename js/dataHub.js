@@ -173,6 +173,13 @@ function placesFromPlaceData(data) {
   return [];
 }
 
+function placesFromPlaceData(data) {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.places)) return data.places;
+  if (data && typeof data === "object" && !Array.isArray(data) && typeof data.id === "string") return [data];
+  return [];
+}
+
 async function loadPlacesBase(opts = {}) {
   try {
     const index = await fetchJSON(pData("places/places_index.json"), opts);
