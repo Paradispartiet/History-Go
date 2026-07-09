@@ -59,6 +59,11 @@ const LIGHT_FIELDS: LightField[] = [
   'hidden',
   'stub',
   'groundhopper',
+  'coordType',
+  'coordStatus',
+  'coordSource',
+  'coordVerifiedAt',
+  'coordNote',
   'sourceFile',
 ];
 
