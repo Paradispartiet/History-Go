@@ -1,4 +1,4 @@
-// Split Telemark historie batch 2 aggregate into one JSON file per place.
+// Split Telemark history batch 2 aggregate into one JSON file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
