@@ -1,0 +1,43 @@
+{
+  "placeId": "salt",
+  "placeFile": "data/places/musikk/oslo/places_musikk/salt.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_poi_source",
+  "currentCoordinate": {
+    "lat": 59.90765,
+    "lon": 10.7449,
+    "r": 160,
+    "coordStatus": "needs_source",
+    "coordSource": "legacy_manual_map_check",
+    "coordType": "site_center",
+    "coordNote": "Punktet markerer selve SALT-anlegget på Langkaia/kaikanten øst for Havnelageret, ikke veisystemet, Tollbukaia eller Bjørvika-/Opera-/Bispelokket-klyngen. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+  },
+  "identity": {
+    "currentName": "SALT",
+    "resolvedIdentity": null,
+    "identityStatus": "unresolved",
+    "identityProblem": "POI/venue må kildefestes med sourceObjectId eller strukturert adresse; navn alene er ikke nok.",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell venue/adressekilde",
+    "POI-kilde som OSM/Google Places/Mapbox/official map hvis tilgjengelig",
+    "site_center eller entrance må begrunnes"
+  ],
+  "evidence": [],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "POI/venue kan ikke verifiseres fra navn alene. Trenger sourceObjectId eller strukturert adresse.",
+    "nextAction": "Finn offisiell venue-kilde og POI-/kartobjekt før koordinat kan endres eller verifiseres."
+  },
+  "notes": [
+    "Ikke bruk fritekstnavnet SALT som adressegeokoding alene.",
+    "Avklar om marker skal være entrance eller site_center."
+  ]
+}
