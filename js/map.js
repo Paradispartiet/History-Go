@@ -39,6 +39,49 @@
     return Number.isFinite(n) ? n : null;
   }
 
+
+  const COORDINATE_REVIEW_STATUSES = new Set([
+    "needs_manual_visual_qa",
+    "needs_review",
+    "unverified",
+    "approximate",
+    "estimated"
+  ]);
+
+  function hasCoordinateText(value) {
+    return typeof value === "string" && value.trim().length > 0;
+  }
+
+  function coordinateDecimals(value) {
+    const raw = String(value);
+    if (/e-/i.test(raw)) return Number(raw.split(/e-/i)[1]) || 0;
+    return raw.split(".")[1]?.length || 0;
+  }
+
+  function hasGoodLargeRadiusNote(note) {
+    const text = String(note || "").trim();
+    return text.length >= 18 && /[a-zæøå]{4,}/i.test(text);
+  }
+
+  function getCoordinateTrust(place) {
+    const lat = num(place?.lat);
+    const lon = num(place?.lon);
+    const r = num(place?.r);
+    if (lat == null || lon == null || r == null || lat < -90 || lat > 90 || lon < -180 || lon > 180 || r <= 0) return "invalid";
+
+    const coordStatus = String(place?.coordStatus || "").trim();
+    const hasSource = hasCoordinateText(place?.coordSource);
+    const hasType = hasCoordinateText(place?.coordType);
+    const hasNote = hasCoordinateText(place?.coordNote);
+
+    if (!coordStatus || !hasType || !hasNote) return "unknown";
+    if (COORDINATE_REVIEW_STATUSES.has(coordStatus)) return "review";
+    if (coordinateDecimals(lat) < 4 || coordinateDecimals(lon) < 4) return "review";
+    if (r >= 300 && !hasGoodLargeRadiusNote(place?.coordNote)) return "review";
+    if (coordStatus === "verified" && hasSource && hasType && hasNote) return "verified";
+    return "review";
+  }
+
   function lighten(hex, amount = 0.25) {
     let c = String(hex || "#000000").trim();
     if (c.startsWith("#")) c = c.slice(1);
@@ -570,7 +613,11 @@
     return {
       "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 12, 7, 14, 9, 16, 13, 18, 18],
       "circle-color": ["get", "fill"],
-      "circle-opacity": 0.24,
+      "circle-opacity": [
+        "case",
+        ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.12,
+        0.24
+      ],
       "circle-blur": 0.65
     };
   }
@@ -620,9 +667,15 @@
 
     const features = [];
     for (const p of places) {
+      const coordinateTrust = getCoordinateTrust(p);
+      p.coordinateTrust = coordinateTrust;
+      if (coordinateTrust === "invalid") {
+        console.warn("[HGMap] Skipping invalid place coordinate", { id: p?.id, name: p?.name });
+        continue;
+      }
+
       const lat = num(p?.lat);
       const lon = num(p?.lon);
-      if (lat == null || lon == null) continue;
 
       const isVisited = !!visited[p.id];
       const base = catColor(p.category);
@@ -635,6 +688,8 @@
           id: p.id,
           name: p.name || "",
           visited: isVisited ? 1 : 0,
+          coordinateTrust,
+          coordinateTrustNote: coordinateTrust === "review" || coordinateTrust === "unknown" ? "Koordinat trenger kontroll" : "",
           fill,
           border
         },
@@ -679,7 +734,11 @@
         "circle-color": ["get", "fill"],
         "circle-stroke-color": ["get", "border"],
         "circle-stroke-width": getPlaceMarkerStrokeWidth(),
-        "circle-opacity": 1
+        "circle-opacity": [
+          "case",
+          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
+          1
+        ]
       }
     });
 
@@ -898,6 +957,8 @@
   function maybeDrawMarkers() { drawPlaceMarkers(); }
   function refreshMarkers() { drawPlaceMarkers(); }
 
+  window.HGCoordinateTrust = { getCoordinateTrust };
+
   window.HGMap = {
     initMap,
     getMap,
@@ -910,6 +971,8 @@
     setOnPlaceClick,
 
     setUser,
+
+    getCoordinateTrust,
 
     maybeDrawMarkers,
     refreshMarkers
