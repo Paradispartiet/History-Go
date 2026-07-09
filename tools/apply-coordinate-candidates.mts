@@ -44,8 +44,13 @@ const DEFAULT_REPORT = path.join(ROOT, 'reports/place-coordinate-candidates.json
 const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
 const INDEX_PATH = path.join(ROOT, 'data/places/places_index.json');
 const EXCLUSIONS_PATH = path.join(ROOT, 'data/places/place_exclusions.json');
+const COORDINATE_OVERRIDES_PATH = path.join(ROOT, 'data/places/coordinate_overrides.json');
 const LIGHT_FIELDS = [
   'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper','sourceFile'
+] as const;
+
+const COORDINATE_OVERRIDE_FIELDS = [
+  'lat','lon','r','coordType','coordStatus','coordSource','coordSourceId','coordSourceUrl','coordPrecisionM','coordVerifiedAt','coordNote'
 ] as const;
 
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
@@ -113,6 +118,41 @@ async function readDisabledPlaceIds(): Promise<Set<string>> {
   }
 }
 
+
+async function readCoordinateOverrides(): Promise<Map<string, Record<string, unknown>>> {
+  try {
+    const data = await readJson(COORDINATE_OVERRIDES_PATH);
+    if (!Array.isArray(data)) return new Map();
+    const entries = data
+      .filter((override): override is Record<string, unknown> =>
+        isObject(override) &&
+        typeof override.id === 'string' &&
+        override.id.trim().length > 0 &&
+        isNum(override.lat) &&
+        isNum(override.lon)
+      )
+      .map((override) => [String(override.id).trim(), override] as const);
+    return new Map(entries);
+  } catch (error: unknown) {
+    const code = isObject(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Map();
+    throw error;
+  }
+}
+
+function applyCoordinateOverride(place: Record<string, unknown>, overrides: Map<string, Record<string, unknown>>): Record<string, unknown> {
+  const id = typeof place.id === 'string' ? place.id.trim() : '';
+  const override = id ? overrides.get(id) : null;
+  if (!override) return place;
+
+  const out: Record<string, unknown> = { ...place };
+  for (const key of COORDINATE_OVERRIDE_FIELDS) {
+    if (Object.prototype.hasOwnProperty.call(override, key)) out[key] = override[key];
+  }
+  if (Object.prototype.hasOwnProperty.call(out, 'lng')) delete out.lng;
+  return out;
+}
+
 function placeIdForError(place: Record<string, unknown>): string {
   return typeof place.id === 'string' && place.id.trim() ? place.id.trim() : '(mangler-id)';
 }
@@ -136,6 +176,7 @@ async function rebuildPlacesIndex(): Promise<number> {
   const manifest = await readJson(MANIFEST_PATH);
   const files = isObject(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
   const disabledPlaceIds = await readDisabledPlaceIds();
+  const coordinateOverrides = await readCoordinateOverrides();
   const out: Record<string, unknown>[] = [];
 
   for (const rel of files) {
@@ -145,10 +186,11 @@ async function rebuildPlacesIndex(): Promise<number> {
     const places = Array.isArray(data) ? data : (isObject(data) && Array.isArray(data.places) ? data.places : []);
     for (const place of places) {
       if (!isObject(place)) continue;
-      assertNoLegacyLng(place, sourceFile);
-      const id = typeof place.id === 'string' ? place.id : '';
+      const indexedPlace = applyCoordinateOverride(place, coordinateOverrides);
+      assertNoLegacyLng(indexedPlace, sourceFile);
+      const id = typeof indexedPlace.id === 'string' ? indexedPlace.id : '';
       if (id && disabledPlaceIds.has(id)) continue;
-      out.push(pickLight(place, sourceFile));
+      out.push(pickLight(indexedPlace, sourceFile));
     }
   }
 

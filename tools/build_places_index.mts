@@ -151,8 +151,8 @@ async function main(): Promise<void> {
     const places = Array.isArray(data) ? data : (hasObjectType(data) && Array.isArray(data.places) ? data.places : []);
     for (const rawPlace of places) {
       if (!isPlaceRow(rawPlace)) continue;
+      assertNoLegacyLng(rawPlace, sourceFile);
       const place = applyCoordinateOverride(rawPlace, coordinateOverrides);
-      assertNoLegacyLng(place, sourceFile);
       const id = typeof place.id === 'string' ? place.id : '';
       if (id && disabledPlaceIds.has(id)) {
         skipped += 1;

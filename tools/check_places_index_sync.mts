@@ -11,6 +11,7 @@ type PlaceRow = JsonObject & {
   name?: unknown;
   lat?: unknown;
   lon?: unknown;
+  lng?: unknown;
   r?: unknown;
   category?: unknown;
   year?: unknown;
@@ -41,6 +42,7 @@ const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
 const ACTUAL_INDEX_PATH = path.join(ROOT, 'data/places/places_index.json');
 const EXCLUSIONS_PATH = path.join(ROOT, 'data/places/place_exclusions.json');
+const COORDINATE_OVERRIDES_PATH = path.join(ROOT, 'data/places/coordinate_overrides.json');
 
 const LIGHT_FIELDS: LightField[] = [
   'id',
@@ -62,6 +64,20 @@ const LIGHT_FIELDS: LightField[] = [
 
 const MAX_DIFFS = 20;
 
+const COORDINATE_OVERRIDE_FIELDS = [
+  'lat',
+  'lon',
+  'r',
+  'coordType',
+  'coordStatus',
+  'coordSource',
+  'coordSourceId',
+  'coordSourceUrl',
+  'coordPrecisionM',
+  'coordVerifiedAt',
+  'coordNote',
+] as const;
+
 function hasObjectType(value: unknown): value is JsonObject {
   return Boolean(value) && typeof value === 'object';
 }
@@ -80,6 +96,47 @@ function isPlaceExclusions(value: unknown): value is PlaceExclusions {
 
 function isPlaceRow(value: unknown): value is PlaceRow {
   return isJsonObject(value);
+}
+
+
+function isNum(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function placeIdForError(place: PlaceRow): string {
+  return typeof place.id === 'string' && place.id.trim() ? place.id.trim() : '(mangler-id)';
+}
+
+function assertNoLegacyLng(place: PlaceRow, sourceFile: string): void {
+  if (Object.prototype.hasOwnProperty.call(place, 'lng')) {
+    throw new Error(`${sourceFile}#${placeIdForError(place)}: ugyldig koordinatfelt "lng". History Go bruker "lon" som eneste lengdegradfelt.`);
+  }
+}
+
+async function readCoordinateOverrides(): Promise<Map<string, JsonObject>> {
+  try {
+    const data = await readJson(COORDINATE_OVERRIDES_PATH);
+    if (!Array.isArray(data)) return new Map();
+    return new Map(data
+      .filter((override): override is JsonObject => isJsonObject(override) && typeof override.id === 'string' && override.id.trim().length > 0 && isNum(override.lat) && isNum(override.lon))
+      .map((override) => [String(override.id).trim(), override] as const));
+  } catch (error: unknown) {
+    const code = hasObjectType(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Map();
+    throw error;
+  }
+}
+
+function applyCoordinateOverride(place: PlaceRow, overrides: Map<string, JsonObject>): PlaceRow {
+  const id = typeof place.id === 'string' ? place.id.trim() : '';
+  const override = id ? overrides.get(id) : null;
+  if (!override) return place;
+  const out: PlaceRow = { ...place };
+  for (const key of COORDINATE_OVERRIDE_FIELDS) {
+    if (Object.prototype.hasOwnProperty.call(override, key)) out[key] = override[key];
+  }
+  if (Object.prototype.hasOwnProperty.call(out, 'lng')) delete out.lng;
+  return out;
 }
 
 function pickLight(place: PlaceRow, sourceFile = ''): LightPlace {
@@ -200,6 +257,7 @@ async function buildExpectedIndex(): Promise<LightPlace[]> {
   const manifest = await readJson(MANIFEST_PATH);
   const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
   const disabledPlaceIds = await readDisabledPlaceIds();
+  const coordinateOverrides = await readCoordinateOverrides();
   const out: LightPlace[] = [];
 
   for (const rel of files) {
@@ -209,9 +267,11 @@ async function buildExpectedIndex(): Promise<LightPlace[]> {
 
     for (const place of places) {
       if (!isPlaceRow(place)) continue;
-      const id = typeof place.id === 'string' ? place.id : '';
+      assertNoLegacyLng(place, rel as string);
+      const indexedPlace = applyCoordinateOverride(place, coordinateOverrides);
+      const id = typeof indexedPlace.id === 'string' ? indexedPlace.id : '';
       if (id && disabledPlaceIds.has(id)) continue;
-      out.push(pickLight(place, rel as string));
+      out.push(pickLight(indexedPlace, rel as string));
     }
   }
 
