@@ -158,6 +158,13 @@ async function readJson(filePath: string): Promise<unknown> {
   return JSON.parse(raw) as unknown;
 }
 
+function placesFromData(data: unknown): unknown[] {
+  if (Array.isArray(data)) return data;
+  if (isJsonObject(data) && Array.isArray(data.places)) return data.places;
+  if (isPlaceRow(data) && typeof data.id === 'string') return [data];
+  return [];
+}
+
 async function readDisabledPlaceIds(): Promise<Set<string>> {
   try {
     const exclusions = await readJson(EXCLUSIONS_PATH);
@@ -268,7 +275,7 @@ async function buildExpectedIndex(): Promise<LightPlace[]> {
   for (const rel of files) {
     const fullPath = path.join(ROOT, 'data', rel as string);
     const data = await readJson(fullPath);
-    const places = Array.isArray(data) ? data : (isJsonObject(data) && Array.isArray(data.places) ? data.places : []);
+    const places = placesFromData(data);
 
     for (const place of places) {
       if (!isPlaceRow(place)) continue;
