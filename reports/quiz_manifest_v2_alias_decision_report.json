@@ -1,0 +1,237 @@
+{
+  "status": "triage_only",
+  "reportType": "quiz_manifest_v2_alias_decision_report",
+  "sourceReports": [
+    "reports/quiz_manifest_v2_audit_report.json",
+    "reports/quiz_manifest_v2_audit_triage_report.json",
+    "reports/quiz_manifest_v2_cecilie_manifest_fix_report.json",
+    "reports/akershus_festning_place_target_fix_report.json",
+    "reports/vulkan_energisentral_empty_set_fix_report.json"
+  ],
+  "currentAuditState": {
+    "missingSetIdsResolved": true,
+    "invalidQuestionsResolved": true,
+    "remainingFailureClasses": [
+      "duplicate legacy quiz ids",
+      "targetMismatchQuestions"
+    ]
+  },
+  "totalMismatchQuestionsAfterCompletedFixes": 171,
+  "noteOnPriorCount": "Earlier triage counted 181 target mismatch questions. Cecilie was fixed by changing manifest targetId from cecilie_ekeberg to cecilie_malm_brundtland, removing 10 mismatches. The remaining alias/mismatch count is therefore 171.",
+  "groups": [
+    {
+      "entryTargetId": "grunerlokka_helgesens_tm",
+      "questionTargets": [
+        "grunerlokka",
+        "grunerlokka"
+      ],
+      "file": "data/quiz/by/grunerlokka_sets.json",
+      "count": 39,
+      "examples": [
+        "by_grunerlokka_set_1_q1",
+        "by_grunerlokka_set_1_q2",
+        "by_grunerlokka_set_1_q3",
+        "by_grunerlokka_set_1_q4",
+        "by_grunerlokka_set_1_q5"
+      ],
+      "assessment": {
+        "manifestEntryTargetLikelyAliasOrStaleId": true,
+        "quizFileAndQuestionTargetsPrefer": "grunerlokka",
+        "recommendedMechanicalFix": "change_manifest_target_to_question_target",
+        "riskLevel": "medium",
+        "reason": "Most questions in the file target grunerlokka directly, and the file name is grunerlokka_sets.json. However the same manifest entry also contains mixed place/person targets, so a manifest-only fix may not clear all Grunerløkka mismatches."
+      }
+    },
+    {
+      "entryTargetId": "grunerlokka_helgesens_tm",
+      "questionTargets": [
+        "grunerlokka",
+        "grunerlokka",
+        "edvard_munch"
+      ],
+      "file": "data/quiz/by/grunerlokka_sets.json",
+      "count": 1,
+      "examples": [
+        "by_grunerlokka_set_7_q2"
+      ],
+      "assessment": {
+        "manifestEntryTargetLikelyAliasOrStaleId": true,
+        "quizFileAndQuestionTargetsPrefer": "grunerlokka plus person anchor",
+        "recommendedMechanicalFix": "needs_manual_review",
+        "riskLevel": "high",
+        "reason": "This is a place question with an additional person target. Decide whether audit/runtime should allow place-plus-person context targets or whether person co-targets should move to related_people/metadata."
+      }
+    },
+    {
+      "entryTargetId": "grunerlokka_helgesens_tm",
+      "questionTargets": [
+        "grunerlokka",
+        "grunerlokka",
+        "oskar_braaten"
+      ],
+      "file": "data/quiz/by/grunerlokka_sets.json",
+      "count": 1,
+      "examples": [
+        "by_grunerlokka_set_7_q3"
+      ],
+      "assessment": {
+        "manifestEntryTargetLikelyAliasOrStaleId": true,
+        "quizFileAndQuestionTargetsPrefer": "grunerlokka plus person anchor",
+        "recommendedMechanicalFix": "needs_manual_review",
+        "riskLevel": "high",
+        "reason": "This is a place question with an additional person target. Decide whether audit/runtime should allow place-plus-person context targets or whether person co-targets should move to related_people/metadata."
+      }
+    },
+    {
+      "entryTargetId": "grunerlokka_helgesens_tm",
+      "questionTargets": [
+        "grunerlokka",
+        "grunerlokka",
+        "thorvald_meyer"
+      ],
+      "file": "data/quiz/by/grunerlokka_sets.json",
+      "count": 1,
+      "examples": [
+        "by_grunerlokka_set_7_q1"
+      ],
+      "assessment": {
+        "manifestEntryTargetLikelyAliasOrStaleId": true,
+        "quizFileAndQuestionTargetsPrefer": "grunerlokka plus person anchor",
+        "recommendedMechanicalFix": "needs_manual_review",
+        "riskLevel": "high",
+        "reason": "This is a place question with an additional person target. Decide whether audit/runtime should allow place-plus-person context targets or whether person co-targets should move to related_people/metadata."
+      }
+    },
+    {
+      "entryTargetId": "karl_johan",
+      "questionTargets": [
+        "karl_johans_gate",
+        "karl_johans_gate"
+      ],
+      "file": "data/quiz/by/karl_johans_gate_sets.json",
+      "count": 42,
+      "examples": [
+        "by_karl_johans_gate_set_1_q1",
+        "by_karl_johans_gate_set_1_q2",
+        "by_karl_johans_gate_set_1_q3",
+        "by_karl_johans_gate_set_1_q4",
+        "by_karl_johans_gate_set_1_q5"
+      ],
+      "assessment": {
+        "manifestEntryTargetLikelyAliasOrStaleId": true,
+        "quizFileAndQuestionTargetsPrefer": "karl_johans_gate",
+        "recommendedMechanicalFix": "change_manifest_target_to_question_target",
+        "riskLevel": "low",
+        "reason": "The manifest entry target is shorter/stale while the quiz file name and all question targets use karl_johans_gate. This is a good candidate for a manifest-only targetId alignment if the canonical place id resolves."
+      }
+    },
+    {
+      "entryTargetId": "majorstuen_krysset",
+      "questionTargets": [
+        "majorstua",
+        "majorstua"
+      ],
+      "file": "data/quiz/by/majorstua_sets.json",
+      "count": 42,
+      "examples": [
+        "by_majorstua_set_1_q1",
+        "by_majorstua_set_1_q2",
+        "by_majorstua_set_1_q3",
+        "by_majorstua_set_1_q4",
+        "by_majorstua_set_1_q5"
+      ],
+      "assessment": {
+        "manifestEntryTargetLikelyAliasOrStaleId": true,
+        "quizFileAndQuestionTargetsPrefer": "majorstua",
+        "recommendedMechanicalFix": "change_manifest_target_to_question_target",
+        "riskLevel": "low",
+        "reason": "The manifest entry points to majorstuen_krysset while the file and all question targets use majorstua. This is a good candidate for a manifest-only targetId alignment if the canonical place id resolves."
+      }
+    },
+    {
+      "entryTargetId": "operahuset",
+      "questionTargets": [
+        "operaen",
+        "operaen"
+      ],
+      "file": "data/quiz/by/operaen_sets.json",
+      "count": 45,
+      "examples": [
+        "by_operaen_set_1_q1",
+        "by_operaen_set_1_q2",
+        "by_operaen_set_1_q3",
+        "by_operaen_set_1_q4",
+        "by_operaen_set_1_q5"
+      ],
+      "assessment": {
+        "manifestEntryTargetLikelyAliasOrStaleId": true,
+        "quizFileAndQuestionTargetsPrefer": "operaen",
+        "recommendedMechanicalFix": "change_manifest_target_to_question_target",
+        "riskLevel": "low",
+        "reason": "The manifest entry target is operahuset while the file and all question targets use operaen. This is a good candidate for a manifest-only targetId alignment if the canonical place id resolves."
+      }
+    }
+  ],
+  "safeMechanicalManifestTargetFixes": [
+    {
+      "fromTargetId": "karl_johan",
+      "toTargetId": "karl_johans_gate",
+      "file": "data/quiz/by/karl_johans_gate_sets.json",
+      "expectedMismatchReduction": 42,
+      "precondition": "Confirm karl_johans_gate resolves as a canonical place id and does not already exist as another manifest targetId."
+    },
+    {
+      "fromTargetId": "majorstuen_krysset",
+      "toTargetId": "majorstua",
+      "file": "data/quiz/by/majorstua_sets.json",
+      "expectedMismatchReduction": 42,
+      "precondition": "Confirm majorstua resolves as a canonical place id and does not already exist as another manifest targetId."
+    },
+    {
+      "fromTargetId": "operahuset",
+      "toTargetId": "operaen",
+      "file": "data/quiz/by/operaen_sets.json",
+      "expectedMismatchReduction": 45,
+      "precondition": "Confirm operaen resolves as a canonical place id and does not already exist as another manifest targetId."
+    },
+    {
+      "fromTargetId": "grunerlokka_helgesens_tm",
+      "toTargetId": "grunerlokka",
+      "file": "data/quiz/by/grunerlokka_sets.json",
+      "expectedMismatchReduction": 39,
+      "precondition": "Confirm grunerlokka resolves as a canonical place id and accept that three mixed place/person questions will need separate handling."
+    }
+  ],
+  "unsafeOrNeedsManualReview": [
+    {
+      "entryTargetId": "grunerlokka_helgesens_tm",
+      "file": "data/quiz/by/grunerlokka_sets.json",
+      "count": 3,
+      "questionIds": [
+        "by_grunerlokka_set_7_q1",
+        "by_grunerlokka_set_7_q2",
+        "by_grunerlokka_set_7_q3"
+      ],
+      "reason": "Questions include grunerlokka plus a person target: thorvald_meyer, edvard_munch, or oskar_braaten. A pure manifest target change will not settle whether this target shape is allowed."
+    }
+  ],
+  "recommendedNextPrTitle": "Fix quiz manifest v2 safe target aliases",
+  "recommendedNextPrScope": [
+    "Change only manifest targetIds where the file name and all or nearly all question targets clearly point to the canonical target.",
+    "Do not edit quiz questions in the same PR.",
+    "Do not handle legacy duplicate quiz ids in the same PR.",
+    "Leave the three Grunerløkka mixed place/person questions for a separate policy/data-shape decision unless the audit becomes green after manifest alignment."
+  ],
+  "expectedAfterSafeManifestFixes": {
+    "targetMismatchQuestionsReducedFrom": 171,
+    "targetMismatchQuestionsReducedByAtLeast": 168,
+    "likelyRemainingTargetMismatchQuestions": 3,
+    "likelyRemainingIssue": "Grunerløkka questions with place-plus-person targets."
+  },
+  "constraintsObserved": {
+    "quizDataChanged": false,
+    "manifestChanged": false,
+    "peoplePlaceDataChanged": false,
+    "automaticFixesApplied": false
+  }
+}
