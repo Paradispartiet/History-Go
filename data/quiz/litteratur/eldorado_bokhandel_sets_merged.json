@@ -1,16 +1,63 @@
 {
   "targetId": "eldorado_bokhandel",
   "categoryId": "litteratur",
+  "source_quiz_file": "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+  "generator_version": "v5_1_external_priority_chat_rebuilt_litteratur_5x6_oslo",
+  "size_class": "normal_place",
+  "generated_from": [
+    "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+    "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+    "data/places/litteratur/oslo/places_litteratur.json",
+    "data/quiz/quiz_litteratur.json",
+    "data/places/litteratur/oslo/places_litteratur.json",
+    "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+    "https://oslobyleksikon.no/index.php?title=Eldorado",
+    "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+    "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+    "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+    "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+  ],
+  "merge_notes": {
+    "existing_quiz_status": "Existing data/quiz/litteratur/eldorado_bokhandel_sets_merged.json found, but it was short/incomplete relative to current 5x6 standard.",
+    "kept": "Kept old core: 2013 bookstore opening, old cinema building, Torggata, and bookstore/cultural-building angle.",
+    "corrected": "Avoided generic tourist-shop framing. Corrected to categoryId litteratur and em_lit_/met_lit_ schema. Treated Eldorado as reused cinema/theatre building, bookstore, literary public sphere and book-market case.",
+    "not_continued": "No opening-hours/current-stock questions because they can change.",
+    "added": "Added 5 sets x 6 questions: 1891 varieté, Fahlstrøms Theater, cinema 1911–2012, first sound-film cinema 1929, bookstore 2013, 3200 sqm original concept, publisher-controlled shelves, Norli Eldorado, event area, contrasts and methods."
+  },
+  "profile_snapshot": {
+    "place_type": "litteratursted",
+    "subtype": "bokhandel_i_ombygd_kino_og_kulturbygg",
+    "signature_features": [
+      "Eldorado in Torggata",
+      "former varieté theatre and cinema",
+      "cinema 1911–2012",
+      "bookstore from 2013",
+      "large literary public space and event/book-launch arena"
+    ],
+    "primary_angles": [
+      "bokhandel",
+      "ombruk",
+      "kinohistorie",
+      "bokmarked",
+      "litteraer_offentlighet"
+    ],
+    "must_include": [
+      "Torggata",
+      "kino history",
+      "2013 bookstore",
+      "avoid generic tourist shop"
+    ]
+  },
   "sets": [
     {
       "set_id": "litteratur_eldorado_bokhandel_set_1",
       "level": 1,
       "order": 1,
       "xp": 50,
-      "title": "Eldorado: fra kino til bokhandel",
+      "mode": "history_intro_story",
       "questions": [
         {
-          "id": "eldorado_bokhandel_lit_q1",
+          "id": "eldorado_bokhandel_quiz_1",
           "quiz_id": "litteratur_eldorado_bokhandel_set_1_q1",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -18,92 +65,146 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Når åpnet Eldorado bokhandel som stor bokhandel i Torggata?",
+          "question": "Hva er Eldorado Bokhandel i litteraturkategorien?",
           "options": [
-            "2013",
-            "2001",
-            "1998"
+            "Et bokhandels- og kulturbygg i gamle Eldorado kino",
+            "Et lukket arkivmagasin",
+            "En forfatterbolig ved Slottsparken"
           ],
-          "answer": "2013",
+          "answer": "Et bokhandels- og kulturbygg i gamle Eldorado kino",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Åpningsår",
-          "knowledge": "Eksisterende quizdata oppgir 2013 som åpningen av Eldorado bokhandel som Nordens største bokhandel.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "Eldorado",
+          "knowledge": "Hva er Eldorado Bokhandel i litteraturkategorien? Riktig svar er: Et bokhandels- og kulturbygg i gamle Eldorado kino.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
+          "question_layer": "history_intro_story",
           "year": 2013,
-          "epoke_id": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
           "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
           "related_emner": [],
           "core_concepts": [
+            "Eldorado",
             "bokhandel",
-            "lesere"
+            "kulturbygg"
           ],
           "concept_focus": [
+            "Eldorado",
             "bokhandel"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "bokhandel"
+            "Eldorado",
+            "bokhandel",
+            "kulturbygg"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Existing Eldorado bookstore question set plus external cinema-to-bookstore history"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Eksisterende quizdata oppgir 2013 som åpningen av Eldorado bokhandel som Nordens største bokhandel.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_litteraturhistorisk_kontekstualisering",
-          "literature_anchor_type": "bokhandel",
-          "source_note": "Existing Eldorado bookstore question set plus external cinema-to-bookstore history",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         },
         {
-          "id": "eldorado_bokhandel_lit_q2",
+          "id": "eldorado_bokhandel_quiz_2",
           "quiz_id": "litteratur_eldorado_bokhandel_set_1_q2",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken gate ligger Eldorado i?",
+          "options": [
+            "Torggata",
+            "Universitetsgata",
+            "Wergelandsveien"
+          ],
+          "answer": "Torggata",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "Torggata",
+          "knowledge": "Hvilken gate ligger Eldorado i? Riktig svar er: Torggata.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Torggata",
+            "Oslo",
+            "Eldorado"
+          ],
+          "concept_focus": [
+            "Torggata",
+            "Oslo"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Torggata",
+            "Oslo",
+            "Eldorado"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_3",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_1_q3",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
           "personId": "",
@@ -118,175 +219,64 @@
           ],
           "answer": "Kino",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Tidligere bruk",
-          "knowledge": "Eldorado var tidligere kino før lokalene ble tatt i bruk som bokhandel.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "kino",
+          "knowledge": "Hva var Eldorado-bygget kjent som før bokhandelen flyttet inn? Riktig svar er: Kino.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
-          "year": 2012,
-          "epoke_id": null,
+          "question_layer": "history_intro_story",
+          "year": 1911,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
           "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
           "related_emner": [],
           "core_concepts": [
-            "bokhandel",
-            "lesere"
+            "kino",
+            "kulturbygg",
+            "Torggata"
           ],
           "concept_focus": [
+            "kino",
             "kulturbygg"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "kulturbygg"
+            "kino",
+            "kulturbygg",
+            "Torggata"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Eldorado Cinema / Torggata 9 cinema history source"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Eldorado var tidligere kino før lokalene ble tatt i bruk som bokhandel.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_litteraer_stedsanalyse",
-          "literature_anchor_type": "kulturbygg",
-          "source_note": "Eldorado Cinema / Torggata 9 cinema history source",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         },
         {
-          "id": "eldorado_bokhandel_lit_q3",
-          "quiz_id": "litteratur_eldorado_bokhandel_set_1_q3",
-          "categoryId": "litteratur",
-          "placeId": "eldorado_bokhandel",
-          "personId": "",
-          "natureId": "",
-          "targetId": "eldorado_bokhandel",
-          "question_scope": "place",
-          "question": "Hvilken gate ligger Eldorado i?",
-          "options": [
-            "Torggata",
-            "Grensen",
-            "Universitetsgata"
-          ],
-          "answer": "Torggata",
-          "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Adresseområde",
-          "knowledge": "Eldorado ligger i Torggata i Oslo sentrum.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "fakta",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "litteratur",
-          "emne_id": "em_lit_litteraere_steder_og_bytekst",
-          "related_emner": [],
-          "core_concepts": [
-            "bokhandel",
-            "lesere"
-          ],
-          "concept_focus": [
-            "bokhandel"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "litteratur",
-            "eldorado",
-            "bokhandel"
-          ],
-          "required_tags": [],
-          "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Eldorado Cinema / Torggata 9 cinema history source"
-            }
-          ],
-          "source_origin": "mixed",
-          "claim_basis": "Eldorado ligger i Torggata i Oslo sentrum.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_litteraer_stedsanalyse",
-          "literature_anchor_type": "bokhandel",
-          "source_note": "Eldorado Cinema / Torggata 9 cinema history source",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
-          "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
-        },
-        {
-          "id": "eldorado_bokhandel_lit_q4",
+          "id": "eldorado_bokhandel_quiz_4",
           "quiz_id": "litteratur_eldorado_bokhandel_set_1_q4",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -294,91 +284,72 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Hvilken adresse er Eldorado Cinema knyttet til i kinohistorikken?",
+          "question": "Når ble lokalet omgjort til bokhandel ifølge Oslo byleksikon?",
           "options": [
-            "Torggata 9",
-            "Torggata 17",
-            "Karl Johans gate 37"
+            "2013",
+            "1891",
+            "1929"
           ],
-          "answer": "Torggata 9",
+          "answer": "2013",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Adresse",
-          "knowledge": "Eldorado Cinema er knyttet til Torggata 9 i Oslo.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "2013",
+          "knowledge": "Når ble lokalet omgjort til bokhandel ifølge Oslo byleksikon? Riktig svar er: 2013.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
-          "year": null,
-          "epoke_id": null,
+          "question_layer": "history_intro_story",
+          "year": 2013,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
-          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "emne_id": "em_lit_bokhistorie_trykk_forlag",
+          "method_id": "met_lit_bokhistorisk_analyse",
           "related_emner": [],
           "core_concepts": [
+            "2013",
             "bokhandel",
-            "lesere"
+            "ombruk"
           ],
           "concept_focus": [
-            "kulturbygg"
+            "2013",
+            "bokhandel"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "kulturbygg"
+            "2013",
+            "bokhandel",
+            "ombruk"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Eldorado Cinema / Torggata 9 cinema history source"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Eldorado Cinema er knyttet til Torggata 9 i Oslo.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_litteraer_stedsanalyse",
-          "literature_anchor_type": "kulturbygg",
-          "source_note": "Eldorado Cinema / Torggata 9 cinema history source",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         },
         {
-          "id": "eldorado_bokhandel_lit_q5",
+          "id": "eldorado_bokhandel_quiz_5",
           "quiz_id": "litteratur_eldorado_bokhandel_set_1_q5",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -386,88 +357,142 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Når stengte Eldorado som kino?",
+          "question": "Hva sier place-filen at Eldorado var da bokhandelen åpnet?",
           "options": [
-            "19. august 2012",
-            "1. januar 2013",
-            "17. mai 2011"
+            "Nordens største bokhandel",
+            "Norges minste bokkiosk",
+            "Et rent filmstudio"
           ],
-          "answer": "19. august 2012",
+          "answer": "Nordens største bokhandel",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Kinohistorie",
-          "knowledge": "Eldorado kino stengte 19. august 2012 før lokalene senere ble brukt som bokhandel.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "Nordens største bokhandel",
+          "knowledge": "Hva sier place-filen at Eldorado var da bokhandelen åpnet? Riktig svar er: Nordens største bokhandel.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
-          "year": 2012,
-          "epoke_id": null,
+          "question_layer": "history_intro_story",
+          "year": 2013,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
-          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
           "related_emner": [],
           "core_concepts": [
-            "bokhandel",
-            "lesere"
+            "Nordens største bokhandel",
+            "bokmarked",
+            "åpning"
           ],
           "concept_focus": [
-            "kulturbygg"
+            "Nordens største bokhandel",
+            "bokmarked"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "kulturbygg"
+            "Nordens største bokhandel",
+            "bokmarked",
+            "åpning"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Eldorado Cinema / Torggata 9 cinema history source"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Eldorado kino stengte 19. august 2012 før lokalene senere ble brukt som bokhandel.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_litteraer_stedsanalyse",
-          "literature_anchor_type": "kulturbygg",
-          "source_note": "Eldorado Cinema / Torggata 9 cinema history source",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_6",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_1_q6",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken lesning passer best for `eldorado_bokhandel`?",
+          "options": [
+            "Et ombrukt kino- og teaterbygg der bokhandel, formidling, bredde og kulturarv møtes",
+            "Et generisk butikklokale uten litterær funksjon",
+            "Et privat manuskriptarkiv uten publikum"
+          ],
+          "answer": "Et ombrukt kino- og teaterbygg der bokhandel, formidling, bredde og kulturarv møtes",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "ombruk",
+          "knowledge": "Hvilken lesning passer best for `eldorado_bokhandel`? Riktig svar er: Et ombrukt kino- og teaterbygg der bokhandel, formidling, bredde og kulturarv møtes.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_lesere_offentlighet_formidling",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "ombruk",
+            "bokhandel",
+            "kulturarv"
+          ],
+          "concept_focus": [
+            "ombruk",
+            "bokhandel"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ombruk",
+            "bokhandel",
+            "kulturarv"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         }
       ]
     },
@@ -475,11 +500,11 @@
       "set_id": "litteratur_eldorado_bokhandel_set_2",
       "level": 2,
       "order": 2,
-      "xp": 50,
-      "title": "Eldorado: bokhandelrom og kulturhistorie",
+      "xp": 60,
+      "mode": "local_history_buildings_events",
       "questions": [
         {
-          "id": "eldorado_bokhandel_lit_q6",
+          "id": "eldorado_bokhandel_quiz_7",
           "quiz_id": "litteratur_eldorado_bokhandel_set_2_q1",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -487,91 +512,72 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Hvor mange etasjer hadde Eldorado bokhandel da den åpnet?",
+          "question": "Når ble Eldorado innviet som varietéteater?",
           "options": [
-            "Fire",
-            "Tre",
-            "Fem"
+            "1891",
+            "1911",
+            "2013"
           ],
-          "answer": "Fire",
+          "answer": "1891",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Bokhandelrom",
-          "knowledge": "Eksisterende quizdata oppgir at Eldorado bokhandel hadde fire etasjer da den åpnet.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "1891",
+          "knowledge": "Når ble Eldorado innviet som varietéteater? Riktig svar er: 1891.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
-          "year": 2013,
-          "epoke_id": null,
+          "question_layer": "local_history_buildings_events",
+          "year": 1891,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
-          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
           "related_emner": [],
           "core_concepts": [
-            "bokhandel",
-            "lesere"
+            "1891",
+            "varietéteater",
+            "Eldorado"
           ],
           "concept_focus": [
-            "bokhandel"
+            "1891",
+            "varietéteater"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "bokhandel"
+            "1891",
+            "varietéteater",
+            "Eldorado"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "data/quiz/quiz_litteratur.json existing Eldorado questions, checked before merge"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Eksisterende quizdata oppgir at Eldorado bokhandel hadde fire etasjer da den åpnet.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_sirkulasjonsanalyse",
-          "literature_anchor_type": "bokhandel",
-          "source_note": "data/quiz/quiz_litteratur.json existing Eldorado questions, checked before merge",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         },
         {
-          "id": "eldorado_bokhandel_lit_q7",
+          "id": "eldorado_bokhandel_quiz_8",
           "quiz_id": "litteratur_eldorado_bokhandel_set_2_q2",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -579,91 +585,72 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Hva hadde Eldorado bokhandel som egen arena for litterære arrangementer?",
+          "question": "Hva het teateret som holdt til i Eldorado 1903–1911?",
           "options": [
-            "Eget amfi for opplesninger og debatt",
-            "Lukket arkivrom for manuskripter",
-            "Fast teaterscene for opera"
+            "Fahlstrøms Theater",
+            "Christiania Theater",
+            "Nationaltheatret"
           ],
-          "answer": "Eget amfi for opplesninger og debatt",
+          "answer": "Fahlstrøms Theater",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Arrangement",
-          "knowledge": "Eksisterende quizdata oppgir at Eldorado hadde eget amfi for opplesninger og debatt.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "Fahlstrøms Theater",
+          "knowledge": "Hva het teateret som holdt til i Eldorado 1903–1911? Riktig svar er: Fahlstrøms Theater.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
-          "year": 2013,
-          "epoke_id": null,
+          "question_layer": "local_history_buildings_events",
+          "year": 1903,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
-          "emne_id": "em_lit_lesere_offentlighet_formidling",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
           "related_emner": [],
           "core_concepts": [
-            "bokhandel",
-            "lesere"
+            "Fahlstrøms Theater",
+            "1903–1911",
+            "teaterhistorie"
           ],
           "concept_focus": [
-            "litteraer_offentlighet"
+            "Fahlstrøms Theater",
+            "1903–1911"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "litteraer_offentlighet"
+            "Fahlstrøms Theater",
+            "1903–1911",
+            "teaterhistorie"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "data/quiz/quiz_litteratur.json existing Eldorado questions, checked before merge"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Eksisterende quizdata oppgir at Eldorado hadde eget amfi for opplesninger og debatt.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_formidlingsanalyse",
-          "literature_anchor_type": "litteraer_offentlighet",
-          "source_note": "data/quiz/quiz_litteratur.json existing Eldorado questions, checked before merge",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         },
         {
-          "id": "eldorado_bokhandel_lit_q8",
+          "id": "eldorado_bokhandel_quiz_9",
           "quiz_id": "litteratur_eldorado_bokhandel_set_2_q3",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -671,91 +658,72 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Hvor mange kinosaler hadde Eldorado som multiplex?",
+          "question": "Når var Eldorado kino ifølge Oslo byleksikon?",
           "options": [
-            "Fem",
-            "Tre",
-            "Sju"
+            "1911–2012",
+            "1891–1903",
+            "2013–2020"
           ],
-          "answer": "Fem",
+          "answer": "1911–2012",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Kinosaler",
-          "knowledge": "Eldorado Cinema hadde fem kinosaler som multiplex.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "1911–2012",
+          "knowledge": "Når var Eldorado kino ifølge Oslo byleksikon? Riktig svar er: 1911–2012.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
-          "year": 1986,
-          "epoke_id": null,
+          "question_layer": "local_history_buildings_events",
+          "year": 1911,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
           "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
           "related_emner": [],
           "core_concepts": [
-            "bokhandel",
-            "lesere"
+            "1911–2012",
+            "kino",
+            "Eldorado"
           ],
           "concept_focus": [
-            "kulturbygg"
+            "1911–2012",
+            "kino"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "kulturbygg"
+            "1911–2012",
+            "kino",
+            "Eldorado"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Eldorado Cinema / Torggata 9 cinema history source"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Eldorado Cinema hadde fem kinosaler som multiplex.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_litteraer_stedsanalyse",
-          "literature_anchor_type": "kulturbygg",
-          "source_note": "Eldorado Cinema / Torggata 9 cinema history source",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         },
         {
-          "id": "eldorado_bokhandel_lit_q9",
+          "id": "eldorado_bokhandel_quiz_10",
           "quiz_id": "litteratur_eldorado_bokhandel_set_2_q4",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -763,91 +731,72 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Når fikk kinoen navnet Eldorado?",
+          "question": "Hva ble Eldorado i 1929 ifølge Oslo byleksikon?",
           "options": [
-            "1929",
-            "1911",
-            "1963"
+            "Norges første lydfilmkino",
+            "Norges første pliktavleveringsbibliotek",
+            "Nordens første litteraturhus"
           ],
-          "answer": "1929",
+          "answer": "Norges første lydfilmkino",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Navnehistorie",
-          "knowledge": "Navnet Eldorado kom i september 1929.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "1929",
+          "knowledge": "Hva ble Eldorado i 1929 ifølge Oslo byleksikon? Riktig svar er: Norges første lydfilmkino.",
           "trivia": [],
-          "difficulty": 2,
+          "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "fakta",
+          "question_layer": "local_history_buildings_events",
           "year": 1929,
-          "epoke_id": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
           "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
           "related_emner": [],
           "core_concepts": [
-            "bokhandel",
-            "lesere"
+            "1929",
+            "lydfilmkino",
+            "filmhistorie"
           ],
           "concept_focus": [
-            "kulturbygg"
+            "1929",
+            "lydfilmkino"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "kulturbygg"
+            "1929",
+            "lydfilmkino",
+            "filmhistorie"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Eldorado Cinema / Torggata 9 cinema history source"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Navnet Eldorado kom i september 1929.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_litteraer_stedsanalyse",
-          "literature_anchor_type": "kulturbygg",
-          "source_note": "Eldorado Cinema / Torggata 9 cinema history source",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         },
         {
-          "id": "eldorado_bokhandel_lit_q10",
+          "id": "eldorado_bokhandel_quiz_11",
           "quiz_id": "litteratur_eldorado_bokhandel_set_2_q5",
           "categoryId": "litteratur",
           "placeId": "eldorado_bokhandel",
@@ -855,88 +804,1483 @@
           "natureId": "",
           "targetId": "eldorado_bokhandel",
           "question_scope": "place",
-          "question": "Hva ble flere av kinosalene omgjort til da Eldorado ble bokhandel?",
+          "question": "Hva gjør kinohistorien relevant for bokhandelsquizen?",
           "options": [
-            "Åpne rom for bokhyller",
-            "Hotellrom",
-            "Kommunale kontorer"
+            "Den viser hvordan et publikumsbygg kan skifte fra scene og film til bøker og litteraturformidling",
+            "Den fjerner all litterær betydning",
+            "Den gjør bygget til privat bolig"
           ],
-          "answer": "Åpne rom for bokhyller",
+          "answer": "Den viser hvordan et publikumsbygg kan skifte fra scene og film til bøker og litteraturformidling",
           "answerIndex": 0,
-          "dimension": "bokhandel_kulturbygg",
-          "topic": "Fra kino til bokhandel",
-          "knowledge": "Da Eldorado ble bokhandel, ble flere av kinosalene omgjort til åpne rom for bokhyller.",
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "publikumsbygg",
+          "knowledge": "Hva gjør kinohistorien relevant for bokhandelsquizen? Riktig svar er: Den viser hvordan et publikumsbygg kan skifte fra scene og film til bøker og litteraturformidling.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_lesere_offentlighet_formidling",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "publikumsbygg",
+            "ombruk",
+            "formidling"
+          ],
+          "concept_focus": [
+            "publikumsbygg",
+            "ombruk"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "publikumsbygg",
+            "ombruk",
+            "formidling"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_12",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_2_q6",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken historisk analyse passer best for Eldorado?",
+          "options": [
+            "Bygget har gått fra varietéteater til kino og videre til bokhandel og litterær møteplass",
+            "Bygget har alltid vært uendret boklager",
+            "Bygget har ingen kulturhistorie"
+          ],
+          "answer": "Bygget har gått fra varietéteater til kino og videre til bokhandel og litterær møteplass",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "varieté",
+          "knowledge": "Hvilken historisk analyse passer best for Eldorado? Riktig svar er: Bygget har gått fra varietéteater til kino og videre til bokhandel og litterær møteplass.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
+          "related_emner": [],
+          "core_concepts": [
+            "varieté",
+            "kino",
+            "bokhandel"
+          ],
+          "concept_focus": [
+            "varieté",
+            "kino"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "varieté",
+            "kino",
+            "bokhandel"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        }
+      ]
+    },
+    {
+      "set_id": "litteratur_eldorado_bokhandel_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "humor_curiosities_life",
+      "questions": [
+        {
+          "id": "eldorado_bokhandel_quiz_13",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_3_q1",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva åpnet i gamle Eldorado kino 12. september 2013?",
+          "options": [
+            "Nordens største bokhandel",
+            "Nasjonalbibliotekets lesesal",
+            "Nationaltheatrets biscene"
+          ],
+          "answer": "Nordens største bokhandel",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "12. september 2013",
+          "knowledge": "Hva åpnet i gamle Eldorado kino 12. september 2013? Riktig svar er: Nordens største bokhandel.",
           "trivia": [],
           "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "fakta",
+          "question_layer": "humor_curiosities_life",
           "year": 2013,
-          "epoke_id": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
           "epoke_domain": "litteratur",
-          "emne_id": "em_lit_bokhistorie_trykk_forlag",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
           "related_emner": [],
           "core_concepts": [
-            "bokhandel",
-            "lesere"
+            "12. september 2013",
+            "Nordens største bokhandel",
+            "åpning"
           ],
           "concept_focus": [
+            "12. september 2013",
+            "Nordens største bokhandel"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "12. september 2013",
+            "Nordens største bokhandel",
+            "åpning"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_14",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_3_q2",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvor stort var det nye Eldorado-konseptet i 2013?",
+          "options": [
+            "Omtrent 3200 kvadratmeter",
+            "69 kvadratmeter",
+            "200 kvadratmeter"
+          ],
+          "answer": "Omtrent 3200 kvadratmeter",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "3200 kvm",
+          "knowledge": "Hvor stort var det nye Eldorado-konseptet i 2013? Riktig svar er: Omtrent 3200 kvadratmeter.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2013,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "3200 kvm",
+            "bokhandel",
+            "skala"
+          ],
+          "concept_focus": [
+            "3200 kvm",
             "bokhandel"
           ],
           "learning_paths": [],
           "tags": [
-            "litteratur",
-            "eldorado",
-            "bokhandel"
+            "3200 kvm",
+            "bokhandel",
+            "skala"
           ],
-          "required_tags": [],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
           "source": [
-            {
-              "type": "external_or_repo_checked",
-              "name": "Eldorado Cinema / Torggata 9 cinema history source"
-            }
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Da Eldorado ble bokhandel, ble flere av kinosalene omgjort til åpne rom for bokhyller.",
-          "guidance_basis": {
-            "fagpakke": "data/fag/litteratur",
-            "note": "Fagpakken styrer bare emne/metode. Spørsmålet bygger på sammenligning av eksisterende repoquiz og ekstern Eldorado-/kinohistorikk."
-          },
-          "method_id": "met_lit_sirkulasjonsanalyse",
-          "literature_anchor_type": "bokhandel",
-          "source_note": "Eldorado Cinema / Torggata 9 cinema history source",
-          "external_source_ratio_target": 0.8,
-          "internal_file_only_allowed": false,
-          "requires_text_anchor": true,
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
           "requires_external_claim_basis": true,
-          "requires_text_place_author_or_institution_anchor": true,
-          "requires_visible_text_or_context": true,
-          "generator_guardrails": {
-            "required_emne_prefix": "em_lit_",
-            "source_first": true,
-            "forbidden_question_phrases": [
-              "hvorfor passer",
-              "passer",
-              "som litteratursted",
-              "hva gjør",
-              "relevant som",
-              "hva viser",
-              "hva slags",
-              "quiz",
-              "kategori",
-              "emne",
-              "mal",
-              "history go",
-              "mest presise",
-              "repo"
-            ]
-          },
-          "validation": {
-            "category_matches_badge": true,
-            "emne_id_uses_litteratur_prefix": true,
-            "method_id_uses_litteratur_prefix": true,
-            "answerIndex_matches_answer": true,
-            "question_is_clean_fact_question": true
-          }
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_15",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_3_q3",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvor mange scener for formidling og forfatterbesøk ble omtalt ved åpningen?",
+          "options": [
+            "Tre scener",
+            "Ingen scener",
+            "Tolv kinosaler"
+          ],
+          "answer": "Tre scener",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "tre scener",
+          "knowledge": "Hvor mange scener for formidling og forfatterbesøk ble omtalt ved åpningen? Riktig svar er: Tre scener.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2013,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_lesere_offentlighet_formidling",
+          "method_id": "met_lit_formidlingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "tre scener",
+            "formidling",
+            "forfatterbesøk"
+          ],
+          "concept_focus": [
+            "tre scener",
+            "formidling"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "tre scener",
+            "formidling",
+            "forfatterbesøk"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_16",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_3_q4",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva var ett særtrekk ved det opprinnelige Eldorado-bokhandelskonseptet?",
+          "options": [
+            "Forlagene kunne leie hylleplass og påvirke sortimentet",
+            "Bøker ble bare sortert etter forfatternes fødselsdato",
+            "Bokhandelen hadde ingen hyller"
+          ],
+          "answer": "Forlagene kunne leie hylleplass og påvirke sortimentet",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "forlagsstyrt konsept",
+          "knowledge": "Hva var ett særtrekk ved det opprinnelige Eldorado-bokhandelskonseptet? Riktig svar er: Forlagene kunne leie hylleplass og påvirke sortimentet.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2013,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_bokhistorie_trykk_forlag",
+          "method_id": "met_lit_bokhistorisk_analyse",
+          "related_emner": [],
+          "core_concepts": [
+            "forlagsstyrt konsept",
+            "hylleplass",
+            "sortiment"
+          ],
+          "concept_focus": [
+            "forlagsstyrt konsept",
+            "hylleplass"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "forlagsstyrt konsept",
+            "hylleplass",
+            "sortiment"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_17",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_3_q5",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken kritikk kan rettes mot forlagsstyrt hylleplass?",
+          "options": [
+            "Det kan gjøre utvalget stort, men også vanskeligere å orientere seg i for lesere",
+            "Det gjør alle bøker automatisk mer tilgjengelige",
+            "Det fjerner all kommersiell logikk"
+          ],
+          "answer": "Det kan gjøre utvalget stort, men også vanskeligere å orientere seg i for lesere",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "forlagsstyring",
+          "knowledge": "Hvilken kritikk kan rettes mot forlagsstyrt hylleplass? Riktig svar er: Det kan gjøre utvalget stort, men også vanskeligere å orientere seg i for lesere.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteratur_og_offentlig_debatt",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "forlagsstyring",
+            "orientering",
+            "leser"
+          ],
+          "concept_focus": [
+            "forlagsstyring",
+            "orientering"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "forlagsstyring",
+            "orientering",
+            "leser"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_18",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_3_q6",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken bokmarkedsanalyse passer best for Eldorado 2013?",
+          "options": [
+            "Eldorado forsøkte å gjøre bokhandelen til stort kulturhus, men viste også spenningen mellom bredde, forlagsmakt og leserorientering",
+            "Eldorado var bare en vanlig kiosk",
+            "Eldorado fjernet bokmarkedets betydning"
+          ],
+          "answer": "Eldorado forsøkte å gjøre bokhandelen til stort kulturhus, men viste også spenningen mellom bredde, forlagsmakt og leserorientering",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "kulturhus",
+          "knowledge": "Hvilken bokmarkedsanalyse passer best for Eldorado 2013? Riktig svar er: Eldorado forsøkte å gjøre bokhandelen til stort kulturhus, men viste også spenningen mellom bredde, forlagsmakt og leserorientering.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "kulturhus",
+            "forlagsmakt",
+            "leserorientering"
+          ],
+          "concept_focus": [
+            "kulturhus",
+            "forlagsmakt"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "kulturhus",
+            "forlagsmakt",
+            "leserorientering"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        }
+      ]
+    },
+    {
+      "set_id": "litteratur_eldorado_bokhandel_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_facts_architecture",
+      "questions": [
+        {
+          "id": "eldorado_bokhandel_quiz_19",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_4_q1",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva heter bokhandelen i Eldorado-lokalene i dag i Torggata Gateforenings omtale?",
+          "options": [
+            "Norli Eldorado",
+            "Tronsmo Eldorado",
+            "Litteraturhuset Eldorado"
+          ],
+          "answer": "Norli Eldorado",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "Norli Eldorado",
+          "knowledge": "Hva heter bokhandelen i Eldorado-lokalene i dag i Torggata Gateforenings omtale? Riktig svar er: Norli Eldorado.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Norli Eldorado",
+            "Torggata",
+            "bokhandel"
+          ],
+          "concept_focus": [
+            "Norli Eldorado",
+            "Torggata"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Norli Eldorado",
+            "Torggata",
+            "bokhandel"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_20",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_4_q2",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva sier Torggata Gateforening at Norli Eldorado har fylt gamle kinolokaler med?",
+          "options": [
+            "Bøker, spill, leker, papir- og kontorvarer",
+            "Bare filmruller",
+            "Bare lukkede kontorer"
+          ],
+          "answer": "Bøker, spill, leker, papir- og kontorvarer",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "bøker",
+          "knowledge": "Hva sier Torggata Gateforening at Norli Eldorado har fylt gamle kinolokaler med? Riktig svar er: Bøker, spill, leker, papir- og kontorvarer.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_bokhistorie_trykk_forlag",
+          "method_id": "met_lit_bokhistorisk_analyse",
+          "related_emner": [],
+          "core_concepts": [
+            "bøker",
+            "spill",
+            "papirvarer"
+          ],
+          "concept_focus": [
+            "bøker",
+            "spill"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "bøker",
+            "spill",
+            "papirvarer"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_21",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_4_q3",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva framhever VisitOSLO ved Norli Eldorado?",
+          "options": [
+            "Mange engelske titler og et arrangementsområde for boklanseringer og litterære hendelser",
+            "At stedet ikke har bøker",
+            "At lokalet bare brukes til arkiv"
+          ],
+          "answer": "Mange engelske titler og et arrangementsområde for boklanseringer og litterære hendelser",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "engelske titler",
+          "knowledge": "Hva framhever VisitOSLO ved Norli Eldorado? Riktig svar er: Mange engelske titler og et arrangementsområde for boklanseringer og litterære hendelser.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_lesere_offentlighet_formidling",
+          "method_id": "met_lit_formidlingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "engelske titler",
+            "arrangementsområde",
+            "boklanseringer"
+          ],
+          "concept_focus": [
+            "engelske titler",
+            "arrangementsområde"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "engelske titler",
+            "arrangementsområde",
+            "boklanseringer"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_22",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_4_q4",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva må en god quiz om Eldorado unngå?",
+          "options": [
+            "Å gjøre stedet til generisk turistbutikk uten bokhistorie",
+            "Å koble kinohistorie og bokhandel",
+            "Å spørre om litterær formidling"
+          ],
+          "answer": "Å gjøre stedet til generisk turistbutikk uten bokhistorie",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "avoid angle",
+          "knowledge": "Hva må en god quiz om Eldorado unngå? Riktig svar er: Å gjøre stedet til generisk turistbutikk uten bokhistorie.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_lesere_offentlighet_formidling",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "avoid angle",
+            "turistbutikk",
+            "QC"
+          ],
+          "concept_focus": [
+            "avoid angle",
+            "turistbutikk"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "avoid angle",
+            "turistbutikk",
+            "QC"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_23",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_4_q5",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvorfor er Eldorado mer enn et vanlig butikklokale?",
+          "options": [
+            "Fordi byggets scene-, kino- og bokhandelshistorie gir litterær og urban kulturarv",
+            "Fordi det aldri har hatt publikum",
+            "Fordi bøker ikke selges der"
+          ],
+          "answer": "Fordi byggets scene-, kino- og bokhandelshistorie gir litterær og urban kulturarv",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "kulturarv",
+          "knowledge": "Hvorfor er Eldorado mer enn et vanlig butikklokale? Riktig svar er: Fordi byggets scene-, kino- og bokhandelshistorie gir litterær og urban kulturarv.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
+          "related_emner": [],
+          "core_concepts": [
+            "kulturarv",
+            "kinohistorie",
+            "bokhandel"
+          ],
+          "concept_focus": [
+            "kulturarv",
+            "kinohistorie"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "kulturarv",
+            "kinohistorie",
+            "bokhandel"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_24",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_4_q6",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken offentlighetsanalyse passer best?",
+          "options": [
+            "Eldorado viser hvordan et publikumsrom kan brukes på nytt for bokutvalg, lanseringer, lesere og byliv",
+            "Eldorado viser at bokhandel alltid er privat og usynlig",
+            "Eldorado har ingen offentlig funksjon"
+          ],
+          "answer": "Eldorado viser hvordan et publikumsrom kan brukes på nytt for bokutvalg, lanseringer, lesere og byliv",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "publikumsrom",
+          "knowledge": "Hvilken offentlighetsanalyse passer best? Riktig svar er: Eldorado viser hvordan et publikumsrom kan brukes på nytt for bokutvalg, lanseringer, lesere og byliv.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_lesere_offentlighet_formidling",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "publikumsrom",
+            "bokutvalg",
+            "byliv"
+          ],
+          "concept_focus": [
+            "publikumsrom",
+            "bokutvalg"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "publikumsrom",
+            "bokutvalg",
+            "byliv"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        }
+      ]
+    },
+    {
+      "set_id": "litteratur_eldorado_bokhandel_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {
+          "id": "eldorado_bokhandel_quiz_25",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_5_q1",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva skiller Eldorado fra Tronsmo?",
+          "options": [
+            "Eldorado er stor bokhandel i tidligere kino; Tronsmo er uavhengig bokhandel med tydelig radikal og kuratert profil",
+            "Begge er samme bokhandel",
+            "Tronsmo var lydfilmkino i 1929"
+          ],
+          "answer": "Eldorado er stor bokhandel i tidligere kino; Tronsmo er uavhengig bokhandel med tydelig radikal og kuratert profil",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "Eldorado",
+          "knowledge": "Hva skiller Eldorado fra Tronsmo? Riktig svar er: Eldorado er stor bokhandel i tidligere kino; Tronsmo er uavhengig bokhandel med tydelig radikal og kuratert profil.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Eldorado",
+            "Tronsmo",
+            "kontrast"
+          ],
+          "concept_focus": [
+            "Eldorado",
+            "Tronsmo"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Eldorado",
+            "Tronsmo",
+            "kontrast"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_26",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_5_q2",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hva skiller Eldorado fra Nasjonalbiblioteket?",
+          "options": [
+            "Eldorado er bokhandel og publikumsbygg; Nasjonalbiblioteket er arkiv- og samlingsinstitusjon",
+            "Begge er pliktavleveringsarkiv",
+            "Eldorado er statens æresbolig"
+          ],
+          "answer": "Eldorado er bokhandel og publikumsbygg; Nasjonalbiblioteket er arkiv- og samlingsinstitusjon",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "Eldorado",
+          "knowledge": "Hva skiller Eldorado fra Nasjonalbiblioteket? Riktig svar er: Eldorado er bokhandel og publikumsbygg; Nasjonalbiblioteket er arkiv- og samlingsinstitusjon.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Eldorado",
+            "Nasjonalbiblioteket",
+            "kontrast"
+          ],
+          "concept_focus": [
+            "Eldorado",
+            "Nasjonalbiblioteket"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "Eldorado",
+            "Nasjonalbiblioteket",
+            "kontrast"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_27",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_5_q3",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken metode passer best for å analysere Eldorado som bokhandel?",
+          "options": [
+            "met_lit_feltanalyse",
+            "met_musikk_lytteanalyse",
+            "met_naering_verdiskapingsanalyse"
+          ],
+          "answer": "met_lit_feltanalyse",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "met_lit_feltanalyse",
+          "knowledge": "Hvilken metode passer best for å analysere Eldorado som bokhandel? Riktig svar er: met_lit_feltanalyse.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraturfelt_institusjoner",
+          "method_id": "met_lit_feltanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "met_lit_feltanalyse",
+            "bokhandel",
+            "felt"
+          ],
+          "concept_focus": [
+            "met_lit_feltanalyse",
+            "bokhandel"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "met_lit_feltanalyse",
+            "bokhandel",
+            "felt"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_28",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_5_q4",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken metode passer best for å analysere Eldorado som ombrukt kulturbygg?",
+          "options": [
+            "met_lit_bytekst_analyse",
+            "met_lit_metrisk_analyse",
+            "met_musikk_form_og_strukturanalyse"
+          ],
+          "answer": "met_lit_bytekst_analyse",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "met_lit_bytekst_analyse",
+          "knowledge": "Hvilken metode passer best for å analysere Eldorado som ombrukt kulturbygg? Riktig svar er: met_lit_bytekst_analyse.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_litteraere_steder_og_bytekst",
+          "method_id": "met_lit_bytekst_analyse",
+          "related_emner": [],
+          "core_concepts": [
+            "met_lit_bytekst_analyse",
+            "ombruk",
+            "byrom"
+          ],
+          "concept_focus": [
+            "met_lit_bytekst_analyse",
+            "ombruk"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "met_lit_bytekst_analyse",
+            "ombruk",
+            "byrom"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_29",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_5_q5",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken kritisk observasjon passer best?",
+          "options": [
+            "Stor bokhandel og stort utvalg kan gi bredde, men også reise spørsmål om kuratering, forlagsmakt og synlighet",
+            "Størrelse avgjør automatisk kvalitet",
+            "Bokhandelens organisering påvirker aldri lesing"
+          ],
+          "answer": "Stor bokhandel og stort utvalg kan gi bredde, men også reise spørsmål om kuratering, forlagsmakt og synlighet",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "bredde",
+          "knowledge": "Hvilken kritisk observasjon passer best? Riktig svar er: Stor bokhandel og stort utvalg kan gi bredde, men også reise spørsmål om kuratering, forlagsmakt og synlighet.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_kanon_kritikk_symbolsk_makt",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "bredde",
+            "forlagsmakt",
+            "synlighet"
+          ],
+          "concept_focus": [
+            "bredde",
+            "forlagsmakt"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "bredde",
+            "forlagsmakt",
+            "synlighet"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
+        },
+        {
+          "id": "eldorado_bokhandel_quiz_30",
+          "quiz_id": "litteratur_eldorado_bokhandel_set_5_q6",
+          "categoryId": "litteratur",
+          "placeId": "eldorado_bokhandel",
+          "personId": "",
+          "natureId": "",
+          "targetId": "eldorado_bokhandel",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for `eldorado_bokhandel`?",
+          "options": [
+            "Et litterært kulturbygg der varietéteater, kino, lydfilm, 2013-bokhandel, Torggata, forlagsmodell, arrangementer og bokmarked må leses sammen",
+            "Et generisk butikklokale uten kulturhistorie",
+            "Et lukket arkiv for upubliserte manuskripter"
+          ],
+          "answer": "Et litterært kulturbygg der varietéteater, kino, lydfilm, 2013-bokhandel, Torggata, forlagsmodell, arrangementer og bokmarked må leses sammen",
+          "answerIndex": 0,
+          "dimension": "bokhandel_kulturbygg_og_bytekst",
+          "topic": "varieté",
+          "knowledge": "Hvilken samlet analyse passer best for `eldorado_bokhandel`? Riktig svar er: Et litterært kulturbygg der varietéteater, kino, lydfilm, 2013-bokhandel, Torggata, forlagsmodell, arrangementer og bokmarked må leses sammen.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "eldorado_kino_til_bokhandel_torggata",
+          "epoke_domain": "litteratur",
+          "emne_id": "em_lit_kanon_kritikk_symbolsk_makt",
+          "method_id": "met_lit_diskursanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "varieté",
+            "kino",
+            "bokhandel"
+          ],
+          "concept_focus": [
+            "varieté",
+            "kino"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "varieté",
+            "kino",
+            "bokhandel"
+          ],
+          "required_tags": [
+            "external_source",
+            "literature_anchor",
+            "em_lit"
+          ],
+          "source": [
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/litteratur/eldorado_bokhandel_sets_merged.json",
+            "https://oslobyleksikon.no/index.php?title=Eldorado",
+            "https://www.torggata.oslo.no/norli-eldorado-bokhandel/",
+            "https://www.visitoslo.com/en/product/?name=Norli-Eldorado-bookstore&tlp=3004183",
+            "https://www.aktivioslo.no/hva-skjer-i-oslo/norden-storste-bokhandel-apner-i-gamle-eldorado-kino/",
+            "https://journalen.oslomet.no/nb/kultur/2013/10/forlagsstyrt-konsept-i-nytt-bokeldorado"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_or_repo_verified_claim",
+          "literature_anchor_type": "bookstore_reused_cinema_literary_public_sphere",
+          "external_source_ratio_target": 0.85,
+          "requires_literature_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+            "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+            "data/places/litteratur/oslo/places_litteratur.json",
+            "data/quiz/quiz_litteratur.json"
+          ],
+          "merge_status": "rebuilt_existing_merged_file"
         }
       ]
     }
