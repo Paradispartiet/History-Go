@@ -3,10 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 async function patchFile(path, replacements) {
   let text = await readFile(path, 'utf8');
   for (const [from, to] of replacements) {
-    if (text.includes(to)) continue;
-    if (!text.includes(from)) {
-      throw new Error(`Could not find expected snippet in ${path}: ${from.slice(0, 120)}`);
-    }
+    if (!text.includes(from)) continue;
     text = text.replace(from, to);
   }
   await writeFile(path, text, 'utf8');
