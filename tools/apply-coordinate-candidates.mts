@@ -14,13 +14,16 @@
  *  - Standard er DRY-RUN. Ingenting skrives uten --write.
  *  - Endrer bare lat/lon + coord-metadata. Radius (r) røres ikke uten
  *    --apply-radius, fordi r er spillbalanse, ikke kildedata.
+ *  - Skriver ALDRI lng. History Go bruker lon. Eventuell gammel lng fjernes fra
+ *    steder som får ny koordinat.
  *  - Gater (physType=street) auto-applies ALDRI; de krever visuell kontroll og
  *    må eventuelt godkjennes eksplisitt via --ids.
  *  - Hvis rapporten er offline/uten live-treff (network.ok === 0 og 0
  *    auto_approved), avbrytes det med en melding om å kjøre pipelinen live
  *    først – det finnes da ingenting å applye.
- *  - Verktøyet endrer ikke places_index.json. Kjør quality-gate, index-bygg og
- *    health etterpå (skrives ut som påminnelse).
+ *  - Ved --write rebuildes data/places/places_index.json automatisk etter at
+ *    kildefilene er skrevet. Kartet bruker places_index først, så dette må være
+ *    en del av apply-steget.
  *
  * CLI:
  *   --report <path>     rapportfil (default reports/place-coordinate-candidates.json)
@@ -29,6 +32,7 @@
  *   --ids a,b,c         godkjenn disse placeId-ene i tillegg (selv om needs_review)
  *   --apply-radius      oppdater også r fra kandidaten
  *   --limit N           maks antall steder
+ *   --no-rebuild-index  hopp over automatisk rebuild av places_index (kun nødbruk)
  *   --help
  */
 
@@ -37,8 +41,15 @@ import path from 'path';
 
 const ROOT = process.cwd();
 const DEFAULT_REPORT = path.join(ROOT, 'reports/place-coordinate-candidates.json');
+const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
+const INDEX_PATH = path.join(ROOT, 'data/places/places_index.json');
+const EXCLUSIONS_PATH = path.join(ROOT, 'data/places/place_exclusions.json');
+const LIGHT_FIELDS = [
+  'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper','sourceFile'
+] as const;
 
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+const isObject = (v: unknown): v is Record<string, unknown> => Boolean(v) && typeof v === 'object' && !Array.isArray(v);
 
 function haversineM(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const toRad = (d: number) => (d * Math.PI) / 180;
@@ -59,12 +70,14 @@ function parseArgs(argv: string[]) {
     ids: Set<string>;
     applyRadius: boolean;
     limit: number | null;
+    rebuildIndex: boolean;
     help: boolean;
-  } = { report: DEFAULT_REPORT, write: false, file: null, ids: new Set(), applyRadius: false, limit: null, help: false };
+  } = { report: DEFAULT_REPORT, write: false, file: null, ids: new Set(), applyRadius: false, limit: null, rebuildIndex: true, help: false };
   for (let i = 0; i < argv.length; i++) {
     const t = argv[i];
     if (t === '--write') a.write = true;
     else if (t === '--apply-radius') a.applyRadius = true;
+    else if (t === '--no-rebuild-index') a.rebuildIndex = false;
     else if (t === '--help' || t === '-h') a.help = true;
     else if (t === '--report') a.report = path.resolve(ROOT, argv[++i] ?? '');
     else if (t.startsWith('--report=')) a.report = path.resolve(ROOT, t.slice('--report='.length));
@@ -84,12 +97,71 @@ function normFile(arg: string): string {
   return f;
 }
 
+async function readJson(filePath: string): Promise<unknown> {
+  return JSON.parse(await fs.readFile(filePath, 'utf8')) as unknown;
+}
+
+async function readDisabledPlaceIds(): Promise<Set<string>> {
+  try {
+    const data = await readJson(EXCLUSIONS_PATH);
+    if (!isObject(data) || !Array.isArray(data.disabledPlaceIds)) return new Set();
+    return new Set(data.disabledPlaceIds.filter((id): id is string => typeof id === 'string' && id.trim().length > 0));
+  } catch (error: unknown) {
+    const code = isObject(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Set();
+    throw error;
+  }
+}
+
+function placeIdForError(place: Record<string, unknown>): string {
+  return typeof place.id === 'string' && place.id.trim() ? place.id.trim() : '(mangler-id)';
+}
+
+function assertNoLegacyLng(place: Record<string, unknown>, sourceFile: string): void {
+  if (Object.prototype.hasOwnProperty.call(place, 'lng')) {
+    throw new Error(`${sourceFile}#${placeIdForError(place)}: ugyldig koordinatfelt "lng". History Go bruker "lon" som eneste lengdegradfelt.`);
+  }
+}
+
+function pickLight(place: Record<string, unknown>, sourceFile: string): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const key of LIGHT_FIELDS) {
+    if (Object.prototype.hasOwnProperty.call(place, key)) out[key] = place[key];
+  }
+  if (sourceFile) out.sourceFile = sourceFile;
+  return out;
+}
+
+async function rebuildPlacesIndex(): Promise<number> {
+  const manifest = await readJson(MANIFEST_PATH);
+  const files = isObject(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
+  const disabledPlaceIds = await readDisabledPlaceIds();
+  const out: Record<string, unknown>[] = [];
+
+  for (const rel of files) {
+    const sourceFile = String(rel || '').trim();
+    if (!sourceFile) continue;
+    const data = await readJson(path.join(ROOT, 'data', sourceFile));
+    const places = Array.isArray(data) ? data : (isObject(data) && Array.isArray(data.places) ? data.places : []);
+    for (const place of places) {
+      if (!isObject(place)) continue;
+      assertNoLegacyLng(place, sourceFile);
+      const id = typeof place.id === 'string' ? place.id : '';
+      if (id && disabledPlaceIds.has(id)) continue;
+      out.push(pickLight(place, sourceFile));
+    }
+  }
+
+  await fs.writeFile(INDEX_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8');
+  return out.length;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
     console.log('Apply koordinatkandidater. Se filhode for flagg. Eksempel:');
     console.log('  node tools/apply-coordinate-candidates.mjs            # dry-run');
-    console.log('  node tools/apply-coordinate-candidates.mjs --write    # skriv');
+    console.log('  node tools/apply-coordinate-candidates.mjs --write    # skriv + rebuild places_index');
     return;
   }
   if (args.limit !== null && (!Number.isFinite(args.limit) || args.limit <= 0)) {
@@ -188,6 +260,7 @@ async function main() {
       // Bruk lat/lon + coord-metadata. r røres bare med --apply-radius.
       p.lat = c.candidate.lat;
       p.lon = c.candidate.lon;
+      if (Object.prototype.hasOwnProperty.call(p, 'lng')) delete p.lng;
       if (args.applyRadius && isNum(c.candidate.r)) p.r = c.candidate.r;
       p.coordType = c.candidate.coordType ?? p.coordType ?? 'approximate';
       p.coordStatus = c.candidate.coordStatus ?? 'verified';
@@ -221,6 +294,11 @@ async function main() {
     }
   }
 
+  let rebuiltIndexPlaces: number | null = null;
+  if (args.write && filesWritten > 0 && args.rebuildIndex) {
+    rebuiltIndexPlaces = await rebuildPlacesIndex();
+  }
+
   // Rapporter.
   console.log(`${args.write ? 'SKREV' : 'DRY-RUN'} – ${changes.length} sted(er) i ${byFile.size} fil(er).`);
   if (skipped.length) console.log(`Hoppet over: ${skipped.length} (f.eks. ${skipped.slice(0, 3).map((s) => `${s.placeId}: ${s.reason}`).join('; ')})`);
@@ -238,9 +316,11 @@ async function main() {
 
   if (args.write && filesWritten > 0) {
     console.log(
-      `\nSkrev ${filesWritten} fil(er). Kjør deretter:\n` +
+      `\nSkrev ${filesWritten} fil(er).` +
+        (rebuiltIndexPlaces == null ? '' : ` Rebygde data/places/places_index.json (${rebuiltIndexPlaces} steder).`) +
+        ` Kjør deretter:\n` +
+        '  npm run places:index:check\n' +
         '  npm run places:coords:gate\n' +
-        '  npm run places:index:build && npm run places:index:check\n' +
         '  npm run health:places'
     );
   } else if (!args.write) {
