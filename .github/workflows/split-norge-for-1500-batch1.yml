@@ -1,0 +1,28 @@
+name: Split Norge for 1500 batch 1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/split-norge-for-1500-batch1-places
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-norge-for-1500-batch1-places
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-norge-for-1500-batch1-places.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch1 data/places/historie/norge/places_historie_norge_for_1500_batch1_manifest.json data/places/historie/norge/places_historie_norge_for_1500_batch1_index.json data/places/historie/norge/places_historie_norge_for_1500_batch1_split_report.txt
+          git commit -m "Generate split Norge for 1500 batch 1 place files" || exit 0
+          git push
