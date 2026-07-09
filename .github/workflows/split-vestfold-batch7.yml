@@ -1,0 +1,28 @@
+name: Split Vestfold batch 7
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/split-vestfold-batch7-places
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-vestfold-batch7-places
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-historie-vestfold-batch7-places.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/historie/vestfold/places_historie_vestfold_batch7 data/places/historie/vestfold/places_historie_vestfold_batch7_manifest.json data/places/historie/vestfold/places_historie_vestfold_batch7_index.json data/places/historie/vestfold/places_historie_vestfold_batch7_split_report.txt
+          git commit -m "Generate split Historie Vestfold batch 7 place files" || exit 0
+          git push
