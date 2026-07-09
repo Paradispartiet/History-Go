@@ -8,10 +8,13 @@ Adds five researched Nationaltheatret people anchors for the existing Oslo liter
 
 This batch continues the teatersjef/institution-leadership line after merged batches 8–9.
 
+## Correction note
+
+This report corrects the first merged batch 10 wording for the late-1980s/1990s leadership sequence. `stein_winge` belongs to the 1990–1992 teatersjef period, while the 2000s line continues with `eirik_stubo` in the next batch. `ellen_horn`, `ole_jorgen_nilsen` and `sverre_rodahl` are represented as the 1988–1990 teatersjefkollegium, with Ellen Horn also described as later teatersjef 1992–2000.
+
 ## Changed files
 
 - `data/people/litteratur/oslo/people_litteratur_oslo_nationaltheatret_batch10.json`
-- `data/people/manifest.json`
 - `reports/people-oslo-litteratur-nationaltheatret-batch-10-validation.md`
 
 ## Target place
@@ -27,16 +30,16 @@ This batch continues the teatersjef/institution-leadership line after merged bat
 | id | name | placeId | Reason |
 |---|---|---|---|
 | `kjetil_bang_hansen` | Kjetil Bang-Hansen | `nationaltheatret` | Teatersjef 1986–1988; director/institution-theatre anchor |
-| `ellen_horn` | Ellen Horn | `nationaltheatret` | Teatersjef 1992–2000; actor/leader/culture-politics anchor |
-| `ole_jorgen_nilsen` | Ole-Jørgen Nilsen | `nationaltheatret` | Teatersjef 2000–2001; transition leadership anchor |
-| `sverre_rodahl` | Sverre Rødahl | `nationaltheatret` | Teatersjef 2001–2002; transition leadership anchor |
-| `stein_winge` | Stein Winge | `nationaltheatret` | Teatersjef 2002–2004; modern director/scenekanon anchor |
+| `ellen_horn` | Ellen Horn | `nationaltheatret` | Teatersjefkollegium 1988–1990 and teatersjef 1992–2000; actor/leader/culture-politics anchor |
+| `ole_jorgen_nilsen` | Ole-Jørgen Nilsen | `nationaltheatret` | Part of the 1988–1990 teatersjefkollegium; transition leadership anchor |
+| `sverre_rodahl` | Sverre Rødahl | `nationaltheatret` | Part of the 1988–1990 teatersjefkollegium; transition leadership anchor |
+| `stein_winge` | Stein Winge | `nationaltheatret` | Teatersjef 1990–1992; modern director/scenekanon anchor |
 
 ## Research gate
 
-Reference basis: Store norske leksikon's Nationaltheatret article lists the theatre-manager sequence and years, including Kjetil Bang-Hansen 1986–1988, Ellen Horn 1992–2000, Ole-Jørgen Nilsen 2000–2001, Sverre Rødahl 2001–2002 and Stein Winge 2002–2004.
+Reference basis: the verified Nationaltheatret theatre-manager sequence gives Kjetil Bang-Hansen 1986–1988; Ellen Horn, Ole-Jørgen Nilsen and Sverre Rødahl 1988–1990; Stein Winge 1990–1992; Ellen Horn 1992–2000; and then Eirik Stubø from 2000.
 
-Decision: safe. All five have direct teatersjef relationship with the target place.
+Decision: safe. All five have direct teatersjef or teatersjefkollegium relationship with the target place.
 
 ## Repo gate
 
@@ -68,7 +71,6 @@ node dist/tools/audit-people-place-coverage.mjs
 
 Expected:
 
-- `new people entries = 5`
 - `duplicatePeopleIds = 0`
 - `invalidPlaceRefs = 0`
 - `peopleWithoutValidPrimaryAnchor = 0`
@@ -77,6 +79,7 @@ Expected:
 
 ## Not changed
 
+- No manifest changes in this correction PR.
 - No place files.
 - No `data/places/places_index.json`.
 - No UI/runtime/loader files.
