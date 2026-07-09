@@ -1,0 +1,28 @@
+name: Patch plain object place support
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/support-plain-object-place-files
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/support-plain-object-place-files
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/patch-place-object-support.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/dataHub.js tools/build_places_index.mts
+          git commit -m "Support plain object place files" || exit 0
+          git push
