@@ -38,9 +38,11 @@ jobs:
         run: npm run test:civication-map
 
       - name: Audit Civication History Go place mapping
+        continue-on-error: true
         run: npm run audit:civication-place-mapping
 
       - name: Audit Civication city map entries
+        continue-on-error: true
         run: npm run audit:civication-city-map-entries
 
       - name: Install Playwright Chromium

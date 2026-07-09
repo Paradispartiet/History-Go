@@ -25,6 +25,23 @@ function isJsonObject(data: unknown): data is JsonObject {
   return Boolean(data) && typeof data === 'object' && !Array.isArray(data);
 }
 
+function repoPath(root: string, filePath: string): string {
+  return path.relative(root, filePath).replace(/\\/g, '/');
+}
+
+function listJsonFilesRecursive(dir: string): string[] {
+  const out: string[] = [];
+  if (!fs.existsSync(dir)) return out;
+
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...listJsonFilesRecursive(full));
+    else if (entry.isFile() && entry.name.endsWith('.json')) out.push(full);
+  }
+
+  return out;
+}
+
 export function readJson(filePath: string): unknown {
   return JSON.parse(fs.readFileSync(filePath, 'utf8')) as unknown;
 }
@@ -35,6 +52,7 @@ export function toArray(data: unknown): JsonArray {
   if (Array.isArray(data.places)) return data.places;
   if (Array.isArray(data.items)) return data.items;
   if (Array.isArray(data.people)) return data.people;
+  if (typeof data.id === 'string' && data.id.trim()) return [data];
   return [];
 }
 
@@ -47,14 +65,27 @@ export function manifestFilesToPaths(root: string, manifestFilePath: string): st
 
 export function buildActivePlaceIdSet(root: string, placesManifestPath: string): Set<string> {
   const placeIds = new Set<string>();
-  const placeFiles = manifestFilesToPaths(root, placesManifestPath);
-  for (const filePath of placeFiles) {
-    if (!fs.existsSync(filePath)) continue;
-    const rows = toArray(readJson(filePath));
-    for (const row of rows) {
+  const seenFiles = new Set<string>();
+
+  const addFromFile = (filePath: string) => {
+    const rel = repoPath(root, filePath);
+    if (seenFiles.has(rel) || !fs.existsSync(filePath)) return;
+    seenFiles.add(rel);
+
+    for (const row of toArray(readJson(filePath))) {
       if (isJsonObject(row) && typeof row.id === 'string' && row.id.trim()) placeIds.add(row.id.trim());
     }
-  }
+  };
+
+  for (const filePath of manifestFilesToPaths(root, placesManifestPath)) addFromFile(filePath);
+
+  // Places are being migrated from monolithic manifest files into category and
+  // per-place JSON files. Audits that validate people/place refs must accept real
+  // committed place IDs even before every new file is wired into the legacy
+  // manifest. Keep the manifest as the primary source, then scan data/places as a
+  // transition-safe fallback.
+  for (const filePath of listJsonFilesRecursive(path.join(root, 'data', 'places'))) addFromFile(filePath);
+
   return placeIds;
 }
 
