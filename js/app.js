@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // som datakilde. Uten DataHub faller den tilbake til utdaterte PLACE_FILES_FALLBACK-
     // stier som ikke matcher dagens place-struktur, og window.PLACES ender som [].
     await safeRun("loadDataHub", () => loadScriptOnce("js/dataHub.js"));
+    await safeRun("loadCoordinateOverrides", () => loadScriptOnce("js/geo/place-coordinate-overrides.js"));
 
     // Europakaravanen-runtime: laster data/karavaner uten UI-sideeffekter og
     // eksponerer window.HG_CARAVAN + debug-helper. Kjøres best effort slik at
