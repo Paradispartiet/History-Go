@@ -1,4 +1,4 @@
-// Audit data/places manifest JSON arrays and separate actual multi-place aggregates from single-place array files.
+// Audit data/places manifest JSON arrays and classify actual multi-place aggregates versus single-place array files.
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, basename } from 'node:path';
 
