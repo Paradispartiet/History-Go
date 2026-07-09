@@ -1,0 +1,36 @@
+{
+  "status": "applied",
+  "reason": "Previous safe alias manifest pass used targetIds that did not resolve as place/person ids in the current data model.",
+  "strategy": "restore_manifest_to_existing_place_ids_and_align_question_targets",
+  "manifestEntriesCorrected": [
+    {
+      "file": "data/quiz/by/grunerlokka_sets.json",
+      "fromTargetId": "grunerlokka",
+      "toTargetId": "grunerlokka_helgesens_tm"
+    },
+    {
+      "file": "data/quiz/by/karl_johans_gate_sets.json",
+      "fromTargetId": "karl_johans_gate",
+      "toTargetId": "karl_johan"
+    },
+    {
+      "file": "data/quiz/by/majorstua_sets.json",
+      "fromTargetId": "majorstua",
+      "toTargetId": "majorstuen_krysset"
+    }
+  ],
+  "questionFilesAligned": [
+    "data/quiz/by/grunerlokka_sets.json",
+    "data/quiz/by/karl_johans_gate_sets.json",
+    "data/quiz/by/majorstua_sets.json"
+  ],
+  "placeDataChanged": false,
+  "peopleDataChanged": false,
+  "auditScriptChanged": false,
+  "aliasInfrastructureChanged": false,
+  "legacyDuplicateIdsChanged": false,
+  "auditRan": true,
+  "invalidQuestionsAfter": 0,
+  "targetMismatchQuestionsAfter": 0,
+  "remainingExpectedFailureClass": "duplicate legacy quiz ids only"
+}
