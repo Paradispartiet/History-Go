@@ -1,9 +1,10 @@
 name: Audit unsplit place manifest files
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - data/audit-unsplit-place-manifest-files-20260709
+      - data/refresh-unsplit-place-audit
 
 permissions:
   contents: write
@@ -14,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: data/audit-unsplit-place-manifest-files-20260709
+          ref: data/refresh-unsplit-place-audit
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -26,6 +27,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No audit report changes."
           else
-            git commit -m "Generate unsplit place manifest audit report"
+            git commit -m "Refresh unsplit place manifest audit report"
             git push
           fi
