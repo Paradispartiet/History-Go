@@ -1,0 +1,19 @@
+{
+  "status": "applied",
+  "change": "Added audit:quiz-manifest:v2 to tools:check",
+  "packageJsonChanged": true,
+  "quizDataChanged": false,
+  "manifestChanged": false,
+  "auditScriptChanged": false,
+  "placesDataChanged": false,
+  "peopleDataChanged": false,
+  "validation": {
+    "auditQuizManifestV2Ran": true,
+    "auditQuizManifestV2Status": "passed",
+    "toolsCheckRan": true,
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "npm run tools:check failed during places:index:check because places_index sync check reported existing mismatches starting at index 409 (tonsberg_domkirke/fritzoe_verk_larvik/sandefjord_kurbad ordering); audit:quiz-manifest:v2 passed when run in isolation."
+  ]
+}
