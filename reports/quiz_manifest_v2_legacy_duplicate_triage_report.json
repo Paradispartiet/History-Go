@@ -1,0 +1,342 @@
+{
+  "status": "triage_only",
+  "reportType": "quiz_manifest_v2_legacy_duplicate_triage_report",
+  "sourceReports": [
+    "reports/quiz_manifest_v2_audit_report.json",
+    "reports/quiz_manifest_v2_audit_triage_report.json"
+  ],
+  "currentAuditState": {
+    "manifestJsonParses": true,
+    "legacyFilesCount": 11,
+    "legacyQuizItemsCount": 1161,
+    "setManifestEntriesCount": 221,
+    "setFilesChecked": 95,
+    "setBlocksChecked": 409,
+    "setQuestionsChecked": 1734,
+    "missingFiles": [],
+    "missingSetIds": [],
+    "invalidQuestions": [],
+    "targetMismatchQuestions": [],
+    "duplicateSetKeys": [],
+    "remainingFailureClass": "duplicateQuizItemIds"
+  },
+  "duplicateQuizItemIdsCount": 160,
+  "scope": "legacy manifest.files only",
+  "legacyFilesFromManifest": [
+    "data/quiz/quiz_kunst_plus_from_by.json",
+    "data/quiz/quiz_vitenskap.json",
+    "data/quiz/quiz_litteratur.json",
+    "data/quiz/quiz_musikk.json",
+    "data/quiz/quiz_natur.json",
+    "data/quiz/quiz_politikk.json",
+    "data/quiz/quiz_sport.json",
+    "data/quiz/quiz_subkultur.json",
+    "data/quiz/quiz_populaerkultur.json",
+    "data/quiz/quiz_naeringsliv.json",
+    "data/quiz/quiz_psykologi.json"
+  ],
+  "duplicateClasses": {
+    "sameFileDuplicates": {
+      "count": 102,
+      "riskLevel": "low_to_medium",
+      "recommendedFirstFix": true,
+      "description": "Duplicate id reports where the same legacy file is listed on both sides. These are likely repeated quiz objects inside one JSON array. First cleanup should remove only true duplicate objects in the same file, keeping the first occurrence and preserving order.",
+      "groups": [
+        {
+          "fileCombination": "data/quiz/quiz_kunst_plus_from_by.json | data/quiz/quiz_kunst_plus_from_by.json",
+          "count": 20,
+          "ids": [
+            "munch_museet_quiz_1",
+            "munch_museet_quiz_2",
+            "munch_museet_quiz_3",
+            "munch_museet_quiz_4",
+            "munch_museet_quiz_5",
+            "melgaard_tjuv_quiz_1",
+            "melgaard_tjuv_quiz_2",
+            "melgaard_tjuv_quiz_3",
+            "melgaard_tjuv_quiz_4",
+            "melgaard_tjuv_quiz_5",
+            "harriet_backer_quiz_1",
+            "harriet_backer_quiz_2",
+            "harriet_backer_quiz_3",
+            "harriet_backer_quiz_4",
+            "harriet_backer_quiz_5",
+            "harriet_backer_quiz_1",
+            "harriet_backer_quiz_2",
+            "harriet_backer_quiz_3",
+            "harriet_backer_quiz_4",
+            "harriet_backer_quiz_5"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_litteratur.json | data/quiz/quiz_litteratur.json",
+          "count": 10,
+          "ids": [
+            "rolf_jacobsen_quiz_1",
+            "rolf_jacobsen_quiz_2",
+            "rolf_jacobsen_quiz_3",
+            "rolf_jacobsen_quiz_4",
+            "rolf_jacobsen_quiz_5",
+            "inger_hagerup_quiz_1",
+            "inger_hagerup_quiz_2",
+            "inger_hagerup_quiz_3",
+            "inger_hagerup_quiz_4",
+            "inger_hagerup_quiz_5"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_musikk.json | data/quiz/quiz_musikk.json",
+          "count": 27,
+          "ids": [
+            "bla_quiz_1",
+            "bla_quiz_2",
+            "bla_quiz_3",
+            "bla_quiz_4",
+            "bla_quiz_5",
+            "ulrikke_brandstorp_quiz_1",
+            "ulrikke_brandstorp_quiz_2",
+            "ulrikke_brandstorp_quiz_3",
+            "ulrikke_brandstorp_quiz_4",
+            "ulrikke_brandstorp_quiz_5",
+            "edvard_grieg_quiz_1",
+            "edvard_grieg_quiz_2",
+            "edvard_grieg_quiz_3",
+            "edvard_grieg_quiz_4",
+            "edvard_grieg_quiz_5",
+            "aurora_quiz_1",
+            "aurora_quiz_2",
+            "aurora_quiz_3",
+            "sigrid_quiz_1",
+            "sigrid_quiz_2",
+            "sigrid_quiz_3",
+            "astrid_s_quiz_1",
+            "astrid_s_quiz_2",
+            "astrid_s_quiz_3",
+            "karpe_quiz_1",
+            "karpe_quiz_2",
+            "karpe_quiz_3"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_politikk.json | data/quiz/quiz_politikk.json",
+          "count": 16,
+          "ids": [
+            "eidsvolls_plass_quiz_1",
+            "eidsvolls_plass_quiz_2",
+            "eidsvolls_plass_quiz_3",
+            "eidsvolls_plass_quiz_4",
+            "eidsvolls_plass_quiz_5",
+            "oslo_radhus_quiz_1",
+            "oslo_radhus_quiz_2",
+            "oslo_radhus_quiz_3",
+            "oslo_radhus_quiz_4",
+            "oslo_radhus_quiz_5",
+            "christian_frederik_quiz_1",
+            "christian_frederik_quiz_2",
+            "christian_frederik_quiz_3",
+            "johan_sverdrup_quiz_1",
+            "johan_sverdrup_quiz_2",
+            "johan_sverdrup_quiz_3"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_sport.json | data/quiz/quiz_sport.json",
+          "count": 29,
+          "ids": [
+            "valle_hovin_quiz_1",
+            "valle_hovin_quiz_2",
+            "valle_hovin_quiz_3",
+            "valle_hovin_quiz_4",
+            "valle_hovin_quiz_5",
+            "marit_bjorgen_quiz_1",
+            "marit_bjorgen_quiz_2",
+            "marit_bjorgen_quiz_3",
+            "ada_hegerberg_quiz_1",
+            "ada_hegerberg_quiz_2",
+            "ada_hegerberg_quiz_3",
+            "erling_haaland_quiz_1",
+            "erling_haaland_quiz_2",
+            "erling_haaland_quiz_3",
+            "marit_bjorgen_quiz_1",
+            "marit_bjorgen_quiz_2",
+            "marit_bjorgen_quiz_3",
+            "therese_johaug_quiz_1",
+            "therese_johaug_quiz_2",
+            "therese_johaug_quiz_3",
+            "ronny_deila_quiz_1",
+            "ronny_deila_quiz_2",
+            "ronny_deila_quiz_3",
+            "grete_waitz_quiz_1",
+            "grete_waitz_quiz_2",
+            "grete_waitz_quiz_3",
+            "mats_zuccarello_quiz_1",
+            "mats_zuccarello_quiz_2",
+            "mats_zuccarello_quiz_3"
+          ]
+        }
+      ]
+    },
+    "crossFileDuplicates": {
+      "count": 58,
+      "riskLevel": "medium_to_high",
+      "recommendedFirstFix": false,
+      "description": "Duplicate id reports where the same quiz id appears in two different legacy files. These may be legitimate cross-category copies with stale ids, or accidental duplicated content. Handle after same-file duplicates are removed.",
+      "groups": [
+        {
+          "fileCombination": "data/quiz/quiz_kunst_plus_from_by.json | data/quiz/quiz_litteratur.json",
+          "count": 9,
+          "ids": [
+            "knut_hamsun_quiz_1",
+            "knut_hamsun_quiz_2",
+            "knut_hamsun_quiz_3",
+            "linn_ullmann_quiz_1",
+            "linn_ullmann_quiz_2",
+            "linn_ullmann_quiz_3",
+            "linn_ullmann_quiz_1",
+            "linn_ullmann_quiz_2",
+            "linn_ullmann_quiz_3"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_kunst_plus_from_by.json | data/quiz/quiz_musikk.json",
+          "count": 5,
+          "ids": [
+            "stephen_butkus_quiz_1",
+            "stephen_butkus_quiz_2",
+            "stephen_butkus_quiz_3",
+            "stephen_butkus_quiz_4",
+            "stephen_butkus_quiz_5"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_kunst_plus_from_by.json | data/quiz/quiz_natur.json",
+          "count": 5,
+          "ids": [
+            "ekebergparken_quiz_1",
+            "ekebergparken_quiz_2",
+            "ekebergparken_quiz_3",
+            "ekebergparken_quiz_4",
+            "ekebergparken_quiz_5"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_kunst_plus_from_by.json | data/quiz/quiz_populaerkultur.json",
+          "count": 10,
+          "ids": [
+            "tinashe_williamson_quiz_1",
+            "tinashe_williamson_quiz_2",
+            "tinashe_williamson_quiz_3",
+            "tinashe_williamson_quiz_4",
+            "tinashe_williamson_quiz_5",
+            "stephen_butkus_quiz_1",
+            "stephen_butkus_quiz_2",
+            "stephen_butkus_quiz_3",
+            "stephen_butkus_quiz_4",
+            "stephen_butkus_quiz_5"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_kunst_plus_from_by.json | data/quiz/quiz_subkultur.json",
+          "count": 3,
+          "ids": [
+            "astrid_christensen_quiz_1",
+            "astrid_christensen_quiz_2",
+            "astrid_christensen_quiz_3"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_musikk.json | data/quiz/quiz_populaerkultur.json",
+          "count": 3,
+          "ids": [
+            "ulrikke_brandstorp_quiz_1",
+            "ulrikke_brandstorp_quiz_2",
+            "ulrikke_brandstorp_quiz_3"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_musikk.json | data/quiz/quiz_subkultur.json",
+          "count": 8,
+          "ids": [
+            "bla_quiz_1",
+            "bla_quiz_2",
+            "bla_quiz_3",
+            "bla_quiz_4",
+            "bla_quiz_5",
+            "karpe_quiz_1",
+            "karpe_quiz_2",
+            "karpe_quiz_3"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_natur.json | data/quiz/quiz_subkultur.json",
+          "count": 2,
+          "ids": [
+            "akerselva_quiz_1",
+            "akerselva_quiz_2"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_politikk.json | data/quiz/quiz_subkultur.json",
+          "count": 5,
+          "ids": [
+            "youngstorget_quiz_1",
+            "youngstorget_quiz_2",
+            "youngstorget_quiz_3",
+            "youngstorget_quiz_4",
+            "youngstorget_quiz_5"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_sport.json | data/quiz/quiz_subkultur.json",
+          "count": 3,
+          "ids": [
+            "klanen_quiz_1",
+            "klanen_quiz_2",
+            "klanen_quiz_3"
+          ]
+        },
+        {
+          "fileCombination": "data/quiz/quiz_vitenskap.json | data/quiz/quiz_politikk.json",
+          "count": 5,
+          "ids": [
+            "nobelinstituttet_quiz_1",
+            "nobelinstituttet_quiz_2",
+            "nobelinstituttet_quiz_3",
+            "nobelinstituttet_quiz_4",
+            "nobelinstituttet_quiz_5"
+          ]
+        }
+      ]
+    }
+  },
+  "recommendedNextPr": {
+    "title": "Deduplicate same-file legacy quiz ids",
+    "scope": [
+      "Only edit same-file duplicate legacy files.",
+      "Do not touch cross-file duplicate ids yet.",
+      "Do not edit manifest.sets or generated set quiz files.",
+      "For each same-file duplicate id, compare full quiz objects before removing.",
+      "If duplicate objects differ materially, keep both but rename the later id with a deterministic suffix and report it instead of deleting."
+    ],
+    "filesToInspect": [
+      "data/quiz/quiz_kunst_plus_from_by.json",
+      "data/quiz/quiz_litteratur.json",
+      "data/quiz/quiz_musikk.json",
+      "data/quiz/quiz_politikk.json",
+      "data/quiz/quiz_sport.json"
+    ],
+    "expectedDuplicateReductionAtLeast": 102,
+    "expectedRemainingAfterNextPr": "cross-file duplicate ids only, approximately 58 reports"
+  },
+  "doNotDoYet": [
+    "Do not remove cross-file duplicates before deciding whether to keep one category, rename ids, or split shared content.",
+    "Do not remove entire legacy files from manifest.files in the same PR.",
+    "Do not change new manifest.sets quiz files."
+  ],
+  "constraintsObserved": {
+    "quizDataChanged": false,
+    "manifestChanged": false,
+    "peoplePlaceDataChanged": false,
+    "automaticFixesApplied": false
+  }
+}
