@@ -28,5 +28,6 @@ jobs:
             echo "No audit report changes."
           else
             git commit -m "Refresh unsplit place manifest audit report"
-            git push
+            git pull --rebase origin data/refresh-unsplit-place-audit || true
+            git push || echo "Audit branch moved while this run was active; skipping report push."
           fi
