@@ -40,16 +40,24 @@
   }
 
 
-  const COORDINATE_REVIEW_STATUSES = new Set([
-    "needs_manual_visual_qa",
-    "needs_review",
-    "unverified",
-    "approximate",
-    "estimated"
-  ]);
+  // Coordinate Source Contract v1 display mirror: browser logic intentionally
+  // mirrors tools/coordinate-source-contract.mts without importing the Node tool module.
+  const CONTRACT_VERIFIED_STATUSES = new Set(["verified", "verified_geometry", "verified_historical_source"]);
+  const CONTRACT_REVIEW_STATUSES = new Set(["needs_manual_visual_qa", "needs_source", "legacy_unverified", "historical_approximation"]);
+  const CONTRACT_LINEAR_TYPES = new Set(["street", "linear_area", "route", "quay", "park", "natural_area"]);
+  const CONTRACT_COORD_ROLES = new Set(["display_marker", "unlock_point", "label_anchor", "entrance", "building_center", "site_center", "line_anchor", "area_anchor", "historical_anchor"]);
+  const CONTRACT_ACCURACY = new Set(["rooftop", "entrance", "building", "parcel", "interpolated", "geometric_center", "approximate", "historical_approximation", "semantic_anchor", "unknown"]);
 
   function hasCoordinateText(value) {
     return typeof value === "string" && value.trim().length > 0;
+  }
+
+  function hasStructuredCoordinateAddress(address) {
+    return !!address && typeof address === "object" && ["street", "number", "postcode", "city", "country"].some((field) => hasCoordinateText(address[field]));
+  }
+
+  function hasCoordinateSourceIdentity(place) {
+    return hasCoordinateText(place?.sourceObjectId) || hasStructuredCoordinateAddress(place?.address);
   }
 
   function coordinateDecimals(value) {
@@ -58,9 +66,25 @@
     return raw.split(".")[1]?.length || 0;
   }
 
-  function hasGoodLargeRadiusNote(note) {
-    const text = String(note || "").trim();
-    return text.length >= 18 && /[a-zæøå]{4,}/i.test(text);
+  function hasCoordinateGeometryOrAnchor(place) {
+    return !!place?.geometry || (Array.isArray(place?.anchors) && place.anchors.length > 0) || place?.coordRole === "line_anchor" || place?.coordRole === "area_anchor";
+  }
+
+  function hasCompleteCoordinateContract(place) {
+    const locatorType = String(place?.locatorType || "").trim();
+    const sourceProvider = String(place?.sourceProvider || "").trim();
+    const geocodeAccuracy = String(place?.geocodeAccuracy || "").trim();
+    const coordRole = String(place?.coordRole || "").trim();
+    if (!locatorType || !sourceProvider || sourceProvider === "legacy_unknown") return false;
+    if (!hasCoordinateSourceIdentity(place)) return false;
+    if (!CONTRACT_ACCURACY.has(geocodeAccuracy) || geocodeAccuracy === "approximate" || geocodeAccuracy === "unknown") return false;
+    if (!CONTRACT_COORD_ROLES.has(coordRole)) return false;
+    if (!hasCoordinateText(place?.coordType) || !hasCoordinateText(place?.coordNote)) return false;
+    if (String(place?.coordSource || "").trim() === "manual_map_check" && !hasCoordinateSourceIdentity(place)) return false;
+    if (geocodeAccuracy === "interpolated" && coordRole === "unlock_point") return false;
+    if (CONTRACT_LINEAR_TYPES.has(locatorType) && !hasCoordinateGeometryOrAnchor(place)) return false;
+    if (["historic_site", "archaeological_site"].includes(locatorType) && !["historical_map", "manual_research"].includes(sourceProvider)) return false;
+    return true;
   }
 
   function getCoordinateTrust(place) {
@@ -70,15 +94,11 @@
     if (lat == null || lon == null || r == null || lat < -90 || lat > 90 || lon < -180 || lon > 180 || r <= 0) return "invalid";
 
     const coordStatus = String(place?.coordStatus || "").trim();
-    const hasSource = hasCoordinateText(place?.coordSource);
-    const hasType = hasCoordinateText(place?.coordType);
-    const hasNote = hasCoordinateText(place?.coordNote);
-
-    if (!coordStatus || !hasType || !hasNote) return "unknown";
-    if (COORDINATE_REVIEW_STATUSES.has(coordStatus)) return "review";
+    if (!coordStatus || !hasCoordinateText(place?.locatorType) || !hasCoordinateText(place?.sourceProvider)) return "unknown";
+    if (coordStatus === "invalid") return "invalid";
+    if (CONTRACT_REVIEW_STATUSES.has(coordStatus)) return "review";
     if (coordinateDecimals(lat) < 4 || coordinateDecimals(lon) < 4) return "review";
-    if (r >= 300 && !hasGoodLargeRadiusNote(place?.coordNote)) return "review";
-    if (coordStatus === "verified" && hasSource && hasType && hasNote) return "verified";
+    if (CONTRACT_VERIFIED_STATUSES.has(coordStatus) && hasCompleteCoordinateContract(place)) return "verified";
     return "review";
   }
 

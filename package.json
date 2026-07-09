@@ -85,7 +85,8 @@
     "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
     "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
     "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
-    "places:coords:quality": "npm run places:coords:audit && npm run places:coords:gate"
+    "places:coords:quality": "npm run places:coords:audit && npm run places:coords:gate",
+    "places:coords:legacy:audit": "npm run build:tools && node dist/tools/audit-legacy-coordinate-system.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
