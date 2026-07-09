@@ -1,0 +1,31 @@
+name: Split Lisbon historie places
+
+on:
+  push:
+    branches:
+      - data/split-lisbon-historie-places-20260709
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-lisbon-historie-places-20260709
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-lisbon-historie-places.mjs
+      - run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add data/places/historie/europe/portugal/lisbon/places_lisbon_historie data/places/historie/europe/portugal/lisbon/places_lisbon_historie_manifest.json data/places/historie/europe/portugal/lisbon/places_lisbon_historie_index.json data/places/historie/europe/portugal/lisbon/places_lisbon_historie_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Lisbon historie place files"
+            git push
+          fi
