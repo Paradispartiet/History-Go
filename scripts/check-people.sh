@@ -27,7 +27,9 @@ if (!manifest || !Array.isArray(manifest.files)) {
   process.exit(1);
 }
 
-const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
+const supportFiles = [manifestPath, placesIndexPath];
+const peopleFiles = manifest.files.map((file) => path.join('data', file));
+const files = [...supportFiles, ...peopleFiles];
 const seenPeopleIds = new Map();
 const duplicatePeopleIds = [];
 let peopleCount = 0;
@@ -39,7 +41,7 @@ for (const file of files) {
   }
 
   const data = readJson(file);
-  if (!file.startsWith('data/people/')) continue;
+  if (!peopleFiles.includes(file)) continue;
 
   if (!Array.isArray(data)) {
     console.error(`People file must contain an array: ${file}`);
