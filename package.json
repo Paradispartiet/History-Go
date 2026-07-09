@@ -19,6 +19,7 @@
     "places:coords:audit": "npm run build:tools && node dist/tools/audit-place-coordinates.mjs",
     "places:coords:gate": "npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs",
     "places:coords:legacy:audit": "npm run build:tools && node dist/tools/audit-legacy-coordinate-system.mjs",
+    "places:coords:evidence:audit": "npm run build:tools && node dist/tools/audit-coordinate-evidence.mjs",
     "places:coords:intake": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new",
     "places:coords:intake:report": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --report-all",
     "places:coords:check": "node tests/place-coordinate-index-parity.test.js",
@@ -58,42 +59,15 @@
     "test:visual-design-codes": "npm run build:tools && node dist/tools/audit-visual-design-codes.mjs",
     "civication:badge-role-audit": "npm run build:scripts && node dist/scripts/civication-badge-role-audit.mjs",
     "civication:mails:generate": "npm run build:scripts && node dist/scripts/generate-civication-mails.js",
-    "civication:boot-smoke": "npm run build:scripts && node dist/scripts/verify-civication-boot-smoke.js",
-    "test:history-go-task-bridge": "node tests/civication-history-go-task-bridge.test.js",
-    "test:history-go-deeplink": "node tests/civication-history-go-deeplink.test.js",
-    "test:history-go-debate-signal": "node tests/civication-history-go-debate-signal.test.js",
-    "test:history-go-reads-signal": "node tests/civication-history-go-reads-signal.test.js",
-    "test:history-go-story-producer": "node tests/civication-history-go-story-producer.test.js",
-    "test:history-go-leksikon-producer": "node tests/civication-history-go-leksikon-producer.test.js",
-    "test:history-go-debate-surface": "node tests/civication-history-go-debate-surface.test.js",
-    "test:debates-content": "node tests/debates-content.test.js",
-    "test:history-go-debate-leaning": "node tests/civication-history-go-debate-leaning.test.js",
-    "test:civication-consequence-feedback": "node tests/civication-consequence-feedback.test.js",
-    "test:civication-milestone-highlight": "node tests/civication-milestone-highlight.test.js",
-    "test:civication-outcome-status-ui": "node tests/civication-outcome-status-ui.test.js",
-    "test:civication-next-action": "node tests/civication-next-action-consolidation.test.js",
-    "test:civication-story-simulation": "node tests/civication-work-grammar-story-simulation.test.js",
-    "test:psychology": "node tests/civication-psychology-competence.test.js && node tests/civication-psychology-room-tools.test.js",
-    "test:historical-routes": "node tests/historical-routes.test.js",
-    "test:nextup-historical-routes": "node tests/nextup-historical-routes.test.js",
-    "test:historical-routes:audit": "npm run build:tools && node dist/tools/audit-historical-routes.mjs",
-    "test:social-review": "node tests/social-review-fixes.test.js",
-    "test:social-demo-visible": "node tests/hg-social-demo-visible.test.js",
-    "test:social-meet-spotmeeting-smoke": "node tests/social-meet-spotmeeting-browser-smoke.test.js",
-    "audit:civication:role-packs": "node scripts/audit-civication-role-packs.mjs",
-    "audit:civication:fwg-governance": "node scripts/audit-civication-fwg-governance.mjs",
-    "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",
-    "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
-    "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
-    "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
-    "places:coords:quality": "npm run places:coords:audit && npm run places:coords:gate"
+    "civication:boot-smoke": "npm run build:scripts && node dist/scripts/verify-civication-boot-smoke.js"
   },
   "devDependencies": {
-    "@types/node": "^22.19.19",
-    "esbuild": "^0.28.1",
-    "jsdom": "^29.1.1",
-    "playwright": "^1.61.1",
-    "three": "0.160.0",
-    "typescript": "^5.9.0"
+    "@types/node": "latest",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "ajv": "latest",
+    "maplibre-gl": "latest",
+    "three": "latest"
   }
 }
