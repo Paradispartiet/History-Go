@@ -16,6 +16,7 @@ type PlaceRow = JsonObject & {
   name?: unknown;
   lat?: unknown;
   lon?: unknown;
+  lng?: unknown;
   r?: unknown;
   category?: unknown;
   year?: unknown;
@@ -31,7 +32,7 @@ type PlaceRow = JsonObject & {
 type PlaceExclusions = JsonObject & {
   disabledPlaceIds?: unknown[];
 };
-type LightField = keyof PlaceRow;
+type LightField = Exclude<keyof PlaceRow, 'lng'>;
 type LightPlace = Partial<Record<LightField, unknown>>;
 
 const LIGHT_FIELDS: LightField[] = [
@@ -52,6 +53,16 @@ function isPlaceExclusions(value: unknown): value is PlaceExclusions {
 
 function isPlaceRow(value: unknown): value is PlaceRow {
   return hasObjectType(value);
+}
+
+function placeIdForError(place: PlaceRow): string {
+  return typeof place.id === 'string' && place.id.trim() ? place.id.trim() : '(mangler-id)';
+}
+
+function assertNoLegacyLng(place: PlaceRow, sourceFile: string): void {
+  if (Object.prototype.hasOwnProperty.call(place, 'lng')) {
+    throw new Error(`${sourceFile}#${placeIdForError(place)}: ugyldig koordinatfelt "lng". History Go bruker "lon" som eneste lengdegradfelt.`);
+  }
 }
 
 function pickLight(place: PlaceRow, sourceFile = ''): LightPlace {
@@ -88,17 +99,20 @@ async function main(): Promise<void> {
   let skipped = 0;
 
   for (const rel of files) {
-    const fullPath = path.join(ROOT, 'data', rel as string);
+    const sourceFile = String(rel || '').trim();
+    if (!sourceFile) continue;
+    const fullPath = path.join(ROOT, 'data', sourceFile);
     const data = await readJson(fullPath);
     const places = Array.isArray(data) ? data : (hasObjectType(data) && Array.isArray(data.places) ? data.places : []);
     for (const place of places) {
       if (!isPlaceRow(place)) continue;
+      assertNoLegacyLng(place, sourceFile);
       const id = typeof place.id === 'string' ? place.id : '';
       if (id && disabledPlaceIds.has(id)) {
         skipped += 1;
         continue;
       }
-      out.push(pickLight(place, rel as string));
+      out.push(pickLight(place, sourceFile));
     }
   }
 
