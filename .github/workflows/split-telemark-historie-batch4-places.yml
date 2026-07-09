@@ -1,0 +1,31 @@
+name: Split Telemark historie batch 4 places
+
+on:
+  push:
+    branches:
+      - data/split-telemark-historie-batch4-places-20260709
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-telemark-historie-batch4-places-20260709
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-telemark-historie-batch4-places.mjs
+      - run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add data/places/historie/telemark/places_historie_telemark_batch4 data/places/historie/telemark/places_historie_telemark_batch4_manifest.json data/places/historie/telemark/places_historie_telemark_batch4_index.json data/places/historie/telemark/places_historie_telemark_batch4_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Telemark historie batch 4 place files"
+            git push
+          fi
