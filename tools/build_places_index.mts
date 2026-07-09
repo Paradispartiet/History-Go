@@ -103,6 +103,65 @@ async function readJson(p: string): Promise<unknown> {
   return JSON.parse(raw) as unknown;
 }
 
+
+function splitManifestPathFor(sourcePath: string): string {
+  const parsed = path.parse(sourcePath);
+  return path.join(parsed.dir, `${parsed.name}_manifest${parsed.ext || '.json'}`);
+}
+
+function isValidSplitManifest(value: unknown): value is JsonObject & { places: JsonObject[] } {
+  return hasObjectType(value)
+    && Array.isArray(value.places)
+    && value.places.some((row) => hasObjectType(row) && typeof row.file === 'string' && row.file.trim().length > 0);
+}
+
+type PlaceEntry = {
+  place: PlaceRow;
+  sourceFile: string;
+};
+
+function placesFromPlaceData(data: unknown): PlaceRow[] {
+  if (Array.isArray(data)) return data.filter(isPlaceRow);
+  if (hasObjectType(data) && Array.isArray(data.places)) return data.places.filter(isPlaceRow);
+  if (isPlaceRow(data) && typeof data.id === 'string') return [data];
+  return [];
+}
+
+async function tryReadSiblingSplitManifest(sourcePath: string): Promise<{ path: string; data: JsonObject & { places: JsonObject[] } } | null> {
+  const splitPath = splitManifestPathFor(sourcePath);
+  try {
+    const data = await readJson(splitPath);
+    return isValidSplitManifest(data) ? { path: splitPath, data } : null;
+  } catch (error: unknown) {
+    const code = hasObjectType(error) ? error.code : undefined;
+    if (code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+async function loadPlaceEntriesFromManifestEntry(sourceFile: string): Promise<PlaceEntry[]> {
+  const fullPath = path.join(ROOT, 'data', sourceFile);
+  const splitManifest = await tryReadSiblingSplitManifest(fullPath);
+
+  if (splitManifest) {
+    const splitDir = path.dirname(splitManifest.path);
+    const entries: PlaceEntry[] = [];
+    for (const row of splitManifest.data.places) {
+      if (!hasObjectType(row) || typeof row.file !== 'string' || !row.file.trim()) continue;
+      const childFullPath = path.join(splitDir, row.file.trim());
+      const childSourceFile = path.relative(path.join(ROOT, 'data'), childFullPath).split(path.sep).join('/');
+      const childData = await readJson(childFullPath);
+      for (const place of placesFromPlaceData(childData)) {
+        entries.push({ place, sourceFile: childSourceFile });
+      }
+    }
+    return entries;
+  }
+
+  const data = await readJson(fullPath);
+  return placesFromPlaceData(data).map((place) => ({ place, sourceFile }));
+}
+
 async function readDisabledPlaceIds(): Promise<Set<string>> {
   try {
     const exclusions = await readJson(EXCLUSIONS_PATH);
@@ -151,23 +210,16 @@ async function main(): Promise<void> {
   for (const rel of files) {
     const sourceFile = String(rel || '').trim();
     if (!sourceFile) continue;
-    const fullPath = path.join(ROOT, 'data', sourceFile);
-    const data = await readJson(fullPath);
-    const places = Array.isArray(data)
-      ? data
-      : (hasObjectType(data) && Array.isArray(data.places)
-        ? data.places
-        : (isPlaceRow(data) && typeof data.id === 'string' ? [data] : []));
-    for (const rawPlace of places) {
-      if (!isPlaceRow(rawPlace)) continue;
-      assertNoLegacyLng(rawPlace, sourceFile);
+    const entries = await loadPlaceEntriesFromManifestEntry(sourceFile);
+    for (const { place: rawPlace, sourceFile: actualSourceFile } of entries) {
+      assertNoLegacyLng(rawPlace, actualSourceFile);
       const place = applyCoordinateOverride(rawPlace, coordinateOverrides);
       const id = typeof place.id === 'string' ? place.id : '';
       if (id && disabledPlaceIds.has(id)) {
         skipped += 1;
         continue;
       }
-      out.push(pickLight(place, sourceFile));
+      out.push(pickLight(place, actualSourceFile));
     }
   }
 
