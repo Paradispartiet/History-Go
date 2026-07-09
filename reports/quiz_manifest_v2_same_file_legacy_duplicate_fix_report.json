@@ -1,0 +1,793 @@
+{
+  "status": "applied",
+  "scope": "same-file legacy duplicate quiz ids only",
+  "sourceReport": "reports/quiz_manifest_v2_legacy_duplicate_triage_report.json",
+  "filesChanged": [
+    "data/quiz/quiz_kunst_plus_from_by.json",
+    "data/quiz/quiz_litteratur.json",
+    "data/quiz/quiz_musikk.json",
+    "data/quiz/quiz_politikk.json",
+    "data/quiz/quiz_sport.json"
+  ],
+  "filesNotChanged": [
+    "data/quiz/manifest.json",
+    "scripts/audit-quiz-manifest-v2.mjs",
+    "data/places",
+    "data/people"
+  ],
+  "perFile": [
+    {
+      "file": "data/quiz/quiz_kunst_plus_from_by.json",
+      "itemsBefore": 307,
+      "itemsAfter": 307,
+      "duplicateIdsBefore": [
+        "munch_museet_quiz_1",
+        "munch_museet_quiz_2",
+        "munch_museet_quiz_3",
+        "munch_museet_quiz_4",
+        "munch_museet_quiz_5",
+        "harriet_backer_quiz_1",
+        "harriet_backer_quiz_2",
+        "harriet_backer_quiz_3",
+        "harriet_backer_quiz_4",
+        "harriet_backer_quiz_5",
+        "melgaard_tjuv_quiz_1",
+        "melgaard_tjuv_quiz_2",
+        "melgaard_tjuv_quiz_3",
+        "melgaard_tjuv_quiz_4",
+        "melgaard_tjuv_quiz_5"
+      ],
+      "removedDuplicateObjects": [],
+      "renamedDuplicateObjects": [
+        {
+          "originalId": "munch_museet_quiz_1",
+          "newId": "munch_museet_quiz_1_dup2",
+          "originalIndex": 40,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "munch_museet_quiz_2",
+          "newId": "munch_museet_quiz_2_dup2",
+          "originalIndex": 41,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "munch_museet_quiz_3",
+          "newId": "munch_museet_quiz_3_dup2",
+          "originalIndex": 42,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "munch_museet_quiz_4",
+          "newId": "munch_museet_quiz_4_dup2",
+          "originalIndex": 43,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "munch_museet_quiz_5",
+          "newId": "munch_museet_quiz_5_dup2",
+          "originalIndex": 44,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "melgaard_tjuv_quiz_1",
+          "newId": "melgaard_tjuv_quiz_1_dup2",
+          "originalIndex": 150,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "melgaard_tjuv_quiz_2",
+          "newId": "melgaard_tjuv_quiz_2_dup2",
+          "originalIndex": 151,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "melgaard_tjuv_quiz_3",
+          "newId": "melgaard_tjuv_quiz_3_dup2",
+          "originalIndex": 152,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "melgaard_tjuv_quiz_4",
+          "newId": "melgaard_tjuv_quiz_4_dup2",
+          "originalIndex": 153,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "melgaard_tjuv_quiz_5",
+          "newId": "melgaard_tjuv_quiz_5_dup2",
+          "originalIndex": 154,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_1",
+          "newId": "harriet_backer_quiz_1_dup2",
+          "originalIndex": 199,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_2",
+          "newId": "harriet_backer_quiz_2_dup2",
+          "originalIndex": 200,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_3",
+          "newId": "harriet_backer_quiz_3_dup2",
+          "originalIndex": 201,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_4",
+          "newId": "harriet_backer_quiz_4_dup2",
+          "originalIndex": 202,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_5",
+          "newId": "harriet_backer_quiz_5_dup2",
+          "originalIndex": 203,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_1",
+          "newId": "harriet_backer_quiz_1_dup3",
+          "originalIndex": 226,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_2",
+          "newId": "harriet_backer_quiz_2_dup3",
+          "originalIndex": 227,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_3",
+          "newId": "harriet_backer_quiz_3_dup3",
+          "originalIndex": 228,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_4",
+          "newId": "harriet_backer_quiz_4_dup3",
+          "originalIndex": 229,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "harriet_backer_quiz_5",
+          "newId": "harriet_backer_quiz_5_dup3",
+          "originalIndex": 230,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        }
+      ]
+    },
+    {
+      "file": "data/quiz/quiz_litteratur.json",
+      "itemsBefore": 200,
+      "itemsAfter": 200,
+      "duplicateIdsBefore": [
+        "inger_hagerup_quiz_1",
+        "inger_hagerup_quiz_2",
+        "inger_hagerup_quiz_3",
+        "inger_hagerup_quiz_4",
+        "inger_hagerup_quiz_5",
+        "rolf_jacobsen_quiz_1",
+        "rolf_jacobsen_quiz_2",
+        "rolf_jacobsen_quiz_3",
+        "rolf_jacobsen_quiz_4",
+        "rolf_jacobsen_quiz_5",
+        "linn_ullmann_quiz_1",
+        "linn_ullmann_quiz_2",
+        "linn_ullmann_quiz_3"
+      ],
+      "removedDuplicateObjects": [],
+      "renamedDuplicateObjects": [
+        {
+          "originalId": "rolf_jacobsen_quiz_1",
+          "newId": "rolf_jacobsen_quiz_1_dup2",
+          "originalIndex": 128,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "rolf_jacobsen_quiz_2",
+          "newId": "rolf_jacobsen_quiz_2_dup2",
+          "originalIndex": 129,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "rolf_jacobsen_quiz_3",
+          "newId": "rolf_jacobsen_quiz_3_dup2",
+          "originalIndex": 130,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "rolf_jacobsen_quiz_4",
+          "newId": "rolf_jacobsen_quiz_4_dup2",
+          "originalIndex": 131,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "rolf_jacobsen_quiz_5",
+          "newId": "rolf_jacobsen_quiz_5_dup2",
+          "originalIndex": 132,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "inger_hagerup_quiz_1",
+          "newId": "inger_hagerup_quiz_1_dup2",
+          "originalIndex": 158,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "inger_hagerup_quiz_2",
+          "newId": "inger_hagerup_quiz_2_dup2",
+          "originalIndex": 159,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "inger_hagerup_quiz_3",
+          "newId": "inger_hagerup_quiz_3_dup2",
+          "originalIndex": 160,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "inger_hagerup_quiz_4",
+          "newId": "inger_hagerup_quiz_4_dup2",
+          "originalIndex": 161,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "inger_hagerup_quiz_5",
+          "newId": "inger_hagerup_quiz_5_dup2",
+          "originalIndex": 162,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "linn_ullmann_quiz_1",
+          "newId": "linn_ullmann_quiz_1_dup2",
+          "originalIndex": 185,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "linn_ullmann_quiz_2",
+          "newId": "linn_ullmann_quiz_2_dup2",
+          "originalIndex": 186,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "linn_ullmann_quiz_3",
+          "newId": "linn_ullmann_quiz_3_dup2",
+          "originalIndex": 187,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        }
+      ]
+    },
+    {
+      "file": "data/quiz/quiz_musikk.json",
+      "itemsBefore": 115,
+      "itemsAfter": 103,
+      "duplicateIdsBefore": [
+        "bla_quiz_1",
+        "bla_quiz_2",
+        "bla_quiz_3",
+        "bla_quiz_4",
+        "bla_quiz_5",
+        "edvard_grieg_quiz_1",
+        "edvard_grieg_quiz_2",
+        "edvard_grieg_quiz_3",
+        "edvard_grieg_quiz_4",
+        "edvard_grieg_quiz_5",
+        "ulrikke_brandstorp_quiz_1",
+        "ulrikke_brandstorp_quiz_2",
+        "ulrikke_brandstorp_quiz_3",
+        "ulrikke_brandstorp_quiz_4",
+        "ulrikke_brandstorp_quiz_5",
+        "aurora_quiz_1",
+        "aurora_quiz_2",
+        "aurora_quiz_3",
+        "sigrid_quiz_1",
+        "sigrid_quiz_2",
+        "sigrid_quiz_3",
+        "astrid_s_quiz_1",
+        "astrid_s_quiz_2",
+        "astrid_s_quiz_3",
+        "karpe_quiz_1",
+        "karpe_quiz_2",
+        "karpe_quiz_3"
+      ],
+      "removedDuplicateObjects": [
+        {
+          "id": "aurora_quiz_1",
+          "originalIndex": 103,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "aurora_quiz_2",
+          "originalIndex": 104,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "aurora_quiz_3",
+          "originalIndex": 105,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "sigrid_quiz_1",
+          "originalIndex": 106,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "sigrid_quiz_2",
+          "originalIndex": 107,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "sigrid_quiz_3",
+          "originalIndex": 108,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "astrid_s_quiz_1",
+          "originalIndex": 109,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "astrid_s_quiz_2",
+          "originalIndex": 110,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "astrid_s_quiz_3",
+          "originalIndex": 111,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "karpe_quiz_1",
+          "originalIndex": 112,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "karpe_quiz_2",
+          "originalIndex": 113,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "karpe_quiz_3",
+          "originalIndex": 114,
+          "reason": "identicalToEarlierObject"
+        }
+      ],
+      "renamedDuplicateObjects": [
+        {
+          "originalId": "bla_quiz_1",
+          "newId": "bla_quiz_1_dup2",
+          "originalIndex": 20,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "bla_quiz_2",
+          "newId": "bla_quiz_2_dup2",
+          "originalIndex": 21,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "bla_quiz_3",
+          "newId": "bla_quiz_3_dup2",
+          "originalIndex": 22,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "bla_quiz_4",
+          "newId": "bla_quiz_4_dup2",
+          "originalIndex": 23,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "bla_quiz_5",
+          "newId": "bla_quiz_5_dup2",
+          "originalIndex": 24,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ulrikke_brandstorp_quiz_1",
+          "newId": "ulrikke_brandstorp_quiz_1_dup2",
+          "originalIndex": 25,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ulrikke_brandstorp_quiz_2",
+          "newId": "ulrikke_brandstorp_quiz_2_dup2",
+          "originalIndex": 26,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ulrikke_brandstorp_quiz_3",
+          "newId": "ulrikke_brandstorp_quiz_3_dup2",
+          "originalIndex": 27,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ulrikke_brandstorp_quiz_4",
+          "newId": "ulrikke_brandstorp_quiz_4_dup2",
+          "originalIndex": 28,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ulrikke_brandstorp_quiz_5",
+          "newId": "ulrikke_brandstorp_quiz_5_dup2",
+          "originalIndex": 29,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "edvard_grieg_quiz_1",
+          "newId": "edvard_grieg_quiz_1_dup2",
+          "originalIndex": 35,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "edvard_grieg_quiz_2",
+          "newId": "edvard_grieg_quiz_2_dup2",
+          "originalIndex": 36,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "edvard_grieg_quiz_3",
+          "newId": "edvard_grieg_quiz_3_dup2",
+          "originalIndex": 37,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "edvard_grieg_quiz_4",
+          "newId": "edvard_grieg_quiz_4_dup2",
+          "originalIndex": 38,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "edvard_grieg_quiz_5",
+          "newId": "edvard_grieg_quiz_5_dup2",
+          "originalIndex": 39,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        }
+      ]
+    },
+    {
+      "file": "data/quiz/quiz_politikk.json",
+      "itemsBefore": 102,
+      "itemsAfter": 97,
+      "duplicateIdsBefore": [
+        "oslo_radhus_quiz_1",
+        "oslo_radhus_quiz_2",
+        "oslo_radhus_quiz_3",
+        "oslo_radhus_quiz_4",
+        "oslo_radhus_quiz_5",
+        "eidsvolls_plass_quiz_1",
+        "eidsvolls_plass_quiz_2",
+        "eidsvolls_plass_quiz_3",
+        "eidsvolls_plass_quiz_4",
+        "eidsvolls_plass_quiz_5",
+        "johan_sverdrup_quiz_1",
+        "johan_sverdrup_quiz_2",
+        "johan_sverdrup_quiz_3",
+        "christian_frederik_quiz_1",
+        "christian_frederik_quiz_2",
+        "christian_frederik_quiz_3"
+      ],
+      "removedDuplicateObjects": [
+        {
+          "id": "christian_frederik_quiz_1",
+          "originalIndex": 84,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "christian_frederik_quiz_2",
+          "originalIndex": 85,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "christian_frederik_quiz_3",
+          "originalIndex": 86,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "johan_sverdrup_quiz_1",
+          "originalIndex": 87,
+          "reason": "identicalToEarlierObject"
+        },
+        {
+          "id": "johan_sverdrup_quiz_3",
+          "originalIndex": 89,
+          "reason": "identicalToEarlierObject"
+        }
+      ],
+      "renamedDuplicateObjects": [
+        {
+          "originalId": "eidsvolls_plass_quiz_1",
+          "newId": "eidsvolls_plass_quiz_1_dup2",
+          "originalIndex": 38,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "eidsvolls_plass_quiz_2",
+          "newId": "eidsvolls_plass_quiz_2_dup2",
+          "originalIndex": 39,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "eidsvolls_plass_quiz_3",
+          "newId": "eidsvolls_plass_quiz_3_dup2",
+          "originalIndex": 40,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "eidsvolls_plass_quiz_4",
+          "newId": "eidsvolls_plass_quiz_4_dup2",
+          "originalIndex": 41,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "eidsvolls_plass_quiz_5",
+          "newId": "eidsvolls_plass_quiz_5_dup2",
+          "originalIndex": 42,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "oslo_radhus_quiz_1",
+          "newId": "oslo_radhus_quiz_1_dup2",
+          "originalIndex": 48,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "oslo_radhus_quiz_2",
+          "newId": "oslo_radhus_quiz_2_dup2",
+          "originalIndex": 49,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "oslo_radhus_quiz_3",
+          "newId": "oslo_radhus_quiz_3_dup2",
+          "originalIndex": 50,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "oslo_radhus_quiz_4",
+          "newId": "oslo_radhus_quiz_4_dup2",
+          "originalIndex": 51,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "oslo_radhus_quiz_5",
+          "newId": "oslo_radhus_quiz_5_dup2",
+          "originalIndex": 52,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "johan_sverdrup_quiz_2",
+          "newId": "johan_sverdrup_quiz_2_dup2",
+          "originalIndex": 88,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        }
+      ]
+    },
+    {
+      "file": "data/quiz/quiz_sport.json",
+      "itemsBefore": 95,
+      "itemsAfter": 95,
+      "duplicateIdsBefore": [
+        "valle_hovin_quiz_1",
+        "valle_hovin_quiz_2",
+        "valle_hovin_quiz_3",
+        "valle_hovin_quiz_4",
+        "valle_hovin_quiz_5",
+        "grete_waitz_quiz_1",
+        "grete_waitz_quiz_2",
+        "grete_waitz_quiz_3",
+        "mats_zuccarello_quiz_1",
+        "mats_zuccarello_quiz_2",
+        "mats_zuccarello_quiz_3",
+        "ronny_deila_quiz_1",
+        "ronny_deila_quiz_2",
+        "ronny_deila_quiz_3",
+        "ada_hegerberg_quiz_1",
+        "ada_hegerberg_quiz_2",
+        "ada_hegerberg_quiz_3",
+        "erling_haaland_quiz_1",
+        "erling_haaland_quiz_2",
+        "erling_haaland_quiz_3",
+        "marit_bjorgen_quiz_1",
+        "marit_bjorgen_quiz_2",
+        "marit_bjorgen_quiz_3",
+        "therese_johaug_quiz_1",
+        "therese_johaug_quiz_2",
+        "therese_johaug_quiz_3"
+      ],
+      "removedDuplicateObjects": [],
+      "renamedDuplicateObjects": [
+        {
+          "originalId": "valle_hovin_quiz_1",
+          "newId": "valle_hovin_quiz_1_dup2",
+          "originalIndex": 30,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "valle_hovin_quiz_2",
+          "newId": "valle_hovin_quiz_2_dup2",
+          "originalIndex": 31,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "valle_hovin_quiz_3",
+          "newId": "valle_hovin_quiz_3_dup2",
+          "originalIndex": 32,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "valle_hovin_quiz_4",
+          "newId": "valle_hovin_quiz_4_dup2",
+          "originalIndex": 33,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "valle_hovin_quiz_5",
+          "newId": "valle_hovin_quiz_5_dup2",
+          "originalIndex": 34,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "marit_bjorgen_quiz_1",
+          "newId": "marit_bjorgen_quiz_1_dup2",
+          "originalIndex": 56,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "marit_bjorgen_quiz_2",
+          "newId": "marit_bjorgen_quiz_2_dup2",
+          "originalIndex": 57,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "marit_bjorgen_quiz_3",
+          "newId": "marit_bjorgen_quiz_3_dup2",
+          "originalIndex": 58,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ada_hegerberg_quiz_1",
+          "newId": "ada_hegerberg_quiz_1_dup2",
+          "originalIndex": 74,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ada_hegerberg_quiz_2",
+          "newId": "ada_hegerberg_quiz_2_dup2",
+          "originalIndex": 75,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ada_hegerberg_quiz_3",
+          "newId": "ada_hegerberg_quiz_3_dup2",
+          "originalIndex": 76,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "erling_haaland_quiz_1",
+          "newId": "erling_haaland_quiz_1_dup2",
+          "originalIndex": 77,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "erling_haaland_quiz_2",
+          "newId": "erling_haaland_quiz_2_dup2",
+          "originalIndex": 78,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "erling_haaland_quiz_3",
+          "newId": "erling_haaland_quiz_3_dup2",
+          "originalIndex": 79,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "marit_bjorgen_quiz_1",
+          "newId": "marit_bjorgen_quiz_1_dup3",
+          "originalIndex": 80,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "marit_bjorgen_quiz_2",
+          "newId": "marit_bjorgen_quiz_2_dup3",
+          "originalIndex": 81,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "marit_bjorgen_quiz_3",
+          "newId": "marit_bjorgen_quiz_3_dup3",
+          "originalIndex": 82,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "therese_johaug_quiz_1",
+          "newId": "therese_johaug_quiz_1_dup2",
+          "originalIndex": 83,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "therese_johaug_quiz_2",
+          "newId": "therese_johaug_quiz_2_dup2",
+          "originalIndex": 84,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "therese_johaug_quiz_3",
+          "newId": "therese_johaug_quiz_3_dup2",
+          "originalIndex": 85,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ronny_deila_quiz_1",
+          "newId": "ronny_deila_quiz_1_dup2",
+          "originalIndex": 86,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ronny_deila_quiz_2",
+          "newId": "ronny_deila_quiz_2_dup2",
+          "originalIndex": 87,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "ronny_deila_quiz_3",
+          "newId": "ronny_deila_quiz_3_dup2",
+          "originalIndex": 88,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "grete_waitz_quiz_1",
+          "newId": "grete_waitz_quiz_1_dup2",
+          "originalIndex": 89,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "grete_waitz_quiz_2",
+          "newId": "grete_waitz_quiz_2_dup2",
+          "originalIndex": 90,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "grete_waitz_quiz_3",
+          "newId": "grete_waitz_quiz_3_dup2",
+          "originalIndex": 91,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "mats_zuccarello_quiz_1",
+          "newId": "mats_zuccarello_quiz_1_dup2",
+          "originalIndex": 92,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "mats_zuccarello_quiz_2",
+          "newId": "mats_zuccarello_quiz_2_dup2",
+          "originalIndex": 93,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        },
+        {
+          "originalId": "mats_zuccarello_quiz_3",
+          "newId": "mats_zuccarello_quiz_3_dup2",
+          "originalIndex": 94,
+          "reason": "renamedBecauseContentDifferedOrUnclear"
+        }
+      ]
+    }
+  ],
+  "sameFileDuplicateReportsBefore": 102,
+  "sameFileDuplicateReportsAfter": 0,
+  "crossFileDuplicatesTouched": false,
+  "manifestChanged": false,
+  "manifestSetsChanged": false,
+  "setQuizFilesChanged": false,
+  "placeDataChanged": false,
+  "peopleDataChanged": false,
+  "auditScriptChanged": false,
+  "auditRan": true,
+  "expectedRemainingFailureClass": "cross-file duplicate legacy quiz ids only"
+}
