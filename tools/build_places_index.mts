@@ -153,7 +153,11 @@ async function main(): Promise<void> {
     if (!sourceFile) continue;
     const fullPath = path.join(ROOT, 'data', sourceFile);
     const data = await readJson(fullPath);
-    const places = Array.isArray(data) ? data : (hasObjectType(data) && Array.isArray(data.places) ? data.places : []);
+    const places = Array.isArray(data)
+      ? data
+      : (hasObjectType(data) && Array.isArray(data.places)
+        ? data.places
+        : (isPlaceRow(data) && typeof data.id === 'string' ? [data] : []));
     for (const rawPlace of places) {
       if (!isPlaceRow(rawPlace)) continue;
       assertNoLegacyLng(rawPlace, sourceFile);
