@@ -39,6 +39,9 @@ for (const file of files) {
 console.log(`json ok (${files.length} files)`);
 NODE
 
+echo "== Place primary/secondary badge audit =="
+node scripts/audit-place-secondary-badges.mjs
+
 echo "== Active subkultur place concreteness guard =="
 node <<'NODE'
 const fs = require('fs');
