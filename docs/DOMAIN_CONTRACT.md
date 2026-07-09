@@ -2,7 +2,7 @@
 
 Status: active runtime contract
 Owner: History Go data/runtime
-Last updated: 2026-06-10
+Last updated: 2026-07-09
 
 This file is a decision document. It is not a runtime source of truth.
 Runtime must read domains from the existing data/runtime files, but new data and code should follow this contract.
@@ -24,7 +24,33 @@ The same id must be used when the same concept appears in:
 Do not introduce parallel badges for the same concept.
 Use aliases only at import/normalization boundaries.
 
-## 2. Runtime ids in active use now
+## 2. Primary and secondary badges
+
+`place.category` is the primary badge/domain for a place. It answers: **what is this place first and foremost as a History Go gameplay object?**
+
+A place may also carry secondary badge links through:
+
+```json
+"secondaryBadgeIds": ["subkultur", "musikk"]
+```
+
+Rules:
+
+- `category` remains singular and required.
+- `secondaryBadgeIds` is optional.
+- Every `secondaryBadgeIds[]` value must be an active runtime badge/domain id from `data/badges/index.json`, after alias normalization.
+- `secondaryBadgeIds` must not repeat the primary `category`.
+- `secondaryBadgeIds` must not introduce new badge/domain ids.
+- Use `secondaryBadgeIds` for cross-domain meaning, not to avoid choosing a primary category.
+
+Examples:
+
+- A concert venue is normally primary `musikk`, even if it has underground/subcultural significance.
+- A self-organized punk/activist house is normally primary `subkultur`, with `musikk` as secondary if concerts are a major part of the place.
+- A zine/comics/fandom shop can be primary `subkultur` or `populaerkultur` depending on the gameplay angle; use secondary badges for the other dimension.
+- A park is normally `by` or `natur`; it should only be primary `subkultur` if the place data explicitly treats subcultural use as its defining gameplay identity.
+
+## 3. Runtime ids in active use now
 
 These ids are active runtime ids because they are already used by badge/category/progression code and must not be renamed casually:
 
@@ -45,8 +71,9 @@ These ids are active runtime ids because they are already used by badge/category
 | `film_tv` | active badge domain | film/TV is its own badge/category domain |
 | `media` | active badge domain | media/journalism is its own badge/category domain |
 | `populaerkultur` | active badge domain | popular culture badge/category id today; `popkultur` is its short fag/editorial alias |
+| `sosial_laering` | active badge domain | social learning domain |
 
-## 3. Editorial / short ids
+## 4. Editorial / short ids
 
 These ids are allowed as fag/editorial ids or short aliases. They must not become separate badges unless this file is changed deliberately.
 
@@ -60,7 +87,7 @@ These ids are allowed as fag/editorial ids or short aliases. They must not becom
 
 Important: `popkultur` and `populaerkultur` name the same popular-culture domain. Runtime badge/category data currently uses the long id `populaerkultur`; fag/editorial files may use the short id `popkultur`. Do not create two badge files or two user progression tracks for them.
 
-## 4. Aliases and non-top-level ids
+## 5. Aliases and non-top-level ids
 
 Aliases are allowed only in a normalizer/registry layer, not directly as new badge domains.
 
@@ -73,7 +100,7 @@ Aliases are allowed only in a normalizer/registry layer, not directly as new bad
 | `scenekunst` | `kunst` | subfield, not top-level runtime badge unless explicitly promoted later |
 | `teater` | `kunst` | subfield unless a later theatre/scenekunst domain is deliberately created |
 
-## 5. Current decisions
+## 6. Current decisions
 
 ### `popkultur` and `populaerkultur`
 
@@ -106,7 +133,18 @@ Decision:
 - Treat `scenekunst` as a subfield under `kunst` for now.
 - Do not add `data/badges/scenekunst.json` unless we deliberately promote it to a top-level badge/domain.
 
-## 6. File ownership
+### Music and subculture overlap
+
+Punk, hiphop, rave/club culture and underground scenes can belong to both `musikk` and `subkultur`, but they do not mean the same thing in the badge model.
+
+Decision:
+
+- `musikk` covers music practice, artists, scenes, genres, concert venues, clubs as music infrastructure, production and performance.
+- `subkultur` covers identity, DIY/self-organization, motkultur, alternative public spheres, skate, graffiti, fandom/zines and underground social formations.
+- If the main thing is a concert venue or music club, use primary `musikk` and secondary `subkultur` where appropriate.
+- If the main thing is a self-organized house, youth culture house, skate/graffiti/fandom/zine institution or motkulturell infrastructure, use primary `subkultur` and secondary `musikk` where concerts/music are important.
+
+## 7. File ownership
 
 ### Badges
 
@@ -163,7 +201,7 @@ Epoker are a time/periodization layer. They are not badges and not Wonderkammer.
 
 Epoke domain ids should follow the same id contract as domains, with legacy aliases handled in `js/epoker-runtime.js` or the shared domain registry.
 
-## 7. Production rule
+## 8. Production rule
 
 Before producing new domain-level data, check this file.
 
@@ -174,12 +212,20 @@ If the id is not listed here:
 3. Then update registry/runtime loaders.
 4. Then produce data.
 
-## 8. Next cleanup patches
+Before adding or moving places, decide:
+
+1. primary `category`
+2. optional `secondaryBadgeIds`
+3. emne/tags/quiz_profile after the badge decision
+
+## 9. Next cleanup patches
 
 Recommended order:
 
 1. Keep `populaerkultur` and `popkultur` as one badge/domain with two accepted names.
 2. Keep `film_tv` and `media` as their own badge domains.
 3. Audit data that accidentally treats `popkultur` as a second runtime badge.
-4. Only if desired later, migrate the runtime id `populaerkultur` to `popkultur` in one complete patch.
-5. Then continue epoke production using this contract.
+4. Audit places/people where `subkultur` was used as a fallback for music venues, artists, parks, byoriginaler or generic culture.
+5. Move pure music venues to `musikk` and use `secondaryBadgeIds: ["subkultur"]` only when the subcultural dimension is explicit.
+6. Only if desired later, migrate the runtime id `populaerkultur` to `popkultur` in one complete patch.
+7. Then continue epoke production using this contract.
