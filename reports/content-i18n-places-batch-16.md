@@ -12,7 +12,6 @@
 - No places_index regeneration.
 
 ## Scope
-Changed files:
 - `data/i18n/content/places/en.json`
 - `data/i18n/content/places/es.json`
 - `data/i18n/content/places/pt.json`
@@ -20,100 +19,97 @@ Changed files:
 
 ## Selection method
 - Read canonical ids from manifest-listed source files in `data/places/manifest.json`.
-- Compared manifest-backed canonical ids against `data/i18n/content/places/en.json`, `data/i18n/content/places/es.json`, and `data/i18n/content/places/pt.json`.
-- Excluded batch 4–15 ids from the existing content-i18n batch reports.
+- Compared those ids against `data/i18n/content/places/en.json`, `es.json`, and `pt.json`.
+- Excluded batch 4–15 ids by reading the existing batch reports.
 - Excluded disabled placeIds from `data/places/place_exclusions.json`.
 - Did not use closed duplicate PR #1988 as source.
-- Read PR #2011 cleanup context as quality context only, not as a new batch.
-- Excluded already translated ids, stale translation-only ids, and ids not backed by manifest-listed canonical source files.
-- Prioritized remaining Innlandet/Østlandet historical places with direct visible `name`, `desc`, and `popupDesc` fields.
+- Read PR #2011 cleanup as quality context only, not as a new batch.
+- Excluded already translated, stale translation-only, and non-manifest ids.
 
 ## Source placeIds
 | placeId | Canonical source file | Selection reason | Fields translated |
 |---|---|---|---|
-| moelv_stasjon_mjoslinjen | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Innlandet railway place missing in en/es/pt. | name, desc, popupDesc |
-| stange_stasjon_dovrebanen | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Innlandet railway place missing in en/es/pt. | name, desc, popupDesc |
-| gran_stasjon_gjovikbanen | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Hadeland railway place missing in en/es/pt. | name, desc, popupDesc |
-| lena_stasjon_totenbanen | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Toten railway place missing in en/es/pt. | name, desc, popupDesc |
-| reinsvoll_stasjon_totenbanen | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Toten railway place missing in en/es/pt. | name, desc, popupDesc |
-| dokka_stasjon_valdresbanen | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Land/Valdresbanen place missing in en/es/pt. | name, desc, popupDesc |
-| skarnes_stasjon_kongsvingerbanen | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Odalen/Kongsvingerbanen place missing in en/es/pt. | name, desc, popupDesc |
-| braskereidfoss_kraftverk | `places/historie/innlandet/places_historie_innlandet_batch16.json` | Manifest-backed Solør/Glomma energy-history place missing in en/es/pt. | name, desc, popupDesc |
-| slidredomen_vestre_slidre | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Valdres medieval church place missing in en/es/pt. | name, desc, popupDesc |
-| bruflat_kirke_etnedal | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Valdres church place missing in en/es/pt. | name, desc, popupDesc |
-| skreia_stasjon_totenbanen | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Toten railway place missing in en/es/pt. | name, desc, popupDesc |
-| flisa_stasjon_solorbanen | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Solør railway place missing in en/es/pt. | name, desc, popupDesc |
-| vinger_kirke_kongsvinger | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Kongsvinger church place missing in en/es/pt. | name, desc, popupDesc |
-| grue_finnskog_kirke | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Finnskogen church place missing in en/es/pt. | name, desc, popupDesc |
-| furnes_kirke_ringsaker | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Ringsaker church place missing in en/es/pt. | name, desc, popupDesc |
-| alvdal_kirke | `places/historie/innlandet/places_historie_innlandet_batch17.json` | Manifest-backed Nord-Østerdalen church place missing in en/es/pt. | name, desc, popupDesc |
-| bjorgan_prestegard_kvikne | `places/historie/innlandet/places_historie_innlandet_batch18.json` | Manifest-backed Kvikne cultural-history place missing in en/es/pt. | name, desc, popupDesc |
-| kvikne_kirke | `places/historie/innlandet/places_historie_innlandet_batch18.json` | Manifest-backed Kvikne church place missing in en/es/pt. | name, desc, popupDesc |
-| oyer_kirke | `places/historie/innlandet/places_historie_innlandet_batch18.json` | Manifest-backed Gudbrandsdalen church place missing in en/es/pt. | name, desc, popupDesc |
-| tretten_kirke | `places/historie/innlandet/places_historie_innlandet_batch18.json` | Manifest-backed Gudbrandsdalen church place missing in en/es/pt. | name, desc, popupDesc |
+| `skjaak_bygdamuseum` | `data/places/historie/innlandet/places_historie_innlandet_batch7.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `stenberg_toten_museum` | `data/places/historie/innlandet/places_historie_innlandet_batch7.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `jorstadmoen_leir` | `data/places/historie/innlandet/places_historie_innlandet_batch8.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `nordberg_fort` | `data/places/historie/innlandet/places_historie_innlandet_batch8.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `gausdal_bygdetun` | `data/places/historie/innlandet/places_historie_innlandet_batch8.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `trysil_bygdetun` | `data/places/historie/innlandet/places_historie_innlandet_batch8.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `solor_museum_flisa` | `data/places/historie/innlandet/places_historie_innlandet_batch8.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `grue_kirke_brannminne` | `data/places/historie/innlandet/places_historie_innlandet_batch8.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `lom_bygdamuseum_presthaugen` | `data/places/historie/innlandet/places_historie_innlandet_batch8.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `blokkodden_villmarksmuseum` | `data/places/historie/innlandet/places_historie_innlandet_batch9.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `husantunet_alvdal_bygdemuseum` | `data/places/historie/innlandet/places_historie_innlandet_batch9.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `koppangtunet_stor_elvdal` | `data/places/historie/innlandet/places_historie_innlandet_batch9.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `tylldalen_bygdetun` | `data/places/historie/innlandet/places_historie_innlandet_batch9.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `faaberg_kirke` | `data/places/historie/innlandet/places_historie_innlandet_batch9.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `vang_kirke_hamar` | `data/places/historie/innlandet/places_historie_innlandet_batch9.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `mesna_kraft_og_industri` | `data/places/naeringsliv/innlandet/mesna_kraft_og_industri.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `lillehammer_bryggeri_historisk_miljo` | `data/places/naeringsliv/innlandet/lillehammer_bryggeri_historisk_miljo.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `kistefos_tresliperi_jevnaker` | `data/places/historie/innlandet/places_historie_innlandet_batch10.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `kapp_melkefabrikk` | `data/places/historie/innlandet/places_historie_innlandet_batch10.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
+| `loiten_braenderi` | `data/places/historie/innlandet/places_historie_innlandet_batch10.json` | Manifest-backed Innlandet place missing in all three content languages and not in batch 4–15. | name, desc, popupDesc |
 
 ## Skipped candidates
 | placeId | Reason skipped |
 |---|---|
-| hedalen_stavkirke | Batch 15 id; explicitly excluded. |
-| vaga_kyrkje | Batch 15 id; explicitly excluded. |
-| garmo_stavkirke_maihaugen | Batch 15 id; explicitly excluded. |
-| sygard_grytting_pilegrimsgard | Batch 15 id; explicitly excluded. |
+| Batch 4–15 ids | Excluded by prior batch reports. |
+| Disabled ids in `place_exclusions.json` | Excluded from selection. |
 
 ## Translation summary
 | Language | File | Entries before | Entries after | Added entries |
 |---|---|---:|---:|---:|
-| en | `data/i18n/content/places/en.json` | 674 | 694 | 20 |
-| es | `data/i18n/content/places/es.json` | 674 | 694 | 20 |
-| pt | `data/i18n/content/places/pt.json` | 674 | 694 | 20 |
+| en | `data/i18n/content/places/en.json` | 694 | 714 | 20 |
+| es | `data/i18n/content/places/es.json` | 694 | 714 | 20 |
+| pt | `data/i18n/content/places/pt.json` | 694 | 714 | 20 |
 
 ## Added translations
 | placeId | en | es | pt | Notes |
 |---|---|---|---|---|
-| moelv_stasjon_mjoslinjen | Moelv Station / the Mjøsa Line | Estación de Moelv / línea de Mjøsa | Estação de Moelv / linha de Mjøsa | Railway/transport history. |
-| stange_stasjon_dovrebanen | Stange Station / Dovre Line | Estación de Stange / línea de Dovre | Estação de Stange / linha de Dovre | Railway/transport history. |
-| gran_stasjon_gjovikbanen | Gran Station / Gjøvik Line | Estación de Gran / línea de Gjøvik | Estação de Gran / linha de Gjøvik | Hadeland transport layer. |
-| lena_stasjon_totenbanen | Lena Station / Toten Line | Estación de Lena / línea de Toten | Estação de Lena / linha de Toten | Toten logistics. |
-| reinsvoll_stasjon_totenbanen | Reinsvoll Station / Toten Line | Estación de Reinsvoll / línea de Toten | Estação de Reinsvoll / linha de Toten | Toten/Raufoss transport. |
-| dokka_stasjon_valdresbanen | Dokka Station / Valdres Line | Estación de Dokka / línea de Valdres | Estação de Dokka / linha de Valdres | Land/Valdresbanen. |
-| skarnes_stasjon_kongsvingerbanen | Skarnes Station / Kongsvinger Line | Estación de Skarnes / línea de Kongsvinger | Estação de Skarnes / linha de Kongsvinger | Odalen transport. |
-| braskereidfoss_kraftverk | Braskereidfoss Power Station | Central eléctrica de Braskereidfoss | Central hidroelétrica de Braskereidfoss | Energy history. |
-| slidredomen_vestre_slidre | Slidre Cathedral / Vestre Slidre Church | Slidredomen / iglesia de Vestre Slidre | Slidredomen / igreja de Vestre Slidre | Medieval stone church. |
-| bruflat_kirke_etnedal | Bruflat Church | Iglesia de Bruflat | Igreja de Bruflat | Local church site. |
-| skreia_stasjon_totenbanen | Skreia Station / Toten Line | Estación de Skreia / línea de Toten | Estação de Skreia / linha de Toten | Toten terminus. |
-| flisa_stasjon_solorbanen | Flisa Station / Solør Line | Estación de Flisa / línea de Solør | Estação de Flisa / linha de Solør | Solør railway. |
-| vinger_kirke_kongsvinger | Vinger Church | Iglesia de Vinger | Igreja de Vinger | Border-town church layer. |
-| grue_finnskog_kirke | Grue Finnskog Church | Iglesia de Grue Finnskog | Igreja de Grue Finnskog | Finnskogen local institution. |
-| furnes_kirke_ringsaker | Furnes Church | Iglesia de Furnes | Igreja de Furnes | Hedmarken church site. |
-| alvdal_kirke | Alvdal Church | Iglesia de Alvdal | Igreja de Alvdal | Mountain-village church site. |
-| bjorgan_prestegard_kvikne | Bjørgan Parsonage, Kvikne | Casa parroquial de Bjørgan, Kvikne | Casa paroquial de Bjørgan, Kvikne | Cultural-history parsonage. |
-| kvikne_kirke | Kvikne Church | Iglesia de Kvikne | Igreja de Kvikne | Kvikne church/mining context. |
-| oyer_kirke | Øyer Church | Iglesia de Øyer | Igreja de Øyer | Gudbrandsdalen church site. |
-| tretten_kirke | Tretten Church | Iglesia de Tretten | Igreja de Tretten | Gudbrandsdalen church site. |
+| `skjaak_bygdamuseum` | Skjåk Rural Museum | Museo rural de Skjåk | Museu rural de Skjåk | Direct visible fields only. |
+| `stenberg_toten_museum` | Stenberg / Toten Museum | Stenberg / Museo de Toten | Stenberg / Museu de Toten | Direct visible fields only. |
+| `jorstadmoen_leir` | Jørstadmoen Camp | Campamento de Jørstadmoen | Campo de Jørstadmoen | Direct visible fields only. |
+| `nordberg_fort` | Nordberg Fort | Fuerte de Nordberg | Forte de Nordberg | Direct visible fields only. |
+| `gausdal_bygdetun` | Gausdal Rural Museum | Museo rural de Gausdal | Museu rural de Gausdal | Direct visible fields only. |
+| `trysil_bygdetun` | Trysil Rural Museum | Museo rural de Trysil | Museu rural de Trysil | Direct visible fields only. |
+| `solor_museum_flisa` | Solør Museum / Flisa | Museo de Solør / Flisa | Museu de Solør / Flisa | Direct visible fields only. |
+| `grue_kirke_brannminne` | Grue Church / fire memorial | Iglesia de Grue / memoria del incendio | Igreja de Grue / memória do incêndio | Direct visible fields only. |
+| `lom_bygdamuseum_presthaugen` | Lom Rural Museum / Presthaugen | Museo rural de Lom / Presthaugen | Museu rural de Lom / Presthaugen | Direct visible fields only. |
+| `blokkodden_villmarksmuseum` | Blokkodden Wilderness Museum | Museo de la vida silvestre de Blokkodden | Museu da vida selvagem de Blokkodden | Direct visible fields only. |
+| `husantunet_alvdal_bygdemuseum` | Husantunet / Alvdal Rural Museum | Husantunet / Museo rural de Alvdal | Husantunet / Museu rural de Alvdal | Direct visible fields only. |
+| `koppangtunet_stor_elvdal` | Koppangtunet / Stor-Elvdal Museum | Koppangtunet / Museo de Stor-Elvdal | Koppangtunet / Museu de Stor-Elvdal | Direct visible fields only. |
+| `tylldalen_bygdetun` | Tylldalen Rural Museum | Museo rural de Tylldalen | Museu rural de Tylldalen | Direct visible fields only. |
+| `faaberg_kirke` | Fåberg Church | Iglesia de Fåberg | Igreja de Fåberg | Direct visible fields only. |
+| `vang_kirke_hamar` | Vang Church, Hamar | Iglesia de Vang, Hamar | Igreja de Vang, Hamar | Direct visible fields only. |
+| `mesna_kraft_og_industri` | Mesna power and industrial landscape | Paisaje energético e industrial de Mesna | Paisagem energética e industrial de Mesna | Direct visible fields only. |
+| `lillehammer_bryggeri_historisk_miljo` | Lillehammer Brewery / historic industrial environment | Cervecería de Lillehammer / entorno industrial histórico | Cervejaria de Lillehammer / ambiente industrial histórico | Direct visible fields only. |
+| `kistefos_tresliperi_jevnaker` | Kistefos Wood Pulp Mill / industrial museum | Fábrica de pasta de madera de Kistefos / museo industrial | Fábrica de pasta de madeira de Kistefos / museu industrial | Direct visible fields only. |
+| `kapp_melkefabrikk` | Kapp Milk Factory | Fábrica de leche de Kapp | Fábrica de leite de Kapp | Direct visible fields only. |
+| `loiten_braenderi` | Løiten Distillery | Destilería de Løiten | Destilaria de Løiten | Direct visible fields only. |
 
 ## Fields translated
 | placeId | name | desc | popupDesc | Other fields |
 |---|---:|---:|---:|---|
-| moelv_stasjon_mjoslinjen | yes | yes | yes | none |
-| stange_stasjon_dovrebanen | yes | yes | yes | none |
-| gran_stasjon_gjovikbanen | yes | yes | yes | none |
-| lena_stasjon_totenbanen | yes | yes | yes | none |
-| reinsvoll_stasjon_totenbanen | yes | yes | yes | none |
-| dokka_stasjon_valdresbanen | yes | yes | yes | none |
-| skarnes_stasjon_kongsvingerbanen | yes | yes | yes | none |
-| braskereidfoss_kraftverk | yes | yes | yes | none |
-| slidredomen_vestre_slidre | yes | yes | yes | none |
-| bruflat_kirke_etnedal | yes | yes | yes | none |
-| skreia_stasjon_totenbanen | yes | yes | yes | none |
-| flisa_stasjon_solorbanen | yes | yes | yes | none |
-| vinger_kirke_kongsvinger | yes | yes | yes | none |
-| grue_finnskog_kirke | yes | yes | yes | none |
-| furnes_kirke_ringsaker | yes | yes | yes | none |
-| alvdal_kirke | yes | yes | yes | none |
-| bjorgan_prestegard_kvikne | yes | yes | yes | none |
-| kvikne_kirke | yes | yes | yes | none |
-| oyer_kirke | yes | yes | yes | none |
-| tretten_kirke | yes | yes | yes | none |
+| `skjaak_bygdamuseum` | yes | yes | yes | none |
+| `stenberg_toten_museum` | yes | yes | yes | none |
+| `jorstadmoen_leir` | yes | yes | yes | none |
+| `nordberg_fort` | yes | yes | yes | none |
+| `gausdal_bygdetun` | yes | yes | yes | none |
+| `trysil_bygdetun` | yes | yes | yes | none |
+| `solor_museum_flisa` | yes | yes | yes | none |
+| `grue_kirke_brannminne` | yes | yes | yes | none |
+| `lom_bygdamuseum_presthaugen` | yes | yes | yes | none |
+| `blokkodden_villmarksmuseum` | yes | yes | yes | none |
+| `husantunet_alvdal_bygdemuseum` | yes | yes | yes | none |
+| `koppangtunet_stor_elvdal` | yes | yes | yes | none |
+| `tylldalen_bygdetun` | yes | yes | yes | none |
+| `faaberg_kirke` | yes | yes | yes | none |
+| `vang_kirke_hamar` | yes | yes | yes | none |
+| `mesna_kraft_og_industri` | yes | yes | yes | none |
+| `lillehammer_bryggeri_historisk_miljo` | yes | yes | yes | none |
+| `kistefos_tresliperi_jevnaker` | yes | yes | yes | none |
+| `kapp_melkefabrikk` | yes | yes | yes | none |
+| `loiten_braenderi` | yes | yes | yes | none |
 
 ## Quality checks
 - JSON parse result: passed.
@@ -123,7 +119,7 @@ Changed files:
 - No disabled/excluded placeIds selected: passed.
 - No batch 4–15 ids selected: passed.
 - No batch 15 ids reused: passed.
-- PT entries checked for Spanish prose leakage: passed.
+- pt entries checked for Spanish prose leakage: passed.
 - No runtime files changed: passed.
 - No UI dictionaries changed: passed.
 - No canonical place data changed: passed.
@@ -145,28 +141,12 @@ Changed files:
 
 ## Validation
 - `node -e "for (const f of ['data/i18n/content/places/en.json','data/i18n/content/places/es.json','data/i18n/content/places/pt.json']) JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('place content json ok')"`
-- `node - <<'NODE' ... selected place translations ok ... NODE`
-- `node - <<'NODE' ... no disabled selected ids ... NODE`
-- `node - <<'NODE' ... no batch 15 ids reused ... NODE`
-- `node - <<'NODE' ... pt language leakage check ok ... NODE`
-- `git diff -- data/i18n/ui`
-- `git diff -- js`
-- `git diff -- data/places`
-- `git diff -- data/places/places_index.json`
-- `git diff -- data/places/place_exclusions.json`
-- `git diff -- data/places/coordinate_overrides.json`
-- `git diff -- reports/content-i18n-places-batch-7.md`
-- `git diff -- reports/content-i18n-places-batch-8.md`
-- `git diff -- reports/content-i18n-places-batch-9.md`
-- `git diff -- reports/content-i18n-places-batch-10.md`
-- `git diff -- reports/content-i18n-places-batch-11.md`
-- `git diff -- reports/content-i18n-places-batch-12.md`
-- `git diff -- reports/content-i18n-places-batch-13.md`
-- `git diff -- reports/content-i18n-places-batch-14.md`
-- `git diff -- reports/content-i18n-places-batch-15.md`
-- `git diff -- reports/content-i18n-places-batch-15-pt-cleanup.md`
+- selected place translation presence/status check
+- disabled selected ids check
+- batch 15 reuse check
+- Portuguese leakage check
+- forbidden diff checks for runtime, UI dictionaries, canonical place data, places_index, coordinate overrides and prior reports
 - `git diff --check`
-- `git diff --name-only`
 
 ## Final note
 No runtime files changed. No UI dictionaries changed. No canonical place data changed. No places_index regeneration. Batch 7, batch 8, batch 9, batch 10, batch 11, batch 12, batch 13, batch 14 and batch 15 reports unchanged. Batch 15 PT cleanup report unchanged. Disabled placeIds were excluded.
