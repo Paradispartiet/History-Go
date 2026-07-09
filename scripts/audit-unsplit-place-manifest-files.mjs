@@ -1,4 +1,4 @@
-// Audit manifest-listed place JSON files that are still arrays and lack split sidecar manifests.
+// Audit data/places manifest JSON arrays that still lack split sidecar manifests.
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, basename } from 'node:path';
 
