@@ -40,6 +40,7 @@ function indexRow(place, file) {
 }
 
 const sourceText = await readFile(join(outDir, sourceFile), 'utf8');
+const sourceHash = sha256(sourceText);
 const places = JSON.parse(sourceText);
 
 if (!Array.isArray(places)) {
@@ -93,12 +94,12 @@ for (let i = 0; i < places.length; i += 1) {
   indexRows.push(indexRow(place, relFile));
 }
 
-const generatedAt = new Date().toISOString();
+const generatedAt = `source_sha256:${sourceHash}`;
 const manifest = {
   version: `${sourceStem}_split_v1`,
   source_file: sourceFile,
   source_path: `data/places/kunst/europe/portugal/lisbon/${sourceFile}`,
-  source_sha256: sha256(sourceText),
+  source_sha256: sourceHash,
   generated_at: generatedAt,
   place_count: places.length,
   layout: {
@@ -118,7 +119,7 @@ const report = [
   `${sourceStem} split report`,
   '',
   `Source: data/places/kunst/europe/portugal/lisbon/${sourceFile}`,
-  `Source sha256: ${sha256(sourceText)}`,
+  `Source sha256: ${sourceHash}`,
   `Generated at: ${generatedAt}`,
   '',
   'Result:',
