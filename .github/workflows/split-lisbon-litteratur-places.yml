@@ -1,0 +1,31 @@
+name: Split Lisbon litteratur places
+
+on:
+  push:
+    branches:
+      - data/split-lisbon-litteratur-places-20260709
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/split-lisbon-litteratur-places-20260709
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/split-lisbon-litteratur-places.mjs
+      - run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur_manifest.json data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur_index.json data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Lisbon litteratur place files"
+            git push
+          fi
