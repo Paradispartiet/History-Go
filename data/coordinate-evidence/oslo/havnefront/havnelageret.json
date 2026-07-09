@@ -1,8 +1,8 @@
 {
   "placeId": "havnelageret",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_address_source",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
     "lat": 59.90845,
     "lon": 10.74305,
@@ -14,31 +14,79 @@
   },
   "identity": {
     "currentName": "Oslo Havnelager",
-    "resolvedIdentity": null,
-    "identityStatus": "unresolved",
-    "identityProblem": "Eksisterende koordinat er ikke kildefestet med strukturert adresse eller kartobjekt.",
+    "resolvedIdentity": "Havnelageret / Oslo Havnelager, commercial building at Langkaia 1, Oslo",
+    "identityStatus": "candidate_resolved_secondary_source_only",
+    "identityProblem": "Sekundærkilde bekrefter navn/adresse og en koordinatkandidat, men ikke en primær adresse-/kartobjektkilde som kan gi verified etter Coordinate Source Contract v1.",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
     "splitReason": ""
   },
   "requiredEvidence": [
     "official_address eller official_map",
-    "sourceObjectId eller strukturert address",
+    "sourceObjectId eller strukturert address fra primærkilde",
     "geocodeAccuracy rooftop/entrance/building/parcel",
-    "coordRole building_center eller entrance"
+    "coordRole building_center eller entrance",
+    "kartobjekt/bygning som viser at punktet representerer selve Havnelageret, ikke kai/vei/vannflate"
   ],
-  "evidence": [],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Wikipedia / Wikidata / GeoHack candidate only",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Havnelageret",
+      "sourceObjectId": "wikidata:Q1591560",
+      "sourceQuality": "secondary_not_primary",
+      "finding": "Siden beskriver Havnelageret / Oslo Havnelager som commercial building located at Langkaia 1 in Oslo og viser koordinat 59.9076083, 10.7466667 via GeoHack/Wikidata.",
+      "canVerifyCoordinate": false,
+      "reason": "Wikipedia/Wikidata kan brukes som research-spor, men skal ikke være primærkilde for coordStatus=verified i History GO. Trenger OSM/Kartverket/kommunal/offisiell adresse- eller kartobjektkilde."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "street": "Langkaia",
+      "number": "1",
+      "postcode": "",
+      "city": "Oslo",
+      "country": "NO",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q1591560",
+      "sourceQuality": "secondary_not_primary",
+      "canVerify": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q1591560",
+      "name": "Havnelageret",
+      "locatorType": "building",
+      "sourceQuality": "secondary_not_primary",
+      "canVerify": false
+    }
+  ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9076083,
+      "lon": 10.7466667,
+      "geocodeAccuracy": "unknown",
+      "coordRole": "display_marker",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q1591560",
+      "sourceQuality": "secondary_not_primary",
+      "distanceFromCurrentMetersApprox": 222,
+      "canApplyToPlace": false,
+      "blockedReason": "Koordinaten kommer fra Wikimedia/GeoHack-spor, ikke fra primær adresse-/kartobjektkilde."
+    }
+  ],
   "decision": {
     "canBecomeVerified": false,
-    "blockedReason": "Mangler primær adresse-/kartobjektkilde. Eksisterende manual_map_check er ikke nok.",
-    "nextAction": "Finn offisiell adresse eller kartobjekt for Oslo Havnelager før koordinat kan endres eller verifiseres."
+    "blockedReason": "Research-spor finnes, men primærkilde mangler. Ikke flytt koordinaten og ikke sett verified før offisiell adresse/kartobjekt, OSM building/way/relation eller Kartverket/kommunal kilde er dokumentert.",
+    "nextAction": "Finn OSM/Kartverket/kommunal/offisiell adresse- eller bygningskilde for Langkaia 1 / Havnelageret, med sourceObjectId eller strukturert adresse og begrunnet building_center/entrance."
   },
   "notes": [
-    "Ikke flytt koordinaten før adresse-/kartobjektkilde er dokumentert.",
-    "Dette skal behandles som building/current_place, ikke generelt havneområde."
+    "Dette er en trygg research-oppdatering, ikke en coordinate-fix.",
+    "Eksisterende punkt beholdes fordi kandidatkoordinaten ikke er primærkildebasert.",
+    "Kandidatkoordinaten fra Wikimedia ligger omtrent 222 meter fra eksisterende punkt og må derfor ikke brukes ukritisk.",
+    "Neste PR kan sette applied_to_place/verified først når primær kart-/adressekilde finnes."
   ]
 }
