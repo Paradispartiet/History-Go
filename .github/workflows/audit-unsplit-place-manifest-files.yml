@@ -1,0 +1,31 @@
+name: Audit unsplit place manifest files
+
+on:
+  push:
+    branches:
+      - data/audit-unsplit-place-manifest-files-20260709
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/audit-unsplit-place-manifest-files-20260709
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/audit-unsplit-place-manifest-files.mjs
+      - run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add reports/places-unsplit-manifest-audit.md reports/places-unsplit-manifest-audit.json
+          if git diff --cached --quiet; then
+            echo "No audit report changes."
+          else
+            git commit -m "Generate unsplit place manifest audit report"
+            git push
+          fi
