@@ -1,0 +1,31 @@
+{
+  "status": "applied",
+  "reason": "tools:check was blocked by existing places_index sync mismatch after quiz manifest v2 gate was added",
+  "sourceFailure": {
+    "command": "npm run tools:check",
+    "failureStage": "places:index:check",
+    "reportedMismatchArea": [
+      "tonsberg_domkirke",
+      "fritzoe_verk_larvik",
+      "sandefjord_kurbad"
+    ]
+  },
+  "actions": [
+    "npm run places:index:build",
+    "npm run places:index:check"
+  ],
+  "placesIndexChanged": true,
+  "placeSourceDataChanged": false,
+  "quizDataChanged": false,
+  "quizManifestChanged": false,
+  "peopleDataChanged": false,
+  "validation": {
+    "placesIndexCheckRan": true,
+    "placesIndexCheckStatus": "passed",
+    "toolsCheckRan": true,
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "npm run tools:check passed places:index:check and audit:quiz-manifest:v2, then failed later at audit:civication-place-mapping because several Civication mappings have coordinate mismatches: by Oslo (map_bispelokket, map_tigeren), historie Oslo (map_middelalder_oslo, map_gamle_trikkestallen, map_sofienberg_kirke), and musikk Oslo (map_salt)."
+  ]
+}
