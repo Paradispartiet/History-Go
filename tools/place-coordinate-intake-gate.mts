@@ -60,13 +60,60 @@ const explainsAnchor = (note: unknown) => hasText(note) && /(byggpunkt|inngang|s
 function git(args: string[]) {
   return execFileSync('git', args, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
 }
-function baseRef() {
-  for (const ref of ['main', 'origin/main', 'HEAD']) {
-    try { git(['rev-parse', '--verify', ref]); return ref; } catch { /* prøv neste */ }
+
+type BaseInfo = { ref: string; method: string } | null;
+
+function isHeadRef(ref: string) {
+  return ref.trim().toUpperCase() === 'HEAD';
+}
+
+function commitExists(ref: string) {
+  try {
+    git(['rev-parse', '--verify', `${ref}^{commit}`]);
+    return true;
+  } catch {
+    return false;
   }
+}
+
+function mergeBaseWithOriginMain() {
+  if (!commitExists('origin/main')) return null;
+  try {
+    const ref = git(['merge-base', 'HEAD', 'origin/main']);
+    return ref && commitExists(ref) ? ref : null;
+  } catch {
+    return null;
+  }
+}
+
+function baseRef(): BaseInfo {
+  const envBase = process.env.COORD_INTAKE_BASE?.trim();
+  if (envBase && !isHeadRef(envBase) && commitExists(envBase)) return { ref: envBase, method: 'COORD_INTAKE_BASE' };
+
+  const githubBaseRef = process.env.GITHUB_BASE_REF?.trim();
+  if (githubBaseRef) {
+    const ref = `origin/${githubBaseRef}`;
+    if (commitExists(ref)) return { ref, method: 'origin/${GITHUB_BASE_REF}' };
+  }
+
+  const mergeBase = mergeBaseWithOriginMain();
+  if (mergeBase) return { ref: mergeBase, method: 'git merge-base HEAD origin/main' };
+
+  for (const [ref, method] of [['origin/main', 'origin/main'], ['main', 'main']] as const) {
+    if (commitExists(ref)) return { ref, method };
+  }
+
   return null;
 }
-const base = baseRef();
+const baseInfo = baseRef();
+const base = baseInfo?.ref ?? null;
+const baseMethod = baseInfo?.method ?? '(ingen trygg git-base funnet)';
+
+if (strictNew && !base) {
+  console.error('No safe git base found for coordinate intake strict-new');
+  process.exit(2);
+}
+
 function readBasePlacesById(file: string): Map<string, any> {
   if (!base) return new Map();
   try {
@@ -115,7 +162,7 @@ for (const file of activeFiles) {
   for (const place of toPlaces(payload)) {
     placesValidated += 1;
     const previous = place?.id ? previousById.get(String(place.id)) : undefined;
-    const changed = changedAgainstBase(place, previous);
+    const changed = base ? changedAgainstBase(place, previous) : false;
     if (changed) changedPlaces += 1;
     const lat = place?.lat; const lon = place?.lon; const r = place?.r;
 
@@ -162,8 +209,9 @@ const backlog = findings.filter((f) => f.level === 'backlog');
 const warnings = findings.filter((f) => f.level === 'warning');
 
 function row(f: Finding) { return `| ${f.level} | ${f.changed ? 'ja' : 'nei'} | ${f.id} | ${String(f.name).replace(/\|/g, '\\|')} | ${f.file} | ${f.field} | ${String(f.problem).replace(/\|/g, '\\|')} | ${String(f.fix).replace(/\|/g, '\\|')} |`; }
-const report = `# Place coordinate intake gate\n\nGenerert: ${new Date().toISOString()}\n\n## Hvorfor denne gaten finnes\n\nKoordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadata til å vite om punktet er et byggpunkt, et områdeanker, et linjepunkt eller et historisk/semantisk kompromiss. Eksisterende teknisk quality gate fanger ugyldige tall og ødelagte anchors, men den kan ikke alene bevise at et kartpunkt faktisk er kontrollert. Index-parity er heller ikke nok: parity beviser bare at generert runtime-index speiler source, ikke at source-koordinaten er riktig.\n\n\`verified\` må derfor være strengere enn vanlig koordinatmetadata. En verified-koordinat skal ha kilde, dato, type og en meningsfull note som forklarer hva punktet markerer. Lavpresisjon, store radiusverdier og område-/linje-/historiske ankre må ikke kunne passere som stille kartpunkter.\n\n## Modus og scope\n\n- Modus: **${strictNew ? '--strict-new' : '--report-all'}**\n- Base for nye/endrede place-objekter: **${base ?? '(ingen git-base funnet)'}**\n- Aktive manifest-filer lest: **${filesRead.length}**\n- Place-objekter validert: **${placesValidated}**\n- Nye/endrede koordinatobjekter mot base: **${changedPlaces}**\n- Blokkerende feil i denne kjøringen: **${hardErrors.length}**\n- Backlog-funn: **${backlog.length}**\n- Rapport-warnings: **${warnings.length}**\n\n## Regler som håndheves\n\n1. Grunnfelt: aktive steder må ha \`lat\`, \`lon\`, \`r\`; lat/lon må være gyldige tall og \`r\` må være positiv.\n2. Koordinatmetadata: steder med lat/lon må ha \`coordType\`, \`coordStatus\` og \`coordNote\`.\n3. Verified: \`coordStatus=verified\` krever \`coordSource\`, \`coordVerifiedAt\`, \`coordNote\` og \`coordType\`; note må være meningsfull og dato må være \`YYYY-MM-DD\`.\n4. Lavpresisjon: koordinater med færre enn fire desimaler kan ikke være \`verified\` og må markeres med usikker status.\n5. Område-/linje-/historiske typer: område-, gate-, rute-, kai- og historiske ankre må forklare hva punktet markerer.\n6. Stor radius: \`r >= 300\` krever note, og vanlig \`site_center\` må ikke skjule et stort områdeanker uten forklaring.\n7. Coordinate Source Contract v1: nye/endrede \`verified\`-steder må ha locatorType, sourceProvider, sourceObjectId eller address, geocodeAccuracy, coordRole, coordType og coordNote. \`manual_map_check\` er kun QA-lag; \`legacy_unknown\` og lineære steder uten geometry/anchors/line_anchor kan ikke passere som verified.
-8. CI/intake: \`--strict-new\` gjør funn harde bare for nye eller endrede koordinatobjekter, slik at gammel backlog kan ryddes manuelt uten å stoppe alle PR-er.\n\n## Hva som fortsatt må løses manuelt for gamle steder\n\nGamle steder med manglende koordinatmetadata, avrundede koordinater, store områdeankre og historiske/semantiske punkter må gjennom manuell kart-QA. Denne PR-en flytter ingen koordinater og setter ingen gamle steder automatisk til verified.\n\n## Funn\n\n| nivå | endret | place id | name | fil | felt | problem | forslag til fix |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n${[...technicalErrors, ...hardErrors.filter((f) => !technicalErrors.includes(f)), ...warnings, ...backlog].slice(0, 500).map(row).join('\n') || '| ok | - | - | - | - | - | Ingen funn i denne modusen. | - |'}\n\n${findings.length > 500 ? `\n_Listen er avkortet til 500 av ${findings.length} funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._\n` : ''}`;
+const report = `# Place coordinate intake gate\n\nGenerert: ${new Date().toISOString()}\n\n## Hvorfor denne gaten finnes\n\nKoordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadata til å vite om punktet er et byggpunkt, et områdeanker, et linjepunkt eller et historisk/semantisk kompromiss. Eksisterende teknisk quality gate fanger ugyldige tall og ødelagte anchors, men den kan ikke alene bevise at et kartpunkt faktisk er kontrollert. Index-parity er heller ikke nok: parity beviser bare at generert runtime-index speiler source, ikke at source-koordinaten er riktig.\n\n\`verified\` må derfor være strengere enn vanlig koordinatmetadata. En verified-koordinat skal ha kilde, dato, type og en meningsfull note som forklarer hva punktet markerer. Lavpresisjon, store radiusverdier og område-/linje-/historiske ankre må ikke kunne passere som stille kartpunkter.\n\n## Modus og scope\n\n- Modus: **${strictNew ? '--strict-new' : '--report-all'}**\n- Strict-new: **${strictNew ? 'true' : 'false'}**\n- Base for nye/endrede place-objekter: **${base ?? '(ingen git-base funnet)'}**\n- Base method: **${baseMethod}**\n- Aktive manifest-filer lest: **${filesRead.length}**\n- Place-objekter validert: **${placesValidated}**\n- Nye/endrede koordinatobjekter mot base: **${changedPlaces}**\n- Blokkerende feil i denne kjøringen: **${hardErrors.length}**\n- Backlog-funn: **${backlog.length}**\n- Rapport-warnings: **${warnings.length}**\n\n## Regler som håndheves\n\n1. Grunnfelt: aktive steder må ha \`lat\`, \`lon\`, \`r\`; lat/lon må være gyldige tall og \`r\` må være positiv.\n2. Koordinatmetadata: steder med lat/lon må ha \`coordType\`, \`coordStatus\` og \`coordNote\`.\n3. Verified: \`coordStatus=verified\` krever \`coordSource\`, \`coordVerifiedAt\`, \`coordNote\` og \`coordType\`; note må være meningsfull og dato må være \`YYYY-MM-DD\`.\n4. Lavpresisjon: koordinater med færre enn fire desimaler kan ikke være \`verified\` og må markeres med usikker status.\n5. Område-/linje-/historiske typer: område-, gate-, rute-, kai- og historiske ankre må forklare hva punktet markerer.\n6. Stor radius: \`r >= 300\` krever note, og vanlig \`site_center\` må ikke skjule et stort områdeanker uten forklaring.\n7. Coordinate Source Contract v1: nye/endrede \`verified\`-steder må ha locatorType, sourceProvider, sourceObjectId eller address, geocodeAccuracy, coordRole, coordType og coordNote. \`manual_map_check\` er kun QA-lag; \`legacy_unknown\` og lineære steder uten geometry/anchors/line_anchor kan ikke passere som verified.
+8. CI/intake: \`--strict-new\` gjør funn harde bare for nye eller endrede koordinatobjekter, slik at gammel backlog kan ryddes manuelt uten å stoppe alle PR-er.
+9. Basevalg: \`--strict-new\` bruker aldri \`HEAD\` som base. Basen velges eksplisitt i prioritert rekkefølge fra \`COORD_INTAKE_BASE\`, \`origin/\${GITHUB_BASE_REF}\`, \`git merge-base HEAD origin/main\`, \`origin/main\`, og til slutt \`main\`. Hvis ingen trygg base finnes, feiler strict-new tydelig i stedet for å behandle hele manifestet som endret.\n\n## Hva som fortsatt må løses manuelt for gamle steder\n\nGamle steder med manglende koordinatmetadata, avrundede koordinater, store områdeankre og historiske/semantiske punkter må gjennom manuell kart-QA. Backlog rapporteres fortsatt, men blokkerer ikke i \`--strict-new\` når place-objektet ikke er nytt eller endret mot valgt base. Denne PR-en flytter ingen koordinater og setter ingen gamle steder automatisk til verified.\n\n## Funn\n\n| nivå | endret | place id | name | fil | felt | problem | forslag til fix |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n${[...technicalErrors, ...hardErrors.filter((f) => !technicalErrors.includes(f)), ...warnings, ...backlog].slice(0, 500).map(row).join('\n') || '| ok | - | - | - | - | - | Ingen funn i denne modusen. | - |'}\n\n${findings.length > 500 ? `\n_Listen er avkortet til 500 av ${findings.length} funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._\n` : ''}`;
 fs.writeFileSync(reportPath, report);
 
 for (const f of hardErrors) console.error(`[${f.level}] ${f.file}#${f.id} (${f.name}) ${f.field}: ${f.problem} Fix: ${f.fix}`);
