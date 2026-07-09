@@ -18,6 +18,8 @@
     "tools:check": "npm run typecheck:tools && npm run build:tools && npm run places:index:check && npm run places:coords:quality && npm run places:coords:intake && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places && npm run audit:quiz-manifest:v2 && npm run audit:civication-place-mapping && npm run audit:civication-city-map-entries",
     "places:coords:audit": "npm run build:tools && node dist/tools/audit-place-coordinates.mjs",
     "places:coords:gate": "npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs",
+    "places:coords:intake": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new",
+    "places:coords:intake:report": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --report-all",
     "places:coords:check": "node tests/place-coordinate-index-parity.test.js",
     "places:coords:sync": "npm run places:index:build && npm run places:index:check",
     "places:coords:candidates": "npm run build:tools && node dist/tools/generate-place-coordinate-candidates.mjs",
@@ -83,9 +85,7 @@
     "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
     "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
     "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
-    "places:coords:quality": "npm run places:coords:audit && npm run places:coords:gate",
-    "places:coords:intake": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new",
-    "places:coords:intake:report": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --report-all"
+    "places:coords:quality": "npm run places:coords:audit && npm run places:coords:gate"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
