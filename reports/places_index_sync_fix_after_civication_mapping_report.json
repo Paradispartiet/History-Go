@@ -1,0 +1,37 @@
+{
+  "status": "applied",
+  "reason": "tools:check was blocked by remaining places_index sync mismatch after Civication mapping coordinate fix",
+  "sourceFailure": {
+    "command": "npm run tools:check",
+    "failureStage": "places:index:check",
+    "reportedMismatchArea": {
+      "index": 302,
+      "expected": "land_museum_dokka",
+      "actual": "kistefos_tresliperi_jevnaker"
+    }
+  },
+  "actions": [
+    "npm run places:index:build",
+    "npm run places:index:check",
+    "npm run audit:civication-place-mapping",
+    "npm run audit:quiz-manifest:v2"
+  ],
+  "placesIndexChanged": true,
+  "placeSourceDataChanged": false,
+  "civicationMappingChanged": false,
+  "quizDataChanged": false,
+  "quizManifestChanged": false,
+  "peopleDataChanged": false,
+  "auditScriptChanged": false,
+  "validation": {
+    "placesIndexCheckRan": true,
+    "placesIndexCheckStatus": "passed",
+    "civicationPlaceMappingAuditRan": true,
+    "civicationPlaceMappingAuditStatus": "passed",
+    "quizManifestV2AuditRan": true,
+    "quizManifestV2AuditStatus": "passed",
+    "toolsCheckRan": true,
+    "toolsCheckStatus": "passed"
+  },
+  "notes": []
+}
