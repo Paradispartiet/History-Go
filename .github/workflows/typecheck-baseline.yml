@@ -2,6 +2,17 @@ name: Typecheck baseline report
 
 on:
   pull_request:
+    paths:
+      - 'js/Civication/**'
+      - 'tests/**civication**'
+      - 'tests/civication/**'
+      - 'tools/typecheck-baseline-report.mts'
+      - 'tools/audit-civication-*.mts'
+      - 'scripts/**civication**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig*.json'
+      - '.github/workflows/typecheck-baseline.yml'
   workflow_dispatch:
 
 jobs:
