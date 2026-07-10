@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-08T07:07:25.743Z
+Generated: 2026-07-10T08:13:59.110Z
 
 ## Sammendrag
-- People-filer lest: **33**
-- People lest: **531**
+- People-filer lest: **213**
+- People lest: **714**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **531**
+- Duplikate interne place-referanser: **714**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -43,6 +43,11 @@ Generated: 2026-07-08T07:07:25.743Z
 - data/people/by/oslo/people_by_oslo.json :: kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade x2
 - data/people/by/oslo/people_by_oslo.json :: hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> stensparken x2
 - data/people/by/oslo/people_by_oslo.json :: halvor_c_reiersen (Halvor C. Reiersen) -> stensparken x2
+- data/people/popkultur/oslo/edderkoppen_scene/leif_juster.json :: leif_juster (Leif Juster) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/einar_schanke.json :: einar_schanke (Einar Schanke) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/lalla_carlsen.json :: lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/kari_diesen.json :: kari_diesen (Kari Diesen) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/ernst_diesen.json :: ernst_diesen (Ernst Diesen) -> edderkoppen_scene x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard x2
@@ -201,6 +206,125 @@ Generated: 2026-07-08T07:07:25.743Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json :: bjorn_bjornson (Bjørn Bjørnson) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json :: johanne_dybwad (Johanne Dybwad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/halfdan_christensen.json :: halfdan_christensen (Halfdan Christensen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ragna_wettergreen.json :: ragna_wettergreen (Ragna Wettergreen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/egil_eide.json :: egil_eide (Egil Næss Eide) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/august_oddvar.json :: august_oddvar (August Oddvar) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ingolf_schanche.json :: ingolf_schanche (Ingolf Schanche) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/hauk_aabel.json :: hauk_aabel (Hauk Aabel) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/harald_stormoen.json :: harald_stormoen (Harald Stormoen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/david_knudsen.json :: david_knudsen (David Knudsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gerd_grieg.json :: gerd_grieg (Gerd Grieg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/tore_segelcke.json :: tore_segelcke (Tore Segelcke) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/aase_bye.json :: aase_bye (Aase Bye) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gerda_ring.json :: gerda_ring (Gerda Ring) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json :: agnes_mowinckel (Agnes Mowinckel) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/per_aabel.json :: per_aabel (Per Aabel) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ella_hval.json :: ella_hval (Ella Hval) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json :: alfred_maurstad (Alfred Maurstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/olafr_havrevold.json :: olafr_havrevold (Olafr Havrevold) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/lillebil_ibsen.json :: lillebil_ibsen (Lillebil Ibsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/liv_dommersnes.json :: liv_dommersnes (Liv Dommersnes) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ingerid_vardund.json :: ingerid_vardund (Ingerid Vardund) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/toralv_maurstad.json :: toralv_maurstad (Toralv Maurstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/knut_wigert.json :: knut_wigert (Knut Wigert) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/henki_kolstad.json :: henki_kolstad (Henki Kolstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/rolf_soder.json :: rolf_soder (Rolf Søder) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/monna_tandberg.json :: monna_tandberg (Monna Tandberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/mona_hofland.json :: mona_hofland (Mona Hofland) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/espen_skjonberg.json :: espen_skjonberg (Espen Skjønberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anne_marit_jacobsen.json :: anne_marit_jacobsen (Anne Marit Jacobsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/sverre_anker_ousdal.json :: sverre_anker_ousdal (Sverre Anker Ousdal) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/nils_ole_oftebro.json :: nils_ole_oftebro (Nils Ole Oftebro) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/froydis_armand.json :: froydis_armand (Frøydis Armand) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/lise_fjeldstad.json :: lise_fjeldstad (Lise Fjeldstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gisken_armand.json :: gisken_armand (Gisken Armand) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/vilhelm_krag.json :: vilhelm_krag (Vilhelm Krag) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/einar_skavlan.json :: einar_skavlan (Einar Skavlan) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anton_ronneberg.json :: anton_ronneberg (Anton Rønneberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/johan_henrik_wiers_jenssen.json :: johan_henrik_wiers_jenssen (Johan Henrik Wiers-Jenssen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/axel_otto_normann.json :: axel_otto_normann (Axel Otto Normann) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gustav_berg_jaeger.json :: gustav_berg_jaeger (Gustav Berg-Jæger) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/knut_hergel.json :: knut_hergel (Knut Hergel) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json :: carl_fredrik_engelstad (Carl Fredrik Engelstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/erik_kristen_johanssen.json :: erik_kristen_johanssen (Erik Kristen-Johanssen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/arild_brinchmann.json :: arild_brinchmann (Arild Brinchmann) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/kjetil_bang_hansen.json :: kjetil_bang_hansen (Kjetil Bang-Hansen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ellen_horn.json :: ellen_horn (Ellen Horn) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ole_jorgen_nilsen.json :: ole_jorgen_nilsen (Ole-Jørgen Nilsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/sverre_rodahl.json :: sverre_rodahl (Sverre Rødahl) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/stein_winge.json :: stein_winge (Stein Winge) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/eirik_stubo.json :: eirik_stubo (Eirik Stubø) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/hanne_tomta.json :: hanne_tomta (Hanne Tømta) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/kristian_seltun.json :: kristian_seltun (Kristian Seltun) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/marit_moum_aune.json :: marit_moum_aune (Marit Moum Aune) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/henrik_ibsen.json :: henrik_ibsen_nationaltheatret (Henrik Ibsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bjornstjerne_bjornson.json :: bjornstjerne_bjornson_nationaltheatret (Bjørnstjerne Bjørnson) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ludvig_holberg.json :: ludvig_holberg (Ludvig Holberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gunnar_heiberg.json :: gunnar_heiberg (Gunnar Heiberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/sigurd_eldegard.json :: sigurd_eldegard_nationaltheatret (Sigurd Eldegard) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/lars_nordrum.json :: lars_nordrum (Lars Nordrum) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/kirsten_sorlie.json :: kirsten_sorlie (Kirsten Sørlie) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/edith_roger.json :: edith_roger (Edith Roger) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json :: bjorn_saether (Bjørn Sæther) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/janken_varden.json :: janken_varden (Janken Varden) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gustav_thomassen.json :: gustav_thomassen (Gustav Thomassen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/oliver_neerland.json :: oliver_neerland (Oliver Neerland) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/lubos_hruza.json :: lubos_hruza (Lubos Hruza) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/johan_halvorsen.json :: johan_halvorsen (Johan Halvorsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/charles_marowitz.json :: charles_marowitz (Charles Marowitz) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/sebastian_hartmann.json :: sebastian_hartmann (Sebastian Hartmann) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/thorbjorn_egner.json :: thorbjorn_egner (Thorbjørn Egner) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/sverre_brandt.json :: sverre_brandt (Sverre Brandt) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/marc_connelly.json :: marc_connelly (Marc Connelly) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/henrik_bull.json :: henrik_bull_nationaltheatret (Henrik Bull) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/jan_gunnar_roise.json :: jan_gunnar_roise (Jan Gunnar Røise) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/kare_conradi.json :: kare_conradi (Kåre Conradi) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/mariann_hole.json :: mariann_hole (Mariann Hole) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/thorbjorn_harr.json :: thorbjorn_harr (Thorbjørn Harr) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anders_mordal.json :: anders_mordal (Anders Mordal) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/mads_ousdal.json :: mads_ousdal (Mads Ousdal) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/andrine_saether.json :: andrine_saether (Andrine Sæther) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/laila_goody.json :: laila_goody (Laila Goody) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/petronella_barker.json :: petronella_barker (Petronella Barker) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/trond_espen_seim.json :: trond_espen_seim (Trond Espen Seim) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/andrea_braein_hovig.json :: andrea_braein_hovig (Andrea Bræin Hovig) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anneke_von_der_lippe.json :: anneke_von_der_lippe (Anneke von der Lippe) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anne_krigsvoll.json :: anne_krigsvoll (Anne Krigsvoll) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ingjerd_egeberg.json :: ingjerd_egeberg (Ingjerd Egeberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/kari_simonsen.json :: kari_simonsen (Kari Simonsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/nicolai_cleve_broch.json :: nicolai_cleve_broch (Nicolai Cleve Broch) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/fridtjov_saheim.json :: fridtjov_saheim (Fridtjov Såheim) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gard_b_eidsvold.json :: gard_b_eidsvold (Gard B. Eidsvold) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/kim_haugen.json :: kim_haugen (Kim Haugen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json :: bjorn_skagestad (Bjørn Skagestad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/henrik_mestad.json :: henrik_mestad (Henrik Mestad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/mari_maurstad.json :: mari_maurstad (Mari Maurstad) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/jan_gronli.json :: jan_gronli (Jan Grønli) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/oystein_roger.json :: oystein_roger (Øystein Røger) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/kjersti_elvik.json :: kjersti_elvik (Kjersti Elvik) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/anne_marie_ottersen.json :: anne_marie_ottersen (Anne Marie Ottersen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/svein_tindberg.json :: svein_tindberg_nationaltheatret (Svein Tindberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bjarte_hjelmeland.json :: bjarte_hjelmeland (Bjarte Hjelmeland) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/lasse_lindtner.json :: lasse_lindtner (Lasse Lindtner) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/geir_kvarme.json :: geir_kvarme (Geir Kvarme) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/ingar_helge_gimle.json :: ingar_helge_gimle (Ingar Helge Gimle) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/gorild_mauseth.json :: gorild_mauseth (Gørild Mauseth) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/jon_oigarden.json :: jon_oigarden (Jon Øigarden) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/trine_wiggen.json :: trine_wiggen (Trine Wiggen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/eindride_eidsvold.json :: eindride_eidsvold (Eindride Eidsvold) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/tone_danielsen.json :: tone_danielsen (Tone Danielsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/per_christian_ellefsen.json :: per_christian_ellefsen (Per Christian Ellefsen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/per_sunderland.json :: per_sunderland (Per Sunderland) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/knut_risan.json :: knut_risan (Knut Risan) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bente_borsum.json :: bente_borsum (Bente Børsum) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/bab_christensen.json :: bab_christensen (Bab Christensen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/urda_arneberg.json :: urda_arneberg (Urda Arneberg) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/pelle_christensen.json :: pelle_christensen (Pelle Christensen) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/svein_sturla_hungnes.json :: svein_sturla_hungnes (Svein Sturla Hungnes) -> nationaltheatret x2
+- data/people/litteratur/oslo/nationaltheatret/thea_stabell.json :: thea_stabell (Thea Stabell) -> nationaltheatret x2
 - data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: jose_saramago (José Saramago) -> lisbon_casa_dos_bicos x2
 - data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: fernando_pessoa (Fernando Pessoa) -> lisbon_casa_fernando_pessoa x2
 - data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: eca_de_queiros (Eça de Queirós) -> lisbon_livraria_bertrand x2
@@ -360,6 +484,48 @@ Generated: 2026-07-08T07:07:25.743Z
 - data/people/sport/oslo/people_sport_oslo.json :: petter_thoresen (Petter Thoresen) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: mathias_trygg (Mathias Trygg) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: einar_bruno_larsen (Einar Bruno Larsen) -> jordal_amfi x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: arne_haukvik (Arne Haukvik) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: martinus_lordahl (Martinus Lørdahl) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: knut_johannesen (Knut Johannesen) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: fred_anton_maier (Fred Anton Maier) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: sebastian_coe (Sebastian Coe) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch2.json :: ron_clarke (Ron Clarke) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch2.json :: steve_ovett (Steve Ovett) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch2.json :: kay_stenshjemmet (Kay Stenshjemmet) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch2.json :: sten_stensen (Sten Stensen) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch2.json :: tomas_gustafson (Tomas Gustafson) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch3.json :: steve_cram (Steve Cram) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch3.json :: said_aouita (Saïd Aouita) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch3.json :: meseret_defar (Meseret Defar) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch3.json :: tirunesh_dibaba (Tirunesh Dibaba) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch3.json :: eric_heiden (Eric Heiden) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch4.json :: jan_egil_storholt (Jan Egil Storholt) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch4.json :: yobes_ondieki (Yobes Ondieki) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch4.json :: william_sigei (William Sigei) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch4.json :: haile_gebrselassie (Haile Gebrselassie) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch4.json :: david_moorcroft (David Moorcroft) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch5.json :: usain_bolt (Usain Bolt) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch5.json :: michael_johnson (Michael Johnson) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch5.json :: david_rudisha (David Rudisha) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch5.json :: hicham_el_guerrouj (Hicham El Guerrouj) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch5.json :: yomif_kejelcha (Yomif Kejelcha) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch6.json :: rod_dixon (Rod Dixon) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch6.json :: hagos_gebrhiwet (Hagos Gebrhiwet) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch6.json :: erriyon_knighton (Erriyon Knighton) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch6.json :: ladji_doucoure (Ladji Doucouré) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch6.json :: mutaz_essa_barshim (Mutaz Essa Barshim) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch7.json :: marie_josee_ta_lou (Marie-Josée Ta Lou) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch7.json :: dafne_schippers (Dafne Schippers) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch7.json :: femke_bol (Femke Bol) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch7.json :: faith_cherotich (Faith Cherotich) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch7.json :: yelena_isinbayeva (Yelena Isinbayeva) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: roald_larsen (Roald Larsen) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: ivar_ballangrud (Ivar Ballangrud) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: per_ivar_moe (Per Ivar Moe) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: magne_thomassen (Magne Thomassen) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: roar_gronvold (Roar Grønvold) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo_urban_movement_batch1.json :: verdensparken_parkour_miljoet (Verdensparken parkour-miljøet) -> verdensparken_parkour x2
+- data/people/sport/oslo/people_sport_oslo_urban_movement_batch1.json :: furuset_aktivitetspark_miljoet (Furuset Aktivitetspark-miljøet) -> furuset_aktivitetspark x2
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: eusebio (Eusébio) -> lisbon_estadio_da_luz x2
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: jose_alvalade (José Alvalade) -> lisbon_estadio_jose_alvalade x2
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: mario_moniz_pereira (Mário Moniz Pereira) -> lisbon_estadio_universitario x2
@@ -400,6 +566,13 @@ Generated: 2026-07-08T07:07:25.743Z
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: kate_naess (Kate Næss) -> club_7_vika x2
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: sossen_krohg (Sossen Krohg) -> club_7_vika x2
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: attila_horvath (Attila Horvath) -> club_7_vika x2
+- data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json :: oslo_skatehall_miljoet (Oslo Skatehall-miljøet) -> oslo_skatehall x2
+- data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: sub_scene_miljoet (Sub Scene-miljøet) -> sub_scene x2
+- data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: mir_grunerlokka_lufthavn_miljoet (MIR / Grünerløkka Lufthavn-miljøet) -> mir_grunerlokka_lufthavn x2
+- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: hausmania_miljoet_concrete_anchor (Hausmania-miljøet) -> hausmania x2
+- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: blitzhuset_miljoet (Blitzhuset-miljøet) -> blitzhuset x2
+- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: xray_ungdomskulturhus_miljoet_concrete_anchor (X-Ray Ungdomskulturhus-miljøet) -> xray_ungdomskulturhus x2
+- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: torggata_blad_miljoet (Torggata Blad-miljøet) -> torggata_blad x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: dj_marfox (DJ Marfox) -> lisbon_bairro_alto x2
@@ -495,26 +668,60 @@ Generated: 2026-07-08T07:07:25.743Z
 - data/people/musikk/oslo/people_musikk_oslo.json :: arif (Arif) -> stovnertarnet x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: edvard_grieg (Edvard Grieg) -> operahuset x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: rikard_nordraak (Rikard Nordraak) -> var_frelsers_gravlund x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: hulda_garborg (Hulda Garborg) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: rasmus_rasmussen (Rasmus Rasmussen) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: edvard_drablos (Edvard Drabløs) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: agnes_mowinckel (Agnes Mowinckel) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch1.json :: lars_tvinde (Lars Tvinde) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: tormod_skagestad (Tormod Skagestad) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: egil_monn_iversen (Egil Monn-Iversen) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: svein_erik_brodal (Svein Erik Brodal) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: hans_jacob_nilsen (Hans Jacob Nilsen) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch2.json :: knut_hergel (Knut Hergel) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: otto_homlung (Otto Homlung) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: vidar_sandem (Vidar Sandem) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: erik_ulfsby (Erik Ulfsby) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: kjersti_horn (Kjersti Horn) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch3.json :: arne_lygre (Arne Lygre) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: sigurd_eldegard (Sigurd Eldegard) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: amund_rydland (Amund Rydland) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: ingjald_haaland (Ingjald Haaland) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: olav_hoprekstad (Olav Hoprekstad) -> det_norske_teatret x2
-- data/people/musikk/oslo/people_musikk_oslo_det_norske_teatret_batch4.json :: harald_saeverud (Harald Sæverud) -> det_norske_teatret x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: revolver_oslo_miljoet (Revolver-miljøet) -> revolver_oslo x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: the_villa_miljoet (The Villa-miljøet) -> the_villa x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: jaeger_oslo_miljoet (Jæger-miljøet) -> jaeger_oslo x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: bla_miljoet_concrete_anchor (Blå-miljøet) -> bla x2
+- data/people/musikk/oslo/det_norske_teatret/hulda_garborg.json :: hulda_garborg (Hulda Garborg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/rasmus_rasmussen.json :: rasmus_rasmussen (Rasmus Rasmussen) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/edvard_drablos.json :: edvard_drablos (Edvard Drabløs) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/agnes_mowinckel_det_norske_teatret.json :: agnes_mowinckel_det_norske_teatret (Agnes Mowinckel) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/lars_tvinde.json :: lars_tvinde (Lars Tvinde) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/tormod_skagestad.json :: tormod_skagestad (Tormod Skagestad) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/egil_monn_iversen.json :: egil_monn_iversen (Egil Monn-Iversen) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/svein_erik_brodal.json :: svein_erik_brodal (Svein Erik Brodal) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/hans_jacob_nilsen.json :: hans_jacob_nilsen (Hans Jacob Nilsen) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/knut_hergel_det_norske_teatret.json :: knut_hergel_det_norske_teatret (Knut Hergel) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/otto_homlung.json :: otto_homlung (Otto Homlung) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/vidar_sandem.json :: vidar_sandem (Vidar Sandem) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/erik_ulfsby.json :: erik_ulfsby (Erik Ulfsby) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/kjersti_horn.json :: kjersti_horn (Kjersti Horn) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/arne_lygre.json :: arne_lygre (Arne Lygre) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/sigurd_eldegard.json :: sigurd_eldegard (Sigurd Eldegard) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/amund_rydland.json :: amund_rydland (Amund Rydland) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/ingjald_haaland.json :: ingjald_haaland (Ingjald Haaland) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/olav_hoprekstad.json :: olav_hoprekstad (Olav Hoprekstad) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/harald_saeverud.json :: harald_saeverud (Harald Sæverud) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/nils_sletta.json :: nils_sletta (Nils Sletta) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/britt_langlie.json :: britt_langlie (Britt Langlie) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/svein_tindberg.json :: svein_tindberg (Svein Tindberg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/lasse_kolstad.json :: lasse_kolstad (Lasse Kolstad) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/ane_dahl_torp.json :: ane_dahl_torp (Ane Dahl Torp) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/henny_moan.json :: henny_moan (Henny Moan) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/ragnhild_hilt.json :: ragnhild_hilt (Ragnhild Hilt) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/jorunn_kjellsby.json :: jorunn_kjellsby (Jorunn Kjellsby) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/ragnhild_nygaard.json :: ragnhild_nygaard (Ragnhild Nygaard) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/ragnhild_hald.json :: ragnhild_hald (Ragnhild Hald) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/heidi_gjermundsen_broch.json :: heidi_gjermundsen_broch (Heidi Gjermundsen Broch) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/frank_kjosas.json :: frank_kjosas (Frank Kjosås) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/charlotte_frogner.json :: charlotte_frogner (Charlotte Frogner) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/morten_svartveit.json :: morten_svartveit (Morten Svartveit) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/bjorn_floberg.json :: bjorn_floberg (Bjørn Floberg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/mimmi_tamba.json :: mimmi_tamba (Mimmi Tamba) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/marie_blokhus.json :: marie_blokhus (Marie Blokhus) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/oddgeir_thune.json :: oddgeir_thune (Oddgeir Thune) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/gudrun_waadeland.json :: gudrun_waadeland (Gudrun Waadeland) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/sverre_solberg.json :: sverre_solberg (Sverre Solberg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/anton_heiberg.json :: anton_heiberg (Anton Heiberg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/ole_barman.json :: ole_barman (Ole Barman) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/nils_sletbak.json :: nils_sletbak (Nils Sletbak) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/cally_monrad.json :: cally_monrad (Cally Monrad) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/arne_garborg.json :: arne_garborg (Arne Garborg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/monna_tandberg_det_norske_teatret.json :: monna_tandberg_det_norske_teatret (Monna Tandberg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/tordis_maurstad.json :: tordis_maurstad (Tordis Maurstad) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/sossen_krohg_det_norske_teatret.json :: sossen_krohg_det_norske_teatret (Sossen Krohg) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/gisle_straume.json :: gisle_straume (Gisle Straume) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/alfred_maurstad_det_norske_teatret.json :: alfred_maurstad_det_norske_teatret (Alfred Maurstad) -> det_norske_teatret x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_severa (Maria Severa) -> lisbon_mouraria_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2
@@ -525,29 +732,5 @@ Generated: 2026-07-08T07:07:25.743Z
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: ana_moura (Ana Moura) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: antonio_zambujo (António Zambujo) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: misia (Mísia) -> lisbon_museu_do_fado x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: kristoffer_olsen (Kristoffer Olsen) -> latter x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: else_kass_furuseth (Else Kåss Furuseth) -> latter x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: bard_tufte_johansen (Bård Tufte Johansen) -> chateau_neuf x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: harald_eia (Harald Eia) -> chateau_neuf x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: oystein_wiik (Øystein Wiik) -> folketeateret x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: rein_alexander (Rein Alexander) -> folketeateret x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: herman_flesvig (Herman Flesvig) -> nrk_huset_marienlyst x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: morten_ramm (Morten Ramm) -> nrk_huset_marienlyst x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: astrid_s (Astrid S) -> sorenga x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: rolv_wesenlund (Rolv Wesenlund) -> nrk_huset_marienlyst x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: harald_heide_steen_jr (Harald Heide-Steen jr.) -> nrk_huset_marienlyst x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: aud_schonemann (Aud Schønemann) -> nrk_huset_marienlyst x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: wenche_foss (Wenche Foss) -> folketeateret x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: nils_vogt (Nils Vogt) -> nrk_huset_marienlyst x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: house_of_nerds_miljoet (House of Nerds-miljøet) -> house_of_nerds x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: colosseum_premierepublikummet (Colosseum-premierepublikummet) -> colosseum_kino x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: folketeateret_musikalmiljoet (Folketeateret-musikalmiljøet) -> folketeateret x2
-- data/people/popkultur/oslo/people_popkultur_oslo.json :: latter_standupmiljoet (Latter-standupmiljøet) -> latter x2
-- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
-- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: herman_jose (Herman José) -> lisbon_rtp x2
-- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: ricardo_araujo_pereira (Ricardo Araújo Pereira) -> lisbon_rtp x2
-- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: bruno_nogueira (Bruno Nogueira) -> lisbon_rtp x2
-- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: filomena_cautela (Filomena Cautela) -> lisbon_rtp x2
-- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: nuno_markl (Nuno Markl) -> lisbon_rtp x2
 
 ## Anbefalt neste ryddebatch

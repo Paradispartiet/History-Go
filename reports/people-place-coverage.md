@@ -1,102 +1,104 @@
 # People-place coverage audit
 
-Generert: 2026-07-08T07:07:26.020Z
+Generert: 2026-07-10T08:13:59.371Z
 
 ## Sammendrag
 
-- People totalt: **531**
-- Places totalt: **1051**
-- Places med people: **227**
-- Places uten people: **824**
-- People-place-lenker: **792**
-- People koblet til flere gyldige steder: **192**
-- People uten gyldig sted: **0**
-- Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **531**
-- People uten image: **182**
-- People uten cardImage: **183**
-- People uten popupDesc: **26**
+- People totalt: **714**
+- Places totalt: **1090**
+- Places med people: **231**
+- Places uten people: **859**
+- People-place-lenker: **970**
+- People koblet til flere gyldige steder: **193**
+- People uten gyldig sted: **5**
+- Ugyldige place-referanser: **5**
+- Duplikate place-referanser inne på people: **714**
+- People uten image: **373**
+- People uten cardImage: **374**
+- People uten popupDesc: **24**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 92 | 29 | 63 | 117 | 90 |
-| film_tv | 8 | 8 | 0 | 46 | 24 |
-| historie | 597 | 57 | 540 | 192 | 104 |
-| kunst | 18 | 9 | 9 | 21 | 19 |
-| litteratur | 31 | 21 | 10 | 50 | 45 |
-| media | 11 | 8 | 3 | 38 | 37 |
-| musikk | 13 | 10 | 3 | 47 | 38 |
-| naeringsliv | 55 | 27 | 28 | 55 | 53 |
-| natur | 63 | 5 | 58 | 13 | 13 |
-| politikk | 17 | 7 | 10 | 74 | 61 |
-| populaerkultur | 18 | 5 | 13 | 11 | 11 |
+| by | 167 | 29 | 138 | 116 | 89 |
+| film_tv | 8 | 8 | 0 | 45 | 23 |
+| historie | 482 | 57 | 425 | 192 | 104 |
+| kunst | 21 | 9 | 12 | 21 | 19 |
+| litteratur | 37 | 21 | 16 | 171 | 166 |
+| media | 11 | 8 | 3 | 27 | 26 |
+| musikk | 17 | 14 | 3 | 81 | 73 |
+| naeringsliv | 104 | 27 | 77 | 55 | 53 |
+| natur | 69 | 5 | 64 | 13 | 13 |
+| politikk | 19 | 7 | 12 | 74 | 61 |
+| populaerkultur | 18 | 0 | 18 | 0 | 0 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 64 | 13 | 51 | 46 | 38 |
-| subkultur | 34 | 17 | 17 | 29 | 24 |
-| vitenskap | 29 | 11 | 18 | 53 | 43 |
+| sport | 67 | 15 | 52 | 88 | 80 |
+| subkultur | 35 | 20 | 15 | 34 | 31 |
+| vitenskap | 34 | 11 | 23 | 53 | 43 |
 
 ## People tags
 
+- teater: 177
+- scenekunst: 170
+- litteratur: 166
+- skuespiller: 119
 - historie: 112
-- musikk: 50
-- litteratur: 46
-- subkultur: 45
+- musikk: 85
+- sport: 81
+- subkultur: 56
+- regissor: 51
 - politikk: 44
+- ibsen: 43
+- teatersjef: 43
+- ensemble: 40
 - naeringsliv: 40
 - norge_for_1500: 40
-- sport: 39
+- film: 37
 - vitenskap: 34
+- friidrett: 28
+- kunst: 28
+- bislett_games: 27
 - media: 27
 - by: 26
-- kunst: 26
-- film: 24
+- arkitektur: 23
 - film_tv: 23
-- arkitektur: 22
 - natur: 22
-- populaerkultur: 22
-- regissor: 22
-- teater: 22
-- scene: 19
-- scenekunst: 19
-- tv: 18
+- torshovteatret: 20
 - filantrop: 17
+- tv: 17
+- klassikerrepertoar: 16
+- verdensrekord: 16
+- etterkrigstid: 15
 - filmhistorie: 15
+- institusjonsledelse: 15
+- moderne_ensemble: 15
+- sanger: 15
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
+- bislett: 13
 - modernisme: 13
-- teatersjef: 13
-- humor: 12
+- nynorsk: 13
+- skoyter: 13
 - borgerkrigstiden: 11
 - cinematek: 11
+- heddaprisen: 11
+- instruktor: 11
 - krig: 11
-- sanger: 11
+- langdistanse: 11
+- musikkteater: 11
 - avis: 10
-- fado: 10
-- fotball: 10
-- musikkhistorie: 10
-- presse: 10
-- redaksjon: 10
-- norsk_film: 9
-- programleder: 9
-- skuespiller: 9
-- kringkasting: 8
-- nynorsk: 8
-- radio: 8
-- vikingtid: 8
-- arbeiderbevegelse: 7
-- byutvikling: 7
-- kristning: 7
 
 ## Steder med flest people
 
+- nationaltheatret (Nationaltheatret) – 123
+- det_norske_teatret (Det Norske Teatret) – 50
+- bislett_stadion (Bislett Stadion) – 49
 - stortinget (Stortinget) – 29
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
 - akerhus_slott (Akerhus Slott) – 20
-- det_norske_teatret (Det Norske Teatret) – 20
 - universitetsplassen (Universitetsplassen) – 19
 - youngstorget (Youngstorget) – 17
 - oslo_domkirke (Oslo domkirke) – 15
@@ -106,21 +108,23 @@ Generert: 2026-07-08T07:07:26.020Z
 - karl_johan (Karl Johans gate) – 13
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 13
 - nidaros_erkebispegarden (Erkebispegården i Nidaros) – 13
-- lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 12
 - torggata (Torggata) – 12
-- nrk_huset_marienlyst (NRK-huset på Marienlyst) – 11
 - cinemateket_oslo (Cinemateket i Oslo) – 10
 - kristkirken_bergenhus (Kristkirken på Bergenhus) – 10
-- lisbon_museu_do_fado (Museu do Fado) – 10
-- bislett_stadion (Bislett Stadion) – 9
+- lisbon_museu_do_fado (Museu do Fado) – 9
 - ullevaal_stadion (Ullevaal Stadion) – 9
 - eidsvolls_plass (Eidsvolls plass) – 8
 - tjuvholmen (Tjuvholmen) – 8
+- lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 7
 - nasjonalmuseet (Nasjonalmuseet) – 7
 
 ## Ugyldige place-referanser
 
-- Ingen ugyldige place-referanser funnet.
+- leif_juster (Leif Juster) -> edderkoppen_scene
+- einar_schanke (Einar Schanke) -> edderkoppen_scene
+- lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene
+- kari_diesen (Kari Diesen) -> edderkoppen_scene
+- ernst_diesen (Ernst Diesen) -> edderkoppen_scene
 
 ## Duplikate place-referanser inne på people
 
@@ -149,6 +153,11 @@ Generert: 2026-07-08T07:07:26.020Z
 - kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade
 - hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> stensparken
 - halvor_c_reiersen (Halvor C. Reiersen) -> stensparken
+- leif_juster (Leif Juster) -> edderkoppen_scene
+- einar_schanke (Einar Schanke) -> edderkoppen_scene
+- lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene
+- kari_diesen (Kari Diesen) -> edderkoppen_scene
+- ernst_diesen (Ernst Diesen) -> edderkoppen_scene
 - halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen
 - haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard
 - sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard
@@ -219,12 +228,7 @@ Generert: 2026-07-08T07:07:26.020Z
 - christian_magnus_falsen (Christian Magnus Falsen) -> eidsvollsbygningen
 - wilhelm_f_k_christie (Wilhelm Frimann Koren Christie) -> eidsvollsbygningen
 - carsten_anker (Carsten Anker) -> eidsvollsbygningen
-- peder_anker (Peder Anker) -> bogstad_gard
-- birger_eriksen (Birger Eriksen) -> oscarsborg_festning
-- marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
-- martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
-- cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 431 flere
+- ... 614 flere
 
 ## Anbefalt første people-batch
 
