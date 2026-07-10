@@ -2,9 +2,40 @@ name: TypeScript guard
 
 on:
   pull_request:
+    paths:
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.mts'
+      - '**/*.cts'
+      - '**/*.js'
+      - '**/*.mjs'
+      - '**/*.cjs'
+      - 'js/**'
+      - 'scripts/**'
+      - 'tools/**'
+      - 'types/**'
+      - 'tsconfig*.json'
+      - 'package.json'
+      - 'package-lock.json'
   push:
     branches:
       - main
+    paths:
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.mts'
+      - '**/*.cts'
+      - '**/*.js'
+      - '**/*.mjs'
+      - '**/*.cjs'
+      - 'js/**'
+      - 'scripts/**'
+      - 'tools/**'
+      - 'types/**'
+      - 'tsconfig*.json'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
 
 jobs:
   typecheck-build:
