@@ -17,7 +17,6 @@ on:
       - 'tsconfig*.json'
       - 'package.json'
       - 'package-lock.json'
-      - '.github/workflows/typescript-guard.yml'
   push:
     branches:
       - main
@@ -36,7 +35,7 @@ on:
       - 'tsconfig*.json'
       - 'package.json'
       - 'package-lock.json'
-      - '.github/workflows/typescript-guard.yml'
+  workflow_dispatch:
 
 jobs:
   typecheck-build:
