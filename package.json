@@ -87,7 +87,12 @@
     "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",
     "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
     "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
-    "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs"
+    "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
+    "people:images:candidates": "npm run build:tools && node dist/tools/people-image-pipeline.mjs candidates",
+    "people:images:apply": "npm run build:tools && node dist/tools/people-image-pipeline.mjs apply",
+    "people:images:apply:write": "npm run build:tools && node dist/tools/people-image-pipeline.mjs apply --write",
+    "people:images:audit": "npm run build:tools && node dist/tools/people-image-pipeline.mjs audit",
+    "test:people-images": "npm run build:tools && node tests/people-images.test.mjs"
   },
   "dependencies": {
     "@types/node": "^20.19.25",
