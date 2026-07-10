@@ -1,22 +1,22 @@
 {
   "placeId": "havnelageret",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_address_source",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.90845,
-    "lon": 10.74305,
-    "r": 160,
-    "coordStatus": "needs_source",
-    "coordSource": "legacy_manual_map_check",
-    "coordType": "site_center",
-    "coordNote": "Bygganker for selve Oslo Havnelager-bygget på Langkaia 1; punktet er lagt på bygningskroppen, ikke generelt havneområde eller kai/vannflate. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+    "lat": 59.90760281927637,
+    "lon": 10.746880614147818,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Langkaia 1, Oslo. Punktet er representasjonspunktet for adressen til Oslo Havnelager / Havnelageret og brukes som display-marker for bygget, ikke som kai-, vei-, vannflate- eller generelt havneområdeanker."
   },
   "identity": {
     "currentName": "Oslo Havnelager",
-    "resolvedIdentity": null,
-    "identityStatus": "unresolved",
-    "identityProblem": "Eksisterende koordinat er ikke kildefestet med strukturert adresse eller kartobjekt.",
+    "resolvedIdentity": "Oslo Havnelager / Havnelageret, Langkaia 1, Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
     "splitReason": ""
@@ -25,20 +25,73 @@
     "official_address eller official_map",
     "sourceObjectId eller strukturert address",
     "geocodeAccuracy rooftop/entrance/building/parcel",
-    "coordRole building_center eller entrance"
+    "coordRole building_center, entrance eller display_marker med tydelig coordNote"
   ],
-  "evidence": [],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Langkaia%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+      "sourceQuality": "official_primary_address",
+      "finding": "Geonorge returnerer ett treff for Langkaia 1, OSLO, kommunenummer 0301, adressekode 14150, nummer 1, postnummer 0150, med representasjonspunkt EPSG:4258 lat 59.90760281927637 lon 10.746880614147818.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekilde gir strukturert adresse og representasjonspunkt for Langkaia 1."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Langkaia%201%20Oslo",
+      "address": {
+        "street": "Langkaia",
+        "number": "1",
+        "postcode": "0150",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "municipalityNumber": "0301",
+      "municipalityName": "OSLO",
+      "addressCode": "14150",
+      "geocodeAccuracy": "rooftop",
+      "canVerify": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Langkaia%201%20Oslo",
+      "objectType": "official_address_point",
+      "address": "Langkaia 1, 0150 Oslo, NO",
+      "whyRepresentative": "Geonorge-representasjonspunktet er knyttet til den offisielle adressen Langkaia 1, som brukes for Oslo Havnelager / Havnelageret."
+    }
+  ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90760281927637,
+      "lon": 10.746880614147818,
+      "r": 60,
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+      "geocodeAccuracy": "rooftop",
+      "coordRole": "display_marker",
+      "coordType": "address_point",
+      "canApplyToPlace": true,
+      "reason": "Punktet er offisielt representasjonspunkt for adressen Langkaia 1 og brukes som display-marker for bygget, ikke som bygningsmidtpunkt."
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Mangler primær adresse-/kartobjektkilde. Eksisterende manual_map_check er ikke nok.",
-    "nextAction": "Finn offisiell adresse eller kartobjekt for Oslo Havnelager før koordinat kan endres eller verifiseres."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Place er oppdatert fra Geonorge Adresser API v1 og kan stå som verified etter Coordinate Source Contract v1."
   },
   "notes": [
-    "Ikke flytt koordinaten før adresse-/kartobjektkilde er dokumentert.",
-    "Dette skal behandles som building/current_place, ikke generelt havneområde."
+    "Wikipedia/Wikidata kan brukes som research-spor for navne-/adressehint, men er ikke brukt som primærkilde.",
+    "Geonorge Adresser API v1 er brukt som offisiell adressekilde for Langkaia 1, Oslo.",
+    "Koordinaten representerer offisielt adresserepresentasjonspunkt og er derfor satt som display_marker/address_point, ikke building_center."
   ]
 }
