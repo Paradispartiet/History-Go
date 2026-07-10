@@ -543,3 +543,18 @@ fs.writeFileSync(reportJsonPath, `${JSON.stringify(report, null, 2)}\n`);
 fs.writeFileSync(reportMdPath, renderMd(report));
 console.log(`Wrote ${repoPath(reportJsonPath)} and ${repoPath(reportMdPath)}`);
 console.log(`People: ${report.summary.totalPeople}; flat files: ${report.summary.flatPeopleFiles}; geographic files: ${report.summary.geographicPeopleFiles}; invalid refs: ${report.summary.invalidPlaceRefs}; duplicate IDs: ${report.summary.duplicatePeopleIds}`);
+
+const gateFailures = [
+  ['duplicatePeopleIds', report.summary.duplicatePeopleIds],
+  ['invalidPlaceRefs', report.summary.invalidPlaceRefs],
+  ['peopleWithoutValidPrimaryAnchor', report.summary.peopleWithoutValidPrimaryAnchor],
+  ['peopleWithEmptyPlacesArray', report.summary.peopleWithEmptyPlacesArray],
+].filter(([, count]) => Number(count) > 0);
+
+if (gateFailures.length) {
+  console.error('People of Places audit gate failed:');
+  for (const [field, count] of gateFailures) console.error(`- ${field}: ${count}`);
+  process.exitCode = 1;
+} else {
+  console.log('People of Places audit gate passed');
+}

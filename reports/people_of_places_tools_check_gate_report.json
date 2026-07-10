@@ -1,0 +1,36 @@
+{
+  "status": "applied",
+  "change": "Added People of Places audit to tools:check",
+  "scriptsAddedOrChanged": [
+    "audit:people-of-places",
+    "tools:check"
+  ],
+  "packageJsonChanged": true,
+  "peopleDataChanged": false,
+  "placeDataChanged": false,
+  "quizDataChanged": false,
+  "civicationMappingChanged": false,
+  "placesIndexChanged": false,
+  "auditScriptsChanged": true,
+  "peopleAuditSummary": {
+    "totalPeople": 714,
+    "uniquePeopleIds": 714,
+    "duplicatePeopleIds": 0,
+    "invalidPlaceRefs": 0,
+    "peopleWithoutValidPrimaryAnchor": 0,
+    "peopleWithEmptyPlacesArray": 0,
+    "flatPeopleFiles": 0,
+    "geographicPeopleFiles": 213,
+    "categoriesRepresented": 15
+  },
+  "validation": {
+    "peopleAuditRan": true,
+    "peopleAuditStatus": "passed",
+    "toolsCheckRan": true,
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "npm run tools:check failed before the People of Places gate during places:coords:intake with: No safe git base found for coordinate intake strict-new.",
+    "Current People of Places audit summary differs from the task background: reports/people-of-places-status.json generated totalPeople=714 and geographicPeopleFiles=213 in this checkout. No people data was changed."
+  ]
+}
