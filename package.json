@@ -24,6 +24,7 @@
     "places:coords:intake:report": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --report-all",
     "places:coords:check": "node tests/place-coordinate-index-parity.test.js",
     "places:coords:sync": "npm run places:index:build && npm run places:index:check",
+    "places:coords:find:address": "npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs",
     "places:coords:candidates": "npm run build:tools && node dist/tools/generate-place-coordinate-candidates.mjs",
     "places:coords:candidates:by-oslo": "npm run build:tools && node dist/tools/generate-place-coordinate-candidates.mjs --file data/places/by/oslo/places_by.json",
     "places:coords:candidates:all": "npm run build:tools && node dist/tools/generate-place-coordinate-candidates.mjs --all-active",
@@ -86,15 +87,14 @@
     "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",
     "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
     "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
-    "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
-    "places:coords:quality": "npm run places:coords:audit && npm run places:coords:gate"
+    "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs"
+  },
+  "dependencies": {
+    "@types/node": "^20.19.25",
+    "typescript": "latest",
+    "three": "latest"
   },
   "devDependencies": {
-    "@types/node": "^22.19.19",
-    "esbuild": "^0.28.1",
-    "jsdom": "^29.1.1",
-    "playwright": "^1.61.1",
-    "three": "0.160.0",
-    "typescript": "^5.9.0"
+    "vite": "latest"
   }
 }
