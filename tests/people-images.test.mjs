@@ -70,3 +70,68 @@ for (const bad of [
   });
 }
 console.log('people image pipeline tests passed');
+
+{
+  const { fetchJsonWithRetry, buildCandidates } = await import('../dist/tools/people-image-pipeline.mjs');
+  const delays = [];
+  let calls = 0;
+  const ok = await fetchJsonWithRetry('https://www.wikidata.org/test', async (url, init) => {
+    calls++;
+    assert.equal(init.headers['User-Agent'].startsWith('History-Go people-image-rights-pipeline/'), true);
+    return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { 'content-type': 'application/json' } });
+  }, {}, { sleepMs: async ms => delays.push(ms) });
+  assert.deepEqual(ok, { ok: true });
+  assert.equal(calls, 1);
+
+  calls = 0;
+  const retried = await fetchJsonWithRetry('https://www.wikidata.org/retry', async () => {
+    calls++;
+    if (calls === 1) return new Response('{}', { status: 503 });
+    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+  }, {}, { sleepMs: async ms => delays.push(ms) });
+  assert.deepEqual(retried, { ok: true });
+  assert.equal(calls, 2);
+
+  calls = 0;
+  await assert.rejects(() => fetchJsonWithRetry('https://commons.wikimedia.org/fail', async () => {
+    calls++;
+    return new Response('{}', { status: 503 });
+  }, {}, { sleepMs: async ms => delays.push(ms) }), /after 3 attempts/);
+  assert.equal(calls, 3);
+
+  calls = 0;
+  await assert.rejects(() => fetchJsonWithRetry('https://commons.wikimedia.org/timeout', async (_url, init) => {
+    calls++;
+    await new Promise((resolve, reject) => {
+      init.signal.addEventListener('abort', () => reject(init.signal.reason));
+    });
+    return new Response('{}');
+  }, {}, { timeoutMs: 1, sleepMs: async ms => delays.push(ms) }), /timed out|after 3 attempts/);
+  assert.equal(calls, 3);
+
+  delays.length = 0;
+  calls = 0;
+  await fetchJsonWithRetry('https://www.wikidata.org/rate-limit', async () => {
+    calls++;
+    if (calls === 1) return new Response('{}', { status: 429, headers: { 'retry-after': '2' } });
+    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+  }, {}, { sleepMs: async ms => delays.push(ms) });
+  assert.equal(delays[0], 2000);
+
+  const dir = await fixture();
+  await withCwd(dir, async()=>{
+    await writeFile('data/people/folder/array.json', JSON.stringify({people:[{id:'ada',name:'Ada'},{id:'grace',name:'Grace'}]}, null, 2));
+    const callsByName = [];
+    await buildCandidates(['--ids=ada,grace','--limit=10'], async (url) => {
+      const u = String(url);
+      if (u.includes('search=Ada')) { callsByName.push('ada'); throw new Error('temporary lookup failure'); }
+      if (u.includes('search=Grace')) return new Response(JSON.stringify({ search: [{ id: 'Q2' }] }));
+      if (u.includes('Q2.json')) return new Response(JSON.stringify({ entities: { Q2: { claims: { P18: [{ mainsnak: { datavalue: { value: 'Grace.jpg' } } }] } } } }));
+      if (u.includes('commons.wikimedia.org')) return new Response(JSON.stringify({ query: { pages: { 1: { imageinfo: [{ url:'https://upload.wikimedia.org/wikipedia/commons/g/grace.jpg', width:10, height:10, extmetadata: { LicenseShortName:{value:'CC BY-SA 4.0'}, LicenseUrl:{value:'https://creativecommons.org/licenses/by-sa/4.0/'}, Artist:{value:'Artist'}, Credit:{value:'Credit'} } }] } } } }));
+      throw new Error(`unexpected url ${u}`);
+    });
+    const out = JSON.parse(await readFile('data/people/people_image_candidates.json','utf8'));
+    assert.equal(out.length, 1);
+    assert.equal(out[0].personId, 'grace');
+  });
+}

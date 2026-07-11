@@ -16,6 +16,10 @@ type Entry = { file: string; abs: string; index: number | null; person: Person; 
 type Candidate = { personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number };
 
 type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
+export type LookupError = { personId: string; personName: string; message: string };
+const RETRY_STATUSES = new Set([429, 500, 502, 503, 504]);
+const DEFAULT_TIMEOUT_MS = 15_000;
+const MAX_FETCH_ATTEMPTS = 3;
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 const reqStr = (v: unknown) => typeof v === 'string' && v.trim() ? v.trim() : '';
@@ -60,20 +64,57 @@ export async function loadPeople(): Promise<Entry[]> {
   return out;
 }
 
+
+function retryAfterMs(value: string | null): number | null {
+  if (!value) return null;
+  const seconds = Number(value);
+  if (Number.isFinite(seconds) && seconds >= 0) return Math.min(seconds * 1000, 30_000);
+  const date = Date.parse(value);
+  if (Number.isFinite(date)) return Math.min(Math.max(date - Date.now(), 0), 30_000);
+  return null;
+}
+function mergeHeaders(init?: RequestInit): HeadersInit {
+  return { ...(init?.headers as Record<string, string> | undefined), 'User-Agent': UA, Accept: 'application/json' };
+}
+export async function fetchJsonWithRetry(url: string, fetcher: Fetcher = fetch, init: RequestInit = {}, options: { timeoutMs?: number; sleepMs?: (ms: number) => Promise<void> } = {}): Promise<any> {
+  const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
+  const sleeper = options.sleepMs ?? sleep;
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(new Error(`Request timed out after ${timeoutMs}ms`)), timeoutMs);
+    try {
+      const res = await fetcher(url, { ...init, headers: mergeHeaders(init), signal: controller.signal });
+      if (res.ok) return await res.json();
+      const retryable = RETRY_STATUSES.has(res.status);
+      if (!retryable || attempt === MAX_FETCH_ATTEMPTS) throw new Error(`HTTP ${res.status} from ${new URL(url).hostname}`);
+      const delay = retryAfterMs(res.headers.get('retry-after')) ?? Math.min(500 * 2 ** (attempt - 1), 5_000);
+      await sleeper(delay);
+    } catch (err) {
+      lastError = err;
+      if (attempt === MAX_FETCH_ATTEMPTS) break;
+      await sleeper(Math.min(500 * 2 ** (attempt - 1), 5_000));
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  const msg = lastError instanceof Error ? lastError.message : String(lastError);
+  throw new Error(`Fetch failed after ${MAX_FETCH_ATTEMPTS} attempts: ${msg}`);
+}
 async function wikidataSearch(name: string, fetcher: Fetcher): Promise<string> {
   const url = `https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&limit=1&search=${encodeURIComponent(name)}`;
-  const j: any = await (await fetcher(url, { headers: { 'User-Agent': UA } })).json();
+  const j: any = await fetchJsonWithRetry(url, fetcher);
   return j.search?.[0]?.id || '';
 }
 async function wikidataP18(qid: string, fetcher: Fetcher): Promise<string> {
   const url = `https://www.wikidata.org/wiki/Special:EntityData/${encodeURIComponent(qid)}.json`;
-  const j: any = await (await fetcher(url, { headers: { 'User-Agent': UA } })).json();
+  const j: any = await fetchJsonWithRetry(url, fetcher);
   return j.entities?.[qid]?.claims?.P18?.[0]?.mainsnak?.datavalue?.value || '';
 }
 async function commonsMeta(file: string, fetcher: Fetcher): Promise<any> {
   const title = file.startsWith('File:') ? file : `File:${file}`;
   const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url|mime|size|extmetadata&titles=${encodeURIComponent(title)}`;
-  const j: any = await (await fetcher(url, { headers: { 'User-Agent': UA } })).json();
+  const j: any = await fetchJsonWithRetry(url, fetcher);
   const page = Object.values(j.query?.pages || {})[0] as any; return page?.imageinfo?.[0];
 }
 function cleanHtml(s: unknown): string { return reqStr(s).replace(/<[^>]*>/g, '').replace(/&quot;/g, '"').replace(/&amp;/g, '&'); }
@@ -88,10 +129,10 @@ export async function buildCandidates(args: string[], fetcher: Fetcher = fetch):
   const limit = Number((args.find(a => a.startsWith('--limit=')) || '--limit=25').split('=')[1]); const idsArg = args.find(a => a.startsWith('--ids=')); const ids = idsArg ? new Set(idsArg.split('=')[1].split(',').filter(Boolean)) : null; const include = args.includes('--include-existing');
   const entries = (await loadPeople()).filter(e => reqStr(e.person.id) && reqStr(e.person.name) && (include || !reqStr(e.person.image)) && (!ids || ids.has(reqStr(e.person.id))));
   const candidates: Candidate[] = [];
-  const maxAttempts = Math.min(entries.length, Math.max(limit * 20, limit));
-  let consecutiveFailures = 0;
-  for (const e of entries.slice(0, maxAttempts)) { if (candidates.length >= limit) break; try { const qid = reqStr(e.person.wikidataId) || await wikidataSearch(reqStr(e.person.name), fetcher); if (!qid) continue; await sleep(120); const file = await wikidataP18(qid, fetcher); if (!file) continue; await sleep(120); const meta = await commonsMeta(file, fetcher); const c = candidateFromMeta(e, qid, file, meta); if (c) candidates.push(c); consecutiveFailures = 0; } catch (err) { consecutiveFailures++; console.warn(`Skipping ${e.person.id}: ${(err as Error).message}`); if (consecutiveFailures >= 10) { console.warn('Stopping candidate fetch after 10 consecutive failures; check network access.'); break; } } }
-  await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates to ${path.relative(ROOT(), CANDIDATES())}`);
+  const lookupErrors: LookupError[] = [];
+  const maxAttempts = ids ? entries.length : Math.min(entries.length, Math.max(limit * 20, limit));
+  for (const e of entries.slice(0, maxAttempts)) { if (candidates.length >= limit) break; try { const qid = reqStr(e.person.wikidataId) || await wikidataSearch(reqStr(e.person.name), fetcher); if (!qid) continue; await sleep(120); const file = await wikidataP18(qid, fetcher); if (!file) continue; await sleep(120); const meta = await commonsMeta(file, fetcher); const c = candidateFromMeta(e, qid, file, meta); if (c) candidates.push(c); } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
+  await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates to ${path.relative(ROOT(), CANDIDATES())}`); console.log(`Lookup errors: ${lookupErrors.length}`); if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
 }
 function validateCandidate(c: any): asserts c is Candidate {
   for (const k of ['personId','personName','sourceFile','wikidataId','commonsFileName','originalImageUrl','commonsPage','creator','credit','license','licenseUrl']) if (!reqStr(c[k])) throw new Error(`Candidate missing ${k}`);
