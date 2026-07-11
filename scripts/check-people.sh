@@ -43,14 +43,20 @@ for (const file of files) {
   const data = readJson(file);
   if (!peopleFiles.includes(file)) continue;
 
-  if (!Array.isArray(data)) {
-    console.error(`People file must contain an array: ${file}`);
+  const entries = Array.isArray(data)
+    ? data
+    : data && typeof data === 'object'
+      ? [data]
+      : null;
+
+  if (!entries) {
+    console.error(`People file must contain an object or array: ${file}`);
     process.exit(1);
   }
 
-  for (const [index, entry] of data.entries()) {
+  for (const [index, entry] of entries.entries()) {
     peopleCount += 1;
-    if (!entry || typeof entry !== 'object') {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
       console.error(`Invalid people entry at ${file}[${index}]`);
       process.exit(1);
     }
