@@ -1,0 +1,421 @@
+name: Build people image candidates
+
+on:
+  workflow_dispatch:
+    inputs:
+      people_ids:
+        description: "Comma-separated History Go people IDs"
+        required: true
+        type: string
+        default: "leif_juster,einar_schanke,lalla_carlsen,kari_diesen,ernst_diesen,per_kvist,arvid_nilssen,willie_hoel,dan_fosse,rolv_wesenlund"
+      limit:
+        description: "Maximum number of people to process"
+        required: true
+        type: string
+        default: "10"
+      open_draft_pr:
+        description: "Commit valid candidate output to an automation branch and open a draft PR"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: people-image-candidates
+  cancel-in-progress: false
+
+env:
+  REPORT_DIR: reports/people-image-candidates-action
+  CANDIDATE_FILE: data/people/people_image_candidates.json
+
+jobs:
+  build:
+    name: Build validated people image candidates
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Check DNS and network access
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          node - <<'NODE' \
+            2>&1 | tee "$REPORT_DIR/network-check.txt"
+          const dns = require("node:dns/promises");
+          const hosts = [
+            "registry.npmjs.org",
+            "www.wikidata.org",
+            "commons.wikimedia.org",
+            "upload.wikimedia.org"
+          ];
+          (async () => {
+            let failed = false;
+            for (const host of hosts) {
+              try {
+                const result = await dns.lookup(host);
+                console.log("DNS OK", host, result.address);
+              } catch (error) {
+                failed = true;
+                console.error("DNS FAILED", host, error);
+              }
+            }
+            const urls = [
+              "https://registry.npmjs.org/typescript",
+              "https://www.wikidata.org/w/api.php?action=query&format=json&meta=siteinfo",
+              "https://commons.wikimedia.org/w/api.php?action=query&format=json&meta=siteinfo"
+            ];
+            for (const url of urls) {
+              try {
+                const response = await fetch(url, {
+                  signal: AbortSignal.timeout(15000),
+                  headers: {
+                    "User-Agent": "HistoryGoPeopleImageWorkflow/1.0 (https://github.com/Paradispartiet/History-Go)"
+                  }
+                });
+                console.log("HTTP", response.status, response.ok, url);
+                if (!response.ok) failed = true;
+              } catch (error) {
+                failed = true;
+                console.error("HTTP FAILED", url, error);
+              }
+            }
+            if (failed) process.exit(1);
+          })();
+          NODE
+
+      - name: Install and validate toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          npm ci \
+            2>&1 | tee "$REPORT_DIR/npm-ci.txt"
+          npm run typecheck:tools \
+            2>&1 | tee "$REPORT_DIR/typecheck-tools.txt"
+          npm run build:tools \
+            2>&1 | tee "$REPORT_DIR/build-tools.txt"
+          npm run test:people-images \
+            2>&1 | tee "$REPORT_DIR/tests.txt"
+
+      - name: Validate workflow inputs
+        id: validate_inputs
+        shell: bash
+        env:
+          PEOPLE_IDS: ${{ inputs.people_ids }}
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          node - <<'NODE' \
+            2>&1 | tee "$REPORT_DIR/input-validation.txt"
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const ids = String(process.env.PEOPLE_IDS || '')
+            .split(',')
+            .map((id) => id.trim())
+            .filter(Boolean);
+          const limitRaw = String(process.env.LIMIT || '').trim();
+          const limit = Number(limitRaw);
+          const errors = [];
+
+          if (!ids.length) errors.push('At least one people ID is required.');
+          if (ids.length > 25) errors.push(`Too many people IDs: ${ids.length}. Maximum is 25.`);
+          if (!Number.isInteger(limit) || limit < 1 || limit > 25) errors.push(`limit must be an integer from 1 to 25, got: ${limitRaw}`);
+
+          const seen = new Set();
+          const duplicates = new Set();
+          for (const id of ids) {
+            if (!/^[a-z0-9_]+$/.test(id)) errors.push(`Invalid people ID syntax: ${id}`);
+            if (seen.has(id)) duplicates.add(id);
+            seen.add(id);
+          }
+          for (const id of duplicates) errors.push(`Duplicate people ID: ${id}`);
+
+          function readJson(file) {
+            return JSON.parse(fs.readFileSync(file, 'utf8'));
+          }
+          function manifestPathToAbs(file) {
+            if (!file.startsWith('people/') || file.includes('\0')) throw new Error(`Manifest path must start with people/: ${file}`);
+            const peopleDir = path.resolve('data/people');
+            const abs = path.resolve(peopleDir, file.slice('people/'.length));
+            const rel = path.relative(peopleDir, abs);
+            if (rel.startsWith('..') || path.isAbsolute(rel)) throw new Error(`Manifest path escapes data/people: ${file}`);
+            return abs;
+          }
+
+          const manifest = readJson('data/people/manifest.json');
+          const files = Array.isArray(manifest.files) ? manifest.files : [];
+          const matches = new Map();
+          for (const file of files) {
+            if (typeof file !== 'string') continue;
+            const sourceFile = `data/people/${file.slice('people/'.length)}`;
+            const abs = manifestPathToAbs(file);
+            if (!fs.existsSync(abs)) continue;
+            const json = readJson(abs);
+            const people = Array.isArray(json) ? json : (json && Array.isArray(json.people) ? json.people : [json]);
+            for (const person of people) {
+              if (!person || typeof person !== 'object' || typeof person.id !== 'string') continue;
+              const rows = matches.get(person.id) || [];
+              rows.push(sourceFile);
+              matches.set(person.id, rows);
+            }
+          }
+
+          for (const id of ids) {
+            const rows = matches.get(id) || [];
+            if (rows.length === 0) errors.push(`Missing people ID in manifest data: ${id}`);
+            if (rows.length > 1) errors.push(`Ambiguous people ID in manifest data: ${id} (${rows.join(', ')})`);
+          }
+
+          const summary = { ids, count: ids.length, limit, errors };
+          console.log(JSON.stringify(summary, null, 2));
+          if (errors.length) process.exit(1);
+          NODE
+
+      - name: Build people image candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          cp "$CANDIDATE_FILE" "$REPORT_DIR/people_image_candidates.before.json"
+          npm run people:images:candidates -- \
+            --ids="${{ inputs.people_ids }}" \
+            --limit="${{ inputs.limit }}" \
+            2>&1 | tee "$REPORT_DIR/candidates.txt"
+
+      - name: Verify people image candidate output
+        shell: bash
+        env:
+          PEOPLE_IDS: ${{ inputs.people_ids }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          node - <<'NODE' \
+            2>&1 | tee "$REPORT_DIR/verification-log.txt"
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const candidateFile = process.env.CANDIDATE_FILE;
+          const reportDir = process.env.REPORT_DIR;
+          const selectedIds = String(process.env.PEOPLE_IDS || '').split(',').map((id) => id.trim()).filter(Boolean);
+          const errors = [];
+          const warnings = [];
+          const licenseFamilies = new Set();
+          const wikidataIds = new Set();
+          const lookupErrors = [];
+
+          function reqStr(value) {
+            return typeof value === 'string' && value.trim() ? value.trim() : '';
+          }
+          function classifyLicense(value) {
+            const raw = reqStr(value);
+            const l = raw.toLowerCase().replace(/[_-]/g, ' ');
+            if (!l) return { ok: false, family: 'empty', reason: 'empty license' };
+            if (/cc\s*by\s*nc\s*nd|noncommercial.*no derivatives|no derivatives.*noncommercial/.test(l)) return { ok: false, family: raw, reason: 'CC BY-NC-ND is not allowed' };
+            if (/cc\s*by\s*nc\s*sa|noncommercial.*sharealike/.test(l)) return { ok: false, family: raw, reason: 'CC BY-NC-SA is not allowed' };
+            if (/cc\s*by\s*nc|\bnc\b|noncommercial|non commercial/.test(l)) return { ok: false, family: raw, reason: 'non-commercial license is not allowed' };
+            if (/cc\s*by\s*nd|\bnd\b|no derivatives|no derivative/.test(l)) return { ok: false, family: raw, reason: 'no-derivatives license is not allowed' };
+            if (/all rights reserved|editorial|unknown|copyrighted|fair use/.test(l)) return { ok: false, family: raw, reason: 'disallowed or unknown license' };
+            if (/cc\s*by\s*sa|creative commons attribution sharealike|creative commons attribution share alike/.test(l)) return { ok: true, family: 'CC BY-SA' };
+            if (/\bcc0\b/.test(l)) return { ok: true, family: 'CC0' };
+            if (/public domain|\bpd\b/.test(l)) return { ok: true, family: 'Public Domain' };
+            if (/cc\s*by|creative commons attribution/.test(l)) return { ok: true, family: 'CC BY' };
+            return { ok: false, family: raw, reason: 'unknown license family' };
+          }
+          function isCommonsPage(value) {
+            try { const url = new URL(value); return url.hostname === 'commons.wikimedia.org'; } catch { return false; }
+          }
+          function isWikimediaImageUrl(value) {
+            try {
+              const url = new URL(value);
+              return ['upload.wikimedia.org', 'commons.wikimedia.org', 'wikimedia.org'].includes(url.hostname) || url.hostname.endsWith('.wikimedia.org');
+            } catch { return false; }
+          }
+
+          let data;
+          try {
+            data = JSON.parse(fs.readFileSync(candidateFile, 'utf8'));
+          } catch (error) {
+            errors.push(`Could not parse candidate file: ${error.message}`);
+            data = null;
+          }
+
+          if (!Array.isArray(data)) {
+            errors.push('Candidate file does not have expected schema: top-level array required.');
+            data = [];
+          }
+
+          const candidatePeople = new Set(data.map((candidate) => reqStr(candidate && candidate.personId)).filter(Boolean));
+          for (const candidate of data) {
+            if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) {
+              errors.push('Candidate entry is not an object.');
+              continue;
+            }
+            const personId = reqStr(candidate.personId) || '(missing personId)';
+            if (selectedIds.length && !selectedIds.includes(personId)) errors.push(`${personId}: candidate was not requested in people_ids.`);
+            if (candidate.approved !== false) errors.push(`${personId}: candidate must have approved: false.`);
+            if (candidate.approved === true) errors.push(`${personId}: candidate is automatically approved.`);
+            if (!reqStr(candidate.wikidataId)) errors.push(`${personId}: missing wikidataId.`);
+            else wikidataIds.add(reqStr(candidate.wikidataId));
+            if (!reqStr(candidate.commonsFileName)) errors.push(`${personId}: missing Commons filename.`);
+            const sourcePage = reqStr(candidate.sourcePage) || reqStr(candidate.commonsPage);
+            if (!sourcePage) errors.push(`${personId}: missing sourcePage/commonsPage.`);
+            else if (!isCommonsPage(sourcePage)) errors.push(`${personId}: sourcePage/commonsPage is not on commons.wikimedia.org: ${sourcePage}`);
+            const imageUrl = reqStr(candidate.originalUrl) || reqStr(candidate.originalImageUrl) || reqStr(candidate.imageUrl) || reqStr(candidate.url);
+            if (!imageUrl) errors.push(`${personId}: missing originalUrl/originalImageUrl/imageUrl.`);
+            else if (!isWikimediaImageUrl(imageUrl)) errors.push(`${personId}: image URL is not a Wikimedia domain: ${imageUrl}`);
+            const license = reqStr(candidate.license);
+            const licenseInfo = classifyLicense(license);
+            licenseFamilies.add(licenseInfo.family);
+            if (!licenseInfo.ok) errors.push(`${personId}: invalid license "${license}" (${licenseInfo.reason}).`);
+            if (!reqStr(candidate.licenseUrl)) errors.push(`${personId}: missing licenseUrl.`);
+            if (!reqStr(candidate.creator) && !reqStr(candidate.credit)) errors.push(`${personId}: missing creator or credit.`);
+            if (!(Number(candidate.width) > 0) || !(Number(candidate.height) > 0)) errors.push(`${personId}: missing positive dimensions.`);
+          }
+
+          const candidateCount = data.length;
+          const lookupErrorMatches = fs.existsSync(path.join(reportDir, 'candidates.txt'))
+            ? fs.readFileSync(path.join(reportDir, 'candidates.txt'), 'utf8').match(/^[-] [^:]+: .+$/gm) || []
+            : [];
+          lookupErrors.push(...lookupErrorMatches);
+          const lookupErrorCount = lookupErrors.length;
+
+          const processedPeople = selectedIds.length || candidatePeople.size;
+          if (!processedPeople) errors.push('No people were processed.');
+          if (candidateCount === 0) errors.push('Candidate file is empty; refusing to publish a fully empty or network-failed batch.');
+          if (selectedIds.length > 0 && lookupErrorCount >= selectedIds.length) errors.push('All selected people appear to have lookup errors.');
+
+          const summary = {
+            selectedPeople: selectedIds,
+            processedPeople,
+            candidates: candidateCount,
+            lookupErrors: lookupErrorCount,
+            wikidataIds: [...wikidataIds].sort(),
+            licenses: [...licenseFamilies].sort(),
+            allCandidatesApprovedFalse: data.every((candidate) => candidate && candidate.approved === false),
+            errors,
+            warnings
+          };
+
+          fs.writeFileSync(path.join(reportDir, 'verification.json'), `${JSON.stringify(summary, null, 2)}\n`);
+          fs.writeFileSync(path.join(reportDir, 'verification.md'), [
+            '# People image candidate verification',
+            '',
+            `- Selected people: ${selectedIds.join(', ')}`,
+            `- Processed people: ${summary.processedPeople}`,
+            `- Candidates: ${summary.candidates}`,
+            `- Lookup errors: ${summary.lookupErrors}`,
+            `- Wikidata IDs: ${summary.wikidataIds.join(', ') || '(none)'}`,
+            `- Licenses: ${summary.licenses.join(', ') || '(none)'}`,
+            `- All candidates have approved: false: ${summary.allCandidatesApprovedFalse ? 'yes' : 'no'}`,
+            '',
+            '## Errors',
+            ...(errors.length ? errors.map((error) => `- ${error}`) : ['- None']),
+            '',
+            'No images were downloaded or published by this workflow.'
+          ].join('\n') + '\n');
+
+          console.log(JSON.stringify(summary, null, 2));
+          if (errors.length) process.exit(1);
+          NODE
+
+      - name: Check repository diff boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          git status --short \
+            | tee "$REPORT_DIR/git-status.txt"
+          git diff --stat \
+            | tee "$REPORT_DIR/diff-stat.txt"
+          node - <<'NODE'
+          const { execSync } = require('node:child_process');
+          const lines = execSync('git status --short', { encoding: 'utf8' }).split('\n').filter(Boolean);
+          const allowedExact = new Set(['data/people/people_image_candidates.json']);
+          const allowedPrefix = 'reports/people-image-candidates-action/';
+          const disallowed = [];
+          for (const line of lines) {
+            const file = line.slice(3).replace(/^"|"$/g, '');
+            if (allowedExact.has(file) || file.startsWith(allowedPrefix)) continue;
+            disallowed.push(file);
+          }
+          if (disallowed.length) {
+            console.error('Disallowed files changed:');
+            for (const file of disallowed) console.error(`- ${file}`);
+            process.exit(1);
+          }
+          NODE
+
+      - name: Upload people image candidate reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: people-image-candidates-${{ github.run_id }}
+          path: |
+            reports/people-image-candidates-action/
+            data/people/people_image_candidates.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Open draft PR for candidate batch
+        if: ${{ inputs.open_draft_pr == true }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PEOPLE_IDS: ${{ inputs.people_ids }}
+        run: |
+          set -euo pipefail
+          branch="automation/people-image-candidates-${{ github.run_id }}"
+          git switch -c "$branch"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$CANDIDATE_FILE" "$REPORT_DIR/verification.json" "$REPORT_DIR/verification.md"
+          if git diff --cached --quiet; then
+            echo "No verified candidate changes to commit. Draft PR will not be opened."
+            exit 0
+          fi
+          git commit -m "Add generated people image candidates"
+          git push origin "$branch"
+
+          processed=$(node -e "const s=require('./$REPORT_DIR/verification.json'); console.log(s.processedPeople)")
+          candidates=$(node -e "const s=require('./$REPORT_DIR/verification.json'); console.log(s.candidates)")
+          lookup_errors=$(node -e "const s=require('./$REPORT_DIR/verification.json'); console.log(s.lookupErrors)")
+          licenses=$(node -e "const s=require('./$REPORT_DIR/verification.json'); console.log((s.licenses || []).join(', ') || '(none)')")
+
+          cat > "$REPORT_DIR/pr-body.md" <<BODY
+          Workflow run ID: ${{ github.run_id }}
+
+          Selected people IDs: ${PEOPLE_IDS}
+
+          Summary:
+          - Processed people: ${processed}
+          - Candidates: ${candidates}
+          - Lookup errors: ${lookup_errors}
+          - Licenses: ${licenses}
+
+          No images have been published by this workflow.
+          All generated candidates still have approved: false.
+          Manual identity and license review is required before any apply step is run.
+          BODY
+
+          gh pr create \
+            --draft \
+            --base main \
+            --head "$branch" \
+            --title "People images: generated candidate batch" \
+            --body-file "$REPORT_DIR/pr-body.md"
