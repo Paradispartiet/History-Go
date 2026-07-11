@@ -1,21 +1,26 @@
 # People invalid place refs audit
 
-Generated: 2026-07-10T08:13:59.110Z
+Generated: 2026-07-10T12:34:20.688Z
 
 ## Sammendrag
-- People-filer lest: **213**
-- People lest: **714**
+- People-filer lest: **232**
+- People lest: **733**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
-- People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **714**
+- People uten gyldig sted: **5**
+- Duplikate interne place-referanser: **728**
 
 ## Ugyldige refs gruppert per fil/person
 
 ## Unike ugyldige placeId-er og kandidatforslag
 
 ## People uten gyldig sted
+- data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json :: (missing-id) ((missing-name))
+- data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json :: (missing-id) ((missing-name))
+- data/people/sport/oslo/ullevaal_stadion/henning_berg.json :: (missing-id) ((missing-name))
+- data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json :: (missing-id) ((missing-name))
+- data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json :: (missing-id) ((missing-name))
 
 ## Duplikate place-referanser inne i people
 - data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
@@ -48,6 +53,20 @@ Generated: 2026-07-10T08:13:59.110Z
 - data/people/popkultur/oslo/edderkoppen_scene/lalla_carlsen.json :: lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene x2
 - data/people/popkultur/oslo/edderkoppen_scene/kari_diesen.json :: kari_diesen (Kari Diesen) -> edderkoppen_scene x2
 - data/people/popkultur/oslo/edderkoppen_scene/ernst_diesen.json :: ernst_diesen (Ernst Diesen) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/per_kvist.json :: per_kvist (Per Kvist) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/arvid_nilssen.json :: arvid_nilssen (Arvid Nilssen) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/willie_hoel.json :: willie_hoel (Willie Hoel) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/dan_fosse.json :: dan_fosse (Dan Fosse) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/tom_sterri.json :: tom_sterri (Tom Sterri) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/ketil_aamodt.json :: ketil_aamodt (Ketil Aamodt) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/anders_moland.json :: anders_moland (Anders Moland) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/oivind_blunck.json :: oivind_blunck (Øivind Blunck) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/jon_eikemo.json :: jon_eikemo (Jon Eikemo) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/kirsti_sparboe.json :: kirsti_sparboe (Kirsti Sparboe) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/inger_lise_rypdal.json :: inger_lise_rypdal (Inger Lise Rypdal) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/ole_paus.json :: ole_paus (Ole Paus) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/rolv_wesenlund.json :: rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/edderkoppen_scene/harald_heide_steen_jr.json :: harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard x2

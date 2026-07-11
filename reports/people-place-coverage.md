@@ -1,21 +1,21 @@
 # People-place coverage audit
 
-Generert: 2026-07-10T08:13:59.371Z
+Generert: 2026-07-10T12:34:20.973Z
 
 ## Sammendrag
 
-- People totalt: **714**
+- People totalt: **733**
 - Places totalt: **1090**
 - Places med people: **231**
 - Places uten people: **859**
 - People-place-lenker: **970**
 - People koblet til flere gyldige steder: **193**
-- People uten gyldig sted: **5**
-- Ugyldige place-referanser: **5**
-- Duplikate place-referanser inne på people: **714**
-- People uten image: **373**
-- People uten cardImage: **374**
-- People uten popupDesc: **24**
+- People uten gyldig sted: **24**
+- Ugyldige place-referanser: **21**
+- Duplikate place-referanser inne på people: **728**
+- People uten image: **392**
+- People uten cardImage: **393**
+- People uten popupDesc: **29**
 
 ## Dekning per place-kategori
 
@@ -42,7 +42,7 @@ Generert: 2026-07-10T08:13:59.371Z
 - teater: 177
 - scenekunst: 170
 - litteratur: 166
-- skuespiller: 119
+- skuespiller: 124
 - historie: 112
 - musikk: 85
 - sport: 81
@@ -64,8 +64,11 @@ Generert: 2026-07-10T08:13:59.371Z
 - arkitektur: 23
 - film_tv: 23
 - natur: 22
+- revy: 21
+- popkultur: 20
 - torshovteatret: 20
 - filantrop: 17
+- sanger: 17
 - tv: 17
 - klassikerrepertoar: 16
 - verdensrekord: 16
@@ -73,7 +76,6 @@ Generert: 2026-07-10T08:13:59.371Z
 - filmhistorie: 15
 - institusjonsledelse: 15
 - moderne_ensemble: 15
-- sanger: 15
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
@@ -81,14 +83,12 @@ Generert: 2026-07-10T08:13:59.371Z
 - modernisme: 13
 - nynorsk: 13
 - skoyter: 13
+- humor: 12
+- abc_teatret: 11
 - borgerkrigstiden: 11
 - cinematek: 11
 - heddaprisen: 11
 - instruktor: 11
-- krig: 11
-- langdistanse: 11
-- musikkteater: 11
-- avis: 10
 
 ## Steder med flest people
 
@@ -125,6 +125,22 @@ Generert: 2026-07-10T08:13:59.371Z
 - lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene
 - kari_diesen (Kari Diesen) -> edderkoppen_scene
 - ernst_diesen (Ernst Diesen) -> edderkoppen_scene
+- per_kvist (Per Kvist) -> edderkoppen_scene
+- arvid_nilssen (Arvid Nilssen) -> edderkoppen_scene
+- willie_hoel (Willie Hoel) -> edderkoppen_scene
+- dan_fosse (Dan Fosse) -> edderkoppen_scene
+- tom_sterri (Tom Sterri) -> edderkoppen_scene
+- ketil_aamodt (Ketil Aamodt) -> edderkoppen_scene
+- anders_moland (Anders Moland) -> edderkoppen_scene
+- oivind_blunck (Øivind Blunck) -> edderkoppen_scene
+- jon_eikemo (Jon Eikemo) -> edderkoppen_scene
+- kirsti_sparboe (Kirsti Sparboe) -> edderkoppen_scene
+- inger_lise_rypdal (Inger Lise Rypdal) -> edderkoppen_scene
+- ole_paus (Ole Paus) -> edderkoppen_scene
+- rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene
+- harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene
+- oliver_neerland (Oliver Neerland) -> edderkoppen_scene
+- kjersti_holmen (Kjersti Holmen) -> edderkoppen_scene
 
 ## Duplikate place-referanser inne på people
 
@@ -158,6 +174,20 @@ Generert: 2026-07-10T08:13:59.371Z
 - lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene
 - kari_diesen (Kari Diesen) -> edderkoppen_scene
 - ernst_diesen (Ernst Diesen) -> edderkoppen_scene
+- per_kvist (Per Kvist) -> edderkoppen_scene
+- arvid_nilssen (Arvid Nilssen) -> edderkoppen_scene
+- willie_hoel (Willie Hoel) -> edderkoppen_scene
+- dan_fosse (Dan Fosse) -> edderkoppen_scene
+- tom_sterri (Tom Sterri) -> edderkoppen_scene
+- ketil_aamodt (Ketil Aamodt) -> edderkoppen_scene
+- anders_moland (Anders Moland) -> edderkoppen_scene
+- oivind_blunck (Øivind Blunck) -> edderkoppen_scene
+- jon_eikemo (Jon Eikemo) -> edderkoppen_scene
+- kirsti_sparboe (Kirsti Sparboe) -> edderkoppen_scene
+- inger_lise_rypdal (Inger Lise Rypdal) -> edderkoppen_scene
+- ole_paus (Ole Paus) -> edderkoppen_scene
+- rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene
+- harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene
 - halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen
 - haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard
 - sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard
@@ -214,21 +244,7 @@ Generert: 2026-07-10T08:13:59.371Z
 - kong_karl_johan (Karl Johan) -> slottet
 - oscar_i (Oscar I) -> slottet
 - vidkun_quisling (Vidkun Quisling) -> akerhus_slott
-- gunnar_sonsteby (Gunnar Sønsteby) -> akerhus_slott
-- gregers_gram (Gregers Gram) -> akerhus_slott
-- henrik_ibsen (Henrik Ibsen) -> karl_johan
-- edvard_munch (Edvard Munch) -> karl_johan
-- oda_krohg (Oda Krohg) -> karl_johan
-- christian_krohg (Christian Krohg) -> karl_johan
-- thorvald_meyer (Thorvald Meyer) -> birkelunden
-- olaf_rye (Olaf Rye) -> olaf_ryes_plass
-- bernt_anker (Bernt Anker) -> bankplassen
-- georg_sverdrup (Georg Sverdrup) -> universitetsplassen
-- aasta_hansteen (Aasta Hansteen) -> karl_johan
-- christian_magnus_falsen (Christian Magnus Falsen) -> eidsvollsbygningen
-- wilhelm_f_k_christie (Wilhelm Frimann Koren Christie) -> eidsvollsbygningen
-- carsten_anker (Carsten Anker) -> eidsvollsbygningen
-- ... 614 flere
+- ... 628 flere
 
 ## Anbefalt første people-batch
 
