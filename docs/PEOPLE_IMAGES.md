@@ -23,6 +23,23 @@ Attribusjon lagres i `imageMeta` med Commons-side, creator, credit, license og l
 
 Personer uten bilde skal bruke eksisterende initialer/placeholder i UI. Nye bildeleverandører kan legges til senere bare ved å normalisere metadata til samme kandidatformat og kjøre samme lisensport ved både kandidat- og apply-steg.
 
+
+## GitHub Actions-kandidatkjøring
+
+GitHub-hosted Actions-runneren er den autoritative nettverkskjøringen for people-image-kandidatinnhenting. Codex-runtime kan ha DNS-/proxybegrensninger mot Wikidata og Wikimedia Commons, for eksempel `getaddrinfo EAI_AGAIN www.wikidata.org`, og skal derfor ikke brukes til live kandidatinnhenting.
+
+1. Åpne GitHub-repoet.
+2. Gå til Actions.
+3. Velg **Build people image candidates**.
+4. Trykk **Run workflow**.
+5. Angi people-ID-er og `limit`.
+6. La `open_draft_pr` være av ved ren test.
+7. Last ned artifactet `people-image-candidates-<run_id>` og kontroller rapportene.
+8. Bruk draft-PR bare etter en vellykket og ikke-tom kandidatbatch.
+9. Ingen kandidater skal godkjennes i selve workflowen; alle kandidater skal fortsatt ha `approved: false` og må gjennom manuell identitets- og lisenskontroll før apply.
+
+Workflowen kjører DNS-/HTTP-sjekker mot npm, Wikidata og Wikimedia Commons før verktøykjeden installeres og kandidatinnhentingen starter. Ved feil stopper workflowen uten å endre kandidatfila eller opprette branch/PR, men rapport-artifactet lastes fortsatt opp for feilsøking. Når `open_draft_pr` er aktivert etter en grønn kjøring, committes bare kandidatfila og de korte verifikasjonsrapportene til en `automation/people-image-candidates-<run_id>`-branch, og det åpnes en draft-PR mot `main`. Workflowen pusher aldri direkte til `main`, merger aldri PR-en og kjører ikke apply eller bildenedlasting.
+
 ## Kommandoer
 
 - `npm run people:images:candidates -- --limit=25 [--ids=id1,id2] [--include-existing]`
