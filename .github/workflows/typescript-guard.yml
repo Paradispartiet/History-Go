@@ -17,7 +17,6 @@ on:
       - 'tsconfig*.json'
       - 'package.json'
       - 'package-lock.json'
-      - '.github/workflows/typescript-guard.yml'
   push:
     branches:
       - main
@@ -36,7 +35,6 @@ on:
       - 'tsconfig*.json'
       - 'package.json'
       - 'package-lock.json'
-      - '.github/workflows/typescript-guard.yml'
   workflow_dispatch:
 
 jobs:
@@ -67,20 +65,7 @@ jobs:
         run: npm run build:scripts
 
       - name: Typecheck tools
-        run: |
-          set +e
-          npm run typecheck:tools > typecheck-tools.log 2>&1
-          status=$?
-          cat typecheck-tools.log
-          exit "$status"
-
-      - name: Upload typecheck diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: typecheck-tools-log
-          path: typecheck-tools.log
-          if-no-files-found: ignore
+        run: npm run typecheck:tools
 
       - name: Build tools
         run: npm run build:tools
