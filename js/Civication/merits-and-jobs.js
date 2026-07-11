@@ -10,14 +10,22 @@ async function ensureCivicationBadgesLoaded() {
     return;
   }
 
-  const paths = ["/History-Go/data/badges.json", "data/badges.json"];
-  for (const path of paths) {
-    try {
-      const data = await fetch(path, { cache: "no-store" }).then(r => r.json());
-      window.BADGES = Array.isArray(data?.badges) ? data.badges : [];
-      if (window.BADGES.length) return;
-    } catch {}
-  }
+  // Fallback: last fra den ekte kilden, data/badges/index.json (per-domene-
+  // filer; en fil kan være { badges: [...] } eller ett enkelt badge-objekt).
+  // Den gamle monolitten data/badges.json finnes ikke lenger.
+  try {
+    const index = await fetch("data/badges/index.json", { cache: "no-store" }).then(r => r.json());
+    const files = Array.isArray(index?.files) ? index.files : [];
+    const payloads = await Promise.all(files.map(f =>
+      fetch(String(f), { cache: "no-store" }).then(r => r.json()).catch(() => null)
+    ));
+    window.BADGES = payloads.flatMap(p => {
+      if (!p || typeof p !== "object") return [];
+      if (Array.isArray(p.badges)) return p.badges.filter(b => !!b && typeof b === "object");
+      return (typeof p.id === "string" && Array.isArray(p.tiers)) ? [p] : [];
+    });
+    if (window.BADGES.length) return;
+  } catch {}
 
   window.BADGES = Array.isArray(window.BADGES) ? window.BADGES : [];
 }

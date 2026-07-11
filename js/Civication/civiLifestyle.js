@@ -1,6 +1,6 @@
 /* ============================================================
    HG Lifestyle v0.2
-   - Leser data/lifestyles.json
+   - Leser data/Civication/lifestyles.json
    - Samler tags over tid (path dependency)
    - Regner ut "stamp" (dominant lifestyle)
    ============================================================ */
@@ -52,7 +52,7 @@
   let _lifeData = null;
   let _lifeDataFailed = false;
 
-  async function ensureLifeData(url = "data/lifestyles.json") {
+  async function ensureLifeData(url = "data/Civication/lifestyles.json") {
     if (_lifeData) return _lifeData;
     // Negativ cache: uten denne ble en manglende fil re-fetchet på hvert svar.
     if (_lifeDataFailed) throw new Error("Could not load lifestyles.json");
@@ -74,9 +74,13 @@
   }
 
   function scoreLifestyle(life, tagCounts) {
+    // Datafila (data/Civication/lifestyles.json) bruker bonus_tags/anti_tags;
+    // eldre payloads brukte tags/avoid_tags. Godta begge.
     const core = Array.isArray(life?.core_tags) ? life.core_tags : [];
-    const plus = Array.isArray(life?.tags) ? life.tags : [];
-    const avoid = Array.isArray(life?.avoid_tags) ? life.avoid_tags : [];
+    const plus = Array.isArray(life?.bonus_tags) ? life.bonus_tags
+      : (Array.isArray(life?.tags) ? life.tags : []);
+    const avoid = Array.isArray(life?.anti_tags) ? life.anti_tags
+      : (Array.isArray(life?.avoid_tags) ? life.avoid_tags : []);
 
     let score = 0;
 
