@@ -20,9 +20,12 @@ async function fixture(){
   await mkdir(path.join(dir,'bilder/kort/people'), {recursive:true});
   await writeFile(path.join(dir,'data/people/manifest.json'), JSON.stringify({files:['people/folder/array.json','people/folder/single.json']}, null, 2));
   await writeFile(path.join(dir,'data/people/folder/array.json'), JSON.stringify({people:[{id:'ada',name:'Ada',extra:'keep'}]}, null, 2));
-  await writeFile(path.join(dir,'data/people/folder/single.json'), JSON.stringify({id:'grace',name:'Grace'}, null, 2));
+  await writeFile(path.join(dir,'data/people/folder/single.json'), JSON.stringify({id:'hopper',name:'Grace Hopper'}, null, 2));
   return dir;
 }
+function wikidataEntityResponse(qid, claims){ return new Response(JSON.stringify({ entities: { [qid]: { claims } } })); }
+function humanClaim(){ return { mainsnak: { datavalue: { value: { id: 'Q5' } } } }; }
+function p18Claim(file){ return { mainsnak: { datavalue: { value: file } } }; }
 function candidate(overrides={}){ return { personId:'ada', personName:'Ada', sourceFile:'data/people/folder/array.json', personIndex:0, pointer:'/0', wikidataId:'Q1', commonsFileName:'Ada.jpg', originalImageUrl:'https://upload.wikimedia.org/wikipedia/commons/a/ada.jpg', commonsPage:'https://commons.wikimedia.org/wiki/File:Ada.jpg', creator:'Creator', credit:'Credit', license:'CC BY-SA 4.0', licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/', width:10, height:10, approved:true, reason:'test', score:100, ...overrides }; }
 async function withCwd(dir, fn){ const old=process.cwd(); process.chdir(dir); try { return await fn(); } finally { process.chdir(old); } }
 
@@ -32,7 +35,7 @@ async function withCwd(dir, fn){ const old=process.cwd(); process.chdir(dir); tr
     const entries = await loadPeople();
     assert.equal(entries.length, 2);
     assert(entries.some(e=>e.person.id==='ada'));
-    assert(entries.some(e=>e.person.id==='grace'));
+    assert(entries.some(e=>e.person.id==='hopper'));
     await writeFile('data/people/people_image_candidates.json', JSON.stringify([candidate()], null, 2));
     await applyCandidates([]);
     const after = await readFile('data/people/folder/array.json','utf8');
@@ -125,8 +128,10 @@ console.log('people image pipeline tests passed');
     await buildCandidates(['--ids=ada,grace','--limit=10'], async (url) => {
       const u = String(url);
       if (u.includes('search=Ada')) { callsByName.push('ada'); throw new Error('temporary lookup failure'); }
-      if (u.includes('search=Grace')) return new Response(JSON.stringify({ search: [{ id: 'Q2' }] }));
-      if (u.includes('Q2.json')) return new Response(JSON.stringify({ entities: { Q2: { claims: { P18: [{ mainsnak: { datavalue: { value: 'Grace.jpg' } } }] } } } }));
+      if (u.includes('search=Grace') && u.includes('language=en')) return new Response(JSON.stringify({ search: [{ id: 'Q1' }, { id: 'Q2' }] }));
+      if (u.includes('search=Grace') && u.includes('language=nb')) return new Response(JSON.stringify({ search: [] }));
+      if (u.includes('Q1.json')) return wikidataEntityResponse('Q1', { P31: [humanClaim()] });
+      if (u.includes('Q2.json')) return wikidataEntityResponse('Q2', { P31: [humanClaim()], P18: [p18Claim('Grace.jpg')] });
       if (u.includes('commons.wikimedia.org')) return new Response(JSON.stringify({ query: { pages: { 1: { imageinfo: [{ url:'https://upload.wikimedia.org/wikipedia/commons/g/grace.jpg', width:10, height:10, extmetadata: { LicenseShortName:{value:'CC BY-SA 4.0'}, LicenseUrl:{value:'https://creativecommons.org/licenses/by-sa/4.0/'}, Artist:{value:'Artist'}, Credit:{value:'Credit'} } }] } } } }));
       throw new Error(`unexpected url ${u}`);
     });

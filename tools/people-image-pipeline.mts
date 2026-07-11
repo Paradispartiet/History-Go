@@ -102,15 +102,42 @@ export async function fetchJsonWithRetry(url: string, fetcher: Fetcher = fetch, 
   const msg = lastError instanceof Error ? lastError.message : String(lastError);
   throw new Error(`Fetch failed after ${MAX_FETCH_ATTEMPTS} attempts: ${msg}`);
 }
-async function wikidataSearch(name: string, fetcher: Fetcher): Promise<string> {
-  const url = `https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&limit=1&search=${encodeURIComponent(name)}`;
-  const j: any = await fetchJsonWithRetry(url, fetcher);
-  return j.search?.[0]?.id || '';
+type WikidataCandidate = { qid: string; p18: string };
+function wikidataClaimValue(entity: any, property: string): unknown {
+  return entity?.claims?.[property]?.[0]?.mainsnak?.datavalue?.value;
 }
-async function wikidataP18(qid: string, fetcher: Fetcher): Promise<string> {
+function wikidataIsHuman(entity: any): boolean {
+  const claims = Array.isArray(entity?.claims?.P31) ? entity.claims.P31 : [];
+  return claims.some((claim: any) => claim?.mainsnak?.datavalue?.value?.id === 'Q5');
+}
+async function wikidataSearchIds(name: string, fetcher: Fetcher): Promise<string[]> {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const language of ['en', 'nb']) {
+    const url = `https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=${language}&limit=5&search=${encodeURIComponent(name)}`;
+    const j: any = await fetchJsonWithRetry(url, fetcher);
+    for (const hit of Array.isArray(j.search) ? j.search : []) {
+      const qid = reqStr(hit?.id);
+      if (qid && !seen.has(qid)) { seen.add(qid); out.push(qid); }
+    }
+  }
+  return out;
+}
+async function wikidataEntity(qid: string, fetcher: Fetcher): Promise<any> {
   const url = `https://www.wikidata.org/wiki/Special:EntityData/${encodeURIComponent(qid)}.json`;
   const j: any = await fetchJsonWithRetry(url, fetcher);
-  return j.entities?.[qid]?.claims?.P18?.[0]?.mainsnak?.datavalue?.value || '';
+  return j.entities?.[qid];
+}
+async function wikidataImageCandidate(e: Entry, fetcher: Fetcher): Promise<WikidataCandidate | null> {
+  const explicitQid = reqStr(e.person.wikidataId);
+  const qids = explicitQid ? [explicitQid] : await wikidataSearchIds(reqStr(e.person.name), fetcher);
+  for (const qid of qids) {
+    const entity = await wikidataEntity(qid, fetcher);
+    if (!entity || (!explicitQid && !wikidataIsHuman(entity))) continue;
+    const p18 = reqStr(wikidataClaimValue(entity, 'P18'));
+    if (p18) return { qid, p18 };
+  }
+  return null;
 }
 async function commonsMeta(file: string, fetcher: Fetcher): Promise<any> {
   const title = file.startsWith('File:') ? file : `File:${file}`;
@@ -132,7 +159,7 @@ export async function buildCandidates(args: string[], fetcher: Fetcher = fetch):
   const candidates: Candidate[] = [];
   const lookupErrors: LookupError[] = [];
   const maxAttempts = ids ? entries.length : Math.min(entries.length, Math.max(limit * 20, limit));
-  for (const e of entries.slice(0, maxAttempts)) { if (candidates.length >= limit) break; try { const qid = reqStr(e.person.wikidataId) || await wikidataSearch(reqStr(e.person.name), fetcher); if (!qid) continue; await sleep(120); const file = await wikidataP18(qid, fetcher); if (!file) continue; await sleep(120); const meta = await commonsMeta(file, fetcher); const c = candidateFromMeta(e, qid, file, meta); if (c) candidates.push(c); } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
+  for (const e of entries.slice(0, maxAttempts)) { if (candidates.length >= limit) break; try { const found = await wikidataImageCandidate(e, fetcher); if (!found) continue; await sleep(120); const meta = await commonsMeta(found.p18, fetcher); const c = candidateFromMeta(e, found.qid, found.p18, meta); if (c) candidates.push(c); } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
   await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates to ${path.relative(ROOT(), CANDIDATES())}`); console.log(`Lookup errors: ${lookupErrors.length}`); if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
 }
 function validateCandidate(c: any): asserts c is Candidate {
