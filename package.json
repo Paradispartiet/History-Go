@@ -95,12 +95,12 @@
     "test:people-images": "npm run build:tools && node tests/people-images.test.mjs",
     "audit:people-of-places": "npm run build:tools && node dist/tools/audit-people-of-places-status.mjs && node dist/tools/check-people-of-places-gate.mjs"
   },
-  "dependencies": {
-    "@types/node": "^20.19.25",
-    "typescript": "latest",
-    "three": "latest"
-  },
   "devDependencies": {
-    "vite": "latest"
+    "@types/node": "^22.19.19",
+    "esbuild": "^0.28.1",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.61.1",
+    "three": "0.160.0",
+    "typescript": "^5.9.0"
   }
 }
