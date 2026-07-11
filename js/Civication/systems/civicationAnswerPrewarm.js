@@ -47,7 +47,7 @@
     if (window.HG_Lifestyle?.ensureLifeData) {
       tasks.push(Promise.resolve(window.HG_Lifestyle.ensureLifeData()).catch(() => null));
     } else if (window.CivicationJsonStore?.fetchJson) {
-      tasks.push(window.CivicationJsonStore.fetchJson("data/lifestyles.json").catch(() => null));
+      tasks.push(window.CivicationJsonStore.fetchJson("data/Civication/lifestyles.json").catch(() => null));
     }
 
     const settled = await Promise.all(tasks);
