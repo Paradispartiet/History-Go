@@ -16,6 +16,7 @@ type Entry = { file: string; abs: string; index: number | null; person: Person; 
 type Candidate = { personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number };
 
 type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
+type HeaderMap = Record<string, string>;
 export type LookupError = { personId: string; personName: string; message: string };
 const RETRY_STATUSES = new Set([429, 500, 502, 503, 504]);
 const DEFAULT_TIMEOUT_MS = 15_000;
@@ -73,8 +74,8 @@ function retryAfterMs(value: string | null): number | null {
   if (Number.isFinite(date)) return Math.min(Math.max(date - Date.now(), 0), 30_000);
   return null;
 }
-function mergeHeaders(init?: RequestInit): HeadersInit {
-  return { ...(init?.headers as Record<string, string> | undefined), 'User-Agent': UA, Accept: 'application/json' };
+function mergeHeaders(init?: RequestInit): HeaderMap {
+  return { ...(init?.headers as HeaderMap | undefined), 'User-Agent': UA, Accept: 'application/json' };
 }
 export async function fetchJsonWithRetry(url: string, fetcher: Fetcher = fetch, init: RequestInit = {}, options: { timeoutMs?: number; sleepMs?: (ms: number) => Promise<void> } = {}): Promise<any> {
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
