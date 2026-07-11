@@ -49,10 +49,15 @@ export function readJson(filePath: string): unknown {
 export function toArray(data: unknown): JsonArray {
   if (Array.isArray(data)) return data;
   if (!isJsonObject(data)) return [];
-  if (Array.isArray(data.places)) return data.places;
+
+  // A canonical single-record file can contain array-valued fields such as
+  // `places`. Recognize the record itself before testing wrapper arrays, or a
+  // person file is incorrectly flattened into its place-reference strings.
+  if (typeof data.id === 'string' && data.id.trim()) return [data];
+
   if (Array.isArray(data.items)) return data.items;
   if (Array.isArray(data.people)) return data.people;
-  if (typeof data.id === 'string' && data.id.trim()) return [data];
+  if (Array.isArray(data.places)) return data.places;
   return [];
 }
 
