@@ -1,0 +1,912 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "id": "apning_01_forste_okt",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Første ordentlige kasseøkt",
+      "tekst": "Lene skriver: «Du får første ordentlige kasseøkt i dag. Det viktigste er å holde flyt uten å miste nøyaktighet. Og åpningen er din: kundene skal aldri merke hva som måtte fikses før døra gikk opp.»",
+      "valg": [
+        {
+          "id": "sjekk_plakatene",
+          "tekst": "Gå en runde og sjekk hylleplakatene mot kassa før åpning",
+          "tone": "grundig",
+          "effekter": {
+            "meters": {
+              "integritet": 4,
+              "energi": -3
+            },
+            "flagg": {
+              "sjekket_priser_foer_aapning": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du finner to plakater som ikke stemmer og retter dem før noen ser det. Ingen vil noensinne vite. Det er litt av poenget.",
+          "laaserOpp": [
+            "prisfeil_02_koen"
+          ]
+        },
+        {
+          "id": "aapne_raskt",
+          "tekst": "Åpne presis og ta det som kommer",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": -2
+            },
+            "flagg": {
+              "aapnet_raskt": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Døra går opp på slaget. Butikken ser våken ut. Du håper det den ikke rakk å bli, ikke synes.",
+          "laaserOpp": [
+            "prisfeil_02_koen"
+          ]
+        },
+        {
+          "id": "spor_amir",
+          "tekst": "Spør Amir hva som pleier å ryke på kampanjedager",
+          "tone": "lærende",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 6
+            },
+            "meters": {
+              "energi": -2,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "spurte_amir_om_kampanje": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Kaffen,» sier Amir uten å nøle. «Plakaten sier alltid noe annet enn kassa første dagen. Sjekk den før kø nummer én.»",
+          "laaserOpp": [
+            "prisfeil_02_koen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_02_koen",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "krise",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Kassa sier 49, plakaten sier 39 — og køen vokser",
+      "tekst": "Kunden kjøper kampanjekaffen. Kassa viser 49, hylleplakaten viser 39. Bak henne står fem personer og sukker. Amir er opptatt med varepåfyll.",
+      "valg": [
+        {
+          "id": "rett_synlig",
+          "tekst": "Stopp kort, sjekk plakaten, og rett feilen synlig — butikken har gjort feil",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 5,
+              "butikksjef": 3
+            },
+            "meters": {
+              "integritet": 5,
+              "energi": -4
+            },
+            "flagg": {
+              "rettet_feilen_synlig": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "«Plakaten har rett, kassa tar feil — du får 39,» sier du høyt nok til at køen hører det. To i køen nikker. Det tok førti sekunder."
+        },
+        {
+          "id": "gjett_pris",
+          "tekst": "Slå inn 39 uten å sjekke — køen må videre",
+          "tone": "presset",
+          "effekter": {
+            "meters": {
+              "energi": 1,
+              "integritet": -4
+            },
+            "flagg": {
+              "gjettet_prisen": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Køen glir videre. Du aner ikke om det var riktig. Det gjør ikke kassaoppgjøret i kveld heller."
+        },
+        {
+          "id": "rop_paa_amir",
+          "tekst": "Be Amir sjekke plakaten mens du holder køen i gang",
+          "tone": "samarbeidende",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 4
+            },
+            "meters": {
+              "energi": -2,
+              "synlighet": -2
+            },
+            "flagg": {
+              "fikk_hjelp_med_prisen": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amir er tilbake på tjue sekunder med plakaten i hånda. Køen merket knapt noe. Du merket at du trengte ham."
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_01_midt_i_koen",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Vikaren stopper ved kassa di",
+      "tekst": "Vikaren stiller seg ved kassa med et pantekort i hånda: «Hvordan gjør jeg dette? Beklager, jeg vet du har kø.» Tre kunder venter. Alle hører alt.",
+      "valg": [
+        {
+          "id": "hjelp_kort",
+          "tekst": "Hjelp kort og tydelig — tretti sekunder nå sparer ti minutter senere",
+          "tone": "raus",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 7
+            },
+            "meters": {
+              "energi": -3,
+              "psyke": 2
+            },
+            "flagg": {
+              "hjalp_ny_kollega": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du viser grepet én gang, rolig. Vikaren gjentar det riktig på første forsøk. Kunden i køen smiler faktisk litt."
+        },
+        {
+          "id": "be_vente",
+          "tekst": "Be vikaren vente til køen er unna",
+          "tone": "avvisende",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": -5
+            },
+            "meters": {
+              "energi": 1,
+              "integritet": -2
+            },
+            "flagg": {
+              "avviste_vikaren": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Vikaren trekker seg unna med pantekortet. Kunden foran deg later som hun ikke så det. Alle så det."
+        },
+        {
+          "id": "send_til_amir",
+          "tekst": "Pek vikaren mot Amir — han kan dette best",
+          "tone": "praktisk",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 3,
+              "ny_kollega": 1
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "sendte_vikaren_videre": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amir tar det uten å blunke. Vikaren lærer det riktig. Du lurer et øyeblikk på om du sendte fra deg mer enn et spørsmål."
+        }
+      ]
+    },
+    {
+      "id": "varen_01_som_ikke_finnes",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "stamkunde",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Dere skulle jo ha den inne igjen»",
+      "tekst": "Stamkunden spør etter varen hun har ventet på i en uke. Hylla er tom, systemet sier «på lager: 2», og du vet at systemet lyver oftere enn folk tror.",
+      "valg": [
+        {
+          "id": "aerlig_om_lageret",
+          "tekst": "Vær ærlig: systemet sier to, hylla sier null — tilby å bestille med navn på",
+          "tone": "ærlig",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 6
+            },
+            "meters": {
+              "integritet": 5,
+              "energi": -2
+            },
+            "flagg": {
+              "aerlig_om_lageret": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "«Endelig en som sier det som det er,» sier hun. Du skriver navnet hennes på bestillingen mens hun ser på."
+        },
+        {
+          "id": "lov_i_morgen",
+          "tekst": "Si at den «kommer i morgen» — det pleier den jo",
+          "tone": "unnvikende",
+          "effekter": {
+            "meters": {
+              "integritet": -5,
+              "psyke": -2
+            },
+            "flagg": {
+              "lovte_for_mye": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Hun nikker og går. Du vet ikke om den kommer i morgen. Det gjør hun i morgen."
+        },
+        {
+          "id": "sjekk_selv",
+          "tekst": "Be henne vente to minutter og sjekk lageret selv",
+          "tone": "grundig",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 3
+            },
+            "meters": {
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sjekket_lageret_selv": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du finner én — bak en pall med feilplassert juice. Systemet hadde nesten rett. Kunden fikk varen, og du fikk vite hvor lageret lyver."
+        }
+      ]
+    },
+    {
+      "id": "retur_01_uten_kvittering",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "stamkunde",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Retur uten kvittering",
+      "tekst": "En kunde vil returnere en vare uten kvittering og blir høyere i stemmen for hver setning: «Det er vel DU som jobber her?» Regelen er ikke din. Ansiktet er ditt.",
+      "valg": [
+        {
+          "id": "hold_regelen",
+          "tekst": "Forklar regelen rolig — og pek på det du faktisk KAN gjøre",
+          "tone": "profesjonell",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 4
+            },
+            "meters": {
+              "integritet": 5,
+              "psyke": -2
+            },
+            "flagg": {
+              "holdt_regelen": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Uten kvittering kan jeg gi tilgodelapp, ikke kontanter. Det kan jeg gjøre nå.» Kunden er ikke fornøyd. Men han tar tilgodelappen."
+        },
+        {
+          "id": "boy_regelen",
+          "tekst": "Ta returen utenom — det er ikke verdt bråket",
+          "tone": "ettergivende",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 3
+            },
+            "meters": {
+              "integritet": -6,
+              "psyke": 2
+            },
+            "flagg": {
+              "boyde_regelen": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Kunden går fornøyd. Kassa di stemmer ikke lenger med bilagene. Det er en samtale som venter på deg et sted."
+        },
+        {
+          "id": "hent_lene",
+          "tekst": "Hent Lene — dette er over fullmakten din",
+          "tone": "korrekt",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "meters": {
+              "synlighet": -3,
+              "handlingsrom": -2
+            },
+            "flagg": {
+              "hentet_sjefen": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene løser det på tjue sekunder — med nøyaktig samme svar som du hadde tenkt å gi. Du noterer deg det."
+        }
+      ]
+    },
+    {
+      "id": "lukking_01_fem_minutter",
+      "threadId": "lukkingen",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Fem minutter før stengetid",
+      "tekst": "Klokka er 20:55. En kunde tar i døra: «Jeg skal bare ha én ting!» Bak deg venter hele lukkerutinen — kasse, søppel, hyller, alarm. Neste skift åpner på det du etterlater.",
+      "valg": [
+        {
+          "id": "full_lukking",
+          "tekst": "Slipp kunden inn — og gjør full lukking etterpå, uansett hvor sent det blir",
+          "tone": "pliktoppfyllende",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 3
+            },
+            "meters": {
+              "energi": -6,
+              "integritet": 4
+            },
+            "flagg": {
+              "ryddet_for_neste_skift": true
+            },
+            "threads": {
+              "lukkingen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du går tjue minutter over tid. Butikken du låser er en butikk du selv ville åpnet."
+        },
+        {
+          "id": "laas_presis",
+          "tekst": "Pek beklagende på klokka, lås presis og gjør lukkingen skikkelig",
+          "tone": "grensesettende",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": -3
+            },
+            "meters": {
+              "energi": -3,
+              "integritet": 2
+            },
+            "flagg": {
+              "ryddet_for_neste_skift": true,
+              "laaste_presis": true
+            },
+            "threads": {
+              "lukkingen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Kunden himler med øynene gjennom glasset. Lukkingen blir gjort riktig. Åpningstidene finnes av en grunn."
+        },
+        {
+          "id": "kutt_hjornene",
+          "tekst": "Slipp kunden inn og kutt lukkerutinen — du er ferdig til 21:05",
+          "tone": "snarvei",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "integritet": -5
+            },
+            "flagg": {
+              "kuttet_lukkingen": true
+            },
+            "threads": {
+              "lukkingen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du rekker bussen. Søpla står igjen bak disken, og kassatellingen ble «omtrent». Morgenskiftet heter forresten Amir."
+        }
+      ]
+    },
+    {
+      "id": "d2_morgen_lukkingen_synes",
+      "threadId": "lukkingen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "conditions": {
+        "flagg": {
+          "ryddet_for_neste_skift": true
+        }
+      },
+      "tittel": "Morgenskiftet la merke til det",
+      "tekst": "Lene tar deg i gangen: «Amir sa åpningen i dag var den letteste på flere uker. Alt sto klart.» Hun ser på deg et sekund ekstra. «Vi trenger folk som lukker sånn.»",
+      "valg": [
+        {
+          "id": "ta_imot",
+          "tekst": "Ta imot — og si hva du faktisk gjorde",
+          "tone": "trygg",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 5
+            },
+            "meters": {
+              "synlighet": 5,
+              "psyke": 3
+            },
+            "flagg": {
+              "fortalte_om_lukkingen": true
+            },
+            "threads": {
+              "lukkingen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du forteller om kunden fem minutter før stengetid. Lene ler: «Sånn er jobben. Bra du tok begge deler.»"
+        },
+        {
+          "id": "tone_ned",
+          "tekst": "Tone det ned — det var jo bare lukking",
+          "tone": "beskjeden",
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "synlighet": -3
+            },
+            "flagg": {
+              "tonet_ned_rosen": true
+            },
+            "threads": {
+              "lukkingen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "«Bare lukking,» gjentar Lene, og går videre. Du lurer på om beskjedenhet og usynlighet er samme dør."
+        }
+      ]
+    },
+    {
+      "id": "d2_morgen_rotet_etter_deg",
+      "threadId": "lukkingen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "conditions": {
+        "flagg": {
+          "ryddet_for_neste_skift": {
+            "finnes": false
+          }
+        }
+      },
+      "tittel": "Åpningen ble tung i dag",
+      "tekst": "Lene venter ved kassa: «Amir brukte tjue minutter på å rydde før han fikk åpnet. Søppel bak disken, kassa telte ikke. Hva skjedde i går?»",
+      "valg": [
+        {
+          "id": "innrom_og_fiks",
+          "tekst": "Innrøm snarveien — og ta kveldens lukking som en ny sjanse",
+          "tone": "ærlig",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2,
+              "erfaren_kollega": 3
+            },
+            "meters": {
+              "integritet": 6,
+              "psyke": -2
+            },
+            "flagg": {
+              "innrommet_snarveien": true
+            },
+            "threads": {
+              "lukkingen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "«Greit. Alle kutter én lukking,» sier Lene. «Ingen kutter to.» Amir nikker til deg senere — han har hørt verre unnskyldninger."
+        },
+        {
+          "id": "skyld_paa_kunden",
+          "tekst": "Skyld på kunden som kom fem minutter før stengetid",
+          "tone": "unnvikende",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": -4
+            },
+            "meters": {
+              "integritet": -5,
+              "psyke": -3
+            },
+            "flagg": {
+              "skyldte_paa_kunden": true
+            },
+            "threads": {
+              "lukkingen": {
+                "status": "dormant"
+              }
+            }
+          },
+          "konsekvensTekst": "Lene hører på forklaringen uten å si noe. Det er verre enn om hun hadde sagt noe."
+        }
+      ]
+    },
+    {
+      "id": "d2_formiddag_vikaren_kommer_til_deg",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "flagg": {
+          "hjalp_ny_kollega": true
+        }
+      },
+      "tittel": "Vikaren spør deg først nå",
+      "tekst": "Vikaren kommer rett til deg med en retur hun ikke forstår: «Du forklarer sånn at jeg tør å spørre.» Det er blitt din kø hun stiller seg i — på godt og vondt.",
+      "valg": [
+        {
+          "id": "laer_bort_metoden",
+          "tekst": "Ta fem minutter og lær bort hele grepet, ikke bare svaret",
+          "tone": "raus",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 6,
+              "erfaren_kollega": 2
+            },
+            "meters": {
+              "energi": -3,
+              "synlighet": 3
+            },
+            "flagg": {
+              "laerte_bort_metoden": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Neste gang løser hun det selv — og du ser henne forklare det videre til helgevakten. Sånn sprer standarder seg."
+        },
+        {
+          "id": "vis_raskt",
+          "tekst": "Vis raskt og gå tilbake til køen din",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 2
+            },
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "viste_raskt": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Hun får svaret og du får køen. I morgen spør hun om det samme."
+        }
+      ]
+    },
+    {
+      "id": "d2_formiddag_amir_om_gulvet",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "flagg": {
+          "hjalp_ny_kollega": {
+            "finnes": false
+          }
+        }
+      },
+      "tittel": "Amir tar en rolig prat",
+      "tekst": "Amir stiller seg ved siden av deg i en stille periode: «Vikaren spurte meg i går — etter at hun hadde stått fast i ti minutter. Ingen klarer gulvet alene her. Ikke du heller.»",
+      "valg": [
+        {
+          "id": "ta_poenget",
+          "tekst": "Ta poenget — og si det til vikaren selv",
+          "tone": "ydmyk",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 5,
+              "ny_kollega": 4
+            },
+            "meters": {
+              "integritet": 4,
+              "psyke": 2
+            },
+            "flagg": {
+              "tok_poenget_om_gulvet": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du finner vikaren ved panteautomaten og sier det enkelt: «Spør meg neste gang. Jeg mente ikke å være avvisende.» Hun ser lettet ut."
+        },
+        {
+          "id": "koen_forst",
+          "tekst": "Si at køen må komme først — opplæring er sjefens jobb",
+          "tone": "avvisende",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": -4
+            },
+            "meters": {
+              "handlingsrom": 1,
+              "integritet": -3
+            },
+            "flagg": {
+              "avviste_amirs_poeng": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "dormant"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir trekker på skuldrene: «Køen din går fortere når det er to som kan jobben.» Han sier det ikke igjen."
+        }
+      ]
+    },
+    {
+      "id": "d2_ettermiddag_nokkelen",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "møte",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Nøkkelen til disken",
+      "tekst": "Lene legger en nøkkel på disken foran deg: «Låsbar disk, retur-fullmakt opp til 500, og ansvar for vikaren på kveldsskift. Vil du ha det? Det betyr at neste vanskelige kunde faktisk ER din.»",
+      "valg": [
+        {
+          "id": "ta_ansvaret",
+          "tekst": "Ta nøkkelen",
+          "tone": "modig",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 5
+            },
+            "meters": {
+              "synlighet": 6,
+              "handlingsrom": 5,
+              "psyke": -2
+            },
+            "flagg": {
+              "tok_nokkelansvar": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Nøkkelen er lett. Det den låser opp er ikke. Neste gang noen sier «det er vel du som bestemmer» — så er det faktisk litt sant."
+        },
+        {
+          "id": "en_uke_til",
+          "tekst": "Si ærlig at du vil ha en uke til bak disken først",
+          "tone": "ærlig",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 1
+            },
+            "meters": {
+              "psyke": 3,
+              "synlighet": -2
+            },
+            "flagg": {
+              "ba_om_en_uke_til": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Det er et godt svar,» sier Lene og tar nøkkelen tilbake. «De som griper alt med en gang, slipper ofte noe annet.»"
+        },
+        {
+          "id": "del_med_vikaren",
+          "tekst": "Foreslå at du og vikaren deler kveldsansvaret",
+          "tone": "kollegial",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 5,
+              "butikksjef": 2
+            },
+            "meters": {
+              "handlingsrom": 3,
+              "synlighet": 2
+            },
+            "flagg": {
+              "delte_ansvaret": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene hever et øyebryn — og noterer. «Det er sånn skiftledere tenker. Greit, dere deler.»"
+        }
+      ]
+    },
+    {
+      "id": "d2_kveld_kassadifferansen",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "conditions": {
+        "threads": {
+          "kunden_som_tror_du_bestemmer": "escalated"
+        }
+      },
+      "tittel": "Kassadifferansen",
+      "tekst": "På vei hjem tikker det inn en melding fra Lene: «Kassa di fra i går stemmer ikke med bilagene. Vet du noe om det?» Du vet nøyaktig hva det er: returen du tok utenom.",
+      "valg": [
+        {
+          "id": "fortell_alt",
+          "tekst": "Svar ærlig nå — returen, kunden, hele situasjonen",
+          "tone": "ærlig",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 3
+            },
+            "meters": {
+              "integritet": 6,
+              "psyke": -2
+            },
+            "flagg": {
+              "fortalte_om_returen": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Lene svarer: «Takk for at du sa det selv. Neste gang: tilgodelapp. Da slipper vi begge denne meldingen.»"
+        },
+        {
+          "id": "la_ligge",
+          "tekst": "La det ligge — kanskje det går over",
+          "tone": "unnvikende",
+          "effekter": {
+            "meters": {
+              "psyke": -4,
+              "integritet": -3
+            },
+            "flagg": {
+              "lot_differansen_ligge": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "dormant"
+              }
+            }
+          },
+          "konsekvensTekst": "Du legger telefonen med skjermen ned. Differanser går ikke over. De venter."
+        }
+      ]
+    }
+  ]
+}

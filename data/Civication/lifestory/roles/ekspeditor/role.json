@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "id": "ekspeditor",
+  "navn": "Ekspeditør",
+  "kjernefantasi": "Du står bak disken der butikken møter folk — kasse, kunder, prisfeil, lager og lukking, i tempo som aldri venter.",
+  "arbeidsoppgaver": [
+    "holde flyt i kassa uten å miste nøyaktighet",
+    "møte kunder med regler du ikke selv eier",
+    "rette prisfeil synlig når butikken har gjort feil",
+    "holde lager og hyller ærlige",
+    "åpne og lukke slik at neste skift slipper å rydde"
+  ],
+  "personer": [
+    { "id": "butikksjef", "navn": "Lene, butikksjefen", "beskrivelse": "Vil ha flyt uten å miste nøyaktighet. Ser mer enn hun kommenterer." },
+    { "id": "erfaren_kollega", "navn": "Amir, erfaren kollega", "beskrivelse": "Kan kassa og kundene. «Det tar lengre tid å rette en feil du latet som du visste.»" },
+    { "id": "ny_kollega", "navn": "Vikaren", "beskrivelse": "Ny på gulvet. Spør deg — midt i køen." },
+    { "id": "stamkunde", "navn": "Stamkunden", "beskrivelse": "Kommer hver dag. Husker hvordan du behandlet henne sist." }
+  ],
+  "hovedkonflikter": [
+    "tempo vs nøyaktighet",
+    "kundens forventning vs fullmakten du faktisk har",
+    "hjelpe på gulvet vs egen kø",
+    "love for mye vs si sannheten om lageret",
+    "bli fort ferdig vs standard for neste skift"
+  ],
+  "endings": [
+    { "id": "trygg_paa_gulvet", "navn": "Trygg på gulvet" },
+    { "id": "faar_ting_unna", "navn": "En som bare får ting unna" },
+    { "id": "nokkelbaerer", "navn": "Nøkkelbærer" },
+    { "id": "mistet_tilliten", "navn": "Mistet tilliten" },
+    { "id": "butikksjef_emne", "navn": "Butikksjef-emne" }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 360,
+      "psyke": 61,
+      "energi": 70,
+      "integritet": 50,
+      "synlighet": 35,
+      "handlingsrom": 45
+    },
+    "relasjoner": {
+      "butikksjef": 50,
+      "erfaren_kollega": 55,
+      "ny_kollega": 45,
+      "stamkunde": 50
+    }
+  },
+  "dagsplan": {
+    "1": [
+      { "klokke": "08:00", "tekst": "Åpning" },
+      { "klokke": "10:00", "tekst": "Første kasseøkt" },
+      { "klokke": "20:45", "tekst": "Lukking" }
+    ],
+    "2": [
+      { "klokke": "09:00", "tekst": "Morgenprat med Lene" },
+      { "klokke": "15:00", "tekst": "Nøkkelen til disken" }
+    ]
+  }
+}
