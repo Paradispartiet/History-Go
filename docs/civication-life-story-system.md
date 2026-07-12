@@ -278,7 +278,8 @@ ikke via gamle mailmotorer. I Arealplanlegger dag 1:
 js/Civication/lifestory/
 ├── lifestoryContent.js    # last + valider fortellingspakker inkl. conditions (fail fast)
 ├── lifestoryState.js      # Player State: opprett, effekter, thread state, lagring
-└── lifestoryRunner.js     # Day Runner: conditions, thread state, day progression
+├── lifestoryRunner.js     # Day Runner: conditions, thread state, day progression
+└── lifestoryShellBridge.js # énveis konsekvensbro: meter-deltaer -> skallets psyke
 
 js/Civication/ui/
 └── CivicationLifestoryUI.js  # Min dag-visningen
@@ -306,6 +307,19 @@ velges eksplisitt med `Civication.html?lifestoryRole=renholder` (persisteres i
 localStorage `civication_lifestory_role_v1`). Ukjent rolle-id feiler fast i
 manifest-oppslaget — ingen stille fallback. Bytte av rolle starter en ny
 Player State (én lagringsplass, `civication_lifestory_v1`).
+
+**Life Story → skallets psyke (konsekvensbroen):** Når spilleren tar et valg
+i Min dag, skrives de faktiske meter-endringene (etter clamping) videre til
+skallets psyke-motor via `lifestoryShellBridge.js`, slik at psyke-panelet og
+dashboardet speiler dagens valg. Broen er bevisst smal — kun målere med
+1:1-semantikk broes: `integritet` → `updateIntegrity`, `synlighet` →
+`updateVisibility`, `handlingsrom` → `updateEconomicRoom` (alle clampet og
+resiliens-dempet av psyke-motoren selv). **Bevisst ikke broet:** `penger`
+(skallets PC-saldo eies av økonomimotoren — to skrivere ville drifte),
+`psyke`/`energi` (skallets psyke er akser, ingen kanonisk motpart) og
+`relasjoner` (rollens personer er fortellingspersoner, ikke skallets
+people-system). Broen er énveis (leser aldri psyke tilbake), skriver ALDRI
+i testmodus, og er stille no-op på rene Min dag-flater uten skall.
 
 **Skall-jobb → Life Story-rolle:** Uten eksplisitt rollevalg følger Min dag
 skallets aktive jobb. Mappingen er canonical: skallets aktive posisjon
@@ -338,6 +352,8 @@ automatisk av `npm run test:civication`:
 - `tests/civication-lifestory-shell-role-bridge.test.js` — skall-jobb →
   Life Story-rolle: manifest-bindinger, canonical resolver ende-til-ende,
   JSDOM-adopsjon ved civi:booted, eksplisitt valg vinner.
+- `tests/civication-lifestory-shell-psyche-bridge.test.js` — Life Story →
+  skallets psyke: mapping, testmodus-gate, no-op uten skall, UI-kontrakt.
 - `tests/civication-v2-main-flow.test.js` — v2-allowlist + legacy-gate.
 - `tests/civication-v2-min-dag-ui.test.js` — Min dag i JSDOM inkl. neste dag.
 
