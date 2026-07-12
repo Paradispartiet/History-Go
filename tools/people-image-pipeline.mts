@@ -14,6 +14,8 @@ const UA = 'History-Go people-image-rights-pipeline/1.0 (https://github.com/Para
 type Person = Record<string, unknown> & { id?: string; name?: string; image?: string; cardImage?: string; wikidataId?: string; imageMeta?: Record<string, unknown> };
 type Entry = { file: string; abs: string; index: number | null; person: Person; container: unknown; mode: 'array' | 'people' | 'single' };
 type Candidate = { personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number };
+type ApplyPlan = { selected: Candidate[]; approvedIds: string[] | null };
+const MAX_APPROVED_APPLY = 5;
 
 type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
 type HeaderMap = Record<string, string>;
@@ -179,15 +181,73 @@ export async function buildCandidates(args: string[], fetcher: Fetcher = fetch):
   for (const e of entries.slice(0, maxAttempts)) { if (candidates.length >= limit) break; try { const found = await wikidataImageCandidate(e, fetcher); if (!found) continue; await sleep(120); const meta = await commonsMeta(found.p18, fetcher); const c = candidateFromMeta(e, found.qid, found.p18, meta); if (c) candidates.push(c); } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
   await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates to ${path.relative(ROOT(), CANDIDATES())}`); console.log(`Lookup errors: ${lookupErrors.length}`); if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
 }
-function validateCandidate(c: any): asserts c is Candidate {
+function validateCandidate(c: any, requireApproved = true): asserts c is Candidate {
   for (const k of ['personId','personName','sourceFile','wikidataId','commonsFileName','originalImageUrl','commonsPage','creator','credit','license','licenseUrl']) if (!reqStr(c[k])) throw new Error(`Candidate missing ${k}`);
-  if (c.approved !== true) throw new Error(`Candidate ${c.personId} is not manually approved`); if (!isAllowedLicense(c.license)) throw new Error(`Candidate ${c.personId} has disallowed license: ${c.license}`); assertCommonsUrl(c.originalImageUrl); if (!c.commonsPage.startsWith('https://commons.wikimedia.org/wiki/File:')) throw new Error('Invalid Commons page');
+  if (requireApproved && c.approved !== true) throw new Error(`Candidate ${c.personId} is not manually approved`); if (!isAllowedLicense(c.license)) throw new Error(`Candidate ${c.personId} has disallowed license: ${c.license}`); assertCommonsUrl(c.originalImageUrl); if (!c.commonsPage.startsWith('https://commons.wikimedia.org/wiki/File:')) throw new Error('Invalid Commons page');
+}
+function parseApprovedIds(args: string[]): string[] | null {
+  const arg = args.find(a => a.startsWith('--approved-ids='));
+  if (!arg) return null;
+  const ids = arg.split('=')[1].split(',').map(id => id.trim()).filter(Boolean);
+  if (!ids.length) throw new Error('--approved-ids must contain at least one people ID');
+  if (new Set(ids).size !== ids.length) throw new Error('--approved-ids contains duplicate people IDs');
+  if (ids.length > MAX_APPROVED_APPLY) throw new Error(`--approved-ids can contain at most ${MAX_APPROVED_APPLY} people IDs`);
+  return ids;
+}
+function selectApplyCandidates(candidates: any[], args: string[]): ApplyPlan {
+  const approvedIds = parseApprovedIds(args);
+  if (!approvedIds) return { selected: candidates.filter(c => c?.approved === true), approvedIds: null };
+  const selected: Candidate[] = [];
+  for (const id of approvedIds) {
+    const matches = candidates.filter(c => reqStr(c?.personId) === id);
+    if (matches.length !== 1) throw new Error(`Approved ID ${id} must exist exactly once in the candidate file; found ${matches.length}`);
+    validateCandidate(matches[0], false);
+    selected.push(matches[0]);
+  }
+  return { selected, approvedIds };
 }
 function extFromMime(mime: string): string { if (mime.includes('png')) return '.png'; if (mime.includes('webp')) return '.webp'; if (mime.includes('gif')) return '.gif'; return '.jpg'; }
 async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> { const res = await fetcher(url, { headers: { 'User-Agent': UA } }); if (!res.ok || !res.body) throw new Error(`Download failed ${res.status}`); const ext = extFromMime(res.headers.get('content-type') || 'image/jpeg'); const dest = destBase + ext; if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`); const tmp = `${dest}.${process.pid}.tmp`; try { await pipeline(res.body as any, createWriteStream(tmp, { flags: 'wx' })); await rename(tmp, dest); return path.relative(ROOT(), dest).replace(/\\/g, '/'); } catch (e) { await rm(tmp, { force: true }); throw e; } }
 async function regenerateAttributions(entries: Entry[], write: boolean): Promise<void> { const rows = entries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => r.source === 'wikimedia_commons').sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
-export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> { const write = args.includes('--write'); const candidates = (await readJson(CANDIDATES()) as any[]); const entries = await loadPeople(); const byFile = new Set(entries.map(e => e.file)); const changed = new Set<string>(); await mkdir(IMAGE_DIR(), { recursive: true }); for (const c of candidates) { validateCandidate(c); if (!byFile.has(c.sourceFile)) throw new Error(`Candidate source not in manifest: ${c.sourceFile}`); const matches = entries.filter(e => e.file === c.sourceFile && reqStr(e.person.id) === c.personId && (c.personIndex === null || e.index === c.personIndex)); if (matches.length !== 1) throw new Error(`Candidate ${c.personId} did not match exactly one person`); if (!write) { console.log(`[dry-run] would apply ${c.personId}`); continue; } const e = matches[0]; const local = await download(c.originalImageUrl, path.join(IMAGE_DIR(), safeId(c.personId)), fetcher); e.person.image = local; e.person.cardImage = local; e.person.wikidataId = c.wikidataId; e.person.imageMeta = { source: 'wikimedia_commons', sourcePage: c.commonsPage, creator: c.creator, credit: c.credit, license: c.license, licenseUrl: c.licenseUrl, retrievedAt: new Date().toISOString().slice(0,10), reviewStatus: 'manually_approved' }; changed.add(e.abs); }
-  if (write) { for (const abs of changed) { const entry = entries.find(e => e.abs === abs)!; await writeJsonAtomic(abs, entry.container); } await regenerateAttributions(await loadPeople(), true); } else await regenerateAttributions(entries, false); }
+export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
+  const write = args.includes('--write');
+  const candidateJson = await readJson(CANDIDATES());
+  if (!Array.isArray(candidateJson)) throw new Error('people_image_candidates.json must be a top-level array');
+  const { selected, approvedIds } = selectApplyCandidates(candidateJson, args);
+  if (!selected.length) throw new Error(approvedIds ? '--approved-ids selected no candidates' : 'No approved candidates found; use --approved-ids=id1,id2 or set approved: true');
+  const entries = await loadPeople();
+  const byFile = new Set(entries.map(e => e.file));
+  const changed = new Set<string>();
+  if (write) await mkdir(IMAGE_DIR(), { recursive: true });
+  const planned: { personId: string; personName: string; sourceFile: string; imageFile: string }[] = [];
+  for (const c of selected) {
+    validateCandidate(c, !approvedIds);
+    if (!byFile.has(c.sourceFile)) throw new Error(`Candidate source not in manifest: ${c.sourceFile}`);
+    const matches = entries.filter(e => e.file === c.sourceFile && reqStr(e.person.id) === c.personId && (c.personIndex === null || e.index === c.personIndex));
+    if (matches.length !== 1) throw new Error(`Candidate ${c.personId} did not match exactly one person`);
+    const e = matches[0];
+    if (reqStr(e.person.image)) throw new Error(`Refusing to overwrite existing image for ${c.personId}`);
+    const imageBase = path.join(IMAGE_DIR(), safeId(c.personId));
+    const plannedImage = path.relative(ROOT(), imageBase).replace(/\\/g, '/');
+    planned.push({ personId: c.personId, personName: c.personName, sourceFile: c.sourceFile, imageFile: plannedImage });
+    if (!write) {
+      console.log(`[dry-run] would apply ${c.personId} (${c.personName}) from ${c.commonsFileName} to ${plannedImage}`);
+      continue;
+    }
+    const local = await download(c.originalImageUrl, imageBase, fetcher);
+    if (/^https?:/.test(local)) throw new Error(`Internal error: external image URL generated for ${c.personId}`);
+    e.person.image = local;
+    e.person.cardImage = local;
+    e.person.wikidataId = c.wikidataId;
+    e.person.imageMeta = { source: 'wikimedia_commons', sourcePage: c.commonsPage, creator: c.creator, credit: c.credit, license: c.license, licenseUrl: c.licenseUrl, retrievedAt: new Date().toISOString().slice(0,10), reviewStatus: 'manually_approved' };
+    changed.add(e.abs);
+  }
+  console.log(JSON.stringify({ mode: write ? 'write' : 'dry-run', selected: planned }, null, 2));
+  if (write) {
+    for (const abs of changed) { const entry = entries.find(e => e.abs === abs)!; await writeJsonAtomic(abs, entry.container); }
+    await regenerateAttributions(await loadPeople(), true);
+  } else await regenerateAttributions(entries, false);
+}
 export async function auditPeople(): Promise<number> { const entries = await loadPeople(); let external = 0, noMeta = 0, badLic = 0, missing = 0; const files = new Map<string,string[]>(); for (const e of entries) { const img = reqStr(e.person.image); if (!img) continue; if (/^https?:/.test(img)) external++; else { files.set(img, [...(files.get(img) || []), reqStr(e.person.id)]); if (!(await exists(path.join(ROOT(), img)))) missing++; } if (!isObj(e.person.imageMeta)) noMeta++; else if (!isAllowedLicense(e.person.imageMeta.license)) badLic++; } const dup = [...files.values()].filter(v => v.length > 1).length; const noImage = entries.filter(e => !reqStr(e.person.image)).length; console.log(JSON.stringify({ totalPeople: entries.length, peopleWithoutImage: noImage, externalImageUrls: external, localImagesWithoutImageMeta: noMeta, unknownOrDisallowedLicenses: badLic, missingLocalImageFiles: missing, duplicateOrCollidingImageFiles: dup }, null, 2)); return external || noMeta || badLic || missing || dup ? 1 : 0; }
 async function main() { const [cmd, ...args] = process.argv.slice(2); if (cmd === 'candidates') await buildCandidates(args); else if (cmd === 'apply') await applyCandidates(args); else if (cmd === 'audit') process.exitCode = await auditPeople(); else { console.error('Usage: people-image-pipeline <candidates|apply|audit>'); process.exitCode = 2; } }
 if (import.meta.url === `file://${process.argv[1]}`) main().catch(e => { console.error(e); process.exit(1); });

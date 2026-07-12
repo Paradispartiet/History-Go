@@ -1,0 +1,129 @@
+name: Apply approved people image candidates (manual, safe)
+
+on:
+  workflow_dispatch:
+    inputs:
+      approved_ids:
+        description: "Comma-separated people IDs to apply"
+        required: true
+        default: ""
+      write_output:
+        description: "Download images and update people data"
+        required: true
+        type: choice
+        options: ["false", "true"]
+        default: "false"
+      open_draft_pr:
+        description: "Commit output to an automation branch and open a draft PR"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  apply-approved-people-images:
+    name: Apply reviewed people image candidates
+    runs-on: ubuntu-latest
+    env:
+      APPROVED_IDS: ${{ inputs.approved_ids }}
+      REPORT_DIR: reports/people-image-apply
+      CANDIDATE_FILE: data/people/people_image_candidates.json
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies and build tools
+        run: |
+          npm ci
+          npm run build:tools
+          mkdir -p "$REPORT_DIR"
+
+      - name: Preflight approved IDs
+        run: |
+          node <<'NODE' | tee "$REPORT_DIR/preflight.txt"
+          const fs = require("node:fs");
+          const ids = (process.env.APPROVED_IDS || "").split(",").map((id) => id.trim()).filter(Boolean);
+          if (!ids.length) throw new Error("approved_ids must contain at least one people ID.");
+          if (new Set(ids).size !== ids.length) throw new Error("approved_ids contains duplicate IDs.");
+          if (ids.length > 5) throw new Error("approved_ids can contain at most five people IDs.");
+          const candidates = JSON.parse(fs.readFileSync(process.env.CANDIDATE_FILE, "utf8"));
+          if (!Array.isArray(candidates)) throw new Error(`${process.env.CANDIDATE_FILE} must be a top-level array.`);
+          for (const id of ids) {
+            const matches = candidates.filter((candidate) => candidate && candidate.personId === id);
+            if (matches.length !== 1) throw new Error(`${id} must exist exactly once in ${process.env.CANDIDATE_FILE}; found ${matches.length}.`);
+          }
+          console.log(`approved_ids=${ids.join(",")}`);
+          console.log(`candidate_count=${candidates.length}`);
+          NODE
+
+      - name: Run dry-run apply
+        if: ${{ inputs.write_output == 'false' }}
+        run: |
+          set -euo pipefail
+          before="$(sha256sum "$CANDIDATE_FILE")"
+          npm run people:images:apply -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/dry-run.txt"
+          after="$(sha256sum "$CANDIDATE_FILE")"
+          test "$before" = "$after"
+          if [ -n "$(git status --porcelain data/people bilder/kort/people)" ]; then
+            echo "Dry-run changed files unexpectedly." >&2
+            git status --porcelain data/people bilder/kort/people >&2
+            exit 1
+          fi
+
+      - name: Run write apply
+        if: ${{ inputs.write_output == 'true' }}
+        run: |
+          set -euo pipefail
+          before="$(sha256sum "$CANDIDATE_FILE")"
+          npm run people:images:apply:write -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/write.txt"
+          after="$(sha256sum "$CANDIDATE_FILE")"
+          test "$before" = "$after"
+          npm run people:images:audit | tee "$REPORT_DIR/audit.txt"
+          npm run test:people-images | tee "$REPORT_DIR/people-images-tests.txt"
+
+      - name: Upload people image apply report
+        uses: actions/upload-artifact@v4
+        with:
+          name: people-image-apply-${{ inputs.write_output }}
+          path: |
+            reports/people-image-apply/**
+            data/people/people_image_attributions.json
+            bilder/kort/people/**
+          if-no-files-found: warn
+
+      - name: Open draft PR for applied people images
+        if: ${{ inputs.write_output == 'true' && inputs.open_draft_pr == true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch="automation/people-images-apply-${{ github.run_id }}"
+          case "$branch" in main|master|refs/heads/main|refs/heads/master) echo "Refusing to push directly to $branch."; exit 1;; esac
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add data/people/people_image_attributions.json bilder/kort/people reports/people-image-apply
+          node <<'NODE'
+          const fs = require('node:fs');
+          const ids = process.env.APPROVED_IDS.split(',').map((id) => id.trim()).filter(Boolean);
+          const candidates = JSON.parse(fs.readFileSync(process.env.CANDIDATE_FILE, 'utf8'));
+          for (const id of ids) {
+            const candidate = candidates.find((entry) => entry.personId === id);
+            if (candidate?.sourceFile) fs.appendFileSync(process.env.GITHUB_ENV, `HG_ADD_FILE_${id.replace(/[^A-Za-z0-9_]/g, '_')}=${candidate.sourceFile}\n`);
+          }
+          NODE
+          for file in $(node -e "const fs=require('fs'); const ids=process.env.APPROVED_IDS.split(',').map(s=>s.trim()).filter(Boolean); const c=JSON.parse(fs.readFileSync(process.env.CANDIDATE_FILE,'utf8')); console.log([...new Set(ids.map(id=>c.find(e=>e.personId===id)?.sourceFile).filter(Boolean))].join(' '))"); do git add "$file"; done
+          if git diff --cached --quiet; then echo "No applied people image output changes to commit."; exit 0; fi
+          git commit -m "chore(data): apply reviewed people images"
+          git push --set-upstream origin HEAD
+          gh pr create --draft --base main --head "$branch" --title "Apply reviewed people images" --body "Applies reviewed people image candidates for: $APPROVED_IDS"
