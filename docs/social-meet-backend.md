@@ -244,20 +244,24 @@ The adapter stays on the local/demo backend until a runtime config supplies a
 **public** project URL + anon (publishable) key. Configuration mirrors the
 existing `js/config.js` / `js/config.example.js` pattern:
 
-1. Copy `js/config-supabase.example.js` to `js/config-supabase.js` and fill in
-   the History Go project's **public** values (Supabase dashboard → project
-   **AHA** → *Connect* → Project URL + Publishable key). `js/config-supabase.js`
-   is **gitignored**, so the key is never committed. Only ever use the anon /
-   publishable key here — never the `service_role` key.
-2. On the owning page (`profile.html`), load, in this order, **before**
-   `js/social/HGSocialMeetSupabaseClient.js`:
-   - the `supabase-js` SDK (exposing `window.supabase.createClient`), and
-   - `js/config-supabase.js`.
-3. With `HG_SOCIAL_MEET_BACKEND = "supabase"` and valid credentials present,
-   `HG_SocialMeetAdapter.backendMode()` returns `"supabase"` and
-   `HG_SocialMeetSupabaseClient.health()` reports `hasCredentials: true`. With no
-   config file present, both stay on `local` and the app behaves exactly as
-   today.
+- `profile.html` already loads, before `HGSocialMeetSupabaseClient.js`, the
+  `supabase-js` SDK (exposing `window.supabase.createClient`) and
+  `js/config-supabase.js`.
+- `js/config-supabase.js` is the committed **safe default**: Supabase disabled,
+  no key, so the app stays on the local/demo backend out of the box.
+  `js/config-supabase.example.js` is the annotated template.
+
+To point it at the live AHA project:
+
+1. In `js/config-supabase.js`, fill in the History Go project's **public**
+   values (Supabase dashboard → project **AHA** → *Connect* → Project URL +
+   Publishable key), set `enabled: true`, and set
+   `HG_SOCIAL_MEET_BACKEND = "supabase"`. Only ever use the anon / publishable
+   key here — **never** the `service_role` key, and don't commit a real key.
+2. Reload `profile.html`. `HG_SocialMeetAdapter.backendMode()` now returns
+   `"supabase"` and `HG_SocialMeetSupabaseClient.health()` reports
+   `hasCredentials: true`. Left at the default, both stay on `local` and the app
+   behaves exactly as today.
 
 The schema those calls hit is already live on the AHA project
 (`supabase/migrations/001_social_meet.sql`), so once the config + SDK are loaded

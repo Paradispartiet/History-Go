@@ -405,6 +405,12 @@
 <script src="dist/web/hgModeration.js"></script>
 <script src="js/hgSocialGuards.js"></script>
 <script src="js/knowledgeMatch.js"></script>
+<!-- Social Meet backend: supabase-js SDK (publishes window.supabase) + runtime config.
+     Config is disabled by default (local/demo backend); see docs/social-meet-backend.md
+     → "Enabling the Supabase backend". The client degrades gracefully if the SDK/config
+     are absent or Supabase is disabled. -->
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/config-supabase.js"></script>
 <script src="js/social/HGSocialMeetSupabaseClient.js"></script>
 <script src="js/social/HGSocialMeetAdapter.js"></script>
 <script src="js/social/HGSpotmeeting.js"></script>

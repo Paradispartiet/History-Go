@@ -1,7 +1,8 @@
 // History Go — Social Meet Supabase runtime config (EXAMPLE / template).
 //
-// Copy this file to `js/config-supabase.js` and fill in your project's PUBLIC
-// values. `js/config-supabase.js` is gitignored so your key is never committed.
+// The committed `js/config-supabase.js` is the safe DISABLED default the app
+// actually loads. To enable Supabase, edit that file with your project's PUBLIC
+// values (this file is just the annotated reference / template).
 //
 // Rules (see docs/social-meet-backend.md):
 //   * Use ONLY the project URL and the PUBLIC anon / publishable key.
