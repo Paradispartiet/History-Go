@@ -162,3 +162,20 @@ console.log('people image pipeline tests passed');
     assert.equal(out[0].personId, 'grace');
   });
 }
+
+{
+  const workflow = await readFile('.github/workflows/build-people-image-candidates.yml', 'utf8');
+  const draftPrStep = workflow.slice(workflow.indexOf('- name: Open draft PR for candidate batch'));
+
+  assert.match(draftPrStep, /if: \$\{\{ inputs\.open_draft_pr == true \}\}/, 'open_draft_pr false skips draft PR step');
+  assert.match(draftPrStep, /branch="automation\/people-image-candidates-\$\{\{ github\.run_id \}\}"/, 'draft PR branch uses unique run ID');
+  assert.match(draftPrStep, /git add "\$CANDIDATE_FILE"/, 'candidate file is staged explicitly');
+  assert.match(draftPrStep, /git add -f "\$REPORT_DIR\/verification\.json" "\$REPORT_DIR\/verification\.md"/, 'ignored verification reports are force-staged explicitly');
+  assert.match(draftPrStep, /grep -Ev "\^\(\$\{CANDIDATE_FILE\}\|\$\{REPORT_DIR\}\/verification\\\.\(json\|md\)\)\$"/, 'only candidate and verification files may be staged');
+  assert.match(draftPrStep, /git diff --quiet -- "\$CANDIDATE_FILE"/, 'candidate file must change before committing');
+  assert.match(draftPrStep, /git push --set-upstream origin HEAD/, 'push uses upstream and current HEAD');
+  assert.doesNotMatch(draftPrStep, /git push\s+origin\s+main\b/, 'draft PR step never pushes to main');
+  assert.match(draftPrStep, /gh pr create[\s\S]*--draft[\s\S]*--base main[\s\S]*--head "\$branch"/, 'PR is created as a draft against main from automation branch');
+  assert.match(draftPrStep, /GH_TOKEN: \$\{\{ github\.token \}\}/, 'gh CLI uses github.token');
+  assert.match(draftPrStep, /Allow GitHub Actions to create and approve pull requests/, 'permission failure explains required Actions setting');
+}

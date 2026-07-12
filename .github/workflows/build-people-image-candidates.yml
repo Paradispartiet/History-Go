@@ -381,16 +381,43 @@ jobs:
         run: |
           set -euo pipefail
           branch="automation/people-image-candidates-${{ github.run_id }}"
+
+          fail_pr_publish() {
+            echo "::error title=Draft PR publishing failed::$1"
+            echo "Candidate generation and verification completed before this publishing failure."
+            exit 1
+          }
+
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            fail_pr_publish "Automation branch already exists: $branch. Refusing to overwrite an existing branch."
+          fi
+
           git switch -c "$branch"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$CANDIDATE_FILE" "$REPORT_DIR/verification.json" "$REPORT_DIR/verification.md"
-          if git diff --cached --quiet; then
-            echo "No verified candidate changes to commit. Draft PR will not be opened."
-            exit 0
+
+          if git diff --quiet -- "$CANDIDATE_FILE"; then
+            fail_pr_publish "No candidate file changes were produced; draft PR publishing was skipped."
           fi
+
+          git add "$CANDIDATE_FILE"
+          git add -f "$REPORT_DIR/verification.json" "$REPORT_DIR/verification.md"
+
+          staged_files=$(git diff --cached --name-only)
+          printf '%s\n' "$staged_files"
+          unexpected_staged=$(printf '%s\n' "$staged_files" | grep -Ev "^(${CANDIDATE_FILE}|${REPORT_DIR}/verification\.(json|md))$" || true)
+          if [ -n "$unexpected_staged" ]; then
+            fail_pr_publish "Unexpected files staged for draft PR: ${unexpected_staged}"
+          fi
+
+          if git diff --cached --quiet; then
+            fail_pr_publish "No verified candidate changes to commit after staging allowed files."
+          fi
+
           git commit -m "Add generated people image candidates"
-          git push origin "$branch"
+          if ! git push --set-upstream origin HEAD; then
+            fail_pr_publish "Could not push automation branch. Confirm contents:write is allowed for GITHUB_TOKEN and branch protections do not block automation branches."
+          fi
 
           processed=$(node -e "const s=require('./$REPORT_DIR/verification.json'); console.log(s.processedPeople)")
           candidates=$(node -e "const s=require('./$REPORT_DIR/verification.json'); console.log(s.candidates)")
@@ -408,14 +435,17 @@ jobs:
           - Lookup errors: ${lookup_errors}
           - Licenses: ${licenses}
 
-          No images have been published by this workflow.
+          No candidates have been approved.
+          No images or people data have been published by this workflow.
           All generated candidates still have approved: false.
           Manual identity and license review is required before any apply step is run.
           BODY
 
-          gh pr create \
+          if ! gh pr create \
             --draft \
             --base main \
             --head "$branch" \
             --title "People images: generated candidate batch" \
-            --body-file "$REPORT_DIR/pr-body.md"
+            --body-file "$REPORT_DIR/pr-body.md"; then
+            fail_pr_publish "gh pr create failed. If GitHub reports that Actions is not permitted to create pull requests, enable Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests, and confirm the workflow has pull-requests: write plus GH_TOKEN set to github.token."
+          fi
