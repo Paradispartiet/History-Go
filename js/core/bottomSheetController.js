@@ -34,7 +34,25 @@
     state = next;
   }
 
+  function bindCollapseButton(){
+    const button = document.getElementById("pcCollapseBtn");
+    if (!button || button.dataset.hgBottomSheetCollapseBound === "1") return;
+
+    button.dataset.hgBottomSheetCollapseBound = "1";
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (typeof window.collapsePlaceCard === "function") {
+        window.collapsePlaceCard();
+      } else {
+        collapse();
+      }
+    });
+  }
+
   function open(){
+    bindCollapseButton();
     console.trace("[bottomSheetController] open");
     setState(STATES.OPEN);
   }
@@ -60,6 +78,8 @@ function hide(){
   function init(){
     el = document.getElementById("placeCard");
     if (!el) return;
+
+    bindCollapseButton();
 
     el.classList.remove("is-open", "is-collapsed", "is-hidden");
     el.classList.add("is-hidden");
