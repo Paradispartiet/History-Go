@@ -28,7 +28,8 @@ assert.strictEqual(manifest.roles.arealplanlegger.role_scope, "by_radgiver_plan"
 // --- 2. Ren mapping: role_scope -> lifestory-rolle ---
 assert.strictEqual(Content.resolveRoleIdForRoleScope(manifest, "renholder"), "renholder");
 assert.strictEqual(Content.resolveRoleIdForRoleScope(manifest, "by_radgiver_plan"), "arealplanlegger");
-assert.strictEqual(Content.resolveRoleIdForRoleScope(manifest, "ekspeditor"), null,
+assert.strictEqual(Content.resolveRoleIdForRoleScope(manifest, "ekspeditor"), "ekspeditor");
+assert.strictEqual(Content.resolveRoleIdForRoleScope(manifest, "lager_og_driftsmedarbeider"), null,
   "scope uten Life Story-pakke gir null — ingen fallback");
 assert.strictEqual(Content.resolveRoleIdForRoleScope(manifest, "unknown"), null);
 assert.strictEqual(Content.resolveRoleIdForRoleScope(manifest, ""), null);
@@ -39,6 +40,7 @@ assert.strictEqual(Content.resolveRoleIdForRoleScope(null, "renholder"), null);
 const renholderPos = { career_id: "naeringsliv", role_key: "renholder", title: "Renholder" };
 const planPos = { career_id: "by", role_key: "by_radgiver_plan", title: "Arealplanlegger" };
 const ekspeditorPos = { career_id: "naeringsliv", role_key: "ekspeditor", title: "Ekspeditør" };
+const lagerPos = { career_id: "naeringsliv", role_key: "lager_og_driftsmedarbeider", title: "Lager- og driftsmedarbeider" };
 assert.strictEqual(Resolver.resolveCareerRoleScope(renholderPos), "renholder");
 assert.strictEqual(
   Content.resolveRoleIdForRoleScope(manifest, Resolver.resolveCareerRoleScope(renholderPos)),
@@ -48,7 +50,10 @@ assert.strictEqual(
   "arealplanlegger", "arealplanlegger-jobb gir arealplanlegger");
 assert.strictEqual(
   Content.resolveRoleIdForRoleScope(manifest, Resolver.resolveCareerRoleScope(ekspeditorPos)),
-  null, "ekspeditør har ingen Life Story-pakke ennå — Min dag bytter ikke");
+  "ekspeditor", "ekspeditør-jobb i skallet gir ekspeditør i Life Story");
+assert.strictEqual(
+  Content.resolveRoleIdForRoleScope(manifest, Resolver.resolveCareerRoleScope(lagerPos)),
+  null, "lager har ingen Life Story-pakke ennå — Min dag bytter ikke");
 
 // --- 4. JSDOM: Min dag adopterer skall-jobben ved civi:booted ---
 async function jsdomAdoption() {

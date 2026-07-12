@@ -293,7 +293,11 @@ data/Civication/lifestory/
 │   │   ├── role.json      # kjernefantasi, personer, konflikter, endings
 │   │   ├── threads.json   # arbeidstråder
 │   │   └── scenes.json    # spillbare øyeblikk
-│   └── renholder/
+│   ├── renholder/
+│   │   ├── role.json
+│   │   ├── threads.json
+│   │   └── scenes.json
+│   └── ekspeditor/
 │       ├── role.json
 │       ├── threads.json
 │       └── scenes.json
@@ -349,6 +353,8 @@ automatisk av `npm run test:civication`:
   day progression, konsekvenstekst.
 - `tests/civication-lifestory-renholder.test.js` — rolle nummer to: hele
   dag 1 + begge dag-2-grener, rolle-agnostiske livsscener, rollevalg i UI.
+- `tests/civication-lifestory-ekspeditor.test.js` — rolle nummer tre: hele
+  dag 1 + begge dag-2-grener (lukkingen/kassadifferansen), jobb-binding.
 - `tests/civication-lifestory-shell-role-bridge.test.js` — skall-jobb →
   Life Story-rolle: manifest-bindinger, canonical resolver ende-til-ende,
   JSDOM-adopsjon ved civi:booted, eksplisitt valg vinner.
@@ -367,12 +373,12 @@ De gamle motorene slettes ikke med én gang, men de styrer ikke lenger
 designet. Nye fortellinger bygges som pakker i
 `data/Civication/lifestory/`, aldri som nye motorer.
 
-## 9. Rollene: Arealplanlegger og Renholder, Dag 1 og Dag 2
+## 9. Rollene: Arealplanlegger, Renholder og Ekspeditør, Dag 1 og Dag 2
 
 Piloten (Arealplanlegger) beviser at spilleren kan leve dager med
 arbeidstråder, privatliv, valg og konsekvenser — og at dag 2 leser dag 1.
-Renholder er rolle nummer to og beviser at en ny rolle er **ren data**:
-samme runner, samme livsscener, null ny motorkode.
+Renholder og Ekspeditør er rolle to og tre og beviser at en ny rolle er
+**ren data**: samme runner, samme livsscener, null ny motorkode.
 
 Arealplanlegger — arbeidstråder dag 1:
 
@@ -394,7 +400,25 @@ Renholder — arbeidstråder dag 1 (fra FWG-konfliktene i
 Personene er rollens actor-grammatikk: Kari (driftsleder), Amina (erfaren
 renholder), Sindre (kontorbruker), Ole (verneombud).
 
-Privattråder dag 1 (delt av begge roller):
+Ekspeditør — arbeidstråder dag 1 (fra mail-familienes univers i
+`mailFamilies/naeringsliv/job/ekspeditor_job.json` og mailplanens arc):
+
+1. Prisfeilen i køen (tempo vs nøyaktighet)
+2. Kunden som tror du bestemmer (forventning vs fullmakt)
+3. Vikaren spør midt i køen (opplæringsansvar vs egen kø)
+4. Varen som ikke finnes (love for mye vs si sannheten om lageret)
+5. Lukkingen (bli fort ferdig vs standard for neste skift)
+
+Personene er mail-familienes faste cast: Lene (butikksjef), Amir (erfaren
+kollega), vikaren og stamkunden.
+
+**Trådlivssyklus-regel (lærdom fra Ekspeditør):** bare `active`/`escalated`
+tråder gir kandidatscener. Et dag-1-valg som setter tråden `completed`
+blokkerer dermed trådens egne dag-2-scener. Har en tråd innhold på dag 2,
+skal dag-1-valgene holde den spillbar (`stepDelta`/`escalated`) og la
+dag-2-scenene lukke den.
+
+Privattråder dag 1 (delt av alle roller):
 
 1. Du har sovet dårlig
 2. Økonomien er stram
@@ -406,7 +430,9 @@ Arealplanlegger: morgenen leser identitetsvalget fra kvelden, formiddagen
 skolevei-trådens status, kvelden økonomi-tråden og pengemåleren.
 Renholder: morgenen leser om avviket ble meldt (vernerunde vs «noen skled
 nesten»), formiddagen om du tok det ekstra rommet, kvelden om det usynlige
-arbeidet eskalerte. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
+arbeidet eskalerte. Ekspeditør: morgenen leser lukkingen (ros vs rotet som
+ventet), formiddagen om du hjalp vikaren, kvelden om den bøyde returregelen
+ble en kassadifferanse. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
 
 ## 10. Regelen for Civication
 
