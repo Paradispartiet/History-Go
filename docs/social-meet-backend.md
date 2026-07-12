@@ -238,6 +238,31 @@ adapter has now landed with this shape:
 5. The adapter maps preset message ids to localized Norwegian labels at read
    time; the database only ever stores the id.
 
+### 5.1 Enabling the Supabase backend (runtime config)
+
+The adapter stays on the local/demo backend until a runtime config supplies a
+**public** project URL + anon (publishable) key. Configuration mirrors the
+existing `js/config.js` / `js/config.example.js` pattern:
+
+1. Copy `js/config-supabase.example.js` to `js/config-supabase.js` and fill in
+   the History Go project's **public** values (Supabase dashboard → project
+   **AHA** → *Connect* → Project URL + Publishable key). `js/config-supabase.js`
+   is **gitignored**, so the key is never committed. Only ever use the anon /
+   publishable key here — never the `service_role` key.
+2. On the owning page (`profile.html`), load, in this order, **before**
+   `js/social/HGSocialMeetSupabaseClient.js`:
+   - the `supabase-js` SDK (exposing `window.supabase.createClient`), and
+   - `js/config-supabase.js`.
+3. With `HG_SOCIAL_MEET_BACKEND = "supabase"` and valid credentials present,
+   `HG_SocialMeetAdapter.backendMode()` returns `"supabase"` and
+   `HG_SocialMeetSupabaseClient.health()` reports `hasCredentials: true`. With no
+   config file present, both stay on `local` and the app behaves exactly as
+   today.
+
+The schema those calls hit is already live on the AHA project
+(`supabase/migrations/001_social_meet.sql`), so once the config + SDK are loaded
+and a user is authenticated, `getMyProfile()` / `createInvite()` / `listInvites()`
+work against the real tables under RLS.
 
 ---
 
