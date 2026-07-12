@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>History Go – people-image-review</title>
+  <style>
+    :root { --bg:#111318; --panel:#1b1f28; --panel-2:#242a36; --text:#f3f5f8; --muted:#aeb6c5; --line:rgba(255,255,255,.12); --ok:#4ade80; --bad:#fb7185; --warn:#facc15; --link:#93c5fd; --shadow:0 18px 50px rgba(0,0,0,.35); }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    header { position:sticky; top:0; z-index:10; padding:18px 20px; background:rgba(17,19,24,.94); border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    h1 { margin:0 0 8px; font-size:clamp(22px,4vw,34px); line-height:1.1; }
+    .lead { margin:0; color:var(--muted); font-size:15px; line-height:1.45; }
+    .toolbar,.actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:14px; }
+    button,.link-button { border:1px solid var(--line); background:var(--panel-2); color:var(--text); border-radius:999px; padding:9px 13px; font:inherit; font-size:14px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+    button:hover,.link-button:hover { border-color:rgba(255,255,255,.32); }
+    button[data-action="approve"].active { border-color:rgba(74,222,128,.85); background:rgba(74,222,128,.16); }
+    button[data-action="reject"].active { border-color:rgba(251,113,133,.85); background:rgba(251,113,133,.16); }
+    button[data-action="maybe"].active { border-color:rgba(250,204,21,.85); background:rgba(250,204,21,.16); }
+    main { padding:18px; max-width:1500px; margin:0 auto; }
+    .status { margin:14px 0 18px; padding:12px 14px; border:1px solid var(--line); border-radius:16px; background:var(--panel); color:var(--muted); font-size:14px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:18px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:var(--shadow); }
+    .image-wrap { position:relative; background:#05070a; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .image-wrap img { width:100%; height:100%; object-fit:contain; display:block; }
+    .image-error { position:absolute; inset:0; display:none; align-items:center; justify-content:center; padding:18px; text-align:center; color:#fecdd3; background:rgba(20,5,8,.9); font-size:14px; }
+    .image-wrap.broken .image-error { display:flex; }
+    .orientation { position:absolute; left:12px; top:12px; padding:5px 9px; border-radius:999px; background:rgba(0,0,0,.72); border:1px solid rgba(255,255,255,.18); font-size:12px; color:white; }
+    .orientation.landscape { color:var(--ok); } .orientation.portrait { color:var(--warn); }
+    .body { padding:15px; }
+    .title-row { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:8px; }
+    h2 { margin:0; font-size:20px; line-height:1.2; }
+    code { color:#dbeafe; background:rgba(147,197,253,.11); border:1px solid rgba(147,197,253,.18); padding:2px 5px; border-radius:7px; font-size:12px; word-break:break-word; }
+    .meta { display:grid; gap:6px; margin:12px 0; color:var(--muted); font-size:13px; line-height:1.35; }
+    .meta strong { color:var(--text); font-weight:650; }
+    .warning { margin:12px 0; padding:10px; border-radius:14px; background:rgba(250,204,21,.11); border:1px solid rgba(250,204,21,.25); color:#fde68a; font-size:13px; line-height:1.4; }
+    a { color:var(--link); } textarea { width:100%; min-height:140px; resize:vertical; border-radius:14px; border:1px solid var(--line); background:#080a0f; color:var(--text); padding:12px; font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; }
+    dialog { width:min(900px,calc(100vw - 28px)); border:1px solid var(--line); border-radius:22px; padding:0; background:var(--panel); color:var(--text); box-shadow:var(--shadow); } dialog::backdrop { background:rgba(0,0,0,.65); } .dialog-inner { padding:18px; } .dialog-inner h2 { margin-bottom:12px; } .muted { color:var(--muted); } .small { font-size:12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>People-image-kandidat-review</h1>
+    <p class="lead">Review skjer i nettleseren og lagres bare i localStorage. Apply kjøres trygt via GitHub Actions eller lokalt script; første publiseringsbatch kan inneholde maksimalt fem personer.</p>
+    <div class="toolbar">
+      <button id="applyApproved" type="button">Legg inn godkjente bilder</button>
+      <button id="copyApproved" type="button">Kopier approved-ID-er</button>
+      <button id="copyReview" type="button">Kopier full review</button>
+      <button id="clearReview" type="button">Nullstill lokal review</button>
+    </div>
+  </header>
+  <main><div id="status" class="status">Laster kandidater …</div><div id="grid" class="grid"></div></main>
+  <dialog id="copyDialog"><div class="dialog-inner"><h2>Kopier review</h2><p class="muted small">Dette er bare tekst. Ingen repo-filer er endret.</p><textarea id="copyText" readonly></textarea><div class="actions"><button id="closeDialog" type="button">Lukk</button></div></div></dialog>
+  <script>
+    const CANDIDATE_PATH = "../data/people/people_image_candidates.json";
+    const STORAGE_KEY = "hg_people_image_review_v1";
+    const MAX_APPROVED = 5;
+    const APPLY_WORKFLOW_URL = "https://github.com/Paradispartiet/History-Go/actions/workflows/apply-people-image-candidates.yml";
+    const statusEl = document.getElementById("status");
+    const gridEl = document.getElementById("grid");
+    const dialogEl = document.getElementById("copyDialog");
+    const copyTextEl = document.getElementById("copyText");
+    let candidates = [];
+    let review = loadReview();
+    function loadReview(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; } }
+    function saveReview(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(review, null, 2)); }
+    function escapeHtml(value){ return String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+    function dimensions(c){ return `${c?.width || "?"} × ${c?.height || "?"}`; }
+    function depiction(c){ const name = `${c?.commonsFileName || ""} ${c?.reason || ""}`.toLowerCase(); if (/crop|cropped|besk/.test(name)) return "beskåret bilde"; if (/photo|portrait|fotografi|jpg|jpeg/.test(name)) return "fotografi"; if (/painting|drawing|illustration|statue|svg|png/.test(name)) return "annen fremstilling"; return "ikke utledet"; }
+    function orientation(c){ const w=Number(c?.width||0), h=Number(c?.height||0); if(!w||!h) return {label:"ukjent format",className:""}; if(w>h) return {label:"liggende bilde",className:"landscape"}; if(h>w) return {label:"stående bilde",className:"portrait"}; return {label:"kvadratisk bilde",className:""}; }
+    function approvedIds(){ return candidates.filter(c => review[c.personId]?.decision === "approve").map(c => c.personId); }
+    function setDecision(personId, decision){
+      const candidate = candidates.find(c => c.personId === personId) || {};
+      if (decision === "approve" && review[personId]?.decision !== "approve" && approvedIds().length >= MAX_APPROVED) { alert("Første publiseringsbatch kan inneholde maksimalt fem personer."); return; }
+      review[personId] = { decision, updatedAt:new Date().toISOString(), personId, wikidataId:candidate.wikidataId || "", commonsFileName:candidate.commonsFileName || "" };
+      saveReview(); render();
+    }
+    function counts(){ const total=candidates.length, approved=approvedIds().length, maybe=Object.values(review).filter(r=>r.decision==="maybe").length, rejected=Object.values(review).filter(r=>r.decision==="reject").length; return {total,approved,maybe,rejected,unreviewed:Math.max(0,total-approved-maybe-rejected)}; }
+    function render(){ const c=counts(); statusEl.textContent = `${c.total} kandidater · ${c.approved} godkjent · ${c.maybe} usikker · ${c.rejected} avvist · ${c.unreviewed} ikke vurdert`; gridEl.innerHTML = candidates.map(candidate => { const current=review[candidate.personId]?.decision||""; const orient=orientation(candidate); return `
+      <article class="card" data-person-id="${escapeHtml(candidate.personId)}"><div class="image-wrap"><img src="${escapeHtml(candidate.originalImageUrl || "")}" alt="${escapeHtml(candidate.personName || candidate.personId)}" loading="lazy" referrerpolicy="no-referrer" /><div class="image-error">Kunne ikke laste originalbildet fra Commons.</div><span class="orientation ${orient.className}">${escapeHtml(orient.label)}</span></div><div class="body"><div class="title-row"><div><h2>${escapeHtml(candidate.personName)}</h2><div class="small"><code>${escapeHtml(candidate.personId)}</code></div></div><div class="small muted">${escapeHtml(candidate.wikidataId)}</div></div>${approvedIds().length >= MAX_APPROVED && current !== "approve" ? `<div class="warning">Første publiseringsbatch kan inneholde maksimalt fem personer.</div>` : ""}<div class="meta"><div><strong>People-ID:</strong> <code>${escapeHtml(candidate.personId)}</code></div><div><strong>Wikidata-ID:</strong> ${escapeHtml(candidate.wikidataId)}</div><div><strong>Commons-filnavn:</strong> ${escapeHtml(candidate.commonsFileName)}</div><div><strong>Dimensjoner:</strong> ${escapeHtml(dimensions(candidate))}</div><div><strong>Fotograf/skaper:</strong> ${escapeHtml(candidate.creator)}</div><div><strong>Credit:</strong> ${escapeHtml(candidate.credit)}</div><div><strong>Lisens:</strong> ${escapeHtml(candidate.license)}</div><div><strong>Lisens-URL:</strong> ${candidate.licenseUrl ? `<a href="${escapeHtml(candidate.licenseUrl)}" target="_blank" rel="noopener">${escapeHtml(candidate.licenseUrl)}</a>` : ""}</div><div><strong>sourceFile:</strong> <code>${escapeHtml(candidate.sourceFile)}</code></div><div><strong>Type:</strong> ${escapeHtml(depiction(candidate))}</div></div><div class="actions"><a class="link-button" href="${escapeHtml(candidate.originalImageUrl)}" target="_blank" rel="noopener">Åpne originalbildet</a><a class="link-button" href="${escapeHtml(candidate.commonsPage)}" target="_blank" rel="noopener">Åpne Commons-siden</a></div><div class="actions"><button type="button" data-action="approve" data-id="${escapeHtml(candidate.personId)}" class="${current === "approve" ? "active" : ""}">Godkjenn</button><button type="button" data-action="maybe" data-id="${escapeHtml(candidate.personId)}" class="${current === "maybe" ? "active" : ""}">Usikker</button><button type="button" data-action="reject" data-id="${escapeHtml(candidate.personId)}" class="${current === "reject" ? "active" : ""}">Avvis</button></div></div></article>`; }).join(""); }
+    function reviewRows(){ return candidates.map(c => ({ personId:c.personId, personName:c.personName, decision:review[c.personId]?.decision || "unreviewed", wikidataId:c.wikidataId, commonsFileName:c.commonsFileName, originalImageUrl:c.originalImageUrl, commonsPage:c.commonsPage, dimensions:{width:c.width || null,height:c.height || null}, creator:c.creator, credit:c.credit, license:c.license, licenseUrl:c.licenseUrl, sourceFile:c.sourceFile, depiction:depiction(c) })); }
+    function showCopy(text,title="Kopier review",note="Dette er bare tekst. Ingen repo-filer er endret."){ dialogEl.querySelector("h2").textContent=title; dialogEl.querySelector("p").innerHTML=note; copyTextEl.value=text; dialogEl.showModal(); copyTextEl.focus(); copyTextEl.select(); }
+    async function copyToClipboard(text){ if(navigator.clipboard?.writeText){ await navigator.clipboard.writeText(text); return; } copyTextEl.value=text; copyTextEl.focus(); copyTextEl.select(); document.execCommand("copy"); }
+    document.addEventListener("click", event => { const button=event.target.closest("button[data-action]"); if(button) setDecision(button.dataset.id, button.dataset.action); });
+    document.addEventListener("error", event => { if (event.target?.tagName === "IMG") event.target.closest(".image-wrap")?.classList.add("broken"); }, true);
+    document.getElementById("applyApproved").addEventListener("click", () => { const ids=approvedIds().join(","); showCopy(ids,"Legg inn godkjente bilder",`Valgte ID-er: <strong>${escapeHtml(ids || "ingen")}</strong>. Kopier <code>approved_ids</code> og åpne <a href="${APPLY_WORKFLOW_URL}" target="_blank" rel="noopener">people apply-workflow</a>. Første kjøring skal bruke <code>write_output=false</code>. Bruk <code>write_output=true</code> først etter kontroll av dry-run-rapporten.`); });
+    document.getElementById("copyApproved").addEventListener("click", () => showCopy(approvedIds().join(","), "Kopier approved-ID-er"));
+    document.getElementById("copyReview").addEventListener("click", () => showCopy(JSON.stringify(reviewRows(), null, 2), "Kopier full review"));
+    document.getElementById("clearReview").addEventListener("click", () => { if(!confirm("Nullstille lokal review i denne nettleseren?")) return; review={}; saveReview(); render(); });
+    copyTextEl.addEventListener("click", () => copyTextEl.select());
+    dialogEl.querySelector(".actions").insertAdjacentHTML("afterbegin", '<button id="copyDialogText" type="button">Kopier tekst</button>');
+    document.getElementById("copyDialogText").addEventListener("click", async () => copyToClipboard(copyTextEl.value));
+    document.getElementById("closeDialog").addEventListener("click", () => dialogEl.close());
+    async function init(){ try { const response=await fetch(CANDIDATE_PATH,{cache:"no-store"}); if(!response.ok) throw new Error(`${response.status} ${response.statusText}`); const data=await response.json(); candidates=Array.isArray(data) ? data : []; render(); } catch(error) { statusEl.textContent = `Kunne ikke laste ${CANDIDATE_PATH}: ${error.message}`; } }
+    init();
+  </script>
+</body>
+</html>

@@ -179,3 +179,113 @@ console.log('people image pipeline tests passed');
   assert.match(draftPrStep, /GH_TOKEN: \$\{\{ github\.token \}\}/, 'gh CLI uses github.token');
   assert.match(draftPrStep, /Allow GitHub Actions to create and approve pull requests/, 'permission failure explains required Actions setting');
 }
+
+async function peopleReviewDom(candidates) {
+  const { JSDOM } = await import('jsdom');
+  const html = await readFile('tools/people-image-review.html', 'utf8');
+  const dom = new JSDOM(html, {
+    url: 'https://paradispartiet.github.io/History-Go/tools/people-image-review.html',
+    runScripts: 'dangerously',
+    resources: 'usable',
+    beforeParse(window) {
+      window.Response = globalThis.Response;
+      window.HTMLDialogElement.prototype.showModal = function(){ this.open = true; };
+      window.HTMLDialogElement.prototype.close = function(){ this.open = false; };
+      window.alert = () => {};
+      window.confirm = () => true;
+      window.fetch = async (url) => {
+        assert.equal(String(url).endsWith('/data/people/people_image_candidates.json'), true);
+        return new window.Response(JSON.stringify(candidates), { status: 200, headers: { 'content-type': 'application/json' } });
+      };
+    }
+  });
+  for (let i = 0; i < 50; i++) {
+    if (dom.window.document.querySelector('article.card') || !dom.window.document.getElementById('status')?.textContent?.includes('Laster')) break;
+    await new Promise((resolve) => setTimeout(resolve, 20));
+  }
+  return dom;
+}
+
+function candidateFor(id, overrides = {}) {
+  return candidate({
+    personId: id,
+    personName: `Person ${id}`,
+    wikidataId: `Q${id.replace(/\D/g, '') || '9'}`,
+    commonsFileName: `${id}.jpg`,
+    originalImageUrl: `https://upload.wikimedia.org/wikipedia/commons/${id}.jpg`,
+    commonsPage: `https://commons.wikimedia.org/wiki/File:${id}.jpg`,
+    approved: false,
+    ...overrides
+  });
+}
+
+{
+  const dom = await peopleReviewDom([candidateFor('p1')]);
+  const { document, localStorage } = dom.window;
+  assert.equal(document.querySelector('img')?.getAttribute('src'), 'https://upload.wikimedia.org/wikipedia/commons/p1.jpg', 'rendering uses originalImageUrl');
+  assert(document.querySelector('button[data-action="approve"]'), 'approve button exists');
+  assert(document.querySelector('button[data-action="maybe"]'), 'usikker button exists');
+  assert(document.querySelector('button[data-action="reject"]'), 'reject button exists');
+  document.querySelector('button[data-action="approve"]').click();
+  const saved = JSON.parse(localStorage.getItem('hg_people_image_review_v1'));
+  assert.equal(saved.p1.decision, 'approve', 'review stored under people storage key');
+  assert.equal(saved.p1.personId, 'p1');
+}
+
+{
+  const dom = await peopleReviewDom(Array.from({ length: 6 }, (_, i) => candidateFor(`p${i + 1}`)));
+  const { document, localStorage } = dom.window;
+  for (let i = 0; i < 6; i++) document.querySelectorAll('button[data-action="approve"]')[i].click();
+  const saved = JSON.parse(localStorage.getItem('hg_people_image_review_v1'));
+  assert.equal(Object.values(saved).filter((entry) => entry.decision === 'approve').length, 5, 'max five approvals enforced');
+  document.getElementById('copyApproved').click();
+  assert.equal(document.getElementById('copyText').value, 'p1,p2,p3,p4,p5', 'approved IDs exported as comma-separated people IDs');
+}
+
+{
+  const dir = await fixture();
+  await withCwd(dir, async()=>{
+    await writeFile('data/people/folder/array.json', JSON.stringify({people:[{id:'ada',name:'Ada'},{id:'hopper',name:'Grace Hopper'}]}, null, 2));
+    const all = [candidateFor('ada', { personId:'ada', personName:'Ada', approved:false }), candidateFor('hopper', { personId:'hopper', personName:'Grace Hopper', sourceFile:'data/people/folder/array.json', personIndex:1, pointer:'/1', approved:false })];
+    for (let i = 0; i < 7; i++) all.push(candidateFor(`unused${i}`, { sourceFile:'data/people/folder/array.json', personIndex:99, approved:false }));
+    const before = JSON.stringify(all, null, 2);
+    await writeFile('data/people/people_image_candidates.json', before);
+    await applyCandidates(['--approved-ids=ada,hopper']);
+    assert.equal(await readFile('data/people/people_image_candidates.json','utf8'), before, 'candidate file unchanged after dry-run');
+    const source = await readFile('data/people/folder/array.json','utf8');
+    assert(!source.includes('imageMeta'), 'dry-run writes nothing with explicit approved IDs');
+  });
+}
+
+for (const [args, message] of [
+  [['--approved-ids=missing'], /must exist exactly once/],
+  [['--approved-ids=ada,ada'], /duplicate/],
+  [['--approved-ids=a,b,c,d,e,f'], /at most 5/]
+]) {
+  const dir = await fixture();
+  await withCwd(dir, async()=>{
+    await writeFile('data/people/people_image_candidates.json', JSON.stringify([candidateFor('ada')], null, 2));
+    await assert.rejects(() => applyCandidates(args), message);
+  });
+}
+
+{
+  const dir = await fixture();
+  await withCwd(dir, async()=>{
+    await writeFile('data/people/folder/array.json', JSON.stringify({people:[{id:'ada',name:'Ada'},{id:'hopper',name:'Grace Hopper'}]}, null, 2));
+    const all = [candidateFor('ada', { personId:'ada', personName:'Ada' }), candidateFor('hopper', { personId:'hopper', personName:'Grace Hopper', sourceFile:'data/people/folder/array.json', personIndex:1, pointer:'/1' })];
+    for (let i = 0; i < 7; i++) all.push(candidateFor(`unused${i}`, { approved:false }));
+    const before = JSON.stringify(all, null, 2);
+    await writeFile('data/people/people_image_candidates.json', before);
+    let downloads = 0;
+    await applyCandidates(['--write','--approved-ids=ada,hopper'], async()=>{
+      downloads++;
+      return new Response(new ReadableStream({ start(c){ c.enqueue(new Uint8Array([1,2,3])); c.close(); } }), {headers:{'content-type':'image/jpeg'}});
+    });
+    assert.equal(downloads, 2, 'write handles only selected candidates');
+    const data = JSON.parse(await readFile('data/people/folder/array.json','utf8'));
+    assert.equal(data.people[0].image, 'bilder/kort/people/ada.jpg');
+    assert.equal(data.people[1].image, 'bilder/kort/people/hopper.jpg');
+    assert.equal(await readFile('data/people/people_image_candidates.json','utf8'), before, 'candidate file remains unchanged after write');
+  });
+}
