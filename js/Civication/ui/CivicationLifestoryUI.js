@@ -193,6 +193,15 @@
         ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas }
         : null;
       State.save(state);
+      // Énveis konsekvensbro: faktiske meter-endringer (etter clamping)
+      // skrives til skallets psyke, så dashboardet speiler dagens valg.
+      // Broen eier mappingen og testmodus-gaten (lifestoryShellBridge).
+      const meterDeltas = {};
+      for (const meterKey of Object.keys(state.meters)) {
+        const delta = Number(state.meters[meterKey]) - Number(before.meters[meterKey]);
+        if (delta) meterDeltas[meterKey] = delta;
+      }
+      /** @type {any} */ (window).CivicationLifestoryShellBridge?.applyMeterDeltasToShell?.(meterDeltas);
       window.dispatchEvent(new Event("civi:lifestoryChanged"));
     } catch (error) {
       console.error("[CivicationLifestoryUI] valg feilet", error);
