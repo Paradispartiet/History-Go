@@ -1,0 +1,55 @@
+name: Register Buskerud batch 3 category files
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/register-buskerud-batch3-category-files.yml
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Update places manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest_path = Path('data/places/manifest.json')
+          data = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = data['files']
+          anchor = 'places/historie/buskerud/places_historie_buskerud_batch3.json'
+          additions = [
+              'places/naeringsliv/buskerud/labro_museum.json',
+              'places/litteratur/buskerud/portaasen_wildenvey.json',
+              'places/naeringsliv/buskerud/eggedal_molle.json',
+              'places/by/buskerud/drammen_tollbod_havn.json',
+          ]
+
+          for item in additions:
+              while item in files:
+                  files.remove(item)
+
+          insert_at = files.index(anchor) + 1
+          files[insert_at:insert_at] = additions
+          manifest_path.write_text(
+              json.dumps(data, ensure_ascii=False, separators=(',', ':')),
+              encoding='utf-8',
+          )
+          PY
+      - name: Commit manifest and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/manifest.json
+          git rm .github/workflows/register-buskerud-batch3-category-files.yml
+          git commit -m "Register split Buskerud batch 3 category files"
+          git push origin main
