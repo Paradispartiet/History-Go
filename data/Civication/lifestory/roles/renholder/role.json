@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "id": "renholder",
+  "navn": "Renholder",
+  "kjernefantasi": "Du holder bygget hygienisk trygt uten å bli sett — under tidspress, lav status og med kroppen som verktøy.",
+  "arbeidsoppgaver": [
+    "prioritere soner og berøringspunkter",
+    "skille synlig rent fra hygienisk rent",
+    "bruke riktig utstyr og kjemikalier",
+    "melde avvik ved søl, skade, lukt eller fare",
+    "beskytte kroppen gjennom teknikk og pauser"
+  ],
+  "personer": [
+    { "id": "driftsleder", "navn": "Kari, driftslederen", "beskrivelse": "Fordeler rom, tid og avvikstrykk. Vil ha flyt og minst mulig småsaker." },
+    { "id": "erfaren_kollega", "navn": "Amina, erfaren renholder", "beskrivelse": "Oversetter usynlig fagarbeid til metode og prioritering." },
+    { "id": "kontorbruker", "navn": "Sindre, kontoransatt", "beskrivelse": "Vil ha rommet tilgjengelig og rent uten å se arbeidet bak." },
+    { "id": "verneombud", "navn": "Ole, verneombudet", "beskrivelse": "Gjør kropp, kjemi og avvik synlig — også når driften presser." }
+  ],
+  "hovedkonflikter": [
+    "synlig resultat vs usynlig arbeid",
+    "tempo vs grundighet",
+    "hygiene vs tidsbudsjett",
+    "verdighet vs lav status",
+    "HMS vs produksjonspress"
+  ],
+  "endings": [
+    { "id": "fagstolt", "navn": "Fagstolt renholder" },
+    { "id": "sliten_kropp", "navn": "Sliten kropp" },
+    { "id": "usynlig_forbigaatt", "navn": "Usynlig og forbigått" },
+    { "id": "sier_fra", "navn": "Den som sier fra" },
+    { "id": "teamleder_emne", "navn": "Teamleder-emne" }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 340,
+      "psyke": 60,
+      "energi": 68,
+      "integritet": 52,
+      "synlighet": 28,
+      "handlingsrom": 42
+    },
+    "relasjoner": {
+      "driftsleder": 50,
+      "erfaren_kollega": 55,
+      "kontorbruker": 45,
+      "verneombud": 50
+    }
+  },
+  "dagsplan": {
+    "1": [
+      { "klokke": "07:00", "tekst": "Møterom klart før 09" },
+      { "klokke": "11:00", "tekst": "Ekstra sone?" },
+      { "klokke": "14:00", "tekst": "Fellesarealet" }
+    ],
+    "2": [
+      { "klokke": "08:00", "tekst": "Oppfølging avvik" },
+      { "klokke": "13:00", "tekst": "Runde med Amina" }
+    ]
+  }
+}

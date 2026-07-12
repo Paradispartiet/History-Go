@@ -288,14 +288,30 @@ data/Civication/lifestory/
 ├── shared/
 │   └── phaseDefinitions.json
 ├── roles/
-│   └── arealplanlegger/
-│       ├── role.json      # kjernefantasi, personer, konflikter, endings
-│       ├── threads.json   # arbeidstråder
-│       └── scenes.json    # spillbare øyeblikk
+│   ├── arealplanlegger/
+│   │   ├── role.json      # kjernefantasi, personer, konflikter, endings
+│   │   ├── threads.json   # arbeidstråder
+│   │   └── scenes.json    # spillbare øyeblikk
+│   └── renholder/
+│       ├── role.json
+│       ├── threads.json
+│       └── scenes.json
 └── life/
-    ├── threads.json       # privattråder
+    ├── threads.json       # privattråder (delt av ALLE roller)
     └── scenes.json
 ```
+
+**Rollevalg:** Min dag spiller `arealplanlegger` som standard. En annen rolle
+velges eksplisitt med `Civication.html?lifestoryRole=renholder` (persisteres i
+localStorage `civication_lifestory_role_v1`). Ukjent rolle-id feiler fast i
+manifest-oppslaget — ingen stille fallback. Bytte av rolle starter en ny
+Player State (én lagringsplass, `civication_lifestory_v1`).
+
+**Regel for delte livsscener:** `life/`-filene deles av alle roller, så en
+livsscene kan aldri referere rollespesifikke tråder eller relasjoner i
+`conditions`/`effekter`. En scene som forgrenes på en rolletråd hører hjemme i
+rollens egen `scenes.json` (den kan fortsatt ligge på en privatlivstråd).
+Renholder-testen håndhever dette.
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp
@@ -305,6 +321,8 @@ automatisk av `npm run test:civication`:
   1 morgen→kveld.
 - `tests/civication-lifestory-engine.test.js` — conditions, thread state,
   day progression, konsekvenstekst.
+- `tests/civication-lifestory-renholder.test.js` — rolle nummer to: hele
+  dag 1 + begge dag-2-grener, rolle-agnostiske livsscener, rollevalg i UI.
 - `tests/civication-v2-main-flow.test.js` — v2-allowlist + legacy-gate.
 - `tests/civication-v2-min-dag-ui.test.js` — Min dag i JSDOM inkl. neste dag.
 
@@ -318,12 +336,14 @@ De gamle motorene slettes ikke med én gang, men de styrer ikke lenger
 designet. Nye fortellinger bygges som pakker i
 `data/Civication/lifestory/`, aldri som nye motorer.
 
-## 9. Pilot: Arealplanlegger, Dag 1 og Dag 2
+## 9. Rollene: Arealplanlegger og Renholder, Dag 1 og Dag 2
 
-Piloten beviser at spilleren kan leve dager som arealplanlegger, med
+Piloten (Arealplanlegger) beviser at spilleren kan leve dager med
 arbeidstråder, privatliv, valg og konsekvenser — og at dag 2 leser dag 1.
+Renholder er rolle nummer to og beviser at en ny rolle er **ren data**:
+samme runner, samme livsscener, null ny motorkode.
 
-Arbeidstråder dag 1:
+Arealplanlegger — arbeidstråder dag 1:
 
 1. Skoleveien bak parkeringskjelleren
 2. Den lange nabomailen
@@ -331,18 +351,31 @@ Arbeidstråder dag 1:
 4. Utbygger vil ha rask avklaring
 5. Plansjefen vil unngå merarbeid
 
-Privattråder dag 1:
+Renholder — arbeidstråder dag 1 (fra FWG-konfliktene i
+`workGrammars/naeringsliv/renholder.json`):
+
+1. Rommet som så rent ut (synlig rent vs hygienisk rent)
+2. Tidsvinduet krymper (tempo vs grundighet)
+3. Sølet i fellesarealet (lite avvik vs HMS/driftsproblem)
+4. Ryggen sier fra (kroppens grenser vs produksjonspress)
+5. Det usynlige arbeidet (verdighet vs lav status)
+
+Personene er rollens actor-grammatikk: Kari (driftsleder), Amina (erfaren
+renholder), Sindre (kontorbruker), Ole (verneombud).
+
+Privattråder dag 1 (delt av begge roller):
 
 1. Du har sovet dårlig
 2. Økonomien er stram
 3. Noen forventer svar i kveld
 4. Du vurderer om jobben passer deg
 
-Dag 2 er ekte innhold (ikke lenger en stub) og forgrenes på dag 1 via
-`conditions` — se §5b. Morgenen leser identitetsvalget fra kvelden,
-formiddagen leser skolevei-trådens status, kvelden leser økonomi-tråden
-og pengemåleren. Dag 3+ er fortsatt uskrevet; en tom dag avsluttes
-trygt.
+Dag 2 er ekte innhold og forgrenes på dag 1 via `conditions` — se §5b.
+Arealplanlegger: morgenen leser identitetsvalget fra kvelden, formiddagen
+skolevei-trådens status, kvelden økonomi-tråden og pengemåleren.
+Renholder: morgenen leser om avviket ble meldt (vernerunde vs «noen skled
+nesten»), formiddagen om du tok det ekstra rommet, kvelden om det usynlige
+arbeidet eskalerte. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
 
 ## 10. Regelen for Civication
 
