@@ -307,6 +307,18 @@ localStorage `civication_lifestory_role_v1`). Ukjent rolle-id feiler fast i
 manifest-oppslaget — ingen stille fallback. Bytte av rolle starter en ny
 Player State (én lagringsplass, `civication_lifestory_v1`).
 
+**Skall-jobb → Life Story-rolle:** Uten eksplisitt rollevalg følger Min dag
+skallets aktive jobb. Mappingen er canonical: skallets aktive posisjon
+(`hg_active_position_v1`) → `CivicationCareerRoleResolver.resolveCareerRoleScope`
+→ `role_scope`-bindingen i lifestory-manifestet
+(`manifest.roles.<id>.role_scope`, f.eks. `renholder` → `renholder`,
+`by_radgiver_plan` → `arealplanlegger`). Adopsjonen skjer ved `civi:booted`
+og ved jobbskifte (`updateProfile`), og gjelder KUN når spilleren ikke har
+valgt rolle selv — eksplisitt valg vinner alltid, og adopsjon skrives aldri
+til `civication_lifestory_role_v1`. Jobb uten Life Story-pakke (f.eks.
+ekspeditør i dag) endrer ingenting. Ny rolle i Life Story kobles til jobben
+sin ved å sette `role_scope` i manifestet — ingen JS-endring.
+
 **Regel for delte livsscener:** `life/`-filene deles av alle roller, så en
 livsscene kan aldri referere rollespesifikke tråder eller relasjoner i
 `conditions`/`effekter`. En scene som forgrenes på en rolletråd hører hjemme i
@@ -323,6 +335,9 @@ automatisk av `npm run test:civication`:
   day progression, konsekvenstekst.
 - `tests/civication-lifestory-renholder.test.js` — rolle nummer to: hele
   dag 1 + begge dag-2-grener, rolle-agnostiske livsscener, rollevalg i UI.
+- `tests/civication-lifestory-shell-role-bridge.test.js` — skall-jobb →
+  Life Story-rolle: manifest-bindinger, canonical resolver ende-til-ende,
+  JSDOM-adopsjon ved civi:booted, eksplisitt valg vinner.
 - `tests/civication-v2-main-flow.test.js` — v2-allowlist + legacy-gate.
 - `tests/civication-v2-min-dag-ui.test.js` — Min dag i JSDOM inkl. neste dag.
 

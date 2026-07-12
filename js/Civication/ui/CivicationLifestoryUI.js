@@ -17,13 +17,12 @@
   const ROLE_STORAGE_KEY = "civication_lifestory_role_v1";
 
   /**
-   * Hvilken rolle Min dag skal spille. Velges eksplisitt via URL
-   * (?lifestoryRole=renholder) eller localStorage; URL vinner og persisteres.
-   * Ukjent rolle-id feiler fast i Content.loadContent (manifest-oppslag) og
-   * vises som lastefeil — ingen stille fallback til en annen rolle.
-   * @returns {string}
+   * Eksplisitt rollevalg: URL (?lifestoryRole=renholder) vinner og
+   * persisteres; ellers localStorage. Null når spilleren ikke har valgt —
+   * da kan Min dag følge skall-jobben (se maybeAdoptShellRole).
+   * @returns {string|null}
    */
-  function resolveRoleId() {
+  function resolveExplicitRoleId() {
     try {
       const fromUrl = new URLSearchParams(window.location.search || "").get("lifestoryRole");
       if (fromUrl && fromUrl.trim()) {
@@ -33,11 +32,19 @@
       }
       const stored = window.localStorage?.getItem(ROLE_STORAGE_KEY);
       if (stored && stored.trim()) return stored.trim();
-    } catch { /* blokkert lagring/URL => standardrollen */ }
-    return DEFAULT_ROLE_ID;
+    } catch { /* blokkert lagring/URL => ingen eksplisitt rolle */ }
+    return null;
   }
 
-  const ROLE_ID = resolveRoleId();
+  const EXPLICIT_ROLE_ID = resolveExplicitRoleId();
+
+  /**
+   * Rollen Min dag spiller akkurat nå. Starter som eksplisitt valg eller
+   * standardrollen; kan senere byttes av maybeAdoptShellRole når skallet
+   * booter eller spilleren tar en jobb. Ukjent rolle-id feiler fast i
+   * Content.loadContent (manifest-oppslag) — ingen stille fallback.
+   */
+  let currentRoleId = EXPLICIT_ROLE_ID || DEFAULT_ROLE_ID;
 
   /** @type {any} */ let content = null;
   /** @type {any} */ let state = null;
@@ -103,22 +110,71 @@
     return document.getElementById("civiLifestoryPanel");
   }
 
+  /**
+   * Last innhold + Player State for en rolle. Ny state når lagret state
+   * tilhører en annen rolle (én lagringsplass per spiller).
+   * @param {string} roleId
+   */
+  async function loadRole(roleId) {
+    const Content = /** @type {any} */ (window).CivicationLifestoryContent;
+    const State = /** @type {any} */ (window).CivicationLifestoryState;
+    content = await Content.loadContent(roleId);
+    state = State.load();
+    if (!state || state.rolle !== roleId) {
+      state = State.createInitialState(content);
+      State.save(state);
+    }
+    currentRoleId = roleId;
+  }
+
   async function ensureLoaded() {
     if (content && state) return;
     if (!loading) {
-      loading = (async () => {
-        const Content = /** @type {any} */ (window).CivicationLifestoryContent;
-        const State = /** @type {any} */ (window).CivicationLifestoryState;
-        content = await Content.loadContent(ROLE_ID);
-        state = State.load();
-        if (!state || state.rolle !== ROLE_ID) {
-          state = State.createInitialState(content);
-          State.save(state);
-        }
-      })();
+      loading = loadRole(currentRoleId);
     }
     return loading;
   }
+
+  // ---- Skall-jobb -> Life Story-rolle ----
+  // Uten eksplisitt rollevalg følger Min dag skallets aktive jobb: tar
+  // spilleren Renholder-jobben, spiller Life Story renholder. Mappingen er
+  // canonical resolver (CivicationCareerRoleResolver) + role_scope-binding i
+  // lifestory-manifestet — se resolveRoleIdForActivePosition. Jobb uten
+  // Life Story-pakke, tom jobb eller manglende resolver endrer ingenting.
+  /** Memo: siste sjekkede jobb, så updateProfile-burster ikke koster noe. */
+  let lastAdoptKey = null;
+  let adopting = false;
+
+  async function maybeAdoptShellRole() {
+    if (EXPLICIT_ROLE_ID || adopting) return; // spillerens valg vinner alltid
+    // Ikke memoiser før resolveren finnes — den injiseres av shell-loaderen,
+    // og en tidlig updateProfile skal ikke låse sjekken for godt.
+    if (!(/** @type {any} */ (window).CivicationCareerRoleResolver?.resolveCareerRoleScope)) return;
+    const active = /** @type {any} */ (window).CivicationState?.getActivePosition?.();
+    if (!active) return;
+    const adoptKey = String(active.career_id || "") + ":" + String(active.role_key || active.title || "");
+    if (adoptKey === lastAdoptKey) return;
+    lastAdoptKey = adoptKey;
+
+    adopting = true;
+    try {
+      const Content = /** @type {any} */ (window).CivicationLifestoryContent;
+      const mapped = await Content?.resolveRoleIdForActivePosition?.(active);
+      if (!mapped || mapped === currentRoleId) return;
+      await loadRole(mapped);
+      console.info("[CivicationLifestoryUI] Min dag følger skall-jobben: " + mapped);
+      render();
+    } catch (error) {
+      console.warn("[CivicationLifestoryUI] kunne ikke følge skall-jobben", error);
+    } finally {
+      adopting = false;
+    }
+  }
+
+  // Skallet booter etter Min dag (shell-loaderen injiserer resolver +
+  // CivicationState); jobbaksept dispatcher updateProfile.
+  window.addEventListener("civi:booted", () => { maybeAdoptShellRole(); });
+  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); });
 
   /**
    * @param {string} sceneId

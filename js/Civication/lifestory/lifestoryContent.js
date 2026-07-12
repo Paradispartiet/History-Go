@@ -363,7 +363,42 @@
     return res.json();
   }
 
-  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, MANIFEST_PATH, buildContent, validateContent, loadContent };
+  /**
+   * Skall-jobb → Life Story-rolle: finn rollen i manifestet hvis
+   * `role_scope`-binding matcher skallets role_scope (fra
+   * CivicationCareerRoleResolver). Ren og DOM-fri; null hvis ingen
+   * Life Story-pakke finnes for scopet — ingen gjetting, ingen fallback.
+   * @param {any} manifest
+   * @param {string|null|undefined} roleScope
+   * @returns {string|null}
+   */
+  function resolveRoleIdForRoleScope(manifest, roleScope) {
+    const scope = typeof roleScope === "string" ? roleScope.trim() : "";
+    if (!scope || scope === "unknown") return null;
+    for (const [roleId, entry] of Object.entries(manifest?.roles || {})) {
+      if (entry && entry.role_scope === scope) return roleId;
+    }
+    return null;
+  }
+
+  /**
+   * Nettleser: map skallets aktive posisjon til en Life Story-rolle.
+   * Bruker den kanoniske resolveren (CivicationCareerRoleResolver) hvis den
+   * er lastet — vi dupliserer aldri scope-logikken her. Returnerer null når
+   * resolveren mangler, posisjonen er tom, eller scopet ikke har noen pakke.
+   * @param {any} activePosition
+   * @returns {Promise<string|null>}
+   */
+  async function resolveRoleIdForActivePosition(activePosition) {
+    if (!activePosition || typeof activePosition !== "object") return null;
+    const resolver = /** @type {any} */ (globalScope).CivicationCareerRoleResolver;
+    const scope = resolver?.resolveCareerRoleScope?.(activePosition);
+    if (!scope || scope === "unknown") return null;
+    const manifest = await fetchJson(MANIFEST_PATH);
+    return resolveRoleIdForRoleScope(manifest, scope);
+  }
+
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, MANIFEST_PATH, buildContent, validateContent, loadContent, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
