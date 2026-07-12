@@ -146,12 +146,29 @@ async function commonsMeta(file: string, fetcher: Fetcher): Promise<any> {
   const page = Object.values(j.query?.pages || {})[0] as any; return page?.imageinfo?.[0];
 }
 function cleanHtml(s: unknown): string { return reqStr(s).replace(/<[^>]*>/g, '').replace(/&quot;/g, '"').replace(/&amp;/g, '&'); }
+function firstHttpUrl(value: unknown): string {
+  const raw = reqStr(value).replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+  const hrefMatch = raw.match(/href=["']([^"']+)["']/i);
+  const directMatch = raw.match(/https?:\/\/[^\s"'<>]+/i);
+  return reqStr(hrefMatch?.[1] || directMatch?.[0]);
+}
+function normalizedLicenseUrl(ext: any, license: string): string {
+  const explicit = firstHttpUrl(ext.LicenseUrl?.value || ext.License?.value);
+  if (explicit) return explicit;
+  const l = license.toLowerCase().replace(/[_-]/g, ' ');
+  const version = l.match(/\b(1\.0|2\.0|2\.5|3\.0|4\.0)\b/)?.[1] || '4.0';
+  if (/\bcc0\b/.test(l)) return 'https://creativecommons.org/publicdomain/zero/1.0/';
+  if (/cc\s*by\s*sa|creative commons attribution sharealike|creative commons attribution share alike/.test(l)) return `https://creativecommons.org/licenses/by-sa/${version}/`;
+  if (/cc\s*by|creative commons attribution/.test(l)) return `https://creativecommons.org/licenses/by/${version}/`;
+  if (/public domain|\bpd\b/.test(l)) return 'https://commons.wikimedia.org/wiki/Commons:Public_domain';
+  return '';
+}
 function candidateFromMeta(e: Entry, qid: string, file: string, info: any): Candidate | null {
   const ext = info?.extmetadata || {}; const license = cleanHtml(ext.LicenseShortName?.value || ext.UsageTerms?.value);
   const url = reqStr(info?.url); if (!url || !isAllowedLicense(license)) return null;
   try { assertCommonsUrl(url); } catch { return null; }
   const commons = `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/^File:/, '').replace(/ /g, '_'))}`;
-  return { personId: reqStr(e.person.id), personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName: file.replace(/^File:/, ''), originalImageUrl: url, commonsPage: commons, creator: cleanHtml(ext.Artist?.value || ext.Credit?.value), credit: cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value), license, licenseUrl: reqStr(ext.LicenseUrl?.value), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Wikidata P18 image with Commons metadata and allowed license', score: 100 };
+  return { personId: reqStr(e.person.id), personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName: file.replace(/^File:/, ''), originalImageUrl: url, commonsPage: commons, creator: cleanHtml(ext.Artist?.value || ext.Credit?.value), credit: cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value), license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Wikidata P18 image with Commons metadata and allowed license', score: 100 };
 }
 export async function buildCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
   const limit = Number((args.find(a => a.startsWith('--limit=')) || '--limit=25').split('=')[1]); const idsArg = args.find(a => a.startsWith('--ids=')); const ids = idsArg ? new Set(idsArg.split('=')[1].split(',').filter(Boolean)) : null; const include = args.includes('--include-existing');

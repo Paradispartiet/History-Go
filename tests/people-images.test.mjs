@@ -72,6 +72,28 @@ for (const bad of [
     assert.equal(await missing('bilder/kort/people/ada.tmp'), true);
   });
 }
+
+
+{
+  const { buildCandidates } = await import('../dist/tools/people-image-pipeline.mjs');
+  const dir = await fixture();
+  await withCwd(dir, async()=>{
+    await writeFile('data/people/folder/array.json', JSON.stringify({people:[{id:'ada',name:'Ada',wikidataId:'Q1'}]}, null, 2));
+    await buildCandidates(['--ids=ada','--limit=1'], async (url) => {
+      const u = String(url);
+      if (u.includes('Q1.json')) return wikidataEntityResponse('Q1', { P31: [humanClaim()], P18: [p18Claim('Ada.jpg')] });
+      if (u.includes('commons.wikimedia.org')) return new Response(JSON.stringify({ query: { pages: { 1: { imageinfo: [{ url:'https://upload.wikimedia.org/wikipedia/commons/a/ada.jpg', width:640, height:480, extmetadata: { LicenseShortName:{value:'CC BY-SA 4.0'}, License:{value:'<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>'}, Artist:{value:'Ada Artist'}, Credit:{value:'Ada Credit'} } }] } } } }));
+      throw new Error(`unexpected url ${u}`);
+    });
+    const out = JSON.parse(await readFile('data/people/people_image_candidates.json','utf8'));
+    assert.equal(out.length, 1);
+    assert.equal(out[0].licenseUrl, 'https://creativecommons.org/licenses/by-sa/4.0/');
+    assert.equal(out[0].width, 640);
+    assert.equal(out[0].height, 480);
+    assert.equal(out[0].commonsPage, 'https://commons.wikimedia.org/wiki/File:Ada.jpg');
+  });
+}
+
 console.log('people image pipeline tests passed');
 
 {
