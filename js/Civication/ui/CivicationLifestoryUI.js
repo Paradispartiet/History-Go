@@ -13,7 +13,31 @@
 (function () {
   "use strict";
 
-  const ROLE_ID = "arealplanlegger"; // pilotrollen
+  const DEFAULT_ROLE_ID = "arealplanlegger"; // pilotrollen
+  const ROLE_STORAGE_KEY = "civication_lifestory_role_v1";
+
+  /**
+   * Hvilken rolle Min dag skal spille. Velges eksplisitt via URL
+   * (?lifestoryRole=renholder) eller localStorage; URL vinner og persisteres.
+   * Ukjent rolle-id feiler fast i Content.loadContent (manifest-oppslag) og
+   * vises som lastefeil — ingen stille fallback til en annen rolle.
+   * @returns {string}
+   */
+  function resolveRoleId() {
+    try {
+      const fromUrl = new URLSearchParams(window.location.search || "").get("lifestoryRole");
+      if (fromUrl && fromUrl.trim()) {
+        const roleId = fromUrl.trim();
+        try { window.localStorage?.setItem(ROLE_STORAGE_KEY, roleId); } catch { /* uten lagring gjelder valget bare denne lasten */ }
+        return roleId;
+      }
+      const stored = window.localStorage?.getItem(ROLE_STORAGE_KEY);
+      if (stored && stored.trim()) return stored.trim();
+    } catch { /* blokkert lagring/URL => standardrollen */ }
+    return DEFAULT_ROLE_ID;
+  }
+
+  const ROLE_ID = resolveRoleId();
 
   /** @type {any} */ let content = null;
   /** @type {any} */ let state = null;
@@ -317,6 +341,8 @@
 
     const m = state.meters;
     const chips = [
+      // Rollechipen viser canonical aktiv rolle (skall-jobben), aldri Life
+      // Story-rollen — kontrakten håndheves av civication-v2-min-dag-ui-testen.
       ["role is-empty", "Ingen aktiv rolle"],
       ["day", "Dag " + state.dag],
       ["phase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],

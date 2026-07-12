@@ -1,0 +1,559 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "id": "rommet_01_melding",
+      "threadId": "rommet_som_saa_rent_ut",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Møterommet må være klart til 09 — og det kom en klage",
+      "tekst": "Kari skriver: «Møterom 2 må være klart til 09. Og i går kom det klage på lukt der — det så jo rent ut? Rekker du en runde før møtet?» Du vet at flatene skinner. Det er berøringspunktene og avløpet som lukter.",
+      "valg": [
+        {
+          "id": "beroeringspunkter",
+          "tekst": "Ta berøringspunktene og avløpet først — hygienisk rent før synlig rent",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "driftsleder": 2 },
+            "meters": { "integritet": 5, "energi": -4 },
+            "flagg": { "tok_hygienisk_rent": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Lukten forsvinner når avløpet er skylt og håndtakene desinfisert. Ingen kommer til å se hva du gjorde — men ingen kommer til å lukte det heller.",
+          "laaserOpp": ["rommet_02_standard"]
+        },
+        {
+          "id": "synlig_runde",
+          "tekst": "Rask synlig runde — bord, tavle, søppel — så rekker du resten av sonen",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": { "driftsleder": 3 },
+            "meters": { "integritet": -4, "energi": -2 },
+            "flagg": { "valgte_synlig_rent": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Rommet ser perfekt ut da møtet starter. Du vet at lukten kommer tilbake i morgen.",
+          "laaserOpp": ["rommet_02_standard"]
+        },
+        {
+          "id": "spor_amina",
+          "tekst": "Spør Amina hvor lukt i «rene» rom pleier å sitte",
+          "tone": "lærende",
+          "effekter": {
+            "relasjoner": { "erfaren_kollega": 6 },
+            "meters": { "energi": -3, "handlingsrom": 2 },
+            "flagg": { "spurte_om_metode": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Amina svarer på tjue sekunder: «Avløp, håndtak, stolarmer. Synlig rent er ikke rent.» Du rekker både lukten og møtet.",
+          "laaserOpp": ["rommet_02_standard"]
+        }
+      ]
+    },
+    {
+      "id": "rommet_02_standard",
+      "threadId": "rommet_som_saa_rent_ut",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Kari vil vite hva klagen egentlig handlet om",
+      "tekst": "Kari stikker innom: «Klagen fra i går — var det slurv, eller er det noe med rommet? Jeg må svare noe oppover.»",
+      "valg": [
+        {
+          "id": "forklar_forskjellen",
+          "tekst": "Forklar forskjellen på synlig rent og hygienisk rent",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "driftsleder": 5 },
+            "meters": { "integritet": 4, "synlighet": 5 },
+            "flagg": { "forklarte_hygienisk": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Kari noterer. «Så det kan se rent ut og fortsatt lukte. Det visste jeg faktisk ikke.» Det er første gang hun har spurt om faget ditt."
+        },
+        {
+          "id": "ta_paa_deg",
+          "tekst": "Ta det på deg og lov at det ikke skjer igjen",
+          "tone": "unnvikende",
+          "effekter": {
+            "relasjoner": { "driftsleder": 2 },
+            "meters": { "psyke": -4, "integritet": -3 },
+            "flagg": { "tok_skylden": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Kari nikker og går. Det var enklest. Men nå står det «slurv» i et svar oppover — om arbeid som ikke var slurv."
+        },
+        {
+          "id": "foreslaa_sjekkliste",
+          "tekst": "Foreslå en berøringspunkt-sjekkliste for sonen",
+          "tone": "konstruktiv",
+          "effekter": {
+            "relasjoner": { "driftsleder": 4, "erfaren_kollega": 3 },
+            "meters": { "handlingsrom": 4, "synlighet": 3, "energi": -2 },
+            "flagg": { "foreslo_sjekkliste": true },
+            "threads": { "rommet_som_saa_rent_ut": { "status": "completed" } }
+          },
+          "konsekvensTekst": "«Lag et utkast, så tar jeg det med på driftsmøtet,» sier Kari. Amina smiler skjevt: det er hennes metode du nettopp har satt navn på."
+        }
+      ]
+    },
+    {
+      "id": "tidsvindu_01_telefon",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "telefon",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "«Kan du ta tredje etasje også?»",
+      "tekst": "Kari ringer: «Jonas er syk. Kan du ta tredje etasje også? Samme tidsvindu.» Du vet hva det betyr: enten ryker standarden i begge soner, eller så ryker pausen din.",
+      "valg": [
+        {
+          "id": "ta_stille",
+          "tekst": "Si ja og løp fortere",
+          "tone": "pliktoppfyllende",
+          "effekter": {
+            "relasjoner": { "driftsleder": 4 },
+            "meters": { "energi": -8, "psyke": -3 },
+            "flagg": { "tok_ekstra_rom": true },
+            "threads": { "tidsvinduet_krymper": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Du rekker begge soner — så vidt. Kroppen vet allerede at dette blir regningen din, ikke Karis."
+        },
+        {
+          "id": "ja_men_si_fra",
+          "tekst": "Si ja — men si tydelig at standarden ryker i dag",
+          "tone": "ærlig",
+          "effekter": {
+            "relasjoner": { "driftsleder": 2 },
+            "meters": { "integritet": 5, "energi": -6 },
+            "flagg": { "tok_ekstra_rom": true, "sa_fra_om_standard": true },
+            "threads": { "tidsvinduet_krymper": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "«Notert,» sier Kari. Det er ikke mye, men det ligger nå hos henne at dagens standard var et valg — ikke din feil."
+        },
+        {
+          "id": "sett_grense",
+          "tekst": "Si nei, og forklar nøyaktig hva som ryker hvis du sier ja",
+          "tone": "grensesettende",
+          "effekter": {
+            "relasjoner": { "driftsleder": -6 },
+            "meters": { "integritet": 6, "psyke": 2 },
+            "flagg": { "satte_grense": true },
+            "threads": { "tidsvinduet_krymper": { "status": "escalated" } }
+          },
+          "konsekvensTekst": "Det blir stille i telefonen. «Greit. Jeg finner en annen løsning.» Du vet ikke ennå hva det nei-et kommer til å koste."
+        },
+        {
+          "id": "foreslaa_bytte",
+          "tekst": "Foreslå å dele: du tar toalettene i tredje, Amina tar resten",
+          "tone": "løsningsorientert",
+          "effekter": {
+            "relasjoner": { "driftsleder": 3, "erfaren_kollega": 5 },
+            "meters": { "handlingsrom": 3, "energi": -4 },
+            "flagg": { "delte_sonen": true },
+            "threads": { "tidsvinduet_krymper": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Amina er med umiddelbart: «Toalettene er det viktigste — resten kan vente til i morgen.» Kari hører at dere allerede har prioritert for henne."
+        }
+      ]
+    },
+    {
+      "id": "soel_01_krise",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "krise",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Vått gulv i fellesarealet — og du er på vei videre",
+      "tekst": "Noen har veltet en kaffetralle i fellesarealet. Gulvet er vått akkurat der alle går. Du er allerede bak skjema, og det finnes ikke noe «Vått gulv»-skilt i nærheten.",
+      "valg": [
+        {
+          "id": "meld_avvik",
+          "tekst": "Sperr av, hent skilt og meld avviket formelt",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "verneombud": 8 },
+            "meters": { "synlighet": 4, "energi": -4 },
+            "flagg": { "meldte_avvik": true },
+            "threads": { "soelet_i_fellesarealet": { "status": "escalated" } }
+          },
+          "konsekvensTekst": "Ole svarer på avviket i løpet av en time: «Endelig en som melder. Det er tredje gang den trallen velter.» Du visste ikke at det var et mønster."
+        },
+        {
+          "id": "toerk_og_gaa",
+          "tekst": "Tørk det verste og gå videre — du er bak skjema",
+          "tone": "presset",
+          "effekter": {
+            "meters": { "energi": -2, "integritet": -4 },
+            "flagg": { "toerket_og_gikk": true },
+            "threads": { "soelet_i_fellesarealet": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Gulvet ser tørt ut. Det er det ikke, helt. Du rekker resten av sonen og prøver å ikke tenke på skoene som gikk over flekken bak deg."
+        },
+        {
+          "id": "be_om_hjelp",
+          "tekst": "Be Sindre holde folk unna mens du henter utstyr",
+          "tone": "samarbeidende",
+          "effekter": {
+            "relasjoner": { "kontorbruker": 4 },
+            "meters": { "energi": -3, "synlighet": 2 },
+            "flagg": { "fikk_hjelp_av_bruker": true },
+            "threads": { "soelet_i_fellesarealet": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Sindre stiller seg faktisk der og vinker folk rundt. «Jeg ante ikke at dere måtte hente utstyr helt nede i kjelleren,» sier han etterpå."
+        }
+      ]
+    },
+    {
+      "id": "rygg_01_vurdering",
+      "threadId": "ryggen_sier_fra",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Ryggen strammer etter løftene",
+      "tekst": "Etter trallen, sekkene og de tunge dørene kjenner du det kjente draget nederst i ryggen. Du har en pause til gode — og en halv sone igjen.",
+      "valg": [
+        {
+          "id": "ta_pausen",
+          "tekst": "Ta pausen du har krav på",
+          "tone": "selvbevarende",
+          "effekter": {
+            "meters": { "energi": 5, "psyke": 2 },
+            "flagg": { "tok_pausen": true },
+            "threads": { "ryggen_sier_fra": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Ti minutter på pauserommet. Ryggen slipper taket, litt. Sonen blir ferdig fem minutter senere enn planen — og det går helt fint."
+        },
+        {
+          "id": "press_gjennom",
+          "tekst": "Press gjennom — pausen tar du når sonen er ferdig",
+          "tone": "hard",
+          "effekter": {
+            "meters": { "energi": -7, "psyke": -4 },
+            "flagg": { "presset_kroppen": true },
+            "threads": { "ryggen_sier_fra": { "status": "escalated" } }
+          },
+          "konsekvensTekst": "Du blir ferdig på tiden. Om kvelden må du sitte helt stille i ti minutter før du klarer å ta av deg skoene."
+        },
+        {
+          "id": "spor_ole",
+          "tekst": "Spør Ole om løfteteknikk for trallene",
+          "tone": "lærende",
+          "effekter": {
+            "relasjoner": { "verneombud": 6 },
+            "meters": { "energi": -1, "handlingsrom": 2 },
+            "flagg": { "laerte_teknikk": true },
+            "threads": { "ryggen_sier_fra": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Ole viser deg på tretti sekunder: senk hev-håndtaket, skyv med beina, aldri vri. «Kroppen din er verktøyet ditt. Ingen erstatter det for deg.»"
+        }
+      ]
+    },
+    {
+      "id": "usynlig_01_melding",
+      "threadId": "usynlig_arbeid",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "kontorbruker",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "«Det rommet blir jo aldri vasket»",
+      "tekst": "Kari videresender en klage fra Sindre: «Møterom 2 blir jo aldri vasket.» Du vasket det i morges. Du har gjort det hver morgen i tre uker.",
+      "valg": [
+        {
+          "id": "dokumenter",
+          "tekst": "Send Kari runde-loggen din, nøkternt og uten spydighet",
+          "tone": "profesjonell",
+          "effekter": {
+            "relasjoner": { "driftsleder": 5 },
+            "meters": { "integritet": 4, "synlighet": 5 },
+            "flagg": { "dokumenterte_runden": true },
+            "threads": { "usynlig_arbeid": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Kari svarer: «Det var det jeg trodde. Jeg svarer ham.» Loggen din sier det du ikke orket å si selv."
+        },
+        {
+          "id": "la_ligge",
+          "tekst": "La det ligge — folk ser aldri dette arbeidet uansett",
+          "tone": "resignert",
+          "effekter": {
+            "meters": { "psyke": -5, "synlighet": -2 },
+            "flagg": { "lot_det_ligge": true },
+            "threads": { "usynlig_arbeid": { "status": "dormant" } }
+          },
+          "konsekvensTekst": "Du lukker meldingen. Det er bare en klage. Men den blir liggende et sted bak i hodet resten av kvelden."
+        },
+        {
+          "id": "si_fra_tydelig",
+          "tekst": "Svar Sindre direkte: rommet vaskes 06:45 hver dag — før han kommer",
+          "tone": "tydelig",
+          "effekter": {
+            "relasjoner": { "kontorbruker": -4 },
+            "meters": { "synlighet": 6, "integritet": 3 },
+            "flagg": { "sa_fra_til_bruker": true },
+            "threads": { "usynlig_arbeid": { "status": "escalated" } }
+          },
+          "konsekvensTekst": "Det blir stille i tråden. Du vet ikke om det var lurt. Men for første gang står det svart på hvitt når arbeidet faktisk gjøres."
+        }
+      ]
+    },
+    {
+      "id": "d2_avvik_fulgt_opp",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "verneombud",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "conditions": { "flagg": { "meldte_avvik": true } },
+      "tittel": "Ole vil ha deg med på vernerunden",
+      "tekst": "Ole tar deg i gangen: «Avviket ditt ble tatt opp i morges. Trallen får ny lås, og det kommer skilt-stasjon i fellesarealet. Blir du med på vernerunden neste uke? Du ser ting vi ikke ser.»",
+      "valg": [
+        {
+          "id": "bli_med",
+          "tekst": "Si ja til vernerunden",
+          "tone": "engasjert",
+          "effekter": {
+            "relasjoner": { "verneombud": 6 },
+            "meters": { "synlighet": 5, "handlingsrom": 3, "energi": -2 },
+            "flagg": { "ble_med_vernerunde": true },
+            "threads": { "soelet_i_fellesarealet": { "status": "completed" } }
+          },
+          "konsekvensTekst": "«Bra,» sier Ole. «Det er de som vasker som vet hvor bygget faktisk er farlig.»"
+        },
+        {
+          "id": "takk_nei",
+          "tekst": "Takk nei — du vil ikke stikke deg fram",
+          "tone": "forsiktig",
+          "effekter": {
+            "relasjoner": { "verneombud": -2 },
+            "meters": { "energi": 2, "synlighet": -2 },
+            "flagg": { "takket_nei_vernerunde": true },
+            "threads": { "soelet_i_fellesarealet": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Ole nikker uten å presse. «Tilbudet står.» Du lurer et øyeblikk på hva runden hadde vist deg."
+        }
+      ]
+    },
+    {
+      "id": "d2_glatt_gulv_etterspill",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "conditions": { "flagg": { "meldte_avvik": { "finnes": false } } },
+      "tittel": "«Noen skled nesten i fellesarealet i går»",
+      "tekst": "Kari ser opp fra skjermen: «En fra fjerde skled nesten i fellesarealet i går ettermiddag. Vet du noe om det? Det står ingenting i avvikssystemet.»",
+      "valg": [
+        {
+          "id": "fortell_aerlig",
+          "tekst": "Fortell ærlig om sølet og hva du rakk å gjøre",
+          "tone": "ærlig",
+          "effekter": {
+            "relasjoner": { "driftsleder": -2, "verneombud": 3 },
+            "meters": { "integritet": 6, "psyke": 2 },
+            "flagg": { "fortalte_aerlig_om_soel": true },
+            "threads": { "soelet_i_fellesarealet": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Kari sukker: «Neste gang: meld det, uansett hvor travelt det er. Det er ryggen din jeg dekker med det skjemaet.»"
+        },
+        {
+          "id": "tone_ned",
+          "tekst": "Tone det ned — det var jo nesten tørt",
+          "tone": "unnvikende",
+          "effekter": {
+            "meters": { "integritet": -5, "psyke": -3 },
+            "flagg": { "tonet_ned_soelet": true },
+            "threads": { "soelet_i_fellesarealet": { "status": "dormant" } }
+          },
+          "konsekvensTekst": "«Ok,» sier Kari, og ser på deg et sekund for lenge. Du er ikke sikker på om hun trodde deg."
+        }
+      ]
+    },
+    {
+      "id": "d2_standard_ekstra_rom",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": { "flagg": { "tok_ekstra_rom": true } },
+      "tittel": "Klage fra tredje etasje",
+      "tekst": "Kari videresender: «Toalettene i tredje var ikke i orden i går.» Det var etasjen du tok ekstra — på halv tid, uten pause.",
+      "valg": [
+        {
+          "id": "vis_tidsregnskap",
+          "tekst": "Vis tidsregnskapet: to soner, ett vindu — noe måtte ryke",
+          "tone": "saklig",
+          "effekter": {
+            "relasjoner": { "driftsleder": 3 },
+            "meters": { "integritet": 5, "synlighet": 4 },
+            "flagg": { "viste_tidsregnskap": true },
+            "threads": { "tidsvinduet_krymper": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Kari leser regnestykket to ganger. «Dette tar jeg videre. Vi kan ikke bemanne sykdom med luft.»"
+        },
+        {
+          "id": "beklag_og_lov",
+          "tekst": "Beklag og lov å være raskere neste gang",
+          "tone": "føyelig",
+          "effekter": {
+            "relasjoner": { "driftsleder": 2 },
+            "meters": { "psyke": -4, "integritet": -4 },
+            "flagg": { "lovte_aa_vaere_raskere": true },
+            "threads": { "tidsvinduet_krymper": { "status": "dormant" } }
+          },
+          "konsekvensTekst": "Kari nikker fornøyd. Du har nettopp lovet å løse et bemanningsproblem med kroppen din."
+        }
+      ]
+    },
+    {
+      "id": "d2_rolig_formiddag",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": { "flagg": { "tok_ekstra_rom": { "finnes": false } } },
+      "tittel": "En formiddag der tiden faktisk strekker til",
+      "tekst": "Ingen ekstra soner i dag. For én gangs skyld rekker du din egen sone i ditt eget tempo — og det er en merkelig følelse å ha et valg.",
+      "valg": [
+        {
+          "id": "beroeringspunkter_grundig",
+          "tekst": "Bruk tiden på berøringspunktene — gjør sonen hygienisk rent",
+          "tone": "faglig",
+          "effekter": {
+            "meters": { "integritet": 5, "energi": -3 },
+            "flagg": { "grundig_formiddag": true },
+            "threads": { "tidsvinduet_krymper": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Håndtak, brytere, gelendere, stolarmer. Ingen ser forskjell. Alle hadde merket det om to uker hvis du lot være."
+        },
+        {
+          "id": "hjelp_amina",
+          "tekst": "Bli ferdig raskt og hjelp Amina med sonen hennes",
+          "tone": "kollegial",
+          "effekter": {
+            "relasjoner": { "erfaren_kollega": 6 },
+            "meters": { "energi": -4, "psyke": 3 },
+            "flagg": { "hjalp_amina": true },
+            "threads": { "tidsvinduet_krymper": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Amina ser overrasket ut, så glad. «Da rekker jeg legetimen likevel.» Slikt husker folk."
+        }
+      ]
+    },
+    {
+      "id": "d2_runde_med_amina",
+      "threadId": "rommet_som_saa_rent_ut",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Amina viser deg soneprioritering",
+      "tekst": "Amina tar deg med på en runde: «Glem lista et øyeblikk. Se på rommet: Hvor tar folk? Hvor samles fukt? Hvor kommer klagene fra? Det er kartet ditt. Lista er bare huskelappen.»",
+      "valg": [
+        {
+          "id": "laer_metoden",
+          "tekst": "Gå runden hennes og lær metoden",
+          "tone": "lærende",
+          "effekter": {
+            "relasjoner": { "erfaren_kollega": 6 },
+            "meters": { "handlingsrom": 4, "energi": -2 },
+            "flagg": { "laerte_soneprioritering": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Etter tjue minutter ser du bygget annerledes: ikke rom som skal vaskes, men soner med ulik risiko. Det er samme jobb — og en helt annen jobb."
+        },
+        {
+          "id": "foreslaa_forbedring",
+          "tekst": "Foreslå at metoden hennes blir standard for hele teamet",
+          "tone": "konstruktiv",
+          "effekter": {
+            "relasjoner": { "erfaren_kollega": 4, "driftsleder": 3 },
+            "meters": { "synlighet": 5, "handlingsrom": 2 },
+            "flagg": { "foreslo_amina_metode": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "«Da må DU si det til Kari,» ler Amina. «Meg hører hun ikke på — jeg har bare gjort dette i nitten år.»"
+        },
+        {
+          "id": "bare_jobbe",
+          "tekst": "Takk for tipset, men gjør heller runden din i fred",
+          "tone": "avmålt",
+          "effekter": {
+            "relasjoner": { "erfaren_kollega": -3 },
+            "meters": { "energi": 2 },
+            "flagg": { "avslo_amina_runde": true },
+            "threads": { "rommet_som_saa_rent_ut": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Amina trekker på skuldrene og går. Du får sonen din ferdig. Noe i deg lurer på hva du nettopp valgte bort."
+        }
+      ]
+    },
+    {
+      "id": "d2_kveld_verdighet",
+      "threadId": "usynlig_arbeid",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "conditions": { "threads": { "usynlig_arbeid": "escalated" } },
+      "tittel": "Svaret fra Sindre",
+      "tekst": "Sent på kvelden tikker det inn en melding fra Sindre: «Visste ikke at rommet tas 06:45. Beklager utspillet. Kan du si fra hvis vi roter det til for dere?» Du leser den to ganger.",
+      "valg": [
+        {
+          "id": "ta_imot",
+          "tekst": "Ta imot beklagelsen og svar vennlig",
+          "tone": "raus",
+          "effekter": {
+            "relasjoner": { "kontorbruker": 7 },
+            "meters": { "psyke": 5, "synlighet": 2 },
+            "flagg": { "tok_imot_beklagelse": true },
+            "threads": { "usynlig_arbeid": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Du svarer kort og vennlig. Det kostet å si fra i går. I kveld kjennes det som det var verdt det."
+        },
+        {
+          "id": "hold_avstand",
+          "tekst": "Les den, men ikke svar — skaden er alt gjort",
+          "tone": "kjølig",
+          "effekter": {
+            "relasjoner": { "kontorbruker": -2 },
+            "meters": { "psyke": -2 },
+            "flagg": { "holdt_avstand": true },
+            "threads": { "usynlig_arbeid": { "status": "dormant" } }
+          },
+          "konsekvensTekst": "Meldingen blir stående ulest-markert. Kanskje du svarer i morgen. Kanskje ikke."
+        }
+      ]
+    }
+  ]
+}
