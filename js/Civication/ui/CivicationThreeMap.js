@@ -565,6 +565,20 @@
     return ribbon;
   }
 
+  // Kjøreveier: matt asfaltgrå banelegme + valgfri, tynn malt midtstripe som
+  // sitter rett oppå banen. Gjør at veiene leser som veier uten hardt
+  // kart-overlay-preg.
+  const ROAD_ASPHALT = 0x565b62;
+  const ROAD_MARKING = 0xd9cc9c;
+  function addRoad(g, points, width, y, opts) {
+    const o = opts || {};
+    g.add(buildRoadRibbon(points, width, o.color != null ? o.color : ROAD_ASPHALT, y));
+    if (o.marking) {
+      // Tynn (0.004 høy) stripe like over asfalttoppen (0.018).
+      g.add(extrudeShape(ribbonPolygon(points, Math.max(0.0012, width * 0.14)), 0.004, ROAD_MARKING, y + 0.02, { cast: false, receive: false }));
+    }
+  }
+
   function buildAxes() {
     const land = window.CIVI_OSLO_LANDSCAPE || {};
     const g = new THREE.Group();
@@ -590,35 +604,35 @@
     ));
 
     // Ring 1 – svak sentrumssløyfe rundt kjernen.
-    g.add(buildRoadRibbon(
+    addRoad(g,
       [[0.44, 0.60], [0.50, 0.585], [0.56, 0.595], [0.59, 0.635], [0.55, 0.665], [0.47, 0.665], [0.44, 0.63], [0.44, 0.60]],
-      0.008, shade(PAL.road, -0.06), baseY
-    ));
+      0.010, baseY, { marking: true }
+    );
 
     // Ring 2 – større bue nord for sentrum.
-    g.add(buildRoadRibbon(
+    addRoad(g,
       [[0.28, 0.535], [0.38, 0.47], [0.50, 0.45], [0.62, 0.46], [0.70, 0.505]],
-      0.010, shade(PAL.road, -0.01), baseY
-    ));
+      0.013, baseY, { marking: true }
+    );
 
     // E18 / havneakse langs fjorden vest–øst.
-    g.add(buildRoadRibbon(
+    addRoad(g,
       [[0.30, 0.685], [0.40, 0.667], [0.47, 0.657], [0.54, 0.66], [0.62, 0.66], [0.70, 0.675]],
-      0.008, shade(PAL.road, -0.10), baseY - 0.002
-    ));
+      0.012, baseY - 0.002, { color: shade(ROAD_ASPHALT, -0.05), marking: true }
+    );
 
     // Trondheimsveien / nordøst-akse mot Grünerløkka/Tøyen.
-    g.add(buildRoadRibbon(
+    addRoad(g,
       [[0.53, 0.585], [0.56, 0.54], [0.59, 0.50], [0.625, 0.46], [0.65, 0.42]],
-      0.008, shade(PAL.road, -0.04), baseY
-    ));
+      0.011, baseY, { marking: true }
+    );
 
     // Få, lokale forbindelser som hjelper nabolagslesing uten Google Maps-preg.
-    g.add(buildRoadRibbon([[0.555, 0.455], [0.585, 0.485], [0.625, 0.518]], 0.007, shade(PAL.road, -0.02), baseY));
-    g.add(buildRoadRibbon([[0.362, 0.445], [0.350, 0.505], [0.335, 0.575], [0.315, 0.640]], 0.007, shade(PAL.road, 0.01), baseY));
-    g.add(buildRoadRibbon([[0.425, 0.458], [0.445, 0.490], [0.455, 0.515]], 0.006, shade(PAL.road, -0.03), baseY));
-    g.add(buildRoadRibbon([[0.386, 0.655], [0.464, 0.613], [0.505, 0.646]], 0.010, 0xd8ceb9, baseY + 0.004));
-    g.add(buildRoadRibbon([[0.626, 0.518], [0.662, 0.552], [0.690, 0.562]], 0.007, shade(PAL.road, -0.06), baseY));
+    addRoad(g, [[0.555, 0.455], [0.585, 0.485], [0.625, 0.518]], 0.008, baseY, { color: shade(ROAD_ASPHALT, 0.04) });
+    addRoad(g, [[0.362, 0.445], [0.350, 0.505], [0.335, 0.575], [0.315, 0.640]], 0.008, baseY, { color: shade(ROAD_ASPHALT, 0.05) });
+    addRoad(g, [[0.425, 0.458], [0.445, 0.490], [0.455, 0.515]], 0.007, baseY, { color: shade(ROAD_ASPHALT, 0.03) });
+    addRoad(g, [[0.386, 0.655], [0.464, 0.613], [0.505, 0.646]], 0.011, baseY + 0.004, { color: 0xb9b4ab });
+    addRoad(g, [[0.626, 0.518], [0.662, 0.552], [0.690, 0.562]], 0.008, baseY, { color: shade(ROAD_ASPHALT, 0.0) });
 
     scene.add(g);
   }
@@ -634,11 +648,21 @@
 
   function addTreeCluster(g, nx, ny, n, r, y) {
     const rng = mulberry32(hashStr(`tree:${nx}:${ny}:${n}`));
+    const baseY = (y || GROUND_Y) + 0.03;
     for (let i = 0; i < n; i++) {
       const a = rng() * Math.PI * 2, rr = r * (0.25 + rng() * 0.75);
-      const tr = coneMesh(0.09 + rng() * 0.04, 0.34 + rng() * 0.22, 7, 0x3f7a46 + Math.floor(rng() * 0x101000));
-      tr.position.set(nx2x(nx + Math.cos(a) * rr), (y || GROUND_Y) + 0.03, ny2z(ny + Math.sin(a) * rr));
-      g.add(tr);
+      const px = nx2x(nx + Math.cos(a) * rr), pz = ny2z(ny + Math.sin(a) * rr);
+      const th = 0.5 + rng() * 0.3;              // total trehøyde
+      const trunkH = th * 0.36, ballR = th * 0.42;
+      const trunk = cyl(0.03, 0.045, trunkH, 6, 0x6b4a2e);
+      trunk.castShadow = false;
+      trunk.position.set(px, baseY + trunkH / 2, pz);
+      g.add(trunk);
+      const crown = new THREE.Mesh(new THREE.IcosahedronGeometry(ballR, 0), toMat(0x4f8a4a + Math.floor(rng() * 0x081000)));
+      crown.castShadow = false; crown.receiveShadow = true;
+      crown.scale.y = 0.9;
+      crown.position.set(px, baseY + trunkH + ballR * 0.7, pz);
+      g.add(crown);
     }
   }
 
@@ -848,6 +872,48 @@
     return clamp(0.42 + t * 0.52, 0.42, 0.88);
   }
 
+  // Prosedyral fasade-tekstur: lys vegg (nær hvit så bygg-tonen slår gjennom via
+  // instanceColor) med rutenett av mørkere «glass»-vinduer, etasjeskiller og et
+  // bredere gateplan-bånd nederst. Gjør de instansierte boksene til lesbare
+  // bygninger med vinduer uten ekstra draw calls (én delt tekstur).
+  let _facadeTex = null;
+  function facadeTexture() {
+    if (_facadeTex) return _facadeTex;
+    if (typeof document === "undefined" || !document.createElement) return null;
+    const cv = document.createElement("canvas");
+    cv.width = 128; cv.height = 256;
+    const ctx = cv.getContext && cv.getContext("2d");
+    if (!ctx) return null;
+    ctx.fillStyle = "#efe9e0"; ctx.fillRect(0, 0, 128, 256); // veggflate
+    const cols = 4, rows = 8;
+    const marginX = 14;
+    const colStep = (128 - marginX * 2) / cols;
+    const winW = colStep * 0.56, winH = 17;
+    const top = 16, bandH = 22;
+    const rowStep = (256 - top - bandH) / rows;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = marginX + c * colStep + (colStep - winW) / 2;
+        const y = top + r * rowStep + (rowStep - winH) / 2;
+        // Litt variasjon: noen ruter mørkere (skygge/tent) så fasaden ikke blir flat.
+        ctx.fillStyle = ((r * 7 + c * 3) % 5 === 0) ? "#6d7b87" : "#8593a0";
+        ctx.fillRect(x, y, winW, winH);
+        ctx.strokeStyle = "#d3cabb"; ctx.lineWidth = 1;
+        ctx.strokeRect(x + 0.5, y + 0.5, winW - 1, winH - 1);
+      }
+    }
+    // Gateplan / butikkfront nederst (lysere bånd) + en tynn taklist øverst.
+    ctx.fillStyle = "#d9cfbe"; ctx.fillRect(0, 256 - bandH, 128, bandH);
+    ctx.fillStyle = "#c7bdab"; ctx.fillRect(0, 256 - bandH, 128, 3);
+    ctx.fillStyle = "#e6ded2"; ctx.fillRect(0, 0, 128, 5);
+    const tex = new THREE.CanvasTexture(cv);
+    tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
+    if ("colorSpace" in tex) tex.colorSpace = THREE.SRGBColorSpace;
+    if (renderer && renderer.capabilities) tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy?.() || 1);
+    _facadeTex = tex;
+    return tex;
+  }
+
   function buildCity() {
     const districts = window.CIVI_MAP_DISTRICTS || [];
     const blocks = [];
@@ -895,9 +961,13 @@
     });
     if (!blocks.length) return;
 
-    // Vegger/kropp – ett InstancedMesh.
+    // Vegger/kropp – ett InstancedMesh. Fasade-teksturen gir vinduer/etasjer;
+    // bygg-tonen kommer fra instanceColor (multipliseres med teksturen).
     const geo = new THREE.BoxGeometry(1, 1, 1);
-    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), blocks.length);
+    const wallMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS });
+    const facadeTex = facadeTexture();
+    if (facadeTex) wallMat.map = facadeTex;
+    const mesh = new THREE.InstancedMesh(geo, wallMat, blocks.length);
     mesh.castShadow = true; mesh.receiveShadow = true;
     const m = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
@@ -915,7 +985,16 @@
       roofMesh.castShadow = true; roofMesh.receiveShadow = true;
     }
 
-    let ri = 0;
+    // Flate tak: en tynn hette som dekker toppflaten (så fasadevinduene ikke
+    // vises oppå bygget) og gir taket en egen, mørkere tone.
+    const flatList = blocks.filter((b) => !b.roof);
+    let capMesh = null;
+    if (flatList.length) {
+      capMesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.9, metalness: PBR_METALNESS }), flatList.length);
+      capMesh.castShadow = true; capMesh.receiveShadow = true;
+    }
+
+    let ri = 0, ci = 0;
     blocks.forEach((b, i) => {
       q.setFromAxisAngle(up, b.rot);
       pos.set(b.x, GROUND_Y + b.h / 2, b.z);
@@ -931,6 +1010,14 @@
         roofMesh.setMatrixAt(ri, m);
         roofMesh.setColorAt(ri, roofColor(col, b));
         ri++;
+      } else if (capMesh && !b.roof && ci < flatList.length) {
+        pos.set(b.x, GROUND_Y + b.h, b.z);
+        scl.set(b.fw * 1.03, 0.05, b.fd * 1.03);
+        m.compose(pos, q, scl);
+        capMesh.setMatrixAt(ci, m);
+        buildingColor(col, b.toneKind, b.tone).multiplyScalar(0.6);
+        capMesh.setColorAt(ci, col);
+        ci++;
       }
     });
     mesh.instanceMatrix.needsUpdate = true;
@@ -940,6 +1027,11 @@
       roofMesh.instanceMatrix.needsUpdate = true;
       if (roofMesh.instanceColor) roofMesh.instanceColor.needsUpdate = true;
       scene.add(roofMesh);
+    }
+    if (capMesh) {
+      capMesh.instanceMatrix.needsUpdate = true;
+      if (capMesh.instanceColor) capMesh.instanceColor.needsUpdate = true;
+      scene.add(capMesh);
     }
     _stats.instancedBuildings = blocks.length;
     _stats.genericBuildings = blocks.length;
@@ -952,12 +1044,14 @@
     const land = window.CIVI_OSLO_LANDSCAPE || {};
     const rng = mulberry32(73331);
     const regions = [];
-    if (land.markaNorth) regions.push({ poly: land.markaNorth, baseY: MARKA_H, n: 320 });
-    if (land.ekebergRidge) regions.push({ poly: land.ekebergRidge, baseY: EKEBERG_H, n: 110 });
-    regions.push({ poly: BYGDOY, baseY: BYGDOY_H, n: 55 });
+    // conifer = andel bartrær (gran/furu). Marka/Ekeberg er nesten bare barskog;
+    // parker og villastrøk får mer løvtre.
+    if (land.markaNorth) regions.push({ poly: land.markaNorth, baseY: MARKA_H, n: 320, conifer: 0.9 });
+    if (land.ekebergRidge) regions.push({ poly: land.ekebergRidge, baseY: EKEBERG_H, n: 110, conifer: 0.78 });
+    regions.push({ poly: BYGDOY, baseY: BYGDOY_H, n: 55, conifer: 0.5 });
     const greenDistricts = ["nordstrand", "stovner", "ullern"];
     (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
-      if (greenDistricts.includes(d.id)) regions.push({ poly: d.shape, baseY: GROUND_Y, n: 38 });
+      if (greenDistricts.includes(d.id)) regions.push({ poly: d.shape, baseY: GROUND_Y, n: 38, conifer: 0.35 });
     });
 
     const pts = [];
@@ -969,28 +1063,67 @@
         const x = bb.minX + rng() * (bb.maxX - bb.minX);
         const y = bb.minY + rng() * (bb.maxY - bb.minY);
         if (!pointInPoly(x, y, reg.poly)) continue;
-        pts.push({ x: nx2x(x), z: ny2z(y), baseY: reg.baseY, h: 0.42 + rng() * 0.4, tone: rng() });
+        pts.push({ x: nx2x(x), z: ny2z(y), baseY: reg.baseY, h: 0.42 + rng() * 0.4, tone: rng(), conifer: rng() < reg.conifer });
         placed++;
       }
     });
     if (!pts.length) return;
 
-    const geo = new THREE.ConeGeometry(0.17, 1, 7);
-    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), pts.length);
-    mesh.castShadow = false; mesh.receiveShadow = true; // trær kaster ikke skygge (ytelse)
+    // Hvert tre = stamme (sylinder) + krone. Bartrær får spiss, lagdelt kjegle,
+    // løvtrær en rund krone. Tre delte InstancedMesh-er (stamme/bar/løv) så vi
+    // holder ytelsen, men får en tydelig tre-silhuett i stedet for en pigg.
+    const conifers = pts.filter((t) => t.conifer);
+    const decids = pts.filter((t) => !t.conifer);
+    const trunkGeo = new THREE.CylinderGeometry(0.028, 0.042, 1, 5);
+    const coneGeo = new THREE.ConeGeometry(0.34, 1, 8);
+    const ballGeo = new THREE.IcosahedronGeometry(0.5, 0);
+    const trunkMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.9, metalness: 0 });
+    const leafMat = () => new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS });
+    const trunkMesh = new THREE.InstancedMesh(trunkGeo, trunkMat, pts.length);
+    const coneMeshI = conifers.length ? new THREE.InstancedMesh(coneGeo, leafMat(), conifers.length) : null;
+    const ballMesh = decids.length ? new THREE.InstancedMesh(ballGeo, leafMat(), decids.length) : null;
+    [trunkMesh, coneMeshI, ballMesh].forEach((mm) => { if (mm) { mm.castShadow = false; mm.receiveShadow = true; } });
     const m = new THREE.Matrix4(), q = new THREE.Quaternion();
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
+
     pts.forEach((t, i) => {
-      pos.set(t.x, t.baseY + t.h / 2, t.z);
-      scl.set(0.8 + t.tone * 0.6, t.h, 0.8 + t.tone * 0.6);
+      const trunkH = t.h * 0.34;
+      pos.set(t.x, t.baseY + trunkH / 2, t.z);
+      scl.set(0.7 + t.tone * 0.5, trunkH, 0.7 + t.tone * 0.5);
       m.compose(pos, q, scl);
-      mesh.setMatrixAt(i, m);
-      col.setHSL(0.29 + t.tone * 0.04, 0.40, 0.24 + t.tone * 0.13);
-      mesh.setColorAt(i, col);
+      trunkMesh.setMatrixAt(i, m);
+      col.setHSL(0.075, 0.42, 0.20 + t.tone * 0.07); // stamme: brun
+      trunkMesh.setColorAt(i, col);
     });
-    mesh.instanceMatrix.needsUpdate = true;
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-    scene.add(mesh);
+
+    conifers.forEach((t, i) => {
+      const trunkH = t.h * 0.34, canopyH = t.h * 0.98;
+      const r = 0.62 + t.tone * 0.6;
+      pos.set(t.x, t.baseY + trunkH * 0.55 + canopyH / 2, t.z);
+      scl.set(r, canopyH, r);
+      m.compose(pos, q, scl);
+      coneMeshI.setMatrixAt(i, m);
+      col.setHSL(0.34 + t.tone * 0.03, 0.44, 0.19 + t.tone * 0.10); // mørk granfarge
+      coneMeshI.setColorAt(i, col);
+    });
+
+    decids.forEach((t, i) => {
+      const trunkH = t.h * 0.36, ballR = t.h * 0.44;
+      const s = ballR / 0.5;
+      pos.set(t.x, t.baseY + trunkH + ballR * 0.75, t.z);
+      scl.set(s * (0.9 + t.tone * 0.3), s * (0.85 + t.tone * 0.2), s * (0.9 + t.tone * 0.3));
+      m.compose(pos, q, scl);
+      ballMesh.setMatrixAt(i, m);
+      col.setHSL(0.25 + t.tone * 0.06, 0.46, 0.30 + t.tone * 0.12); // lysere løvverk
+      ballMesh.setColorAt(i, col);
+    });
+
+    [trunkMesh, coneMeshI, ballMesh].forEach((mm) => {
+      if (!mm) return;
+      mm.instanceMatrix.needsUpdate = true;
+      if (mm.instanceColor) mm.instanceColor.needsUpdate = true;
+      scene.add(mm);
+    });
     _stats.trees = pts.length;
   }
 
