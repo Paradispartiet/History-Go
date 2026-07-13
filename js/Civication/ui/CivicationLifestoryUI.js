@@ -464,11 +464,39 @@
       bindDelegation(panel);
       await ensureLoaded();
       render();
+      // Første scene er oppe — vekk lyttere (kartmarkør, dashboard) som
+      // trenger scenens sted/fase uten å måtte polle.
+      window.dispatchEvent(new Event("civi:lifestoryChanged"));
     } catch (error) {
       // Innholdsfeil skal synes (fail fast), men aldri stoppe resten av appen.
       console.error("[CivicationLifestoryUI] kunne ikke starte", error);
       panel.innerHTML = "<p class=\"muted\">Min dag kunne ikke lastes. Se konsollen.</p>";
     }
+  }
+
+  /**
+   * Read-only view-model for NÅ-scenen — brukes av kartmarkøren
+   * (CivicationLifestoryPlaceMarker) til å vise hvor dagen foregår.
+   * null før innholdet er lastet.
+   * @returns {{ sceneId: string|null, tittel: string|null, fase: string,
+   *   dagFerdig: boolean, threadId: string|null, threadType: string|null,
+   *   rolleNavn: string|null }|null}
+   */
+  function getCurrentSceneInfo() {
+    if (!content || !state) return null;
+    const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
+    const view = Runner.getView(state, content);
+    const scene = view.scene || null;
+    const thread = scene ? (content.threads || []).find((t) => t.id === scene.threadId) : null;
+    return {
+      sceneId: scene ? scene.id : null,
+      tittel: scene ? scene.tittel : null,
+      fase: state.fase,
+      dagFerdig: !!view.dagFerdig,
+      threadId: thread ? thread.id : null,
+      threadType: thread ? thread.type : null,
+      rolleNavn: content.role && content.role.navn ? String(content.role.navn) : null
+    };
   }
 
   if (document.readyState === "loading") {
@@ -477,5 +505,5 @@
     start();
   }
 
-  window.CivicationLifestoryUI = { render, refresh: render };
+  window.CivicationLifestoryUI = { render, refresh: render, getCurrentSceneInfo };
 })();

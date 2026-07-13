@@ -325,6 +325,18 @@ resiliens-dempet av psyke-motoren selv). **Bevisst ikke broet:** `penger`
 people-system). Broen er énveis (leser aldri psyke tilbake), skriver ALDRI
 i testmodus, og er stille no-op på rene Min dag-flater uten skall.
 
+**Min dag på kartet (stedsmarkøren):** Byen er spillebrettet — kartet viser
+hvor nå-scenen foregår. `CivicationLifestoryPlaceMarker` (shell-kjeden) leser
+`CivicationLifestoryUI.getCurrentSceneInfo()` og løser sted som en ærlig
+ladder: arbeidsliv-scene → arbeidsplassen (employer-bydel fra skallets aktive
+posisjon når den finnes), privatliv-scene → hjemmet (valgt bydel fra
+CivicationHome), dagen er over → hjemme. Forankringen gjenbruker
+`CivicationCityLayer.resolveLocationAnchor` (samme projeksjon som steds-/
+vennemarkørene); uten kjent bydel dokkes markøren i kartets hjørne i stedet
+for å påstå en posisjon vi ikke har. Kun visning — markøren skriver aldri
+state, og den oppdateres av `civi:lifestoryChanged` (dispatches nå også etter
+første render), `civi:booted`, `civi:homeChanged` og karttransform-events.
+
 **Skall-jobb → Life Story-rolle:** Uten eksplisitt rollevalg følger Min dag
 skallets aktive jobb. Mappingen er canonical: skallets aktive posisjon
 (`hg_active_position_v1`) → `CivicationCareerRoleResolver.resolveCareerRoleScope`
@@ -360,6 +372,8 @@ automatisk av `npm run test:civication`:
   JSDOM-adopsjon ved civi:booted, eksplisitt valg vinner.
 - `tests/civication-lifestory-shell-psyche-bridge.test.js` — Life Story →
   skallets psyke: mapping, testmodus-gate, no-op uten skall, UI-kontrakt.
+- `tests/civication-lifestory-place-marker.test.js` — Min dag på kartet:
+  steds-ladder, dokket fallback, UI-/loader-kontrakter.
 - `tests/civication-v2-main-flow.test.js` — v2-allowlist + legacy-gate.
 - `tests/civication-v2-min-dag-ui.test.js` — Min dag i JSDOM inkl. neste dag.
 
