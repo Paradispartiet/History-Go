@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, readFile, access } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { isAllowedLicense, loadPeople, applyCandidates } from '../dist/tools/people-image-pipeline.mjs';
+import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates } from '../dist/tools/people-image-pipeline.mjs';
 
 assert.equal(isAllowedLicense('Public Domain'), true);
 assert.equal(isAllowedLicense('CC0'), true);
@@ -92,6 +92,21 @@ for (const bad of [
     assert.equal(out[0].height, 480);
     assert.equal(out[0].commonsPage, 'https://commons.wikimedia.org/wiki/File:Ada.jpg');
   });
+}
+
+
+{
+  assert.equal(candidateIdFor('Rolv_Wesenlund', '57196 Rolv Wesenlund.jpg'), 'rolv_wesenlund__57196_rolv_wesenlund_jpg', 'candidateId is stable');
+  const ranked = rankCandidates([candidateFor('p18', { quality: { ...candidateFor('p18').quality, score: 45, tier: 'best_available', warnings: ['lav_kontrast'] } }), candidateFor('better', { personId: 'p18', candidateId: candidateIdFor('p18','Better.jpg'), commonsFileName: 'Better.jpg', quality: { ...candidateFor('p18').quality, score: 95, tier: 'recommended' } })]);
+  assert.equal(ranked[0].commonsFileName, 'Better.jpg', 'better strong identity candidate can outrank weak P18');
+}
+{
+  const { analyzeImageBuffer } = await import('../dist/tools/people-image-quality.mjs');
+  function ppm(w,h,fn){ const pix=[]; for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const v=fn(x,y); pix.push(v,v,v); } return Buffer.concat([Buffer.from(`P6\n${w} ${h}\n255\n`), Buffer.from(pix)]); }
+  assert(analyzeImageBuffer(ppm(20,20,()=>245)).quality.warnings.includes('for_lyst'), 'bright image warns');
+  assert(analyzeImageBuffer(ppm(20,20,()=>10)).quality.warnings.includes('for_mørkt'), 'dark image warns');
+  assert(analyzeImageBuffer(ppm(20,20,()=>128)).quality.warnings.includes('lav_kontrast'), 'low contrast warns');
+  assert.notEqual(analyzeImageBuffer(ppm(20,20,()=>245)).quality.tier, 'unusable', 'bright image is not hard rejected');
 }
 
 console.log('people image pipeline tests passed');
@@ -214,6 +229,11 @@ function candidateFor(id, overrides = {}) {
     commonsFileName: `${id}.jpg`,
     originalImageUrl: `https://upload.wikimedia.org/wikipedia/commons/${id}.jpg`,
     commonsPage: `https://commons.wikimedia.org/wiki/File:${id}.jpg`,
+    candidateId: candidateIdFor(id, `${id}.jpg`),
+    identity: { status: 'strong', source: 'wikidata_p18', wikidataId: `Q${id.replace(/\D/g, '') || '9'}`, evidence: ['Wikidata P18 references this Commons file'] },
+    quality: { tier: 'recommended', score: 90, width: 800, height: 1000, minSide: 800, aspectRatio: 0.8, meanLuminance: 0.5, clippedHighlightsRatio: 0, crushedShadowsRatio: 0, contrast: 0.3, sharpness: 0.7, warnings: [], hardErrors: [], analyzerVersion: 'people-image-quality-v1' },
+    faceDetection: { status: 'unavailable', faceCount: null },
+    rank: 1, recommendedForReview: true, bestAvailable: false,
     approved: false,
     ...overrides
   });
@@ -223,11 +243,14 @@ function candidateFor(id, overrides = {}) {
   const dom = await peopleReviewDom([candidateFor('p1')]);
   const { document, localStorage } = dom.window;
   assert.equal(document.querySelector('img')?.getAttribute('src'), 'https://upload.wikimedia.org/wikipedia/commons/p1.jpg', 'rendering uses originalImageUrl');
+  assert(document.querySelector('button[data-action="select"]'), 'select button exists');
+  document.querySelector('button[data-action="select"]').click();
   assert(document.querySelector('button[data-action="approve"]'), 'approve button exists');
   assert(document.querySelector('button[data-action="maybe"]'), 'usikker button exists');
   assert(document.querySelector('button[data-action="reject"]'), 'reject button exists');
+  for (const key of ['correctPerson','identifiable','singleClearPerson','suitableForCard','acceptableCrop','acceptableExposure','sharpEnough','noProblematicTextOrWatermark']) document.querySelector(`input[data-criterion="${key}"]`).click();
   document.querySelector('button[data-action="approve"]').click();
-  const saved = JSON.parse(localStorage.getItem('hg_people_image_review_v1'));
+  const saved = JSON.parse(localStorage.getItem('hg_people_image_review_v2'));
   assert.equal(saved.p1.decision, 'approve', 'review stored under people storage key');
   assert.equal(saved.p1.personId, 'p1');
 }
@@ -235,11 +258,11 @@ function candidateFor(id, overrides = {}) {
 {
   const dom = await peopleReviewDom(Array.from({ length: 6 }, (_, i) => candidateFor(`p${i + 1}`)));
   const { document, localStorage } = dom.window;
-  for (let i = 0; i < 6; i++) document.querySelectorAll('button[data-action="approve"]')[i].click();
-  const saved = JSON.parse(localStorage.getItem('hg_people_image_review_v1'));
+  for (let i = 0; i < 6; i++) { document.querySelectorAll('button[data-action="select"]')[i].click(); for (const key of ['correctPerson','identifiable','singleClearPerson','suitableForCard','acceptableCrop','acceptableExposure','sharpEnough','noProblematicTextOrWatermark']) document.querySelectorAll(`input[data-criterion="${key}"]`)[i].click(); document.querySelectorAll('article.card')[i].querySelector('button[data-action="approve"]').click(); }
+  const saved = JSON.parse(localStorage.getItem('hg_people_image_review_v2'));
   assert.equal(Object.values(saved).filter((entry) => entry.decision === 'approve').length, 5, 'max five approvals enforced');
   document.getElementById('copyApproved').click();
-  assert.equal(document.getElementById('copyText').value, 'p1,p2,p3,p4,p5', 'approved IDs exported as comma-separated people IDs');
+  assert.match(document.getElementById('copyText').value, /p1__p1_jpg/, 'candidate IDs exported as comma-separated candidate IDs');
 }
 
 {

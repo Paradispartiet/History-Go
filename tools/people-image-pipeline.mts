@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir, rename, rm, access } from 'node:fs/promises
 import { createWriteStream } from 'node:fs';
 import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
+import { analyzeImageBuffer, fallbackQuality, type Quality, type FaceDetection } from './people-image-quality.mjs';
 
 const ROOT = () => process.cwd();
 const PEOPLE_DIR = () => path.join(ROOT(), 'data', 'people');
@@ -13,8 +14,10 @@ const UA = 'History-Go people-image-rights-pipeline/1.0 (https://github.com/Para
 
 type Person = Record<string, unknown> & { id?: string; name?: string; image?: string; cardImage?: string; wikidataId?: string; imageMeta?: Record<string, unknown> };
 type Entry = { file: string; abs: string; index: number | null; person: Person; container: unknown; mode: 'array' | 'people' | 'single' };
-type Candidate = { personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number };
-type ApplyPlan = { selected: Candidate[]; approvedIds: string[] | null };
+type Identity = { status: 'strong' | 'review' | 'insufficient'; source: string; wikidataId: string; evidence: string[] };
+type Candidate = { candidateId: string; personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number; identity: Identity; quality: Quality; faceDetection: FaceDetection; rank: number; recommendedForReview: boolean; bestAvailable: boolean };
+type ReviewSelection = { personId: string; candidateId: string; approvalMode?: 'normal' | 'best_available'; bestAvailableReason?: string };
+type ApplyPlan = { selected: Candidate[]; approvedIds: string[] | null; selections: ReviewSelection[] | null };
 const MAX_APPROVED_APPLY = 5;
 
 type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
@@ -40,6 +43,8 @@ function assertCommonsUrl(u: string): void {
   if (!/^(upload\.wikimedia\.org|commons\.wikimedia\.org)$/.test(url.hostname)) throw new Error(`Image URL is not Wikimedia Commons: ${u}`);
 }
 function safeId(id: string): string { const s = id.toLowerCase().replace(/[^a-z0-9_-]+/g, '_').replace(/^_+|_+$/g, ''); if (!s) throw new Error('Unsafe empty person id'); return s; }
+export function normalizeCommonsFileName(file: string): string { return reqStr(file).replace(/^File:/i, '').replace(/_/g, ' ').trim().replace(/\s+/g, ' '); }
+export function candidateIdFor(personId: string, commonsFileName: string): string { return `${safeId(personId)}__${normalizeCommonsFileName(commonsFileName).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')}`; }
 function manifestPathToAbs(p: string): string {
   if (!p.startsWith('people/') || p.includes('\0')) throw new Error(`Manifest path must start with people/: ${p}`);
   const abs = path.resolve(PEOPLE_DIR(), p.slice('people/'.length));
@@ -104,7 +109,7 @@ export async function fetchJsonWithRetry(url: string, fetcher: Fetcher = fetch, 
   const msg = lastError instanceof Error ? lastError.message : String(lastError);
   throw new Error(`Fetch failed after ${MAX_FETCH_ATTEMPTS} attempts: ${msg}`);
 }
-type WikidataCandidate = { qid: string; p18: string };
+type WikidataCandidate = { qid: string; p18: string; files: { file: string; identity: Identity; sourceScore: number }[] };
 function wikidataClaimValue(entity: any, property: string): unknown {
   return entity?.claims?.[property]?.[0]?.mainsnak?.datavalue?.value;
 }
@@ -137,9 +142,19 @@ async function wikidataImageCandidate(e: Entry, fetcher: Fetcher): Promise<Wikid
     const entity = await wikidataEntity(qid, fetcher);
     if (!entity || (!explicitQid && !wikidataIsHuman(entity))) continue;
     const p18 = reqStr(wikidataClaimValue(entity, 'P18'));
-    if (p18) return { qid, p18 };
+    if (p18) {
+      const files: WikidataCandidate['files'] = [{ file: p18, sourceScore: 40, identity: { status: 'strong' as const, source: 'wikidata_p18', wikidataId: qid, evidence: ['Wikidata P18 references this Commons file'] } }];
+      for (const file of await commonsFileSearch(reqStr(e.person.name), fetcher).catch(() => [])) files.push({ file, sourceScore: 0, identity: { status: 'review' as const, source: 'commons_name_search', wikidataId: qid, evidence: ['Conservative Commons filename search matched the person name; requires explicit manual confirmation'] } });
+      return { qid, p18, files };
+    }
   }
   return null;
+}
+
+async function commonsFileSearch(name: string, fetcher: Fetcher): Promise<string[]> {
+  const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=8&srsearch=${encodeURIComponent(`intitle:"${name}"`)}`;
+  const j: any = await fetchJsonWithRetry(url, fetcher);
+  return (Array.isArray(j.query?.search) ? j.query.search : []).map((h: any) => reqStr(h.title).replace(/^File:/, '')).filter(Boolean);
 }
 async function commonsMeta(file: string, fetcher: Fetcher): Promise<any> {
   const title = file.startsWith('File:') ? file : `File:${file}`;
@@ -165,25 +180,63 @@ function normalizedLicenseUrl(ext: any, license: string): string {
   if (/public domain|\bpd\b/.test(l)) return 'https://commons.wikimedia.org/wiki/Commons:Public_domain';
   return '';
 }
-function candidateFromMeta(e: Entry, qid: string, file: string, info: any): Candidate | null {
+function candidateFromMeta(e: Entry, qid: string, file: string, info: any, identity?: Identity, sourceScore = 0): Candidate | null {
   const ext = info?.extmetadata || {}; const license = cleanHtml(ext.LicenseShortName?.value || ext.UsageTerms?.value);
   const url = reqStr(info?.url); if (!url || !isAllowedLicense(license)) return null;
   try { assertCommonsUrl(url); } catch { return null; }
   const commons = `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/^File:/, '').replace(/ /g, '_'))}`;
-  return { personId: reqStr(e.person.id), personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName: file.replace(/^File:/, ''), originalImageUrl: url, commonsPage: commons, creator: cleanHtml(ext.Artist?.value || ext.Credit?.value), credit: cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value), license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Wikidata P18 image with Commons metadata and allowed license', score: 100 };
+  const commonsFileName = file.replace(/^File:/, ''); const personId = reqStr(e.person.id); const q = fallbackQuality(Number(info.width || 0), Number(info.height || 0));
+  return { candidateId: candidateIdFor(personId, commonsFileName), personId, personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName, originalImageUrl: url, commonsPage: commons, creator: cleanHtml(ext.Artist?.value || ext.Credit?.value), credit: cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value), license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Commons metadata with allowed license', score: 100 + sourceScore, identity: identity || { status: 'review', source: 'commons_name_search', wikidataId: qid, evidence: ['Conservative Commons filename match; requires explicit manual identity confirmation'] }, quality: q.quality, faceDetection: q.faceDetection, rank: 0, recommendedForReview: false, bestAvailable: false };
+}
+async function analyzeCandidate(c: Candidate, fetcher: Fetcher): Promise<Candidate> {
+  try {
+    const res = await fetcher(c.originalImageUrl, { headers: { 'User-Agent': UA, Accept: '*/*' } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buf = new Uint8Array(await res.arrayBuffer());
+    const analyzed = analyzeImageBuffer(buf);
+    c.quality = analyzed.quality.hardErrors.length ? fallbackQuality(c.width, c.height).quality : analyzed.quality;
+    c.faceDetection = analyzed.faceDetection;
+    if (c.quality.width) { c.width = c.quality.width; c.height = c.quality.height; }
+  } catch { const q = fallbackQuality(c.width, c.height); c.quality = q.quality; c.faceDetection = q.faceDetection; }
+  return c;
+}
+export function rankCandidates(candidates: Candidate[]): Candidate[] {
+  const legal = candidates.filter(c => isAllowedLicense(c.license) && reqStr(c.creator || c.credit) && c.identity?.status !== 'insufficient' && !c.quality?.hardErrors?.length);
+  for (const c of candidates) c.score = (c.identity?.status === 'strong' ? 1000 : c.identity?.status === 'review' ? 700 : 0) + (isAllowedLicense(c.license) ? 200 : 0) + (c.identity?.source === 'wikidata_p18' ? 40 : 0) + Number(c.quality?.score || 0) + Math.min(60, Number(c.quality?.minSide || 0) / 20);
+  candidates.sort((a,b) => b.score - a.score || a.candidateId.localeCompare(b.candidateId));
+  let anyGood = candidates.some(c => legal.includes(c) && ['recommended','usable'].includes(c.quality.tier));
+  candidates.forEach((c,i) => { c.rank = i + 1; c.recommendedForReview = i === 0; c.bestAvailable = false; });
+  if (!anyGood && legal[0]) { const best = candidates[0]; best.quality = { ...best.quality, tier: 'best_available' }; best.bestAvailable = true; }
+  return candidates;
 }
 export async function buildCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
-  const limit = Number((args.find(a => a.startsWith('--limit=')) || '--limit=25').split('=')[1]); const idsArg = args.find(a => a.startsWith('--ids=')); const ids = idsArg ? new Set(idsArg.split('=')[1].split(',').filter(Boolean)) : null; const include = args.includes('--include-existing');
+  const limit = Number((args.find(a => a.startsWith('--limit=')) || '--limit=25').split('=')[1]);
+  const maxCandRaw = Number((args.find(a => a.startsWith('--max-candidates-per-person=')) || '--max-candidates-per-person=5').split('=')[1]);
+  if (!Number.isInteger(maxCandRaw) || maxCandRaw < 1 || maxCandRaw > 8) throw new Error('--max-candidates-per-person must be an integer from 1 to 8');
+  const idsArg = args.find(a => a.startsWith('--ids=')); const ids = idsArg ? new Set(idsArg.split('=')[1].split(',').filter(Boolean)) : null; const include = args.includes('--include-existing');
   const entries = (await loadPeople()).filter(e => reqStr(e.person.id) && reqStr(e.person.name) && (include || !reqStr(e.person.image)) && (!ids || ids.has(reqStr(e.person.id))));
-  const candidates: Candidate[] = [];
-  const lookupErrors: LookupError[] = [];
+  const candidates: Candidate[] = []; const lookupErrors: LookupError[] = []; let processedPeople = 0;
   const maxAttempts = ids ? entries.length : Math.min(entries.length, Math.max(limit * 20, limit));
-  for (const e of entries.slice(0, maxAttempts)) { if (candidates.length >= limit) break; try { const found = await wikidataImageCandidate(e, fetcher); if (!found) continue; await sleep(120); const meta = await commonsMeta(found.p18, fetcher); const c = candidateFromMeta(e, found.qid, found.p18, meta); if (c) candidates.push(c); } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
-  await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates to ${path.relative(ROOT(), CANDIDATES())}`); console.log(`Lookup errors: ${lookupErrors.length}`); if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
+  for (const e of entries.slice(0, maxAttempts)) { if (processedPeople >= limit) break; try { const found = await wikidataImageCandidate(e, fetcher); if (!found) continue; const perPerson: Candidate[] = []; const seen = new Set<string>();
+      for (const src of found.files) { if (perPerson.length >= maxCandRaw) break; const norm = normalizeCommonsFileName(src.file).toLowerCase(); if (seen.has(norm)) continue; seen.add(norm); await sleep(120); const meta = await commonsMeta(src.file, fetcher); const c = candidateFromMeta(e, found.qid, src.file, meta, src.identity, src.sourceScore); if (c) perPerson.push(await analyzeCandidate(c, fetcher)); }
+      if (perPerson.length) { candidates.push(...rankCandidates(perPerson)); processedPeople++; }
+    } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
+  await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates for ${processedPeople} people to ${path.relative(ROOT(), CANDIDATES())}`); console.log(`Lookup errors: ${lookupErrors.length}`); if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
 }
 function validateCandidate(c: any, requireApproved = true): asserts c is Candidate {
   for (const k of ['personId','personName','sourceFile','wikidataId','commonsFileName','originalImageUrl','commonsPage','creator','credit','license','licenseUrl']) if (!reqStr(c[k])) throw new Error(`Candidate missing ${k}`);
-  if (requireApproved && c.approved !== true) throw new Error(`Candidate ${c.personId} is not manually approved`); if (!isAllowedLicense(c.license)) throw new Error(`Candidate ${c.personId} has disallowed license: ${c.license}`); assertCommonsUrl(c.originalImageUrl); if (!c.commonsPage.startsWith('https://commons.wikimedia.org/wiki/File:')) throw new Error('Invalid Commons page');
+  if (requireApproved && c.approved !== true) throw new Error(`Candidate ${c.personId} is not manually approved`);
+  if (c.identity?.status === 'insufficient') throw new Error(`Candidate ${c.personId} has insufficient identity`);
+  if (c.quality?.tier === 'unusable' || (Array.isArray(c.quality?.hardErrors) && c.quality.hardErrors.length)) throw new Error(`Candidate ${c.personId} has absolute quality errors`);
+  if (!isAllowedLicense(c.license)) throw new Error(`Candidate ${c.personId} has disallowed license: ${c.license}`);
+  if (!reqStr(c.creator || c.credit)) throw new Error(`Candidate ${c.personId} is missing attribution`);
+  assertCommonsUrl(c.originalImageUrl); if (!c.commonsPage.startsWith('https://commons.wikimedia.org/wiki/File:')) throw new Error('Invalid Commons page');
+}
+function parseReviewPayload(args: string[]): ReviewSelection[] | null {
+  const arg = args.find(a => a.startsWith('--review-payload=')); if (!arg) return null;
+  const payload = JSON.parse(arg.slice('--review-payload='.length));
+  if (payload?.version !== 2 || !Array.isArray(payload.selections)) throw new Error('review_payload must be version 2 with selections');
+  return payload.selections.map((s: any) => ({ personId: reqStr(s.personId), candidateId: reqStr(s.candidateId), approvalMode: s.approvalMode === 'best_available' ? 'best_available' : 'normal', bestAvailableReason: reqStr(s.bestAvailableReason) }));
 }
 function parseApprovedIds(args: string[]): string[] | null {
   const arg = args.find(a => a.startsWith('--approved-ids='));
@@ -195,16 +248,30 @@ function parseApprovedIds(args: string[]): string[] | null {
   return ids;
 }
 function selectApplyCandidates(candidates: any[], args: string[]): ApplyPlan {
+  const selections = parseReviewPayload(args);
+  if (selections) {
+    if (selections.length > MAX_APPROVED_APPLY) throw new Error(`review_payload can contain at most ${MAX_APPROVED_APPLY} selections`);
+    const seenPeople = new Set<string>(), seenCandidates = new Set<string>(); const selected: Candidate[] = [];
+    for (const sel of selections) {
+      if (!sel.personId || !sel.candidateId) throw new Error('review selection missing personId or candidateId');
+      if (seenPeople.has(sel.personId)) throw new Error(`review_payload selected two candidates for ${sel.personId}`); seenPeople.add(sel.personId);
+      if (seenCandidates.has(sel.candidateId)) throw new Error(`duplicate candidateId in review_payload: ${sel.candidateId}`); seenCandidates.add(sel.candidateId);
+      if (sel.approvalMode === 'best_available' && reqStr(sel.bestAvailableReason).length < 20) throw new Error(`best_available for ${sel.personId} requires a reason of at least 20 characters`);
+      const matches = candidates.filter(c => reqStr(c?.candidateId) === sel.candidateId && reqStr(c?.personId) === sel.personId);
+      if (matches.length !== 1) throw new Error(`Unknown candidateId for ${sel.personId}: ${sel.candidateId}`);
+      validateCandidate(matches[0], false); selected.push(matches[0]);
+    }
+    return { selected, approvedIds: null, selections };
+  }
   const approvedIds = parseApprovedIds(args);
-  if (!approvedIds) return { selected: candidates.filter(c => c?.approved === true), approvedIds: null };
+  if (!approvedIds) return { selected: candidates.filter(c => c?.approved === true), approvedIds: null, selections: null };
   const selected: Candidate[] = [];
   for (const id of approvedIds) {
     const matches = candidates.filter(c => reqStr(c?.personId) === id);
-    if (matches.length !== 1) throw new Error(`Approved ID ${id} must exist exactly once in the candidate file; found ${matches.length}`);
-    validateCandidate(matches[0], false);
-    selected.push(matches[0]);
+    if (matches.length !== 1) throw new Error(`Approved ID ${id} must exist exactly once in the candidate file; found ${matches.length}; use review_payload or candidateId when multiple candidates exist`);
+    validateCandidate(matches[0], false); selected.push(matches[0]);
   }
-  return { selected, approvedIds };
+  return { selected, approvedIds, selections: null };
 }
 function extFromMime(mime: string): string { if (mime.includes('png')) return '.png'; if (mime.includes('webp')) return '.webp'; if (mime.includes('gif')) return '.gif'; return '.jpg'; }
 async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> { const res = await fetcher(url, { headers: { 'User-Agent': UA } }); if (!res.ok || !res.body) throw new Error(`Download failed ${res.status}`); const ext = extFromMime(res.headers.get('content-type') || 'image/jpeg'); const dest = destBase + ext; if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`); const tmp = `${dest}.${process.pid}.tmp`; try { await pipeline(res.body as any, createWriteStream(tmp, { flags: 'wx' })); await rename(tmp, dest); return path.relative(ROOT(), dest).replace(/\\/g, '/'); } catch (e) { await rm(tmp, { force: true }); throw e; } }
@@ -213,7 +280,7 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
   const write = args.includes('--write');
   const candidateJson = await readJson(CANDIDATES());
   if (!Array.isArray(candidateJson)) throw new Error('people_image_candidates.json must be a top-level array');
-  const { selected, approvedIds } = selectApplyCandidates(candidateJson, args);
+  const { selected, approvedIds, selections } = selectApplyCandidates(candidateJson, args);
   if (!selected.length) throw new Error(approvedIds ? '--approved-ids selected no candidates' : 'No approved candidates found; use --approved-ids=id1,id2 or set approved: true');
   const entries = await loadPeople();
   const byFile = new Set(entries.map(e => e.file));
@@ -221,7 +288,7 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
   if (write) await mkdir(IMAGE_DIR(), { recursive: true });
   const planned: { personId: string; personName: string; sourceFile: string; imageFile: string }[] = [];
   for (const c of selected) {
-    validateCandidate(c, !approvedIds);
+    validateCandidate(c, !approvedIds && !selections);
     if (!byFile.has(c.sourceFile)) throw new Error(`Candidate source not in manifest: ${c.sourceFile}`);
     const matches = entries.filter(e => e.file === c.sourceFile && reqStr(e.person.id) === c.personId && (c.personIndex === null || e.index === c.personIndex));
     if (matches.length !== 1) throw new Error(`Candidate ${c.personId} did not match exactly one person`);
@@ -239,7 +306,7 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
     e.person.image = local;
     e.person.cardImage = local;
     e.person.wikidataId = c.wikidataId;
-    e.person.imageMeta = { source: 'wikimedia_commons', sourcePage: c.commonsPage, creator: c.creator, credit: c.credit, license: c.license, licenseUrl: c.licenseUrl, retrievedAt: new Date().toISOString().slice(0,10), reviewStatus: 'manually_approved' };
+    e.person.imageMeta = { source: 'wikimedia_commons', sourcePage: c.commonsPage, creator: c.creator, credit: c.credit, license: c.license, licenseUrl: c.licenseUrl, retrievedAt: new Date().toISOString().slice(0,10), reviewStatus: 'manually_approved', candidateId: c.candidateId, approvalMode: selections?.find(s => s.candidateId === c.candidateId)?.approvalMode || 'legacy' };
     changed.add(e.abs);
   }
   console.log(JSON.stringify({ mode: write ? 'write' : 'dry-run', selected: planned }, null, 2));

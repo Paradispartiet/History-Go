@@ -46,3 +46,33 @@ Workflowen kjører DNS-/HTTP-sjekker mot npm, Wikidata og Wikimedia Commons før
 - `npm run people:images:apply`
 - `npm run people:images:apply:write`
 - `npm run people:images:audit`
+
+## Flere kandidater, rangering og «Beste tilgjengelige bilde»
+
+People-image-flyten skiller nå mellom absolutte krav og visuell kvalitet. Juridiske og identitetsmessige krav er absolutte: riktig og forsvarlig identifisert person, lovlig Commons/Wikimedia-kilde, gyldig lisens, Commons-kildeside, attribusjon og en fil som kan lastes/dekodes. Kandidater med ukjent eller ulovlig lisens, manglende attribusjon, ikke-Wikimedia-kilde eller `identity.status: "insufficient"` kan ikke brukes i apply.
+
+Visuelle svakheter er derimot rangering og advarsler, ikke automatisk ekskludering. Lav oppløsning, mørkt eller lyst bilde, lav kontrast, mulig uskarphet, gruppebilder, historisk korn, skannekanter eller krevende utsnitt skal normalt gjøre kandidaten lavere rangert og tydelig merket i review-siden. Dette hindrer at historiske personer står uten bilde bare fordi den beste lovlige kilden er teknisk svak.
+
+Kandidatmodellen har én stabil `candidateId` per Commons-fil per person, deterministisk basert på people-ID og normalisert Commons-filnavn. Flere kandidater kan derfor dele `personId`, men apply må velge nøyaktig `candidateId` når det finnes alternativer. Hver kandidat har også `identity`, `quality`, `faceDetection`, `rank`, `recommendedForReview` og `bestAvailable`.
+
+Kandidatinnhenting kan hente opptil fem alternativer per person som standard (`--max-candidates-per-person=5`, tillatt 1–8). Kildene prioriteres slik: Wikidata P18, eksplisitte Commons-/Wikidata-koblinger, Commons-kategori fra Wikidata og til slutt konservativt Commons-navnesøk. Rene navnetreff får lavere identitetssikkerhet (`identity.status: "review"`) og krever eksplisitt manuell bekreftelse.
+
+«Beste tilgjengelige bilde» brukes når ingen lovlige og identitetsmessig forsvarlige kandidater når `recommended` eller `usable`. Da vises den beste lovlige kandidaten fortsatt på review-siden med tydelige advarsler og er ikke automatisk godkjent. Redaktøren må bruke «Godkjenn som beste tilgjengelige» og skrive en begrunnelse på minst 20 tegn, for eksempel at dette er eneste kjente lovlige og identifiserbare bilde. Dette gir revisjonsspor i review-payloaden.
+
+Review-siden eksporterer versjonert payload:
+
+```json
+{
+  "version": 2,
+  "selections": [
+    {
+      "personId": "rolv_wesenlund",
+      "candidateId": "rolv_wesenlund__57196_rolv_wesenlund_jpg",
+      "approvalMode": "best_available",
+      "bestAvailableReason": "Eneste lovlige og identifiserbare bilde."
+    }
+  ]
+}
+```
+
+Apply validerer kandidat-ID, avviser to kandidater for samme person, avviser utilstrekkelig identitet og ulovlige lisenser, krever begrunnelse for `best_available`, validerer Commons-/lisensdata på nytt og lar visuelle advarsler passere. Apply skal ikke endre kandidatfila, ikke overskrive eksisterende bilde og første write-batch er fortsatt begrenset til fem personer.
