@@ -875,26 +875,27 @@
   // Prosedyral fasade-tekstur: lys vegg (nær hvit så bygg-tonen slår gjennom via
   // instanceColor) med rutenett av mørkere «glass»-vinduer, etasjeskiller og et
   // bredere gateplan-bånd nederst. Gjør de instansierte boksene til lesbare
-  // bygninger med vinduer uten ekstra draw calls (én delt tekstur).
-  let _facadeTex = null;
-  function facadeTexture() {
-    if (_facadeTex) return _facadeTex;
+  // bygninger med vinduer uten ekstra draw calls. Én tekstur pr. etasjeantall
+  // (bufret) så vinduene skaleres med byggehøyden i stedet for å strekkes.
+  const _facadeTex = {};
+  function facadeTexture(rows) {
+    const nRows = Math.max(2, Math.round(rows || 8));
+    if (_facadeTex[nRows]) return _facadeTex[nRows];
     if (typeof document === "undefined" || !document.createElement) return null;
+    const rowPx = 28, top = 14, bandH = 20; // fast etasjehøyde -> proporsjonal tekstur
+    const W = 128, H = top + nRows * rowPx + bandH;
     const cv = document.createElement("canvas");
-    cv.width = 128; cv.height = 256;
+    cv.width = W; cv.height = H;
     const ctx = cv.getContext && cv.getContext("2d");
     if (!ctx) return null;
-    ctx.fillStyle = "#efe9e0"; ctx.fillRect(0, 0, 128, 256); // veggflate
-    const cols = 4, rows = 8;
-    const marginX = 14;
-    const colStep = (128 - marginX * 2) / cols;
+    ctx.fillStyle = "#efe9e0"; ctx.fillRect(0, 0, W, H); // veggflate
+    const cols = 4, marginX = 14;
+    const colStep = (W - marginX * 2) / cols;
     const winW = colStep * 0.56, winH = 17;
-    const top = 16, bandH = 22;
-    const rowStep = (256 - top - bandH) / rows;
-    for (let r = 0; r < rows; r++) {
+    for (let r = 0; r < nRows; r++) {
       for (let c = 0; c < cols; c++) {
         const x = marginX + c * colStep + (colStep - winW) / 2;
-        const y = top + r * rowStep + (rowStep - winH) / 2;
+        const y = top + r * rowPx + (rowPx - winH) / 2;
         // Litt variasjon: noen ruter mørkere (skygge/tent) så fasaden ikke blir flat.
         ctx.fillStyle = ((r * 7 + c * 3) % 5 === 0) ? "#6d7b87" : "#8593a0";
         ctx.fillRect(x, y, winW, winH);
@@ -903,15 +904,26 @@
       }
     }
     // Gateplan / butikkfront nederst (lysere bånd) + en tynn taklist øverst.
-    ctx.fillStyle = "#d9cfbe"; ctx.fillRect(0, 256 - bandH, 128, bandH);
-    ctx.fillStyle = "#c7bdab"; ctx.fillRect(0, 256 - bandH, 128, 3);
-    ctx.fillStyle = "#e6ded2"; ctx.fillRect(0, 0, 128, 5);
+    ctx.fillStyle = "#d9cfbe"; ctx.fillRect(0, H - bandH, W, bandH);
+    ctx.fillStyle = "#c7bdab"; ctx.fillRect(0, H - bandH, W, 3);
+    ctx.fillStyle = "#e6ded2"; ctx.fillRect(0, 0, W, 5);
     const tex = new THREE.CanvasTexture(cv);
     tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
     if ("colorSpace" in tex) tex.colorSpace = THREE.SRGBColorSpace;
     if (renderer && renderer.capabilities) tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy?.() || 1);
-    _facadeTex = tex;
+    _facadeTex[nRows] = tex;
     return tex;
+  }
+
+  // Byggehøyde -> antall vindusetasjer (bøttet, så høye tårn får flere etasjer
+  // enn lave rekkehus i stedet for samme strukne tekstur).
+  const FACADE_BUCKETS = [
+    { max: 0.5, rows: 2 }, { max: 0.72, rows: 3 }, { max: 0.95, rows: 5 },
+    { max: 1.2, rows: 7 }, { max: Infinity, rows: 10 }
+  ];
+  function facadeBucketIndex(h) {
+    for (let i = 0; i < FACADE_BUCKETS.length; i++) if (h < FACADE_BUCKETS[i].max) return i;
+    return FACADE_BUCKETS.length - 1;
   }
 
   function buildCity() {
@@ -961,16 +973,34 @@
     });
     if (!blocks.length) return;
 
-    // Vegger/kropp – ett InstancedMesh. Fasade-teksturen gir vinduer/etasjer;
-    // bygg-tonen kommer fra instanceColor (multipliseres med teksturen).
     const geo = new THREE.BoxGeometry(1, 1, 1);
-    const wallMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS });
-    const facadeTex = facadeTexture();
-    if (facadeTex) wallMat.map = facadeTex;
-    const mesh = new THREE.InstancedMesh(geo, wallMat, blocks.length);
-    mesh.castShadow = true; mesh.receiveShadow = true;
     const m = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
+
+    // Vegger/kropp – ett InstancedMesh pr. høydeklasse, hver med sin egen
+    // fasade-tekstur (flere vindusetasjer jo høyere bygget). Bygg-tonen kommer
+    // fortsatt fra instanceColor (multipliseres med teksturen).
+    const bucketBlocks = FACADE_BUCKETS.map(() => []);
+    blocks.forEach((b) => bucketBlocks[facadeBucketIndex(b.h)].push(b));
+    bucketBlocks.forEach((list, bi) => {
+      if (!list.length) return;
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS });
+      const facadeTex = facadeTexture(FACADE_BUCKETS[bi].rows);
+      if (facadeTex) wallMat.map = facadeTex;
+      const wall = new THREE.InstancedMesh(geo, wallMat, list.length);
+      wall.castShadow = true; wall.receiveShadow = true;
+      list.forEach((b, k) => {
+        q.setFromAxisAngle(up, b.rot);
+        pos.set(b.x, GROUND_Y + b.h / 2, b.z);
+        scl.set(b.fw, b.h, b.fd);
+        m.compose(pos, q, scl);
+        wall.setMatrixAt(k, m);
+        wall.setColorAt(k, buildingColor(col, b.toneKind, b.tone));
+      });
+      wall.instanceMatrix.needsUpdate = true;
+      if (wall.instanceColor) wall.instanceColor.needsUpdate = true;
+      scene.add(wall);
+    });
 
     // Tak – eget InstancedMesh (saltak-prismer) for kvartalsbyene.
     const roofList = blocks.filter((b) => b.roof).slice(0, MAX_ROOFS);
@@ -995,13 +1025,8 @@
     }
 
     let ri = 0, ci = 0;
-    blocks.forEach((b, i) => {
+    blocks.forEach((b) => {
       q.setFromAxisAngle(up, b.rot);
-      pos.set(b.x, GROUND_Y + b.h / 2, b.z);
-      scl.set(b.fw, b.h, b.fd);
-      m.compose(pos, q, scl);
-      mesh.setMatrixAt(i, m);
-      mesh.setColorAt(i, buildingColor(col, b.toneKind, b.tone));
       if (roofMesh && b.roof && ri < roofList.length) {
         const rh = Math.min(b.fw, b.fd) * 0.55;
         pos.set(b.x, GROUND_Y + b.h, b.z);
@@ -1020,9 +1045,6 @@
         ci++;
       }
     });
-    mesh.instanceMatrix.needsUpdate = true;
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-    scene.add(mesh);
     if (roofMesh) {
       roofMesh.instanceMatrix.needsUpdate = true;
       if (roofMesh.instanceColor) roofMesh.instanceColor.needsUpdate = true;
