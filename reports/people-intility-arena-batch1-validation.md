@@ -16,13 +16,22 @@ Alle fem bruker:
 - `places: [intility_arena]`
 - `category: sport`
 
+## Manifest
+
+De fem nye filene er registrert enkeltvis i `data/people/manifest.json`, samlet mellom Nordre Åsen- og Ullevaal-profilene.
+
 ## Avgrensning
 
 - Ingen eksisterende personfiler er endret.
 - `ronny_deila`, `klanen` og `einar_bruno_larsen` er ikke duplisert.
 - Ingen place-filer, place-ID-er, bilder, UI-filer eller runtimefiler er endret.
-- De fem nye filene registreres enkeltvis i `data/people/manifest.json`.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
-## Kontroller
+## Automatiske kontroller
 
-Automatiske data-kontroller kjøres etter at manifestoppdateringen er fullført og den midlertidige workflowfilen er fjernet.
+Kontrollene på den rene branchen etter at den midlertidige manifestworkflowen var fjernet ga:
+
+- People data: **success**
+- Places data: **success**
+
+People-kontrollen dekker blant annet JSON-parsing, unike person-ID-er, manifestfiler, gyldige place-referanser og People of Places-auditene.
