@@ -13,6 +13,11 @@ on:
         required: true
         type: string
         default: "10"
+      max_candidates_per_person:
+        description: "Maximum unique image candidates per person (1-8)"
+        required: true
+        type: string
+        default: "5"
       open_draft_pr:
         description: "Commit valid candidate output to an automation branch and open a draft PR"
         required: false
@@ -28,7 +33,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  REPORT_DIR: reports/people-image-candidates-action
+  REPORT_DIR: reports/people-image-quality-ranking
   CANDIDATE_FILE: data/people/people_image_candidates.json
 
 jobs:
@@ -197,6 +202,7 @@ jobs:
           npm run people:images:candidates -- \
             --ids="${{ inputs.people_ids }}" \
             --limit="${{ inputs.limit }}" \
+            --max-candidates-per-person="${{ inputs.max_candidates_per_person }}" \
             2>&1 | tee "$REPORT_DIR/candidates.txt"
 
       - name: Verify people image candidate output
@@ -347,7 +353,7 @@ jobs:
           const { execSync } = require('node:child_process');
           const lines = execSync('git status --short', { encoding: 'utf8' }).split('\n').filter(Boolean);
           const allowedExact = new Set(['data/people/people_image_candidates.json']);
-          const allowedPrefix = 'reports/people-image-candidates-action/';
+          const allowedPrefix = 'reports/people-image-quality-ranking/';
           const disallowed = [];
           for (const line of lines) {
             const file = line.slice(3).replace(/^"|"$/g, '');
@@ -367,7 +373,7 @@ jobs:
         with:
           name: people-image-candidates-${{ github.run_id }}
           path: |
-            reports/people-image-candidates-action/
+            reports/people-image-quality-ranking/
             data/people/people_image_candidates.json
           if-no-files-found: warn
           retention-days: 14

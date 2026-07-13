@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       approved_ids:
-        description: "Comma-separated people IDs to apply"
-        required: true
+        description: "Comma-separated people IDs to apply (legacy only when one candidate per person)"
+        required: false
+        default: ""
+      review_payload:
+        description: "Review payload copied from people image review page"
+        required: false
+        type: string
         default: ""
       write_output:
         description: "Download images and update people data"
@@ -29,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       APPROVED_IDS: ${{ inputs.approved_ids }}
+      REVIEW_PAYLOAD: ${{ inputs.review_payload }}
       REPORT_DIR: reports/people-image-apply
       CANDIDATE_FILE: data/people/people_image_candidates.json
 
@@ -39,7 +45,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies and build tools
@@ -52,8 +58,10 @@ jobs:
         run: |
           node <<'NODE' | tee "$REPORT_DIR/preflight.txt"
           const fs = require("node:fs");
+          const payload = (process.env.REVIEW_PAYLOAD || "").trim();
           const ids = (process.env.APPROVED_IDS || "").split(",").map((id) => id.trim()).filter(Boolean);
-          if (!ids.length) throw new Error("approved_ids must contain at least one people ID.");
+          if (!payload && !ids.length) throw new Error("review_payload or approved_ids must contain at least one selection.");
+          if (payload) { const parsed = JSON.parse(payload); if (parsed.version !== 2 || !Array.isArray(parsed.selections) || !parsed.selections.length) throw new Error("review_payload must be version 2 with selections."); console.log(`review_payload selections=${parsed.selections.length}`); process.exit(0); }
           if (new Set(ids).size !== ids.length) throw new Error("approved_ids contains duplicate IDs.");
           if (ids.length > 5) throw new Error("approved_ids can contain at most five people IDs.");
           const candidates = JSON.parse(fs.readFileSync(process.env.CANDIDATE_FILE, "utf8"));
@@ -71,7 +79,7 @@ jobs:
         run: |
           set -euo pipefail
           before="$(sha256sum "$CANDIDATE_FILE")"
-          npm run people:images:apply -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/dry-run.txt"
+          if [ -n "$REVIEW_PAYLOAD" ]; then npm run people:images:apply -- --review-payload="$REVIEW_PAYLOAD" | tee "$REPORT_DIR/dry-run.txt"; else npm run people:images:apply -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/dry-run.txt"; fi
           after="$(sha256sum "$CANDIDATE_FILE")"
           test "$before" = "$after"
           if [ -n "$(git status --porcelain data/people bilder/kort/people)" ]; then
@@ -85,7 +93,7 @@ jobs:
         run: |
           set -euo pipefail
           before="$(sha256sum "$CANDIDATE_FILE")"
-          npm run people:images:apply:write -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/write.txt"
+          if [ -n "$REVIEW_PAYLOAD" ]; then npm run people:images:apply:write -- --review-payload="$REVIEW_PAYLOAD" | tee "$REPORT_DIR/write.txt"; else npm run people:images:apply:write -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/write.txt"; fi
           after="$(sha256sum "$CANDIDATE_FILE")"
           test "$before" = "$after"
           npm run people:images:audit | tee "$REPORT_DIR/audit.txt"
@@ -101,7 +109,7 @@ jobs:
             bilder/kort/people/**
           if-no-files-found: warn
 
-      - name: Open draft PR for applied people images
+      - name: Open PR for applied people images
         if: ${{ inputs.write_output == 'true' && inputs.open_draft_pr == true }}
         env:
           GH_TOKEN: ${{ github.token }}
@@ -126,4 +134,4 @@ jobs:
           if git diff --cached --quiet; then echo "No applied people image output changes to commit."; exit 0; fi
           git commit -m "chore(data): apply reviewed people images"
           git push --set-upstream origin HEAD
-          gh pr create --draft --base main --head "$branch" --title "Apply reviewed people images" --body "Applies reviewed people image candidates for: $APPROVED_IDS"
+          gh pr create --base main --head "$branch" --title "Apply reviewed people images" --body "Applies reviewed people image candidates for: $APPROVED_IDS"
