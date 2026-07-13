@@ -16,12 +16,30 @@ Alle fem bruker:
 - `places: [nordre_aasen_idrettspark]`
 - `category: sport`
 
+## Manifest
+
+De fem nye filene er registrert enkeltvis i `data/people/manifest.json`, direkte etter de tidligere Nordre Åsen-profilene.
+
 ## Avgrensning
 
-- Ingen eksisterende personfiler er endret.
-- Ingen place-filer, place-ID-er, bilder, UI-filer eller runtimefiler er endret.
-- De fem nye filene registreres enkeltvis i `data/people/manifest.json`.
+Nettodiffen mot `main` består av:
 
-## Kontroller
+- fem nye personfiler
+- people-manifestet
+- researchrapporten
+- denne valideringsrapporten
 
-Automatiske data-kontroller kjøres etter at manifestoppdateringen er fullført og den midlertidige workflowfilen er fjernet.
+Ingen eksisterende personfiler, place-filer, place-ID-er, bilder, UI-filer, runtimefiler eller permanente workflowfiler er endret.
+
+## Automatiske kontroller
+
+Kontrollene på den rene branchen etter at den midlertidige manifestworkflowen var fjernet ga:
+
+- People data: **success**
+- Places data: **success**
+
+People-kontrollen dekker blant annet JSON-parsing, unike person-ID-er, manifestfiler, gyldige place-referanser og People of Places-auditene.
+
+## Produksjonsgrense
+
+Denne batchen avslutter den navngitte Skeid-utvidelsen i denne produksjonsrunden. Videre profiler vil i hovedsak bevege arbeidet fra kuratert personutvalg mot nær komplett laghistorikk.
