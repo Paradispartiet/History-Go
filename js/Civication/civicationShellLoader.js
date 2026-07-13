@@ -96,6 +96,7 @@
     "js/Civication/systems/CivicationSocialConversationEngine.js",
     "js/Civication/systems/CivicationSocialPlaceResolver.js",
     "js/Civication/ui/CivicationCityLayer.js",
+    "js/Civication/ui/CivicationLifestoryPlaceMarker.js",
     "js/Civication/systems/civicationHistoryGoTaskBridge.js",
     "js/Civication/ui/CivicationHistoryGoDeepLink.js",
     "js/Civication/CivicationShellBoot.js",
