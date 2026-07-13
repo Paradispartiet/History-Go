@@ -11,6 +11,37 @@ Denne grenen er opprettet direkte fra oppdatert `main` og gjenoppretter bare bat
 - fem nye manifestoppføringer
 - research- og valideringsrapport
 
-## Kontroller
+## Personfiler
 
-Automatiske data-kontroller kjøres etter at manifestet er oppdatert og den midlertidige workflowen er fjernet.
+- `trygve_borno`
+- `jan_birkelund`
+- `frank_olafsen`
+- `omar_elabdellaoui`
+- `dagfinn_enerly`
+
+Alle fem bruker `nordre_aasen_idrettspark` som hovedanker og er registrert enkeltvis i `data/people/manifest.json`.
+
+## Krysskobling uten duplikat
+
+Den eksisterende filen for `mohammed_abdellaoue` beholder `ullevaal_stadion` som hovedanker og har nå både `ullevaal_stadion` og `nordre_aasen_idrettspark` i `places`.
+
+## Diffavgrensning
+
+Nettodiffen mot `main` består av ni filer:
+
+- fem nye personfiler
+- én oppdatert eksisterende personfil
+- people-manifestet
+- researchrapporten
+- denne recovery-valideringsrapporten
+
+Ingen place-filer, place-ID-er, bildeassets, UI-filer, runtimefiler eller permanente workflowfiler er endret.
+
+## Automatiske kontroller
+
+GitHub Actions på den rene `main`-baserte grenen:
+
+- People data: **success**
+- Places data: **success**
+
+People-kontrollen dekker blant annet JSON-parsing, manifestregistrering, unike person-ID-er, gyldige place-referanser og People of Places-auditene.
