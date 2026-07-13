@@ -14,16 +14,30 @@ Alle tre bruker:
 
 ## Eksisterende oppføringer
 
-- `ronny_deila` oppdateres uten ny ID, med Intility Arena som hovedanker og Valle Hovin som sekundær områdekobling.
-- `klanen` oppdateres uten ny ID, med Intility Arena som hovedanker og Valle Hovin som sekundær områdekobling.
+- `ronny_deila` er oppdatert uten ny ID, med Intility Arena som hovedanker og Valle Hovin som sekundær områdekobling.
+- `klanen` er oppdatert uten ny ID, med Intility Arena som hovedanker og Valle Hovin som sekundær områdekobling.
+
+## Manifest
+
+De tre nye enkeltfilene er registrert i `data/people/manifest.json`, direkte etter Intility Arena batch 1-profilene.
 
 ## Avgrensning
 
-- Ingen person-ID-er dupliseres.
-- Ingen place-filer, place-ID-er, bilder, UI-filer eller runtimefiler endres.
-- De tre nye enkeltfilene registreres i `data/people/manifest.json`.
-- Den midlertidige workflowfilen fjernes før PR-en åpnes.
+Nettodiffen mot `main` består av:
 
-## Kontroller
+- tre nye personfiler
+- people-manifestet
+- den eksisterende Oslo-sportfilen med to målrettede oppdateringer
+- researchrapporten
+- denne valideringsrapporten
 
-Automatiske data-kontroller kjøres etter at oppdateringene er fullført og den midlertidige workflowfilen er fjernet.
+Ingen person-ID-er er duplisert. Ingen place-filer, place-ID-er, bilder, UI-filer, runtimefiler eller permanente workflowfiler er endret.
+
+## Automatiske kontroller
+
+Kontrollene på den rene branchen etter at den midlertidige workflowfilen var fjernet ga:
+
+- People data: **success**
+- Places data: **success**
+
+People-kontrollen dekker blant annet JSON-parsing, unike person-ID-er, manifestfiler, gyldige place-referanser og People of Places-auditene.
