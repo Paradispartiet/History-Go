@@ -1,0 +1,80 @@
+name: Temporary Intility Arena batch 2 data update
+
+on:
+  push:
+    branches:
+      - data/people-intility-arena-batch2-20260713
+
+permissions:
+  contents: write
+
+jobs:
+  update-people:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: data/people-intility-arena-batch2-20260713
+          fetch-depth: 0
+
+      - name: Update existing people and manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          people_path = Path('data/people/sport/oslo/people_sport_oslo.json')
+          people = json.loads(people_path.read_text(encoding='utf-8'))
+          by_id = {item['id']: item for item in people}
+
+          ronny = by_id['ronny_deila']
+          ronny.update({
+              'desc': 'Vålerenga-treneren som ledet herrelaget inn på Intility Arena i 2017.',
+              'tags': ['sport', 'fotball', 'valerenga', 'trener', 'intility'],
+              'placeId': 'intility_arena',
+              'year': 2017,
+              'popupDesc': 'Ronny Deila overtok Vålerenga foran 2017-sesongen og var hovedtrener da herrelaget flyttet inn på klubbens nye hjemmebane. Han ledet laget i den første herrekampen på arenaen mot Sarpsborg 08 10. september 2017 og fortsatte som trener gjennom de første Intility-sesongene. Arenaen er derfor hans presise hovedanker i Oslo, mens Valle Hovin beholdes som sekundær områdekobling.',
+              'places': ['intility_arena', 'valle_hovin_stadion'],
+          })
+
+          klanen = by_id['klanen']
+          klanen.update({
+              'desc': 'Vålerengas organiserte supporterfellesskap og tribunekultur på Intility Arena.',
+              'tags': ['sport', 'fotball', 'valerenga', 'supporter', 'tifo', 'tribunekultur', 'intility', 'oslo_ost'],
+              'placeId': 'intility_arena',
+              'popupDesc': 'Klanen er Vålerengas organiserte supporterfellesskap og en sentral bærer av klubbens sang-, tifo- og tribunekultur. Etter åpningen i 2017 er Intility Arena den direkte hjemmebanen for denne kulturen, med felt, flagg, koreografi og kampdagsritualer som gjør stadion til et av Norges tydeligste supporterrom. Valle Hovin beholdes som sekundær områdekobling til det bredere Vålerenga-miljøet.',
+              'places': ['intility_arena', 'valle_hovin_stadion'],
+          })
+
+          people_path.write_text(json.dumps(people, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          manifest_path = Path('data/people/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest['files']
+          anchor = 'people/sport/oslo/intility_arena/osame_sahraoui.json'
+          additions = [
+              'people/sport/oslo/intility_arena/sherida_spitse.json',
+              'people/sport/oslo/intility_arena/elise_thorsnes.json',
+              'people/sport/oslo/intility_arena/henrik_bjordal.json',
+          ]
+          insert_at = files.index(anchor) + 1
+          for item in additions:
+              if item not in files:
+                  files.insert(insert_at, item)
+                  insert_at += 1
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit data updates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/people/manifest.json data/people/sport/oslo/people_sport_oslo.json
+          if git diff --cached --quiet; then
+            echo 'People data already up to date.'
+            exit 0
+          fi
+          git commit -m 'Link existing Vålerenga profiles to Intility Arena'
+          git push origin HEAD:data/people-intility-arena-batch2-20260713
