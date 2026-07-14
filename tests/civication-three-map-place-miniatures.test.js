@@ -190,9 +190,9 @@ function run() {
     // Kartet viser mange flere ekte, klikkbare steder allerede ved standard
     // (low) zoom, så de meningsbærende stedene er hovedinnholdet – ikke den
     // generiske fyllmassen. Grensene stiger monotont med zoom.
-    assert.ok(lim.low >= 90 && lim.low <= 150, `low=${lim.low} utenfor 90–150`);
-    assert.ok(lim.mid >= 140 && lim.mid <= 200, `mid=${lim.mid} utenfor 140–200`);
-    assert.ok(lim.high >= 190 && lim.high <= 240, `high=${lim.high} utenfor 190–240`);
+    assert.ok(lim.low >= 140 && lim.low <= 220, `low=${lim.low} utenfor 140–220`);
+    assert.ok(lim.mid >= 200 && lim.mid <= 300, `mid=${lim.mid} utenfor 200–300`);
+    assert.ok(lim.high >= 280 && lim.high <= 360, `high=${lim.high} utenfor 280–360`);
     assert.ok(lim.mid >= lim.low, `mid=${lim.mid} skal være >= low`);
     assert.ok(lim.high >= lim.mid, `high=${lim.high} skal være >= mid`);
     assert.ok(lim.veryHigh >= lim.high, `veryHigh=${lim.veryHigh} skal være >= high`);
