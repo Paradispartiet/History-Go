@@ -54,8 +54,10 @@
   }
 
   // Verdensmål: normalisert 0–1 mappes inn på et brett på MAP_W x MAP_D enheter.
-  const MAP_W = 20;
-  const MAP_D = 20;
+  // Større brett (var 20) gir mer plass til flere steder; kamera/VIEW skaleres
+  // med samme faktor så framing og tilt beholdes.
+  const MAP_W = 24;
+  const MAP_D = 24;
 
   // Terreng-/byhøyder (verdensenheter).
   const WATER_Y = 0.0;       // fjordens overflate
@@ -72,14 +74,15 @@
   const FILLER_SPACING = 1.30;  // større rutenett-steg -> mer avstand mellom bygg
   const MAX_TREES = 620;
 
-  const VIEW = 10.6;         // ortografisk halv-høyde ved zoom = 1
-  const MIN_ZOOM = 0.7;
-  const MAX_ZOOM = 6.0;
+  const VIEW = 12.7;         // ortografisk halv-høyde ved zoom = 1 (skalert med brettet)
+  const MIN_ZOOM = 0.5;      // mer utzoom (se hele det større brettet)
+  const MAX_ZOOM = 11.0;     // mer innzoom (helt ned på enkeltsteder)
   const ZOOM_STEP = 1.22;
   const MAX_DPR = 2;
 
-  // Kamera-basis (gir ca. 48° tilt – rolig diorama-/modellbordvinkel).
-  const CAM_BASE = { x: 0.15, y: 16.5, z: 14.2 };
+  // Kamera-basis (gir ca. 48° tilt – rolig diorama-/modellbordvinkel). Skalert
+  // med brettet (×1.2) så utsnitt og vinkel er som før, bare på et større brett.
+  const CAM_BASE = { x: 0.18, y: 19.8, z: 17.04 };
   const TILT = Math.atan2(CAM_BASE.y, CAM_BASE.z); // radianer
   const START_ZOOM = 1.24;   // startutsnitt: fjord + sentrum + nord/vest-landemerker
   const START_PAN = { x: 0.25, z: -0.35 };
@@ -2751,7 +2754,7 @@
       // Del 7 – unngå landemerker, deretter nudge bort fra andre miniatyrer.
       const avoided = avoidLandmarkMarkerPosition(proj);
       const scale = placeScaleFor(lod, avoided.x, avoided.y);
-      const sep = 0.016 + scale * 0.03;
+      const sep = 0.022 + scale * 0.045; // mer luft mellom steder på det større brettet
 
       let nx = avoided.x, ny = avoided.y, nudged = false;
       for (let attempt = 0; attempt < 6; attempt++) {
