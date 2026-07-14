@@ -36,11 +36,15 @@ De fem endelige ID-ene ble søkt repo-wide og ble ikke funnet før opprettelse.
 - De fem nye filene er registrert i `data/people/manifest.json` rett etter Bislett batch 1-filene.
 - Ingen permanent workflowfil inngår i nettodiffen.
 
+## Synkronisering mot main
+
+Branch-headen er synkronisert med gjeldende `main`. Nyere manifesttillegg er bevart, og de fem batch 2-filene står samlet rett etter `per_edmund_mordt.json`.
+
 ## Kontroller
 
-Første branch-head-pass:
+Tidligere branch-head-pass:
 
 - People data: **success**
 - Places data: **success**
 
-Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
+Et ordinært sluttpass kjøres på committen som dokumenterer den siste synkroniseringen mot `main`.
