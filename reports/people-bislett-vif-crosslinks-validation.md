@@ -5,14 +5,14 @@
 - `klanen`
 - `henning_berg`
 
-## Forventet resultat
+## Resultat
 
 ### Klanen
 
 - hovedanker: `intility_arena`
 - historiske arenaer i `places`: `bislett_stadion`, `ullevaal_stadion`
 - eksisterende områdekobling: `valle_hovin_stadion`
-- etableringsår: 1991
+- etableringsår rettet til 1991
 
 ### Henning Berg
 
@@ -25,8 +25,13 @@
 - Ingen nye person-ID-er.
 - Ingen manifestendring.
 - Ingen place-, bilde-, UI- eller runtimeendring.
-- Den midlertidige workflowfilen skal ikke inngå i nettodiffen.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
 ## Kontroller
 
-People data og Places data kjøres etter at oppdateringene er skrevet og den midlertidige workflowfilen er fjernet.
+Første branch-head-pass:
+
+- People data: **success**
+- Places data: **success**
+
+Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
