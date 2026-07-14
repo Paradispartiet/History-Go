@@ -44,8 +44,10 @@
   // Del 5 – Zoombasert LOD for History Go-place-miniatyrer. Maks antall synlige
   // place-miniatyrer per nivå, og hvor små de tegnes. Lav zoom skal være ryddig
   // (landemerkene dominerer); høyere zoom åpner for flere lokale steder.
-  const PLACE_LOD_LIMITS = { low: 120, mid: 170, high: 210, veryHigh: 260 };
-  const PLACE_LOD_SCALE = { low: 0.40, mid: 0.44, high: 0.48, veryHigh: 0.52 };
+  // Vis (nesten) alle History GO-stedene som ekte miniatyr-bygg, ikke bare et
+  // lite utvalg. Fyllmassen er nesten borte, så de ekte stedene ER byen.
+  const PLACE_LOD_LIMITS = { low: 170, mid: 250, high: 320, veryHigh: 400 };
+  const PLACE_LOD_SCALE = { low: 0.42, mid: 0.46, high: 0.50, veryHigh: 0.54 };
   function placeLodLevel(z) {
     if (z > 4.0) return "veryHigh";
     if (z > 2.6) return "high";
@@ -70,8 +72,8 @@
   // Generisk (ikke-klikkbar) fyllmasse skal være en diskret bybakgrunn, ikke en
   // vegg av bokser: kraftig tynnere og luftigere, så de ekte, klikkbare stedene
   // blir hovedinnholdet.
-  const FILLER_DENSITY = 0.42;  // andel av profilens dens som faktisk bygges
-  const FILLER_SPACING = 1.30;  // større rutenett-steg -> mer avstand mellom bygg
+  const FILLER_DENSITY = 0.16;  // nesten borte: ekte stedsminiatyrer er byen, ikke generiske bokser
+  const FILLER_SPACING = 1.35;  // større rutenett-steg -> mer avstand mellom bygg
   const MAX_TREES = 620;
 
   const VIEW = 12.7;         // ortografisk halv-høyde ved zoom = 1 (skalert med brettet)
@@ -2000,10 +2002,13 @@
   // (lokal origo, bunn y=0). De holdes lette og kalles typisk bare når LOD gir
   // nok detalj. Ingen tekst – «skilt» er blanke flater (addMiniSignShape).
   function lodDetail(lod) {
+    // Vis gjenkjennelig bygningsform (tak, søyler, spir, vinduer) også ved
+    // standard zoom – ellers ser stedene bare ut som bokser. De detaljerte
+    // modellene finnes allerede; her slås de på tidligere.
     if (lod === "veryHigh") return 3;
-    if (lod === "high") return 2;
-    if (lod === "mid") return 1;
-    return 0; // low: kun kropp + silhuett
+    if (lod === "high") return 3;
+    if (lod === "mid") return 2;
+    return 2; // low (standard utsnitt): full silhuett med takdetaljer/vinduer
   }
   // Del 9 – dempet detaljpalett avledet av kroppsfargen.
   function winMat(c) { return mixHex(0x7e94a6, c, 0.14); } // dempet blå/grå vinduer
