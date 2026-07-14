@@ -471,15 +471,19 @@
   const LAND_COAST = [
     [-0.03, -0.03], [1.03, -0.03], [1.03, 0.68],
     [0.92, 0.70], [0.84, 0.72],
-    [0.78, 0.70],            // Gamle Oslo-kant
-    [0.70, 0.745],           // østre Bjørvika-odde stikker ut
-    [0.655, 0.66],           // Bjørvika-bukta trekker seg nordover (innskåret havn)
-    [0.605, 0.70],
-    [0.565, 0.645],          // indre havnebasseng
-    [0.50, 0.725],           // Akershus-odden stikker ut
-    [0.445, 0.695],          // Rådhusplassen
-    [0.385, 0.715],
-    [0.335, 0.675],          // mot Bygdøy-halsen
+    [0.78, 0.705],           // Grønland / Gamle Oslo-kant
+    [0.705, 0.735],          // Sørenga-odden stikker ut i sør
+    [0.660, 0.660],          // Bjørvika-bukta trekker seg nordover (innskåret havn)
+    [0.622, 0.632],          // Bjørvika-bunn (Barcode/Munch-shore)
+    [0.598, 0.672],          // østre Opera-spiss stikker ut
+    [0.560, 0.700],          // Bjørvika-munning mot Akershus
+    [0.524, 0.700],          // Akershus-odden østside
+    [0.512, 0.690],          // Akershus-nes (stikker sør mellom de to buktene)
+    [0.498, 0.662],          // Akershus vestside inn i Pipervika
+    [0.468, 0.628],          // Pipervika-bunn (Rådhusplassen)
+    [0.432, 0.652],          // Pipervika vestside
+    [0.398, 0.678],          // Aker Brygge
+    [0.352, 0.702],          // mot Bygdøy-halsen / Frognerkilen
     [0.245, 0.70], [0.13, 0.70], [-0.03, 0.69]
   ];
   // Bygdøy – gjenkjennelig halvøy vest for sentrum som henger sørover i fjorden,
@@ -605,9 +609,11 @@
     const baseY = GROUND_Y + 0.04;
     _stats.roadSegments = 0;
 
-    // Akerselva-korridoren – blå/grønn nord–sør-linje gjennom byen.
+    // Akerselva-korridoren – tydelig blå elv som renner nord–sør gjennom byen
+    // og munner ut i fjorden. Bredere og litt mørkere enn før så den leser som elv.
     if (land.akerselva) {
-      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.014), 0.02, PAL.river, baseY, { cast: false, receive: false }));
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.030), 0.012, shade(PAL.river, -0.06), baseY - 0.004, { cast: false, receive: false }));
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.020), 0.02, PAL.river, baseY, { cast: false, receive: false }));
       _stats.roadSegments += Math.max(0, land.akerselva.length - 1);
     }
 
@@ -948,6 +954,11 @@
 
   function buildCity() {
     const districts = window.CIVI_MAP_DISTRICTS || [];
+    // Kystmaske: generiske bygg skal bare stå på faktisk land (innenfor
+    // kystlinja eller på Ekeberg-landmassen), aldri ute i fjorden/buktene. Uten
+    // dette strekker bydelspolygonene byggmasse ut over vannet ved havna.
+    const ekeR = (window.CIVI_OSLO_LANDSCAPE || {}).ekebergRidge;
+    const onLand = (nx, ny) => pointInPoly(nx, ny, LAND_COAST) || (ekeR && pointInPoly(nx, ny, ekeR));
     const blocks = [];
     districts.forEach((d) => {
       const poly = d.shape;
@@ -969,6 +980,7 @@
           const nx = cx + lx * ca - ly * sa;
           const ny = cy + lx * sa + ly * ca;
           if (!pointInPoly(nx, ny, poly)) continue;
+          if (!onLand(nx, ny)) continue; // ikke bygg ute i fjorden/buktene
           const prof = districtVisualProfileForPoint(d.id, nx, ny);
           const clearFactor = clearZoneBuildingFactor(nx, ny);
           if (clearFactor <= 0) continue;
