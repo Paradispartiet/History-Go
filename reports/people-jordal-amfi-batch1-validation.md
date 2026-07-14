@@ -30,3 +30,5 @@ Alle fem bruker:
 ## Kontroller
 
 Automatiske data-kontroller kjøres etter at manifestoppdateringen er fullført og den midlertidige workflowfilen er fjernet.
+
+Manifestregistreringen er utløst på den ferdige branch-diffen.
