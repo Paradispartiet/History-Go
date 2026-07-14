@@ -1,0 +1,70 @@
+name: Register Ullevaal women 1987 final people
+
+on:
+  push:
+    branches:
+      - data/people-ullevaal-women-1987-final-single-files-20260714
+    paths:
+      - .github/ullevaal-women-1987-final-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/people-ullevaal-women-1987-final-single-files-20260714
+      - name: Register single-person files in manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest_path = Path('data/people/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest['files']
+
+          additions = [
+              'people/sport/oslo/ullevaal_stadion/trude_stendal.json',
+              'people/sport/oslo/ullevaal_stadion/heidi_store.json',
+              'people/sport/oslo/ullevaal_stadion/gunn_nyborg.json',
+              'people/sport/oslo/ullevaal_stadion/kari_nielsen.json',
+              'people/sport/oslo/ullevaal_stadion/janne_andreassen.json',
+          ]
+          anchor = 'people/sport/oslo/ullevaal_stadion/asbjorn_halvorsen.json'
+
+          for item in additions:
+              source = Path('data/people') / item.removeprefix('people/')
+              if not source.exists():
+                  raise SystemExit(f'Missing single-person file: {source}')
+              data = json.loads(source.read_text(encoding='utf-8'))
+              if isinstance(data, list):
+                  raise SystemExit(f'Batch/list format forbidden: {source}')
+              expected_id = source.stem
+              if data.get('id') != expected_id:
+                  raise SystemExit(f'ID/file mismatch for {source}: {data.get("id")}')
+              while item in files:
+                  files.remove(item)
+
+          if anchor not in files:
+              raise SystemExit(f'Manifest anchor missing: {anchor}')
+          insert_at = files.index(anchor) + 1
+          files[insert_at:insert_at] = additions
+
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          PY
+      - name: Commit manifest and remove one-shot files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/people/manifest.json
+          git rm .github/workflows/register-ullevaal-women-1987-final.yml
+          git rm .github/ullevaal-women-1987-final-trigger.txt
+          git commit -m "Register Ullevaal women 1987 final people"
+          git push origin data/people-ullevaal-women-1987-final-single-files-20260714
