@@ -1,0 +1,188 @@
+name: Split Akershus history batch 1 categories
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/akershus-batch1-category-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: split-akershus-history-batch1-categories
+  cancel-in-progress: false
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Split category mismatches and update manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          source_path = Path('data/places/historie/akershus/places_historie_akershus_batch1.json')
+          manifest_path = Path('data/places/manifest.json')
+
+          original_ids = [
+              'nostvet_boplass',
+              'raknehaugen',
+              'nes_kirkeruiner',
+              'blaker_skanse',
+              'baerums_verk_jernverk',
+              'eidsvollsbygningen',
+              'eidsvoll_verk_andelva',
+              'fetsund_lenser',
+              'tertitten_urskog_holandsbanen',
+              'kjeller_flyplass',
+              'oscarsborg_festning',
+              'trandumskogen',
+          ]
+
+          retained_ids = [
+              'nostvet_boplass',
+              'raknehaugen',
+              'nes_kirkeruiner',
+              'blaker_skanse',
+              'fetsund_lenser',
+              'oscarsborg_festning',
+              'trandumskogen',
+          ]
+
+          moves = [
+              ('baerums_verk_jernverk', 'naeringsliv', Path('data/places/naeringsliv/akershus/baerums_verk_jernverk.json')),
+              ('eidsvollsbygningen', 'politikk', Path('data/places/politikk/akershus/eidsvollsbygningen.json')),
+              ('eidsvoll_verk_andelva', 'naeringsliv', Path('data/places/naeringsliv/akershus/eidsvoll_verk_andelva.json')),
+              ('tertitten_urskog_holandsbanen', 'by', Path('data/places/by/akershus/tertitten_urskog_holandsbanen.json')),
+              ('kjeller_flyplass', 'by', Path('data/places/by/akershus/kjeller_flyplass.json')),
+          ]
+
+          payload = json.loads(source_path.read_text(encoding='utf-8'))
+          if not isinstance(payload, list):
+              raise SystemExit('Akershus batch 1 must be a JSON array')
+
+          actual_ids = [place.get('id') for place in payload]
+          if actual_ids != original_ids:
+              raise SystemExit(f'Unexpected source IDs/order: {actual_ids}')
+          if any(place.get('category') != 'historie' for place in payload):
+              raise SystemExit('Every source entry must start in historie')
+
+          by_id = {place['id']: place for place in payload}
+          move_ids = {place_id for place_id, _, _ in moves}
+
+          for place_id, category, destination in moves:
+              if destination.exists():
+                  raise SystemExit(f'Destination already exists: {destination}')
+              original = by_id[place_id]
+              moved = dict(original)
+              moved['category'] = category
+              if {k: v for k, v in moved.items() if k != 'category'} != {
+                  k: v for k, v in original.items() if k != 'category'
+              }:
+                  raise SystemExit(f'Non-category content changed for {place_id}')
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              destination.write_text(
+                  json.dumps([moved], ensure_ascii=False, indent=2) + '\n',
+                  encoding='utf-8',
+              )
+
+          retained = [place for place in payload if place['id'] not in move_ids]
+          if [place['id'] for place in retained] != retained_ids:
+              raise SystemExit('Retained IDs/order changed')
+          if any(place.get('category') != 'historie' for place in retained):
+              raise SystemExit('Retained entries must remain historie')
+          source_path.write_text(
+              json.dumps(retained, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest.get('files')
+          if not isinstance(files, list):
+              raise SystemExit('Manifest files must be a list')
+
+          anchor = 'places/historie/akershus/places_historie_akershus_batch1.json'
+          additions = [
+              'places/naeringsliv/akershus/baerums_verk_jernverk.json',
+              'places/politikk/akershus/eidsvollsbygningen.json',
+              'places/naeringsliv/akershus/eidsvoll_verk_andelva.json',
+              'places/by/akershus/tertitten_urskog_holandsbanen.json',
+              'places/by/akershus/kjeller_flyplass.json',
+          ]
+
+          if files.count(anchor) != 1:
+              raise SystemExit(f'Expected one manifest anchor, got {files.count(anchor)}')
+          collisions = [path for path in additions if path in files]
+          if collisions:
+              raise SystemExit(f'Manifest destinations already registered: {collisions}')
+
+          anchor_index = files.index(anchor)
+          files[anchor_index + 1:anchor_index + 1] = additions
+          if len(files) != len(set(files)):
+              raise SystemExit('Duplicate manifest paths after insertion')
+          if files[anchor_index:anchor_index + 1 + len(additions)] != [anchor, *additions]:
+              raise SystemExit('Manifest insertion order is incorrect')
+
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, separators=(',', ':')),
+              encoding='utf-8',
+          )
+
+          # Validate every manifest-loaded place ID remains unique.
+          id_counts = Counter()
+          for relative_path in files:
+              path = Path('data/places') / relative_path.removeprefix('places/')
+              document = json.loads(path.read_text(encoding='utf-8'))
+              if isinstance(document, list):
+                  for place in document:
+                      if isinstance(place, dict) and isinstance(place.get('id'), str):
+                          id_counts[place['id']] += 1
+
+          duplicates = sorted(place_id for place_id, count in id_counts.items() if count > 1)
+          if duplicates:
+              raise SystemExit(f'Duplicate manifest-loaded place IDs: {duplicates[:20]}')
+          for place_id in original_ids:
+              if id_counts[place_id] != 1:
+                  raise SystemExit(f'Expected one manifest-loaded occurrence of {place_id}, got {id_counts[place_id]}')
+
+          for place_id, category, destination in moves:
+              written = json.loads(destination.read_text(encoding='utf-8'))
+              if written[0].get('id') != place_id or written[0].get('category') != category:
+                  raise SystemExit(f'Post-write validation failed for {destination}')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/places/historie/akershus/places_historie_akershus_batch1.json
+          git add data/places/naeringsliv/akershus/baerums_verk_jernverk.json
+          git add data/places/politikk/akershus/eidsvollsbygningen.json
+          git add data/places/naeringsliv/akershus/eidsvoll_verk_andelva.json
+          git add data/places/by/akershus/tertitten_urskog_holandsbanen.json
+          git add data/places/by/akershus/kjeller_flyplass.json
+          git add data/places/manifest.json
+          git rm .github/workflows/register-akershus-batch1-category-files.yml
+          git rm .github/akershus-batch1-category-trigger.txt
+          git commit -m "Split and register Akershus batch 1 category files"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
