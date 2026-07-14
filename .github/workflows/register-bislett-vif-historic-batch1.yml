@@ -1,0 +1,62 @@
+name: Register Bislett Vålerenga historic batch 1
+
+on:
+  push:
+    branches:
+      - data/people-bislett-vif-historic-batch1-20260714
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: data/people-bislett-vif-historic-batch1-20260714
+          fetch-depth: 0
+
+      - name: Register Bislett person files
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/people/manifest.json')
+          manifest = json.loads(path.read_text(encoding='utf-8'))
+          files = manifest['files']
+          additions = [
+              'people/sport/oslo/bislett_stadion/leif_eriksen.json',
+              'people/sport/oslo/bislett_stadion/pal_jacobsen.json',
+              'people/sport/oslo/bislett_stadion/vidar_davidsen.json',
+              'people/sport/oslo/bislett_stadion/egil_flemming_johansen.json',
+              'people/sport/oslo/bislett_stadion/per_edmund_mordt.json',
+          ]
+          for item in additions:
+              while item in files:
+                  files.remove(item)
+
+          anchor = 'people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json'
+          if anchor not in files:
+              raise SystemExit(f'Missing manifest anchor: {anchor}')
+          insert_at = files.index(anchor) + 1
+          files[insert_at:insert_at] = additions
+          path.write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          PY
+
+      - name: Commit manifest and remove one-shot workflow
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/people/manifest.json
+          git rm .github/workflows/register-bislett-vif-historic-batch1.yml
+          git commit -m "Register Bislett Vålerenga historic batch 1"
+          git push origin data/people-bislett-vif-historic-batch1-20260714
