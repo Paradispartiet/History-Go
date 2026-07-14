@@ -1,0 +1,42 @@
+{
+  "status": "applied",
+  "reason": "tools:check was blocked by stale generated places index after People of Places gate validation",
+  "sourceFailure": {
+    "command": "npm run tools:check",
+    "failureStage": "places:index:check",
+    "expectedLength": 1155,
+    "actualLength": 1124,
+    "firstMismatch": {
+      "index": 142,
+      "expected": "moss_jernverk_konventionsgarden",
+      "actual": "gjellestadskipet_jellhaugen"
+    }
+  },
+  "actions": [
+    "npm run places:index:build",
+    "npm run places:index:check",
+    "npm run audit:people-of-places",
+    "npm run audit:quiz-manifest:v2",
+    "npm run audit:civication-place-mapping",
+    "npm run tools:check"
+  ],
+  "placesIndexChanged": true,
+  "placeSourceDataChanged": false,
+  "peopleDataChanged": false,
+  "peopleAuditChanged": false,
+  "quizDataChanged": false,
+  "quizManifestChanged": false,
+  "civicationMappingChanged": false,
+  "validation": {
+    "placesIndexCheckStatus": "passed",
+    "peopleAuditStatus": "passed",
+    "quizManifestV2AuditStatus": "passed",
+    "civicationPlaceMappingAuditStatus": "failed_unrelated",
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "npm run places:index:build regenerated data/places/places_index.json from canonical place data and wrote 1155 places, skipping 9 disabled places.",
+    "npm run audit:civication-place-mapping failed with unrelated coordinate mismatches in existing Civication mapping files; scope explicitly forbids changing Civication mapping.",
+    "npm run tools:check passed typecheck:tools, build:tools, and places:index:check, then stopped at the next unrelated stage because package.json references missing script places:coords:quality. places:index:check and the People of Places gate both pass."
+  ]
+}
