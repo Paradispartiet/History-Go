@@ -1,0 +1,75 @@
+name: Apply Bislett Vålerenga cross-links 2
+
+on:
+  push:
+    branches:
+      - data/people-bislett-crosslinks-2-20260715
+    paths:
+      - .github/workflows/apply-bislett-vif-crosslinks-2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/people-bislett-crosslinks-2-20260715
+      - name: Update existing people and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          sport_path = Path('data/people/sport/oslo/people_sport_oslo.json')
+          sport = json.loads(sport_path.read_text(encoding='utf-8'))
+          larsen = next((item for item in sport if item.get('id') == 'einar_bruno_larsen'), None)
+          if larsen is None:
+              raise SystemExit('einar_bruno_larsen not found')
+
+          larsen['desc'] = 'Vålerenga-legende i fotball og ishockey, med Jordal som hockeyanker og Bislett som fotballanker.'
+          larsen['tags'] = [
+              'sport', 'ishockey', 'fotball', 'valerenga', 'jordal', 'bislett'
+          ]
+          larsen['popupDesc'] = (
+              'Einar Bruno Larsen spilte hele seniorkarrieren i fotball for Vålerenga fra 1957 til 1968, '
+              'scoret 99 mål og var del av klubbens første seriemesterlag i 1965. Samtidig spilte han tretten '
+              'ishockeysesonger for Vålerenga, vant seks norske mesterskap og mottok Gullpucken i 1963. '
+              'Jordal Amfi beholdes som hovedanker for hockeykarrieren, mens Bislett dokumenterer fotballsporet '
+              'og seriegullet. Intility Arena fjernes fordi arenaen åpnet lenge etter karrieren hans.'
+          )
+          larsen['places'] = ['jordal_amfi', 'bislett_stadion']
+          sport_path.write_text(json.dumps(sport, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          drillo_path = Path('data/people/sport/oslo/ullevaal_stadion/egil_olsen.json')
+          drillo_payload = json.loads(drillo_path.read_text(encoding='utf-8'))
+          drillo = drillo_payload[0] if isinstance(drillo_payload, list) else drillo_payload
+          if drillo.get('id') != 'egil_olsen':
+              raise SystemExit('egil_olsen not found')
+
+          drillo['desc'] = 'Landslagssjef på Ullevaal og tidligere Vålerenga-spiller og -trener med Bislett-kobling.'
+          drillo['tags'] = [
+              'sport', 'fotball', 'landslagssjef', 'vm', 'drillo', 'valerenga',
+              'ullevaal_stadion', 'bislett_stadion'
+          ]
+          drillo['popupDesc'] = (
+              'Egil «Drillo» Olsen er den mest markante norske landslagssjefen i moderne tid og ledet Norge '
+              'til VM i 1994 og 1998 med Ullevaal som nasjonalarena. Han hadde også spillerperioder i Vålerenga '
+              'i 1964 og 1966–1967 og kom tilbake som hovedtrener fra august 1998 til juni 1999. Ullevaal '
+              'beholdes som hovedanker for landslagskarrieren, mens Bislett dokumenterer Vålerenga-periodene '
+              'før klubbens permanente flytting til Ullevaal.'
+          )
+          drillo['places'] = ['ullevaal_stadion', 'bislett_stadion']
+          drillo_path.write_text(json.dumps([drillo], ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          git rm .github/workflows/apply-bislett-vif-crosslinks-2.yml
+          git add data/people/sport/oslo/people_sport_oslo.json \
+                  data/people/sport/oslo/ullevaal_stadion/egil_olsen.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Cross-link Einar Bruno Larsen and Drillo to Bislett'
+          git push origin HEAD:data/people-bislett-crosslinks-2-20260715
