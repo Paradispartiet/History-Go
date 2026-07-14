@@ -1536,8 +1536,17 @@
     const h = o.h || 2.6, w = o.w || 0.3, d = o.d || 0.34, c = o.color || 0x3b4b5f;
     g.add(box(w, h, d, c));
     const cap = box(w * 0.82, 0.08, d * 0.82, shade(c, 0.12)); cap.position.y = h; g.add(cap);
-    // Glassbånd på de to fronene som vender mot kameraet.
-    const glass = box(w * 0.62, h * 0.9, 0.02, shade(c, 0.22)); glass.position.set(0, h * 0.5, d / 2); g.add(glass);
+    // Glassfasade på fronten (+z) med etasjebånd og vertikale delelinjer, så
+    // tårnet leser som et glass-kontorbygg med etasjer, ikke en glatt boks.
+    const glass = box(w * 0.66, h * 0.92, 0.02, shade(c, 0.22)); glass.position.set(0, h * 0.5, d / 2); g.add(glass);
+    const floors = Math.max(4, Math.round(h / 0.16));
+    for (let f = 1; f < floors; f++) {
+      const line = box(w * 0.66, 0.01, 0.01, shade(c, -0.12));
+      line.position.set(0, (h * 0.92 * f) / floors + h * 0.04, d / 2 + 0.011); g.add(line);
+    }
+    [-0.22, 0.22].forEach((fx) => {
+      const v = box(0.008, h * 0.9, 0.01, shade(c, -0.1)); v.position.set(fx * w, h * 0.5, d / 2 + 0.011); g.add(v);
+    });
     // Plaza får en slank topp-setback + antenne så den leses som ÉT høyt tårn.
     if (o.crown) {
       const top = box(w * 0.6, 0.18, d * 0.6, shade(c, 0.06)); top.position.set(0, h + 0.08, 0); g.add(top);
@@ -1570,9 +1579,13 @@
     );
     hall.rotation.z = Math.PI / 2; hall.position.set(0, h, -0.02); hall.castShadow = true; hall.receiveShadow = true; g.add(hall);
 
-    // Liten sentral inngangsgavl mot byen (+z).
+    // Liten sentral inngangsgavl mot byen (+z), med det ikoniske tårnuret.
     const entry = box(0.34, h * 0.95, 0.12, shade(c, -0.08)); entry.position.set(0, h * 0.475, 0.28); g.add(entry);
     const gable = gableRoof(0.36, 0.12, 0.14, shade(c, -0.14)); gable.position.set(0, h * 0.95, 0.28); g.add(gable);
+    const clockFace = cyl(0.05, 0.05, 0.015, 14, 0xf2ede2); clockFace.rotation.x = Math.PI / 2; clockFace.position.set(0, h * 0.78, 0.35); g.add(clockFace);
+    const clockRim = cyl(0.057, 0.057, 0.01, 14, shade(c, -0.2)); clockRim.rotation.x = Math.PI / 2; clockRim.position.set(0, h * 0.78, 0.345); g.add(clockRim);
+    // Vindusbånd langs den lange terminalfasaden.
+    addWindows(g, c, { cols: 7, rows: 1, y0: h * 0.5, z: 0.265, spanX: 0.9, w: 0.05, wh: 0.12 });
 
     return { group: g, h: h + 0.24 };
   }
