@@ -1,0 +1,26 @@
+{
+  "status": "applied",
+  "reason": "tools:check referenced missing places:coords:quality npm script",
+  "change": {
+    "scriptAdded": "places:coords:quality",
+    "delegatesTo": "places:coords:gate",
+    "coordinateAuditLogicChanged": false
+  },
+  "packageJsonChanged": true,
+  "placeDataChanged": false,
+  "placesIndexChanged": false,
+  "peopleDataChanged": false,
+  "quizDataChanged": false,
+  "civicationMappingChanged": false,
+  "validation": {
+    "placesCoordsQualityStatus": "passed",
+    "placesIndexCheckStatus": "failed",
+    "peopleAuditStatus": "passed",
+    "quizManifestV2AuditStatus": "passed",
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "npm run places:index:check failed at places_index sync check with value_mismatch differences for Agder place entries; first reported placeId arendal_gamle_radhus expected category by/sourceFile places/by/agder/arendal_gamle_radhus.json but actual category historie/sourceFile places/historie/agder/arendal_gamle_radhus.json.",
+    "npm run tools:check failed at the existing places:index:check stage before reaching places:coords:quality; this PR did not modify place-data or places_index."
+  ]
+}

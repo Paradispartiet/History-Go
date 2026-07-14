@@ -18,6 +18,7 @@
     "tools:check": "npm run typecheck:tools && npm run build:tools && npm run places:index:check && npm run places:coords:quality && npm run places:coords:intake && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places && npm run audit:people-of-places && npm run audit:quiz-manifest:v2 && npm run audit:civication-place-mapping && npm run audit:civication-city-map-entries",
     "places:coords:audit": "npm run build:tools && node dist/tools/audit-place-coordinates.mjs",
     "places:coords:gate": "npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs",
+    "places:coords:quality": "npm run places:coords:gate",
     "places:coords:legacy:audit": "npm run build:tools && node dist/tools/audit-legacy-coordinate-system.mjs",
     "places:coords:evidence:audit": "npm run build:tools && node dist/tools/audit-coordinate-evidence.mjs",
     "places:coords:intake": "npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new",
