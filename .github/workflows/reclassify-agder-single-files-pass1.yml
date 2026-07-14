@@ -1,0 +1,127 @@
+name: Reclassify Agder single files pass 1
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/agder-single-files-pass1-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  reclassify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Move Agder city-history single files and update manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          moves = [
+              (
+                  Path('data/places/historie/agder/risor_kirke_byhistorie.json'),
+                  Path('data/places/by/agder/risor_kirke_byhistorie.json'),
+                  'risor_kirke_byhistorie',
+              ),
+              (
+                  Path('data/places/historie/agder/farsund_kirke_byhistorie.json'),
+                  Path('data/places/by/agder/farsund_kirke_byhistorie.json'),
+                  'farsund_kirke_byhistorie',
+              ),
+              (
+                  Path('data/places/historie/agder/flekkefjord_kirke_byhistorie.json'),
+                  Path('data/places/by/agder/flekkefjord_kirke_byhistorie.json'),
+                  'flekkefjord_kirke_byhistorie',
+              ),
+              (
+                  Path('data/places/historie/agder/grimstad_kirke_byhistorie.json'),
+                  Path('data/places/by/agder/grimstad_kirke_byhistorie.json'),
+                  'grimstad_kirke_byhistorie',
+              ),
+              (
+                  Path('data/places/historie/agder/arendal_gamle_radhus.json'),
+                  Path('data/places/by/agder/arendal_gamle_radhus.json'),
+                  'arendal_gamle_radhus',
+              ),
+          ]
+
+          for source, destination, expected_id in moves:
+              if not source.exists():
+                  raise SystemExit(f'Missing source: {source}')
+              if destination.exists():
+                  raise SystemExit(f'Destination already exists: {destination}')
+
+              payload = json.loads(source.read_text(encoding='utf-8'))
+              if not isinstance(payload, list) or len(payload) != 1:
+                  raise SystemExit(f'Expected one-place array in {source}')
+              place = payload[0]
+              if place.get('id') != expected_id:
+                  raise SystemExit(f'Unexpected ID in {source}: {place.get("id")}')
+              if place.get('category') != 'historie':
+                  raise SystemExit(f'Unexpected source category in {source}: {place.get("category")}')
+
+              moved = dict(place)
+              moved['category'] = 'by'
+              if {k: v for k, v in moved.items() if k != 'category'} != {
+                  k: v for k, v in place.items() if k != 'category'
+              }:
+                  raise SystemExit(f'Non-category content changed for {expected_id}')
+
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              destination.write_text(
+                  json.dumps([moved], ensure_ascii=False, indent=2) + '\n',
+                  encoding='utf-8',
+              )
+              source.unlink()
+
+          manifest_path = Path('data/places/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest['files']
+
+          for source, destination, _ in moves:
+              old = str(source.relative_to('data/places'))
+              new = str(destination.relative_to('data/places'))
+              if files.count(old) != 1:
+                  raise SystemExit(f'Expected one manifest source entry for {old}, got {files.count(old)}')
+              if new in files:
+                  raise SystemExit(f'Manifest destination already exists: {new}')
+              files[files.index(old)] = new
+
+          if len(files) != len(set(files)):
+              raise SystemExit('Duplicate manifest paths after Agder single-file cleanup')
+
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, separators=(',', ':')),
+              encoding='utf-8',
+          )
+
+          for _, destination, expected_id in moves:
+              payload = json.loads(destination.read_text(encoding='utf-8'))
+              if payload[0].get('id') != expected_id or payload[0].get('category') != 'by':
+                  raise SystemExit(f'Post-write validation failed for {destination}')
+          PY
+      - name: Commit moved files and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/by/agder/risor_kirke_byhistorie.json
+          git add data/places/by/agder/farsund_kirke_byhistorie.json
+          git add data/places/by/agder/flekkefjord_kirke_byhistorie.json
+          git add data/places/by/agder/grimstad_kirke_byhistorie.json
+          git add data/places/by/agder/arendal_gamle_radhus.json
+          git add data/places/manifest.json
+          git rm data/places/historie/agder/risor_kirke_byhistorie.json
+          git rm data/places/historie/agder/farsund_kirke_byhistorie.json
+          git rm data/places/historie/agder/flekkefjord_kirke_byhistorie.json
+          git rm data/places/historie/agder/grimstad_kirke_byhistorie.json
+          git rm data/places/historie/agder/arendal_gamle_radhus.json
+          git rm .github/workflows/reclassify-agder-single-files-pass1.yml
+          git rm .github/agder-single-files-pass1-trigger.txt
+          git commit -m "Reclassify Agder city-history single files"
+          git push origin main
