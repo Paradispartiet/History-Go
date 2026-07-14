@@ -24,8 +24,9 @@ function loadScript(relPath) {
 }
 
 // Speiler ThreeMap-konstantene (kun for å regne forventede skjermpunkter).
-const MAP_W = 20;
-const MAP_D = 20;
+// Speiler ThreeMap-konstantene MAP_W/MAP_D (brettstørrelse i verdensenheter).
+const MAP_W = 24;
+const MAP_D = 24;
 
 const dispatched = [];
 let rafQueue = [];
@@ -118,9 +119,9 @@ check("projectWorldToScreen returnerer skjermpunkt når ThreeMap er aktivt", () 
   M.setStateForTesting({ active: true, THREE: FAKE_THREE, camera: makeCamera(), renderer: {}, W: 1000, H: 800 });
   // nx=0.5,ny=0.5 -> world (0,*,0) -> ndc (0,0) -> senter av viewport.
   assert.deepStrictEqual(M.projectWorldToScreen(0.5, 0.5), { x: 500, y: 400 });
-  // nx=0.75 -> worldX=5 -> ndc.x=0.5 -> (0.5+1)/2*1000 = 750.
+  // nx=0.75 -> worldX=6 -> ndc.x=6/(MAP_W/2)=0.5 -> (0.5+1)/2*1000 = 750.
   assert.strictEqual(M.projectWorldToScreen(0.75, 0.5).x, 750);
-  // ny=0.25 -> worldZ=-5 -> ndc.y=0.5 -> (-0.5+1)/2*800 = 200.
+  // ny=0.25 -> worldZ=-6 -> ndc.y=0.5 -> (-0.5+1)/2*800 = 200.
   assert.strictEqual(M.projectWorldToScreen(0.5, 0.25).y, 200);
 });
 
