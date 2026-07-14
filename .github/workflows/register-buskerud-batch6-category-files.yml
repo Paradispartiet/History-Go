@@ -1,0 +1,105 @@
+name: Register Buskerud batch 6 category files
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/buskerud-batch6-split-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Split category files, reduce batch, and update manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          batch_path = Path('data/places/historie/buskerud/places_historie_buskerud_batch6.json')
+          batch = json.loads(batch_path.read_text(encoding='utf-8'))
+          moves = [
+              ('riddergarden_honefoss', 'by', Path('data/places/by/buskerud/riddergarden_honefoss.json')),
+              ('nore_i_kraftverk', 'naeringsliv', Path('data/places/naeringsliv/buskerud/nore_i_kraftverk.json')),
+              ('sundvollen_hotell_skysskifte', 'naeringsliv', Path('data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json')),
+              ('union_papirfabrikk_drammen', 'naeringsliv', Path('data/places/naeringsliv/buskerud/union_papirfabrikk_drammen.json')),
+              ('solberg_spinderi', 'naeringsliv', Path('data/places/naeringsliv/buskerud/solberg_spinderi.json')),
+              ('vikersund_stasjon_randsfjordbanen', 'by', Path('data/places/by/buskerud/vikersund_stasjon_randsfjordbanen.json')),
+          ]
+          move_ids = {place_id for place_id, _, _ in moves}
+          by_id = {place['id']: place for place in batch}
+          missing = move_ids - set(by_id)
+          if missing:
+              raise SystemExit(f'Missing Buskerud batch 6 move IDs: {sorted(missing)}')
+
+          for place_id, category, destination in moves:
+              if destination.exists():
+                  raise SystemExit(f'Destination already exists: {destination}')
+              place = dict(by_id[place_id])
+              place['category'] = category
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              destination.write_text(
+                  json.dumps([place], ensure_ascii=False, indent=2) + '\n',
+                  encoding='utf-8',
+              )
+
+          reduced = [place for place in batch if place['id'] not in move_ids]
+          expected_retained = [
+              'modum_bad_st_olafs_kilde',
+              'lier_sykehus_historisk_omrade',
+          ]
+          if [place['id'] for place in reduced] != expected_retained:
+              raise SystemExit(
+                  f'Unexpected retained batch 6 IDs: {[place["id"] for place in reduced]}'
+              )
+          if any(place.get('category') != 'historie' for place in reduced):
+              raise SystemExit('Retained batch 6 place has non-historie category')
+          batch_path.write_text(
+              json.dumps(reduced, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          manifest_path = Path('data/places/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest['files']
+          anchor = 'places/historie/buskerud/places_historie_buskerud_batch6.json'
+          additions = [
+              'places/by/buskerud/riddergarden_honefoss.json',
+              'places/naeringsliv/buskerud/nore_i_kraftverk.json',
+              'places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json',
+              'places/naeringsliv/buskerud/union_papirfabrikk_drammen.json',
+              'places/naeringsliv/buskerud/solberg_spinderi.json',
+              'places/by/buskerud/vikersund_stasjon_randsfjordbanen.json',
+          ]
+          for item in additions:
+              while item in files:
+                  files.remove(item)
+          insert_at = files.index(anchor) + 1
+          files[insert_at:insert_at] = additions
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, separators=(',', ':')),
+              encoding='utf-8',
+          )
+          PY
+      - name: Commit changes and remove one-shot files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/by/buskerud/riddergarden_honefoss.json
+          git add data/places/naeringsliv/buskerud/nore_i_kraftverk.json
+          git add data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json
+          git add data/places/naeringsliv/buskerud/union_papirfabrikk_drammen.json
+          git add data/places/naeringsliv/buskerud/solberg_spinderi.json
+          git add data/places/by/buskerud/vikersund_stasjon_randsfjordbanen.json
+          git add data/places/historie/buskerud/places_historie_buskerud_batch6.json data/places/manifest.json
+          git rm .github/workflows/register-buskerud-batch6-category-files.yml
+          git rm .github/buskerud-batch6-split-trigger.txt
+          git commit -m "Split and register Buskerud batch 6 category files"
+          git push origin main
