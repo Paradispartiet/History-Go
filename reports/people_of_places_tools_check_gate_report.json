@@ -1,0 +1,36 @@
+{
+  "status": "applied",
+  "change": "Added and validated People of Places audit gate in tools:check",
+  "diagnosis": {
+    "staleReportHadFalseSingleRecordFindings": true,
+    "singleRecordParserFixActive": true,
+    "ullevaalPeopleDataWasAlreadyValid": true
+  },
+  "packageJsonChanged": true,
+  "auditGateScriptAdded": true,
+  "parserHelperChanged": true,
+  "peopleDataChanged": false,
+  "placeDataChanged": false,
+  "quizDataChanged": false,
+  "civicationMappingChanged": false,
+  "peopleAuditSummary": {
+    "totalPeople": 817,
+    "uniquePeopleIds": 817,
+    "duplicatePeopleIds": 0,
+    "invalidPlaceRefs": 0,
+    "peopleWithoutValidPrimaryAnchor": 0,
+    "peopleWithEmptyPlacesArray": 0,
+    "flatPeopleFiles": 0,
+    "geographicPeopleFiles": 316,
+    "categoriesRepresented": 15
+  },
+  "validation": {
+    "peopleAuditRan": true,
+    "peopleAuditStatus": "passed",
+    "toolsCheckRan": true,
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "npm run tools:check failed at places:index:check because reports/places_index.json is out of sync with generated place data: length_mismatch expected 1155, actual 1124; first mismatch at index 142 for moss_jernverk_konventionsgarden versus gjellestadskipet_jellhaugen. This is unrelated to the People of Places gate."
+  ]
+}
