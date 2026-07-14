@@ -1,0 +1,85 @@
+name: Reclassify Agder Trefoldighetskirken
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/agder-trefoldighetskirken-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reclassify-agder-trefoldighetskirken
+  cancel-in-progress: false
+
+jobs:
+  reclassify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Move Trefoldighetskirken to by and update manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          src="data/places/historie/agder/trefoldighetskirken_arendal.json"
+          dst="data/places/by/agder/trefoldighetskirken_arendal.json"
+          test -f "$src"
+          test ! -e "$dst"
+          git mv "$src" "$dst"
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/places/by/agder/trefoldighetskirken_arendal.json')
+          payload = json.loads(path.read_text(encoding='utf-8'))
+          if not isinstance(payload, list) or len(payload) != 1:
+              raise SystemExit('Expected one-place array')
+          place = payload[0]
+          if place.get('id') != 'trefoldighetskirken_arendal':
+              raise SystemExit(f'Unexpected ID: {place.get("id")}')
+          if place.get('category') != 'historie':
+              raise SystemExit(f'Unexpected source category: {place.get("category")}')
+          place['category'] = 'by'
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          manifest_path = Path('data/places/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest['files']
+          old = 'places/historie/agder/trefoldighetskirken_arendal.json'
+          new = 'places/by/agder/trefoldighetskirken_arendal.json'
+          if files.count(old) != 1:
+              raise SystemExit(f'Expected one source manifest path, got {files.count(old)}')
+          if new in files:
+              raise SystemExit('Destination already registered in manifest')
+          files[files.index(old)] = new
+          if len(files) != len(set(files)):
+              raise SystemExit('Duplicate manifest paths after update')
+          if old in files or files.count(new) != 1:
+              raise SystemExit('Manifest replacement validation failed')
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/reclassify-agder-trefoldighetskirken.yml
+          rm -f .github/agder-trefoldighetskirken-trigger.txt
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Reclassify Trefoldighetskirken Arendal as city"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
