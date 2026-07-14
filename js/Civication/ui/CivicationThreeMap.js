@@ -1613,8 +1613,24 @@
     const roof = new THREE.Mesh(geo, toMat(white));
     roof.castShadow = true; roof.receiveShadow = true; g.add(roof);
 
-    // Lavt glass-/scenetårn som bryter ryggen.
-    const tower = box(0.5, 0.46, 0.34, glass); tower.position.set(0, 0.23, -depth / 2 - 0.04); g.add(tower);
+    // Marmorpanel-skjøter på den skrå takflaten (tynne, litt mørkere linjer) –
+    // gir den ikoniske «gå-på-taket»-panelfølelsen i stedet for én glatt kile.
+    for (let i = 1; i < 6; i++) {
+      const seam = box(L * 0.98, 0.008, 0.012, shade(white, -0.1));
+      const t = i / 6; // langs skråningen fra rygg (z=-depth/2) til vann (z=+depth/2)
+      seam.position.set(0, H * (1 - t) + 0.004, -depth / 2 + depth * t);
+      seam.rotation.x = Math.atan2(H, depth); g.add(seam);
+    }
+    [-1, 1].forEach((s) => { // tverrskjøter
+      const seam = box(0.01, 0.008, depth * 1.02, shade(white, -0.08));
+      seam.position.set(s * L * 0.28, H * 0.5 + 0.004, 0); seam.rotation.x = Math.atan2(H, depth); g.add(seam);
+    });
+
+    // Ikonisk glass-foajévegg reist opp fra ryggen (mot byen).
+    const foyer = box(L * 0.5, H * 0.92, 0.05, glass); foyer.position.set(0, H * 0.46, -depth / 2 - 0.02); g.add(foyer);
+    const foyerFrame = box(L * 0.52, 0.03, 0.06, shade(white, -0.05)); foyerFrame.position.set(0, H * 0.92, -depth / 2 - 0.02); g.add(foyerFrame);
+    // Lavt scenetårn som bryter ryggen.
+    const tower = box(0.5, 0.5, 0.3, mixHex(glass, white, 0.4)); tower.position.set(0.42, 0.25, -depth / 2 - 0.08); g.add(tower);
 
     // Hvit marmorplass mot vannkanten.
     const apron = box(L * 0.94, 0.03, 0.42, 0xdedacf);
@@ -1680,23 +1696,30 @@
     const g = new THREE.Group();
     const c = (o && o.color) || 0x9c4f33, dark = shade(c, -0.09);
 
-    // Lav, bred mellombygning.
+    // Lav, bred mellombygning med arkade (søylerad) langs forsiden.
     const midH = 0.72;
     const mid = box(1.12, midH, 0.58, shade(c, 0.04)); mid.position.set(0, midH / 2, 0); g.add(mid);
     const midCap = box(1.16, 0.05, 0.62, dark); midCap.position.set(0, midH, 0); g.add(midCap);
+    addWindows(g, c, { cols: 7, rows: 2, y0: midH * 0.34, dy: midH * 0.4, spanX: 0.9, z: 0.295, w: 0.05, wh: 0.1 });
+    for (let i = 0; i < 9; i++) { // arkade/søylegang mot forplassen
+      const px = -0.44 + (0.88 * i) / 8;
+      const col = cyl(0.022, 0.022, 0.16, 8, shade(c, 0.1)); col.position.set(px, 0.08, 0.3); g.add(col);
+    }
 
-    // To massive rektangulære tårn (litt ulik høyde, som de ekte).
+    // To massive rektangulære tegltårn (litt ulik høyde, som de ekte), hver med
+    // vindusrutenett og en liten takhatt.
     [[-0.35, 1.5], [0.35, 1.66]].forEach(([x, h]) => {
       const tw = box(0.42, h, 0.48, c); tw.position.set(x, h / 2, -0.04); g.add(tw);
       const cap = box(0.46, 0.07, 0.52, dark); cap.position.set(x, h, -0.04); g.add(cap);
-      // Antydet vindusrille på fronten.
-      const win = box(0.3, h * 0.82, 0.02, shade(c, 0.13)); win.position.set(x, h * 0.52, 0.22); g.add(win);
+      const hat = box(0.2, 0.12, 0.24, shade(c, -0.16)); hat.position.set(x, h + 0.09, -0.04); g.add(hat);
+      const winGrp = new THREE.Group(); winGrp.position.x = x; g.add(winGrp);
+      addWindows(winGrp, c, { cols: 3, rows: 6, y0: h * 0.28, dy: h * 0.11, spanX: 0.26, z: 0.21, w: 0.045, wh: 0.055 });
     });
 
     // Forplass mot fjorden (sør/+z).
     const court = box(0.92, 0.025, 0.5, 0xb6a07e); court.position.set(0, 0, 0.52); court.receiveShadow = true; g.add(court);
 
-    return { group: g, h: 1.66 };
+    return { group: g, h: 1.66 + 0.15 };
   }
 
   // Slottet – lavt, symmetrisk og horisontalt: hovedkropp + to fremskutte
@@ -1719,24 +1742,33 @@
     const main = box(1.3, bodyH, 0.46, c); main.position.set(0, top + bodyH / 2, 0); g.add(main);
     // Gesims/tak.
     const cap = box(1.36, 0.06, 0.5, shade(c, -0.13)); cap.position.set(0, top + bodyH, 0); g.add(cap);
+    // Vindusrekker på fasaden (to etasjer) – gir palasspreg.
+    addWindows(g, c, { cols: 9, rows: 2, y0: top + bodyH * 0.32, dy: bodyH * 0.4, spanX: 1.06, z: 0.235, w: 0.05, wh: 0.09 });
 
-    // To fremskutte sidefløyer.
+    // To fremskutte sidefløyer med egne vinduer.
     [-0.62, 0.62].forEach((x) => {
       const wing = box(0.34, bodyH * 0.92, 0.6, shade(c, -0.03));
       wing.position.set(x, top + bodyH * 0.46, 0.08); g.add(wing);
       const wcap = box(0.38, 0.05, 0.64, shade(c, -0.14)); wcap.position.set(x, top + bodyH * 0.92, 0.08); g.add(wcap);
+      addWindows(g, c, { cols: 2, rows: 2, y0: top + bodyH * 0.3, dy: bodyH * 0.38, spanX: 0.16, z: 0.385, w: 0.045, wh: 0.08 });
     });
 
-    // Midtrisalitt med søylehint.
-    const ris = box(0.42, bodyH * 1.12, 0.16, shade(c, 0.05)); ris.position.set(0, top + bodyH * 0.56, 0.26); g.add(ris);
-    for (let i = -1; i <= 1; i++) {
-      const col = cyl(0.028, 0.028, bodyH * 0.8, 8, shade(c, 0.13)); col.position.set(i * 0.13, top, 0.33); g.add(col);
+    // Midtrisalitt med klassisk søyleportikk (6 søyler) og trekantgavl/pediment.
+    const ris = box(0.5, bodyH * 1.14, 0.14, shade(c, 0.05)); ris.position.set(0, top + bodyH * 0.57, 0.24); g.add(ris);
+    for (let i = 0; i < 6; i++) {
+      const cx = -0.2 + (0.4 * i) / 5;
+      const col = cyl(0.03, 0.03, bodyH * 0.86, 10, shade(c, 0.14)); col.position.set(cx, top + bodyH * 0.43, 0.34); g.add(col);
     }
+    const pediment = gableRoof(0.5, 0.12, 0.16, shade(c, -0.06)); pediment.position.set(0, top + bodyH * 1.14, 0.26); g.add(pediment);
+
+    // Flaggstang på midttaket.
+    const pole = cyl(0.008, 0.008, 0.34, 6, 0xbfb69f); pole.position.set(0, top + bodyH * 1.14 + 0.17, 0); g.add(pole);
+    const flag = box(0.005, 0.08, 0.12, 0xc0392b); flag.position.set(0, top + bodyH * 1.14 + 0.28, 0.06); g.add(flag);
 
     // Plass/akse foran (mot Karl Johan).
     const plaza = box(0.56, 0.025, 0.74, 0xcdbb97); plaza.position.set(0, top, 0.62); plaza.receiveShadow = true; g.add(plaza);
 
-    return { group: g, h: top + bodyH + 0.06 };
+    return { group: g, h: top + bodyH * 1.14 + 0.34 };
   }
 
   // Nationaltheatret – lav kulturbygning med klassisk søylefront.
@@ -1752,19 +1784,46 @@
     return { group: g, h: h + 0.16 };
   }
 
-  // Stortinget – lav civic-bygning med midtrotunde/kuppel.
+  // Stortinget – lav, gul civic-bygning med det ikoniske halvrunde midtpartiet
+  // som stikker fram (stortingssalen), to symmetriske sidefløyer, vindusrekker
+  // og en lav kuppel over den runde fronten.
   function createCivicLow(o) {
     const g = new THREE.Group();
     const c = (o && o.color) || 0xc9a96a, h = (o && o.h) || 0.55;
-    g.add(box(0.9, h, 0.45, c));
-    const drumH = 0.34;
-    const rot = cyl(0.17, 0.19, drumH, 16, shade(c, 0.05)); rot.position.y = h + drumH / 2; g.add(rot);
-    const dome = new THREE.Mesh(
-      new THREE.SphereGeometry(0.18, 14, 8, 0, Math.PI * 2, 0, Math.PI / 2),
-      toMat(shade(c, -0.08))
-    );
-    dome.position.y = h + drumH; g.add(dome);
-    return { group: g, h: h + drumH + 0.18 };
+
+    // Lang horisontal hovedkropp + gesims.
+    g.add(box(1.2, h, 0.4, c));
+    const cap = box(1.26, 0.05, 0.44, shade(c, -0.12)); cap.position.y = h; g.add(cap);
+
+    // To symmetriske endefløyer, litt lavere.
+    [-0.62, 0.62].forEach((x) => {
+      const wing = box(0.26, h * 0.9, 0.46, shade(c, -0.02)); wing.position.set(x, h * 0.45, 0.02); g.add(wing);
+      const wcap = box(0.3, 0.05, 0.5, shade(c, -0.13)); wcap.position.set(x, h * 0.9, 0.02); g.add(wcap);
+    });
+
+    // Ikonisk halvrundt midtparti som stikker fram mot Karl Johan (+z).
+    const bayR = 0.28, bayH = h * 1.02;
+    const bay = new THREE.Mesh(new THREE.CylinderGeometry(bayR, bayR, bayH, 20, 1, false, -Math.PI / 2, Math.PI), toMat(shade(c, 0.04)));
+    bay.position.set(0, bayH / 2, 0.2); bay.castShadow = true; bay.receiveShadow = true; g.add(bay);
+    // Høye buevinduer rundt den runde fronten.
+    for (let i = 0; i < 5; i++) {
+      const a = -Math.PI / 2 + (Math.PI * (i + 0.5)) / 5;
+      const win = box(0.05, bayH * 0.6, 0.02, winMat(c));
+      win.position.set(Math.cos(a) * (bayR + 0.005), bayH * 0.5, 0.2 + Math.sin(a) * (bayR + 0.005));
+      win.rotation.y = -a; g.add(win);
+    }
+    // Lav kuppel over det runde midtpartiet.
+    const dome = new THREE.Mesh(new THREE.SphereGeometry(bayR * 0.92, 16, 9, 0, Math.PI * 2, 0, Math.PI / 2), toMat(shade(c, -0.06)));
+    dome.scale.y = 0.6; dome.position.set(0, bayH, 0.2); g.add(dome);
+
+    // Vindusrekker på fasadene til hovedkroppen.
+    addWindows(g, c, { cols: 4, rows: 2, y0: h * 0.34, dy: h * 0.4, spanX: 0.34, z: 0.205, w: 0.05, wh: 0.09, rot: 0 });
+    [-0.44, 0.44].forEach((x) => {
+      const grp = new THREE.Group(); grp.position.x = x; g.add(grp);
+      addWindows(grp, c, { cols: 2, rows: 2, y0: h * 0.34, dy: h * 0.4, spanX: 0.16, z: 0.205, w: 0.05, wh: 0.09 });
+    });
+
+    return { group: g, h: bayH + bayR * 0.6 };
   }
 
   // Aker Brygge / Tjuvholmen – tydelig vannkant/kai: en lang brygge-/kaikant,
