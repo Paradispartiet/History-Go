@@ -167,6 +167,7 @@
   let _places = null;
   let _loadStarted = false;
   let _lastLod = null;
+  let _stablePos = null; // bufret, zoom-uavhengig posisjon pr. place-id
   let hitTargets = [];
   let _visibleMiniatures = [];
   let _landmarkPlaceMap = {};
@@ -308,6 +309,7 @@
     });
     _places = out;
     _lastLod = null;
+    _stablePos = null; // ny data -> beregn stabil layout på nytt
     rebuildPlaces();
   }
   function ensureLoaded() {
@@ -622,8 +624,8 @@
     // Akerselva-korridoren – tydelig blå elv som renner nord–sør gjennom byen
     // og munner ut i fjorden. Bredere og litt mørkere enn før så den leser som elv.
     if (land.akerselva) {
-      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.030), 0.012, shade(PAL.river, -0.06), baseY - 0.004, { cast: false, receive: false }));
-      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.020), 0.02, PAL.river, baseY, { cast: false, receive: false }));
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.016), 0.012, shade(PAL.river, -0.06), baseY - 0.004, { cast: false, receive: false }));
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.010), 0.02, PAL.river, baseY, { cast: false, receive: false }));
       _stats.roadSegments += Math.max(0, land.akerselva.length - 1);
     }
 
@@ -724,7 +726,7 @@
     // Grønne skuldre langs Akerselva – tydelig blå/grønn korridor gjennom Sagene/Løkka.
     const land = window.CIVI_OSLO_LANDSCAPE || {};
     if (land.akerselva) {
-      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.035), 0.012, 0x5f8f59, baseY - 0.018, { cast: false, receive: false }));
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.022), 0.012, 0x5f8f59, baseY - 0.018, { cast: false, receive: false }));
       _stats.parkObjects++;
     }
 
@@ -2811,6 +2813,77 @@
     return Math.abs(v.x) <= m && Math.abs(v.y) <= m;
   }
 
+  // Er punktet på faktisk land (innenfor kystlinja eller på Ekeberg-massen)?
+  function isOnLand(nx, ny) {
+    const ekeR = (window.CIVI_OSLO_LANDSCAPE || {}).ekebergRidge;
+    return pointInPoly(nx, ny, LAND_COAST) || (ekeR && pointInPoly(nx, ny, ekeR));
+  }
+  // Nærmeste punkt på en polylinje + avstand (normaliserte koordinater).
+  function nearestOnPolyline(x, y, poly) {
+    let best = { dist: Infinity, cx: x, cy: y };
+    for (let i = 0; i < poly.length - 1; i++) {
+      const ax = poly[i][0], ay = poly[i][1], bx = poly[i + 1][0], by = poly[i + 1][1];
+      const dx = bx - ax, dy = by - ay, len2 = dx * dx + dy * dy || 1e-9;
+      let t = ((x - ax) * dx + (y - ay) * dy) / len2; t = Math.max(0, Math.min(1, t));
+      const cx = ax + t * dx, cy = ay + t * dy;
+      const dd = Math.hypot(x - cx, y - cy);
+      if (dd < best.dist) best = { dist: dd, cx, cy };
+    }
+    return best;
+  }
+  // Skyv et punkt ut av vann: bort fra Akerselva, og tilbake på land om det
+  // havnet i fjorden. Gjør at stedene aldri legger seg midt i elva/vannet.
+  function avoidWater(nx, ny) {
+    let x = nx, y = ny;
+    const river = (window.CIVI_OSLO_LANDSCAPE || {}).akerselva;
+    if (river && river.length > 1) {
+      const near = nearestOnPolyline(x, y, river);
+      const margin = 0.025;
+      if (near.dist < margin) {
+        const len = near.dist || 1e-4;
+        x = clamp(near.cx + ((x - near.cx) / len) * margin, 0.03, 0.97);
+        y = clamp(near.cy + ((y - near.cy) / len) * margin, 0.04, 0.96);
+      }
+    }
+    if (!isOnLand(x, y)) {
+      for (let s = 0; s < 10; s++) {
+        x = clamp(x + (0.5 - x) * 0.14, 0.03, 0.97);
+        y = clamp(y + (0.6 - y) * 0.14, 0.04, 0.96);
+        if (isOnLand(x, y)) break;
+      }
+    }
+    return { x, y };
+  }
+  // Stabil layout: nudge beregnes ÉN gang over HELE kandidatsettet med fast
+  // separasjon (uavhengig av zoom) og vann-unngåelse, og bufres pr. place-id.
+  // Da flytter ikke stedene seg når man zoomer, og de havner aldri i Akerselva.
+  function computeStablePlaceLayout(scored) {
+    const pos = {};
+    const placed = [];
+    const SEP = 0.03;
+    for (let i = 0; i < scored.length; i++) {
+      const avoided = avoidLandmarkMarkerPosition(scored[i].proj);
+      let nx = avoided.x, ny = avoided.y;
+      for (let attempt = 0; attempt < 8; attempt++) {
+        let hitQ = null, md = Infinity;
+        for (let j = 0; j < placed.length; j++) {
+          const q = placed[j];
+          const dd = Math.hypot(nx - q.x, ny - q.y);
+          if (dd < SEP && dd < md) { md = dd; hitQ = q; }
+        }
+        if (!hitQ) break;
+        const dx = nx - hitQ.x, dy = ny - hitQ.y, len = Math.hypot(dx, dy) || 1;
+        const push = (SEP - md) + 0.004;
+        nx = clamp(nx + (dx / len) * push, 0.03, 0.97);
+        ny = clamp(ny + (dy / len) * push, 0.04, 0.96);
+      }
+      const w = avoidWater(nx, ny);
+      placed.push({ x: w.x, y: w.y });
+      pos[scored[i].p.id] = { x: w.x, y: w.y };
+    }
+    return pos;
+  }
+
   // ---------------------------------------------------------------------------
   // Del 5/7/8 – Bygg synlige place-miniatyrer (LOD + overlap-nudge + hit targets)
   // ---------------------------------------------------------------------------
@@ -2886,39 +2959,23 @@
     });
     scored.sort((a, b) => b.prio - a.prio);
 
+    // Stabil, zoom-uavhengig layout (nudge + vann-unngåelse beregnet ÉN gang).
+    if (!_stablePos) _stablePos = computeStablePlaceLayout(scored);
+
     const limit = PLACE_LOD_LIMITS[lod] || 26;
     const cull = (lod === "high" || lod === "veryHigh");
-    const placedNorm = [];
     let drawn = 0;
 
     for (let i = 0; i < scored.length && drawn < limit; i++) {
       const entry = scored[i];
-      const proj = entry.proj;
-      if (cull && !inCameraView(proj.x, proj.y)) { _stats.culledPlaces++; continue; }
-
-      // Del 7 – unngå landemerker, deretter nudge bort fra andre miniatyrer.
-      const avoided = avoidLandmarkMarkerPosition(proj);
-      const scale = placeScaleFor(lod, avoided.x, avoided.y);
-      const sep = 0.022 + scale * 0.045; // mer luft mellom steder på det større brettet
-
-      let nx = avoided.x, ny = avoided.y, nudged = false;
-      for (let attempt = 0; attempt < 6; attempt++) {
-        let hitQ = null, md = Infinity;
-        for (let j = 0; j < placedNorm.length; j++) {
-          const q = placedNorm[j];
-          const d = Math.hypot(nx - q.x, ny - q.y);
-          if (d < sep && d < md) { md = d; hitQ = q; }
-        }
-        if (!hitQ) break;
-        const dx = nx - hitQ.x, dy = ny - hitQ.y;
-        const len = Math.hypot(dx, dy) || 1;
-        const push = (sep - md) + 0.004;
-        nx = clamp(nx + (dx / len) * push, 0.03, 0.97);
-        ny = clamp(ny + (dy / len) * push, 0.04, 0.96);
-        nudged = true;
-      }
+      // Posisjonen er fast pr. place-id -> stedene flytter seg ALDRI ved zoom,
+      // og ligger aldri i Akerselva/vannet.
+      const cached = _stablePos[entry.p.id] || { x: entry.proj.x, y: entry.proj.y };
+      const nx = cached.x, ny = cached.y;
+      if (cull && !inCameraView(nx, ny)) { _stats.culledPlaces++; continue; }
+      const scale = placeScaleFor(lod, nx, ny);
+      const nudged = Math.hypot(nx - entry.proj.x, ny - entry.proj.y) > 0.001;
       if (nudged) _stats.nudgedPlaces++;
-      placedNorm.push({ x: nx, y: ny });
 
       const type = resolvePlaceMiniatureType(entry.p);
       const node = buildPlaceMiniature(entry.p, { type, scale, lod });
