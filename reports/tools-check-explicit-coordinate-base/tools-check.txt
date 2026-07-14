@@ -1,0 +1,88 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 tools:check
+> npm run typecheck:tools && npm run build:tools && npm run places:index:check && npm run places:coords:quality && npm run places:coords:intake && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places && npm run audit:people-of-places && npm run audit:quiz-manifest:v2 && npm run audit:civication-place-mapping && npm run audit:civication-city-map-entries
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 typecheck:tools
+> tsc -p tsconfig.tools.json
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index sync check failed.
+Showing first 20 difference(s):
+- index=n/a type=length_mismatch
+  expected: 1161
+  actual:   1160
+- index=114 placeId=hvitsten_sjobodene type=id_mismatch field=id
+  expected: "hvitsten_sjobodene"
+  actual:   "son_ladested"
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=id
+  expected: "hvitsten_sjobodene"
+  actual:   "son_ladested"
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=name
+  expected: "Hvitsten sjøbodene"
+  actual:   "Son ladested"
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=lat
+  expected: 59.5979
+  actual:   59.5208
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=lon
+  expected: 10.6541
+  actual:   10.6849
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=r
+  expected: 260
+  actual:   320
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=category
+  expected: "by"
+  actual:   "historie"
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=year
+  expected: 1600
+  actual:   1550
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=desc
+  expected: "Historisk ladested og sjøbodmiljø ved Oslofjorden. Hvitsten var knyttet til trelast, utskipning, is, rederi og senere sommer- og kunstnerkultur."
+  actual:   "Historisk ladested ved Oslofjorden, med storhetstid fra trelast, toll, havn og handel. Son er et av Akershus' viktigste gamle bymiljøer ved fjorden."
+- index=114 placeId=hvitsten_sjobodene type=value_mismatch field=sourceFile
+  expected: "places/by/akershus/hvitsten_sjobodene.json"
+  actual:   "places/historie/akershus/places_historie_akershus_batch3/son_ladested.json"
+- index=115 placeId=son_ladested type=id_mismatch field=id
+  expected: "son_ladested"
+  actual:   "holen_ladested"
+- index=115 placeId=son_ladested type=value_mismatch field=id
+  expected: "son_ladested"
+  actual:   "holen_ladested"
+- index=115 placeId=son_ladested type=value_mismatch field=name
+  expected: "Son ladested"
+  actual:   "Hølen ladested"
+- index=115 placeId=son_ladested type=value_mismatch field=lat
+  expected: 59.5208
+  actual:   59.53984
+- index=115 placeId=son_ladested type=value_mismatch field=lon
+  expected: 10.6849
+  actual:   10.73919
+- index=115 placeId=son_ladested type=value_mismatch field=r
+  expected: 320
+  actual:   300
+- index=115 placeId=son_ladested type=value_mismatch field=year
+  expected: 1550
+  actual:   1660
+- index=115 placeId=son_ladested type=value_mismatch field=desc
+  expected: "Historisk ladested ved Oslofjorden, med storhetstid fra trelast, toll, havn og handel. Son er et av Akershus' viktigste gamle bymiljøer ved fjorden."
+  actual:   "Historisk ladested og handelsplass ved Såna, kjent for gamle bruer, sagbruk og plassering ved viktige ferdselsårer mellom Oslo og kontinentet."
+- index=115 placeId=son_ladested type=value_mismatch field=sourceFile
+  expected: "places/historie/akershus/places_historie_akershus_batch3/son_ladested.json"
+  actual:   "places/historie/akershus/places_historie_akershus_batch3/holen_ladested.json"
