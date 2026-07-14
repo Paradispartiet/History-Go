@@ -14,16 +14,23 @@ Alle fem bruker:
 - `places: [intility_arena]`
 - `category: sport`
 
+## Manifest
+
+De fem nye filene er registrert enkeltvis i `data/people/manifest.json`, samlet etter de øvrige Intility Arena-profilene.
+
 ## Avgrensning
 
 - Ingen eksisterende personfiler endres.
 - Ingen person-ID-er dupliseres.
 - Ingen place-filer, place-ID-er, bilder, UI-filer eller runtimefiler endres.
-- De fem nye enkeltfilene registreres i `data/people/manifest.json`.
-- Den midlertidige workflowfilen fjernes før PR-en åpnes.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
 ## Kontroller
 
-Automatiske data-kontroller kjøres etter at manifestoppdateringen er fullført og den midlertidige workflowfilen er fjernet.
+Første komplette branch-head-pass:
 
-Manifestregistreringen er utløst på den ferdige branch-diffen.
+- People data: **success**
+- Places data: **success**
+- PR mergeable mot siste `main`: **ja**
+
+Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
