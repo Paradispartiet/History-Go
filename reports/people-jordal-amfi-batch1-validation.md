@@ -24,11 +24,14 @@ Alle fem bruker:
 - Ingen person-ID-er dupliseres.
 - Ingen eksisterende personfiler endres.
 - Ingen place-filer, place-ID-er, bilder, UI-filer eller runtimefiler endres.
-- De fem nye enkeltfilene registreres i `data/people/manifest.json`.
-- Den midlertidige workflowfilen fjernes før PR-en åpnes.
+- De fem nye enkeltfilene er registrert i `data/people/manifest.json`.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
 ## Kontroller
 
-Automatiske data-kontroller kjøres etter at manifestoppdateringen er fullført og den midlertidige workflowfilen er fjernet.
+Første branch-head-pass:
 
-Manifestregistreringen er utløst på den ferdige branch-diffen.
+- People data: **success**
+- Places data: **success**
+
+Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
