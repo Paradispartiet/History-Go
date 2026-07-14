@@ -1,0 +1,71 @@
+name: Temporary sync PR 2146 with main
+
+on:
+  push:
+    branches:
+      - data/people-bislett-vif-historic-batch2-20260714
+    paths:
+      - .github/workflows/sync-pr2146-main.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/people-bislett-vif-historic-batch2-20260714
+          fetch-depth: 0
+      - name: Merge current main and preserve Bislett batch 2 manifest entries
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='data/people-bislett-vif-historic-batch2-20260714'
+          manifest='data/people/manifest.json'
+          workflow='.github/workflows/sync-pr2146-main.yml'
+
+          git fetch origin main
+          set +e
+          git merge --no-commit --no-ff origin/main
+          set -e
+
+          if git ls-files -u -- "$manifest" | grep -q .; then
+            git checkout --theirs -- "$manifest"
+            python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/people/manifest.json')
+          payload = json.loads(path.read_text(encoding='utf-8'))
+          files = payload['files']
+          additions = [
+              'people/sport/oslo/bislett_stadion/tom_rusz_jacobsen.json',
+              'people/sport/oslo/bislett_stadion/tom_h_jacobsen.json',
+              'people/sport/oslo/bislett_stadion/arild_mathisen.json',
+              'people/sport/oslo/bislett_stadion/jorn_andersen.json',
+              'people/sport/oslo/bislett_stadion/eivind_arnevag.json',
+          ]
+          files[:] = [item for item in files if item not in additions]
+          anchor = 'people/sport/oslo/bislett_stadion/per_edmund_mordt.json'
+          if anchor not in files:
+              raise SystemExit('Bislett batch 1 anchor not found')
+          insert_at = files.index(anchor) + 1
+          files[insert_at:insert_at] = additions
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+            git add "$manifest"
+          fi
+
+          if git ls-files -u | grep -q .; then
+            echo 'Unresolved conflicts remain:'
+            git ls-files -u
+            exit 1
+          fi
+
+          git rm "$workflow"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Sync Bislett batch 2 with current main'
+          git push origin HEAD:"$branch"
