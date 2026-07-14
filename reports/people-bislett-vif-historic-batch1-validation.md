@@ -34,8 +34,8 @@ Følgende ID-er ble søkt repo-wide før opprettelse og ble ikke funnet:
 
 - Ingen eksisterende personfiler endres.
 - Ingen place-filer, place-ID-er, bilder, UI-filer eller runtimefiler endres.
-- De fem nye enkeltfilene registreres i `data/people/manifest.json` etter eksisterende Bislett batch 8.
-- Ingen permanent workflowfil skal inngå i nettodiffen.
+- De fem nye enkeltfilene er registrert i `data/people/manifest.json` etter eksisterende Bislett batch 8.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
 ## Stack
 
@@ -43,4 +43,9 @@ Batchen er bygget oppå Jordal Amfi PR #2140 for å bevare manifestrekkefølgen 
 
 ## Kontroller
 
-People data og Places data kjøres etter at manifestregistreringen er fullført og den midlertidige workflowfilen er fjernet.
+Første stacked branch-head-pass:
+
+- People data: **success**
+- Places data: **success**
+
+Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
