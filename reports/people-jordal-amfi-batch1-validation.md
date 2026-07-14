@@ -29,13 +29,13 @@ Alle fem bruker:
 
 ## Synkronisering mot main
 
-Branch-headen er synkronisert med gjeldende `main`. Nyere manifesttillegg fra andre datatråder er bevart, og Jordal-filene er satt inn samlet etter Intility Arena-seksjonen.
+Branch-headen er synkronisert med gjeldende `main` etter at andre datatråder flyttet hovedgrenen. Nyere manifesttillegg er bevart, og Jordal-filene står samlet etter Intility Arena-seksjonen.
 
 ## Kontroller
 
-Første branch-head-pass:
+Tidligere branch-head-pass:
 
 - People data: **success**
 - Places data: **success**
 
-Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten og den synkroniserte branch-headen.
+Et normalt sluttpass kjøres på committen som dokumenterer den siste synkroniseringen mot `main`.
