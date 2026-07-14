@@ -27,6 +27,10 @@ Alle fem bruker:
 - De fem nye enkeltfilene er registrert i `data/people/manifest.json`.
 - Ingen permanent workflowfil inngår i nettodiffen.
 
+## Synkronisering mot main
+
+Branch-headen er synkronisert med gjeldende `main`. Nyere manifesttillegg fra andre datatråder er bevart, og Jordal-filene er satt inn samlet etter Intility Arena-seksjonen.
+
 ## Kontroller
 
 Første branch-head-pass:
@@ -34,4 +38,4 @@ Første branch-head-pass:
 - People data: **success**
 - Places data: **success**
 
-Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
+Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten og den synkroniserte branch-headen.
