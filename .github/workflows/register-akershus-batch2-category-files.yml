@@ -1,0 +1,159 @@
+name: Split Akershus history batch 2 categories
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/akershus-batch2-category-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: split-akershus-history-batch2-categories
+  cancel-in-progress: false
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Split category mismatch and update manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          source_path = Path('data/places/historie/akershus/places_historie_akershus_batch2.json')
+          manifest_path = Path('data/places/manifest.json')
+
+          original_ids = [
+              'tanum_kirke',
+              'haslum_kirke',
+              'skedsmo_kirke',
+              'enebakk_kirke',
+              'asker_kirke_kirkested',
+              'gamle_hvam_museum',
+              'heggedal_hovedgard',
+              'hvitsten_sjobodene',
+          ]
+          retained_ids = [
+              'tanum_kirke',
+              'haslum_kirke',
+              'skedsmo_kirke',
+              'enebakk_kirke',
+              'asker_kirke_kirkested',
+              'gamle_hvam_museum',
+              'heggedal_hovedgard',
+          ]
+          destination = Path('data/places/by/akershus/hvitsten_sjobodene.json')
+
+          payload = json.loads(source_path.read_text(encoding='utf-8'))
+          if not isinstance(payload, list):
+              raise SystemExit('Akershus batch 2 must be a JSON array')
+          actual_ids = [place.get('id') for place in payload]
+          if actual_ids != original_ids:
+              raise SystemExit(f'Unexpected source IDs/order: {actual_ids}')
+          if any(place.get('category') != 'historie' for place in payload):
+              raise SystemExit('Every source entry must start in historie')
+          if destination.exists():
+              raise SystemExit(f'Destination already exists: {destination}')
+
+          by_id = {place['id']: place for place in payload}
+          original = by_id['hvitsten_sjobodene']
+          moved = dict(original)
+          moved['category'] = 'by'
+          if {k: v for k, v in moved.items() if k != 'category'} != {
+              k: v for k, v in original.items() if k != 'category'
+          }:
+              raise SystemExit('Non-category content changed for hvitsten_sjobodene')
+
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_text(
+              json.dumps([moved], ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          retained = [place for place in payload if place['id'] != 'hvitsten_sjobodene']
+          if [place['id'] for place in retained] != retained_ids:
+              raise SystemExit('Retained IDs/order changed')
+          if any(place.get('category') != 'historie' for place in retained):
+              raise SystemExit('Retained entries must remain historie')
+          source_path.write_text(
+              json.dumps(retained, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest.get('files')
+          if not isinstance(files, list):
+              raise SystemExit('Manifest files must be a list')
+
+          anchor = 'places/historie/akershus/places_historie_akershus_batch2.json'
+          addition = 'places/by/akershus/hvitsten_sjobodene.json'
+          if files.count(anchor) != 1:
+              raise SystemExit(f'Expected one manifest anchor, got {files.count(anchor)}')
+          if addition in files:
+              raise SystemExit('Manifest destination already registered')
+
+          anchor_index = files.index(anchor)
+          files.insert(anchor_index + 1, addition)
+          if len(files) != len(set(files)):
+              raise SystemExit('Duplicate manifest paths after insertion')
+          if files[anchor_index:anchor_index + 2] != [anchor, addition]:
+              raise SystemExit('Manifest insertion order is incorrect')
+
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, separators=(',', ':')),
+              encoding='utf-8',
+          )
+
+          id_counts = Counter()
+          for relative_path in files:
+              path = Path('data/places') / relative_path.removeprefix('places/')
+              document = json.loads(path.read_text(encoding='utf-8'))
+              if isinstance(document, list):
+                  for place in document:
+                      if isinstance(place, dict) and isinstance(place.get('id'), str):
+                          id_counts[place['id']] += 1
+
+          duplicates = sorted(place_id for place_id, count in id_counts.items() if count > 1)
+          if duplicates:
+              raise SystemExit(f'Duplicate manifest-loaded place IDs: {duplicates[:20]}')
+          for place_id in original_ids:
+              if id_counts[place_id] != 1:
+                  raise SystemExit(f'Expected one manifest-loaded occurrence of {place_id}, got {id_counts[place_id]}')
+
+          written = json.loads(destination.read_text(encoding='utf-8'))
+          if written[0].get('id') != 'hvitsten_sjobodene' or written[0].get('category') != 'by':
+              raise SystemExit('Post-write validation failed for Hvitsten')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/places/historie/akershus/places_historie_akershus_batch2.json
+          git add data/places/by/akershus/hvitsten_sjobodene.json
+          git add data/places/manifest.json
+          git rm .github/workflows/register-akershus-batch2-category-files.yml
+          git rm .github/akershus-batch2-category-trigger.txt
+          git commit -m "Split and register Akershus batch 2 category file"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
