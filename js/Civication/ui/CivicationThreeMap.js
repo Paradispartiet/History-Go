@@ -1522,7 +1522,12 @@
     // Utkraget hoppkant (ikonisk overheng).
     const lip = box(0.3, 0.09, 0.34, steel); lip.position.set(0, 0.62, 0.42); g.add(lip);
 
-    return { group: g, h: 1.7 };
+    // Flaggstang med norsk flagg på toppen av tårnet.
+    const pole = cyl(0.008, 0.008, 0.34, 6, 0xbfb69f); pole.position.set(0, 1.5 + 0.17, -0.78); g.add(pole);
+    const flag = box(0.005, 0.09, 0.14, 0xc0392b); flag.position.set(0, 1.5 + 0.28, -0.71); g.add(flag);
+    const flagCross = box(0.006, 0.02, 0.14, 0xf2f2f2); flagCross.position.set(0, 1.5 + 0.28, -0.71); g.add(flagCross);
+
+    return { group: g, h: 1.9 };
   }
 
   // 2/3. Smalt høyt tårn (Plaza) og lavere bredt tårn (Posthuset).
@@ -1639,15 +1644,24 @@
     return { group: g, h: H };
   }
 
-  // Munch / Deichman – egne kulturblokker (Munch får en svak knekk på toppen).
+  // Munch / Deichman – egne kulturblokker. Munch-tårnet får sin ikoniske knekk:
+  // den øvre tredelen bøyer seg tydelig framover, med glassbånd på fronten.
   function createCultureBlock(o) {
     const g = new THREE.Group();
     const c = (o && o.color) || 0x6f7a86, h = (o && o.h) || 1.2;
-    g.add(box(0.46, h, 0.46, c));
     if (o && o.lean) {
-      const top = box(0.46, h * 0.3, 0.46, shade(c, 0.06));
-      top.position.set(0.08, h * 0.85, 0); top.rotation.z = -0.08; g.add(top);
+      // Rett underdel (2/3) + framoverbøyd overdel (1/3) = Munch-silhuetten.
+      const baseH = h * 0.66;
+      g.add(box(0.46, baseH, 0.46, c));
+      const baseGlass = box(0.4, baseH * 0.88, 0.02, shade(c, 0.2)); baseGlass.position.set(0, baseH * 0.5, 0.235); g.add(baseGlass);
+      const topH = h * 0.4;
+      const top = box(0.46, topH, 0.46, shade(c, 0.05)); top.position.set(0.12, baseH + topH * 0.42, 0.04); top.rotation.z = -0.2; g.add(top);
+      const topGlass = box(0.4, topH * 0.86, 0.02, shade(c, 0.22)); topGlass.position.set(0.15, baseH + topH * 0.42, 0.25); topGlass.rotation.z = -0.2; g.add(topGlass);
+      return { group: g, h: h + 0.05 };
     }
+    // Deichman o.l. – rett kulturblokk med glassfront og takkant.
+    g.add(box(0.46, h, 0.46, c));
+    const glass = box(0.4, h * 0.9, 0.02, shade(c, 0.18)); glass.position.set(0, h * 0.5, 0.235); g.add(glass);
     const cap = box(0.5, 0.05, 0.5, shade(c, -0.1)); cap.position.y = h; g.add(cap);
     return { group: g, h };
   }
@@ -1771,17 +1785,34 @@
     return { group: g, h: top + bodyH * 1.14 + 0.34 };
   }
 
-  // Nationaltheatret – lav kulturbygning med klassisk søylefront.
+  // Nationaltheatret – klassisk søylefront med trekantgavl, to hjørnepaviljonger
+  // med grønne kuppeltak (bygningens signatur) og to statueplinter (Ibsen/
+  // Bjørnson) på plassen foran.
   function createTheatre(o) {
     const g = new THREE.Group();
     const c = (o && o.color) || PAL.culture, h = (o && o.h) || 0.55;
     g.add(box(0.8, h, 0.5, c));
+    // Klassisk søylefront under trekantgavl.
     for (let i = -2; i <= 2; i++) {
-      const col = cyl(0.045, 0.045, h * 0.95, 8, shade(c, 0.12)); col.position.x = i * 0.16; col.position.z = 0.28; g.add(col);
+      const col = cyl(0.045, 0.045, h * 0.95, 8, shade(c, 0.12)); col.position.set(i * 0.16, h * 0.475, 0.28); g.add(col);
     }
-    const ped = gableRoof(0.78, 0.16, 0.2, shade(c, -0.1)); ped.position.set(0, h, 0.28); g.add(ped);
+    const ped = gableRoof(0.62, 0.15, 0.2, shade(c, -0.08)); ped.position.set(0, h, 0.28); g.add(ped);
     const roof = box(0.84, 0.06, 0.54, shade(c, -0.14)); roof.position.y = h; g.add(roof);
-    return { group: g, h: h + 0.16 };
+    addWindows(g, c, { cols: 3, rows: 1, y0: h * 0.55, z: 0.255, spanX: 0.4, w: 0.045, wh: 0.08 });
+
+    // To hjørnepaviljonger med grønne kuppeltak.
+    [-0.46, 0.46].forEach((x) => {
+      const pav = box(0.22, h * 1.12, 0.32, shade(c, 0.03)); pav.position.set(x, h * 0.56, -0.02); g.add(pav);
+      const dome = new THREE.Mesh(new THREE.SphereGeometry(0.15, 14, 9, 0, Math.PI * 2, 0, Math.PI / 2), toMat(0x5f8a6a));
+      dome.scale.y = 1.15; dome.position.set(x, h * 1.12, -0.02); g.add(dome);
+      const finial = cyl(0.008, 0.008, 0.09, 6, 0x6f9a78); finial.position.set(x, h * 1.12 + 0.16, -0.02); g.add(finial);
+    });
+    // Statueplinter (Ibsen/Bjørnson) foran inngangen.
+    [-0.22, 0.22].forEach((x) => {
+      const base = box(0.07, 0.05, 0.07, PAL.stone); base.position.set(x, 0.025, 0.44); g.add(base);
+      const fig = box(0.035, 0.11, 0.035, shade(PAL.stone, -0.12)); fig.position.set(x, 0.105, 0.44); g.add(fig);
+    });
+    return { group: g, h: h * 1.12 + 0.16 };
   }
 
   // Stortinget – lav, gul civic-bygning med det ikoniske halvrunde midtpartiet
@@ -1975,6 +2006,25 @@
     plinth.position.set(0, 0.06, -0.7); plinth.receiveShadow = true; g.add(plinth);
     const mono = cyl(0.05, 0.1, 0.85, 14, 0xe2d8c6); mono.position.set(0, 0.12, -0.7); g.add(mono);
     const tip = coneMesh(0.05, 0.16, 14, 0xe2d8c6); tip.position.set(0, 0.12 + 0.85, -0.7); g.add(tip);
+    // Antydede figurringer på monolitten (Vigelands menneskesøyle).
+    for (let i = 0; i < 5; i++) {
+      const ring = cyl(0.062 - i * 0.008, 0.062 - i * 0.008, 0.012, 12, shade(0xe2d8c6, -0.08));
+      ring.position.set(0, 0.2 + i * 0.15, -0.7); g.add(ring);
+    }
+
+    // Skulpturbro langs aksen – to rekker med små figur-poster (Vigelandsbroen).
+    [-0.1, 0.1].forEach((x) => {
+      for (let i = 0; i < 6; i++) {
+        const z = 0.62 - i * 0.18;
+        const plinth = box(0.04, 0.04, 0.04, shade(PAL.stone, 0.05)); plinth.position.set(x, 0.07, z); g.add(plinth);
+        const fig = box(0.028, 0.1, 0.028, shade(0xcabfa8, -0.05)); fig.position.set(x, 0.14, z); g.add(fig);
+      }
+    });
+    // Fontene på aksen mellom broen og monolitten.
+    const basin = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.17, 0.05, 16), toMat(0x9db4bd));
+    basin.position.set(0, 0.06, -0.15); basin.receiveShadow = true; g.add(basin);
+    const water = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.02, 16), toMat(0xbcd2d8));
+    water.position.set(0, 0.085, -0.15); g.add(water);
 
     // Trerader langs aksen (rammer parkrommet inn).
     [[-0.42, 0.55], [0.42, 0.55], [-0.42, 0.0], [0.42, 0.0], [-0.5, -0.45], [0.5, -0.45]].forEach(([x, z]) => {
