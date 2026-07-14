@@ -5,7 +5,7 @@
 - `einar_bruno_larsen`
 - `egil_olsen`
 
-## Forventet resultat
+## Resultat
 
 ### Einar Bruno Larsen
 
@@ -26,8 +26,13 @@
 - Ingen nye person-ID-er.
 - Ingen manifestendring.
 - Ingen place-, bilde-, UI- eller runtimeendring.
-- Ingen permanent workflowfil skal inngå i nettodiffen.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
 ## Kontroller
 
-People data og Places data kjøres etter at oppdateringene er skrevet og den midlertidige workflowfilen er fjernet.
+Første branch-head-pass:
+
+- People data: **success**
+- Places data: **success**
+
+Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
