@@ -29,9 +29,14 @@ Alle fem ID-ene ble søkt repo-wide og ble ikke funnet før opprettelse.
 
 - Ingen eksisterende personfiler endres.
 - Ingen place-filer, bilder, UI-filer eller runtimefiler endres.
-- De fem nye filene skal registreres i `data/people/manifest.json` rett etter Bislett batch 2-filene.
-- Ingen permanent workflowfil skal inngå i nettodiffen.
+- De fem nye filene er registrert i `data/people/manifest.json` rett etter Bislett batch 2-filene.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
 ## Kontroller
 
-People data og Places data kjøres etter manifestregistrering og fjerning av den midlertidige workflowfilen.
+Første branch-head-pass:
+
+- People data: **success**
+- Places data: **success**
+
+Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten.
