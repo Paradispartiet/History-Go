@@ -1,0 +1,97 @@
+name: Temporary sync PR 2138 with main
+
+on:
+  push:
+    branches:
+      - automation/people-image-candidates-29289403907
+    paths:
+      - .github/workflows/sync-pr2138-main.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/people-image-candidates-29289403907
+          fetch-depth: 0
+      - name: Merge current main and preserve candidate metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          candidate_file='data/people/people_image_candidates.json'
+          workflow_file='.github/workflows/sync-pr2138-main.yml'
+
+          cp "$candidate_file" /tmp/pr-candidates.json
+          git fetch origin main
+
+          set +e
+          git merge --no-commit --no-ff origin/main
+          merge_status=$?
+          set -e
+
+          if git ls-files -u -- "$candidate_file" | grep -q .; then
+            git checkout --theirs -- "$candidate_file"
+            cp "$candidate_file" /tmp/main-candidates.json
+            python - <<'PY'
+          import json
+          from pathlib import Path
+
+          main_items = json.loads(Path('/tmp/main-candidates.json').read_text(encoding='utf-8'))
+          pr_items = json.loads(Path('/tmp/pr-candidates.json').read_text(encoding='utf-8'))
+
+          def key(item):
+              return item.get('candidateId') or '|'.join([
+                  str(item.get('personId', '')),
+                  str(item.get('commonsFileName', '')),
+                  str(item.get('originalImageUrl', '')),
+              ])
+
+          merged = []
+          index = {}
+          for item in main_items:
+              index[key(item)] = len(merged)
+              merged.append(item)
+
+          protected = {
+              'approved', 'approval', 'reviewStatus', 'reviewedBy', 'reviewedAt',
+              'rejected', 'rejectionReason', 'selected', 'applied', 'appliedAt'
+          }
+
+          for item in pr_items:
+              item_key = key(item)
+              if item_key not in index:
+                  index[item_key] = len(merged)
+                  merged.append(item)
+                  continue
+
+              current = merged[index[item_key]]
+              combined = dict(current)
+              combined.update(item)
+              for field in protected:
+                  if field in current and current[field] not in (None, '', False):
+                      combined[field] = current[field]
+              merged[index[item_key]] = combined
+
+          Path('data/people/people_image_candidates.json').write_text(
+              json.dumps(merged, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          PY
+            git add "$candidate_file"
+          fi
+
+          if git ls-files -u | grep -q .; then
+            echo 'Unresolved conflicts remain:'
+            git ls-files -u
+            exit 1
+          fi
+
+          git rm "$workflow_file"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Sync image candidate batch with main'
+          git push origin HEAD:automation/people-image-candidates-29289403907
