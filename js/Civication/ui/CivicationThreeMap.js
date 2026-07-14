@@ -2163,6 +2163,15 @@
     return n;
   }
 
+  // Karakterfull takfarge: bygningstonen trukket mot en varm teglstein/skifer,
+  // med litt variasjon pr. farge så takene blir polykrome (Anno/Settlers-preg)
+  // i stedet for samme tone som veggen.
+  const ROOF_PALETTE = [0x8a4a37, 0x7d4030, 0x9a5a3e, 0x5f5a55, 0x6a4a3a, 0x94533b];
+  function roofTone(c) {
+    const pick = ROOF_PALETTE[Math.abs(hashStr(String(c))) % ROOF_PALETTE.length];
+    return mixHex(shade(c, -0.13), pick, 0.5);
+  }
+
   const PLACE_MINIATURE_TYPES = {
     // Del 3 – kultur: bred front, søyler, trapp, takgesims.
     museum(o) {
@@ -2493,42 +2502,51 @@
       }
       return { group: g, h: h + 0.07 };
     },
-    // Del 2 – butikkfront: baldakin, dør, butikkvinduer og blankt skilt.
+    // Del 2 – butikkgård: lavt saltak med egen takfarge, baldakin, butikkvinduer.
     commerce(o) {
       const g = new THREE.Group(), c = o.color, h = 0.3, d = lodDetail(o.lod);
       g.add(box(0.42, h, 0.36, c));
+      const roofC = roofTone(c);
+      const roof = gableRoof(0.46, 0.11, 0.4, roofC); roof.position.y = h; g.add(roof); // lavt saltak
       if (d >= 1) {
         addAwning(g, c, { w: 0.46, d: 0.12, y: h * 0.5, z: 0.2 });
         addDoor(g, c, { z: 0.185, h: 0.12 });
-        const cap = box(0.44, 0.04, 0.38, shade(c, -0.1)); cap.position.y = h; g.add(cap); // takkant
+        addChimney(g, c, { x: 0.14, z: -0.08, base: h + 0.06, h: 0.08, w: 0.04 });
       }
       if (d >= 2) {
         addWindows(g, c, { cols: 3, y0: h * 0.32, z: 0.185, spanX: 0.3, w: 0.06, wh: 0.07 });
         addMiniSignShape(g, c, { x: 0, z: 0.22, h: 0.12, w: 0.16, ph: 0.05 });
       }
-      return { group: g, h };
+      return { group: g, h: h + 0.11 };
     },
-    // Del 2 – boligblokk (lett): takkant, dør og vindusrytme.
+    // Del 2 – boligblokk: saltak med egen (varm) takfarge, pipe, dør, vindusrytme.
     apartment(o) {
       const g = new THREE.Group(), c = o.color, h = 0.5, d = lodDetail(o.lod);
       g.add(box(0.42, h, 0.42, c));
+      const roofC = roofTone(c);
+      const roof = gableRoof(0.47, 0.17, 0.47, roofC); roof.position.y = h; g.add(roof); // saltak
       if (d >= 1) {
-        const cap = box(0.46, 0.04, 0.46, shade(c, -0.12)); cap.position.y = h; g.add(cap); // takkant
+        addChimney(g, c, { x: 0.12, z: -0.1, base: h + 0.04, h: 0.12, w: 0.045 });
         addDoor(g, c, { z: 0.215, h: 0.13 });
       }
-      if (d >= 2) addWindows(g, c, { cols: 2, rows: 2, y0: 0.16, dy: 0.16, z: 0.215, spanX: 0.22, w: 0.06, wh: 0.07 });
-      return { group: g, h };
+      if (d >= 2) {
+        addWindows(g, c, { cols: 2, rows: 2, y0: 0.16, dy: 0.16, z: 0.215, spanX: 0.22, w: 0.06, wh: 0.07 });
+        const gableWin = box(0.05, 0.05, 0.02, mixHex(0xdfe8ef, c, 0.2)); gableWin.position.set(0, h + 0.07, 0.235); g.add(gableWin); // gavlvindu
+      }
+      return { group: g, h: h + 0.17 };
     },
-    // Del 2 – generisk småbygg (svært lett): takkant, dør, et par vinduer.
+    // Del 2 – generisk lite hus: saltak med egen takfarge, pipe, dør, vinduer.
     default(o) {
       const g = new THREE.Group(), c = o.color, h = 0.32, d = lodDetail(o.lod);
       g.add(box(0.38, h, 0.38, c));
+      const roofC = roofTone(c);
+      const roof = gableRoof(0.42, 0.14, 0.42, roofC); roof.position.y = h; g.add(roof); // saltak
       if (d >= 1) {
-        const cap = box(0.4, 0.04, 0.4, shade(c, -0.1)); cap.position.y = h; g.add(cap); // takkant
+        addChimney(g, c, { x: 0.1, z: -0.08, base: h + 0.03, h: 0.09, w: 0.04 });
         addDoor(g, c, { z: 0.195, h: 0.12 });
       }
-      if (d >= 2) addWindows(g, c, { cols: 2, y0: h * 0.55, z: 0.195, spanX: 0.18, w: 0.05 });
-      return { group: g, h };
+      if (d >= 2) addWindows(g, c, { cols: 2, y0: h * 0.5, z: 0.195, spanX: 0.18, w: 0.05 });
+      return { group: g, h: h + 0.14 };
     }
   };
 
