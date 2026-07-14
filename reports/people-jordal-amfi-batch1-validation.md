@@ -14,6 +14,8 @@ Alle fem bruker:
 - `places: [jordal_amfi]`
 - `category: sport`
 
+Hver fil inneholder én person pakket i en én-elements JSON-array. Dette bevarer én-person-per-fil-modellen og er kompatibelt med alle eksisterende runtime-loadere.
+
 ## Eksisterende dekning
 
 - `espen_knutsen`, `roy_johansen` og `einar_bruno_larsen` beholdes uendret.
@@ -27,15 +29,15 @@ Alle fem bruker:
 - De fem nye enkeltfilene er registrert i `data/people/manifest.json`.
 - Ingen permanent workflowfil inngår i nettodiffen.
 
-## Synkronisering mot main
+## Reviewfiks
 
-Branch-headen er synkronisert med gjeldende `main`. Nyere manifesttillegg fra andre datatråder er bevart, og Jordal-filene er satt inn samlet etter Intility Arena-seksjonen.
+Codex-funnet om at runtime-loaderne ignorerer enkeltstående JSON-objekter er håndtert ved å pakke hver av de fem nye personene i en støttet array-payload. Ingen loaderkode måtte endres.
 
 ## Kontroller
 
-Første branch-head-pass:
+Tidligere branch-head-pass:
 
 - People data: **success**
 - Places data: **success**
 
-Et nytt sluttpass kjøres på committen som inneholder denne ferdige valideringsrapporten og den synkroniserte branch-headen.
+Et nytt sluttpass kjøres på den endelige payloadformen.

@@ -62,7 +62,7 @@
   const GROUND_Y = 0.12;     // topp av landplaten; bygg/trær står her
   const MARKA_H = 0.95;      // Marka-platået i nord
   const EKEBERG_H = 0.62;    // Ekebergåsen i sørøst
-  const BYGDOY_H = 0.20;     // Bygdøy-halvøya
+  const BYGDOY_H = 0.18;     // Bygdøy-halvøya (lav, skogkledd)
   const MAX_BUILDINGS = 1300;
   const MAX_ROOFS = 900;
   const MAX_TREES = 620;
@@ -471,18 +471,35 @@
   const LAND_COAST = [
     [-0.03, -0.03], [1.03, -0.03], [1.03, 0.68],
     [0.92, 0.70], [0.84, 0.72],
-    [0.78, 0.70],            // Gamle Oslo-kant
-    [0.70, 0.745],           // østre Bjørvika-odde stikker ut
-    [0.655, 0.66],           // Bjørvika-bukta trekker seg nordover (innskåret havn)
-    [0.605, 0.70],
-    [0.565, 0.645],          // indre havnebasseng
-    [0.50, 0.725],           // Akershus-odden stikker ut
-    [0.445, 0.695],          // Rådhusplassen
-    [0.385, 0.715],
-    [0.335, 0.675],          // mot Bygdøy-halsen
+    [0.78, 0.705],           // Grønland / Gamle Oslo-kant
+    [0.705, 0.735],          // Sørenga-odden stikker ut i sør
+    [0.660, 0.660],          // Bjørvika-bukta trekker seg nordover (innskåret havn)
+    [0.622, 0.632],          // Bjørvika-bunn (Barcode/Munch-shore)
+    [0.598, 0.672],          // østre Opera-spiss stikker ut
+    [0.560, 0.700],          // Bjørvika-munning mot Akershus
+    [0.524, 0.700],          // Akershus-odden østside
+    [0.512, 0.690],          // Akershus-nes (stikker sør mellom de to buktene)
+    [0.498, 0.662],          // Akershus vestside inn i Pipervika
+    [0.468, 0.628],          // Pipervika-bunn (Rådhusplassen)
+    [0.432, 0.652],          // Pipervika vestside
+    [0.398, 0.678],          // Aker Brygge
+    [0.352, 0.702],          // mot Bygdøy-halsen / Frognerkilen
     [0.245, 0.70], [0.13, 0.70], [-0.03, 0.69]
   ];
-  const BYGDOY = [[0.10, 0.665], [0.295, 0.665], [0.335, 0.72], [0.285, 0.80], [0.18, 0.825], [0.085, 0.765], [0.055, 0.70]];
+  // Bygdøy – gjenkjennelig halvøy vest for sentrum som henger sørover i fjorden,
+  // med Bygdøynes (museene) som spiss mot sørøst og Frognerkilen-vann på nordsiden.
+  const BYGDOY = [
+    [0.075, 0.715], [0.205, 0.712], [0.255, 0.745], [0.235, 0.795],
+    [0.300, 0.815], [0.288, 0.872], [0.222, 0.892], [0.170, 0.858],
+    [0.150, 0.800], [0.085, 0.792], [0.048, 0.748]
+  ];
+  // Snarøya/Nesodden-armen – lav, skogkledd landtunge langs vestkanten som
+  // rammer fjorden på venstre side (uten å blokkere utsikten mot byen i nord).
+  const WEST_SHORE = [
+    [-0.06, 0.60], [0.045, 0.625], [0.065, 0.72], [0.05, 0.83],
+    [0.00, 0.94], [-0.06, 0.97]
+  ];
+  const WEST_SHORE_H = 0.15;
 
   function buildBoard() {
     // Hevet modellbrett / sokkel.
@@ -512,24 +529,31 @@
 
     // Bygdøy-halvøy.
     scene.add(extrudeShape(BYGDOY, BYGDOY_H, PAL.bygdoy, 0, { cast: true }));
+    // Snarøya/Nesodden-armen – rammer fjorden i vest.
+    scene.add(extrudeShape(WEST_SHORE, WEST_SHORE_H, PAL.bygdoy, 0, { cast: true }));
 
     // Marka som hevet skogsplatå i nord, Ekeberg som ås i sørøst.
     if (land.markaNorth) scene.add(extrudeShape(land.markaNorth, MARKA_H, PAL.marka, 0, { cast: true, bevel: 0.04 }));
     if (land.ekebergRidge) scene.add(extrudeShape(land.ekebergRidge, EKEBERG_H, PAL.ekeberg, 0, { cast: true, bevel: 0.03 }));
 
-    // Øyer i fjorden som små grønne modelløyer på en lys strandsokkel.
+    // Oslos indre øyklynge (Hovedøya størst, nærmest sentrum, så Lindøya,
+    // Bleikøya, Gressholmen, Nakholmen utover). Flate modelløyer på strandsokkel.
     const islands = [
-      [0.465, 0.78, 0.5], [0.42, 0.825, 0.38], [0.525, 0.83, 0.44],
-      [0.385, 0.755, 0.3], [0.575, 0.785, 0.34], [0.49, 0.875, 0.3]
+      [0.470, 0.780, 0.60], // Hovedøya
+      [0.405, 0.815, 0.34], // Lindøya
+      [0.520, 0.822, 0.32], // Bleikøya
+      [0.455, 0.858, 0.30], // Gressholmen
+      [0.372, 0.788, 0.24], // Nakholmen
+      [0.560, 0.792, 0.24]  // Rambergøya
     ];
     islands.forEach(([nx, ny, r]) => {
-      const sand = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.42, r * 0.5, 0.05, 14), toMat(0xc8b890));
-      sand.position.set(nx2x(nx), 0.025, ny2z(ny));
+      const sand = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.5, r * 0.6, 0.045, 16), toMat(0xcab795));
+      sand.position.set(nx2x(nx), 0.022, ny2z(ny));
       sand.receiveShadow = true;
       scene.add(sand);
-      const m = new THREE.Mesh(new THREE.SphereGeometry(r, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), toMat(PAL.island));
-      m.position.set(nx2x(nx), 0.05, ny2z(ny));
-      m.scale.y = 0.45;
+      const m = new THREE.Mesh(new THREE.SphereGeometry(r, 14, 8, 0, Math.PI * 2, 0, Math.PI / 2), toMat(PAL.island));
+      m.position.set(nx2x(nx), 0.045, ny2z(ny));
+      m.scale.y = 0.30; // flatere -> leser som øy, ikke ball
       m.castShadow = true; m.receiveShadow = true;
       scene.add(m);
     });
@@ -585,9 +609,11 @@
     const baseY = GROUND_Y + 0.04;
     _stats.roadSegments = 0;
 
-    // Akerselva-korridoren – blå/grønn nord–sør-linje gjennom byen.
+    // Akerselva-korridoren – tydelig blå elv som renner nord–sør gjennom byen
+    // og munner ut i fjorden. Bredere og litt mørkere enn før så den leser som elv.
     if (land.akerselva) {
-      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.014), 0.02, PAL.river, baseY, { cast: false, receive: false }));
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.030), 0.012, shade(PAL.river, -0.06), baseY - 0.004, { cast: false, receive: false }));
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.020), 0.02, PAL.river, baseY, { cast: false, receive: false }));
       _stats.roadSegments += Math.max(0, land.akerselva.length - 1);
     }
 
@@ -928,6 +954,11 @@
 
   function buildCity() {
     const districts = window.CIVI_MAP_DISTRICTS || [];
+    // Kystmaske: generiske bygg skal bare stå på faktisk land (innenfor
+    // kystlinja eller på Ekeberg-landmassen), aldri ute i fjorden/buktene. Uten
+    // dette strekker bydelspolygonene byggmasse ut over vannet ved havna.
+    const ekeR = (window.CIVI_OSLO_LANDSCAPE || {}).ekebergRidge;
+    const onLand = (nx, ny) => pointInPoly(nx, ny, LAND_COAST) || (ekeR && pointInPoly(nx, ny, ekeR));
     const blocks = [];
     districts.forEach((d) => {
       const poly = d.shape;
@@ -949,6 +980,7 @@
           const nx = cx + lx * ca - ly * sa;
           const ny = cy + lx * sa + ly * ca;
           if (!pointInPoly(nx, ny, poly)) continue;
+          if (!onLand(nx, ny)) continue; // ikke bygg ute i fjorden/buktene
           const prof = districtVisualProfileForPoint(d.id, nx, ny);
           const clearFactor = clearZoneBuildingFactor(nx, ny);
           if (clearFactor <= 0) continue;
@@ -1070,7 +1102,8 @@
     // parker og villastrøk får mer løvtre.
     if (land.markaNorth) regions.push({ poly: land.markaNorth, baseY: MARKA_H, n: 320, conifer: 0.9 });
     if (land.ekebergRidge) regions.push({ poly: land.ekebergRidge, baseY: EKEBERG_H, n: 110, conifer: 0.78 });
-    regions.push({ poly: BYGDOY, baseY: BYGDOY_H, n: 55, conifer: 0.5 });
+    regions.push({ poly: BYGDOY, baseY: BYGDOY_H, n: 60, conifer: 0.5 });
+    regions.push({ poly: WEST_SHORE, baseY: WEST_SHORE_H, n: 70, conifer: 0.85 });
     const greenDistricts = ["nordstrand", "stovner", "ullern"];
     (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
       if (greenDistricts.includes(d.id)) regions.push({ poly: d.shape, baseY: GROUND_Y, n: 38, conifer: 0.35 });

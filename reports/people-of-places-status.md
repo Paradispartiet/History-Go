@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-10T12:34:20.763Z
+Generert: 2026-07-14T17:14:30.369Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-10T12:34:20.763Z |
-| peopleFilesRead | 232 |
-| totalPeople | 733 |
-| uniquePeopleIds | 728 |
+| generatedAt | 2026-07-14T17:14:30.369Z |
+| peopleFilesRead | 316 |
+| totalPeople | 817 |
+| uniquePeopleIds | 817 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
-| peopleWithoutValidPrimaryAnchor | 5 |
+| peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 232 |
+| geographicPeopleFiles | 316 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -167,6 +167,7 @@ Generert: 2026-07-10T12:34:20.763Z
 | data/people/musikk/oslo/det_norske_teatret/charlotte_frogner.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/edvard_drablos.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/egil_monn_iversen.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/musikk/oslo/det_norske_teatret/ellen_dorrit_petersen.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/erik_ulfsby.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/frank_kjosas.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/gisle_straume.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -192,11 +193,14 @@ Generert: 2026-07-10T12:34:20.763Z
 | data/people/musikk/oslo/det_norske_teatret/olav_hoprekstad.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/ole_barman.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/otto_homlung.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/musikk/oslo/det_norske_teatret/pal_sverre_hagen.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/ragnhild_hald.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/ragnhild_hilt.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/ragnhild_nygaard.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/rasmus_rasmussen.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/musikk/oslo/det_norske_teatret/renate_reinsve.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/sigurd_eldegard.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/musikk/oslo/det_norske_teatret/silje_storstein.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/sossen_krohg_det_norske_teatret.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/svein_erik_brodal.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/svein_tindberg.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -211,6 +215,11 @@ Generert: 2026-07-10T12:34:20.763Z
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json | politikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/bokken_lasson.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/dag_froland.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/jens_book_jenssen.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/victor_bernau.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/vilhelm_dybwad.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/edderkoppen_scene/anders_moland.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/edderkoppen_scene/arvid_nilssen.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/edderkoppen_scene/dan_fosse.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -231,6 +240,39 @@ Generert: 2026-07-10T12:34:20.763Z
 | data/people/popkultur/oslo/edderkoppen_scene/tom_sterri.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/edderkoppen_scene/willie_hoel.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json | sport | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/ajara_nchout.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/aron_donnum.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/christian_grindheim.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/dag_eilev_fagermo.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/elise_thorsnes.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/henrik_bjordal.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/janni_thomsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/nils_lexerod.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/odin_thiago_holm.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/osame_sahraoui.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/sherida_spitse.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/stephanie_verdoia.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/intility_arena/valerenga_fotball.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/arild_stavrum.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/dagfinn_enerly.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/daniel_fredheim_holm.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/finn_gundersen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/finn_thorsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/frank_olafsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/hans_nordahl.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/harald_hennum.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/jan_birkelund.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/jan_jonas_gulbrandsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/kjell_kaspersen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/mike_kjolo.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/mustafa_abdellaoue.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/omar_elabdellaoui.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/pal_saethrang.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/stein_thunberg.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/tom_nordlie.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/tor_egil_johansen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/trygve_borno.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/nordre_aasen_idrettspark/vilde_mollestad_rislaa.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json | sport | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch2.json | sport | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch3.json | sport | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -241,11 +283,53 @@ Generert: 2026-07-10T12:34:20.763Z
 | data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json | sport | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo_urban_movement_batch1.json | sport | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 36 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json | sport | ja | 1 | 0 | 1 | 1 | 1 | 1 | 0 | standard_placeId_schema |
-| data/people/sport/oslo/ullevaal_stadion/henning_berg.json | sport | ja | 1 | 0 | 1 | 1 | 1 | 1 | 0 | standard_placeId_schema |
-| data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json | sport | ja | 1 | 0 | 1 | 1 | 1 | 1 | 0 | standard_placeId_schema |
-| data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json | sport | ja | 1 | 0 | 1 | 1 | 1 | 1 | 0 | standard_placeId_schema |
-| data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json | sport | ja | 1 | 0 | 1 | 1 | 1 | 1 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/age_hareide.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/alexander_sorloth.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/alf_martinsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/arne_brustad.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/arne_scheie.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/asbjorn_halvorsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/bjorge_lillelien.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/brede_hangeland.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/caroline_graham_hansen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/egil_olsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/einar_gundersen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/gunn_nyborg.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/gunnar_thoresen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/hallvar_thoresen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/harald_berg.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/hege_riise.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/heidi_store.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/henning_berg.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/janne_andreassen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/joshua_king.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/karen_espelund.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/kari_nielsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/kjetil_rekdal.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/linda_medalen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/lise_klaveness.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/marianne_pettersen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/mohammed_abdellaoue.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/morten_gamst_pedersen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/nils_eriksen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/nils_johan_semb.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/odd_iversen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/per_bredesen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/per_mathias_hogmo.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/per_ravn_omdal.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/reidar_kvammen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/roald_jensen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/solveig_gulbrandsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/sondre_kafjord.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/stale_solbakken.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/stig_inge_bjornebye.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/tom_lund.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/trude_stendal.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/ullevaal_stadion/yngve_hallen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json | subkultur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json | subkultur | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | subkultur | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -266,18 +350,18 @@ Generert: 2026-07-10T12:34:20.763Z
 | kunst | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 158 | 0 | 121 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 26 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| musikk | 80 | 0 | 52 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| musikk | 84 | 0 | 56 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 55 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| populaerkultur | 19 | 0 | 19 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| sport | 86 | 0 | 16 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
+| populaerkultur | 24 | 0 | 24 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| sport | 161 | 0 | 91 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 47 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 232
+- Allerede geografisk strukturert: 316
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -293,26 +377,12 @@ Invalid refs: 0
 
 ## People uten sterkt anker
 
-| Fil | Person | Årsak | Primæranker |
-|---|---|---|---|
-| data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json |  /  | primary_anchor_missing |  |
-| data/people/sport/oslo/ullevaal_stadion/henning_berg.json |  /  | primary_anchor_missing |  |
-| data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json |  /  | primary_anchor_missing |  |
-| data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json |  /  | primary_anchor_missing |  |
-| data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json |  /  | primary_anchor_missing |  |
+- Ingen entries mangler gyldig hovedanker.
 
 ## Tom eller svak places[]
 
 Entries med tom places[]: 0
-Entries med svak/manglende places[] etter auditreglene: 5
-
-| Fil | Person | Årsak | placeId | source_place_id | places |
-|---|---|---|---|---|---|
-| data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json |  /  | missing_places_array |  |  | null |
-| data/people/sport/oslo/ullevaal_stadion/henning_berg.json |  /  | missing_places_array |  |  | null |
-| data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json |  /  | missing_places_array |  |  | null |
-| data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json |  /  | missing_places_array |  |  | null |
-| data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json |  /  | missing_places_array |  |  | null |
+Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Schema-status
 
@@ -461,6 +531,7 @@ Entries med svak/manglende places[] etter auditreglene: 5
 - data/people/musikk/oslo/det_norske_teatret/charlotte_frogner.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/edvard_drablos.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/egil_monn_iversen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
+- data/people/musikk/oslo/det_norske_teatret/ellen_dorrit_petersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/erik_ulfsby.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/frank_kjosas.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/gisle_straume.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
@@ -486,11 +557,14 @@ Entries med svak/manglende places[] etter auditreglene: 5
 - data/people/musikk/oslo/det_norske_teatret/olav_hoprekstad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/ole_barman.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/otto_homlung.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
+- data/people/musikk/oslo/det_norske_teatret/pal_sverre_hagen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/ragnhild_hald.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/ragnhild_hilt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/ragnhild_nygaard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/rasmus_rasmussen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
+- data/people/musikk/oslo/det_norske_teatret/renate_reinsve.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/sigurd_eldegard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
+- data/people/musikk/oslo/det_norske_teatret/silje_storstein.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/sossen_krohg_det_norske_teatret.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/svein_erik_brodal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/svein_tindberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
@@ -505,6 +579,11 @@ Entries med svak/manglende places[] etter auditreglene: 5
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=politikk
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
+- data/people/popkultur/oslo/chat_noir/bokken_lasson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/dag_froland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/jens_book_jenssen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/victor_bernau.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/vilhelm_dybwad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/edderkoppen_scene/anders_moland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/edderkoppen_scene/arvid_nilssen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/edderkoppen_scene/dan_fosse.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
@@ -525,6 +604,39 @@ Entries med svak/manglende places[] etter auditreglene: 5
 - data/people/popkultur/oslo/edderkoppen_scene/tom_sterri.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/edderkoppen_scene/willie_hoel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=sport
+- data/people/sport/oslo/intility_arena/ajara_nchout.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/aron_donnum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/christian_grindheim.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/dag_eilev_fagermo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/elise_thorsnes.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/henrik_bjordal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/janni_thomsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/nils_lexerod.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/odin_thiago_holm.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/osame_sahraoui.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/sherida_spitse.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/stephanie_verdoia.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/intility_arena/valerenga_fotball.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/arild_stavrum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/dagfinn_enerly.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/daniel_fredheim_holm.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/finn_gundersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/finn_thorsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/frank_olafsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/hans_nordahl.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/harald_hennum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/jan_birkelund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/jan_jonas_gulbrandsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/kjell_kaspersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/mike_kjolo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/mustafa_abdellaoue.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/omar_elabdellaoui.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/pal_saethrang.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/stein_thunberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/tom_nordlie.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/tor_egil_johansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/trygve_borno.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/nordre_aasen_idrettspark/vilde_mollestad_rislaa.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=sport
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=sport
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch3.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=sport
@@ -535,11 +647,53 @@ Entries med svak/manglende places[] etter auditreglene: 5
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=sport
 - data/people/sport/oslo/people_sport_oslo_urban_movement_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=sport
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=36/36; source_place_id=0/36; placesArray=36/36; categories=sport
-- data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=0/1; source_place_id=0/1; placesArray=0/1
-- data/people/sport/oslo/ullevaal_stadion/henning_berg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=0/1; source_place_id=0/1; placesArray=0/1
-- data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=0/1; source_place_id=0/1; placesArray=0/1
-- data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=0/1; source_place_id=0/1; placesArray=0/1
-- data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=0/1; source_place_id=0/1; placesArray=0/1
+- data/people/sport/oslo/ullevaal_stadion/age_hareide.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/alexander_sorloth.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/alf_martinsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/arne_brustad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/arne_scheie.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/asbjorn_halvorsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/bjorge_lillelien.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/brede_hangeland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/caroline_graham_hansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/egil_olsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/einar_gundersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/gunn_nyborg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/gunnar_thoresen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/hallvar_thoresen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/harald_berg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/hege_riise.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/heidi_store.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/henning_berg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/janne_andreassen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/joshua_king.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/karen_espelund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/kari_nielsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/kjetil_rekdal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/linda_medalen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/lise_klaveness.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/marianne_pettersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/mohammed_abdellaoue.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/morten_gamst_pedersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/nils_eriksen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/nils_johan_semb.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/odd_iversen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/per_bredesen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/per_mathias_hogmo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/per_ravn_omdal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/reidar_kvammen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/roald_jensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/solveig_gulbrandsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/sondre_kafjord.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/stale_solbakken.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/stig_inge_bjornebye.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/tom_lund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/trude_stendal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/ullevaal_stadion/yngve_hallen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=subkultur
@@ -1194,10 +1348,10 @@ Mangler filer for image/cardImage/media: 609
 
 ```json
 {
-  "type": "schema_cleanup",
-  "category": "sport",
-  "reason": "sport bør ha schema review før split eller ekspansjon.",
-  "safeBatchSize": 86,
+  "type": "content_expansion",
+  "category": null,
+  "reason": "Ingen invalid refs, duplikater eller store flate split-kandidater ble funnet.",
+  "safeBatchSize": 10,
   "blockers": []
 }
 ```
