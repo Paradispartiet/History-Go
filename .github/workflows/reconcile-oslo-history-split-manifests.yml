@@ -1,0 +1,159 @@
+name: Reconcile Oslo history split manifests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/oslo-history-split-reconcile-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reconcile-oslo-history-split-manifests
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Rebuild Oslo split files and manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          specs = [
+              {
+                  'source': Path('data/places/historie/oslo/places_historie.json'),
+                  'manifest': Path('data/places/historie/oslo/places_historie_manifest.json'),
+                  'split_dir': Path('data/places/historie/oslo/places_historie'),
+                  'relative_dir': 'places_historie',
+                  'expected_ids': [
+                      'middelalder_oslo',
+                      'gamlebyen_gravlund',
+                      'akerhus_slott',
+                      'akershus_festning',
+                      'gamle_aker_kirke',
+                      'var_frelsers_gravlund',
+                      'hovedoya_kloster',
+                      'grini_fangeleir',
+                      'villa_grande',
+                      'bogstad_gard',
+                      'mollergata_19',
+                      'sagene_skole',
+                  ],
+                  'removed_ids': [
+                      'oslo_domkirke',
+                      'damstredet_telthusbakken',
+                      'gamle_trikkestallen',
+                      'slottet',
+                      'sofienberg_kirke',
+                      'trefoldighetskirken',
+                  ],
+              },
+              {
+                  'source': Path('data/places/historie/oslo/places_historie_added_batch_01.json'),
+                  'manifest': Path('data/places/historie/oslo/places_historie_added_batch_01_manifest.json'),
+                  'split_dir': Path('data/places/historie/oslo/places_historie_added_batch_01'),
+                  'relative_dir': 'places_historie_added_batch_01',
+                  'expected_ids': [
+                      'nonneseter_kloster',
+                      'oslo_ladegard',
+                      'galgeberg',
+                      'oslo_hospital',
+                      'botsfengselet',
+                      'prinds_christian_augusts_minde',
+                  ],
+                  'removed_ids': ['gamle_radhus'],
+              },
+          ]
+
+          for spec in specs:
+              source_bytes = spec['source'].read_bytes()
+              payload = json.loads(source_bytes.decode('utf-8'))
+              if not isinstance(payload, list):
+                  raise SystemExit(f"Source must be a JSON array: {spec['source']}")
+
+              actual_ids = [place.get('id') for place in payload]
+              if actual_ids != spec['expected_ids']:
+                  raise SystemExit(f"Unexpected IDs/order in {spec['source']}: {actual_ids}")
+              if any(place.get('category') != 'historie' for place in payload):
+                  raise SystemExit(f"Non-historie entry remains in {spec['source']}")
+
+              manifest = json.loads(spec['manifest'].read_text(encoding='utf-8'))
+              manifest['source_sha256'] = hashlib.sha256(source_bytes).hexdigest()
+              manifest['place_count'] = len(payload)
+
+              places_meta = []
+              for order, place in enumerate(payload):
+                  place_id = place['id']
+                  split_path = spec['split_dir'] / f'{place_id}.json'
+                  split_bytes = (json.dumps(place, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
+                  split_path.write_bytes(split_bytes)
+                  places_meta.append({
+                      'id': place_id,
+                      'name': place.get('name'),
+                      'category': 'historie',
+                      'file': f"{spec['relative_dir']}/{place_id}.json",
+                      'order': order,
+                      'sha256': hashlib.sha256(split_bytes).hexdigest(),
+                  })
+
+              manifest['places'] = places_meta
+              spec['manifest'].write_text(
+                  json.dumps(manifest, ensure_ascii=False, indent=2) + '\n',
+                  encoding='utf-8',
+              )
+
+              for place_id in spec['removed_ids']:
+                  path = spec['split_dir'] / f'{place_id}.json'
+                  if not path.exists():
+                      raise SystemExit(f'Expected moved split file to exist before removal: {path}')
+                  path.unlink()
+
+              json_ids = sorted(path.stem for path in spec['split_dir'].glob('*.json'))
+              if json_ids != sorted(spec['expected_ids']):
+                  raise SystemExit(f"Unexpected split files in {spec['split_dir']}: {json_ids}")
+
+              written_manifest = json.loads(spec['manifest'].read_text(encoding='utf-8'))
+              if written_manifest['place_count'] != len(spec['expected_ids']):
+                  raise SystemExit(f"Wrong place_count in {spec['manifest']}")
+              if [item['id'] for item in written_manifest['places']] != spec['expected_ids']:
+                  raise SystemExit(f"Wrong manifest order in {spec['manifest']}")
+              if [item['order'] for item in written_manifest['places']] != list(range(len(spec['expected_ids']))):
+                  raise SystemExit(f"Non-contiguous order in {spec['manifest']}")
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/places/historie/oslo/places_historie_manifest.json
+          git add data/places/historie/oslo/places_historie_added_batch_01_manifest.json
+          git add data/places/historie/oslo/places_historie/
+          git add data/places/historie/oslo/places_historie_added_batch_01/
+          git add -u data/places/historie/oslo/places_historie/
+          git add -u data/places/historie/oslo/places_historie_added_batch_01/
+          git rm .github/workflows/reconcile-oslo-history-split-manifests.yml
+          git rm .github/oslo-history-split-reconcile-trigger.txt
+          git commit -m "Reconcile Oslo split manifests after category moves"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
