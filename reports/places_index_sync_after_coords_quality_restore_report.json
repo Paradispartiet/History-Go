@@ -1,0 +1,39 @@
+{
+  "status": "applied",
+  "reason": "Generated places index was stale after Agder category and source-file moves",
+  "sourceFailure": {
+    "failureStage": "places:index:check",
+    "firstMismatch": {
+      "placeId": "arendal_gamle_radhus",
+      "expectedCategory": "by",
+      "actualCategory": "historie",
+      "expectedSourceFile": "places/by/agder/arendal_gamle_radhus.json",
+      "actualSourceFile": "places/historie/agder/arendal_gamle_radhus.json"
+    }
+  },
+  "actions": [
+    "npm run places:index:build",
+    "npm run places:index:check",
+    "npm run places:coords:quality",
+    "npm run audit:people-of-places",
+    "npm run audit:quiz-manifest:v2",
+    "npm run tools:check"
+  ],
+  "placesIndexChanged": true,
+  "placeSourceDataChanged": false,
+  "peopleDataChanged": false,
+  "peopleAuditChanged": false,
+  "quizDataChanged": false,
+  "coordinateGateChanged": false,
+  "civicationMappingChanged": false,
+  "validation": {
+    "placesIndexCheckStatus": "passed",
+    "placesCoordsQualityStatus": "passed",
+    "peopleAuditStatus": "passed",
+    "quizManifestV2AuditStatus": "passed",
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "npm run tools:check passed places:index:check and places:coords:quality, then failed at places:coords:intake with: No safe git base found for coordinate intake strict-new"
+  ]
+}
