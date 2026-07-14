@@ -187,9 +187,14 @@ function run() {
   // --- Del 5: LOD-grenser innenfor spesifikasjonen ---
   check('LOD-grensene ligger innenfor spesifiserte intervaller', () => {
     const lim = M.getPlaceLodLimits();
-    assert.ok(lim.low >= 20 && lim.low <= 30, `low=${lim.low} utenfor 20–30`);
-    assert.ok(lim.mid >= 70 && lim.mid <= 100, `mid=${lim.mid} utenfor 70–100`);
-    assert.ok(lim.high >= 160 && lim.high <= 220, `high=${lim.high} utenfor 160–220`);
+    // Kartet viser mange flere ekte, klikkbare steder allerede ved standard
+    // (low) zoom, så de meningsbærende stedene er hovedinnholdet – ikke den
+    // generiske fyllmassen. Grensene stiger monotont med zoom.
+    assert.ok(lim.low >= 90 && lim.low <= 150, `low=${lim.low} utenfor 90–150`);
+    assert.ok(lim.mid >= 140 && lim.mid <= 200, `mid=${lim.mid} utenfor 140–200`);
+    assert.ok(lim.high >= 190 && lim.high <= 240, `high=${lim.high} utenfor 190–240`);
+    assert.ok(lim.mid >= lim.low, `mid=${lim.mid} skal være >= low`);
+    assert.ok(lim.high >= lim.mid, `high=${lim.high} skal være >= mid`);
     assert.ok(lim.veryHigh >= lim.high, `veryHigh=${lim.veryHigh} skal være >= high`);
   });
 

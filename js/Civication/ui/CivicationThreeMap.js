@@ -44,8 +44,8 @@
   // Del 5 – Zoombasert LOD for History Go-place-miniatyrer. Maks antall synlige
   // place-miniatyrer per nivå, og hvor små de tegnes. Lav zoom skal være ryddig
   // (landemerkene dominerer); høyere zoom åpner for flere lokale steder.
-  const PLACE_LOD_LIMITS = { low: 26, mid: 90, high: 190, veryHigh: 240 };
-  const PLACE_LOD_SCALE = { low: 0.34, mid: 0.40, high: 0.46, veryHigh: 0.50 };
+  const PLACE_LOD_LIMITS = { low: 120, mid: 170, high: 210, veryHigh: 260 };
+  const PLACE_LOD_SCALE = { low: 0.40, mid: 0.44, high: 0.48, veryHigh: 0.52 };
   function placeLodLevel(z) {
     if (z > 4.0) return "veryHigh";
     if (z > 2.6) return "high";
@@ -65,6 +65,11 @@
   const BYGDOY_H = 0.18;     // Bygdøy-halvøya (lav, skogkledd)
   const MAX_BUILDINGS = 1300;
   const MAX_ROOFS = 900;
+  // Generisk (ikke-klikkbar) fyllmasse skal være en diskret bybakgrunn, ikke en
+  // vegg av bokser: kraftig tynnere og luftigere, så de ekte, klikkbare stedene
+  // blir hovedinnholdet.
+  const FILLER_DENSITY = 0.42;  // andel av profilens dens som faktisk bygges
+  const FILLER_SPACING = 1.30;  // større rutenett-steg -> mer avstand mellom bygg
   const MAX_TREES = 620;
 
   const VIEW = 10.6;         // ortografisk halv-høyde ved zoom = 1
@@ -970,8 +975,8 @@
       const angBase = baseProf.blockRotation != null ? baseProf.blockRotation : ((hashStr(d.id) % 100) / 100 - 0.5) * 0.5;
       const ca = Math.cos(angBase), sa = Math.sin(angBase);
       const bb = polyBBox(poly);
-      const stepX = baseProf.cell + baseProf.gap;
-      const stepY = baseProf.cell + baseProf.gap;
+      const stepX = (baseProf.cell + baseProf.gap) * FILLER_SPACING;
+      const stepY = (baseProf.cell + baseProf.gap) * FILLER_SPACING;
       const pad = stepX;
       for (let gy = bb.minY - pad; gy <= bb.maxY + pad; gy += stepY) {
         for (let gx = bb.minX - pad; gx <= bb.maxX + pad; gx += stepX) {
@@ -984,7 +989,7 @@
           const prof = districtVisualProfileForPoint(d.id, nx, ny);
           const clearFactor = clearZoneBuildingFactor(nx, ny);
           if (clearFactor <= 0) continue;
-          if (rng() > prof.dens * clearFactor) continue;
+          if (rng() > prof.dens * clearFactor * FILLER_DENSITY) continue;
           if (rng() < prof.green * 0.18) continue; // små lommer/bakgårder/parker uten flere mesh
           // Kvartal: profilert fotavtrykk + litt variasjon. Småhusprofiler gir
           // lavere, smalere volum med salttak (Kampen/Bygdøy/Nordstrand).
