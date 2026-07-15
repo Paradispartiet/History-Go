@@ -1,0 +1,145 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity check failed. Index files must be generated copies of source coordinate fields.
+Showing 21 difference(s):
+- id: gamle_radhus
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/oslo/places_historie_added_batch_01_index.json
+- id: middelalder_oslo
+  felt: lat
+  source-verdi: 59.90418
+  index-verdi: 59.9048
+  source-fil: data/places/historie/oslo/places_historie/middelalder_oslo.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: middelalder_oslo
+  felt: lon
+  source-verdi: 10.76366
+  index-verdi: 10.7605
+  source-fil: data/places/historie/oslo/places_historie/middelalder_oslo.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: middelalder_oslo
+  felt: coordStatus
+  source-verdi: "verified"
+  index-verdi: null
+  source-fil: data/places/historie/oslo/places_historie/middelalder_oslo.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: oslo_domkirke
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: damstredet_telthusbakken
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: gamle_trikkestallen
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: slottet
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: sofienberg_kirke
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: gamlebyen_gravlund
+  felt: coordStatus
+  source-verdi: "verified"
+  index-verdi: null
+  source-fil: data/places/historie/oslo/places_historie/gamlebyen_gravlund.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: gamle_aker_kirke
+  felt: lat
+  source-verdi: 59.923779239528116
+  index-verdi: 59.9237
+  source-fil: data/places/historie/oslo/places_historie/gamle_aker_kirke.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: gamle_aker_kirke
+  felt: lon
+  source-verdi: 10.74681853984208
+  index-verdi: 10.7469
+  source-fil: data/places/historie/oslo/places_historie/gamle_aker_kirke.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: gamle_aker_kirke
+  felt: r
+  source-verdi: 60
+  index-verdi: 150
+  source-fil: data/places/historie/oslo/places_historie/gamle_aker_kirke.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: gamle_aker_kirke
+  felt: coordType
+  source-verdi: "address_point"
+  index-verdi: "building_center"
+  source-fil: data/places/historie/oslo/places_historie/gamle_aker_kirke.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: gamle_aker_kirke
+  felt: coordStatus
+  source-verdi: "verified"
+  index-verdi: "needs_manual_map_check"
+  source-fil: data/places/historie/oslo/places_historie/gamle_aker_kirke.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: var_frelsers_gravlund
+  felt: coordStatus
+  source-verdi: "verified"
+  index-verdi: "needs_manual_map_check"
+  source-fil: data/places/historie/oslo/places_historie/var_frelsers_gravlund.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: hovedoya_kloster
+  felt: coordStatus
+  source-verdi: "verified"
+  index-verdi: "needs_manual_map_check"
+  source-fil: data/places/historie/oslo/places_historie/hovedoya_kloster.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: grini_fangeleir
+  felt: coordStatus
+  source-verdi: "needs_review"
+  index-verdi: "needs_manual_map_check"
+  source-fil: data/places/historie/oslo/places_historie/grini_fangeleir.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: bogstad_gard
+  felt: coordStatus
+  source-verdi: "verified"
+  index-verdi: "needs_manual_map_check"
+  source-fil: data/places/historie/oslo/places_historie/bogstad_gard.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: sagene_skole
+  felt: coordStatus
+  source-verdi: "verified"
+  index-verdi: null
+  source-fil: data/places/historie/oslo/places_historie/sagene_skole.json
+  index-fil: data/places/historie/oslo/places_historie_index.json
+- id: trefoldighetskirken
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/oslo/places_historie_index.json
