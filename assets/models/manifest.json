@@ -1,8 +1,8 @@
 {
-  "_comment": "Modell-register for Civication 3D-kartet (hybrid). buildingTypes/landmarks -> ekte .glb med primitiv-fallback (liste = variasjon pr. sted). scenery -> faste dekor-modeller (x,y i 0-1, baseY vann=0.02/land=0.12). Hver pakke i egen undermappe m/ Textures/colormap.png (nature bruker vertex-farger). Modeller: Kenney (CC0): City Kit Suburban/Commercial/Industrial, Factory, Watercraft, Car Kit, Mini Characters, Nature Kit.",
+  "_comment": "Modell-register for Civication 3D-kartet (hybrid). buildingTypes/landmarks -> ekte .glb med primitiv-fallback (liste = variasjon pr. sted). scenery -> faste dekor-/infrastrukturmodeller (x,y i 0-1, baseY vann=0.02/land=0.12). Hver pakke i egen undermappe m/ Textures/colormap.png (nature bruker vertex-farger; modular-tårnet bruker innebygde vertex-farger). Modeller: Kenney (CC0): City Kit Suburban/Commercial/Industrial, Factory, Watercraft, Car Kit, Mini Characters, Nature Kit, City Kit Roads, Train Kit, Retro Urban Kit og Modular Buildings.",
   "buildingTypes": {
     "default": ["suburban/building-type-a.glb", "suburban/building-type-c.glb"],
-    "apartment": ["suburban/building-type-h.glb", "suburban/building-type-b.glb", "suburban/building-type-m.glb"],
+    "apartment": ["suburban/building-type-h.glb", "suburban/building-type-b.glb", "suburban/building-type-m.glb", "modular/building-sample-tower-b.glb"],
     "commerce": ["commercial/building-a.glb", "commercial/building-b.glb", "commercial/building-c.glb"],
     "civic": ["commercial/building-d.glb", "commercial/building-j.glb", "commercial/building-k.glb"],
     "subculture": ["commercial/building-m.glb", "commercial/building-n.glb"],
@@ -46,6 +46,20 @@
     { "file": "nature/tree_oak.glb", "x": 0.635, "y": 0.49, "size": 0.42, "baseY": 0.12, "rotationY": 1.8 },
     { "file": "nature/tree_fat.glb", "x": 0.622, "y": 0.497, "size": 0.44, "baseY": 0.12, "rotationY": 3.1 },
     { "file": "nature/tree_default.glb", "x": 0.605, "y": 0.51, "size": 0.4, "baseY": 0.12, "rotationY": 0.6 },
-    { "file": "nature/tree_oak.glb", "x": 0.14, "y": 0.66, "size": 0.42, "baseY": 0.12, "rotationY": 1.4 }
+    { "file": "nature/tree_oak.glb", "x": 0.14, "y": 0.66, "size": 0.42, "baseY": 0.12, "rotationY": 1.4 },
+
+    { "file": "roads/light-square.glb", "x": 0.47, "y": 0.565, "size": 0.18, "baseY": 0.12, "rotationY": 0.15 },
+    { "file": "roads/light-square.glb", "x": 0.505, "y": 0.582, "size": 0.18, "baseY": 0.12, "rotationY": 0.15 },
+    { "file": "roads/light-square-double.glb", "x": 0.545, "y": 0.598, "size": 0.2, "baseY": 0.12, "rotationY": 0.15 },
+    { "file": "roads/light-square.glb", "x": 0.585, "y": 0.615, "size": 0.18, "baseY": 0.12, "rotationY": 0.15 },
+    { "file": "roads/light-square-double.glb", "x": 0.615, "y": 0.635, "size": 0.2, "baseY": 0.12, "rotationY": 0.15 },
+
+    { "file": "train/track-single-detailed.glb", "x": 0.56, "y": 0.628, "size": 0.34, "baseY": 0.125, "rotationY": 1.15 },
+    { "file": "train/track-single-detailed.glb", "x": 0.574, "y": 0.620, "size": 0.34, "baseY": 0.125, "rotationY": 1.15 },
+    { "file": "train/track-single-detailed.glb", "x": 0.588, "y": 0.612, "size": 0.34, "baseY": 0.125, "rotationY": 1.15 },
+    { "file": "train/track-single-detailed.glb", "x": 0.602, "y": 0.604, "size": 0.34, "baseY": 0.125, "rotationY": 1.15 },
+    { "file": "train/track-single-detailed.glb", "x": 0.616, "y": 0.596, "size": 0.34, "baseY": 0.125, "rotationY": 1.15 },
+
+    { "file": "retro-urban/truck-grey.glb", "x": 0.71, "y": 0.49, "size": 0.3, "baseY": 0.12, "rotationY": 1.15 }
   ]
 }
