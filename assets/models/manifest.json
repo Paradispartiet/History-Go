@@ -1,5 +1,5 @@
 {
-  "_comment": "Modell-register for Civication 3D-kartet (hybrid). buildingTypes/landmarks -> ekte .glb med primitiv-fallback (liste = variasjon pr. sted). scenery -> faste dekor-modeller på faste posisjoner (x,y i 0-1, base på vann/bakke). Hver pakke i egen undermappe med sin egen Textures/colormap.png. Modeller: Kenney (CC0): City Kit Suburban/Commercial/Industrial, Factory Kit, Watercraft.",
+  "_comment": "Modell-register for Civication 3D-kartet (hybrid). buildingTypes/landmarks -> ekte .glb med primitiv-fallback (liste = variasjon pr. sted). scenery -> faste dekor-modeller (x,y i 0-1, baseY vann=0.02/land=0.12). Hver pakke i egen undermappe m/ Textures/colormap.png (nature bruker vertex-farger). Modeller: Kenney (CC0): City Kit Suburban/Commercial/Industrial, Factory, Watercraft, Car Kit, Mini Characters, Nature Kit.",
   "buildingTypes": {
     "default": ["suburban/building-type-a.glb", "suburban/building-type-c.glb"],
     "apartment": ["suburban/building-type-h.glb", "suburban/building-type-b.glb", "suburban/building-type-m.glb"],
@@ -15,6 +15,37 @@
     { "file": "water/boat-sail-a.glb", "x": 0.50, "y": 0.765, "size": 0.55, "rotationY": 0.8 },
     { "file": "water/boat-speed-b.glb", "x": 0.62, "y": 0.80, "size": 0.42, "rotationY": 1.5 },
     { "file": "water/boat-fishing-small.glb", "x": 0.375, "y": 0.82, "size": 0.5, "rotationY": 2.3 },
-    { "file": "water/boat-sail-a.glb", "x": 0.52, "y": 0.875, "size": 0.55, "rotationY": -0.3 }
+    { "file": "water/boat-sail-a.glb", "x": 0.52, "y": 0.875, "size": 0.55, "rotationY": -0.3 },
+
+    { "file": "cars/sedan.glb", "x": 0.47, "y": 0.578, "size": 0.22, "baseY": 0.12, "rotationY": 2.6 },
+    { "file": "cars/suv.glb", "x": 0.515, "y": 0.59, "size": 0.24, "baseY": 0.12, "rotationY": -0.5 },
+    { "file": "cars/taxi.glb", "x": 0.55, "y": 0.60, "size": 0.22, "baseY": 0.12, "rotationY": 2.5 },
+    { "file": "cars/delivery.glb", "x": 0.42, "y": 0.666, "size": 0.26, "baseY": 0.12, "rotationY": 0.1 },
+    { "file": "cars/sedan.glb", "x": 0.50, "y": 0.662, "size": 0.22, "baseY": 0.12, "rotationY": 0.15 },
+    { "file": "cars/hatchback-sports.glb", "x": 0.58, "y": 0.662, "size": 0.21, "baseY": 0.12, "rotationY": 3.0 },
+    { "file": "cars/police.glb", "x": 0.445, "y": 0.47, "size": 0.23, "baseY": 0.12, "rotationY": -1.0 },
+    { "file": "cars/suv.glb", "x": 0.55, "y": 0.457, "size": 0.24, "baseY": 0.12, "rotationY": 1.2 },
+    { "file": "cars/taxi.glb", "x": 0.60, "y": 0.485, "size": 0.22, "baseY": 0.12, "rotationY": 0.9 },
+    { "file": "cars/sedan.glb", "x": 0.535, "y": 0.53, "size": 0.22, "baseY": 0.12, "rotationY": -0.3 },
+
+    { "file": "people/character-male-a.glb", "x": 0.622, "y": 0.516, "size": 0.06, "baseY": 0.12, "rotationY": 0.0 },
+    { "file": "people/character-female-c.glb", "x": 0.63, "y": 0.522, "size": 0.06, "baseY": 0.12, "rotationY": 1.5 },
+    { "file": "people/character-male-e.glb", "x": 0.468, "y": 0.573, "size": 0.06, "baseY": 0.12, "rotationY": 0.5 },
+    { "file": "people/character-female-a.glb", "x": 0.485, "y": 0.582, "size": 0.06, "baseY": 0.12, "rotationY": 2.0 },
+    { "file": "people/character-male-c.glb", "x": 0.455, "y": 0.515, "size": 0.06, "baseY": 0.12, "rotationY": 3.0 },
+    { "file": "people/character-female-e.glb", "x": 0.31, "y": 0.465, "size": 0.06, "baseY": 0.12, "rotationY": 1.0 },
+    { "file": "people/character-male-a.glb", "x": 0.30, "y": 0.455, "size": 0.06, "baseY": 0.12, "rotationY": -1.0 },
+    { "file": "people/character-female-c.glb", "x": 0.61, "y": 0.505, "size": 0.06, "baseY": 0.12, "rotationY": 0.7 },
+
+    { "file": "nature/tree_oak.glb", "x": 0.285, "y": 0.455, "size": 0.42, "baseY": 0.12, "rotationY": 0.3 },
+    { "file": "nature/tree_detailed.glb", "x": 0.32, "y": 0.47, "size": 0.4, "baseY": 0.12, "rotationY": 1.1 },
+    { "file": "nature/tree_fat.glb", "x": 0.30, "y": 0.478, "size": 0.44, "baseY": 0.12, "rotationY": 2.0 },
+    { "file": "nature/tree_oak.glb", "x": 0.44, "y": 0.508, "size": 0.42, "baseY": 0.12, "rotationY": 0.8 },
+    { "file": "nature/tree_detailed.glb", "x": 0.47, "y": 0.52, "size": 0.4, "baseY": 0.12, "rotationY": 2.6 },
+    { "file": "nature/tree_detailed.glb", "x": 0.615, "y": 0.478, "size": 0.4, "baseY": 0.12, "rotationY": 0.4 },
+    { "file": "nature/tree_oak.glb", "x": 0.635, "y": 0.49, "size": 0.42, "baseY": 0.12, "rotationY": 1.8 },
+    { "file": "nature/tree_fat.glb", "x": 0.622, "y": 0.497, "size": 0.44, "baseY": 0.12, "rotationY": 3.1 },
+    { "file": "nature/tree_default.glb", "x": 0.605, "y": 0.51, "size": 0.4, "baseY": 0.12, "rotationY": 0.6 },
+    { "file": "nature/tree_oak.glb", "x": 0.14, "y": 0.66, "size": 0.42, "baseY": 0.12, "rotationY": 1.4 }
   ]
 }
