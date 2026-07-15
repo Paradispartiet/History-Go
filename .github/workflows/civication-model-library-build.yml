@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - agent/civication-model-library-v2
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -12,17 +15,20 @@ jobs:
   build-library:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
 
       - name: Build curated model library
         run: python scripts/build_civication_model_library.py
 
       - name: Commit generated assets
+        if: github.event_name == 'pull_request'
         shell: bash
         run: |
           set -euo pipefail
@@ -35,4 +41,4 @@ jobs:
             exit 0
           fi
           git commit -m "Civication: build broad curated model library"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${TARGET_BRANCH}"
