@@ -1,0 +1,247 @@
+name: Split Norge pre-1500 batch 3-4 categories
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/norge-pre1500-batch3-4-category-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: split-norge-pre1500-batch3-4-categories
+  cancel-in-progress: false
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Split category mismatches and reconcile split manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          import hashlib
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          root = Path('data/places')
+          manifest_path = root / 'manifest.json'
+
+          sources = [
+              {
+                  'path': root / 'historie/norge/places_historie_norge_for_1500_batch3.json',
+                  'anchor': 'places/historie/norge/places_historie_norge_for_1500_batch3.json',
+                  'split_manifest': root / 'historie/norge/places_historie_norge_for_1500_batch3_manifest.json',
+                  'split_dir': root / 'historie/norge/places_historie_norge_for_1500_batch3',
+                  'original_ids': [
+                      'nidaros_erkebispegarden',
+                      'kristkirken_bergenhus',
+                      'hakonshella_bauta',
+                      'frostatinget_logtun',
+                      'kalvskinnet_slagsted',
+                      'fimreite_slagsted',
+                      'sekken_slagsted',
+                      're_slagsted_ramnes',
+                      'bratsberg_gard',
+                      'vagar_lofoten_storvagan',
+                      'bohus_festning_bagaholmen',
+                      'kalmar_slott',
+                  ],
+                  'retained_ids': [
+                      'nidaros_erkebispegarden',
+                      'kristkirken_bergenhus',
+                      'hakonshella_bauta',
+                      'kalvskinnet_slagsted',
+                      'fimreite_slagsted',
+                      'sekken_slagsted',
+                      're_slagsted_ramnes',
+                      'bratsberg_gard',
+                      'bohus_festning_bagaholmen',
+                      'kalmar_slott',
+                  ],
+                  'moves': [
+                      ('frostatinget_logtun', 'politikk', root / 'politikk/trondelag/frostatinget_logtun.json', 'places/politikk/trondelag/frostatinget_logtun.json'),
+                      ('vagar_lofoten_storvagan', 'by', root / 'by/nordland/vagar_lofoten_storvagan.json', 'places/by/nordland/vagar_lofoten_storvagan.json'),
+                  ],
+              },
+              {
+                  'path': root / 'historie/norge/places_historie_norge_for_1500_batch4.json',
+                  'anchor': 'places/historie/norge/places_historie_norge_for_1500_batch4.json',
+                  'split_manifest': root / 'historie/norge/places_historie_norge_for_1500_batch4_manifest.json',
+                  'split_dir': root / 'historie/norge/places_historie_norge_for_1500_batch4',
+                  'original_ids': [
+                      'york_jorvik',
+                      'downpatrick_magnus_berrfott',
+                      'holmengra_hvaler',
+                      'stamford_bridge_battlefield',
+                      'jelling_kongsgard',
+                      'orkney_birsay',
+                  ],
+                  'retained_ids': [
+                      'downpatrick_magnus_berrfott',
+                      'holmengra_hvaler',
+                      'stamford_bridge_battlefield',
+                      'jelling_kongsgard',
+                      'orkney_birsay',
+                  ],
+                  'moves': [
+                      ('york_jorvik', 'by', root / 'by/utland_england/york_jorvik.json', 'places/by/utland_england/york_jorvik.json'),
+                  ],
+              },
+          ]
+
+          all_original_ids = []
+          all_moves = []
+
+          for source in sources:
+              source_path = source['path']
+              payload = json.loads(source_path.read_text(encoding='utf-8'))
+              if not isinstance(payload, list):
+                  raise SystemExit(f'{source_path} must be a JSON array')
+              actual_ids = [place.get('id') for place in payload]
+              if actual_ids != source['original_ids']:
+                  raise SystemExit(f'Unexpected source IDs/order in {source_path}: {actual_ids}')
+              if any(place.get('category') != 'historie' for place in payload):
+                  raise SystemExit(f'Every source entry must start in historie: {source_path}')
+
+              by_id = {place['id']: place for place in payload}
+              move_ids = {place_id for place_id, _, _, _ in source['moves']}
+
+              for place_id, category, destination, manifest_value in source['moves']:
+                  if destination.exists():
+                      raise SystemExit(f'Destination already exists: {destination}')
+                  original = by_id[place_id]
+                  moved = dict(original)
+                  moved['category'] = category
+                  if {k: v for k, v in moved.items() if k != 'category'} != {k: v for k, v in original.items() if k != 'category'}:
+                      raise SystemExit(f'Non-category content changed for {place_id}')
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_text(json.dumps([moved], ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+                  all_moves.append((place_id, category, destination, manifest_value))
+
+              retained = [place for place in payload if place['id'] not in move_ids]
+              if [place['id'] for place in retained] != source['retained_ids']:
+                  raise SystemExit(f'Retained IDs/order changed in {source_path}')
+              if any(place.get('category') != 'historie' for place in retained):
+                  raise SystemExit(f'Retained entries must remain historie in {source_path}')
+
+              source_text = json.dumps(retained, ensure_ascii=False, indent=2) + '\n'
+              source_path.write_text(source_text, encoding='utf-8')
+
+              split_manifest_path = source['split_manifest']
+              split_manifest = json.loads(split_manifest_path.read_text(encoding='utf-8'))
+              existing_entries = {entry['id']: entry for entry in split_manifest.get('places', [])}
+              if set(existing_entries) != set(source['original_ids']):
+                  raise SystemExit(f'Unexpected split manifest IDs in {split_manifest_path}')
+
+              new_entries = []
+              for order, place in enumerate(retained):
+                  split_file = source['split_dir'] / f"{place['id']}.json"
+                  split_text = json.dumps(place, ensure_ascii=False, indent=2) + '\n'
+                  split_file.write_text(split_text, encoding='utf-8')
+                  entry = dict(existing_entries[place['id']])
+                  entry['name'] = place.get('name')
+                  entry['category'] = 'historie'
+                  if 'fylke' in entry:
+                      entry['fylke'] = place.get('fylke')
+                  if 'kommune' in entry:
+                      entry['kommune'] = place.get('kommune')
+                  entry['order'] = order
+                  entry['sha256'] = hashlib.sha256(split_text.encode('utf-8')).hexdigest()
+                  new_entries.append(entry)
+
+              for place_id in move_ids:
+                  moved_split = source['split_dir'] / f'{place_id}.json'
+                  if not moved_split.exists():
+                      raise SystemExit(f'Expected moved split file to exist before removal: {moved_split}')
+                  moved_split.unlink()
+
+              split_manifest['place_count'] = len(retained)
+              split_manifest['source_sha256'] = hashlib.sha256(source_text.encode('utf-8')).hexdigest()
+              split_manifest['places'] = new_entries
+              split_manifest_path.write_text(json.dumps(split_manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+              if [entry['id'] for entry in new_entries] != source['retained_ids']:
+                  raise SystemExit(f'Split manifest retained order mismatch: {split_manifest_path}')
+              all_original_ids.extend(source['original_ids'])
+
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          files = manifest.get('files')
+          if not isinstance(files, list):
+              raise SystemExit('Manifest files must be a list')
+
+          for source in sources:
+              anchor = source['anchor']
+              additions = [move[3] for move in source['moves']]
+              if files.count(anchor) != 1:
+                  raise SystemExit(f'Expected one manifest anchor for {anchor}, got {files.count(anchor)}')
+              collisions = [path for path in additions if path in files]
+              if collisions:
+                  raise SystemExit(f'Manifest destinations already registered: {collisions}')
+              anchor_index = files.index(anchor)
+              files[anchor_index + 1:anchor_index + 1] = additions
+              if files[anchor_index:anchor_index + 1 + len(additions)] != [anchor, *additions]:
+                  raise SystemExit(f'Manifest insertion order incorrect after {anchor}')
+
+          if len(files) != len(set(files)):
+              raise SystemExit('Duplicate manifest paths after insertion')
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+
+          id_counts = Counter()
+          for relative_path in files:
+              path = root / relative_path.removeprefix('places/')
+              document = json.loads(path.read_text(encoding='utf-8'))
+              if isinstance(document, list):
+                  for place in document:
+                      if isinstance(place, dict) and isinstance(place.get('id'), str):
+                          id_counts[place['id']] += 1
+
+          duplicates = sorted(place_id for place_id, count in id_counts.items() if count > 1)
+          if duplicates:
+              raise SystemExit(f'Duplicate manifest-loaded place IDs: {duplicates[:20]}')
+          for place_id in all_original_ids:
+              if id_counts[place_id] != 1:
+                  raise SystemExit(f'Expected one manifest-loaded occurrence of {place_id}, got {id_counts[place_id]}')
+
+          for place_id, category, destination, _ in all_moves:
+              written = json.loads(destination.read_text(encoding='utf-8'))
+              if written[0].get('id') != place_id or written[0].get('category') != category:
+                  raise SystemExit(f'Post-write validation failed for {destination}')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch3.json
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch3_manifest.json
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch3/
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch4.json
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch4_manifest.json
+          git add data/places/historie/norge/places_historie_norge_for_1500_batch4/
+          git add data/places/politikk/trondelag/frostatinget_logtun.json
+          git add data/places/by/nordland/vagar_lofoten_storvagan.json
+          git add data/places/by/utland_england/york_jorvik.json
+          git add data/places/manifest.json
+          git rm .github/workflows/register-norge-pre1500-batch3-4-category-files.yml
+          git rm .github/norge-pre1500-batch3-4-category-trigger.txt
+          git commit -m "Split and register Norge pre-1500 batch 3-4 category files"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
