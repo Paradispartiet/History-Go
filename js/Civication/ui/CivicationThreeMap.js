@@ -2837,7 +2837,8 @@
     };
     Object.keys(types).forEach((t) => register("mini:" + t, types[t], 0.5));
     Object.keys(lms).forEach((id) => register("lm:" + id, lms[id], 1.2));
-    if (!jobs.length) return; // tomt register -> full fallback
+    const scenery = (manifest && manifest.scenery) || [];
+    if (!jobs.length && !scenery.length) return; // tomt register -> full fallback
     let GLTFLoader;
     try { GLTFLoader = (await import(/* @vite-ignore */ "three/addons/loaders/GLTFLoader.js")).GLTFLoader; }
     catch (e) { console.warn("[CivicationThreeMap] GLTFLoader utilgjengelig – beholder primitiv-modeller:", (e && e.message) || e); return; }
@@ -2857,6 +2858,22 @@
       if (hadLm) buildLandmarks();
       rebuildPlaces();
       dirty = true;
+    }
+    // Scenery – faste dekor-modeller på faste posisjoner (f.eks. båter i fjorden).
+    if (scenery.length) {
+      const sg = new THREE.Group();
+      await Promise.all(scenery.map((sc) => new Promise((resolve) => {
+        if (!sc || !sc.file) return resolve();
+        loader.load("assets/models/" + sc.file, (gltf) => {
+          try {
+            const norm = normalizeModelScene(gltf.scene, sc.size || 0.4, sc);
+            norm.wrap.position.set(nx2x(sc.x || 0.5), sc.baseY != null ? sc.baseY : (WATER_Y + 0.02), ny2z(sc.y || 0.85));
+            sg.add(norm.wrap);
+          } catch (e) { /* hopp over */ }
+          resolve();
+        }, undefined, () => resolve());
+      })));
+      if (sg.children.length) { scene.add(sg); dirty = true; }
     }
   }
   function cloneModel(key, seed) {
