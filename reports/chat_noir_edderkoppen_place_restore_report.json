@@ -1,0 +1,46 @@
+{
+  "status": "applied",
+  "cause": {
+    "overbroadSplitCleanup": true,
+    "deletedPlacesWithoutCanonicalReplacement": [
+      "chat_noir",
+      "edderkoppen_scene"
+    ],
+    "peopleInvalidRefsBefore": 56,
+    "peopleWithoutValidPrimaryAnchorBefore": 24,
+    "staleCoordinateBasePreviouslyUsed": "6729aa3f58352d7746130525d8c2c7ad0c873f31",
+    "correctValidationBase": "446db1c19a056ae164f1f7a51b2b857707daa6ee"
+  },
+  "restoredPlaces": [
+    "chat_noir",
+    "edderkoppen_scene"
+  ],
+  "aggregateChanged": true,
+  "splitChildrenRestored": true,
+  "splitManifestChanged": true,
+  "splitIndexChanged": true,
+  "coordinateValuesChanged": false,
+  "coordinateNotesAdded": true,
+  "peopleDataChanged": false,
+  "quizDataChanged": false,
+  "civicationDataChanged": false,
+  "validation": {
+    "splitManifestSyncStatus": "passed",
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "movedPlacesStillActiveInOldCategory": 0,
+    "placesIndexCheckStatus": "failed_unrelated",
+    "coordinateIntakeStatus": "failed_environment_missing_base",
+    "peopleAuditStatus": "passed",
+    "invalidPlaceRefs": 0,
+    "peopleWithoutValidPrimaryAnchor": 0,
+    "quizManifestV2AuditStatus": "not_run_tools_stopped_earlier",
+    "toolsCheckStatus": "failed_unrelated"
+  },
+  "notes": [
+    "places:index:check reached places:coords:check and failed on pre-existing historie index/source coordinate parity differences, not on chat_noir or edderkoppen_scene; global places_index sync passed and both restored ids occur exactly once.",
+    "coordinate intake could not validate the requested base because commit 446db1c19a056ae164f1f7a51b2b857707daa6ee is not present in this clone and fetching from GitHub is blocked by CONNECT tunnel 403.",
+    "tools:check stopped at the same places:coords:check parity gate before reaching coordinate intake."
+  ]
+}
