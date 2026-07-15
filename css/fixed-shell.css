@@ -12,6 +12,13 @@
   --civi-safe-bottom: env(safe-area-inset-bottom, 0px);
   --civi-safe-left: env(safe-area-inset-left, 0px);
   --civi-safe-right: env(safe-area-inset-right, 0px);
+
+  /* Samlet visuelt språk for skallet. */
+  --civi-shell-surface: rgba(11, 13, 16, 0.88);
+  --civi-shell-surface-strong: rgba(15, 17, 21, 0.96);
+  --civi-shell-line: rgba(255, 255, 255, 0.115);
+  --civi-shell-line-soft: rgba(255, 255, 255, 0.075);
+  --civi-shell-shadow: 0 18px 52px rgba(0, 0, 0, 0.38);
 }
 
 html,
@@ -26,6 +33,9 @@ body.civi-app{
   overflow: hidden;
   overscroll-behavior: none;
   -webkit-overflow-scrolling: auto;
+  background:
+    radial-gradient(circle at 50% -15%, rgba(214, 170, 58, 0.055), transparent 38%),
+    #050506;
 }
 
 body.civi-app .topbar{
@@ -38,6 +48,57 @@ body.civi-app .topbar{
   padding-left: max(16px, var(--civi-safe-left));
   padding-right: max(16px, var(--civi-safe-right));
   z-index: 100;
+  background:
+    linear-gradient(180deg, rgba(22, 24, 29, 0.97), rgba(10, 12, 15, 0.93));
+  border-bottom: 1px solid var(--civi-shell-line);
+  box-shadow:
+    0 10px 34px rgba(0, 0, 0, 0.26),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(18px) saturate(1.08);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+}
+
+body.civi-app .topbar::after{
+  content:"";
+  position:absolute;
+  left:max(16px, var(--civi-safe-left));
+  right:max(16px, var(--civi-safe-right));
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(214,170,58,0.30), transparent);
+  pointer-events:none;
+}
+
+body.civi-app .app-title{
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  font-size: clamp(19px, 1rem + 0.55vw, 24px);
+  text-shadow: 0 1px 18px rgba(255, 255, 255, 0.055);
+}
+
+body.civi-app .back-link{
+  text-decoration: none;
+  color: rgba(255,255,255,0.74);
+  transition: color 120ms ease, transform 120ms ease;
+}
+
+body.civi-app .back-link:hover{
+  color: #fff;
+  transform: translateX(-1px);
+}
+
+body.civi-app .civi-header-metrics .civi-dashboard-metrics{
+  gap: 6px;
+}
+
+body.civi-app .civi-header-metrics .civi-dashboard-metric{
+  border: 1px solid var(--civi-shell-line-soft);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+body.civi-app .civi-header-metrics .civi-dashboard-metric strong{
+  letter-spacing: -0.018em;
 }
 
 body.civi-app .civi-footer{
@@ -50,6 +111,45 @@ body.civi-app .civi-footer{
   padding-left: max(12px, var(--civi-safe-left));
   padding-right: max(12px, var(--civi-safe-right));
   z-index: 100;
+  background:
+    linear-gradient(180deg, rgba(13, 15, 19, 0.91), rgba(6, 7, 9, 0.985));
+  border-top: 1px solid var(--civi-shell-line);
+  box-shadow: 0 -14px 38px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(20px) saturate(1.08);
+  -webkit-backdrop-filter: blur(20px) saturate(1.08);
+}
+
+/* Footer-navigasjonen skal føles som en spill-dock, uansett eksakt knappetype. */
+body.civi-app .civi-footer button,
+body.civi-app .civi-footer a,
+body.civi-app .civi-footer [role="tab"]{
+  min-height: 40px;
+  border-radius: 12px;
+  color: rgba(255,255,255,0.72);
+  transition:
+    color 120ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease,
+    transform 120ms ease;
+}
+
+body.civi-app .civi-footer button:hover,
+body.civi-app .civi-footer a:hover,
+body.civi-app .civi-footer [role="tab"]:hover{
+  color: #fff;
+  background-color: rgba(255,255,255,0.045);
+}
+
+body.civi-app .civi-footer .active,
+body.civi-app .civi-footer .is-active,
+body.civi-app .civi-footer [aria-selected="true"],
+body.civi-app .civi-footer [aria-current="page"]{
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(214,170,58,0.16), rgba(214,170,58,0.065));
+  box-shadow:
+    inset 0 0 0 1px rgba(214,170,58,0.22),
+    0 6px 18px rgba(0,0,0,0.18);
 }
 
 body.civi-app main,
@@ -73,6 +173,20 @@ body.civi-app .civi-world{
 
 body.civi-app .civi-panels{
   padding-bottom: 28px;
+}
+
+/* Panelene får samme dybde/materialspråk som kartet, men beholder høy lesbarhet. */
+body.civi-app .civi-panels > section{
+  border-color: var(--civi-shell-line);
+  background:
+    linear-gradient(180deg, rgba(22,22,25,0.985), rgba(13,13,15,0.985));
+  box-shadow:
+    0 18px 46px rgba(0,0,0,0.34),
+    inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+body.civi-app .civi-panels > section > h2{
+  letter-spacing: -0.025em;
 }
 
 body.civi-app #civiMapWorld,
@@ -119,5 +233,25 @@ body.civi-app .place-card{
   :root{
     --civi-shell-header-h: 92px;
     --civi-shell-footer-h: 78px;
+  }
+
+  body.civi-app .topbar::after{
+    left: 12px;
+    right: 12px;
+  }
+
+  body.civi-app .civi-footer button,
+  body.civi-app .civi-footer a,
+  body.civi-app .civi-footer [role="tab"]{
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  body.civi-app .back-link,
+  body.civi-app .civi-footer button,
+  body.civi-app .civi-footer a,
+  body.civi-app .civi-footer [role="tab"]{
+    transition: none;
   }
 }
