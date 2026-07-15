@@ -1,12 +1,20 @@
 {
-  "_comment": "Modell-register for Civication 3D-kartet (hybrid). Bygg med registrert modell bruker den ekte .glb-modellen; alt annet faller tilbake til innebygde primitiver. En type kan peke på flere filer (liste) for variasjon pr. sted. Hver pakke ligger i egen undermappe med sin egen Textures/colormap.png. Modeller: Kenney City Kit Suburban/Commercial/Industrial (CC0). Distinktive typer (kirke, museum, teater, stasjon, stadion ...) beholdes som primitiver siden silhuetten er mer gjenkjennelig.",
+  "_comment": "Modell-register for Civication 3D-kartet (hybrid). buildingTypes/landmarks -> ekte .glb med primitiv-fallback (liste = variasjon pr. sted). scenery -> faste dekor-modeller på faste posisjoner (x,y i 0-1, base på vann/bakke). Hver pakke i egen undermappe med sin egen Textures/colormap.png. Modeller: Kenney (CC0): City Kit Suburban/Commercial/Industrial, Factory Kit, Watercraft.",
   "buildingTypes": {
     "default": ["suburban/building-type-a.glb", "suburban/building-type-c.glb"],
     "apartment": ["suburban/building-type-h.glb", "suburban/building-type-b.glb", "suburban/building-type-m.glb"],
     "commerce": ["commercial/building-a.glb", "commercial/building-b.glb", "commercial/building-c.glb"],
     "civic": ["commercial/building-d.glb", "commercial/building-j.glb", "commercial/building-k.glb"],
     "subculture": ["commercial/building-m.glb", "commercial/building-n.glb"],
-    "industrial": ["industrial/building-a.glb", "industrial/building-c.glb", "industrial/building-e.glb", "industrial/building-g.glb"]
+    "industrial": ["industrial/building-a.glb", "industrial/building-c.glb", "industrial/building-e.glb", "industrial/building-g.glb", "factory/structure-tall.glb", "factory/structure-high.glb", "factory/structure-yellow-tall.glb"]
   },
-  "landmarks": {}
+  "landmarks": {},
+  "scenery": [
+    { "file": "water/boat-fishing-small.glb", "x": 0.42, "y": 0.74, "size": 0.55, "rotationY": 0.35 },
+    { "file": "water/boat-tug-a.glb", "x": 0.60, "y": 0.73, "size": 0.6, "rotationY": -0.5 },
+    { "file": "water/boat-sail-a.glb", "x": 0.50, "y": 0.765, "size": 0.55, "rotationY": 0.8 },
+    { "file": "water/boat-speed-b.glb", "x": 0.62, "y": 0.80, "size": 0.42, "rotationY": 1.5 },
+    { "file": "water/boat-fishing-small.glb", "x": 0.375, "y": 0.82, "size": 0.5, "rotationY": 2.3 },
+    { "file": "water/boat-sail-a.glb", "x": 0.52, "y": 0.875, "size": 0.55, "rotationY": -0.3 }
+  ]
 }
