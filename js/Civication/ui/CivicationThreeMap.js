@@ -168,6 +168,8 @@
   let _loadStarted = false;
   let _lastLod = null;
   let _stablePos = null; // bufret, zoom-uavhengig posisjon pr. place-id
+  const _modelCache = {}; // "mini:<type>" / "lm:<id>" -> { wrap, h } (ekte GLB-modeller)
+  let _modelsRequested = false;
   let hitTargets = [];
   let _visibleMiniatures = [];
   let _landmarkPlaceMap = {};
@@ -2072,6 +2074,17 @@
   };
 
   function buildKeyLandmark(entry) {
+    // Ekte modell hvis registrert for dette landemerket, ellers håndmodell.
+    const model = cloneModel("lm:" + entry.id);
+    if (model) {
+      const g0 = model.group;
+      const baseY0 = entry.baseY == null ? GROUND_Y : entry.baseY;
+      g0.position.set(nx2x(entry.x), baseY0, ny2z(entry.y));
+      if (entry.rot) g0.rotation.y = entry.rot;
+      if (entry.scale && entry.scale !== 1) g0.scale.setScalar(entry.scale);
+      g0.userData = Object.assign({ landmarkId: entry.id, landmarkType: entry.type }, g0.userData || {});
+      return g0;
+    }
     const make = KEY_LANDMARK_BUILDERS[entry.type];
     if (!make) return null;
     const built = make(entry.opts || {});
@@ -2085,6 +2098,17 @@
   }
 
   function buildLandmarks() {
+    // Kan kalles på nytt når ekte modeller er lastet -> fjern forrige gruppe.
+    if (landmarkGroup) {
+      scene.remove(landmarkGroup);
+      landmarkGroup.traverse((m) => {
+        if (m.geometry) m.geometry.dispose();
+        if (m.material && m.material !== INVISIBLE_HIT_MAT) {
+          (Array.isArray(m.material) ? m.material : [m.material]).forEach((mm) => mm.dispose && mm.dispose());
+        }
+      });
+      landmarkGroup = null;
+    }
     const g = new THREE.Group();
     _stats.landmarks = 0;
     _stats.landmarkCountByType = {};
@@ -2117,10 +2141,11 @@
   // ---------------------------------------------------------------------------
   // Del 3 – Place miniature archetypes (History Go-place-miniatyrer)
   // ---------------------------------------------------------------------------
-  // Små, stedstilpassede 3D-miniatyrer for faktiske places. Enkel Three.js-
-  // geometri (primitiver), få mesh per miniature, ingen eksterne modeller, ingen
-  // teksturer, ingen tekstlabels. Underordnet de håndmodellerte landemerkene.
-  // Hver bygger returnerer { group, h } med bunn på lokal y=0.
+  // Små, stedstilpassede 3D-miniatyrer for faktiske places. Primitiv Three.js-
+  // geometri, få mesh per miniature, ingen tekstlabels. Underordnet de
+  // håndmodellerte landemerkene. Disse primitivene er nå FALLBACK i en hybrid:
+  // finnes en registrert GLB-modell (assets/models/manifest.json) brukes den i
+  // stedet. Hver bygger returnerer { group, h } med bunn på lokal y=0.
   //
   // Del 1 – Felles detalj-helpere. Alle legger primitive mesh i en gruppe
   // (lokal origo, bunn y=0). De holdes lette og kalles typisk bare når LOD gir
@@ -2768,17 +2793,96 @@
 
   // Del 8 – En klikkbar place-miniatyr. userData.placeId på gruppe og alle mesh.
   // Ingen tekstlabels, ingen beacons; place-miniatyrer kaster ikke skygge (iPad-ytelse).
+  // ---------------------------------------------------------------------------
+  // Hybrid: ekte GLB-modeller (assets/models/) med primitiv-fallback.
+  // Modell-registeret (assets/models/manifest.json) mapper byggtype/landemerke-id
+  // til .glb-filer. Registrerte bygg bruker den ekte modellen; alt annet bruker
+  // de innebygde primitiv-modellene. Se assets/models/README.md.
+  // ---------------------------------------------------------------------------
+  function normalizeModelScene(scene, targetSize, cfg) {
+    const bbox = new THREE.Box3().setFromObject(scene);
+    const size = new THREE.Vector3(); bbox.getSize(size);
+    const center = new THREE.Vector3(); bbox.getCenter(center);
+    const maxXZ = Math.max(size.x, size.z) || 1;
+    const s = (targetSize / maxXZ) * ((cfg && cfg.scale) || 1);
+    scene.scale.setScalar(s);
+    scene.position.set(-center.x * s, -bbox.min.y * s, -center.z * s);
+    if (cfg && cfg.yOffset) scene.position.y += cfg.yOffset;
+    scene.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    const wrap = new THREE.Group();
+    if (cfg && cfg.rotationY) wrap.rotation.y = cfg.rotationY;
+    wrap.add(scene);
+    return { wrap, h: size.y * s };
+  }
+  async function loadBuildingModels() {
+    if (_modelsRequested) return;
+    _modelsRequested = true;
+    let manifest;
+    try {
+      const res = await fetch("assets/models/manifest.json", { cache: "no-cache" });
+      if (!res.ok) return;
+      manifest = await res.json();
+    } catch (e) { return; } // ingen manifest -> full fallback
+    const types = (manifest && manifest.buildingTypes) || {};
+    const lms = (manifest && manifest.landmarks) || {};
+    // Hver oppføring kan være en fil (streng), et objekt {file,scale,...}, eller
+    // en liste av slike (for variasjon – ett tilfeldig valg pr. sted).
+    const jobs = [];
+    const register = (key, def, size) => {
+      const list = Array.isArray(def) ? def : [def];
+      list.forEach((d) => {
+        const cfg = typeof d === "string" ? { file: d } : (d || {});
+        if (cfg.file) jobs.push({ key, cfg, size });
+      });
+    };
+    Object.keys(types).forEach((t) => register("mini:" + t, types[t], 0.5));
+    Object.keys(lms).forEach((id) => register("lm:" + id, lms[id], 1.2));
+    if (!jobs.length) return; // tomt register -> full fallback
+    let GLTFLoader;
+    try { GLTFLoader = (await import(/* @vite-ignore */ "three/addons/loaders/GLTFLoader.js")).GLTFLoader; }
+    catch (e) { console.warn("[CivicationThreeMap] GLTFLoader utilgjengelig – beholder primitiv-modeller:", (e && e.message) || e); return; }
+    const loader = new GLTFLoader();
+    let loaded = 0, hadLm = false;
+    await Promise.all(jobs.map((job) => new Promise((resolve) => {
+      loader.load("assets/models/" + job.cfg.file, (gltf) => {
+        try {
+          const norm = normalizeModelScene(gltf.scene, job.size, job.cfg);
+          (_modelCache[job.key] || (_modelCache[job.key] = [])).push(norm);
+          loaded++; if (job.key.startsWith("lm:")) hadLm = true;
+        } catch (e) { /* hopp over defekt modell */ }
+        resolve();
+      }, undefined, () => resolve()); // fil mangler/feiler -> fallback
+    })));
+    if (loaded > 0) {
+      if (hadLm) buildLandmarks();
+      rebuildPlaces();
+      dirty = true;
+    }
+  }
+  function cloneModel(key, seed) {
+    const list = _modelCache[key];
+    if (!list || !list.length) return null;
+    const m = list.length === 1 ? list[0] : list[Math.abs(hashStr(String(seed || key))) % list.length];
+    return { group: m.wrap.clone(true), h: m.h };
+  }
+
   function buildPlaceMiniature(p, opts) {
     const type = (opts && opts.type) || resolvePlaceMiniatureType(p);
     const lod = (opts && opts.lod) || _lastLod || "high";
-    const color = placeColorFor(p, type);
-    const make = PLACE_MINIATURE_TYPES[type] || PLACE_MINIATURE_TYPES.default;
-    const built = make({ color, lod });
-    const group = built.group;
     const scale = (opts && opts.scale) || 0.4;
+    // Ekte modell hvis registrert, ellers primitiv-fallback.
+    let group, h;
+    const model = cloneModel("mini:" + type, p.id);
+    if (model) { group = model.group; h = model.h; }
+    else {
+      const color = placeColorFor(p, type);
+      const make = PLACE_MINIATURE_TYPES[type] || PLACE_MINIATURE_TYPES.default;
+      const built = make({ color, lod });
+      group = built.group; h = built.h;
+    }
     group.scale.setScalar(scale);
     group.traverse((m) => { if (m.isMesh) { m.castShadow = false; m.userData = { placeId: p.id }; } });
-    group.userData = { placeId: p.id, miniatureType: type, h: built.h };
+    group.userData = { placeId: p.id, miniatureType: type, h };
     return group;
   }
 
@@ -3516,6 +3620,7 @@
     bindEvents();
     resize();
     ensureLoaded();
+    loadBuildingModels(); // hybrid: last ekte GLB-modeller om registrert (fallback ellers)
     loop();
 
     console.info("[CivicationThreeMap] 3D miniatyrkart aktivt (Three.js " + (THREE.REVISION || "?") + ")");
