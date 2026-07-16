@@ -51,24 +51,43 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Run places check with diagnostic log
-        id: places_check
-        shell: bash
+      - name: Run places check
         run: |
-          set +e
-          bash scripts/check-places.sh 2>&1 | tee places-check.log
-          status=${PIPESTATUS[0]}
-          echo "status=$status" >> "$GITHUB_OUTPUT"
-          exit 0
-
-      - name: Upload places diagnostic log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: places-check-log
-          path: places-check.log
-          if-no-files-found: error
-
-      - name: Fail if places check failed
-        if: steps.places_check.outputs.status != '0'
-        run: exit 1
+          if [ -f scripts/check-places.sh ]; then
+            bash scripts/check-places.sh
+          else
+            echo "scripts/check-places.sh not found; using inline places checks"
+            node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          function readJson(file) {
+            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+            catch (error) {
+              console.error(`JSON parse failed: ${file}`);
+              console.error(error.message);
+              process.exit(1);
+            }
+          }
+          const manifestPath = 'data/places/manifest.json';
+          const placesIndexPath = 'data/places/places_index.json';
+          const manifest = readJson(manifestPath);
+          if (!manifest || !Array.isArray(manifest.files)) {
+            console.error(`${manifestPath} must contain a files array`);
+            process.exit(1);
+          }
+          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
+          for (const file of files) {
+            if (!fs.existsSync(file)) {
+              console.error(`Missing expected file: ${file}`);
+              process.exit(1);
+            }
+            readJson(file);
+          }
+          console.log(`json ok (${files.length} files)`);
+          NODE
+            npm run places:index:build
+            npm run build:tools
+            npm run places:index:check
+            npm run places:emner:check
+            npm run places:coords:check
+          fi
