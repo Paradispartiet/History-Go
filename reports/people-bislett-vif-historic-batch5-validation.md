@@ -31,11 +31,14 @@ Alle fem ID-ene ble søkt repo-wide og ble ikke funnet før opprettelse.
 
 - Ingen eksisterende personfiler endres.
 - Ingen place-filer, bilder, UI-filer eller runtimefiler endres.
-- De fem nye filene skal registreres i `data/people/manifest.json` rett etter Bislett batch 4-filene.
-- Ingen permanent workflowfil skal inngå i nettodiffen.
+- De fem nye filene er registrert i `data/people/manifest.json` rett etter Bislett batch 4-filene.
+- Ingen permanent workflowfil inngår i nettodiffen.
 
 ## Kontroller
 
-People data og Places data kjøres etter manifestregistrering og fjerning av eventuell midlertidig workflowfil.
+Endelig PR-head:
 
-Manifestregistreringen utløses på den ferdige batchgrenen før PR-kontrollene kjøres.
+- People data: **success**
+- Places data: **failure**
+
+Places-jobben feilet identisk på første kjøring og på en målrettet rerun. Batch 5 endrer ingen place-filer, og den endelige nettodiffen består bare av fem people-filer, people-manifestet og to rapporter. PR-en holdes derfor som draft inntil den eksterne Places-gaten på merge-refen er grønn eller den underliggende place-feilen på hovedgrenen er identifisert og rettet.
