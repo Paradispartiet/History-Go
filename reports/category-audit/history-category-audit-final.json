@@ -1,5 +1,5 @@
 {
-  "status": "issues_found",
+  "status": "ok",
   "active_history_files": 114,
   "active_history_places": 402,
   "manifest_total_files": 372,
@@ -7,14 +7,25 @@
   "duplicate_manifest_paths": [],
   "duplicate_place_ids": [],
   "active_history_category_errors": [],
-  "validated_split_manifests": 58,
-  "split_manifest_errors": [
-    {
-      "manifest": "data/places/historie/innlandet/places_historie_innlandet_batch16_manifest.json",
-      "errors": [
-        "missing_source"
-      ]
-    }
-  ],
-  "other_errors": []
+  "validated_split_manifests": 57,
+  "split_manifest_errors": [],
+  "other_errors": [],
+  "cleanup": {
+    "removed_stale_manifest": "data/places/historie/innlandet/places_historie_innlandet_batch16_manifest.json",
+    "removed_stale_split_directory": "data/places/historie/innlandet/places_historie_innlandet_batch16/",
+    "verified_moved_ids": [
+      "moelv_stasjon_mjoslinjen",
+      "stange_stasjon_dovrebanen",
+      "gran_stasjon_gjovikbanen",
+      "lena_stasjon_totenbanen",
+      "reinsvoll_stasjon_totenbanen",
+      "dokka_stasjon_valdresbanen",
+      "skarnes_stasjon_kongsvingerbanen",
+      "braskereidfoss_kraftverk"
+    ],
+    "allowed_move_differences": [
+      "category",
+      "quiz_profile.notes"
+    ]
+  }
 }
