@@ -1,0 +1,86 @@
+name: Inventory active history standalone files
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/history-standalone-inventory-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: inventory-history-standalone-files
+  cancel-in-progress: false
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Build active history standalone inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(Path('data/places/manifest.json').read_text(encoding='utf-8'))
+          rows = []
+          for rel in manifest['files']:
+              if not rel.startswith('places/historie/'):
+                  continue
+              base = Path(rel).name
+              if base.startswith('places_historie') or base == 'places_lisbon_historie.json':
+                  continue
+              path = Path('data/places') / rel.removeprefix('places/')
+              payload = json.loads(path.read_text(encoding='utf-8'))
+              if not isinstance(payload, list):
+                  continue
+              rows.append({
+                  'path': rel,
+                  'count': len(payload),
+                  'places': [
+                      {
+                          'id': p.get('id'),
+                          'name': p.get('name'),
+                          'category': p.get('category'),
+                          'desc': p.get('desc'),
+                          'place_type': (p.get('quiz_profile') or {}).get('place_type'),
+                          'subtype': (p.get('quiz_profile') or {}).get('subtype'),
+                          'primary_angles': (p.get('quiz_profile') or {}).get('primary_angles'),
+                      }
+                      for p in payload if isinstance(p, dict)
+                  ],
+              })
+
+          out = Path('reports/category-audit/history-standalone-inventory.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps({
+              'active_history_standalone_files': len(rows),
+              'active_history_standalone_places': sum(r['count'] for r in rows),
+              'files': rows,
+          }, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/category-audit/history-standalone-inventory.json
+          git rm .github/workflows/inventory-history-standalone-files.yml
+          git rm .github/history-standalone-inventory-trigger.txt
+          git commit -m "Inventory active history standalone files"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
