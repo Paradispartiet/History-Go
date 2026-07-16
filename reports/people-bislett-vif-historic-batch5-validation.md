@@ -37,3 +37,5 @@ Alle fem ID-ene ble søkt repo-wide og ble ikke funnet før opprettelse.
 ## Kontroller
 
 People data og Places data kjøres etter manifestregistrering og fjerning av eventuell midlertidig workflowfil.
+
+Manifestregistreringen utløses på den ferdige batchgrenen før PR-kontrollene kjøres.
