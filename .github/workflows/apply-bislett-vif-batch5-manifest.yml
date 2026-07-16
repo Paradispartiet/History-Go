@@ -1,18 +1,19 @@
 name: Apply Bislett Vålerenga batch 5 manifest
 
 on:
-  push:
+  pull_request:
     branches:
-      - data/people-bislett-vif-historic-batch5-20260716
-    paths:
-      - .github/workflows/apply-bislett-vif-batch5-manifest.yml
-      - reports/people-bislett-vif-historic-batch5-validation.md
+      - main
+    types:
+      - opened
+      - synchronize
 
 permissions:
   contents: write
 
 jobs:
   apply:
+    if: github.head_ref == 'data/people-bislett-vif-historic-batch5-20260716'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
