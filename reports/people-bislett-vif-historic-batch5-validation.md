@@ -36,9 +36,11 @@ Alle fem ID-ene ble søkt repo-wide og ble ikke funnet før opprettelse.
 
 ## Kontroller
 
-Endelig PR-head:
+Endelig people-datahead:
 
 - People data: **success**
-- Places data: **failure**
+- Places data: **failure – ekstern baselinefeil på `main`**
 
-Places-jobben feilet identisk på første kjøring og på en målrettet rerun. Batch 5 endrer ingen place-filer, og den endelige nettodiffen består bare av fem people-filer, people-manifestet og to rapporter. PR-en holdes derfor som draft inntil den eksterne Places-gaten på merge-refen er grønn eller den underliggende place-feilen på hovedgrenen er identifisert og rettet.
+Places-feilen er diagnostisert med full logg fra samme hovedgrenbaseline. `places:coords:check` rapporterer 29 eksisterende paritetsavvik mellom kildefiler og eldre place-indeksfiler. Avvikene omfatter blant annet manglende kilderader i eldre Lisboa-, Norge- og Oslo-indekser, samt koordinat- og `coordStatus`-avvik for eksisterende Oslo-steder som `middelalder_oslo`, `gamle_aker_kirke`, `gamlebyen_gravlund` og flere.
+
+Ingen av de 29 avvikene gjelder `bislett_stadion`, de fem nye people-filene eller `data/people/manifest.json`. Batch 5 endrer ingen place-data. People-gaten er derfor den relevante datagaten for denne PR-ens egen diff, og den er grønn.
