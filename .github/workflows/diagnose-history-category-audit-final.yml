@@ -1,0 +1,189 @@
+name: Diagnose final history category audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/history-category-audit-diagnostic-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: diagnose-history-category-audit-final
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Diagnose active history data and split manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          root = Path('.')
+          places_root = root / 'data/places'
+          manifest_path = places_root / 'manifest.json'
+          errors = []
+
+          try:
+              manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+              files = manifest.get('files')
+              if not isinstance(files, list):
+                  raise ValueError('manifest files is not a list')
+          except Exception as exc:
+              files = []
+              errors.append({'scope': 'manifest', 'error': str(exc)})
+
+          duplicate_manifest_paths = sorted(k for k, v in Counter(files).items() if v > 1)
+          id_counts = Counter()
+          active_history_files = []
+          active_history_places = 0
+          history_category_errors = []
+
+          for rel in files:
+              try:
+                  path = places_root / rel.removeprefix('places/')
+                  payload = json.loads(path.read_text(encoding='utf-8'))
+              except Exception as exc:
+                  errors.append({'scope': 'manifest_file', 'path': rel, 'error': str(exc)})
+                  continue
+              if isinstance(payload, list):
+                  for place in payload:
+                      if isinstance(place, dict) and isinstance(place.get('id'), str):
+                          id_counts[place['id']] += 1
+              if rel.startswith('places/historie/'):
+                  active_history_files.append(rel)
+                  if not isinstance(payload, list):
+                      history_category_errors.append({'path': rel, 'error': 'not_array'})
+                      continue
+                  active_history_places += len(payload)
+                  for index, place in enumerate(payload):
+                      if not isinstance(place, dict) or place.get('category') != 'historie':
+                          history_category_errors.append({
+                              'path': rel,
+                              'index': index,
+                              'id': place.get('id') if isinstance(place, dict) else None,
+                              'category': place.get('category') if isinstance(place, dict) else None,
+                          })
+
+          duplicate_ids = sorted(k for k, v in id_counts.items() if v > 1)
+
+          validated_split_manifests = 0
+          split_errors = []
+          split_manifest_summaries = []
+          for sm_path in sorted((places_root / 'historie').rglob('*_manifest.json')):
+              try:
+                  sm = json.loads(sm_path.read_text(encoding='utf-8'))
+              except Exception as exc:
+                  split_errors.append({'manifest': str(sm_path), 'errors': [f'invalid_json:{exc}']})
+                  continue
+              source_path_value = sm.get('source_path')
+              entries = sm.get('places')
+              if not isinstance(source_path_value, str) or not isinstance(entries, list):
+                  continue
+              validated_split_manifests += 1
+              errs = []
+              source_path = root / source_path_value
+              if not source_path.exists():
+                  errs.append('missing_source')
+              else:
+                  try:
+                      source_text = source_path.read_text(encoding='utf-8')
+                      source = json.loads(source_text)
+                  except Exception as exc:
+                      source = None
+                      errs.append(f'invalid_source:{exc}')
+                  if isinstance(source, list):
+                      source_ids = [p.get('id') for p in source if isinstance(p, dict)]
+                      manifest_ids = [p.get('id') for p in entries if isinstance(p, dict)]
+                      if sm.get('place_count') != len(source): errs.append('place_count')
+                      if manifest_ids != source_ids: errs.append('id_order')
+                      if sm.get('source_sha256') != hashlib.sha256(source_text.encode('utf-8')).hexdigest(): errs.append('source_sha256')
+                      if any(p.get('category') != 'historie' for p in source if isinstance(p, dict)): errs.append('source_non_historie')
+                      if any(p.get('category') != 'historie' for p in entries if isinstance(p, dict)): errs.append('manifest_non_historie')
+
+                      for order, source_place in enumerate(source):
+                          if order >= len(entries):
+                              errs.append(f'missing_entry:{source_place.get("id")}')
+                              continue
+                          entry = entries[order]
+                          if entry.get('order') != order: errs.append(f'order:{entry.get("id")}')
+                          rel_file = entry.get('file')
+                          if not isinstance(rel_file, str):
+                              errs.append(f'missing_file:{entry.get("id")}')
+                              continue
+                          split_path = sm_path.parent / rel_file
+                          if not split_path.exists():
+                              errs.append(f'missing_split:{entry.get("id")}')
+                              continue
+                          split_text = split_path.read_text(encoding='utf-8')
+                          try:
+                              split_payload = json.loads(split_text)
+                          except Exception:
+                              errs.append(f'invalid_split:{entry.get("id")}')
+                              continue
+                          if split_payload != source_place: errs.append(f'split_content:{entry.get("id")}')
+                          if entry.get('sha256') != hashlib.sha256(split_text.encode('utf-8')).hexdigest(): errs.append(f'split_sha256:{entry.get("id")}')
+
+              split_manifest_summaries.append({
+                  'manifest': str(sm_path),
+                  'source': source_path_value,
+                  'errors': sorted(set(errs)),
+              })
+              if errs:
+                  split_errors.append({'manifest': str(sm_path), 'errors': sorted(set(errs))})
+
+          report = {
+              'status': 'ok' if not (errors or duplicate_manifest_paths or duplicate_ids or history_category_errors or split_errors) else 'issues_found',
+              'active_history_files': len(active_history_files),
+              'active_history_places': active_history_places,
+              'manifest_total_files': len(files),
+              'manifest_unique_place_ids': len(id_counts),
+              'duplicate_manifest_paths': duplicate_manifest_paths,
+              'duplicate_place_ids': duplicate_ids,
+              'active_history_category_errors': history_category_errors,
+              'validated_split_manifests': validated_split_manifests,
+              'split_manifest_errors': split_errors,
+              'other_errors': errors,
+          }
+          out = Path('reports/category-audit/history-category-audit-final.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          inventory = Path('reports/category-audit/history-aggregate-inventory.json')
+          if inventory.exists(): inventory.unlink()
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A reports/category-audit
+          for p in \
+            .github/workflows/diagnose-history-category-audit-final.yml \
+            .github/history-category-audit-diagnostic-trigger.txt \
+            .github/workflows/validate-history-category-audit-final.yml \
+            .github/history-category-audit-final-trigger.txt; do
+            if [ -e "$p" ]; then git rm "$p"; fi
+          done
+          git commit -m "Record final history category audit diagnostics"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
