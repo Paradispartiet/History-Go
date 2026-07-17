@@ -1,0 +1,93 @@
+name: Integrate Etne history batch 1
+
+on:
+  push:
+    branches:
+      - agent/etne-historie-batch-1
+    paths:
+      - '.github/workflows/integrate-etne-history-batch1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-historie-batch-1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          set -o pipefail
+          mkdir -p reports/etne-historie-batch-1-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-historie-batch-1-integration/npm-install.txt
+
+      - name: Register five Etne history files
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-1-integration/manifest-update.txt
+          const fs = require('fs');
+          const path = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const additions = [
+            'places/historie/vestland/etne/stodle_kyrkje.json',
+            'places/historie/vestland/etne/helgaberget_etne.json',
+            'places/historie/vestland/etne/borgasen_etne.json',
+            'places/historie/vestland/etne/saebotunet_etne.json',
+            'places/historie/vestland/etne/gjerde_kyrkje_etne.json',
+          ];
+          if (!manifest || !Array.isArray(manifest.files)) throw new Error('manifest.files missing');
+          for (const rel of additions) {
+            const count = manifest.files.filter((entry) => entry === rel).length;
+            if (count > 1) throw new Error(`duplicate manifest entry before integration: ${rel}`);
+            if (count === 0) manifest.files.push(rel);
+          }
+          fs.writeFileSync(path, JSON.stringify(manifest));
+          for (const rel of additions) {
+            const count = manifest.files.filter((entry) => entry === rel).length;
+            if (count !== 1) throw new Error(`expected exactly one manifest entry for ${rel}, found ${count}`);
+            console.log(`registered ${rel}`);
+          }
+          NODE
+
+      - name: Run place validation and rebuild runtime index
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-historie-batch-1-integration/check-places.txt
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-historie-batch-1-integration/split-manifest-sync.txt
+          npm run places:coords:quality 2>&1 | tee reports/etne-historie-batch-1-integration/coordinate-quality.txt
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-1-integration/targeted-validation.txt
+          const fs = require('fs');
+          const ids = ['stodle_kyrkje','helgaberget_etne','borgasen_etne','saebotunet_etne','gjerde_kyrkje_etne'];
+          const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const rows = Array.isArray(index) ? index : index.places;
+          if (!Array.isArray(rows)) throw new Error('places index rows missing');
+          const counts = new Map();
+          for (const row of rows) counts.set(row.id, (counts.get(row.id) || 0) + 1);
+          for (const id of ids) {
+            if (counts.get(id) !== 1) throw new Error(`${id}: expected exactly one active index row, found ${counts.get(id) || 0}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const allDuplicateIds = [...counts.entries()].filter(([, count]) => count > 1);
+          if (allDuplicateIds.length) throw new Error(`duplicate active place IDs: ${JSON.stringify(allDuplicateIds.slice(0, 20))}`);
+          console.log(`PASS global duplicate active place IDs: 0`);
+          NODE
+          git diff --check 2>&1 | tee reports/etne-historie-batch-1-integration/git-diff-check.txt
+
+      - name: Commit integration and remove temporary workflow
+        run: |
+          rm .github/workflows/integrate-etne-history-batch1.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/manifest.json data/places/places_index.json reports/etne-historie-batch-1-integration .github/workflows/integrate-etne-history-batch1.yml
+          git commit -m 'Integrate Etne history batch 1'
+          git push origin HEAD:agent/etne-historie-batch-1
