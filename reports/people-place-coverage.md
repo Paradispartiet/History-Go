@@ -1,74 +1,78 @@
 # People-place coverage audit
 
-Generert: 2026-07-10T12:34:20.973Z
+Generert: 2026-07-17T20:51:00.125Z
 
 ## Sammendrag
 
-- People totalt: **733**
-- Places totalt: **1090**
-- Places med people: **231**
+- People totalt: **860**
+- Places totalt: **1092**
+- Places med people: **233**
 - Places uten people: **859**
-- People-place-lenker: **970**
-- People koblet til flere gyldige steder: **193**
-- People uten gyldig sted: **24**
-- Ugyldige place-referanser: **21**
-- Duplikate place-referanser inne på people: **728**
-- People uten image: **392**
-- People uten cardImage: **393**
-- People uten popupDesc: **29**
+- People-place-lenker: **1055**
+- People koblet til flere gyldige steder: **204**
+- People uten gyldig sted: **80**
+- Ugyldige place-referanser: **0**
+- Duplikate place-referanser inne på people: **780**
+- People uten image: **519**
+- People uten cardImage: **520**
+- People uten popupDesc: **104**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 167 | 29 | 138 | 116 | 89 |
+| by | 202 | 34 | 168 | 135 | 106 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 482 | 57 | 425 | 192 | 104 |
-| kunst | 21 | 9 | 12 | 21 | 19 |
-| litteratur | 37 | 21 | 16 | 171 | 166 |
+| historie | 412 | 48 | 364 | 161 | 91 |
+| kunst | 24 | 9 | 15 | 21 | 19 |
+| litteratur | 38 | 21 | 17 | 171 | 166 |
 | media | 11 | 8 | 3 | 27 | 26 |
-| musikk | 17 | 14 | 3 | 81 | 73 |
-| naeringsliv | 104 | 27 | 77 | 55 | 53 |
-| natur | 69 | 5 | 64 | 13 | 13 |
-| politikk | 19 | 7 | 12 | 74 | 61 |
-| populaerkultur | 18 | 0 | 18 | 0 | 0 |
+| musikk | 17 | 14 | 3 | 85 | 77 |
+| naeringsliv | 126 | 27 | 99 | 55 | 53 |
+| natur | 70 | 5 | 65 | 13 | 13 |
+| politikk | 26 | 11 | 15 | 96 | 80 |
+| populaerkultur | 20 | 2 | 18 | 32 | 28 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 67 | 15 | 52 | 88 | 80 |
-| subkultur | 35 | 20 | 15 | 34 | 31 |
-| vitenskap | 34 | 11 | 23 | 53 | 43 |
+| sport | 67 | 15 | 52 | 130 | 116 |
+| subkultur | 35 | 20 | 15 | 31 | 28 |
+| vitenskap | 35 | 11 | 24 | 53 | 43 |
 
 ## People tags
 
-- teater: 177
-- scenekunst: 170
+- teater: 181
+- scenekunst: 174
 - litteratur: 166
-- skuespiller: 124
-- historie: 112
-- musikk: 85
-- sport: 81
-- subkultur: 56
-- regissor: 51
-- politikk: 44
+- skuespiller: 130
+- historie: 122
+- sport: 117
+- musikk: 88
+- politikk: 54
+- subkultur: 53
+- regissor: 52
+- teatersjef: 47
+- bislett: 44
+- fotball: 43
 - ibsen: 43
-- teatersjef: 43
+- valerenga: 43
 - ensemble: 40
 - naeringsliv: 40
 - norge_for_1500: 40
-- film: 37
+- film: 39
 - vitenskap: 34
 - friidrett: 28
-- kunst: 28
+- revy: 28
 - bislett_games: 27
+- kunst: 27
 - media: 27
 - by: 26
+- popkultur: 25
 - arkitektur: 23
 - film_tv: 23
+- seriemester: 23
 - natur: 22
-- revy: 21
-- popkultur: 20
+- sanger: 21
 - torshovteatret: 20
 - filantrop: 17
-- sanger: 17
 - tv: 17
 - klassikerrepertoar: 16
 - verdensrekord: 16
@@ -79,68 +83,44 @@ Generert: 2026-07-10T12:34:20.973Z
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
-- bislett: 13
+- humor: 13
+- landslaget: 13
 - modernisme: 13
 - nynorsk: 13
 - skoyter: 13
-- humor: 12
-- abc_teatret: 11
-- borgerkrigstiden: 11
-- cinematek: 11
-- heddaprisen: 11
-- instruktor: 11
+- heddaprisen: 12
 
 ## Steder med flest people
 
 - nationaltheatret (Nationaltheatret) – 123
-- det_norske_teatret (Det Norske Teatret) – 50
-- bislett_stadion (Bislett Stadion) – 49
+- bislett_stadion (Bislett Stadion) – 82
+- det_norske_teatret (Det Norske Teatret) – 55
 - stortinget (Stortinget) – 29
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
+- edderkoppen_scene (Edderkoppen Scene) – 21
 - akerhus_slott (Akerhus Slott) – 20
 - universitetsplassen (Universitetsplassen) – 19
 - youngstorget (Youngstorget) – 17
 - oslo_domkirke (Oslo domkirke) – 15
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 15
+- eidsvollsbygningen (Eidsvollsbygningen) – 14
 - oslo_radhus (Oslo rådhus) – 14
 - gamle_deichman (Gamle Deichman) – 13
 - karl_johan (Karl Johans gate) – 13
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 13
 - nidaros_erkebispegarden (Erkebispegården i Nidaros) – 13
 - torggata (Torggata) – 12
+- ullevaal_stadion (Ullevaal Stadion) – 12
+- chat_noir (Chat Noir) – 11
+- jordal_amfi (Jordal Amfi) – 11
 - cinemateket_oslo (Cinemateket i Oslo) – 10
 - kristkirken_bergenhus (Kristkirken på Bergenhus) – 10
 - lisbon_museu_do_fado (Museu do Fado) – 9
-- ullevaal_stadion (Ullevaal Stadion) – 9
-- eidsvolls_plass (Eidsvolls plass) – 8
-- tjuvholmen (Tjuvholmen) – 8
-- lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 7
-- nasjonalmuseet (Nasjonalmuseet) – 7
 
 ## Ugyldige place-referanser
 
-- leif_juster (Leif Juster) -> edderkoppen_scene
-- einar_schanke (Einar Schanke) -> edderkoppen_scene
-- lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene
-- kari_diesen (Kari Diesen) -> edderkoppen_scene
-- ernst_diesen (Ernst Diesen) -> edderkoppen_scene
-- per_kvist (Per Kvist) -> edderkoppen_scene
-- arvid_nilssen (Arvid Nilssen) -> edderkoppen_scene
-- willie_hoel (Willie Hoel) -> edderkoppen_scene
-- dan_fosse (Dan Fosse) -> edderkoppen_scene
-- tom_sterri (Tom Sterri) -> edderkoppen_scene
-- ketil_aamodt (Ketil Aamodt) -> edderkoppen_scene
-- anders_moland (Anders Moland) -> edderkoppen_scene
-- oivind_blunck (Øivind Blunck) -> edderkoppen_scene
-- jon_eikemo (Jon Eikemo) -> edderkoppen_scene
-- kirsti_sparboe (Kirsti Sparboe) -> edderkoppen_scene
-- inger_lise_rypdal (Inger Lise Rypdal) -> edderkoppen_scene
-- ole_paus (Ole Paus) -> edderkoppen_scene
-- rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene
-- harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene
-- oliver_neerland (Oliver Neerland) -> edderkoppen_scene
-- kjersti_holmen (Kjersti Holmen) -> edderkoppen_scene
+- Ingen ugyldige place-referanser funnet.
 
 ## Duplikate place-referanser inne på people
 
@@ -188,6 +168,11 @@ Generert: 2026-07-10T12:34:20.973Z
 - ole_paus (Ole Paus) -> edderkoppen_scene
 - rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene
 - harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene
+- bokken_lasson (Bokken Lasson) -> chat_noir
+- vilhelm_dybwad (Vilhelm Dybwad) -> chat_noir
+- victor_bernau (Victor Bernau) -> chat_noir
+- jens_book_jenssen (Jens Book-Jenssen) -> chat_noir
+- dag_froland (Dag Frøland) -> chat_noir
 - halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen
 - haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard
 - sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard
@@ -239,12 +224,7 @@ Generert: 2026-07-10T12:34:20.973Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- christian_iv (Christian IV) -> christiania_torv
-- christopher_hansteen (Christopher Hansteen) -> observatoriet
-- kong_karl_johan (Karl Johan) -> slottet
-- oscar_i (Oscar I) -> slottet
-- vidkun_quisling (Vidkun Quisling) -> akerhus_slott
-- ... 628 flere
+- ... 680 flere
 
 ## Anbefalt første people-batch
 
@@ -252,12 +232,14 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 
 - ankerbrua | Ankerbrua | by | high
 - beierbrua | Beierbrua | by | high
+- gamle_radhus | Gamle rådhus | by | high
 - hausmannsbrua | Hausmannsbrua | by | high
 - hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | high
 - helsfyr | Helsfyr | by | high
 - lisbon_ajuda | Ajuda | by | high
 - lisbon_alcantara | Alcântara | by | high
 - lisbon_alfama | Alfama | by | high
+- lisbon_aqueduto_das_aguas_livres | Aqueduto das Águas Livres | by | high
 - lisbon_avenida_da_liberdade | Avenida da Liberdade | by | high
 - lisbon_baixa_pombalina | Baixa Pombalina | by | high
 - lisbon_belem_bydel | Belém | by | high
@@ -269,6 +251,7 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_city | Lisboa | by | high
 - lisbon_elevador_de_santa_justa | Elevador de Santa Justa | by | high
 - lisbon_entrecampos | Entrecampos | by | high
+- lisbon_estacao_do_rossio | Estação do Rossio | by | high
 - lisbon_estrela | Estrela | by | high
 - lisbon_gare_do_cais_do_sodre | Gare do Cais do Sodré | by | high
 - lisbon_graca | Graça | by | high
@@ -294,10 +277,7 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - frysjadammen | Frysjadammen | historie | high
 - galgeberg | Galgeberg | historie | high
 - gamle_aker_kirke | Gamle Aker kirke | historie | high
-- gamle_radhus | Gamle rådhus | historie | high
 - glads_molle | Glads mølle | historie | high
 - hovedoya_kloster | Hovedøya kloster | historie | high
-- lisbon_aqueduto_das_aguas_livres | Aqueduto das Águas Livres | historie | high
 - lisbon_castelo_de_sao_jorge | Castelo de São Jorge | historie | high
-- lisbon_convento_do_carmo | Convento do Carmo | historie | high
 

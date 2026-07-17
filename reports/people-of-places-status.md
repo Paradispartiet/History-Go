@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-15T06:02:32.852Z
+Generert: 2026-07-17T20:50:59.582Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-15T06:02:32.852Z |
-| peopleFilesRead | 341 |
-| totalPeople | 842 |
-| uniquePeopleIds | 842 |
+| generatedAt | 2026-07-17T20:50:59.582Z |
+| peopleFilesRead | 360 |
+| totalPeople | 858 |
+| uniquePeopleIds | 858 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 341 |
+| geographicPeopleFiles | 360 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -213,6 +213,16 @@ Generert: 2026-07-15T06:02:32.852Z
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json | natur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/anders_lysgaard.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/diderik_hegermann.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/herman_wedel_jarlsberg.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/jacob_aall.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/john_collett.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/lauritz_weidemann.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/niels_aall.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/peter_motzfeldt.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/severin_lovenskiold.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/thomas_konow.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json | politikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/chat_noir/bokken_lasson.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -247,17 +257,26 @@ Generert: 2026-07-15T06:02:32.852Z
 | data/people/sport/oslo/bislett_stadion/erik_foss.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/gunder_bengtsson.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/helmuth_steffens.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/henning_bjarnoy.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/jo_bergsvand.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/jorn_andersen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/knut_arild_loberg.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/lars_bohinen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/lasse_eriksen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/leif_eriksen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/morten_haugen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/olle_nordin.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/pal_jacobsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/per_edmund_mordt.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/paal_fredheim.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/rolf_aaberg.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/ronny_johnsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/roy_helge_olsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/stein_gran.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/tom_h_jacobsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/tom_rusz_jacobsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/tor_brevik.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/bislett_stadion/trond_sollied.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/vidar_davidsen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/yngve_andersen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/intility_arena/ajara_nchout.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -356,11 +375,11 @@ Generert: 2026-07-15T06:02:32.852Z
 | data/people/sport/oslo/ullevaal_stadion/trude_stendal.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/ullevaal_stadion/yngve_hallen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json | subkultur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json | subkultur | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json | subkultur | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | subkultur | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json | subkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json | subkultur | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 33 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 32 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json | vitenskap | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | vitenskap | ja | 21 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
 
@@ -378,15 +397,15 @@ Generert: 2026-07-15T06:02:32.852Z
 | musikk | 84 | 0 | 56 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 55 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| politikk | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| politikk | 37 | 0 | 12 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 24 | 0 | 24 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| sport | 186 | 0 | 116 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| subkultur | 47 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| sport | 195 | 0 | 125 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| subkultur | 44 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 341
+- Allerede geografisk strukturert: 360
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -602,6 +621,16 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=22/22; placesArray=22/22; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=natur
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
+- data/people/politikk/akershus/eidsvollsbygningen/anders_lysgaard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/diderik_hegermann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/herman_wedel_jarlsberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/jacob_aall.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/john_collett.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/lauritz_weidemann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/niels_aall.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/peter_motzfeldt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/severin_lovenskiold.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/thomas_konow.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=politikk
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/oslo/chat_noir/bokken_lasson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
@@ -636,17 +665,26 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/sport/oslo/bislett_stadion/erik_foss.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/gunder_bengtsson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/helmuth_steffens.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/henning_bjarnoy.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/jo_bergsvand.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/jorn_andersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/knut_arild_loberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/lars_bohinen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/lasse_eriksen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/leif_eriksen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/morten_haugen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/olle_nordin.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/pal_jacobsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/per_edmund_mordt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/paal_fredheim.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/rolf_aaberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/ronny_johnsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/roy_helge_olsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/stein_gran.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/tom_h_jacobsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/tom_rusz_jacobsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/tor_brevik.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
+- data/people/sport/oslo/bislett_stadion/trond_sollied.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/vidar_davidsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/yngve_andersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/intility_arena/ajara_nchout.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
@@ -745,11 +783,11 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/sport/oslo/ullevaal_stadion/trude_stendal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/ullevaal_stadion/yngve_hallen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=subkultur
-- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=subkultur
+- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=subkultur
-- data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=33/33; source_place_id=0/33; placesArray=33/33; categories=subkultur
+- data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=32/32; source_place_id=0/32; placesArray=32/32; categories=subkultur
 - data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=vitenskap
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=21/21; source_place_id=0/21; placesArray=21/21; categories=vitenskap
 
