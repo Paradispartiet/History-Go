@@ -1,0 +1,67 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity check failed. Index files must be generated copies of source coordinate fields.
+Showing 8 difference(s):
+- id: lisbon_aqueduto_das_aguas_livres
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/europe/portugal/lisbon/places_lisbon_historie_index.json
+- id: lisbon_estacao_do_rossio
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/europe/portugal/lisbon/places_lisbon_historie_index.json
+- id: lisbon_palacio_ajuda
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/europe/portugal/lisbon/places_lisbon_historie_index.json
+- id: gulatinget_flolid
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/norge/places_historie_norge_for_1500_batch2_index.json
+- id: nordnes_bergen
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/norge/places_historie_norge_for_1500_batch2_index.json
+- id: frostatinget_logtun
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/norge/places_historie_norge_for_1500_batch3_index.json
+- id: vagar_lofoten_storvagan
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/norge/places_historie_norge_for_1500_batch3_index.json
+- id: york_jorvik
+  felt: (source)
+  source-verdi: "missing source row"
+  index-verdi: "present in index"
+  source-fil: (not found)
+  index-fil: data/places/historie/norge/places_historie_norge_for_1500_batch4_index.json
