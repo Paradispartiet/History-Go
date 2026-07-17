@@ -1,0 +1,99 @@
+name: Integrate Etne history batch 6
+
+on:
+  push:
+    branches:
+      - agent/etne-historie-batch-6
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: ${{ !contains(github.event.head_commit.message, '[skip etne integration]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-historie-batch-6
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          set -o pipefail
+          mkdir -p reports/etne-historie-batch-6-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-historie-batch-6-integration/npm-install.txt
+      - name: Register source files
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-6-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const wanted = [
+            'places/historie/vestland/etne/dysjanes_rivaisen_gravroys.json',
+            'places/historie/vestland/etne/hidlesnes_nernes_gravroys.json',
+            'places/historie/vestland/etne/vardahaugen_lauareid.json',
+            'places/historie/vestland/etne/stampehaug_meland.json',
+            'places/historie/vestland/etne/hoyland_gravhaug_etne.json'
+          ];
+          for (const entry of wanted) if (!manifest.files.includes(entry)) manifest.files.push(entry);
+          for (const entry of wanted) {
+            const count = manifest.files.filter((x) => x === entry).length;
+            if (count !== 1) throw new Error(`${entry}: expected exactly once, got ${count}`);
+            console.log(`PASS manifest ${entry}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest) + '\n');
+          NODE
+      - name: Anchor confidence audit
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-6-integration/anchor-audit.txt
+          const fs = require('fs');
+          const dir = 'data/places/historie/vestland/etne';
+          const rules = {
+            dysjanes_rivaisen_gravroys: 'topografiske',
+            hidlesnes_nernes_gravroys: 'topografiske',
+            vardahaugen_lauareid: 'representativt',
+            stampehaug_meland: 'representativt',
+            hoyland_gravhaug_etne: 'representativt'
+          };
+          for (const [id, token] of Object.entries(rules)) {
+            const p = JSON.parse(fs.readFileSync(`${dir}/${id}.json`, 'utf8'));
+            if (!Number.isFinite(p.lat) || !Number.isFinite(p.lon)) throw new Error(`${id}: invalid coordinates`);
+            const notes = String(p.quiz_profile?.notes || '').toLowerCase();
+            if (!notes.includes(token)) throw new Error(`${id}: notes do not disclose expected anchor confidence (${token})`);
+            console.log(`PASS ${id}: anchor confidence disclosed; r=${p.r}`);
+          }
+          NODE
+      - name: Build and validate
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-historie-batch-6-integration/check-places.txt
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-historie-batch-6-integration/split-manifest-sync.txt
+          npm run places:coords:quality 2>&1 | tee reports/etne-historie-batch-6-integration/coordinate-quality.txt
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-6-integration/targeted-validation.txt
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const ids = ['dysjanes_rivaisen_gravroys','hidlesnes_nernes_gravroys','vardahaugen_lauareid','stampehaug_meland','hoyland_gravhaug_etne'];
+          for (const id of ids) {
+            const count = index.filter((x) => x.id === id).length;
+            if (count !== 1) throw new Error(`${id}: expected one runtime row, got ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const seen = new Set(), dup = new Set();
+          for (const row of index) { if (seen.has(row.id)) dup.add(row.id); seen.add(row.id); }
+          if (dup.size) throw new Error(`duplicate active IDs: ${[...dup].join(', ')}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+          git diff --check 2>&1 | tee reports/etne-historie-batch-6-integration/git-diff-check.txt
+      - name: Commit and remove workflow
+        run: |
+          rm .github/workflows/integrate-etne-history-batch6.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/manifest.json data/places/places_index.json reports/etne-historie-batch-6-integration .github/workflows/integrate-etne-history-batch6.yml
+          git commit -m 'Integrate Etne history batch 6 [skip etne integration]'
+          git push origin HEAD:agent/etne-historie-batch-6
