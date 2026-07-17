@@ -1,6 +1,8 @@
 (function () {
   const BRANDS_MASTER_PATH = new URL("data/brands/brands_master.json", document.baseURI).toString();
   const BRANDS_BY_PLACE_PATH = new URL("data/brands/brands_by_place.json", document.baseURI).toString();
+  const ACTORS_BY_PLACE_PATH = new URL("data/brands/actors_by_place.json", document.baseURI).toString();
+
   function asString(v) {
     return typeof v === "string" ? v.trim() : "";
   }
@@ -25,17 +27,23 @@
     return {
       id: asString(raw?.id),
       name: asString(raw?.name),
+      entity_type: asString(raw?.entity_type) || "brand",
+      actor_kind: asString(raw?.actor_kind),
+      actor_role: asString(raw?.actor_role),
+      brand_group: asString(raw?.brand_group),
       brand_kind: asString(raw?.brand_kind) || "brand",
       brand_type: asString(raw?.brand_type),
       sector: asString(raw?.sector),
       status: asString(raw?.status),
       state: asString(raw?.state || "borderline"),
       verification: asString(raw?.verification),
+      verified_at: asString(raw?.verified_at),
       logo: asString(raw?.logo),
       popupdesc: asString(raw?.popupdesc),
       desc: asString(raw?.desc),
       aliases: uniq(raw?.aliases),
-      tags: uniq(raw?.tags)
+      tags: uniq(raw?.tags),
+      source_urls: uniq(raw?.source_urls)
     };
   }
 
@@ -59,12 +67,26 @@
     async init() {
       if (this.ready) return this;
 
-      const rawMaster = await fetchJson(BRANDS_MASTER_PATH);
-      const rawByPlace = await fetchJson(BRANDS_BY_PLACE_PATH);
+      const [rawMaster, rawByPlace, rawActorsByPlace] = await Promise.all([
+        fetchJson(BRANDS_MASTER_PATH),
+        fetchJson(BRANDS_BY_PLACE_PATH),
+        fetchJson(ACTORS_BY_PLACE_PATH)
+      ]);
 
-      this.all = ensureArray(rawMaster)
+      const normalizedMaster = ensureArray(rawMaster)
         .map(normalizeBrand)
-        .filter(b => b.id && b.name);
+        .filter(item => item.id && item.name);
+
+      const normalizedActors = Object.values(rawActorsByPlace || {})
+        .flatMap(ensureArray)
+        .map(normalizeBrand)
+        .filter(item => item.id && item.name);
+
+      const allById = new Map();
+      [...normalizedMaster, ...normalizedActors].forEach(item => {
+        if (!allById.has(item.id)) allById.set(item.id, item);
+      });
+      this.all = [...allById.values()];
 
       this.catalog = filterByState(this.all, "catalog");
       this.strong = filterByState(this.all, "strong");
@@ -79,26 +101,51 @@
         this.byId[brand.id] = brand;
       });
 
-      Object.entries(rawByPlace || {}).forEach(([placeId, brandIds]) => {
+      const addToPlace = (placeId, items) => {
         const pid = asString(placeId);
-        const ids = ensureArray(brandIds).map(asString).filter(Boolean);
+        if (!pid) return;
 
-        const catalogBrands = ids
-          .map(id => this.byId[id])
+        const existing = ensureArray(this.byPlace[pid]);
+        const seen = new Set(existing.map(item => asString(item?.id)).filter(Boolean));
+        const additions = ensureArray(items)
           .filter(Boolean)
-          .filter(brand => brand.state === "catalog");
+          .filter(item => item.state === "catalog")
+          .filter(item => {
+            if (!item.id || seen.has(item.id)) return false;
+            seen.add(item.id);
+            return true;
+          });
 
-        this.byPlace[pid] = catalogBrands;
+        this.byPlace[pid] = [...existing, ...additions];
 
-        catalogBrands.forEach(brand => {
-          if (!this.placesByBrand[brand.id]) this.placesByBrand[brand.id] = [];
-          this.placesByBrand[brand.id].push(pid);
+        additions.forEach(item => {
+          if (!this.placesByBrand[item.id]) this.placesByBrand[item.id] = [];
+          if (!this.placesByBrand[item.id].includes(pid)) {
+            this.placesByBrand[item.id].push(pid);
+          }
         });
+      };
+
+      Object.entries(rawByPlace || {}).forEach(([placeId, brandIds]) => {
+        const brands = ensureArray(brandIds)
+          .map(asString)
+          .filter(Boolean)
+          .map(id => this.byId[id])
+          .filter(Boolean);
+        addToPlace(placeId, brands);
+      });
+
+      Object.entries(rawActorsByPlace || {}).forEach(([placeId, actorItems]) => {
+        const actors = ensureArray(actorItems)
+          .map(item => this.byId[asString(item?.id)])
+          .filter(Boolean);
+        addToPlace(placeId, actors);
       });
 
       window.BRANDS_MASTER = this.all;
       window.BRANDS = this.catalog;
       window.BRANDS_BY_PLACE = this.byPlace;
+      window.ACTORS_BY_PLACE = rawActorsByPlace || {};
 
       this.ready = true;
       return this;
