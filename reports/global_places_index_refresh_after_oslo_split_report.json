@@ -1,0 +1,32 @@
+{
+  "status": "applied",
+  "reason": "Global places_index was stale after recent Norway history source changes",
+  "placesIndexChanged": true,
+  "sourcePlaceDataChanged": false,
+  "splitIndexesChanged": false,
+  "splitManifestsChanged": false,
+  "peopleDataChanged": false,
+  "quizDataChanged": false,
+  "civicationDataChanged": false,
+  "validation": {
+    "splitManifestSyncStatus": "passed",
+    "globalPlacesIndexSyncStatus": "passed",
+    "placesIndexCheckStatus": "failed_unrelated",
+    "peopleAuditStatus": "passed",
+    "invalidPlaceRefs": 0,
+    "peopleWithoutValidPrimaryAnchor": 0,
+    "coordinateIntakeStatus": "passed",
+    "toolsCheckStatus": "failed_unrelated",
+    "nextFailureStage": "places:coords:check"
+  },
+  "knownRemainingUnrelatedIssue": {
+    "coordinateParityDifferences": 8,
+    "scope": "non-Oslo Lisbon and Norway history lightweight split indexes"
+  },
+  "notes": [
+    "Global places_index sync passed after regeneration.",
+    "places:index:check and tools:check stopped at places:coords:check, not at global places_index sync.",
+    "First remaining parity mismatch: lisbon_aqueduto_das_aguas_livres in data/places/historie/europe/portugal/lisbon/places_lisbon_historie_index.json (missing source row; present in index).",
+    "No source place data, split indexes, split manifests, people data, quiz data, or Civication data were changed."
+  ]
+}
