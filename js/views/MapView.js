@@ -5,7 +5,7 @@
   "use strict";
 
   /** @typedef {import("../../schemas/place").Place} Place */
-  /** @typedef {{ showMap: () => void, show: () => void, openPlace: (placeId?: unknown) => boolean, openQuiz: (targetId?: unknown) => boolean, openDebate: (debateId?: unknown) => boolean }} MapViewApi */
+  /** @typedef {{ showMap: () => void, show: () => void, cancelPendingPlaceNavigation: () => void, openPlace: (placeId?: unknown) => boolean, openQuiz: (targetId?: unknown) => boolean, openDebate: (debateId?: unknown) => boolean }} MapViewApi */
 
   function getPlaceCard() {
     return document.getElementById("placeCard");
@@ -35,6 +35,27 @@
     window.bottomSheetController?.hide?.();
   }
 
+  // A pending navigation is deliberately kept here, beside the route view state.
+  // Nearby, search and #/place routes must all wait for the same map completion
+  // signal before they reveal a PlaceCard.
+  let pendingPlaceNavigation = null;
+  const PLACE_CENTER_TOLERANCE_DEGREES = 0.00015;
+
+  function cancelPendingPlaceNavigation() {
+    pendingPlaceNavigation = null;
+  }
+
+  /** @param {Place} place */
+  function isMapCenteredOnPlace(map, place) {
+    const center = map?.getCenter?.();
+    const centerLon = Number(center?.lng ?? center?.lon);
+    const centerLat = Number(center?.lat);
+    return Number.isFinite(centerLon)
+      && Number.isFinite(centerLat)
+      && Math.abs(centerLon - place.lon) <= PLACE_CENTER_TOLERANCE_DEGREES
+      && Math.abs(centerLat - place.lat) <= PLACE_CENTER_TOLERANCE_DEGREES;
+  }
+
   function showExploreBase() {
     document.body?.classList.remove("hg-view-profile", "hg-view-civication", "hg-view-quiz");
     document.body?.classList.add("hg-view-map");
@@ -59,10 +80,43 @@
       .find((p) => String(p?.id || "").trim() === id) || null;
   }
 
-  /** @param {Place | null | undefined} place */
-  function focusPlaceOnMap(place) {
+  /**
+   * Navigate to a place and open its card only when MapLibre reports that the
+   * movement is complete. A newer selection invalidates any older moveend
+   * callback, including one from an interrupted flyTo.
+   *
+   * @param {Place | null | undefined} place
+   * @returns {boolean}
+   */
+  function navigateToPlace(place) {
     const map = window.HGMap?.getMap?.() || window.MAP;
-    if (!map || !Number.isFinite(place?.lon) || !Number.isFinite(place?.lat)) return;
+    if (!map?.flyTo || !Number.isFinite(place?.lon) || !Number.isFinite(place?.lat)) return false;
+
+    hidePlaceCardForMap();
+
+    const pending = { place, id: String(place.id || "") };
+    pendingPlaceNavigation = pending;
+    const openWhenMapStops = () => {
+      if (pendingPlaceNavigation !== pending) return;
+
+      pendingPlaceNavigation = null;
+      if (!isMapCenteredOnPlace(map, place)) return;
+      void window.openPlaceCard?.(place);
+    };
+
+    // Register before flyTo so an already-near target cannot finish before the
+    // completion listener is ready. This is event-driven; no timeout guesses.
+    if (typeof map.once === "function") {
+      map.once("moveend", openWhenMapStops);
+    } else if (typeof map.on === "function") {
+      const openOnceWhenMapStops = () => {
+        map.off?.("moveend", openOnceWhenMapStops);
+        openWhenMapStops();
+      };
+      map.on("moveend", openOnceWhenMapStops);
+    } else {
+      return false;
+    }
 
     map.flyTo({
       center: [place.lon, place.lat],
@@ -70,6 +124,7 @@
       speed: 1.1,
       essential: true
     });
+    return true;
   }
 
   /** @type {MapViewApi} */
@@ -77,6 +132,7 @@
     showMap() {
       closeQuizModals();
       showExploreBase();
+      cancelPendingPlaceNavigation();
       hidePlaceCardForMap();
     },
 
@@ -85,6 +141,8 @@
       this.showMap();
     },
 
+    cancelPendingPlaceNavigation,
+
     openPlace(placeId) {
       closeQuizModals();
       showExploreBase();
@@ -92,9 +150,7 @@
       const place = findPlace(placeId);
       if (!place) return false;
 
-      focusPlaceOnMap(place);
-      void window.openPlaceCard?.(place);
-      return true;
+      return navigateToPlace(place);
     },
 
     openQuiz(targetId) {
@@ -105,8 +161,7 @@
 
       const place = findPlace(id);
       if (place) {
-        focusPlaceOnMap(place);
-        void window.openPlaceCard?.(place);
+        navigateToPlace(place);
       }
 
       document.body?.classList.add("hg-view-quiz");
@@ -142,4 +197,7 @@
   };
 
   window.HGMapView = MapView;
+  // Existing callers (search, nature and unlock toasts) use this central
+  // navigation entry point rather than controlling PlaceCard timing themselves.
+  window.flyToPlace = navigateToPlace;
 })();

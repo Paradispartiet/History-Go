@@ -168,6 +168,7 @@ declare global {
     HGMapView?: {
       showMap?: () => void;
       show?: () => void;
+      cancelPendingPlaceNavigation?: () => void;
       openPlace?: (placeId?: unknown) => boolean;
       openQuiz?: (targetId?: unknown) => boolean;
       openDebate?: (debateId?: unknown) => boolean;

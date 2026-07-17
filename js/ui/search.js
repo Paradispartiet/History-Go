@@ -233,12 +233,7 @@
     input?.blur?.();
     showSearchBox(false);
 
-    if (typeof window.flyToPlace === "function") {
-      window.flyToPlace(place);
-      return;
-    }
-
-    window.openPlaceCard?.(place);
+    window.flyToPlace?.(place);
   }
 
   function bindGlobalSearch() {
