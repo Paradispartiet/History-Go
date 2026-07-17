@@ -1,0 +1,79 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 tools:check
+> npm run typecheck:tools && npm run build:tools && npm run audit:places-split-manifest-sync && npm run places:index:check && npm run places:coords:quality && npm run places:coords:intake && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places && npm run audit:people-of-places && npm run audit:quiz-manifest:v2 && npm run audit:civication-place-mapping && npm run audit:civication-city-map-entries
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 typecheck:tools
+> tsc -p tsconfig.tools.json
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 audit:places-split-manifest-sync
+> npm run build:tools && node dist/tools/audit-places-split-manifest-sync.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "status": "passed",
+  "counts": {
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "movedPlacesStillActiveInOldCategory": 0
+  },
+  "auditReport": "reports/place-split-manifest-category-move-audit.json"
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:quality
+> npm run places:coords:gate
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:gate
+> npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Quality gate ok: 372 filer, 1092 steder, 358 varsel, 634 review-kandidatsignal(er) på 493 steder (se reports/place-coordinate-quality-gate.md).
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:intake
+> npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
