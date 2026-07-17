@@ -22,6 +22,17 @@ type PlaceRow = JsonObject & {
   hidden?: unknown;
   stub?: unknown;
   groundhopper?: unknown;
+  locatorType?: unknown;
+  sourceProvider?: unknown;
+  sourceObjectId?: unknown;
+  address?: unknown;
+  geocodeAccuracy?: unknown;
+  coordRole?: unknown;
+  coordType?: unknown;
+  coordStatus?: unknown;
+  coordSource?: unknown;
+  coordVerifiedAt?: unknown;
+  coordNote?: unknown;
   sourceFile?: unknown;
 };
 type PlaceExclusions = JsonObject & {
@@ -59,6 +70,12 @@ const LIGHT_FIELDS: LightField[] = [
   'hidden',
   'stub',
   'groundhopper',
+  'locatorType',
+  'sourceProvider',
+  'sourceObjectId',
+  'address',
+  'geocodeAccuracy',
+  'coordRole',
   'coordType',
   'coordStatus',
   'coordSource',
@@ -287,7 +304,7 @@ function compareEntries(expectedEntry: unknown, actualEntry: unknown, idx: numbe
       continue;
     }
 
-    if (expectedEntry[key] !== actualEntry[key]) {
+    if (JSON.stringify(expectedEntry[key]) !== JSON.stringify(actualEntry[key])) {
       diffs.push({
         idx,
         placeId,
