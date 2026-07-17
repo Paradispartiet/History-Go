@@ -1,26 +1,21 @@
 # People invalid place refs audit
 
-Generated: 2026-07-10T12:34:20.688Z
+Generated: 2026-07-17T20:50:59.486Z
 
 ## Sammendrag
-- People-filer lest: **232**
-- People lest: **733**
+- People-filer lest: **360**
+- People lest: **858**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
-- People uten gyldig sted: **5**
-- Duplikate interne place-referanser: **728**
+- People uten gyldig sted: **0**
+- Duplikate interne place-referanser: **858**
 
 ## Ugyldige refs gruppert per fil/person
 
 ## Unike ugyldige placeId-er og kandidatforslag
 
 ## People uten gyldig sted
-- data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json :: (missing-id) ((missing-name))
-- data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json :: (missing-id) ((missing-name))
-- data/people/sport/oslo/ullevaal_stadion/henning_berg.json :: (missing-id) ((missing-name))
-- data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json :: (missing-id) ((missing-name))
-- data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json :: (missing-id) ((missing-name))
 
 ## Duplikate place-referanser inne i people
 - data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
@@ -67,6 +62,11 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/popkultur/oslo/edderkoppen_scene/ole_paus.json :: ole_paus (Ole Paus) -> edderkoppen_scene x2
 - data/people/popkultur/oslo/edderkoppen_scene/rolv_wesenlund.json :: rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene x2
 - data/people/popkultur/oslo/edderkoppen_scene/harald_heide_steen_jr.json :: harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene x2
+- data/people/popkultur/oslo/chat_noir/bokken_lasson.json :: bokken_lasson (Bokken Lasson) -> chat_noir x2
+- data/people/popkultur/oslo/chat_noir/vilhelm_dybwad.json :: vilhelm_dybwad (Vilhelm Dybwad) -> chat_noir x2
+- data/people/popkultur/oslo/chat_noir/victor_bernau.json :: victor_bernau (Victor Bernau) -> chat_noir x2
+- data/people/popkultur/oslo/chat_noir/jens_book_jenssen.json :: jens_book_jenssen (Jens Book-Jenssen) -> chat_noir x2
+- data/people/popkultur/oslo/chat_noir/dag_froland.json :: dag_froland (Dag Frøland) -> chat_noir x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard x2
@@ -469,12 +469,12 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: antonio_de_oliveira_salazar (António de Oliveira Salazar) -> lisbon_assembleia_da_republica x2
 - data/people/sport/oslo/people_sport_oslo.json :: ada_hegerberg (Ada Hegerberg) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: erling_haaland (Erling Braut Haaland) -> ullevaal_stadion x2
-- data/people/sport/oslo/people_sport_oslo.json :: ronny_deila (Ronny Deila) -> valle_hovin_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: ronny_deila (Ronny Deila) -> intility_arena x2
 - data/people/sport/oslo/people_sport_oslo.json :: marit_bjorgen (Marit Bjørgen) -> holmenkollen_nasjonalanlegg x2
 - data/people/sport/oslo/people_sport_oslo.json :: therese_johaug (Therese Johaug) -> holmenkollen_nasjonalanlegg x2
 - data/people/sport/oslo/people_sport_oslo.json :: grete_waitz (Grete Waitz) -> bislett_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: mats_zuccarello (Mats Zuccarello) -> vulkan_industriomrade x2
-- data/people/sport/oslo/people_sport_oslo.json :: klanen (Klanen (VIF)) -> valle_hovin_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: klanen (Klanen (VIF)) -> intility_arena x2
 - data/people/sport/oslo/people_sport_oslo.json :: sonja_henie (Sonja Henie) -> frogner_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: oscar_mathisen (Oscar Mathisen) -> frogner_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: hjalmar_andersen (Hjalmar Andersen) -> frogner_stadion x2
@@ -503,6 +503,91 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/sport/oslo/people_sport_oslo.json :: petter_thoresen (Petter Thoresen) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: mathias_trygg (Mathias Trygg) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: einar_bruno_larsen (Einar Bruno Larsen) -> jordal_amfi x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/harald_hennum.json :: harald_hennum (Harald Hennum) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/hans_nordahl.json :: hans_nordahl (Hans Nordahl) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/finn_gundersen.json :: finn_gundersen (Finn Gundersen) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/kjell_kaspersen.json :: kjell_kaspersen (Kjell Kaspersen) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/jan_jonas_gulbrandsen.json :: jan_jonas_gulbrandsen (Jan «Jonas» Gulbrandsen) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/tom_nordlie.json :: tom_nordlie (Tom Nordlie) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/vilde_mollestad_rislaa.json :: vilde_mollestad_rislaa (Vilde Mollestad Rislaa) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/arild_stavrum.json :: arild_stavrum (Arild Stavrum) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/mustafa_abdellaoue.json :: mustafa_abdellaoue (Mustafa Abdellaoue) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/daniel_fredheim_holm.json :: daniel_fredheim_holm (Daniel Fredheim Holm) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/trygve_borno.json :: trygve_borno (Trygve Bornø) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/jan_birkelund.json :: jan_birkelund (Jan Birkelund) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/frank_olafsen.json :: frank_olafsen (Frank Olafsen) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/omar_elabdellaoui.json :: omar_elabdellaoui (Omar Elabdellaoui) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/dagfinn_enerly.json :: dagfinn_enerly (Dagfinn Enerly) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/tor_egil_johansen.json :: tor_egil_johansen (Tor Egil «Toro» Johansen) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/finn_thorsen.json :: finn_thorsen (Finn Thorsen) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/pal_saethrang.json :: pal_saethrang (Pål Sæthrang) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/stein_thunberg.json :: stein_thunberg (Stein Thunberg) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/nordre_aasen_idrettspark/mike_kjolo.json :: mike_kjolo (Mike Kjølø) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/intility_arena/valerenga_fotball.json :: valerenga_fotball (Vålerenga Fotball) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/stephanie_verdoia.json :: stephanie_verdoia (Stephanie Verdoia) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/christian_grindheim.json :: christian_grindheim (Christian Grindheim) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/aron_donnum.json :: aron_donnum (Aron Dønnum) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/osame_sahraoui.json :: osame_sahraoui (Osame Sahraoui) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/sherida_spitse.json :: sherida_spitse (Sherida Spitse) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/elise_thorsnes.json :: elise_thorsnes (Elise Thorsnes) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/henrik_bjordal.json :: henrik_bjordal (Henrik Bjørdal) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/dag_eilev_fagermo.json :: dag_eilev_fagermo (Dag-Eilev Fagermo) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/nils_lexerod.json :: nils_lexerod (Nils Lexerød) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/ajara_nchout.json :: ajara_nchout (Ajara Nchout) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/janni_thomsen.json :: janni_thomsen (Janni Thomsen) -> intility_arena x2
+- data/people/sport/oslo/intility_arena/odin_thiago_holm.json :: odin_thiago_holm (Odin Thiago Holm) -> intility_arena x2
+- data/people/sport/oslo/jordal_amfi/valerenga_ishockey.json :: valerenga_ishockey (Vålerenga Ishockey) -> jordal_amfi x2
+- data/people/sport/oslo/jordal_amfi/steinar_bjolbakk.json :: steinar_bjolbakk (Steinar Bjølbakk) -> jordal_amfi x2
+- data/people/sport/oslo/jordal_amfi/jim_marthinsen.json :: jim_marthinsen (Jim Marthinsen) -> jordal_amfi x2
+- data/people/sport/oslo/jordal_amfi/geir_myhre.json :: geir_myhre (Geir Myhre) -> jordal_amfi x2
+- data/people/sport/oslo/jordal_amfi/arne_billkvam.json :: arne_billkvam (Arne Billkvam) -> jordal_amfi x2
+- data/people/sport/oslo/ullevaal_stadion/martin_odegaard.json :: martin_odegaard (Martin Ødegaard) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/john_arne_riise.json :: john_arne_riise (John Arne Riise) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/henning_berg.json :: henning_berg (Henning Berg) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/rune_bratseth.json :: rune_bratseth (Rune Bratseth) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/erik_thorstvedt.json :: erik_thorstvedt (Erik Thorstvedt) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/tom_lund.json :: tom_lund (Tom Lund) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/per_bredesen.json :: per_bredesen (Per Bredesen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/hallvar_thoresen.json :: hallvar_thoresen (Hallvar Thoresen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/kjetil_rekdal.json :: kjetil_rekdal (Kjetil Rekdal) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/stig_inge_bjornebye.json :: stig_inge_bjornebye (Stig Inge Bjørnebye) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/einar_gundersen.json :: einar_gundersen (Einar «Jeja» Gundersen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/gunnar_thoresen.json :: gunnar_thoresen (Gunnar Thoresen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/roald_jensen.json :: roald_jensen (Roald «Kniksen» Jensen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/harald_berg.json :: harald_berg (Harald «Dutte» Berg) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/odd_iversen.json :: odd_iversen (Odd «Ivers» Iversen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/hege_riise.json :: hege_riise (Hege Riise) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/linda_medalen.json :: linda_medalen (Linda Medalen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/marianne_pettersen.json :: marianne_pettersen (Marianne Pettersen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/solveig_gulbrandsen.json :: solveig_gulbrandsen (Solveig Gulbrandsen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/caroline_graham_hansen.json :: caroline_graham_hansen (Caroline Graham Hansen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/egil_olsen.json :: egil_olsen (Egil «Drillo» Olsen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/age_hareide.json :: age_hareide (Åge Hareide) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/per_mathias_hogmo.json :: per_mathias_hogmo (Per-Mathias Høgmo) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/stale_solbakken.json :: stale_solbakken (Ståle Solbakken) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/nils_johan_semb.json :: nils_johan_semb (Nils Johan Semb) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/alexander_sorloth.json :: alexander_sorloth (Alexander Sørloth) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/joshua_king.json :: joshua_king (Joshua King) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/morten_gamst_pedersen.json :: morten_gamst_pedersen (Morten Gamst Pedersen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/brede_hangeland.json :: brede_hangeland (Brede Hangeland) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/mohammed_abdellaoue.json :: mohammed_abdellaoue (Mohammed «Moa» Abdellaoue) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/bjorge_lillelien.json :: bjorge_lillelien (Bjørge Lillelien) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/arne_scheie.json :: arne_scheie (Arne Scheie) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/per_ravn_omdal.json :: per_ravn_omdal (Per Ravn Omdal) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/karen_espelund.json :: karen_espelund (Karen Espelund) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/sondre_kafjord.json :: sondre_kafjord (Sondre Kåfjord) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/yngve_hallen.json :: yngve_hallen (Yngve Hallén) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/lise_klaveness.json :: lise_klaveness (Lise Klaveness) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/reidar_kvammen.json :: reidar_kvammen (Reidar Kvammen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/alf_martinsen.json :: alf_martinsen (Alf «Kaka» Martinsen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/arne_brustad.json :: arne_brustad (Arne Brustad) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/nils_eriksen.json :: nils_eriksen (Nils «Påsan» Eriksen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/asbjorn_halvorsen.json :: asbjorn_halvorsen (Asbjørn «Assi» Halvorsen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/trude_stendal.json :: trude_stendal (Trude Stendal) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/heidi_store.json :: heidi_store (Heidi Støre) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/gunn_nyborg.json :: gunn_nyborg (Gunn Nyborg) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/kari_nielsen.json :: kari_nielsen (Kari Nielsen) -> ullevaal_stadion x2
+- data/people/sport/oslo/ullevaal_stadion/janne_andreassen.json :: janne_andreassen (Janne Andreassen) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: arne_haukvik (Arne Haukvik) -> bislett_stadion x2
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: martinus_lordahl (Martinus Lørdahl) -> bislett_stadion x2
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch1.json :: knut_johannesen (Knut Johannesen) -> bislett_stadion x2
@@ -543,6 +628,35 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: per_ivar_moe (Per Ivar Moe) -> bislett_stadion x2
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: magne_thomassen (Magne Thomassen) -> bislett_stadion x2
 - data/people/sport/oslo/people_sport_oslo_bislett_stadion_batch8.json :: roar_gronvold (Roar Grønvold) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/leif_eriksen.json :: leif_eriksen (Leif Eriksen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/pal_jacobsen.json :: pal_jacobsen (Pål Jacobsen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/vidar_davidsen.json :: vidar_davidsen (Vidar Davidsen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/egil_flemming_johansen.json :: egil_flemming_johansen (Egil «Snapper’n» Johansen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/per_edmund_mordt.json :: per_edmund_mordt (Per Edmund Mordt) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/tom_rusz_jacobsen.json :: tom_rusz_jacobsen (Tom Rüsz Jacobsen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/tom_h_jacobsen.json :: tom_h_jacobsen (Tom H. Jacobsen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/arild_mathisen.json :: arild_mathisen (Arild Mathisen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/jorn_andersen.json :: jorn_andersen (Jørn Andersen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/eivind_arnevag.json :: eivind_arnevag (Eivind Arnevåg) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/erik_foss.json :: erik_foss (Erik Foss) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/yngve_andersen.json :: yngve_andersen (Yngve Andersen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/stein_gran.json :: stein_gran (Stein Gran) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/anton_ploderer.json :: anton_ploderer (Anton Ploderer) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/helmuth_steffens.json :: helmuth_steffens (Helmuth Steffens) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/gunder_bengtsson.json :: gunder_bengtsson (Gunder Bengtsson) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/morten_haugen.json :: morten_haugen (Morten Haugen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/lasse_eriksen.json :: lasse_eriksen (Lasse Eriksen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/paal_fredheim.json :: paal_fredheim (Paal Fredheim) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/knut_arild_loberg.json :: knut_arild_loberg (Knut Arild Løberg) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/trond_sollied.json :: trond_sollied (Trond Sollied) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/henning_bjarnoy.json :: henning_bjarnoy (Henning Bjarnøy) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/tor_brevik.json :: tor_brevik (Tor Brevik) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/jo_bergsvand.json :: jo_bergsvand (Jo Bergsvand) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/olle_nordin.json :: olle_nordin (Olle Nordin) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/roy_helge_olsen.json :: roy_helge_olsen (Roy Helge Olsen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/rolf_aaberg.json :: rolf_aaberg (Rolf Aaberg) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/lars_bohinen.json :: lars_bohinen (Lars Bohinen) -> bislett_stadion x2
+- data/people/sport/oslo/bislett_stadion/ronny_johnsen.json :: ronny_johnsen (Ronny Johnsen) -> bislett_stadion x2
 - data/people/sport/oslo/people_sport_oslo_urban_movement_batch1.json :: verdensparken_parkour_miljoet (Verdensparken parkour-miljøet) -> verdensparken_parkour x2
 - data/people/sport/oslo/people_sport_oslo_urban_movement_batch1.json :: furuset_aktivitetspark_miljoet (Furuset Aktivitetspark-miljøet) -> furuset_aktivitetspark x2
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: eusebio (Eusébio) -> lisbon_estadio_da_luz x2
@@ -574,7 +688,6 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: gamlebyen_sport_og_fritid_miljoet (Gamlebyen Sport og Fritid-miljøet) -> gamlebyen_sport_og_fritid x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kafe_haerverk_miljoet (Kafé Hærverk-miljøet) -> kafe_haerverk x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: vaterland_bar_scene_miljoet (Vaterland Bar & Scene-miljøet) -> vaterland_bar_scene x2
-- data/people/subkultur/oslo/people_subkultur_oslo.json :: bla_miljoet (Blå-miljøet) -> bla x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: brenneriveien_ingens_gate_miljoet (Brenneriveien / Ingens gate-miljøet) -> brenneriveien_ingens_gate x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: xray_ungdomskulturhus_miljoet (X-Ray Ungdomskulturhus-miljøet) -> xray_ungdomskulturhus x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: helvete_neseblod_miljoet (Helvete / Neseblod-miljøet) -> helvete_neseblod_records x2
@@ -588,9 +701,7 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json :: oslo_skatehall_miljoet (Oslo Skatehall-miljøet) -> oslo_skatehall x2
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: sub_scene_miljoet (Sub Scene-miljøet) -> sub_scene x2
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: mir_grunerlokka_lufthavn_miljoet (MIR / Grünerløkka Lufthavn-miljøet) -> mir_grunerlokka_lufthavn x2
-- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: hausmania_miljoet_concrete_anchor (Hausmania-miljøet) -> hausmania x2
 - data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: blitzhuset_miljoet (Blitzhuset-miljøet) -> blitzhuset x2
-- data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: xray_ungdomskulturhus_miljoet_concrete_anchor (X-Ray Ungdomskulturhus-miljøet) -> xray_ungdomskulturhus x2
 - data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json :: torggata_blad_miljoet (Torggata Blad-miljøet) -> torggata_blad x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
@@ -690,7 +801,7 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/musikk/oslo/people_musikk_oslo.json :: revolver_oslo_miljoet (Revolver-miljøet) -> revolver_oslo x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: the_villa_miljoet (The Villa-miljøet) -> the_villa x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: jaeger_oslo_miljoet (Jæger-miljøet) -> jaeger_oslo x2
-- data/people/musikk/oslo/people_musikk_oslo.json :: bla_miljoet_concrete_anchor (Blå-miljøet) -> bla x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: bla_miljoet (Blå-miljøet) -> bla x2
 - data/people/musikk/oslo/det_norske_teatret/hulda_garborg.json :: hulda_garborg (Hulda Garborg) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/rasmus_rasmussen.json :: rasmus_rasmussen (Rasmus Rasmussen) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/edvard_drablos.json :: edvard_drablos (Edvard Drabløs) -> det_norske_teatret x2
@@ -741,6 +852,10 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/musikk/oslo/det_norske_teatret/sossen_krohg_det_norske_teatret.json :: sossen_krohg_det_norske_teatret (Sossen Krohg) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/gisle_straume.json :: gisle_straume (Gisle Straume) -> det_norske_teatret x2
 - data/people/musikk/oslo/det_norske_teatret/alfred_maurstad_det_norske_teatret.json :: alfred_maurstad_det_norske_teatret (Alfred Maurstad) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/pal_sverre_hagen.json :: pal_sverre_hagen (Pål Sverre Hagen) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/renate_reinsve.json :: renate_reinsve (Renate Reinsve) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/ellen_dorrit_petersen.json :: ellen_dorrit_petersen (Ellen Dorrit Petersen) -> det_norske_teatret x2
+- data/people/musikk/oslo/det_norske_teatret/silje_storstein.json :: silje_storstein (Silje Storstein) -> det_norske_teatret x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_severa (Maria Severa) -> lisbon_mouraria_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2
@@ -751,5 +866,15 @@ Generated: 2026-07-10T12:34:20.688Z
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: ana_moura (Ana Moura) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: antonio_zambujo (António Zambujo) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: misia (Mísia) -> lisbon_museu_do_fado x2
+- data/people/politikk/akershus/eidsvollsbygningen/severin_lovenskiold.json :: severin_lovenskiold (Severin Løvenskiold) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/jacob_aall.json :: jacob_aall (Jacob Aall) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/peter_motzfeldt.json :: peter_motzfeldt (Peter Motzfeldt) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/herman_wedel_jarlsberg.json :: herman_wedel_jarlsberg (Herman Wedel Jarlsberg) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/diderik_hegermann.json :: diderik_hegermann (Diderik Hegermann) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/thomas_konow.json :: thomas_konow (Thomas Konow) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/niels_aall.json :: niels_aall (Niels Aall) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/john_collett.json :: john_collett (John Collett) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/lauritz_weidemann.json :: lauritz_weidemann (Lauritz Weidemann) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/anders_lysgaard.json :: anders_lysgaard (Anders Lysgaard) -> eidsvollsbygningen x2
 
 ## Anbefalt neste ryddebatch
