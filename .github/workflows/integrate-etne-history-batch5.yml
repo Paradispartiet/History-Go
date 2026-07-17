@@ -1,0 +1,101 @@
+name: Integrate Etne history batch 5
+
+on:
+  push:
+    branches:
+      - agent/etne-historie-batch-5
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: ${{ !contains(github.event.head_commit.message, '[skip etne integration]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-historie-batch-5
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          set -o pipefail
+          mkdir -p reports/etne-historie-batch-5-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-historie-batch-5-integration/npm-install.txt
+      - name: Register source files
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-5-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const wanted = [
+            'places/historie/vestland/etne/varhaug_nervik.json',
+            'places/historie/vestland/etne/nesjarhaugen_byrkjenes.json',
+            'places/historie/vestland/etne/gjerdesvagen_jernvinne.json',
+            'places/historie/vestland/etne/grindheim_jernvinne.json',
+            'places/historie/vestland/etne/keisarhaugen_frette.json'
+          ];
+          for (const entry of wanted) if (!manifest.files.includes(entry)) manifest.files.push(entry);
+          for (const entry of wanted) {
+            const count = manifest.files.filter((x) => x === entry).length;
+            if (count !== 1) throw new Error(`${entry}: expected exactly once, got ${count}`);
+            console.log(`PASS manifest ${entry}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest) + '\n');
+          NODE
+      - name: Representative-anchor audit
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-5-integration/anchor-audit.txt
+          const fs = require('fs');
+          const dir = 'data/places/historie/vestland/etne';
+          const expected = {
+            varhaug_nervik: { exact: true, minR: 0, maxR: 250 },
+            nesjarhaugen_byrkjenes: { exact: false, minR: 300, maxR: 400 },
+            gjerdesvagen_jernvinne: { exact: false, minR: 300, maxR: 450 },
+            grindheim_jernvinne: { exact: false, minR: 300, maxR: 400 },
+            keisarhaugen_frette: { exact: false, minR: 300, maxR: 450 }
+          };
+          for (const [id, rule] of Object.entries(expected)) {
+            const p = JSON.parse(fs.readFileSync(`${dir}/${id}.json`, 'utf8'));
+            if (!Number.isFinite(p.lat) || !Number.isFinite(p.lon)) throw new Error(`${id}: invalid coordinates`);
+            if (p.r < rule.minR || p.r > rule.maxR) throw new Error(`${id}: radius ${p.r} outside expected range`);
+            const notes = String(p.quiz_profile?.notes || '').toLowerCase();
+            if (!rule.exact && !notes.includes('representativ')) throw new Error(`${id}: representative anchor not disclosed in notes`);
+            if (rule.exact && Math.abs(p.lat - 59.67001) > 0.00001) throw new Error('Varhaug exact topographic anchor changed');
+            console.log(`PASS ${id}: ${rule.exact ? 'concrete topographic' : 'explicit representative'} anchor, r=${p.r}`);
+          }
+          NODE
+      - name: Build and validate
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-historie-batch-5-integration/check-places.txt
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-historie-batch-5-integration/split-manifest-sync.txt
+          npm run places:coords:quality 2>&1 | tee reports/etne-historie-batch-5-integration/coordinate-quality.txt
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-5-integration/targeted-validation.txt
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const ids = ['varhaug_nervik','nesjarhaugen_byrkjenes','gjerdesvagen_jernvinne','grindheim_jernvinne','keisarhaugen_frette'];
+          for (const id of ids) {
+            const count = index.filter((x) => x.id === id).length;
+            if (count !== 1) throw new Error(`${id}: expected one runtime row, got ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const seen = new Set(), dup = new Set();
+          for (const row of index) { if (seen.has(row.id)) dup.add(row.id); seen.add(row.id); }
+          if (dup.size) throw new Error(`duplicate active IDs: ${[...dup].join(', ')}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+          git diff --check 2>&1 | tee reports/etne-historie-batch-5-integration/git-diff-check.txt
+      - name: Commit and remove workflow
+        run: |
+          rm .github/workflows/integrate-etne-history-batch5.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/manifest.json data/places/places_index.json reports/etne-historie-batch-5-integration .github/workflows/integrate-etne-history-batch5.yml
+          git commit -m 'Integrate Etne history batch 5 [skip etne integration]'
+          git push origin HEAD:agent/etne-historie-batch-5
