@@ -739,18 +739,3 @@ window.getNaturePlaces = async function (natureId) {
   out.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
   return out;
 };
-
-window.flyToPlace = function (place) {
-  if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) return false;
-  const map = window.HGMap?.getMap?.() || window.MAP;
-  if (map) {
-    map.flyTo({
-      center: [place.lon, place.lat],
-      zoom: Math.max(map.getZoom?.() || 13, 16),
-      speed: 1.1,
-      essential: true
-    });
-  }
-  setTimeout(() => { window.openPlaceCard?.(place); }, 820);
-  return true;
-};

@@ -358,7 +358,12 @@ async function boot() {
 
   HGMap.setOnPlaceClick((id) => {
     const p = window.PLACES.find((x) => x.id === id);
-    if (p) openPlaceCard(p);
+    if (p) {
+      // Marker clicks open normally, but must invalidate a card that was still
+      // waiting for a previous Nearby/search map animation to finish.
+      window.HGMapView?.cancelPendingPlaceNavigation?.();
+      openPlaceCard(p);
+    }
   });
 
   HGMap.refreshMarkers();
