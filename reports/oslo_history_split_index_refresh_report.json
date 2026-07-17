@@ -1,0 +1,42 @@
+{
+  "status": "applied",
+  "cause": "Oslo history lightweight split indexes were stale relative to current split-manifest child sources",
+  "indexesChanged": [
+    "data/places/historie/oslo/places_historie_index.json",
+    "data/places/historie/oslo/places_historie_added_batch_01_index.json"
+  ],
+  "sourcePlaceDataChanged": false,
+  "aggregateFilesChanged": false,
+  "splitChildrenChanged": false,
+  "splitManifestsChanged": false,
+  "peopleDataChanged": false,
+  "quizDataChanged": false,
+  "civicationDataChanged": false,
+  "before": {
+    "coordinateParityDifferences": 21
+  },
+  "after": {
+    "coordinateParityDifferences": 8,
+    "osloHistoryCoordinateParityDifferences": 0,
+    "placesHistorieIndexRows": 12,
+    "placesHistorieAddedBatch01IndexRows": 6
+  },
+  "validation": {
+    "placesCoordsCheckStatus": "failed_unrelated",
+    "placesIndexCheckStatus": "failed_unrelated",
+    "splitManifestSyncStatus": "passed",
+    "peopleAuditStatus": "passed",
+    "invalidPlaceRefs": 0,
+    "peopleWithoutValidPrimaryAnchor": 0,
+    "coordinateIntakeStatus": "passed",
+    "toolsCheckStatus": "failed_unrelated",
+    "nextFailureStage": "places:index:check -> global places_index sync",
+    "unrelatedFailures": [
+      "places:coords:check now reports 8 non-Oslo stale split-index rows in Lisbon and Norway history indexes",
+      "places:index:check/tools:check stop at global places_index sync around data/places/historie/norge/places_historie_norge_for_1500_batch2 rows beginning at hjorungavag/gulatinget_flolid"
+    ]
+  },
+  "notes": [
+    "Scope was limited to the two Oslo history lightweight split indexes requested."
+  ]
+}

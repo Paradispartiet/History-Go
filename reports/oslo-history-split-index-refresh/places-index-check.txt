@@ -1,0 +1,73 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index sync check failed.
+Showing first 20 difference(s):
+- index=632 placeId=hjorungavag type=id_mismatch field=id
+  expected: "hjorungavag"
+  actual:   "gulatinget_flolid"
+- index=632 placeId=hjorungavag type=value_mismatch field=id
+  expected: "hjorungavag"
+  actual:   "gulatinget_flolid"
+- index=632 placeId=hjorungavag type=value_mismatch field=name
+  expected: "Hjørungavåg"
+  actual:   "Gulatinget på Flolid"
+- index=632 placeId=hjorungavag type=value_mismatch field=lat
+  expected: 62.3426
+  actual:   60.96923
+- index=632 placeId=hjorungavag type=value_mismatch field=lon
+  expected: 6.0725
+  actual:   5.12364
+- index=632 placeId=hjorungavag type=value_mismatch field=r
+  expected: 420
+  actual:   220
+- index=632 placeId=hjorungavag type=value_mismatch field=year
+  expected: 986
+  actual:   930
+- index=632 placeId=hjorungavag type=value_mismatch field=desc
+  expected: "Kystlandskap på Sunnmøre knyttet til slagtradisjonen ved Hjørungavåg og ladejarlene."
+  actual:   "Tusenårssted og formidlingspunkt for Gulatinget, et av de viktigste lov- og tingstedene i norsk middelalderhistorie."
+- index=632 placeId=hjorungavag type=value_mismatch field=coordStatus
+  expected: "verified_area"
+  actual:   "verified_formidlingspunkt"
+- index=632 placeId=hjorungavag type=value_mismatch field=coordSource
+  expected: "Hjørungavåg formidlingsområde"
+  actual:   "Gulatinget / Flolid"
+- index=632 placeId=hjorungavag type=value_mismatch field=coordNote
+  expected: "Koordinat satt i Hjørungavåg-området som formidlingspunkt for slagtradisjonen."
+  actual:   "Koordinat satt til tusenårsstedet på Flolid, ikke nødvendigvis nøyaktig middelaldersk tingplass."
+- index=632 placeId=hjorungavag type=value_mismatch field=sourceFile
+  expected: "places/historie/norge/places_historie_norge_for_1500_batch2/hjorungavag.json"
+  actual:   "places/historie/norge/places_historie_norge_for_1500_batch2/gulatinget_flolid.json"
+- index=633 placeId=rimol_melhus type=id_mismatch field=id
+  expected: "rimol_melhus"
+  actual:   "hjorungavag"
+- index=633 placeId=rimol_melhus type=value_mismatch field=id
+  expected: "rimol_melhus"
+  actual:   "hjorungavag"
+- index=633 placeId=rimol_melhus type=value_mismatch field=name
+  expected: "Rimol i Melhus"
+  actual:   "Hjørungavåg"
+- index=633 placeId=rimol_melhus type=value_mismatch field=lat
+  expected: 63.2869
+  actual:   62.3426
+- index=633 placeId=rimol_melhus type=value_mismatch field=lon
+  expected: 10.2707
+  actual:   6.0725
+- index=633 placeId=rimol_melhus type=value_mismatch field=r
+  expected: 200
+  actual:   420
+- index=633 placeId=rimol_melhus type=value_mismatch field=year
+  expected: 995
+  actual:   986
+- index=633 placeId=rimol_melhus type=value_mismatch field=desc
+  expected: "Gårds- og sagasted i Melhus knyttet til Håkon jarls fall og fortellingen om Kark."
+  actual:   "Kystlandskap på Sunnmøre knyttet til slagtradisjonen ved Hjørungavåg og ladejarlene."
