@@ -11,6 +11,12 @@ const COORD_FIELDS = [
   'lat',
   'lon',
   'r',
+  'locatorType',
+  'sourceProvider',
+  'sourceObjectId',
+  'address',
+  'geocodeAccuracy',
+  'coordRole',
   'coordType',
   'coordStatus',
   'coordSource',
@@ -178,7 +184,7 @@ function applyCoordinateOverrides(sourceMap) {
 }
 
 function equivalentCoordinateValue(sourceValue, indexValue) {
-  if (sourceValue === indexValue) return true;
+  if (JSON.stringify(sourceValue) === JSON.stringify(indexValue)) return true;
   return (sourceValue === undefined && indexValue === null) || (sourceValue === null && indexValue === undefined);
 }
 
