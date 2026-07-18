@@ -16,9 +16,19 @@
     };
 
     if (typeof global.requestAnimationFrame === "function") {
-      global.requestAnimationFrame(restore);
+      // V2 decorates the freshly rendered Area content on the next animation frame.
+      // Restore one frame after that so the newly inserted map/progress/highlight
+      // sections do not shift the user's reading position.
+      global.requestAnimationFrame(() => global.requestAnimationFrame(restore));
     } else {
       global.setTimeout?.(restore, 0);
     }
   }, true);
+
+  if (!global.HGAreaOverviewV2 && !document.querySelector('script[src="js/ui/area-overview-v2.js"]')) {
+    const script = document.createElement("script");
+    script.src = "js/ui/area-overview-v2.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
 })(window);
