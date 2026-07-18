@@ -16,9 +16,9 @@ const placePath = 'data/places/sport/vestland/etne/etne_pumptrack.json';
 const place = readJson(placePath)[0];
 const peopleManifest = readJson('data/people/manifest.json');
 const mayorPath = 'people/politikk/vestland/etne/mette_heidi_ekrheim_bergsvaag.json';
-const builderPath = 'people/sport/vestland/etne/dzintrs_vitols.json';
+const builderPath = 'people/sport/vestland/etne/people_etne_pumptrack_batch1.json';
 const mayor = readJson(`data/${mayorPath}`)[0];
-const builder = readJson(`data/${builderPath}`)[0];
+const builder = readJson(`data/${builderPath}`).find((person) => person.id === 'dzintrs_vitols');
 const relations = readJson('data/relations.json');
 const mayorRelation = relations.find((row) => row.id === 'rel_mette_heidi_ekrheim_bergsvaag_etne_pumptrack');
 const builderRelation = relations.find((row) => row.id === 'rel_dzintrs_vitols_etne_pumptrack');
@@ -40,8 +40,9 @@ for (const forbidden of ['rounds', 'rundinger', 'routes', 'tasks_profile', 'play
 }
 
 assert(peopleManifest.files.includes(mayorPath), 'Ordføraren skal vere manifestlasta');
-assert(peopleManifest.files.includes(builderPath), 'BMX-utøvaren og medbyggjaren skal vere manifestlasta');
+assert(peopleManifest.files.includes(builderPath), 'Det eksisterande Dzintrs Vitols-kortet skal vere manifestlasta');
 for (const person of [mayor, builder]) {
+  assert(person, 'Begge people-ankera skal finnast');
   assert.strictEqual(person.placeId, place.id);
   assert(person.places.includes(place.id));
   assert(Array.isArray(person.source_urls) && person.source_urls.length >= 1);
