@@ -29,3 +29,7 @@ Coordinate reused from the saved Geonorge pass in batch 1:
 ## Representation rule
 
 This batch adds buildings that are individually legible physical heritage sites. It does not create a generic `Kvadraturen` duplicate and does not split same-address sub-buildings into overlapping map points when a combined cultural-property record is more precise for runtime navigation.
+
+## Runtime integration
+
+The dedicated batch source is registered through the branch integration workflow, which rebuilds `data/places/places_index.json` and saves index, coordinate, emne and place-health validation before the temporary workflow is removed.
