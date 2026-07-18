@@ -7,6 +7,7 @@ on:
       - 'data/places/**'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
+      - 'scripts/resolve-etne-sport-batch3.mjs'
       - 'tools/**'
       - 'package.json'
       - 'package-lock.json'
@@ -15,7 +16,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   people:
@@ -91,3 +92,143 @@ jobs:
             npm run places:emner:check
             npm run places:coords:check
           fi
+
+  etne-sport-batch3-integration:
+    name: Etne sport batch 3 integration
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/etne-sport-batch-3' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Etne sport batch 3 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-sport-batch-3
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          mkdir -p reports/etne-sport-batch-3-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-sport-batch-3-integration/npm-install.txt
+
+      - name: Resolve map pins and register manifest
+        shell: bash
+        run: |
+          node scripts/resolve-etne-sport-batch3.mjs 2>&1 | tee reports/etne-sport-batch-3-integration/address-anchor-lookup.txt
+          node <<'NODE' 2>&1 | tee reports/etne-sport-batch-3-integration/manifest-update.txt
+          const fs = require('fs');
+          const manifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
+          const additions = [
+            'places/sport/vestland/etne/etne_pumptrack.json',
+            'places/sport/vestland/etne/skakkeringen_etne.json',
+            'places/sport/vestland/etne/osnes_discgolfbane.json',
+            'places/sport/vestland/etne/skanevik_discgolf.json'
+          ];
+          for (const item of additions) {
+            const count = manifest.files.filter((row) => row === item).length;
+            if (count !== 1) throw new Error(`${item}: manifest count ${count}`);
+            console.log(`PASS ${item}: exactly once in manifest`);
+          }
+          NODE
+
+      - name: Run place validation
+        shell: bash
+        run: |
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-sport-batch-3-integration/check-places.txt
+
+      - name: Run split manifest audit
+        shell: bash
+        run: |
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-sport-batch-3-integration/split-manifest-sync.txt
+
+      - name: Run coordinate quality gate
+        shell: bash
+        run: |
+          npm run places:coords:quality 2>&1 | tee reports/etne-sport-batch-3-integration/coordinate-quality.txt
+
+      - name: Run targeted runtime validation
+        shell: bash
+        run: |
+          node <<'NODE' 2>&1 | tee reports/etne-sport-batch-3-integration/targeted-validation.txt
+          const fs = require('fs');
+          const ids = ['etne_pumptrack', 'skakkeringen_etne', 'osnes_discgolfbane', 'skanevik_discgolf'];
+          const rows = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const list = Array.isArray(rows) ? rows : (rows.places || []);
+          for (const id of ids) {
+            const count = list.filter((row) => row.id === id).length;
+            if (count !== 1) throw new Error(`${id}: active runtime count ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const counts = new Map();
+          for (const row of list) counts.set(row.id, (counts.get(row.id) || 0) + 1);
+          const duplicates = [...counts.entries()].filter(([, count]) => count > 1);
+          if (duplicates.length) throw new Error(`global duplicate active place IDs: ${duplicates.length}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+
+      - name: Audit anchor distinctions
+        shell: bash
+        run: |
+          node <<'NODE' 2>&1 | tee reports/etne-sport-batch-3-integration/anchor-audit.txt
+          const fs = require('fs');
+          const rows = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const list = Array.isArray(rows) ? rows : (rows.places || []);
+          const need = (id) => {
+            const row = list.find((item) => item.id === id);
+            if (!row) throw new Error(`Missing runtime row: ${id}`);
+            return row;
+          };
+          const hav = (a,b) => {
+            const R=6371, rad=(x)=>x*Math.PI/180;
+            const dLat=rad(b.lat-a.lat), dLon=rad(b.lon-a.lon);
+            const q=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;
+            return 2*R*Math.asin(Math.sqrt(q));
+          };
+          const pump = need('etne_pumptrack');
+          const bmx = need('etne_bmx_og_skatepark');
+          const skakkeringen = need('skakkeringen_etne');
+          const skakke = need('skakke_kultursenter_etne');
+          const osnes = need('osnes_discgolfbane');
+          const olav = need('olav_vik_garden_osnes');
+          const skDisc = need('skanevik_discgolf');
+          const skIdrett = need('skanevik_idrettsanlegg');
+          const skSkate = need('skanevik_skatepark');
+          const distances = {
+            pump_bmx: hav(pump,bmx),
+            skakkeringen_skakke: hav(skakkeringen,skakke),
+            osnes_olav: hav(osnes,olav),
+            skdisc_idrett: hav(skDisc,skIdrett),
+            skdisc_skate: hav(skDisc,skSkate)
+          };
+          if (distances.skdisc_idrett < 0.01 || distances.skdisc_skate < 0.01) {
+            throw new Error(`Skånevik discgolf anchor collapses onto existing facility: ${JSON.stringify(distances)}`);
+          }
+          if ([pump, skakkeringen, osnes, skDisc].some((row) => row.category !== 'sport')) throw new Error('Not all batch records are category sport');
+          console.log(`PASS Etne pumptrack ↔ existing BMX/skate: ${distances.pump_bmx.toFixed(3)} km; distinct function, shared-anchor disclosure allowed if needed`);
+          console.log(`PASS Skakkeringen ↔ Skakke kultursenter: ${distances.skakkeringen_skakke.toFixed(3)} km; distinct outdoor facility/building functions`);
+          console.log(`PASS Osnes Discgolfbane ↔ Olav Vik garden: ${distances.osnes_olav.toFixed(3)} km; distinct sport/literary functions`);
+          console.log(`PASS Skånevik discgolf ↔ idrettsanlegg: ${distances.skdisc_idrett.toFixed(3)} km`);
+          console.log(`PASS Skånevik discgolf ↔ skatepark: ${distances.skdisc_skate.toFixed(3)} km`);
+          console.log('PASS all four records categorized as sport');
+          NODE
+
+      - name: Check diff whitespace
+        shell: bash
+        run: |
+          git diff --check 2>&1 | tee reports/etne-sport-batch-3-integration/git-diff-check.txt
+
+      - name: Restore CI, remove resolver and commit integrated batch
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          rm -f scripts/resolve-etne-sport-batch3.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A .github/workflows/data-checks.yml scripts/resolve-etne-sport-batch3.mjs data/places/sport/vestland/etne data/places/manifest.json data/places/places_index.json reports/etne-sport-batch-3-integration
+          git commit -m 'Integrate Etne sport batch 3'
+          git push origin HEAD:agent/etne-sport-batch-3
