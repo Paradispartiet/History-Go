@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Dronningens gate 11 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+  "query": "Dronningens gate 11 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Dronningens%20gate%2011%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:11309:11",
+  "coordinate": {
+    "lat": 59.9092795875744,
+    "lon": 10.745055179458067,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11309:11",
+    "address": {
+      "street": "Dronningens gate",
+      "number": "11",
+      "postcode": "0152",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Dronningens gate 11, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Dronningens gate",
+    "adressetekst": "Dronningens gate 11",
+    "adressetilleggsnavn": null,
+    "adressekode": 11309,
+    "nummer": 11,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 207,
+    "bruksnummer": 36,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0152",
+    "adressetekstutenadressetilleggsnavn": "Dronningens gate 11",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.9092795875744,
+      "lon": 10.745055179458067
+    },
+    "oppdateringsdato": "2020-06-15T18:02:02"
+  }
+}
