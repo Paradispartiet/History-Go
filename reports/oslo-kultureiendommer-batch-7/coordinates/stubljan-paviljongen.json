@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Ljansbrukveien 4C Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Ljansbrukveien 4C Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ljansbrukveien%204C%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:12168:4C",
+  "coordinate": {
+    "lat": 59.83391028057809,
+    "lon": 10.772352984625687,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:12168:4C",
+    "address": {
+      "street": "Ljansbrukveien",
+      "number": "4C",
+      "postcode": "1250",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Ljansbrukveien 4C, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Ljansbrukveien",
+    "adressetekst": "Ljansbrukveien 4C",
+    "adressetilleggsnavn": null,
+    "adressekode": 12168,
+    "nummer": 4,
+    "bokstav": "C",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 193,
+    "bruksnummer": 2,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "1250",
+    "adressetekstutenadressetilleggsnavn": "Ljansbrukveien 4C",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.83391028057809,
+      "lon": 10.772352984625687
+    },
+    "oppdateringsdato": "2020-06-15T18:05:05"
+  }
+}
