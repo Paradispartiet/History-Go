@@ -16,6 +16,7 @@
   const CIVICATION_LOCATION_MANIFEST_PATH = "data/Civication/locations/manifest.json";
   let civicationLocationsCache = null;
   let civicationLocationsPromise = null;
+  let activeLocationPickerClose = null;
 
   // ÉN state (ikke lag flere varianter)
   const HG_POS = (window.HG_POS = window.HG_POS || {
@@ -240,6 +241,159 @@
     }
   }
 
+  function normalizeLocationSearch(value) {
+    return String(value ?? "")
+      .trim()
+      .toLowerCase()
+      .replace(/æ/g, "ae")
+      .replace(/ø/g, "o")
+      .replace(/å/g, "a")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function escapeLocationHTML(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  /** @param {any} place */
+  function getLocationPlaceName(place) {
+    return String(place?.name || place?.title || place?.id || "").trim();
+  }
+
+  function hasValidLocationCoordinates(place) {
+    const lat = Number(place?.lat);
+    const lon = Number(place?.lon);
+    return Number.isFinite(lat) && Number.isFinite(lon) &&
+      lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
+  }
+
+  function getLocationCategoryLabel(categoryId) {
+    const id = String(categoryId || "").trim();
+    if (!id) return "History Go-sted";
+    const categories = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
+    const category = categories.find((entry) => String(entry?.id || "").trim() === id);
+    return String(category?.name || id).trim();
+  }
+
+  /** @param {any} place */
+  function getLocationPlaceMeta(place) {
+    const category = getLocationCategoryLabel(place?.category);
+    const context = String(
+      place?.cityLabel ||
+      place?.city ||
+      place?.municipality ||
+      place?.kommune ||
+      place?.country ||
+      ""
+    ).trim();
+    return [category, context].filter(Boolean).filter((value, index, all) => all.indexOf(value) === index).join(" · ");
+  }
+
+  /**
+   * Search the canonical History Go place registry. Manual location selection
+   * must resolve to one of these records; arbitrary addresses/coordinates are
+   * deliberately not accepted.
+   *
+   * @param {unknown} query
+   * @param {{ limit?: number }} [options]
+   */
+  function searchLocationPlaces(query, { limit = 12 } = {}) {
+    const q = normalizeLocationSearch(query);
+    if (q.length < 2) return [];
+
+    const rawPlaces = Array.isArray(window.PLACES) ? window.PLACES : [];
+    const localizedPlaces = (typeof window.HG_I18N?.localizePlaces === "function")
+      ? window.HG_I18N.localizePlaces(rawPlaces)
+      : rawPlaces;
+    const places = Array.isArray(localizedPlaces) ? localizedPlaces : rawPlaces;
+    const tokens = q.split(/\s+/).filter(Boolean);
+    const rows = [];
+    const seenIds = new Set();
+
+    for (const place of places) {
+      if (!place || place.hidden || place.stub) continue;
+      const id = String(place.id || "").trim();
+      const name = getLocationPlaceName(place);
+      if (!id || seenIds.has(id) || !name || !hasValidLocationCoordinates(place)) continue;
+
+      const anyPlace = /** @type {any} */ (place);
+      const normalizedName = normalizeLocationSearch(name);
+      const normalizedId = normalizeLocationSearch(id.replace(/[_-]+/g, " "));
+      const category = normalizeLocationSearch(getLocationCategoryLabel(place.category));
+      const extra = [
+        anyPlace.cityLabel,
+        anyPlace.city,
+        anyPlace.municipality,
+        anyPlace.kommune,
+        anyPlace.country,
+        ...(Array.isArray(anyPlace.aliases) ? anyPlace.aliases : []),
+        ...(Array.isArray(anyPlace.tags) ? anyPlace.tags : [])
+      ];
+      const haystack = normalizeLocationSearch([name, id, category, ...extra].filter(Boolean).join(" "));
+      if (!tokens.every((token) => haystack.includes(token))) continue;
+      seenIds.add(id);
+
+      let score = 20;
+      if (normalizedName === q) score = 120;
+      else if (normalizedName.startsWith(q)) score = 100;
+      else if (normalizedName.includes(q)) score = 80;
+      else if (normalizedId === q) score = 70;
+      else if (normalizedId.startsWith(q)) score = 60;
+      else if (category.includes(q)) score = 40;
+
+      rows.push({ place, score, name });
+    }
+
+    const safeLimit = Math.max(1, Math.min(30, Number(limit) || 12));
+    return rows
+      .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "nb"))
+      .slice(0, safeLimit)
+      .map((row) => row.place);
+  }
+
+  /** @param {any} selectedPlace */
+  function setLocationFromPlace(selectedPlace) {
+    const id = String(selectedPlace?.id || "").trim();
+    if (!id) return false;
+
+    const canonicalPlaces = Array.isArray(window.PLACES) ? window.PLACES : [];
+    const canonicalPlace = canonicalPlaces.find((place) => (
+      String(place?.id || "").trim() === id &&
+      !place?.hidden &&
+      !place?.stub &&
+      hasValidLocationCoordinates(place)
+    ));
+    if (!canonicalPlace) return false;
+
+    const anyPlace = /** @type {any} */ (canonicalPlace);
+    const localizedPlaces = (typeof window.HG_I18N?.localizePlaces === "function")
+      ? window.HG_I18N.localizePlaces(canonicalPlaces)
+      : canonicalPlaces;
+    const localizedPlace = Array.isArray(localizedPlaces)
+      ? localizedPlaces.find((place) => String(place?.id || "").trim() === id)
+      : null;
+    const label = getLocationPlaceName(localizedPlace) || getLocationPlaceName(canonicalPlace);
+    const cityLabel = String(
+      anyPlace.cityLabel || anyPlace.city || anyPlace.municipality || anyPlace.kommune || ""
+    ).trim();
+
+    return setLocationOverride({
+      cityId: String(anyPlace.cityId || anyPlace.city || anyPlace.municipality || anyPlace.kommune || "").trim(),
+      cityLabel,
+      placeId: id,
+      label,
+      lat: Number(canonicalPlace.lat),
+      lon: Number(canonicalPlace.lon),
+      source: "history-go-place-picker"
+    });
+  }
+
   function setLocationOverride(location) {
     const lat = Number(location?.lat);
     const lon = Number(location?.lon);
@@ -254,7 +408,7 @@
       lat,
       lon,
       acc: location?.acc ?? null,
-      source: "civication-location-picker",
+      source: String(location?.source || "civication-location-picker").trim(),
       ts: Date.now()
     };
 
@@ -333,33 +487,107 @@
     const locations = await loadCivicationLocations();
     const active = getLocationOverride();
 
+    activeLocationPickerClose?.();
+    document.getElementById("locationPickerModal")?.remove();
+
     const modal = document.createElement("div");
-    modal.className = "modal";
+    modal.className = "modal hg-location-picker";
     modal.setAttribute("aria-hidden", "false");
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "locationPickerTitle");
     modal.id = "locationPickerModal";
 
-    const optionsHtml = locations.map((loc) => {
-      const isActive = active?.cityId === loc.cityId;
-      return `<button type="button" class="primary" data-location-city="${loc.cityId}" style="width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;"><span>${loc.label}</span><span style="opacity:.8">${isActive ? "Aktiv" : ""}</span></button>`;
+    const activeTitle = active?.label || active?.cityLabel || active?.cityId || "Faktisk posisjon";
+    const activeMeta = active
+      ? (active.placeId ? "History Go-sted" : "Manuelt valgt område")
+      : "GPS brukes for kart og steder i nærheten";
+    const cityOptionsHtml = locations.map((loc) => {
+      const isActive = !active?.placeId && active?.cityId === loc.cityId;
+      return `
+        <button type="button"
+                class="hg-location-quick-option${isActive ? " is-active" : ""}"
+                data-location-city="${escapeLocationHTML(loc.cityId)}"
+                aria-pressed="${isActive ? "true" : "false"}">
+          <span class="hg-location-quick-icon" aria-hidden="true">⌖</span>
+          <span class="hg-location-option-copy">
+            <strong>${escapeLocationHTML(loc.label)}</strong>
+            <small>Byområde</small>
+          </span>
+          <span class="hg-location-option-action">${isActive ? "Aktiv" : "Velg"}</span>
+        </button>`;
     }).join("");
 
-    const activeLabel = active
-      ? `${active.cityLabel || active.cityId || "Valgt by"} – ${active.label || "Valgt lokasjon"}`
-      : "Faktisk posisjon (GPS)";
     modal.innerHTML = `
-      <div class="modal-body" style="max-width:420px;width:calc(100% - 24px);">
-        <div class="modal-head">
-          <h3 style="margin:0;">Velg lokasjon</h3>
-          <button type="button" class="sheet-close" data-location-close>×</button>
-        </div>
-        <p class="muted" style="margin:0 0 10px 0;">Aktiv lokasjon: ${activeLabel}</p>
-        <div id="locationPickerBody" style="display:grid;gap:8px;">
-          ${optionsHtml || '<div class="muted">Ingen byer tilgjengelig.</div>'}
-          <button type="button" class="iconbtn" data-location-use-gps style="justify-content:flex-start;">Bruk faktisk posisjon</button>
-        </div>
-      </div>`;
+      <section class="modal-body hg-location-picker-card">
+        <header class="hg-location-picker-head">
+          <div>
+            <span class="hg-location-eyebrow">Kartposisjon</span>
+            <h2 id="locationPickerTitle">Velg lokasjon</h2>
+            <p>Finn et offentlig History Go-sted, velg et byområde eller bruk GPS.</p>
+          </div>
+          <button type="button" class="sheet-close hg-location-close" data-location-close aria-label="Lukk lokasjonsvelger">×</button>
+        </header>
 
-    const close = () => modal.remove();
+        <div class="hg-location-active" data-location-active-mode="${active ? "manual" : "gps"}">
+          <span class="hg-location-active-icon" aria-hidden="true">◎</span>
+          <span class="hg-location-active-copy">
+            <small>Aktiv lokasjon</small>
+            <strong>${escapeLocationHTML(activeTitle)}</strong>
+            <span>${escapeLocationHTML(activeMeta)}</span>
+          </span>
+          <span class="hg-location-active-dot" aria-hidden="true"></span>
+        </div>
+
+        <label class="hg-location-search" for="locationPlaceSearch">
+          <span class="hg-location-section-label">Søk i History Go-steder</span>
+          <span class="hg-location-search-field">
+            <span class="hg-location-search-icon" aria-hidden="true">⌕</span>
+            <input id="locationPlaceSearch"
+                   type="search"
+                   placeholder="Skriv navnet på et sted …"
+                   autocomplete="off"
+                   enterkeyhint="search"
+                   aria-controls="locationPlaceResults"
+                   aria-autocomplete="list">
+          </span>
+        </label>
+
+        <div id="locationPlaceResults"
+             class="hg-location-results"
+             role="listbox"
+             aria-label="Treff i History Go-steder"
+             aria-live="polite"
+             hidden></div>
+
+        <section class="hg-location-quick" data-location-quick>
+          <div class="hg-location-section-head">
+            <span class="hg-location-section-label">Hurtigvalg</span>
+            <span>Byområder</span>
+          </div>
+          <div class="hg-location-quick-grid">
+            ${cityOptionsHtml || '<div class="hg-location-empty">Ingen byområder tilgjengelig.</div>'}
+          </div>
+        </section>
+
+        <button type="button" class="hg-location-gps" data-location-use-gps>
+          <span class="hg-location-gps-icon" aria-hidden="true">◉</span>
+          <span class="hg-location-option-copy">
+            <strong>Bruk faktisk posisjon</strong>
+            <small>Oppdater kartet med GPS på denne enheten</small>
+          </span>
+          <span class="hg-location-option-arrow" aria-hidden="true">→</span>
+        </button>
+      </section>`;
+
+    const onDocumentKeydown = (event) => {
+      if (event.key === "Escape") close();
+    };
+    const close = () => {
+      document.removeEventListener("keydown", onDocumentKeydown);
+      modal.remove();
+      if (activeLocationPickerClose === close) activeLocationPickerClose = null;
+    };
     modal.addEventListener("click", (e) => {
       const target = e.target;
       if (target === modal || (target instanceof Element && target.hasAttribute("data-location-close"))) close();
@@ -369,65 +597,115 @@
       close();
       request();
     });
-    const body = modal.querySelector("#locationPickerBody");
-    const renderCityOptions = () => {
-      if (!body) return;
-      body.innerHTML = `
-        ${optionsHtml || '<div class="muted">Ingen byer tilgjengelig.</div>'}
-        <button type="button" class="iconbtn" data-location-use-gps style="justify-content:flex-start;">Bruk faktisk posisjon</button>
-      `;
-      body.querySelector("[data-location-use-gps]")?.addEventListener("click", () => {
-        clearLocationOverride();
-        close();
-        request();
-      });
-      body.querySelectorAll("[data-location-city]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const cityId = btn.getAttribute("data-location-city");
-          const city = locations.find((loc) => loc.cityId === cityId);
-          if (!city) return;
-          const places = Array.isArray(city.places) ? city.places : [];
-          if (!places.length) {
-            setLocationOverride({
-              cityId: city.cityId,
-              cityLabel: city.label,
-              label: city.label,
-              lat: city.lat,
-              lon: city.lon
-            });
-            close();
-            return;
-          }
-          body.innerHTML = `
-            <button type="button" class="iconbtn" data-location-back style="justify-content:flex-start;">← Tilbake til byvalg</button>
-            ${places.map((place) => {
-              const isActivePlace = active?.placeId ? active.placeId === place.id : (active?.cityId === city.cityId && active?.label === place.label);
-              return `<button type="button" class="primary" data-location-place="${place.id}" style="width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;"><span>${place.label}</span><span style="opacity:.8">${isActivePlace ? "Aktiv" : ""}</span></button>`;
-            }).join("")}
-          `;
-          body.querySelector("[data-location-back]")?.addEventListener("click", renderCityOptions);
-          body.querySelectorAll("[data-location-place]").forEach((placeBtn) => {
-            placeBtn.addEventListener("click", () => {
-              const placeId = placeBtn.getAttribute("data-location-place");
-              const place = places.find((entry) => entry.id === placeId);
-              if (!place) return;
-              setLocationOverride({
-                cityId: city.cityId,
-                cityLabel: city.label,
-                placeId: place.id,
-                label: place.label,
-                lat: place.lat,
-                lon: place.lon
-              });
-              close();
-            });
-          });
+
+    modal.querySelectorAll("[data-location-city]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const cityId = btn.getAttribute("data-location-city");
+        const city = locations.find((loc) => loc.cityId === cityId);
+        if (!city) return;
+        setLocationOverride({
+          cityId: city.cityId,
+          cityLabel: city.label,
+          label: city.label,
+          lat: city.lat,
+          lon: city.lon,
+          source: "civication-location-picker"
         });
+        close();
       });
+    });
+
+    const searchInput = /** @type {HTMLInputElement|null} */ (modal.querySelector("#locationPlaceSearch"));
+    const searchResults = modal.querySelector("#locationPlaceResults");
+    const quickOptions = /** @type {HTMLElement|null} */ (modal.querySelector("[data-location-quick]"));
+    let currentResults = [];
+
+    const chooseSearchPlace = (placeId) => {
+      const id = String(placeId || "").trim();
+      const place = currentResults.find((entry) => String(entry?.id || "").trim() === id);
+      if (!place || !setLocationFromPlace(place)) return;
+      close();
     };
-    renderCityOptions();
+
+    const renderPlaceResults = () => {
+      if (!searchInput || !searchResults) return;
+      const query = searchInput.value.trim();
+      const hasSearch = normalizeLocationSearch(query).length >= 2;
+      quickOptions?.toggleAttribute("hidden", hasSearch);
+
+      if (!hasSearch) {
+        currentResults = [];
+        searchResults.innerHTML = "";
+        searchResults.setAttribute("hidden", "");
+        return;
+      }
+
+      currentResults = searchLocationPlaces(query, { limit: 12 });
+      searchResults.removeAttribute("hidden");
+
+      if (!currentResults.length) {
+        const hasPlaces = Array.isArray(window.PLACES) && window.PLACES.length > 0;
+        searchResults.innerHTML = `
+          <div class="hg-location-empty">
+            <strong>${hasPlaces ? "Ingen History Go-steder funnet" : "Stedsregisteret lastes inn"}</strong>
+            <span>${hasPlaces ? `Prøv et annet stedsnavn enn «${escapeLocationHTML(query)}».` : "Vent et øyeblikk og prøv igjen."}</span>
+          </div>`;
+        return;
+      }
+
+      searchResults.innerHTML = currentResults.map((place) => {
+        const isActive = active?.placeId === place.id;
+        return `
+          <button type="button"
+                  class="hg-location-result${isActive ? " is-active" : ""}"
+                  role="option"
+                  aria-selected="${isActive ? "true" : "false"}"
+                  data-location-search-place="${escapeLocationHTML(place.id)}">
+            <span class="hg-location-result-icon" aria-hidden="true">⌖</span>
+            <span class="hg-location-option-copy">
+              <strong>${escapeLocationHTML(getLocationPlaceName(place))}</strong>
+              <small>${escapeLocationHTML(getLocationPlaceMeta(place))}</small>
+            </span>
+            <span class="hg-location-option-action">${isActive ? "Aktiv" : "Velg"}</span>
+          </button>`;
+      }).join("");
+    };
+
+    searchInput?.addEventListener("input", renderPlaceResults);
+    searchInput?.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown") {
+        const first = /** @type {HTMLElement|null} */ (searchResults?.querySelector("[data-location-search-place]"));
+        if (first) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+      if (event.key === "Enter" && currentResults.length) {
+        event.preventDefault();
+        chooseSearchPlace(currentResults[0].id);
+      }
+    });
+    searchResults?.addEventListener("click", (event) => {
+      const target = event.target instanceof Element
+        ? event.target.closest("[data-location-search-place]")
+        : null;
+      if (!target) return;
+      chooseSearchPlace(target.getAttribute("data-location-search-place"));
+    });
+    searchResults?.addEventListener("keydown", (/** @type {KeyboardEvent} */ event) => {
+      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+      const buttons = Array.from(searchResults.querySelectorAll("[data-location-search-place]"));
+      const index = buttons.indexOf(document.activeElement);
+      if (index < 0) return;
+      event.preventDefault();
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      const next = /** @type {HTMLElement|undefined} */ (buttons[(index + direction + buttons.length) % buttons.length]);
+      next?.focus();
+    });
 
     document.body.appendChild(modal);
+    activeLocationPickerClose = close;
+    document.addEventListener("keydown", onDocumentKeydown);
   }
 
   function setPos(lat, lon, acc) {
@@ -541,6 +819,8 @@
     openLocationPicker,
     getLocationOverride,
     setLocationOverride,
+    searchLocationPlaces,
+    setLocationFromPlace,
     clearLocationOverride,
     setPos,
     clearPos,
