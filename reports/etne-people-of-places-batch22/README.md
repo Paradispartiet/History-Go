@@ -50,3 +50,13 @@ Etter batch 21 er 62 av 81 aktive Etne-stader dekte, med 19 udekte. Batch 22 dek
 - `etne_tennisanlegg` skal få nøyaktig desse to people-lenkjene i batch 22
 - batchtesten skal køyre frå `scripts/check-people.sh`
 - batchen skal ikkje endre place-, story-, UI-, bilete- eller quizdata
+
+## Lagra valideringsbevis
+
+Dei faktiske jobb-loggane som vart brukte ved integrasjonen er lagra saman med rapporten:
+
+- `clean-validation-workflow.log` — full read-only validering, run `29663654693`, jobb `88130398667`
+- `final-people-data-ci.log` — endeleg People data-CI, run `29663706102`, jobb `88130526508`
+- `final-typescript-guard-ci.log` — endeleg TypeScript guard-CI, run `29663706099`, jobb `88130526546`
+
+Alle tre jobbane enda med `success`.
