@@ -134,4 +134,10 @@ node tests/etne-people-of-places-batch17.test.js
 echo "== Etne People of Places batch 18 =="
 node tests/etne-people-of-places-batch18.test.js
 
+echo "== Etne People of Places batch 19 =="
+node tests/etne-people-of-places-batch19.test.js
+
+echo "== Etne People of Places batch 19 temporary integration runner =="
+node tests/etne-people-of-places-batch19-integration-runner.test.js
+
 echo "== People check complete =="
