@@ -1,0 +1,61 @@
+
+> places:coords:find:address
+> node address-first-coordinate-finder.mjs --address Peter Aas' vei 17 Oslo
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Peter Aas' vei 17 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Peter%20Aas'%20vei%2017%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:15665:17",
+  "coordinate": {
+    "lat": 59.90761519680599,
+    "lon": 10.827573908322991,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:15665:17",
+    "address": {
+      "street": "Peter Aas' vei",
+      "number": "17",
+      "postcode": "0667",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Peter Aas' vei 17, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Peter Aas' vei",
+    "adressetekst": "Peter Aas' vei 17",
+    "adressetilleggsnavn": null,
+    "adressekode": 15665,
+    "nummer": 17,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 144,
+    "bruksnummer": 1,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0667",
+    "adressetekstutenadressetilleggsnavn": "Peter Aas' vei 17",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90761519680599,
+      "lon": 10.827573908322991
+    },
+    "oppdateringsdato": "2020-06-15T18:05:05"
+  }
+}
