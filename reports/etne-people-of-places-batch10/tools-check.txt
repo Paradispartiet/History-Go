@@ -1,0 +1,89 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 tools:check
+> npm run typecheck:tools && npm run build:tools && npm run audit:places-split-manifest-sync && npm run places:index:check && npm run places:coords:quality && npm run places:coords:intake && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places && npm run audit:people-of-places && npm run audit:quiz-manifest:v2 && npm run audit:civication-place-mapping && npm run audit:civication-city-map-entries
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 typecheck:tools
+> tsc -p tsconfig.tools.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 audit:places-split-manifest-sync
+> npm run build:tools && node dist/tools/audit-places-split-manifest-sync.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+{
+  "status": "passed",
+  "counts": {
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "movedPlacesStillActiveInOldCategory": 0
+  },
+  "auditReport": "reports/place-split-manifest-category-move-audit.json"
+}
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index sync check failed.
+Showing first 2 difference(s):
+- index=806 placeId=regjeringskvartalet type=value_mismatch field=year
+  expected: 1906
+  actual:   1958
+- index=806 placeId=regjeringskvartalet type=value_mismatch field=desc
+  expected: "Norges sentrale område for utøvende statsmakt – et lagdelt regjeringsmiljø med G-blokka, Høyblokka, nye departementsbygg, offentlig kunst og spor etter terrorangrepet 22. juli 2011."
+  actual:   "Statlig kjerneområde i Oslo med departementer og sentral rolle i norsk politisk styring."
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
