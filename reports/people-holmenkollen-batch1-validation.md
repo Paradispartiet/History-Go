@@ -22,8 +22,16 @@ Manifestregistreringen ligger samlet rett etter `people/sport/oslo/people_sport_
 
 ## Avgrensning
 
-Ingen eksisterende canonical people-records er duplisert. Ingen place-, bilde-, UI- eller runtimefiler inngår i batchen.
+Ingen eksisterende canonical people-records er duplisert av denne batchen. Ingen place-, bilde-, UI- eller runtimefiler inngår i batchen.
 
 ## Kontroller
 
-Et ordinært sluttpass utløses på denne committen etter manifestregistreringen. Resultatet føres inn når People data og Places data er ferdige.
+GitHub Actions-kjøringen `Data checks` på batch-headen kjørte både People- og Places-kontrollene.
+
+- `Places data`: **bestått**.
+- `People data`: **stoppet på eksisterende duplikater utenfor denne batchens diff**.
+- People-kontrollen kom gjennom JSON-lesingen og rapporterte deretter duplikat-ID-ene `stein_lillevolden`, `bror_wyller` og `hermann_stene` i `data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json`.
+- De samme tre duplikatene finnes allerede i batchens base-commit `c12d5a2a35f3947d229cc79437652a19404b9a33`; Holmenkollen-PR-en endrer ikke denne filen.
+- Ingen av de fem nye Holmenkollen-ID-ene ble rapportert som duplikater.
+
+CI-feilen er dermed en pre-eksisterende repo-blokkering og ikke introdusert av Holmenkollen batch 1. Batchens egen diff er avgrenset til fem nye people-filer, manifestregistrering og to rapportfiler.
