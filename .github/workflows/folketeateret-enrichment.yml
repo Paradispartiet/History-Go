@@ -1,0 +1,471 @@
+name: Enrich Folketeateret
+
+on:
+  push:
+    paths:
+      - ".github/workflows/folketeateret-enrichment.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate and integrate Folketeateret data
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+
+          const id = 'folketeateret';
+          const paths = {
+            place: 'data/places/popkultur/oslo/places_oslo_populaerkultur/folketeateret.json',
+            splitManifest: 'data/places/popkultur/oslo/places_oslo_populaerkultur_manifest.json',
+            stories: 'data/stories/stories_folketeateret.json',
+            quiz: 'data/quiz/popkultur/folketeateret_sets.json',
+            quizManifest: 'data/quiz/manifest.json',
+            legacyQuiz: 'data/quiz/quiz_populaerkultur.json',
+            leksikon: 'data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json',
+            actors: 'data/brands/actors_by_place.json',
+            peoplePop: 'data/people/popkultur/oslo/people_popkultur_oslo.json',
+            peoplePolitics: 'data/people/politikk/oslo/people_politikk_oslo.json',
+            peopleAgnes: 'data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json',
+            peopleMusic: 'data/people/musikk/oslo/people_musikk_oslo.json',
+            civication: 'data/Civication/map/historyGoPlaceMapping.popkultur.json'
+          };
+
+          function read(path) {
+            const raw = fs.readFileSync(path, 'utf8');
+            return { raw, data: JSON.parse(raw) };
+          }
+
+          function write(path, originalRaw, data) {
+            const pretty = originalRaw.trim().split(/\r?\n/).length > 3;
+            fs.writeFileSync(path, JSON.stringify(data, null, pretty ? 2 : 0) + '\n');
+          }
+
+          function assert(condition, message) {
+            if (!condition) throw new Error(message);
+          }
+
+          function upsertById(list, item) {
+            const index = list.findIndex(entry => entry?.id === item.id);
+            if (index >= 0) list[index] = item;
+            else list.push(item);
+          }
+
+          function addPlace(person, placeId) {
+            const places = Array.isArray(person.places) ? person.places.slice() : [];
+            if (person.placeId && !places.includes(person.placeId)) places.unshift(person.placeId);
+            if (!places.includes(placeId)) places.push(placeId);
+            person.places = [...new Set(places)];
+            return person;
+          }
+
+          const placeFile = read(paths.place);
+          const place = placeFile.data;
+          assert(place.id === id, 'Wrong place id');
+          assert(place.category === 'populaerkultur', 'Wrong category');
+          assert(Array.isArray(place.rounds) && place.rounds.length === 9, 'Expected nine rounds');
+          assert(new Set(place.rounds).size === 9, 'Round ids must be unique');
+          assert(!place.rounds.includes('nature'), 'Nature must not be used for Folketeateret');
+          assert(place.rounds.includes('tasks'), 'Tasks override is missing');
+          assert(Array.isArray(place.tasks_profile?.tasks) && place.tasks_profile.tasks.length === 3, 'Expected three physical tasks');
+          assert(Array.isArray(place.works) && place.works.length === 4, 'Expected four works');
+          assert(Array.isArray(place.civication_store) && place.civication_store.length === 3, 'Expected three Civication objects');
+
+          const storyFile = read(paths.stories);
+          assert(Array.isArray(storyFile.data) && storyFile.data.length === 3, 'Expected three stories');
+          for (const story of storyFile.data) {
+            assert(story.place_id === id, `Wrong story target: ${story.id}`);
+            assert(story.id && story.type && story.title && story.story, `Malformed story: ${story.id}`);
+            assert(Array.isArray(story.sources) && story.sources.length, `Story lacks sources: ${story.id}`);
+          }
+
+          const quizFile = read(paths.quiz);
+          assert(quizFile.data.targetId === id, 'Wrong quiz target');
+          assert(quizFile.data.categoryId === 'populaerkultur', 'Wrong quiz category');
+          const questions = (quizFile.data.sets || []).flatMap(set => Array.isArray(set.questions) ? set.questions : []);
+          assert(questions.length === 5, 'Expected five quiz questions');
+          for (const question of questions) {
+            assert(question.placeId === id && question.targetId === id, `Wrong question target: ${question.id}`);
+            assert(Array.isArray(question.options) && question.options.includes(question.answer), `Invalid answer: ${question.id}`);
+          }
+
+          const splitFile = read(paths.splitManifest);
+          const splitEntry = splitFile.data.places.find(entry => entry?.id === id);
+          assert(splitEntry, 'Folketeateret is missing from split manifest');
+          splitEntry.sha256 = crypto.createHash('sha256').update(placeFile.raw).digest('hex');
+          splitFile.data.generated_at = new Date().toISOString();
+          write(paths.splitManifest, splitFile.raw, splitFile.data);
+
+          const quizManifestFile = read(paths.quizManifest);
+          const quizManifest = quizManifestFile.data;
+          quizManifest.sets = Array.isArray(quizManifest.sets) ? quizManifest.sets : [];
+          const quizEntry = { targetId: id, file: paths.quiz };
+          const quizEntryIndex = quizManifest.sets.findIndex(entry => entry?.targetId === id);
+          if (quizEntryIndex >= 0) quizManifest.sets[quizEntryIndex] = quizEntry;
+          else quizManifest.sets.push(quizEntry);
+          assert(quizManifest.sets.filter(entry => entry?.targetId === id).length === 1, 'Duplicate quiz manifest target');
+          write(paths.quizManifest, quizManifestFile.raw, quizManifest);
+
+          const legacyFile = read(paths.legacyQuiz);
+          assert(Array.isArray(legacyFile.data), 'Legacy quiz must be an array');
+          const legacyBefore = legacyFile.data.length;
+          legacyFile.data = legacyFile.data.filter(question => ![
+            question?.placeId,
+            question?.place_id,
+            question?.targetId,
+            question?.target_id,
+            question?.place
+          ].includes(id));
+          write(paths.legacyQuiz, legacyFile.raw, legacyFile.data);
+          console.log(`Removed ${legacyBefore - legacyFile.data.length} legacy Folketeateret questions`);
+
+          const leksikonFile = read(paths.leksikon);
+          assert(Array.isArray(leksikonFile.data), 'Leksikon file must be an array');
+          const articles = [
+            {
+              id: 'folketeateret_hovedartikkel',
+              visual: { designCode: 'article_institution_miniature' },
+              place_id: id,
+              title: 'Folketeaterbygningen',
+              version: 2,
+              popupDesc: 'Hovedartikkel om bygningen fra 1935 som folketeaterprosjekt, kino, Folketeatret, operahus og moderne musikalscene.',
+              wikiText: [
+                'Folketeaterbygningen ble oppført 1932–1935 etter tegninger av Christian Morgenstierne og Arne Eide. Det elleve etasjers anlegget kombinerer teatersal, kontorer, forretninger og en passasje mellom Youngstorget og Storgata.',
+                'Salen åpnet som kino, ble tatt i bruk av Folketeatret i 1952, var Den Norske Operas hovedscene fra 1959 til 2008 og åpnet etter restaurering som privat musikalscene i 2009. Bygningen gjør skiftet mellom flere publikumsformer synlig i ett og samme rom.'
+              ],
+              summary: {
+                one_liner: 'Et kultur- og blandingsbygg der kino, folketeater, opera og musikal følger hverandre i samme sal.',
+                themes: ['folketeater', 'kino', 'opera', 'musikal', 'arkitektur'],
+                tone: ['nøktern', 'faglig']
+              },
+              facts: [
+                {
+                  id: 'fact_01',
+                  label: 'Oppføring',
+                  desc: 'Bygningen ble oppført 1932–1935 etter tegninger av Christian Morgenstierne og Arne Eide.',
+                  confidence: 'high',
+                  sources: ['https://snl.no/Folketeaterbygningen']
+                },
+                {
+                  id: 'fact_02',
+                  label: 'Fredning',
+                  desc: 'Folketeaterbygningen ble fredet i 2009.',
+                  confidence: 'high',
+                  sources: ['https://snl.no/Folketeaterbygningen']
+                }
+              ],
+              chronology: [
+                { id: 'chrono_1935', year: 1935, period: 'Kino', desc: 'Salen åpner som kino.', confidence: 'high', sources: ['https://snl.no/Folketeaterbygningen'] },
+                { id: 'chrono_1952', year: 1952, period: 'Folketeatret', desc: 'Folketeatret åpner i bygningen med Tante Ulrikke.', confidence: 'high', sources: ['https://snl.no/Folketeatret'] },
+                { id: 'chrono_1959', year: 1959, period: 'Opera', desc: 'Den Norske Opera overtar huset som hovedscene.', confidence: 'high', sources: ['https://snl.no/Folketeaterbygningen'] },
+                { id: 'chrono_2009', year: 2009, period: 'Musikalscene', desc: 'Restaurert teater åpner som privat scene for musikaler og show.', confidence: 'high', sources: ['https://www.folketeateret.no/om-oss'] }
+              ],
+              externalLinks: [
+                { type: 'official', label: 'Folketeateret – om oss', url: 'https://www.folketeateret.no/om-oss' },
+                { type: 'source', label: 'Store norske leksikon – Folketeaterbygningen', url: 'https://snl.no/Folketeaterbygningen' },
+                { type: 'source', label: 'Oslo byleksikon – Folketeaterbygningen', url: 'https://oslobyleksikon.no/side/Folketeaterbygningen' }
+              ],
+              sources: ['https://snl.no/Folketeaterbygningen', 'https://oslobyleksikon.no/side/Folketeaterbygningen', 'https://www.folketeateret.no/om-oss']
+            },
+            {
+              id: 'folketeateret_folketeaterideen',
+              visual: { designCode: 'article_cultural_movement_miniature' },
+              place_id: id,
+              title: 'Folketeaterideen',
+              version: 1,
+              popupDesc: 'Folketeaterideen ville gjøre verdifull scenekunst tilgjengelig for arbeiderklassen og et bredere publikum.',
+              wikiText: [
+                'Folketeaterbevegelsen bygde på tanken om at scenekunst ikke bare skulle være for et økonomisk og sosialt elitepublikum. I Oslo ble et privat andelsselskap etablert i 1918, og Folketeaterselskapet ble konstituert i 1921.',
+                'Agnes Mowinckel og Sverre Iversen var sentrale pådrivere. Byggeprosjektet ble en politisk og kulturell prestisjesak, men økonomiske problemer gjorde at teaterdriften først kunne starte i bygningen i 1952.'
+              ],
+              summary: {
+                one_liner: 'En kulturpolitisk idé om et kunstnerisk godt og økonomisk tilgjengelig teater for folket.',
+                themes: ['arbeiderkultur', 'tilgjengelighet', 'publikum', 'organisering'],
+                tone: ['nøktern', 'faglig']
+              },
+              facts: [
+                { id: 'fact_01', label: 'Pådrivere', desc: 'Agnes Mowinckel og Sverre Iversen var sentrale i arbeidet for Folketeaterprosjektet.', confidence: 'high', sources: ['https://oslobyleksikon.no/side/Folketeatret'] }
+              ],
+              externalLinks: [
+                { type: 'source', label: 'Store norske leksikon – Folketeatret', url: 'https://snl.no/Folketeatret' },
+                { type: 'source', label: 'Oslo byleksikon – Folketeatret', url: 'https://oslobyleksikon.no/side/Folketeatret' }
+              ],
+              sources: ['https://snl.no/Folketeatret', 'https://oslobyleksikon.no/side/Folketeatret']
+            },
+            {
+              id: 'folketeateret_sceneformene',
+              visual: { designCode: 'article_media_history_miniature' },
+              place_id: id,
+              title: 'Fra kino til musikal',
+              version: 1,
+              popupDesc: 'Salen viser hvordan kino, teater, opera og musikal har avløst hverandre som store publikumsformater.',
+              wikiText: [
+                'Verdensteatret brukte salen som kino fra 1935. Folketeatret flyttet inn i 1952, og Den Norske Opera overtok i 1959. Etter operaens flytting til Bjørvika ble salen restaurert og åpnet igjen som Folketeateret i 2009.',
+                'Rekkefølgen viser ikke en enkel overgang fra gammel til ny kunst. Hver periode brukte den samme sceneteknikken, salens størrelse og den sentrale beliggenheten til å samle et stort publikum rundt samtidens viktigste forestillingsformat.'
+              ],
+              summary: {
+                one_liner: 'Fire publikumsformer i samme sal: kino, folketeater, opera og musikal.',
+                themes: ['kino', 'teater', 'opera', 'musikal'],
+                tone: ['nøktern', 'faglig']
+              },
+              facts: [
+                { id: 'fact_01', label: 'Operaens hovedscene', desc: 'Den Norske Opera brukte Folketeaterbygningen som hovedscene fra 1959 til 2008.', confidence: 'high', sources: ['https://snl.no/Folketeaterbygningen'] }
+              ],
+              externalLinks: [
+                { type: 'source', label: 'Store norske leksikon – Folketeaterbygningen', url: 'https://snl.no/Folketeaterbygningen' },
+                { type: 'official', label: 'Folketeateret – om oss', url: 'https://www.folketeateret.no/om-oss' }
+              ],
+              sources: ['https://snl.no/Folketeaterbygningen', 'https://www.folketeateret.no/om-oss']
+            },
+            {
+              id: 'folketeateret_operapassasjen_blandingsbygg',
+              visual: { designCode: 'article_architecture_miniature' },
+              place_id: id,
+              title: 'Operapassasjen og blandingsbygget',
+              version: 1,
+              popupDesc: 'Folketeaterbygningen er også et forretnings- og kontorbygg med passasje mellom Youngstorget og Storgata.',
+              wikiText: [
+                'Operapassasjen fører gjennom bygningskomplekset mellom Youngstorget og Storgata. Den gjør teatret til en del av byens ferdsel og binder publikumsfunksjoner sammen med kontorer, handel, hotell og servering.',
+                'Blandingsformen var viktig for å realisere et stort og kostbart kulturbygg. I History Go kan passasjen brukes til å lese hvordan kultur, økonomi og bystruktur ble samlet i ett moderne anlegg.'
+              ],
+              summary: {
+                one_liner: 'Et teaterhus som samtidig fungerer som kvartal, arbeidsplass og bypassasje.',
+                themes: ['operapassasjen', 'blandingsbygg', 'byflyt', 'kulturøkonomi'],
+                tone: ['nøktern', 'faglig']
+              },
+              facts: [
+                { id: 'fact_01', label: 'Passasje', desc: 'Bygningen har en forretningspassasje mellom Youngstorget og Storgata.', confidence: 'high', sources: ['https://snl.no/Folketeaterbygningen'] }
+              ],
+              externalLinks: [
+                { type: 'source', label: 'Store norske leksikon – Folketeaterbygningen', url: 'https://snl.no/Folketeaterbygningen' }
+              ],
+              sources: ['https://snl.no/Folketeaterbygningen']
+            }
+          ];
+          for (const article of articles) upsertById(leksikonFile.data, article);
+          assert(leksikonFile.data.filter(article => article?.place_id === id).length >= 4, 'Folketeateret leksikon coverage is incomplete');
+          write(paths.leksikon, leksikonFile.raw, leksikonFile.data);
+
+          const actorFile = read(paths.actors);
+          actorFile.data[id] = [
+            {
+              id: 'folketeaterselskapet',
+              name: 'Folketeaterselskapet',
+              entity_type: 'actor',
+              actor_kind: 'historic_cultural_company',
+              actor_role: 'Organiserte arbeidet for en fast folketeaterscene i Oslo og stod bak byggeprosjektet.',
+              brand_group: 'historic_actor',
+              brand_type: 'cultural_company',
+              brand_kind: 'legacy',
+              sector: 'performing_arts',
+              state: 'catalog',
+              status: 'historic',
+              verification: 'verified_legacy',
+              popupdesc: 'Folketeaterselskapet ble konstituert i 1921 for å realisere en fast scene med god og økonomisk tilgjengelig scenekunst for et bredere publikum. Selskapet stod bak den lange prosessen som endte med Folketeaterbygningen i 1935.',
+              desc: 'Historisk selskap bak Folketeaterprosjektet.',
+              aliases: ['Folketeatret A/S'],
+              tags: ['actor', 'folketeater', 'arbeiderkultur', 'theatre_history'],
+              source_urls: ['https://snl.no/Folketeatret', 'https://oslobyleksikon.no/side/Folketeaterbygningen'],
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'folketeateret_scene',
+              name: 'Folketeateret',
+              entity_type: 'actor',
+              actor_kind: 'private_theatre',
+              actor_role: 'Driver den restaurerte teatersalen som privat scene for musikaler, konserter, standup og større arrangementer.',
+              brand_group: 'culture_actor',
+              brand_type: 'theatre_venue',
+              brand_kind: 'brand',
+              sector: 'performing_arts',
+              state: 'catalog',
+              status: 'active',
+              verification: 'verified',
+              popupdesc: 'Folketeateret åpnet i restaurerte lokaler i 2009 og driver i dag en av Norges største private teatersaler, med hovedvekt på musikaler og store sceneproduksjoner.',
+              desc: 'Privat musikal- og teaterscene i Folketeaterbygningen.',
+              aliases: ['Folketeatret'],
+              tags: ['actor', 'musical', 'theatre', 'folketeateret'],
+              source_urls: ['https://www.folketeateret.no/om-oss'],
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'scenekvelder',
+              name: 'Scenekvelder',
+              entity_type: 'actor',
+              actor_kind: 'theatre_producer',
+              actor_role: 'Husprodusent med ansvar for de store musikalproduksjonene på Folketeateret.',
+              brand_group: 'production_actor',
+              brand_type: 'stage_production_company',
+              brand_kind: 'brand',
+              sector: 'performing_arts',
+              state: 'catalog',
+              status: 'active',
+              verification: 'verified',
+              popupdesc: 'Scenekvelder er Folketeaterets husprodusent og produserer helaftens musikaler for den store scenen uten offentlig driftsstøtte.',
+              desc: 'Produksjonsselskap for store musikaler på Folketeateret.',
+              aliases: ['Scenekvelder AS'],
+              tags: ['actor', 'musical', 'producer', 'folketeateret'],
+              source_urls: ['https://www.folketeateret.no/om-oss/scenekvelder'],
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'den_norske_opera_og_ballett',
+              name: 'Den Norske Opera & Ballett',
+              entity_type: 'actor',
+              actor_kind: 'historic_resident_institution',
+              actor_role: 'Brukte Folketeaterbygningen som hovedscene fra 1959 til flyttingen til Bjørvika i 2008.',
+              brand_group: 'institution_actor',
+              brand_type: 'national_opera',
+              brand_kind: 'legacy',
+              sector: 'performing_arts',
+              state: 'catalog',
+              status: 'active_elsewhere',
+              verification: 'verified_legacy',
+              popupdesc: 'Den Norske Opera hadde Folketeaterbygningen som hovedscene i nær femti år. Institusjonen flyttet til det nye operahuset i Bjørvika i 2008.',
+              desc: 'Historisk hovedinstitusjon i teatersalen 1959–2008.',
+              aliases: ['Den Norske Opera', 'Operaen'],
+              tags: ['actor', 'opera', 'ballet', 'historic_resident', 'folketeateret'],
+              source_urls: ['https://snl.no/Folketeaterbygningen'],
+              verified_at: '2026-07-18'
+            }
+          ];
+          assert(actorFile.data[id].length === 4, 'Expected four actors');
+          assert(new Set(actorFile.data[id].map(actor => actor.id)).size === 4, 'Duplicate actor ids');
+          write(paths.actors, actorFile.raw, actorFile.data);
+
+          const popPeopleFile = read(paths.peoplePop);
+          assert(Array.isArray(popPeopleFile.data), 'Popkultur people file must be an array');
+          const newPeople = [
+            {
+              id: 'christian_morgenstierne',
+              name: 'Christian Morgenstierne',
+              visual: { designCode: 'person_architect_miniature' },
+              initials: 'CM',
+              desc: 'Arkitekt bak Folketeaterbygningen sammen med Arne Eide.',
+              tags: ['populaerkultur', 'arkitektur', 'funksjonalisme', 'folketeateret'],
+              placeId: id,
+              category: 'populaerkultur',
+              year: 1935,
+              popupDesc: 'Christian Morgenstierne tegnet Folketeaterbygningen sammen med Arne Eide. Anlegget kombinerte en stor teatersal med kontorer, forretninger og passasje gjennom kvartalet, og viser hvordan et kulturprosjekt ble løst som et moderne blandingsbygg.',
+              places: [id],
+              image: '',
+              cardImage: '',
+              externalLinks: [{ type: 'source', label: 'Store norske leksikon – Folketeaterbygningen', url: 'https://snl.no/Folketeaterbygningen', verifiedAt: '2026-07-18' }]
+            },
+            {
+              id: 'arne_eide',
+              name: 'Arne Eide',
+              visual: { designCode: 'person_architect_miniature' },
+              initials: 'AE',
+              desc: 'Arkitekt bak Folketeaterbygningen sammen med Christian Morgenstierne.',
+              tags: ['populaerkultur', 'arkitektur', 'funksjonalisme', 'folketeateret'],
+              placeId: id,
+              category: 'populaerkultur',
+              year: 1935,
+              popupDesc: 'Arne Eide tegnet Folketeaterbygningen sammen med Christian Morgenstierne. Bygningen markerer en funksjonalistisk retning i arkitekturen hans og samler scene, næringsvirksomhet og bypassasje i ett anlegg.',
+              places: [id],
+              image: '',
+              cardImage: '',
+              externalLinks: [
+                { type: 'source', label: 'Arne Eide – Store norske leksikon', url: 'https://snl.no/Arne_Eide', verifiedAt: '2026-07-18' },
+                { type: 'source', label: 'Folketeaterbygningen – Store norske leksikon', url: 'https://snl.no/Folketeaterbygningen', verifiedAt: '2026-07-18' }
+              ]
+            },
+            {
+              id: 'hans_jacob_nilsen',
+              name: 'Hans Jacob Nilsen',
+              visual: { designCode: 'person_theatre_director_miniature' },
+              initials: 'HJN',
+              desc: 'Folketeatrets første teatersjef i bygningen fra 1952.',
+              tags: ['populaerkultur', 'teater', 'regi', 'folketeatret'],
+              placeId: id,
+              category: 'populaerkultur',
+              year: 1952,
+              popupDesc: 'Hans Jacob Nilsen ledet Folketeatret fra åpningen i bygningen i 1952 til 1955. Han la vekt på kunstnerisk bredde og satte opp klassisk og moderne dramatikk, komedier og musikaler for et stort publikum.',
+              places: [id],
+              image: '',
+              cardImage: '',
+              externalLinks: [{ type: 'source', label: 'Folketeatret – Store norske leksikon', url: 'https://snl.no/Folketeatret', verifiedAt: '2026-07-18' }]
+            }
+          ];
+          for (const person of newPeople) upsertById(popPeopleFile.data, person);
+          write(paths.peoplePop, popPeopleFile.raw, popPeopleFile.data);
+
+          const politicsPeopleFile = read(paths.peoplePolitics);
+          assert(Array.isArray(politicsPeopleFile.data), 'Politics people file must be an array');
+          upsertById(politicsPeopleFile.data, {
+            id: 'sverre_iversen',
+            name: 'Sverre Iversen',
+            visual: { designCode: 'person_politician_miniature' },
+            initials: 'SI',
+            desc: 'Arbeiderpartipolitiker og sentral pådriver for Folketeaterprosjektet.',
+            tags: ['politikk', 'arbeiderbevegelse', 'kulturpolitikk', 'folketeateret'],
+            placeId: id,
+            category: 'politikk',
+            year: 1921,
+            popupDesc: 'Sverre Iversen var en sentral arbeiderpartipolitiker og en av de viktigste pådriverne for å realisere Folketeaterideen i Oslo. Arbeidet hans knytter bygningen til arbeiderbevegelsens kulturpolitiske ambisjon om tilgjengelig scenekunst for et bredt publikum.',
+            places: [id, 'youngstorget'],
+            image: '',
+            cardImage: '',
+            externalLinks: [{ type: 'source', label: 'Oslo byleksikon – Folketeaterbygningen', url: 'https://oslobyleksikon.no/side/Folketeaterbygningen', verifiedAt: '2026-07-18' }]
+          });
+          write(paths.peoplePolitics, politicsPeopleFile.raw, politicsPeopleFile.data);
+
+          const agnesFile = read(paths.peopleAgnes);
+          assert(Array.isArray(agnesFile.data), 'Agnes file must be an array');
+          const agnes = agnesFile.data.find(person => person?.id === 'agnes_mowinckel');
+          assert(agnes, 'Agnes Mowinckel not found');
+          addPlace(agnes, id);
+          agnes.popupDesc = 'Agnes Mowinckel var skuespiller, regissør og en av de viktigste pådriverne for Folketeaterideen i Oslo. Hun arbeidet for et teater som kunne kombinere kunstnerisk kvalitet med tilgjengelighet for et bredere publikum. Nationaltheatret er hennes hovedanker, mens Folketeateret viser den kulturpolitiske organiseringen hun bidro til.';
+          write(paths.peopleAgnes, agnesFile.raw, agnesFile.data);
+
+          const musicPeopleFile = read(paths.peopleMusic);
+          assert(Array.isArray(musicPeopleFile.data), 'Music people file must be an array');
+          const flagstad = musicPeopleFile.data.find(person => person?.id === 'kirsten_flagstad');
+          if (flagstad) addPlace(flagstad, id);
+          write(paths.peopleMusic, musicPeopleFile.raw, musicPeopleFile.data);
+
+          const civicationFile = read(paths.civication);
+          const mapping = civicationFile.data?.mappings?.map_folketeateret;
+          assert(mapping, 'Missing Civication mapping');
+          mapping.lat = place.lat;
+          mapping.lon = place.lon;
+          mapping.emne_ids = place.emne_ids.slice();
+          mapping.buildingTypeId = 'building_grand_event_stage';
+          mapping.mapRole = 'historic_mass_audience_stage';
+          mapping.visibleAs = 'theatre';
+          mapping.socialFunctions = ['culture', 'event', 'nightlife', 'historical_layer', 'public_gathering'];
+          mapping.phaseTypes = ['event_evening', 'event_setup', 'evening_city_flow', 'historical_reflection', 'daytime_passage'];
+          mapping.needsVerification = false;
+          write(paths.civication, civicationFile.raw, civicationFile.data);
+
+          for (const path of Object.values(paths)) JSON.parse(fs.readFileSync(path, 'utf8'));
+          NODE
+
+          rm .github/workflows/folketeateret-enrichment.yml
+
+          git config user.name "history-go-data-bot"
+          git config user.email "history-go-data-bot@users.noreply.github.com"
+          git add \
+            data/places/popkultur/oslo/places_oslo_populaerkultur_manifest.json \
+            data/quiz/manifest.json \
+            data/quiz/quiz_populaerkultur.json \
+            data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json \
+            data/brands/actors_by_place.json \
+            data/people/popkultur/oslo/people_popkultur_oslo.json \
+            data/people/politikk/oslo/people_politikk_oslo.json \
+            data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json \
+            data/people/musikk/oslo/people_musikk_oslo.json \
+            data/Civication/map/historyGoPlaceMapping.popkultur.json \
+            .github/workflows/folketeateret-enrichment.yml
+          git commit -m "Integrate Folketeateret rounds content"
+          git push
