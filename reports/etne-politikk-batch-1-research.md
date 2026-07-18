@@ -38,11 +38,15 @@ Sources:
 - https://www.etne.kommune.no/politikk/
 - https://www.etne.kommune.no/politikk/politisk-styring/kommunestyret/
 
-Coordinate intake:
+Coordinate result:
 
-- query the repository's Kartverket/Geonorge address-first tool for `Sjoarvegen 2, 5590 Etne`
-- save the raw result in the integration report directory
-- reject Sjoarvegen 20 as a permanent Tinghuset substitute; it is a temporary reception during renovation
+- Geonorge address-first query: `Sjoarvegen 2, 5590 Etne`
+- source object: `geonorge-adresser-v1:4611:1032:2`
+- WGS84: `59.66489494369154, 5.934465720587056`
+- status: `verified`
+- source report: `reports/etne-politikk-batch-1-coordinate-intake/etne_tinghus.json`
+
+Sjoarvegen 20 is rejected as a permanent Tinghuset substitute; it is a temporary reception during renovation.
 
 ## 2. Etne brannstasjon
 
@@ -53,10 +57,13 @@ Sources:
 - https://www.etne.kommune.no/bustad-og-eigedom/brann-og-redningsteneste/
 - https://www.etne.kommune.no/aktuelt/informasjon-om-omorganisering-pa-sektor-utvikling-og-drift-i-etne-kommune.15557.aspx
 
-Coordinate intake:
+Coordinate result:
 
-- query the repository's Kartverket/Geonorge address-first tool for `Stadionvegen 4, 5590 Etne`
-- save the raw result in the integration report directory
+- Geonorge address-first query: `Stadionvegen 4, 5590 Etne`
+- source object: `geonorge-adresser-v1:4611:1033:4`
+- WGS84: `59.668576636879024, 5.943861929172312`
+- status: `verified`
+- source report: `reports/etne-politikk-batch-1-coordinate-intake/etne_brannstasjon.json`
 
 ## 3. Skånevik brannstasjon
 
@@ -66,14 +73,26 @@ Sources:
 
 - https://www.etne.kommune.no/bustad-og-eigedom/brann-og-redningsteneste/
 - https://www.etne.kommune.no/aktuelt/ny-brannbil-til-etne-brann-og-redning-ved-skanevik-stasjon.15462.aspx
+- https://www.openstreetmap.org/node/5459109296
 
-The current source pass has not found a sufficiently explicit civic address from the municipality. OpenStreetMap-derived mapping places the station at approximately `59.72875, 5.93592`, but that point must be treated only as a candidate until the repository's coordinate workflow resolves or independently verifies the physical anchor.
+No sufficiently explicit civic address for the station was found in the municipal sources. The source pass therefore does not promote a nearby address into a station address.
 
-Coordinate intake:
+Coordinate result:
 
-1. Search for a precise civic address using the repository's address-first coordinate tooling and official/local address evidence.
-2. If no address can be established, use a separately documented facility-point workflow rather than inventing an address.
-3. Do not finalize the OSM-derived point without a coordinate-evidence note.
+- identified facility object: OpenStreetMap node `5459109296`
+- object tags identify `amenity=fire_station`, name `Skånevik brannstasjon`, operator `Etne brannvesen`
+- WGS84 facility point: `59.72875, 5.93592`
+- canonical source identity: `osm:node:5459109296`
+- `sourceProvider`: `osm`
+- `locatorType`: `poi`
+- `geocodeAccuracy`: `geometric_center`
+- `coordStatus`: `verified`
+
+Geonorge `punktsok` was run around the facility point as a proximity check. The nearest official address points are around 5 metres away at Milja allé 37 and 39, but neither is claimed as the fire station's official civic address because no explicit source establishes that relation. The Geonorge proximity evidence is saved at:
+
+- `reports/etne-politikk-batch-1-coordinate-intake/skanevik_brannstasjon_punktsok.json`
+
+This preserves the address-first rule: official address search is preferred where a concrete address exists, while an identified physical facility object is used when no civic address can be responsibly established.
 
 ## Category decision
 
@@ -82,3 +101,21 @@ Coordinate intake:
 - `skanevik_brannstasjon`: primary category `politikk`; underbadge `politi_og_beredskap`.
 
 The batch is limited to concrete physical institutions. It does not create generic political-area records, duplicate existing cross-domain places, or create a police-station record for a service whose current physical station is in Ølen.
+
+## Final integration gate
+
+All three source records were registered exactly once in the places manifest and the runtime index was regenerated through the canonical repository path.
+
+Validation results:
+
+- `places:coords:intake --strict-new`: 0 blocking, 0 warnings
+- active runtime occurrence: exactly one for each new place
+- global duplicate active place IDs: 0
+- source/index coordinate parity: PASS for all three
+- missing `emne_ids`: 0
+- duplicate place IDs across active files: 0
+- split-manifest sync: PASS
+- coordinate quality gate: PASS
+- `git diff --check`: PASS
+
+Physical-anchor checks against nearby canonical records were also completed and logged in `reports/etne-politikk-batch-1-integration/anchor-audit.txt`.
