@@ -1292,7 +1292,7 @@ if (!card.dataset.pcIconsBound) {
     if (kind === "tasks") html = renderPlaceCardTasksProfile(currentPlace || place);
     if (kind === "observations") html = `<div class="pc-empty">Ingen observasjoner ennå</div>`;
     if (kind === "works") html = `<div class="pc-empty">Ingen verk eller prestasjoner ennå</div>`;
-    if (kind === "nature") html = `<div class="pc-empty">Ingen naturinnhold ennå</div>`;
+    if (kind === "nature") html = renderPlaceCardNatureProfile(currentPlace || place);
     if (kind === "play") html = `<div class="pc-empty">Ingen lekeforslag ennå</div>`;
     if (kind === "training") html = `<div class="pc-empty">Ingen treningsinnhold ennå</div>`;
     if (kind === "før_nå") html = renderPlaceCardForNa(currentPlace || place);
@@ -1733,8 +1733,8 @@ if (peopleIcon) {
 }
 
 
-// --- WONDERKAMMER LIST (place.wonderkammer + nature_profile + flora) ---
-if (wonderkammerEl) {
+// --- NATURE LIST (nature_profile + flora) ---
+if (natureEl) {
   const profileHtml = renderPlaceCardNatureProfile(place);
   const floraHtml = floraHere.length
     ? `
@@ -1752,10 +1752,10 @@ if (wonderkammerEl) {
     `
     : "";
 
-  wonderkammerEl.innerHTML = `${profileHtml}${floraHtml}`;
+  natureEl.innerHTML = `${profileHtml}${floraHtml}`;
 
   // flora click (åpne infokort)
-  wonderkammerEl.querySelectorAll("[data-flora]").forEach((/** @type {HTMLElement} */ btn) => {
+  natureEl.querySelectorAll("[data-flora]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const a = FLORA_LIST.find(x => String(x?.id || "").trim() === String(btn.dataset.flora || "").trim());
       if (a && typeof window.showFloraPopup === "function") window.showFloraPopup(a);
@@ -1763,15 +1763,26 @@ if (wonderkammerEl) {
   });
 }
 
+// Legacy Wonderkammer DOM, if present in an old template, mirrors Nature.
+if (wonderkammerEl) {
+  wonderkammerEl.innerHTML = natureEl?.innerHTML || renderPlaceCardNatureProfile(place);
+}
+
 // nature icon preview (første flora med bilde)
-if (wonderkammerIcon) {
+if (natureIcon) {
   const f0 = floraHere.find(a => (a.imageCard || a.image || a.img));
   const img = f0 ? (f0.imageCard || f0.image || f0.img || "") : "";
   if (img) {
-    wonderkammerIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
+    natureIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
   } else {
-    setRoundLabel(wonderkammerIcon, "🔎", floraHere.length);
+    const natureProfile = normalizePlaceCardNatureProfile(place);
+    const natureCount = (natureProfile.isFallback ? 0 : 1) + floraHere.length;
+    setRoundLabel(natureIcon, "🌿", natureCount || "");
   }
+}
+
+if (wonderkammerIcon) {
+  wonderkammerIcon.innerHTML = natureIcon?.innerHTML || "";
 }
 
 
@@ -2439,8 +2450,29 @@ if (routesEl) {
 }
 
 if (fortellingerEl) {
-  fortellingerEl.innerHTML = `<div class="pc-empty">Ingen fortellinger ennå</div>`;
-  setRoundLabel(fortellingerIcon, "📖", "");
+  const storyPlaceId = String(place.id || "").trim();
+  const updateStoryRound = () => {
+    if (String(card?.dataset?.currentPlaceId || "").trim() !== storyPlaceId) return;
+    const stories = window.HGStories?.getByPlace?.(storyPlaceId) || [];
+    fortellingerEl.innerHTML = stories.length
+      ? stories.map(story => `
+          <article class="pc-relation-card" data-story-id="${escapePlaceCardHTML(story.id || "")}">
+            <div class="pc-relation-chip">${escapePlaceCardHTML(story.type || "fortelling")}</div>
+            <div class="pc-relation-title">${escapePlaceCardHTML(story.title || "Fortelling")}</div>
+            ${story.summary ? `<p class="pc-relation-desc">${escapePlaceCardHTML(story.summary)}</p>` : ""}
+          </article>
+        `).join("")
+      : `<div class="pc-empty">Ingen fortellinger ennå</div>`;
+    setRoundLabel(fortellingerIcon, "📖", stories.length || "");
+  };
+
+  updateStoryRound();
+  if (!window.HGStories?.ready && typeof window.HGStories?.init === "function") {
+    fortellingerEl.innerHTML = `<div class="pc-empty">Laster fortellinger …</div>`;
+    void window.HGStories.init()
+      .then(updateStoryRound)
+      .catch(err => console.warn("[stories] kunne ikke fylle fortelling-rundingen", err));
+  }
 }
 if (tasksEl) {
   const tasksProfile = normalizePlaceCardTasksProfile(place);
