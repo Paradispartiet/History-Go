@@ -1,4 +1,4 @@
-name: Etne People of Places batch 19 clean delivery
+name: Etne People of Places batch 19 clean validation
 
 on:
   pull_request:
@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  deliver:
+  validate:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 2352
     runs-on: ubuntu-latest
     steps:
@@ -20,33 +20,86 @@ jobs:
           ref: agent/etne-people-of-places-batch19-clean-main
           fetch-depth: 0
 
-      - name: Apply manifest and people-gate patch
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run batch 19 regression test
+        run: node tests/etne-people-of-places-batch19.test.js
+
+      - name: Run full people checks
+        run: bash scripts/check-people.sh
+
+      - name: Audit Etne coverage and Litledalen uniqueness
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const sourceFile = 'people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json';
-          const manifestPath = 'data/people/manifest.json';
-          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-          manifest.files = manifest.files.filter((candidate) => candidate !== sourceFile);
-          manifest.files.push(sourceFile);
-          if (manifest.files.filter((candidate) => candidate === sourceFile).length !== 1) throw new Error('Manifest registration count mismatch');
-          fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
-
-          const scriptPath = 'scripts/check-people.sh';
-          let script = fs.readFileSync(scriptPath, 'utf8');
-          script = script.replace(/\necho "== Etne People of Places batch 19 =="\nnode tests\/etne-people-of-places-batch19\.test\.js\n/g, '\n');
-          const marker = 'echo "== People check complete =="';
-          if (!script.includes(marker)) throw new Error('People check completion marker not found');
-          script = script.replace(marker, `echo "== Etne People of Places batch 19 =="\nnode tests/etne-people-of-places-batch19.test.js\n\n${marker}`);
-          if ((script.match(/etne-people-of-places-batch19\.test\.js/g) || []).length !== 1) throw new Error('Regression gate count mismatch');
-          fs.writeFileSync(scriptPath, script);
+          const path = require('path');
+          const runtimePlaces = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const activeIds = new Set(runtimePlaces.map((place) => place.id));
+          const placeManifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
+          const etnePlaces = [];
+          const etneIds = new Set();
+          for (const rel of placeManifest.files) {
+            const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
+            const places = Array.isArray(doc) ? doc : [doc];
+            for (const place of places) {
+              if (!place?.id || !activeIds.has(place.id) || String(place.kommune || '').toLowerCase() !== 'etne') continue;
+              if (etneIds.has(place.id)) throw new Error(`Duplicate active Etne place: ${place.id}`);
+              etneIds.add(place.id);
+              etnePlaces.push(place);
+            }
+          }
+          const peopleManifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
+          const covered = new Set();
+          const targetLinks = [];
+          for (const rel of peopleManifest.files) {
+            const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
+            const people = Array.isArray(doc) ? doc : [doc];
+            for (const person of people) {
+              const links = new Set([person.placeId, ...(person.places || [])].filter(Boolean));
+              for (const id of links) if (etneIds.has(id)) covered.add(id);
+              if (links.has('litledalen_kraftverk')) targetLinks.push({ id: person.id, name: person.name, file: rel });
+            }
+          }
+          const uncovered = etnePlaces.map((place) => place.id).filter((id) => !covered.has(id)).sort();
+          const expectedLinks = [{ id: 'halfdan_greve', name: 'Halfdan Greve', file: 'people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json' }];
+          if (JSON.stringify(targetLinks) !== JSON.stringify(expectedLinks)) throw new Error(`Unexpected Litledalen links: ${JSON.stringify(targetLinks)}`);
+          if (etnePlaces.length !== 81) throw new Error(`Expected 81 active Etne places, got ${etnePlaces.length}`);
+          if (covered.size !== 60) throw new Error(`Expected 60 covered Etne places, got ${covered.size}`);
+          if (uncovered.length !== 21) throw new Error(`Expected 21 uncovered Etne places, got ${uncovered.length}`);
+          console.log(JSON.stringify({ status: 'PASS', activeEtnePlaces: 81, coveredEtnePlaces: 60, uncoveredEtnePlaces: 21, targetLinks, uncovered }, null, 2));
           NODE
 
-      - name: Commit and push integration
+      - name: Run typecheck
+        run: npm run typecheck
+
+      - name: Run tools check against known main story baseline
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/people/manifest.json scripts/check-people.sh
-          git diff --cached --check
-          git commit --no-verify -m "Integrate Etne People of Places batch 19"
-          git push origin HEAD:agent/etne-people-of-places-batch19-clean-main
+          set +e
+          npm run tools:check 2>&1 | tee /tmp/tools-check.log
+          status=${PIPESTATUS[0]}
+          set -e
+          if [ "$status" -eq 0 ]; then exit 0; fi
+          node <<'NODE'
+          const fs = require('fs');
+          const log = fs.readFileSync('/tmp/tools-check.log', 'utf8');
+          const actual = log.split(/\r?\n/).filter((line) => line.startsWith('- Ugyldig place_id:'));
+          const expected = [
+            '- Ugyldig place_id: story=st_regjeringskvartalet_terror_2011 field=related_places[0] place_id=utoya file=data/stories/stories_regjeringskvartalet.json',
+            '- Ugyldig place_id: story=st_mollergata_19_petter_moens_dagbok field=related_places[1] place_id=norges_hjemmefrontmuseum file=data/stories/stories_mollergata_19.json',
+            '- Ugyldig place_id: story=st_mollergata_19_petter_moens_dagbok field=next_scenes[0].place_id place_id=norges_hjemmefrontmuseum file=data/stories/stories_mollergata_19.json',
+            '- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=related_places[1] place_id=operaen file=data/stories/stories_folketeateret.json',
+            '- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=next_scenes[0].place_id place_id=operaen file=data/stories/stories_folketeateret.json'
+          ];
+          if (!log.includes('Stories integrity FAILED')) throw new Error('tools:check failed outside known story baseline');
+          if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`Story baseline changed: ${JSON.stringify(actual, null, 2)}`);
+          console.log('PASS known five-story-reference baseline');
+          NODE
+
+      - name: Run diff whitespace check
+        run: git diff --check
