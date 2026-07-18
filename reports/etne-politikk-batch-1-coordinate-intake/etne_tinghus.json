@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Sjoarvegen 2, 5590 Etne
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Sjoarvegen 2, 5590 Etne",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Sjoarvegen%202%2C%205590%20Etne",
+  "sourceObjectId": "geonorge-adresser-v1:4611:1032:2",
+  "coordinate": {
+    "lat": 59.66489494369154,
+    "lon": 5.934465720587056,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:4611:1032:2",
+    "address": {
+      "street": "Sjoarvegen",
+      "number": "2",
+      "postcode": "5590",
+      "city": "ETNE",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Sjoarvegen 2, ETNE. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Sjoarvegen",
+    "adressetekst": "Sjoarvegen 2",
+    "adressetilleggsnavn": null,
+    "adressekode": 1032,
+    "nummer": 2,
+    "bokstav": "",
+    "kommunenummer": "4611",
+    "kommunenavn": "ETNE",
+    "gardsnummer": 9,
+    "bruksnummer": 83,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "ETNE",
+    "postnummer": "5590",
+    "adressetekstutenadressetilleggsnavn": "Sjoarvegen 2",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.66489494369154,
+      "lon": 5.934465720587056
+    },
+    "oppdateringsdato": "2020-06-15T17:20:20"
+  }
+}
