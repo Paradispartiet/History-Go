@@ -91,6 +91,13 @@
     const script = document.createElement("script");
     script.src = "js/ui/area-overview.js";
     script.defer = true;
+    script.addEventListener("load", () => {
+      if (document.querySelector('script[src="js/ui/area-overview-scroll.js"]')) return;
+      const scrollScript = document.createElement("script");
+      scrollScript.src = "js/ui/area-overview-scroll.js";
+      scrollScript.defer = true;
+      document.body.appendChild(scrollScript);
+    }, { once: true });
     document.body.appendChild(script);
   }
 
