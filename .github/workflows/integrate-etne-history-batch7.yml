@@ -1,0 +1,141 @@
+name: Integrate Etne history batch 7
+
+on:
+  push:
+    branches:
+      - agent/etne-historie-batch-7
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: ${{ !contains(github.event.head_commit.message, '[skip etne integration]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-historie-batch-7
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          set -o pipefail
+          mkdir -p reports/etne-historie-batch-7-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-historie-batch-7-integration/npm-install.txt
+      - name: Resolve official address anchors
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-7-integration/address-anchor-lookup.txt
+          const fs = require('fs');
+          const targets = [
+            { id: 'etne_prestebustad', address: 'Stødlevegen 80', postnummer: '5590' },
+            { id: 'fjaera_kapell', address: 'Fjæravegen 47', postnummer: '5598' }
+          ];
+          (async () => {
+            for (const target of targets) {
+              const url = `https://ws.geonorge.no/adresser/v1/sok?sok=${encodeURIComponent(`${target.address}, ${target.postnummer}`)}&treffPerSide=10`;
+              const response = await fetch(url);
+              if (!response.ok) throw new Error(`${target.id}: Geonorge HTTP ${response.status}`);
+              const data = await response.json();
+              const hits = Array.isArray(data.adresser) ? data.adresser : [];
+              const hit = hits.find((x) => x.adressetekst === target.address && String(x.postnummer) === target.postnummer) || hits[0];
+              if (!hit?.representasjonspunkt || !Number.isFinite(hit.representasjonspunkt.lat) || !Number.isFinite(hit.representasjonspunkt.lon)) {
+                throw new Error(`${target.id}: no usable Geonorge address hit`);
+              }
+              const file = `data/places/historie/vestland/etne/${target.id}.json`;
+              const place = JSON.parse(fs.readFileSync(file, 'utf8'));
+              place.lat = hit.representasjonspunkt.lat;
+              place.lon = hit.representasjonspunkt.lon;
+              if (target.id === 'etne_prestebustad') place.quiz_profile.notes = 'Markøren bruker offisielt Kartverket/Geonorge-adressepunkt for Stødlevegen 80, 5590 Etne.';
+              if (target.id === 'fjaera_kapell') place.quiz_profile.notes = 'Markøren bruker offisielt Kartverket/Geonorge-adressepunkt for Fjæravegen 47, 5598 Fjæra.';
+              fs.writeFileSync(file, JSON.stringify(place, null, 2) + '\n');
+              console.log(`PASS ${target.id}: ${place.lat}, ${place.lon} -> ${hit.adressetekst}, ${hit.postnummer}`);
+            }
+          })().catch((error) => { console.error(error); process.exit(1); });
+          NODE
+      - name: Register source files
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-7-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const wanted = [
+            'places/historie/vestland/etne/etne_prestebustad.json',
+            'places/historie/vestland/etne/grindheim_steinkross.json',
+            'places/historie/vestland/etne/grindheim_runestein.json',
+            'places/historie/vestland/etne/skanevik_kyrkjestad.json',
+            'places/historie/vestland/etne/fjaera_kapell.json'
+          ];
+          for (const entry of wanted) if (!manifest.files.includes(entry)) manifest.files.push(entry);
+          for (const entry of wanted) {
+            const count = manifest.files.filter((x) => x === entry).length;
+            if (count !== 1) throw new Error(`${entry}: expected exactly once, got ${count}`);
+            console.log(`PASS manifest ${entry}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest) + '\n');
+          NODE
+      - name: Anchor and distinction audit
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-7-integration/anchor-audit.txt
+          const fs = require('fs');
+          const dir = 'data/places/historie/vestland/etne';
+          const read = (id) => JSON.parse(fs.readFileSync(`${dir}/${id}.json`, 'utf8'));
+          const hav = (a,b) => {
+            const R=6371, rad=(x)=>x*Math.PI/180;
+            const dlat=rad(b.lat-a.lat), dlon=rad(b.lon-a.lon);
+            const s=Math.sin(dlat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dlon/2)**2;
+            return 2*R*Math.asin(Math.sqrt(s));
+          };
+          const church = read('grindheim_kyrkje_etne');
+          for (const id of ['grindheim_steinkross','grindheim_runestein']) {
+            const p = read(id);
+            const km = hav(p, church);
+            if (km > 0.25) throw new Error(`${id}: too far from documented current Grindheim church location (${km.toFixed(3)} km)`);
+            console.log(`PASS ${id}: current monument anchor ${km.toFixed(3)} km from Grindheim church anchor`);
+          }
+          const skanevik = read('skanevik_kyrkjestad');
+          const guest = read('skanevik_gjestgjevargarden');
+          const skm = hav(skanevik, guest);
+          if (skm > 1.5) throw new Error(`skanevik_kyrkjestad: implausibly far from central Skånevik (${skm.toFixed(3)} km)`);
+          console.log(`PASS skanevik_kyrkjestad: ${skm.toFixed(3)} km from Gjestgjevargarden`);
+          for (const id of ['etne_prestebustad','fjaera_kapell']) {
+            const p = read(id);
+            const notes = String(p.quiz_profile?.notes || '').toLowerCase();
+            if (!notes.includes('kartverket/geonorge-adressepunkt')) throw new Error(`${id}: official address provenance missing`);
+            console.log(`PASS ${id}: official address provenance recorded`);
+          }
+          NODE
+      - name: Build and validate
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-historie-batch-7-integration/check-places.txt
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-historie-batch-7-integration/split-manifest-sync.txt
+          npm run places:coords:quality 2>&1 | tee reports/etne-historie-batch-7-integration/coordinate-quality.txt
+          node <<'NODE' 2>&1 | tee reports/etne-historie-batch-7-integration/targeted-validation.txt
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const ids = ['etne_prestebustad','grindheim_steinkross','grindheim_runestein','skanevik_kyrkjestad','fjaera_kapell'];
+          for (const id of ids) {
+            const count = index.filter((x) => x.id === id).length;
+            if (count !== 1) throw new Error(`${id}: expected one runtime row, got ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const seen = new Set(), dup = new Set();
+          for (const row of index) { if (seen.has(row.id)) dup.add(row.id); seen.add(row.id); }
+          if (dup.size) throw new Error(`duplicate active IDs: ${[...dup].join(', ')}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+          git diff --check 2>&1 | tee reports/etne-historie-batch-7-integration/git-diff-check.txt
+      - name: Commit and remove workflow
+        run: |
+          rm .github/workflows/integrate-etne-history-batch7.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/historie/vestland/etne/etne_prestebustad.json data/places/historie/vestland/etne/fjaera_kapell.json data/places/manifest.json data/places/places_index.json reports/etne-historie-batch-7-integration .github/workflows/integrate-etne-history-batch7.yml
+          git commit -m 'Integrate Etne history batch 7 [skip etne integration]'
+          git push origin HEAD:agent/etne-historie-batch-7
