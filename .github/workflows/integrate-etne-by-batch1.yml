@@ -1,0 +1,158 @@
+name: Integrate Etne by batch 1
+
+on:
+  push:
+    branches:
+      - agent/etne-by-batch-1
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: ${{ !contains(github.event.head_commit.message, '[skip etne by integration]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-by-batch-1
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          set -o pipefail
+          mkdir -p reports/etne-by-batch-1-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-by-batch-1-integration/npm-install.txt
+
+      - name: Resolve official address anchors
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-by-batch-1-integration/address-anchor-lookup.txt
+          const fs = require('fs');
+          const https = require('https');
+          const targets = [
+            { id: 'etnesjoen_tettstad', query: 'Sjoarvegen 20 5590 Etne', address: 'Sjoarvegen 20', post: '5590' },
+            { id: 'etnesjoen_torg_og_kai', query: 'Sjoarvegen 2 5590 Etne', address: 'Sjoarvegen 2', post: '5590' },
+            { id: 'skanevik_sentrum', query: 'Skånevikvegen 8 5593 Skånevik', address: 'Skånevikvegen 8', post: '5593' }
+          ];
+          const dir = 'data/places/by/vestland/etne';
+          function get(url) {
+            return new Promise((resolve, reject) => https.get(url, (res) => {
+              let body = '';
+              res.on('data', (d) => body += d);
+              res.on('end', () => res.statusCode >= 200 && res.statusCode < 300 ? resolve(body) : reject(new Error(`HTTP ${res.statusCode}: ${body}`)));
+            }).on('error', reject));
+          }
+          (async () => {
+            for (const t of targets) {
+              const url = `https://ws.geonorge.no/adresser/v1/sok?sok=${encodeURIComponent(t.query)}&treffPerSide=20`;
+              const data = JSON.parse(await get(url));
+              const hits = Array.isArray(data.adresser) ? data.adresser : [];
+              const hit = hits.find((x) => x.adressetekst === t.address && x.postnummer === t.post) || hits.find((x) => x.adressetekst === t.address);
+              if (!hit?.representasjonspunkt) throw new Error(`${t.id}: no official address point found for ${t.address}`);
+              const file = `${dir}/${t.id}.json`;
+              const rows = JSON.parse(fs.readFileSync(file, 'utf8'));
+              const p = rows[0];
+              p.lat = hit.representasjonspunkt.lat;
+              p.lon = hit.representasjonspunkt.lon;
+              p.quiz_profile.notes = `${p.quiz_profile.notes} Offisielt Kartverket/Geonorge-adressepunkt brukt: ${hit.adressetekst}, ${hit.postnummer}.`;
+              fs.writeFileSync(file, JSON.stringify(rows, null, 2) + '\n');
+              console.log(`PASS ${t.id}: ${p.lat}, ${p.lon} -> ${hit.adressetekst}, ${hit.postnummer}`);
+            }
+          })().catch((err) => { console.error(err); process.exit(1); });
+          NODE
+
+      - name: Register source files
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-by-batch-1-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const wanted = [
+            'places/by/vestland/etne/etnesjoen_tettstad.json',
+            'places/by/vestland/etne/etnesjoen_torg_og_kai.json',
+            'places/by/vestland/etne/skanevik_sentrum.json',
+            'places/by/vestland/etne/skanevik_ferjekai.json',
+            'places/by/vestland/etne/kyrping_handelsstad.json'
+          ];
+          for (const entry of wanted) if (!manifest.files.includes(entry)) manifest.files.push(entry);
+          for (const entry of wanted) {
+            const count = manifest.files.filter((x) => x === entry).length;
+            if (count !== 1) throw new Error(`${entry}: expected exactly once, got ${count}`);
+            console.log(`PASS manifest ${entry}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest) + '\n');
+          NODE
+
+      - name: Build and validate
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-by-batch-1-integration/check-places.txt
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-by-batch-1-integration/split-manifest-sync.txt
+          npm run places:coords:quality 2>&1 | tee reports/etne-by-batch-1-integration/coordinate-quality.txt
+
+      - name: Audit anchors and runtime uniqueness
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-by-batch-1-integration/anchor-audit.txt
+          const fs = require('fs');
+          const byDir = 'data/places/by/vestland/etne';
+          const load = (id) => JSON.parse(fs.readFileSync(`${byDir}/${id}.json`, 'utf8'))[0];
+          const etne = load('etnesjoen_tettstad');
+          const etneKai = load('etnesjoen_torg_og_kai');
+          const sk = load('skanevik_sentrum');
+          const skKai = load('skanevik_ferjekai');
+          const kyrping = load('kyrping_handelsstad');
+          const memorialRows = JSON.parse(fs.readFileSync('data/places/historie/vestland/etne/folgefonden_minnesmerke_skanevik.json', 'utf8'));
+          const memorial = Array.isArray(memorialRows) ? memorialRows[0] : memorialRows;
+          const dist = (a,b) => {
+            const R=6371, rad=(x)=>x*Math.PI/180;
+            const dLat=rad(b.lat-a.lat), dLon=rad(b.lon-a.lon);
+            const q=Math.sin(dLat/2)**2 + Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;
+            return 2*R*Math.asin(Math.sqrt(q));
+          };
+          const dEtne = dist(etne, etneKai);
+          if (dEtne < 0.02 || dEtne > 2) throw new Error(`Unexpected Etne centre ↔ torg/kai distance: ${dEtne.toFixed(3)} km`);
+          console.log(`PASS Etnesjøen settlement ↔ torg/kai: ${dEtne.toFixed(3)} km; distinct scales/functions`);
+          const dSk = dist(sk, skKai);
+          if (dSk > 2) throw new Error(`Skånevik centre too far from ferry quay: ${dSk.toFixed(3)} km`);
+          console.log(`PASS Skånevik centre ↔ ferry quay: ${dSk.toFixed(3)} km`);
+          const dMem = dist(skKai, memorial);
+          if (dMem > 0.25) throw new Error(`Ferry quay too far from documented Folgefonden quayfront anchor: ${dMem.toFixed(3)} km`);
+          console.log(`PASS ferry quay ↔ Folgefonden quayfront: ${dMem.toFixed(3)} km; overlapping location, distinct objects`);
+          if (!String(kyrping.quiz_profile?.notes || '').toLowerCase().includes('representativ')) throw new Error('Kyrping anchor uncertainty not disclosed');
+          console.log('PASS Kyrping: representative trading-place/locality anchor disclosed');
+          for (const p of [etne, etneKai, sk, skKai, kyrping]) if (p.category !== 'by') throw new Error(`${p.id}: category must remain by`);
+          console.log('PASS all five records categorized as by');
+          NODE
+
+          node <<'NODE' 2>&1 | tee reports/etne-by-batch-1-integration/targeted-validation.txt
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const ids = ['etnesjoen_tettstad','etnesjoen_torg_og_kai','skanevik_sentrum','skanevik_ferjekai','kyrping_handelsstad'];
+          for (const id of ids) {
+            const count = index.filter((x) => x.id === id).length;
+            if (count !== 1) throw new Error(`${id}: expected one runtime row, got ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const seen = new Set(), dup = new Set();
+          for (const row of index) { if (seen.has(row.id)) dup.add(row.id); seen.add(row.id); }
+          if (dup.size) throw new Error(`duplicate active IDs: ${[...dup].join(', ')}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+
+          git diff --check 2>&1 | tee reports/etne-by-batch-1-integration/git-diff-check.txt
+
+      - name: Commit and remove workflow
+        run: |
+          rm .github/workflows/integrate-etne-by-batch1.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/manifest.json data/places/places_index.json data/places/by/vestland/etne reports/etne-by-batch-1-integration .github/workflows/integrate-etne-by-batch1.yml
+          git commit -m 'Integrate Etne by batch 1 [skip etne by integration]'
+          git push origin HEAD:agent/etne-by-batch-1
