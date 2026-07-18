@@ -1,4 +1,3 @@
-# Re-triggered after initial workflow registration
 name: Fix full round override order
 
 on:
@@ -103,4 +102,10 @@ assert.deepStrictEqual(
           git config user.email "history-go-data-bot@users.noreply.github.com"
           git add js/ui/place-card.js tests/place-card-rounds-runtime-audit.test.js .github/workflows/place-round-full-override-order.yml
           git commit -m "Respect full PlaceCard round override order"
-          git push
+
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            git rebase --abort || true
+            sleep 2
+          done
+          exit 1
