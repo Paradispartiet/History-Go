@@ -128,4 +128,4 @@ node tests/etne-people-of-places-batch15.test.js
 echo "== Etne People of Places batch 16 =="
 node tests/etne-people-of-places-batch16.test.js
 
-echo "== People check complete =="
+echo "== Etne People of Places batch 17 =="\nnode tests/etne-people-of-places-batch17.test.js\n\necho "== People check complete =="
