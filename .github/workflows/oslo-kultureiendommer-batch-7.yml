@@ -1,0 +1,38 @@
+name: Oslo kultureiendommer batch 7 coordinate lookup
+
+on:
+  push:
+    branches:
+      - agent/oslo-kultureiendommer-batch-7
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.event.head_commit.message != 'Save Oslo kultureiendommer batch 7 coordinates'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-kultureiendommer-batch-7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Find and save Geonorge address candidate
+        run: |
+          mkdir -p reports/oslo-kultureiendommer-batch-7/coordinates
+          npm run places:coords:find:address -- --address "Ljansbrukveien 4C Oslo" \
+            | tee reports/oslo-kultureiendommer-batch-7/coordinates/stubljan-paviljongen.json
+      - name: Commit coordinate report
+        run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add reports/oslo-kultureiendommer-batch-7/coordinates
+          if git diff --cached --quiet; then
+            echo "No coordinate report changes."
+          else
+            git commit -m "Save Oslo kultureiendommer batch 7 coordinates"
+            git push
+          fi
