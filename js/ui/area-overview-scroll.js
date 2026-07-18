@@ -21,4 +21,11 @@
       global.setTimeout?.(restore, 0);
     }
   }, true);
+
+  if (!global.HGAreaOverviewV2 && !document.querySelector('script[src="js/ui/area-overview-v2.js"]')) {
+    const script = document.createElement("script");
+    script.src = "js/ui/area-overview-v2.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
 })(window);
