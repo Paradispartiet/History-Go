@@ -1,4 +1,4 @@
-name: Oslo kultureiendommer batch 4 coordinate lookup
+name: Integrate Oslo kultureiendommer batch 4
 
 on:
   push:
@@ -9,8 +9,8 @@ permissions:
   contents: write
 
 jobs:
-  coordinates:
-    if: github.event.head_commit.message != 'Save Oslo kultureiendommer batch 4 coordinates'
+  integrate:
+    if: github.event.head_commit.message != 'Generate Oslo kultureiendommer batch 4 data' && github.event.head_commit.message != 'Save Oslo kultureiendommer batch 4 coordinates'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,26 +20,39 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
-      - name: Find and save Geonorge address candidates
+      - name: Register active sources
         run: |
-          mkdir -p reports/oslo-kultureiendommer-batch-4/coordinates
-
-          npm run places:coords:find:address -- --address "Tåsenveien 2 Oslo" \
-            | tee reports/oslo-kultureiendommer-batch-4/coordinates/geitmyra-gard.json
-
-          npm run places:coords:find:address -- --address "Tøyenbekken 5 Oslo" \
-            | tee reports/oslo-kultureiendommer-batch-4/coordinates/gronland-politistasjon.json
-
-          npm run places:coords:find:address -- --address "Hovinveien 1 Oslo" \
-            | tee reports/oslo-kultureiendommer-batch-4/coordinates/toyen-trafo.json
-      - name: Commit coordinate reports
+          node <<'NODE'
+          const fs = require('node:fs');
+          const manifestPath = 'data/places/manifest.json';
+          const sources = [
+            'places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json',
+            'places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json'
+          ];
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.files ||= [];
+          for (const source of sources) {
+            if (!manifest.files.includes(source)) manifest.files.push(source);
+          }
+          fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+          NODE
+      - name: Build and validate place data
+        run: |
+          mkdir -p reports/oslo-kultureiendommer-batch-4/validation
+          npm run places:index:build | tee reports/oslo-kultureiendommer-batch-4/validation/places-index-build.txt
+          npm run places:index:check | tee reports/oslo-kultureiendommer-batch-4/validation/places-index-check.txt
+          npm run places:coords:intake | tee reports/oslo-kultureiendommer-batch-4/validation/coordinate-intake.txt
+          npm run places:emner:check | tee reports/oslo-kultureiendommer-batch-4/validation/emne-check.txt
+          npm run health:places | tee reports/oslo-kultureiendommer-batch-4/validation/health-places.txt
+      - name: Commit generated data
+        if: always()
         run: |
           git config user.name "actions"
           git config user.email "actions@github.com"
-          git add reports/oslo-kultureiendommer-batch-4/coordinates
+          git add data/places/manifest.json data/places/places_index.json reports/oslo-kultureiendommer-batch-4/validation
           if git diff --cached --quiet; then
-            echo "No coordinate report changes."
+            echo "No generated file changes."
           else
-            git commit -m "Save Oslo kultureiendommer batch 4 coordinates"
+            git commit -m "Generate Oslo kultureiendommer batch 4 data"
             git push
           fi
