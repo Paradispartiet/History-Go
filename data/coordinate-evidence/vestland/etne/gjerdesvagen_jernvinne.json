@@ -1,0 +1,85 @@
+{
+  "placeId": "gjerdesvagen_jernvinne",
+  "placeFile": "data/places/historie/vestland/etne/gjerdesvagen_jernvinne.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.6443,
+    "lon": 5.92245,
+    "r": 360,
+    "coordStatus": "needs_source",
+    "coordSource": "identity_mismatch_review",
+    "coordType": "site_center",
+    "coordNote": "Midlertidig, uverifisert områdeanker i Etne. Den lenkede og tekstlig samsvarende Askeladden-posten er kulturminne 94612-1 i Gjerdesvågen i Kvinnherad, ikke i Etne. Etne kommunes arkeologiske register og Kulturminnesøk-søk gir ingen tilsvarende Etne-lokalitet. Koordinaten må ikke regnes som verifisert før stedets identitet er avklart."
+  },
+  "identity": {
+    "currentName": "Jernvinneanlegget i Gjerdesvågen",
+    "resolvedIdentity": null,
+    "identityStatus": "conflicting_source",
+    "identityProblem": "Place-filen er kategorisert som Etne og bruker et Etne-punkt, men beskrivelsen og den lenkede Askeladden-posten samsvarer med kulturminne 94612 i Gjerdesvågen i Kvinnherad.",
+    "locatorTypeCandidate": "archaeological_site",
+    "requiresSplit": true,
+    "splitReason": "Det må avgjøres om posten skal fjernes fra Etne, flyttes og omskrives som Kvinnherad-sted, eller erstattes med en dokumentert Etne-lokalitet."
+  },
+  "requiredEvidence": [
+    "offisiell arkeologisk kilde som identifiserer en jernvinnelokalitet i Etne",
+    "stabilt kildeobjekt med kommune og geometri",
+    "redaksjonell avgjørelse om Etne-posten skal fjernes, flyttes eller erstattes"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren/Kulturminnesøk API v2",
+      "sourceUrl": "https://kms-api.kulturminnesok.no/api/v2/search/94612",
+      "sourceObjectId": "kulturminnesok:94612-1",
+      "sourceQuality": "official_primary_registry",
+      "finding": "Kulturminne 94612-1 heter Gjerde - Jernvinneanlegg, Gjerdesvågen og har samme funnbeskrivelse som place-filen, men Kulturminnesøk plasserer objektet i Kvinnherad ved 59.71710129338869, 5.7052694711403165.",
+      "canVerifyCoordinate": false,
+      "reason": "Kildeobjektet ligger i feil kommune og kan ikke verifisere Etne-markøren."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Etne kommune – Arkeologiske kulturminne i Etne kommune",
+      "sourceUrl": "https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf",
+      "sourceObjectId": "etne-arkeologiske-kulturminne-register",
+      "sourceQuality": "official_municipal_registry",
+      "finding": "Registeret inneholder ikke kulturminne 94612 eller en Gjerdesvågen-jernvinne i Etne.",
+      "canVerifyCoordinate": false,
+      "reason": "Kommuneregisteret gir ingen Etne-identitet eller geometri for stedet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:94612-1",
+      "sourceUrl": "https://kms-api.kulturminnesok.no/api/v2/search/94612",
+      "objectType": "archaeological_site",
+      "municipality": "Kvinnherad",
+      "whyRepresentative": "Objektet matcher navn og beskrivelse, men dokumenterer dermed en identitetsfeil og kan ikke brukes på Etne-posten.",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:94612-1",
+      "geometryType": "Point",
+      "lat": 59.71710129338869,
+      "lon": 5.7052694711403165,
+      "municipality": "Kvinnherad",
+      "canApplyToPlace": false,
+      "reason": "Geometrien tilhører den tekstlig matchende lokaliteten i Kvinnherad, ikke en Etne-lokalitet."
+    }
+  ],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Stedsidentiteten og kommunen motsier primærkilden; ingen offisiell Etne-lokalitet er funnet.",
+    "nextAction": "Ta en redaksjonell avgjørelse om posten skal fjernes fra Etne, flyttes og omskrives til Kvinnherad, eller erstattes med et dokumentert Etne-sted."
+  },
+  "notes": [
+    "Nåværende lat/lon er bevart som uverifisert områdeanker i tråd med evidence-policyen.",
+    "Askeladden 94612-1 må ikke brukes som kilde for et verified Etne-punkt."
+  ]
+}
