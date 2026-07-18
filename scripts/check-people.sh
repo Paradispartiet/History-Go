@@ -156,4 +156,7 @@ node tests/etne-people-of-places-batch23.test.js
 echo "== Etne People of Places batch 24 =="
 node tests/etne-people-of-places-batch24.test.js
 
+echo "== Etne People of Places batch 25 =="
+node tests/etne-people-of-places-batch25.test.js
+
 echo "== People check complete =="
