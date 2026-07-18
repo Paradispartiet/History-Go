@@ -1,7 +1,6 @@
 // js/nature_place_map_bridge.js
 // ------------------------------------------------------------
-// Kobler data/natur/nature_place_map.json og supplerende
-// naturkart til PlaceCard/Natur-rundingen.
+// Kobler de aktive place-level naturkartene til PlaceCard/Natur-rundingen.
 // Endrer ikke HGNatureUnlocks eller quiz-unlock-logikken.
 // ------------------------------------------------------------
 (function () {
@@ -11,18 +10,19 @@
     "data/natur/nature_place_map.json",
     "data/natur/nature_bird_place_map.json",
     "data/natur/nature_oslo_expansion_place_map.json",
-    "data/natur/nature_routes_place_map.json"
+    "data/natur/nature_routes_place_map.json",
+    "data/natur/nature_etne_place_map.json"
   ];
 
-  let _map = null;
-  let _mapLoading = null;
+  let mapCache = null;
+  let mapPromise = null;
 
-  function s(x) {
-    return String(x ?? "").trim();
+  function s(value) {
+    return String(value ?? "").trim();
   }
 
-  function uniq(xs) {
-    return [...new Set((Array.isArray(xs) ? xs : []).map(s).filter(Boolean))];
+  function uniq(values) {
+    return [...new Set((Array.isArray(values) ? values : []).map(s).filter(Boolean))];
   }
 
   function esc(value) {
@@ -41,16 +41,22 @@
   }
 
   function mergeEntry(base, extra) {
-    const out = { ...(base || {}) };
-    out.flora = uniq([...(Array.isArray(base?.flora) ? base.flora : []), ...(Array.isArray(extra?.flora) ? extra.flora : [])]);
-    out.fauna = uniq([...(Array.isArray(base?.fauna) ? base.fauna : []), ...(Array.isArray(extra?.fauna) ? extra.fauna : [])]);
+    const out = { ...(base || {}), ...(extra || {}) };
+    out.flora = uniq([
+      ...(Array.isArray(base?.flora) ? base.flora : []),
+      ...(Array.isArray(extra?.flora) ? extra.flora : [])
+    ]);
+    out.fauna = uniq([
+      ...(Array.isArray(base?.fauna) ? base.fauna : []),
+      ...(Array.isArray(extra?.fauna) ? extra.fauna : [])
+    ]);
 
-    if (extra?.sourceQuizIds || base?.sourceQuizIds) {
-      out.sourceQuizIds = uniq([...(Array.isArray(base?.sourceQuizIds) ? base.sourceQuizIds : []), ...(Array.isArray(extra?.sourceQuizIds) ? extra.sourceQuizIds : [])]);
+    if (base?.sourceQuizIds || extra?.sourceQuizIds) {
+      out.sourceQuizIds = uniq([
+        ...(Array.isArray(base?.sourceQuizIds) ? base.sourceQuizIds : []),
+        ...(Array.isArray(extra?.sourceQuizIds) ? extra.sourceQuizIds : [])
+      ]);
     }
-
-    if (base?.placeStatus || extra?.placeStatus) out.placeStatus = extra?.placeStatus || base?.placeStatus;
-    if (base?.artskartCandidateSource || extra?.artskartCandidateSource) out.artskartCandidateSource = extra?.artskartCandidateSource || base?.artskartCandidateSource;
 
     return out;
   }
@@ -68,21 +74,21 @@
 
   function flattenNature(list) {
     const out = [];
-    (Array.isArray(list) ? list : []).forEach(item => {
-      if (!item) return;
+    for (const item of Array.isArray(list) ? list : []) {
+      if (!item) continue;
       if (Array.isArray(item.items)) out.push(...item.items.filter(Boolean));
       if (item.id) out.push(item);
-    });
+    }
     return out;
   }
 
   function indexById(list) {
-    const idx = Object.create(null);
-    flattenNature(list).forEach(item => {
-      const id = s(item && item.id);
-      if (id && !idx[id]) idx[id] = item;
-    });
-    return idx;
+    const index = Object.create(null);
+    for (const item of flattenNature(list)) {
+      const id = s(item?.id);
+      if (id && !index[id]) index[id] = item;
+    }
+    return index;
   }
 
   async function fetchJson(path) {
@@ -91,34 +97,36 @@
         return await window.DataHub.fetchJSON(path, { cache: "no-store", bust: true });
       } catch {}
     }
+
     const url = new URL(path, document.baseURI).toString();
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error(`${res.status} ${path}`);
-    return await res.json();
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) throw new Error(`${response.status} ${path}`);
+    return await response.json();
   }
 
   async function loadNaturePlaceMap() {
-    if (_map) return _map;
-    if (_mapLoading) return _mapLoading;
+    if (mapCache) return mapCache;
+    if (mapPromise) return mapPromise;
 
-    _mapLoading = (async () => {
+    mapPromise = (async () => {
       const maps = [];
       for (const url of MAP_URLS) {
         const raw = await fetchJson(url).catch(() => ({}));
-        const map = raw && typeof raw === "object" ? (raw.places || raw) : {};
-        maps.push(map);
+        maps.push(raw && typeof raw === "object" ? (raw.places || raw) : {});
       }
-      _map = mergeMaps(maps);
-      window.NATURE_PLACE_MAP = _map;
-      return _map;
+      mapCache = mergeMaps(maps);
+      window.NATURE_PLACE_MAP = mapCache;
+      return mapCache;
     })();
 
-    return _mapLoading;
+    return mapPromise;
   }
 
   async function ensureNatureLoaded() {
     if (window.DataHub && typeof window.DataHub.loadNature === "function") {
-      try { await window.DataHub.loadNature(); } catch {}
+      try {
+        await window.DataHub.loadNature();
+      } catch {}
     }
 
     window.FLORA = flattenNature(Array.isArray(window.FLORA) ? window.FLORA : []);
@@ -138,10 +146,10 @@
 
     const original = window.DataHub.loadNature.bind(window.DataHub);
     window.DataHub.loadNature = async function patchedLoadNature(...args) {
-      const res = await original(...args);
+      const result = await original(...args);
       window.FLORA = flattenNature(Array.isArray(window.FLORA) ? window.FLORA : []);
       window.FAUNA = flattenNature(Array.isArray(window.FAUNA) ? window.FAUNA : []);
-      return res;
+      return result;
     };
 
     window.DataHub.__naturePlaceBridgePatched = true;
@@ -156,20 +164,39 @@
   }
 
   function imgOf(item) {
-    return s(item?.imageCard || item?.cardImage || item?.image || item?.img || item?.icon);
+    return s(item?.imageCard || item?.cardImage || item?.image || item?.img);
   }
 
   function faunaEmoji(item) {
     const klass = s(item?.taxonomy?.klasse || item?.taxonomy?.klass || item?.klass).toLowerCase();
+    const order = s(item?.taxonomy?.orden || item?.taxonomy?.order || item?.order).toLowerCase();
     const family = s(item?.taxonomy?.familie || item?.family).toLowerCase();
     const latin = latinOf(item).toLowerCase();
-    if (klass.includes("aves") || family.includes("laridae") || family.includes("corvidae") || latin.includes("passer") || latin.includes("corvus") || latin.includes("larus") || latin.includes("anas") || latin.includes("columba") || latin.includes("turdus") || latin.includes("parus") || latin.includes("cyanistes") || latin.includes("pica")) return "🐦";
+
+    if (
+      klass.includes("actinopteryg") ||
+      order.includes("salmoniform") ||
+      order.includes("anguilliform") ||
+      order.includes("gasterosteiform") ||
+      family.includes("salmonidae") ||
+      family.includes("anguillidae") ||
+      family.includes("gasterosteidae")
+    ) return "🐟";
+
+    if (
+      klass.includes("aves") ||
+      family.includes("laridae") ||
+      family.includes("corvidae") ||
+      ["passer", "corvus", "larus", "anas", "columba", "turdus", "parus", "cyanistes", "pica"].some(token => latin.includes(token))
+    ) return "🐦";
+
     return "🐝";
   }
 
   function renderNatureButton(item, kind) {
     const id = s(item?.id);
     if (!id) return "";
+
     const title = titleOf(item);
     const latin = latinOf(item);
     const img = imgOf(item);
@@ -188,13 +215,11 @@
   function renderNatureList({ place, floraItems, faunaItems }) {
     const profileHtml = renderNatureProfile(place);
     const floraHtml = floraItems.length
-      ? `<div class="pc-nature-section"><div class="pc-nature-section-title">Flora</div>${floraItems.map(x => renderNatureButton(x, "flora")).join("")}</div>`
+      ? `<div class="pc-nature-section"><div class="pc-nature-section-title">Flora</div>${floraItems.map(item => renderNatureButton(item, "flora")).join("")}</div>`
       : "";
-
     const faunaHtml = faunaItems.length
-      ? `<div class="pc-nature-section"><div class="pc-nature-section-title">Fauna</div>${faunaItems.map(x => renderNatureButton(x, "fauna")).join("")}</div>`
+      ? `<div class="pc-nature-section"><div class="pc-nature-section-title">Fauna</div>${faunaItems.map(item => renderNatureButton(item, "fauna")).join("")}</div>`
       : "";
-
     const speciesHtml = (floraHtml || faunaHtml)
       ? `<div class="pc-flora-row pc-nature-row">${floraHtml}${faunaHtml}</div>`
       : "";
@@ -203,16 +228,15 @@
   }
 
   async function getNatureForPlace(place) {
-    const placeId = s(place && place.id);
+    const placeId = s(place?.id);
     const map = await loadNaturePlaceMap();
     const bio = await ensureNatureLoaded();
-    const entry = map && map[placeId] ? map[placeId] : null;
+    const entry = map?.[placeId] || null;
 
     const floraIds = uniq([
       ...(Array.isArray(place?.flora) ? place.flora : []),
       ...(Array.isArray(entry?.flora) ? entry.flora : [])
     ]);
-
     const faunaIds = uniq([
       ...(Array.isArray(place?.fauna) ? place.fauna : []),
       ...(Array.isArray(entry?.fauna) ? entry.fauna : [])
@@ -235,19 +259,20 @@
     const nature = await getNatureForPlace(place);
     const count = nature.floraItems.length + nature.faunaItems.length;
 
-    if (natureEl) {
-      natureEl.innerHTML = renderNatureList({ place, ...nature });
-    }
+    if (natureEl) natureEl.innerHTML = renderNatureList({ place, ...nature });
 
     if (natureIcon) {
       const firstWithImg = [...nature.floraItems, ...nature.faunaItems].find(imgOf);
       const img = firstWithImg ? imgOf(firstWithImg) : "";
       if (img) {
-        natureIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
+        natureIcon.innerHTML = `<img src="${esc(img)}" class="pc-person-img" alt="">`;
       } else {
+        const emoji = nature.floraItems.length
+          ? "🌿"
+          : (nature.faunaItems.length ? faunaEmoji(nature.faunaItems[0]) : "🌿");
         natureIcon.innerHTML = `
           <div class="pc-round-label">
-            <span class="pc-round-emoji">${nature.faunaItems.length && !nature.floraItems.length ? "🐦" : "🌿"}</span>
+            <span class="pc-round-emoji">${emoji}</span>
             <span class="pc-round-count">${count}</span>
           </div>
         `;
@@ -257,7 +282,10 @@
 
   function showNatureItemPopup(item, kind) {
     if (!item) return;
-
+    if (typeof window.openNatureCard === "function") {
+      window.openNatureCard({ ...item, _kind: kind });
+      return;
+    }
     if (kind === "flora" && typeof window.showFloraPopup === "function") {
       window.showFloraPopup(item);
       return;
@@ -268,31 +296,34 @@
     const latin = latinOf(item);
     const desc = s(item?.desc || item?.description || item?.fenologi?.strategi || item?.observasjonstips?.[0]);
 
-    if (typeof window.showPlaceCardRoundPopup === "function") {
-      window.showPlaceCardRoundPopup({
-        title,
-        subtitle: latin,
-        kind: kind || "nature",
-        html: `
-          <div class="hg-flora-popup hg-fauna-popup">
-            ${img ? `<img src="${img}" class="hg-flora-img">` : ""}
-            ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
-          </div>
-        `
-      });
-    }
+    window.showPlaceCardRoundPopup?.({
+      title,
+      subtitle: latin,
+      kind: kind || "nature",
+      html: `
+        <div class="hg-flora-popup hg-fauna-popup">
+          ${img ? `<img src="${esc(img)}" class="hg-flora-img" alt="">` : `<div class="pc-nature-emoji">${kind === "fauna" ? faunaEmoji(item) : "🌿"}</div>`}
+          ${desc ? `<p class="hg-popup-desc">${esc(desc)}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+        </div>
+      `
+    });
   }
 
-  document.addEventListener("click", async (e) => {
-    const target = e.target;
-    const faunaBtn = target instanceof Element ? target.closest("[data-fauna]") : null;
-    if (!(faunaBtn instanceof HTMLElement)) return;
-    e.preventDefault();
-    e.stopPropagation();
+  document.addEventListener("click", async event => {
+    const target = event.target instanceof Element
+      ? event.target.closest("[data-flora], [data-fauna]")
+      : null;
+    if (!(target instanceof HTMLElement)) return;
 
-    const id = s(faunaBtn.dataset.fauna);
+    const kind = target.hasAttribute("data-fauna") ? "fauna" : "flora";
+    const id = s(kind === "fauna" ? target.dataset.fauna : target.dataset.flora);
+    if (!id) return;
+
+    event.preventDefault();
+    event.stopPropagation();
     const bio = await ensureNatureLoaded();
-    showNatureItemPopup(bio.faunaById[id], "fauna");
+    const item = kind === "fauna" ? bio.faunaById[id] : bio.floraById[id];
+    showNatureItemPopup(item, kind);
   }, true);
 
   function patchOpenPlaceCard() {
@@ -300,24 +331,29 @@
     if (window.openPlaceCard.__naturePlaceBridgePatched) return true;
 
     const original = window.openPlaceCard;
-
     const patched = async function patchedOpenPlaceCard(place) {
       const map = await loadNaturePlaceMap();
-      const entry = map && map[s(place?.id)] ? map[s(place?.id)] : null;
+      const entry = map?.[s(place?.id)] || null;
       const enrichedPlace = entry
         ? {
             ...place,
-            flora: uniq([...(Array.isArray(place?.flora) ? place.flora : []), ...(Array.isArray(entry.flora) ? entry.flora : [])]),
-            fauna: uniq([...(Array.isArray(place?.fauna) ? place.fauna : []), ...(Array.isArray(entry.fauna) ? entry.fauna : [])])
+            flora: uniq([
+              ...(Array.isArray(place?.flora) ? place.flora : []),
+              ...(Array.isArray(entry.flora) ? entry.flora : [])
+            ]),
+            fauna: uniq([
+              ...(Array.isArray(place?.fauna) ? place.fauna : []),
+              ...(Array.isArray(entry.fauna) ? entry.fauna : [])
+            ])
           }
         : place;
 
-      const res = await original.call(this, enrichedPlace);
+      const result = await original.call(this, enrichedPlace);
       const latestPlace = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
-        p => s(p?.id) === s(enrichedPlace?.id)
+        candidate => s(candidate?.id) === s(enrichedPlace?.id)
       ) || enrichedPlace;
       await applyNatureToPlaceCard(latestPlace);
-      return res;
+      return result;
     };
 
     patched.__naturePlaceBridgePatched = true;
