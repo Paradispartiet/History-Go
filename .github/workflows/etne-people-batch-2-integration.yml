@@ -1,0 +1,98 @@
+name: Etne People of Places batch 2 integration
+
+on:
+  pull_request:
+    paths:
+      - 'data/people/musikk/vestland/etne/abc_studio/**'
+      - 'reports/etne-people-of-places-batch-2-research.md'
+      - '.github/workflows/etne-people-batch-2-integration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: github.event.pull_request.number == 2272
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-people-batch-2
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          mkdir -p reports/etne-people-of-places-batch-2-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-people-of-places-batch-2-integration/npm-install.txt
+      - name: Register source files exactly once
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-people-of-places-batch-2-integration/manifest-update.txt
+          import fs from 'node:fs';
+          const manifestPath = 'data/people/manifest.json';
+          const additions = [
+            'people/musikk/vestland/etne/abc_studio/nils_osmund_halleland.json',
+            'people/musikk/vestland/etne/abc_studio/stig_morten_sorheim.json',
+            'people/musikk/vestland/etne/abc_studio/reinhardt_toresen.json',
+            'people/musikk/vestland/etne/abc_studio/knut_bjarne_bjorkhaug.json',
+            'people/musikk/vestland/etne/abc_studio/kjetil_ulland.json'
+          ];
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          for (const addition of additions) {
+            manifest.files = manifest.files.filter((value) => value !== addition);
+            manifest.files.push(addition);
+            const count = manifest.files.filter((value) => value === addition).length;
+            if (count !== 1) throw new Error(`${addition}: manifest count ${count}`);
+            console.log(`PASS ${addition}`);
+          }
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+      - name: Run full people checks
+        run: bash scripts/check-people.sh 2>&1 | tee reports/etne-people-of-places-batch-2-integration/check-people.txt
+      - name: Run People of Places audit
+        run: npm run audit:people-of-places 2>&1 | tee reports/etne-people-of-places-batch-2-integration/people-of-places-audit.txt
+      - name: Validate canonical IDs and ABC Studio links
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-people-of-places-batch-2-integration/targeted-validation.json
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const ids = ['nils_osmund_halleland','stig_morten_sorheim','reinhardt_toresen','knut_bjarne_bjorkhaug','kjetil_ulland'];
+          const manifest = JSON.parse(fs.readFileSync('data/people/manifest.json','utf8'));
+          const all = [];
+          for (const rel of manifest.files) {
+            const doc = JSON.parse(fs.readFileSync(path.join('data', rel),'utf8'));
+            const rows = Array.isArray(doc) ? doc : Array.isArray(doc?.people) ? doc.people : [];
+            for (const person of rows) all.push({person,file:rel});
+          }
+          const counts = new Map();
+          for (const {person} of all) if (person?.id) counts.set(person.id,(counts.get(person.id)||0)+1);
+          const duplicates = [...counts.entries()].filter(([,count]) => count > 1);
+          if (duplicates.length) throw new Error(`Duplicate people IDs: ${JSON.stringify(duplicates)}`);
+          const activePlaces = new Set(JSON.parse(fs.readFileSync('data/places/places_index.json','utf8')).map((place)=>place.id));
+          if (!activePlaces.has('abc_studio_etne')) throw new Error('abc_studio_etne is not active');
+          const results = [];
+          for (const id of ids) {
+            const rows = all.filter(({person}) => person?.id === id);
+            if (rows.length !== 1) throw new Error(`${id}: canonical rows ${rows.length}`);
+            const person = rows[0].person;
+            if (person.placeId !== 'abc_studio_etne') throw new Error(`${id}: primary place mismatch`);
+            if ((person.places || []).filter((placeId) => placeId === 'abc_studio_etne').length !== 1) throw new Error(`${id}: ABC Studio link count mismatch`);
+            results.push({id,canonicalRows:1,placeId:person.placeId,sourceFile:rows[0].file});
+          }
+          console.log(JSON.stringify({status:'PASS',totalPeople:all.length,uniquePeopleIds:counts.size,duplicatePeopleIds:0,results},null,2));
+          NODE
+      - name: Run diff whitespace check
+        run: git diff --check | tee reports/etne-people-of-places-batch-2-integration/git-diff-check.txt
+      - name: Remove temporary workflow and commit integration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/etne-people-batch-2-integration.yml
+          git add data/people/manifest.json reports/etne-people-of-places-batch-2-integration
+          git diff --cached --check
+          git commit -m "Integrate Etne People of Places batch 2"
+          git push origin HEAD:agent/etne-people-batch-2
