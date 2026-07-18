@@ -1,0 +1,69 @@
+name: Etne People batch 18 coverage audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/etne-people-batch18-coverage-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Build fresh Etne coverage report
+        run: |
+          mkdir -p reports/etne-people-of-places-batch18-audit
+          node <<'NODE' | tee reports/etne-people-of-places-batch18-audit/coverage.json
+          const fs = require('fs');
+          const path = require('path');
+          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const etnePlaces = places.filter((place) => String(place.kommune || '').toLowerCase() === 'etne');
+          const etneById = new Map(etnePlaces.map((place) => [place.id, place]));
+          const manifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
+          const links = new Map(etnePlaces.map((place) => [place.id, []]));
+          let totalPeople = 0;
+          for (const rel of manifest.files) {
+            const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
+            const people = Array.isArray(doc) ? doc : [doc];
+            for (const person of people) {
+              totalPeople += 1;
+              for (const id of new Set([person.placeId, ...(person.places || [])].filter(Boolean))) {
+                if (links.has(id)) links.get(id).push({ id: person.id, name: person.name, file: rel, primary: person.placeId === id });
+              }
+            }
+          }
+          const uncovered = etnePlaces
+            .filter((place) => links.get(place.id).length === 0)
+            .map((place) => ({
+              id: place.id,
+              name: place.name,
+              category: place.category,
+              year: place.year ?? null,
+              lat: place.lat,
+              lon: place.lon
+            }))
+            .sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
+          const covered = etnePlaces.length - uncovered.length;
+          console.log(JSON.stringify({
+            generatedAt: new Date().toISOString(),
+            peopleManifestFiles: manifest.files.length,
+            totalPeople,
+            activeEtnePlaces: etnePlaces.length,
+            coveredEtnePlaces: covered,
+            uncoveredEtnePlaces: uncovered.length,
+            uncovered
+          }, null, 2));
+          NODE
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: etne-people-batch18-coverage
+          path: reports/etne-people-of-places-batch18-audit/coverage.json
+          if-no-files-found: error
