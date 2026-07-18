@@ -12,7 +12,10 @@ Oslo kommune documents the building as a purpose-built 1875 prayer house initiat
 
 Representation: canonical `historie` place focused on changing religious, occupation, welfare and cultural uses of one physical building.
 
-Official visitor address for address-first lookup: Olaf Ryes plass 2, 0552 Oslo.
+Address-first result:
+- `59.92228111752553, 10.75817184314198`
+- `geonorge-adresser-v1:0301:15331:2`
+- Olaf Ryes plass 2, 0552 Oslo
 
 ## Slurpen
 
@@ -22,7 +25,10 @@ Oslo kommune documents the 1901 building as the common kitchen for Lakkegata sch
 
 Representation: canonical `historie` place focused on public school meals, urban health history, reuse and neighbourhood community life — not merely the current venue programme.
 
-Official visitor address for address-first lookup: Lakkegata 79C, 0562 Oslo.
+Address-first result:
+- `59.91931038465871, 10.768086181233059`
+- `geonorge-adresser-v1:0301:14097:79C`
+- Lakkegata 79C, 0562 Oslo
 
 ## Frysja decision
 
