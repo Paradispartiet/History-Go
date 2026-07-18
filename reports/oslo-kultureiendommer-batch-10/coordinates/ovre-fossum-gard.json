@@ -1,0 +1,61 @@
+
+> places:coords:find:address
+> node address-first-coordinate-finder.mjs --address Olaus Fjørtofts vei 130 Oslo
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Olaus Fjørtofts vei 130 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Olaus%20Fj%C3%B8rtofts%20vei%20130%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:15338:130",
+  "coordinate": {
+    "lat": 59.95916207908544,
+    "lon": 10.927090991752289,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:15338:130",
+    "address": {
+      "street": "Olaus Fjørtofts vei",
+      "number": "130",
+      "postcode": "0982",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Olaus Fjørtofts vei 130, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Olaus Fjørtofts vei",
+    "adressetekst": "Olaus Fjørtofts vei 130",
+    "adressetilleggsnavn": null,
+    "adressekode": 15338,
+    "nummer": 130,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 100,
+    "bruksnummer": 1,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0982",
+    "adressetekstutenadressetilleggsnavn": "Olaus Fjørtofts vei 130",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.95916207908544,
+      "lon": 10.927090991752289
+    },
+    "oppdateringsdato": "2020-06-15T18:07:07"
+  }
+}

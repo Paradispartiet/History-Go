@@ -1,0 +1,61 @@
+
+> places:coords:find:address
+> node address-first-coordinate-finder.mjs --address Tvetenveien 101 Oslo
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Tvetenveien 101 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Tvetenveien%20101%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:17852:101",
+  "coordinate": {
+    "lat": 59.913061375377836,
+    "lon": 10.836900380109173,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:17852:101",
+    "address": {
+      "street": "Tvetenveien",
+      "number": "101",
+      "postcode": "0671",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tvetenveien 101, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Tvetenveien",
+    "adressetekst": "Tvetenveien 101",
+    "adressetilleggsnavn": null,
+    "adressekode": 17852,
+    "nummer": 101,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 140,
+    "bruksnummer": 1,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0671",
+    "adressetekstutenadressetilleggsnavn": "Tvetenveien 101",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.913061375377836,
+      "lon": 10.836900380109173
+    },
+    "oppdateringsdato": "2020-06-15T18:04:04"
+  }
+}
