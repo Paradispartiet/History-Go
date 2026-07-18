@@ -1,0 +1,85 @@
+name: Oslo coordinate batch 16 integration
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  integrate:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch-16'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Find Vøienvolden address coordinate
+        run: |
+          mkdir -p reports/oslo-coordinate-control-batch-16
+          npm run places:coords:find:address -- --address "Maridalsveien 120 Oslo" \
+            | tee reports/oslo-coordinate-control-batch-16/voienvolden-geonorge.json
+      - name: Apply batch
+        run: node scripts/tmp-complete-oslo-coordinate-batch16.mjs
+      - name: Rebuild place index
+        run: npm run places:index:build
+      - name: Check place index
+        run: npm run places:index:check
+      - name: Check split manifest sync
+        run: npm run audit:places-split-manifest-sync
+      - name: Check coordinate quality
+        run: npm run places:coords:quality
+      - name: Check strict coordinate intake
+        env:
+          COORD_INTAKE_BASE: origin/main
+        run: npm run places:coords:intake
+      - name: Check coordinate evidence
+        id: evidence
+        continue-on-error: true
+        run: npm run places:coords:evidence:audit
+      - name: Post evidence audit failure
+        if: steps.evidence.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo 'Coordinate evidence audit failed:'
+            echo
+            cat reports/coordinate-evidence-audit.md
+          } > /tmp/body.txt
+          jq -n --rawfile body /tmp/body.txt '{body:$body}' > /tmp/comment.json
+          curl --fail-with-body -L \
+            -X POST \
+            -H 'Accept: application/vnd.github+json' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'X-GitHub-Api-Version: 2022-11-28' \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            -d @/tmp/comment.json
+          exit 1
+      - name: Check whitespace
+        run: git diff --check
+      - name: Remove temporary integration files
+        run: |
+          rm scripts/tmp-complete-oslo-coordinate-batch16.mjs
+          rm .github/workflows/oslo-coordinate-batch16-integration.yml
+      - name: Commit integrated batch
+        run: |
+          git config user.name 'history-go-coordinate-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git commit -m 'Complete Oslo coordinate control batch 16'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
