@@ -18,6 +18,8 @@ Address-first result:
 - `geonorge-adresser-v1:0301:15318:83`
 - Odvar Solbergs vei 83, 0973 Oslo
 
+Source confidence: high for the building identity, address, ownership transfer and use history because the factual basis comes from Oslo kommune's own cultural-property page; the coordinate comes from the official Geonorge address source.
+
 ## Deferred candidates
 
 - Hvervenbukta / Stubljan remains: genuine gap, but the cultural property spans multiple buildings, a pavilion, garden remains and a former manor footprint. It requires a geometry/area-anchor decision instead of an arbitrary address marker.
