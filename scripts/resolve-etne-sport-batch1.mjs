@@ -62,6 +62,7 @@ async function placeNameLookup(searches, label) {
     url.searchParams.set('sok', search);
     url.searchParams.set('treffPerSide', '50');
     url.searchParams.set('side', '1');
+    url.searchParams.set('koordsys', '4258');
     const response = await fetch(url);
     if (!response.ok) {
       console.log(`INFO ${label}: stedsnavn HTTP ${response.status} for ${search}`);
