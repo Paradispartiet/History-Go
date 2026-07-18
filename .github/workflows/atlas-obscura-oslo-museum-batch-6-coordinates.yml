@@ -1,0 +1,45 @@
+name: Atlas Obscura Oslo museum batch 6 coordinate lookup
+
+on:
+  push:
+    branches:
+      - agent/atlas-obscura-oslo-museum-batch-6
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.event.head_commit.message != 'Save Atlas Obscura museum batch 6 coordinates'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/atlas-obscura-oslo-museum-batch-6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Find and save Geonorge address candidates
+        run: |
+          mkdir -p reports/atlas-obscura-oslo-museum-batch-6/coordinates
+
+          npm run places:coords:find:address -- --address "Nedre Slottsgate 4C Oslo" \
+            | tee reports/atlas-obscura-oslo-museum-batch-6/coordinates/nordisk-bibelmuseum.json
+
+          npm run places:coords:find:address -- --address "Trelastgata 19 Oslo" \
+            | tee reports/atlas-obscura-oslo-museum-batch-6/coordinates/flop-museum.json
+
+          npm run places:coords:find:address -- --address "Kirkegata 10 Oslo" \
+            | tee reports/atlas-obscura-oslo-museum-batch-6/coordinates/mini-bottle-gallery.json
+      - name: Commit coordinate reports
+        run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add reports/atlas-obscura-oslo-museum-batch-6/coordinates
+          if git diff --cached --quiet; then
+            echo "No coordinate report changes."
+          else
+            git commit -m "Save Atlas Obscura museum batch 6 coordinates"
+            git push
+          fi
