@@ -1,6 +1,13 @@
 name: Temporary Etne sport batch 4 integration
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'data/places/sport/vestland/etne/skanevik_skytebane.json'
+      - 'reports/etne-sport-batch-4-research.md'
+      - '.github/workflows/temporary-etne-sport-batch-4-integration.yml'
   push:
     branches:
       - agent/etne-sport-batch-4
@@ -11,7 +18,7 @@ permissions:
 
 jobs:
   integrate:
-    if: ${{ !contains(github.event.head_commit.message || '', '[etne-b4-integrated]') }}
+    if: ${{ github.event_name != 'push' || !contains(github.event.head_commit.message, '[etne-b4-integrated]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out branch
