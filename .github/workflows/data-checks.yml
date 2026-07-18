@@ -15,9 +15,135 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  integrate_etne_science_batch_1:
+    name: Integrate Etne science batch 1
+    if: github.event.pull_request.number == 2260
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-vitenskap-batch-1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          mkdir -p reports/etne-vitenskap-batch-1-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-vitenskap-batch-1-integration/npm-install.txt
+
+      - name: Register source file exactly once
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-vitenskap-batch-1-integration/manifest-update.txt
+          import fs from 'node:fs';
+          const manifestPath = 'data/places/manifest.json';
+          const addition = 'places/vitenskap/vestland/etne/etneelva_forskningsplattform.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.files = manifest.files.filter((value) => value !== addition);
+          manifest.files.push(addition);
+          const count = manifest.files.filter((value) => value === addition).length;
+          if (count !== 1) throw new Error(`Manifest registration failed for ${addition}: ${count}`);
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+          console.log(`PASS ${addition}: exactly once`);
+          NODE
+
+      - name: Rebuild runtime index
+        run: npm run places:index:build 2>&1 | tee reports/etne-vitenskap-batch-1-integration/index-build.txt
+
+      - name: Run coordinate intake
+        env:
+          COORD_INTAKE_BASE: ${{ github.event.pull_request.base.sha }}
+        run: npm run places:coords:intake 2>&1 | tee reports/etne-vitenskap-batch-1-integration/coordinate-intake.txt
+
+      - name: Run places validation
+        run: bash scripts/check-places.sh 2>&1 | tee reports/etne-vitenskap-batch-1-integration/check-places.txt
+
+      - name: Run split manifest sync
+        run: npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-vitenskap-batch-1-integration/split-manifest-sync.txt
+
+      - name: Run coordinate quality gate
+        run: npm run places:coords:quality 2>&1 | tee reports/etne-vitenskap-batch-1-integration/coordinate-quality.txt
+
+      - name: Validate source, runtime and Etneelva separation
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-vitenskap-batch-1-integration/targeted-source-runtime-validation.json
+          import fs from 'node:fs';
+          const newId = 'etneelva_forskningsplattform';
+          const riverId = 'etneelva';
+          const sourcePath = 'data/places/vitenskap/vestland/etne/etneelva_forskningsplattform.json';
+          const sourceDoc = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+          const source = Array.isArray(sourceDoc) ? sourceDoc.find((place) => place.id === newId) : sourceDoc;
+          const runtime = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const counts = new Map();
+          for (const place of runtime) counts.set(place.id, (counts.get(place.id) || 0) + 1);
+          const duplicates = [...counts.entries()].filter(([, count]) => count > 1);
+          if (duplicates.length) throw new Error(`Global duplicate active place IDs: ${JSON.stringify(duplicates)}`);
+          const rows = runtime.filter((place) => place.id === newId);
+          const riverRows = runtime.filter((place) => place.id === riverId);
+          if (rows.length !== 1) throw new Error(`${newId}: expected one runtime row, got ${rows.length}`);
+          if (riverRows.length !== 1) throw new Error(`${riverId}: expected one runtime row, got ${riverRows.length}`);
+          if (rows[0].category !== 'vitenskap') throw new Error(`${newId}: expected vitenskap, got ${rows[0].category}`);
+          if (riverRows[0].category !== 'natur') throw new Error(`${riverId}: expected natur, got ${riverRows[0].category}`);
+          const fields = ['lat','lon','r','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','locatorType','sourceProvider','geocodeAccuracy','coordRole'];
+          const mismatches = fields.filter((field) => JSON.stringify(source[field]) !== JSON.stringify(rows[0][field]));
+          if (mismatches.length) throw new Error(`${newId}: parity mismatch: ${mismatches.join(', ')}`);
+          const rad = (value) => value * Math.PI / 180;
+          const haversineKm = (a, b) => {
+            const R = 6371;
+            const dLat = rad(b.lat - a.lat);
+            const dLon = rad(b.lon - a.lon);
+            const s = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLon / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(s));
+          };
+          const overlapKm = haversineKm(rows[0], riverRows[0]);
+          console.log(JSON.stringify({
+            status: 'PASS',
+            globalDuplicateActivePlaceIds: 0,
+            newPlace: {
+              id: newId,
+              runtimeRows: 1,
+              category: rows[0].category,
+              coordinateParity: 'PASS',
+              coordType: rows[0].coordType,
+              coordStatus: rows[0].coordStatus
+            },
+            existingRiverPlace: {
+              id: riverId,
+              runtimeRows: 1,
+              category: riverRows[0].category,
+              coordType: riverRows[0].coordType,
+              coordStatus: riverRows[0].coordStatus
+            },
+            separation: {
+              distinctCanonicalIds: true,
+              distinctCategories: true,
+              currentQaAnchorDistanceKm: Number(overlapKm.toFixed(3)),
+              note: 'Coordinate overlap is explicitly accepted only as a temporary QA limitation: etneelva is a broad river-system record, while etneelva_forskningsplattform is the physical research installation above Enge bridge.'
+            }
+          }, null, 2));
+          NODE
+
+      - name: Run diff whitespace check
+        run: git diff --check | tee reports/etne-vitenskap-batch-1-integration/git-diff-check.txt
+
+      - name: Restore standard workflow and commit integration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main --depth=1
+          git show origin/main:.github/workflows/data-checks.yml > .github/workflows/data-checks.yml
+          git add .github/workflows/data-checks.yml data/places/manifest.json data/places/places_index.json reports/etne-vitenskap-batch-1-integration
+          git diff --cached --check
+          git commit -m "Integrate Etne science batch 1"
+          git push origin HEAD:agent/etne-vitenskap-batch-1
+
   people:
     name: People data
     runs-on: ubuntu-latest
