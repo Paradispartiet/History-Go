@@ -25,7 +25,8 @@ async function addressLookup(query) {
   if (!point || typeof point.lat !== 'number' || typeof point.lon !== 'number') {
     throw new Error(`Missing address representation point: ${query}`);
   }
-  return { lat: point.lat, lon: point.lon, raw: best };
+  const label = [best.adressetekst, best.postnummer, best.poststed].filter(Boolean).join(', ');
+  return { lat: point.lat, lon: point.lon, raw: best, label };
 }
 
 function nameOf(row) {
@@ -101,14 +102,23 @@ apply(files.etne, etne, 'Offisielt Kartverket/Geonorge-adressepunkt brukt som an
 const bmx = await addressLookup('Stadionvegen 12, 5590 Etne');
 apply(files.bmx, bmx, 'Offisielt Kartverket/Geonorge-adressepunkt brukt som anker: Stadionvegen 12, 5590 Etne.', 'Stadionvegen 12, 5590');
 
-const steinsvollen = await placeNameLookup(['Steinsvollen*', 'Steinsvoll*'], 'Steinsvollen');
-if (!steinsvollen) throw new Error('No usable Kartverket Stedsnavn point for Steinsvollen in Etne municipality');
-apply(
-  files.steinsvollen,
-  steinsvollen,
-  `Kartverket Stedsnavn-representasjonspunkt brukt for ${steinsvollen.name || 'Steinsvollen'} i Etne kommune; punktet representerer fotballområdet og er ikkje påstått å vere sentrum av ei bestemt turneringsoppmerking.`,
-  `Kartverket Stedsnavn: ${steinsvollen.name || 'Steinsvollen'}`
-);
+let steinsvollen = await placeNameLookup(['Steinsvollen*', 'Steinsvoll*'], 'Steinsvollen');
+if (steinsvollen) {
+  apply(
+    files.steinsvollen,
+    steinsvollen,
+    `Kartverket Stedsnavn-representasjonspunkt brukt for ${steinsvollen.name || 'Steinsvollen'} i Etne kommune; punktet representerer fotballområdet og er ikkje påstått å vere sentrum av ei bestemt turneringsoppmerking.`,
+    `Kartverket Stedsnavn: ${steinsvollen.name || 'Steinsvollen'}`
+  );
+} else {
+  steinsvollen = await addressLookup('Steinsvegen, 5590 Etne');
+  apply(
+    files.steinsvollen,
+    steinsvollen,
+    `Kartverket/Geonorge-adressepunkt ${steinsvollen.label || 'i Steinsvegen'} er brukt som eit eksplisitt representativt Steinsvegen-/Steinsvollen-områdeanker fordi Kartverket Stedsnavn ikkje returnerer Steinsvollen i Etne kommune. NFF og Etne Cup dokumenterer Steinsvollen som eige fotball- og turneringsanlegg; punktet er ikkje påstått å vere eksakt banesenter.`,
+    `representativt Steinsvegen-områdeanker: ${steinsvollen.label || '5590 Etne'}`
+  );
+}
 
 let enge = await placeNameLookup(['Engebanen*', 'Enge kunstgrasbane*', 'Engebane*'], 'Engebanen');
 if (enge) {
