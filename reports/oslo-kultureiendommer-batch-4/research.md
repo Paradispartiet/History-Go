@@ -12,17 +12,23 @@ No canonical place was found for `Geitmyra gård`, `Geitmyra matkultursenter` or
 
 Proposed representation: `historie`, combining historic farm architecture, municipal land-use change and present food-culture reuse.
 
+Official visitor address for address-first lookup: Tåsenveien 2, 0462 Oslo.
+
 ### Grønland politistasjon
 
 No canonical place was found for `Grønland politistasjon`, `Bækkegatens politistasjon` or Tøyenbekken 5. The building opened as a police station in 1903; the preserved arrest wing was used by the German Schnellkommando during the occupation. The police moved out in 1978, and the building now houses cultural and museum activities.
 
 Proposed representation: `historie`, with policing, occupation and adaptive cultural reuse as separate layers.
 
+Official visitor address for address-first lookup: Tøyenbekken 5, 0188 Oslo.
+
 ### Tøyen trafo
 
 No canonical place was found for `Tøyen trafo`, the former Oslo Lysverker transformer station, or Hovinveien 1. Oslo kommune dates the transformer station to 1915 and documents later cultural use from the 1970s; today Oslo teatersenter and artist studios use the building.
 
 Proposed representation: `naeringsliv`, focusing on electrical infrastructure, municipal utility history, industrial architecture and cultural reuse.
+
+Official visitor address for address-first lookup: Hovinveien 1, 0608 Oslo.
 
 ## Coordinate method
 
