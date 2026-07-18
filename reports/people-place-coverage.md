@@ -1,53 +1,53 @@
 # People-place coverage audit
 
-Generert: 2026-07-17T20:51:00.125Z
+Generert: 2026-07-18T05:07:03.101Z
 
 ## Sammendrag
 
-- People totalt: **860**
-- Places totalt: **1092**
+- People totalt: **887**
+- Places totalt: **1107**
 - Places med people: **233**
-- Places uten people: **859**
-- People-place-lenker: **1055**
+- Places uten people: **874**
+- People-place-lenker: **1081**
 - People koblet til flere gyldige steder: **204**
-- People uten gyldig sted: **80**
+- People uten gyldig sted: **81**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **780**
-- People uten image: **519**
-- People uten cardImage: **520**
-- People uten popupDesc: **104**
+- Duplikate place-referanser inne på people: **806**
+- People uten image: **546**
+- People uten cardImage: **547**
+- People uten popupDesc: **105**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 202 | 34 | 168 | 135 | 106 |
+| by | 207 | 34 | 173 | 135 | 106 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
 | historie | 412 | 48 | 364 | 161 | 91 |
-| kunst | 24 | 9 | 15 | 21 | 19 |
-| litteratur | 38 | 21 | 17 | 171 | 166 |
+| kunst | 29 | 9 | 20 | 21 | 19 |
+| litteratur | 38 | 21 | 17 | 176 | 171 |
 | media | 11 | 8 | 3 | 27 | 26 |
 | musikk | 17 | 14 | 3 | 85 | 77 |
-| naeringsliv | 126 | 27 | 99 | 55 | 53 |
+| naeringsliv | 131 | 27 | 104 | 55 | 53 |
 | natur | 70 | 5 | 65 | 13 | 13 |
-| politikk | 26 | 11 | 15 | 96 | 80 |
+| politikk | 26 | 11 | 15 | 110 | 94 |
 | populaerkultur | 20 | 2 | 18 | 32 | 28 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 67 | 15 | 52 | 130 | 116 |
-| subkultur | 35 | 20 | 15 | 31 | 28 |
+| subkultur | 35 | 20 | 15 | 38 | 35 |
 | vitenskap | 35 | 11 | 24 | 53 | 43 |
 
 ## People tags
 
 - teater: 181
 - scenekunst: 174
-- litteratur: 166
+- litteratur: 171
+- historie: 136
 - skuespiller: 130
-- historie: 122
 - sport: 117
 - musikk: 88
-- politikk: 54
-- subkultur: 53
+- politikk: 68
+- subkultur: 60
 - regissor: 52
 - teatersjef: 47
 - bislett: 44
@@ -59,14 +59,16 @@ Generert: 2026-07-17T20:51:00.125Z
 - norge_for_1500: 40
 - film: 39
 - vitenskap: 34
+- kunst: 30
 - friidrett: 28
 - revy: 28
 - bislett_games: 27
-- kunst: 27
 - media: 27
 - by: 26
 - popkultur: 25
-- arkitektur: 23
+- 1814: 24
+- arkitektur: 24
+- riksforsamlingen: 24
 - film_tv: 23
 - seriemester: 23
 - natur: 22
@@ -74,11 +76,11 @@ Generert: 2026-07-17T20:51:00.125Z
 - torshovteatret: 20
 - filantrop: 17
 - tv: 17
+- institusjonsledelse: 16
 - klassikerrepertoar: 16
 - verdensrekord: 16
 - etterkrigstid: 15
 - filmhistorie: 15
-- institusjonsledelse: 15
 - moderne_ensemble: 15
 - filmkanon: 14
 - journalistikk: 14
@@ -87,8 +89,6 @@ Generert: 2026-07-17T20:51:00.125Z
 - landslaget: 13
 - modernisme: 13
 - nynorsk: 13
-- skoyter: 13
-- heddaprisen: 12
 
 ## Steder med flest people
 
@@ -96,6 +96,7 @@ Generert: 2026-07-17T20:51:00.125Z
 - bislett_stadion (Bislett Stadion) – 82
 - det_norske_teatret (Det Norske Teatret) – 55
 - stortinget (Stortinget) – 29
+- eidsvollsbygningen (Eidsvollsbygningen) – 28
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
 - edderkoppen_scene (Edderkoppen Scene) – 21
@@ -104,7 +105,6 @@ Generert: 2026-07-17T20:51:00.125Z
 - youngstorget (Youngstorget) – 17
 - oslo_domkirke (Oslo domkirke) – 15
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 15
-- eidsvollsbygningen (Eidsvollsbygningen) – 14
 - oslo_radhus (Oslo rådhus) – 14
 - gamle_deichman (Gamle Deichman) – 13
 - karl_johan (Karl Johans gate) – 13
@@ -224,7 +224,7 @@ Generert: 2026-07-17T20:51:00.125Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 680 flere
+- ... 706 flere
 
 ## Anbefalt første people-batch
 

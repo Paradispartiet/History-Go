@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-17T20:50:59.486Z
+Generated: 2026-07-18T05:07:02.876Z
 
 ## Sammendrag
-- People-filer lest: **360**
-- People lest: **858**
+- People-filer lest: **376**
+- People lest: **885**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **858**
+- Duplikate interne place-referanser: **885**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -225,6 +225,11 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: holger_sinding_larsen (Holger Sinding-Larsen) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: emanuel_vigeland (Emanuel Vigeland) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: per_krohg (Per Krohg) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: axel_revold (Axel Revold) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: ase_wetas (Åse Wetås) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json :: bjorn_bjornson (Bjørn Bjørnson) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json :: johanne_dybwad (Johanne Dybwad) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/halfdan_christensen.json :: halfdan_christensen (Halfdan Christensen) -> nationaltheatret x2
@@ -698,6 +703,13 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: kate_naess (Kate Næss) -> club_7_vika x2
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: sossen_krohg (Sossen Krohg) -> club_7_vika x2
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: attila_horvath (Attila Horvath) -> club_7_vika x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: stein_lillevolden (Stein Lillevolden) -> blitzhuset x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: bror_wyller (Bror Wyller) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: hermann_stene (Hermann Stene) -> oslo_skatehall x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: paul_brady (Paul Brady) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: hege_vadstein (Hege Vadstein) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: anne_rita_andal (Anne Rita Andal) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: christian_engfelt (Christian Engfelt) -> oslo_skatehall x2
 - data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json :: oslo_skatehall_miljoet (Oslo Skatehall-miljøet) -> oslo_skatehall x2
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: sub_scene_miljoet (Sub Scene-miljøet) -> sub_scene x2
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: mir_grunerlokka_lufthavn_miljoet (MIR / Grünerløkka Lufthavn-miljøet) -> mir_grunerlokka_lufthavn x2
@@ -876,5 +888,20 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/politikk/akershus/eidsvollsbygningen/john_collett.json :: john_collett (John Collett) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/lauritz_weidemann.json :: lauritz_weidemann (Lauritz Weidemann) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/anders_lysgaard.json :: anders_lysgaard (Anders Lysgaard) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/ole_elias_holck.json :: ole_elias_holck (Ole Elias Holck) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/christian_adolph_diriks.json :: christian_adolph_diriks (Christian Adolph Diriks) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/hans_jacob_grogaard.json :: hans_jacob_grogaard (Hans Jacob Grøgaard) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_schmidt.json :: frederik_schmidt (Frederik Schmidt) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/peder_hjermann.json :: peder_hjermann (Peder Hjermann) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/jens_schow_fabricius.json :: jens_schow_fabricius (Jens Schow Fabricius) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_meltzer.json :: frederik_meltzer (Frederik Meltzer) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/jonas_rein.json :: jonas_rein (Jonas Rein) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/andreas_rogert.json :: andreas_rogert (Andreas Rogert) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/valentin_sibbern.json :: valentin_sibbern (Valentin Christian Wilhelm Sibbern) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/christopher_frimann_omsen.json :: christopher_frimann_omsen (Christopher Frimann Omsen) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_wilhelm_stabell.json :: frederik_wilhelm_stabell (Frederik Wilhelm Bruenech Stabell) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/hans_haslum.json :: hans_haslum (Hans Haslum) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/poul_steenstrup.json :: poul_steenstrup (Poul Steenstrup) -> eidsvollsbygningen x2
+- data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json :: abelone_kristensen (Abelone Kristensen) -> abelonegarden x2
 
 ## Anbefalt neste ryddebatch

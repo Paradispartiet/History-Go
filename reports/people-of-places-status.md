@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-17T20:50:59.582Z
+Generert: 2026-07-18T05:07:02.918Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-17T20:50:59.582Z |
-| peopleFilesRead | 360 |
-| totalPeople | 858 |
-| uniquePeopleIds | 858 |
+| generatedAt | 2026-07-18T05:07:02.918Z |
+| peopleFilesRead | 376 |
+| totalPeople | 885 |
+| uniquePeopleIds | 885 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 360 |
+| geographicPeopleFiles | 376 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -31,6 +31,7 @@ Generert: 2026-07-17T20:50:59.582Z
 | data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json | kunst | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 13 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/anders_mordal.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -214,15 +215,29 @@ Generert: 2026-07-17T20:50:59.582Z
 | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json | natur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/anders_lysgaard.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/andreas_rogert.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/christian_adolph_diriks.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/christopher_frimann_omsen.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/diderik_hegermann.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/frederik_meltzer.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/frederik_schmidt.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/frederik_wilhelm_stabell.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/hans_haslum.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/hans_jacob_grogaard.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/herman_wedel_jarlsberg.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/jacob_aall.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/jens_schow_fabricius.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/john_collett.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/jonas_rein.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/lauritz_weidemann.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/niels_aall.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/ole_elias_holck.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/peder_hjermann.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/peter_motzfeldt.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/poul_steenstrup.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/severin_lovenskiold.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/akershus/eidsvollsbygningen/thomas_konow.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/akershus/eidsvollsbygningen/valentin_sibbern.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json | politikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/chat_noir/bokken_lasson.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -375,8 +390,9 @@ Generert: 2026-07-17T20:50:59.582Z
 | data/people/sport/oslo/ullevaal_stadion/trude_stendal.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/ullevaal_stadion/yngve_hallen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json | subkultur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json | subkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json | subkultur | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | subkultur | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | subkultur | ja | 11 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json | subkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json | subkultur | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 32 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -392,20 +408,20 @@ Generert: 2026-07-17T20:50:59.582Z
 | film_tv | 23 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 105 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | kunst | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| litteratur | 158 | 0 | 121 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| litteratur | 163 | 0 | 122 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 26 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 84 | 0 | 56 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 55 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| politikk | 37 | 0 | 12 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| politikk | 51 | 0 | 26 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 24 | 0 | 24 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 195 | 0 | 125 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| subkultur | 44 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| subkultur | 52 | 0 | 7 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 360
+- Allerede geografisk strukturert: 376
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -439,6 +455,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=13/13; source_place_id=0/13; placesArray=13/13; categories=kunst
 - data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/anders_mordal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
@@ -622,15 +639,29 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=natur
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/politikk/akershus/eidsvollsbygningen/anders_lysgaard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/andreas_rogert.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/christian_adolph_diriks.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/christopher_frimann_omsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/diderik_hegermann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_meltzer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_schmidt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_wilhelm_stabell.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/hans_haslum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/hans_jacob_grogaard.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/herman_wedel_jarlsberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/jacob_aall.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/jens_schow_fabricius.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/john_collett.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/jonas_rein.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/lauritz_weidemann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/niels_aall.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/ole_elias_holck.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/peder_hjermann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/peter_motzfeldt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/poul_steenstrup.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/severin_lovenskiold.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/akershus/eidsvollsbygningen/thomas_konow.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/politikk/akershus/eidsvollsbygningen/valentin_sibbern.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=politikk
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/oslo/chat_noir/bokken_lasson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
@@ -783,8 +814,9 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/sport/oslo/ullevaal_stadion/trude_stendal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/ullevaal_stadion/yngve_hallen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=subkultur
+- data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=subkultur
-- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=subkultur
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=11/11; source_place_id=0/11; placesArray=11/11; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=32/32; source_place_id=0/32; placesArray=32/32; categories=subkultur
