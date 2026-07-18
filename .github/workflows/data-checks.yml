@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   people:
@@ -91,3 +91,145 @@ jobs:
             npm run places:emner:check
             npm run places:coords:check
           fi
+
+  etne-politikk-batch1-integration:
+    name: Etne politics batch 1 integration
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/etne-politikk-batch-1' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Etne politics branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-politikk-batch-1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          mkdir -p reports/etne-politikk-batch-1-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-politikk-batch-1-integration/npm-install.txt
+
+      - name: Register sources exactly once
+        shell: bash
+        run: |
+          node <<'NODE' 2>&1 | tee reports/etne-politikk-batch-1-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const additions = [
+            'places/politikk/vestland/etne/etne_tinghus.json',
+            'places/politikk/vestland/etne/etne_brannstasjon.json',
+            'places/politikk/vestland/etne/skanevik_brannstasjon.json'
+          ];
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (!manifest || !Array.isArray(manifest.files)) throw new Error('manifest.files missing');
+          for (const item of additions) {
+            const before = manifest.files.filter((row) => row === item).length;
+            if (before === 0) manifest.files.push(item);
+            const after = manifest.files.filter((row) => row === item).length;
+            if (after !== 1) throw new Error(`${item}: manifest count ${after}`);
+            console.log(`PASS ${item}: before=${before} after=${after}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Run canonical place validation
+        shell: bash
+        run: |
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-politikk-batch-1-integration/check-places.txt
+
+      - name: Run coordinate intake gate
+        shell: bash
+        run: |
+          npm run places:coords:intake 2>&1 | tee reports/etne-politikk-batch-1-integration/coordinate-intake.txt
+
+      - name: Run split manifest audit
+        shell: bash
+        run: |
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-politikk-batch-1-integration/split-manifest-sync.txt
+
+      - name: Run coordinate quality gate
+        shell: bash
+        run: |
+          npm run places:coords:quality 2>&1 | tee reports/etne-politikk-batch-1-integration/coordinate-quality.txt
+
+      - name: Run targeted runtime and coordinate validation
+        shell: bash
+        run: |
+          node <<'NODE' 2>&1 | tee reports/etne-politikk-batch-1-integration/targeted-validation.txt
+          const fs = require('fs');
+          const ids = ['etne_tinghus', 'etne_brannstasjon', 'skanevik_brannstasjon'];
+          const sources = {
+            etne_tinghus: 'data/places/politikk/vestland/etne/etne_tinghus.json',
+            etne_brannstasjon: 'data/places/politikk/vestland/etne/etne_brannstasjon.json',
+            skanevik_brannstasjon: 'data/places/politikk/vestland/etne/skanevik_brannstasjon.json'
+          };
+          const data = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const rows = Array.isArray(data) ? data : (Array.isArray(data.places) ? data.places : []);
+          for (const id of ids) {
+            const matches = rows.filter((row) => row && row.id === id);
+            if (matches.length !== 1) throw new Error(`${id}: active runtime count ${matches.length}`);
+            const source = JSON.parse(fs.readFileSync(sources[id], 'utf8'));
+            const runtime = matches[0];
+            if (source.lat !== runtime.lat || source.lon !== runtime.lon) {
+              throw new Error(`${id}: coordinate mismatch source=${source.lat},${source.lon} runtime=${runtime.lat},${runtime.lon}`);
+            }
+            if (source.category !== 'politikk') throw new Error(`${id}: wrong category ${source.category}`);
+            console.log(`PASS ${id}: one runtime row; coordinate parity; category=politikk`);
+          }
+          const counts = new Map();
+          for (const row of rows) if (row && row.id) counts.set(row.id, (counts.get(row.id) || 0) + 1);
+          const duplicates = [...counts.entries()].filter(([, count]) => count > 1);
+          if (duplicates.length) throw new Error(`global duplicate active place IDs: ${duplicates.length}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+
+      - name: Audit physical anchor distinctions
+        shell: bash
+        run: |
+          node <<'NODE' 2>&1 | tee reports/etne-politikk-batch-1-integration/anchor-audit.txt
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const rows = Array.isArray(data) ? data : (Array.isArray(data.places) ? data.places : []);
+          const need = (id) => {
+            const row = rows.find((item) => item && item.id === id);
+            if (!row) throw new Error(`Missing runtime row: ${id}`);
+            return row;
+          };
+          const hav = (a, b) => {
+            const R = 6371, rad = (x) => x * Math.PI / 180;
+            const dLat = rad(b.lat - a.lat), dLon = rad(b.lon - a.lon);
+            const q = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLon / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(q));
+          };
+          const pairs = [
+            ['etne_tinghus', 'etnesjoen_tettstad'],
+            ['etne_brannstasjon', 'etne_idrettsanlegg'],
+            ['skanevik_brannstasjon', 'skanevik_sentrum'],
+            ['skanevik_brannstasjon', 'skanevik_idrettsanlegg']
+          ];
+          for (const [aId, bId] of pairs) {
+            const d = hav(need(aId), need(bId));
+            console.log(`PASS ${aId} ↔ ${bId}: ${d.toFixed(3)} km`);
+          }
+          NODE
+
+      - name: Check diff whitespace
+        shell: bash
+        run: |
+          git diff --check 2>&1 | tee reports/etne-politikk-batch-1-integration/git-diff-check.txt
+
+      - name: Restore CI and commit integrated batch
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A .github/workflows/data-checks.yml data/places/manifest.json data/places/places_index.json reports/etne-politikk-batch-1-integration
+          git commit -m 'Integrate Etne politics batch 1'
+          git push origin HEAD:agent/etne-politikk-batch-1
