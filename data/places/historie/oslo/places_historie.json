@@ -1223,8 +1223,8 @@
       "designCode": "farm_estate_miniature"
     },
     "name": "Villa Grande",
-    "lat": 59.89911019330011,
-    "lon": 10.678158888428362,
+    "lat": 59.8990249,
+    "lon": 10.6782142,
     "r": 60,
     "category": "historie",
     "year": 1917,
@@ -1272,15 +1272,15 @@
       ],
       "notes": "Skal behandles nøkternt som transformert makt- og minnested."
     },
-    "coordType": "address_point",
+    "coordType": "entrance",
     "coordStatus": "verified",
-    "coordSource": "geonorge_adresser_v1",
-    "coordVerifiedAt": "2026-07-12",
-    "coordPrecision": "building",
-    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Huk aveny 56, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "coordSource": "osm_geometry_or_address",
+    "coordVerifiedAt": "2026-07-18",
+    "coordPrecision": "entrance",
+    "coordNote": "Hovedinngangen til Villa Grande, hentet fra inngangsnoden som inngår i OSM-geometrien for den navngitte bygningen.",
     "locatorType": "building",
-    "sourceProvider": "official_address",
-    "sourceObjectId": "geonorge-adresser-v1:0301:13153:56",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:12591050047",
     "address": {
       "street": "Huk aveny",
       "number": "56",
@@ -1288,8 +1288,11 @@
       "city": "Oslo",
       "country": "NO"
     },
-    "geocodeAccuracy": "rooftop",
-    "coordRole": "display_marker"
+    "geocodeAccuracy": "entrance",
+    "coordRole": "display_marker",
+    "coordSourceId": "osm_node:12591050047",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/12591050047",
+    "coordPrecisionM": 5
   },
   {
     "id": "bogstad_gard",
@@ -1359,8 +1362,8 @@
       "designCode": "prison_miniature"
     },
     "name": "Møllergata 19",
-    "lat": 59.91528413168428,
-    "lon": 10.747869191554551,
+    "lat": 59.9152673,
+    "lon": 10.7479015,
     "r": 60,
     "category": "historie",
     "year": 1866,
@@ -1408,15 +1411,15 @@
       ],
       "notes": "Skal spørres nøkternt som retts- og okkupasjonshistorisk institusjonssted."
     },
-    "coordType": "address_point",
+    "coordType": "building_center",
     "coordStatus": "verified",
-    "coordSource": "geonorge_adresser_v1",
-    "coordVerifiedAt": "2026-07-12",
-    "coordPrecision": "address/building",
-    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 19, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "coordSource": "osm_geometry_or_address",
+    "coordVerifiedAt": "2026-07-18",
+    "coordPrecision": "building_center",
+    "coordNote": "Senterpunktet i den navngitte OSM-bygningsgeometrien for Møllergata 19. Bygningen har ingen særskilt inngang merket i OSM, så bygningssenteret brukes som display-marker.",
     "locatorType": "building",
-    "sourceProvider": "official_address",
-    "sourceObjectId": "geonorge-adresser-v1:0301:14943:19",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:112207578",
     "address": {
       "street": "Møllergata",
       "number": "19",
@@ -1424,8 +1427,11 @@
       "city": "Oslo",
       "country": "NO"
     },
-    "geocodeAccuracy": "rooftop",
-    "coordRole": "display_marker"
+    "geocodeAccuracy": "building",
+    "coordRole": "display_marker",
+    "coordSourceId": "osm_way:112207578",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/112207578",
+    "coordPrecisionM": 10
   },
   {
     "id": "sagene_skole",
