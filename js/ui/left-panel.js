@@ -472,6 +472,16 @@ function initLeftPanel() {
     exploreToggle.addEventListener("click", toggleNearbyDrawer);
   }
 
+  // Alle faktiske oppføringer i Utforsk-draweren skal gi kartet/kortet plass
+  // straks de velges. Delegert lytting dekker også lister som rendres på nytt.
+  panel.addEventListener("click", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const item = target?.closest(".nearby-item");
+    if (!item || !panel.contains(item)) return;
+
+    closeNearbyDrawer();
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || !isNearbyDrawerOpen()) return;
     closeNearbyDrawer();
