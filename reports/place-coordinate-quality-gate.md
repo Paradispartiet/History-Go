@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-18T23:18:18.418Z
+Generert: 2026-07-18T23:28:56.422Z
 
 ## Oppsummering
 - Aktive filer validert: **478**
 - Antall steder validert: **1178**
 - Harde feil: **0**
-- Varsler: **394**
-- Coordinate review candidates: **681** signaler fordelt på **533** steder
+- Varsler: **391**
+- Coordinate review candidates: **678** signaler fordelt på **530** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -505,9 +505,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
-- data/places/by/oslo/places_by.json#tigeren: lav koordinatpresisjon (<4 desimaler)
-- data/places/by/oslo/places_by.json#jernbanetorget: lav koordinatpresisjon (<4 desimaler)
-- data/places/by/oslo/places_by.json#gronlandsleiret: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#birkelunden: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#barcode: lav koordinatpresisjon (<4 desimaler)
@@ -898,14 +895,14 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 681 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 678 signaler fordelt på 530 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
 | lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 113 |
+| lav koordinatpresisjon (<4 desimaler) | 110 |
 | coordStatus=verified uten coordPrecisionM | 57 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 98 |
 | park/stort område uten anchors eller coordNote | 134 |
@@ -997,15 +994,12 @@ Totalt 681 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | sagene_festivitetshus | Sagene festivitetshus | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05.json | 59.93137049982586 | 10.760854064462801 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | sporveismuseet | Sporveismuseet | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.931307601915144 | 10.71602648075083 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (113)
+### lav koordinatpresisjon (<4 desimaler) (110)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trikk_17_18 | Trikkelinje 17/18 | by | data/places/by/oslo/places_by.json | 59.92 | 10.76 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| tigeren | Tigerstatuen | by | data/places/by/oslo/places_by.json | 59.9112 | 10.75 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| jernbanetorget | Jernbanetorget | by | data/places/by/oslo/places_by.json | 59.911 | 10.75 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| gronlandsleiret | Grønlandsleiret | by | data/places/by/oslo/places_by.json | 59.9116 | 10.767 | 210 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | birkelunden | Birkelunden | by | data/places/by/oslo/places_by.json | 59.927 | 10.7601 | 190 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | barcode | Barcode | by | data/places/by/oslo/places_by.json | 59.908 | 10.7602 | 210 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trefoldighetskirken | Trefoldighetskirken | by | data/places/by/oslo/trefoldighetskirken.json | 59.9183 | 10.746 | 110 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |

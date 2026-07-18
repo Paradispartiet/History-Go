@@ -1,0 +1,66 @@
+{
+  "placeId": "helsfyr",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91273,
+    "lon": 10.80101,
+    "r": 200,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 5218231670 – Helsfyr T-banestasjon",
+    "coordType": "transit_area_anchor",
+    "coordNote": "Presist kollektivanker brukt som representativt områdeanker for Helsfyr-knutepunktet og det omkringliggende kontor-/pendlerområdet. OSM-node 5218231670 identifiserer Helsfyr T-banestasjon; punktet hevdes ikke å være et geometrisk sentrum for hele Helsfyr."
+  },
+  "identity": {
+    "currentName": "Helsfyr",
+    "resolvedIdentity": "Helsfyr-knutepunktet med T-banestasjonen som representativt områdeanker",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5218231670 – Helsfyr T-banestasjon",
+      "sourceUrl": "https://www.openstreetmap.org/node/5218231670",
+      "sourceObjectId": "osm-node:5218231670",
+      "sourceQuality": "stable_object_or_extent",
+      "finding": "OpenStreetMap node 5218231670 identifiserer Helsfyr T-banestasjon, som brukes eksplisitt som områdeanker for det bredere knutepunktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Presist kollektivanker brukt som representativt områdeanker for Helsfyr-knutepunktet og det omkringliggende kontor-/pendlerområdet. OSM-node 5218231670 identifiserer Helsfyr T-banestasjon; punktet hevdes ikke å være et geometrisk sentrum for hele Helsfyr."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5218231670",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91273,
+      "lon": 10.80101,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Presist kollektivanker brukt som representativt områdeanker for Helsfyr-knutepunktet og det omkringliggende kontor-/pendlerområdet. OSM-node 5218231670 identifiserer Helsfyr T-banestasjon; punktet hevdes ikke å være et geometrisk sentrum for hele Helsfyr."
+  ]
+}
