@@ -8,7 +8,7 @@
 - `matti_nykanen`
 - `maren_lundby`
 
-## Forventet datastruktur
+## Datastruktur
 
 Alle fem nye filer:
 
@@ -16,12 +16,14 @@ Alle fem nye filer:
 - bruker `placeId: "holmenkollen_nasjonalanlegg"`
 - bruker `places: ["holmenkollen_nasjonalanlegg"]`
 - er pakket som runtime-kompatible én-elements JSON-arrays
-- skal registreres i `data/people/manifest.json`
+- er registrert i `data/people/manifest.json`
+
+Manifestregistreringen ligger samlet rett etter `people/sport/oslo/people_sport_oslo.json`. Den midlertidige manifest-workflowen er fjernet og inngår ikke i nettodiffen.
 
 ## Avgrensning
 
-Ingen eksisterende canonical people-records skal dupliseres. Ingen place-, bilde-, UI- eller runtimefiler inngår i batchen.
+Ingen eksisterende canonical people-records er duplisert. Ingen place-, bilde-, UI- eller runtimefiler inngår i batchen.
 
 ## Kontroller
 
-CI-resultater føres inn etter at manifestregistreringen er fullført og PR-en er åpnet.
+Et ordinært sluttpass utløses på denne committen etter manifestregistreringen. Resultatet føres inn når People data og Places data er ferdige.
