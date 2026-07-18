@@ -15,45 +15,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  etne_media_coordinate_intake:
-    name: Find Etne media coordinates
-    if: github.head_ref == 'agent/etne-media-batch-1'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out PR branch
-        uses: actions/checkout@v4
-        with:
-          ref: agent/etne-media-batch-1
-          fetch-depth: 0
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Find and save Grannar address coordinate
-        run: |
-          mkdir -p reports/etne-media-batch-1-coordinate-intake
-          npm run places:coords:find:address -- --address "Haukelivegen 997, 5590 Etne" \
-            | tee reports/etne-media-batch-1-coordinate-intake/grannar-haukelivegen-997.json
-
-      - name: Restore standard workflow and commit evidence
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main --depth=1
-          git show origin/main:.github/workflows/data-checks.yml > .github/workflows/data-checks.yml
-          git add .github/workflows/data-checks.yml reports/etne-media-batch-1-coordinate-intake/grannar-haukelivegen-997.json
-          git diff --cached --check
-          git commit -m "Save Etne media coordinate intake"
-          git push origin HEAD:agent/etne-media-batch-1
-
   people:
     name: People data
     runs-on: ubuntu-latest
