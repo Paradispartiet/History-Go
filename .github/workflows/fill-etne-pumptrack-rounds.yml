@@ -37,22 +37,37 @@ jobs:
         if: steps.generator.outputs.run == 'true'
         run: python tools/one_off/fill_etne_pumptrack_rounds.py
 
-      - name: Validate pumptrack and inherited round content
+      - name: Test Etne pumptrack rounds
         if: steps.generator.outputs.run == 'true'
-        shell: bash
+        run: node tests/etne-pumptrack-batch1-round-content.test.js
+
+      - name: Test inherited Etne sport rounds
+        if: steps.generator.outputs.run == 'true'
         run: |
-          set -euo pipefail
-          node tests/etne-pumptrack-batch1-round-content.test.js
           node tests/etnesjoen-bmx-skate-batch1-round-content.test.js
           node tests/etnesjoen-tennis-batch1-round-content.test.js
           node tests/etnesjoen-idrettsanlegg-batch1-round-content.test.js
+
+      - name: Run shared round audits
+        if: steps.generator.outputs.run == 'true'
+        run: |
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-card-leksikon-content-audit.test.js
           node tests/etne-people-manifest-integration.test.js
-          npm ci
+
+      - name: Install dependencies
+        if: steps.generator.outputs.run == 'true'
+        run: npm ci
+
+      - name: Run TypeScript guards
+        if: steps.generator.outputs.run == 'true'
+        run: |
           npx tsc -p tsconfig.tools.json
           npx tsc -p tsconfig.web.json
-          git diff --check
+
+      - name: Check diff
+        if: steps.generator.outputs.run == 'true'
+        run: git diff --check
 
       - name: Commit generated data
         if: steps.generator.outputs.run == 'true'
