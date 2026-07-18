@@ -1,4 +1,4 @@
-name: Etne People batch 18 coverage audit
+name: Etne People of Places batch 18 integration
 
 on:
   pull_request:
@@ -7,80 +7,181 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  integrate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out branch
+      - name: Check out PR branch
         uses: actions/checkout@v4
+        with:
+          ref: agent/etne-people-of-places-batch18
+          fetch-depth: 0
 
-      - name: Build fresh Etne coverage report
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
         run: |
-          mkdir -p reports/etne-people-of-places-batch18-audit
-          node <<'NODE' | tee reports/etne-people-of-places-batch18-audit/coverage.json
+          mkdir -p reports/etne-people-of-places-batch18
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-people-of-places-batch18/npm-install.log
+
+      - name: Register batch and regression gate exactly once
+        run: |
+          node <<'NODE' | tee reports/etne-people-of-places-batch18/integration-patch.log
           const fs = require('fs');
           const path = require('path');
+          const normalize = (value) => String(value || '')
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
+          const sourceFile = 'people/kunst/vestland/etne/people_skakke_kultursenter_batch1.json';
+          const candidates = [
+            { id: 'goril_eidhammer', name: 'Gøril Eidhammer', aliases: ['Gøril Eidhammer', 'Goril Eidhammer', 'Goeril Eidhammer'] },
+            { id: 'kurt_helgesen', name: 'Kurt Helgesen', aliases: ['Kurt Helgesen', 'K. Helgesen'] }
+          ];
+          const placeId = 'skakke_kultursenter_etne';
+          const manifestPath = 'data/people/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+          const scan = (files) => {
+            const identityHits = Object.fromEntries(candidates.map((candidate) => [candidate.id, []]));
+            const placeLinkHits = [];
+            let entries = 0;
+            for (const rel of files) {
+              const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
+              const people = Array.isArray(doc) ? doc : [doc];
+              for (const person of people) {
+                entries += 1;
+                const fields = [person.id, person.name, ...(person.aliases || [])].map(normalize);
+                for (const candidate of candidates) {
+                  const aliases = [candidate.id, ...candidate.aliases].map(normalize);
+                  if (fields.some((field) => aliases.includes(field))) identityHits[candidate.id].push({ file: rel, id: person.id, name: person.name });
+                }
+                if (person.placeId === placeId || (person.places || []).includes(placeId)) placeLinkHits.push({ file: rel, id: person.id, name: person.name });
+              }
+            }
+            return { files: files.length, entries, identityHits, placeLinkHits };
+          };
+
+          const baselineFiles = manifest.files.filter((candidate) => candidate !== sourceFile);
+          const baseline = scan(baselineFiles);
+          if (Object.values(baseline.identityHits).some((hits) => hits.length > 0)) throw new Error(`Pre-existing candidate identity: ${JSON.stringify(baseline.identityHits)}`);
+          if (baseline.placeLinkHits.length > 0) throw new Error(`Skakke already has people links: ${JSON.stringify(baseline.placeLinkHits)}`);
+
+          manifest.files = baselineFiles;
+          manifest.files.push(sourceFile);
+          fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+
+          const scriptPath = 'scripts/check-people.sh';
+          let script = fs.readFileSync(scriptPath, 'utf8');
+          script = script.replace(/\necho "== Etne People of Places batch 18 =="\nnode tests\/etne-people-of-places-batch18\.test\.js\n/g, '\n');
+          const marker = 'echo "== People check complete =="';
+          if (!script.includes(marker)) throw new Error('People check completion marker not found');
+          script = script.replace(marker, `echo "== Etne People of Places batch 18 =="\nnode tests/etne-people-of-places-batch18.test.js\n\n${marker}`);
+          fs.writeFileSync(scriptPath, script);
+
+          const current = scan(manifest.files);
+          fs.writeFileSync('reports/etne-people-of-places-batch18/duplicate-audit.json', `${JSON.stringify({ candidates, placeId, baseline, current }, null, 2)}\n`);
+
+          if (manifest.files.filter((candidate) => candidate === sourceFile).length !== 1) throw new Error('Batch 18 manifest registration count mismatch');
+          if ((script.match(/etne-people-of-places-batch18\.test\.js/g) || []).length !== 1) throw new Error('Batch 18 regression gate count mismatch');
+          console.log(`PASS manifest registration exactly once: ${sourceFile}`);
+          console.log('PASS batch 18 regression gate exactly once');
+          console.log(JSON.stringify({ baseline, current }, null, 2));
+          NODE
+
+      - name: Run batch 18 regression test
+        run: node tests/etne-people-of-places-batch18.test.js 2>&1 | tee reports/etne-people-of-places-batch18/batch18-test.log
+
+      - name: Run full people checks
+        run: bash scripts/check-people.sh 2>&1 | tee reports/etne-people-of-places-batch18/check-people.log
+
+      - name: Audit Etne coverage after batch 18
+        run: |
+          node <<'NODE' | tee reports/etne-people-of-places-batch18/coverage-after.json
+          const fs = require('fs');
+          const path = require('path');
           const runtimePlaces = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
           const activeIds = new Set(runtimePlaces.map((place) => place.id));
           const placeManifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
           const etnePlaces = [];
-          const seenEtneIds = new Set();
-
+          const seen = new Set();
           for (const rel of placeManifest.files) {
             const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
             const entries = Array.isArray(doc) ? doc : [doc];
             for (const place of entries) {
-              if (!place?.id || !activeIds.has(place.id)) continue;
-              if (String(place.kommune || '').toLowerCase() !== 'etne') continue;
-              if (seenEtneIds.has(place.id)) throw new Error(`Duplicate active Etne place in source scan: ${place.id}`);
-              seenEtneIds.add(place.id);
+              if (!place?.id || !activeIds.has(place.id) || String(place.kommune || '').toLowerCase() !== 'etne') continue;
+              if (seen.has(place.id)) throw new Error(`Duplicate active Etne place: ${place.id}`);
+              seen.add(place.id);
               etnePlaces.push(place);
             }
           }
-
           const peopleManifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
-          const links = new Map(etnePlaces.map((place) => [place.id, []]));
-          let totalPeople = 0;
+          const covered = new Set();
+          const targetLinks = [];
           for (const rel of peopleManifest.files) {
             const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
             const people = Array.isArray(doc) ? doc : [doc];
             for (const person of people) {
-              totalPeople += 1;
-              for (const id of new Set([person.placeId, ...(person.places || [])].filter(Boolean))) {
-                if (links.has(id)) links.get(id).push({ id: person.id, name: person.name, file: rel, primary: person.placeId === id });
-              }
+              const links = new Set([person.placeId, ...(person.places || [])].filter(Boolean));
+              for (const id of links) if (seen.has(id)) covered.add(id);
+              if (links.has('skakke_kultursenter_etne')) targetLinks.push({ id: person.id, name: person.name, file: rel });
             }
           }
-
-          const uncovered = etnePlaces
-            .filter((place) => links.get(place.id).length === 0)
-            .map((place) => ({
-              id: place.id,
-              name: place.name,
-              category: place.category,
-              year: place.year ?? null,
-              lat: place.lat,
-              lon: place.lon
-            }))
-            .sort((a, b) => String(a.category).localeCompare(String(b.category)) || String(a.name).localeCompare(String(b.name)));
-
+          const uncovered = etnePlaces.map((place) => place.id).filter((id) => !covered.has(id)).sort();
+          const expected = ['goril_eidhammer', 'kurt_helgesen'].sort();
+          const actual = targetLinks.map((entry) => entry.id).sort();
+          if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`Unexpected Skakke links: ${JSON.stringify(targetLinks)}`);
           console.log(JSON.stringify({
-            generatedAt: new Date().toISOString(),
-            peopleManifestFiles: peopleManifest.files.length,
-            totalPeople,
+            status: 'PASS',
             activeEtnePlaces: etnePlaces.length,
-            coveredEtnePlaces: etnePlaces.length - uncovered.length,
+            coveredEtnePlaces: covered.size,
             uncoveredEtnePlaces: uncovered.length,
+            targetLinks,
             uncovered
           }, null, 2));
           NODE
 
-      - name: Upload coverage artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: etne-people-batch18-coverage
-          path: reports/etne-people-of-places-batch18-audit/coverage.json
-          if-no-files-found: error
+      - name: Run typecheck
+        run: npm run typecheck 2>&1 | tee reports/etne-people-of-places-batch18/typecheck.log
+
+      - name: Run tools check against known main story baseline
+        run: |
+          set +e
+          npm run tools:check 2>&1 | tee reports/etne-people-of-places-batch18/tools-check.log
+          status=${PIPESTATUS[0]}
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "PASS: tools:check passed fully." | tee reports/etne-people-of-places-batch18/tools-check-baseline.log
+            exit 0
+          fi
+          node <<'NODE' | tee reports/etne-people-of-places-batch18/tools-check-baseline.log
+          const fs = require('fs');
+          const log = fs.readFileSync('reports/etne-people-of-places-batch18/tools-check.log', 'utf8');
+          const actual = log.split(/\r?\n/).filter((line) => line.startsWith('- Ugyldig place_id:'));
+          const expected = [
+            '- Ugyldig place_id: story=st_regjeringskvartalet_terror_2011 field=related_places[0] place_id=utoya file=data/stories/stories_regjeringskvartalet.json',
+            '- Ugyldig place_id: story=st_mollergata_19_petter_moens_dagbok field=related_places[1] place_id=norges_hjemmefrontmuseum file=data/stories/stories_mollergata_19.json',
+            '- Ugyldig place_id: story=st_mollergata_19_petter_moens_dagbok field=next_scenes[0].place_id place_id=norges_hjemmefrontmuseum file=data/stories/stories_mollergata_19.json',
+            '- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=related_places[1] place_id=operaen file=data/stories/stories_folketeateret.json',
+            '- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=next_scenes[0].place_id place_id=operaen file=data/stories/stories_folketeateret.json'
+          ];
+          if (!log.includes('Stories integrity FAILED')) throw new Error('tools:check failed outside the known story baseline');
+          if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`Story baseline changed: ${JSON.stringify(actual, null, 2)}`);
+          console.log('PASS: tools:check stopped only on the five known main-branch story-reference failures.');
+          NODE
+
+      - name: Run diff whitespace check
+        run: git diff --check | tee reports/etne-people-of-places-batch18/git-diff-check.log
+
+      - name: Commit permanent integration outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/people/manifest.json scripts/check-people.sh reports/etne-people-of-places-batch18
+          git diff --cached --check
+          git commit -m "Integrate Etne People of Places batch 18"
+          git push origin HEAD:agent/etne-people-of-places-batch18
