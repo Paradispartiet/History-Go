@@ -1,0 +1,215 @@
+name: Finalize Regjeringskvartalet links
+
+on:
+  push:
+    paths:
+      - ".github/workflows/regjeringskvartalet-links.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Register quiz, leksikon, people and actors
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const paths = {
+            place: 'data/places/politikk/oslo/places_politikk/regjeringskvartalet.json',
+            stories: 'data/stories/stories_regjeringskvartalet.json',
+            quiz: 'data/quiz/politikk/regjeringskvartalet_sets.json',
+            quizManifest: 'data/quiz/manifest.json',
+            legacyQuiz: 'data/quiz/quiz_politikk.json',
+            leksikon: 'data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json',
+            leksikonManifest: 'data/leksikon/manifest.json',
+            peopleBy: 'data/people/by/oslo/people_by_oslo.json',
+            peopleKunst: 'data/people/kunst/oslo/people_kunst_oslo.json',
+            relations: 'data/relations_philanthropy.json',
+            actors: 'data/brands/actors_by_place.json'
+          };
+          const read = path => ({ raw: fs.readFileSync(path, 'utf8'), data: JSON.parse(fs.readFileSync(path, 'utf8')) });
+          const write = (path, raw, data) => {
+            const pretty = raw.trim().split(/\r?\n/).length > 3;
+            fs.writeFileSync(path, JSON.stringify(data, null, pretty ? 2 : 0) + '\n');
+          };
+          const assert = (ok, message) => { if (!ok) throw new Error(message); };
+          const upsertById = (list, item) => {
+            const i = list.findIndex(entry => entry?.id === item.id);
+            if (i >= 0) list[i] = item;
+            else list.push(item);
+          };
+          const addPlace = (person, placeId) => {
+            const values = [person.placeId, ...(Array.isArray(person.places) ? person.places : [])]
+              .map(value => String(value || '').trim()).filter(Boolean);
+            if (!values.includes(placeId)) values.push(placeId);
+            person.places = [...new Set(values)];
+          };
+
+          const place = read(paths.place).data;
+          assert(place.id === 'regjeringskvartalet' && place.category === 'politikk', 'Wrong place/category');
+          assert(Array.isArray(place.rounds) && place.rounds.length === 9 && new Set(place.rounds).size === 9, 'Expected nine unique rounds');
+          assert(place.rounds.includes('tasks') && !place.rounds.includes('nature'), 'Tasks must replace nature');
+          assert(place.works?.length === 4, 'Works incomplete');
+          assert(place.tasks_profile?.tasks?.length === 3, 'Tasks incomplete');
+          assert(place.civication_store?.length === 3, 'Civication incomplete');
+          assert(place.underbadge_ids?.every(id => ['storting_og_regjering','politi_og_beredskap','velferd_og_institusjoner'].includes(id)), 'Invalid underbadge');
+          assert(!JSON.stringify(place).includes('1970'), 'Y-blokka year must be 1969');
+
+          const stories = read(paths.stories).data;
+          assert(Array.isArray(stories) && stories.length === 3, 'Stories incomplete');
+          assert(stories.every(story => story.place_id === place.id && Array.isArray(story.sources) && story.sources.length), 'Story target/source error');
+
+          const quiz = read(paths.quiz).data;
+          const questions = (quiz.sets || []).flatMap(set => set.questions || []);
+          assert(quiz.targetId === place.id && quiz.categoryId === 'politikk' && questions.length === 5, 'Quiz incomplete');
+          assert(questions.every(q => q.placeId === place.id && q.targetId === place.id && q.options?.includes(q.answer)), 'Quiz target/answer error');
+          assert(questions.every(q => String(q.emne_id || '').startsWith('em_pol_')), 'Quiz contains non-politics emne');
+
+          const articles = read(paths.leksikon).data;
+          assert(Array.isArray(articles) && articles.length === 4, 'Leksikon incomplete');
+          assert(articles.every(article => article.place_id === place.id && Array.isArray(article.sources) && article.sources.length), 'Leksikon target/source error');
+
+          const quizManifestFile = read(paths.quizManifest);
+          const quizManifest = quizManifestFile.data;
+          quizManifest.sets = (quizManifest.sets || []).filter(entry => entry?.targetId !== place.id);
+          quizManifest.sets.push({ targetId: place.id, file: paths.quiz });
+          assert(quizManifest.sets.filter(entry => entry?.targetId === place.id).length === 1, 'Quiz manifest duplicate');
+          write(paths.quizManifest, quizManifestFile.raw, quizManifest);
+
+          const legacyFile = read(paths.legacyQuiz);
+          const legacyBefore = legacyFile.data.length;
+          legacyFile.data = legacyFile.data.filter(q => !(q?.placeId === place.id && /^regjeringskvartalet_quiz_[1-5]$/.test(String(q?.id || ''))));
+          const removedLegacy = legacyBefore - legacyFile.data.length;
+          assert(removedLegacy === 5, `Expected to remove 5 legacy questions, removed ${removedLegacy}`);
+          write(paths.legacyQuiz, legacyFile.raw, legacyFile.data);
+
+          const leksManifestFile = read(paths.leksikonManifest);
+          const leksManifest = leksManifestFile.data;
+          leksManifest.files = (leksManifest.files || []).filter(file => file !== paths.leksikon);
+          leksManifest.files.push(paths.leksikon);
+          assert(leksManifest.files.filter(file => file === paths.leksikon).length === 1, 'Leksikon manifest duplicate');
+          write(paths.leksikonManifest, leksManifestFile.raw, leksManifest);
+
+          const peopleByFile = read(paths.peopleBy);
+          const peopleBy = peopleByFile.data;
+          const viksjo = peopleBy.find(person => person?.id === 'erling_viksjo');
+          const bull = peopleBy.find(person => person?.id === 'henrik_bull');
+          assert(viksjo && bull, 'Existing architects missing');
+          addPlace(viksjo, place.id);
+          addPlace(bull, place.id);
+          viksjo.popupDesc = 'Erling Viksjø tegnet Høyblokka fra 1958 og Y-blokka fra 1969. I Regjeringskvartalet utviklet han naturbetong som både konstruksjonsmateriale og grunnlag for bygningsintegrert kunst. Gjennom Høyblokka, Y-blokka og samarbeidet med kunstnere ble etterkrigsstatens administrasjon synlig som modernistisk arkitektur.';
+          bull.popupDesc = 'Henrik Bull tegnet G-blokka, den eldste regjeringsbygningen i det moderne Regjeringskvartalet. Bygningen sto ferdig i 1906 og viser overgangen fra spredte departementskontorer til et tydelig statlig administrasjonsområde. Bull knyttes også til Nationaltheatret og andre sentrale institusjonsbygg i Kristiania.';
+          write(paths.peopleBy, peopleByFile.raw, peopleBy);
+
+          const peopleKunstFile = read(paths.peopleKunst);
+          const peopleKunst = peopleKunstFile.data;
+          [
+            {
+              id: 'pablo_picasso',
+              visual: { designCode: 'person_artist_miniature' },
+              name: 'Pablo Picasso',
+              initials: 'PP',
+              desc: 'Kunstneren bak skissene til «Fiskerne» og «Måken» i Regjeringskvartalet.',
+              tags: ['kunst','offentlig_kunst','modernisme','naturbetong','regjeringskvartalet'],
+              placeId: place.id,
+              category: 'kunst',
+              kindLabel: 'Kanonkunstner / bygningsintegrert kunst',
+              year: 1969,
+              popupDesc: 'Pablo Picasso laget skissene som ble utgangspunkt for «Fiskerne» og «Måken» i Y-blokka. Verkene ble overført til naturbetong av Carl Nesjar. Etter rivingen av Y-blokka ble begge bevart, og «Fiskerne» henger nå på A-blokkas fasade mot Einar Gerhardsens plass.',
+              places: [place.id],
+              image: '',
+              cardImage: '',
+              emne_ids: ['em_kunst_institusjoner_kanon','em_kunst_teknologi_og_materialitet','em_kunst_arbeidsformer_og_prosess'],
+              externalLinks: [{ type: 'source', label: 'KORO – åpningen av Regjeringskvartalet', url: 'https://koro.no/offisiell-apning-av-regjeringskvartalet-13-april/', verifiedAt: '2026-07-18' }]
+            },
+            {
+              id: 'carl_nesjar',
+              visual: { designCode: 'person_artist_miniature' },
+              name: 'Carl Nesjar',
+              initials: 'CN',
+              desc: 'Norsk kunstner som utførte Picassos motiver i Regjeringskvartalets naturbetong.',
+              tags: ['kunst','offentlig_kunst','naturbetong','modernisme','regjeringskvartalet'],
+              placeId: place.id,
+              category: 'kunst',
+              kindLabel: 'Kunstner / naturbetong',
+              year: 1969,
+              popupDesc: 'Carl Nesjar samarbeidet med Erling Viksjø om naturbetong og utførte Pablo Picassos skisser som monumentale betongarbeider. «Fiskerne» og «Måken» ble integrert i Y-blokka. Etter rivingen ble verkene bevart, og «Fiskerne» er montert på A-blokkas fasade.',
+              places: [place.id],
+              image: '',
+              cardImage: '',
+              emne_ids: ['em_kunst_teknologi_og_materialitet','em_kunst_arbeidsformer_og_prosess','em_kunst_institusjoner_kanon'],
+              externalLinks: [{ type: 'source', label: 'KORO – Fiskerne i nytt Regjeringskvartal', url: 'https://koro.no/offisiell-apning-av-regjeringskvartalet-13-april/', verifiedAt: '2026-07-18' }]
+            }
+          ].forEach(person => upsertById(peopleKunst, person));
+          assert(new Set(peopleKunst.map(person => person.id)).size === peopleKunst.length, 'Duplicate art person ids');
+          write(paths.peopleKunst, peopleKunstFile.raw, peopleKunst);
+
+          const relationFile = read(paths.relations);
+          const relations = relationFile.data;
+          [
+            { id:'rel_regjeringskvartalet_erling_viksjo_arkitekt', type:'arkitekt', place:place.id, person:'erling_viksjo', label:'Arkitekt for Høyblokka og Y-blokka', why:'Erling Viksjø tegnet Høyblokka fra 1958 og Y-blokka fra 1969.', source:'https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/', verified_at:'2026-07-18' },
+            { id:'rel_regjeringskvartalet_henrik_bull_arkitekt', type:'arkitekt', place:place.id, person:'henrik_bull', label:'Arkitekt for G-blokka', why:'Henrik Bull tegnet G-blokka, som sto ferdig i 1906 og var første byggetrinn i Regjeringskvartalet.', source:'https://www.regjeringen.no/no/dep/fin/dep/om-g-blokken/id450008/', verified_at:'2026-07-18' },
+            { id:'rel_regjeringskvartalet_pablo_picasso_kunstskisser', type:'kunstnerisk_opphav', place:place.id, person:'pablo_picasso', label:'Skisser til «Fiskerne» og «Måken»', why:'Picassos tegninger var utgangspunkt for de bygningsintegrerte verkene i Y-blokka.', source:'https://koro.no/offisiell-apning-av-regjeringskvartalet-13-april/', verified_at:'2026-07-18' },
+            { id:'rel_regjeringskvartalet_carl_nesjar_kunstutforelse', type:'kunstnerisk_utforelse', place:place.id, person:'carl_nesjar', label:'Utførte verkene i naturbetong', why:'Carl Nesjar sandblåste Picassos motiver i naturbetong og gjorde skissene til en del av arkitekturen.', source:'https://koro.no/offisiell-apning-av-regjeringskvartalet-13-april/', verified_at:'2026-07-18' }
+          ].forEach(item => upsertById(relations, item));
+          assert(new Set(relations.map(item => item.id)).size === relations.length, 'Duplicate relation ids');
+          write(paths.relations, relationFile.raw, relations);
+
+          const actorFile = read(paths.actors);
+          actorFile.data[place.id] = [
+            {
+              id:'statsministerens_kontor', name:'Statsministerens kontor', entity_type:'actor', actor_kind:'executive_office',
+              actor_role:'Statsministerens kontor flyttet tilbake til Regjeringskvartalet og holder til i D-blokka.', brand_group:'public_actor', brand_type:'executive_office', brand_kind:'brand', sector:'central_government', state:'catalog', status:'active', verification:'verified',
+              popupdesc:'Statsministerens kontor er den sentrale staben rundt statsministeren. Kontoret flyttet inn i D-blokka før den offisielle åpningen 13. april 2026.', desc:'Den norske statsministerens sentrale kontor.', aliases:['SMK'], tags:['actor','executive_power','government','regjeringskvartalet'],
+              source_urls:['https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/'], verified_at:'2026-07-18'
+            },
+            {
+              id:'digitaliserings_og_forvaltningsdepartementet', name:'Digitaliserings- og forvaltningsdepartementet', entity_type:'actor', actor_kind:'project_owner_and_ministry',
+              actor_role:'Er oppdragsgiver og ansvarlig departement for etableringen av nytt Regjeringskvartal.', brand_group:'public_actor', brand_type:'government_ministry', brand_kind:'brand', sector:'central_government', state:'catalog', status:'active', verification:'verified',
+              popupdesc:'Digitaliserings- og forvaltningsdepartementet har ansvaret for etableringen av nytt Regjeringskvartal og følger opp Statsbygg, KORO og øvrige gjennomføringsaktører.', desc:'Ansvarlig departement og oppdragsgiver for nytt Regjeringskvartal.', aliases:['DFD'], tags:['actor','government','project_owner','public_administration'],
+              source_urls:['https://www.regjeringen.no/no/dep/dfd/org/avdelinger-i-digitaliserings-og-forvaltningsdepartementet/avdeling-for-departementenes-fellesfunksjoner-adf/id3089999/'], verified_at:'2026-07-18'
+            },
+            {
+              id:'statsbygg', name:'Statsbygg', entity_type:'actor', actor_kind:'public_builder_property_manager',
+              actor_role:'Gjennomfører byggingen av nytt Regjeringskvartal på oppdrag fra staten.', brand_group:'public_actor', brand_type:'state_builder', brand_kind:'brand', sector:'public_construction', state:'catalog', status:'active', verification:'verified',
+              popupdesc:'Statsbygg gjennomførte byggetrinn 1 med nye A- og D-blokker, rehabilitert Høyblokk, kjeller, sikkerhetsanlegg og nye byrom.', desc:'Statens byggherre og eiendomsaktør i prosjektet.', aliases:[], tags:['actor','construction','public_property','regjeringskvartalet'],
+              source_urls:['https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/'], verified_at:'2026-07-18'
+            },
+            {
+              id:'koro', name:'KORO – Kunst i offentlige rom', entity_type:'actor', actor_kind:'public_art_agency',
+              actor_role:'Har ansvar for kunstprosjektene og kunstsamlingen i det nye Regjeringskvartalet.', brand_group:'knowledge_actor', brand_type:'public_art_agency', brand_kind:'brand', sector:'art_and_culture', state:'catalog', status:'active', verification:'verified',
+              popupdesc:'KORO produserer, kuraterer og forvalter ny og historisk kunst i Regjeringskvartalet, blant annet omplasseringen av «Fiskerne» og arbeidet med kunst i byggetrinn 1.', desc:'Statens fagorgan for kunst i offentlige rom.', aliases:['Kunst i offentlige rom'], tags:['actor','public_art','government_art','regjeringskvartalet'],
+              source_urls:['https://koro.no/prosjekter/nytt-regjeringskvartal/'], verified_at:'2026-07-18'
+            },
+            {
+              id:'22_juli_senteret', name:'22. juli-senteret', entity_type:'actor', actor_kind:'memory_and_learning_centre',
+              actor_role:'Nasjonalt minne- og læringssenter som flytter tilbake til Regjeringskvartalet i 2026.', brand_group:'knowledge_actor', brand_type:'memory_learning_centre', brand_kind:'brand', sector:'memory_and_education', state:'catalog', status:'opening_2026', verification:'verified',
+              popupdesc:'22. juli-senteret formidler kunnskap om terrorangrepene 22. juli 2011, konsekvensene og samfunnets arbeid med demokrati, beredskap og minne. Nye lokaler ligger under bakken med inngang fra Akersgata.', desc:'Nasjonalt minne- og læringssenter etter 22. juli.', aliases:['22. juli-senteret'], tags:['actor','memory','democracy','education','22_july'],
+              source_urls:['https://www.regjeringen.no/no/aktuelt/offisiell-apning-av-nytt-regjeringskvartal/id3153629/'], verified_at:'2026-07-18'
+            }
+          ];
+          write(paths.actors, actorFile.raw, actorFile.data);
+
+          const actorIds = new Set(actorFile.data[place.id].map(actor => actor.id));
+          assert(actorIds.size === 5, 'Actor list incomplete or duplicated');
+          const peopleIds = new Set([...peopleBy, ...peopleKunst].map(person => person.id));
+          for (const rel of relations.filter(rel => rel.place === place.id)) assert(peopleIds.has(rel.person), `Relation person missing: ${rel.person}`);
+          for (const file of Object.values(paths)) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('Regjeringskvartalet validation passed');
+          NODE
+
+          rm .github/workflows/regjeringskvartalet-links.yml
+          git config user.name "history-go-data-bot"
+          git config user.email "history-go-data-bot@users.noreply.github.com"
+          git add data/quiz/manifest.json data/quiz/quiz_politikk.json data/leksikon/manifest.json data/people/by/oslo/people_by_oslo.json data/people/kunst/oslo/people_kunst_oslo.json data/relations_philanthropy.json data/brands/actors_by_place.json .github/workflows/regjeringskvartalet-links.yml
+          git commit -m "Connect Regjeringskvartalet people, actors and indexes"
+          git pull --rebase origin main
+          git push
