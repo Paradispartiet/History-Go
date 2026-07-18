@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-18T23:29:00.649Z
+Generert: 2026-07-18T23:35:52.820Z
 
 ## Hvorfor denne gaten finnes
 
@@ -18,7 +18,7 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Place-objekter validert: **1178**
 - Nye/endrede koordinatobjekter mot base: **7**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3834**
+- Backlog-funn: **3829**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -51,11 +51,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | christiania_torv | Christiania Torv | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
 | backlog | nei | christiania_torv | Christiania Torv | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
 | backlog | nei | christiania_torv | Christiania Torv | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | majorstuen_tbanestasjon | Majorstuen T-banestasjon | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | majorstuen_tbanestasjon | Majorstuen T-banestasjon | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | majorstuen_tbanestasjon | Majorstuen T-banestasjon | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | majorstuen_tbanestasjon | Majorstuen T-banestasjon | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | majorstuen_tbanestasjon | Majorstuen T-banestasjon | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
 | backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
 | backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
 | backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
@@ -541,6 +536,11 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | flesberg_stavkirke | Flesberg stavkirke | data/places/historie/buskerud/places_historie_buskerud_batch1.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | fossesholm_herregard | Fossesholm Herregård | data/places/historie/buskerud/places_historie_buskerud_batch1.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | fossesholm_herregard | Fossesholm Herregård | data/places/historie/buskerud/places_historie_buskerud_batch1.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | fossesholm_herregard | Fossesholm Herregård | data/places/historie/buskerud/places_historie_buskerud_batch1.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | fossesholm_herregard | Fossesholm Herregård | data/places/historie/buskerud/places_historie_buskerud_batch1.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | kongsberg_solvverk | Kongsberg Sølvverk | data/places/naeringsliv/buskerud/kongsberg_solvverk.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | kongsberg_solvverk | Kongsberg Sølvverk | data/places/naeringsliv/buskerud/kongsberg_solvverk.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | kongsberg_solvverk | Kongsberg Sølvverk | data/places/naeringsliv/buskerud/kongsberg_solvverk.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3834 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3829 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
