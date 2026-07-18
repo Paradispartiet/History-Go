@@ -89,6 +89,11 @@ people | nature | badges
 works | civication | brands
 før_nå | fortellinger | leksikon
 
+media:
+people | nature | badges
+works | civication | brands
+før_nå | fortellinger | leksikon
+
 subkultur:
 people | works | badges
 play | civication | brands

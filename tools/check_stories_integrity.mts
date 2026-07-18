@@ -52,6 +52,7 @@ const VALID_STORY_CATEGORIES = new Set<unknown>([
   'vitenskap',
   'kunst',
   'litteratur',
+  'media',
   'musikk',
   'natur',
   'sport',
