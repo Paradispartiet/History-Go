@@ -1,0 +1,88 @@
+name: Etne People of Places batch 3 integration
+
+on:
+  pull_request:
+    paths:
+      - 'data/people/musikk/vestland/etne/house_of_blues/**'
+      - 'reports/etne-people-of-places-batch-3-research.md'
+      - '.github/workflows/etne-people-batch-3-integration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: github.event.pull_request.number == 2273
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-people-batch-3
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          mkdir -p reports/etne-people-of-places-batch-3-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-people-of-places-batch-3-integration/npm-install.txt
+      - name: Register batch exactly once
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-people-of-places-batch-3-integration/manifest-update.txt
+          import fs from 'node:fs';
+          const manifestPath = 'data/people/manifest.json';
+          const addition = 'people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath,'utf8'));
+          manifest.files = manifest.files.filter((value) => value !== addition);
+          manifest.files.push(addition);
+          const count = manifest.files.filter((value) => value === addition).length;
+          if (count !== 1) throw new Error(`Manifest count: ${count}`);
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest,null,2) + '\n');
+          console.log(`PASS ${addition}`);
+          NODE
+      - name: Run full people checks
+        run: bash scripts/check-people.sh 2>&1 | tee reports/etne-people-of-places-batch-3-integration/check-people.txt
+      - name: Run People of Places audit
+        run: npm run audit:people-of-places 2>&1 | tee reports/etne-people-of-places-batch-3-integration/people-of-places-audit.txt
+      - name: Validate canonical IDs and House of Blues links
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-people-of-places-batch-3-integration/targeted-validation.json
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const ids = ['alf_warloe_christophersen','frode_ronli','anders_bru','oystein_eldoy','knut_konigsberg'];
+          const manifest = JSON.parse(fs.readFileSync('data/people/manifest.json','utf8'));
+          const all = [];
+          for (const rel of manifest.files) {
+            const doc = JSON.parse(fs.readFileSync(path.join('data',rel),'utf8'));
+            const rows = Array.isArray(doc) ? doc : Array.isArray(doc?.people) ? doc.people : [];
+            for (const person of rows) all.push({person,file:rel});
+          }
+          const counts = new Map();
+          for (const {person} of all) if (person?.id) counts.set(person.id,(counts.get(person.id)||0)+1);
+          const duplicates = [...counts.entries()].filter(([,count]) => count > 1);
+          if (duplicates.length) throw new Error(`Duplicate people IDs: ${JSON.stringify(duplicates)}`);
+          const places = new Set(JSON.parse(fs.readFileSync('data/places/places_index.json','utf8')).map((place)=>place.id));
+          if (!places.has('house_of_blues_skanevik')) throw new Error('house_of_blues_skanevik is not active');
+          const results = [];
+          for (const id of ids) {
+            const rows = all.filter(({person}) => person?.id === id);
+            if (rows.length !== 1) throw new Error(`${id}: canonical rows ${rows.length}`);
+            const person = rows[0].person;
+            if (person.placeId !== 'house_of_blues_skanevik') throw new Error(`${id}: primary place mismatch`);
+            if ((person.places || []).filter((placeId) => placeId === 'house_of_blues_skanevik').length !== 1) throw new Error(`${id}: House of Blues link mismatch`);
+            results.push({id,canonicalRows:1,placeId:person.placeId});
+          }
+          console.log(JSON.stringify({status:'PASS',totalPeople:all.length,uniquePeopleIds:counts.size,duplicatePeopleIds:0,results},null,2));
+          NODE
+      - name: Diff check
+        run: git diff --check | tee reports/etne-people-of-places-batch-3-integration/git-diff-check.txt
+      - name: Remove temporary workflow and commit integration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/etne-people-batch-3-integration.yml
+          git add data/people/manifest.json reports/etne-people-of-places-batch-3-integration
+          git diff --cached --check
+          git commit -m "Integrate Etne People of Places batch 3"
+          git push origin HEAD:agent/etne-people-batch-3
