@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, readFile, access } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import sharp from 'sharp';
 import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates } from '../dist/tools/people-image-pipeline.mjs';
 
 assert.equal(isAllowedLicense('Public Domain'), true);
@@ -76,11 +77,13 @@ for (const bad of [
 
 {
   const { buildCandidates } = await import('../dist/tools/people-image-pipeline.mjs');
+  const jpeg = await sharp({ create: { width: 640, height: 480, channels: 3, background: { r: 120, g: 140, b: 160 } } }).jpeg().toBuffer();
   const dir = await fixture();
   await withCwd(dir, async()=>{
     await writeFile('data/people/folder/array.json', JSON.stringify({people:[{id:'ada',name:'Ada',wikidataId:'Q1'}]}, null, 2));
     await buildCandidates(['--ids=ada','--limit=1'], async (url) => {
       const u = String(url);
+      if (u.includes('upload.wikimedia.org')) return new Response(jpeg);
       if (u.includes('Q1.json')) return wikidataEntityResponse('Q1', { P31: [humanClaim()], P18: [p18Claim('Ada.jpg')] });
       if (u.includes('commons.wikimedia.org')) return new Response(JSON.stringify({ query: { pages: { 1: { imageinfo: [{ url:'https://upload.wikimedia.org/wikipedia/commons/a/ada.jpg', width:640, height:480, extmetadata: { LicenseShortName:{value:'CC BY-SA 4.0'}, License:{value:'<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>'}, Artist:{value:'Ada Artist'}, Credit:{value:'Ada Credit'} } }] } } } }));
       throw new Error(`unexpected url ${u}`);
@@ -102,11 +105,38 @@ for (const bad of [
 }
 {
   const { analyzeImageBuffer } = await import('../dist/tools/people-image-quality.mjs');
-  function ppm(w,h,fn){ const pix=[]; for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const v=fn(x,y); pix.push(v,v,v); } return Buffer.concat([Buffer.from(`P6\n${w} ${h}\n255\n`), Buffer.from(pix)]); }
-  assert(analyzeImageBuffer(ppm(20,20,()=>245)).quality.warnings.includes('for_lyst'), 'bright image warns');
-  assert(analyzeImageBuffer(ppm(20,20,()=>10)).quality.warnings.includes('for_mørkt'), 'dark image warns');
-  assert(analyzeImageBuffer(ppm(20,20,()=>128)).quality.warnings.includes('lav_kontrast'), 'low contrast warns');
-  assert.notEqual(analyzeImageBuffer(ppm(20,20,()=>245)).quality.tier, 'unusable', 'bright image is not hard rejected');
+  const make = async (format, pixel, width=128, height=96) => sharp({ create: { width, height, channels: 3, background: pixel } })[format]().toBuffer();
+  const normal = await sharp({ create: { width: 800, height: 600, channels: 3, background: { r: 80, g: 120, b: 170 } } }).composite([{ input: { create: { width: 400, height: 600, channels: 3, background: { r: 220, g: 180, b: 80 } } }, left: 200, top: 0 }]).jpeg().toBuffer();
+  const jpegResult = await analyzeImageBuffer(normal);
+  assert.equal(jpegResult.quality.analysisStatus, 'complete', 'normal JPEG is fully analyzed');
+  assert(jpegResult.quality.meanLuminance > 0, 'normal JPEG has luminance');
+  assert(jpegResult.quality.contrast > .1, 'normal JPEG has meaningful contrast');
+  for (const [format, image] of [['png', await make('png', { r: 120, g: 140, b: 160 })], ['webp', await make('webp', { r: 120, g: 140, b: 160 })]]) {
+    const result = await analyzeImageBuffer(image); assert.equal(result.quality.analysisStatus, 'complete', `${format} is decoded`); assert(!result.quality.warnings.includes('automatisk_bildeanalyse_begrenset'));
+  }
+  assert((await analyzeImageBuffer(await make('jpeg', { r: 245, g: 245, b: 245 }))).quality.warnings.includes('for_lyst'), 'bright image warns');
+  assert((await analyzeImageBuffer(await make('png', { r: 10, g: 10, b: 10 }))).quality.warnings.includes('for_mørkt'), 'dark image warns');
+  assert((await analyzeImageBuffer(await make('webp', { r: 128, g: 128, b: 128 }))).quality.warnings.includes('lav_kontrast'), 'low contrast warns');
+  const checker = Buffer.alloc(1600 * 1200 * 3); for (let y=0; y<1200; y++) for(let x=0; x<1600; x++){ const i=(y*1600+x)*3; const v=(Math.floor(x / 32) + Math.floor(y / 32)) % 2 ? 255 : 0; checker[i]=checker[i+1]=checker[i+2]=v; }
+  const sharpResult = await analyzeImageBuffer(await sharp(checker, { raw: { width:1600, height:1200, channels:3 } }).jpeg().toBuffer());
+  assert(sharpResult.quality.sharpness > .28, 'edge-rich image is sharp');
+  const blurredResult = await analyzeImageBuffer(await sharp(checker, { raw: { width:1600, height:1200, channels:3 } }).blur(12).jpeg().toBuffer());
+  assert(blurredResult.quality.sharpness < sharpResult.quality.sharpness, 'blurred image is less sharp');
+  const large = await analyzeImageBuffer(await sharp({ create: { width: 2400, height: 1600, channels:3, background: {r:80,g:90,b:100} } }).jpeg().toBuffer());
+  assert.equal(large.quality.width, 2400, 'original oriented dimensions are retained while analysis is resized');
+  const invalid = await analyzeImageBuffer(Buffer.from('not an image'));
+  assert.equal(invalid.quality.analysisStatus, 'failed'); assert(invalid.quality.hardErrors.includes('filen_kan_ikke_dekodes'));
+}
+
+{
+  const { analyzeCandidate } = await import('../dist/tools/people-image-pipeline.mjs');
+  const image = await sharp({ create: { width: 700, height: 500, channels: 3, background: { r: 110, g: 150, b: 190 } } }).jpeg().toBuffer();
+  const analyzed = await analyzeCandidate(candidateFor('real-jpeg'), async () => new Response(image));
+  assert.equal(analyzed.quality.analysisStatus, 'complete', 'candidate fetch with a real JPEG performs pixel analysis');
+  assert.notEqual(analyzed.quality.meanLuminance, 0, 'regression: candidate is not replaced by zero-value fallback');
+  assert.notEqual(analyzed.quality.contrast, 0, 'regression: candidate contrast is not fallback');
+  assert.notEqual(analyzed.quality.sharpness, 0, 'regression: candidate sharpness is not fallback');
+  assert(!analyzed.quality.warnings.includes('automatisk_bildeanalyse_begrenset'), 'regression: no obsolete decode warning');
 }
 
 console.log('people image pipeline tests passed');
@@ -231,7 +261,7 @@ function candidateFor(id, overrides = {}) {
     commonsPage: `https://commons.wikimedia.org/wiki/File:${id}.jpg`,
     candidateId: candidateIdFor(id, `${id}.jpg`),
     identity: { status: 'strong', source: 'wikidata_p18', wikidataId: `Q${id.replace(/\D/g, '') || '9'}`, evidence: ['Wikidata P18 references this Commons file'] },
-    quality: { tier: 'recommended', score: 90, width: 800, height: 1000, minSide: 800, aspectRatio: 0.8, meanLuminance: 0.5, clippedHighlightsRatio: 0, crushedShadowsRatio: 0, contrast: 0.3, sharpness: 0.7, warnings: [], hardErrors: [], analyzerVersion: 'people-image-quality-v1' },
+    quality: { tier: 'recommended', score: 90, width: 800, height: 1000, minSide: 800, aspectRatio: 0.8, meanLuminance: 0.5, clippedHighlightsRatio: 0, crushedShadowsRatio: 0, contrast: 0.3, sharpness: 0.7, warnings: [], hardErrors: [], analysisStatus: 'complete', analyzerVersion: 'people-image-quality-v2' },
     faceDetection: { status: 'unavailable', faceCount: null },
     rank: 1, recommendedForReview: true, bestAvailable: false,
     approved: false,

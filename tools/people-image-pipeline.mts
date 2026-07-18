@@ -2,7 +2,7 @@ import { readFile, writeFile, mkdir, rename, rm, access } from 'node:fs/promises
 import { createWriteStream } from 'node:fs';
 import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
-import { analyzeImageBuffer, fallbackQuality, type Quality, type FaceDetection } from './people-image-quality.mjs';
+import { analyzeImageBuffer, unavailableAnalysisQuality, type Quality, type FaceDetection } from './people-image-quality.mjs';
 
 const ROOT = () => process.cwd();
 const PEOPLE_DIR = () => path.join(ROOT(), 'data', 'people');
@@ -185,24 +185,47 @@ function candidateFromMeta(e: Entry, qid: string, file: string, info: any, ident
   const url = reqStr(info?.url); if (!url || !isAllowedLicense(license)) return null;
   try { assertCommonsUrl(url); } catch { return null; }
   const commons = `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/^File:/, '').replace(/ /g, '_'))}`;
-  const commonsFileName = file.replace(/^File:/, ''); const personId = reqStr(e.person.id); const q = fallbackQuality(Number(info.width || 0), Number(info.height || 0));
+  const commonsFileName = file.replace(/^File:/, ''); const personId = reqStr(e.person.id); const q = unavailableAnalysisQuality(Number(info.width || 0), Number(info.height || 0));
   return { candidateId: candidateIdFor(personId, commonsFileName), personId, personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName, originalImageUrl: url, commonsPage: commons, creator: cleanHtml(ext.Artist?.value || ext.Credit?.value), credit: cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value), license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Commons metadata with allowed license', score: 100 + sourceScore, identity: identity || { status: 'review', source: 'commons_name_search', wikidataId: qid, evidence: ['Conservative Commons filename match; requires explicit manual identity confirmation'] }, quality: q.quality, faceDetection: q.faceDetection, rank: 0, recommendedForReview: false, bestAvailable: false };
 }
-async function analyzeCandidate(c: Candidate, fetcher: Fetcher): Promise<Candidate> {
+export async function fetchImageBufferWithRetry(url: string, fetcher: Fetcher = fetch, options: { timeoutMs?: number; sleepMs?: (ms: number) => Promise<void> } = {}): Promise<Uint8Array> {
+  const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
+  const sleeper = options.sleepMs ?? sleep;
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(new Error(`Image request timed out after ${timeoutMs}ms`)), timeoutMs);
+    try {
+      const res = await fetcher(url, { headers: { 'User-Agent': UA, Accept: '*/*' }, signal: controller.signal });
+      if (res.ok) return new Uint8Array(await res.arrayBuffer());
+      if (!RETRY_STATUSES.has(res.status) || attempt === MAX_FETCH_ATTEMPTS) throw new Error(`HTTP ${res.status}`);
+      await sleeper(retryAfterMs(res.headers.get('retry-after')) ?? Math.min(500 * 2 ** (attempt - 1), 5_000));
+    } catch (error) {
+      lastError = error;
+      if (attempt < MAX_FETCH_ATTEMPTS) await sleeper(Math.min(500 * 2 ** (attempt - 1), 5_000));
+    } finally { clearTimeout(timer); }
+  }
+  throw new Error(`Image download failed after ${MAX_FETCH_ATTEMPTS} attempts: ${lastError instanceof Error ? lastError.message : String(lastError)}`);
+}
+export async function analyzeCandidate(c: Candidate, fetcher: Fetcher): Promise<Candidate> {
   try {
-    const res = await fetcher(c.originalImageUrl, { headers: { 'User-Agent': UA, Accept: '*/*' } });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const buf = new Uint8Array(await res.arrayBuffer());
-    const analyzed = analyzeImageBuffer(buf);
-    c.quality = analyzed.quality.hardErrors.length ? fallbackQuality(c.width, c.height).quality : analyzed.quality;
+    const buf = await fetchImageBufferWithRetry(c.originalImageUrl, fetcher);
+    const analyzed = await analyzeImageBuffer(buf);
+    c.quality = analyzed.quality;
     c.faceDetection = analyzed.faceDetection;
     if (c.quality.width) { c.width = c.quality.width; c.height = c.quality.height; }
-  } catch { const q = fallbackQuality(c.width, c.height); c.quality = q.quality; c.faceDetection = q.faceDetection; }
+  } catch (error) {
+    console.warn(`Technical image analysis unavailable for ${c.candidateId}: ${error instanceof Error ? error.message : String(error)}`);
+    const q = unavailableAnalysisQuality(c.width, c.height); c.quality = q.quality; c.faceDetection = q.faceDetection;
+  }
   return c;
 }
 export function rankCandidates(candidates: Candidate[]): Candidate[] {
   const legal = candidates.filter(c => isAllowedLicense(c.license) && reqStr(c.creator || c.credit) && c.identity?.status !== 'insufficient' && !c.quality?.hardErrors?.length);
-  for (const c of candidates) c.score = (c.identity?.status === 'strong' ? 1000 : c.identity?.status === 'review' ? 700 : 0) + (isAllowedLicense(c.license) ? 200 : 0) + (c.identity?.source === 'wikidata_p18' ? 40 : 0) + Number(c.quality?.score || 0) + Math.min(60, Number(c.quality?.minSide || 0) / 20);
+  for (const c of candidates) {
+    const analysisScore = c.quality?.analysisStatus === 'complete' ? Number(c.quality.score || 0) + Math.min(60, Number(c.quality.minSide || 0) / 20) : -100;
+    c.score = (c.identity?.status === 'strong' ? 1000 : c.identity?.status === 'review' ? 700 : 0) + (isAllowedLicense(c.license) ? 200 : 0) + (c.identity?.source === 'wikidata_p18' ? 40 : 0) + analysisScore;
+  }
   candidates.sort((a,b) => b.score - a.score || a.candidateId.localeCompare(b.candidateId));
   let anyGood = candidates.some(c => legal.includes(c) && ['recommended','usable'].includes(c.quality.tier));
   candidates.forEach((c,i) => { c.rank = i + 1; c.recommendedForReview = i === 0; c.bestAvailable = false; });
