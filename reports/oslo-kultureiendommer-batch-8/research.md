@@ -14,4 +14,4 @@ The garden was comprehensively rehabilitated and reopened as a local culture par
 
 Representation: canonical `historie` place focused on psychiatric-care reform history, the relationship between residence, treatment institution and landscape, and later neighbourhood/cultural reuse. Historical terminology must be contextualized rather than repeated uncritically.
 
-Official visitor address for address-first lookup: Dr. Dedichens vei 28, 0675 Oslo.
+Coordinate status: the first Geonorge query using `Dr. Dedichens vei 28 Oslo` returned multiple matches and is rejected as ambiguous. A second normative address-first lookup uses the full official visitor address including postcode: `Dr. Dedichens vei 28 0675 Oslo`. No place record is written until that result is inspected.
