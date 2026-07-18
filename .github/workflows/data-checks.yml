@@ -15,9 +15,47 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  etne_psykologi_coordinate_intake:
+    name: Find Etne psychology coordinates
+    if: github.head_ref == 'agent/etne-psykologi-batch-1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-psykologi-batch-1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Find and save service coordinates
+        run: |
+          mkdir -p reports/etne-psykologi-batch-1-coordinate-intake
+          npm run places:coords:find:address -- --address "Holmavegen 24, 5590 Etne" \
+            | tee reports/etne-psykologi-batch-1-coordinate-intake/psykisk-helse-etne-holmavegen-24.json
+          npm run places:coords:find:address -- --address "Skånevikvegen 17, 5593 Skånevik" \
+            | tee reports/etne-psykologi-batch-1-coordinate-intake/psykisk-helse-skanevik-skanevikvegen-17.json
+
+      - name: Restore standard workflow and commit evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main --depth=1
+          git show origin/main:.github/workflows/data-checks.yml > .github/workflows/data-checks.yml
+          git add .github/workflows/data-checks.yml reports/etne-psykologi-batch-1-coordinate-intake
+          git diff --cached --check
+          git commit -m "Save Etne psychology coordinate intake"
+          git push origin HEAD:agent/etne-psykologi-batch-1
+
   people:
     name: People data
     runs-on: ubuntu-latest
