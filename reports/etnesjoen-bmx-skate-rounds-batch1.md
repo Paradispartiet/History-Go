@@ -12,6 +12,20 @@ Alle ni rundingar i den dokumenterte `sport`-profilen er fylte: `people`, `train
 - Treningsrundingen er avgrensa til romlesing, balanse, bremsing og trygg veksling. Ingen hopp- eller trikkinstruksjon.
 - Ingen manuell `rounds`-override og ingen irrelevante `tasks`, `play`, `nature` eller `routes`.
 
+## Validering
+
+Følgjande kontrollar er køyrde og bestod mot rundingsbatchen:
+
+- `tests/etnesjoen-bmx-skate-batch1-round-content.test.js`
+- `tests/etnesjoen-tennis-batch1-round-content.test.js`
+- `tests/etnesjoen-idrettsanlegg-batch1-round-content.test.js`
+- `tests/place-card-rounds-runtime-audit.test.js`
+- `tests/place-card-leksikon-content-audit.test.js`
+- `tests/etne-people-manifest-integration.test.js`
+- `git diff --check`
+- ordinære People- og Places-data checks
+- TypeScript typecheck og build guard
+
 ## Kjelder
 
 - Brønnøysundregistrene: Etne BMX og Skatepark, org.nr. 899 086 112
