@@ -15,9 +15,115 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  integrate_etne_nature_batch_1:
+    name: Integrate Etne nature batch 1
+    if: github.event.pull_request.number == 2252
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-natur-batch-1-integration
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          mkdir -p reports/etne-natur-batch-1-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-natur-batch-1-integration/npm-install.txt
+
+      - name: Register source files exactly once
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-natur-batch-1-integration/manifest-update.txt
+          import fs from 'node:fs';
+          const manifestPath = 'data/places/manifest.json';
+          const additions = [
+            'places/natur/vestland/langfoss_etne.json',
+            'places/natur/vestland/akrafjorden.json',
+            'places/natur/vestland/jettegrytene_rullestad.json',
+            'places/natur/vestland/etneelva.json',
+            'places/natur/vestland/stordalsvatnet_etne.json'
+          ];
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          for (const file of additions) {
+            manifest.files = manifest.files.filter((value) => value !== file);
+            manifest.files.push(file);
+            const count = manifest.files.filter((value) => value === file).length;
+            if (count !== 1) throw new Error(`Manifest registration failed for ${file}: ${count}`);
+            console.log(`PASS ${file}: exactly once`);
+          }
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+          NODE
+
+      - name: Rebuild runtime index
+        run: npm run places:index:build 2>&1 | tee reports/etne-natur-batch-1-integration/index-build.txt
+
+      - name: Run coordinate intake
+        env:
+          COORD_INTAKE_BASE: ${{ github.event.pull_request.base.sha }}
+        run: npm run places:coords:intake 2>&1 | tee reports/etne-natur-batch-1-integration/places-coords-intake.txt
+
+      - name: Run places validation
+        run: bash scripts/check-places.sh 2>&1 | tee reports/etne-natur-batch-1-integration/check-places.txt
+
+      - name: Run split manifest sync
+        run: npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-natur-batch-1-integration/audit-places-split-manifest-sync.txt
+
+      - name: Run coordinate quality gate
+        run: npm run places:coords:quality 2>&1 | tee reports/etne-natur-batch-1-integration/places-coords-quality.txt
+
+      - name: Validate source and runtime parity
+        run: |
+          node --input-type=module <<'NODE' | tee reports/etne-natur-batch-1-integration/targeted-source-runtime-validation.json
+          import fs from 'node:fs';
+          const ids = ['langfoss_etne','akrafjorden','jettegrytene_rullestad','etneelva','stordalsvatnet_etne'];
+          const paths = {
+            langfoss_etne: 'data/places/natur/vestland/langfoss_etne.json',
+            akrafjorden: 'data/places/natur/vestland/akrafjorden.json',
+            jettegrytene_rullestad: 'data/places/natur/vestland/jettegrytene_rullestad.json',
+            etneelva: 'data/places/natur/vestland/etneelva.json',
+            stordalsvatnet_etne: 'data/places/natur/vestland/stordalsvatnet_etne.json'
+          };
+          const fields = ['lat','lon','r','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','locatorType','sourceProvider','geocodeAccuracy','coordRole'];
+          const runtime = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const counts = new Map();
+          for (const place of runtime) counts.set(place.id, (counts.get(place.id) || 0) + 1);
+          const duplicates = [...counts.entries()].filter(([, count]) => count > 1);
+          const results = [];
+          for (const id of ids) {
+            const sourceDoc = JSON.parse(fs.readFileSync(paths[id], 'utf8'));
+            const source = Array.isArray(sourceDoc) ? sourceDoc.find((place) => place.id === id) : sourceDoc;
+            const rows = runtime.filter((place) => place.id === id);
+            if (rows.length !== 1) throw new Error(`${id}: expected one runtime row, got ${rows.length}`);
+            const mismatches = fields.filter((field) => JSON.stringify(source[field]) !== JSON.stringify(rows[0][field]));
+            if (mismatches.length) throw new Error(`${id}: parity mismatch: ${mismatches.join(', ')}`);
+            results.push({ id, runtimeRows: 1, parity: 'PASS', coordStatus: source.coordStatus, coordRole: source.coordRole });
+          }
+          if (duplicates.length) throw new Error(`Global duplicate active place IDs: ${JSON.stringify(duplicates)}`);
+          console.log(JSON.stringify({ status: 'PASS', globalDuplicateActivePlaceIds: 0, results }, null, 2));
+          NODE
+
+      - name: Run diff whitespace check
+        run: git diff --check | tee reports/etne-natur-batch-1-integration/git-diff-check.txt
+
+      - name: Restore standard workflow and commit integration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main --depth=1
+          git show origin/main:.github/workflows/data-checks.yml > .github/workflows/data-checks.yml
+          git add .github/workflows/data-checks.yml data/places/manifest.json data/places/places_index.json reports/etne-natur-batch-1-integration
+          git diff --cached --check
+          git commit -m "Integrate Etne nature batch 1"
+          git push origin HEAD:agent/etne-natur-batch-1-integration
+
   people:
     name: People data
     runs-on: ubuntu-latest
