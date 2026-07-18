@@ -23,3 +23,7 @@ Grannar dokumenterer at prosjektet starta då Heidi Wannberg fekk ideen i 2018; 
 Etter Batch 17: 546 manifestfiler, 1 119 people-oppføringar og 58/81 dekte Etne-stader. Full pre-integrasjonsaudit skal dokumentere null eksisterande identitetstreff og null people-lenkjer til Sjøkanten. Ved rein audit blir resultatet 547 filer, 1 122 oppføringar, 59/81 dekte og 22 udekte stader.
 
 Den midlertidige integrasjonsworkflowen skal lagre faktisk terminaloutput, fjerne seg sjølv og etterlate ingen place- eller story-endringar.
+
+## Valideringsresultat
+
+Den selvrensande integrasjonsworkflowen passerte full pre-audit utan identitets- eller place-link-treff, registrerte batchen nøyaktig éin gong og passerte Batch 18-testen, full people-port, typekontroll og fullverktøy-porten fram til dei same fem kjende story-referansane. Faktisk terminaloutput er lagra i rapportmappa. Etter batchen er Etne-dekninga 59/81, med 22 udekte stader.
