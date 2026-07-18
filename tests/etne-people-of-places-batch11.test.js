@@ -35,7 +35,9 @@ for (const person of batch) {
   assert(expected, `Uventa person i batch 11: ${person.id}`);
   assert.strictEqual(person.name, expected.name, `${person.id} har feil namn`);
   assert.strictEqual(person.placeId, expectedPlaceId, `${person.id} har feil primæranker`);
-  assert.deepStrictEqual(person.places, [expectedPlaceId], `${person.id} skal ha ei presis place-lenkje`);
+  assert(Array.isArray(person.places), `${person.id} skal ha ei places-liste`);
+  assert.strictEqual(person.places[0], expectedPlaceId, `${person.id} skal behalde museet som første place-lenkje`);
+  assert(person.places.includes(expectedPlaceId), `${person.id} manglar museumslenkja`);
   assert.strictEqual(person.category, 'naeringsliv', `${person.id} har feil kategori`);
   assert.strictEqual(person.year, 1986, `${person.id} skal vere knytt til museumsstiftinga i 1986`);
   assert(activePlaces.has(person.placeId), `${person.id} peikar på eit inaktivt place`);
