@@ -267,6 +267,7 @@ jobs:
           }
 
           const candidatePeople = new Set(data.map((candidate) => reqStr(candidate && candidate.personId)).filter(Boolean));
+          const analysis = { complete: 0, unavailable: 0, failed: 0 };
           for (const candidate of data) {
             if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) {
               errors.push('Candidate entry is not an object.');
@@ -292,6 +293,9 @@ jobs:
             if (!reqStr(candidate.licenseUrl)) errors.push(`${personId}: missing licenseUrl.`);
             if (!reqStr(candidate.creator) && !reqStr(candidate.credit)) errors.push(`${personId}: missing creator or credit.`);
             if (!(Number(candidate.width) > 0) || !(Number(candidate.height) > 0)) errors.push(`${personId}: missing positive dimensions.`);
+            const status = candidate.quality?.analysisStatus;
+            if (status === 'complete' || status === 'unavailable' || status === 'failed') analysis[status]++;
+            else errors.push(`${personId}: missing or invalid quality.analysisStatus.`);
           }
 
           const candidateCount = data.length;
@@ -304,6 +308,7 @@ jobs:
           const processedPeople = selectedIds.length || candidatePeople.size;
           if (!processedPeople) errors.push('No people were processed.');
           if (candidateCount === 0) errors.push('Candidate file is empty; refusing to publish a fully empty or network-failed batch.');
+          if (candidateCount > 0 && analysis.complete === 0 && analysis.unavailable + analysis.failed === candidateCount) errors.push('All downloaded candidates are missing full pixel analysis.');
           if (selectedIds.length > 0 && lookupErrorCount >= selectedIds.length) errors.push('All selected people appear to have lookup errors.');
 
           const summary = {
@@ -313,6 +318,7 @@ jobs:
             lookupErrors: lookupErrorCount,
             wikidataIds: [...wikidataIds].sort(),
             licenses: [...licenseFamilies].sort(),
+            analysis,
             allCandidatesApprovedFalse: data.every((candidate) => candidate && candidate.approved === false),
             errors,
             warnings
@@ -328,6 +334,7 @@ jobs:
             `- Lookup errors: ${summary.lookupErrors}`,
             `- Wikidata IDs: ${summary.wikidataIds.join(', ') || '(none)'}`,
             `- Licenses: ${summary.licenses.join(', ') || '(none)'}`,
+            `- Pixel analysis: complete ${analysis.complete}, unavailable ${analysis.unavailable}, failed ${analysis.failed}`,
             `- All candidates have approved: false: ${summary.allCandidatesApprovedFalse ? 'yes' : 'no'}`,
             '',
             '## Errors',
