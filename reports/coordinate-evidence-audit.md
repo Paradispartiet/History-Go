@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-18T23:18:25.375Z
+Generert: 2026-07-18T23:29:03.465Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -23,3 +23,10 @@ Generert: 2026-07-18T23:18:25.375Z
 | aker_brygge | data/coordinate-evidence/oslo/by/aker_brygge.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ring_3 | data/coordinate-evidence/oslo/by/ring_3.json | needs_research | needs_geometry | OK |
 | trikk_17_18 | data/coordinate-evidence/oslo/by/trikk_17_18.json | needs_research | needs_geometry | OK |
+| tigeren | data/coordinate-evidence/oslo/by/tigeren.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| jernbanetorget | data/coordinate-evidence/oslo/by/jernbanetorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| helsfyr | data/coordinate-evidence/oslo/by/helsfyr.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bogstadveien | data/coordinate-evidence/oslo/by/bogstadveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| markveien | data/coordinate-evidence/oslo/by/markveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| gronlandsleiret | data/coordinate-evidence/oslo/by/gronlandsleiret.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| storgata | data/coordinate-evidence/oslo/by/storgata.json | applied_to_place | do_not_change_coordinates_yet | OK |

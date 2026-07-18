@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 70 verifiserte eller kildekontrollerte canonical steder. Batch 12 omfatter sju fullførte kontroller: fem nye godkjente områdeankre og to ruteobjekter som står dokumentert som `needs_review` fordi dagens datamodell mangler traségeometri. Totalt står fire fullførte Oslo-kontroller separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-tabellen inneholder nå 77 verifiserte eller kildekontrollerte canonical steder. Batch 13 legger til sju godkjente kontroller: tre presise objekt-/områdeankre for Tigeren, Jernbanetorget og Helsfyr, samt fire dokumenterte flerankrede gater. Fire fullførte Oslo-kontroller står fortsatt separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -91,6 +91,13 @@ Oslo-tabellen inneholder nå 70 verifiserte eller kildekontrollerte canonical st
 | 12 | `majorstuen_krysset` | Majorstuen krysset | verified_geometry | `oslobyleksikon:valkyriegata:majorstukrysset` |
 | 12 | `st_hanshaugen_park` | St. Hanshaugen park | verified_geometry | `oslo-kommune:park:st-hanshaugen` |
 | 12 | `aker_brygge` | Aker Brygge | verified_geometry | `oslo-kommune:fjordbyen:aker-brygge` |
+| 13 | `tigeren` | Tigerstatuen | verified_geometry | `osm-node:3578576333` |
+| 13 | `jernbanetorget` | Jernbanetorget | verified_geometry | `osm-way:10576072` |
+| 13 | `helsfyr` | Helsfyr | verified_geometry | `osm-node:5218231670` |
+| 13 | `bogstadveien` | Bogstadveien | verified_geometry | `oslobyleksikon:bogstadveien` |
+| 13 | `markveien` | Markveien | verified_geometry | `oslobyleksikon:markveien` |
+| 13 | `gronlandsleiret` | Grønlandsleiret | verified_geometry | `oslobyleksikon:gronlandsleiret` |
+| 13 | `storgata` | Storgata | verified_geometry | `oslobyleksikon:storgata` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -98,7 +105,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 70 verifiserte eller kildekontrollerte canonical stedene.
+Disse kontrollene er fullført, men teller ikke blant de 77 verifiserte eller kildekontrollerte canonical stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -153,7 +160,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 73 og starter batch 13.
-- Batch 12 er fullført med fem godkjente områdeankre og to dokumenterte ruteobjekter som krever egen rutemodell.
+- Neste nye Oslo-kontroll er nummer 80 og starter batch 14.
+- Batch 13 er fullført med sju godkjente objekt-, område- og linjeankre.
 - Fortsett i canonical filrekkefølge når det gir en naturlig arbeidskø, men velg alltid koordinatmetode etter fysisk objekttype.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

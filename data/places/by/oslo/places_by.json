@@ -1531,13 +1531,12 @@
       "designCode": "monument_miniature"
     },
     "name": "Tigerstatuen",
-    "lat": 59.9112,
-    "lon": 10.75,
-    "r": 120,
-    "coordType": "monument_anchor",
-    "coordStatus": "verified",
-    "coordPrecisionM": 20,
-    "coordNote": "Tigerstatuen («Christiania-tigeren», Elena Engelsen 2000) står på forplassen foran Oslo S, ut mot Jernbanetorget. Punktet er manuelt kartkontrollert og flyttet fra et østlig forplass-/stasjonsbyggpunkt til monumentankeret ved Jernbanetorget.",
+    "lat": 59.91115,
+    "lon": 10.75032,
+    "r": 45,
+    "coordType": "poi_geometry",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Presist objektanker for Elena Engelsens tigerstatue på Jernbanetorget. OSM-node 3578576333 identifiserer selve kunstverket; VisitOSLO brukes som uavhengig identitetskontroll av verk, kunstner, plassering og år. Radius er strammet inn slik at markøren representerer skulpturen, ikke hele Jernbanetorget.",
     "category": "by",
     "year": 2000,
     "emne_ids": [
@@ -1626,8 +1625,15 @@
         }
       }
     },
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-07-09"
+    "coordSource": "OpenStreetMap node 3578576333 – The Tiger",
+    "coordVerifiedAt": "2026-07-19",
+    "locatorType": "poi",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:3578576333",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "display_marker",
+    "coordSourceId": "osm-node:3578576333",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/3578576333"
   },
   {
     "id": "gronland_kirke",
@@ -1779,17 +1785,16 @@
     "visual": {
       "designCode": "station_miniature"
     },
-    "lat": 59.911,
-    "lon": 10.75,
+    "lat": 59.91094,
+    "lon": 10.75034,
     "r": 180,
-    "coordType": "transit_anchor",
-    "coordStatus": "verified",
-    "coordPrecisionM": 60,
-    "coordNote": "Jernbanetorget – selve torget foran Oslo S. Kontrollert mot Wikidata; skilt fra stasjonsbygningen (oslo_s) og tigerstatuen.",
-    "coordSource": "Wikidata (Q1783215)",
-    "coordSourceId": "Q1783215",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q1783215",
-    "coordVerifiedAt": "2026-06-15",
+    "coordType": "square_center",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Geometriforankret områdeanker for selve Jernbanetorget foran Oslo S. OSM-way 10576072 identifiserer plassen som eget torgobjekt. Punktet representerer plassgeometrien og holdes adskilt fra Oslo S, tigerstatuen og kollektivholdeplassene.",
+    "coordSource": "OpenStreetMap way 10576072 – Jernbanetorget",
+    "coordSourceId": "osm-way:10576072",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/10576072",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "rounds": [
       "people",
@@ -1841,7 +1846,12 @@
         "radhusplassen"
       ],
       "notes": "Skal spørres som forplass og overgangsrom, ikke som nøytralt torg."
-    }
+    },
+    "locatorType": "square",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:10576072",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor"
   },
   {
     "id": "oslo_bussterminal",
@@ -1920,17 +1930,16 @@
   {
     "id": "helsfyr",
     "name": "Helsfyr",
-    "lat": 59.9128,
-    "lon": 10.8008,
+    "lat": 59.91273,
+    "lon": 10.80101,
     "r": 200,
-    "coordType": "transit_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Helsfyr kollektivknutepunkt/delområde. Anker satt på Helsfyr T-banestasjon (kontrollert mot Wikipedia); bevisst områdeanker for delområdet, ikke én adresse.",
-    "coordSource": "Wikipedia (Helsfyr station)",
-    "coordSourceId": "Helsfyr stasjon",
-    "coordSourceUrl": "https://en.wikipedia.org/wiki/Helsfyr_(station)",
-    "coordPrecisionM": 150,
-    "coordVerifiedAt": "2026-06-15",
+    "coordType": "transit_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Presist kollektivanker brukt som representativt områdeanker for Helsfyr-knutepunktet og det omkringliggende kontor-/pendlerområdet. OSM-node 5218231670 identifiserer Helsfyr T-banestasjon; punktet hevdes ikke å være et geometrisk sentrum for hele Helsfyr.",
+    "coordSource": "OpenStreetMap node 5218231670 – Helsfyr T-banestasjon",
+    "coordSourceId": "osm-node:5218231670",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/5218231670",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1966,
     "emne_ids": [
@@ -1984,7 +1993,12 @@
       "intility_arena",
       "valle_hovin_stadion",
       "vallhall_arena"
-    ]
+    ],
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:5218231670",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "bogstadveien",
@@ -1996,8 +2010,8 @@
     "lon": 10.7178,
     "r": 220,
     "coordType": "street_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Lineær handlegate mellom Majorstuen og Hegdehaugsveien. Hovedmarkøren er flyttet fra et punkt som lå ~110 m vest for gateløpet (59.9279/10.7157) til midt på handlestrekningen mellom de to endene, der butikkene og uteserveringen er tettest. Semantiske ruteankre markerer begge ender for kartvisning. Manuell kartvurdering mot kjent gategeometri og endepunkt-ankre.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Bogstadveien. Oslo byleksikon avgrenser gaten fra Hegdehaugsveien til Sørkedalsveien. History Go beholder hovedpunktet på den sentrale handlestrekningen og de eksisterende ruteankrene ved Majorstuen og Hegdehaugsveien; punktet er ikke et adressepunkt.",
     "anchors": [
       {
         "id": "bogstadveien_nord_majorstuen",
@@ -2059,7 +2073,16 @@
         "gronlandsleiret"
       ],
       "notes": "Skal spørres som kommersiell vestkantsgate med tydelig sosial profil."
-    }
+    },
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:bogstadveien",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Bogstadveien + dokumenterte ruteankre",
+    "coordSourceId": "oslobyleksikon:bogstadveien",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Bogstadveien",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "markveien",
@@ -2068,8 +2091,8 @@
     "lon": 10.7573,
     "r": 210,
     "coordType": "street_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Lineær handlegate gjennom Grünerløkka, vest for Thorvald Meyers gate og nær Akerselva. Visuell hovedmarkør flyttet ~60 m vest (fra 59.9235/10.7584) inn på selve Markveien-gateløpet ved kafé-/handelsstrekningen på høyde med Olaf Ryes plass-kvartalet; lå tidligere for langt øst, oppå Olaf Ryes plass / Thorvald Meyers gate (feil gate/plass). Gatesentroide kartkontrollert (~59.9234/10.7573). Semantiske ruteankre markerer søndre (mot Nybrua) og nordre ende.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Markveien. Oslo byleksikon avgrenser gaten fra Sannergata til Søndre gate. History Go beholder hovedpunktet på den sentrale handelsstrekningen og eksisterende ruteankre mot Nybrua og nordre Grünerløkka; punktet er ikke et adressepunkt.",
     "anchors": [
       {
         "id": "markveien_sor_nybrua",
@@ -2138,17 +2161,26 @@
     ],
     "connected_sport_place_ids": [
       "daelenenga_idrettspark"
-    ]
+    ],
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:markveien",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Markveien + dokumenterte ruteankre",
+    "coordSourceId": "oslobyleksikon:markveien",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Markveien",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "gronlandsleiret",
     "name": "Grønlandsleiret",
-    "lat": 59.9116,
-    "lon": 10.767,
+    "lat": 59.91155,
+    "lon": 10.76715,
     "r": 210,
     "coordType": "street_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Lineær handlegate på Grønland mellom Grønland torg og Oslo gate/Galgeberg. Hovedmarkøren er flyttet fra et punkt som lå for langt vest/nord ved Vaterland (59.9124/10.7608) til den gjenkjennelige bygate-/serveringsstrekningen forbi Grønland kirke. Lagt til semantiske ruteankre for begge ender. Manuell kartvurdering mot kjent gategeometri og verifisert Grønland kirke (59.9111/10.7677).",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Grønlandsleiret. Oslo byleksikon avgrenser gaten fra Tøyenbekken til Schweigaards gate. Hovedpunktet er det matematiske midtpunktet mellom de to eksisterende, dokumenterte ruteankrene i vest og øst; det er derfor en avledet linjerepresentasjon og ikke kunstig desimalpresisjon eller et adressepunkt.",
     "anchors": [
       {
         "id": "gronlandsleiret_vest_gronland_torg",
@@ -2210,7 +2242,16 @@
         "torggata"
       ],
       "notes": "Skal spørres som sosialt tett handelsgate, ikke som abstrakt mangfoldscase."
-    }
+    },
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:gronlandsleiret",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Grønlandsleiret + dokumenterte ruteankre",
+    "coordSourceId": "oslobyleksikon:gronlandsleiret",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Gr%C3%B8nlandsleiret",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "storgata",
@@ -2222,8 +2263,8 @@
     "lon": 10.7539,
     "r": 230,
     "coordType": "street_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Lineær gate mellom Kirkeristen og Nybrua. Hovedmarkøren er flyttet fra et punkt som lå ~130 m vest for gateløpet (59.9153/10.7521, nær Torggata) til den sentrale Storgata-strekningen mellom de to endene. Semantiske ruteankre markerer begge ender for kartvisning. Manuell kartvurdering mot kjent gategeometri og endepunkt-ankre.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt.",
     "anchors": [
       {
         "id": "storgata_sorvest_kirkeristen",
@@ -2285,7 +2326,16 @@
         "torggata"
       ],
       "notes": "Skal spørres som historisk hybrid mellom ferdsel og handel."
-    }
+    },
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:storgata",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Storgata + dokumenterte ruteankre",
+    "coordSourceId": "oslobyleksikon:storgata",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Storgata",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "ullevål_hageby",
