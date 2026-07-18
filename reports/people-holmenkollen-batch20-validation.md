@@ -46,3 +46,5 @@ Before merge:
 - Places data CI passed on the final head
 - fresh comparison against merge-time `main` still shows only the intended 8-file net diff
 - PR mergeable
+
+This validation-report update is the ordinary post-rebase commit used to trigger final CI without reopening the PR.
