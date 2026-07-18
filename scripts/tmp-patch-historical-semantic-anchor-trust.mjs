@@ -5,31 +5,10 @@ const testPath = 'tests/coordinate-source-contract-anchor-trust.test.mjs';
 const docPath = 'docs/coordinates/coordinate-source-contract-v1.md';
 
 let tool = fs.readFileSync(toolPath, 'utf8');
-const oldBlock = `  const verifiedGeometrySemanticAnchor = status === 'verified_geometry'
-    && accuracy === 'semantic_anchor'
-    && hasGeometryOrAnchors(place)
-    && ['line_anchor', 'area_anchor'].includes(String(place?.coordRole ?? ''));
-  const verifiedHistoricalApproximation = status === 'verified_historical_source'
-    && accuracy === 'historical_approximation'
-    && ['historical_map', 'manual_research'].includes(sourceProvider)
-    && String(place?.coordRole ?? '') === 'historical_anchor';
-  const acceptedLowAccuracy = verifiedGeometrySemanticAnchor || verifiedHistoricalApproximation;`;
-const newBlock = `  const verifiedGeometrySemanticAnchor = status === 'verified_geometry'
-    && accuracy === 'semantic_anchor'
-    && hasGeometryOrAnchors(place)
-    && ['line_anchor', 'area_anchor'].includes(String(place?.coordRole ?? ''));
-  const verifiedHistoricalApproximation = status === 'verified_historical_source'
-    && accuracy === 'historical_approximation'
-    && ['historical_map', 'manual_research'].includes(sourceProvider)
-    && String(place?.coordRole ?? '') === 'historical_anchor';
-  const verifiedHistoricalSemanticAnchor = status === 'verified_historical_source'
-    && accuracy === 'semantic_anchor'
-    && ['historical_map', 'manual_research'].includes(sourceProvider)
-    && hasGeometryOrAnchors(place)
-    && ['line_anchor', 'area_anchor', 'historical_anchor'].includes(String(place?.coordRole ?? ''));
-  const acceptedLowAccuracy = verifiedGeometrySemanticAnchor || verifiedHistoricalApproximation || verifiedHistoricalSemanticAnchor;`;
-if (!tool.includes(oldBlock)) throw new Error('Fant ikke forventet trust-blokk');
-tool = tool.replace(oldBlock, newBlock);
+const acceptedLine = `  const acceptedLowAccuracy = verifiedGeometrySemanticAnchor || verifiedHistoricalApproximation;`;
+const expandedTrust = `  const verifiedHistoricalSemanticAnchor = status === 'verified_historical_source' && accuracy === 'semantic_anchor' && ['historical_map', 'manual_research'].includes(sourceProvider) && hasGeometryOrAnchors(place) && ['line_anchor', 'area_anchor', 'historical_anchor'].includes(String(place?.coordRole ?? ''));\n  const acceptedLowAccuracy = verifiedGeometrySemanticAnchor || verifiedHistoricalApproximation || verifiedHistoricalSemanticAnchor;`;
+if (!tool.includes(acceptedLine)) throw new Error('Fant ikke acceptedLowAccuracy-linjen');
+tool = tool.replace(acceptedLine, expandedTrust);
 fs.writeFileSync(toolPath, tool);
 
 let test = fs.readFileSync(testPath, 'utf8');
