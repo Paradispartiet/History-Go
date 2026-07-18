@@ -1,0 +1,138 @@
+name: Integrate Etne business batch 1
+
+on:
+  push:
+    branches:
+      - agent/etne-naeringsliv-batch-1
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: ${{ !contains(github.event.head_commit.message, '[skip etne business integration]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-naeringsliv-batch-1
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          set -o pipefail
+          mkdir -p reports/etne-naeringsliv-batch-1-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/npm-install.txt
+
+      - name: Resolve SMV address anchor
+        run: |
+          set -o pipefail
+          curl -fsS --get \
+            --data-urlencode 'sok=Leknestangen 95 5593 Skånevik' \
+            --data-urlencode 'treffPerSide=20' \
+            'https://ws.geonorge.no/adresser/v1/sok' > /tmp/smv-address.json
+          node <<'NODE' 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/address-anchor-lookup.txt
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('/tmp/smv-address.json', 'utf8'));
+          const hits = Array.isArray(data.adresser) ? data.adresser : [];
+          const hit = hits.find((x) => x.adressetekst === 'Leknestangen 95' && x.postnummer === '5593') ||
+                      hits.find((x) => x.adressetekst === 'Leknestangen 95');
+          if (!hit?.representasjonspunkt) throw new Error('No official address point found for Leknestangen 95');
+          const file = 'data/places/naeringsliv/vestland/etne/sunnhordland_mek_verkstad_leknestangen.json';
+          const rows = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const p = rows[0];
+          p.lat = hit.representasjonspunkt.lat;
+          p.lon = hit.representasjonspunkt.lon;
+          p.quiz_profile.notes = `Markøren bruker offisielt Kartverket/Geonorge-adressepunkt for ${hit.adressetekst}, ${hit.postnummer} Skånevik. Dette er dagens SMV-anlegg og et annet fysisk sted enn Norsk Motormuseum.`;
+          fs.writeFileSync(file, JSON.stringify(rows, null, 2) + '\n');
+          console.log(`PASS Leknestangen 95: ${p.lat}, ${p.lon} -> ${hit.adressetekst}, ${hit.postnummer}`);
+          NODE
+
+      - name: Register source files
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const wanted = [
+            'places/naeringsliv/vestland/etne/norsk_motormuseum_skanevik.json',
+            'places/naeringsliv/vestland/etne/sunnhordland_mek_verkstad_leknestangen.json',
+            'places/naeringsliv/vestland/etne/skanevik_hermetikkfabrikk.json',
+            'places/naeringsliv/vestland/etne/litledalen_kraftverk.json',
+            'places/naeringsliv/vestland/etne/hardeland_kraftverk.json'
+          ];
+          for (const entry of wanted) if (!manifest.files.includes(entry)) manifest.files.push(entry);
+          for (const entry of wanted) {
+            const count = manifest.files.filter((x) => x === entry).length;
+            if (count !== 1) throw new Error(`${entry}: expected exactly once, got ${count}`);
+            console.log(`PASS manifest ${entry}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest) + '\n');
+          NODE
+
+      - name: Build and validate
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/check-places.txt
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/split-manifest-sync.txt
+          npm run places:coords:quality 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/coordinate-quality.txt
+
+      - name: Audit physical anchors and runtime uniqueness
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/anchor-audit.txt
+          const fs = require('fs');
+          const dir = 'data/places/naeringsliv/vestland/etne';
+          const load = (id) => JSON.parse(fs.readFileSync(`${dir}/${id}.json`, 'utf8'))[0];
+          const museum = load('norsk_motormuseum_skanevik');
+          const smv = load('sunnhordland_mek_verkstad_leknestangen');
+          const factory = load('skanevik_hermetikkfabrikk');
+          const hardeland = load('hardeland_kraftverk');
+          const litledalen = load('litledalen_kraftverk');
+          const dist = (a,b) => {
+            const R=6371, rad=(x)=>x*Math.PI/180;
+            const dLat=rad(b.lat-a.lat), dLon=rad(b.lon-a.lon);
+            const q=Math.sin(dLat/2)**2 + Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;
+            return 2*R*Math.asin(Math.sqrt(q));
+          };
+          const d = dist(museum, smv);
+          if (d < 0.5) throw new Error(`SMV current plant too close to museum anchor: ${d.toFixed(3)} km`);
+          console.log(`PASS current SMV ↔ former SMV/museum: ${d.toFixed(3)} km`);
+          if (!String(factory.quiz_profile?.notes || '').toLowerCase().includes('representativ')) throw new Error('Canning factory anchor uncertainty not disclosed');
+          console.log('PASS Skånevik canning factory: representative area anchor disclosed');
+          if (!String(hardeland.quiz_profile?.notes || '').toLowerCase().includes('canonical')) throw new Error('Hardeland canonical H/K consolidation not disclosed');
+          console.log('PASS Hardeland: H and K consolidated into one canonical physical place');
+          if (hardeland.category !== 'naeringsliv' || litledalen.category !== 'naeringsliv') throw new Error('Power plants must remain naeringsliv');
+          console.log('PASS hydropower places categorized as naeringsliv');
+          NODE
+
+          node <<'NODE' 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/targeted-validation.txt
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const ids = ['norsk_motormuseum_skanevik','sunnhordland_mek_verkstad_leknestangen','skanevik_hermetikkfabrikk','litledalen_kraftverk','hardeland_kraftverk'];
+          for (const id of ids) {
+            const count = index.filter((x) => x.id === id).length;
+            if (count !== 1) throw new Error(`${id}: expected one runtime row, got ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const seen = new Set(), dup = new Set();
+          for (const row of index) { if (seen.has(row.id)) dup.add(row.id); seen.add(row.id); }
+          if (dup.size) throw new Error(`duplicate active IDs: ${[...dup].join(', ')}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+
+          git diff --check 2>&1 | tee reports/etne-naeringsliv-batch-1-integration/git-diff-check.txt
+
+      - name: Commit and remove workflow
+        run: |
+          rm .github/workflows/integrate-etne-naeringsliv-batch1.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/manifest.json data/places/places_index.json data/places/naeringsliv/vestland/etne/sunnhordland_mek_verkstad_leknestangen.json reports/etne-naeringsliv-batch-1-integration .github/workflows/integrate-etne-naeringsliv-batch1.yml
+          git commit -m 'Integrate Etne business batch 1 [skip etne business integration]'
+          git push origin HEAD:agent/etne-naeringsliv-batch-1
