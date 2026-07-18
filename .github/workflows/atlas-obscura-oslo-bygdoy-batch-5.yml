@@ -1,0 +1,62 @@
+name: Integrate Atlas Obscura Oslo Bygdoy batch 5
+
+on:
+  push:
+    branches:
+      - agent/atlas-obscura-oslo-bygdoy-batch-5
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: github.event.head_commit.message != 'Generate Atlas Obscura Bygdoy batch 5 data'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/atlas-obscura-oslo-bygdoy-batch-5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Register active source
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const manifestPath = 'data/places/manifest.json';
+          const source = 'places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.files ||= [];
+          if (!manifest.files.includes(source)) manifest.files.push(source);
+          fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+          NODE
+      - name: Build and validate place data
+        run: |
+          mkdir -p reports/atlas-obscura-oslo-bygdoy-batch-5
+          npm run places:index:build \
+            | tee reports/atlas-obscura-oslo-bygdoy-batch-5/places-index-build.txt
+          npm run places:index:check \
+            | tee reports/atlas-obscura-oslo-bygdoy-batch-5/places-index-check.txt
+          npm run places:coords:intake \
+            | tee reports/atlas-obscura-oslo-bygdoy-batch-5/coordinate-intake.txt
+          npm run places:emner:check \
+            | tee reports/atlas-obscura-oslo-bygdoy-batch-5/emne-check.txt
+          npm run health:places \
+            | tee reports/atlas-obscura-oslo-bygdoy-batch-5/health-places.txt
+      - name: Commit generated data
+        if: always()
+        run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add \
+            data/places/manifest.json \
+            data/places/places_index.json \
+            reports/atlas-obscura-oslo-bygdoy-batch-5
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate Atlas Obscura Bygdoy batch 5 data"
+            git push
+          fi
