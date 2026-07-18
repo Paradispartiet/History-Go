@@ -22,13 +22,29 @@ jobs:
           node <<'NODE' | tee reports/etne-people-of-places-batch18-audit/coverage.json
           const fs = require('fs');
           const path = require('path');
-          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
-          const etnePlaces = places.filter((place) => String(place.kommune || '').toLowerCase() === 'etne');
-          const etneById = new Map(etnePlaces.map((place) => [place.id, place]));
-          const manifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
+
+          const runtimePlaces = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const activeIds = new Set(runtimePlaces.map((place) => place.id));
+          const placeManifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
+          const etnePlaces = [];
+          const seenEtneIds = new Set();
+
+          for (const rel of placeManifest.files) {
+            const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
+            const entries = Array.isArray(doc) ? doc : [doc];
+            for (const place of entries) {
+              if (!place?.id || !activeIds.has(place.id)) continue;
+              if (String(place.kommune || '').toLowerCase() !== 'etne') continue;
+              if (seenEtneIds.has(place.id)) throw new Error(`Duplicate active Etne place in source scan: ${place.id}`);
+              seenEtneIds.add(place.id);
+              etnePlaces.push(place);
+            }
+          }
+
+          const peopleManifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
           const links = new Map(etnePlaces.map((place) => [place.id, []]));
           let totalPeople = 0;
-          for (const rel of manifest.files) {
+          for (const rel of peopleManifest.files) {
             const doc = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
             const people = Array.isArray(doc) ? doc : [doc];
             for (const person of people) {
@@ -38,6 +54,7 @@ jobs:
               }
             }
           }
+
           const uncovered = etnePlaces
             .filter((place) => links.get(place.id).length === 0)
             .map((place) => ({
@@ -48,14 +65,14 @@ jobs:
               lat: place.lat,
               lon: place.lon
             }))
-            .sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
-          const covered = etnePlaces.length - uncovered.length;
+            .sort((a, b) => String(a.category).localeCompare(String(b.category)) || String(a.name).localeCompare(String(b.name)));
+
           console.log(JSON.stringify({
             generatedAt: new Date().toISOString(),
-            peopleManifestFiles: manifest.files.length,
+            peopleManifestFiles: peopleManifest.files.length,
             totalPeople,
             activeEtnePlaces: etnePlaces.length,
-            coveredEtnePlaces: covered,
+            coveredEtnePlaces: etnePlaces.length - uncovered.length,
             uncoveredEtnePlaces: uncovered.length,
             uncovered
           }, null, 2));
