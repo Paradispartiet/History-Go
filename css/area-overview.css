@@ -1,0 +1,499 @@
+/* ============================================================
+   AREA OVERVIEW – universal place-centered radius overview
+   ============================================================ */
+
+#hgAreaOverview.hg-area-overview{
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(54,77,104,.34), transparent 36%),
+    linear-gradient(180deg, #0a0d11 0%, #090b0e 46%, #050607 100%);
+  color: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+#hgAreaOverview[hidden]{
+  display: none !important;
+}
+
+body.hg-area-open{
+  overscroll-behavior: none;
+}
+
+.hg-area-shell{
+  min-height: 100%;
+  padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+}
+
+.hg-area-header{
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  min-height: 66px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding:
+    calc(8px + env(safe-area-inset-top, 0px))
+    calc(16px + env(safe-area-inset-right, 0px))
+    8px
+    calc(16px + env(safe-area-inset-left, 0px));
+  background: rgba(5,7,10,.88);
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  backdrop-filter: blur(18px);
+}
+
+.hg-area-back{
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  font: 800 23px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.hg-area-header-copy{
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.hg-area-header-copy span{
+  color: rgba(255,255,255,.52);
+  font: 700 10px/1.2 system-ui, sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.hg-area-header-copy strong{
+  font: 800 19px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.hg-area-content{
+  width: min(980px, 100%);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 18px max(14px, env(safe-area-inset-right, 0px)) 32px max(14px, env(safe-area-inset-left, 0px));
+}
+
+.hg-area-hero{
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(87,116,145,.42), transparent 40%),
+    linear-gradient(145deg, #1a232d, #0b0e13 72%);
+  box-shadow: 0 24px 60px rgba(0,0,0,.32);
+}
+
+.hg-area-hero-image{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hg-area-hero-shade{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.18) 35%, rgba(0,0,0,.86) 100%);
+}
+
+.hg-area-hero-copy{
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  padding: 28px;
+}
+
+.hg-area-eyebrow{
+  margin: 0 0 7px;
+  color: rgba(255,255,255,.57);
+  font: 800 11px/1.2 system-ui, sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.hg-area-hero h1{
+  margin: 0;
+  max-width: 760px;
+  font: 850 clamp(31px, 7vw, 62px)/.96 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -.045em;
+}
+
+.hg-area-hero-copy > p:last-child{
+  margin: 14px 0 0;
+  color: rgba(255,255,255,.82);
+  font: 650 16px/1.35 system-ui, sans-serif;
+}
+
+.hg-area-radius-nav{
+  position: sticky;
+  top: calc(66px + env(safe-area-inset-top, 0px));
+  z-index: 4;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 14px -4px 0;
+  padding: 8px 4px 10px;
+  scrollbar-width: none;
+  background: linear-gradient(180deg, rgba(9,11,14,.98), rgba(9,11,14,.91) 72%, rgba(9,11,14,0));
+}
+
+.hg-area-radius-nav::-webkit-scrollbar{
+  display: none;
+}
+
+.hg-area-radius{
+  min-width: 66px;
+  height: 40px;
+  flex: 1 0 auto;
+  padding: 0 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  color: rgba(255,255,255,.72);
+  font: 800 13px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.hg-area-radius.is-active{
+  background: #fff;
+  color: #080a0d;
+  border-color: #fff;
+}
+
+.hg-area-stats{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.hg-area-stats > div{
+  min-height: 88px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px 17px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 19px;
+  background: rgba(255,255,255,.045);
+}
+
+.hg-area-stats strong{
+  font: 850 26px/1 system-ui, sans-serif;
+  letter-spacing: -.03em;
+}
+
+.hg-area-stats span{
+  margin-top: 6px;
+  color: rgba(255,255,255,.56);
+  font: 700 12px/1.2 system-ui, sans-serif;
+}
+
+.hg-area-section{
+  margin-top: 34px;
+}
+
+.hg-area-section-heading{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+
+.hg-area-section-heading h2{
+  margin: 0;
+  font: 830 clamp(23px, 4vw, 33px)/1.04 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -.035em;
+}
+
+.hg-area-categories{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.hg-area-category{
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,.095);
+  border-radius: 18px;
+  background: rgba(255,255,255,.045);
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hg-area-category span{
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font: 760 14px/1.2 system-ui, sans-serif;
+}
+
+.hg-area-category strong{
+  min-width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,.085);
+  font: 800 12px/1 system-ui, sans-serif;
+}
+
+.hg-area-category.is-active{
+  border-color: rgba(255,255,255,.5);
+  background: rgba(255,255,255,.13);
+}
+
+.hg-area-clear-filter,
+.hg-area-show-more{
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font: 760 12px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.hg-area-clear-filter{
+  height: 36px;
+  padding: 0 14px;
+}
+
+.hg-area-filter-summary{
+  margin-top: 18px;
+  padding: 12px 15px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.67);
+  font: 650 13px/1.35 system-ui, sans-serif;
+}
+
+.hg-area-band-count{
+  flex: 0 0 auto;
+  color: rgba(255,255,255,.5);
+  font: 750 12px/1.2 system-ui, sans-serif;
+}
+
+.hg-area-place-list{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.hg-area-place-card{
+  min-width: 0;
+  min-height: 116px;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) 24px;
+  align-items: stretch;
+  gap: 13px;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,.085);
+  border-radius: 20px;
+  background: rgba(255,255,255,.035);
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hg-area-place-card:hover,
+.hg-area-place-card:focus-visible{
+  background: rgba(255,255,255,.075);
+  border-color: rgba(255,255,255,.2);
+  outline: none;
+}
+
+.hg-area-place-media{
+  width: 92px;
+  min-height: 92px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: rgba(255,255,255,.055);
+}
+
+.hg-area-place-media img{
+  width: 100%;
+  height: 100%;
+  min-height: 92px;
+  object-fit: cover;
+}
+
+.hg-area-place-placeholder{
+  color: rgba(255,255,255,.28);
+  font: 800 30px/1 system-ui, sans-serif;
+}
+
+.hg-area-place-copy{
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hg-area-place-meta{
+  margin-bottom: 5px;
+  color: rgba(255,255,255,.52);
+  font: 750 10px/1.25 system-ui, sans-serif;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.hg-area-place-copy strong{
+  font: 800 17px/1.12 system-ui, sans-serif;
+  letter-spacing: -.02em;
+}
+
+.hg-area-place-desc{
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 7px;
+  color: rgba(255,255,255,.61);
+  font: 550 12px/1.35 system-ui, sans-serif;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.hg-area-place-arrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.42);
+  font: 800 17px/1 system-ui, sans-serif;
+}
+
+.hg-area-show-more{
+  display: block;
+  min-width: 130px;
+  height: 42px;
+  margin: 13px auto 0;
+  padding: 0 18px;
+}
+
+.hg-area-empty{
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 30px;
+  padding: 24px;
+  border: 1px dashed rgba(255,255,255,.15);
+  border-radius: 22px;
+  color: rgba(255,255,255,.62);
+  text-align: center;
+}
+
+.hg-area-empty strong{
+  color: #fff;
+  font: 800 17px/1.25 system-ui, sans-serif;
+}
+
+/* Footer entry: area is a PlaceCard action, centered on the current place. */
+#pcArea::before{
+  content: "◎";
+  font-size: 25px;
+  line-height: 1;
+}
+
+#pcArea{
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  padding: 0;
+  font-size: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+
+@media (max-width: 700px){
+  .hg-area-content{
+    padding-top: 12px;
+  }
+
+  .hg-area-hero{
+    min-height: 225px;
+    border-radius: 23px;
+  }
+
+  .hg-area-hero-copy{
+    padding: 22px;
+  }
+
+  .hg-area-stats{
+    grid-template-columns: repeat(3, minmax(92px, 1fr));
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .hg-area-stats::-webkit-scrollbar{
+    display: none;
+  }
+
+  .hg-area-categories{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hg-area-place-list{
+    grid-template-columns: 1fr;
+  }
+
+  .hg-area-place-card{
+    grid-template-columns: 80px minmax(0, 1fr) 20px;
+    min-height: 102px;
+  }
+
+  .hg-area-place-media{
+    width: 80px;
+    min-height: 80px;
+  }
+
+  .hg-area-place-media img{
+    min-height: 80px;
+  }
+}
+
+body.hg-app.hg-phone #pcArea{
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  #hgAreaOverview{
+    scroll-behavior: auto;
+  }
+}

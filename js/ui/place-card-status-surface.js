@@ -82,6 +82,25 @@
     document.body.appendChild(script);
   }
 
+  function loadAreaOverviewSurface() {
+    if (global.__HG_AREA_OVERVIEW_SCRIPT_REQUESTED__) return;
+    if (global.HGAreaOverview) return;
+    if (document.querySelector('script[src="js/ui/area-overview.js"]')) return;
+
+    global.__HG_AREA_OVERVIEW_SCRIPT_REQUESTED__ = true;
+    const script = document.createElement("script");
+    script.src = "js/ui/area-overview.js";
+    script.defer = true;
+    script.addEventListener("load", () => {
+      if (document.querySelector('script[src="js/ui/area-overview-scroll.js"]')) return;
+      const scrollScript = document.createElement("script");
+      scrollScript.src = "js/ui/area-overview-scroll.js";
+      scrollScript.defer = true;
+      document.body.appendChild(scrollScript);
+    }, { once: true });
+    document.body.appendChild(script);
+  }
+
   function install() {
     if (global[BOUND_FLAG]) return true;
     if (typeof global.openPlaceCard !== "function") return false;
@@ -98,6 +117,7 @@
     global[BOUND_FLAG] = true;
     global.HGPlaceCardStatusSurface = { render: renderStatus };
     loadNearbyStatusSurface();
+    loadAreaOverviewSurface();
     return true;
   }
 
