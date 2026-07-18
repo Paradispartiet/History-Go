@@ -826,10 +826,11 @@
   }
 
   function buildLights() {
-    // Env-mappet gir nå mykt omgivelseslys, så himmelslyset er dempet litt for
-    // å beholde den varme, dempede tonen (unngå utvasking med PBR-flatene).
-    scene.add(new THREE.HemisphereLight(0xd6e6f2, 0x3a4233, 0.52));
-    const sun = new THREE.DirectionalLight(0xfff1da, 1.18);
+    // Lysere, varmere dagslys så de ekte modellenes farger spretter, uten å
+    // blåse ut PBR-flatene. Himmel-/omgivelseslys løftet, sol varmere og
+    // sterkere, litt mer kjølig fill for dybde.
+    scene.add(new THREE.HemisphereLight(0xe2ecf5, 0x474d3c, 0.66));
+    const sun = new THREE.DirectionalLight(0xfff4e4, 1.36);
     sun.position.set(-15, 24, 13); // konsekvent mykt lys oppe-til-venstre
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
@@ -838,7 +839,7 @@
     sun.shadow.bias = -0.0004;
     sun.shadow.normalBias = 0.5;
     scene.add(sun);
-    const fill = new THREE.DirectionalLight(0xc4d6ea, 0.30);
+    const fill = new THREE.DirectionalLight(0xccdcee, 0.36);
     fill.position.set(13, 11, -11);
     scene.add(fill);
   }
@@ -3603,12 +3604,12 @@
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     if ("outputColorSpace" in renderer) renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.0;
+    renderer.toneMappingExposure = 1.18;
     host.appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color(PAL.background);
-    scene.fog = new THREE.Fog(PAL.background, 44, 96);
+    scene.fog = new THREE.Fog(PAL.background, 62, 130); // mindre tåke -> klarere terreng/bygg i dybden
     camera = new THREE.OrthographicCamera(-VIEW, VIEW, VIEW, -VIEW, 0.1, 200);
     raycaster = new THREE.Raycaster();
     // Delt, usynlig (men raycastbar) material for landmark-hit targets.
