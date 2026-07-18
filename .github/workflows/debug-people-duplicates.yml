@@ -1,0 +1,43 @@
+name: Debug people duplicates
+
+on:
+  pull_request:
+    paths:
+      - 'data/people/**'
+      - '.github/workflows/debug-people-duplicates.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find duplicate people IDs
+        run: |
+          mkdir -p reports/debug-people-duplicates
+          node <<'NODE' > reports/debug-people-duplicates/result.json
+          const fs = require('fs');
+          const path = require('path');
+          const manifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
+          const seen = new Map();
+          const duplicates = [];
+          for (const rel of manifest.files) {
+            const file = path.join('data', rel);
+            const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const entries = Array.isArray(data) ? data : [data];
+            entries.forEach((entry, index) => {
+              if (!entry || typeof entry.id !== 'string') return;
+              const location = `${file}[${index}]`;
+              if (seen.has(entry.id)) duplicates.push({id: entry.id, first: seen.get(entry.id), second: location});
+              else seen.set(entry.id, location);
+            });
+          }
+          console.log(JSON.stringify({peopleFiles: manifest.files.length, uniqueIds: seen.size, duplicates}, null, 2));
+          NODE
+      - name: Upload duplicate report
+        uses: actions/upload-artifact@v4
+        with:
+          name: people-duplicate-diagnostic
+          path: reports/debug-people-duplicates/result.json
