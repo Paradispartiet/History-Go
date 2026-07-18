@@ -12,6 +12,10 @@ Critical representation guardrail: Hønse-Lovisa is a fictional figure from Oska
 
 Representation: `litteratur`, combining literary geography, film location history and the building's real history as a 19th-century workers' dwelling.
 
+Canonical emne mapping:
+- `em_lit_drama_scene_og_teatertekst`
+- `em_lit_adapsjon_tolkning_iscenesettelse`
+
 Address-first result:
 - `59.930837365102796, 10.757729935954078`
 - `geonorge-adresser-v1:0301:16161:2`
@@ -24,6 +28,12 @@ No canonical record was found for Sagene festivitetshus, the historic nickname �
 Oslo kommune documents the 1896–97 building as a popular assembly and performance venue, later theatre, revival-meeting site, mission hall and parish church before returning to assembly/cultural use. Oskar Braaten mentions «Afrika» in his writing.
 
 Representation: `historie`, with popular entertainment, religion, neighbourhood association life and literary reception as separate layers.
+
+Canonical emne mapping:
+- `em_his_spor_materialitet`
+- `em_his_historiske_lag_i_byrom`
+- `em_his_kulturminner_bevaring`
+- `em_his_samtid_ettertid_fortelling`
 
 Address-first result:
 - `59.93137049982586, 10.760854064462801`
@@ -38,6 +48,9 @@ Oslo kommune documents a front building erected for industrial use in 1890, a re
 
 Representation: `naeringsliv`, focused on small-scale urban manufacturing, adaptive industrial buildings and changing workshop economies.
 
+Canonical emne mapping:
+- `em_naer_felt_arbeid_verdiskaping`
+
 Address-first result:
 - `59.90931822852265, 10.791715634518276`
 - `geonorge-adresser-v1:0301:11631:6`
@@ -50,6 +63,9 @@ No canonical record was found for Villa Furulund or Hekkveien 5.
 Oslo kommune dates the villa to 1878 and documents its later municipal ownership and long association with Norsk Billedhoggerforening, whose sculpture office has used the house since 1972.
 
 Representation: `kunst`, combining villa history, sculptor organisation history and the infrastructure behind professional visual-art practice.
+
+Canonical emne mapping:
+- `em_kunst_institusjoner_kanon`
 
 Address-first result:
 - `59.92642309728162, 10.780148742091422`
