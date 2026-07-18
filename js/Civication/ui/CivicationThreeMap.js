@@ -138,6 +138,7 @@
   // Tilstand
   // ---------------------------------------------------------------------------
   let THREE = null;
+  let MERGE = null; // BufferGeometryUtils.mergeGeometries (valgfri – for rikere tre-geometri)
   let host = null;
   let renderer = null;
   let scene = null;
@@ -698,11 +699,20 @@
       trunk.castShadow = false;
       trunk.position.set(px, baseY + trunkH / 2, pz);
       g.add(trunk);
-      const crown = new THREE.Mesh(new THREE.IcosahedronGeometry(ballR, 0), toMat(0x4f8a4a + Math.floor(rng() * 0x081000)));
+      // Fyldig, rund løvkrone (mindre kantete) med litt fargevariasjon + en liten
+      // sidekule for volum. Ingen skarp lavpoly-ball.
+      const greens = [0x4f8a4a, 0x5c9a53, 0x458046, 0x67a75d, 0x3f7a46];
+      const gc = greens[Math.floor(rng() * greens.length)];
+      const cy = baseY + trunkH + ballR * 0.7;
+      const crown = new THREE.Mesh(new THREE.IcosahedronGeometry(ballR, 1), toMat(gc));
       crown.castShadow = false; crown.receiveShadow = true;
-      crown.scale.y = 0.9;
-      crown.position.set(px, baseY + trunkH + ballR * 0.7, pz);
+      crown.scale.set(1, 0.92, 1); crown.rotation.y = rng() * Math.PI * 2;
+      crown.position.set(px, cy, pz);
       g.add(crown);
+      const puff = new THREE.Mesh(new THREE.IcosahedronGeometry(ballR * 0.62, 1), toMat(shade(gc, 0.06)));
+      puff.castShadow = false; puff.receiveShadow = true;
+      puff.position.set(px + ballR * 0.4, cy + ballR * 0.18, pz - ballR * 0.2);
+      g.add(puff);
     }
   }
 
@@ -1144,9 +1154,45 @@
     // holder ytelsen, men får en tydelig tre-silhuett i stedet for en pigg.
     const conifers = pts.filter((t) => t.conifer);
     const decids = pts.filter((t) => !t.conifer);
-    const trunkGeo = new THREE.CylinderGeometry(0.028, 0.042, 1, 5);
-    const coneGeo = new THREE.ConeGeometry(0.34, 1, 8);
-    const ballGeo = new THREE.IcosahedronGeometry(0.5, 0);
+    // Rikere tre-geometri: bartre = lagdelt gran-silhuett (flere kjegler),
+    // løvtre = fyldig, rund krone (klynge av kuler). Faller tilbake til enkel
+    // geometri hvis BufferGeometryUtils ikke er tilgjengelig.
+    const makeConiferGeo = () => {
+      if (!MERGE) return new THREE.ConeGeometry(0.32, 1, 9);
+      try {
+        const tiers = [
+          new THREE.ConeGeometry(0.46, 0.52, 10),
+          new THREE.ConeGeometry(0.36, 0.48, 10),
+          new THREE.ConeGeometry(0.24, 0.44, 10)
+        ];
+        tiers[0].translate(0, 0.22, 0);
+        tiers[1].translate(0, 0.5, 0);
+        tiers[2].translate(0, 0.77, 0);
+        const merged = MERGE(tiers, false);
+        tiers.forEach((t) => t.dispose());
+        if (!merged) return new THREE.ConeGeometry(0.32, 1, 9);
+        merged.translate(0, -0.49, 0);
+        return merged;
+      } catch (e) { return new THREE.ConeGeometry(0.32, 1, 9); }
+    };
+    const makeDeciduousGeo = () => {
+      if (!MERGE) return new THREE.IcosahedronGeometry(0.5, 1);
+      try {
+        const parts = [
+          new THREE.IcosahedronGeometry(0.5, 1),
+          new THREE.IcosahedronGeometry(0.35, 1),
+          new THREE.IcosahedronGeometry(0.32, 1)
+        ];
+        parts[1].translate(0.3, 0.17, 0.05);
+        parts[2].translate(-0.26, 0.12, -0.11);
+        const merged = MERGE(parts, false);
+        parts.forEach((p) => p.dispose());
+        return merged || new THREE.IcosahedronGeometry(0.5, 1);
+      } catch (e) { return new THREE.IcosahedronGeometry(0.5, 1); }
+    };
+    const trunkGeo = new THREE.CylinderGeometry(0.026, 0.044, 1, 6);
+    const coneGeo = makeConiferGeo();
+    const ballGeo = makeDeciduousGeo();
     const trunkMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.9, metalness: 0 });
     const leafMat = () => new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS });
     const trunkMesh = new THREE.InstancedMesh(trunkGeo, trunkMat, pts.length);
@@ -1155,6 +1201,7 @@
     [trunkMesh, coneMeshI, ballMesh].forEach((mm) => { if (mm) { mm.castShadow = false; mm.receiveShadow = true; } });
     const m = new THREE.Matrix4(), q = new THREE.Quaternion();
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
+    const UP = new THREE.Vector3(0, 1, 0);
 
     pts.forEach((t, i) => {
       const trunkH = t.h * 0.34;
@@ -1168,23 +1215,25 @@
 
     conifers.forEach((t, i) => {
       const trunkH = t.h * 0.34, canopyH = t.h * 0.98;
-      const r = 0.62 + t.tone * 0.6;
-      pos.set(t.x, t.baseY + trunkH * 0.55 + canopyH / 2, t.z);
+      const r = 0.6 + t.tone * 0.55;
+      pos.set(t.x, t.baseY + trunkH * 0.5 + canopyH / 2, t.z);
       scl.set(r, canopyH, r);
+      q.setFromAxisAngle(UP, t.tone * 6.2832);
       m.compose(pos, q, scl);
       coneMeshI.setMatrixAt(i, m);
-      col.setHSL(0.34 + t.tone * 0.03, 0.44, 0.19 + t.tone * 0.10); // mørk granfarge
+      col.setHSL(0.33 + t.tone * 0.03, 0.4, 0.2 + t.tone * 0.09); // mørk gran-/furugrønn
       coneMeshI.setColorAt(i, col);
     });
 
     decids.forEach((t, i) => {
       const trunkH = t.h * 0.36, ballR = t.h * 0.44;
       const s = ballR / 0.5;
-      pos.set(t.x, t.baseY + trunkH + ballR * 0.75, t.z);
-      scl.set(s * (0.9 + t.tone * 0.3), s * (0.85 + t.tone * 0.2), s * (0.9 + t.tone * 0.3));
+      pos.set(t.x, t.baseY + trunkH + ballR * 0.72, t.z);
+      scl.set(s * (0.92 + t.tone * 0.28), s * (0.82 + t.tone * 0.22), s * (0.92 + t.tone * 0.28));
+      q.setFromAxisAngle(UP, t.tone * 6.2832 + 1.7);
       m.compose(pos, q, scl);
       ballMesh.setMatrixAt(i, m);
-      col.setHSL(0.25 + t.tone * 0.06, 0.46, 0.30 + t.tone * 0.12); // lysere løvverk
+      col.setHSL(0.26 + t.tone * 0.05, 0.44, 0.32 + t.tone * 0.1); // frodig løvverk
       ballMesh.setColorAt(i, col);
     });
 
@@ -1361,8 +1410,9 @@
   const LANDMARK_VISUAL_PRIORITY = {
     holmenkollen: 1, barcode: 1, operaen: 1, slottet: 1, akershus: 1, radhuset: 1,
     ullevaal: 1, bislett: 1, jordal: 1,
-    oslo_s: 2, oslo_plaza: 2, posthuset: 2, aker_brygge: 2, toyen_torg: 2, kampen: 2,
-    frognerparken: 2, nationaltheatret: 2, stortinget: 2, deichman: 2, munch: 2
+    oslo_s: 2, oslo_plaza: 2, posthuset: 2, aker_brygge: 2, tjuvholmen: 2, astrup_fearnley: 2, toyen_torg: 2, kampen: 2,
+    frognerparken: 2, nationaltheatret: 2, stortinget: 2, deichman: 2, munch: 2,
+    ekebergparken: 2, bygdoynes: 2, sorenga: 2
   };
 
   const OSLO_KEY_LANDMARKS = [
@@ -1380,12 +1430,17 @@
     { id: "deichman",         type: "culture_block",     x: 0.516, y: 0.613, scale: 0.78, opts: { color: 0xd0c8b9, h: 0.72 } },
     { id: "akershus",         type: "fortress",          x: 0.505, y: 0.646, scale: 1.13, rot: 0.13 },
     { id: "aker_brygge",      type: "waterfront",        x: 0.386, y: 0.655, scale: 1.12, rot: 0.28 },
+    { id: "tjuvholmen",       type: "waterfront",        x: 0.348, y: 0.680, scale: 0.94, rot: 0.12 },
+    { id: "astrup_fearnley",  type: "art_museum",        x: 0.322, y: 0.703, scale: 0.86, rot: 0.18 },
     { id: "barcode",          type: "barcode_row",       x: 0.573, y: 0.622, scale: 0.94, rot: 0.46, opts: { hScale: 0.9 } },
     { id: "munch",            type: "culture_block",     x: 0.600, y: 0.636, scale: 0.88, rot: -0.32, opts: { color: 0x6b737c, h: 1.08, lean: true } },
     { id: "operaen",          type: "opera",             x: 0.584, y: 0.657, scale: 1.12, rot: -0.18, baseY: 0.035 },
     { id: "toyen_torg",       type: "town_square",       x: 0.626, y: 0.518, scale: 0.92, rot: -0.08, opts: { h: 0.28, color: 0xd8a675 } },
     { id: "kampen",           type: "wooden_houses",     x: 0.662, y: 0.552, scale: 0.9, rot: 0.18, opts: { h: 0.36, warm: true } },
-    { id: "jordal",           type: "ice_arena",         x: 0.690, y: 0.562, scale: 1.05, rot: -0.12, opts: { color: 0xd9e3e6, ice: 0x9fd3e8 } }
+    { id: "jordal",           type: "ice_arena",         x: 0.690, y: 0.562, scale: 1.05, rot: -0.12, opts: { color: 0xd9e3e6, ice: 0x9fd3e8 } },
+    { id: "ekebergparken",    type: "sculpture_forest",  x: 0.660, y: 0.648, scale: 0.92, rot: 0.22 },
+    { id: "bygdoynes",        type: "fram_museum",       x: 0.235, y: 0.756, scale: 0.95, rot: 0.35 },
+    { id: "sorenga",          type: "harbor_bath",       x: 0.612, y: 0.690, scale: 0.98, rot: -0.12 }
   ];
 
   const LANDMARK_CLEAR_ZONES = [
@@ -1398,7 +1453,12 @@
     { id: "bislett", x: 0.425, y: 0.458, r: 0.032 },
     { id: "jordal", x: 0.690, y: 0.562, r: 0.030 },
     { id: "toyen_torg", x: 0.626, y: 0.518, r: 0.028 },
-    { id: "frognerparken", x: 0.302, y: 0.462, r: 0.038 }
+    { id: "frognerparken", x: 0.302, y: 0.462, r: 0.038 },
+    { id: "tjuvholmen", x: 0.348, y: 0.680, r: 0.028 },
+    { id: "astrup_fearnley", x: 0.322, y: 0.703, r: 0.026 },
+    { id: "ekebergparken", x: 0.660, y: 0.648, r: 0.030 },
+    { id: "bygdoynes", x: 0.235, y: 0.756, r: 0.032 },
+    { id: "sorenga", x: 0.612, y: 0.690, r: 0.032 }
   ];
 
   // --- Del 2 – Mapping: History Go-place <-> håndmodellert landemerke ---------
@@ -1417,7 +1477,9 @@
     operaen: ["operaen", "oslo_opera", "den_norske_opera", "operahuset"],
     barcode: ["barcode", "bjorvika_barcode"],
     oslo_s: ["oslo_s", "oslo_sentralstasjon"],
-    aker_brygge: ["aker_brygge", "tjuvholmen"],
+    aker_brygge: ["aker_brygge"],
+    tjuvholmen: ["tjuvholmen"],
+    astrup_fearnley: ["astrup_fearnley", "astrup_fearnley_museet", "afmuseet"],
     frognerparken: ["frognerparken", "vigelandsparken"],
     munch: ["munch", "munch_museet", "munchmuseet"],
     nationaltheatret: ["nationaltheatret", "national_theatret"],
@@ -1426,7 +1488,10 @@
     oslo_plaza: ["oslo_plaza", "radisson_plaza"],
     posthuset: ["posthuset", "postgirobygget"],
     toyen_torg: ["toyen_torg"],
-    kampen: ["kampen"]
+    kampen: ["kampen"],
+    ekebergparken: ["ekebergparken", "ekeberg_skulpturpark", "ekebergparken_skulpturpark"],
+    bygdoynes: ["bygdoy_bygdoynes", "frammuseet", "fram_museet", "kon_tiki_museet"],
+    sorenga: ["sorenga", "sorenga_sjobad", "sorenga_havnebad"]
   };
 
   function normId(s) {
@@ -1660,6 +1725,69 @@
     apron.position.set(0, 0, depth / 2 + 0.18); apron.receiveShadow = true; g.add(apron);
 
     return { group: g, h: H };
+  }
+
+  // Astrup Fearnley (Tjuvholmen) – Renzo Pianos museum: to lave glasspaviljonger
+  // delt av en kanal, under ett stort, slakt seil-tak som løftes av en høy mast,
+  // med tredekk mot fjorden. Front (+z) vender mot vannet.
+  function createArtMuseumSail() {
+    const g = new THREE.Group();
+    const glass = 0xaec6d3, white = 0xe9ecee, wood = 0xc7a578, steel = 0x99a4ad, canalC = 0x6f97a6;
+
+    // To lave glasspaviljonger delt av en smal kanal langs z.
+    const pavH = 0.3, pavW = 0.5, pavD = 0.78;
+    [-0.34, 0.34].forEach((x) => {
+      const p = box(pavW, pavH, pavD, glass); p.position.set(x, pavH / 2, 0); p.receiveShadow = true; g.add(p);
+      const cap = box(pavW + 0.04, 0.03, pavD + 0.04, shade(white, -0.05)); cap.position.set(x, pavH, 0); g.add(cap);
+      const band = box(pavW * 0.9, pavH * 0.62, 0.02, shade(glass, 0.14)); band.position.set(x, pavH * 0.52, pavD / 2 + 0.012); g.add(band);
+    });
+    // Kanal + liten gangbro (Tjuvholmens kanal gjennom museet).
+    const canal = box(0.13, 0.02, pavD * 0.82, canalC); canal.position.set(0, 0.02, 0); g.add(canal);
+    const span = box(0.18, 0.03, 0.12, wood); span.position.set(0, pavH * 0.42, 0.1); g.add(span);
+
+    // Slakt seil-tak: to takflater møtes i en rygg langs X, litt bredere enn
+    // paviljongene, svevende over dem på tynne søyler. Kraftigere pitch så det
+    // leser som en form (ikke en flat plate) fra kart-vinkelen.
+    const roofW = 1.18, roofRun = 0.5, ridgeH = 0.28, baseY = pavH + 0.16;
+    const slope = Math.atan2(ridgeH, roofRun), planeLen = Math.hypot(ridgeH, roofRun);
+    [1, -1].forEach((s) => {
+      const plane = box(roofW, 0.03, planeLen, white);
+      plane.position.set(0, baseY + ridgeH / 2, s * roofRun / 2);
+      plane.rotation.x = s * slope; plane.castShadow = true; plane.receiveShadow = true; g.add(plane);
+      // Panel-skjøter langs skråflaten (som Operaens marmorbånd) – gir tekstur.
+      for (let i = 1; i < 3; i++) {
+        const seam = box(roofW * 0.98, 0.006, 0.012, shade(white, -0.12));
+        const t = i / 3;
+        seam.position.set(0, baseY + ridgeH * (1 - t) + 0.02, s * (roofRun * t));
+        seam.rotation.x = s * slope; g.add(seam);
+      }
+    });
+    const ridge = box(roofW, 0.05, 0.05, shade(white, -0.08)); ridge.position.set(0, baseY + ridgeH, 0); g.add(ridge);
+    // Tynne søyler (pilotis) som bærer taket.
+    [[-0.5, 0.3], [0.5, 0.3], [-0.5, -0.3], [0.5, -0.3]].forEach(([x, z]) => {
+      const col = cyl(0.014, 0.014, baseY - pavH, 6, steel); col.position.set(x, pavH + (baseY - pavH) / 2, z); g.add(col);
+    });
+
+    // Høy, lett skrå mast som løfter seilet (museets ikoniske mast) – tydelig
+    // vertikalt kjennemerke sett ovenfra. Skråstag ned til taket + liten topp.
+    const mastH = 1.02, mastFoot = baseY + ridgeH * 0.4;
+    const mast = cyl(0.018, 0.028, mastH, 8, steel);
+    mast.position.set(0.03, mastFoot + mastH / 2, 0); mast.rotation.z = -0.11; mast.castShadow = true; g.add(mast);
+    const mastTop = cyl(0.0, 0.028, 0.07, 8, shade(steel, 0.12)); mastTop.position.set(-0.08, mastFoot + mastH, 0); g.add(mastTop);
+    const boom = box(0.5, 0.014, 0.014, steel); boom.position.set(0.18, mastFoot + mastH * 0.62, 0); boom.rotation.z = 0.5; g.add(boom);
+    // To skråstag (vaierhint) fra mast-toppen ned til takryggen.
+    [0.42, -0.42].forEach((zz) => {
+      const stayLen = Math.hypot(mastH * 0.9, zz);
+      const stay = cyl(0.005, 0.005, stayLen, 5, shade(steel, -0.05));
+      stay.position.set(-0.02, mastFoot + mastH * 0.55, zz / 2);
+      stay.rotation.x = Math.atan2(zz, mastH * 0.9); g.add(stay);
+    });
+
+    // Tredekk / brygge mot vannet (+z).
+    const deck = box(roofW * 0.74, 0.03, 0.34, shade(wood, 0.05));
+    deck.position.set(0, 0.015, pavD / 2 + 0.2); deck.receiveShadow = true; g.add(deck);
+
+    return { group: g, h: baseY + ridgeH + mastH };
   }
 
   // Munch / Deichman – egne kulturblokker. Munch-tårnet får sin ikoniske knekk:
@@ -2019,15 +2147,28 @@
     // Tydelig midtakse (gangvei) med trapp/plass-følelse.
     const axis = box(0.2, 0.025, 1.9, 0xd9cdba); axis.position.y = 0.05; g.add(axis);
 
-    // Monolitten – plinth + høy, smal tilspisset søyle i aksens ende.
-    const plinth = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.26, 0.12, 16), toMat(0xcdbfa8));
-    plinth.position.set(0, 0.06, -0.7); plinth.receiveShadow = true; g.add(plinth);
-    const mono = cyl(0.05, 0.1, 0.85, 14, 0xe2d8c6); mono.position.set(0, 0.12, -0.7); g.add(mono);
-    const tip = coneMesh(0.05, 0.16, 14, 0xe2d8c6); tip.position.set(0, 0.12 + 0.85, -0.7); g.add(tip);
-    // Antydede figurringer på monolitten (Vigelands menneskesøyle).
-    for (let i = 0; i < 5; i++) {
-      const ring = cyl(0.062 - i * 0.008, 0.062 - i * 0.008, 0.012, 12, shade(0xe2d8c6, -0.08));
-      ring.position.set(0, 0.2 + i * 0.15, -0.7); g.add(ring);
+    // Monolittplatået – konsentriske trappetrinn (Vigelands sirkulære platå) med
+    // en rekke figur-poster rundt kanten, øverst i aksen.
+    const monoZ = -0.72;
+    const stone = 0xcdbfa8;
+    [[0.5, 0.05], [0.4, 0.055], [0.31, 0.06]].forEach(([r, h], i) => {
+      const step = new THREE.Mesh(new THREE.CylinderGeometry(r, r + 0.03, h, 22), toMat(shade(stone, -0.03 * i)));
+      step.position.set(0, 0.04 + i * 0.055, monoZ); step.receiveShadow = true; g.add(step);
+    });
+    // Figurgrupper rundt platåkanten (Vigelands granittfigurer).
+    for (let i = 0; i < 10; i++) {
+      const a = (i / 10) * Math.PI * 2;
+      const fig = box(0.03, 0.08, 0.03, shade(stone, -0.06));
+      fig.position.set(Math.cos(a) * 0.45, 0.12, monoZ + Math.sin(a) * 0.45); g.add(fig);
+    }
+    // Monolitten – høy, smal tilspisset søyle med antydede figurringer.
+    const monoBaseY = 0.04 + 3 * 0.055;
+    const monoH = 1.06;
+    const mono = cyl(0.06, 0.12, monoH, 16, 0xe6dccb); mono.position.set(0, monoBaseY, monoZ); mono.castShadow = true; g.add(mono);
+    const tip = coneMesh(0.06, 0.18, 16, 0xe6dccb); tip.position.set(0, monoBaseY + monoH, monoZ); g.add(tip);
+    for (let i = 0; i < 6; i++) {
+      const ring = cyl(0.078 - i * 0.009, 0.078 - i * 0.009, 0.012, 14, shade(0xe6dccb, -0.09));
+      ring.position.set(0, monoBaseY + 0.14 + i * 0.15, monoZ); g.add(ring);
     }
 
     // Skulpturbro langs aksen – to rekker med små figur-poster (Vigelandsbroen).
@@ -2038,22 +2179,128 @@
         const fig = box(0.028, 0.1, 0.028, shade(0xcabfa8, -0.05)); fig.position.set(x, 0.14, z); g.add(fig);
       }
     });
-    // Fontene på aksen mellom broen og monolitten.
-    const basin = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.17, 0.05, 16), toMat(0x9db4bd));
-    basin.position.set(0, 0.06, -0.15); basin.receiveShadow = true; g.add(basin);
-    const water = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.02, 16), toMat(0xbcd2d8));
-    water.position.set(0, 0.085, -0.15); g.add(water);
+    // Vigelandsfontenen – stort kvadratisk bronsebasseng på aksen, båret av
+    // figur-poster i hjørnene (mellom broen og monolitten).
+    const fZ = -0.16, bronze = 0x8a7f68;
+    const rim = box(0.44, 0.07, 0.44, bronze); rim.position.set(0, 0.055, fZ); rim.receiveShadow = true; g.add(rim);
+    const water = box(0.34, 0.03, 0.34, 0xbcd2d8); water.position.set(0, 0.09, fZ); g.add(water);
+    [[-0.2, -0.2], [0.2, -0.2], [-0.2, 0.2], [0.2, 0.2]].forEach(([dx, dz]) => {
+      const post = box(0.035, 0.11, 0.035, shade(bronze, 0.1)); post.position.set(dx, 0.1, fZ + dz); g.add(post);
+    });
 
     // Trerader langs aksen (rammer parkrommet inn).
     [[-0.42, 0.55], [0.42, 0.55], [-0.42, 0.0], [0.42, 0.0], [-0.5, -0.45], [0.5, -0.45]].forEach(([x, z]) => {
       const tr = coneMesh(0.11, 0.38, 7, 0x3f7a46); tr.position.set(x, 0.05, z); g.add(tr);
     });
 
-    return { group: g, h: 1.0 };
+    return { group: g, h: 1.45 };
+  }
+
+  // Ekebergparken – skulpturpark i den skogkledde åsen sørøst: grønt platå med
+  // varierte trær, hvite/bronse skulpturfigurer på plinter, en sti, og en
+  // utsiktsplatform med rekkverk mot fjorden (+z).
+  function createSculptureForest() {
+    const g = new THREE.Group();
+    // Lys, klippet parkplen (skiller seg fra den mørke Marka-skogen rundt).
+    const lawn = new THREE.Mesh(new THREE.CylinderGeometry(1.08, 1.32, 0.18, 22), toMat(0x77ad63));
+    lawn.position.y = 0.09; lawn.receiveShadow = true; g.add(lawn);
+    const top = 0.18;
+    // Sentral brolagt plass med sti, der skulpturene står.
+    const plaza = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.52, 0.02, 20), toMat(0xd2c6a6));
+    plaza.position.set(0, top, 0); plaza.receiveShadow = true; g.add(plaza);
+    const path = box(0.2, 0.02, 1.5, 0xccc0a0); path.position.set(0, top + 0.001, 0.35); path.rotation.y = 0.28; g.add(path);
+    // Kun trær langs kanten – midten holdes åpen som en skulpturplen.
+    [[-0.92, -0.35], [-0.5, -0.82], [0.4, -0.82], [0.9, -0.4], [0.98, 0.2], [-0.98, 0.25], [-0.55, 0.8], [0.55, 0.82]].forEach(([x, z], i) => {
+      const h = 0.34 + (i % 3) * 0.1;
+      const trunk = cyl(0.028, 0.038, 0.1, 6, 0x6f5236); trunk.position.set(x, top + 0.05, z); g.add(trunk);
+      const crown = coneMesh(0.15, h, 8, shade(0x3f7a46, (i % 2) ? 0.05 : -0.05)); crown.position.set(x, top + 0.1 + h * 0.3, z); crown.castShadow = true; g.add(crown);
+    });
+    // Prominente skulpturer på plinter på plassen (større, lyse/bronse figurer).
+    [[-0.3, -0.12], [0.3, -0.1], [0.0, 0.16], [-0.16, 0.34], [0.24, 0.32]].forEach(([x, z], i) => {
+      const plinth = box(0.11, 0.1, 0.11, shade(PAL.stone, 0.06)); plinth.position.set(x, top + 0.05, z); g.add(plinth);
+      const fig = (i % 2)
+        ? box(0.06, 0.2, 0.06, 0xe4ddcf)
+        : cyl(0.045, 0.06, 0.22, 8, 0xbfa079);
+      fig.position.set(x, top + 0.1 + 0.11, z); fig.castShadow = true; g.add(fig);
+    });
+    // Utsiktsplatform mot fjorden/byen (-z) med rekkverk.
+    const deck = box(0.58, 0.03, 0.3, 0xd8c19f); deck.position.set(0, top, -0.92); deck.receiveShadow = true; g.add(deck);
+    const rail = box(0.58, 0.07, 0.02, shade(0xd8c19f, -0.22)); rail.position.set(0, top + 0.05, -1.06); g.add(rail);
+    return { group: g, h: 0.75 };
+  }
+
+  // Bygdøynes-museene – Frammuseet er et høyt, hvitt A-formet (triangulært) bygg
+  // som huser polarskuta; ved siden av ligger den lavere Kon-Tiki-museet. Glassgavl
+  // og brygge mot fjorden (+z).
+  function createFramMuseum() {
+    const g = new THREE.Group();
+    const white = 0xeceef0, glass = 0xa9c2d0, wood = 0xc7a578, low = 0xd8d2c4;
+    const halfW = 0.5, L = 1.12, H = 1.1;
+    // A-formet hovedbygg (triangulært prisme).
+    const shape = new THREE.Shape();
+    shape.moveTo(-halfW, 0); shape.lineTo(halfW, 0); shape.lineTo(0, H); shape.closePath();
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: L, bevelEnabled: false }); geo.translate(0, 0, -L / 2);
+    const body = new THREE.Mesh(geo, toMat(white)); body.castShadow = true; body.receiveShadow = true; g.add(body);
+    // Panel-skjøter på de skrå flatene.
+    for (let i = 1; i < 4; i++) {
+      const t = i / 4;
+      [1, -1].forEach((s) => {
+        const seam = box(0.012, 0.006, L * 0.98, shade(white, -0.1));
+        seam.position.set(s * halfW * (1 - t), H * t, 0); seam.rotation.z = s * Math.atan2(halfW, H); g.add(seam);
+      });
+    }
+    // Glassgavl + inngang mot vannet (+z).
+    const gable = new THREE.Mesh(new THREE.ShapeGeometry(shape), toMat(glass)); gable.position.set(0, 0, L / 2 + 0.006); g.add(gable);
+    const door = box(0.24, 0.3, 0.03, shade(wood, 0.05)); door.position.set(0, 0.15, L / 2 + 0.02); g.add(door);
+    // Kon-Tiki – lavere museumsbygg ved siden av.
+    const kon = box(0.5, 0.4, 0.72, low); kon.position.set(0.86, 0.2, 0.12); kon.castShadow = true; kon.receiveShadow = true; g.add(kon);
+    const konRoof = box(0.54, 0.04, 0.76, shade(low, -0.1)); konRoof.position.set(0.86, 0.4, 0.12); g.add(konRoof);
+    const konGlass = box(0.4, 0.24, 0.02, glass); konGlass.position.set(0.86, 0.2, 0.49); g.add(konGlass);
+    // Flaggstang + brygge mot vannet.
+    const pole = cyl(0.01, 0.012, 0.52, 6, 0x9aa4ad); pole.position.set(-0.52, 0.26, 0.48); g.add(pole);
+    const pier = box(0.55, 0.03, 0.3, shade(wood, 0.04)); pier.position.set(0.1, 0.015, L / 2 + 0.28); pier.receiveShadow = true; g.add(pier);
+    return { group: g, h: H + 0.05 };
+  }
+
+  // Sørenga sjøbad – moderne havnebad i Bjørvika: tredekk-plattformer ut i
+  // fjorden, innrammet sjøvannsbasseng, sandstrand, og det ikoniske stupetårnet
+  // med flere plattformer. Front (+z) mot fjorden.
+  function createHarborBath() {
+    const g = new THREE.Group();
+    const wood = 0xcaa06a, woodDk = 0xa87d4a, pool = 0x74c0d8, rail = 0xcfd6db, sand = 0xe0cfa6, steel = 0x9aa4ad;
+    // Tredekk med planke-struktur.
+    const deck = box(1.7, 0.06, 1.05, wood); deck.position.set(0, 0.06, 0); deck.receiveShadow = true; g.add(deck);
+    for (let i = 0; i < 8; i++) { const pl = box(1.68, 0.063, 0.015, woodDk); pl.position.set(0, 0.063, -0.48 + i * 0.135); g.add(pl); }
+    // Innrammet badebasseng (sjøvann) mot fjorden.
+    const basin = box(0.86, 0.03, 0.52, pool); basin.position.set(-0.12, 0.075, 0.28); g.add(basin);
+    [[-0.12, 0.02, 0.9, 0.04], [-0.12, 0.54, 0.9, 0.04], [-0.57, 0.28, 0.04, 0.56], [0.33, 0.28, 0.04, 0.56]].forEach(([x, z, w, d]) => {
+      const edge = box(w, 0.08, d, wood); edge.position.set(x, 0.09, z); g.add(edge);
+    });
+    // Sandstrand.
+    const beach = box(0.6, 0.03, 0.34, sand); beach.position.set(-0.66, 0.075, -0.28); beach.receiveShadow = true; g.add(beach);
+    // Stupetårn – flere stupeplattformer (Sørengas ikoniske tårn).
+    const tX = 0.62, tZ = -0.22;
+    const mast = box(0.12, 0.78, 0.12, rail); mast.position.set(tX, 0.06 + 0.39, tZ); mast.castShadow = true; g.add(mast);
+    [[0.26, 0.28], [0.22, 0.46], [0.17, 0.66]].forEach(([w, h]) => {
+      const plat = box(w, 0.03, 0.2, woodDk); plat.position.set(tX - w * 0.42, 0.06 + h, tZ); g.add(plat);
+    });
+    const ladder = box(0.02, 0.66, 0.02, steel); ladder.position.set(tX + 0.08, 0.06 + 0.33, tZ + 0.07); g.add(ladder);
+    // Rekkverk langs dekkets vannkant (+z).
+    for (let i = 0; i < 9; i++) { const post = cyl(0.008, 0.008, 0.12, 5, rail); post.position.set(-0.78 + i * 0.19, 0.12, 0.5); g.add(post); }
+    const handr = box(1.7, 0.014, 0.014, rail); handr.position.set(0, 0.18, 0.5); g.add(handr);
+    // Et par parasoller på dekket.
+    [[-0.3, -0.3, 0xd76b5a], [0.06, -0.34, 0xe0b155]].forEach(([x, z, c]) => {
+      const pole = cyl(0.006, 0.006, 0.16, 5, 0x8a7f68); pole.position.set(x, 0.14, z); g.add(pole);
+      const parasol = coneMesh(0.12, 0.07, 10, c); parasol.position.set(x, 0.22, z); g.add(parasol);
+    });
+    return { group: g, h: 0.85 };
   }
 
   const KEY_LANDMARK_BUILDERS = {
     ski_jump: createSkiJump,
+    sculpture_forest: createSculptureForest,
+    fram_museum: createFramMuseum,
+    harbor_bath: createHarborBath,
     football_stadium: createFootballStadium,
     athletics_stadium: createAthleticsStadium,
     palace: createPalace,
@@ -2064,6 +2311,7 @@
     post_tower: createPostTower,
     barcode_row: createBarcodeRow,
     opera: createOpera,
+    art_museum: createArtMuseumSail,
     culture_block: createCultureBlock,
     fortress: createFortress,
     city_hall: createCityHall,
@@ -2815,6 +3063,33 @@
     wrap.add(scene);
     return { wrap, h: size.y * s };
   }
+  function loadGLBScene(loader, file) {
+    return new Promise((resolve) => {
+      loader.load("assets/models/" + file, (gltf) => resolve(gltf.scene), undefined, () => resolve(null));
+    });
+  }
+  // Sammensatt landemerke: bygd av flere .glb-deler (f.eks. Akershus av
+  // castle-murer, hjørnetårn, keep og port). Hver del normaliseres til sin egen
+  // størrelse og plasseres på lokale x/z-offset; hele komposisjonen normaliseres
+  // så til én landemerke-størrelse (bunn på bakken, sentrert) som en vanlig modell.
+  async function buildCompositeLandmark(loader, def) {
+    const parts = Array.isArray(def.parts) ? def.parts : [];
+    if (!parts.length) return null;
+    const scenes = await Promise.all(parts.map((p) => loadGLBScene(loader, p.file)));
+    const root = new THREE.Group();
+    scenes.forEach((sc, i) => {
+      if (!sc) return;
+      const p = parts[i];
+      const norm = normalizeModelScene(sc, p.size || 0.4, { rotationY: p.rotationY, yOffset: p.yOffset });
+      norm.wrap.position.x += (p.x || 0);
+      norm.wrap.position.z += (p.z || 0);
+      root.add(norm.wrap);
+    });
+    if (!root.children.length) return null;
+    return normalizeModelScene(root, def.targetSize || 1.2, {
+      scale: def.scale, rotationY: def.rotationY, yOffset: def.yOffset
+    });
+  }
   async function loadBuildingModels() {
     if (_modelsRequested) return;
     _modelsRequested = true;
@@ -2837,9 +3112,15 @@
       });
     };
     Object.keys(types).forEach((t) => register("mini:" + t, types[t], 0.5));
-    Object.keys(lms).forEach((id) => register("lm:" + id, lms[id], 1.2));
+    // Sammensatte landemerker (parts-liste) håndteres separat; enkeltfil-landemerker via register.
+    const compositeLms = [];
+    Object.keys(lms).forEach((id) => {
+      const def = lms[id];
+      if (def && Array.isArray(def.parts)) compositeLms.push({ id, def });
+      else register("lm:" + id, def, 1.2);
+    });
     const scenery = (manifest && manifest.scenery) || [];
-    if (!jobs.length && !scenery.length) return; // tomt register -> full fallback
+    if (!jobs.length && !scenery.length && !compositeLms.length) return; // tomt register -> full fallback
     let GLTFLoader;
     try { GLTFLoader = (await import(/* @vite-ignore */ "three/addons/loaders/GLTFLoader.js")).GLTFLoader; }
     catch (e) { console.warn("[CivicationThreeMap] GLTFLoader utilgjengelig – beholder primitiv-modeller:", (e && e.message) || e); return; }
@@ -2855,6 +3136,10 @@
         resolve();
       }, undefined, () => resolve()); // fil mangler/feiler -> fallback
     })));
+    // Sammensatte landemerker (bygd av flere deler, f.eks. Akershus festning).
+    await Promise.all(compositeLms.map((e) => buildCompositeLandmark(loader, e.def).then((norm) => {
+      if (norm) { (_modelCache["lm:" + e.id] || (_modelCache["lm:" + e.id] = [])).push(norm); loaded++; hadLm = true; }
+    }).catch(() => {})));
     if (loaded > 0) {
       if (hadLm) buildLandmarks();
       rebuildPlaces();
@@ -3593,6 +3878,13 @@
         }
       }
     }
+
+    // BufferGeometryUtils (valgfri) – gir sammenslått, rikere tre-geometri.
+    // Feiler stille til null → trærne faller tilbake til enkel geometri.
+    try {
+      const bgu = await import(/* @vite-ignore */ "three/addons/utils/BufferGeometryUtils.js");
+      MERGE = bgu.mergeGeometries || bgu.mergeBufferGeometries || null;
+    } catch (e) { MERGE = null; }
 
     // Postprosesserings-addons (deler three-instans via import map). Feiler stille
     // til null → kartet kjører uten post-prosessering (fail-safe).

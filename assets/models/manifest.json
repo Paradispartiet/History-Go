@@ -75,21 +75,63 @@
   },
   "landmarks": {
     "akershus": {
-      "file": "castle/tower-square.glb",
-      "scale": 1.15,
-      "rotationY": 0.25
+      "_comment": "Sammensatt festning (castle-deler): dominerende keep, runde hjørnetårn, rampartmur, port og vindebro mot fjorden.",
+      "targetSize": 1.3,
+      "scale": 1.0,
+      "parts": [
+        { "file": "castle/tower-square.glb", "x": 0.0, "z": -0.05, "size": 0.72 },
+        { "file": "castle/wall-corner-half-tower.glb", "x": -0.52, "z": -0.5, "size": 0.36 },
+        { "file": "castle/wall-corner-half-tower.glb", "x": 0.52, "z": -0.5, "size": 0.36 },
+        { "file": "castle/wall-corner-half-tower.glb", "x": -0.52, "z": 0.5, "size": 0.36 },
+        { "file": "castle/wall-corner-half-tower.glb", "x": 0.52, "z": 0.5, "size": 0.36 },
+        { "file": "castle/wall.glb", "x": 0.0, "z": -0.52, "size": 0.62 },
+        { "file": "castle/wall.glb", "x": -0.52, "z": 0.0, "size": 0.56, "rotationY": 1.5708 },
+        { "file": "castle/wall.glb", "x": 0.52, "z": 0.0, "size": 0.56, "rotationY": 1.5708 },
+        { "file": "castle/gate.glb", "x": 0.0, "z": 0.52, "size": 0.5, "rotationY": 1.5708 },
+        { "file": "castle/bridge-draw.glb", "x": 0.0, "z": 0.8, "size": 0.52, "rotationY": 1.5708 }
+      ]
     },
     "ullevaal": {
       "file": "racing/grandStandCovered.glb",
-      "scale": 1.15
+      "scale": 1.05
     },
     "bislett": {
       "file": "racing/grandStandRound.glb",
-      "scale": 1.2
+      "scale": 1.05
     },
     "jordal": {
       "file": "racing/grandStandCoveredRound.glb",
-      "scale": 1.15
+      "scale": 1.0
+    },
+    "aker_brygge": {
+      "_comment": "Sammensatt brygge: staggered rad av moderne commercial-bygg langs kaia + marina med fortøyde båter mot fjorden (+z).",
+      "targetSize": 1.75,
+      "scale": 1.0,
+      "parts": [
+        { "file": "commercial/building-h.glb", "x": -1.0, "z": -0.22, "size": 0.5 },
+        { "file": "commercial/building-l.glb", "x": -0.52, "z": -0.26, "size": 0.54 },
+        { "file": "commercial/building-i.glb", "x": -0.04, "z": -0.2, "size": 0.5 },
+        { "file": "commercial/building-j.glb", "x": 0.52, "z": -0.24, "size": 0.62 },
+        { "file": "commercial/building-d.glb", "x": 1.02, "z": -0.18, "size": 0.46 },
+        { "file": "water/boat-sail-a.glb", "x": -0.62, "z": 0.5, "size": 0.42, "rotationY": 0.2 },
+        { "file": "water/boat-tug-a.glb", "x": -0.05, "z": 0.54, "size": 0.36, "rotationY": -0.3 },
+        { "file": "water/boat-speed-b.glb", "x": 0.5, "z": 0.5, "size": 0.32, "rotationY": 0.5 },
+        { "file": "water/boat-fishing-small.glb", "x": 0.95, "z": 0.54, "size": 0.34, "rotationY": 0.1 }
+      ]
+    },
+    "tjuvholmen": {
+      "_comment": "Sammensatt holme: kompakt klynge av moderne glass-bygg (commercial) + lav bred museumspaviljong + marina med seilbåter mot fjorden (+z).",
+      "targetSize": 1.35,
+      "scale": 1.0,
+      "parts": [
+        { "file": "commercial/building-i.glb", "x": -0.42, "z": -0.2, "size": 0.5 },
+        { "file": "commercial/building-skyscraper-a.glb", "x": 0.05, "z": -0.28, "size": 0.46 },
+        { "file": "commercial/building-l.glb", "x": 0.48, "z": -0.15, "size": 0.5 },
+        { "file": "commercial/building-e.glb", "x": -0.05, "z": 0.18, "size": 0.58 },
+        { "file": "water/boat-sail-a.glb", "x": -0.42, "z": 0.52, "size": 0.4, "rotationY": 0.3 },
+        { "file": "water/boat-sail-a.glb", "x": 0.12, "z": 0.56, "size": 0.38, "rotationY": -0.25 },
+        { "file": "water/boat-speed-b.glb", "x": 0.5, "z": 0.52, "size": 0.3, "rotationY": 0.6 }
+      ]
     }
   },
   "scenery": [
@@ -278,86 +320,6 @@
       "size": 0.06,
       "baseY": 0.12,
       "rotationY": 0.7
-    },
-    {
-      "file": "nature/tree_oak.glb",
-      "x": 0.285,
-      "y": 0.455,
-      "size": 0.42,
-      "baseY": 0.12,
-      "rotationY": 0.3
-    },
-    {
-      "file": "nature/tree_detailed.glb",
-      "x": 0.32,
-      "y": 0.47,
-      "size": 0.4,
-      "baseY": 0.12,
-      "rotationY": 1.1
-    },
-    {
-      "file": "nature/tree_fat.glb",
-      "x": 0.3,
-      "y": 0.478,
-      "size": 0.44,
-      "baseY": 0.12,
-      "rotationY": 2.0
-    },
-    {
-      "file": "nature/tree_oak.glb",
-      "x": 0.44,
-      "y": 0.508,
-      "size": 0.42,
-      "baseY": 0.12,
-      "rotationY": 0.8
-    },
-    {
-      "file": "nature/tree_detailed.glb",
-      "x": 0.47,
-      "y": 0.52,
-      "size": 0.4,
-      "baseY": 0.12,
-      "rotationY": 2.6
-    },
-    {
-      "file": "nature/tree_detailed.glb",
-      "x": 0.615,
-      "y": 0.478,
-      "size": 0.4,
-      "baseY": 0.12,
-      "rotationY": 0.4
-    },
-    {
-      "file": "nature/tree_oak.glb",
-      "x": 0.635,
-      "y": 0.49,
-      "size": 0.42,
-      "baseY": 0.12,
-      "rotationY": 1.8
-    },
-    {
-      "file": "nature/tree_fat.glb",
-      "x": 0.622,
-      "y": 0.497,
-      "size": 0.44,
-      "baseY": 0.12,
-      "rotationY": 3.1
-    },
-    {
-      "file": "nature/tree_default.glb",
-      "x": 0.605,
-      "y": 0.51,
-      "size": 0.4,
-      "baseY": 0.12,
-      "rotationY": 0.6
-    },
-    {
-      "file": "nature/tree_oak.glb",
-      "x": 0.14,
-      "y": 0.66,
-      "size": 0.42,
-      "baseY": 0.12,
-      "rotationY": 1.4
     },
     {
       "file": "roads/light-square.glb",
