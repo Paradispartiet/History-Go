@@ -79,7 +79,7 @@ window.PLACES = [
 
 const entries = api.buildDistanceIndex(center);
 assert.deepEqual(
-  entries.map((entry) => entry.place.id),
+  Array.from(entries, (entry) => entry.place.id),
   ['near', 'farther'],
   'indeksen skal ekskludere sentrumsted, hidden, stub, manglende koordinater og steder over 100 km'
 );
