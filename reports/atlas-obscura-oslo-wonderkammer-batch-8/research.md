@@ -24,6 +24,10 @@ KORO identifies Monica Bonvicini's 2010 sculpture as a floating work outside the
 
 Oslo kommune describes Lars Ramberg's `Liberté` as three French red-white-blue street toilets created from a 2003 competition proposal connected to the centenary of the dissolution of the union. Atlas Obscura was used as the audit lead; the History Go representation is grounded in the municipal description.
 
+## Runtime integration
+
+`js/boot.js` merges Wonderkammer rows sharing the same `place_id` by appending their `chambers`. The dedicated Atlas batch therefore extends existing parent-place Wonderkammer content without replacing chambers already supplied by files such as `architecture.json`.
+
 ## Data rule
 
 All three chambers use `treasureScope: actual_site_treasure`. No new map coordinates or canonical place IDs are introduced.
