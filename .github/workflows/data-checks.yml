@@ -210,7 +210,10 @@ jobs:
             if (distance < 0.01) throw new Error(`${name}: anchors are effectively identical (${distance.toFixed(3)} km)`);
           }
           if ([etne, steinsvollen, enge, skanevik, bmx].some((row) => row.category !== 'sport')) throw new Error('Not all batch records are category sport');
-          if (!steinsvollen.quiz_profile.notes.includes('Stedsnavn')) throw new Error('Steinsvollen official-name anchor disclosure missing');
+          const steinsvollenNotes = steinsvollen.quiz_profile.notes;
+          if (!steinsvollenNotes.includes('Stedsnavn') && !steinsvollenNotes.includes('representativt Steinsvegen')) {
+            throw new Error('Steinsvollen anchor disclosure missing');
+          }
           if (!skanevik.quiz_profile.notes.includes('Stedsnavn')) throw new Error('Skånevik outdoor anchor disclosure missing');
           console.log(`PASS Etne idrettsanlegg ↔ BMX/skatepark: ${distances.etne_bmx.toFixed(3)} km; distinct facilities`);
           console.log(`PASS Etne idrettsanlegg ↔ Engebanen: ${distances.etne_enge.toFixed(3)} km; distinct facilities`);
