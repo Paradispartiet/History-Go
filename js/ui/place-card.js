@@ -168,6 +168,38 @@ function normalizePlaceCardTasksProfile(place) {
   return { title, summary, tasks };
 }
 
+function normalizePlaceCardTrainingProfile(place) {
+  const data = (place?.training_profile && typeof place.training_profile === "object") ? place.training_profile : null;
+  if (!data) return null;
+
+  const exercises = (Array.isArray(data.exercises) ? data.exercises : [])
+    .map((exercise) => {
+      if (!exercise || typeof exercise !== "object") return null;
+      const title = String(exercise.title || "").trim();
+      const instruction = String(exercise.instruction || exercise.desc || "").trim();
+      const why = String(exercise.why || "").trim();
+      const durationMinutes = Number(exercise.duration_minutes);
+      const intensity = String(exercise.intensity || "").trim();
+      if (!title && !instruction && !why) return null;
+      return {
+        id: String(exercise.id || title || instruction).trim(),
+        title,
+        instruction,
+        why,
+        durationMinutes: Number.isFinite(durationMinutes) && durationMinutes > 0 ? durationMinutes : null,
+        intensity
+      };
+    })
+    .filter(Boolean);
+
+  const title = String(data.title || "Trening").trim();
+  const summary = String(data.summary || "").trim();
+  const safety = String(data.safety || "").trim();
+  if (!summary && !safety && !exercises.length) return null;
+
+  return { title, summary, safety, exercises };
+}
+
 function normalizePlaceCardWorks(place) {
   return (Array.isArray(place?.works) ? place.works : [])
     .map((item) => {
@@ -228,6 +260,41 @@ function renderPlaceCardTasksProfile(place) {
       <h2 class="pc-tasks-title">${escapePlaceCardHTML(data.title)}</h2>
       ${data.summary ? `<p class="pc-tasks-summary">${escapePlaceCardHTML(data.summary)}</p>` : ""}
       ${tasksHtml}
+    </article>
+  `;
+}
+
+function renderPlaceCardTrainingProfile(place) {
+  const data = normalizePlaceCardTrainingProfile(place);
+  if (!data) return `<div class="pc-empty">Ingen treningsopplegg ennå</div>`;
+
+  const exercisesHtml = data.exercises.length
+    ? `
+      <ol class="pc-tasks-list">
+        ${data.exercises.map((exercise) => {
+          const meta = [
+            exercise.durationMinutes ? `${exercise.durationMinutes} min` : "",
+            exercise.intensity
+          ].filter(Boolean).join(" · ");
+          return `
+            <li class="pc-task-item"${exercise.id ? ` data-training-id="${escapePlaceCardHTML(exercise.id)}"` : ""}>
+              ${exercise.title ? `<h3 class="pc-task-title">${escapePlaceCardHTML(exercise.title)}</h3>` : ""}
+              ${meta ? `<div class="pc-relation-chip">${escapePlaceCardHTML(meta)}</div>` : ""}
+              ${exercise.instruction ? `<p class="pc-task-instruction">${escapePlaceCardHTML(exercise.instruction)}</p>` : ""}
+              ${exercise.why ? `<p class="pc-task-why"><strong>Hvorfor:</strong> ${escapePlaceCardHTML(exercise.why)}</p>` : ""}
+            </li>
+          `;
+        }).join("")}
+      </ol>
+    `
+    : "";
+
+  return `
+    <article class="pc-tasks-card pc-training-card">
+      <h2 class="pc-tasks-title">${escapePlaceCardHTML(data.title)}</h2>
+      ${data.summary ? `<p class="pc-tasks-summary">${escapePlaceCardHTML(data.summary)}</p>` : ""}
+      ${data.safety ? `<p class="pc-task-why"><strong>Tryggleik:</strong> ${escapePlaceCardHTML(data.safety)}</p>` : ""}
+      ${exercisesHtml}
     </article>
   `;
 }
@@ -585,6 +652,8 @@ const CATEGORY_ROUND_PROFILES = Object.freeze({
   kunst: ["people", "works", "badges", "nature", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
   litteratur: ["people", "works", "badges", "nature", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
   musikk: ["people", "works", "badges", "nature", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  vitenskap: ["people", "nature", "badges", "works", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
+  media: ["people", "nature", "badges", "works", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
   subkultur: ["people", "works", "badges", "play", "civication", "brands", "før_nå", "fortellinger", "leksikon"],
   naeringsliv: ["people", "works", "badges", "før_nå", "civication", "brands", "nature", "fortellinger", "leksikon"],
   transport: ["people", "works", "badges", "før_nå", "civication", "brands", "nature", "fortellinger", "leksikon"]
@@ -2478,6 +2547,11 @@ if (tasksEl) {
   const tasksProfile = normalizePlaceCardTasksProfile(place);
   tasksEl.innerHTML = renderPlaceCardTasksProfile(place);
   setRoundLabel(tasksIcon, "✅", tasksProfile?.tasks?.length || "");
+}
+if (trainingEl) {
+  const trainingProfile = normalizePlaceCardTrainingProfile(place);
+  trainingEl.innerHTML = renderPlaceCardTrainingProfile(place);
+  setRoundLabel(trainingIcon, "🏃", trainingProfile?.exercises?.length || "");
 }
 if (observationsEl) {
   observationsEl.innerHTML = `<div class="pc-empty">Ingen observasjoner ennå</div>`;
