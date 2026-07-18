@@ -12,4 +12,6 @@ A separate 2026 Oslo kommune page gives the pavilion its own concrete visitor ad
 
 Representation decision: create one canonical `historie` place for `stubljan_paviljongen_hvervenbukta`, anchored to the surviving protected pavilion. The wider Stubljan estate remains are represented in the content as the surrounding historical site rather than by inventing an arbitrary centre point for the full Hvervenbukta area.
 
+The pavilion is the preferred map anchor because it is a surviving protected building, a documented focal element of the former manor park and a present-day public cultural venue with its own official visitor address. The Hvervenbukta bathing area is therefore not used as a substitute historical coordinate.
+
 Official visitor address for address-first lookup: Ljansbrukveien 4C, 1250 Oslo.
