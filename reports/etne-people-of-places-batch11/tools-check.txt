@@ -1,0 +1,271 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 tools:check
+> npm run typecheck:tools && npm run build:tools && npm run audit:places-split-manifest-sync && npm run places:index:check && npm run places:coords:quality && npm run places:coords:intake && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places && npm run audit:people-of-places && npm run audit:quiz-manifest:v2 && npm run audit:civication-place-mapping && npm run audit:civication-city-map-entries
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 typecheck:tools
+> tsc -p tsconfig.tools.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 audit:places-split-manifest-sync
+> npm run build:tools && node dist/tools/audit-places-split-manifest-sync.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+{
+  "status": "passed",
+  "counts": {
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "movedPlacesStillActiveInOldCategory": 0
+  },
+  "auditReport": "reports/place-split-manifest-category-move-audit.json"
+}
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:quality
+> npm run places:coords:gate
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:gate
+> npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+Quality gate ok: 461 filer, 1150 steder, 369 varsel, 656 review-kandidatsignal(er) på 510 steder (se reports/place-coordinate-quality-gate.md).
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:coords:intake
+> npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+Place coordinate intake gate: 0 blocking, 3888 backlog, 0 warnings. Rapport: reports/place-coordinate-intake-gate.md
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+=== Place emne_id validation ===
+Active place files: 461
+Canonical emne files scanned: 15
+Canonical emne ids loaded: 996
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 i18n:dupkeys:check
+> npm run build:tools && node dist/tools/check_duplicate_json_keys.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+OK: no duplicate JSON keys in i18n place files.
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 leksikon:ids:check
+> npm run build:tools && node dist/tools/check_leksikon_duplicate_ids.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+OK: no duplicate leksikon article IDs.
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 places:aliases:check
+> npm run build:tools && node dist/tools/check_place_id_aliases.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+OK: no legacy place IDs found in checked JSON data.
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 check:stories
+> npm run build:tools && node dist/tools/check_stories_integrity.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+Stories integrity summary
+- Story-filer: 127
+- Stories: 165
+- Place-koblede stories: 165
+- Person-koblede stories: 51
+- Next scenes: 164
+- Place-sourcefiler lest: 461
+
+Stories integrity FAILED
+- Ugyldig place_id: story=st_regjeringskvartalet_terror_2011 field=related_places[0] place_id=utoya file=data/stories/stories_regjeringskvartalet.json
+- Ugyldig place_id: story=st_mollergata_19_petter_moens_dagbok field=related_places[1] place_id=norges_hjemmefrontmuseum file=data/stories/stories_mollergata_19.json
+- Ugyldig place_id: story=st_mollergata_19_petter_moens_dagbok field=next_scenes[0].place_id place_id=norges_hjemmefrontmuseum file=data/stories/stories_mollergata_19.json
+- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=related_places[1] place_id=operaen file=data/stories/stories_folketeateret.json
+- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=next_scenes[0].place_id place_id=operaen file=data/stories/stories_folketeateret.json
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
