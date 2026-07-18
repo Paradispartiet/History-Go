@@ -46,3 +46,5 @@ All three candidates use the repository's normative address-first Geonorge workf
 ## Validation path
 
 The dedicated integration workflow registers both category sources, rebuilds the global place index and runs coordinate parity, strict new-coordinate intake, canonical emne validation and the place-health report. The temporary workflows are removed before merge.
+
+`main` received the separate seventh Oslo coordinate batch while this branch was in progress. The generated runtime index must therefore be rebuilt from the branch sources after that upstream coordinate work rather than manually patched or inferred.
