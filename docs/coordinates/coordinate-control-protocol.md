@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 84 verifiserte eller kildekontrollerte canonical steder. Batch 14 legger til sju godkjente kontroller: tre parker, tre større områdeankre og Majorstuen T-banestasjon som presist kollektivobjekt. Fire fullførte Oslo-kontroller står fortsatt separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-tabellen inneholder nå 90 verifiserte eller kildekontrollerte canonical steder. Batch 15 omfatter sju fullførte kontroller: seks godkjente stasjons-, plass-, park-, elve- og områdeankre, mens Bislett står separat som `needs_review` fordi område-recorden overlapper det separate canonical stadionstedet. Fem fullførte Oslo-kontroller står dermed separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -105,6 +105,12 @@ Oslo-tabellen inneholder nå 84 verifiserte eller kildekontrollerte canonical st
 | 14 | `tjuvholmen` | Tjuvholmen | verified_geometry | `oslo-kommune:fjordbyen:tjuvholmen` |
 | 14 | `sorenga` | Sørenga | verified_geometry | `oslo-kommune:bjorvika:sorenga` |
 | 14 | `majorstuen_tbanestasjon` | Majorstuen T-banestasjon | verified_geometry | `osm-node:2274012035` |
+| 15 | `nationaltheatret_stasjon` | Nationaltheatret stasjon | verified_geometry | `osm-node:5218231660+1759965001` |
+| 15 | `olaf_ryes_plass` | Olaf Ryes plass | verified_geometry | `oslo-kommune:park:olaf-ryes-plass` |
+| 15 | `birkelunden` | Birkelunden | verified_geometry | `oslo-kommune:park:birkelunden` |
+| 15 | `akerselva` | Akerselva | verified_geometry | `oslo-kommune:river:akerselva` |
+| 15 | `universitetsplassen` | Universitetsplassen | verified_geometry | `oslobyleksikon:universitetsplassen` |
+| 15 | `barcode` | Barcode | verified_geometry | `osm-node:8071120191` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -112,7 +118,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 84 verifiserte eller kildekontrollerte canonical stedene.
+Disse kontrollene er fullført, men teller ikke blant de 90 verifiserte eller kildekontrollerte canonical stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -120,6 +126,7 @@ Disse kontrollene er fullført, men teller ikke blant de 84 verifiserte eller ki
 | Bånkall gård | needs_review | Trondheimsveien 640 ga flere ikke-entydige Geonorge-treff uten én eksakt fysisk match. | Krever mer presis offisiell adresse eller objektgeometri før canonical koordinat kan godkjennes. |
 | `ring_3` – Ring 3 | needs_review | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |
 | `trikk_17_18` – Trikkelinje 17/18 | needs_review | Ruter dokumenterer begge linjene, men den kombinerte recorden har bare ett lavpresisjonspunkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller eksplisitt modellert fellessegment før canonical koordinat kan godkjennes. |
+| `bislett` – Bislett strøk | needs_review | Område-recordens eksisterende punkt overlapper praktisk talt det separate canonical `bislett_stadion`-punktet. | Krever et eget dokumentert strøks-/knutepunktanker, for eksempel Bislett rundkjøring, uten å gjette koordinater. |
 
 ## Etne – historiesett
 
@@ -167,7 +174,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 87 og starter batch 15.
-- Batch 14 er fullført med sju godkjente park-, område- og kollektivankre.
+- Neste nye Oslo-kontroll er nummer 94 og starter batch 16.
+- Batch 15 er fullført med seks godkjente ankere og én dokumentert overlap-sak for Bislett-strøket.
 - Fortsett i canonical filrekkefølge når det gir en naturlig arbeidskø, men velg alltid koordinatmetode etter fysisk objekttype.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

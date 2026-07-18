@@ -4,17 +4,16 @@
   "visual": {
     "designCode": "station_miniature"
   },
-  "lat": 59.9147,
-  "lon": 10.7318,
+  "lat": 59.915565,
+  "lon": 10.731915,
   "r": 170,
-  "coordType": "transit_anchor",
-  "coordStatus": "verified",
-  "coordNote": "Nationaltheatret stasjon (jernbane + T-bane). Kontrollert mot Wikipedia; anker satt sentralt i stasjonsanlegget som strekker seg fra jernbaneplattform (~10.730) til T-banestasjon (~10.733).",
-  "coordSource": "Wikipedia (Nationaltheatret station / metro station)",
-  "coordSourceId": "Nationaltheatret stasjon",
-  "coordSourceUrl": "https://en.wikipedia.org/wiki/Nationaltheatret_station",
-  "coordPrecisionM": 120,
-  "coordVerifiedAt": "2026-06-15",
+  "coordType": "transit_area_anchor",
+  "coordStatus": "verified_geometry",
+  "coordNote": "Flerankret områdepunkt for Nationaltheatret stasjonskompleks. Hovedpunktet er midtpunktet mellom OSM-stasjonsobjektene for T-bane og jernbane, slik at History Go-stedet representerer det samlede underjordiske knutepunktet og ikke bare én plattform eller inngang.",
+  "coordSource": "OpenStreetMap – Nationaltheatret T-bane- og jernbanestasjon",
+  "coordSourceId": "osm-node:5218231660+1759965001",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/5218231660",
+  "coordVerifiedAt": "2026-07-19",
   "category": "by",
   "year": 1928,
   "emne_ids": [
@@ -58,5 +57,30 @@
       "majorstuen_tbanestasjon"
     ],
     "notes": "Skal spørres som skjult og sentral overgangsmaskin."
-  }
+  },
+  "locatorType": "linear_area",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:5218231660+1759965001",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "anchors": [
+    {
+      "id": "nationaltheatret_tbanestasjon",
+      "name": "Nationaltheatret T-banestasjon",
+      "type": "transit_stop",
+      "lat": 59.91558,
+      "lon": 10.73193,
+      "r": 70,
+      "sourceObjectId": "osm-node:5218231660"
+    },
+    {
+      "id": "nationaltheatret_jernbanestasjon",
+      "name": "Nationaltheatret jernbanestasjon",
+      "type": "transit_stop",
+      "lat": 59.91555,
+      "lon": 10.7319,
+      "r": 70,
+      "sourceObjectId": "osm-node:1759965001"
+    }
+  ]
 }

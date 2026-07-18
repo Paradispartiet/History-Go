@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-18T23:35:52.820Z
+Generert: 2026-07-18T23:44:23.195Z
 
 ## Hvorfor denne gaten finnes
 
@@ -16,9 +16,9 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Base method: **COORD_INTAKE_BASE**
 - Aktive manifest-filer lest: **478**
 - Place-objekter validert: **1178**
-- Nye/endrede koordinatobjekter mot base: **7**
+- Nye/endrede koordinatobjekter mot base: **6**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3829**
+- Backlog-funn: **3814**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -51,26 +51,11 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | christiania_torv | Christiania Torv | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
 | backlog | nei | christiania_torv | Christiania Torv | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
 | backlog | nei | christiania_torv | Christiania Torv | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | nationaltheatret_stasjon | Nationaltheatret stasjon | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | olaf_ryes_plass | Olaf Ryes plass | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | olaf_ryes_plass | Olaf Ryes plass | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | olaf_ryes_plass | Olaf Ryes plass | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | olaf_ryes_plass | Olaf Ryes plass | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | olaf_ryes_plass | Olaf Ryes plass | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | universitetsplassen | Universitetsplassen | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | universitetsplassen | Universitetsplassen | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | universitetsplassen | Universitetsplassen | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | universitetsplassen | Universitetsplassen | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | universitetsplassen | Universitetsplassen | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
 | backlog | nei | voienvolden | Voienvolden | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
 | backlog | nei | voienvolden | Voienvolden | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
 | backlog | nei | voienvolden | Voienvolden | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
@@ -541,6 +526,21 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | kongsberg_solvverk | Kongsberg Sølvverk | data/places/naeringsliv/buskerud/kongsberg_solvverk.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | kongsberg_solvverk | Kongsberg Sølvverk | data/places/naeringsliv/buskerud/kongsberg_solvverk.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | kongsberg_solvverk | Kongsberg Sølvverk | data/places/naeringsliv/buskerud/kongsberg_solvverk.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | kongsberg_solvverk | Kongsberg Sølvverk | data/places/naeringsliv/buskerud/kongsberg_solvverk.json | coordNote | Stor radius r=520 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | blaafarvevaerket_modum | Blaafarveværket | data/places/naeringsliv/buskerud/blaafarvevaerket_modum.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | blaafarvevaerket_modum | Blaafarveværket | data/places/naeringsliv/buskerud/blaafarvevaerket_modum.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | blaafarvevaerket_modum | Blaafarveværket | data/places/naeringsliv/buskerud/blaafarvevaerket_modum.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | blaafarvevaerket_modum | Blaafarveværket | data/places/naeringsliv/buskerud/blaafarvevaerket_modum.json | coordNote | Stor radius r=520 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | torpo_stavkirke | Torpo stavkirke | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | torpo_stavkirke | Torpo stavkirke | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | torpo_stavkirke | Torpo stavkirke | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | hol_gamle_kyrkje | Hol gamle kyrkje | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | hol_gamle_kyrkje | Hol gamle kyrkje | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | hol_gamle_kyrkje | Hol gamle kyrkje | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | hallingdal_museum_nesbyen | Hallingdal Museum Nesbyen | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | hallingdal_museum_nesbyen | Hallingdal Museum Nesbyen | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | hallingdal_museum_nesbyen | Hallingdal Museum Nesbyen | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | hallingdal_museum_nesbyen | Hallingdal Museum Nesbyen | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 
 
-_Listen er avkortet til 500 av 3829 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3814 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

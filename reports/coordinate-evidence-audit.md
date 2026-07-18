@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-18T23:35:55.630Z
+Generert: 2026-07-18T23:44:26.157Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -37,3 +37,10 @@ Generert: 2026-07-18T23:35:55.630Z
 | tjuvholmen | data/coordinate-evidence/oslo/by/tjuvholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sorenga | data/coordinate-evidence/oslo/by/sorenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | majorstuen_tbanestasjon | data/coordinate-evidence/oslo/by/majorstuen_tbanestasjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nationaltheatret_stasjon | data/coordinate-evidence/oslo/by/nationaltheatret_stasjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| olaf_ryes_plass | data/coordinate-evidence/oslo/by/olaf_ryes_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| birkelunden | data/coordinate-evidence/oslo/by/birkelunden.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akerselva | data/coordinate-evidence/oslo/by/akerselva.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| universitetsplassen | data/coordinate-evidence/oslo/by/universitetsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| barcode | data/coordinate-evidence/oslo/by/barcode.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bislett | data/coordinate-evidence/oslo/by/bislett.json | needs_research | needs_geometry | OK |
