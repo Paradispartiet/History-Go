@@ -1,8 +1,8 @@
 {
   "id": "akershus_kaier",
   "name": "Akershuskaiene",
-  "lat": 59.90715,
-  "lon": 10.73705,
+  "lat": 59.906783,
+  "lon": 10.7352565,
   "r": 200,
   "category": "naeringsliv",
   "year": 1850,
@@ -52,8 +52,26 @@
     "shipping_og_havn"
   ],
   "coordType": "quay_semantic_anchor",
-  "coordStatus": "needs_source",
-  "coordSource": "legacy_manual_map_check",
-  "coordVerifiedAt": "2026-07-09",
-  "coordNote": "Semantisk kaianker for den lineære Akershuskaiene-fronten langs Akershus festning/Pipervika; punktet er ikke et tilfeldig Vippetangen- eller havnebassengpunkt. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 4252516 + Oslo byleksikon",
+  "coordVerifiedAt": "2026-07-18",
+  "coordNote": "Linjeanker på OpenStreetMap way 4252516 for Akershusstranda langs kaifronten. Oslo byleksikon avgrenser Akershuskaiene fra Rådhusbryggene til Vippetangkaia og dokumenterer Nordre og Søndre Akershuskai. Punktet representerer det lange kaianlegget og er ikke et tilfeldig havnebasseng- eller Vippetangen-punkt.",
+  "locatorType": "quay",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:4252516",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "line_anchor",
+  "anchors": [
+    {
+      "id": "akershuskaiene_linjeanker",
+      "name": "Akershuskaiene – linjeanker",
+      "lat": 59.906783,
+      "lon": 10.7352565,
+      "r": 200,
+      "type": "quay_anchor",
+      "sourceObjectId": "osm-way:4252516",
+      "role": "line_anchor",
+      "note": "Representativt anker på kaifronten langs Akershusstranda."
+    }
+  ]
 }

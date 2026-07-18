@@ -15,7 +15,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Det første Oslo-kontrollsettet inneholder 30 steder. Alle 30 er kontrollert og står nå som verifisert. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-protokollen inneholder nå 37 kontrollerte steder. De første 30 er kontrollert og verifisert, og batch 7 legger til sju nye kildekontrollerte steder. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -49,6 +49,13 @@ Det første Oslo-kontrollsettet inneholder 30 steder. Alle 30 er kontrollert og 
 | 6 | `gronland_basarene` | Grønland basarene | verified | `osm-node:1022312515` |
 | 6 | `mollergata_19` | Møllergata 19 | verified | `osm-way:112207578` |
 | 6 | `villa_grande` | Villa Grande | verified | `osm-node:12591050047` |
+| 7 | `blaa` | Blå | verified_geometry | `osm-node:4312299494` |
+| 7 | `tinghuset` | Oslo tinghus | verified | `geonorge-adresser-v1:0301:11017:4` |
+| 7 | `bogstad_gard` | Bogstad gård | verified_geometry | `osm-way:219498663` |
+| 7 | `salt` | SALT | verified_geometry | `osm-node:6677384187` |
+| 7 | `tollbukaia` | Tollbukaia | verified_historical_source | `oslobyleksikon:tollbukaia` |
+| 7 | `akershus_kaier` | Akershuskaiene | verified_geometry | `osm-way:4252516` |
+| 7 | `oslo_mek` | Akers mekaniske Verksted | verified_historical_source | `oslobyleksikon:akers-mek-verksted` |
 
 Relevante korrigerende merger: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 

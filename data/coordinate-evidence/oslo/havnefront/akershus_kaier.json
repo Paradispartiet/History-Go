@@ -1,22 +1,22 @@
 {
   "placeId": "akershus_kaier",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.90715,
-    "lon": 10.73705,
+    "lat": 59.906783,
+    "lon": 10.7352565,
     "r": 200,
-    "coordStatus": "needs_source",
-    "coordSource": "legacy_manual_map_check",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4252516 + Oslo byleksikon",
     "coordType": "quay_semantic_anchor",
-    "coordNote": "Semantisk kaianker for den lineære Akershuskaiene-fronten langs Akershus festning/Pipervika; punktet er ikke et tilfeldig Vippetangen- eller havnebassengpunkt. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+    "coordNote": "Linjeanker på OpenStreetMap way 4252516 for Akershusstranda langs kaifronten. Oslo byleksikon avgrenser Akershuskaiene fra Rådhusbryggene til Vippetangkaia og dokumenterer Nordre og Søndre Akershuskai. Punktet representerer det lange kaianlegget og er ikke et tilfeldig havnebasseng- eller Vippetangen-punkt."
   },
   "identity": {
     "currentName": "Akershuskaiene",
-    "resolvedIdentity": null,
-    "identityStatus": "unresolved",
-    "identityProblem": "Lineær kai-/sjøfront må kildefestes som geometri eller dokumentert anker, ikke ett tilfeldig punkt.",
+    "resolvedIdentity": "Akershuskaiene mellom Rådhusbryggene og Vippetangkaia",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "quay",
     "requiresSplit": false,
     "splitReason": ""
@@ -26,18 +26,33 @@
     "geometry eller anchors",
     "coordRole line_anchor eller area_anchor"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Akershuskaiene",
+      "sourceUrl": "https://oslobyleksikon.no/side/Akershuskaiene",
+      "sourceObjectId": "oslobyleksikon:akershuskaiene",
+      "sourceQuality": "historical_place_definition",
+      "finding": "Akershuskaiene er kaianlegget langs østsiden av Pipervika mellom Rådhusbryggene og Vippetangkaia.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden avgrenser hele det lineære kaianlegget; OSM-way gir et dokumentert anker langs fronten."
+    }
+  ],
   "addressCandidates": [],
   "sourceObjectCandidates": [],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {"sourceProvider": "osm", "sourceObjectId": "osm-way:4252516", "geometryType": "LineString", "canApplyToPlace": true}
+  ],
+  "coordinateCandidates": [
+    {"lat": 59.906783, "lon": 10.7352565, "sourceObjectId": "osm-way:4252516", "coordRole": "line_anchor", "canApplyToPlace": true}
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Lineært kaiområde langs Akershus/Pipervika krever geometri eller dokumentert anker.",
-    "nextAction": "Finn geometri eller dokumentert kai-/områdeanker før koordinat kan endres eller verifiseres."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Akershuskaiene er oppdatert med dokumentert avgrensning og linjeanker."
   },
   "notes": [
     "Dette skal ikke behandles som site_center for et bygg.",
-    "Neste koordinat-PR må dokumentere representasjonsanker eller geometry."
+    "Valgt anker følger Akershusstranda-linjen og representerer det lange kaianlegget."
   ]
 }
