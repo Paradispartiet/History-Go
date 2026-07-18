@@ -16,7 +16,10 @@
     };
 
     if (typeof global.requestAnimationFrame === "function") {
-      global.requestAnimationFrame(restore);
+      // V2 decorates the freshly rendered Area content on the next animation frame.
+      // Restore one frame after that so the newly inserted map/progress/highlight
+      // sections do not shift the user's reading position.
+      global.requestAnimationFrame(() => global.requestAnimationFrame(restore));
     } else {
       global.setTimeout?.(restore, 0);
     }
