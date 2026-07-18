@@ -232,6 +232,14 @@
   flex: 0 0 auto;
 }
 
+/* The compact phone header used to cap #globalSearch at 64px. Inside the
+   opened menu the field belongs to the panel, so it should use its full width. */
+body.hg-app.hg-phone .header-menu-search #globalSearch{
+  width: 100%;
+  max-width: none;
+  flex: 0 0 auto;
+}
+
 .header-menu-search #searchResults{
   position: static;
   inset: auto;

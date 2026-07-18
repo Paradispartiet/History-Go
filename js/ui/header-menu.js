@@ -16,9 +16,25 @@
       button.setAttribute("aria-label", open ? "Lukk meny" : "Åpne meny");
     }
 
+    const headerMenuApi = {
+      open() {
+        setOpen(true);
+      },
+      close() {
+        setOpen(false);
+      },
+      toggle() {
+        setOpen(panel.hidden);
+      },
+      isOpen() {
+        return !panel.hidden;
+      }
+    };
+    window.HGHeaderMenu = headerMenuApi;
+
     button.addEventListener("click", (event) => {
       event.stopPropagation();
-      setOpen(panel.hidden);
+      headerMenuApi.toggle();
     });
 
     panel.addEventListener("click", (event) => {
@@ -26,11 +42,11 @@
     });
 
     document.addEventListener("click", (event) => {
-      if (!root.contains(/** @type {Node} */ (event.target))) setOpen(false);
+      if (!root.contains(/** @type {Node} */ (event.target))) headerMenuApi.close();
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") headerMenuApi.close();
     });
   }
 
