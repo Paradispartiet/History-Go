@@ -70,8 +70,8 @@ Tillatte verdier: `verified`, `verified_geometry`, `verified_historical_source`,
 - Lavpresisjons lat/lon kan aldri være `verified`.
 - `geocodeAccuracy: "approximate"` kan aldri gi `verified`.
 - `geocodeAccuracy: "interpolated"` kan ikke gi `verified` uten tydelig note og ikke for spill-/unlock-punkt.
-- Lineære steder må ha geometry, anchors eller `coordRole=line_anchor/area_anchor` med kildeforklaring.
-- Historiske steder må ha `historical_map`/`manual_research`/historisk kilde og kan ikke bruke dagens adresse som eneste bevis hvis anlegget er revet eller flyttet.
+- Lineære steder må ha geometry, anchors eller `coordRole=line_anchor/area_anchor` med kildeforklaring. `geocodeAccuracy: "semantic_anchor"` kan gi canonical verified trust bare sammen med `coordStatus: "verified_geometry"`, eksplisitt linje-/områdeanker og dokumentert kildeidentitet.
+- Historiske steder må ha `historical_map`/`manual_research`/historisk kilde og kan ikke bruke dagens adresse som eneste bevis hvis anlegget er revet eller flyttet. `geocodeAccuracy: "historical_approximation"` kan gi canonical verified trust bare sammen med `coordStatus: "verified_historical_source"`, `coordRole: "historical_anchor"` og historisk kildeidentitet.
 - POI-er må ha `sourceObjectId` eller strukturert adresse; navn alene er ikke nok.
 - Bygg/adresse-steder bør ha `geocodeAccuracy` `rooftop`, `entrance`, `building` eller `parcel` for `verified`.
 
@@ -80,3 +80,8 @@ Tillatte verdier: `verified`, `verified_geometry`, `verified_historical_source`,
 Feltene `lat`, `lon`, `r`, `coordType`, `coordStatus`, `coordSource`, `coordNote` og `coordVerifiedAt` er legacy-kompatible. De kan fortsatt brukes av runtime og migrering, men er ikke lenger tilstrekkelige for `verified`.
 
 `coordSource: "manual_map_check"` skal tolkes som `manualQa: true`, ikke som `sourceProvider` og ikke som primær kilde. Hvis et gammelt sted har `coordStatus: "verified"` men mangler ny kontrakt, skal display trust ikke vise det som verified, intake skal feile for nye/endrede steder, og legacy audit skal anbefale downgrade eller upgrade.
+
+
+### Historiske semantiske ankre
+
+Et dokumentert historisk linje- eller områdeanker kan bruke `geocodeAccuracy: "semantic_anchor"` med `coordStatus: "verified_historical_source"` når kildeleverandøren er `historical_map` eller `manual_research`, kildeidentiteten er stabil, og geometry, anchors eller et eksplisitt `line_anchor`, `area_anchor` eller `historical_anchor` dokumenterer representasjonen. Dette gjelder blant annet historiske kai- og industriområder som ikke kan reduseres til ett presist adressepunkt.
