@@ -1,0 +1,339 @@
+name: Integrate Folkets Hus Oslo
+
+on:
+  push:
+    paths:
+      - ".github/workflows/folkets-hus-oslo-integration.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate and integrate Folkets Hus Oslo
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+
+          const paths = {
+            place: 'data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json',
+            placeManifest: 'data/places/politikk/oslo/places_politikk_manifest.json',
+            placeIndex: 'data/places/politikk/oslo/places_politikk_index.json',
+            rootPlaceManifest: 'data/places/manifest.json',
+            stories: 'data/stories/stories_folkets_hus_oslo.json',
+            storyManifest: 'data/stories/stories_manifest_politikk_batch_01.json',
+            leksikon: 'data/leksikon/places/oslo/politikk/leksikon_folkets_hus_oslo.json',
+            leksikonManifest: 'data/leksikon/manifest.json',
+            quiz: 'data/quiz/politikk/folkets_hus_oslo_sets.json',
+            quizManifest: 'data/quiz/manifest.json',
+            actors: 'data/brands/actors_by_place.json',
+            people: 'data/people/politikk/oslo/people_politikk_oslo.json',
+            civication: 'data/Civication/map/historyGoPlaceMapping.politikk.json'
+          };
+
+          function read(path) {
+            const raw = fs.readFileSync(path, 'utf8');
+            return { raw, data: JSON.parse(raw) };
+          }
+
+          function writePreservingStyle(path, originalRaw, data) {
+            const isPretty = originalRaw.trim().split(/\r?\n/).length > 3;
+            fs.writeFileSync(path, JSON.stringify(data, null, isPretty ? 2 : 0) + '\n');
+          }
+
+          function assert(condition, message) {
+            if (!condition) throw new Error(message);
+          }
+
+          function upsertById(list, item) {
+            const index = list.findIndex(entry => entry?.id === item.id);
+            if (index >= 0) list[index] = item;
+            else list.push(item);
+          }
+
+          const placeFile = read(paths.place);
+          const place = placeFile.data;
+          assert(place.id === 'folkets_hus_oslo', 'Wrong place ID');
+          assert(place.category === 'politikk', 'Wrong place category');
+          assert(Array.isArray(place.rounds) && place.rounds.length === 9, 'Place must have nine rounds');
+          assert(new Set(place.rounds).size === 9, 'Place rounds must be unique');
+          assert(!place.rounds.includes('nature'), 'Folkets Hus must not use nature round');
+          assert(place.rounds.includes('tasks'), 'Folkets Hus must use tasks round');
+          assert(Array.isArray(place.tasks_profile?.tasks) && place.tasks_profile.tasks.length === 3, 'Tasks profile must contain three tasks');
+          assert(Array.isArray(place.works) && place.works.length >= 3, 'Works round is incomplete');
+          assert(Array.isArray(place.civication_store) && place.civication_store.length >= 3, 'Civication round is incomplete');
+
+          const storyFile = read(paths.stories);
+          const stories = storyFile.data;
+          assert(Array.isArray(stories) && stories.length === 2, 'Expected two Folkets Hus stories');
+          for (const story of stories) {
+            assert(story.id && story.type && story.title && story.story, `Malformed story ${story?.id || 'unknown'}`);
+            assert(story.place_id === place.id, `Wrong story place reference: ${story.id}`);
+            assert(Array.isArray(story.sources) && story.sources.length, `Story lacks sources: ${story.id}`);
+          }
+
+          const leksikonFile = read(paths.leksikon);
+          const articles = leksikonFile.data;
+          assert(Array.isArray(articles) && articles.length === 4, 'Expected four leksikon articles');
+          for (const article of articles) {
+            assert(article.id && article.title && article.place_id === place.id, `Malformed leksikon article ${article?.id || 'unknown'}`);
+          }
+
+          const quizFile = read(paths.quiz);
+          const quiz = quizFile.data;
+          assert(quiz.targetId === place.id && quiz.categoryId === 'politikk', 'Quiz root target is wrong');
+          const questions = (quiz.sets || []).flatMap(set => Array.isArray(set.questions) ? set.questions : []);
+          assert(questions.length === 5, 'Expected five quiz questions');
+          for (const question of questions) {
+            assert(question.placeId === place.id && question.targetId === place.id, `Wrong quiz target: ${question.id}`);
+            assert(question.categoryId === 'politikk', `Wrong quiz category: ${question.id}`);
+            assert(Array.isArray(question.options) && question.options.includes(question.answer), `Invalid answer: ${question.id}`);
+          }
+
+          const sha256 = crypto.createHash('sha256').update(placeFile.raw).digest('hex');
+
+          const splitManifestFile = read(paths.placeManifest);
+          const splitManifest = splitManifestFile.data;
+          splitManifest.places = Array.isArray(splitManifest.places) ? splitManifest.places : [];
+          const splitEntry = {
+            id: place.id,
+            name: place.name,
+            category: place.category,
+            file: 'places_politikk/folkets_hus_oslo.json',
+            order: 8,
+            sha256
+          };
+          const splitIndex = splitManifest.places.findIndex(entry => entry?.id === place.id);
+          if (splitIndex >= 0) splitManifest.places[splitIndex] = splitEntry;
+          else splitManifest.places.push(splitEntry);
+          splitManifest.place_count = splitManifest.places.length;
+          splitManifest.generated_at = new Date().toISOString();
+          writePreservingStyle(paths.placeManifest, splitManifestFile.raw, splitManifest);
+
+          const placeIndexFile = read(paths.placeIndex);
+          const placeIndex = placeIndexFile.data;
+          assert(Array.isArray(placeIndex), 'Politics place index must be an array');
+          upsertById(placeIndex, {
+            id: place.id,
+            name: place.name,
+            category: place.category,
+            lat: place.lat,
+            lon: place.lon,
+            r: place.r,
+            year: place.year,
+            coordStatus: place.coordStatus,
+            coordType: place.coordType,
+            file: 'places_politikk/folkets_hus_oslo.json'
+          });
+          writePreservingStyle(paths.placeIndex, placeIndexFile.raw, placeIndex);
+
+          const rootManifestFile = read(paths.rootPlaceManifest);
+          const rootManifest = rootManifestFile.data;
+          rootManifest.files = Array.isArray(rootManifest.files) ? rootManifest.files : [];
+          const rootPlacePath = 'places/politikk/oslo/places_politikk/folkets_hus_oslo.json';
+          if (!rootManifest.files.includes(rootPlacePath)) rootManifest.files.push(rootPlacePath);
+          writePreservingStyle(paths.rootPlaceManifest, rootManifestFile.raw, rootManifest);
+
+          const storyManifestFile = read(paths.storyManifest);
+          const storyManifest = storyManifestFile.data;
+          storyManifest.files = Array.isArray(storyManifest.files) ? storyManifest.files : [];
+          const storyEntry = {
+            category: 'politikk',
+            entity_id: place.id,
+            path: paths.stories
+          };
+          const storyManifestIndex = storyManifest.files.findIndex(entry => entry?.entity_id === place.id);
+          if (storyManifestIndex >= 0) storyManifest.files[storyManifestIndex] = storyEntry;
+          else storyManifest.files.push(storyEntry);
+          writePreservingStyle(paths.storyManifest, storyManifestFile.raw, storyManifest);
+
+          const leksikonManifestFile = read(paths.leksikonManifest);
+          const leksikonManifest = leksikonManifestFile.data;
+          leksikonManifest.files = Array.isArray(leksikonManifest.files) ? leksikonManifest.files : [];
+          if (!leksikonManifest.files.includes(paths.leksikon)) leksikonManifest.files.push(paths.leksikon);
+          writePreservingStyle(paths.leksikonManifest, leksikonManifestFile.raw, leksikonManifest);
+
+          const quizManifestFile = read(paths.quizManifest);
+          const quizManifest = quizManifestFile.data;
+          quizManifest.sets = Array.isArray(quizManifest.sets) ? quizManifest.sets : [];
+          const quizEntry = { targetId: place.id, file: paths.quiz };
+          const quizManifestIndex = quizManifest.sets.findIndex(entry => entry?.targetId === place.id);
+          if (quizManifestIndex >= 0) quizManifest.sets[quizManifestIndex] = quizEntry;
+          else quizManifest.sets.push(quizEntry);
+          assert(quizManifest.sets.filter(entry => entry?.targetId === place.id).length === 1, 'Duplicate quiz manifest target');
+          writePreservingStyle(paths.quizManifest, quizManifestFile.raw, quizManifest);
+
+          const actorFile = read(paths.actors);
+          const actorsByPlace = actorFile.data;
+          const youngstorgetActors = Array.isArray(actorsByPlace.youngstorget) ? actorsByPlace.youngstorget : [];
+          const copyActor = (id) => {
+            const actor = youngstorgetActors.find(item => item?.id === id);
+            assert(actor, `Missing canonical actor ${id}`);
+            return JSON.parse(JSON.stringify(actor));
+          };
+          actorsByPlace[place.id] = [
+            copyActor('landsorganisasjonen_i_norge'),
+            copyActor('arbeiderbevegelsens_arkiv_og_bibliotek'),
+            {
+              id: 'oslo_kongressenter_folkets_hus',
+              name: 'Oslo Kongressenter Folkets Hus',
+              entity_type: 'actor',
+              actor_kind: 'conference_and_meeting_institution',
+              actor_role: 'Driver møte-, kongress- og arrangementsfunksjonene i Folkets Hus.',
+              brand_group: 'institution_actor',
+              brand_type: 'conference_centre',
+              brand_kind: 'brand',
+              sector: 'events_and_meetings',
+              state: 'catalog',
+              status: 'active',
+              verification: 'verified',
+              popupdesc: 'Oslo Kongressenter viderefører Folkets Hus som møteplass gjennom kongresser, konferanser, organisasjonsmøter og arrangementer i salene og møterommene ved Youngstorget.',
+              desc: 'Møte- og kongressenter i Folkets Hus.',
+              aliases: ['Oslo Kongressenter', 'Folkets Hus Oslo Kongressenter'],
+              tags: ['actor', 'folkets_hus', 'conference', 'meeting_place', 'youngstorget'],
+              source_urls: [
+                'https://www.oslokongressenter.no/en/about-us/',
+                'https://www.folketshus.no/folkets-hus-oslo-kongressenter/'
+              ],
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'folkets_hus_landsforbund',
+              name: 'Folkets Hus Landsforbund',
+              entity_type: 'actor',
+              actor_kind: 'membership_organization',
+              actor_role: 'Interesse- og medlemsorganisasjon for Folkets Hus og samfunnshus i Norge.',
+              brand_group: 'movement_actor',
+              brand_type: 'membership_organization',
+              brand_kind: 'brand',
+              sector: 'civil_society',
+              state: 'catalog',
+              status: 'active',
+              verification: 'verified',
+              popupdesc: 'Folkets Hus Landsforbund samler og støtter Folkets Hus og samfunnshus. Organisasjonen viderefører ideen om lokalt eide møteplasser for organisasjonsliv, kultur og fellesskap.',
+              desc: 'Landsorganisasjon for Folkets Hus og samfunnshus.',
+              aliases: ['FHL'],
+              tags: ['actor', 'folkets_hus', 'membership_organization', 'meeting_place'],
+              source_urls: ['https://www.folketshus.no/om-fhl-2/'],
+              verified_at: '2026-07-18'
+            }
+          ];
+          assert(new Set(actorsByPlace[place.id].map(actor => actor.id)).size === actorsByPlace[place.id].length, 'Duplicate Folkets Hus actors');
+          writePreservingStyle(paths.actors, actorFile.raw, actorsByPlace);
+
+          const peopleFile = read(paths.people);
+          const people = peopleFile.data;
+          assert(Array.isArray(people), 'Politics people file must be an array');
+          upsertById(people, {
+            id: 'knut_knutsen_arkitekt',
+            name: 'Knut Knutsen',
+            visual: { designCode: 'person_architect_miniature' },
+            initials: 'KK',
+            desc: 'Arkitekten bak det moderne Folkets Hus ved Youngstorget.',
+            tags: ['politikk', 'arkitektur', 'arbeiderbevegelse', 'folkets_hus'],
+            placeId: place.id,
+            category: 'politikk',
+            year: 1962,
+            popupDesc: 'Knut Knutsen (1903–1969) var en sentral norsk arkitekt. Forslaget hans til nytt Folkets Hus ble valgt i 1939, men krigen utsatte byggingen. Det store anlegget ved Youngstorget ble reist i flere etapper og sto ferdig i 1962. Den lange fasaden og de mange funksjonene gjør bygget til et tydelig eksempel på hans arbeid med institusjonsarkitektur.',
+            places: [place.id],
+            image: '',
+            cardImage: '',
+            externalLinks: [
+              {
+                type: 'source',
+                label: 'Knut Knutsen – Store norske leksikon',
+                url: 'https://snl.no/Knut_Knutsen',
+                verifiedAt: '2026-07-18'
+              }
+            ]
+          });
+          upsertById(people, {
+            id: 'harald_ohlsen',
+            name: 'Harald Ohlsen',
+            visual: { designCode: 'person_architect_miniature' },
+            initials: 'HO',
+            desc: 'Arkitekten bak det første Folkets Hus i Oslo, innviet i 1907.',
+            tags: ['politikk', 'arkitektur', 'arbeiderbevegelse', 'folkets_hus'],
+            placeId: place.id,
+            category: 'politikk',
+            year: 1907,
+            popupDesc: 'Harald Ohlsen tegnet det første Folkets Hus ved Youngstorget. Bygningen ble innviet i 1907 og samlet storsal, kontorer og lokaler for fagforeninger og andre deler av arbeiderbevegelsen. Huset ble senere revet da det moderne anlegget ble reist.',
+            places: [place.id],
+            image: '',
+            cardImage: '',
+            externalLinks: [
+              {
+                type: 'archive',
+                label: 'Arbark – Folkets Hus bygges',
+                url: 'https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm',
+                verifiedAt: '2026-07-18'
+              }
+            ]
+          });
+          const peopleIds = people.map(person => person?.id).filter(Boolean);
+          assert(new Set(peopleIds).size === peopleIds.length, 'Duplicate person IDs after integration');
+          for (const personId of ['knut_knutsen_arkitekt', 'harald_ohlsen']) {
+            const person = people.find(item => item?.id === personId);
+            assert(person?.placeId === place.id && person?.places?.includes(place.id), `Broken place link for ${personId}`);
+          }
+          writePreservingStyle(paths.people, peopleFile.raw, people);
+
+          const civicationFile = read(paths.civication);
+          const civication = civicationFile.data;
+          civication.mappings = civication.mappings && typeof civication.mappings === 'object' ? civication.mappings : {};
+          civication.mappings.map_folkets_hus_oslo = {
+            id: 'map_folkets_hus_oslo',
+            historyGoPlaceId: place.id,
+            historyGoSourceFile: 'places/politikk/oslo/places_politikk/folkets_hus_oslo.json',
+            civicationPlaceId: 'civi_politikk_folkets_hus_oslo',
+            name: place.name,
+            category: place.category,
+            lat: place.lat,
+            lon: place.lon,
+            emne_ids: place.emne_ids,
+            buildingTypeId: 'building_labour_movement_headquarters',
+            mapRole: 'labour_movement_institution_hub',
+            visibleAs: 'institution_building',
+            socialFunctions: ['institution', 'meeting_place', 'worker_history', 'archive', 'organization'],
+            phaseTypes: ['institutional_flow', 'conference_day', 'historical_reflection', 'political_marking'],
+            groundhopperRelevant: false,
+            needsVerification: false
+          };
+          writePreservingStyle(paths.civication, civicationFile.raw, civication);
+
+          console.log(JSON.stringify({
+            placeId: place.id,
+            rounds: place.rounds,
+            stories: stories.length,
+            leksikonArticles: articles.length,
+            quizQuestions: questions.length,
+            actors: actorsByPlace[place.id].map(actor => actor.id),
+            people: ['knut_knutsen_arkitekt', 'harald_ohlsen']
+          }, null, 2));
+          NODE
+
+          rm .github/workflows/folkets-hus-oslo-integration.yml
+
+          git config user.name "history-go-data-bot"
+          git config user.email "history-go-data-bot@users.noreply.github.com"
+          git add \
+            data/places/politikk/oslo/places_politikk_manifest.json \
+            data/places/politikk/oslo/places_politikk_index.json \
+            data/places/manifest.json \
+            data/stories/stories_manifest_politikk_batch_01.json \
+            data/leksikon/manifest.json \
+            data/quiz/manifest.json \
+            data/brands/actors_by_place.json \
+            data/people/politikk/oslo/people_politikk_oslo.json \
+            data/Civication/map/historyGoPlaceMapping.politikk.json \
+            .github/workflows/folkets-hus-oslo-integration.yml
+          git commit -m "Integrate Folkets Hus Oslo data"
+          git push
