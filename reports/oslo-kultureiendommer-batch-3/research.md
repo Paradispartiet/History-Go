@@ -33,3 +33,7 @@ Address-first result:
 ## Frysja decision
 
 `frysja_industriomrade` already exists as a canonical History Go place, with dedicated quiz coverage. Frysja kunstsenter is therefore not duplicated in this pass; its art-reuse layer should enrich the existing canonical place instead if future content work finds a gap.
+
+## Validation path
+
+A dedicated branch workflow registers the batch source, rebuilds the global place index, runs strict coordinate intake and validates canonical emne IDs before the workflow files are removed from the final PR.
