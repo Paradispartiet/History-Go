@@ -37,6 +37,24 @@ jobs:
         if: steps.generator.outputs.run == 'true'
         run: python tools/one_off/fill_etne_pumptrack_rounds.py
 
+      - name: Reuse canonical Dzintrs Vitols person
+        if: steps.generator.outputs.run == 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          duplicate = Path('data/people/sport/vestland/etne/dzintrs_vitols.json')
+          duplicate.unlink(missing_ok=True)
+
+          manifest_path = Path('data/people/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          duplicate_entry = 'people/sport/vestland/etne/dzintrs_vitols.json'
+          manifest['files'] = [entry for entry in manifest['files'] if entry != duplicate_entry]
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
       - name: Test Etne pumptrack rounds
         if: steps.generator.outputs.run == 'true'
         run: node tests/etne-pumptrack-batch1-round-content.test.js
