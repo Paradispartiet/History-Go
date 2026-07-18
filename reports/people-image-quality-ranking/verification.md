@@ -8,10 +8,6 @@
 - Licenses: CC BY, CC BY-SA, Public Domain
 - All candidates have approved: false: yes
 
-## Main synchronization
-
-The candidate registry has been synchronized with current `main` by candidate ID. Newer candidates and any manual review state already present on `main` were preserved. This PR still publishes no images and applies no candidate to a person record.
-
 ## Errors
 - None
 
