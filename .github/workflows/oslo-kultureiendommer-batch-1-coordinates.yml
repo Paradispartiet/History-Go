@@ -1,0 +1,48 @@
+name: Oslo kultureiendommer batch 1 coordinate lookup
+
+on:
+  push:
+    branches:
+      - agent/oslo-kultureiendommer-batch-1
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.event.head_commit.message != 'Save Oslo kultureiendommer batch 1 coordinates'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-kultureiendommer-batch-1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Find and save Geonorge address candidates
+        run: |
+          mkdir -p reports/oslo-kultureiendommer-batch-1/coordinates
+
+          npm run places:coords:find:address -- --address "Holmenkollveien 119 Oslo" \
+            | tee reports/oslo-kultureiendommer-batch-1/coordinates/folkeobservatoriet.json
+
+          npm run places:coords:find:address -- --address "Briskebyveien 21 Oslo" \
+            | tee reports/oslo-kultureiendommer-batch-1/coordinates/kjeglebanen.json
+
+          npm run places:coords:find:address -- --address "Rådhusgata 19 Oslo" \
+            | tee reports/oslo-kultureiendommer-batch-1/coordinates/radmannsgarden-anatomibygget.json
+
+          npm run places:coords:find:address -- --address "Dronningens gate 11 Oslo" \
+            | tee reports/oslo-kultureiendommer-batch-1/coordinates/magistratgarden.json
+      - name: Commit coordinate reports
+        run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          git add reports/oslo-kultureiendommer-batch-1/coordinates
+          if git diff --cached --quiet; then
+            echo "No coordinate report changes."
+          else
+            git commit -m "Save Oslo kultureiendommer batch 1 coordinates"
+            git push
+          fi
