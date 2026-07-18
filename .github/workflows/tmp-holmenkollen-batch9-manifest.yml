@@ -1,6 +1,13 @@
 name: Temporary Holmenkollen batch 9 manifest patch
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'data/people/sport/oslo/holmenkollen_nasjonalanlegg/**'
+      - 'reports/people-holmenkollen-batch9-*.md'
+      - '.github/workflows/tmp-holmenkollen-batch9-manifest.yml'
   push:
     branches:
       - data/people-holmenkollen-batch9-20260718
@@ -10,7 +17,7 @@ permissions:
 
 jobs:
   patch-manifest:
-    if: ${{ !contains(github.event.head_commit.message, '[manifest-patched]') }}
+    if: ${{ github.event_name != 'push' || !contains(github.event.head_commit.message, '[manifest-patched]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,23 +38,28 @@ jobs:
             'people/sport/oslo/holmenkollen_nasjonalanlegg/galina_kulakova.json',
             'people/sport/oslo/holmenkollen_nasjonalanlegg/hallgeir_brenden.json',
           ];
-          for (const item of additions) {
-            if (data.files.includes(item)) {
-              throw new Error(`Manifest entry already exists: ${item}`);
-            }
+          const missing = additions.filter((item) => !data.files.includes(item));
+          if (!missing.length) {
+            console.log('Manifest already contains all batch 9 entries');
+            process.exit(0);
           }
           const anchor = 'people/sport/oslo/holmenkollen_nasjonalanlegg/roger_ruud.json';
           const index = data.files.indexOf(anchor);
           if (index === -1) throw new Error(`Manifest anchor missing: ${anchor}`);
-          data.files.splice(index + 1, 0, ...additions);
+          data.files.splice(index + 1, 0, ...missing);
           fs.writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
+          console.log(`Added ${missing.length} manifest entries`);
           NODE
 
-      - name: Commit manifest patch
+      - name: Commit manifest patch when needed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/people/manifest.json
+          if git diff --cached --quiet; then
+            echo "Manifest already patched"
+            exit 0
+          fi
           git diff --cached --check
           git commit -m "Register Holmenkollen batch 9 people [manifest-patched]"
           git push origin HEAD:data/people-holmenkollen-batch9-20260718
