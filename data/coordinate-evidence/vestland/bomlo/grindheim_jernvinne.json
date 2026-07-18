@@ -1,25 +1,25 @@
 {
   "placeId": "grindheim_jernvinne",
-  "placeFile": "data/places/historie/vestland/etne/grindheim_jernvinne.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_identity_split",
+  "placeFile": "data/places/historie/vestland/bomlo/grindheim_jernvinne.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.66864,
-    "lon": 6.00532,
-    "r": 320,
-    "coordStatus": "needs_source",
-    "coordSource": "identity_mismatch_review",
+    "lat": 59.69558126562117,
+    "lon": 5.352804622812133,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Riksantikvaren/Kulturminnesøk",
     "coordType": "site_center",
-    "coordNote": "Midlertidig, uverifisert områdeanker på Grindheim i Etne. Beskrivelsen er ordrett knyttet til Askeladden 72832-1 på Grindheim i Bømlo, ikke Etne, og Etne kommunes arkeologiske register og Kulturminnesøk-søk gir ingen jernvinnelokalitet på Grindheim i Etne. Koordinaten må ikke regnes som verifisert før stedets identitet er avklart."
+    "coordNote": "Riksantikvaren/Kulturminnesøk sitt registrerte enkeltminnepunkt for Grindheim jernvinne, kulturminne 72832-1. Primærkilden plasserer lokaliteten i Bømlo; posten er derfor flyttet ut av Etne."
   },
   "identity": {
     "currentName": "Jernvinna på Grindheim",
-    "resolvedIdentity": null,
-    "identityStatus": "conflicting_source",
-    "identityProblem": "Place-filen er kategorisert som Grindheim i Etne, men beskrivelsen er hentet fra kulturminne 72832 på Grindheim i Bømlo.",
+    "resolvedIdentity": "Grindheim jernvinne, Bømlo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "archaeological_site",
-    "requiresSplit": true,
-    "splitReason": "Det må avgjøres om posten skal fjernes fra Etne, flyttes og omskrives som Bømlo-sted, eller erstattes med en dokumentert Etne-lokalitet."
+    "requiresSplit": false,
+    "splitReason": "Posten er flyttet fra Etne til Bømlo i samsvar med primærkilden."
   },
   "requiredEvidence": [
     "offisiell arkeologisk kilde som identifiserer en jernvinnelokalitet på Grindheim i Etne",
@@ -34,8 +34,8 @@
       "sourceObjectId": "kulturminnesok:72832-1",
       "sourceQuality": "official_primary_registry",
       "finding": "Kulturminne 72832-1 heter Grindheim - Jernvinne og har samme vannledningsgrøft- og steinkonstruksjonsbeskrivelse som place-filen, men Kulturminnesøk plasserer objektet i Bømlo ved 59.69558126562117, 5.352804622812133.",
-      "canVerifyCoordinate": false,
-      "reason": "Kildeobjektet ligger i feil kommune og kan ikke verifisere Etne-markøren."
+      "canVerifyCoordinate": true,
+      "reason": "Posten er flyttet til riktig kommune, og kildeobjektet kan derfor verifisere geometrien."
     },
     {
       "sourceProvider": "municipality",
@@ -56,8 +56,8 @@
       "sourceUrl": "https://kms-api.kulturminnesok.no/api/v2/search/72832",
       "objectType": "archaeological_site",
       "municipality": "Bømlo",
-      "whyRepresentative": "Objektet matcher navn og beskrivelse, men dokumenterer dermed en identitetsfeil og kan ikke brukes på Etne-posten.",
-      "canApplyToPlace": false
+      "whyRepresentative": "Objektet matcher navn og beskrivelse og er representativt etter at posten er flyttet fra Etne til Bømlo.",
+      "canApplyToPlace": true
     }
   ],
   "geometryCandidates": [
@@ -68,18 +68,18 @@
       "lat": 59.69558126562117,
       "lon": 5.352804622812133,
       "municipality": "Bømlo",
-      "canApplyToPlace": false,
-      "reason": "Geometrien tilhører den tekstlig matchende lokaliteten i Bømlo, ikke en Etne-lokalitet."
+      "canApplyToPlace": true,
+      "reason": "Geometrien tilhører den tekstlig matchende lokaliteten i Bømlo, som nå er postens kommune."
     }
   ],
   "coordinateCandidates": [],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Stedsidentiteten og kommunen motsier primærkilden; ingen jernvinnelokalitet på Grindheim i Etne er funnet.",
-    "nextAction": "Ta en redaksjonell avgjørelse om posten skal fjernes fra Etne, flyttes og omskrives til Bømlo, eller erstattes med et dokumentert Etne-sted."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Posten er flyttet til Bømlo og oppdatert med kulturminne 72832-1 som verifisert geometri."
   },
   "notes": [
-    "Nåværende lat/lon er bevart som uverifisert områdeanker i tråd med evidence-policyen.",
-    "Askeladden 72832-1 må ikke brukes som kilde for et verified Etne-punkt."
+    "Det tidligere Etne-ankeret er erstattet med Kulturminnesøk-geometrien etter kommuneopprydding.",
+    "Kulturminne 72832-1 verifiserer posten som Bømlo-sted, ikke som Etne-sted."
   ]
 }
