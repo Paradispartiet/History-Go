@@ -232,6 +232,7 @@
     const input = document.getElementById("globalSearch");
     input?.blur?.();
     showSearchBox(false);
+    window.HGHeaderMenu?.close?.();
 
     window.flyToPlace?.(place);
   }

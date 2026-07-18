@@ -72,36 +72,6 @@ function routeToPlace(placeId) {
   }
 }
 
-function updateFavoriteButtonState(btn, placeId) {
-  if (!btn) return;
-  const active = !!window.HGFavoritePlaces?.has?.(placeId);
-  btn.classList.toggle("is-active", active);
-  btn.textContent = active ? "★" : "☆";
-  const label = active ? "Fjern favoritt" : "Legg til favoritt";
-  btn.setAttribute("aria-label", label);
-  btn.title = label;
-}
-
-function createNearbyFavoriteButton(placeId) {
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "nearby-favorite-btn";
-  updateFavoriteButtonState(btn, placeId);
-  btn.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!window.HGFavoritePlaces) return;
-    window.HGFavoritePlaces.toggle(placeId);
-    updateFavoriteButtonState(btn, placeId);
-    if (typeof window.rerenderActiveLeftPanelMode === "function") {
-      window.rerenderActiveLeftPanelMode();
-    } else if (typeof window.renderNearbyPlaces === "function") {
-      window.renderNearbyPlaces();
-    }
-  });
-  return btn;
-}
-
 function categoryNameForBadgeFilter() {
   const id = getActiveLeftBadgeFilter();
   const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
@@ -242,7 +212,7 @@ function renderNearbyPlaces() {
         <div class="hg-empty-guide">
           <div class="hg-empty-guide-icon">☆</div>
           <div class="hg-empty-guide-title">Ingen favoritter ennå</div>
-          <div class="hg-empty-guide-text">Slå av favorittfilteret eller trykk på stjernen ved et sted for å lagre det som favoritt.</div>
+          <div class="hg-empty-guide-text">Slå av favorittfilteret, eller åpne et sted og bruk stjernen i stedskortet for å lagre det som favoritt.</div>
         </div>
       `;
     } else {
@@ -293,8 +263,6 @@ function renderNearbyPlaces() {
           </div>
         </div>
     `;
-
-    item.appendChild(createNearbyFavoriteButton(place.id));
 
     item.addEventListener("click", () => {
       routeToPlace(place.id);

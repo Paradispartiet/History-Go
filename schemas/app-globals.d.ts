@@ -64,6 +64,7 @@ declare global {
     HG_DailyProgressToast?: any;
     HG_TodayHubPanel?: { render?: (options?: any) => any; refresh?: (options?: any) => any; remove?: () => any; [key: string]: any };
     HG_TodayActionRouter?: any;
+    HGHeaderMenu?: { open: () => void; close: () => void; toggle: () => void; isOpen: () => boolean };
     HG_SocialSignalBridge?: any;
     HG_PublicProfileReadModel?: any;
     HG_PublicProfilePreviewPanel?: any;
