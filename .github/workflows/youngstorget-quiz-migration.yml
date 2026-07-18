@@ -1,0 +1,81 @@
+name: Youngstorget quiz migration
+
+on:
+  push:
+    paths:
+      - ".github/workflows/youngstorget-quiz-migration.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Register set and remove legacy questions
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const manifestPath = 'data/quiz/manifest.json';
+          const setPath = 'data/quiz/politikk/youngstorget_sets.json';
+          const legacyPath = 'data/quiz/quiz_politikk.json';
+
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.sets = Array.isArray(manifest.sets) ? manifest.sets : [];
+
+          const existing = manifest.sets.filter(entry => entry?.targetId === 'youngstorget');
+          if (existing.length > 1) {
+            throw new Error(`Expected at most one Youngstorget manifest entry, found ${existing.length}`);
+          }
+          if (existing.length === 0) {
+            manifest.sets.push({
+              targetId: 'youngstorget',
+              file: setPath
+            });
+          } else {
+            existing[0].file = setPath;
+            delete existing[0].set_id;
+            delete existing[0].order;
+          }
+
+          const setData = JSON.parse(fs.readFileSync(setPath, 'utf8'));
+          if (setData?.targetId !== 'youngstorget' || !Array.isArray(setData?.sets) || !setData.sets.length) {
+            throw new Error('Youngstorget set file is malformed');
+          }
+          const questions = setData.sets.flatMap(set => Array.isArray(set.questions) ? set.questions : []);
+          if (questions.length !== 5 || questions.some(q => q?.placeId !== 'youngstorget' || q?.categoryId !== 'politikk')) {
+            throw new Error('Youngstorget set must contain five politics questions for the place');
+          }
+
+          const legacy = JSON.parse(fs.readFileSync(legacyPath, 'utf8'));
+          if (!Array.isArray(legacy)) throw new Error('quiz_politikk.json must be an array');
+          const oldIds = new Set([
+            'youngstorget_quiz_1',
+            'youngstorget_quiz_2',
+            'youngstorget_quiz_3',
+            'youngstorget_quiz_4',
+            'youngstorget_quiz_5'
+          ]);
+          const migrated = legacy.filter(question => !oldIds.has(question?.id));
+          const removed = legacy.length - migrated.length;
+          if (removed !== 5) {
+            throw new Error(`Expected to remove five Youngstorget legacy questions, removed ${removed}`);
+          }
+
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          fs.writeFileSync(legacyPath, JSON.stringify(migrated, null, 2) + '\n');
+          NODE
+
+          rm .github/workflows/youngstorget-quiz-migration.yml
+
+          git config user.name "history-go-data-bot"
+          git config user.email "history-go-data-bot@users.noreply.github.com"
+          git add data/quiz/manifest.json data/quiz/quiz_politikk.json .github/workflows/youngstorget-quiz-migration.yml
+          git commit -m "Activate Youngstorget quiz set"
+          git push
