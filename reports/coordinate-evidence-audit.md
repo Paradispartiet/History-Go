@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-18T23:29:03.465Z
+Generert: 2026-07-18T23:35:55.630Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -30,3 +30,10 @@ Generert: 2026-07-18T23:29:03.465Z
 | markveien | data/coordinate-evidence/oslo/by/markveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlandsleiret | data/coordinate-evidence/oslo/by/gronlandsleiret.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | storgata | data/coordinate-evidence/oslo/by/storgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| slottsparken | data/coordinate-evidence/oslo/by/slottsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| botsparken | data/coordinate-evidence/oslo/by/botsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| stensparken | data/coordinate-evidence/oslo/by/stensparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nydalen | data/coordinate-evidence/oslo/by/nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| tjuvholmen | data/coordinate-evidence/oslo/by/tjuvholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| sorenga | data/coordinate-evidence/oslo/by/sorenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| majorstuen_tbanestasjon | data/coordinate-evidence/oslo/by/majorstuen_tbanestasjon.json | applied_to_place | do_not_change_coordinates_yet | OK |

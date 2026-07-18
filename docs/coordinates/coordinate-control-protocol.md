@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 77 verifiserte eller kildekontrollerte canonical steder. Batch 13 legger til sju godkjente kontroller: tre presise objekt-/områdeankre for Tigeren, Jernbanetorget og Helsfyr, samt fire dokumenterte flerankrede gater. Fire fullførte Oslo-kontroller står fortsatt separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-tabellen inneholder nå 84 verifiserte eller kildekontrollerte canonical steder. Batch 14 legger til sju godkjente kontroller: tre parker, tre større områdeankre og Majorstuen T-banestasjon som presist kollektivobjekt. Fire fullførte Oslo-kontroller står fortsatt separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -98,6 +98,13 @@ Oslo-tabellen inneholder nå 77 verifiserte eller kildekontrollerte canonical st
 | 13 | `markveien` | Markveien | verified_geometry | `oslobyleksikon:markveien` |
 | 13 | `gronlandsleiret` | Grønlandsleiret | verified_geometry | `oslobyleksikon:gronlandsleiret` |
 | 13 | `storgata` | Storgata | verified_geometry | `oslobyleksikon:storgata` |
+| 14 | `slottsparken` | Slottsparken | verified_geometry | `royalcourt:palace-park` |
+| 14 | `botsparken` | Botsparken | verified_geometry | `lokalhistoriewiki:gronlands-park` |
+| 14 | `stensparken` | Stensparken | verified_geometry | `oslo-kommune:parks:stensparken` |
+| 14 | `nydalen` | Nydalen | verified_geometry | `oslobyleksikon:nydalen` |
+| 14 | `tjuvholmen` | Tjuvholmen | verified_geometry | `oslo-kommune:fjordbyen:tjuvholmen` |
+| 14 | `sorenga` | Sørenga | verified_geometry | `oslo-kommune:bjorvika:sorenga` |
+| 14 | `majorstuen_tbanestasjon` | Majorstuen T-banestasjon | verified_geometry | `osm-node:2274012035` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -105,7 +112,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 77 verifiserte eller kildekontrollerte canonical stedene.
+Disse kontrollene er fullført, men teller ikke blant de 84 verifiserte eller kildekontrollerte canonical stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -160,7 +167,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 80 og starter batch 14.
-- Batch 13 er fullført med sju godkjente objekt-, område- og linjeankre.
+- Neste nye Oslo-kontroll er nummer 87 og starter batch 15.
+- Batch 14 er fullført med sju godkjente park-, område- og kollektivankre.
 - Fortsett i canonical filrekkefølge når det gir en naturlig arbeidskø, men velg alltid koordinatmetode etter fysisk objekttype.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

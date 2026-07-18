@@ -2858,13 +2858,12 @@
     "lon": 10.7278,
     "r": 250,
     "coordType": "park_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Slottsparken rundt Slottet. Anker beholdt i søndre del nær Slottet (innenfor parken); parksentroide bekreftet mot Wikidata. Stor park behandles som områdeanker.",
-    "coordSource": "Wikidata (Q4583462)",
-    "coordSourceId": "Q4583462",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q4583462",
-    "coordPrecisionM": 250,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker inne i Slottsparken. Det kongelige hoff dokumenterer parken som det sammenhengende parklandskapet rundt Slottet. Punktet beholdes i den sørlige parkdelen og brukes som parkanker, ikke som et geometrisk sentrum eller som koordinat for selve Slottet.",
+    "coordSource": "Det kongelige hoff – Slottsparken",
+    "coordSourceId": "royalcourt:palace-park",
+    "coordSourceUrl": "https://www.royalcourt.no/the-royal-residences/the-royal-palace/the-palace-park",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "rounds": [
       "people",
@@ -2917,7 +2916,12 @@
         "vigelandsparken"
       ],
       "notes": "Skal spørres som landskapsramme rundt makt, ikke bare som park."
-    }
+    },
+    "locatorType": "park",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "royalcourt:palace-park",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "botsparken",
@@ -2925,17 +2929,16 @@
       "designCode": "park_miniature"
     },
     "name": "Botsparken",
-    "lat": 59.9096,
-    "lon": 10.7695,
+    "lat": 59.909607,
+    "lon": 10.768977,
     "r": 170,
     "coordType": "park_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Grønlands park – Botsparken, gressplenen mellom Grønlandsleiret, politihuset og Oslo fengsel (tidl. Botsfengselet). Hovedmarkøren er flyttet ~490 m nordover fra et feilplassert punkt (59.9052/10.7685) som lå sør for fengselsmuren mot Klosterenga/Gamlebyen, til selve parkrommet. Kontrollert mot Wikidata; bevisst parkanker, ikke ett presist punkt.",
-    "coordSource": "Wikidata (Q11973058)",
-    "coordSourceId": "Q11973058",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q11973058",
-    "coordPrecisionM": 120,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Kildebasert områdeanker i Grønlands park, også kjent som Botsparken. Lokalhistoriewiki avgrenser parken mellom Botsfengselet, Grønlandsleiret, Borggata og Åkebergveien og oppgir koordinaten som brukes her. Punktet representerer parkrommet, ikke fengselet eller Politihuset.",
+    "coordSource": "Lokalhistoriewiki – Grønlands park / Botsparken",
+    "coordSourceId": "lokalhistoriewiki:gronlands-park",
+    "coordSourceUrl": "https://lokalhistoriewiki.no/wiki/Gr%C3%B8nlands_park",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1900,
     "emne_ids": [
@@ -2979,7 +2982,12 @@
         "slottsparken"
       ],
       "notes": "Skal spørres som liten institusjonsnær park, ikke som vanlig bydelspark."
-    }
+    },
+    "locatorType": "park",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "lokalhistoriewiki:gronlands-park",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "stensparken",
@@ -2991,13 +2999,12 @@
     "lon": 10.7319,
     "r": 220,
     "coordType": "park_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Stensparken i Fagerborg. Tidligere semantic_anchor 59.9272/10.733 lå fortsatt for langt øst/sørøst visuelt, ved kanten av eller utenfor den faktiske grønne parkflaten. Nytt punkt er valgt som synlig parkanker inne i grønn parkflate. Dette er et områdeanker for parken, ikke ett presist objektpunkt.",
-    "coordSource": "Wikidata (Q7703624) / OpenStreetMap – kryssjekket mot Stensgata holdeplass",
-    "coordSourceId": "Q7703624",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q7703624",
-    "coordPrecisionM": 220,
-    "coordVerifiedAt": "2026-07-04",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker inne i Stensparken. Oslo kommunes parkoversikt identifiserer Stensparken, mens tidligere visuell kartkontroll plasserte dagens punkt inne i den faktiske grønne parkflaten. Punktet brukes som parkanker og ikke som et matematisk sentrum for hele parken.",
+    "coordSource": "Oslo kommune – parker og lekeplasser / Stensparken",
+    "coordSourceId": "oslo-kommune:parks:stensparken",
+    "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1890,
     "emne_ids": [
@@ -3392,7 +3399,12 @@
         "Secondary references only for Joachim Frich / Korpehaugen 1841",
         "Weak source status for exact Undset childhood addresses"
       ]
-    }
+    },
+    "locatorType": "park",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:parks:stensparken",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "nydalen",
@@ -3401,8 +3413,8 @@
     "lon": 10.7675,
     "r": 260,
     "coordType": "district_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Nærings- og boligområde (Nydalen). Punktet er et bevisst områdeanker, ikke én adresse.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for Nydalen som industri-, nærings-, utdannings- og boligområde langs Akerselva. Oslo byleksikon dokumenterer områdets identitet og utstrekning. Punktet beholdes som displayanker i den sentrale transformasjonssonen og er ikke en enkeltadresse.",
     "category": "by",
     "year": 2000,
     "emne_ids": [
@@ -3446,7 +3458,16 @@
         "helsfyr"
       ],
       "notes": "Skal spørres som arbeids- og utdanningstransformasjon, ikke bare som ny bydel."
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:nydalen",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSource": "Oslo byleksikon – Nydalen",
+    "coordSourceId": "oslobyleksikon:nydalen",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Nydalen",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "tjuvholmen",
@@ -3455,8 +3476,8 @@
     "lon": 10.7211,
     "r": 200,
     "coordType": "area_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Utstrakt brygge-/boligområde (Tjuvholmen). Hovedmarkøren er flyttet ~90 m sørover fra landtangen mot Aker Brygge (59.9069/10.7215) til selve Tjuvholmen, ved Astrup Fearnley-museet, skulpturparken og badeplassen som er det folk faktisk oppsøker. Bevisst områdeanker, ikke én adresse.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker på selve Tjuvholmen. Oslo kommune dokumenterer Tjuvholmen som et avgrenset Fjordby-område som strekker seg ut i fjorden fra Aker Brygge. Punktet beholdes ved kultur-, promenade- og badeområdet og brukes ikke som én enkelt adresse.",
     "category": "by",
     "year": 2010,
     "emne_ids": [
@@ -3554,7 +3575,16 @@
           ]
         }
       }
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:fjordbyen:tjuvholmen",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSource": "Oslo kommune – Fjordbyen: Tjuvholmen",
+    "coordSourceId": "oslo-kommune:fjordbyen:tjuvholmen",
+    "coordSourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "sorenga",
@@ -3566,8 +3596,8 @@
     "lon": 10.7586,
     "r": 200,
     "coordType": "area_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Utstrakt sjøfront-/boligområde (Sørenga). Punktet er manuelt kartkontrollert som bevisst områdeanker ved Sørenga sjøbad/boligfront, ikke én adresse.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for Sørenga som eget sjøfront-, bolig- og badeområde innenfor den større Bjørvika-transformasjonen. Punktet beholdes på Sørengautstikkeren og skiller stedet fra det bredere canonical Bjørvika-ankeret.",
     "category": "by",
     "year": 2015,
     "emne_ids": [
@@ -3613,8 +3643,15 @@
       ],
       "notes": "Skal spørres som badebydel, ikke bare som ny fjordbolig."
     },
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-07-09"
+    "coordSource": "Oslo kommune – Fjordbyen: Bjørvika / Sørenga",
+    "coordVerifiedAt": "2026-07-19",
+    "locatorType": "linear_area",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:bjorvika:sorenga",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "oslo-kommune:bjorvika:sorenga",
+    "coordSourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/bjorvika/"
   },
   {
     "id": "majorstuen_tbanestasjon",
@@ -3622,17 +3659,16 @@
     "visual": {
       "designCode": "station_miniature"
     },
-    "lat": 59.9297,
-    "lon": 10.7147,
-    "r": 170,
-    "coordType": "transit_anchor",
-    "coordStatus": "verified",
-    "coordNote": "Majorstuen T-banestasjon. Kontrollert mot Wikidata; ligger ved Majorstukrysset (forventet overlapp med majorstuen_krysset).",
-    "coordSource": "Wikidata (Q3356829)",
-    "coordSourceId": "Q3356829",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q3356829",
-    "coordPrecisionM": 50,
-    "coordVerifiedAt": "2026-06-15",
+    "lat": 59.93078,
+    "lon": 10.71404,
+    "r": 120,
+    "coordType": "transit_stop_geometry",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Presist stoppobjekt for Majorstuen T-banestasjon. OSM-node 2274012035 er tagget som kollektivt stoppunkt / railway halt, og Ruter dokumenterer Majorstuen som et sentralt T-baneknutepunkt. Punktet representerer stasjonen og holdes adskilt fra det bredere `majorstuen_krysset`-området.",
+    "coordSource": "OpenStreetMap node 2274012035 – Majorstuen",
+    "coordSourceId": "osm-node:2274012035",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/2274012035",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1898,
     "emne_ids": [
@@ -3676,7 +3712,12 @@
         "majorstuen_krysset"
       ],
       "notes": "Skal spørres som fordelingspunkt i T-banesystemet."
-    }
+    },
+    "locatorType": "poi",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:2274012035",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "display_marker"
   },
   {
     "id": "nationaltheatret_stasjon",
