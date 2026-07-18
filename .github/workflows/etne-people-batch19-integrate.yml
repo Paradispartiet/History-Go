@@ -1,0 +1,222 @@
+name: Etne People Batch 19 integration
+
+on:
+  push:
+    branches:
+      - agent/etne-people-of-places-batch19-litledalen
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-people-of-places-batch19-litledalen
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Audit complete pre-batch manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/etne-people-of-places-batch19
+          node <<'NODE' | tee reports/etne-people-of-places-batch19/duplicate-audit.log
+          const assert = require('assert');
+          const fs = require('fs');
+          const path = require('path');
+          const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const normalize = (value) => String(value || '')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+
+          const manifest = readJson('data/people/manifest.json');
+          const aliases = ['halfdan_greve', 'Halfdan Greve', 'H. Greve'].map(normalize);
+          const identityHits = [];
+          const placeHits = [];
+          let peopleCount = 0;
+
+          for (const file of manifest.files) {
+            const raw = readJson(path.join('data', file));
+            const entries = Array.isArray(raw) ? raw : [raw];
+            for (const candidate of entries) {
+              peopleCount += 1;
+              const fields = [candidate.id, candidate.name, ...(candidate.aliases || [])].map(normalize);
+              if (fields.some((field) => aliases.includes(field))) {
+                identityHits.push({ file, id: candidate.id, name: candidate.name });
+              }
+              if (candidate.placeId === 'litledalen_kraftverk' || (candidate.places || []).includes('litledalen_kraftverk')) {
+                placeHits.push({ file, id: candidate.id, name: candidate.name });
+              }
+            }
+          }
+
+          assert.strictEqual(manifest.files.length, 547, 'Unexpected pre-batch manifest file count');
+          assert.strictEqual(peopleCount, 1122, 'Unexpected pre-batch people count');
+          assert.deepStrictEqual(identityHits, [], 'Halfdan Greve identity/variant already exists');
+          assert.deepStrictEqual(placeHits, [], 'Litledalen kraftverk already has people links');
+          console.log(JSON.stringify({
+            status: 'PASS',
+            manifestFiles: manifest.files.length,
+            peopleEntries: peopleCount,
+            searchedAliases: ['halfdan_greve', 'Halfdan Greve', 'H. Greve'],
+            identityHits,
+            placeId: 'litledalen_kraftverk',
+            placeLinkHits: placeHits
+          }, null, 2));
+          NODE
+
+      - name: Register batch and regression gate
+        run: |
+          node <<'NODE'
+          const assert = require('assert');
+          const fs = require('fs');
+          const manifestPath = 'data/people/manifest.json';
+          const source = 'people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          assert.strictEqual(manifest.files.includes(source), false, 'Batch 19 source is already registered');
+          manifest.files.push(source);
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+          const scriptPath = 'scripts/check-people.sh';
+          const marker = 'echo "== People check complete =="';
+          const block = [
+            'echo "== Etne People of Places batch 19 =="',
+            'node tests/etne-people-of-places-batch19.test.js',
+            '',
+            marker
+          ].join('\n');
+          const script = fs.readFileSync(scriptPath, 'utf8');
+          assert(script.includes(marker), 'People completion marker is missing');
+          assert(!script.includes('etne-people-of-places-batch19.test.js'), 'Batch 19 gate is already registered');
+          fs.writeFileSync(scriptPath, script.replace(marker, block));
+          NODE
+          echo "manifest and check gate registered once" | tee reports/etne-people-of-places-batch19/integration-register.log
+
+      - name: Run Batch 19 regression test
+        shell: bash
+        run: |
+          set -o pipefail
+          node tests/etne-people-of-places-batch19.test.js 2>&1 | tee reports/etne-people-of-places-batch19/batch19-test.log
+
+      - name: Run full people gate
+        shell: bash
+        run: |
+          set -o pipefail
+          bash scripts/check-people.sh 2>&1 | tee reports/etne-people-of-places-batch19/check-people.log
+
+      - name: Run typecheck
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run typecheck 2>&1 | tee reports/etne-people-of-places-batch19/typecheck.log
+
+      - name: Run tools gate against known story baseline
+        shell: bash
+        run: |
+          set -uo pipefail
+          set +e
+          npm run tools:check 2>&1 | tee reports/etne-people-of-places-batch19/tools-check.log
+          status=${PIPESTATUS[0]}
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "tools:check passed fully" | tee reports/etne-people-of-places-batch19/tools-check-baseline.log
+            exit 0
+          fi
+          total=$(grep -c 'Ugyldig place_id:' reports/etne-people-of-places-batch19/tools-check.log || true)
+          utoya=$(grep -c 'place_id=utoya' reports/etne-people-of-places-batch19/tools-check.log || true)
+          hjemmefront=$(grep -c 'place_id=norges_hjemmefrontmuseum' reports/etne-people-of-places-batch19/tools-check.log || true)
+          operaen=$(grep -c 'place_id=operaen' reports/etne-people-of-places-batch19/tools-check.log || true)
+          {
+            echo "tools:check exit: $status"
+            echo "known invalid story refs: total=$total utoya=$utoya norges_hjemmefrontmuseum=$hjemmefront operaen=$operaen"
+          } | tee reports/etne-people-of-places-batch19/tools-check-baseline.log
+          test "$total" -eq 5
+          test "$utoya" -eq 1
+          test "$hjemmefront" -eq 2
+          test "$operaen" -eq 2
+
+      - name: Audit post-batch coverage
+        shell: bash
+        run: |
+          set -o pipefail
+          node <<'NODE' | tee reports/etne-people-of-places-batch19/coverage-audit.log
+          const assert = require('assert');
+          const fs = require('fs');
+          const path = require('path');
+          const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const manifest = readJson('data/people/manifest.json');
+          const places = readJson('data/places/places_index.json');
+          const etnePlaces = new Set(places.filter((place) => String(place.kommune || '').toLowerCase() === 'etne').map((place) => place.id));
+          const covered = new Set();
+          let peopleCount = 0;
+          let targetLinks = 0;
+          for (const file of manifest.files) {
+            const raw = readJson(path.join('data', file));
+            const entries = Array.isArray(raw) ? raw : [raw];
+            for (const person of entries) {
+              peopleCount += 1;
+              const links = new Set([person.placeId, ...(person.places || [])].filter(Boolean));
+              for (const placeId of links) {
+                if (etnePlaces.has(placeId)) covered.add(placeId);
+                if (placeId === 'litledalen_kraftverk') targetLinks += 1;
+              }
+            }
+          }
+          const uncovered = [...etnePlaces].filter((id) => !covered.has(id)).sort();
+          assert.strictEqual(manifest.files.length, 548, 'Unexpected post-batch manifest count');
+          assert.strictEqual(peopleCount, 1123, 'Unexpected post-batch people count');
+          assert.strictEqual(etnePlaces.size, 81, 'Unexpected active Etne place count');
+          assert.strictEqual(covered.size, 60, 'Unexpected covered Etne place count');
+          assert.strictEqual(uncovered.length, 21, 'Unexpected uncovered Etne place count');
+          assert.strictEqual(targetLinks, 1, 'Litledalen should have exactly one people link');
+          console.log(JSON.stringify({
+            status: 'PASS',
+            manifestFiles: manifest.files.length,
+            peopleEntries: peopleCount,
+            activeEtnePlaces: etnePlaces.size,
+            coveredEtnePlaces: covered.size,
+            uncoveredEtnePlaces: uncovered.length,
+            litledalenLinks: targetLinks,
+            uncovered
+          }, null, 2));
+          NODE
+
+      - name: Finalize reports and push clean head
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const readme = 'reports/etne-people-of-places-batch19/README.md';
+          fs.appendFileSync(readme, [
+            '',
+            '## Valideringsresultat',
+            '',
+            'Den sjølvreinsande integrasjonsworkflowen passerte full pre-audit utan identitets- eller place-link-treff, registrerte batchen nøyaktig éin gong og passerte Batch 19-testen, full people-port, typekontroll og fullverktøy-porten fram til dei same fem kjende story-referansane. Faktisk terminaloutput er lagra i rapportmappa. Etter batchen er Etne-dekninga 60/81, med 21 udekte stader.',
+            ''
+          ].join('\n'));
+          NODE
+          git add data/people/manifest.json scripts/check-people.sh tests/etne-people-of-places-batch19.test.js data/people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json reports/etne-people-of-places-batch19
+          (git diff --cached --check && echo "git diff --cached --check: PASS") | tee reports/etne-people-of-places-batch19/integration-patch.log
+          git add reports/etne-people-of-places-batch19/integration-patch.log
+          rm .github/workflows/etne-people-batch19-integrate.yml
+          git add -A .github/workflows/etne-people-batch19-integrate.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Integrate Etne People of Places batch 19"
+          git push origin HEAD:agent/etne-people-of-places-batch19-litledalen
