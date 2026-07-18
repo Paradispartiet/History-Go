@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Lakkegata 79C Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Lakkegata 79C Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Lakkegata%2079C%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:14097:79C",
+  "coordinate": {
+    "lat": 59.91931038465871,
+    "lon": 10.768086181233059,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14097:79C",
+    "address": {
+      "street": "Lakkegata",
+      "number": "79C",
+      "postcode": "0562",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Lakkegata 79C, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Lakkegata",
+    "adressetekst": "Lakkegata 79C",
+    "adressetilleggsnavn": null,
+    "adressekode": 14097,
+    "nummer": 79,
+    "bokstav": "C",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 229,
+    "bruksnummer": 216,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0562",
+    "adressetekstutenadressetilleggsnavn": "Lakkegata 79C",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91931038465871,
+      "lon": 10.768086181233059
+    },
+    "oppdateringsdato": "2020-06-15T18:03:03"
+  }
+}
