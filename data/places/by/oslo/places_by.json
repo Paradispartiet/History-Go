@@ -16,12 +16,12 @@
     "visual": {
       "designCode": "street_miniature"
     },
-    "lat": 59.915,
-    "lon": 10.7526,
+    "lat": 59.91535,
+    "lon": 10.75335,
     "r": 180,
     "coordType": "street_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Lineær handlegate. Hovedmarkøren er flyttet fra et punkt som lå ~120 m øst for gateløpet (59.9145/10.7539) til den gjenkjennelige gågate-/serveringsstrekningen mellom Youngstorget og Hausmanns gate (Torggata 11–13), der folk forbinder Torggata med bygate og uteliv. Semantiske ruteankre markerer søndre (Youngstorget) og nordre (Ankerbrua) ende for kartvisning. Manuell kartvurdering mot kjent gategeometri og verifiserte endepunkt-ankre.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet.",
     "anchors": [
       {
         "id": "torggata_sor_youngstorget",
@@ -237,7 +237,16 @@
         "why_here": "Dette verket er stedsspesifikt fordi det bare kan leses gjennom Torggatas konkrete gatebredde, sykkelfelt, fortaussoner, serveringsarealer og før/nå-transformasjon.",
         "source_note": "Bygger på Torggata-dataenes `for_na`, `tasks_profile`, `quiz_profile` og `civication_store`, som alle beskriver miljøgate, oppgradert gateprofil og transformasjon fra røffere sentrumsgate til kuratert bygate."
       }
-    ]
+    ],
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:torggata",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Torggata + dokumenterte ruteankre",
+    "coordSourceId": "oslobyleksikon:torggata",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Torggata",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "bispelokket",
@@ -257,8 +266,8 @@
     "lon": 10.75528,
     "r": 220,
     "coordType": "historic_site_anchor",
-    "coordStatus": "verified",
-    "coordNote": "Punktet markerer historisk midtpunkt for den revne trafikkmaskinen/Bispelokket, brukt som kartmessig anker for anlegget som ikke står her i dag.",
+    "coordStatus": "verified_historical_source",
+    "coordNote": "Historisk anker for det revne Bispelokket ved den tidligere koblingen mellom Bispegata/E18 og Nylandsveien. Statlige plan- og samferdselskilder dokumenterer anlegget, funksjonen og rivningen; punktet er et representativt historisk anker for trafikkmaskinen og ikke et nåværende fysisk objekt.",
     "category": "by",
     "year": 1966,
     "emne_ids": [
@@ -385,8 +394,15 @@
         "Sammenlign dagens åpne byrom med ideen om et område dominert av ramper og biltrafikk."
       ]
     },
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-07-09"
+    "coordSource": "St.meld. nr. 28 (2001–2002) + St.prp. nr. 48 (2001–2002)",
+    "coordVerifiedAt": "2026-07-19",
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "regjeringen:stmeld-28-2001-2002:bispelokket",
+    "geocodeAccuracy": "historical_approximation",
+    "coordRole": "historical_anchor",
+    "coordSourceId": "regjeringen:stmeld-28-2001-2002:bispelokket",
+    "coordSourceUrl": "https://www.regjeringen.no/no/dokumenter/stmeld-nr-28-2001-2002-/id432071/?ch=3"
   },
   {
     "id": "gronland_basarene",
@@ -480,8 +496,8 @@
     "lon": 10.7419,
     "r": 250,
     "coordType": "street_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Nasjonal paradeakse mellom Jernbanetorget og Slottet. Hovedmarkøren er flyttet ~170 m øst fra den åpne Eidsvolls plass-strekningen (59.9138/10.7387) til Egertorget – det mest gjenkjennelige, sentrale gågate-punktet i Karl Johan (klokka, butikkene, der gågata møtes), ikke et teknisk midtpunkt. Semantiske ruteankre markerer begge ender for kartvisning. Manuell kartvurdering mot kjent gategeometri.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker ved Egertorget for Karl Johans gate. Oslo byleksikon beskriver Egertorget som gatens høyeste punkt og skillet mellom den østlige og vestlige delen, mens eksisterende ruteankre markerer Jernbanetorget og Slottsplassen. Punktet representerer paradeaksen og er ikke et adressepunkt.",
     "anchors": [
       {
         "id": "karl_johan_ost_jernbanetorget",
@@ -552,7 +568,16 @@
         "bogstadveien"
       ],
       "notes": "Skal spørres som gate for nasjonal representasjon, ikke bare som travel handlegate."
-    }
+    },
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:karl-johans-gate",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Karl Johans gate + dokumenterte ruteankre",
+    "coordSourceId": "oslobyleksikon:karl-johans-gate",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Karl_Johans_gate",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "radhusplassen",
@@ -564,13 +589,12 @@
     "lon": 10.7326,
     "r": 220,
     "coordType": "square_center",
-    "coordStatus": "verified",
-    "coordNote": "Rådhusplassen mellom Rådhuset og fjorden. Plassanker kontrollert mot Wikidata.",
-    "coordSource": "Wikidata (Q251078)",
-    "coordSourceId": "Q251078",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q251078",
-    "coordPrecisionM": 60,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker i Rådhusplassen. Oslo kommune avgrenser plassen mot Pipervika/Vestbanen/Aker Brygge i vest, Akershus festning/Akershusstranda i øst og Oslo rådhus i nord. Punktet ligger i selve plassrommet og brukes som display-/områdeanker, ikke som et bygningspunkt.",
+    "coordSource": "Oslo kommune – Fjordbyen: Rådhusplassen",
+    "coordSourceId": "oslo-kommune:fjordbyen:radhusplassen",
+    "coordSourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/radhusplassen/",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "rounds": [
       "people",
@@ -623,7 +647,12 @@
         "spikersuppa"
       ],
       "notes": "Skal spørres som åpen byscene med statlig og maritim bakside."
-    }
+    },
+    "locatorType": "square",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:fjordbyen:radhusplassen",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "bjorvika",
@@ -635,8 +664,8 @@
     "lon": 10.7531,
     "r": 220,
     "coordType": "area_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Utstrakt transformasjonsområde. Punktet er manuelt kartkontrollert som bevisst områdeanker sentralt i Bjørvika, ikke en enkelt adresse.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for Bjørvika som Fjordby-delområde. Oslo kommune beskriver Bjørvika som Fjordbyens største delområde, avgrenset mot Vippetangen i sørvest og Sydhavna i sørøst. Punktet er et display-/områdeanker i transformasjonsområdet, ikke en enkelt adresse eller bygning.",
     "category": "by",
     "rounds": [
       "people",
@@ -690,8 +719,15 @@
       ],
       "notes": "Skal ikke bare spørres som ny bydel, men som modell for hele fjordbyprosjektet."
     },
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-07-09"
+    "coordSource": "Oslo kommune – Fjordbyen: Bjørvika",
+    "coordVerifiedAt": "2026-07-19",
+    "locatorType": "linear_area",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:fjordbyen:bjorvika",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "oslo-kommune:fjordbyen:bjorvika",
+    "coordSourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/bjorvika"
   },
   {
     "id": "ring_3",

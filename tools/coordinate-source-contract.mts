@@ -50,10 +50,14 @@ export function validateCoordinateSource(place: any): { ok: boolean; trust: Trus
   if (verifiedStatuses.has(status) && linearTypes.has(locatorType) && !hasGeometryOrAnchors(place)) add(problems, 'geometry', 'Lineære steder må ha geometry, anchors eller coordRole line_anchor/area_anchor.', 'error', 'upgrade_to_geometry');
   if (verifiedStatuses.has(status) && ['historic_site','archaeological_site'].includes(locatorType) && !['historical_map','manual_research'].includes(sourceProvider)) add(problems, 'sourceProvider', 'Historiske steder krever historical_map eller manual_research som historisk kilde.', 'error', 'upgrade_to_historical_source');
   if (verifiedStatuses.has(status) && ['building','entrance','current_place'].includes(locatorType) && !preciseBuildingAccuracy.has(accuracy as any)) add(problems, 'geocodeAccuracy', 'Bygg/adresse-steder bør bruke rooftop/entrance/building/parcel for verified.', 'warning', 'upgrade_to_address_source');
+  const verifiedGeometrySemanticAnchor = status === 'verified_geometry' && accuracy === 'semantic_anchor' && hasGeometryOrAnchors(place) && ['line_anchor', 'area_anchor'].includes(String(place?.coordRole ?? ''));
+  const verifiedHistoricalApproximation = status === 'verified_historical_source' && accuracy === 'historical_approximation' && ['historical_map', 'manual_research'].includes(sourceProvider) && String(place?.coordRole ?? '') === 'historical_anchor';
+  const verifiedHistoricalSemanticAnchor = status === 'verified_historical_source' && accuracy === 'semantic_anchor' && ['historical_map', 'manual_research'].includes(sourceProvider) && hasGeometryOrAnchors(place) && ['line_anchor', 'area_anchor', 'historical_anchor'].includes(String(place?.coordRole ?? ''));
+  const acceptedLowAccuracy = verifiedGeometrySemanticAnchor || verifiedHistoricalApproximation || verifiedHistoricalSemanticAnchor;
   let trust: Trust = 'review';
   if (!status || !locatorType || !sourceProvider) trust = 'unknown';
   else if (status === 'invalid') trust = 'invalid';
-  else if (verifiedStatuses.has(status) && !problems.some((p) => p.severity === 'error') && sourceProvider !== 'legacy_unknown' && !onlyManualMapCheck(place)) trust = 'verified';
+  else if (verifiedStatuses.has(status) && !problems.some((p) => p.severity === 'error') && sourceProvider !== 'legacy_unknown' && !onlyManualMapCheck(place) && (!lowAccuracy.has(accuracy) || acceptedLowAccuracy)) trust = 'verified';
   else if (reviewStatuses.has(status) || problems.length > 0 || lowAccuracy.has(accuracy)) trust = 'review';
   return { ok: trust === 'verified' || (!verifiedStatuses.has(status) && !problems.some((p) => p.severity === 'error')), trust, problems };
 }

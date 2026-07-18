@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 60 verifiserte eller kildekontrollerte canonical steder. Batch 1–7 dekker de første 37 stedene. Batch 8–10 legger til sju steder hver, og batch 11 er foreløpig påbegynt med to steder. I tillegg er to senere kandidater ferdig kontrollert med `needs_review` og ført separat fordi ingen koordinat ble godkjent. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-tabellen inneholder nå 65 verifiserte eller kildekontrollerte canonical steder. Batch 1–11 er fullført, der batch 11 avsluttes med fem objekt- og områdespesifikke kontroller av Torggata, Bispelokket, Karl Johans gate, Rådhusplassen og Bjørvika. I tillegg er to kandidater ferdig kontrollert med `needs_review` og ført separat fordi ingen koordinat ble godkjent. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -81,6 +81,11 @@ Oslo-tabellen inneholder nå 60 verifiserte eller kildekontrollerte canonical st
 | 10 | `nordre_skoyen_hovedgard` | Nordre Skøyen hovedgård | verified | `geonorge-adresser-v1:0301:15665:17` |
 | 11 | `lokomotivverkstedet` | Lokomotivverkstedet | verified | `geonorge-adresser-v1:0301:10641:16` |
 | 11 | `tveten_gard` | Tveten gård | verified | `geonorge-adresser-v1:0301:17852:101` |
+| 11 | `torggata` | Torggata | verified_geometry | `oslobyleksikon:torggata` |
+| 11 | `bispelokket` | Bispelokket / Trafikkmaskinen | verified_historical_source | `regjeringen:stmeld-28-2001-2002:bispelokket` |
+| 11 | `karl_johan` | Karl Johans gate | verified_geometry | `oslobyleksikon:karl-johans-gate` |
+| 11 | `radhusplassen` | Rådhusplassen | verified_geometry | `oslo-kommune:fjordbyen:radhusplassen` |
+| 11 | `bjorvika` | Bjørvika | verified_geometry | `oslo-kommune:fjordbyen:bjorvika` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -88,7 +93,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 60 verifiserte canonical stedene.
+Disse kontrollene er fullført, men teller ikke blant de 65 verifiserte eller kildekontrollerte canonical stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -141,6 +146,6 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 61.
-- Batch 11 har foreløpig to av sju planlagte steder (`lokomotivverkstedet` og `tveten_gard`); før de neste fem fortløpende inn i samme batch.
+- Neste nye Oslo-kontroll er nummer 66 og starter batch 12.
+- Fortsett i canonical filrekkefølge når det gir en naturlig arbeidskø, men velg alltid koordinatmetode etter fysisk objekttype.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
