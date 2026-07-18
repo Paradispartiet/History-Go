@@ -14,4 +14,11 @@ Representation decision: create one canonical `historie` place for `stubljan_pav
 
 The pavilion is the preferred map anchor because it is a surviving protected building, a documented focal element of the former manor park and a present-day public cultural venue with its own official visitor address. The Hvervenbukta bathing area is therefore not used as a substitute historical coordinate.
 
-Official visitor address for address-first lookup: Ljansbrukveien 4C, 1250 Oslo.
+Address-first result:
+- `59.83391028057809, 10.772352984625687`
+- `geonorge-adresser-v1:0301:12168:4C`
+- Ljansbrukveien 4C, 1250 Oslo
+
+## Validation path
+
+The dedicated integration workflow registers the history source, rebuilds the global place index and runs coordinate parity, strict coordinate intake, canonical emne validation and the place-health report. Temporary workflows are removed before merge.
