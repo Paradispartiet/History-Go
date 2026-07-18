@@ -12,6 +12,8 @@ Oslo kommune documents the building as a purpose-built 1875 prayer house initiat
 
 Representation: canonical `historie` place focused on changing religious, occupation, welfare and cultural uses of one physical building.
 
+Official visitor address for address-first lookup: Olaf Ryes plass 2, 0552 Oslo.
+
 ## Slurpen
 
 No canonical History Go record was found for `Slurpen`, the former municipal common kitchen at Lakkegata 79C, or the historical school-meal function.
@@ -19,6 +21,8 @@ No canonical History Go record was found for `Slurpen`, the former municipal com
 Oslo kommune documents the 1901 building as the common kitchen for Lakkegata school. The school complex stands on the former Tøyen cholera cemetery. The building later became a culture and assembly venue; the municipality's current meeting-place page also documents later artist use and today's local community functions.
 
 Representation: canonical `historie` place focused on public school meals, urban health history, reuse and neighbourhood community life — not merely the current venue programme.
+
+Official visitor address for address-first lookup: Lakkegata 79C, 0562 Oslo.
 
 ## Frysja decision
 
