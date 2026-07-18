@@ -1,0 +1,82 @@
+name: Abelonegarden clean main integration v2
+
+on:
+  push:
+    branches:
+      - fix/abelonegarden-clean-main-v2
+    paths:
+      - .github/workflows/abelonegarden-clean-main-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/abelonegarden-clean-main-v2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run Abelone migration
+        run: node scripts/add-abelonegarden-place-person.mjs
+
+      - name: Remove known duplicate subkultur entries if present
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json')
+          data = json.loads(p.read_text())
+          targets = {'stein_lillevolden', 'bror_wyller', 'hermann_stene'}
+          seen = set()
+          out = []
+          for person in data:
+              pid = person.get('id')
+              if pid in targets and pid in seen:
+                  continue
+              seen.add(pid)
+              out.append(person)
+          p.write_text(json.dumps(out, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+      - name: Build and validate
+        run: |
+          npm run places:index:build
+          bash scripts/check-places.sh
+          bash scripts/check-people.sh
+
+      - name: Restore generated audit reports not part of the data change
+        run: |
+          git restore \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md || true
+
+      - name: Commit clean integration and remove one-shot workflow
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm .github/workflows/abelonegarden-clean-main-v2.yml
+          git add \
+            data/people/manifest.json \
+            data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json \
+            data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json \
+            data/places/manifest.json \
+            data/places/places_index.json \
+            data/places/historie/oslo/places_historie/abelonegarden.json \
+            reports/abelonegarden-place-person-batch1-validation.md \
+            .github/workflows/abelonegarden-clean-main-v2.yml
+          git commit -m "Integrate Abelonegarden and Abelone Kristensen on current main"
+          git push origin HEAD:fix/abelonegarden-clean-main-v2
