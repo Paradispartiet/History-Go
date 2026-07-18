@@ -135,5 +135,11 @@ assert(/\.pc-round\[hidden\]\s*\{[\s\S]*display:\s*none\s*!important/.test(place
 assert(placeCardJs.includes('window.HGLeksikon.openPlace(currentPlaceId)'), 'Klikk på Leksikon-runding skal åpne HGLeksikon.openPlace');
 assert(/wonderkammer/i.test(placeCardJs), 'Wonderkammer-innhold skal fortsatt finnes i PlaceCard/Leksikon-flowen');
 assert(placeCardJs.includes('bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands")'), 'Klikk på Brands-runding skal være bundet til brands-popup');
+assert(placeCardJs.includes('if (kind === "nature") html = renderPlaceCardNatureProfile(currentPlace || place);'), 'Natur-popup skal bruke nature_profile-rendereren');
+assert(placeCardJs.includes('natureEl.innerHTML = `${profileHtml}${floraHtml}`;'), 'Natur-listen skal fylles i canonical pcNatureList');
+assert(!placeCardJs.includes('wonderkammerEl.innerHTML = `${profileHtml}${floraHtml}`;'), 'Nature_profile skal ikke lenger rendres bare til legacy Wonderkammer-listen');
+assert(placeCardJs.includes('window.HGStories?.getByPlace?.(storyPlaceId)'), 'Fortelling-rundingen skal lese stedets lastede stories');
+assert(placeCardJs.includes('window.HGStories.init()'), 'Fortelling-rundingen skal fylle seg etter at stories er lastet');
+assert(!placeCardJs.includes('fortellingerEl.innerHTML = `<div class="pc-empty">Ingen fortellinger ennå</div>`;'), 'Fortelling-rundingen skal ikke lenger være hardkodet tom');
 
 console.log('PlaceCard-runding runtime audit OK');

@@ -108,6 +108,13 @@ function getEntityArrayFromSource(json: unknown, file: string, entityName: strin
   }
 
   if (isJsonObject(json)) {
+    // Split manifests may point directly to one canonical entity object.
+    // Treat that format like a one-row array so reference validation works
+    // for both legacy batch files and newer per-entity files.
+    if (typeof json.id === 'string' && json.id.trim()) {
+      return [json];
+    }
+
     const matchingKeys = arrayKeys.filter((key) => Array.isArray(json[key]));
     if (matchingKeys.length === 1) {
       return json[matchingKeys[0]] as unknown[];
