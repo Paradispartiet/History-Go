@@ -20,12 +20,15 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
-      - name: Find and save Geonorge address candidate
+      - name: Find and save Geonorge address candidates
         run: |
           mkdir -p reports/oslo-kultureiendommer-batch-9/coordinates
-          npm run places:coords:find:address -- --address "Kjelsåsveien 145 Oslo" \
+          npm run places:coords:find:address -- --address "Kjelsåsveien 145 0491 Oslo" \
             | tee reports/oslo-kultureiendommer-batch-9/coordinates/frysja-33.json
-      - name: Commit coordinate report
+          curl --fail --silent --show-error \
+            "https://ws.geonorge.no/adresser/v1/sok?sok=Kjels%C3%A5sveien%20145%200491%20Oslo" \
+            | tee reports/oslo-kultureiendommer-batch-9/coordinates/frysja-33-raw.json
+      - name: Commit coordinate reports
         run: |
           git config user.name "actions"
           git config user.email "actions@github.com"
