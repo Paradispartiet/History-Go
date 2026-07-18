@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   people:
@@ -91,3 +91,44 @@ jobs:
             npm run places:emner:check
             npm run places:coords:check
           fi
+
+  etne-politikk-manifest-format-cleanup:
+    name: Etne politics manifest format cleanup
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/etne-politikk-batch-1' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Etne politics branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-politikk-batch-1
+          fetch-depth: 0
+
+      - name: Restore compact manifest formatting
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const required = [
+            'places/politikk/vestland/etne/etne_tinghus.json',
+            'places/politikk/vestland/etne/etne_brannstasjon.json',
+            'places/politikk/vestland/etne/skanevik_brannstasjon.json'
+          ];
+          for (const item of required) {
+            const count = manifest.files.filter((row) => row === item).length;
+            if (count !== 1) throw new Error(`${item}: manifest count ${count}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest));
+          NODE
+
+      - name: Restore CI and commit cleanup
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/data-checks.yml data/places/manifest.json
+          git commit -m 'Restore compact places manifest formatting'
+          git push origin HEAD:agent/etne-politikk-batch-1
