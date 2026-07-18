@@ -20,6 +20,7 @@
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
   const STYLE_MODE_STANDARD = "standard";
   const STYLE_MODE_SATELLITE = "satellite";
+  const DEFAULT_MAP_PITCH = 35;
   const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
 
   const SRC = "hg-places";
@@ -140,7 +141,7 @@
       style: getStyleUrlForMode(mapStyleMode),
       center: [START.lon, START.lat],
       zoom: START.zoom,
-      pitch: 0,
+      pitch: DEFAULT_MAP_PITCH,
       bearing: 0,
       antialias: true
     });
