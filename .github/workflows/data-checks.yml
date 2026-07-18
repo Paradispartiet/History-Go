@@ -214,7 +214,10 @@ jobs:
           if (!steinsvollenNotes.includes('Stedsnavn') && !steinsvollenNotes.includes('representativt Steinsvegen')) {
             throw new Error('Steinsvollen anchor disclosure missing');
           }
-          if (!skanevik.quiz_profile.notes.includes('Stedsnavn')) throw new Error('Skånevik outdoor anchor disclosure missing');
+          const skanevikNotes = skanevik.quiz_profile.notes;
+          if (!skanevikNotes.includes('Stedsnavn') && !skanevikNotes.includes('representativt uteanleggspunkt')) {
+            throw new Error('Skånevik outdoor anchor disclosure missing');
+          }
           console.log(`PASS Etne idrettsanlegg ↔ BMX/skatepark: ${distances.etne_bmx.toFixed(3)} km; distinct facilities`);
           console.log(`PASS Etne idrettsanlegg ↔ Engebanen: ${distances.etne_enge.toFixed(3)} km; distinct facilities`);
           console.log(`PASS Etne idrettsanlegg ↔ Steinsvollen: ${distances.etne_steinsvollen.toFixed(3)} km; distinct facilities`);
