@@ -2,9 +2,9 @@
   {
     "id": "salt",
     "name": "SALT",
-    "lat": 59.90765,
-    "lon": 10.7449,
-    "r": 160,
+    "lat": 59.906508,
+    "lon": 10.746735,
+    "r": 120,
     "category": "musikk",
     "rounds": [
       "people",
@@ -57,10 +57,22 @@
       "notes": "Skal spørres som midlertidig kulturarena og sceneområde, ikke som vanlig serveringssted."
     },
     "coordType": "site_center",
-    "coordStatus": "needs_source",
-    "coordSource": "legacy_manual_map_check",
-    "coordVerifiedAt": "2026-07-09",
-    "coordNote": "Punktet markerer selve SALT-anlegget på Langkaia/kaikanten øst for Havnelageret, ikke veisystemet, Tollbukaia eller Bjørvika-/Opera-/Bispelokket-klyngen. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap POI + SALT official site",
+    "coordVerifiedAt": "2026-07-18",
+    "coordNote": "OpenStreetMap sitt navngitte SALT Art & Music-POI, node 6677384187, kontrollert mot SALTs offisielle opplysning om Langkaia 1 som nærmeste GPS-adresse. Punktet ligger i selve kulturarenaen og bruker ikke Geonorge-punktet for Havnelageret som er knyttet til samme gateadresse.",
+    "locatorType": "poi",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:6677384187",
+    "address": {
+      "street": "Langkaia",
+      "number": "1",
+      "postcode": "0150",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "site_center"
   },
   {
     "id": "det_norske_teatret",
@@ -131,9 +143,26 @@
   {
     "id": "blaa",
     "name": "Blå",
-    "lat": 59.9223,
-    "lon": 10.7527,
-    "r": 130,
+    "lat": 59.920159,
+    "lon": 10.752843,
+    "r": 90,
+    "coordType": "poi_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap POI + BLÅ official venue address",
+    "coordVerifiedAt": "2026-07-18",
+    "coordNote": "OpenStreetMap sitt navngitte BLÅ-POI, node 4312299494, kontrollert mot spillestedets offisielle adresse Brenneriveien 9C. Punktet markerer selve klubb- og konsertscenen ved Akerselva, ikke et generelt Vulkan-anker.",
+    "locatorType": "poi",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:4312299494",
+    "address": {
+      "street": "Brenneriveien",
+      "number": "9C",
+      "postcode": "0182",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "site_center",
     "category": "musikk",
     "year": 1998,
     "desc": "Klubb- og konsertscene ved Akerselva, viktig for jazz, elektronika og klubbkultur i Oslo.",

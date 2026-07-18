@@ -132,8 +132,8 @@
   {
     "id": "tollbukaia",
     "name": "Tollbukaia",
-    "lat": 59.90825,
-    "lon": 10.74105,
+    "lat": 59.9091402,
+    "lon": 10.7493045,
     "r": 130,
     "category": "naeringsliv",
     "year": 1890,
@@ -181,10 +181,28 @@
       "notes": "Spør stedet gjennom arbeid, infrastruktur og byøkonomi, ikke bare bygningens utseende."
     },
     "coordType": "quay_semantic_anchor",
-    "coordStatus": "needs_source",
-    "coordSource": "legacy_manual_map_check",
-    "coordVerifiedAt": "2026-07-09",
-    "coordNote": "Semantisk kaianker for Tollbukaia/tollområdet langs kai- og gatefronten vest for Havnelageret; ikke inne i Grev Wedels plass og ikke på østsiden ved Langkaia/SALT. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslo byleksikon + OpenStreetMap way 280893929",
+    "coordVerifiedAt": "2026-07-18",
+    "coordNote": "Dokumentert linjeanker for Tollbukaia mellom Langkaia og Palékaia innerst i Bjørvika. Oslo byleksikon avklarer det historiske kaiområdet, mens OpenStreetMap way 280893929 gir den nå kartfestede Tollbukaia-linjen. Punktet er et representativt linjeanker, ikke et påstått sentrum for hele den historiske kaiflaten.",
+    "locatorType": "quay",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:tollbukaia",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "anchors": [
+    {
+      "id": "tollbukaia_linjeanker",
+      "name": "Tollbukaia – linjeanker",
+      "lat": 59.9091402,
+      "lon": 10.7493045,
+      "r": 130,
+      "type": "quay_anchor",
+      "sourceObjectId": "osm-way:280893929",
+      "role": "line_anchor",
+      "note": "Representativt anker på den kartfestede Tollbukaia-linjen."
+      }
+    ]
   },
   {
     "id": "oslo_posthus",
@@ -530,8 +548,8 @@
   {
     "id": "akershus_kaier",
     "name": "Akershuskaiene",
-    "lat": 59.90715,
-    "lon": 10.73705,
+    "lat": 59.906783,
+    "lon": 10.7352565,
     "r": 200,
     "category": "naeringsliv",
     "year": 1850,
@@ -581,10 +599,28 @@
       "shipping_og_havn"
     ],
     "coordType": "quay_semantic_anchor",
-    "coordStatus": "needs_source",
-    "coordSource": "legacy_manual_map_check",
-    "coordVerifiedAt": "2026-07-09",
-    "coordNote": "Semantisk kaianker for den lineære Akershuskaiene-fronten langs Akershus festning/Pipervika; punktet er ikke et tilfeldig Vippetangen- eller havnebassengpunkt. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4252516 + Oslo byleksikon",
+    "coordVerifiedAt": "2026-07-18",
+    "coordNote": "Linjeanker på OpenStreetMap way 4252516 for Akershusstranda langs kaifronten. Oslo byleksikon avgrenser Akershuskaiene fra Rådhusbryggene til Vippetangkaia og dokumenterer Nordre og Søndre Akershuskai. Punktet representerer det lange kaianlegget og er ikke et tilfeldig havnebasseng- eller Vippetangen-punkt.",
+    "locatorType": "quay",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:4252516",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "line_anchor",
+    "anchors": [
+    {
+      "id": "akershuskaiene_linjeanker",
+      "name": "Akershuskaiene – linjeanker",
+      "lat": 59.906783,
+      "lon": 10.7352565,
+      "r": 200,
+      "type": "quay_anchor",
+      "sourceObjectId": "osm-way:4252516",
+      "role": "line_anchor",
+      "note": "Representativt anker på kaifronten langs Akershusstranda."
+      }
+    ]
   },
   {
     "id": "fornebu_teknologipark",
@@ -846,14 +882,14 @@
   },
   {
     "id": "oslo_mek",
-    "name": "Oslo Mekaniske Verksted",
-    "lat": 59.90745,
-    "lon": 10.75195,
-    "r": 140,
+    "name": "Akers mekaniske Verksted",
+    "lat": 59.9107593,
+    "lon": 10.7265121,
+    "r": 260,
     "category": "naeringsliv",
     "year": 1854,
-    "desc": "Verkstedet i Bjørvika produserte dampmaskiner og skip – en motor i norsk industrialisering.",
-    "popupDesc": "Oslo Mekaniske Verksted var et viktig produksjonsmiljø for maskiner og maritim industri i havneområdet. Verkstedet viser hvordan tungindustri og sjøfart hang sammen i hovedstadens økonomi.\n\nI History Go er stedet sentralt for spørsmål om teknologi, fagarbeid og industribasert byvekst.",
+    "desc": "Akers mekaniske Verksted ved Pipervika bygde skip og maskiner på området som i dag er Aker Brygge.",
+    "popupDesc": "Akers mekaniske Verksted flyttet til Holmen ved Pipervika i 1854 og ble et av Oslos viktigste produksjonsmiljøer for skipsbygging, motorer og maritim industri. Det gamle verftsområdet er i dag Aker Brygge. Stedet viser hvordan tungindustri, sjøfart og fagarbeid formet hovedstadens økonomi, og hvordan et stort produksjonsområde senere ble omformet til kontorer, handel, servering og byliv.",
     "emne_ids": [
       "em_naer_felt_arbeid_verdiskaping",
       "em_naer_geografi_infrastruktur",
@@ -863,8 +899,8 @@
       "place_type": "anlegg",
       "subtype": "industri_produksjon",
       "signature_features": [
-        "Oslo Mekaniske Verksted",
-        "Verkstedet i Bjørvika produserte dampmaskiner og skip – en motor i norsk industrialisering",
+        "Akers mekaniske Verksted",
+        "verftsområdet ved Pipervika som senere ble Aker Brygge",
         "knyttet til næringslivets infrastruktur"
       ],
       "primary_angles": [
@@ -898,10 +934,21 @@
       "industri"
     ],
     "coordType": "historic_site_anchor",
-    "coordStatus": "needs_source",
-    "coordSource": "legacy_manual_map_check",
-    "coordVerifiedAt": "2026-07-09",
-    "coordNote": "Historisk anker: Historisk anleggspunkt for verksted-/industriområdet i Bjørvika slik desc/popupDesc beskriver, lagt på land ved tidligere Nylands/verkstedområde under dagens Bjørvika/Opera-område; ikke dagens bar-navnebruk og ikke vannflate. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslo byleksikon + OSM historical markers at Aker Brygge",
+    "coordVerifiedAt": "2026-07-18",
+    "coordNote": "Historisk områdeanker beregnet fra fire OpenStreetMap-punkter navngitt Akers Mek. Verksted på Aker Brygge. Oslo byleksikon dokumenterer at Akers mekaniske Verksted flyttet til Holmen/Pipervika i 1854 og at verftsområdet senere ble Aker Brygge. Ankeret representerer det tidligere verftsområdet, ikke én bevart bygning eller dagens Oslo Mekaniske Verksted-bar.",
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:akers-mek-verksted",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "anchors": [
+      {"id": "akers_mek_marker_1", "name": "Akers Mek. Verksted – historisk markør 1", "lat": 59.9107933, "lon": 10.7271491, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352551"},
+      {"id": "akers_mek_marker_2", "name": "Akers Mek. Verksted – historisk markør 2", "lat": 59.9108462, "lon": 10.7269146, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352552"},
+      {"id": "akers_mek_marker_3", "name": "Akers Mek. Verksted – historisk markør 3", "lat": 59.9105795, "lon": 10.7264389, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352553"},
+      {"id": "akers_mek_marker_4", "name": "Akers Mek. Verksted – historisk markør 4", "lat": 59.9108182, "lon": 10.7255458, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352556"}
+    ]
   },
   {
     "id": "schous_bryggeri",

@@ -1,22 +1,22 @@
 {
   "placeId": "salt",
   "placeFile": "data/places/musikk/oslo/places_musikk.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_poi_source",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.90765,
-    "lon": 10.7449,
-    "r": 160,
-    "coordStatus": "needs_source",
-    "coordSource": "legacy_manual_map_check",
+    "lat": 59.906508,
+    "lon": 10.746735,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap POI + SALT official site",
     "coordType": "site_center",
-    "coordNote": "Punktet markerer selve SALT-anlegget på Langkaia/kaikanten øst for Havnelageret, ikke veisystemet, Tollbukaia eller Bjørvika-/Opera-/Bispelokket-klyngen. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+    "coordNote": "OpenStreetMap sitt navngitte SALT Art & Music-POI, node 6677384187, kontrollert mot SALTs offisielle opplysning om Langkaia 1 som nærmeste GPS-adresse. Punktet ligger i selve kulturarenaen og bruker ikke Geonorge-punktet for Havnelageret som er knyttet til samme gateadresse."
   },
   "identity": {
     "currentName": "SALT",
-    "resolvedIdentity": null,
-    "identityStatus": "unresolved",
-    "identityProblem": "POI/venue må kildefestes med sourceObjectId eller strukturert adresse; navn alene er ikke nok.",
+    "resolvedIdentity": "SALT Art & Music, kulturarenaen på Langkaia",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "poi",
     "requiresSplit": false,
     "splitReason": ""
@@ -26,15 +26,40 @@
     "POI-kilde som OSM/Google Places/Mapbox/official map hvis tilgjengelig",
     "site_center eller entrance må begrunnes"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap",
+      "sourceUrl": "https://www.openstreetmap.org/node/6677384187",
+      "sourceObjectId": "osm-node:6677384187",
+      "sourceQuality": "named_poi_geometry",
+      "finding": "Navngitt SALT Art & Music-POI inne i kulturarenaen ved Langkaia.",
+      "canVerifyCoordinate": true,
+      "reason": "POI-et identifiserer selve arenaen, ikke Havnelagerets adressepunkt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "SALT official site",
+      "sourceUrl": "https://www.salted.no/kontakt-english",
+      "sourceObjectId": "salt-official:langkaia-1",
+      "sourceQuality": "official_venue_identity",
+      "finding": "SALT oppgir Langkaia 1 som nærmeste GPS-adresse.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden bekrefter identiteten og området; OSM-POI-et gir selve arenapunktet."
+    }
+  ],
   "addressCandidates": [],
-  "sourceObjectCandidates": [],
+  "sourceObjectCandidates": [
+    {"sourceProvider": "osm", "sourceObjectId": "osm-node:6677384187", "canApplyToPlace": true}
+  ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {"lat": 59.906508, "lon": 10.746735, "sourceObjectId": "osm-node:6677384187", "canApplyToPlace": true}
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "POI/venue kan ikke verifiseres fra navn alene. Trenger sourceObjectId eller strukturert adresse.",
-    "nextAction": "Finn offisiell venue-kilde og POI-/kartobjekt før koordinat kan endres eller verifiseres."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "SALT er oppdatert med navngitt OSM-POI og offisiell venue-identitet."
   },
   "notes": [
     "Ikke bruk fritekstnavnet SALT som adressegeokoding alene.",

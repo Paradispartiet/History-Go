@@ -1,8 +1,8 @@
 {
   "id": "tollbukaia",
   "name": "Tollbukaia",
-  "lat": 59.90825,
-  "lon": 10.74105,
+  "lat": 59.9091402,
+  "lon": 10.7493045,
   "r": 130,
   "category": "naeringsliv",
   "year": 1890,
@@ -50,8 +50,26 @@
     "notes": "Spør stedet gjennom arbeid, infrastruktur og byøkonomi, ikke bare bygningens utseende."
   },
   "coordType": "quay_semantic_anchor",
-  "coordStatus": "needs_source",
-  "coordSource": "legacy_manual_map_check",
-  "coordVerifiedAt": "2026-07-09",
-  "coordNote": "Semantisk kaianker for Tollbukaia/tollområdet langs kai- og gatefronten vest for Havnelageret; ikke inne i Grev Wedels plass og ikke på østsiden ved Langkaia/SALT. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified."
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Oslo byleksikon + OpenStreetMap way 280893929",
+  "coordVerifiedAt": "2026-07-18",
+  "coordNote": "Dokumentert linjeanker for Tollbukaia mellom Langkaia og Palékaia innerst i Bjørvika. Oslo byleksikon avklarer det historiske kaiområdet, mens OpenStreetMap way 280893929 gir den nå kartfestede Tollbukaia-linjen. Punktet er et representativt linjeanker, ikke et påstått sentrum for hele den historiske kaiflaten.",
+  "locatorType": "quay",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "oslobyleksikon:tollbukaia",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "anchors": [
+    {
+      "id": "tollbukaia_linjeanker",
+      "name": "Tollbukaia – linjeanker",
+      "lat": 59.9091402,
+      "lon": 10.7493045,
+      "r": 130,
+      "type": "quay_anchor",
+      "sourceObjectId": "osm-way:280893929",
+      "role": "line_anchor",
+      "note": "Representativt anker på den kartfestede Tollbukaia-linjen."
+    }
+  ]
 }
