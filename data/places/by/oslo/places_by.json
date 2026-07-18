@@ -3725,17 +3725,16 @@
     "visual": {
       "designCode": "station_miniature"
     },
-    "lat": 59.9147,
-    "lon": 10.7318,
+    "lat": 59.915565,
+    "lon": 10.731915,
     "r": 170,
-    "coordType": "transit_anchor",
-    "coordStatus": "verified",
-    "coordNote": "Nationaltheatret stasjon (jernbane + T-bane). Kontrollert mot Wikipedia; anker satt sentralt i stasjonsanlegget som strekker seg fra jernbaneplattform (~10.730) til T-banestasjon (~10.733).",
-    "coordSource": "Wikipedia (Nationaltheatret station / metro station)",
-    "coordSourceId": "Nationaltheatret stasjon",
-    "coordSourceUrl": "https://en.wikipedia.org/wiki/Nationaltheatret_station",
-    "coordPrecisionM": 120,
-    "coordVerifiedAt": "2026-06-15",
+    "coordType": "transit_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Flerankret områdepunkt for Nationaltheatret stasjonskompleks. Hovedpunktet er midtpunktet mellom OSM-stasjonsobjektene for T-bane og jernbane, slik at History Go-stedet representerer det samlede underjordiske knutepunktet og ikke bare én plattform eller inngang.",
+    "coordSource": "OpenStreetMap – Nationaltheatret T-bane- og jernbanestasjon",
+    "coordSourceId": "osm-node:5218231660+1759965001",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/5218231660",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1928,
     "emne_ids": [
@@ -3779,7 +3778,32 @@
         "majorstuen_tbanestasjon"
       ],
       "notes": "Skal spørres som skjult og sentral overgangsmaskin."
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:5218231660+1759965001",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "anchors": [
+      {
+        "id": "nationaltheatret_tbanestasjon",
+        "name": "Nationaltheatret T-banestasjon",
+        "type": "transit_stop",
+        "lat": 59.91558,
+        "lon": 10.73193,
+        "r": 70,
+        "sourceObjectId": "osm-node:5218231660"
+      },
+      {
+        "id": "nationaltheatret_jernbanestasjon",
+        "name": "Nationaltheatret jernbanestasjon",
+        "type": "transit_stop",
+        "lat": 59.91555,
+        "lon": 10.7319,
+        "r": 70,
+        "sourceObjectId": "osm-node:1759965001"
+      }
+    ]
   },
   {
     "id": "bislett",
@@ -3887,13 +3911,12 @@
     "lon": 10.7589,
     "r": 170,
     "coordType": "square_center",
-    "coordStatus": "verified",
-    "coordNote": "Olaf Ryes plass på Grünerløkka. Plass/parkanker kontrollert mot Wikidata.",
-    "coordSource": "Wikidata (Q4993079)",
-    "coordSourceId": "Q4993079",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q4993079",
-    "coordPrecisionM": 50,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker i Olaf Ryes plass. Oslo kommune avgrenser plassen mellom Markveien, Grüners gate, Thorvald Meyers gate og Sofienberggata. Punktet beholdes inne i selve plass-/parkrommet og brukes ikke som adressepunkt for omkringliggende bygg.",
+    "coordSource": "Oslo kommune – Olaf Ryes plass",
+    "coordSourceId": "oslo-kommune:park:olaf-ryes-plass",
+    "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/olaf-ryes-plass/",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1890,
     "emne_ids": [
@@ -3943,7 +3966,12 @@
     ],
     "connected_sport_place_ids": [
       "daelenenga_idrettspark"
-    ]
+    ],
+    "locatorType": "square",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:park:olaf-ryes-plass",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "birkelunden",
@@ -3951,17 +3979,16 @@
     "visual": {
       "designCode": "park_miniature"
     },
-    "lat": 59.927,
-    "lon": 10.7601,
+    "lat": 59.92634,
+    "lon": 10.76013,
     "r": 190,
     "coordType": "park_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Birkelunden park/plass på Grünerløkka (ved Paulus kirke). Parkanker korrigert ~235 m nordøst til faktisk park (kontrollert mot OpenStreetMap). Områdeanker for kartvisning.",
-    "coordSource": "OpenStreetMap (Birkelunden park) – kryssjekket mot Paulus kirke",
-    "coordSourceId": "26226558",
-    "coordSourceUrl": "https://mapcarta.com/26226558",
-    "coordPrecisionM": 150,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Geometriforankret områdeanker inne i Birkelunden. OSM-way 3236549 identifiserer selve parkpolygonet; Oslo kommune brukes som uavhengig identitets- og avgrensningskontroll. Punktet representerer parkgeometrien og skilles fra Birkelunden holdeplass, Paulus plass og Paulus kirke.",
+    "coordSource": "OpenStreetMap way 3236549 – Birkelunden",
+    "coordSourceId": "osm-way:3236549",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/3236549",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1910,
     "emne_ids": [
@@ -4011,7 +4038,12 @@
     ],
     "connected_sport_place_ids": [
       "daelenenga_idrettspark"
-    ]
+    ],
+    "locatorType": "park",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:3236549",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor"
   },
   {
     "id": "akerselva",
@@ -4023,8 +4055,8 @@
     "lon": 10.7572,
     "r": 420,
     "coordType": "river_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Elv gjennom byen fra Maridalsvannet til Bjørvika. Hovedpunktet er et bevisst elveanker ved Grünerløkka-strekningen; semantiske ruteankre markerer øvre, midtre og nedre del.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Akerselva. Oslo kommune beskriver elveløpet fra Maridalsvannet/Nydalen ned gjennom byen, mens History Go har eksplisitte ruteankre i øvre, midtre og nedre del. Hovedpunktet beholdes ved Grünerløkka-strekningen og er ikke et påstått sentrum for hele elva.",
     "anchors": [
       {
         "id": "akerselva_ovre_nydalen",
@@ -4094,7 +4126,16 @@
         "ring_3"
       ],
       "notes": "Skal spørres som struktur som bærer byen, ikke bare som grønt drag."
-    }
+    },
+    "locatorType": "route",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:river:akerselva",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo kommune – Akerselva + dokumenterte elveankre",
+    "coordSourceId": "oslo-kommune:river:akerselva",
+    "coordSourceUrl": "https://www.oslo.kommune.no/english/welcome-to-oslo/life-in-oslo/enjoy-the-outdoors/lakes-and-rivers/",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "universitetsplassen",
@@ -4106,13 +4147,12 @@
     "lon": 10.7355,
     "r": 150,
     "coordType": "square_center",
-    "coordStatus": "verified",
-    "coordNote": "Universitetsplassen foran de gamle universitetsbygningene ved Karl Johans gate. Kontrollert mot Wikidata/OpenStreetMap; korrigert ~245 m vestover til faktisk plass.",
-    "coordSource": "Wikidata (Q12008507) + OpenStreetMap",
-    "coordSourceId": "Q12008507",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q12008507",
-    "coordPrecisionM": 50,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for Universitetsplassen foran universitetsbygningene i Karl Johans gate 47. Oslo byleksikon identifiserer plassen eksplisitt; punktet beholdes i det åpne forplassrommet og skilles fra Karl Johans gate og universitetsbygningene.",
+    "coordSource": "Oslo byleksikon – Universitetsplassen",
+    "coordSourceId": "oslobyleksikon:universitetsplassen",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Universitetsplassen",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1852,
     "emne_ids": [
@@ -4156,7 +4196,12 @@
         "karl_johan"
       ],
       "notes": "Skal spørres som institusjonell front, ikke som nøytral steinplass."
-    }
+    },
+    "locatorType": "square",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:universitetsplassen",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "operahuset",
@@ -4461,12 +4506,12 @@
   {
     "id": "barcode",
     "name": "Barcode",
-    "lat": 59.908,
-    "lon": 10.7602,
+    "lat": 59.90809,
+    "lon": 10.75956,
     "r": 210,
     "coordType": "area_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Rekke med høyhus langs Dronning Eufemias gate. Ett punkt dekker ikke rekka; hovedmarkøren er manuelt kartkontrollert som områdeanker midt i Barcode-rekka langs DEG, der bygningsstripa er mest gjenkjennelig.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Presist semantisk områdeanker for Barcode-rekken langs nordsiden av Dronning Eufemias gate. OSM-node 8071120191 identifiserer Barcode som eget nabolags-/prosjektobjekt; Oslo kommune dokumenterer høyhusrekken som næringsdelen og bakre vegg i Bjørvika. Punktet representerer rekken som område, ikke én enkelt bygning.",
     "category": "by",
     "year": 2016,
     "emne_ids": [
@@ -4571,8 +4616,15 @@
         }
       }
     },
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-07-09"
+    "coordSource": "OpenStreetMap node 8071120191 – Barcode Project",
+    "coordVerifiedAt": "2026-07-19",
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:8071120191",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-node:8071120191",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/8071120191"
   },
   {
     "id": "vigelandsparken",

@@ -1,0 +1,59 @@
+{
+  "placeId": "bislett",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9247,
+    "lon": 10.7333,
+    "r": 200,
+    "coordStatus": "verified",
+    "coordSource": "Wikidata (Q866409)",
+    "coordType": "sports_area_anchor",
+    "coordNote": "Bislett stadion. Anleggskoordinat kontrollert mot Wikidata."
+  },
+  "identity": {
+    "currentName": "Bislett",
+    "resolvedIdentity": "Bislett som bolig-, nærings-, trafikk- og stadiondrevet bystrøk",
+    "identityStatus": "resolved",
+    "identityProblem": "Dagens punkt ligger praktisk talt på samme sted som det separate canonical `bislett_stadion`.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eget strøksanker som ikke dupliserer Bislett stadion",
+    "stabil område- eller kryssgeometri",
+    "fysisk overlap-audit mot bislett_stadion"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Bislett (strøk)",
+      "sourceUrl": "https://oslobyleksikon.no/side/Bislett_%28str%C3%B8k%29",
+      "sourceObjectId": "oslobyleksikon:bislett-strok",
+      "sourceQuality": "documented_district_identity",
+      "finding": "Oslo byleksikon dokumenterer Bislett som et større bolig- og næringsstrøk med idrettsplassen som midtpunkt og rundkjøringen som trafikknutepunkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Det eksisterende by-stedets koordinat overlapper det separate canonical Bislett Stadion-objektet; et selvstendig strøksanker må dokumenteres før godkjenning."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:bislett-strok",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Fysisk overlap med `bislett_stadion`: dagens `bislett`-punkt er i praksis stadionpunktet.",
+    "nextAction": "Finn og dokumenter et representativt Bislett-strøksanker, for eksempel rundkjøringen/knutepunktet, uten å gjette koordinater."
+  },
+  "notes": [
+    "Ikke godkjenn område-recorden på stadionets canonical punkt."
+  ]
+}
