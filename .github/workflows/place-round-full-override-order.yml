@@ -1,0 +1,105 @@
+name: Fix full round override order
+
+on:
+  push:
+    paths:
+      - ".github/workflows/place-round-full-override-order.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Respect exact order for full nine-round overrides
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const runtimePath = 'js/ui/place-card.js';
+          const testPath = 'tests/place-card-rounds-runtime-audit.test.js';
+
+          let runtime = fs.readFileSync(runtimePath, 'utf8');
+          const oldRuntime = `  const outputIds = profileIds.slice();
+  const seenOverrideIds = new Set(outputIds);
+
+  for (const entry of declared) {
+    const rawId = String(entry || "").trim();
+    if (!rawId) continue;
+    const def = PLACE_ROUND_BY_ID[rawId];
+    if (!def) {
+      console.warn(\`[placeCard] Ukjent runding ignorert: "\${rawId}" (sted: \${String(place?.id || "ukjent")})\`);
+      continue;
+    }
+    if (seenOverrideIds.has(def.id)) continue;
+
+    const replaceIndex = outputIds.findIndex((id) => !declared.some((candidate) => PLACE_ROUND_BY_ID[String(candidate || "").trim()]?.id === id));
+    outputIds[replaceIndex >= 0 ? replaceIndex : outputIds.length - 1] = def.id;
+    seenOverrideIds.add(def.id);
+  }
+`;
+          const newRuntime = `  const declaredIds = [];
+  for (const entry of declared) {
+    const rawId = String(entry || "").trim();
+    if (!rawId) continue;
+    const def = PLACE_ROUND_BY_ID[rawId];
+    if (!def) {
+      console.warn(\`[placeCard] Ukjent runding ignorert: "\${rawId}" (sted: \${String(place?.id || "ukjent")})\`);
+      continue;
+    }
+    if (!declaredIds.includes(def.id)) declaredIds.push(def.id);
+  }
+
+  // En komplett manuell 3x3-override eier både utvalg og rekkefølge.
+  // Kortere overrides beholder den tidligere slot-erstatningslogikken.
+  if (declaredIds.length === 9) {
+    return declaredIds.map(id => PLACE_ROUND_BY_ID[id]);
+  }
+
+  const outputIds = profileIds.slice();
+  const seenOverrideIds = new Set(outputIds);
+
+  for (const id of declaredIds) {
+    if (seenOverrideIds.has(id)) continue;
+
+    const replaceIndex = outputIds.findIndex((profileId) => !declaredIds.includes(profileId));
+    outputIds[replaceIndex >= 0 ? replaceIndex : outputIds.length - 1] = id;
+    seenOverrideIds.add(id);
+  }
+`;
+
+          if (!runtime.includes(oldRuntime)) throw new Error('Expected getPlaceRounds block not found');
+          runtime = runtime.replace(oldRuntime, newRuntime);
+          fs.writeFileSync(runtimePath, runtime);
+
+          let test = fs.readFileSync(testPath, 'utf8');
+          const anchor = `assert(overridden.includes('training'), 'place.rounds kan erstatte en slot ved behov');
+`;
+          const addition = `${anchor}
+const fullOverride = ['people', 'works', 'badges', 'før_nå', 'civication', 'brands', 'tasks', 'fortellinger', 'leksikon'];
+assert.deepStrictEqual(
+  idsFor({ id: 'full_manual_override', category: 'by', rounds: fullOverride }),
+  fullOverride,
+  'en komplett ni-runders override skal styre både utvalg og rekkefølge'
+);
+`;
+          if (!test.includes(anchor)) throw new Error('Expected test anchor not found');
+          test = test.replace(anchor, addition);
+          fs.writeFileSync(testPath, test);
+          NODE
+
+          node tests/place-card-rounds-runtime-audit.test.js
+
+          rm .github/workflows/place-round-full-override-order.yml
+
+          git config user.name "history-go-data-bot"
+          git config user.email "history-go-data-bot@users.noreply.github.com"
+          git add js/ui/place-card.js tests/place-card-rounds-runtime-audit.test.js .github/workflows/place-round-full-override-order.yml
+          git commit -m "Respect full PlaceCard round override order"
+          git push
