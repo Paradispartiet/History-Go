@@ -67,3 +67,5 @@ Source: https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultu
 All seven address queries are run in one workflow with `npm run places:coords:find:address -- --address ...`. Each command is piped through `tee` into `reports/oslo-kultureiendommer-batch-10/coordinates/`.
 
 No result is copied into canonical place data until its saved output has been audited for ambiguity, source-object identity and physical-object fit.
+
+The lookup job is intentionally rerunnable from the branch until all seven saved evidence files are present.
