@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 90 verifiserte eller kildekontrollerte canonical steder. Batch 15 omfatter sju fullførte kontroller: seks godkjente stasjons-, plass-, park-, elve- og områdeankre, mens Bislett står separat som `needs_review` fordi område-recorden overlapper det separate canonical stadionstedet. Fem fullførte Oslo-kontroller står dermed separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-tabellen inneholder nå 97 verifiserte eller kildekontrollerte canonical steder. Batch 16 legger til sju godkjente kontroller: Vigelandsparken, Vøienvolden, Carl Berners plass, Tullin, Økern, Skøyen og Torshov. Fem fullførte Oslo-kontroller står fortsatt separat uten godkjent koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -107,10 +107,17 @@ Oslo-tabellen inneholder nå 90 verifiserte eller kildekontrollerte canonical st
 | 14 | `majorstuen_tbanestasjon` | Majorstuen T-banestasjon | verified_geometry | `osm-node:2274012035` |
 | 15 | `nationaltheatret_stasjon` | Nationaltheatret stasjon | verified_geometry | `osm-node:5218231660+1759965001` |
 | 15 | `olaf_ryes_plass` | Olaf Ryes plass | verified_geometry | `oslo-kommune:park:olaf-ryes-plass` |
-| 15 | `birkelunden` | Birkelunden | verified_geometry | `oslo-kommune:park:birkelunden` |
+| 15 | `birkelunden` | Birkelunden | verified_geometry | `osm-way:3236549` |
 | 15 | `akerselva` | Akerselva | verified_geometry | `oslo-kommune:river:akerselva` |
 | 15 | `universitetsplassen` | Universitetsplassen | verified_geometry | `oslobyleksikon:universitetsplassen` |
 | 15 | `barcode` | Barcode | verified_geometry | `osm-node:8071120191` |
+| 16 | `vigelandsparken` | Vigelandsparken | verified_geometry | `vigelandmuseet:vigeland-park` |
+| 16 | `voienvolden` | Vøienvolden | verified | `geonorge-adresser-v1:0301:14622:120` |
+| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `wikidata:Q5039902` |
+| 16 | `tullin` | Tullin | verified_geometry | `osm-way:666946874` |
+| 16 | `okern` | Økern | verified_geometry | `wikidata:Q12011791` |
+| 16 | `skoyen` | Skøyen | verified_geometry | `wikidata:Q6514682` |
+| 16 | `torshov` | Torshov | verified_geometry | `wikidata:Q7827191` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -118,7 +125,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 90 verifiserte eller kildekontrollerte canonical stedene.
+Disse kontrollene er fullført, men teller ikke blant de 97 verifiserte eller kildekontrollerte canonical stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -174,7 +181,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 94 og starter batch 16.
-- Batch 15 er fullført med seks godkjente ankere og én dokumentert overlap-sak for Bislett-strøket.
+- Neste nye Oslo-kontroll er nummer 101 og starter batch 17.
+- Batch 16 er fullført med sju godkjente park-, bygnings-, plass- og områdeankre.
 - Fortsett i canonical filrekkefølge når det gir en naturlig arbeidskø, men velg alltid koordinatmetode etter fysisk objekttype.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

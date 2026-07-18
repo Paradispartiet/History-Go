@@ -4636,13 +4636,12 @@
     "lon": 10.7003,
     "r": 260,
     "coordType": "park_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Vigelandsparken i Frognerparken. Bevisst sentralt parkanker (ikke ett presist punkt); parkens plassering bekreftet mot OpenStreetMap og kjente Vigeland-skulpturer. Eksakt Monolitt-punkt ble ikke kildebelagt i denne runden.",
-    "coordSource": "OpenStreetMap (Frogner Park) – kryssjekket mot Vigeland-skulpturer (Soluret 59.9281/10.6977)",
-    "coordSourceId": "Frogner Park",
-    "coordSourceUrl": "https://en.wikipedia.org/wiki/Frogner_Park",
-    "coordPrecisionM": 260,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker i selve Vigelandsparken. Vigelandmuseet, som er del av Oslo kommunes Kulturetat, dokumenterer parken som det samlede skulptur- og parkanlegget. Punktet beholdes på den sentrale aksen og brukes som parkanker, ikke som koordinat for én enkelt skulptur eller hele Frognerparken.",
+    "coordSource": "Vigelandmuseet / Oslo kommune – Vigelandsparken",
+    "coordSourceId": "vigelandmuseet:vigeland-park",
+    "coordSourceUrl": "https://vigeland.museum.no/",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "rounds": [
       "people",
@@ -4785,22 +4784,26 @@
           ]
         }
       }
-    }
+    },
+    "locatorType": "park",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "vigelandmuseet:vigeland-park",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "voienvolden",
     "name": "Voienvolden",
-    "lat": 59.9344,
-    "lon": 10.7548,
-    "r": 170,
-    "coordType": "building_center",
+    "lat": 59.93436330000289,
+    "lon": 10.75464137146488,
+    "r": 60,
+    "coordType": "address_point",
     "coordStatus": "verified",
-    "coordNote": "Vøienvolden gård, Maridalsveien 120, Sagene. Korrigert ~1,05 km nordover fra tidligere feilplassert punkt (59.926/10.7435) til faktisk gårdsanlegg. Kontrollert mot adresse (Maridalsveien 120, Fortidsminneforeningen) og kryssjekket mot søsterpunktet voien_gard_voienvolden (59.935/10.7535) i Akerselva-rutefilen.",
-    "coordSource": "Fortidsminneforeningen (Vøienvolden gård) / adresse Maridalsveien 120, Sagene",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Maridalsveien 120, Oslo. Punktet representerer Vøienvolden gårds stående gårdsanlegg og brukes som bygnings-/displayanker, ikke som et generelt Sagene-områdepunkt.",
+    "coordSource": "geonorge_adresser_v1",
     "coordSourceId": "Q12010282",
     "coordSourceUrl": "https://fortidsminneforeningen.no/museum/voienvolden-gard/",
-    "coordPrecisionM": 90,
-    "coordVerifiedAt": "2026-06-15",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1716,
     "emne_ids": [
@@ -4845,22 +4848,33 @@
         "deichman_bjorvika"
       ],
       "notes": "Skal spørres som tidslomme i byveven, ikke bare som gammelt bygg."
-    }
+    },
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14622:120",
+    "address": {
+      "street": "Maridalsveien",
+      "number": "120",
+      "postcode": "0461",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker"
   },
   {
     "id": "carl_berner_plass",
     "name": "Carl Berners plass",
-    "lat": 59.9256,
-    "lon": 10.7779,
+    "lat": 59.926111,
+    "lon": 10.775833,
     "r": 180,
     "coordType": "square_center",
-    "coordStatus": "verified",
-    "coordNote": "Carl Berners plass. Kontrollert mot Wikidata (bekreftet av to kilder); korrigert ~350 m sørvestover fra tidligere punkt som lå mot Sinsen.",
-    "coordSource": "Wikidata (Q1772284)",
-    "coordSourceId": "Q1772284",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q1772284",
-    "coordPrecisionM": 60,
-    "coordVerifiedAt": "2026-06-15",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for selve Carl Berners plass som trafikalt plass- og fordelingsrom. Wikidata-objekt Q5039902 identifiserer plassen, ikke T-banestasjonen eller en enkelt holdeplass. Punktet er derfor holdt adskilt fra kollektivobjektene med samme navn.",
+    "coordSource": "Wikidata Q5039902 – Carl Berners plass",
+    "coordSourceId": "wikidata:Q5039902",
+    "coordSourceUrl": "https://www.wikidata.org/wiki/Q5039902",
+    "coordVerifiedAt": "2026-07-19",
     "category": "by",
     "year": 1905,
     "emne_ids": [
@@ -4904,24 +4918,38 @@
         "jernbanetorget"
       ],
       "notes": "Skal spørres som østkantens fordelingsplass, ikke bare som trafikkmaskin."
-    }
+    },
+    "locatorType": "square",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "wikidata:Q5039902",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "tullin",
     "name": "Tullin",
-    "lat": 59.916519,
-    "lon": 10.73645,
-    "r": 350,
-    "coordType": "area_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Tullinløkka-området. Punktet er et bevisst områdeanker; radius dekker området rundt løkka.",
+    "lat": 59.91651,
+    "lon": 10.73644,
+    "r": 300,
+    "coordType": "square_center",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Geometriforankret områdeanker for Tullinløkka som det fysiske kjernepunktet i History Go-stedet Tullin. OSM-way 666946874 identifiserer selve løkke-/plassrommet. Radiusen dekker det nærliggende institusjons- og byområdet uten å hevde at hele Tullin er ett presist polygon.",
     "category": "by",
     "desc": "Byområde i sentrum av Oslo med Tullinløkka, Historisk museum, Universitetet i Oslo Sentrum og Pilestredet/Ring 1 som sentrale elementer.",
     "popupDesc": "Tullin er et byområde i sentrum av Oslo med Tullinløkka, Historisk museum, Universitetet i Oslo Sentrum og Pilestredet/Ring 1 som sentrale elementer. Området fungerer som et møtepunkt mellom utdanning, kontor, institusjoner, trafikkårer og offentlige byrom.",
     "wikipedia": "https://no.wikipedia.org/wiki/Tullinl%C3%B8kka",
     "visual": {
       "designCode": "university_miniature"
-    }
+    },
+    "locatorType": "square",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:666946874",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSource": "OpenStreetMap way 666946874 – Tullinløkka",
+    "coordSourceId": "osm-way:666946874",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/666946874",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "okern",
@@ -4930,15 +4958,24 @@
     "lon": 10.808531,
     "r": 450,
     "coordType": "district_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Bydels-/næringsområde (Økern). Punktet er et bevisst områdeanker, ikke én adresse.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for Økern som by- og næringsområde. Wikidata Q12011791 identifiserer Økern som eget Oslo-strøk og koordinaten samsvarer med det eksisterende sentrale områdeankeret. Punktet er ikke én adresse eller selve T-banestasjonen.",
     "category": "by",
     "desc": "Byområde i Oslo øst bygget rundt kollektivknutepunkt, Ring 3 og store næringsbygg, og preget av transformasjon fra randby og lager-/industriområde til tettere byutvikling.",
     "popupDesc": "Økern er et byområde i Oslo øst som er bygget rundt et kollektivknutepunkt, Ring 3 og store næringsbygg, og som over flere tiår har gått fra randby og lager-/industriområde til tettere byutvikling.",
     "wikipedia": "https://no.wikipedia.org/wiki/%C3%98kern",
     "visual": {
       "designCode": "commerce_miniature"
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "wikidata:Q12011791",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSource": "Wikidata Q12011791 – Økern",
+    "coordSourceId": "wikidata:Q12011791",
+    "coordSourceUrl": "https://www.wikidata.org/wiki/Q12011791",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "skoyen",
@@ -4947,15 +4984,24 @@
     "lon": 10.683861,
     "r": 450,
     "coordType": "district_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Bydels-/næringsområde (Skøyen). Punktet er et bevisst områdeanker, ikke én adresse.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for Skøyen som by- og næringsområde. Wikidata Q6514682 identifiserer strøket og den dokumenterte koordinaten samsvarer med dagens sentrale områdeanker. Punktet er ikke Skøyen stasjon eller én enkelt næringseiendom.",
     "category": "by",
     "desc": "Byområde i Oslo vest med Skøyen stasjon, Drammensveien/E18 og store kontor- og næringsbygg, kjent som et tydelig knutepunkt og næringskorridor.",
     "popupDesc": "Skøyen er et byområde i Oslo vest med Skøyen stasjon, Drammensveien/E18 og store kontor- og næringsbygg, og er kjent som et tydelig knutepunkt og næringskorridor.",
     "wikipedia": "https://no.wikipedia.org/wiki/Sk%C3%B8yen",
     "visual": {
       "designCode": "commerce_miniature"
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "wikidata:Q6514682",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSource": "Wikidata Q6514682 – Skøyen",
+    "coordSourceId": "wikidata:Q6514682",
+    "coordSourceUrl": "https://www.wikidata.org/wiki/Q6514682",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "torshov",
@@ -4964,15 +5010,24 @@
     "lon": 10.764167,
     "r": 450,
     "coordType": "district_anchor",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Bydelsområde (Torshov). Punktet er et bevisst områdeanker, ikke én adresse.",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Representativt områdeanker for Torshov som Oslo-strøk. Wikidata Q7827191 identifiserer Torshov som eget nabolag, og koordinaten samsvarer med det eksisterende sentrale områdeankeret. Punktet representerer ikke bare Torshov holdeplass eller Torshovparken.",
     "category": "by",
     "desc": "Byområde i indre Oslo nordøst med tette boligkvartaler, Torshovparken og Torshovdalen som lokale byrom, og en lokal handelsakse rundt Vogts gate.",
     "popupDesc": "Torshov er en bydel i indre Oslo nordøst med tette boligkvartaler, Torshovparken og Torshovdalen som lokale byrom, og en lokal handelsakse rundt Vogts gate.",
     "wikipedia": "https://no.wikipedia.org/wiki/Torshov",
     "visual": {
       "designCode": "apartment_block_miniature"
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "wikidata:Q7827191",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSource": "Wikidata Q7827191 – Torshov",
+    "coordSourceId": "wikidata:Q7827191",
+    "coordSourceUrl": "https://www.wikidata.org/wiki/Q7827191",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "grorud",

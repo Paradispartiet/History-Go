@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-18T23:44:26.157Z
+Generert: 2026-07-18T23:51:01.389Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -44,3 +44,10 @@ Generert: 2026-07-18T23:44:26.157Z
 | universitetsplassen | data/coordinate-evidence/oslo/by/universitetsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | barcode | data/coordinate-evidence/oslo/by/barcode.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bislett | data/coordinate-evidence/oslo/by/bislett.json | needs_research | needs_geometry | OK |
+| vigelandsparken | data/coordinate-evidence/oslo/by/vigelandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| voienvolden | data/coordinate-evidence/oslo/by/voienvolden.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| carl_berner_plass | data/coordinate-evidence/oslo/by/carl_berner_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| tullin | data/coordinate-evidence/oslo/by/tullin.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| okern | data/coordinate-evidence/oslo/by/okern.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| skoyen | data/coordinate-evidence/oslo/by/skoyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| torshov | data/coordinate-evidence/oslo/by/torshov.json | applied_to_place | do_not_change_coordinates_yet | OK |
