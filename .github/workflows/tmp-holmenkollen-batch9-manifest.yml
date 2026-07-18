@@ -1,0 +1,53 @@
+name: Temporary Holmenkollen batch 9 manifest patch
+
+on:
+  push:
+    branches:
+      - data/people-holmenkollen-batch9-20260718
+
+permissions:
+  contents: write
+
+jobs:
+  patch-manifest:
+    if: ${{ !contains(github.event.head_commit.message, '[manifest-patched]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/people-holmenkollen-batch9-20260718
+          fetch-depth: 0
+
+      - name: Patch people manifest
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/people/manifest.json';
+          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const additions = [
+            'people/sport/oslo/holmenkollen_nasjonalanlegg/marjatta_kajosmaa.json',
+            'people/sport/oslo/holmenkollen_nasjonalanlegg/raisa_smetanina.json',
+            'people/sport/oslo/holmenkollen_nasjonalanlegg/alevtina_koltsjina.json',
+            'people/sport/oslo/holmenkollen_nasjonalanlegg/galina_kulakova.json',
+            'people/sport/oslo/holmenkollen_nasjonalanlegg/hallgeir_brenden.json',
+          ];
+          for (const item of additions) {
+            if (data.files.includes(item)) {
+              throw new Error(`Manifest entry already exists: ${item}`);
+            }
+          }
+          const anchor = 'people/sport/oslo/holmenkollen_nasjonalanlegg/roger_ruud.json';
+          const index = data.files.indexOf(anchor);
+          if (index === -1) throw new Error(`Manifest anchor missing: ${anchor}`);
+          data.files.splice(index + 1, 0, ...additions);
+          fs.writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
+          NODE
+
+      - name: Commit manifest patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/people/manifest.json
+          git diff --cached --check
+          git commit -m "Register Holmenkollen batch 9 people [manifest-patched]"
+          git push origin HEAD:data/people-holmenkollen-batch9-20260718
