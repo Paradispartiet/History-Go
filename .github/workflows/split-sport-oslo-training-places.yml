@@ -3,68 +3,29 @@ name: Split Oslo training places
 on:
   push:
     branches:
-      - agent/atlas-obscura-oslo-sport-batch-4
+      - data/split-sport-oslo-training-places-20260708
 
 permissions:
   contents: write
 
 jobs:
   split:
-    if: github.event.head_commit.message != 'Generate Atlas Obscura Korketrekkeren data'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/atlas-obscura-oslo-sport-batch-4
+          ref: data/split-sport-oslo-training-places-20260708
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Add Korketrekkeren to aggregate
-        run: |
-          node <<'NODE'
-          const fs = require('node:fs');
-          const aggregatePath = 'data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json';
-          const childPath = 'data/places/sport/europa/norway/places_oslo_lekeplasser_trening/korketrekkeren.json';
-          const places = JSON.parse(fs.readFileSync(aggregatePath, 'utf8'));
-          const child = JSON.parse(fs.readFileSync(childPath, 'utf8'));
-          if (!places.some((place) => place && place.id === child.id)) places.push(child);
-          fs.writeFileSync(aggregatePath, `${JSON.stringify(places, null, 2)}\n`);
-          NODE
-      - name: Regenerate split data
-        run: |
-          mkdir -p reports/atlas-obscura-oslo-sport-batch-4
-          node scripts/split-sport-oslo-training-places.mjs \
-            | tee reports/atlas-obscura-oslo-sport-batch-4/split-generation.txt
-      - name: Install dependencies
-        run: npm ci
-      - name: Rebuild and validate place data
-        run: |
-          mkdir -p reports/atlas-obscura-oslo-sport-batch-4
-          npm run places:index:build \
-            | tee reports/atlas-obscura-oslo-sport-batch-4/places-index-build.txt
-          npm run places:index:check \
-            | tee reports/atlas-obscura-oslo-sport-batch-4/places-index-check.txt
-          npm run audit:places-split-manifest-sync \
-            | tee reports/atlas-obscura-oslo-sport-batch-4/split-manifest-sync.txt
-          npm run places:coords:intake \
-            | tee reports/atlas-obscura-oslo-sport-batch-4/coordinate-intake.txt
-          npm run health:places \
-            | tee reports/atlas-obscura-oslo-sport-batch-4/health-places.txt
-      - name: Commit generated data
-        run: |
+      - run: node scripts/split-sport-oslo-training-places.mjs
+      - run: |
           git config user.name "actions"
           git config user.email "actions@github.com"
-          git add \
-            data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json \
-            data/places/sport/europa/norway/places_oslo_lekeplasser_trening \
-            data/places/sport/europa/norway/places_oslo_lekeplasser_trening_manifest.json \
-            data/places/sport/europa/norway/places_oslo_lekeplasser_trening_index.json \
-            data/places/sport/europa/norway/places_oslo_lekeplasser_trening_split_report.txt \
-            data/places/places_index.json \
-            reports/atlas-obscura-oslo-sport-batch-4
+          git add data/places/sport/europa/norway/places_oslo_lekeplasser_trening data/places/sport/europa/norway/places_oslo_lekeplasser_trening_manifest.json data/places/sport/europa/norway/places_oslo_lekeplasser_trening_index.json data/places/sport/europa/norway/places_oslo_lekeplasser_trening_split_report.txt
           if git diff --cached --quiet; then
             echo "No generated file changes."
           else
-            git commit -m "Generate Atlas Obscura Korketrekkeren data"
+            git commit -m "Generate split Oslo training place files"
             git push
           fi
