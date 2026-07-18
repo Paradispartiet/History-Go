@@ -37,6 +37,11 @@ Manifestinnholdet er ellers uendret; GitHub viser i tillegg kun en teknisk slutt
 
 ## Kontroller
 
-Repoet har en kjent, pre-eksisterende `People data`-blokkering i `people_subkultur_oslo_named_batch4.json` med duplikat-ID-ene `stein_lillevolden`, `bror_wyller` og `hermann_stene`. De finnes allerede i batch 1-basen og er utenfor denne batchens diff.
+GitHub Actions `Data checks` på den ferdige data-diffen ga:
 
-GitHub Actions-status for batch 2 føres inn når PR-kjøringen er registrert. Batchens fem nye ID-er er repo-auditert før opprettelse og ingen eksisterende canonical people-record ble funnet.
+- `Places data`: **bestått**
+- `People data`: **feilet i repoets eksisterende duplicate-ID gate**
+
+Repoet har en kjent, pre-eksisterende `People data`-blokkering i `people_subkultur_oslo_named_batch4.json` med duplikat-ID-ene `stein_lillevolden`, `bror_wyller` og `hermann_stene`. De finnes allerede i batch 1-basen og er utenfor denne batchens diff. Batch 1 ga samme blokkering før batch 2 ble opprettet.
+
+Batchens fem nye ID-er ble repo-auditert før opprettelse og ingen eksisterende canonical people-record ble funnet. CI-funnet er derfor behandlet som en arvet repo-blokkering, ikke som en Holmenkollen batch 2-regresjon.
