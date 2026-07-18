@@ -13,8 +13,8 @@ const BY = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'før
 const SPORT = ['people', 'training', 'badges', 'works', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon'];
 const LEKEPLASS = ['play', 'nature', 'badges', 'tasks', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon'];
 const TASKS_ALLOWED_PROFILES = ['natur', 'lekeplass', 'trening'];
-const TASKS_FORBIDDEN_PROFILES = ['historie', 'historisk', 'politikk', 'kunst', 'litteratur', 'musikk', 'subkultur', 'naeringsliv', 'transport'];
-const GET_ROUNDS_NINE_SAMPLE_CATEGORIES = ['by', 'natur', 'lekeplass', 'trening', 'politikk', 'transport'];
+const TASKS_FORBIDDEN_PROFILES = ['historie', 'historisk', 'politikk', 'kunst', 'litteratur', 'musikk', 'vitenskap', 'subkultur', 'naeringsliv', 'transport'];
+const GET_ROUNDS_NINE_SAMPLE_CATEGORIES = ['by', 'natur', 'lekeplass', 'trening', 'politikk', 'vitenskap', 'transport'];
 
 function extractRoundsRuntime(src) {
   const start = src.indexOf('const PLACE_ROUND_REGISTRY = [');

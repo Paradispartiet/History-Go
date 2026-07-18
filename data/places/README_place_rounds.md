@@ -84,6 +84,11 @@ people | works | badges
 nature | civication | brands
 før_nå | fortellinger | leksikon
 
+vitenskap:
+people | nature | badges
+works | civication | brands
+før_nå | fortellinger | leksikon
+
 subkultur:
 people | works | badges
 play | civication | brands
@@ -188,6 +193,32 @@ mening.
 ### training
 
 Trening, fysisk øving, runder, aktivitetsopplegg og idrettsnære handlinger.
+
+Stedsspesifikt innhold kan ligge i `training_profile` uten å overstyre
+`place.rounds`:
+
+```json
+{
+  "training_profile": {
+    "title": "Kort tittel",
+    "summary": "Hva økten trener på ved akkurat dette stedet.",
+    "safety": "Stedsspesifikk trygghetsregel.",
+    "exercises": [
+      {
+        "id": "stabil_id",
+        "title": "Øvelsesnavn",
+        "instruction": "Konkret fysisk framgangsmåte.",
+        "duration_minutes": 10,
+        "intensity": "lett",
+        "why": "Hvorfor øvelsen hører hjemme her."
+      }
+    ]
+  }
+}
+```
+
+`training_profile` skal bare fylles når kategori-profilen faktisk har
+`training`, og øvelsene skal kunne utføres trygt og lovlig på stedet.
 
 ### civication
 
