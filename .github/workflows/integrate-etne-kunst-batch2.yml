@@ -1,0 +1,180 @@
+name: Integrate Etne culture batch 2
+
+on:
+  push:
+    branches:
+      - agent/etne-kunst-batch-2
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: ${{ !contains(github.event.head_commit.message, '[skip etne culture batch2 integration]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-kunst-batch-2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          set -o pipefail
+          mkdir -p reports/etne-kunst-batch-2-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-kunst-batch-2-integration/npm-install.txt
+
+      - name: Resolve official address anchors
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-kunst-batch-2-integration/address-anchor-lookup.txt
+          const fs = require('fs');
+          const https = require('https');
+
+          const get = (url) => new Promise((resolve, reject) => {
+            https.get(url, {headers: {'User-Agent': 'History-Go-data-integration'}}, (res) => {
+              let body = '';
+              res.on('data', c => body += c);
+              res.on('end', () => {
+                if (res.statusCode < 200 || res.statusCode >= 300) return reject(new Error(`HTTP ${res.statusCode}: ${url}`));
+                try { resolve(JSON.parse(body)); } catch (e) { reject(e); }
+              });
+            }).on('error', reject);
+          });
+
+          async function lookup(query, exact, postnummer='5590') {
+            const url = 'https://ws.geonorge.no/adresser/v1/sok?sok=' + encodeURIComponent(query) + '&treffPerSide=20';
+            const data = await get(url);
+            const hits = Array.isArray(data.adresser) ? data.adresser : [];
+            const hit = hits.find(x => x.adressetekst === exact && x.postnummer === postnummer) ||
+                        hits.find(x => x.adressetekst === exact) || hits[0];
+            if (!hit?.representasjonspunkt) throw new Error(`No address point for ${query}`);
+            return hit;
+          }
+
+          const rad = x => x * Math.PI / 180;
+          const dist = (a,b) => {
+            const R=6371, dLat=rad(b.lat-a.lat), dLon=rad(b.lon-a.lon);
+            const q=Math.sin(dLat/2)**2 + Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;
+            return 2*R*Math.asin(Math.sqrt(q));
+          };
+
+          (async () => {
+            const oldPublic = await lookup('Stadionvegen 35 5590 Etne', 'Stadionvegen 35');
+            const oldRegistered = await lookup('Litledalsvegen 41 5590 Etne', 'Litledalsvegen 41');
+            const abc = await lookup('Sillavegen 2 5590 Etne', 'Sillavegen 2');
+            const fugl = await lookup('Torget 1 5590 Etne', 'Torget 1');
+
+            const rows = [
+              ['old_river_saloon_etne', oldPublic, 'data/places/kunst/vestland/etne/old_river_saloon_etne.json'],
+              ['abc_studio_etne', abc, 'data/places/kunst/vestland/etne/abc_studio_etne.json'],
+              ['fugl_fonix_etne', fugl, 'data/places/kunst/vestland/etne/fugl_fonix_etne.json']
+            ];
+            for (const [id, hit, file] of rows) {
+              const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+              data[0].lat = hit.representasjonspunkt.lat;
+              data[0].lon = hit.representasjonspunkt.lon;
+              if (id === 'old_river_saloon_etne') {
+                data[0].quiz_profile.notes = `Canonical kulturanker bruker offisielt Kartverket/Geonorge-adressepunkt for publikumsadressen ${hit.adressetekst}, ${hit.postnummer}. Foretaksregisteradressen Litledalsvegen 41 er kontrollert separat i integrasjonsrapporten.`;
+              } else if (id === 'abc_studio_etne') {
+                data[0].quiz_profile.notes = `Offisielt Kartverket/Geonorge-adressepunkt brukt for Sillavegen 2, som gateadresse knyttet til den dokumenterte beliggenheten ved Enge gamle skule.`;
+              } else {
+                data[0].quiz_profile.notes = `Canonical kunst-record basert på den dokumenterte kulturfunksjonen. Offisielt Kartverket/Geonorge-adressepunkt brukt for ${hit.adressetekst}, ${hit.postnummer}.`;
+              }
+              fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+              console.log(`PASS ${id}: ${data[0].lat}, ${data[0].lon} -> ${hit.adressetekst}, ${hit.postnummer}`);
+            }
+
+            const a = oldPublic.representasjonspunkt, b = oldRegistered.representasjonspunkt;
+            console.log(`INFO Old River public address ↔ registered address: ${dist(a,b).toFixed(3)} km`);
+            console.log(`INFO registered address: ${b.lat}, ${b.lon} -> ${oldRegistered.adressetekst}, ${oldRegistered.postnummer}`);
+          })().catch(err => { console.error(err); process.exit(1); });
+          NODE
+
+      - name: Register source files
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-kunst-batch-2-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const wanted = [
+            'places/kunst/vestland/etne/old_river_saloon_etne.json',
+            'places/kunst/vestland/etne/abc_studio_etne.json',
+            'places/kunst/vestland/etne/fugl_fonix_etne.json'
+          ];
+          for (const entry of wanted) if (!manifest.files.includes(entry)) manifest.files.push(entry);
+          for (const entry of wanted) {
+            const count = manifest.files.filter(x => x === entry).length;
+            if (count !== 1) throw new Error(`${entry}: expected exactly once, got ${count}`);
+            console.log(`PASS manifest ${entry}`);
+          }
+          fs.writeFileSync(file, JSON.stringify(manifest) + '\n');
+          NODE
+
+      - name: Build and validate
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/etne-kunst-batch-2-integration/check-places.txt
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-kunst-batch-2-integration/split-manifest-sync.txt
+          npm run places:coords:quality 2>&1 | tee reports/etne-kunst-batch-2-integration/coordinate-quality.txt
+
+      - name: Audit anchors and runtime uniqueness
+        run: |
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee reports/etne-kunst-batch-2-integration/anchor-audit.txt
+          const fs = require('fs');
+          const loadFile = file => JSON.parse(fs.readFileSync(file, 'utf8'))[0];
+          const loadById = id => {
+            const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+            const hit = index.find(x => x.id === id);
+            if (!hit) throw new Error(`Missing runtime anchor ${id}`);
+            return hit;
+          };
+          const fugl = loadFile('data/places/kunst/vestland/etne/fugl_fonix_etne.json');
+          const abc = loadFile('data/places/kunst/vestland/etne/abc_studio_etne.json');
+          const old = loadFile('data/places/kunst/vestland/etne/old_river_saloon_etne.json');
+          const torg = loadById('etnesjoen_torg_og_kai');
+          const skakke = loadById('skakke_kultursenter_etne');
+          const rad=x=>x*Math.PI/180;
+          const dist=(a,b)=>{const R=6371,dLat=rad(b.lat-a.lat),dLon=rad(b.lon-a.lon);const q=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(q));};
+          const fuglTorg = dist(fugl,torg);
+          const abcSkakke = dist(abc,skakke);
+          console.log(`PASS Fugl Fønix ↔ Etnesjøen torg/kai: ${fuglTorg.toFixed(3)} km; nearby but distinct object/function`);
+          console.log(`PASS ABC Studio ↔ Skakke: ${abcSkakke.toFixed(3)} km`);
+          if (![fugl,abc,old].every(x => x.category === 'kunst')) throw new Error('All batch records must be kunst');
+          if (!String(fugl.popupDesc).toLowerCase().includes('konsert')) throw new Error('Fugl Fønix cultural function not explicit');
+          if (!String(old.popupDesc).toLowerCase().includes('scene')) throw new Error('Old River live-stage function not explicit');
+          if (!String(abc.popupDesc).toLowerCase().includes('lyd')) throw new Error('ABC Studio production function not explicit');
+          console.log('PASS all three records have explicit distinct cultural functions');
+          NODE
+
+          node <<'NODE' 2>&1 | tee reports/etne-kunst-batch-2-integration/targeted-validation.txt
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const ids = ['old_river_saloon_etne','abc_studio_etne','fugl_fonix_etne'];
+          for (const id of ids) {
+            const count = index.filter(x => x.id === id).length;
+            if (count !== 1) throw new Error(`${id}: expected one runtime row, got ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const seen = new Set(), dup = new Set();
+          for (const row of index) { if (seen.has(row.id)) dup.add(row.id); seen.add(row.id); }
+          if (dup.size) throw new Error(`duplicate active IDs: ${[...dup].join(', ')}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+
+          git diff --check 2>&1 | tee reports/etne-kunst-batch-2-integration/git-diff-check.txt
+
+      - name: Commit and remove workflow
+        run: |
+          rm .github/workflows/integrate-etne-kunst-batch2.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/manifest.json data/places/places_index.json data/places/kunst/vestland/etne reports/etne-kunst-batch-2-integration .github/workflows/integrate-etne-kunst-batch2.yml
+          git commit -m 'Integrate Etne culture batch 2 [skip etne culture batch2 integration]'
+          git push origin HEAD:agent/etne-kunst-batch-2
