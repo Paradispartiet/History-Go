@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-18T23:11:20.425Z
+Generert: 2026-07-18T23:18:25.375Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -16,3 +16,10 @@ Generert: 2026-07-18T23:11:20.425Z
 | karl_johan | data/coordinate-evidence/oslo/by/karl_johan.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | radhusplassen | data/coordinate-evidence/oslo/by/radhusplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bjorvika | data/coordinate-evidence/oslo/by/bjorvika.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grunerlokka_helgesens_tm | data/coordinate-evidence/oslo/by/grunerlokka_helgesens_tm.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| toyen_torg | data/coordinate-evidence/oslo/by/toyen_torg.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| majorstuen_krysset | data/coordinate-evidence/oslo/by/majorstuen_krysset.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| st_hanshaugen_park | data/coordinate-evidence/oslo/by/st_hanshaugen_park.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| aker_brygge | data/coordinate-evidence/oslo/by/aker_brygge.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ring_3 | data/coordinate-evidence/oslo/by/ring_3.json | needs_research | needs_geometry | OK |
+| trikk_17_18 | data/coordinate-evidence/oslo/by/trikk_17_18.json | needs_research | needs_geometry | OK |

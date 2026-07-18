@@ -1,0 +1,59 @@
+{
+  "placeId": "trikk_17_18",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.92,
+    "lon": 10.76,
+    "r": 300,
+    "coordStatus": "semantic_anchor",
+    "coordSource": "",
+    "coordType": "route_midpoint",
+    "coordNote": "Tverrgående trikkelinjer. Ett punkt dekker ikke linjene; punktet er et bevisst symbolsk anker midt i indre by. Lav presisjon beholdt bevisst; bør få ruteankre ved senere manuell kartrunde."
+  },
+  "identity": {
+    "currentName": "Trikkelinje 17/18",
+    "resolvedIdentity": "Trikkelinje 17/18",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell eller stabil rutekilde",
+    "traségeometri eller flere kildebelagte ruteankre",
+    "egen representasjonsregel for lineært unlock/display"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ruter – trikkelinjer 17 og 18 / linjekart",
+      "sourceUrl": "https://ruter.no/planlegg-reise/rutetabeller-og-linjekart/trikk",
+      "sourceObjectId": "ruter:tram-lines:17+18:2026",
+      "sourceQuality": "official_route_identity",
+      "finding": "Ruter dokumenterer linjene 17 og 18 i gjeldende trikkenett, men dagens kombinerte History Go-record har bare ett lavpresisjonspunkt og ingen kildebelagt traségeometri eller ruteankre.",
+      "canVerifyCoordinate": false,
+      "reason": "Ett punkt kan ikke verifisere to lineære trikkeruter. Stedet trenger rutegeometri/routeSegments eller et eksplisitt modellert fellessegment."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ruter:tram-lines:17+18:2026",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Ett punkt kan ikke verifisere to lineære trikkeruter. Stedet trenger rutegeometri/routeSegments eller et eksplisitt modellert fellessegment.",
+    "nextAction": "Bygg routeSegments/rutegeometri før koordinaten kan godkjennes."
+  },
+  "notes": [
+    "Ett punkt kan ikke verifisere to lineære trikkeruter. Stedet trenger rutegeometri/routeSegments eller et eksplisitt modellert fellessegment."
+  ]
+}

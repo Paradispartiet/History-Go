@@ -1,0 +1,59 @@
+{
+  "placeId": "ring_3",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.931,
+    "lon": 10.792,
+    "r": 400,
+    "coordStatus": "semantic_anchor",
+    "coordSource": "",
+    "coordType": "route_midpoint",
+    "coordNote": "Ringvei rundt byen. Ett punkt kan ikke dekke hele traseen; punktet er et bevisst symbolsk anker for kartvisning. Lav presisjon beholdt bevisst; bør deles opp i ruteankre ved senere manuell kartrunde."
+  },
+  "identity": {
+    "currentName": "Ring 3",
+    "resolvedIdentity": "Ring 3",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell eller stabil rutekilde",
+    "traségeometri eller flere kildebelagte ruteankre",
+    "egen representasjonsregel for lineært unlock/display"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Statens vegvesen – rv. 150 Ring 3",
+      "sourceUrl": "https://www.vegvesen.no/vegprosjekter/prosjekt/sykkelvegeroslo/",
+      "sourceObjectId": "statens-vegvesen:rv150:ring-3",
+      "sourceQuality": "official_route_identity",
+      "finding": "Statens vegvesen dokumenterer Ring 3 som rv. 150 og viser flere delstrekninger, men dagens History Go-record mangler traségeometri eller flere kildebelagte ruteankre som kan verifisere hele lineære objektet.",
+      "canVerifyCoordinate": false,
+      "reason": "Dagens ene lavpresisjonspunkt kan ikke verifisere hele Ring 3. Repoets tidligere coordinate-anchor-audit krever en senere routeSegments-/rutemodell."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "statens-vegvesen:rv150:ring-3",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Dagens ene lavpresisjonspunkt kan ikke verifisere hele Ring 3. Repoets tidligere coordinate-anchor-audit krever en senere routeSegments-/rutemodell.",
+    "nextAction": "Bygg routeSegments/rutegeometri før koordinaten kan godkjennes."
+  },
+  "notes": [
+    "Dagens ene lavpresisjonspunkt kan ikke verifisere hele Ring 3. Repoets tidligere coordinate-anchor-audit krever en senere routeSegments-/rutemodell."
+  ]
+}
