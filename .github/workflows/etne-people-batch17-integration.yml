@@ -150,6 +150,7 @@ jobs:
 
       - name: Remove temporary workflow and commit integration
         run: |
+          node -e "const fs=require('fs'); const p='reports/etne-people-of-places-batch17/typecheck.log'; fs.writeFileSync(p, fs.readFileSync(p, 'utf8').replace(/\\n+$/, '\\n'));"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/etne-people-batch17-integration.yml
