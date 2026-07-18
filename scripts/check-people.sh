@@ -107,4 +107,7 @@ node tests/etne-people-manifest-integration.test.js
 echo "== Etne People of Places batch 9 =="
 node tests/etne-people-of-places-batch9.test.js
 
+echo "== Etne People of Places batch 10 =="
+node tests/etne-people-of-places-batch10.test.js
+
 echo "== People check complete =="
