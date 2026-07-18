@@ -41,7 +41,10 @@ Before merge:
 - temporary clean-rebase workflow absent from final branch
 - final net diff exactly 8 files
 - manifest +5 / -0
-- branch 0 commits behind current `main`
-- People data CI passed
-- Places data CI passed
+- branch rebuilt on current `main` before final CI
+- People data CI passed on the final head
+- Places data CI passed on the final head
+- fresh comparison against merge-time `main` still shows only the intended 8-file net diff
 - PR mergeable
+
+This validation-report update is the ordinary post-rebase commit used to trigger final CI without reopening the PR.
