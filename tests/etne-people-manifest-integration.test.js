@@ -11,6 +11,18 @@ const expectedFiles = new Map([
     [{ id: 'ann_margit_gronstad', placeId: 'grannar_redaksjon_etne' }]
   ],
   [
+    'people/sport/vestland/etne/geir_havreberg.json',
+    [{ id: 'geir_havreberg', placeId: 'etne_kyokushin_dojo' }]
+  ],
+  [
+    'people/sport/vestland/etne/havard_matre.json',
+    [{ id: 'havard_matre', placeId: 'etne_idrettsanlegg' }]
+  ],
+  [
+    'people/sport/vestland/etne/harald_ekornrud.json',
+    [{ id: 'harald_ekornrud', placeId: 'etne_tennisanlegg' }]
+  ],
+  [
     'people/vitenskap/vestland/etne/etneelva_forskningsplattform_people_batch1.json',
     [
       { id: 'per_tommy_fjeldheim', placeId: 'etneelva_forskningsplattform' },
@@ -82,7 +94,7 @@ for (const person of allPeople) {
 }
 
 const expectedPeople = [...expectedFiles.values()].flat();
-assert.strictEqual(targetPeople.size, expectedPeople.length, 'Reparasjonen skal aktivere nøyaktig 14 Etne-personar');
+assert.strictEqual(targetPeople.size, expectedPeople.length, 'Integrasjonen skal aktivere alle planlagde Etne-personar');
 
 for (const expected of expectedPeople) {
   const person = targetPeople.get(expected.id);
