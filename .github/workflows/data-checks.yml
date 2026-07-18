@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   people:
@@ -88,6 +88,60 @@ jobs:
             npm run places:index:build
             npm run build:tools
             npm run places:index:check
-            npm run places:emner:check
+            npm run places:emners:check
             npm run places:coords:check
           fi
+
+  etne-politikk-coordinate-intake:
+    name: Etne politics coordinate intake
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/etne-politikk-batch-1' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Etne politics branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-politikk-batch-1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          mkdir -p reports/etne-politikk-batch-1-coordinate-intake
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-politikk-batch-1-coordinate-intake/npm-install.txt
+
+      - name: Run Geonorge address-first intake
+        shell: bash
+        run: |
+          npm run places:coords:find:address -- --address "Sjoarvegen 2, 5590 Etne" \
+            2>&1 | tee reports/etne-politikk-batch-1-coordinate-intake/etne_tinghus.json
+          npm run places:coords:find:address -- --address "Stadionvegen 4, 5590 Etne" \
+            2>&1 | tee reports/etne-politikk-batch-1-coordinate-intake/etne_brannstasjon.json
+
+      - name: Run Geonorge point-nearby check for Skånevik station candidate
+        shell: bash
+        run: |
+          curl --fail --silent --show-error --get \
+            'https://ws.geonorge.no/adresser/v1/punktsok' \
+            --data-urlencode 'radius=150' \
+            --data-urlencode 'lat=59.72875' \
+            --data-urlencode 'lon=5.93592' \
+            --data-urlencode 'treffPerSide=100' \
+            --data-urlencode 'side=0' \
+            | python -m json.tool \
+            | tee reports/etne-politikk-batch-1-coordinate-intake/skanevik_brannstasjon_punktsok.json
+
+      - name: Restore workflow and commit intake reports
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/data-checks.yml reports/etne-politikk-batch-1-coordinate-intake
+          git commit -m 'Capture Etne politics coordinate intake'
+          git push origin HEAD:agent/etne-politikk-batch-1
