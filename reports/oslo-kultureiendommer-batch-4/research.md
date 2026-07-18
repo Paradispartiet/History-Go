@@ -42,3 +42,7 @@ Address-first result:
 ## Coordinate method
 
 All three candidates use the repository's normative address-first Geonorge workflow. The lookup results are saved under `reports/oslo-kultureiendommer-batch-4/coordinates/` and the source records reuse those exact verified candidates.
+
+## Validation path
+
+The dedicated integration workflow registers both category sources, rebuilds the global place index and runs coordinate parity, strict new-coordinate intake, canonical emne validation and the place-health report. The temporary workflows are removed before merge.
