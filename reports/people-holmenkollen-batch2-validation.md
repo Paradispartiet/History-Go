@@ -16,14 +16,27 @@ Alle fem nye filer:
 - bruker `placeId: "holmenkollen_nasjonalanlegg"`
 - bruker `places: ["holmenkollen_nasjonalanlegg"]`
 - er pakket som runtime-kompatible én-elements JSON-arrays
-- skal registreres samlet i `data/people/manifest.json` etter Holmenkollen batch 1
+- er registrert samlet i `data/people/manifest.json` rett etter Holmenkollen batch 1
 
 ## Avgrensning
 
 Ingen eksisterende canonical people-records er duplisert av denne batchen. Ingen place-, bilde-, UI- eller runtimefiler inngår i batchen.
 
-Batch 2 er stablet på Holmenkollen batch 1 og skal merges etter PR #2199.
+Batch 2 er stablet på Holmenkollen batch 1 som draft-PR #2205 og skal merges etter PR #2199.
+
+## Diffkontroll
+
+Sammenlignet med batch 1-basen består nettodiffen av:
+
+- fem nye one-person people-filer
+- fem nye manifestregistreringer
+- researchrapport
+- valideringsrapport
+
+Manifestinnholdet er ellers uendret; GitHub viser i tillegg kun en teknisk sluttlinjeskift-diff på filslutten.
 
 ## Kontroller
 
-Sluttkontrollen kjøres etter manifestregistrering og PR-opprettelse. Repoet har en kjent, pre-eksisterende `People data`-blokkering i `people_subkultur_oslo_named_batch4.json`; batchens fem nye ID-er kontrolleres separat mot denne arvede feilen.
+Repoet har en kjent, pre-eksisterende `People data`-blokkering i `people_subkultur_oslo_named_batch4.json` med duplikat-ID-ene `stein_lillevolden`, `bror_wyller` og `hermann_stene`. De finnes allerede i batch 1-basen og er utenfor denne batchens diff.
+
+GitHub Actions-status for batch 2 føres inn når PR-kjøringen er registrert. Batchens fem nye ID-er er repo-auditert før opprettelse og ingen eksisterende canonical people-record ble funnet.
