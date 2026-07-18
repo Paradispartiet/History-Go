@@ -18,3 +18,7 @@ The Wonderkammer entry treats the grave as a real grave and cultural-historical 
 Ekebergparken documents the permanent steel frame at the viewpoint used for Marina Abramović's 2013 participatory work `The Scream`. The park also makes the historical uncertainty explicit: we cannot know exactly where Munch stood or whether the painting directly reproduces the Oslofjord view, although the Ekeberg landscape has a strong documented association with the motif.
 
 The Wonderkammer entry preserves this uncertainty instead of presenting the viewpoint as Munch's proven exact location.
+
+## Runtime rule
+
+The batch is registered as a separate Wonderkammer source. The existing boot merger appends chambers sharing a parent `place_id`, so the new entries extend rather than replace the current Vår Frelsers gravlund and Ekebergparken Wonderkammer content.
