@@ -101,4 +101,7 @@ node dist/tools/audit-people-of-places-status.mjs
 echo "== People place coverage =="
 node dist/tools/audit-people-place-coverage.mjs
 
+echo "== Etne people manifest integration =="
+node tests/etne-people-manifest-integration.test.js
+
 echo "== People check complete =="
