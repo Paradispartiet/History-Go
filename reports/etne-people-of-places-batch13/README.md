@@ -12,16 +12,16 @@ Batchen legg til éin ny canonical person med ei eksplisitt dokumentert kopling 
 
 - `main`: `39e00cac3` (`Resolve final Etne coordinate identities (#2325)`)
 - Aktive Etne-stader: `81`
-- Stader med minst éin aktiv person før batch 13: `54`
-- Stader utan person før batch 13: `27`
+- Stader med minst éin aktiv person før batch 13: `53`
+- Stader utan person før batch 13: `28`
 - Canonical people-filer i manifestet før batchen: `541`
 - Canonical people-oppføringar før batchen: `1 112`
 - Kandidat-ID-en og namnevariantane `Geir Havreberg`, `Geir A. Havreberg` og `Geir Arne Havreberg` gav `0` canonical treff før skriving.
 - Batchen legg til `1` ny person-ID, `1` ny people-fil og `0` nye place-recordar.
 
-Etter batchen får `etne_kyokushin_dojo` si første aktive personlenkje. Dekninga blir `55/81`, og restgjelda blir `26` Etne-stader utan person.
+Etter batchen får `etne_kyokushin_dojo` si første aktive personlenkje. Dekninga blir `54/81`, og restgjelda blir `27` Etne-stader utan person.
 
-Baseline er lågare enn dei `83` stadene i batch 12-rapporten fordi PR #2325 flytta `gjerdesvagen_jernvinne` til Kvinnherad og `grindheim_jernvinne` til Bømlo i samsvar med primærkjeldene. Den første av desse hadde eit people-anker; derfor går førdekninga frå `55/83` til `54/81` før den nye dojo-lenkja blir lagd til.
+Baseline er lågare enn dei `83` stadene i batch 12-rapporten fordi PR #2325 flytta `gjerdesvagen_jernvinne` til Kvinnherad og `grindheim_jernvinne` til Bømlo i samsvar med primærkjeldene. Begge hadde people-anker; derfor går førdekninga frå `55/83` til `53/81` før den nye dojo-lenkja blir lagd til.
 
 ## Kjeldegrunnlag
 
