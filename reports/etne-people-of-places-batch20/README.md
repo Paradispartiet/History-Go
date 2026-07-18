@@ -55,3 +55,13 @@ Batch 20 dekkjer eitt nytt fysisk place og skal, dersom ingen parallelle Etne-pl
 - Alle tre skal berre peike på `osnes_discgolfbane`.
 - `tests/etne-people-of-places-batch20.test.js` skal køyre frå `scripts/check-people.sh`.
 - Batchen skal ikkje endre place-, story-, UI-, bilete- eller quizdata.
+
+## Lagra valideringsbevis
+
+Dei faktiske jobb-loggane som vart brukte ved integrasjonen er lagra saman med rapporten:
+
+- `clean-validation-workflow.log` — full read-only validering, run `29663081132`, jobb `88128914740`
+- `final-people-data-ci.log` — endeleg People data-CI, run `29663129703`, jobb `88129041295`
+- `final-typescript-guard-ci.log` — endeleg TypeScript guard-CI, run `29663129702`, jobb `88129041331`
+
+Alle tre jobbane enda med `success`.
