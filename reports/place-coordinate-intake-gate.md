@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-18T23:11:18.321Z
+Generert: 2026-07-18T23:18:22.678Z
 
 ## Hvorfor denne gaten finnes
 
@@ -18,7 +18,7 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Place-objekter validert: **1178**
 - Nye/endrede koordinatobjekter mot base: **5**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3857**
+- Backlog-funn: **3855**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -41,8 +41,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 
 | nivå | endret | place id | name | fil | felt | problem | forslag til fix |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| backlog | nei | grunerlokka_helgesens_tm | Grünerløkka – Helgesens / Thorvald Meyers | data/places/by/oslo/places_by.json | coordNote | coordType=street_midpoint krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
-| backlog | nei | majorstuen_krysset | Majorstuen krysset | data/places/by/oslo/places_by.json | coordNote | coordType=street_midpoint krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
 | backlog | nei | tigeren | Tigerstatuen | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
 | backlog | nei | tigeren | Tigerstatuen | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
 | backlog | nei | tigeren | Tigerstatuen | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
@@ -541,6 +539,8 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | homlungen_fyr | Homlungen fyr | data/places/by/ostfold/homlungen_fyr.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | homlungen_fyr | Homlungen fyr | data/places/by/ostfold/homlungen_fyr.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | homlungen_fyr | Homlungen fyr | data/places/by/ostfold/homlungen_fyr.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | homlungen_fyr | Homlungen fyr | data/places/by/ostfold/homlungen_fyr.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | veien_kulturminnepark | Veien Kulturminnepark | data/places/historie/buskerud/places_historie_buskerud_batch1.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3857 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3855 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
