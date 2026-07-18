@@ -30,16 +30,20 @@ jobs:
           node tests/coordinate-source-contract-anchor-trust.test.mjs
       - name: Rebuild place index
         run: npm run places:index:build
-      - name: Validate coordinate batch
+      - name: Check place index
+        run: npm run places:index:check
+      - name: Check split manifest sync
+        run: npm run audit:places-split-manifest-sync
+      - name: Check coordinate quality
+        run: npm run places:coords:quality
+      - name: Check strict coordinate intake
         env:
           COORD_INTAKE_BASE: origin/main
-        run: |
-          npm run places:index:check
-          npm run audit:places-split-manifest-sync
-          npm run places:coords:quality
-          npm run places:coords:intake
-          npm run places:coords:evidence:audit
-          git diff --check
+        run: npm run places:coords:intake
+      - name: Check coordinate evidence
+        run: npm run places:coords:evidence:audit
+      - name: Check whitespace
+        run: git diff --check
       - name: Remove temporary integration files
         run: |
           rm scripts/tmp-complete-oslo-coordinate-batch11.mjs
