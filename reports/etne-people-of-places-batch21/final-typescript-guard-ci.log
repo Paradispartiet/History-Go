@@ -1,0 +1,233 @@
+﻿2026-07-18T22:24:16.3503332Z Current runner version: '2.335.1'
+2026-07-18T22:24:16.3528715Z ##[group]Runner Image Provisioner
+2026-07-18T22:24:16.3530133Z Hosted Compute Agent
+2026-07-18T22:24:16.3530782Z Version: 20260707.563
+2026-07-18T22:24:16.3531384Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+2026-07-18T22:24:16.3532213Z Build Date: 2026-07-07T19:33:50Z
+2026-07-18T22:24:16.3532879Z Worker ID: {26064c85-1b3c-4544-a2d8-269c1d59d6f9}
+2026-07-18T22:24:16.3533607Z Azure Region: westus2
+2026-07-18T22:24:16.3534183Z ##[endgroup]
+2026-07-18T22:24:16.3535696Z ##[group]Operating System
+2026-07-18T22:24:16.3536438Z Ubuntu
+2026-07-18T22:24:16.3536953Z 24.04.4
+2026-07-18T22:24:16.3537432Z LTS
+2026-07-18T22:24:16.3537999Z ##[endgroup]
+2026-07-18T22:24:16.3538534Z ##[group]Runner Image
+2026-07-18T22:24:16.3539132Z Image: ubuntu-24.04
+2026-07-18T22:24:16.3539727Z Version: 20260714.240.1
+2026-07-18T22:24:16.3541386Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260714.240/images/ubuntu/Ubuntu2404-Readme.md
+2026-07-18T22:24:16.3542908Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260714.240
+2026-07-18T22:24:16.3543917Z ##[endgroup]
+2026-07-18T22:24:16.3546969Z ##[group]GITHUB_TOKEN Permissions
+2026-07-18T22:24:16.3549406Z Actions: write
+2026-07-18T22:24:16.3550406Z ArtifactMetadata: write
+2026-07-18T22:24:16.3550996Z Attestations: write
+2026-07-18T22:24:16.3551678Z Checks: write
+2026-07-18T22:24:16.3552215Z CodeQuality: write
+2026-07-18T22:24:16.3552790Z Contents: write
+2026-07-18T22:24:16.3553352Z CopilotRequests: write
+2026-07-18T22:24:16.3553927Z Deployments: write
+2026-07-18T22:24:16.3554631Z Discussions: write
+2026-07-18T22:24:16.3555169Z Drives: write
+2026-07-18T22:24:16.3555667Z Issues: write
+2026-07-18T22:24:16.3556247Z Metadata: read
+2026-07-18T22:24:16.3556860Z Models: read
+2026-07-18T22:24:16.3557450Z Packages: write
+2026-07-18T22:24:16.3557995Z Pages: write
+2026-07-18T22:24:16.3558518Z PullRequests: write
+2026-07-18T22:24:16.3559155Z RepositoryProjects: write
+2026-07-18T22:24:16.3559961Z SecurityEvents: write
+2026-07-18T22:24:16.3560586Z Statuses: write
+2026-07-18T22:24:16.3561212Z VulnerabilityAlerts: read
+2026-07-18T22:24:16.3561794Z ##[endgroup]
+2026-07-18T22:24:16.3564256Z Secret source: Actions
+2026-07-18T22:24:16.3565021Z Prepare workflow directory
+2026-07-18T22:24:16.3892265Z Prepare all required actions
+2026-07-18T22:24:16.3930180Z Getting action download info
+2026-07-18T22:24:16.7722930Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-07-18T22:24:16.9235553Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-07-18T22:24:17.1145405Z Complete job name: TypeScript typecheck and build guard
+2026-07-18T22:24:17.1889735Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:24:17.1898930Z ##[group]Run actions/checkout@v4
+2026-07-18T22:24:17.1899680Z with:
+2026-07-18T22:24:17.1900352Z   repository: Paradispartiet/History-Go
+2026-07-18T22:24:17.1904386Z   token: ***
+2026-07-18T22:24:17.1904806Z   ssh-strict: true
+2026-07-18T22:24:17.1905233Z   ssh-user: git
+2026-07-18T22:24:17.1905665Z   persist-credentials: true
+2026-07-18T22:24:17.1906146Z   clean: true
+2026-07-18T22:24:17.1906586Z   sparse-checkout-cone-mode: true
+2026-07-18T22:24:17.1907129Z   fetch-depth: 1
+2026-07-18T22:24:17.1907542Z   fetch-tags: false
+2026-07-18T22:24:17.1907973Z   show-progress: true
+2026-07-18T22:24:17.1908405Z   lfs: false
+2026-07-18T22:24:17.1908840Z   submodules: false
+2026-07-18T22:24:17.1909282Z   set-safe-directory: true
+2026-07-18T22:24:17.1910590Z ##[endgroup]
+2026-07-18T22:24:17.2920270Z Syncing repository: Paradispartiet/History-Go
+2026-07-18T22:24:17.2923340Z ##[group]Getting Git version info
+2026-07-18T22:24:17.2925146Z Working directory is '/home/runner/work/History-Go/History-Go'
+2026-07-18T22:24:17.2927283Z [command]/usr/bin/git version
+2026-07-18T22:24:17.3051528Z git version 2.54.0
+2026-07-18T22:24:17.3080355Z ##[endgroup]
+2026-07-18T22:24:17.3102654Z Temporarily overriding HOME='/home/runner/work/_temp/875ab353-c502-48e9-98f4-3e3773e91a8e' before making global git config changes
+2026-07-18T22:24:17.3104965Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-18T22:24:17.3108564Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/History-Go/History-Go
+2026-07-18T22:24:17.3240071Z Deleting the contents of '/home/runner/work/History-Go/History-Go'
+2026-07-18T22:24:17.3242192Z ##[group]Initializing the repository
+2026-07-18T22:24:17.3250603Z [command]/usr/bin/git init /home/runner/work/History-Go/History-Go
+2026-07-18T22:24:17.3411531Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-18T22:24:17.3413403Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-18T22:24:17.3415212Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-18T22:24:17.3416513Z hint: call:
+2026-07-18T22:24:17.3417242Z hint:
+2026-07-18T22:24:17.3418357Z hint: 	git config --global init.defaultBranch <name>
+2026-07-18T22:24:17.3420113Z hint:
+2026-07-18T22:24:17.3421428Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-18T22:24:17.3423162Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-18T22:24:17.3424538Z hint:
+2026-07-18T22:24:17.3425367Z hint: 	git branch -m <name>
+2026-07-18T22:24:17.3426413Z hint:
+2026-07-18T22:24:17.3427699Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-18T22:24:17.3429620Z Initialized empty Git repository in /home/runner/work/History-Go/History-Go/.git/
+2026-07-18T22:24:17.3435911Z [command]/usr/bin/git remote add origin https://github.com/Paradispartiet/History-Go
+2026-07-18T22:24:17.3527098Z ##[endgroup]
+2026-07-18T22:24:17.3528631Z ##[group]Disabling automatic garbage collection
+2026-07-18T22:24:17.3530224Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-18T22:24:17.3592978Z ##[endgroup]
+2026-07-18T22:24:17.3594756Z ##[group]Setting up auth
+2026-07-18T22:24:17.3621175Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-18T22:24:17.3688523Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-18T22:24:17.4146370Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-18T22:24:17.4199536Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-18T22:24:17.4557880Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-18T22:24:17.4609152Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-18T22:24:17.4903522Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-18T22:24:17.4945249Z ##[endgroup]
+2026-07-18T22:24:17.4946673Z ##[group]Fetching the repository
+2026-07-18T22:24:17.4957104Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b20e9c009fb5ef2b93c0bd41a5262b822e59a4ed:refs/remotes/pull/2356/merge
+2026-07-18T22:24:23.5304175Z From https://github.com/Paradispartiet/History-Go
+2026-07-18T22:24:23.5305748Z  * [new ref]         b20e9c009fb5ef2b93c0bd41a5262b822e59a4ed -> pull/2356/merge
+2026-07-18T22:24:23.5333032Z ##[endgroup]
+2026-07-18T22:24:23.5334855Z ##[group]Determining the checkout info
+2026-07-18T22:24:23.5336854Z ##[endgroup]
+2026-07-18T22:24:23.5342888Z [command]/usr/bin/git sparse-checkout disable
+2026-07-18T22:24:23.5396210Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-18T22:24:23.5430214Z ##[group]Checking out the ref
+2026-07-18T22:24:23.5434915Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2356/merge
+2026-07-18T22:24:24.5572961Z Note: switching to 'refs/remotes/pull/2356/merge'.
+2026-07-18T22:24:24.5573967Z 
+2026-07-18T22:24:24.5574693Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-07-18T22:24:24.5576115Z changes and commit them, and you can discard any commits you make in this
+2026-07-18T22:24:24.5577497Z state without impacting any branches by switching back to a branch.
+2026-07-18T22:24:24.5578262Z 
+2026-07-18T22:24:24.5578818Z If you want to create a new branch to retain commits you create, you may
+2026-07-18T22:24:24.5580344Z do so (now or later) by using -c with the switch command. Example:
+2026-07-18T22:24:24.5581173Z 
+2026-07-18T22:24:24.5581526Z   git switch -c <new-branch-name>
+2026-07-18T22:24:24.5582073Z 
+2026-07-18T22:24:24.5582429Z Or undo this operation with:
+2026-07-18T22:24:24.5582933Z 
+2026-07-18T22:24:24.5583239Z   git switch -
+2026-07-18T22:24:24.5583659Z 
+2026-07-18T22:24:24.5584353Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-07-18T22:24:24.5585384Z 
+2026-07-18T22:24:24.5586504Z HEAD is now at b20e9c0 Merge db6e43972e5cab4a3c23e7b20becc44a79e2ad31 into fe87c5d4af51e4eae9ce97ce064f372e01843225
+2026-07-18T22:24:24.5692623Z ##[endgroup]
+2026-07-18T22:24:24.5739269Z [command]/usr/bin/git log -1 --format=%H
+2026-07-18T22:24:24.5769132Z b20e9c009fb5ef2b93c0bd41a5262b822e59a4ed
+2026-07-18T22:24:24.6133782Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:24:24.6138775Z ##[group]Run actions/setup-node@v4
+2026-07-18T22:24:24.6140060Z with:
+2026-07-18T22:24:24.6140873Z   node-version: 22
+2026-07-18T22:24:24.6141713Z   cache: npm
+2026-07-18T22:24:24.6142514Z   always-auth: false
+2026-07-18T22:24:24.6143374Z   check-latest: false
+2026-07-18T22:24:24.6221682Z   token: ***
+2026-07-18T22:24:24.6222539Z ##[endgroup]
+2026-07-18T22:24:24.7649024Z Found in cache @ /opt/hostedtoolcache/node/22.23.1/x64
+2026-07-18T22:24:24.7655743Z (node:2298) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-18T22:24:24.7660185Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-18T22:24:24.7663715Z ##[group]Environment details
+2026-07-18T22:24:25.1761581Z node: v22.23.1
+2026-07-18T22:24:25.1762534Z npm: 10.9.8
+2026-07-18T22:24:25.1763160Z yarn: 1.22.22
+2026-07-18T22:24:25.1764807Z ##[endgroup]
+2026-07-18T22:24:25.1817072Z [command]/opt/hostedtoolcache/node/22.23.1/x64/bin/npm config get cache
+2026-07-18T22:24:25.3316681Z /home/runner/.npm
+2026-07-18T22:24:25.6136260Z Cache hit for: node-cache-Linux-x64-npm-f63bd1ed52a86d7850bc281505970c770f2a4ed121d2cd99efbde06fe2ae2514
+2026-07-18T22:24:25.6245776Z (node:2298) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-07-18T22:24:26.9098753Z Received 4194304 of 42428277 (9.9%), 4.0 MBs/sec
+2026-07-18T22:24:27.2730325Z Received 42428277 of 42428277 (100.0%), 29.7 MBs/sec
+2026-07-18T22:24:27.2731041Z Cache Size: ~40 MB (42428277 B)
+2026-07-18T22:24:27.2844099Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e04965bc-1354-4428-ae1e-3305c6127df1/cache.tzst -P -C /home/runner/work/History-Go/History-Go --use-compress-program unzstd
+2026-07-18T22:24:27.3546002Z Cache restored successfully
+2026-07-18T22:24:27.3569388Z Cache restored from key: node-cache-Linux-x64-npm-f63bd1ed52a86d7850bc281505970c770f2a4ed121d2cd99efbde06fe2ae2514
+2026-07-18T22:24:27.3730156Z ##[group]Run npm install --no-audit --no-fund
+2026-07-18T22:24:27.3730659Z [36;1mnpm install --no-audit --no-fund[0m
+2026-07-18T22:24:27.3817958Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:24:27.3818258Z ##[endgroup]
+2026-07-18T22:24:30.9032619Z 
+2026-07-18T22:24:30.9042703Z added 55 packages in 3s
+2026-07-18T22:24:30.9607766Z ##[group]Run npm run typecheck
+2026-07-18T22:24:30.9608086Z [36;1mnpm run typecheck[0m
+2026-07-18T22:24:30.9670609Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:24:30.9670894Z ##[endgroup]
+2026-07-18T22:24:31.0752012Z 
+2026-07-18T22:24:31.0752822Z > history-go@0.0.0 typecheck
+2026-07-18T22:24:31.0753666Z > tsc -p tsconfig.json
+2026-07-18T22:24:31.0754125Z 
+2026-07-18T22:24:38.7117368Z ##[group]Run npm run typecheck:scripts
+2026-07-18T22:24:38.7117769Z [36;1mnpm run typecheck:scripts[0m
+2026-07-18T22:24:38.7176913Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:24:38.7177209Z ##[endgroup]
+2026-07-18T22:24:38.8167895Z 
+2026-07-18T22:24:38.8168572Z > history-go@0.0.0 typecheck:scripts
+2026-07-18T22:24:38.8169209Z > tsc -p tsconfig.scripts.json
+2026-07-18T22:24:38.8169433Z 
+2026-07-18T22:24:40.0867306Z ##[group]Run npm run build:scripts
+2026-07-18T22:24:40.0867656Z [36;1mnpm run build:scripts[0m
+2026-07-18T22:24:40.0926287Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:24:40.0926553Z ##[endgroup]
+2026-07-18T22:24:40.1935320Z 
+2026-07-18T22:24:40.1936008Z > history-go@0.0.0 build:scripts
+2026-07-18T22:24:40.1936587Z > tsc -p tsconfig.scripts.build.json
+2026-07-18T22:24:40.1936837Z 
+2026-07-18T22:24:41.6569688Z ##[group]Run npm run typecheck:tools
+2026-07-18T22:24:41.6570407Z [36;1mnpm run typecheck:tools[0m
+2026-07-18T22:24:41.6627768Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:24:41.6628029Z ##[endgroup]
+2026-07-18T22:24:41.7620572Z 
+2026-07-18T22:24:41.7621138Z > history-go@0.0.0 typecheck:tools
+2026-07-18T22:24:41.7621880Z > tsc -p tsconfig.tools.json
+2026-07-18T22:24:41.7622287Z 
+2026-07-18T22:24:43.9439258Z ##[group]Run npm run build:tools
+2026-07-18T22:24:43.9439591Z [36;1mnpm run build:tools[0m
+2026-07-18T22:24:43.9497788Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:24:43.9498069Z ##[endgroup]
+2026-07-18T22:24:44.0506357Z 
+2026-07-18T22:24:44.0507166Z > history-go@0.0.0 build:tools
+2026-07-18T22:24:44.0507926Z > tsc -p tsconfig.tools.build.json
+2026-07-18T22:24:44.0508328Z 
+2026-07-18T22:24:46.6061306Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:24:46.6062577Z Post job cleanup.
+2026-07-18T22:24:46.7281154Z (node:2491) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-18T22:24:46.7282180Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-18T22:24:46.7285700Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-f63bd1ed52a86d7850bc281505970c770f2a4ed121d2cd99efbde06fe2ae2514, not saving cache.
+2026-07-18T22:24:46.7426763Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:24:46.7428028Z Post job cleanup.
+2026-07-18T22:24:46.8275228Z [command]/usr/bin/git version
+2026-07-18T22:24:46.8316692Z git version 2.54.0
+2026-07-18T22:24:46.8356544Z Temporarily overriding HOME='/home/runner/work/_temp/082f1ee6-c0cd-4e3f-a12a-5cbb53849ac6' before making global git config changes
+2026-07-18T22:24:46.8358105Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-18T22:24:46.8362723Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/History-Go/History-Go
+2026-07-18T22:24:46.8400375Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-18T22:24:46.8437922Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-18T22:24:46.8726797Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-18T22:24:46.8758141Z http.https://github.com/.extraheader
+2026-07-18T22:24:46.8770407Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-07-18T22:24:46.8811457Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-18T22:24:46.9078688Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-18T22:24:46.9117775Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-18T22:24:46.9515113Z Cleaning up orphan processes
+2026-07-18T22:24:46.9917509Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

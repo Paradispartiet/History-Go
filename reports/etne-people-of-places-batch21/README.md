@@ -27,3 +27,13 @@ Ferske søk etter `dzintrs_vitols` og `Dzintrs Vitols` gav ingen eksisterande ca
 ## Dekning
 
 Etter batch 20 er 61 av 81 aktive Etne-stader dekte. Batch 21 skal dekkje eitt nytt place og gi 62/81 dersom hovudlinja ikkje endrar seg før merge.
+
+## Lagra valideringsbevis
+
+Dei faktiske jobb-loggane som vart brukte ved integrasjonen er lagra saman med rapporten:
+
+- `clean-validation-workflow.log` — full read-only validering, run `29663324319`, jobb `88129560305`
+- `final-people-data-ci.log` — endeleg People data-CI, run `29663375634`, jobb `88129691929`
+- `final-typescript-guard-ci.log` — endeleg TypeScript guard-CI, run `29663375633`, jobb `88129691888`
+
+Alle tre jobbane enda med `success`.
