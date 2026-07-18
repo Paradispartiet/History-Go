@@ -49,3 +49,11 @@ Batchtesten kontrollerer i tillegg normalisert ID, namn og utvalde variantar på
 - Personen skal berre peike på `litledalen_kraftverk`.
 - `tests/etne-people-of-places-batch19.test.js` skal køyre frå `scripts/check-people.sh`.
 - Batchen skal ikkje endre place-, story-, UI-, bilete- eller quizdata.
+
+## Lagra valideringsoutput
+
+Faktisk GitHub Actions-terminaloutput frå den grøne integrasjonen og den endelege headen er lagra i denne rapportmappa:
+
+- `clean-validation-workflow.log` — run 29662827340 / job 88128262347; batchtest, full people-port, 60/81-dekningsaudit, typecheck, full `tools:check` mot dei fem kjende story-referansane og `git diff --check`
+- `final-people-data-ci.log` — run 29662874749 / job 88128382773
+- `final-typescript-guard-ci.log` — run 29662874740 / job 88128382677
