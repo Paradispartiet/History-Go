@@ -1,0 +1,267 @@
+name: Finalize Møllergata 19
+
+on:
+  push:
+    paths:
+      - ".github/workflows/mollergata-19-finalize.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Finalize people, relations and actors
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const paths = {
+            place: 'data/places/historie/oslo/places_historie/mollergata_19.json',
+            stories: 'data/stories/stories_mollergata_19.json',
+            quiz: 'data/quiz/historie/mollergata_19_sets.json',
+            leksikon: 'data/leksikon/places/oslo/historie/leksikon_mollergata_19.json',
+            leksikonManifest: 'data/leksikon/manifest.json',
+            peopleHistory: 'data/people/historie/oslo/people_historie_oslo.json',
+            peoplePolitics: 'data/people/politikk/oslo/people_politikk_oslo.json',
+            relations: 'data/relations_philanthropy.json',
+            actors: 'data/brands/actors_by_place.json'
+          };
+
+          const read = path => ({ raw: fs.readFileSync(path, 'utf8'), data: JSON.parse(fs.readFileSync(path, 'utf8')) });
+          const write = (path, raw, data) => {
+            const pretty = raw.trim().split(/\r?\n/).length > 3;
+            fs.writeFileSync(path, JSON.stringify(data, null, pretty ? 2 : 0) + '\n');
+          };
+          const assert = (ok, message) => { if (!ok) throw new Error(message); };
+          const upsertById = (list, item) => {
+            const i = list.findIndex(entry => entry?.id === item.id);
+            if (i >= 0) list[i] = item;
+            else list.push(item);
+          };
+          const addPlace = (person, placeId) => {
+            const values = [person.placeId, ...(Array.isArray(person.places) ? person.places : [])]
+              .map(value => String(value || '').trim())
+              .filter(Boolean);
+            if (!values.includes(placeId)) values.push(placeId);
+            person.places = [...new Set(values)];
+          };
+
+          const place = read(paths.place).data;
+          assert(place.id === 'mollergata_19', 'Wrong place');
+          assert(place.category === 'historie', 'Wrong category');
+          assert(Array.isArray(place.rounds) && place.rounds.length === 9, 'Expected nine rounds');
+          assert(new Set(place.rounds).size === 9, 'Duplicate rounds');
+          assert(place.rounds.includes('tasks') && !place.rounds.includes('nature'), 'Tasks must replace nature');
+          assert(place.works?.length === 4, 'Works incomplete');
+          assert(place.tasks_profile?.tasks?.length === 3, 'Tasks incomplete');
+          assert(place.civication_store?.length === 3, 'Civication incomplete');
+
+          const stories = read(paths.stories).data;
+          assert(Array.isArray(stories) && stories.length === 3, 'Stories incomplete');
+          assert(stories.every(story => story.place_id === place.id && story.sources?.length), 'Story target/source error');
+
+          const quiz = read(paths.quiz).data;
+          const questions = (quiz.sets || []).flatMap(set => set.questions || []);
+          assert(quiz.targetId === place.id && questions.length === 5, 'Quiz incomplete');
+          assert(questions.every(q => q.placeId === place.id && q.targetId === place.id && q.options?.includes(q.answer)), 'Quiz target/answer error');
+
+          const articles = read(paths.leksikon).data;
+          assert(Array.isArray(articles) && articles.length === 4, 'Leksikon incomplete');
+          assert(articles.every(article => article.place_id === place.id), 'Leksikon target error');
+          const leksikonManifest = read(paths.leksikonManifest).data;
+          assert(leksikonManifest.files.includes(paths.leksikon), 'Leksikon file is not registered');
+
+          const historyFile = read(paths.peopleHistory);
+          const historyPeople = historyFile.data;
+          assert(Array.isArray(historyPeople), 'History people must be array');
+
+          const petter = historyPeople.find(person => person?.id === 'petter_moen');
+          assert(petter, 'Petter Moen missing');
+          addPlace(petter, place.id);
+          petter.popupDesc = 'Petter Moen var motstandsmann og redaktør i den illegale pressen. Han ble arrestert i 1944 og satt fengslet i Møllergata 19. Der perforerte han dagboknotater i toalettpapir med en nål og skjulte arkene under cellegulvet. Notatene ble funnet etter frigjøringen og ble et direkte vitnesbyrd fra fangenskapet.';
+          petter.externalLinks = [
+            { type: 'source', label: 'Petter Moen – Store norske leksikon', url: 'https://snl.no/Petter_Moen', verifiedAt: '2026-07-18' },
+            { type: 'source', label: 'Dagbok – Store norske leksikon', url: 'https://snl.no/dagbok_-_litteratur', verifiedAt: '2026-07-18' }
+          ];
+
+          const quisling = historyPeople.find(person => person?.id === 'vidkun_quisling');
+          assert(quisling, 'Vidkun Quisling missing');
+          addPlace(quisling, place.id);
+          write(paths.peopleHistory, historyFile.raw, historyPeople);
+
+          const politicsFile = read(paths.peoplePolitics);
+          const politicsPeople = politicsFile.data;
+          assert(Array.isArray(politicsPeople), 'Politics people must be array');
+          const nordan = politicsPeople.find(person => person?.id === 'jacob_wilhelm_nordan');
+          assert(nordan, 'Jacob Wilhelm Nordan missing');
+          addPlace(nordan, place.id);
+          write(paths.peoplePolitics, politicsFile.raw, politicsPeople);
+
+          const relationFile = read(paths.relations);
+          const relations = relationFile.data;
+          assert(Array.isArray(relations), 'Supplemental relations must be array');
+          [
+            {
+              id: 'rel_mollergata_19_petter_moen_fangedagbok',
+              type: 'fengslet_og_skrev_dagbok',
+              place: place.id,
+              person: 'petter_moen',
+              label: 'Skrev dagbok i cellen',
+              why: 'Petter Moen perforerte dagboknotater i toalettpapir mens han satt fengslet i Møllergata 19 i 1944.',
+              source: 'https://snl.no/Petter_Moen',
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'rel_mollergata_19_vidkun_quisling_rettsoppgjor',
+              type: 'fengslet_under_rettsoppgjoret',
+              place: place.id,
+              person: 'vidkun_quisling',
+              label: 'Fengslet etter frigjøringen',
+              why: 'Vidkun Quisling satt i Møllergata 19 fram til slutten av juli 1945 før han ble flyttet til Akershus.',
+              source: 'https://oslobyleksikon.no/side/M%C3%B8llergata_19',
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'rel_mollergata_19_jacob_wilhelm_nordan_arkitekt',
+              type: 'arkitekt',
+              place: place.id,
+              person: 'jacob_wilhelm_nordan',
+              label: 'Arkitekt for politi- og fengselsanlegget',
+              why: 'Jacob Wilhelm Nordan tegnet anlegget som ble oppført 1862–1866.',
+              source: 'https://snl.no/M%C3%B8llergata_19',
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'rel_mollergata_19_viggo_hansteen_fangenskap',
+              type: 'fengslet_her',
+              place: place.id,
+              person: 'viggo_hansteen',
+              label: 'Fengslet under okkupasjonen',
+              why: 'Tilknytningen inngår i stedets historie som sentralfengsel for politiske fanger.',
+              source: 'data/people/historie/oslo/people_historie_oslo.json',
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'rel_mollergata_19_rolf_wickstrom_fangenskap',
+              type: 'fengslet_her',
+              place: place.id,
+              person: 'rolf_wickstrom',
+              label: 'Fengslet under okkupasjonen',
+              why: 'Tilknytningen inngår i stedets historie som sentralfengsel for politiske fanger.',
+              source: 'data/people/historie/oslo/people_historie_oslo.json',
+              verified_at: '2026-07-18'
+            }
+          ].forEach(item => upsertById(relations, item));
+          assert(new Set(relations.map(item => item.id)).size === relations.length, 'Duplicate relation ids');
+          write(paths.relations, relationFile.raw, relations);
+
+          const actorFile = read(paths.actors);
+          actorFile.data[place.id] = [
+            {
+              id: 'christiania_oslo_politi_mollergata_19',
+              name: 'Christiania og Oslo politi',
+              entity_type: 'actor',
+              actor_kind: 'historic_police_institution',
+              actor_role: 'Hadde Møllergata 19 som hovedpolitistasjon fra 1866 til 1978.',
+              brand_group: 'historic_actor',
+              brand_type: 'police_institution',
+              brand_kind: 'legacy',
+              sector: 'justice_and_police',
+              state: 'catalog',
+              status: 'historic_occupant',
+              verification: 'verified_legacy',
+              popupdesc: 'Christiania politi tok den nye hovedpolitistasjonen i bruk 1. juli 1866. Oslo politidistrikt hadde hovedkontor her fram til Politihuset på Grønland overtok i 1978.',
+              desc: 'Historisk hovedinstitusjon i bygningen 1866–1978.',
+              aliases: ['Christiania politi', 'Oslo politi', 'Oslo politidistrikt'],
+              tags: ['actor', 'police', 'justice_history', 'mollergata_19'],
+              source_urls: ['https://snl.no/M%C3%B8llergata_19'],
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'christiania_byrett_mollergata_19',
+              name: 'Christiania byrett',
+              entity_type: 'actor',
+              actor_kind: 'historic_court',
+              actor_role: 'Brukte spesialbygde rettslokaler i Møllergata 19 fra 1867 til den nye justisbygningen åpnet i 1903.',
+              brand_group: 'historic_actor',
+              brand_type: 'court_institution',
+              brand_kind: 'legacy',
+              sector: 'justice',
+              state: 'catalog',
+              status: 'historic_occupant',
+              verification: 'verified_legacy',
+              popupdesc: 'Christiania byrett fikk lokaler i politi- og rettsbygningen da domstolen trådte i virksomhet i 1867. Forhørsretten og byretten ble værende til den nye justisbygningen stod klar i 1903.',
+              desc: 'Historisk domstol i bygningen.',
+              aliases: ['Byretten', 'Christiania Byret'],
+              tags: ['actor', 'court', 'justice_history', 'mollergata_19'],
+              source_urls: ['https://snl.no/M%C3%B8llergata_19', 'https://oslobyleksikon.no/side/M%C3%B8llergata_19'],
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'sipo_sd_mollergata_19',
+              name: 'Sipo og SD',
+              entity_type: 'actor',
+              actor_kind: 'occupation_security_police',
+              actor_role: 'Overtok Møllergata 19 og brukte stedet som sentralfengsel for politiske fanger under okkupasjonen.',
+              brand_group: 'historic_actor',
+              brand_type: 'occupation_authority',
+              brand_kind: 'legacy',
+              sector: 'occupation_regime',
+              state: 'catalog',
+              status: 'historic_perpetrator',
+              verification: 'verified_legacy',
+              popupdesc: 'Det tyske sikkerhetspolitiet, Sipo og SD, brukte Møllergata 19 som sitt sentrale fengsel i Norge. Fanger ble holdt uten lov og dom, og fengselet ble en sentral del av okkupasjonsmaktens kontrollapparat.',
+              desc: 'Okkupasjonsmaktens sikkerhetspoliti og fengselsaktør.',
+              aliases: ['Sicherheitspolizei', 'Sicherheitsdienst', 'Gestapo'],
+              tags: ['actor', 'occupation', 'security_police', 'perpetrator_history', 'mollergata_19'],
+              source_urls: ['https://www.fanger.no/prisoncamps/664', 'https://snl.no/M%C3%B8llergata_19'],
+              verified_at: '2026-07-18'
+            },
+            {
+              id: 'regjeringskvartalet_forvaltning_mollergata_19',
+              name: 'Regjeringskvartalet',
+              entity_type: 'actor',
+              actor_kind: 'government_property_context',
+              actor_role: 'Møllergata 19 ble del av regjeringskvartalet i 1981 og er integrert med det nye departementsområdet.',
+              brand_group: 'public_actor',
+              brand_type: 'government_quarter',
+              brand_kind: 'brand',
+              sector: 'public_administration',
+              state: 'catalog',
+              status: 'active_context',
+              verification: 'verified',
+              popupdesc: 'Den bevarte hovedbygningen ble tatt i bruk av departementene i 1981. I det nye regjeringskvartalet fungerer Møllergata 19 som historisk inngang fra Youngstorget og er integrert med nyere departementsbygg.',
+              desc: 'Dagens statlige bygnings- og forvaltningskontekst.',
+              aliases: ['Nytt regjeringskvartal'],
+              tags: ['actor', 'government', 'heritage', 'mollergata_19'],
+              source_urls: ['https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/', 'https://snl.no/M%C3%B8llergata_19'],
+              verified_at: '2026-07-18'
+            }
+          ];
+          assert(actorFile.data[place.id].length === 4, 'Actors incomplete');
+          assert(new Set(actorFile.data[place.id].map(actor => actor.id)).size === 4, 'Duplicate actor ids');
+          write(paths.actors, actorFile.raw, actorFile.data);
+
+          for (const path of Object.values(paths)) JSON.parse(fs.readFileSync(path, 'utf8'));
+          NODE
+
+          rm .github/workflows/mollergata-19-finalize.yml
+
+          git config user.name "history-go-data-bot"
+          git config user.email "history-go-data-bot@users.noreply.github.com"
+          git add \
+            data/people/historie/oslo/people_historie_oslo.json \
+            data/people/politikk/oslo/people_politikk_oslo.json \
+            data/relations_philanthropy.json \
+            data/brands/actors_by_place.json \
+            .github/workflows/mollergata-19-finalize.yml
+          git commit -m "Finalize Møllergata 19 people and actors"
+          git pull --rebase origin main
+          git push
