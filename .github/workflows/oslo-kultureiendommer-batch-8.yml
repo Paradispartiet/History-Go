@@ -23,7 +23,7 @@ jobs:
       - name: Find and save Geonorge address candidate
         run: |
           mkdir -p reports/oslo-kultureiendommer-batch-8/coordinates
-          npm run places:coords:find:address -- --address "Dr. Dedichens vei 28 0675 Oslo" \
+          npm run places:coords:find:address -- --address "Dr. Dedichens vei 28D Oslo" \
             | tee reports/oslo-kultureiendommer-batch-8/coordinates/trosterudvillaen.json
       - name: Commit coordinate report
         run: |
