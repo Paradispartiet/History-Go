@@ -15,18 +15,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  integrate_etne_sport_batch_4_coordinate_fix:
-    name: Integrate Etne sport batch 4 coordinate fix
+  people:
+    name: People data
     runs-on: ubuntu-latest
     steps:
-      - name: Check out PR branch
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -34,59 +31,63 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run people check
+        run: bash scripts/check-people.sh
+
+  places:
+    name: Places data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run places check
         run: |
-          mkdir -p reports/etne-sport-batch-4-integration
-          npm install --no-audit --no-fund 2>&1 | tee reports/etne-sport-batch-4-integration/npm-install.txt
-
-      - name: Rebuild runtime index
-        run: npm run places:index:build 2>&1 | tee reports/etne-sport-batch-4-integration/index-build.txt
-
-      - name: Run coordinate intake gate
-        run: npm run places:coords:intake 2>&1 | tee reports/etne-sport-batch-4-integration/coordinate-intake.txt
-
-      - name: Run places validation
-        run: bash scripts/check-places.sh 2>&1 | tee reports/etne-sport-batch-4-integration/check-places.txt
-
-      - name: Run split manifest sync
-        run: npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-sport-batch-4-integration/split-manifest-sync.txt
-
-      - name: Run coordinate quality gate
-        run: npm run places:coords:quality 2>&1 | tee reports/etne-sport-batch-4-integration/coordinate-quality.txt
-
-      - name: Validate repaired source and runtime metadata
-        run: |
-          node --input-type=module <<'NODE' | tee reports/etne-sport-batch-4-integration/coordinate-metadata-fix.txt
-          import fs from 'node:fs';
-          const source = JSON.parse(fs.readFileSync('data/places/sport/vestland/etne/skanevik_skytebane.json', 'utf8'))[0];
-          const runtime = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8')).find((p) => p.id === 'skanevik_skytebane');
-          const fields = ['lat','lon','r','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','locatorType','sourceProvider','sourceObjectId','geocodeAccuracy','coordRole'];
-          for (const field of fields) {
-            if (JSON.stringify(source[field]) !== JSON.stringify(runtime?.[field])) {
-              throw new Error(`FAIL source/runtime mismatch for ${field}: source=${JSON.stringify(source[field])} runtime=${JSON.stringify(runtime?.[field])}`);
+          if [ -f scripts/check-places.sh ]; then
+            bash scripts/check-places.sh
+          else
+            echo "scripts/check-places.sh not found; using inline places checks"
+            node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          function readJson(file) {
+            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+            catch (error) {
+              console.error(`JSON parse failed: ${file}`);
+              console.error(error.message);
+              process.exit(1);
             }
           }
-          console.log('PASS skanevik_skytebane coordinate metadata present and source/runtime aligned');
-          console.log(`PASS coordType=${source.coordType}`);
-          console.log(`PASS coordStatus=${source.coordStatus}`);
-          console.log(`PASS coordRole=${source.coordRole}`);
-          console.log(`PASS radius r=${source.r} explained as an area anchor in coordNote`);
+          const manifestPath = 'data/places/manifest.json';
+          const placesIndexPath = 'data/places/places_index.json';
+          const manifest = readJson(manifestPath);
+          if (!manifest || !Array.isArray(manifest.files)) {
+            console.error(`${manifestPath} must contain a files array`);
+            process.exit(1);
+          }
+          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
+          for (const file of files) {
+            if (!fs.existsSync(file)) {
+              console.error(`Missing expected file: ${file}`);
+              process.exit(1);
+            }
+            readJson(file);
+          }
+          console.log(`json ok (${files.length} files)`);
           NODE
-
-      - name: Run diff whitespace check
-        run: git diff --check | tee reports/etne-sport-batch-4-integration/git-diff-check.txt
-
-      - name: Restore standard workflow and commit integration output
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git show origin/main:.github/workflows/data-checks.yml > .github/workflows/data-checks.yml
-          git rm -f .github/workflows/temporary-etne-sport-batch-4-coordinate-fix.yml
-          git add .github/workflows/data-checks.yml data/places/places_index.json reports/etne-sport-batch-4-integration
-          git diff --cached --check
-          if git diff --cached --quiet; then
-            echo "No integration changes to commit"
-          else
-            git commit -m "Validate Skånevik skytebane coordinate metadata"
-            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+            npm run places:index:build
+            npm run build:tools
+            npm run places:index:check
+            npm run places:emner:check
+            npm run places:coords:check
           fi
