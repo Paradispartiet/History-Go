@@ -25,7 +25,9 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Apply batch
-        run: node scripts/tmp-complete-oslo-coordinate-batch15.mjs
+        run: |
+          node scripts/tmp-complete-oslo-coordinate-batch15.mjs
+          node scripts/tmp-patch-oslo-coordinate-batch15-birkelunden.mjs
       - name: Rebuild place index
         run: npm run places:index:build
       - name: Check place index
@@ -66,6 +68,7 @@ jobs:
       - name: Remove temporary integration files
         run: |
           rm scripts/tmp-complete-oslo-coordinate-batch15.mjs
+          rm scripts/tmp-patch-oslo-coordinate-batch15-birkelunden.mjs
           rm .github/workflows/oslo-coordinate-batch15-integration.yml
       - name: Commit integrated batch
         run: |
