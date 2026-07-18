@@ -44,6 +44,7 @@
     { id: "radhuset",      name: "Rådhuset",          lat: 59.9122, lon: 10.7336, x: 0.470, y: 0.610 },
     { id: "akershus",      name: "Akershus festning", lat: 59.9076, lon: 10.7369, x: 0.500, y: 0.640 },
     { id: "aker_brygge",   name: "Aker Brygge",       lat: 59.9105, lon: 10.7285, x: 0.386, y: 0.655 },
+    { id: "tjuvholmen",    name: "Tjuvholmen",        lat: 59.9061, lon: 10.7211, x: 0.338, y: 0.694 },
     // Bjørvika / øst.
     { id: "bjorvika",      name: "Bjørvika",          lat: 59.9075, lon: 10.7579, x: 0.573, y: 0.622 },
     { id: "operaen",       name: "Operaen",           lat: 59.9075, lon: 10.7522, x: 0.584, y: 0.657 },
