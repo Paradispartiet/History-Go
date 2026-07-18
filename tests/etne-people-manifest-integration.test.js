@@ -15,6 +15,10 @@ const expectedFiles = new Map([
     [{ id: 'geir_havreberg', placeId: 'etne_kyokushin_dojo' }]
   ],
   [
+    'people/sport/vestland/etne/havard_matre.json',
+    [{ id: 'havard_matre', placeId: 'etne_idrettsanlegg' }]
+  ],
+  [
     'people/vitenskap/vestland/etne/etneelva_forskningsplattform_people_batch1.json',
     [
       { id: 'per_tommy_fjeldheim', placeId: 'etneelva_forskningsplattform' },
