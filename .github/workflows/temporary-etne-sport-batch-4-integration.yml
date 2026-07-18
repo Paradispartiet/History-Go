@@ -1,0 +1,122 @@
+name: Temporary Etne sport batch 4 integration
+
+on:
+  push:
+    branches:
+      - agent/etne-sport-batch-4
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: ${{ !contains(github.event.head_commit.message || '', '[etne-b4-integrated]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-sport-batch-4
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Prepare reports
+        run: mkdir -p reports/etne-sport-batch-4-integration
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund | tee reports/etne-sport-batch-4-integration/npm-install.txt
+
+      - name: Register source exactly once
+        run: |
+          node <<'NODE' | tee reports/etne-sport-batch-4-integration/manifest-update.txt
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const source = 'places/sport/vestland/etne/skanevik_skytebane.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (!manifest || !Array.isArray(manifest.files)) throw new Error('manifest.files missing');
+          const countBefore = manifest.files.filter((x) => x === source).length;
+          if (countBefore === 0) manifest.files.push(source);
+          const countAfter = manifest.files.filter((x) => x === source).length;
+          if (countAfter !== 1) throw new Error(`expected exactly one manifest entry, found ${countAfter}`);
+          fs.writeFileSync(file, JSON.stringify(manifest));
+          console.log(`PASS manifest entry before=${countBefore} after=${countAfter}: ${source}`);
+          NODE
+
+      - name: Build runtime index
+        run: npm run places:index:build | tee reports/etne-sport-batch-4-integration/index-build.txt
+
+      - name: Run canonical places checks
+        run: bash scripts/check-places.sh | tee reports/etne-sport-batch-4-integration/check-places.txt
+
+      - name: Run targeted runtime validation
+        run: |
+          node <<'NODE' | tee reports/etne-sport-batch-4-integration/targeted-validation.txt
+          const fs = require('fs');
+          const target = 'skanevik_skytebane';
+          const data = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const rows = Array.isArray(data) ? data : (Array.isArray(data.places) ? data.places : []);
+          const matches = rows.filter((p) => p && p.id === target);
+          if (matches.length !== 1) throw new Error(`expected one active runtime row for ${target}, found ${matches.length}`);
+          const counts = new Map();
+          for (const row of rows) if (row && row.id) counts.set(row.id, (counts.get(row.id) || 0) + 1);
+          const duplicates = [...counts.entries()].filter(([, n]) => n > 1);
+          if (duplicates.length) throw new Error(`duplicate active place IDs: ${JSON.stringify(duplicates.slice(0, 20))}`);
+          console.log(`PASS ${target}: exactly one active runtime row`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+
+      - name: Verify source/index coordinate parity
+        run: |
+          node <<'NODE' | tee reports/etne-sport-batch-4-integration/source-index-coordinate-parity.txt
+          const fs = require('fs');
+          const sourcePath = 'data/places/sport/vestland/etne/skanevik_skytebane.json';
+          const sourceData = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+          const source = Array.isArray(sourceData) ? sourceData.find((p) => p.id === 'skanevik_skytebane') : sourceData;
+          const indexData = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const rows = Array.isArray(indexData) ? indexData : (Array.isArray(indexData.places) ? indexData.places : []);
+          const runtime = rows.find((p) => p && p.id === 'skanevik_skytebane');
+          if (!source || !runtime) throw new Error('source or runtime row missing');
+          if (source.lat !== runtime.lat || source.lon !== runtime.lon) {
+            throw new Error(`coordinate mismatch source=${source.lat},${source.lon} runtime=${runtime.lat},${runtime.lon}`);
+          }
+          console.log(`PASS source/index coordinates: ${source.lat}, ${source.lon}`);
+          NODE
+
+      - name: Build tools and check split/index sync
+        run: |
+          npm run build:tools
+          node dist/tools/check_places_index_sync.mjs | tee reports/etne-sport-batch-4-integration/split-manifest-sync.txt
+
+      - name: Run coordinate quality gate
+        run: npm run places:coords:quality | tee reports/etne-sport-batch-4-integration/coordinate-quality.txt
+
+      - name: Check diff whitespace
+        run: git diff --check | tee reports/etne-sport-batch-4-integration/git-diff-check.txt
+
+      - name: Commit integration outputs
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add \
+            data/places/manifest.json \
+            data/places/places_index.json \
+            reports/etne-sport-batch-4-integration/npm-install.txt \
+            reports/etne-sport-batch-4-integration/manifest-update.txt \
+            reports/etne-sport-batch-4-integration/index-build.txt \
+            reports/etne-sport-batch-4-integration/check-places.txt \
+            reports/etne-sport-batch-4-integration/targeted-validation.txt \
+            reports/etne-sport-batch-4-integration/source-index-coordinate-parity.txt \
+            reports/etne-sport-batch-4-integration/split-manifest-sync.txt \
+            reports/etne-sport-batch-4-integration/coordinate-quality.txt \
+            reports/etne-sport-batch-4-integration/git-diff-check.txt
+          if git diff --cached --quiet; then
+            echo 'No integration changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Integrate Etne sport batch 4 [etne-b4-integrated]'
+          git push origin HEAD:agent/etne-sport-batch-4
