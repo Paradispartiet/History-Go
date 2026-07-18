@@ -133,14 +133,23 @@ if (enge) {
   );
 }
 
-const skanevik = await placeNameLookup(['Skånevik idrettsanlegg*', 'Skånevik stadion*'], 'Skånevik idrettsanlegg');
-if (!skanevik) throw new Error('No usable Kartverket Stedsnavn point for Skånevik idrettsanlegg/stadion in Etne municipality');
-apply(
-  files.skanevik,
-  skanevik,
-  `Kartverket Stedsnavn-representasjonspunkt brukt for ${skanevik.name || 'Skånevik idrettsanlegg'} i Etne kommune; punktet representerer uteanlegget og er ikkje henta frå halladressa.`,
-  `Kartverket Stedsnavn: ${skanevik.name || 'Skånevik idrettsanlegg'}`
-);
+let skanevik = await placeNameLookup(['Skånevik idrettsanlegg*', 'Skånevik stadion*'], 'Skånevik idrettsanlegg');
+if (skanevik) {
+  apply(
+    files.skanevik,
+    skanevik,
+    `Kartverket Stedsnavn-representasjonspunkt brukt for ${skanevik.name || 'Skånevik idrettsanlegg'} i Etne kommune; punktet representerer uteanlegget og er ikkje henta frå halladressa.`,
+    `Kartverket Stedsnavn: ${skanevik.name || 'Skånevik idrettsanlegg'}`
+  );
+} else {
+  skanevik = { lat: 59.731, lon: 5.924 };
+  apply(
+    files.skanevik,
+    skanevik,
+    'Eit eksplisitt representativt uteanleggspunkt ved Skånevik idrettsanlegg er brukt fordi Kartverket Stedsnavn ikkje returnerer anleggsnamnet. NFF dokumenterer både Skånevik stadion og Skånevik kunstgras under hovudanlegget med adresse Strondavegen, medan opne kartkjelder viser uteanlegget som eit eige baneobjekt nær, men fysisk skilt frå kultur- og idrettshallen. Punktet er ikkje påstått å vere eit oppmålt banesenter.',
+    'representativt Skånevik-uteanleggspunkt ved Strondavegen'
+  );
+}
 
 const manifestPath = 'data/places/manifest.json';
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
