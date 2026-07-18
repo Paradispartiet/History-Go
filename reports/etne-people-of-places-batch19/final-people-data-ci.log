@@ -1,0 +1,212 @@
+﻿2026-07-18T22:07:42.8526010Z Current runner version: '2.335.1'
+2026-07-18T22:07:42.8543517Z ##[group]Runner Image Provisioner
+2026-07-18T22:07:42.8544202Z Hosted Compute Agent
+2026-07-18T22:07:42.8544605Z Version: 20260707.563
+2026-07-18T22:07:42.8545075Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+2026-07-18T22:07:42.8545570Z Build Date: 2026-07-07T19:33:50Z
+2026-07-18T22:07:42.8546037Z Worker ID: {f920ec46-e3f6-4f3c-80f4-60f3491579c5}
+2026-07-18T22:07:42.8546581Z Azure Region: centralus
+2026-07-18T22:07:42.8546952Z ##[endgroup]
+2026-07-18T22:07:42.8547953Z ##[group]Operating System
+2026-07-18T22:07:42.8548356Z Ubuntu
+2026-07-18T22:07:42.8548698Z 24.04.4
+2026-07-18T22:07:42.8549075Z LTS
+2026-07-18T22:07:42.8549389Z ##[endgroup]
+2026-07-18T22:07:42.8549807Z ##[group]Runner Image
+2026-07-18T22:07:42.8550216Z Image: ubuntu-24.04
+2026-07-18T22:07:42.8550597Z Version: 20260714.240.1
+2026-07-18T22:07:42.8551466Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260714.240/images/ubuntu/Ubuntu2404-Readme.md
+2026-07-18T22:07:42.8552475Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260714.240
+2026-07-18T22:07:42.8553329Z ##[endgroup]
+2026-07-18T22:07:42.8554117Z ##[group]GITHUB_TOKEN Permissions
+2026-07-18T22:07:42.8555688Z Contents: read
+2026-07-18T22:07:42.8556095Z Metadata: read
+2026-07-18T22:07:42.8556476Z ##[endgroup]
+2026-07-18T22:07:42.8557876Z Secret source: Actions
+2026-07-18T22:07:42.8558366Z Prepare workflow directory
+2026-07-18T22:07:42.8781963Z Prepare all required actions
+2026-07-18T22:07:42.8812265Z Getting action download info
+2026-07-18T22:07:43.0906895Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-07-18T22:07:43.2272212Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-07-18T22:07:43.5111461Z Complete job name: People data
+2026-07-18T22:07:43.5598714Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:07:43.5604817Z ##[group]Run actions/checkout@v4
+2026-07-18T22:07:43.5605385Z with:
+2026-07-18T22:07:43.5605777Z   repository: Paradispartiet/History-Go
+2026-07-18T22:07:43.5608484Z   token: ***
+2026-07-18T22:07:43.5608890Z   ssh-strict: true
+2026-07-18T22:07:43.5609255Z   ssh-user: git
+2026-07-18T22:07:43.5609631Z   persist-credentials: true
+2026-07-18T22:07:43.5610036Z   clean: true
+2026-07-18T22:07:43.5610409Z   sparse-checkout-cone-mode: true
+2026-07-18T22:07:43.5611168Z   fetch-depth: 1
+2026-07-18T22:07:43.5611537Z   fetch-tags: false
+2026-07-18T22:07:43.5611894Z   show-progress: true
+2026-07-18T22:07:43.5612283Z   lfs: false
+2026-07-18T22:07:43.5612724Z   submodules: false
+2026-07-18T22:07:43.5613267Z   set-safe-directory: true
+2026-07-18T22:07:43.5614015Z ##[endgroup]
+2026-07-18T22:07:43.6361182Z Syncing repository: Paradispartiet/History-Go
+2026-07-18T22:07:43.6363781Z ##[group]Getting Git version info
+2026-07-18T22:07:43.6364729Z Working directory is '/home/runner/work/History-Go/History-Go'
+2026-07-18T22:07:43.6365967Z [command]/usr/bin/git version
+2026-07-18T22:07:43.6366534Z git version 2.54.0
+2026-07-18T22:07:43.6409842Z ##[endgroup]
+2026-07-18T22:07:43.6419849Z Temporarily overriding HOME='/home/runner/work/_temp/aebb2dec-d4b2-46d0-a269-e7c2e68a3c45' before making global git config changes
+2026-07-18T22:07:43.6421975Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-18T22:07:43.6424022Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/History-Go/History-Go
+2026-07-18T22:07:43.6448808Z Deleting the contents of '/home/runner/work/History-Go/History-Go'
+2026-07-18T22:07:43.6453237Z ##[group]Initializing the repository
+2026-07-18T22:07:43.6456743Z [command]/usr/bin/git init /home/runner/work/History-Go/History-Go
+2026-07-18T22:07:43.6521164Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-18T22:07:43.6522691Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-18T22:07:43.6526118Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-18T22:07:43.6527205Z hint: call:
+2026-07-18T22:07:43.6527905Z hint:
+2026-07-18T22:07:43.6528604Z hint: 	git config --global init.defaultBranch <name>
+2026-07-18T22:07:43.6529382Z hint:
+2026-07-18T22:07:43.6530281Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-18T22:07:43.6531811Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-18T22:07:43.6533079Z hint:
+2026-07-18T22:07:43.6533791Z hint: 	git branch -m <name>
+2026-07-18T22:07:43.6534691Z hint:
+2026-07-18T22:07:43.6535668Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-18T22:07:43.6536966Z Initialized empty Git repository in /home/runner/work/History-Go/History-Go/.git/
+2026-07-18T22:07:43.6540503Z [command]/usr/bin/git remote add origin https://github.com/Paradispartiet/History-Go
+2026-07-18T22:07:43.6549503Z ##[endgroup]
+2026-07-18T22:07:43.6550323Z ##[group]Disabling automatic garbage collection
+2026-07-18T22:07:43.6552434Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-18T22:07:43.6573295Z ##[endgroup]
+2026-07-18T22:07:43.6574068Z ##[group]Setting up auth
+2026-07-18T22:07:43.6578829Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-18T22:07:43.6601053Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-18T22:07:43.6819951Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-18T22:07:43.6845297Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-18T22:07:43.6995693Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-18T22:07:43.7019803Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-18T22:07:43.7161145Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-18T22:07:43.7184967Z ##[endgroup]
+2026-07-18T22:07:43.7185967Z ##[group]Fetching the repository
+2026-07-18T22:07:43.7192738Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +421198d75b2341bea41bd790cf8474a10a396cfc:refs/remotes/pull/2352/merge
+2026-07-18T22:07:49.5755093Z From https://github.com/Paradispartiet/History-Go
+2026-07-18T22:07:49.5757090Z  * [new ref]         421198d75b2341bea41bd790cf8474a10a396cfc -> pull/2352/merge
+2026-07-18T22:07:49.5771727Z ##[endgroup]
+2026-07-18T22:07:49.5773290Z ##[group]Determining the checkout info
+2026-07-18T22:07:49.5774996Z ##[endgroup]
+2026-07-18T22:07:49.5779794Z [command]/usr/bin/git sparse-checkout disable
+2026-07-18T22:07:49.5808404Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-18T22:07:49.5828682Z ##[group]Checking out the ref
+2026-07-18T22:07:49.5831197Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2352/merge
+2026-07-18T22:07:50.3649827Z Note: switching to 'refs/remotes/pull/2352/merge'.
+2026-07-18T22:07:50.3650262Z 
+2026-07-18T22:07:50.3650837Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-07-18T22:07:50.3651448Z changes and commit them, and you can discard any commits you make in this
+2026-07-18T22:07:50.3652100Z state without impacting any branches by switching back to a branch.
+2026-07-18T22:07:50.3652488Z 
+2026-07-18T22:07:50.3652764Z If you want to create a new branch to retain commits you create, you may
+2026-07-18T22:07:50.3653918Z do so (now or later) by using -c with the switch command. Example:
+2026-07-18T22:07:50.3654232Z 
+2026-07-18T22:07:50.3654995Z   git switch -c <new-branch-name>
+2026-07-18T22:07:50.3655353Z 
+2026-07-18T22:07:50.3655547Z Or undo this operation with:
+2026-07-18T22:07:50.3655823Z 
+2026-07-18T22:07:50.3655947Z   git switch -
+2026-07-18T22:07:50.3656215Z 
+2026-07-18T22:07:50.3656486Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-07-18T22:07:50.3656754Z 
+2026-07-18T22:07:50.3657074Z HEAD is now at 421198d Merge 6bf65acbdc396627c1243f4c9ff4012ec4a898ff into 467233c08c07cbc2f0d76a00cedc1740d25fe9b7
+2026-07-18T22:07:50.3709987Z ##[endgroup]
+2026-07-18T22:07:50.3742315Z [command]/usr/bin/git log -1 --format=%H
+2026-07-18T22:07:50.3760440Z 421198d75b2341bea41bd790cf8474a10a396cfc
+2026-07-18T22:07:50.3955657Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:07:50.3956940Z ##[group]Run actions/setup-node@v4
+2026-07-18T22:07:50.3957218Z with:
+2026-07-18T22:07:50.3957456Z   node-version: 20
+2026-07-18T22:07:50.3957703Z   always-auth: false
+2026-07-18T22:07:50.3957961Z   check-latest: false
+2026-07-18T22:07:50.3959779Z   token: ***
+2026-07-18T22:07:50.3960022Z ##[endgroup]
+2026-07-18T22:07:50.5144147Z Attempting to download 20...
+2026-07-18T22:07:50.5220599Z (node:2075) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-18T22:07:50.5221303Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-18T22:07:51.1520386Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-linux-x64.tar.gz
+2026-07-18T22:07:51.6343155Z Extracting ...
+2026-07-18T22:07:51.6418126Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/f2c59a24-fc25-4c48-9dc9-305aed1556d7 -f /home/runner/work/_temp/14624fe4-d0f7-4a04-9631-c5b90739414c
+2026-07-18T22:07:52.4542084Z Adding to the cache ...
+2026-07-18T22:07:53.8330935Z ##[group]Environment details
+2026-07-18T22:07:53.9913155Z node: v20.20.2
+2026-07-18T22:07:53.9913711Z npm: 10.8.2
+2026-07-18T22:07:53.9914018Z yarn: 1.22.22
+2026-07-18T22:07:53.9914608Z ##[endgroup]
+2026-07-18T22:07:54.0039529Z ##[group]Run npm install --no-audit --no-fund
+2026-07-18T22:07:54.0039966Z [36;1mnpm install --no-audit --no-fund[0m
+2026-07-18T22:07:54.0087354Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:07:54.0087710Z ##[endgroup]
+2026-07-18T22:07:55.9750605Z 
+2026-07-18T22:07:55.9756134Z added 55 packages in 2s
+2026-07-18T22:07:55.9851118Z ##[group]Run bash scripts/check-people.sh
+2026-07-18T22:07:55.9851455Z [36;1mbash scripts/check-people.sh[0m
+2026-07-18T22:07:55.9888110Z shell: /usr/bin/bash -e {0}
+2026-07-18T22:07:55.9888481Z ##[endgroup]
+2026-07-18T22:07:55.9958601Z == People JSON parse and duplicate ID check ==
+2026-07-18T22:07:56.0312153Z json ok (550 files)
+2026-07-18T22:07:56.0313773Z people ids ok (1123 entries, 1123 unique ids)
+2026-07-18T22:07:56.0333154Z == Build tools ==
+2026-07-18T22:07:56.1069135Z 
+2026-07-18T22:07:56.1069932Z > history-go@0.0.0 build:tools
+2026-07-18T22:07:56.1070512Z > tsc -p tsconfig.tools.build.json
+2026-07-18T22:07:56.1070848Z 
+2026-07-18T22:07:57.8877523Z == People invalid place refs ==
+2026-07-18T22:07:58.0083291Z Wrote reports/people-invalid-place-refs.json and reports/people-invalid-place-refs.md
+2026-07-18T22:07:58.0117292Z == People of places status ==
+2026-07-18T22:07:58.1276319Z Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+2026-07-18T22:07:58.1278257Z People: 1123; flat files: 0; geographic files: 548; invalid refs: 0; duplicate IDs: 0
+2026-07-18T22:07:58.1359091Z == People place coverage ==
+2026-07-18T22:07:58.2297543Z People-place audit complete: reports/people-place-coverage.json
+2026-07-18T22:07:58.2299750Z People-place report complete: reports/people-place-coverage.md
+2026-07-18T22:07:58.2361830Z == Etne people manifest integration ==
+2026-07-18T22:07:58.2744980Z Etne people manifest integration OK (14 recovered people, 1123 active people)
+2026-07-18T22:07:58.2769315Z == Etne People of Places batch 9 ==
+2026-07-18T22:07:58.3108501Z Etne People of Places batch 9 OK (3 literary people, 3 direct place links)
+2026-07-18T22:07:58.3132422Z == Etne People of Places batch 10 ==
+2026-07-18T22:07:58.3465570Z Etne People of Places batch 10 OK (3 people, 2 direct physical-place anchors)
+2026-07-18T22:07:58.3486420Z == Etne People of Places batch 11 ==
+2026-07-18T22:07:58.3826305Z Etne People of Places batch 11 OK (3 museum founders, 1 direct physical-place anchor)
+2026-07-18T22:07:58.3846491Z == Etne People of Places batch 12 ==
+2026-07-18T22:07:58.4190406Z Etne People of Places batch 12 OK (3 canonical people, 2 newly covered physical places, 0 new people IDs)
+2026-07-18T22:07:58.4209798Z == Etne People of Places batch 13 ==
+2026-07-18T22:07:58.4562074Z Etne People of Places batch 13 OK (1 founder/head coach, 1 newly covered physical dojo, 1 canonical identity)
+2026-07-18T22:07:58.4586766Z == Etne People of Places batch 14 ==
+2026-07-18T22:07:58.4956478Z Etne People of Places batch 14 OK (1 bounded collective, 1 newly covered physical pavilion, 1 canonical identity)
+2026-07-18T22:07:58.4976487Z == Etne People of Places batch 15 ==
+2026-07-18T22:07:58.5325440Z Etne People of Places batch 15 OK (1 named initiator, 1 newly covered physical disc-golf course, 1 canonical identity)
+2026-07-18T22:07:58.5343636Z == Etne People of Places batch 16 ==
+2026-07-18T22:07:58.5725000Z Etne People of Places batch 16 OK (2 named work leaders, 1 newly covered outdoor sports facility, 2 canonical identities)
+2026-07-18T22:07:58.5745225Z == Etne People of Places batch 17 ==
+2026-07-18T22:07:58.6122610Z Etne People of Places batch 17 OK (2 named physical construction leaders, 1 newly covered culture hall, 2 canonical identities)
+2026-07-18T22:07:58.6140596Z == Etne People of Places batch 18 ==
+2026-07-18T22:07:58.6512483Z Etne People of Places batch 18 OK (3 named physical project roles, 1 newly covered swimming facility, 3 canonical identities)
+2026-07-18T22:07:58.6532241Z == Etne People of Places batch 19 ==
+2026-07-18T22:07:58.6860769Z Etne People of Places batch 19 OK (1 documented construction leader, 1 newly covered power plant, 1 canonical identity)
+2026-07-18T22:07:58.6879594Z == People check complete ==
+2026-07-18T22:07:58.6968984Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:07:58.6969869Z Post job cleanup.
+2026-07-18T22:07:58.7864826Z (node:2297) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-18T22:07:58.7865473Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-18T22:07:58.7986755Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-18T22:07:58.7987731Z Post job cleanup.
+2026-07-18T22:07:58.8635695Z [command]/usr/bin/git version
+2026-07-18T22:07:58.8696122Z git version 2.54.0
+2026-07-18T22:07:58.8721089Z Temporarily overriding HOME='/home/runner/work/_temp/c9b059d2-0a65-45af-965c-07d9673edba3' before making global git config changes
+2026-07-18T22:07:58.8724373Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-18T22:07:58.8725783Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/History-Go/History-Go
+2026-07-18T22:07:58.8773795Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-18T22:07:58.8775097Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-18T22:07:58.8934366Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-18T22:07:58.8949310Z http.https://github.com/.extraheader
+2026-07-18T22:07:58.8957520Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-07-18T22:07:58.8978391Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-18T22:07:58.9136651Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-18T22:07:58.9157757Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-18T22:07:58.9411203Z Cleaning up orphan processes
+2026-07-18T22:07:58.9601868Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
