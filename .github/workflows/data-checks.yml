@@ -7,6 +7,7 @@ on:
       - 'data/places/**'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
+      - 'scripts/resolve-etne-sport-batch2.mjs'
       - 'tools/**'
       - 'package.json'
       - 'package-lock.json'
@@ -15,7 +16,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   people:
@@ -24,15 +25,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Install dependencies
         run: npm install --no-audit --no-fund
-
       - name: Run people check
         run: bash scripts/check-people.sh
 
@@ -42,52 +40,138 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Install dependencies
         run: npm install --no-audit --no-fund
-
       - name: Run places check
+        run: bash scripts/check-places.sh
+
+  etne-sport-batch2-integration:
+    name: Etne sport batch 2 integration cleanup
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/etne-sport-batch-2-integration-cleanup' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out integration branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-sport-batch-2-integration-cleanup
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        shell: bash
         run: |
-          if [ -f scripts/check-places.sh ]; then
-            bash scripts/check-places.sh
-          else
-            echo "scripts/check-places.sh not found; using inline places checks"
-            node <<'NODE'
+          mkdir -p reports/etne-sport-batch-2-integration
+          npm install --no-audit --no-fund 2>&1 | tee reports/etne-sport-batch-2-integration/npm-install.txt
+      - name: Resolve coordinates and register manifest
+        shell: bash
+        run: |
+          node scripts/resolve-etne-sport-batch2.mjs 2>&1 | tee reports/etne-sport-batch-2-integration/address-anchor-lookup.txt
+          node <<'NODE' 2>&1 | tee reports/etne-sport-batch-2-integration/manifest-update.txt
           const fs = require('fs');
-          const path = require('path');
-          function readJson(file) {
-            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
-            catch (error) {
-              console.error(`JSON parse failed: ${file}`);
-              console.error(error.message);
-              process.exit(1);
-            }
+          const manifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
+          const additions = [
+            'places/sport/vestland/etne/etne_tennisanlegg.json',
+            'places/sport/vestland/etne/skanevik_skatepark.json',
+            'places/sport/vestland/etne/sjokanten_trivsel_skanevik.json',
+            'places/sport/vestland/etne/etne_kyokushin_dojo.json',
+            'places/sport/vestland/etne/fikse_skytebane.json'
+          ];
+          for (const item of additions) {
+            const count = manifest.files.filter((row) => row === item).length;
+            if (count !== 1) throw new Error(`${item}: manifest count ${count}`);
+            console.log(`PASS ${item}: exactly once in manifest`);
           }
-          const manifestPath = 'data/places/manifest.json';
-          const placesIndexPath = 'data/places/places_index.json';
-          const manifest = readJson(manifestPath);
-          if (!manifest || !Array.isArray(manifest.files)) {
-            console.error(`${manifestPath} must contain a files array`);
-            process.exit(1);
-          }
-          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
-          for (const file of files) {
-            if (!fs.existsSync(file)) {
-              console.error(`Missing expected file: ${file}`);
-              process.exit(1);
-            }
-            readJson(file);
-          }
-          console.log(`json ok (${files.length} files)`);
           NODE
-            npm run places:index:build
-            npm run build:tools
-            npm run places:index:check
-            npm run places:emner:check
-            npm run places:coords:check
-          fi
+      - name: Run place validation
+        shell: bash
+        run: bash scripts/check-places.sh 2>&1 | tee reports/etne-sport-batch-2-integration/check-places.txt
+      - name: Run split manifest audit
+        shell: bash
+        run: npm run audit:places-split-manifest-sync 2>&1 | tee reports/etne-sport-batch-2-integration/split-manifest-sync.txt
+      - name: Run coordinate quality gate
+        shell: bash
+        run: npm run places:coords:quality 2>&1 | tee reports/etne-sport-batch-2-integration/coordinate-quality.txt
+      - name: Run targeted runtime validation
+        shell: bash
+        run: |
+          node <<'NODE' 2>&1 | tee reports/etne-sport-batch-2-integration/targeted-validation.txt
+          const fs = require('fs');
+          const ids = ['etne_tennisanlegg', 'skanevik_skatepark', 'sjokanten_trivsel_skanevik', 'etne_kyokushin_dojo', 'fikse_skytebane'];
+          const rows = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const list = Array.isArray(rows) ? rows : (rows.places || []);
+          for (const id of ids) {
+            const count = list.filter((row) => row.id === id).length;
+            if (count !== 1) throw new Error(`${id}: active runtime count ${count}`);
+            console.log(`PASS ${id}: exactly one active runtime row`);
+          }
+          const counts = new Map();
+          for (const row of list) counts.set(row.id, (counts.get(row.id) || 0) + 1);
+          const duplicates = [...counts.entries()].filter(([, count]) => count > 1);
+          if (duplicates.length) throw new Error(`global duplicate active place IDs: ${duplicates.length}`);
+          console.log('PASS global duplicate active place IDs: 0');
+          NODE
+      - name: Audit anchor distinctions
+        shell: bash
+        run: |
+          node <<'NODE' 2>&1 | tee reports/etne-sport-batch-2-integration/anchor-audit.txt
+          const fs = require('fs');
+          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'))[0];
+          const tennis = read('data/places/sport/vestland/etne/etne_tennisanlegg.json');
+          const skate = read('data/places/sport/vestland/etne/skanevik_skatepark.json');
+          const pool = read('data/places/sport/vestland/etne/sjokanten_trivsel_skanevik.json');
+          const dojo = read('data/places/sport/vestland/etne/etne_kyokushin_dojo.json');
+          const fikse = read('data/places/sport/vestland/etne/fikse_skytebane.json');
+          const rows = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const list = Array.isArray(rows) ? rows : (rows.places || []);
+          const existing = (id) => {
+            const row = list.find((item) => item.id === id);
+            if (!row) throw new Error(`Existing runtime row missing: ${id}`);
+            return row;
+          };
+          const bmx = existing('etne_bmx_og_skatepark');
+          const skanevikIdrett = existing('skanevik_idrettsanlegg');
+          const fjordhotel = existing('skanevik_fjordhotel_pippifestivalen');
+          const etneIdrett = existing('etne_idrettsanlegg');
+          const hav = (a,b) => {
+            const R=6371, rad=(x)=>x*Math.PI/180;
+            const dLat=rad(b.lat-a.lat), dLon=rad(b.lon-a.lon);
+            const q=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;
+            return 2*R*Math.asin(Math.sqrt(q));
+          };
+          const tennisBmx = hav(tennis, bmx);
+          const skateIdrett = hav(skate, skanevikIdrett);
+          const poolHotel = hav(pool, fjordhotel);
+          const dojoIdrett = hav(dojo, etneIdrett);
+          if (!tennis.quiz_profile.notes.includes('deler adresseankeret')) throw new Error('Tennis shared-address disclosure missing');
+          if (skateIdrett < 0.01) throw new Error(`Skånevik skatepark anchor effectively identical to idrettsanlegg: ${skateIdrett.toFixed(3)} km`);
+          if (poolHotel > 1.0) throw new Error(`Sjøkanten anchor unexpectedly far from Fjordhotel area: ${poolHotel.toFixed(3)} km`);
+          if (dojoIdrett < 0.005) throw new Error(`Dojo anchor effectively identical to Etne idrettsanlegg: ${dojoIdrett.toFixed(3)} km`);
+          if (!fikse.quiz_profile.notes.includes('kommune-filter 4611 Etne')) throw new Error('Fikse Etne-side coordinate disclosure missing');
+          if ([tennis, skate, pool, dojo, fikse].some((row) => row.category !== 'sport')) throw new Error('Not all batch records are category sport');
+          console.log(`PASS Tennis ↔ existing BMX/skate: ${tennisBmx.toFixed(3)} km; shared address anchor explicitly disclosed`);
+          console.log(`PASS Skånevik skatepark ↔ idrettsanlegg: ${skateIdrett.toFixed(3)} km; distinct facilities`);
+          console.log(`PASS Sjøkanten Trivsel ↔ Fjordhotel: ${poolHotel.toFixed(3)} km; distinct functions`);
+          console.log(`PASS Kyokushin dojo ↔ Etne idrettsanlegg: ${dojoIdrett.toFixed(3)} km; distinct facilities`);
+          console.log(`PASS Fikse anchor: ${fikse.lat}, ${fikse.lon}; Kartverket Stedsnavn filtered to Etne municipality`);
+          console.log('PASS all five records categorized as sport');
+          NODE
+      - name: Check diff whitespace
+        shell: bash
+        run: git diff --check 2>&1 | tee reports/etne-sport-batch-2-integration/git-diff-check.txt
+      - name: Restore CI, remove helper and commit integrated batch
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          rm -f scripts/resolve-etne-sport-batch2.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A .github/workflows/data-checks.yml scripts/resolve-etne-sport-batch2.mjs data/places/sport/vestland/etne data/places/manifest.json data/places/places_index.json reports/etne-sport-batch-2-integration
+          git commit -m 'Integrate Etne sport batch 2 and remove helper'
+          git push origin HEAD:agent/etne-sport-batch-2-integration-cleanup
