@@ -12,6 +12,8 @@ Critical representation guardrail: Hønse-Lovisa is a fictional figure from Oska
 
 Proposed category: `litteratur`, combining literary geography, film location history and the building's real history as a 19th-century workers' dwelling.
 
+Official visitor address for address-first lookup: Sandakerveien 2, 0473 Oslo.
+
 ## Sagene festivitetshus
 
 No canonical record was found for Sagene festivitetshus, the historic nickname «Afrika», Emmaus or Holsts gate 3.
@@ -19,6 +21,8 @@ No canonical record was found for Sagene festivitetshus, the historic nickname �
 Oslo kommune documents the 1896–97 building as a popular assembly and performance venue, later theatre, revival-meeting site, mission hall and parish church before returning to assembly/cultural use. Oskar Braaten mentions «Afrika» in his writing.
 
 Proposed category: `historie`, with popular entertainment, religion, neighbourhood association life and literary reception as separate layers.
+
+Official visitor address for address-first lookup: Holsts gate 3, 0473 Oslo.
 
 ## Etterstadgata 6
 
@@ -28,6 +32,8 @@ Oslo kommune documents a front building erected for industrial use in 1890, a re
 
 Proposed category: `naeringsliv`, focused on small-scale urban manufacturing, adaptive industrial buildings and changing workshop economies.
 
+Official visitor address for address-first lookup: Etterstadgata 6, 0658 Oslo.
+
 ## Villa Furulund
 
 No canonical record was found for Villa Furulund or Hekkveien 5.
@@ -35,6 +41,8 @@ No canonical record was found for Villa Furulund or Hekkveien 5.
 Oslo kommune dates the villa to 1878 and documents its later municipal ownership and long association with Norsk Billedhoggerforening, whose sculpture office has used the house since 1972.
 
 Proposed category: `kunst`, combining villa history, sculptor organisation history and the infrastructure behind professional visual-art practice.
+
+Official visitor address for address-first lookup: Hekkveien 5, 0571 Oslo.
 
 ## Coordinate method
 
