@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Skånevikvegen 17, 5593 Skånevik
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Skånevikvegen 17, 5593 Skånevik",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Sk%C3%A5nevikvegen%2017%2C%205593%20Sk%C3%A5nevik",
+  "sourceObjectId": "geonorge-adresser-v1:4611:1152:17",
+  "coordinate": {
+    "lat": 59.73234389428389,
+    "lon": 5.935277893100119,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:4611:1152:17",
+    "address": {
+      "street": "Skånevikvegen",
+      "number": "17",
+      "postcode": "5593",
+      "city": "SKÅNEVIK",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Skånevikvegen 17, SKÅNEVIK. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Skånevikvegen",
+    "adressetekst": "Skånevikvegen 17",
+    "adressetilleggsnavn": null,
+    "adressekode": 1152,
+    "nummer": 17,
+    "bokstav": "",
+    "kommunenummer": "4611",
+    "kommunenavn": "ETNE",
+    "gardsnummer": 134,
+    "bruksnummer": 5,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "SKÅNEVIK",
+    "postnummer": "5593",
+    "adressetekstutenadressetilleggsnavn": "Skånevikvegen 17",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.73234389428389,
+      "lon": 5.935277893100119
+    },
+    "oppdateringsdato": "2020-06-15T17:21:21"
+  }
+}
