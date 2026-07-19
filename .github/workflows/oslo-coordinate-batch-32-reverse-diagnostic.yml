@@ -1,0 +1,66 @@
+name: Oslo coordinate batch 32 reverse diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reverse current points and broaden exact-name searches
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-coordinate-batch-32-reverse-diagnostic
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request, time
+
+          headers = {'User-Agent': 'History-Go-coordinate-audit/1.0'}
+          points = {
+            'frysjadammen_current': (59.9723, 10.7819),
+            'ovre_spinneri_current': (59.9469, 10.7671),
+            'nydalsdammen_current': (59.9458, 10.7660),
+            'stilla_nydalen_current': (59.9449, 10.7654),
+            'bjoelsenfossen_current': (59.9398, 10.7602),
+          }
+          searches = {
+            'maridalsoset': 'Maridalsoset, Oslo, Norway',
+            'frysja': 'Frysja, Oslo, Norway',
+            'frysjadammen_alt': 'Frysjadammen Akerselva Oslo',
+            'nydalens_compagnie': 'Nydalens Compagnie, Oslo, Norway',
+            'ovre_spinneri_bru': 'Øvre Spinneri bru, Oslo, Norway',
+            'gjerdrums_vei_nydalen': 'Gjerdrums vei, Nydalen, Oslo, Norway',
+          }
+
+          out = {'reverse': {}, 'search': {}}
+          for key, (lat, lon) in points.items():
+            params = urllib.parse.urlencode({'format':'jsonv2','lat':lat,'lon':lon,'zoom':18,'addressdetails':1,'extratags':1,'namedetails':1})
+            req = urllib.request.Request('https://nominatim.openstreetmap.org/reverse?' + params, headers=headers)
+            try:
+              with urllib.request.urlopen(req, timeout=30) as r: out['reverse'][key] = json.load(r)
+            except Exception as e: out['reverse'][key] = {'error': str(e)}
+            time.sleep(1.2)
+
+          for key, query in searches.items():
+            params = urllib.parse.urlencode({'format':'jsonv2','q':query,'limit':10,'addressdetails':1,'extratags':1,'namedetails':1})
+            req = urllib.request.Request('https://nominatim.openstreetmap.org/search?' + params, headers=headers)
+            try:
+              with urllib.request.urlopen(req, timeout=30) as r: rows = json.load(r)
+            except Exception as e: rows = [{'error': str(e)}]
+            out['search'][key] = rows[:10]
+            time.sleep(1.2)
+
+          with open('reports/oslo-coordinate-batch-32-reverse-diagnostic/result.json','w') as f:
+            json.dump(out, f, ensure_ascii=False, indent=2)
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-32-reverse-diagnostic
+          path: reports/oslo-coordinate-batch-32-reverse-diagnostic/result.json
+          if-no-files-found: error
