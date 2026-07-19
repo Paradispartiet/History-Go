@@ -27,6 +27,17 @@ Ingen manuell `rounds`- eller `rundinger`-override og ingen artslister er lagt d
 - radius: `120`
 - canonical år: `1860`
 
+## Validering
+
+Bestått på sluttinnholdet:
+
+- `node tests/nydalsdammen-nature-rounds-batch1.test.js`
+- `node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js`
+- `node tests/place-card-rounds-runtime-audit.test.js`
+- `node tests/place-card-leksikon-content-audit.test.js`
+- JSON-parse av alle endrede datafiler
+- `git diff --check`
+
 ## Kilder
 
 Oslo byleksikon, Oslo kommune, Nordberg Tåsen Ullevål historielag og Akerselvas Venner.
