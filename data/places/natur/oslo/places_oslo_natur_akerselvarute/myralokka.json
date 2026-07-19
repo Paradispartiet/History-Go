@@ -1,79 +1,462 @@
 {
   "id": "myralokka",
+  "visual": {
+    "designCode": "urban_clay_pit_park_miniature"
+  },
   "name": "Myraløkka",
-  "lat": 59.9319,
-  "lon": 10.7504,
-  "r": 200,
+  "lat": 59.935817,
+  "lon": 10.757414,
+  "r": 180,
   "category": "natur",
-  "desc": "Åpent grøntområde langs Akerselva med kratt og elvenære flater.",
+  "desc": "Industriformet parkdal ved Akerselva, skapt av leiruttak til Bentse teglverk og senere brukt som offentlig grøntrom.",
   "routeId": "akerselva_grontdrag",
   "tags": [
     "park",
-    "elvepark"
+    "elvepark",
+    "akerselva",
+    "leireuttak",
+    "teglverk",
+    "industriformet_landskap",
+    "grontdrag",
+    "sagene"
   ],
-  "year": 1920,
-  "popupDesc": "Myraløkka er en åpen grønnflate langs Akerselva med lav terskel for opphold, lek og uorganisert aktivitet. Den fungerer som et hverdagslig pusterom mellom tett bebyggelse og trafikk.\n\nI History Go brukes stedet til å belyse grøntdrag som sosial infrastruktur: gratis møteplass, nærnatur og tilgjengelig byrom i samme område.",
+  "year": 1813,
+  "popupDesc": "Myraløkka er den amfilignende parkdalen mellom Akerselva og Maridalsveien, sør for Arendalsgata. Terrengformen er ikke en naturlig dal: leire ble gravd ut her til Bentse teglverk, som vanligvis dateres til 1813 og ble nedlagt omkring 1900. Under en haug nederst i parken ligger restene av en fabrikkpipe. Navnet viser til Myrens Verksted, som flyttet hit i 1854, og til den åpne løkka rundt industrimiljøet.\n\nEtter teglverksdriften ble området park og hverdagsrom. Arbeiderboligene Myragården i Arendalsgata 5–45 stod ferdige i 1914, tegnet av Morgenstierne & Eide. I dag gjør gressflater, skråninger, trær, elvekant og turforbindelser Myraløkka til både nærnatur og sosial infrastruktur. Natur-rundingen viser alle ni artene som allerede er aktivt kartlagt til stedet: gullstjerne, svarttrost, kjøttmeis, blåmeis, fiskemåke, gråmåke, gråspurv, ringdue og skjære.",
   "emne_ids": [
     "em_by_parker_som_sosial_infrastruktur",
     "em_by_lavterskel_moteplasser_uten_kjopspress"
   ],
   "quiz_profile": {
-    "place_type": "parkdrag",
-    "subtype": "akerselva_rute",
+    "place_type": "industriformet parkdal og urban grønnkorridor",
+    "subtype": "akerselva_leireuttak_park_artsrom",
     "signature_features": [
-      "Myraløkka",
-      "Åpent grøntområde langs Akerselva med kratt og elvenære flater.",
-      "tags: park, elvepark"
+      "amfilignende terreng etter leiruttak",
+      "Bentse teglverk fra 1813",
+      "nedgravd fabrikkpipe under parkhaugen",
+      "Myrens Verksted fra 1854",
+      "Myragården fra 1914",
+      "ni aktivt kartlagte arter"
     ],
     "primary_angles": [
-      "natur_vannlop",
-      "industri_og_arbeid",
-      "byutvikling_transformasjon"
+      "industriformet_landskap",
+      "leire_og_tegl",
+      "urban_parkokologi",
+      "artsobservasjon",
+      "sosial_infrastruktur",
+      "for_na_transformasjon"
     ],
     "question_families": [
+      "stedsspesifikk_naturfunksjon",
       "historisk_endring",
-      "stedsspesifikk_funksjon",
+      "artsidentifikasjon",
+      "terrenglesning",
+      "sikker_observasjon",
       "sammenligning_langs_elva"
     ],
     "avoid_angles": [
       "generisk_tursti",
-      "usikre_artsdetaljer"
+      "påstand_om_at_dalen_er_naturlig",
+      "grave_i_haugen_eller_klatre_i_skraning",
+      "hardkodede_arrangementer",
+      "artsfunn_utover_aktive_repo_kart"
     ],
     "must_include": [
-      "koblingen til Akerselva",
-      "konkret historisk eller bymessig funksjon på stedet"
+      "at parkens form kommer fra leiruttak til teglverk",
+      "at alle ni aktivt kartlagte arter vises i Natur-rundingen",
+      "at brukeren holder seg på offentlig og robust underlag"
     ],
     "contrast_targets": [
-      "nydalen_industristed",
-      "vulkan_industriomrade",
-      "vaterland_historisk_elvelop"
+      "voien_gard_voienvolden",
+      "voienfossen",
+      "kuba_parken"
     ],
-    "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
+    "notes": "Skill den menneskeskapte leirgropa fra en naturlig dal. Artsdata skal hentes fra de aktive naturkartene, ikke legges som direkte flora/fauna-felt i stedfilen."
   },
   "primary_category": "natur",
-  "secondary_category": "by",
-  "hybrid": false,
-  "underbadge_ids": [
-    "park_og_hage",
-    "bypark",
-    "elv"
+  "secondary_category": "historie",
+  "hybrid": true,
+  "locatorType": "park",
+  "sourceProvider": "local_history_map",
+  "sourceObjectId": "lokalhistoriewiki:Myraløkka",
+  "geocodeAccuracy": "park",
+  "coordRole": "park_center",
+  "coordType": "representative_center",
+  "coordStatus": "verified_point",
+  "coordSource": "Lokalhistoriewiki og Oslo byleksikon",
+  "coordNote": "Markøren er flyttet omtrent 585 meter nordøst fra et feil punkt vest for Akerselva til den dokumenterte parkdalen sør for Arendalsgata.",
+  "coordVerifiedAt": "2026-07-19",
+  "externalLinks": [
+    {
+      "type": "reference",
+      "label": "Oslo byleksikon: Myraløkka",
+      "url": "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Lokalhistoriewiki: Myraløkka",
+      "url": "https://lokalhistoriewiki.no/wiki/Myral%C3%B8kka",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Industrimuseum: En industriell gravhaug",
+      "url": "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Store norske leksikon: Myrens Verksted",
+      "url": "https://snl.no/Myrens_Verksted",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo byleksikon: Myrens Verksted",
+      "url": "https://oslobyleksikon.no/side/Myrens_Verksted",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Lokalhistoriewiki: Myrag%C3%A5rden",
+      "url": "https://lokalhistoriewiki.no/wiki/Myrag%C3%A5rden",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Lokalhistoriewiki: Bentse teglverk",
+      "url": "https://lokalhistoriewiki.no/wiki/Bentse_teglverk",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Teglverk.no: Bentse teglverk",
+      "url": "https://teglverk.no/teglverk/bentse-teglverk/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Norsk Teknisk Museum: Akerselva Digitalt",
+      "url": "https://www.industrimuseum.no/akerselvadigitalt",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo kommune: Dannevigsveien og grønn forbindelse til Myraløkka",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/dannevigsveien-og-gronn-forbindelse-til-myralokka/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-19"
+    }
   ],
+  "underbadge_ids": [
+    "urbannatur",
+    "park_og_hage",
+    "enger_og_sletter",
+    "elv",
+    "elvebredde",
+    "kantvegetasjon",
+    "fugler",
+    "planter_og_blomster",
+    "grontdrag",
+    "rekreasjon"
+  ],
+  "tasks_profile": {
+    "title": "Les leirgropa, elvekanten og artene",
+    "summary": "Fire konkrete oppgaver gjør parkens industriform, natursoner og aktive artskart synlige uten å gå utenfor robuste offentlige flater.",
+    "tasks": [
+      {
+        "id": "myralokka_oppgave_amfiform",
+        "title": "Finn den menneskeskapte dalformen",
+        "instruction": "Stå på offentlig sti eller flat gressflate og følg skråningene med blikket. Beskriv hvordan den amfilignende formen skiller seg fra et jevnt parkterreng.",
+        "why": "Skråningene er spor etter leire som ble gravd ut til teglproduksjon."
+      },
+      {
+        "id": "myralokka_oppgave_pipehaug",
+        "title": "Les haugen over fabrikkpipa",
+        "instruction": "Finn haugen nederst i parken fra offentlig ganglinje. Observer formen uten å grave, klatre eller forlate stien.",
+        "why": "Under haugen ligger restene av en fabrikkpipe fra Bentse teglverk."
+      },
+      {
+        "id": "myralokka_oppgave_natursoner",
+        "title": "Sammenlign tre natursoner",
+        "instruction": "Sammenlign åpen plen, vegetert skråning og elvekant. Noter forskjeller i lys, dekke, ferdsel og mulige skjulesteder for dyr.",
+        "why": "Myraløkka virker som et lite mosaikklandskap selv om parken er tett brukt."
+      },
+      {
+        "id": "myralokka_oppgave_ni_arter",
+        "title": "Bruk de ni artskortene",
+        "instruction": "Åpne artskortene for gullstjerne og de åtte fuglene. Registrer bare arter du faktisk ser eller hører, og la planter, reir og fugler være i fred.",
+        "why": "Oppgaven kobler aktivt kartlagte repoarter til ansvarlig feltobservasjon."
+      }
+    ]
+  },
   "nature_profile": {
-    "type": "åpen elvepark / engflate / urban grønnkorridor",
-    "title": "Den åpne løkka langs elva",
-    "summary": "Myraløkka er en bred og åpen grønnflate der Akerselvas smalere kantsoner møter solrike gressarealer, kratt og spredte trær. Det åpne parkrommet skaper andre naturforhold enn de skyggefulle partiene ved Stilla og de tettere breddekantene lenger sør. Natur-rundingen viser hvordan engpreg, soleksponering og vegeterte randsoner kan gi variasjon i et sammenhengende bygrøntdrag, samtidig som elva fortsatt er den økologiske ryggraden gjennom området.",
+    "type": "industriformet parkdal / åpen engflate / urban elvekorridor",
+    "title": "Leiregropa som ble park og artsrom",
+    "summary": "Myraløkka viser at bynatur kan oppstå i terreng som først ble kraftig omformet av industri. Leiruttaket til Bentse teglverk skapte den amfilignende dalen, mens gressflater, vegeterte skråninger, trær og Akerselvas kantsone senere gjorde området til et sammenhengende park- og artsrom. Den åpne flaten får mye sol og ferdsel; skråningene og elvekanten gir mer skjerming og vegetasjonsstruktur. Naturverdien ligger derfor ikke i urørt natur, men i mosaikken mellom skjøttet park, historisk terrengform og blågrønn korridor. De aktive naturkartene dokumenterer gullstjerne samt svarttrost, kjøttmeis, blåmeis, fiskemåke, gråmåke, gråspurv, ringdue og skjære. Disse ni artene vises som egne kort i Natur-rundingen. Observasjon skal skje fra offentlige stier og robuste gressflater; brukeren skal ikke grave i haugen, klatre i bratte eller våte skråninger, tråkke ned planter eller forstyrre fugler.",
     "themes": [
+      "amfilignende terreng etter leiruttak",
       "åpne gress- og engflater",
-      "solrike parksoner",
-      "kratt langs elvekanten",
-      "overgang mellom plen og villere vegetasjon",
-      "fugler og insekter i byparken",
-      "sammenhengende grøntdrag langs Akerselva"
+      "vegeterte skråninger og kantsoner",
+      "Akerselva som blågrønn korridor",
+      "gullstjerne i parkens aktive florakart",
+      "åtte aktivt kartlagte byfugler",
+      "slitasje, jordpakking og robuste ganglinjer",
+      "industrilandskap som senere bynatur",
+      "trygg og forstyrrelsesfri artsobservasjon"
     ],
+    "species_inventory": {
+      "source_maps": [
+        "data/natur/nature_oslo_expansion_place_map.json",
+        "data/natur/nature_bird_place_map.json"
+      ],
+      "flora": [
+        {
+          "id": "emne_flora_gullstjerne",
+          "name": "gullstjerne",
+          "map": "nature_oslo_expansion_place_map.json"
+        }
+      ],
+      "fauna": [
+        {
+          "id": "emne_fauna_svarttrost",
+          "name": "svarttrost",
+          "map": "nature_bird_place_map.json"
+        },
+        {
+          "id": "emne_fauna_kjottmeis",
+          "name": "kjøttmeis",
+          "map": "nature_bird_place_map.json"
+        },
+        {
+          "id": "emne_fauna_blaameis",
+          "name": "blåmeis",
+          "map": "nature_bird_place_map.json"
+        },
+        {
+          "id": "emne_fauna_fiskemaake",
+          "name": "fiskemåke",
+          "map": "nature_bird_place_map.json"
+        },
+        {
+          "id": "emne_fauna_graamaake",
+          "name": "gråmåke",
+          "map": "nature_bird_place_map.json"
+        },
+        {
+          "id": "emne_fauna_graaspurv",
+          "name": "gråspurv",
+          "map": "nature_bird_place_map.json"
+        },
+        {
+          "id": "emne_fauna_ringdue",
+          "name": "ringdue",
+          "map": "nature_bird_place_map.json"
+        },
+        {
+          "id": "emne_fauna_skjaere",
+          "name": "skjære",
+          "map": "nature_bird_place_map.json"
+        }
+      ],
+      "total_species": 9,
+      "rule": "all_active_mapped_species_for_place"
+    },
     "nearby_place_ids": [
-      "bjoelsenparken_elvenaer",
-      "kuba_parken",
-      "stilla_nydalen"
+      "voien_gard_voienvolden",
+      "voienfossen",
+      "kuba_parken"
+    ]
+  },
+  "training_profile": {
+    "title": "Tørr parkøkt i den gamle leirgropa",
+    "summary": "En kort, skånsom økt som bruker parkens flate og brede ganglinjer uten å gjøre skråningene eller elvekanten til treningsområde.",
+    "safety": "Bruk bare tørr offentlig sti eller jevn gressflate. Unngå våte eller bratte skråninger, snarveier, elvesteiner, bading, graving og klatring. Vis hensyn til andre parkbrukere og stopp når underlaget er glatt eller ferdselen tett.",
+    "exercises": [
+      {
+        "id": "myralokka_trening_parkloop",
+        "title": "Rolig parkloop",
+        "instruction": "Gå rolig i 10 minutter på de tydelige ganglinjene rundt den åpne flaten. Hold blikket på terrengformen og elvekorridoren.",
+        "duration_minutes": 10,
+        "intensity": "rolig",
+        "why": "Runden gir oversikt over den industriformede dalen uten å belaste skråningene."
+      },
+      {
+        "id": "myralokka_trening_gangdrag",
+        "title": "Fire kontrollerte gangdrag",
+        "instruction": "Finn en tørr, bred og oversiktlig strekning. Gå raskt i 90 sekunder og rolig i 90 sekunder, fire ganger.",
+        "duration_minutes": 12,
+        "intensity": "moderat",
+        "why": "Gangdragene bruker parkens sammenhengende offentlige flate og kan avbrytes ved tett ferdsel."
+      },
+      {
+        "id": "myralokka_trening_bevegelighet",
+        "title": "Bevegelighet på flat gressflate",
+        "instruction": "Avslutt med rolige ankel-, hofte- og skulderbevegelser på tørr, jevn plen, langt fra elvekant og skråning.",
+        "duration_minutes": 5,
+        "intensity": "lett",
+        "why": "Den åpne parkflaten gir et sikkert avslutningspunkt når underlaget er tørt."
+      }
+    ]
+  },
+  "civication_store": [
+    {
+      "id": "myralokka_leire_til_tegl_materialbrett",
+      "title": "Fra leire til tegl",
+      "type": "materialbrett",
+      "kind": "physical_object",
+      "desc": "Et fysisk samlerbrett med rå leire, formet tegl, tørket emne og brent teglstein.",
+      "placeSpecificReason": "Materialrekken forklarer hvorfor akkurat Myraløkkas terreng ble gravd ut.",
+      "historicalFunction": "Gjør forbindelsen mellom leirgrop, Bentse teglverk og byens murstein håndgripelig.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 34,
+      "currency": "PC",
+      "collection": "myralokka",
+      "collectable": true
+    },
+    {
+      "id": "myralokka_pipehaug_snittmodell",
+      "title": "Snittmodellen av pipehaugen",
+      "type": "terrengmodell",
+      "kind": "physical_object",
+      "desc": "En liten fysisk snittmodell av parkhaugen med fabrikkpipa som ligger skjult under terrenget.",
+      "placeSpecificReason": "Objektet gjengir Myraløkkas mest særpregede skjulte industrispor.",
+      "historicalFunction": "Viser hvordan et produksjonsanlegg ble dekket til og innlemmet i parken.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 44,
+      "currency": "PC",
+      "collection": "myralokka",
+      "collectable": true
+    },
+    {
+      "id": "myralokka_for_na_amfikart",
+      "title": "Amfikartet før og nå",
+      "type": "utbrettskart",
+      "kind": "physical_object",
+      "desc": "Et fysisk dobbeltkart som legger leiruttak, teglverk, Myrens Verksted og arbeiderboliger over dagens park og turforbindelser.",
+      "placeSpecificReason": "Kartet forklarer hvorfor dagens parkform ikke er naturlig.",
+      "historicalFunction": "Samler industri, bolig og park i ett stedlig før-og-nå-bilde.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 38,
+      "currency": "PC",
+      "collection": "myralokka",
+      "collectable": true
+    },
+    {
+      "id": "myralokka_ni_arter_feltstripe",
+      "title": "Feltstripe med ni Myraløkka-arter",
+      "type": "feltkort",
+      "kind": "physical_object",
+      "desc": "En fysisk, sammenleggbar feltstripe med gullstjerne og de åtte aktivt kartlagte fugleartene.",
+      "placeSpecificReason": "Artsutvalget følger nøyaktig de aktive naturkartene for Myraløkka.",
+      "historicalFunction": "Kobler den tidligere leirgropa til dagens bruk som urbant artsrom.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 29,
+      "currency": "PC",
+      "collection": "myralokka",
+      "collectable": true
+    }
+  ],
+  "brands": [
+    {
+      "id": "myralokka_actor",
+      "name": "Myraløkka",
+      "brand_kind": "public_park",
+      "brand_type": "place_identity"
+    },
+    {
+      "id": "bentse_teglverk",
+      "name": "Bentse teglverk",
+      "brand_kind": "historic_brickworks",
+      "brand_type": "landscape_shaping_actor"
+    },
+    {
+      "id": "myrens_verksted",
+      "name": "Myrens Verksted",
+      "brand_kind": "historic_engineering_company",
+      "brand_type": "namesake_industrial_actor"
+    },
+    {
+      "id": "myrens_verksteds_byggeselskap",
+      "name": "Myrens Verksteds Byggeselskap",
+      "brand_kind": "worker_housing_company",
+      "brand_type": "housing_actor"
+    },
+    {
+      "id": "morgenstierne_eide",
+      "name": "Morgenstierne & Eide",
+      "brand_kind": "architecture_office",
+      "brand_type": "worker_housing_architect"
+    },
+    {
+      "id": "oslo_kommune_myralokka",
+      "name": "Oslo kommune",
+      "brand_kind": "municipality",
+      "brand_type": "park_owner_and_planner"
+    },
+    {
+      "id": "bymiljoetaten_myralokka",
+      "name": "Bymiljøetaten",
+      "brand_kind": "municipal_agency",
+      "brand_type": "park_management_actor"
+    },
+    {
+      "id": "norsk_teknisk_museum_myralokka",
+      "name": "Norsk Teknisk Museum",
+      "brand_kind": "industrial_history_museum",
+      "brand_type": "documentation_actor"
+    },
+    {
+      "id": "oslo_byes_vel_myralokka",
+      "name": "Oslo Byes Vel",
+      "brand_kind": "civic_heritage_organization",
+      "brand_type": "local_history_actor"
+    },
+    {
+      "id": "sagene_torshov_historielag_myralokka",
+      "name": "Sagene Torshov Historielag",
+      "brand_kind": "local_history_association",
+      "brand_type": "documentation_actor"
+    }
+  ],
+  "for_na": {
+    "title": "Fra leirgrop og teglverk til parkdal og artsrom",
+    "before": "Fra 1813 til omkring 1900 ble leire tatt ut av området til Bentse teglverk. Uttaket skapte den amfilignende dalformen, og fabrikkpipa ble senere liggende skjult under en haug. Myrens Verksted flyttet til området i 1854, og industrien preget både terreng og boligbygging.",
+    "now": "I dag er Myraløkka et offentlig parkrom med gressflater, skråninger, trær, elvekant og turforbindelser. De aktive naturkartene kobler ni arter til stedet, og parken brukes til opphold, lek, ferdsel, naturkontakt og trygg artsobservasjon.",
+    "change": "Et uttaks- og produksjonslandskap ble omformet til en park uten at industrien forsvant helt: terrengformen, pipehaugen, navnet og arbeiderboligene gjør den fortsatt lesbar.",
+    "look_for": [
+      "den amfilignende dalformen",
+      "haugen over den nedgravde fabrikkpipa",
+      "forholdet mellom åpen plen og vegeterte skråninger",
+      "Akerselvas elvekant og turforbindelse",
+      "Myragården i Arendalsgata",
+      "spor etter intensiv ferdsel og jordpakking",
+      "gullstjerne og de åtte fugleartene i Natur-rundingen"
+    ],
+    "sources": [
+      "Oslo byleksikon: Myraløkka",
+      "Lokalhistoriewiki: Myraløkka",
+      "Industrimuseum: En industriell gravhaug",
+      "Store norske leksikon: Myrens Verksted",
+      "Oslo byleksikon: Myrens Verksted",
+      "Lokalhistoriewiki: Myrag%C3%A5rden",
+      "Lokalhistoriewiki: Bentse teglverk",
+      "Teglverk.no: Bentse teglverk",
+      "Norsk Teknisk Museum: Akerselva Digitalt",
+      "Oslo kommune: Dannevigsveien og grønn forbindelse til Myraløkka"
     ]
   }
 }
