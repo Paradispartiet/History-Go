@@ -3,163 +3,59 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-echo "== People JSON parse and duplicate ID check =="
-node <<'NODE'
-const fs = require('fs');
-const path = require('path');
-
-function readJson(file) {
-  try {
-    return JSON.parse(fs.readFileSync(file, 'utf8'));
-  } catch (error) {
-    console.error(`JSON parse failed: ${file}`);
-    console.error(error.message);
-    process.exit(1);
-  }
+run_check() {
+  local label="$1"
+  shift
+  local output status
+  output="$(mktemp)"
+  echo "== ${label} =="
+  if "$@" >"$output" 2>&1; then
+    echo "ok"
+    rm -f "$output"
+    return 0
+  else
+    status=$?
+    cat "$output"
+    rm -f "$output"
+    return "$status"
+  fi
 }
 
-const manifestPath = 'data/people/manifest.json';
-const placesIndexPath = 'data/places/places_index.json';
+run_check "People JSON parse and duplicate ID check" node -e '
+const fs = require("fs");
+const path = require("path");
+const manifestPath = "data/people/manifest.json";
+const placesIndexPath = "data/places/places_index.json";
+const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 const manifest = readJson(manifestPath);
-
-if (!manifest || !Array.isArray(manifest.files)) {
-  console.error(`${manifestPath} must contain a files array`);
-  process.exit(1);
-}
-
-const supportFiles = [manifestPath, placesIndexPath];
-const peopleFiles = manifest.files.map((file) => path.join('data', file));
-const files = [...supportFiles, ...peopleFiles];
-const seenPeopleIds = new Map();
-const duplicatePeopleIds = [];
-let peopleCount = 0;
-
+if (!manifest || !Array.isArray(manifest.files)) throw new Error(`${manifestPath} must contain a files array`);
+const peopleFiles = manifest.files.map((file) => path.join("data", file));
+const files = [manifestPath, placesIndexPath, ...peopleFiles];
+const seen = new Map();
 for (const file of files) {
-  if (!fs.existsSync(file)) {
-    console.error(`Missing expected file: ${file}`);
-    process.exit(1);
-  }
-
+  if (!fs.existsSync(file)) throw new Error(`Missing expected file: ${file}`);
   const data = readJson(file);
   if (!peopleFiles.includes(file)) continue;
-
-  const entries = Array.isArray(data)
-    ? data
-    : data && typeof data === 'object'
-      ? [data]
-      : null;
-
-  if (!entries) {
-    console.error(`People file must contain an object or array: ${file}`);
-    process.exit(1);
-  }
-
-  for (const [index, entry] of entries.entries()) {
-    peopleCount += 1;
-    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
-      console.error(`Invalid people entry at ${file}[${index}]`);
-      process.exit(1);
-    }
-
-    if (typeof entry.id !== 'string' || !entry.id.trim()) {
-      console.error(`Missing people id at ${file}[${index}]`);
-      process.exit(1);
-    }
-
-    const previous = seenPeopleIds.get(entry.id);
-    if (previous) {
-      duplicatePeopleIds.push({ id: entry.id, first: previous, second: `${file}[${index}]` });
-    } else {
-      seenPeopleIds.set(entry.id, `${file}[${index}]`);
-    }
-  }
+  const entries = Array.isArray(data) ? data : data && typeof data === "object" ? [data] : null;
+  if (!entries) throw new Error(`People file must contain an object or array: ${file}`);
+  entries.forEach((entry, index) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) throw new Error(`Invalid people entry at ${file}[${index}]`);
+    if (typeof entry.id !== "string" || !entry.id.trim()) throw new Error(`Missing people id at ${file}[${index}]`);
+    if (seen.has(entry.id)) throw new Error(`Duplicate people ID ${entry.id}: ${seen.get(entry.id)} and ${file}[${index}]`);
+    seen.set(entry.id, `${file}[${index}]`);
+  });
 }
+console.log(`json and people ids ok (${seen.size} unique ids)`);
+'
 
-if (duplicatePeopleIds.length > 0) {
-  console.error('Duplicate people IDs found:');
-  for (const duplicate of duplicatePeopleIds) {
-    console.error(`- ${duplicate.id}`);
-    console.error(`  first:  ${duplicate.first}`);
-    console.error(`  second: ${duplicate.second}`);
-  }
-  process.exit(1);
-}
+run_check "Build tools" npm run build:tools
+run_check "People invalid place refs" node dist/tools/audit-people-invalid-place-refs.mjs
+run_check "People of places status" node dist/tools/audit-people-of-places-status.mjs
+run_check "People place coverage" node dist/tools/audit-people-place-coverage.mjs
+run_check "Etne people manifest integration" node tests/etne-people-manifest-integration.test.js
 
-console.log(`json ok (${files.length} files)`);
-console.log(`people ids ok (${peopleCount} entries, ${seenPeopleIds.size} unique ids)`);
-NODE
-
-echo "== Build tools =="
-npm run build:tools
-
-echo "== People invalid place refs =="
-node dist/tools/audit-people-invalid-place-refs.mjs
-
-echo "== People of places status =="
-node dist/tools/audit-people-of-places-status.mjs
-
-echo "== People place coverage =="
-node dist/tools/audit-people-place-coverage.mjs
-
-echo "== Etne people manifest integration =="
-node tests/etne-people-manifest-integration.test.js
-
-echo "== Etne People of Places batch 9 =="
-node tests/etne-people-of-places-batch9.test.js
-
-echo "== Etne People of Places batch 10 =="
-node tests/etne-people-of-places-batch10.test.js
-
-echo "== Etne People of Places batch 11 =="
-node tests/etne-people-of-places-batch11.test.js
-
-echo "== Etne People of Places batch 12 =="
-node tests/etne-people-of-places-batch12.test.js
-
-echo "== Etne People of Places batch 13 =="
-node tests/etne-people-of-places-batch13.test.js
-
-echo "== Etne People of Places batch 14 =="
-node tests/etne-people-of-places-batch14.test.js
-
-echo "== Etne People of Places batch 15 =="
-node tests/etne-people-of-places-batch15.test.js
-
-echo "== Etne People of Places batch 16 =="
-node tests/etne-people-of-places-batch16.test.js
-
-echo "== Etne People of Places batch 17 =="
-node tests/etne-people-of-places-batch17.test.js
-
-echo "== Etne People of Places batch 18 =="
-node tests/etne-people-of-places-batch18.test.js
-
-# Batch 19 validation output: reports/etne-people-of-places-batch19/
-echo "== Etne People of Places batch 19 =="
-node tests/etne-people-of-places-batch19.test.js
-
-# Batch 20 validation output: reports/etne-people-of-places-batch20/
-echo "== Etne People of Places batch 20 =="
-node tests/etne-people-of-places-batch20.test.js
-
-# Batch 21 validation output: reports/etne-people-of-places-batch21/
-echo "== Etne People of Places batch 21 =="
-node tests/etne-people-of-places-batch21.test.js
-
-# Batch 22 stored validation output: reports/etne-people-of-places-batch22/
-echo "== Etne People of Places batch 22 =="
-node tests/etne-people-of-places-batch22.test.js
-
-echo "== Etne People of Places batch 23 =="
-node tests/etne-people-of-places-batch23.test.js
-
-echo "== Etne People of Places batch 24 =="
-node tests/etne-people-of-places-batch24.test.js
-
-echo "== Etne People of Places batch 25 =="
-node tests/etne-people-of-places-batch25.test.js
-
-echo "== Etne People of Places batch 26 =="
-node tests/etne-people-of-places-batch26.test.js
+for batch in $(seq 9 26); do
+  run_check "Etne People of Places batch ${batch}" node "tests/etne-people-of-places-batch${batch}.test.js"
+done
 
 echo "== People check complete =="
