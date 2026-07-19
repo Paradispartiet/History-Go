@@ -4,9 +4,16 @@ on:
   push:
     branches:
       - agent/oslo-coordinate-control-batch-30
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
+
+concurrency:
+  group: oslo-coordinate-batch-30-diagnose
+  cancel-in-progress: true
 
 jobs:
   diagnose:
