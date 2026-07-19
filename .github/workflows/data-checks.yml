@@ -5,6 +5,8 @@ on:
     paths:
       - 'data/people/**'
       - 'data/places/**'
+      - 'tests/etne-people-manifest-integration.test.js'
+      - 'tests/etne-people-of-places-*.test.js'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'tools/**'
@@ -88,6 +90,6 @@ jobs:
             npm run places:index:build
             npm run build:tools
             npm run places:index:check
-            npm run places:emner:check
+            npm run places:emners:check
             npm run places:coords:check
           fi
