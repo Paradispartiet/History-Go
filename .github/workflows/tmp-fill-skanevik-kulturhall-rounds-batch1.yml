@@ -1,0 +1,51 @@
+name: Temporary fill Skånevik culture hall rounds
+
+on:
+  push:
+    branches:
+      - agent/fill-skanevik-kultur-og-idrettshall-rounds-batch1
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-skanevik-kultur-og-idrettshall-rounds-batch1
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: node scripts/tmp-fill-skanevik-kulturhall-rounds-batch1.js
+      - run: npm run places:index:build
+      - run: node tests/skanevik-kulturhall-batch1-round-content.test.js
+      - run: npm run places:index:check
+      - run: npm run places:emner:check
+      - run: npm run check:stories
+      - run: npm run leksikon:ids:check
+      - run: node tests/etne-people-manifest-integration.test.js
+      - run: git diff --check
+
+      - name: Commit generated content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/kunst/vestland/etne/skanevik_kultur_og_idrettshall.json \
+            data/places/places_index.json \
+            data/people/manifest.json \
+            data/people/kunst/vestland/etne/skanevik_kultur_og_idrettshall/people_skanevik_kulturhall_batch1.json \
+            data/relations.json \
+            data/stories/stories_etnesjoen_kunst_rounds_batch1.json \
+            data/leksikon/places/vestland/etne/kunst/leksikon_etnesjoen_kunst_rounds_batch1.json \
+            reports/skanevik-kulturhall-rounds-batch1.md \
+            tests/skanevik-kulturhall-batch1-round-content.test.js
+          git commit -m "Fill Skånevik culture hall rounds batch 1"
+          git push
