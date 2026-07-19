@@ -48,9 +48,9 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 5 | `nationaltheatret` | Nationaltheatret | verified | `geonorge-adresser-v1:0301:20681:1` |
 | 5 | `tronsmo_bokhandel` | Tronsmo Bokhandel | verified | `osm-node:10524908476` |
 | 5 | `folketeateret` | Folketeateret | verified | `geonorge-adresser-v1:0301:18554:2` |
-| 6 | `gronland_basarene` | Grønland basarene | verified | `osm-node:1022312515` |
-| 6 | `mollergata_19` | Møllergata 19 | verified | `osm-way:112207578` |
-| 6 | `villa_grande` | Villa Grande | verified | `osm-node:12591050047` |
+| 6 | `gronland_basarene` | Grønland basarene | verified | `geonorge-adresser-v1:0301:17875:2` |
+| 6 | `mollergata_19` | Møllergata 19 | verified | `geonorge-adresser-v1:0301:14943:19` |
+| 6 | `villa_grande` | Villa Grande | verified | `geonorge-adresser-v1:0301:13153:56` |
 | 7 | `blaa` | Blå | verified_geometry | `osm-node:4312299494` |
 | 7 | `tinghuset` | Oslo tinghus | verified | `geonorge-adresser-v1:0301:11017:4` |
 | 7 | `bogstad_gard` | Bogstad gård | verified_geometry | `osm-way:219498663` |
@@ -191,6 +191,8 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
+
+Retrokontroll fra batch 6 (2026-07-20): Batch 6 er korrigert tilbake til den låste adresse-first-metoden. `gronland_basarene`, `mollergata_19` og `villa_grande` bruker igjen de entydige Geonorge-resultatene fra den opprinnelige batch-6-kjøringen; senere OSM-baserte visual-marker-overstyringer er fjernet fra canonical koordinatkilde. OSM kan fortsatt brukes som visuell QA, men ikke som primær koordinatkilde for disse tre konkrete adressebare byggene.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
