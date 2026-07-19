@@ -142,11 +142,11 @@ const corrections = [];
 {
   const id = 'ovre_foss';
   const sourceObjectId = 'kulturminnesok:164747';
-  const note = 'Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match; dette er lagret i batch-24-rapporten. Hjula Væverier er identifisert som kulturminne 164747 og dokumentert i Sagveien 23 av Oslo byleksikon. Det eksisterende punktet beholdes som et semantisk historisk anker og representativt site_center inne i Hjula-anlegget, ikke som et påstått offisielt adressepunkt eller eksakt bygningssentrum.';
+  const note = 'Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match; dette er lagret i batch-24-rapporten. Hjula Væverier er identifisert som kulturminne 164747 og dokumentert i Sagveien 23 av Oslo byleksikon. Det eksisterende punktet beholdes som et semantisk historisk områdeanker inne i Hjula-anlegget, ikke som et påstått offisielt adressepunkt eller eksakt bygningssentrum.';
   const before = updateRecord(naeringsliv, id, (place) => Object.assign(place, {
     locatorType: 'historic_site', sourceProvider: 'manual_research', sourceObjectId,
-    geocodeAccuracy: 'semantic_anchor', coordRole: 'site_center',
-    coordType: 'historical_site', coordStatus: 'verified_geometry',
+    geocodeAccuracy: 'semantic_anchor', coordRole: 'area_anchor',
+    coordType: 'historical_site', coordStatus: 'verified_historical_source',
     coordSource: 'Riksantikvaren/Kulturminnesøk 164747; identity cross-checked with Oslo byleksikon',
     coordSourceId: sourceObjectId, coordSourceUrl: 'https://www.kulturminnesok.no/',
     coordVerifiedAt: VERIFIED_AT, coordNote: note
@@ -161,11 +161,11 @@ const corrections = [];
     ];
     evidence.sourceObjectCandidates = [{ sourceProvider: 'manual_research', sourceObjectId, canApplyToPlace: true }];
     evidence.geometryCandidates = [];
-    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'site_center', canApplyToPlace: true }];
-    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Offisiell kulturminneidentitet og eksplisitt semantisk historisk anker er anvendt; tvetydig adresse er dokumentert og ikke gjettet.' };
+    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'area_anchor', canApplyToPlace: true }];
+    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Offisiell kulturminneidentitet og eksplisitt semantisk historisk områdeanker er anvendt; tvetydig adresse er dokumentert og ikke gjettet.' };
     evidence.notes = [note];
   });
-  corrections.push({ batch: 24, id, before, after: { sourceProvider: 'manual_research', sourceObjectId } });
+  corrections.push({ batch: 24, id, before, after: { sourceProvider: 'manual_research', sourceObjectId, coordStatus: 'verified_historical_source', coordRole: 'area_anchor' } });
 }
 
 {
@@ -210,12 +210,13 @@ protocol = protocol.split('\n').map((line) => {
     const cells = line.split('|');
     if (cells.length >= 7) {
       cells[cells.length - 2] = ` \`${sourceObjectId}\` `;
+      if (id === 'ovre_foss' && cells.length >= 6) cells[cells.length - 3] = ' verified_historical_source ';
       return cells.join('|');
     }
   }
   return line;
 }).join('\n');
-const protocolNote = 'Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` bruker nå det dokumenterte OSM-bygningsobjektet som primær geometrikilde etter tvetydig Geonorge-oppslag; `ovre_foss` dokumenterer at Geonorge faktisk ble forsøkt først og bruker Kulturminnesøk 164747 med eksplisitt semantic site anchor; `henrik_wergeland_statue` bruker Oslo Museums stabile aksesjonsnummer OB.A17403 som primær kildeidentitet i stedet for Commons-siden.';
+const protocolNote = 'Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` bruker nå det dokumenterte OSM-bygningsobjektet som primær geometrikilde etter tvetydig Geonorge-oppslag; `ovre_foss` dokumenterer at Geonorge faktisk ble forsøkt først og bruker Kulturminnesøk 164747 som semantisk historisk områdeanker; `henrik_wergeland_statue` bruker Oslo Museums stabile aksesjonsnummer OB.A17403 som primær kildeidentitet i stedet for Commons-siden.';
 if (!protocol.includes(protocolNote)) protocol = protocol.replace('### Dokumenterte Oslo-kontroller uten godkjent koordinat', `${protocolNote}\n\n### Dokumenterte Oslo-kontroller uten godkjent koordinat`);
 fs.writeFileSync(abs(protocolRel), protocol);
 
@@ -231,7 +232,7 @@ writeJson(`${REPORT_DIR}/pass-3-batches-21-24.json`, {
 
 const readmeRel = `${REPORT_DIR}/README.md`;
 let readme = fs.existsSync(abs(readmeRel)) ? fs.readFileSync(abs(readmeRel), 'utf8') : '# Oslo coordinate retro-audit from batch 6\n';
-const section = '\n## Pass 3 — batches 21–24 source-object corrections\n\n- `henrik_wergeland_statue`: stable primary identity moved from the Commons host page to Oslo Museum accession `OB.A17403`; coordinate unchanged.\n- `telegrafbygningen`: primary geometry source moved from Wikidata to documented exact OSM relation `13931026`; coordinate unchanged.\n- `ovre_foss`: confirmed that Geonorge address-first was already performed and ambiguous; primary identity moved from Wikidata to Kulturminnesøk `164747`, with the existing point explicitly modeled as a semantic historical site anchor rather than an address/building-center claim.\n';
+const section = '\n## Pass 3 — batches 21–24 source-object corrections\n\n- `henrik_wergeland_statue`: stable primary identity moved from the Commons host page to Oslo Museum accession `OB.A17403`; coordinate unchanged.\n- `telegrafbygningen`: primary geometry source moved from Wikidata to documented exact OSM relation `13931026`; coordinate unchanged.\n- `ovre_foss`: confirmed that Geonorge address-first was already performed and ambiguous; primary identity moved from Wikidata to Kulturminnesøk `164747`, with the existing point explicitly modeled as a semantic historical area anchor and `verified_historical_source`.\n';
 if (!readme.includes('## Pass 3 — batches 21–24 source-object corrections')) readme += section;
 fs.writeFileSync(abs(readmeRel), readme);
 
