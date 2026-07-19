@@ -1,0 +1,70 @@
+name: Oslo Oppdag Kvadraturen core final coordinates
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-oppdag-kvadraturen-core-final-coordinates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Resolve official address evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/oslo-oppdag-kvadraturen-core-final/coordinates'
+          mkdir -p "$out"
+          npm run places:coords:find:address -- --address "Jernbanetorget 1 Oslo" | tee "$out/ostbanestasjonen_address.json"
+          npm run places:coords:find:address -- --address "Tollbugata 1 Oslo" | tee "$out/tollbodene_address.json"
+          npm run places:coords:find:address -- --address "Bankplassen 4 Oslo" | tee "$out/norges_bank_bankplassen_4.json"
+
+      - name: Resolve exact physical OSM objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/oslo-oppdag-kvadraturen-core-final/coordinates'
+          fetch() {
+            slug="$1"; q="$2";
+            curl --max-time 40 --retry 2 --retry-delay 2 --fail --silent --show-error \
+              --user-agent 'History-Go-coordinate-audit/1.0' \
+              --get 'https://nominatim.openstreetmap.org/search' \
+              --data-urlencode "q=${q}, Oslo, Norway" \
+              --data-urlencode 'format=jsonv2' \
+              --data-urlencode 'addressdetails=1' \
+              --data-urlencode 'namedetails=1' \
+              --data-urlencode 'polygon_geojson=1' \
+              --data-urlencode 'limit=10' \
+              --data-urlencode 'countrycodes=no' \
+              -o "$out/${slug}_nominatim.json"
+            sleep 1
+          }
+          fetch kontraskjaeret 'Kontraskjæret'
+          fetch ostbanestasjonen 'Østbanehallen'
+          fetch tollpakkhuset 'Tollpakkhuset'
+          fetch christian_frederiks_plass 'Christian Frederiks plass'
+
+      - name: Persist coordinate evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-oppdag-kvadraturen-core-final/coordinates
+          git commit -m "Save Oppdag Kvadraturen core final coordinate evidence"
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
