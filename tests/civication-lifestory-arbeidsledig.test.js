@@ -141,6 +141,38 @@ assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være
   }
 }
 
+// --- 6b. Søvn-arcen: kvelden avgjør natten, natten avgjør morgenen ---
+// Dag 1-nattscenen setter ALLTID enten la_deg_i_tide eller sen_kveld, og
+// dag 2-morgenen har én scene per gren. Ro-regelen gjelder også lav energi:
+// den energigatede kveldsscenen skal aldri gi mer press (ingen negative
+// energi/psyke-deltaer).
+{
+  const lifeScenes = readJson(manifest.life.scenes);
+  const byId = (id) => lifeScenes.scenes.find((s) => s.id === id);
+
+  const natt = byId("natt_01_paa_tide_aa_sove");
+  assert.ok(natt && natt.dag === 1 && natt.fase === "kveld", "dag 1 har en nattscene i kveldsfasen");
+  for (const v of natt.valg) {
+    const flagg = v.effekter?.flagg || {};
+    assert.ok(flagg.la_deg_i_tide === true || flagg.sen_kveld === true,
+      `nattvalget ${v.id} må sette la_deg_i_tide eller sen_kveld — dag 2-morgenen leser natten`);
+  }
+  const uthvilt = byId("d2_morgen_uthvilt");
+  const tung = byId("d2_morgen_tung_start");
+  assert.strictEqual(uthvilt?.conditions?.flagg?.la_deg_i_tide, true, "uthvilt-morgenen krever la_deg_i_tide");
+  assert.strictEqual(tung?.conditions?.flagg?.sen_kveld, true, "tung-morgenen krever sen_kveld");
+
+  const roScene = byId("d2_kveld_kroppen_sier_fra");
+  assert.ok(roScene?.conditions?.meters?.energi?.max <= 45, "kropps-scenen er gated på lav energi");
+  for (const v of roScene.valg) {
+    for (const [meter, delta] of Object.entries(v.effekter?.meters || {})) {
+      if (meter === "energi" || meter === "psyke") {
+        assert.ok(delta > 0, `lav energi gir ro, aldri mer press: ${v.id} har ${meter} ${delta}`);
+      }
+    }
+  }
+}
+
 // --- 7. Delt privat persongalleri: venn + familie i ALLE roller ---
 // De delte livsscenene refererer avsenderne «venn» (Jonas) og «familie»
 // (Søsteren din) og flytter relasjonene deres. Da må hver rolle — også
