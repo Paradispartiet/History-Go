@@ -11,8 +11,8 @@ const expectedFiles = new Map([
     [{ id: 'ann_margit_gronstad', placeId: 'grannar_redaksjon_etne' }]
   ],
   [
-    'people/sport/vestland/etne/geir_havreberg.json',
-    [{ id: 'geir_havreberg', placeId: 'etne_kyokushin_dojo' }]
+    'people/sport/vestland/etne/people_sport_etne_batch2.json',
+    [{ id: 'geir_arne_havreberg', placeId: 'etne_kyokushin_dojo' }]
   ],
   [
     'people/sport/vestland/etne/havard_matre.json',
@@ -57,6 +57,7 @@ const expectedFiles = new Map([
   ]
 ]);
 
+const retiredGeirDuplicateFile = 'people/sport/vestland/etne/geir_havreberg.json';
 const manifest = readJson('data/people/manifest.json');
 assert(Array.isArray(manifest.files), 'People-manifestet skal ha ei files-liste');
 
@@ -68,6 +69,8 @@ for (const file of manifest.files) {
 for (const [file] of expectedFiles) {
   assert.strictEqual(manifestCounts.get(file), 1, `${file} skal vere registrert nøyaktig éin gong`);
 }
+assert.strictEqual(manifestCounts.get(retiredGeirDuplicateFile), 1, 'Den pensjonerte Geir-duplikatfila skal vere stabil fram til manifestopprydding');
+assert.deepStrictEqual(readJson(`data/${retiredGeirDuplicateFile}`), [], 'Den pensjonerte Geir-duplikatfila skal ikkje aktivere ein person');
 
 for (const roundBatch of [8, 9]) {
   const file = `people/historie/vestland/etne/people_historie_etne_rounds_batch${roundBatch}.json`;
