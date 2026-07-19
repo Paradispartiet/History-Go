@@ -1,0 +1,112 @@
+name: Oslo coordinate batch 34 diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Query named OSM objects and nearby river geometry
+        run: |
+          set +e
+          out=reports/oslo-coordinate-batch-34-diagnostic
+          mkdir -p "$out/search" "$out/reverse" "$out/overpass"
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request, time
+          from pathlib import Path
+          out=Path('reports/oslo-coordinate-batch-34-diagnostic')
+          headers={'User-Agent':'History-Go-coordinate-audit/1.0 contact=repository-audit'}
+          def fetch(url, data=None):
+              req=urllib.request.Request(url,data=data,headers=headers)
+              try:
+                  with urllib.request.urlopen(req,timeout=50) as r:
+                      return {'ok':True,'data':json.load(r)}
+              except Exception as e:
+                  return {'ok':False,'error':repr(e),'url':url}
+          queries={
+              'vulkan':'Vulkan, Oslo, Norway',
+              'hausmannsbrua':'Hausmannsbrua, Oslo, Norway',
+              'ankerbrua':'Ankerbrua, Oslo, Norway',
+              'nybrua':'Nybrua, Oslo, Norway',
+              'vaterlandsparken':'Vaterlandsparken, Oslo, Norway',
+              'bla_brenneriveien':'Blå Brenneriveien, Oslo, Norway',
+              'fossveien':'Fossveien Akerselva, Oslo, Norway',
+              'hausmann_elv':'Akerselva Hausmanns gate, Oslo, Norway',
+          }
+          for slug,q in queries.items():
+              url='https://nominatim.openstreetmap.org/search?'+urllib.parse.urlencode({'q':q,'format':'jsonv2','limit':12,'addressdetails':1,'extratags':1,'namedetails':1})
+              result=fetch(url)
+              (out/'search'/f'{slug}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+              time.sleep(1.1)
+          points={
+              'vulkan_current':(59.9247,10.7424),
+              'bla_current':(59.923,10.7407),
+              'fossveien_current':(59.9218,10.7391),
+              'hausmannsbrua_current':(59.9205,10.7374),
+              'hausmann_elv_current':(59.9197,10.7364),
+              'ankerbrua_current':(59.9185,10.7351),
+              'nybrua_vaterland_current':(59.91608,10.75802),
+          }
+          for slug,(lat,lon) in points.items():
+              url='https://nominatim.openstreetmap.org/reverse?'+urllib.parse.urlencode({'lat':lat,'lon':lon,'format':'jsonv2','zoom':18,'addressdetails':1,'extratags':1,'namedetails':1})
+              result=fetch(url)
+              (out/'reverse'/f'{slug}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+              time.sleep(1.1)
+          broad={
+              'bla':(59.923,10.7407),
+              'fossveien':(59.9218,10.7391),
+              'hausmann':(59.9197,10.7364),
+          }
+          for slug,(lat,lon) in broad.items():
+              q=f'''[out:json][timeout:30];(way(around:250,{lat},{lon})[waterway][name];relation(around:250,{lat},{lon})[waterway][name];way(around:250,{lat},{lon})[bridge][name];node(around:250,{lat},{lon})[name];way(around:250,{lat},{lon})[name];relation(around:250,{lat},{lon})[name];);out center tags;'''
+              data=urllib.parse.urlencode({'data':q}).encode()
+              result=fetch('https://overpass-api.de/api/interpreter',data=data)
+              (out/'overpass'/f'{slug}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+              time.sleep(1.5)
+          PY
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('reports/oslo-coordinate-batch-34-diagnostic')
+          summary={'search':{},'reverse':{},'overpass':{}}
+          for p in sorted((root/'search').glob('*.json')):
+              result=json.loads(p.read_text())
+              if not result.get('ok'):
+                  summary['search'][p.stem]=result; continue
+              summary['search'][p.stem]=[{
+                  'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'category':r.get('category'),'type':r.get('type'),
+                  'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'importance':r.get('importance'),'extratags':r.get('extratags',{})
+              } for r in result.get('data',[])]
+          for p in sorted((root/'reverse').glob('*.json')):
+              result=json.loads(p.read_text())
+              if not result.get('ok'):
+                  summary['reverse'][p.stem]=result; continue
+              r=result.get('data') or {}
+              summary['reverse'][p.stem]={
+                  'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'category':r.get('category'),'type':r.get('type'),
+                  'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'extratags':r.get('extratags',{})
+              }
+          for p in sorted((root/'overpass').glob('*.json')):
+              result=json.loads(p.read_text())
+              if not result.get('ok'):
+                  summary['overpass'][p.stem]=result; continue
+              rows=[]
+              for e in (result.get('data') or {}).get('elements',[]):
+                  tags=e.get('tags',{})
+                  rows.append({'type':e.get('type'),'id':e.get('id'),'lat':e.get('lat') or (e.get('center') or {}).get('lat'),'lon':e.get('lon') or (e.get('center') or {}).get('lon'),'name':tags.get('name'),'waterway':tags.get('waterway'),'bridge':tags.get('bridge'),'leisure':tags.get('leisure'),'place':tags.get('place'),'wikidata':tags.get('wikidata')})
+              summary['overpass'][p.stem]=rows
+          (root/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          PY
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-coordinate-batch-34-diagnostic
+          path: reports/oslo-coordinate-batch-34-diagnostic
+          if-no-files-found: error
