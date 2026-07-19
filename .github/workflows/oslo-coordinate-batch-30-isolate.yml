@@ -1,0 +1,159 @@
+name: Isolate Oslo coordinate batch 30 from stale split drift
+
+on:
+  push:
+    branches:
+      - agent/oslo-coordinate-control-batch-30
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-coordinate-batch-30-isolate
+  cancel-in-progress: true
+
+jobs:
+  isolate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-30
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Restore unrelated enriched split files and minimally patch generated metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cp data/places/litteratur/oslo/places_litteratur_index.json /tmp/batch30-index.json
+
+          git show origin/main:data/places/litteratur/oslo/places_litteratur/nasjonalbiblioteket.json \
+            > data/places/litteratur/oslo/places_litteratur/nasjonalbiblioteket.json
+          git show origin/main:data/places/litteratur/oslo/places_litteratur/deichman_grunerlokka.json \
+            > data/places/litteratur/oslo/places_litteratur/deichman_grunerlokka.json
+          git show origin/main:data/places/litteratur/oslo/places_litteratur_index.json \
+            > data/places/litteratur/oslo/places_litteratur_index.json
+          git show origin/main:data/places/litteratur/oslo/places_litteratur_manifest.json \
+            > data/places/litteratur/oslo/places_litteratur_manifest.json
+          git show origin/main:data/places/litteratur/oslo/places_litteratur_split_report.txt \
+            > data/places/litteratur/oslo/places_litteratur_split_report.txt
+
+          node <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+          const path = require('path');
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const write = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
+          const sha = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+
+          const ids = ['oscar_braaten_statuen', 'alexander_kiellands_plass'];
+          const mainIndex = read('data/places/litteratur/oslo/places_litteratur_index.json');
+          const batchIndex = read('/tmp/batch30-index.json');
+          for (const id of ids) {
+            const replacement = batchIndex.find((row) => row?.id === id);
+            const index = mainIndex.findIndex((row) => row?.id === id);
+            if (!replacement || index < 0) throw new Error(`Missing index row ${id}`);
+            mainIndex[index] = replacement;
+          }
+          write('data/places/litteratur/oslo/places_litteratur_index.json', mainIndex);
+
+          const aggregateFile = 'data/places/litteratur/oslo/places_litteratur.json';
+          const manifestFile = 'data/places/litteratur/oslo/places_litteratur_manifest.json';
+          const manifest = read(manifestFile);
+          manifest.source_sha256 = sha(aggregateFile);
+          manifest.generated_at = new Date().toISOString();
+          for (const id of ids) {
+            const row = manifest.places.find((item) => item?.id === id);
+            const splitFile = `data/places/litteratur/oslo/places_litteratur/${id}.json`;
+            const split = read(splitFile);
+            if (!row) throw new Error(`Missing manifest row ${id}`);
+            row.name = split.name;
+            row.category = split.category;
+            row.sha256 = sha(splitFile);
+          }
+          write(manifestFile, manifest);
+
+          const reportFile = 'data/places/litteratur/oslo/places_litteratur_split_report.txt';
+          let report = fs.readFileSync(reportFile, 'utf8');
+          report = report.replace(/Source sha256: [0-9a-f]+/, `Source sha256: ${manifest.source_sha256}`);
+          report = report.replace(/Generated at: .+/, `Generated at: ${manifest.generated_at}`);
+          fs.writeFileSync(reportFile, report.trimEnd() + '\n');
+          NODE
+
+      - name: Prove unrelated enriched splits are byte-identical to main
+        run: |
+          set -euo pipefail
+          git diff --exit-code origin/main -- \
+            data/places/litteratur/oslo/places_litteratur/nasjonalbiblioteket.json \
+            data/places/litteratur/oslo/places_litteratur/deichman_grunerlokka.json
+
+      - name: Re-run all hard validation gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-30/validation
+          mkdir -p "$out"
+
+          npm run audit:places-split-manifest-sync | tee "$out/split-manifest-sync.txt"
+          npm run places:index:check | tee "$out/places-index-check.txt"
+          npm run test:coordinate-source-contract | tee "$out/coordinate-source-contract.txt"
+          npm run places:coords:quality | tee "$out/coordinate-quality.txt"
+          npm run places:coords:intake | tee "$out/coordinate-intake.txt"
+          npm run places:coords:evidence:audit | tee "$out/coordinate-evidence-audit.txt"
+          git diff --check | tee "$out/git-diff-check.txt"
+
+      - name: Assert minimal batch 30 scope
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const aggregate = read('data/places/litteratur/oslo/places_litteratur.json');
+          const index = read('data/places/litteratur/oslo/places_litteratur_index.json');
+          const runtime = read('data/places/places_index.json');
+          const byId = new Map(aggregate.map((p) => [p.id, p]));
+          const indexById = new Map(index.map((p) => [p.id, p]));
+          const runtimeById = new Map(runtime.map((p) => [p.id, p]));
+          const expected = {
+            oscar_braaten_statuen: ['Oskar Braaten-bysten', 1961, 59.9309838, 10.7578832, 'osm-node:10819902960'],
+            alexander_kiellands_plass: ['Alexander Kiellands plass', 1914, 59.9270478, 10.7504014, 'osm-way:3610607']
+          };
+          for (const [id, [name, year, lat, lon, sourceObjectId]] of Object.entries(expected)) {
+            const place = byId.get(id);
+            const idx = indexById.get(id);
+            const rt = runtimeById.get(id);
+            const split = read(`data/places/litteratur/oslo/places_litteratur/${id}.json`);
+            if (!place || !idx || !rt) throw new Error(`${id} missing from aggregate/index/runtime`);
+            if (place.name !== name || place.year !== year || place.lat !== lat || place.lon !== lon || place.sourceObjectId !== sourceObjectId || place.coordStatus !== 'verified_geometry') {
+              throw new Error(`${id} canonical mismatch`);
+            }
+            if (JSON.stringify(split) !== JSON.stringify(place)) throw new Error(`${id} split/aggregate mismatch`);
+            for (const row of [idx, rt]) {
+              if (row.name !== name || row.year !== year || row.lat !== lat || row.lon !== lon || row.coordStatus !== 'verified_geometry') {
+                throw new Error(`${id} index/runtime mismatch`);
+              }
+            }
+          }
+          NODE
+
+      - name: Commit isolated batch and remove temporary workflow
+        run: |
+          set -euo pipefail
+          rm .github/workflows/oslo-coordinate-batch-30-isolate.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs reports .github/workflows/oslo-coordinate-batch-30-isolate.yml
+          git commit -m "Isolate Oslo coordinate batch 30 from stale split drift"
+          git push origin HEAD
