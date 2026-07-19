@@ -85,26 +85,32 @@ It deliberately does **not** claim that works from any one documented exhibition
 
 Oppdag Kvadraturen defines the art zone as the stretch of Øvre Slottsgate between Tollbugata and Prinsens gate.
 
-Raw Overpass evidence identified the exact matching pedestrian street segment:
+The initial interpretation incorrectly treated OSM way `972903959` as the whole block. The saved Overpass response shows that the complete continuous pedestrian geometry between the two documented street boundaries is instead a four-way chain:
 
-- OSM way `972903959`
-- name: `Øvre Slottsgate`
-- `highway=pedestrian`
-- geometry from the Tollbugata-side node to the Prinsens-gate-side node
-- segment length approximately 86 metres
+1. way `972903959`
+2. way `995344351`
+3. way `995344352`
+4. way `306572322`
 
-The canonical coordinate is the length-weighted midpoint of that exact street segment:
+The chain runs continuously from:
 
-- `59.91090475759994, 10.740251806375902`
+- Tollbugata-side boundary: `59.9105601, 10.7399039`
+- Prinsens-gate-side boundary: `59.9119100, 10.7412640`
+
+Using the saved OSM geometry, the combined chain is approximately 168 metres long. The canonical coordinate is the length-weighted midpoint along the full four-way polyline:
+
+- `59.9112353280587, 10.740582917313654`
 
 Metadata:
 
-- `sourceProvider: osm`
-- `sourceObjectId: osm-way:972903959`
-- `coordRole: area_anchor`
+- `sourceProvider: manual_research`
+- `sourceObjectId: oppdag-kvadraturen:skulptursonen-i-ovre-slottsgate`
+- `coordRole: line_anchor`
 - `geocodeAccuracy: semantic_anchor`
-- `coordType: street_segment_midpoint`
+- `coordType: exhibition_street_segment_midpoint`
 - `coordStatus: verified_geometry`
+
+The source identity is the officially bounded art zone; the OSM ways provide the physical street geometry used to calculate its line anchor. No single OSM way is claimed to represent the entire sculpture zone.
 
 Saved evidence:
 
@@ -113,12 +119,13 @@ Saved evidence:
 
 ### Source-status note
 
-The current Oppdag Kvadraturen service still presents the Skulptursonen as a stop. Norsk Billedhoggerforening's archived project material documents exhibition programming through 2024, and Oslo municipal cultural material documents rotation of new works during the project period. Because future/current individual works can change, the place record is intentionally programme-agnostic.
+The current Oppdag Kvadraturen service still presents the Skulptursonen as a stop. Norsk Billedhoggerforening documents rotating exhibition periods through 2024, and Oslo municipality documents the sculpture zone as part of the pedestrian-street conversion completed in 2019. Because individual works can change, the place record is intentionally programme-agnostic.
 
 Official/source pages:
 
 - Oppdag Kvadraturen — Skulptursonen i Øvre Slottsgate: https://www.oppdagkvadraturen.no/stoppesteder/skulptursonen-i-ovre-slottsgate
-- Norsk Billedhoggerforening — project/archive material for Skulptursonen
+- Oslo kommune — Bilfritt byliv 2016–2023: https://www.oslo.kommune.no/byutvikling/bilfritt-byliv-2016-2023/
+- Norsk Billedhoggerforening — project material for Øvre Slottsgate: https://www.norskbilledhoggerforening.no/prosjektkunst
 
 ## Output
 
@@ -131,4 +138,4 @@ Wonderkammer:
 
 - `wk_mustadgarden_kongens_gate_3_den_rode_prikk_otto_kunzli`
 
-This closes both deferred representation cases without assigning the facade artwork to a neighbouring building and without freezing a rotating art programme into a falsely permanent list of works.
+This closes both deferred representation cases without assigning the facade artwork to a neighbouring building and without freezing a rotating art programme into a falsely permanent list of works. The corrected Skulptursonen anchor covers the full officially bounded Tollbugata–Prinsens gate street segment rather than only one constituent OSM way.
