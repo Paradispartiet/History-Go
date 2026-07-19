@@ -141,7 +141,7 @@ jobs:
           set -euo pipefail
           git diff --check 2>&1 | tee "$RUNNER_REPORT_DIR/git-diff-check.log"
 
-      - name: Mark job complete and commit generated changes
+      - name: Mark job complete and publish generated changes
         if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
@@ -154,5 +154,6 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "Apply coordinate branch job"
-          git push origin "HEAD:${JOB_BRANCH}"
+          git commit -m "Apply coordinate branch job" 2>&1 | tee "$RUNNER_REPORT_DIR/git-commit.log"
+          git pull --rebase origin "$JOB_BRANCH" 2>&1 | tee "$RUNNER_REPORT_DIR/git-pull-rebase.log"
+          git push origin "HEAD:${JOB_BRANCH}" 2>&1 | tee "$RUNNER_REPORT_DIR/git-push.log"
