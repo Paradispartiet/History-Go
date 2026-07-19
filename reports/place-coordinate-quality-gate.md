@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T23:02:43.305Z
+Generert: 2026-07-19T23:39:55.010Z
 
 ## Oppsummering
 - Aktive filer validert: **504**
 - Antall steder validert: **1215**
 - Harde feil: **0**
-- Varsler: **428**
-- Coordinate review candidates: **711** signaler fordelt på **568** steder
+- Varsler: **427**
+- Coordinate review candidates: **710** signaler fordelt på **567** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -791,7 +791,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#hausmannsomradet_elvelop: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#akerselva_utlop_bjorvika: coordinate_regression_risk (673 m fra tidligere verified)
 - data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#alnaparken: coordStatus=verified uten coordNote for område/gate/rute
 - data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#svartdalen: coordStatus=verified uten coordNote for område/gate/rute
 - data/places/natur/oslo/places_oslo_natur_hovedsteder.json#hovedoya: stort område uten coordNote/coordStatus
@@ -958,13 +957,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 710 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordinate_regression_risk | 1 |
 | coordStatus=verified uten coordPrecisionM | 108 |
 | lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 99 |
@@ -974,12 +972,6 @@ Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
-
-### coordinate_regression_risk (1)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| akerselva_utlop_bjorvika | Akerselvas utløp mot fjorden (Bjørvika) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9075303 | 10.7554479 | 220 | Flyttet ~673 m fra tidligere verified. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (108)
 
