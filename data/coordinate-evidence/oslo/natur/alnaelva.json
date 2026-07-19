@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alnaelva",
+  "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9325,
+    "lon": 10.833,
+    "r": 400,
+    "coordStatus": "needs_source",
+    "coordSource": "river_route_geometry_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes."
+  },
+  "identity": {
+    "currentName": "Alnaelva",
+    "resolvedIdentity": "Alnaelva / Alna som sammenhengende vassdrag fra Alnsjøen gjennom Groruddalen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "samlet kildebelagt elvegeometri eller flere verifiserte delankre"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Alna",
+      "sourceUrl": "https://snl.no/Alna_(elv_i_Oslo)",
+      "sourceObjectId": "snl:alna-elv-oslo",
+      "sourceQuality": "documented_river_identity",
+      "finding": "Kilden dokumenterer Alna som et langt vassdrag gjennom Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitet og forløp dokumenteres, men kilden gir ikke ett canonical punkt for hele elva."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – separate Alna waterway ways",
+      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Oslo",
+      "sourceObjectId": "osm:alna-multiple-waterway-ways",
+      "sourceQuality": "fragmented_river_geometry",
+      "finding": "Kontrollen fant flere separate elve-way-er, blant annet tunnellagte deler med alt_name=Loelva.",
+      "canVerifyCoordinate": false,
+      "reason": "Ingen samlet entydig river-relation ble identifisert i kontrollen."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:alna-elv-oslo",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm:alna-multiple-waterway-ways",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes.",
+    "nextAction": "Modeller samlet elvegeometri eller verifiser flere routeSegments før hovedpunktet kan godkjennes."
+  },
+  "notes": [
+    "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes."
+  ]
+}

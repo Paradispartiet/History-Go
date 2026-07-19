@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T20:06:40.652Z
+Generert: 2026-07-19T20:42:43.455Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -134,3 +134,10 @@ Generert: 2026-07-19T20:06:40.652Z
 | inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | needs_research | needs_geometry | OK |
 | oscar_braaten_statuen | data/coordinate-evidence/oslo/litteratur/oscar_braaten_statuen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alexander_kiellands_plass | data/coordinate-evidence/oslo/litteratur/alexander_kiellands_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| alnaelva | data/coordinate-evidence/oslo/natur/alnaelva.json | needs_research | needs_geometry | OK |
+| alnaelvstien | data/coordinate-evidence/oslo/natur/alnaelvstien.json | needs_research | needs_geometry | OK |
+| loelva_historisk | data/coordinate-evidence/oslo/natur/loelva_historisk.json | needs_research | needs_identity_split | OK |
+| trosterud_friomrade | data/coordinate-evidence/oslo/natur/trosterud_friomrade.json | needs_research | needs_geometry | OK |
+| furuset_haugerud_skogbelte | data/coordinate-evidence/oslo/natur/furuset_haugerud_skogbelte.json | needs_research | needs_geometry | OK |
+| hellerud_gard | data/coordinate-evidence/oslo/natur/hellerud_gard.json | needs_research | needs_identity_split | OK |
+| alnabru_jernbane_og_logistikk | data/coordinate-evidence/oslo/natur/alnabru_jernbane_og_logistikk.json | applied_to_place | do_not_change_coordinates_yet | OK |

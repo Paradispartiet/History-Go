@@ -44,12 +44,12 @@
     "updated": "2026-01-09"
   },
   "sourceHint": "Oslo byleksikon beskriver Alna som Oslos lengste elv, fra Alnsjøen til Bjørvika. Koordinatet er et sentralt rute-/områdepunk.",
-  "coordType": "route_midpoint",
-  "coordStatus": "semantic_anchor",
-  "coordSource": "manual_map_check",
+  "coordType": "legacy_unverified",
+  "coordStatus": "needs_source",
+  "coordSource": "river_route_geometry_unresolved",
   "coordPrecisionM": 130,
-  "coordVerifiedAt": "2026-05-01",
-  "coordNote": "Representerer pedagogisk ankerpunkt for hele området/ruta.",
+  "coordVerifiedAt": "2026-07-19",
+  "coordNote": "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes.",
   "anchors": [
     {
       "id": "alna_bryn",
@@ -121,28 +121,17 @@
     ],
     "notes": "Skal spørres som byelv i transformasjon, ikke bare tursti."
   },
-  "nature_profile": {
-    "type": "byelv / blågrønn korridor / restaurert vassdrag",
-    "title": "Byelven mellom industrilandskap og gjenåpnet natur",
-    "summary": "Alnaelva går som et sammenhengende vannsystem gjennom skogkanter, boligområder, transportflater og tidligere industrisoner på Oslos østside. Flere strekninger er lagt i rør eller teknisk omformet, mens andre er åpnet og restaurert for å styrke vannmiljø, kantvegetasjon og ferdsel. Natur-rundingen viser hvordan en byelv både påvirkes av forurensning og inngrep og samtidig kan fungere som blågrønn korridor mellom kilden ved Alnsjøen og fjorden.",
-    "themes": [
-      "byelv gjennom østlige bydeler",
-      "lukking og gjenåpning av vannløp",
-      "restaurering av kantsoner",
-      "vannkvalitet og forurensning",
-      "blågrønn korridor gjennom byen",
-      "sammenheng fra kilde til fjord"
-    ],
-    "nearby_place_ids": [
-      "alnaelvstien",
-      "loelva_historisk",
-      "trosterud_friomrade"
-    ]
-  },
   "underbadge_ids": [
     "elv",
     "vann_og_vassdrag",
     "naturrestaurering",
     "blagronn_struktur"
-  ]
+  ],
+  "locatorType": "route",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "snl:alna-elv-oslo",
+  "geocodeAccuracy": "unknown",
+  "coordRole": "line_anchor",
+  "coordSourceId": "snl:alna-elv-oslo",
+  "coordSourceUrl": "https://snl.no/Alna_(elv_i_Oslo)"
 }

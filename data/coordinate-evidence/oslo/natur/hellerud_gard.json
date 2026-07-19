@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hellerud_gard",
+  "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9295,
+    "lon": 10.8485,
+    "r": 160,
+    "coordStatus": "needs_source",
+    "coordSource": "farm_identity_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Recorden har en dokumentert identitetskonflikt. Nordre Hellerud omfatter historisk Øvre og Nedre Hellerud, mens det entydige Geonorge-punktet Haugerudtunet 1 gjelder den separate Østre Haugerud gård og kan ikke brukes som erstatning. Eksisterende lat/lon beholdes kun som legacy til riktig Hellerud-gård og fysisk hovedanker er identifisert."
+  },
+  "identity": {
+    "currentName": "Hellerud gård",
+    "resolvedIdentity": "Historiske Hellerud-gårdsbruk med uavklart hvilken gård denne recorden skal representere",
+    "identityStatus": "conflict",
+    "identityProblem": "Recorden hevdet et bevart gårdsanlegg, men Hellerud-navnet dekker flere historiske bruk; Haugerudtunet 1 er separat Haugerud gård og kan ikke brukes som automatisk erstatning.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig gårdsidentitet og dokumentert fysisk hovedanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Hellerud, Nordre",
+      "sourceUrl": "https://oslobyleksikon.no/side/Hellerud%2C_Nordre",
+      "sourceObjectId": "oslobyleksikon:hellerud-nordre",
+      "sourceQuality": "documented_farm_identity_conflict",
+      "finding": "Nordre Hellerud ble delt i Øvre og Nedre Hellerud; recordens generiske «Hellerud gård» identifiserer ikke hvilket bruk som menes.",
+      "canVerifyCoordinate": false,
+      "reason": "Flere historiske gårdsidentiteter gjør ett punkt tvetydig."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Haugerudtunet 1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Haugerudtunet%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21388:1",
+      "sourceQuality": "rejected_nearby_identity_candidate",
+      "finding": "Haugerudtunet 1 gir ett entydig adressepunkt, men kilden identifiserer stedet som Østre Haugerud gård – en separat gård.",
+      "canVerifyCoordinate": false,
+      "reason": "Et entydig punkt for feil gårdsidentitet skal ikke brukes som erstatning."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:hellerud-nordre",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21388:1",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Recorden har en dokumentert identitetskonflikt. Nordre Hellerud omfatter historisk Øvre og Nedre Hellerud, mens det entydige Geonorge-punktet Haugerudtunet 1 gjelder den separate Østre Haugerud gård og kan ikke brukes som erstatning. Eksisterende lat/lon beholdes kun som legacy til riktig Hellerud-gård og fysisk hovedanker er identifisert.",
+    "nextAction": "Avklar hvilken historisk Hellerud-gård recorden skal representere og dokumenter fysisk hovedanker før koordinaten godkjennes."
+  },
+  "notes": [
+    "Recorden har en dokumentert identitetskonflikt. Nordre Hellerud omfatter historisk Øvre og Nedre Hellerud, mens det entydige Geonorge-punktet Haugerudtunet 1 gjelder den separate Østre Haugerud gård og kan ikke brukes som erstatning. Eksisterende lat/lon beholdes kun som legacy til riktig Hellerud-gård og fysisk hovedanker er identifisert."
+  ]
+}

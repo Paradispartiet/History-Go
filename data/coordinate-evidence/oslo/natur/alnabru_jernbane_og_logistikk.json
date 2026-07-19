@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alnabru_jernbane_og_logistikk",
+  "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9336032,
+    "lon": 10.8382823,
+    "r": 350,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 84268939 – Alnabruterminalen",
+    "coordType": "rail_terminal_area",
+    "coordNote": "Eksakt navngitt OSM-polygon for Alnabruterminalen, way 84268939, koblet til Wikidata Q76079 og kryssjekket mot Bane NORs offisielle beskrivelse av Alnabru godsterminal. Polygonens representasjonspunkt brukes som area_anchor for terminalområdet; dette er ikke et tilfeldig adresse- eller nabolagspunkt."
+  },
+  "identity": {
+    "currentName": "Alnabru godsterminal",
+    "resolvedIdentity": "Alnabru godsterminal / Alnabruterminalen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell terminalidentitet",
+    "eksakt terminalgeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_institution",
+      "sourceName": "Bane NOR – Alnabru godsterminal",
+      "sourceUrl": "https://www.banenor.no/for-deg-i-bransjen/godstransport/terminaler/alnabru/",
+      "sourceObjectId": "banenor:alnabru-godsterminal",
+      "sourceQuality": "official_terminal_identity",
+      "finding": "Bane NOR dokumenterer Alnabru som den sentrale store godsterminalen og beskriver terminalområdets funksjoner.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell identitet kryssjekker objektet, mens koordinaten hentes fra den eksakte kartlagte terminalpolygonen."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 84268939 – Alnabruterminalen",
+      "sourceUrl": "https://www.openstreetmap.org/way/84268939",
+      "sourceObjectId": "osm-way:84268939",
+      "sourceQuality": "exact_named_terminal_polygon",
+      "finding": "Eksakt navngitt landuse=railway-polygon for Alnabruterminalen, koblet til Wikidata Q76079.",
+      "canVerifyCoordinate": true,
+      "reason": "Polygonen representerer selve terminalområdet; geometrisk representasjonspunkt brukes som area_anchor."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10090:27",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_institution",
+      "sourceObjectId": "banenor:alnabru-godsterminal",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:84268939",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:84268939",
+      "lat": 59.9336032,
+      "lon": 10.8382823,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9336032,
+      "lon": 10.8382823,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Verified terminal geometry is applied to canonical place data and must pass map QA before merge."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-polygon for Alnabruterminalen, way 84268939, koblet til Wikidata Q76079 og kryssjekket mot Bane NORs offisielle beskrivelse av Alnabru godsterminal. Polygonens representasjonspunkt brukes som area_anchor for terminalområdet; dette er ikke et tilfeldig adresse- eller nabolagspunkt."
+  ]
+}

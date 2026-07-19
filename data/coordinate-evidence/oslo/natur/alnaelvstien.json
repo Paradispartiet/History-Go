@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alnaelvstien",
+  "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.931,
+    "lon": 10.83,
+    "r": 300,
+    "coordStatus": "needs_source",
+    "coordSource": "trail_route_geometry_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert."
+  },
+  "identity": {
+    "currentName": "Alnaelvstien",
+    "resolvedIdentity": "Turvei langs Alnaelva, med flere OSM-segmenter navngitt Alnastien",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "samlet offisiell rutetrase eller eksplisitte verifiserte routeSegments"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – turvei langs Alnaelva",
+      "sourceUrl": "https://aktuelt.oslo.kommune.no/rehabilitering-av-hengebrua-i-svartdalsparken",
+      "sourceObjectId": "oslo-kommune:turvei-langs-alnaelva",
+      "sourceQuality": "official_route_identity",
+      "finding": "Oslo kommune dokumenterer turveien langs Alnaelva og konkrete deler gjennom Svartdalsparken.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden dokumenterer ruten som lineært system, ikke ett canonical punkt."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Alnastien-segmenter",
+      "sourceUrl": "https://www.openstreetmap.org/search?query=Alnastien%20Oslo",
+      "sourceObjectId": "osm:alnastien-multiple-ways",
+      "sourceQuality": "fragmented_trail_geometry",
+      "finding": "Nominatim finner flere separate ways med navnet Alnastien.",
+      "canVerifyCoordinate": false,
+      "reason": "Ingen samlet ruterelasjon ble identifisert; ett av segmentene kan ikke velges som hele stiens hovedpunkt."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:turvei-langs-alnaelva",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm:alnastien-multiple-ways",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert.",
+    "nextAction": "Bygg routeSegments eller finn samlet offisiell/OSM-ruterelasjon før canonical koordinat godkjennes."
+  },
+  "notes": [
+    "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert."
+  ]
+}

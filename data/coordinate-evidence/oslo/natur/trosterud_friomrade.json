@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "trosterud_friomrade",
+  "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9305,
+    "lon": 10.846,
+    "r": 220,
+    "coordStatus": "needs_source",
+    "coordSource": "named_area_identity_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt."
+  },
+  "identity": {
+    "currentName": "Trosterud friområde",
+    "resolvedIdentity": "Uavklart grøntområde på Trosterud",
+    "identityStatus": "conflict",
+    "identityProblem": "Eksakt fysisk entitet med navnet «Trosterud friområde» er ikke dokumentert.",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell navngitt arealgeometri eller annet stabilt fysisk objekt"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Planprogram for Trosterud og Haugerud",
+      "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/planprogram-for-trosterud-og-haugerud",
+      "sourceObjectId": "oslo-kommune:trosterud-haugerud-planprogram",
+      "sourceQuality": "official_area_planning_context",
+      "finding": "Planprogrammet dokumenterer offentlige rom, parker og forbindelser i området, men ikke ett areal med recordens eksakte navn.",
+      "canVerifyCoordinate": false,
+      "reason": "Områdekontekst er ikke nok til å velge et konkret friområdepunkt."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:trosterud-haugerud-planprogram",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt.",
+    "nextAction": "Identifiser konkret navngitt friområde eller erstatt recorden med et dokumentert fysisk områdeobjekt."
+  },
+  "notes": [
+    "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt."
+  ]
+}
