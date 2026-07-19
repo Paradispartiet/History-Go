@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T03:14:21.123Z
+Generert: 2026-07-19T03:24:53.987Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -72,3 +72,7 @@ Generert: 2026-07-19T03:14:21.123Z
 | nonneseter_kloster | data/coordinate-evidence/oslo/historie/nonneseter_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_ladegard | data/coordinate-evidence/oslo/historie/oslo_ladegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galgeberg | data/coordinate-evidence/oslo/historie/galgeberg.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_hospital | data/coordinate-evidence/oslo/historie/oslo_hospital.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| botsfengselet | data/coordinate-evidence/oslo/historie/botsfengselet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| prinds_christian_augusts_minde | data/coordinate-evidence/oslo/historie/prinds_christian_augusts_minde.json | needs_research | needs_geometry | OK |
+| gamle_radhus | data/coordinate-evidence/oslo/by/gamle_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |

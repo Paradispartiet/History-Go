@@ -1,0 +1,63 @@
+{
+  "placeId": "prinds_christian_augusts_minde",
+  "placeFile": "data/places/historie/oslo/places_historie_added_batch_01.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.915289,
+    "lon": 10.75595,
+    "r": 120,
+    "coordStatus": "verified_source_coordinate",
+    "coordSource": "wikimedia_commons_coordinate_checked_against_prindsen_address",
+    "coordType": "building_complex",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Prinds Christian Augusts Minde",
+    "resolvedIdentity": "det historiske Prindsen/Mangelsgården-komplekset i Storgata 36",
+    "identityStatus": "resolved",
+    "identityProblem": "Adressekandidaten er fysisk flertydig på bygnings-/inngangsnivå.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell bygnings- eller eiendomsgeometri for Prindsen-komplekset",
+    "entydig kobling mellom komplekset og ett representativt adressepunkt"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 + Oslo kommune",
+      "sourceUrl": "",
+      "sourceObjectId": "",
+      "sourceQuality": "ambiguous_address_candidates",
+      "finding": "Adressefinneren gir flere treff for Storgata 36, mens Oslo kommune dokumenterer dagens aktivitet i Storgata 36/36B.",
+      "canVerifyCoordinate": false,
+      "reason": "Geonorge gir flere ikke-entydige treff for Storgata 36. Prindsen er et historisk bygningskompleks, og ett vilkårlig husbokstavpunkt kan ikke velges som canonical anker uten dokumentert kobling til komplekset."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Storgata 36 Oslo",
+      "sourceProvider": "official_address",
+      "canApplyToPlace": false
+    },
+    {
+      "address": "Storgata 36B Oslo",
+      "sourceProvider": "official_address",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Geonorge gir flere ikke-entydige treff for Storgata 36. Prindsen er et historisk bygningskompleks, og ett vilkårlig husbokstavpunkt kan ikke velges som canonical anker uten dokumentert kobling til komplekset.",
+    "nextAction": "Finn offisiell kompleks-/eiendomsgeometri eller dokumentert representativt anker før koordinaten endres."
+  },
+  "notes": [
+    "Eksisterende koordinat beholdes uendret. Ikke velg første eller nærmeste adressekandidat."
+  ]
+}
