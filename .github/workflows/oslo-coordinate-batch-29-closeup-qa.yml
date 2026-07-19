@@ -1,0 +1,67 @@
+name: Close-up visual QA Oslo coordinate batch 29
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  closeup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-29-v3
+          fetch-depth: 0
+
+      - name: Build close-up QA map
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-29-v3/visual-qa
+          mkdir -p "$out"
+          cat > "$out/closeup.html" <<'HTML'
+          <!doctype html><html><head><meta charset="utf-8"><title>Batch 29 close-up QA</title>
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+          <style>html,body{margin:0;background:white;font-family:Arial,sans-serif}h1{margin:12px 16px 4px;font-size:22px}.sub{margin:0 16px 10px;color:#444;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px 12px}.panel{border:1px solid #222}.title{font-weight:700;padding:7px 9px}.map{height:390px}.foot{font-size:12px;padding:6px 9px;color:#b71c1c;font-weight:700}</style></head><body>
+          <h1>Batch 29 — new-anchor close-up QA</h1><div class="sub">Rød markør viser den faktiske nye canonical koordinaten / foreløpige host-koordinaten.</div><div class="grid">
+          <div class="panel"><div class="title">Kulturkirken Jakob — Hausmanns gate 14</div><div id="m1" class="map"></div><div class="foot">59.9180329772343, 10.754119014784367</div></div>
+          <div class="panel"><div class="title">Ruth Maier — Dalsbergstien 3</div><div id="m2" class="map"></div><div class="foot">59.922730001268235, 10.737930723902437</div></div>
+          <div class="panel"><div class="title">Prøysenhuset — Prestvegen 1, Rudshøgda</div><div id="m3" class="map"></div><div class="foot">60.912182010287836, 10.791215743205731</div></div>
+          <div class="panel"><div class="title">Alf Prøysen-monumentet — Flammen host-anchor, Borghild Ruds vei 3</div><div id="m4" class="map"></div><div class="foot">60.04401205900787, 10.880400225286696 · host-anchor, ikke sokkelpunkt</div></div>
+          </div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
+          const specs=[['m1',[59.9180329772343,10.754119014784367],18],['m2',[59.922730001268235,10.737930723902437],18],['m3',[60.912182010287836,10.791215743205731],17],['m4',[60.04401205900787,10.880400225286696],17]];
+          for(const [id,p,z] of specs){const m=L.map(id,{zoomControl:false,attributionControl:false}).setView(p,z);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(m);L.circleMarker(p,{radius:11,color:'#c62828',fillColor:'#c62828',fillOpacity:1,weight:3}).bindTooltip('NY',{permanent:true,direction:'top'}).addTo(m);}
+          </script></body></html>
+          HTML
+
+      - name: Capture close-up screenshot
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-29-v3/visual-qa
+          python3 -m http.server 8765 --directory . >/tmp/b29-closeup-http.log 2>&1 &
+          server=$!
+          trap 'kill $server || true' EXIT
+          sleep 2
+          google-chrome --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=1400,1000 --virtual-time-budget=12000 --screenshot="$out/batch29-closeup-qa.png" http://127.0.0.1:8765/$out/closeup.html
+          test -s "$out/batch29-closeup-qa.png"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: batch29-closeup-qa
+          path: reports/oslo-coordinate-control-batch-29-v3/visual-qa/batch29-closeup-qa.png
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Persist screenshot and remove temporary workflow
+        run: |
+          set -euo pipefail
+          rm .github/workflows/oslo-coordinate-batch-29-closeup-qa.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-coordinate-control-batch-29-v3/visual-qa .github/workflows/oslo-coordinate-batch-29-closeup-qa.yml
+          git commit -m "Add close-up visual QA for Oslo coordinate batch 29"
+          git push origin HEAD
