@@ -1,0 +1,39 @@
+name: Oslo coordinate batch 21 address lookups
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  lookup:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch21'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Run and save address-first lookups
+        run: |
+          set -o pipefail
+          mkdir -p reports/oslo-coordinate-control-batch-21/lookups
+          npm run places:coords:find:address -- --address "Tuengen allé 10C Oslo" \
+            | tee reports/oslo-coordinate-control-batch-21/lookups/villa_stenersen-geonorge.json
+          npm run places:coords:find:address -- --address "Enerhauggata 4 Oslo" \
+            | tee reports/oslo-coordinate-control-batch-21/lookups/st_hallvard_kirke_kloster-geonorge.json
+          npm run places:coords:find:address -- --address "Grimelundsveien 8 Oslo" \
+            | tee reports/oslo-coordinate-control-batch-21/lookups/emanuel_vigeland_mausoleum-geonorge.json
+      - name: Upload lookup evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch21-address-lookups
+          path: reports/oslo-coordinate-control-batch-21/lookups/
+          if-no-files-found: error
