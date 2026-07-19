@@ -1,0 +1,80 @@
+name: Oslo Geonorge batch 7 final visual audit
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  visual-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build before/after map
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/geonorge-address-batch-7-final-visual
+          cp reports/geonorge-address-batch-7/apply-audit.json reports/geonorge-address-batch-7-final-visual/apply-audit.json
+          cat > reports/geonorge-address-batch-7-final-visual/index.html <<'HTML'
+          <!doctype html>
+          <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>Oslo Geonorge batch 7 – before/after</title>
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+          <style>html,body,#map{height:100%;margin:0}.legend{background:#fff;padding:12px;font:14px system-ui;line-height:1.5;box-shadow:0 2px 12px #0005;border-radius:8px}.legend b{font-size:16px}.old{color:#b00020}.new{color:#087f23}</style>
+          </head><body><div id="map"></div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
+          fetch('./apply-audit.json').then(r=>r.json()).then(a=>{
+            const map=L.map('map');
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+            const bounds=[];
+            for(const [id,n] of Object.entries(a.newCoordinates)){
+              const o=a.oldCoordinates[id];
+              L.circleMarker([o.lat,o.lon],{radius:10,color:'#b00020',weight:3,fillColor:'#b00020',fillOpacity:.28}).addTo(map).bindTooltip(id+' · OLD',{permanent:true,direction:'left',offset:[-8,0]});
+              L.circleMarker([n.lat,n.lon],{radius:10,color:'#087f23',weight:3,fillColor:'#087f23',fillOpacity:.5}).addTo(map).bindTooltip(id+' · NEW',{permanent:true,direction:'right',offset:[8,0]});
+              L.polyline([[o.lat,o.lon],[n.lat,n.lon]],{color:'#222',weight:2,dashArray:'6,7',opacity:.75}).addTo(map);
+              bounds.push([o.lat,o.lon],[n.lat,n.lon]);
+            }
+            map.fitBounds(bounds,{padding:[100,100]});
+            const legend=L.control({position:'topright'});
+            legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>Oslo coordinate batch 7</b><br><span class="old">● Previous marker</span><br><span class="new">● Verified Geonorge address point</span>';return d};
+            legend.addTo(map);
+          });
+          </script></body></html>
+          HTML
+
+      - name: Capture map screenshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install chromium
+          python3 -m http.server 4173 --directory reports/geonorge-address-batch-7-final-visual >/tmp/b7-final-map.log 2>&1 &
+          PID=$!
+          trap 'kill $PID || true' EXIT
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage({ viewport: { width: 1600, height: 1100 } });
+            await page.goto('http://127.0.0.1:4173/index.html', { waitUntil: 'networkidle' });
+            await page.waitForTimeout(1500);
+            await page.screenshot({ path: 'reports/geonorge-address-batch-7-final-visual/map-audit-final.png', fullPage: true });
+            await browser.close();
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
+
+      - name: Upload final visual audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-geonorge-batch-7-final-visual
+          path: reports/geonorge-address-batch-7-final-visual
