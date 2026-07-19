@@ -25,8 +25,8 @@ function loadScript(relPath) {
 
 // Speiler ThreeMap-konstantene (kun for å regne forventede skjermpunkter).
 // Speiler ThreeMap-konstantene MAP_W/MAP_D (brettstørrelse i verdensenheter).
-const MAP_W = 24;
-const MAP_D = 24;
+const MAP_W = 30;
+const MAP_D = 30;
 
 const dispatched = [];
 let rafQueue = [];
