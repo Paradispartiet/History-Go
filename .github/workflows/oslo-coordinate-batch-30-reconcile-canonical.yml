@@ -31,57 +31,60 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install workflow interpreter
-        run: python3 -m pip install --quiet pyyaml
-
-      - name: Execute run steps from the clean completion workflow
+      - name: Prepare clean workflow interpreter and required refs
         shell: bash
         run: |
           set -euo pipefail
-          python3 <<'PY'
+          python3 -m pip install --quiet pyyaml
+          git fetch origin main:refs/remotes/origin/main
+          git fetch origin 88a92e46ef79b9b46875a0befa0da6cd7927f2e4
+          cat > /tmp/run_clean_step.py <<'PY'
           import subprocess
           import sys
           import yaml
           from pathlib import Path
 
-          target_branch = 'agent/oslo-coordinate-control-batch-30-clean'
-          target_ref = f'refs/heads/{target_branch}'
-          workflow_path = Path('.github/workflows/oslo-coordinate-batch-30-clean.yml')
-          workflow = yaml.safe_load(workflow_path.read_text())
-          steps = workflow['jobs']['complete']['steps']
-
-          for step in steps:
-              command = step.get('run')
-              if not command:
-                  continue
-              command = command.replace('git push origin HEAD', f'git push origin HEAD:{target_ref}')
-              name = step.get('name', 'unnamed run step')
-              print(f'===== EXECUTING: {name} =====', flush=True)
-              result = subprocess.run(
-                  command,
-                  shell=True,
-                  executable='/bin/bash',
-                  text=True,
-                  stdout=subprocess.PIPE,
-                  stderr=subprocess.STDOUT,
-              )
-              output = result.stdout or ''
-              tail = '\n'.join(output.splitlines()[-80:])
-              if result.returncode != 0:
-                  print(f'FAILED STEP: {name}', flush=True)
-                  print(f'EXIT CODE: {result.returncode}', flush=True)
-                  print('LAST OUTPUT LINES:', flush=True)
-                  print(tail, flush=True)
-                  report = Path('reports/oslo-coordinate-control-batch-30/clean-runner-error.txt')
-                  report.parent.mkdir(parents=True, exist_ok=True)
-                  report.write_text(
-                      f'FAILED STEP: {name}\nEXIT CODE: {result.returncode}\n\nLAST OUTPUT LINES:\n{tail}\n'
-                  )
-                  subprocess.run(['git','config','user.name','github-actions[bot]'], check=True)
-                  subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'], check=True)
-                  subprocess.run(['git','add',str(report)], check=True)
-                  subprocess.run(['git','commit','-m',f'Capture clean batch 30 failure: {name}'], check=True)
-                  subprocess.run(['git','push','origin',f'HEAD:{target_ref}'], check=True)
-                  sys.exit(result.returncode)
-              print(tail, flush=True)
+          index = int(sys.argv[1])
+          target_ref = 'refs/heads/agent/oslo-coordinate-control-batch-30-clean'
+          workflow = yaml.safe_load(Path('.github/workflows/oslo-coordinate-batch-30-clean.yml').read_text())
+          run_steps = [step for step in workflow['jobs']['complete']['steps'] if step.get('run')]
+          step = run_steps[index]
+          name = step.get('name', f'run step {index}')
+          command = step['run'].replace('git push origin HEAD', f'git push origin HEAD:{target_ref}')
+          print(f'===== EXECUTING {index}: {name} =====', flush=True)
+          result = subprocess.run(command, shell=True, executable='/bin/bash')
+          sys.exit(result.returncode)
           PY
+
+      - name: Clean 00 — install dependencies
+        run: python3 /tmp/run_clean_step.py 0
+
+      - name: Clean 01 — fetch preserved research and diagnostics
+        run: python3 /tmp/run_clean_step.py 1
+
+      - name: Clean 02 — lift enriched split records
+        run: python3 /tmp/run_clean_step.py 2
+
+      - name: Clean 03 — apply researched batch decisions
+        run: python3 /tmp/run_clean_step.py 3
+
+      - name: Clean 04 — regenerate split and runtime
+        run: python3 /tmp/run_clean_step.py 4
+
+      - name: Clean 05 — prove minimal lossless scope
+        run: python3 /tmp/run_clean_step.py 5
+
+      - name: Clean 06 — run all hard validation gates
+        run: python3 /tmp/run_clean_step.py 6
+
+      - name: Clean 07 — assert exact final result
+        run: python3 /tmp/run_clean_step.py 7
+
+      - name: Clean 08 — render fresh visual map QA
+        run: python3 /tmp/run_clean_step.py 8
+
+      - name: Clean 09 — write final report note
+        run: python3 /tmp/run_clean_step.py 9
+
+      - name: Clean 10 — commit and push clean completed batch
+        run: python3 /tmp/run_clean_step.py 10
