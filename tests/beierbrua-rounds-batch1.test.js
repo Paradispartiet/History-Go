@@ -30,9 +30,9 @@ assert(place.for_na?.before && place.for_na?.now && place.for_na?.change, 'Før/
 assert(Array.isArray(place.emne_ids) && place.emne_ids.includes('em_by_infrastruktur_mobilitet'), 'Badge-rundingen skal beholde infrastrukturemnet');
 
 const peopleManifest = readJson('data/people/manifest.json');
-const oskarPath = 'people/litteratur/oslo/akerselva/oskar_braaten.json';
-assert(peopleManifest.files.includes(oskarPath), 'Oskar Braaten-filen skal være manifestlastet');
-const oskarRows = readJson(`data/people/${oskarPath}`);
+const oskarManifestPath = 'people/litteratur/oslo/akerselva/oskar_braaten.json';
+assert(peopleManifest.files.includes(oskarManifestPath), 'Oskar Braaten-filen skal være manifestlastet');
+const oskarRows = readJson('data/people/litteratur/oslo/akerselva/oskar_braaten.json');
 assert.strictEqual(oskarRows.length, 1);
 assert.strictEqual(oskarRows[0].id, 'oskar_braaten');
 assert.strictEqual(oskarRows[0].placeId, 'oscar_braaten_statuen', 'Personens primære fysiske anker skal være den eksisterende bysten');
