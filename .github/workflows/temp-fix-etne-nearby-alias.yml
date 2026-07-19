@@ -1,0 +1,31 @@
+name: Temporary fix Etne nearby alias
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'agent/fill-etne-psychology-service-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Replace stale nearby alias and remove one-off artifacts
+        run: |
+          sed -i 's/etne_senter/etnesjoen_tettstad/g' .github/agent-payloads/psych-places.json
+          sed -i 's/etne_senter/etnesjoen_tettstad/g' tests/etne-psychology-service-batch1-round-content.test.js
+          rm -f reports/etne-psychology-service-rounds-batch1-test-failure.log
+          rm -f .github/workflows/oneoff-fix-etne-psychology-nearby.yml
+          git config user.name "History Go data agent"
+          git config user.email "history-go-agent@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix canonical nearby ID in Etne psychology batch" || exit 0
+          git push origin HEAD:${{ github.head_ref }}
