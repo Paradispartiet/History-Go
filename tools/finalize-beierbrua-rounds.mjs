@@ -1,0 +1,425 @@
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+
+const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
+const write = (path, value) => fs.writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
+const appendUnique = (array, value, predicate = (item) => item === value) => {
+  if (!array.some(predicate)) array.push(value);
+};
+
+const placePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json';
+const indexPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json';
+const splitManifestPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json';
+const leksikonPath = 'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json';
+const peopleManifestPath = 'data/people/manifest.json';
+const storyManifestPath = 'data/stories/stories_manifest.json';
+const relationsPath = 'data/relations.json';
+
+const place = read(placePath);
+Object.assign(place, {
+  name: 'Beierbrua',
+  year: 1837,
+  desc: 'Historisk bro over Akerselva, nybygd som kjørebro i 1837 og kjent gjennom Oskar Braatens fortellinger som «fabrikkjentenes bro».',
+  popupDesc: 'Beierbrua krysser Akerselva mellom Sandakerveien og Sagveien. Brostedet har eldre røtter, men dagens historiske hovedanker er nybyggingen som kjørebro i 1837. Broen ble overtatt av det offentlige i 1864 og fikk en sentral rolle som forbindelse mellom arbeiderstrøkene på østsiden av elva og tekstilindustrien på vestsiden.\n\nGjennom Oskar Braatens fortellinger ble Beierbrua kjent som «fabrikkjentenes bro». Ved broen står i dag både Braaten-bysten og Ellen Jacobsens skulpturgruppe «Skulder ved skulder (Fabrikkjentene)». Broen ble brannskadet i 1974 og restaurert som gangbro i 1985 med et uttrykk ført tilbake mot 1837-formen. Stedet samler derfor infrastruktur, arbeiderhistorie, litteratur, offentlig kunst og direkte kontakt med Akerselvas elverom.',
+  tags: [
+    'bro', 'byrom', 'akerselva', 'arbeiderhistorie', 'tekstilindustri', 'oskar_braaten',
+    'fabrikkjentene', 'offentlig_kunst', 'gangbro', 'sagene'
+  ],
+  emne_ids: [
+    'em_by_infrastruktur_mobilitet',
+    'em_by_barrierer_forbindelser'
+  ],
+  underbadge_ids: ['infrastruktur'],
+  quiz_profile: {
+    place_type: 'historisk bro og litterært arbeidersted',
+    subtype: 'akerselva_bro_arbeiderferdsel_og_litteraert_minnested',
+    signature_features: [
+      'nybygd som kjørebro i 1837',
+      'forbandt arbeiderstrøk øst for elva med tekstilindustrien vest for elva',
+      'Oskar Braatens «fabrikkjentenes bro»',
+      'brannskadet i 1974 og restaurert som gangbro i 1985',
+      'Skulder ved skulder (Fabrikkjentene) fra 1986',
+      'direkte utsyn over Akerselva'
+    ],
+    primary_angles: [
+      'infrastruktur_og_mobilitet', 'arbeiderhistorie', 'litteraer_geografi',
+      'offentlig_kunst', 'historisk_transformasjon', 'elverom'
+    ],
+    question_families: [
+      'historisk_endring', 'stedsspesifikk_funksjon', 'verk_og_sted',
+      'person_og_sted', 'for_na', 'kildekritikk'
+    ],
+    avoid_angles: [
+      'generisk_tursti', 'udokumenterte_artsfunn', 'pastand_om_at_oskar_braaten_bodde_pa_broen',
+      'forveksle_honse_lovisa_med_historisk_person', 'forveksle_braaten_bysten_med_selve_broen'
+    ],
+    must_include: [
+      '1837', 'fabrikkjentenes bro', 'Oskar Braaten', '1974', '1985', 'Skulder ved skulder'
+    ],
+    contrast_targets: ['oscar_braaten_statuen', 'honse_lovisas_hus', 'voienfossen'],
+    notes: 'Beierbrua skal leses som fysisk kryssing, arbeidernes ferdselsåre og litterært minnested. Oskar Braaten-koblingen er litterær; hans fysiske minneanker er bysten ved broen.'
+  },
+  externalLinks: [
+    {
+      type: 'reference',
+      label: 'Store norske leksikon – Beierbrua',
+      url: 'https://snl.no/Beierbrua',
+      lang: 'nb',
+      verifiedAt: '2026-07-19'
+    },
+    {
+      type: 'reference',
+      label: 'Oslo byleksikon – Beierbrua',
+      url: 'https://oslobyleksikon.no/side/Beierbrua',
+      lang: 'nb',
+      verifiedAt: '2026-07-19'
+    },
+    {
+      type: 'reference',
+      label: 'Store norske leksikon – Oskar Braaten',
+      url: 'https://snl.no/Oskar_Braaten',
+      lang: 'nb',
+      verifiedAt: '2026-07-19'
+    }
+  ],
+  nature_profile: {
+    type: 'urban elvekryssing / Akerselva / observasjonspunkt',
+    title: 'Elverommet sett fra en historisk kryssing',
+    summary: 'Nature-rundingen ved Beierbrua handler om selve møtet mellom broen og Akerselva. Fra gangbroen kan brukeren lese vannløp, strøm, elvekanter, vegetasjon og høydeforskjeller uten å gå ned i sårbare kantsoner. Broen er derfor et reelt natur-observasjonspunkt, selv om gameplay-objektet primært er urban infrastruktur og kulturhistorie. Det finnes ingen aktiv artskartlegging til place-id-en i repoets naturkart, så rundingen skal ikke fylle inn sannsynlige arter som om de var dokumentert.',
+    themes: [
+      'Akerselva som blågrønn korridor',
+      'vannbevegelse sett fra bro',
+      'elvekanter i tett by',
+      'bro som skånsomt observasjonspunkt',
+      'møtet mellom infrastruktur og elverom'
+    ],
+    nearby_place_ids: ['voienfossen', 'myralokka', 'kuba_parken']
+  },
+  works: [
+    {
+      id: 'beierbrua_1837_kjorebro',
+      title: 'Beierbrua fra 1837',
+      type: 'broverk',
+      kind: 'urban_infrastructure',
+      year: 1837,
+      desc: 'Broen ble nybygd som kjørebro i 1837 og danner det historiske hovedankeret for dagens Beierbrua.',
+      why_here: 'Dagens gangbro ble restaurert i 1985 med et uttrykk ført tilbake mot 1837-formen.',
+      source_note: 'Store norske leksikon og Oslo byleksikon, kontrollert 19. juli 2026.'
+    },
+    {
+      id: 'skulder_ved_skulder_fabrikkjentene_1986',
+      title: 'Skulder ved skulder (Fabrikkjentene)',
+      type: 'skulpturgruppe',
+      kind: 'public_art',
+      year: 1986,
+      creator: 'Ellen Jacobsen',
+      desc: 'Skulpturgruppe satt opp ved Beierbrua til minne om fabrikkjentene som preget industri- og arbeidermiljøet langs Akerselva.',
+      why_here: 'Verket gjør broens arbeidshistoriske og litterære identitet fysisk synlig på stedet.',
+      source_note: 'Store norske leksikon og Oslo byleksikon, kontrollert 19. juli 2026.'
+    },
+    {
+      id: 'beierbrua_fabrikkjentenes_bro_litteraert_lag',
+      title: '«Fabrikkjentenes bro» i Oskar Braatens fortellinger',
+      type: 'litteraert_stedslag',
+      kind: 'literary_place_memory',
+      year: null,
+      desc: 'Oskar Braatens fortellinger gjorde Beierbrua kjent som «fabrikkjentenes bro» og bandt en konkret ferdselsåre til kollektiv litterær hukommelse.',
+      why_here: 'Den litterære betegnelsen er direkte knyttet til Beierbrua og arbeidernes kryssing mellom boligstrøk og tekstilfabrikker.',
+      source_note: 'Store norske leksikon: Beierbrua og Oskar Braaten.'
+    }
+  ],
+  civication_store: [
+    {
+      id: 'beierbrua_minimodell_1837_1985',
+      title: 'Beierbrua – 1837/1985',
+      type: 'bromodell',
+      kind: 'physical_object',
+      desc: 'En liten fysisk modell av gangbroen slik den framstår etter restaureringen i 1985 med historisk referanse til 1837-formen.',
+      placeSpecificReason: 'Modellen bygger på akkurat Beierbruas dokumenterte transformasjon fra kjørebro til dagens restaurerte gangbro.',
+      historicalFunction: 'Viser hvordan en gammel kryssing kan beholde historisk form samtidig som bruken endres.',
+      physicalObject: true,
+      placeSpecific: true,
+      storePrice: 40,
+      currency: 'PC',
+      collection: 'beierbrua_arbeid_og_elv',
+      collectable: true,
+      source_urls: ['https://snl.no/Beierbrua', 'https://oslobyleksikon.no/side/Beierbrua']
+    },
+    {
+      id: 'beierbrua_fabrikkjentene_skulpturmodell',
+      title: 'Fabrikkjentene',
+      type: 'skulpturminiatyr',
+      kind: 'physical_object',
+      desc: 'En miniatyr av Ellen Jacobsens «Skulder ved skulder (Fabrikkjentene)» fra 1986.',
+      placeSpecificReason: 'Skulpturgruppen står ved Beierbrua og er et direkte fysisk minne om fabrikkjentene.',
+      historicalFunction: 'Gjør arbeiderhistorien og den litterære identiteten «fabrikkjentenes bro» synlig i dagens offentlige rom.',
+      physicalObject: true,
+      placeSpecific: true,
+      storePrice: 35,
+      currency: 'PC',
+      collection: 'beierbrua_arbeid_og_elv',
+      collectable: true,
+      source_urls: ['https://snl.no/Beierbrua']
+    },
+    {
+      id: 'beierbrua_brodekke_og_rekkverk',
+      title: 'Brodekket og rekkverket',
+      type: 'brodetalj',
+      kind: 'physical_object',
+      desc: 'Et fysisk detaljkort for gangbroens dekke og rekkverk som rammer inn dagens kryssing og utsikt mot elva.',
+      placeSpecificReason: 'Detaljene er del av selve Beierbrua og kan observeres uten å forlate den offentlige ganglinjen.',
+      historicalFunction: 'Representerer broen som fortsatt brukt infrastruktur, ikke bare som historisk monument.',
+      physicalObject: true,
+      placeSpecific: true,
+      storePrice: 18,
+      currency: 'PC',
+      collection: 'beierbrua_arbeid_og_elv',
+      collectable: true,
+      source_urls: ['https://oslobyleksikon.no/side/Beierbrua']
+    }
+  ],
+  brands: [
+    {
+      id: 'oslo_kommune_beierbrua',
+      name: 'Oslo kommune',
+      brand_kind: 'municipality',
+      brand_type: 'public_bridge_owner_context'
+    },
+    {
+      id: 'hjula_vaeverier_beierbrua',
+      name: 'Hjula Væverier',
+      brand_kind: 'historical_textile_industry',
+      brand_type: 'workplace_on_west_side_of_bridge'
+    },
+    {
+      id: 'voiens_bomuldsspinderi_beierbrua',
+      name: 'Vøiens Bomuldsspinderi / Graahs spinneri',
+      brand_kind: 'historical_textile_industry',
+      brand_type: 'worker_and_industry_context_near_bridge'
+    }
+  ],
+  for_na: {
+    title: 'Fra fabrikkjentenes arbeidsvei til historisk gangbro',
+    before: 'Beierbrua ble nybygd som kjørebro i 1837 og ble i industriperioden en viktig forbindelse mellom arbeiderstrøkene øst for Akerselva og tekstilfabrikkene på vestsiden. Oskar Braatens fortellinger gjorde den kjent som «fabrikkjentenes bro».',
+    now: 'Etter brannskaden i 1974 ble broen restaurert og ført tilbake mot 1837-uttrykket i 1985. I dag er den gangbro, med Oskar Braaten-bysten og «Skulder ved skulder (Fabrikkjentene)» som synlige minnelag i nærområdet.',
+    change: 'Broens funksjon har gått fra privat og senere offentlig kjøre- og arbeidsforbindelse til gangbro og kulturhistorisk lesepunkt, mens selve behovet for å forbinde de to elvebreddene består.',
+    lookFor: [
+      'broens trepreg og gangbrofunksjon',
+      'utsynet mot Akerselva',
+      'retningen mellom tidligere arbeiderstrøk og industriområder',
+      'Skulder ved skulder (Fabrikkjentene)',
+      'Oskar Braaten-bysten som eget canonical minnepunkt'
+    ],
+    sources: [
+      'https://snl.no/Beierbrua',
+      'https://oslobyleksikon.no/side/Beierbrua',
+      'https://snl.no/Oskar_Braaten'
+    ]
+  }
+});
+write(placePath, place);
+
+const routeIndex = read(indexPath);
+const indexRow = routeIndex.find((row) => row.id === 'beierbrua');
+if (!indexRow) throw new Error('Missing Beierbrua route index row');
+Object.assign(indexRow, {
+  name: place.name ?? null,
+  category: place.category ?? null,
+  lat: place.lat ?? null,
+  lon: place.lon ?? null,
+  r: place.r ?? null,
+  year: place.year ?? null,
+  coordStatus: place.coordStatus ?? null,
+  coordType: place.coordType ?? null
+});
+write(indexPath, routeIndex);
+
+const splitManifest = read(splitManifestPath);
+const manifestRow = splitManifest.places.find((row) => row.id === 'beierbrua');
+if (!manifestRow) throw new Error('Missing Beierbrua split-manifest row');
+manifestRow.name = place.name ?? null;
+manifestRow.category = place.category ?? null;
+const splitContent = fs.readFileSync(placePath);
+manifestRow.sha256 = crypto.createHash('sha256').update(splitContent).digest('hex');
+write(splitManifestPath, splitManifest);
+
+const articles = read(leksikonPath);
+const article = articles.find((row) => row.place_id === 'beierbrua');
+if (!article) throw new Error('Missing Beierbrua leksikon article');
+Object.assign(article, {
+  visual: { designCode: 'article_nature_route_miniature' },
+  version: 2,
+  popupDesc: 'Beierbrua er en historisk kryssing over Akerselva, nybygd som kjørebro i 1837 og kjent gjennom Oskar Braatens fortellinger som «fabrikkjentenes bro». Broen samler arbeiderhistorie, litteratur, offentlig kunst og elverom i ett lite sted.',
+  wikiText: [
+    'Beierbrua krysser Akerselva mellom Sandakerveien og Sagveien. Oslo byleksikon knytter navnet til Anders Beyer, som eide broen i 1671, og oppgir at broen ble nybygd som kjørebro i 1837 og overtatt av det offentlige i 1864. I industriperioden forbandt den boligområdene på østsiden av elva med tekstilindustrien på vestsiden. Oskar Braatens fortellinger gjorde den kjent som «fabrikkjentenes bro», et navn som binder den fysiske kryssingen til Sagene-områdets arbeiderlitteratur.',
+    'Broen ble brannskadet i 1974 og restaurert som gangbro i 1985 med et uttrykk ført tilbake mot 1837-formen. Året etter ble Ellen Jacobsens skulpturgruppe «Skulder ved skulder (Fabrikkjentene)» satt opp ved broen. En bronsebyste av Oskar Braaten, utført av Arne Durban, hadde allerede stått ved broen siden 1961. I dag kan stedet leses både som offentlig infrastruktur og som et minnelandskap der arbeiderhistorie, litteratur og Akerselvas naturrom møtes.'
+  ],
+  summary: {
+    one_liner: 'Historisk Akerselv-bro som ble arbeidernes ferdselsåre og Oskar Braatens «fabrikkjentenes bro».',
+    themes: ['bro', 'arbeiderhistorie', 'tekstilindustri', 'Oskar Braaten', 'offentlig kunst', 'Akerselva'],
+    tone: ['nøktern', 'historisk', 'stedsspesifikk']
+  },
+  facts: [
+    {
+      id: 'fact_beierbrua_01',
+      label: 'Nybygd som kjørebro i 1837',
+      desc: 'Beierbrua ble nybygd som kjørebro i 1837.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua', 'Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'fact_beierbrua_02',
+      label: 'Offentlig fra 1864',
+      desc: 'Broen ble overtatt av det offentlige i 1864.',
+      confidence: 'high',
+      sources: ['Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'fact_beierbrua_03',
+      label: 'Arbeidernes forbindelse over elva',
+      desc: 'Broen forbandt boligområder øst for Akerselva med tekstilindustrien på vestsiden.',
+      confidence: 'high',
+      sources: ['Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'fact_beierbrua_04',
+      label: 'Fabrikkjentenes bro',
+      desc: 'Oskar Braatens fortellinger gjorde Beierbrua kjent som «fabrikkjentenes bro».',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua', 'Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'fact_beierbrua_05',
+      label: 'Brannskadet i 1974',
+      desc: 'Broen ble brannskadet i 1974.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua']
+    },
+    {
+      id: 'fact_beierbrua_06',
+      label: 'Restaurert i 1985',
+      desc: 'Beierbrua ble restaurert som gangbro i 1985 og ført tilbake mot utseendet fra 1837.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua', 'Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'fact_beierbrua_07',
+      label: 'Fabrikkjentene fra 1986',
+      desc: 'Ellen Jacobsens skulpturgruppe «Skulder ved skulder (Fabrikkjentene)» ble satt opp ved broen i 1986.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua', 'Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'fact_beierbrua_08',
+      label: 'Oskar Braaten-bysten fra 1961',
+      desc: 'Arne Durbans bronsebyste av Oskar Braaten ble avduket ved broen i 1961.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua']
+    }
+  ],
+  chronology: [
+    {
+      id: 'chrono_beierbrua_01',
+      year: 1837,
+      period: 'Ny kjørebro',
+      desc: 'Beierbrua blir nybygd som kjørebro.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua', 'Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'chrono_beierbrua_02',
+      year: 1864,
+      period: 'Offentlig bro',
+      desc: 'Broen blir overtatt av det offentlige.',
+      confidence: 'high',
+      sources: ['Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'chrono_beierbrua_03',
+      year: 1961,
+      period: 'Oskar Braaten-bysten',
+      desc: 'Arne Durbans bronsebyste av Oskar Braaten avdukes ved broen.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua']
+    },
+    {
+      id: 'chrono_beierbrua_04',
+      year: 1974,
+      period: 'Brannskade',
+      desc: 'Broen blir brannskadet.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua']
+    },
+    {
+      id: 'chrono_beierbrua_05',
+      year: 1985,
+      period: 'Restaurert gangbro',
+      desc: 'Broen restaureres og føres tilbake mot 1837-uttrykket som gangbro.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua', 'Oslo byleksikon – Beierbrua']
+    },
+    {
+      id: 'chrono_beierbrua_06',
+      year: 1986,
+      period: 'Fabrikkjentene',
+      desc: '«Skulder ved skulder (Fabrikkjentene)» settes opp ved broen.',
+      confidence: 'high',
+      sources: ['Store norske leksikon – Beierbrua', 'Oslo byleksikon – Beierbrua']
+    }
+  ],
+  sources: [
+    {
+      title: 'Store norske leksikon – Beierbrua',
+      url: 'https://snl.no/Beierbrua'
+    },
+    {
+      title: 'Oslo byleksikon – Beierbrua',
+      url: 'https://oslobyleksikon.no/side/Beierbrua'
+    },
+    {
+      title: 'Store norske leksikon – Oskar Braaten',
+      url: 'https://snl.no/Oskar_Braaten'
+    }
+  ]
+});
+write(leksikonPath, articles);
+
+const peopleManifest = read(peopleManifestPath);
+appendUnique(peopleManifest.files, 'people/litteratur/oslo/akerselva/oskar_braaten.json');
+write(peopleManifestPath, peopleManifest);
+
+const storyManifest = read(storyManifestPath);
+const storyFile = 'data/stories/stories_beierbrua.json';
+appendUnique(
+  storyManifest.files,
+  { category: 'by', entity_id: 'beierbrua', path: storyFile },
+  (row) => row.entity_id === 'beierbrua' && row.path === storyFile
+);
+write(storyManifestPath, storyManifest);
+
+const relations = read(relationsPath);
+for (const relation of [
+  {
+    id: 'rel_oskar_braaten_beierbrua_litteraert_sted',
+    type: 'litteraert_sted',
+    place: 'beierbrua',
+    person: 'oskar_braaten',
+    label: 'Gjorde broen kjent som «fabrikkjentenes bro»',
+    why: 'Oskar Braatens fortellinger knytter Beierbrua direkte til litterære skildringer av fabrikkarbeidernes liv på Sagene.',
+    source: 'https://snl.no/Beierbrua'
+  },
+  {
+    id: 'rel_oskar_braaten_byste_beierbrua',
+    type: 'minnesmerke',
+    place: 'oscar_braaten_statuen',
+    person: 'oskar_braaten',
+    label: 'Bronsebyste av Oskar Braaten',
+    why: 'Arne Durbans byste ved Beierbrua er personens canonical fysiske minneanker i History Go.',
+    source: 'https://snl.no/Beierbrua'
+  }
+]) {
+  appendUnique(relations, relation, (row) => row.id === relation.id);
+}
+write(relationsPath, relations);
+
+console.log('Beierbrua rounds, leksikon, manifests and person relations finalized.');
