@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   resolve-addresses:
     if: github.actor != 'github-actions[bot]'
@@ -27,12 +31,10 @@ jobs:
 
       - run: npm ci
 
-      - name: Find target files and resolve official addresses
-        shell: bash
+      - name: Find target files
         run: |
-          set -euo pipefail
+          set -u
           mkdir -p reports/geonorge-address-batch-7
-
           {
             echo '=== torggata_blad ==='
             grep -R -l --include='*.json' '"id"[[:space:]]*:[[:space:]]*"torggata_blad"' data/places || true
@@ -42,14 +44,33 @@ jobs:
             grep -R -l --include='*.json' '"id"[[:space:]]*:[[:space:]]*"storgata"' data/places || true
           } | tee reports/geonorge-address-batch-7/target-files.txt
 
+      - name: Resolve Torggata Blad address
+        continue-on-error: true
+        run: |
+          set -o pipefail
           npm run places:coords:find:address -- --address "Hausmanns gate 19 Oslo" \
             | tee reports/geonorge-address-batch-7/torggata_blad.json
 
+      - name: Resolve Torggata address
+        continue-on-error: true
+        run: |
+          set -o pipefail
           npm run places:coords:find:address -- --address "Torggata 16 Oslo" \
             | tee reports/geonorge-address-batch-7/torggata.json
 
+      - name: Resolve Storgata address
+        continue-on-error: true
+        run: |
+          set -o pipefail
           npm run places:coords:find:address -- --address "Storgata 25 Oslo" \
             | tee reports/geonorge-address-batch-7/storgata.json
+
+      - name: Upload raw address evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: geonorge-address-batch-7
+          path: reports/geonorge-address-batch-7
 
       - name: Require three verified candidates
         run: |
@@ -61,10 +82,12 @@ jobs:
             'reports/geonorge-address-batch-7/storgata.json',
           ];
           for (const file of files) {
+            if (!fs.existsSync(file)) throw new Error(`Missing output: ${file}`);
             const text = fs.readFileSync(file, 'utf8');
             const start = text.indexOf('{');
             if (start < 0) throw new Error(`No JSON output in ${file}`);
             const data = JSON.parse(text.slice(start));
+            console.log(`${file}: ${data.status} — ${data.reason}`);
             if (!data.ok || data.status !== 'verified_candidate') {
               throw new Error(`${file}: expected verified_candidate, got ${data.status}`);
             }
