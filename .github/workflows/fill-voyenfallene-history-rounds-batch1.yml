@@ -18,18 +18,16 @@ jobs:
           fetch-depth: 0
 
       - name: Rebuild verified production script
+        if: hashFiles('reports/voyenfallene-production-error.log') == ''
         run: |
           python - <<'PY'
           import base64
           import gzip
           import hashlib
           from pathlib import Path
-
           parts = [Path(f'tools/.tmp_voyenfallene_payload_{i}.txt').read_text(encoding='utf-8').strip() for i in range(5)]
           payload = ''.join(parts)
-          expected = 'fc380cd67227c539e94afea3ff900475d90544d0ccecc6bd8caa31e533d48d9f'
-          actual = hashlib.sha256(payload.encode('ascii')).hexdigest()
-          assert actual == expected, f'Payload checksum mismatch: {actual}'
+          assert hashlib.sha256(payload.encode('ascii')).hexdigest() == 'fc380cd67227c539e94afea3ff900475d90544d0ccecc6bd8caa31e533d48d9f'
           script = gzip.decompress(base64.b64decode(payload))
           assert hashlib.sha256(script).hexdigest() == '76ecec38feaa5784acbf9271d5f6432e58a7fa1512bc6656ce1a5cf61d5568e8'
           Path('tools/tmp_produce_voyenfallene_decoded.py').write_bytes(script)
@@ -37,9 +35,25 @@ jobs:
           PY
 
       - name: Produce Vøyenfallene content
-        run: python tools/tmp_produce_voyenfallene_decoded.py
+        id: production
+        if: hashFiles('reports/voyenfallene-production-error.log') == ''
+        continue-on-error: true
+        run: python tools/tmp_produce_voyenfallene_decoded.py > tools/tmp_voyenfallene_production.log 2>&1
+
+      - name: Persist production failure
+        if: steps.production.outcome == 'failure'
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cp tools/tmp_voyenfallene_production.log reports/voyenfallene-production-error.log
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add reports/voyenfallene-production-error.log
+          git commit -m "Record Vøyenfallene production error"
+          git push origin HEAD:"$BRANCH"
 
       - name: Validate targeted content
+        if: steps.production.outcome == 'success'
         run: |
           node tests/voyenfallene-history-rounds-batch1.test.js
           node tests/place-card-rounds-runtime-audit.test.js
@@ -66,11 +80,13 @@ jobs:
           git diff --check
 
       - name: Commit production files and remove temporary files
+        if: steps.production.outcome == 'success'
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           rm -f tools/tmp_produce_voyenfallene.py
           rm -f tools/tmp_produce_voyenfallene_decoded.py
+          rm -f tools/tmp_voyenfallene_production.log
           rm -f tools/.tmp_voyenfallene_payload_*.txt
           rm -f .github/workflows/fill-voyenfallene-history-rounds-batch1.yml
           git config user.name github-actions[bot]
