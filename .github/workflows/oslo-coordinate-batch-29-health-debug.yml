@@ -1,0 +1,60 @@
+name: Oslo coordinate batch 29 place health debug
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-coordinate-batch-29-health-debug.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  debug:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch-29-v2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Capture baseline and post-batch health errors
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT='reports/oslo-coordinate-control-batch-29-health-debug'
+          mkdir -p "$OUT"
+
+          set +e
+          npm run health:places > "$OUT/baseline.txt" 2>&1
+          echo "$?" > "$OUT/baseline.exit-status.txt"
+          set -e
+
+          node scripts/tmp-complete-oslo-coordinate-batch29.mjs > "$OUT/apply.txt" 2>&1
+
+          set +e
+          npm run health:places > "$OUT/post.txt" 2>&1
+          echo "$?" > "$OUT/post.exit-status.txt"
+          set -e
+
+          extract_errors() {
+            awk '
+              $0 == "Errors:" { capture=1; next }
+              $0 == "Warnings:" { capture=0 }
+              capture && /^- / { print }
+            ' "$1" | sort -u
+          }
+
+          extract_errors "$OUT/baseline.txt" > "$OUT/baseline-errors.txt"
+          extract_errors "$OUT/post.txt" > "$OUT/post-errors.txt"
+          comm -13 "$OUT/baseline-errors.txt" "$OUT/post-errors.txt" > "$OUT/new-errors.txt"
+          cat "$OUT/new-errors.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-29-place-health-debug
+          path: reports/oslo-coordinate-control-batch-29-health-debug
+          if-no-files-found: error
