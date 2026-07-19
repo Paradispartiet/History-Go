@@ -1,0 +1,124 @@
+name: Integrate Oslo coordinate batch 30
+
+on:
+  push:
+    branches:
+      - agent/oslo-coordinate-control-batch-30
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-coordinate-batch-30-integrate
+  cancel-in-progress: true
+
+jobs:
+  integrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-30
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply batch 30 decisions
+        run: node scripts/tmp-complete-oslo-coordinate-batch30.mjs
+
+      - name: Regenerate literature split data and runtime index
+        run: |
+          set -euo pipefail
+          node scripts/split-litteratur-oslo-places.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('data/places/litteratur/oslo/places_litteratur_split_report.txt')
+          p.write_text(p.read_text().rstrip() + '\n')
+          PY
+          npm run places:index:build
+
+      - name: Validate coordinate and data contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-30/validation
+          mkdir -p "$out"
+
+          npm run audit:places-split-manifest-sync | tee "$out/split-manifest-sync.txt"
+          npm run places:index:check | tee "$out/places-index-check.txt"
+          npm run test:coordinate-source-contract | tee "$out/coordinate-source-contract.txt"
+          npm run places:coords:quality | tee "$out/coordinate-quality.txt"
+          npm run places:coords:intake | tee "$out/coordinate-intake.txt"
+          npm run places:coords:evidence:audit | tee "$out/coordinate-evidence-audit.txt"
+          git diff --check | tee "$out/git-diff-check.txt"
+
+      - name: Assert exact batch 30 result
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const aggregate = read('data/places/litteratur/oslo/places_litteratur.json');
+          const runtime = read('data/places/places_index.json');
+          const splitOskar = read('data/places/litteratur/oslo/places_litteratur/oscar_braaten_statuen.json');
+          const splitAlexander = read('data/places/litteratur/oslo/places_litteratur/alexander_kiellands_plass.json');
+          const byId = new Map(aggregate.map((p) => [p.id, p]));
+          const runtimeById = new Map(runtime.map((p) => [p.id, p]));
+
+          const expected = {
+            oscar_braaten_statuen: {
+              name: 'Oskar Braaten-bysten', year: 1961,
+              lat: 59.9309838, lon: 10.7578832,
+              sourceObjectId: 'osm-node:10819902960', coordStatus: 'verified_geometry'
+            },
+            alexander_kiellands_plass: {
+              name: 'Alexander Kiellands plass', year: 1914,
+              lat: 59.9270478, lon: 10.7504014,
+              sourceObjectId: 'osm-way:3610607', coordStatus: 'verified_geometry'
+            }
+          };
+
+          for (const [id, exp] of Object.entries(expected)) {
+            const place = byId.get(id);
+            const rt = runtimeById.get(id);
+            if (!place || !rt) throw new Error(`${id} missing from aggregate/runtime`);
+            for (const [key, value] of Object.entries(exp)) {
+              if (place[key] !== value) throw new Error(`${id}.${key} expected ${value}, got ${place[key]}`);
+            }
+            for (const key of ['name','year','lat','lon','coordStatus']) {
+              if (rt[key] !== exp[key]) throw new Error(`${id} runtime ${key} mismatch`);
+            }
+          }
+
+          if (JSON.stringify(splitOskar) !== JSON.stringify(byId.get('oscar_braaten_statuen'))) {
+            throw new Error('Oskar Braaten split/aggregate mismatch');
+          }
+          if (JSON.stringify(splitAlexander) !== JSON.stringify(byId.get('alexander_kiellands_plass'))) {
+            throw new Error('Alexander Kiellands plass split/aggregate mismatch');
+          }
+
+          const protocol = fs.readFileSync('docs/coordinates/coordinate-control-protocol.md', 'utf8');
+          if (!protocol.includes('| 30 | `oscar_braaten_statuen`') || !protocol.includes('| 30 | `alexander_kiellands_plass`')) {
+            throw new Error('Batch 30 missing from coordinate protocol');
+          }
+          NODE
+
+      - name: Commit completed batch and remove temporary tooling
+        run: |
+          set -euo pipefail
+          rm .github/workflows/oslo-coordinate-batch-30-integrate.yml
+          rm scripts/tmp-complete-oslo-coordinate-batch30.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs reports .github/workflows/oslo-coordinate-batch-30-integrate.yml scripts/tmp-complete-oslo-coordinate-batch30.mjs
+          git commit -m "Complete Oslo coordinate control batch 30"
+          git push origin HEAD
