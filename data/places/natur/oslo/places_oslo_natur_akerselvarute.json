@@ -1735,8 +1735,8 @@
   {
     "id": "vaterland_historisk_elvelop",
     "name": "Vaterland – historisk elveløp",
-    "lat": 59.9158,
-    "lon": 10.7332,
+    "lat": 59.9134578,
+    "lon": 10.7581117,
     "r": 180,
     "category": "historie",
     "desc": "Historisk åpent elveløp, senere lukket.",
@@ -1786,13 +1786,38 @@
     },
     "primary_category": "historie",
     "secondary_category": "by",
-    "hybrid": true
+    "hybrid": true,
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:akerselva:vaterlands-bru",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "historical_anchor",
+    "coordType": "historic_river_course_anchor",
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslo byleksikon – Akerselva/Vaterlands bru + OpenStreetMap way 381749953",
+    "coordSourceId": "osm-way:381749953",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Akerselva",
+    "coordVerifiedAt": "2026-07-20",
+    "coordNote": "Dokumentert historisk linjeanker ved Vaterlands bru. Oslo byleksikon beskriver at den nedre Akerselva-strekningen fra Vaterlands bru til Bjørvika ble lagt i tunnel i 1964–1969. Den eksakte navngitte brogeometrien i OSM brukes som fysisk startanker for den historiske åpne elvestrekningen, ikke som et påstått sentrum for hele det tidligere elveløpet.",
+    "anchors": [
+      {
+        "id": "vaterland_historisk_elvelop_vaterlands_bru",
+        "name": "Vaterland – historisk elveløp ved Vaterlands bru",
+        "lat": 59.9134578,
+        "lon": 10.7581117,
+        "r": 120,
+        "type": "historic_route_anchor",
+        "sourceObjectId": "osm-way:381749953",
+        "role": "historical_anchor",
+        "note": "Eksakt navngitt Vaterlands bru brukes som dokumentert startanker for den historiske nedre Akerselva-strekningen som senere ble lagt i tunnel."
+      }
+    ]
   },
   {
     "id": "akerselva_utlop_bjorvika",
     "name": "Akerselvas utløp mot fjorden (Bjørvika)",
-    "lat": 59.9118,
-    "lon": 10.7469,
+    "lat": 59.9075303,
+    "lon": 10.7554479,
     "r": 220,
     "category": "natur",
     "desc": "Overgang mellom elv og fjord med høy økologisk verdi.",
@@ -1840,38 +1865,21 @@
       ],
       "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
     },
-    "coordType": "route_midpoint",
-    "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordPrecisionM": 80,
-    "coordVerifiedAt": "2026-05-01",
+    "coordType": "river_mouth_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 246047712 – nedre Akerselva ved utløpet i Bjørvika",
+    "coordVerifiedAt": "2026-07-20",
     "anchors": [
       {
-        "id": "akers_utlop_indre",
-        "name": "Akerselva utløp – indre løp",
-        "lat": 59.9124,
-        "lon": 10.7478,
+        "id": "akerselva_utlop_bjorvika_munning",
+        "name": "Akerselva – utløpsanker i Bjørvika",
+        "lat": 59.9075303,
+        "lon": 10.7554479,
         "r": 120,
-        "type": "route_point",
-        "note": "Indre elveløp rett før møte med fjorden."
-      },
-      {
-        "id": "akers_utlop_delta",
-        "name": "Akerselva utløp – delta/munning",
-        "lat": 59.9118,
-        "lon": 10.7469,
-        "r": 120,
-        "type": "unlock_anchor",
-        "note": "Hovedpunkt i overgangen mellom elv og fjord."
-      },
-      {
-        "id": "akers_utlop_fjordkant",
-        "name": "Akerselva utløp – fjordkant",
-        "lat": 59.9112,
-        "lon": 10.7461,
-        "r": 120,
-        "type": "route_point",
-        "note": "Ytre fjordkant der elvevannet sprer seg i Bjørvika."
+        "type": "river_mouth_anchor",
+        "sourceObjectId": "osm-way:246047712",
+        "role": "line_anchor",
+        "note": "Endepunktet på den navngitte nederste OSM-wayen for Akerselva brukes som kildebelagt anker for utløpet i Bjørvika."
       }
     ],
     "primary_category": "natur",
@@ -1882,6 +1890,14 @@
       "vann_og_vassdrag",
       "kyst_og_fjord",
       "blagronn_struktur"
-    ]
+    ],
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:246047712",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-way:246047712",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/246047712",
+    "coordNote": "Endepunktet på den navngitte OSM-wayen for nederste åpne del av Akerselva brukes som eksakt linjeanker ved elvas møte med Bjørvika. Oslo byleksikon og Store norske leksikon dokumenterer Bjørvika som Akerselvas utløp. Den gamle markøren og de tre manuelle ruteankrene lå ved Karl Johans gate/Kvadraturen, langt vest for det faktiske elveløpet, og er erstattet av dette kildebelagte utløpsankeret."
   }
 ]

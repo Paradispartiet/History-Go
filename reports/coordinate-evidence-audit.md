@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T22:46:01.852Z
+Generert: 2026-07-19T23:02:44.366Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -162,3 +162,5 @@ Generert: 2026-07-19T22:46:01.852Z
 | hausmannsomradet_elvelop | data/coordinate-evidence/oslo/natur/hausmannsomradet_elvelop.json | needs_research | needs_geometry | OK |
 | ankerbrua | data/coordinate-evidence/oslo/natur/ankerbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | needs_research | needs_identity_split | OK |
+| vaterland_historisk_elvelop | data/coordinate-evidence/oslo/natur/vaterland_historisk_elvelop.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akerselva_utlop_bjorvika | data/coordinate-evidence/oslo/natur/akerselva_utlop_bjorvika.json | applied_to_place | do_not_change_coordinates_yet | OK |
