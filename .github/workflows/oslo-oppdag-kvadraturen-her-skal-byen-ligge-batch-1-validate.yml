@@ -51,7 +51,7 @@ jobs:
             'radmannsgarden_og_anatomibygget',
             'garmanngarden',
             'havnelageret',
-            'waisenhuset'
+            'waisenhuset_kongens_gate'
           ]);
           const actualParents = new Set(batch.places.map((entry) => entry.place_id));
           if (actualParents.size !== expectedParents.size || [...expectedParents].some((id) => !actualParents.has(id))) {
