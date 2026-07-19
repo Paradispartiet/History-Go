@@ -21,3 +21,4 @@ Established batch-30 runner now targets the clean PR #2500 branch for the final 
 Exact failing-step capture enabled for the clean runner.
 Detached-HEAD pushes now target the clean branch explicitly.
 Runner logs are now reduced so the exact failing clean step is visible through the connector.
+Clean workflow is now executed as individually observable Actions steps.
