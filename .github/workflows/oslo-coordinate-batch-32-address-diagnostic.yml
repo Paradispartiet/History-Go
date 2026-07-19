@@ -1,0 +1,30 @@
+name: Oslo coordinate batch 32 address diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run normative Geonorge finder for Øvre spinneri
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-coordinate-batch-32-address-diagnostic
+          node --experimental-strip-types tools/find-place-coordinate-by-address.mts \
+            --address "Gjerdrums vei 12 Oslo" \
+            | tee reports/oslo-coordinate-batch-32-address-diagnostic/gjerdrums-vei-12.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-32-address-diagnostic
+          path: reports/oslo-coordinate-batch-32-address-diagnostic/gjerdrums-vei-12.json
+          if-no-files-found: error
