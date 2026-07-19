@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T02:56:09.767Z
+Generert: 2026-07-19T03:08:19.134Z
 
 ## Oppsummering
-- Aktive filer validert: **478**
-- Antall steder validert: **1178**
+- Aktive filer validert: **479**
+- Antall steder validert: **1177**
 - Harde feil: **0**
-- Varsler: **394**
-- Coordinate review candidates: **681** signaler fordelt på **533** steder
+- Varsler: **390**
+- Coordinate review candidates: **677** signaler fordelt på **529** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -30,6 +30,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie_added_batch_01.json
 - data/places/by/oslo/gamle_radhus.json
 - data/places/historie/akershus/places_historie_akershus_batch1.json
+- data/places/historie/akershus/grini_fangeleir.json
 - data/places/naeringsliv/akershus/baerums_verk_jernverk.json
 - data/places/politikk/akershus/eidsvollsbygningen.json
 - data/places/naeringsliv/akershus/eidsvoll_verk_andelva.json
@@ -511,11 +512,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/film/oslo/places_oslo_film.json#klingenberg_kino: coordStatus=verified uten coordPrecisionM
 - data/places/film/oslo/places_oslo_film.json#gimle_kino: coordStatus=verified uten coordPrecisionM
 - data/places/film/oslo/places_oslo_film.json#vika_kino: coordStatus=verified uten coordPrecisionM
-- data/places/historie/oslo/places_historie.json#middelalder_oslo: coordStatus=verified uten coordPrecisionM
-- data/places/historie/oslo/places_historie.json#gamlebyen_gravlund: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#gamle_aker_kirke: coordStatus=verified uten coordPrecisionM
-- data/places/historie/oslo/places_historie.json#var_frelsers_gravlund: coordStatus=verified uten coordPrecisionM
-- data/places/historie/oslo/places_historie.json#hovedoya_kloster: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#sagene_skole: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/damstredet_telthusbakken.json#damstredet_telthusbakken: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/gamle_trikkestallen.json#gamle_trikkestallen: coordStatus=verified uten coordPrecisionM
@@ -898,7 +895,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 681 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 677 signaler fordelt på 529 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -906,7 +903,7 @@ Totalt 681 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | --- | --- |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 108 |
-| coordStatus=verified uten coordPrecisionM | 62 |
+| coordStatus=verified uten coordPrecisionM | 58 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 98 |
 | park/stort område uten anchors eller coordNote | 134 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1110,7 +1107,7 @@ Totalt 681 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### coordStatus=verified uten coordPrecisionM (62)
+### coordStatus=verified uten coordPrecisionM (58)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1120,11 +1117,7 @@ Totalt 681 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | klingenberg_kino | Klingenberg kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.913419951009054 | 10.732806189784029 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gimle_kino | Gimle kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.91723919101994 | 10.709250463305766 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vika_kino | Vika kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.913498581158905 | 10.7284586944203 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| middelalder_oslo | Middelalderparken | historie | data/places/historie/oslo/places_historie.json | 59.90418 | 10.76366 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| gamlebyen_gravlund | Gamlebyen gravlund | historie | data/places/historie/oslo/places_historie.json | 59.9027 | 10.7735 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_aker_kirke | Gamle Aker kirke | historie | data/places/historie/oslo/places_historie.json | 59.923779239528116 | 10.74681853984208 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| var_frelsers_gravlund | Vår Frelsers gravlund | historie | data/places/historie/oslo/places_historie.json | 59.9215 | 10.7435 | 220 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| hovedoya_kloster | Hovedøya kloster | historie | data/places/historie/oslo/places_historie.json | 59.8953 | 10.7336 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sagene_skole | Sagene skole | historie | data/places/historie/oslo/places_historie.json | 59.9368 | 10.7556 | 90 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | damstredet_telthusbakken | Damstredet og Telthusbakken | by | data/places/by/oslo/damstredet_telthusbakken.json | 59.9236 | 10.7474 | 190 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_trikkestallen | Gamle trikkestallen på Sagene | by | data/places/by/oslo/gamle_trikkestallen.json | 59.932818 | 10.768157 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
