@@ -91,20 +91,8 @@
         { "file": "castle/bridge-draw.glb", "x": 0.0, "z": 0.8, "size": 0.52, "rotationY": 1.5708 }
       ]
     },
-    "ullevaal": {
-      "file": "racing/grandStandCovered.glb",
-      "scale": 1.05
-    },
-    "bislett": {
-      "file": "racing/grandStandRound.glb",
-      "scale": 1.05
-    },
-    "jordal": {
-      "file": "racing/grandStandCoveredRound.glb",
-      "scale": 1.0
-    },
     "aker_brygge": {
-      "_comment": "Sammensatt brygge: staggered rad av moderne commercial-bygg langs kaia + marina med fortøyde båter mot fjorden (+z).",
+      "_comment": "Sammensatt brygge: staggered rad av moderne commercial-bygg langs kaia. Båtene ligger som scenery ute i selve fjorden (ikke i komposisjonen) så de aldri havner på land. Ullevaal/Bislett/Jordal bruker de særpregede håndmodellene (fotballbowl/løpebane/ishall) – ikke like tribune-GLB-er.",
       "targetSize": 1.75,
       "scale": 1.0,
       "parts": [
@@ -112,11 +100,7 @@
         { "file": "commercial/building-l.glb", "x": -0.52, "z": -0.26, "size": 0.54 },
         { "file": "commercial/building-i.glb", "x": -0.04, "z": -0.2, "size": 0.5 },
         { "file": "commercial/building-j.glb", "x": 0.52, "z": -0.24, "size": 0.62 },
-        { "file": "commercial/building-d.glb", "x": 1.02, "z": -0.18, "size": 0.46 },
-        { "file": "water/boat-sail-a.glb", "x": -0.62, "z": 0.5, "size": 0.42, "rotationY": 0.2 },
-        { "file": "water/boat-tug-a.glb", "x": -0.05, "z": 0.54, "size": 0.36, "rotationY": -0.3 },
-        { "file": "water/boat-speed-b.glb", "x": 0.5, "z": 0.5, "size": 0.32, "rotationY": 0.5 },
-        { "file": "water/boat-fishing-small.glb", "x": 0.95, "z": 0.54, "size": 0.34, "rotationY": 0.1 }
+        { "file": "commercial/building-d.glb", "x": 1.02, "z": -0.18, "size": 0.46 }
       ]
     },
     "tjuvholmen": {
@@ -127,14 +111,40 @@
         { "file": "commercial/building-i.glb", "x": -0.42, "z": -0.2, "size": 0.5 },
         { "file": "commercial/building-skyscraper-a.glb", "x": 0.05, "z": -0.28, "size": 0.46 },
         { "file": "commercial/building-l.glb", "x": 0.48, "z": -0.15, "size": 0.5 },
-        { "file": "commercial/building-e.glb", "x": -0.05, "z": 0.18, "size": 0.58 },
-        { "file": "water/boat-sail-a.glb", "x": -0.42, "z": 0.52, "size": 0.4, "rotationY": 0.3 },
-        { "file": "water/boat-sail-a.glb", "x": 0.12, "z": 0.56, "size": 0.38, "rotationY": -0.25 },
-        { "file": "water/boat-speed-b.glb", "x": 0.5, "z": 0.52, "size": 0.3, "rotationY": 0.6 }
+        { "file": "commercial/building-e.glb", "x": -0.05, "z": 0.18, "size": 0.58 }
       ]
     }
   },
   "scenery": [
+    {
+      "_comment": "Marina-båter fortøyd i vannet rett utenfor Aker Brygge og Tjuvholmen (kysten går ved ca. y=0.68-0.70 her).",
+      "file": "water/boat-sail-a.glb",
+      "x": 0.402,
+      "y": 0.706,
+      "size": 0.42,
+      "rotationY": 0.25
+    },
+    {
+      "file": "water/boat-tug-a.glb",
+      "x": 0.372,
+      "y": 0.716,
+      "size": 0.38,
+      "rotationY": -0.4
+    },
+    {
+      "file": "water/boat-sail-a.glb",
+      "x": 0.338,
+      "y": 0.726,
+      "size": 0.4,
+      "rotationY": 0.9
+    },
+    {
+      "file": "water/boat-speed-b.glb",
+      "x": 0.31,
+      "y": 0.737,
+      "size": 0.3,
+      "rotationY": 1.6
+    },
     {
       "file": "water/boat-fishing-small.glb",
       "x": 0.42,

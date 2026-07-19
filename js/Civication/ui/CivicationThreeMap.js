@@ -58,8 +58,8 @@
   // Verdensmål: normalisert 0–1 mappes inn på et brett på MAP_W x MAP_D enheter.
   // Større brett (var 20) gir mer plass til flere steder; kamera/VIEW skaleres
   // med samme faktor så framing og tilt beholdes.
-  const MAP_W = 24;
-  const MAP_D = 24;
+  const MAP_W = 30;
+  const MAP_D = 30;
 
   // Terreng-/byhøyder (verdensenheter).
   const WATER_Y = 0.0;       // fjordens overflate
@@ -74,20 +74,22 @@
   // blir hovedinnholdet.
   const FILLER_DENSITY = 0.16;  // nesten borte: ekte stedsminiatyrer er byen, ikke generiske bokser
   const FILLER_SPACING = 1.35;  // større rutenett-steg -> mer avstand mellom bygg
-  const MAX_TREES = 620;
+  const MAX_TREES = 900;
 
-  const VIEW = 12.7;         // ortografisk halv-høyde ved zoom = 1 (skalert med brettet)
+  const VIEW = 15.9;         // ortografisk halv-høyde ved zoom = 1 (skalert med brettet)
   const MIN_ZOOM = 0.5;      // mer utzoom (se hele det større brettet)
   const MAX_ZOOM = 11.0;     // mer innzoom (helt ned på enkeltsteder)
   const ZOOM_STEP = 1.22;
   const MAX_DPR = 2;
 
   // Kamera-basis (gir ca. 48° tilt – rolig diorama-/modellbordvinkel). Skalert
-  // med brettet (×1.2) så utsnitt og vinkel er som før, bare på et større brett.
-  const CAM_BASE = { x: 0.18, y: 19.8, z: 17.04 };
+  // med brettet (24→30, ×1.25) så utsnitt og vinkel er som før, bare på et
+  // større brett: modellene beholder verdensstørrelse mens avstandene vokser,
+  // så landemerkene ikke klemmes/overlapper.
+  const CAM_BASE = { x: 0.22, y: 24.75, z: 21.3 };
   const TILT = Math.atan2(CAM_BASE.y, CAM_BASE.z); // radianer
   const START_ZOOM = 1.24;   // startutsnitt: fjord + sentrum + nord/vest-landemerker
-  const START_PAN = { x: 0.25, z: -0.35 };
+  const START_PAN = { x: 0.31, z: -0.44 };
 
   // Fargepalett – varm modellmaling, dyp fjord, dempet industri, grønn Marka.
   const PAL = {
@@ -841,11 +843,11 @@
     // sterkere, litt mer kjølig fill for dybde.
     scene.add(new THREE.HemisphereLight(0xe2ecf5, 0x474d3c, 0.66));
     const sun = new THREE.DirectionalLight(0xfff4e4, 1.36);
-    sun.position.set(-15, 24, 13); // konsekvent mykt lys oppe-til-venstre
+    sun.position.set(-19, 30, 16); // konsekvent mykt lys oppe-til-venstre (skalert med brettet)
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
     const sc = sun.shadow.camera;
-    sc.left = -18; sc.right = 18; sc.top = 18; sc.bottom = -18; sc.near = 1; sc.far = 80;
+    sc.left = -22; sc.right = 22; sc.top = 22; sc.bottom = -22; sc.near = 1; sc.far = 100;
     sun.shadow.bias = -0.0004;
     sun.shadow.normalBias = 0.5;
     scene.add(sun);
@@ -1125,13 +1127,13 @@
     const regions = [];
     // conifer = andel bartrær (gran/furu). Marka/Ekeberg er nesten bare barskog;
     // parker og villastrøk får mer løvtre.
-    if (land.markaNorth) regions.push({ poly: land.markaNorth, baseY: MARKA_H, n: 320, conifer: 0.9 });
-    if (land.ekebergRidge) regions.push({ poly: land.ekebergRidge, baseY: EKEBERG_H, n: 110, conifer: 0.78 });
-    regions.push({ poly: BYGDOY, baseY: BYGDOY_H, n: 60, conifer: 0.5 });
-    regions.push({ poly: WEST_SHORE, baseY: WEST_SHORE_H, n: 70, conifer: 0.85 });
+    if (land.markaNorth) regions.push({ poly: land.markaNorth, baseY: MARKA_H, n: 460, conifer: 0.9 });
+    if (land.ekebergRidge) regions.push({ poly: land.ekebergRidge, baseY: EKEBERG_H, n: 160, conifer: 0.78 });
+    regions.push({ poly: BYGDOY, baseY: BYGDOY_H, n: 90, conifer: 0.5 });
+    regions.push({ poly: WEST_SHORE, baseY: WEST_SHORE_H, n: 100, conifer: 0.85 });
     const greenDistricts = ["nordstrand", "stovner", "ullern"];
     (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
-      if (greenDistricts.includes(d.id)) regions.push({ poly: d.shape, baseY: GROUND_Y, n: 38, conifer: 0.35 });
+      if (greenDistricts.includes(d.id)) regions.push({ poly: d.shape, baseY: GROUND_Y, n: 56, conifer: 0.35 });
     });
 
     const pts = [];
@@ -1429,25 +1431,25 @@
     { id: "radhuset",         type: "city_hall",         x: 0.464, y: 0.613, scale: 1.08, rot: -0.03 },
     { id: "deichman",         type: "culture_block",     x: 0.516, y: 0.613, scale: 0.78, opts: { color: 0xd0c8b9, h: 0.72 } },
     { id: "akershus",         type: "fortress",          x: 0.505, y: 0.646, scale: 1.13, rot: 0.13 },
-    { id: "aker_brygge",      type: "waterfront",        x: 0.386, y: 0.655, scale: 1.12, rot: 0.28 },
+    { id: "aker_brygge",      type: "waterfront",        x: 0.394, y: 0.662, scale: 1.12, rot: 0.28 },
     { id: "tjuvholmen",       type: "waterfront",        x: 0.348, y: 0.680, scale: 0.94, rot: 0.12 },
     { id: "astrup_fearnley",  type: "art_museum",        x: 0.322, y: 0.703, scale: 0.86, rot: 0.18 },
     { id: "barcode",          type: "barcode_row",       x: 0.573, y: 0.622, scale: 0.94, rot: 0.46, opts: { hScale: 0.9 } },
     { id: "munch",            type: "culture_block",     x: 0.600, y: 0.636, scale: 0.88, rot: -0.32, opts: { color: 0x6b737c, h: 1.08, lean: true } },
-    { id: "operaen",          type: "opera",             x: 0.584, y: 0.657, scale: 1.12, rot: -0.18, baseY: 0.035 },
+    { id: "operaen",          type: "opera",             x: 0.575, y: 0.681, scale: 0.8, rot: -0.18, baseY: 0.035 },
     { id: "toyen_torg",       type: "town_square",       x: 0.626, y: 0.518, scale: 0.92, rot: -0.08, opts: { h: 0.28, color: 0xd8a675 } },
     { id: "kampen",           type: "wooden_houses",     x: 0.662, y: 0.552, scale: 0.9, rot: 0.18, opts: { h: 0.36, warm: true } },
     { id: "jordal",           type: "ice_arena",         x: 0.690, y: 0.562, scale: 1.05, rot: -0.12, opts: { color: 0xd9e3e6, ice: 0x9fd3e8 } },
     { id: "ekebergparken",    type: "sculpture_forest",  x: 0.660, y: 0.648, scale: 0.92, rot: 0.22 },
     { id: "bygdoynes",        type: "fram_museum",       x: 0.235, y: 0.756, scale: 0.95, rot: 0.35 },
-    { id: "sorenga",          type: "harbor_bath",       x: 0.612, y: 0.690, scale: 0.98, rot: -0.12 }
+    { id: "sorenga",          type: "harbor_bath",       x: 0.624, y: 0.699, scale: 0.98, rot: -0.12 }
   ];
 
   const LANDMARK_CLEAR_ZONES = [
     { id: "slottet", x: 0.404, y: 0.558, r: 0.037 },
     { id: "akershus", x: 0.505, y: 0.646, r: 0.035 },
     { id: "radhuset", x: 0.464, y: 0.613, r: 0.032 },
-    { id: "operaen", x: 0.584, y: 0.657, r: 0.034 },
+    { id: "operaen", x: 0.575, y: 0.681, r: 0.030 },
     { id: "barcode", x: 0.573, y: 0.622, r: 0.030 },
     { id: "ullevaal", x: 0.416, y: 0.255, r: 0.041 },
     { id: "bislett", x: 0.425, y: 0.458, r: 0.032 },
@@ -1458,7 +1460,7 @@
     { id: "astrup_fearnley", x: 0.322, y: 0.703, r: 0.026 },
     { id: "ekebergparken", x: 0.660, y: 0.648, r: 0.030 },
     { id: "bygdoynes", x: 0.235, y: 0.756, r: 0.032 },
-    { id: "sorenga", x: 0.612, y: 0.690, r: 0.032 }
+    { id: "sorenga", x: 0.624, y: 0.699, r: 0.032 }
   ];
 
   // --- Del 2 – Mapping: History Go-place <-> håndmodellert landemerke ---------
@@ -3901,7 +3903,7 @@
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color(PAL.background);
-    scene.fog = new THREE.Fog(PAL.background, 62, 130); // mindre tåke -> klarere terreng/bygg i dybden
+    scene.fog = new THREE.Fog(PAL.background, 78, 162); // mindre tåke -> klarere terreng/bygg i dybden (skalert med brettet)
     camera = new THREE.OrthographicCamera(-VIEW, VIEW, VIEW, -VIEW, 0.1, 200);
     raycaster = new THREE.Raycaster();
     // Delt, usynlig (men raycastbar) material for landmark-hit targets.
