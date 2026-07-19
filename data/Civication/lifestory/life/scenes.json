@@ -1164,6 +1164,381 @@
           "konsekvensTekst": "«Vent, er det SÅNN det henger sammen?» Å forklare det høyt lærte deg mer enn halvtimen i går."
         }
       ]
+    },
+    {
+      "id": "by_01_kulturell_omvei",
+      "threadId": "byen_og_deg",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "culture",
+            "kunst",
+            "musikk"
+          ]
+        }
+      },
+      "tittel": "En liten kulturell omvei",
+      "tekst": "Veien hjem kan legges forbi et sted du kjenner — et av de stedene som pleier å gi deg noe. Det koster et kvarter. Det pleier å gi mer tilbake.",
+      "valg": [
+        {
+          "id": "ta_omveien",
+          "tekst": "Ta omveien — kvarteret er verdt det",
+          "tone": "nysgjerrig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": -1
+            },
+            "flagg": {
+              "tok_kulturell_omvei": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Stedet gjør det stedet pleier å gjøre: gir deg noe du ikke visste at du manglet. Du går hjemover litt lettere."
+        },
+        {
+          "id": "rett_hjem",
+          "tekst": "Gå rett hjem — i dag er beina viktigere enn øynene",
+          "tone": "sliten",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": -1
+            },
+            "flagg": {
+              "droppet_omveien": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Sofaen vant. Den vinner ofte. Stedet står der i morgen også — det er både trøsten og problemet."
+        }
+      ]
+    },
+    {
+      "id": "by_01_groent_kveldslys",
+      "threadId": "byen_og_deg",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "nature",
+            "natur"
+          ]
+        }
+      },
+      "tittel": "Kveldslys over et grønt sted",
+      "tekst": "Lyset er i ferd med å bli gyllent, og et grønt sted du kjenner ligger ti minutter unna. En rolig kveldstur dit kan lande hele dagen.",
+      "valg": [
+        {
+          "id": "gaa_turen",
+          "tekst": "Gå turen mens lyset varer",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 4,
+              "energi": 2
+            },
+            "flagg": {
+              "tok_kveldsturen": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du rekker det gylne lyset. Ti minutter der ute rydder mer i hodet enn en time inne."
+        },
+        {
+          "id": "se_paa_lyset",
+          "tekst": "Se lyset fra vinduet — turen får vente",
+          "tone": "sliten",
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "energi": 1
+            },
+            "flagg": {
+              "saa_lyset_fra_vinduet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lyset er fint gjennom glasset også. Ikke like fint. Men fint."
+        }
+      ]
+    },
+    {
+      "id": "by_02_banen_frister",
+      "threadId": "byen_og_deg",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "sport"
+          ]
+        }
+      },
+      "tittel": "En bane du kjenner frister",
+      "tekst": "Kroppen har begynt å mase om bevegelse, og banen du kjenner dukker opp i tankene. Folkene der pleier å samles utover ettermiddagen.",
+      "valg": [
+        {
+          "id": "dra_til_banen",
+          "tekst": "Dra til banen — kroppen får det den maser om",
+          "tone": "energisk",
+          "effekter": {
+            "meters": {
+              "energi": 3,
+              "psyke": 3
+            },
+            "flagg": {
+              "dro_til_banen": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Svetten sitter løst og hodet blir stille. På vei hjem husker du hvorfor du alltid angrer på å IKKE dra — aldri på å dra."
+        },
+        {
+          "id": "kort_oekt_hjemme",
+          "tekst": "Ta en kort økt hjemme i stedet",
+          "tone": "praktisk",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "tok_hjemmeoekt": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tjue minutter på stuegulvet. Ikke banen, men kroppen sier takk likevel."
+        }
+      ]
+    },
+    {
+      "id": "by_02_lokalt_moete",
+      "threadId": "byen_og_deg",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "kalenderhendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "politics",
+            "politikk"
+          ]
+        }
+      },
+      "tittel": "Et lokalt møte i nærheten",
+      "tekst": "Det er et åpent lokalt møte i kveld, og du kjenner flere av temaene fra steder du har vært. Du kunne faktisk sagt noe der. Eller bare lyttet.",
+      "valg": [
+        {
+          "id": "gaa_paa_moetet",
+          "tekst": "Gå på møtet og hør hva byen din diskuterer",
+          "tone": "engasjert",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "synlighet": 3,
+              "energi": -2
+            },
+            "flagg": {
+              "gikk_paa_lokalmoetet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sa ikke noe høyt denne gangen. Men du forsto mer enn de fleste i salen — og noterte deg hvem som ikke gjorde det."
+        },
+        {
+          "id": "les_referatet",
+          "tekst": "Dropp møtet — les sakspapirene hjemme i ro",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "leste_sakspapirene": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du leser mer nøye enn de fleste som satt i salen. Neste gang vet du hva du går til."
+        }
+      ]
+    },
+    {
+      "id": "by_02_miljoeet_samles",
+      "threadId": "byen_og_deg",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "subculture",
+            "subkultur"
+          ]
+        }
+      },
+      "tittel": "Noe skjer under overflaten i kveld",
+      "tekst": "En kort melding fra miljøet ditt: det skjer noe i kveld, et sted de fleste ikke vet om. Du kjenner både adressen og folkene.",
+      "valg": [
+        {
+          "id": "stikk_innom",
+          "tekst": "Stikk innom — det er ditt miljø, tross alt",
+          "tone": "tilhørig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": -2,
+              "synlighet": -1
+            },
+            "flagg": {
+              "var_med_miljoeet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ingen spør hva du gjør eller hvor du står. Her er du bare deg. Det er derfor du kommer tilbake."
+        },
+        {
+          "id": "staa_over",
+          "tekst": "Stå over i kveld — du trenger kvelden selv",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": -1
+            },
+            "flagg": {
+              "sto_over_miljoeet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du ser bildene dagen etter. Det gjorde ikke vondt å stå over. Bare litt."
+        }
+      ]
+    },
+    {
+      "id": "venn_01_invitasjon_fra_byen",
+      "threadId": "folk_rundt_deg",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "social",
+            "people"
+          ]
+        }
+      },
+      "tittel": "En invitasjon fra en du har møtt",
+      "tekst": "En du har møtt gjennom byen — ikke en gammel venn, men en du husker godt — spør om du blir med på noe i kveld. Nye folk koster krefter. De gir også noe gamle ikke kan.",
+      "valg": [
+        {
+          "id": "bli_med",
+          "tekst": "Bli med — nettverket ditt ble ikke bygget på sofaen",
+          "tone": "åpen",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "synlighet": 2,
+              "energi": -3
+            },
+            "flagg": {
+              "ble_med_ny_kontakt": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Kvelden ble annerledes enn du trodde, på den gode måten. Nye folk stiller nye spørsmål."
+        },
+        {
+          "id": "takk_nei_hoflig",
+          "tekst": "Takk høflig nei — men foreslå en kaffe snart",
+          "tone": "balansert",
+          "effekter": {
+            "meters": {
+              "energi": 1,
+              "psyke": 1
+            },
+            "flagg": {
+              "foreslo_kaffe_senere": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Kaffe funker! Si fra når.» Døra er ikke lukket — den er satt på gløtt, på dine premisser."
+        }
+      ]
     }
   ]
 }

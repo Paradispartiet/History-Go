@@ -120,6 +120,15 @@ er bare kandidat hvis alle betingelsene er oppfylt. Toppnøklene er
   grense kreves, `min > max` avvises.
 - **threads**: krever nøyaktig oppgitt trådstatus. Tråd uten threadState
   regnes som `dormant` (ikke startet).
+- **profil**: `{ "tags": ["culture", "natur"] }` — kandidat hvis spilleren
+  har MINST ÉN av taggene fra History GO-profilen (ProfileSignalBridge:
+  engelske temategs som `culture`/`sport`/`nature`/`politics`/`social`/
+  `subculture` + norske domenetags fra samlingen). Broen er async, så
+  `lifestoryShellBridge.refreshProfileSnapshot()` holder et synkront
+  snapshot (`CivicationLifestoryProfileTags`) oppdatert ved `civi:booted`
+  og `updateProfile`. **Uten snapshot fyrer profilgatede scener aldri** —
+  profilinnhold er bonus, og to spillere med samme rolle men ulik History
+  GO-profil får ulikt privatliv.
 
 Validering skjer i `lifestoryContent.js` (kjente nøkler, kjente
 målere/relasjoner/tråder), evaluering i `lifestoryRunner.js`
@@ -393,9 +402,11 @@ Rollefarget tekst hører hjemme i rollens egne scener.
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
-og kveldsro. Gjenstår: flere av de 45 (natur/kultur/trening/politikk-
-temaene), og `profil`-conditions som kobler `ProfileSignalBridge` til
-scenevalg — da får spillere med ulik History GO-profil ulikt privatliv.
+og kveldsro. Batch 2 la til `profil`-conditions i motoren og seks
+profilgatede scener på tråden «Byen og deg» (kulturell omvei, grønt
+kveldslys, banen, lokalmøtet, miljøet, invitasjonen) — privatlivet speiler
+nå History GO-profilen. Gjenstår: resten av de 45 mailene og navngitt
+privat persongalleri.
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp

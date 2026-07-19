@@ -34,7 +34,7 @@
   const THREAD_STATUSES = ["active", "completed", "dormant", "escalated"];
 
   /** Gyldige toppnøkler i scene.conditions. */
-  const CONDITION_KEYS = ["flagg", "meters", "relasjoner", "threads"];
+  const CONDITION_KEYS = ["flagg", "meters", "relasjoner", "threads", "profil"];
 
   /**
    * @typedef {Object} LifestoryChoice
@@ -316,6 +316,30 @@
     for (const [threadId, status] of Object.entries(cond.threads || {})) {
       if (!threadIds.has(threadId)) push(`${where}.threads: ukjent tråd "${threadId}"`);
       if (THREAD_STATUSES.indexOf(status) === -1) push(`${where}.threads.${threadId}: ugyldig status "${status}"`);
+    }
+    if (cond.profil !== undefined) {
+      // profil: { tags: [...] } — scenen er kandidat hvis spilleren har MINST
+      // ÉN av taggene (fra ProfileSignalBridge: engelske temategs som
+      // "culture"/"sport"/"nature" + norske domenetags fra samlingen).
+      // Formen valideres strengt; medlemskap i vokabularet valideres ikke
+      // (en ukjent tag gir en scene som aldri fyrer, aldri et kræsj).
+      const profil = cond.profil;
+      if (!profil || typeof profil !== "object" || Array.isArray(profil)) {
+        push(`${where}.profil må være { tags: [...] }`);
+      } else {
+        for (const key of Object.keys(profil)) {
+          if (key !== "tags") push(`${where}.profil: ukjent nøkkel "${key}"`);
+        }
+        if (!Array.isArray(profil.tags) || !profil.tags.length) {
+          push(`${where}.profil.tags må være en ikke-tom liste`);
+        } else {
+          for (const tag of profil.tags) {
+            if (typeof tag !== "string" || !tag.trim() || tag !== tag.toLowerCase()) {
+              push(`${where}.profil.tags: ugyldig tag "${tag}" (små bokstaver, ikke tom)`);
+            }
+          }
+        }
+      }
     }
   }
 
