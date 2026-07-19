@@ -1,0 +1,138 @@
+name: Oslo coordinate batch 31 diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run normative Geonorge address diagnostics
+        run: |
+          set +e
+          mkdir -p reports/oslo-coordinate-control-batch-31/diagnostic
+          node --experimental-strip-types tools/address-first-coordinate-finder.mts --address "Haugerudtunet 1 Oslo" \
+            > reports/oslo-coordinate-control-batch-31/diagnostic/haugerudtunet_1.json
+          echo $? > reports/oslo-coordinate-control-batch-31/diagnostic/haugerudtunet_1.status
+
+          node --experimental-strip-types tools/address-first-coordinate-finder.mts --address "Alfaset 3 Oslo" \
+            > reports/oslo-coordinate-control-batch-31/diagnostic/alfaset_3.json
+          echo $? > reports/oslo-coordinate-control-batch-31/diagnostic/alfaset_3.status
+
+          node --experimental-strip-types tools/address-first-coordinate-finder.mts --address "Industrivei 27 Oslo" \
+            > reports/oslo-coordinate-control-batch-31/diagnostic/industrivei_27.json
+          echo $? > reports/oslo-coordinate-control-batch-31/diagnostic/industrivei_27.status
+          exit 0
+
+      - name: Query exact OSM object candidates
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-31/diagnostic
+          ua='History-Go-coordinate-audit/1.0 (Paradispartiet/History-Go)'
+
+          for spec in \
+            'alnaelva|Alnaelva Oslo Norway' \
+            'alnaelvstien|Alnaelvstien Oslo Norway' \
+            'alnastien|Alnastien Oslo Norway' \
+            'trosterud_friomrade|Trosterud friområde Oslo Norway' \
+            'furuset_haugerud_skogbelte|Furuset Haugerud skogbelte Oslo Norway' \
+            'alnabru_godsterminal|Alnabru godsterminal Oslo Norway'
+          do
+            key=${spec%%|*}
+            q=${spec#*|}
+            curl --fail --silent --show-error --get \
+              -H "User-Agent: $ua" \
+              --data-urlencode 'format=jsonv2' \
+              --data-urlencode 'limit=10' \
+              --data-urlencode 'extratags=1' \
+              --data-urlencode 'namedetails=1' \
+              --data-urlencode "q=$q" \
+              'https://nominatim.openstreetmap.org/search' \
+              > "$out/${key}_nominatim.json" || echo '[]' > "$out/${key}_nominatim.json"
+          done
+
+          cat > /tmp/alna-overpass.txt <<'QUERY'
+          [out:json][timeout:60];
+          area["name"="Oslo"]["boundary"="administrative"]->.a;
+          (
+            relation(area.a)["name"~"^(Alna|Alnaelva)$",i];
+            way(area.a)["waterway"]["name"~"^(Alna|Alnaelva)$",i];
+            relation(area.a)["route"]["name"~"Alna",i];
+            way(area.a)["highway"]["name"~"Alna(elv)?stien|Alnastien",i];
+            relation(area.a)["name"~"Alna(elv)?stien|Alnastien",i];
+            way(area.a)["name"~"Alna(elv)?stien|Alnastien",i];
+          );
+          out center tags;
+          QUERY
+
+          cat > /tmp/alnabru-overpass.txt <<'QUERY'
+          [out:json][timeout:60];
+          area["name"="Oslo"]["boundary"="administrative"]->.a;
+          (
+            nwr(area.a)["name"~"Alnabru",i]["railway"];
+            nwr(area.a)["name"~"Alnabru",i]["landuse"~"railway|industrial"];
+            nwr(area.a)["name"~"Alnabru.*terminal|Alnabruterminal",i];
+          );
+          out center tags;
+          QUERY
+
+          for pair in 'alna|/tmp/alna-overpass.txt' 'alnabru|/tmp/alnabru-overpass.txt'; do
+            key=${pair%%|*}; query=${pair#*|}
+            success=0
+            for endpoint in \
+              'https://overpass-api.de/api/interpreter' \
+              'https://overpass.kumi.systems/api/interpreter' \
+              'https://overpass.nchc.org.tw/api/interpreter'
+            do
+              if curl --max-time 90 --retry 1 --fail --silent --show-error \
+                --data-urlencode "data@${query}" "$endpoint" > "$out/${key}_overpass.json"; then
+                success=1; break
+              fi
+            done
+            if [ "$success" -ne 1 ]; then echo '{"elements":[]}' > "$out/${key}_overpass.json"; fi
+          done
+
+      - name: Build compact result
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const dir = 'reports/oslo-coordinate-control-batch-31/diagnostic';
+          const read = (name) => JSON.parse(fs.readFileSync(`${dir}/${name}`, 'utf8'));
+          const result = {
+            addresses: {
+              haugerudtunet_1: read('haugerudtunet_1.json'),
+              alfaset_3: read('alfaset_3.json'),
+              industrivei_27: read('industrivei_27.json'),
+            },
+            nominatim: {
+              alnaelva: read('alnaelva_nominatim.json'),
+              alnaelvstien: read('alnaelvstien_nominatim.json'),
+              alnastien: read('alnastien_nominatim.json'),
+              trosterud_friomrade: read('trosterud_friomrade_nominatim.json'),
+              furuset_haugerud_skogbelte: read('furuset_haugerud_skogbelte_nominatim.json'),
+              alnabru_godsterminal: read('alnabru_godsterminal_nominatim.json'),
+            },
+            overpass: {
+              alna: read('alna_overpass.json').elements ?? [],
+              alnabru: read('alnabru_overpass.json').elements ?? [],
+            },
+          };
+          fs.writeFileSync(`${dir}/result.json`, JSON.stringify(result, null, 2) + '\n');
+          NODE
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-31-diagnostic
+          path: reports/oslo-coordinate-control-batch-31/diagnostic/result.json
+          if-no-files-found: error
