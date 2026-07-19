@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T23:38:20.932Z
+Generert: 2026-07-19T23:42:37.088Z
 
 ## Oppsummering
 - Aktive filer validert: **504**
 - Antall steder validert: **1215**
 - Harde feil: **0**
-- Varsler: **430**
-- Coordinate review candidates: **713** signaler fordelt på **570** steder
+- Varsler: **428**
+- Coordinate review candidates: **711** signaler fordelt på **568** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -527,13 +527,11 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - Ingen
 
 ## Varsler
-- data/places/by/oslo/places_by.json#torggata: coordinate_regression_risk (155 m fra tidligere verified)
 - data/places/by/oslo/places_by.json#gronland_basarene: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
-- data/places/by/oslo/places_by.json#storgata: coordinate_regression_risk (216 m fra tidligere verified)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
 - data/places/film/oslo/places_oslo_film.json#saga_kino: coordStatus=verified uten coordPrecisionM
@@ -960,13 +958,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 713 signaler fordelt på 570 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordinate_regression_risk | 2 |
 | coordStatus=verified uten coordPrecisionM | 109 |
 | lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 99 |
@@ -976,13 +973,6 @@ Totalt 713 signaler fordelt på 570 steder. Et sted kan ha flere signaler. Kandi
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
-
-### coordinate_regression_risk (2)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| torggata | Torggata | by | data/places/by/oslo/places_by.json | 59.91535 | 10.75335 | 180 | Flyttet ~155 m fra tidligere verified. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-| storgata | Storgata | by | data/places/by/oslo/places_by.json | 59.9154 | 10.7539 | 230 | Flyttet ~216 m fra tidligere verified. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (109)
 
