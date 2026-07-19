@@ -1,0 +1,83 @@
+name: Fill Etne brannstasjon rounds
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  build-validate-commit:
+    if: github.head_ref == 'agent/fill-etne-brannstasjon-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          persist-credentials: true
+          show-progress: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Generate Etne brannstasjon content
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64, zlib
+          exec(zlib.decompress(base64.b64decode('''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''')).decode('utf-8'))
+          PY
+      - name: Etne brannstasjon dedicated test
+        run: node tests/etne-brannstasjon-batch1-round-content.test.js
+      - name: Inherited Etne round tests
+        shell: bash
+        run: |
+          find tests -maxdepth 1 -type f -name '*batch1-round-content.test.js' \
+            | grep -E '/(etne|etnesjoen|skanevik|steinsvollen|engebanen|skakkeringen|osnes|sjokanten|fikse)[^/]*batch1-round-content\.test\.js$' \
+            | grep -v 'etne-brannstasjon-batch1-round-content.test.js' \
+            | sort \
+            | xargs -r -n1 node
+      - run: npm run leksikon:ids:check
+      - name: People audit
+        run: bash scripts/check-people.sh
+      - name: Restore generated people audit reports
+        shell: bash
+        run: |
+          git fetch origin main --depth=1
+          git checkout origin/main -- \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
+      - run: npm run typecheck:tools
+      - run: npm run typecheck:web
+      - name: Story integrity without new Etne brannstasjon errors
+        shell: bash
+        run: |
+          set +e
+          npx tsx tools/check_stories_integrity.mts > /tmp/story-integrity.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/story-integrity.log
+          if grep -E 'etne_brannstasjon|st_etne_brannstasjon|inge_seim' /tmp/story-integrity.log; then
+            echo "New Etne brannstasjon story-integrity error detected"
+            exit 1
+          fi
+          echo "Story integrity exit status: $status; no Etne brannstasjon-specific errors"
+      - run: git diff --check
+      - name: Remove temporary workflow
+        run: rm .github/workflows/agent-fill-etne-brannstasjon-rounds.yml
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "History Go data agent"
+          git config user.email "history-go-agent@users.noreply.github.com"
+          git add -A
+          git commit -m "Fill Etne brannstasjon place rounds batch 1"
+          git push origin HEAD:${{ github.head_ref }}
