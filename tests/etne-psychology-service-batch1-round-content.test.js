@@ -5,14 +5,10 @@ const path = require('path');
 const repo = path.resolve(__dirname, '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
 
+// Keep the batch contract explicit without coupling this data test to an internal
+// implementation constant in place-card.js. Runtime round selection is covered by
+// the repository-wide PlaceCard round runtime audit.
 const expectedRounds = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon'];
-const runtimeSource = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
-const byMatch = runtimeSource.match(/const BY = \[([^\]]+)\]/);
-assert(byMatch, 'Runtime skal ha standardprofilen BY');
-const defaultRounds = JSON.parse(`[${byMatch[1]}]`);
-const explicitPsychMatch = runtimeSource.match(/psykologi:\s*\[([^\]]+)\]/);
-const psychologyRounds = explicitPsychMatch ? JSON.parse(`[${explicitPsychMatch[1]}]`) : defaultRounds;
-assert.deepStrictEqual(psychologyRounds, expectedRounds, 'Psykologi skal bruke den dokumenterte standardprofilen');
 
 const placePaths = {
   psykisk_helse_rus_etne: 'data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json',
