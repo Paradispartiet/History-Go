@@ -1,0 +1,46 @@
+name: Fix Oslo coordinate batch 33 workflow syntax
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-33-final
+          fetch-depth: 0
+          show-progress: false
+      - name: Fix source-summary tee placement
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/oslo-coordinate-batch-33-final.yml')
+          lines=p.read_text().splitlines()
+          target='          python3 - <<\'PY\''
+          marker='          | tee "$out/source-resolution-summary.json"'
+          marker_index=lines.index(marker)
+          candidates=[i for i,line in enumerate(lines[:marker_index]) if line==target]
+          if not candidates:
+              raise SystemExit('Source-resolution Python heredoc not found')
+          idx=candidates[-1]
+          lines[idx]=target+' | tee "$out/source-resolution-summary.json"'
+          lines.pop(marker_index)
+          p.write_text('\n'.join(lines)+'\n')
+          PY
+          grep -F "python3 - <<'PY' | tee \"\$out/source-resolution-summary.json\"" .github/workflows/oslo-coordinate-batch-33-final.yml
+          git diff --check
+      - name: Commit workflow fix
+        run: |
+          rm .github/workflows/fix-oslo-coordinate-batch-33-workflow.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/oslo-coordinate-batch-33-final.yml .github/workflows/fix-oslo-coordinate-batch-33-workflow.yml
+          git commit -m 'Fix Batch 33 workflow source capture'
+          git push origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-33-final
