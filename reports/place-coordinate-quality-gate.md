@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T08:46:52.685Z
+Generert: 2026-07-19T08:54:03.400Z
 
 ## Oppsummering
-- Aktive filer validert: **480**
-- Antall steder validert: **1178**
+- Aktive filer validert: **482**
+- Antall steder validert: **1180**
 - Harde feil: **0**
-- Varsler: **405**
-- Coordinate review candidates: **689** signaler fordelt på **543** steder
+- Varsler: **401**
+- Coordinate review candidates: **685** signaler fordelt på **539** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -498,6 +498,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08.json
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11.json
+- data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json
+- data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json
 
 ## Harde feil
 - Ingen
@@ -507,11 +509,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
-- data/places/by/oslo/places_by.json#ullevål_hageby: coordinate_regression_risk (744 m fra tidligere semantic_anchor)
-- data/places/by/oslo/places_by.json#romsaås: coordinate_regression_risk (885 m fra tidligere semantic_anchor)
-- data/places/by/oslo/places_by.json#rodelokka: coordinate_regression_risk (284 m fra tidligere semantic_anchor)
-- data/places/by/oslo/places_by.json#vinderen: coordinate_regression_risk (591 m fra tidligere semantic_anchor)
-- data/places/by/oslo/places_by.json#ullern: coordinate_regression_risk (664 m fra tidligere semantic_anchor)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
 - data/places/film/oslo/places_oslo_film.json#saga_kino: coordStatus=verified uten coordPrecisionM
@@ -908,41 +905,31 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json#lokomotivverkstedet: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json#tveten_gard: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11.json#minneparken_gamlebyen: coordStatus=verified uten coordPrecisionM
+- data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json#frysja_33_brekke_kraftstasjon: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 689 signaler fordelt på 543 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 685 signaler fordelt på 539 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordinate_regression_risk | 5 |
 | lineært sted uten anchors | 78 |
 | lav koordinatpresisjon (<4 desimaler) | 105 |
-| coordStatus=verified uten coordPrecisionM | 72 |
+| coordStatus=verified uten coordPrecisionM | 73 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 96 |
 | park/stort område uten anchors eller coordNote | 134 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
 | ligger svært langt fra de andre stedene i samme fil | 118 |
 
-### coordinate_regression_risk (5)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ullevål_hageby | Ullevål Hageby | by | data/places/by/oslo/places_by.json | 59.9435082 | 10.7337546 | 240 | Flyttet ~744 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-| romsaås | Romsås | by | data/places/by/oslo/places_by.json | 59.9664278 | 10.89815 | 300 | Flyttet ~885 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-| rodelokka | Rodeløkka | by | data/places/by/oslo/places_by.json | 59.9246703 | 10.7696441 | 220 | Flyttet ~284 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-| vinderen | Vinderen | by | data/places/by/oslo/places_by.json | 59.9418585 | 10.7068248 | 260 | Flyttet ~591 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-| ullern | Ullern | by | data/places/by/oslo/places_by.json | 59.9255671 | 10.6557981 | 280 | Flyttet ~664 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-
 ### lineært sted uten anchors (78)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| christiania_torv | Christiania Torv | by | data/places/by/oslo/places_by.json | 59.9104 | 10.7397 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| christiania_torv | Christiania Torv | by | data/places/by/oslo/places_by.json | 59.9102351 | 10.7395879 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | prinds_christian_augusts_minde | Prinds Christian Augusts Minde | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.915289 | 10.75595 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | naeringsliv | data/places/naeringsliv/akershus/eidsvoll_verk_andelva.json | 60.3297 | 11.2575 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | veien_kulturminnepark | Veien Kulturminnepark | historie | data/places/historie/buskerud/places_historie_buskerud_batch1.json | 60.1842 | 10.2504 | 420 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -1130,7 +1117,7 @@ Totalt 689 signaler fordelt på 543 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### coordStatus=verified uten coordPrecisionM (72)
+### coordStatus=verified uten coordPrecisionM (73)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1206,6 +1193,7 @@ Totalt 689 signaler fordelt på 543 steder. Et sted kan ha flere signaler. Kandi
 | lokomotivverkstedet | Lokomotivverkstedet | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.90431860322039 | 10.763516120997933 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | tveten_gard | Tveten gård | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.913061375377836 | 10.836900380109173 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | minneparken_gamlebyen | Minneparken | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11.json | 59.90616 | 10.76884 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| frysja_33_brekke_kraftstasjon | Frysja 33 – Brekke kraftstasjon | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json | 59.96652761473437 | 10.776657553367157 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### stasjon/park/gate/torg/elv uten coordinate metadata (96)
 

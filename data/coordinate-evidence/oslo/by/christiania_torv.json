@@ -1,0 +1,65 @@
+{
+  "placeId": "christiania_torv",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9102351,
+    "lon": 10.7395879,
+    "r": 150,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 594329484 – Christiania torv",
+    "coordType": "square_center",
+    "coordNote": "Eksakt navngitt OSM-way med place=square for Christiania torv, kryssjekket mot den separate canonical bygningen `gamle_radhus`. Wayens geometriske senter brukes som area-anchor for selve torvet; Gamle Rådhus er et eget fysisk sted ved plassen."
+  },
+  "identity": {
+    "currentName": "Christiania Torv",
+    "resolvedIdentity": "Christiania torv som offentlig plass i Kvadraturen, fysisk separat fra Gamle Rådhus",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "square",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt plassgeometri",
+    "fysisk overlap-audit mot separate canonical bygg"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 594329484 – Christiania torv",
+      "sourceUrl": "https://www.openstreetmap.org/way/594329484",
+      "sourceObjectId": "osm-way:594329484",
+      "sourceQuality": "named_object_geometry",
+      "finding": "OSM-objektet er eksplisitt navngitt Christiania Torv, klassifisert som place=square og avgrenser selve plassen.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt plassgeometri gir et sporbart area-anchor uten å bruke et nærliggende bygg som stedserstatning."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:594329484",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9102351,
+      "lon": 10.7395879,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinatkontrakt anvendt på canonical place."
+  },
+  "notes": [
+    "Koordinatkontrakt anvendt i batch 28."
+  ]
+}

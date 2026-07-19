@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T08:47:00.319Z
+Generert: 2026-07-19T08:54:10.866Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -123,3 +123,5 @@ Generert: 2026-07-19T08:47:00.319Z
 | vinderen | data/coordinate-evidence/oslo/by/vinderen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ullern | data/coordinate-evidence/oslo/by/ullern.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | spikersuppa | data/coordinate-evidence/oslo/by/spikersuppa.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bankplassen | data/coordinate-evidence/oslo/by/bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| christiania_torv | data/coordinate-evidence/oslo/by/christiania_torv.json | applied_to_place | do_not_change_coordinates_yet | OK |
