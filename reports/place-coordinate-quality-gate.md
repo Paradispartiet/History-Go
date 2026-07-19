@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T08:31:26.769Z
+Generert: 2026-07-19T08:46:52.685Z
 
 ## Oppsummering
 - Aktive filer validert: **480**
 - Antall steder validert: **1178**
 - Harde feil: **0**
-- Varsler: **400**
-- Coordinate review candidates: **684** signaler fordelt på **538** steder
+- Varsler: **405**
+- Coordinate review candidates: **689** signaler fordelt på **543** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -507,6 +507,11 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#ullevål_hageby: coordinate_regression_risk (744 m fra tidligere semantic_anchor)
+- data/places/by/oslo/places_by.json#romsaås: coordinate_regression_risk (885 m fra tidligere semantic_anchor)
+- data/places/by/oslo/places_by.json#rodelokka: coordinate_regression_risk (284 m fra tidligere semantic_anchor)
+- data/places/by/oslo/places_by.json#vinderen: coordinate_regression_risk (591 m fra tidligere semantic_anchor)
+- data/places/by/oslo/places_by.json#ullern: coordinate_regression_risk (664 m fra tidligere semantic_anchor)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
 - data/places/film/oslo/places_oslo_film.json#saga_kino: coordStatus=verified uten coordPrecisionM
@@ -906,12 +911,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 684 signaler fordelt på 538 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 689 signaler fordelt på 543 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
+| coordinate_regression_risk | 5 |
 | lineært sted uten anchors | 78 |
 | lav koordinatpresisjon (<4 desimaler) | 105 |
 | coordStatus=verified uten coordPrecisionM | 72 |
@@ -920,6 +926,16 @@ Totalt 684 signaler fordelt på 538 steder. Et sted kan ha flere signaler. Kandi
 | svært stor r (>=500 m) uten coordNote | 66 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
 | ligger svært langt fra de andre stedene i samme fil | 118 |
+
+### coordinate_regression_risk (5)
+
+| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ullevål_hageby | Ullevål Hageby | by | data/places/by/oslo/places_by.json | 59.9435082 | 10.7337546 | 240 | Flyttet ~744 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
+| romsaås | Romsås | by | data/places/by/oslo/places_by.json | 59.9664278 | 10.89815 | 300 | Flyttet ~885 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
+| rodelokka | Rodeløkka | by | data/places/by/oslo/places_by.json | 59.9246703 | 10.7696441 | 220 | Flyttet ~284 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
+| vinderen | Vinderen | by | data/places/by/oslo/places_by.json | 59.9418585 | 10.7068248 | 260 | Flyttet ~591 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
+| ullern | Ullern | by | data/places/by/oslo/places_by.json | 59.9255671 | 10.6557981 | 280 | Flyttet ~664 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### lineært sted uten anchors (78)
 

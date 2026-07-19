@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T08:31:32.930Z
+Generert: 2026-07-19T08:47:00.319Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -116,3 +116,10 @@ Generert: 2026-07-19T08:31:32.930Z
 | christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | needs_research | needs_identity_split | OK |
 | akerselva_industri | data/coordinate-evidence/oslo/naeringsliv/akerselva_industri.json | needs_research | needs_geometry | OK |
+| ullevål_hageby | data/coordinate-evidence/oslo/by/ullevål_hageby.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| romsaås | data/coordinate-evidence/oslo/by/romsaås.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| rodelokka | data/coordinate-evidence/oslo/by/rodelokka.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vaalerenga | data/coordinate-evidence/oslo/by/vaalerenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vinderen | data/coordinate-evidence/oslo/by/vinderen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ullern | data/coordinate-evidence/oslo/by/ullern.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| spikersuppa | data/coordinate-evidence/oslo/by/spikersuppa.json | applied_to_place | do_not_change_coordinates_yet | OK |

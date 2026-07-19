@@ -1,0 +1,76 @@
+{
+  "placeId": "ullern",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9255671,
+    "lon": 10.6557981,
+    "r": 280,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 1370932493 – Ullern",
+    "coordType": "district_anchor",
+    "coordNote": "Navngitt OSM-suburb-node for Ullern, kryssjekket mot Oslo byleksikons dokumenterte strøk. Den bredere administrative bydel-relasjonen er eksplisitt avvist; dette punktet er et representativt area-anchor for strøket som place-recorden beskriver."
+  },
+  "identity": {
+    "currentName": "Ullern",
+    "resolvedIdentity": "Ullern som boligstrøk, ikke hele administrative bydel",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "dokumentert fysisk område-/objektidentitet",
+    "navngitt OSM-objekt",
+    "canonical duplikatkontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Ullern (strøk)",
+      "sourceUrl": "https://oslobyleksikon.no/side/Ullern_(str%C3%B8k)",
+      "sourceObjectId": "identity:ullern",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon – Ullern (strøk) dokumenterer Ullern som boligstrøk, ikke hele administrative bydel.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden løser place-identiteten og avgrenser hvilken type fysisk sted recorden representerer."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1370932493 – Ullern",
+      "sourceUrl": "https://www.openstreetmap.org/node/1370932493",
+      "sourceObjectId": "osm-node:1370932493",
+      "sourceQuality": "named_object_geometry",
+      "finding": "OSM-objektet er eksplisitt navngitt Ullern og brukes som det sporbare fysiske ankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Navngitt objekt matcher den dokumenterte place-identiteten; alternative stasjons-/administrative treff er avvist der de finnes."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1370932493",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9255671,
+      "lon": 10.6557981,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinatkontrakt anvendt på canonical place."
+  },
+  "notes": [
+    "Koordinatkontrakt anvendt i batch 27."
+  ]
+}

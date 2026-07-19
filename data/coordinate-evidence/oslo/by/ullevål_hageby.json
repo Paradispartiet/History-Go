@@ -1,0 +1,76 @@
+{
+  "placeId": "ullevål_hageby",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9435082,
+    "lon": 10.7337546,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 1125978057 – Ullevål hageby",
+    "coordType": "district_anchor",
+    "coordNote": "Navngitt OSM-neighbourhood-node for Ullevål hageby, kryssjekket mot Oslo byleksikons dokumenterte hagebyområde. Punktet brukes som representativt area-anchor for boligområdet og hevdes ikke å være et geometrisk sentrum eller en full områdeavgrensning."
+  },
+  "identity": {
+    "currentName": "Ullevål Hageby",
+    "resolvedIdentity": "Ullevål hageby som planlagt bolig- og hagebyområde",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "dokumentert fysisk område-/objektidentitet",
+    "navngitt OSM-objekt",
+    "canonical duplikatkontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Ullevål hageby",
+      "sourceUrl": "https://oslobyleksikon.no/side/Ullev%C3%A5l_hageby",
+      "sourceObjectId": "identity:ullevål_hageby",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon – Ullevål hageby dokumenterer Ullevål hageby som planlagt bolig- og hagebyområde.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden løser place-identiteten og avgrenser hvilken type fysisk sted recorden representerer."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1125978057 – Ullevål hageby",
+      "sourceUrl": "https://www.openstreetmap.org/node/1125978057",
+      "sourceObjectId": "osm-node:1125978057",
+      "sourceQuality": "named_object_geometry",
+      "finding": "OSM-objektet er eksplisitt navngitt Ullevål Hageby og brukes som det sporbare fysiske ankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Navngitt objekt matcher den dokumenterte place-identiteten; alternative stasjons-/administrative treff er avvist der de finnes."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1125978057",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9435082,
+      "lon": 10.7337546,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinatkontrakt anvendt på canonical place."
+  },
+  "notes": [
+    "Koordinatkontrakt anvendt i batch 27."
+  ]
+}

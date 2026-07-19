@@ -1,0 +1,76 @@
+{
+  "placeId": "romsaås",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9664278,
+    "lon": 10.89815,
+    "r": 300,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 963813366 – Romsås",
+    "coordType": "district_anchor",
+    "coordNote": "Navngitt OSM-suburb-node for Romsås, kryssjekket mot Oslo byleksikons dokumenterte boligstrøk. Suburb-noden brukes som representativt area-anchor; Romsås T-banestasjon er eksplisitt avvist som hovedanker for hele området."
+  },
+  "identity": {
+    "currentName": "Romsås",
+    "resolvedIdentity": "Romsås som boligstrøk og drabantby",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "dokumentert fysisk område-/objektidentitet",
+    "navngitt OSM-objekt",
+    "canonical duplikatkontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Romsås (strøk)",
+      "sourceUrl": "https://oslobyleksikon.no/side/Roms%C3%A5s_(str%C3%B8k)",
+      "sourceObjectId": "identity:romsaås",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon – Romsås (strøk) dokumenterer Romsås som boligstrøk og drabantby.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden løser place-identiteten og avgrenser hvilken type fysisk sted recorden representerer."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 963813366 – Romsås",
+      "sourceUrl": "https://www.openstreetmap.org/node/963813366",
+      "sourceObjectId": "osm-node:963813366",
+      "sourceQuality": "named_object_geometry",
+      "finding": "OSM-objektet er eksplisitt navngitt Romsås og brukes som det sporbare fysiske ankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Navngitt objekt matcher den dokumenterte place-identiteten; alternative stasjons-/administrative treff er avvist der de finnes."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:963813366",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9664278,
+      "lon": 10.89815,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinatkontrakt anvendt på canonical place."
+  },
+  "notes": [
+    "Koordinatkontrakt anvendt i batch 27."
+  ]
+}
