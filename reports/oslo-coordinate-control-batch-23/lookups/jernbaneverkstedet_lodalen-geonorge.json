@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Dyvekes vei 2 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Dyvekes vei 2 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Dyvekes%20vei%202%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:11370:2",
+  "coordinate": {
+    "lat": 59.90436199249329,
+    "lon": 10.774336415114837,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11370:2",
+    "address": {
+      "street": "Dyvekes vei",
+      "number": "2",
+      "postcode": "0192",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Dyvekes vei 2, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Dyvekes vei",
+    "adressetekst": "Dyvekes vei 2",
+    "adressetilleggsnavn": null,
+    "adressekode": 11370,
+    "nummer": 2,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 233,
+    "bruksnummer": 200,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0192",
+    "adressetekstutenadressetilleggsnavn": "Dyvekes vei 2",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90436199249329,
+      "lon": 10.774336415114837
+    },
+    "oppdateringsdato": "2020-06-15T18:02:02"
+  }
+}

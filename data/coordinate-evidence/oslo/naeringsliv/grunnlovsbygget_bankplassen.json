@@ -1,0 +1,83 @@
+{
+  "placeId": "grunnlovsbygget_bankplassen",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.908727042084166,
+    "lon": 10.74038191009086,
+    "r": 25,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Bankplassen 3, kryssjekket mot Nasjonalmuseets identifikasjon av den tidligere Norges Bank-bygningen. Det eldre manuelle punktet erstattes av det offisielle bygningsankeret."
+  },
+  "identity": {
+    "currentName": "Den gamle Norges Bank",
+    "resolvedIdentity": "Den gamle Norges Bank",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisiell adresse",
+    "dokumentert kobling mellom adressen og det fysiske stedet",
+    "fysisk overlap-audit"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bankplassen%203%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10412:3",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge returnerte ett entydig treff for Bankplassen 3 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge for Bankplassen 3, kryssjekket mot Nasjonalmuseets identifikasjon av den tidligere Norges Bank-bygningen. Det eldre manuelle punktet erstattes av det offisielle bygningsankeret."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Nasjonalmuseet – Nasjonalmuseet Arkitektur / Bankplassen 3",
+      "sourceUrl": "https://www.nasjonalmuseet.no/besok/visningssteder/nasjonalmuseet_arkitektur/norsk-arkitekturmuseums-historie/",
+      "sourceObjectId": "identity:grunnlovsbygget_bankplassen",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Nasjonalmuseet dokumenterer Bankplassen 3 som den tidligere Norges Bank-bygningen, i dag del av Nasjonalmuseet Arkitektur. Geonorge gir ett entydig adressepunkt for Bankplassen 3.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden kobler det navngitte History Go-stedet til adressen som brukes som koordinatanker."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Bankplassen 3 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10412:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10412:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.908727042084166,
+      "lon": 10.74038191009086,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisielt adresseanker og dokumentert fysisk identitet er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge for Bankplassen 3, kryssjekket mot Nasjonalmuseets identifikasjon av den tidligere Norges Bank-bygningen. Det eldre manuelle punktet erstattes av det offisielle bygningsankeret."
+  ]
+}

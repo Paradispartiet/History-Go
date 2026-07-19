@@ -1,0 +1,83 @@
+{
+  "placeId": "jernbaneverkstedet_lodalen",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90436199249329,
+    "lon": 10.774336415114837,
+    "r": 200,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Dyvekes vei 2, kryssjekket mot Bane NORs offisielle verkstedside. Punktet brukes som display-marker for Lodalen verksted; radiusen beholdes fordi verkstedet er et større jernbaneanlegg."
+  },
+  "identity": {
+    "currentName": "Lodalen jernbaneverksted",
+    "resolvedIdentity": "Lodalen jernbaneverksted",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisiell adresse",
+    "dokumentert kobling mellom adressen og det fysiske stedet",
+    "fysisk overlap-audit"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Dyvekes%20vei%202%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11370:2",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge returnerte ett entydig treff for Dyvekes vei 2 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge for Dyvekes vei 2, kryssjekket mot Bane NORs offisielle verkstedside. Punktet brukes som display-marker for Lodalen verksted; radiusen beholdes fordi verkstedet er et større jernbaneanlegg."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Bane NOR – Lodalen verksted",
+      "sourceUrl": "https://www.banenor.no/for-deg-i-bransjen/togselskap/serviceanlegg/verksteder/lodalen/",
+      "sourceObjectId": "identity:jernbaneverkstedet_lodalen",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Bane NOR dokumenterer Lodalen verksted som et konkret verkstedsanlegg med adresse Dyvekes vei 2, 0192 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden kobler det navngitte History Go-stedet til adressen som brukes som koordinatanker."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Dyvekes vei 2 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11370:2",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11370:2",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90436199249329,
+      "lon": 10.774336415114837,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisielt adresseanker og dokumentert fysisk identitet er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge for Dyvekes vei 2, kryssjekket mot Bane NORs offisielle verkstedside. Punktet brukes som display-marker for Lodalen verksted; radiusen beholdes fordi verkstedet er et større jernbaneanlegg."
+  ]
+}
