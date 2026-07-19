@@ -1,0 +1,105 @@
+name: Nedre Foss history rounds finalizer
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/nedre-foss-history-rounds-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply Nedre Foss round content
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/nedre-foss-history-rounds-batch1/validation'
+          mkdir -p "$outdir"
+          node tools/finalize-nedre-foss-history-rounds.mjs | tee "$outdir/finalizer.txt"
+
+      - name: Build and validate place runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/nedre-foss-history-rounds-batch1/validation'
+          npm run places:index:build | tee "$outdir/places-index-build.txt"
+          npm run places:index:check | tee "$outdir/places-index-check.txt"
+          npm run audit:places-split-manifest-sync | tee "$outdir/split-manifest-sync.txt"
+
+      - name: Validate rounds and people
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/nedre-foss-history-rounds-batch1/validation'
+          node tests/nedre-foss-history-rounds-batch1.test.js | tee "$outdir/nedre-foss-targeted-test.txt"
+          node tests/place-card-rounds-runtime-audit.test.js | tee "$outdir/place-card-rounds-runtime.txt"
+          npm run audit:people-of-places | tee "$outdir/people-of-places.txt"
+          git restore --source=HEAD -- reports/people-of-places-status.json reports/people-of-places-status.md 2>/dev/null || true
+
+      - name: Guard against unrelated Akerselva split churn
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/nedre-foss-history-rounds-batch1/validation'
+          git diff --name-only | tee "$outdir/changed-files-before-commit.txt"
+          unexpected=$(git diff --name-only -- 'data/places/natur/oslo/places_oslo_natur_akerselvarute/*.json' \
+            | grep -v '^data/places/natur/oslo/places_oslo_natur_akerselvarute/nedre_foss.json$' || true)
+          if [ -n "$unexpected" ]; then
+            echo 'Unexpected Akerselva place-file churn:' >&2
+            echo "$unexpected" >&2
+            exit 1
+          fi
+
+      - name: Parse changed JSON and check diff hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/nedre-foss-history-rounds-batch1/validation'
+          node <<'NODE' | tee "$outdir/json-parse.txt"
+          const fs = require('fs');
+          for (const file of [
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute/nedre_foss.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+            'data/leksikon/places/oslo/historie/leksikon_oslo_historie_nedre_foss.json',
+            'data/people/naeringsliv/oslo/akerselva/friedrich_gruner.json',
+            'data/people/manifest.json',
+            'data/stories/stories_nedre_foss.json',
+            'data/stories/stories_manifest.json',
+            'data/relations.json'
+          ]) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('Nedre Foss changed JSON parses successfully.');
+          NODE
+          git diff --check | tee "$outdir/git-diff-check.txt"
+
+      - name: Remove temporary tooling and persist batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/nedre-foss-history-rounds-finalize.yml
+          rm -f tools/finalize-nedre-foss-history-rounds.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit --no-verify -m 'Fill Nedre Foss history rounds batch 1'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
