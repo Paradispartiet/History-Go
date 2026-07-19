@@ -26,31 +26,53 @@ jobs:
       - name: Collect address-first and object evidence
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
           OUT='reports/oslo-coordinate-control-batch-24/evidence-pass'
           mkdir -p "$OUT"
 
-          npm run places:coords:find:address -- --address 'Sagveien 23 Oslo' \
-            | tee "$OUT/ovre_foss-sagveien-23-geonorge.json"
-          npm run places:coords:find:address -- --address 'Trondheimsveien 2 Oslo' \
-            | tee "$OUT/schous_bryggeri-trondheimsveien-2-geonorge.json"
-          npm run places:coords:find:address -- --address 'Thorvald Meyers gate 2 Oslo' \
-            | tee "$OUT/ringnes_bryggeri-thorvald-meyers-gate-2-geonorge.json"
+          run_finder() {
+            local address="$1"
+            local file="$2"
+            set +e
+            set -o pipefail
+            npm run places:coords:find:address -- --address "$address" | tee "$OUT/$file"
+            local code=${PIPESTATUS[0]}
+            set +o pipefail
+            set -e
+            printf '%s\n' "$code" > "$OUT/$file.exit-status.txt"
+            return 0
+          }
+
+          run_curl() {
+            local url="$1"
+            local file="$2"
+            set +e
+            curl --retry 3 --retry-delay 2 -fsSL -A 'History-Go-coordinate-audit/1.0' "$url" \
+              | tee "$OUT/$file" >/dev/null
+            local code=${PIPESTATUS[0]}
+            set -e
+            printf '%s\n' "$code" > "$OUT/$file.exit-status.txt"
+            return 0
+          }
+
+          set -e
+          run_finder 'Sagveien 23 Oslo' 'ovre_foss-sagveien-23-geonorge.json'
+          run_finder 'Trondheimsveien 2 Oslo' 'schous_bryggeri-trondheimsveien-2-geonorge.json'
+          run_finder 'Thorvald Meyers gate 2 Oslo' 'ringnes_bryggeri-thorvald-meyers-gate-2-geonorge.json'
 
           # Exploratory only: this lookup must not be auto-applied because the active
           # St. Halvard record has a material identity/history conflict.
-          npm run places:coords:find:address -- --address 'Pilestredet 75C Oslo' \
-            | tee "$OUT/st_halvard_bryggeri-pilestredet-75c-geonorge.json"
+          run_finder 'Pilestredet 75C Oslo' 'st_halvard_bryggeri-pilestredet-75c-geonorge.json'
 
-          curl -fsSL -A 'History-Go-coordinate-audit/1.0' \
+          run_curl \
             'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Bakeriet%20Akershus%20festning%20Oslo' \
-            | tee "$OUT/akershus_slott_bakeriet-nominatim.json" >/dev/null
-          curl -fsSL -A 'History-Go-coordinate-audit/1.0' \
+            'akershus_slott_bakeriet-nominatim.json'
+          run_curl \
             'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Kornmagasinet%20Akershus%20festning%20Oslo' \
-            | tee "$OUT/oslo_kornmagasin-nominatim.json" >/dev/null
-          curl -fsSL -A 'History-Go-coordinate-audit/1.0' \
+            'oslo_kornmagasin-nominatim.json'
+          run_curl \
             'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Sagene%20m%C3%B8lle%20og%20kvernhus%20Oslo' \
-            | tee "$OUT/sagene_kvernhus-nominatim.json" >/dev/null
+            'sagene_kvernhus-nominatim.json'
 
           cat > "$OUT/source-notes.md" <<'EOF'
           # Batch 24 – identitetsnotater før integrasjon
@@ -65,6 +87,7 @@ jobs:
           EOF
 
       - name: Upload evidence pass
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: oslo-coordinate-batch-24-evidence
