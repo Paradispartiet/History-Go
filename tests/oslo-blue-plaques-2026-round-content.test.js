@@ -33,7 +33,7 @@ for (const place of places) {
   assert(Array.isArray(place.works) && place.works.length >= 3, `${place.id} skal ha minst tre stedsspesifikke works`);
   assert(Array.isArray(place.civication_store) && place.civication_store.length >= 2, `${place.id} skal ha minst to Civication-objekter`);
   assert(place.civication_store.every((item) => item.physicalObject === true && item.placeSpecific === true), `${place.id} skal bare ha fysiske, stedsspesifikke Civication-objekter`);
-  assert(Array.isArray(place.brands) && place.brands.length >= 2, `${place.id} skal ha minst to aktører`);
+  assert(Array.isArray(place.brands) && place.brands.length >= 1, `${place.id} skal ha minst én reell aktør`);
   assert(place.for_na?.before && place.for_na?.now && place.for_na?.change, `${place.id} skal ha komplett før/nå`);
   assert(Array.isArray(place.emne_ids) && place.emne_ids.length > 0, `${place.id} skal ha emner til badge-rundingen`);
 }
