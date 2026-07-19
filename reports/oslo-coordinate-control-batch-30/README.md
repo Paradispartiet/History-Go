@@ -23,3 +23,4 @@ Detached-HEAD pushes now target the clean branch explicitly.
 Runner logs are now reduced so the exact failing clean step is visible through the connector.
 Clean workflow is now executed as individually observable Actions steps.
 Dependency install now retries with cache cleanup while preserving the unchanged lockfile.
+The exact npm failure will now be persisted on PR #2500 if installation still fails.
