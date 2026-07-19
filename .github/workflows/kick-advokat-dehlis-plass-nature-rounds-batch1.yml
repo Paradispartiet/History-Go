@@ -1,0 +1,12 @@
+name: Kick Advokat Dehlis plass nature rounds batch 1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  kick:
+    if: github.head_ref == 'agent/fill-advokat-dehlis-plass-nature-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Trigger Advokat Dehlis plass production workflow"
