@@ -27,7 +27,7 @@ assert(place.for_na?.before && place.for_na?.now && place.for_na?.change, 'Før/
 const peopleManifest = readJson('data/people/manifest.json');
 const personManifestPath = 'people/historie/oslo/akerselva/friedrich_gruner.json';
 assert(peopleManifest.files.includes(personManifestPath));
-const people = readJson(`data/people/${personManifestPath}`);
+const people = readJson(`data/${personManifestPath}`);
 assert.strictEqual(people.length, 1);
 assert.strictEqual(people[0].id, 'friedrich_gruner');
 assert.strictEqual(people[0].placeId, 'nedre_foss');
