@@ -62,26 +62,7 @@ jobs:
           node dist/tools/audit-coordinate-evidence.mjs | tee "$out/coordinate-evidence-audit.txt"
           git diff --check | tee "$out/git-diff-check.txt"
       - name: Assert canonical split runtime and protocol result
-        run: |
-          node <<'NODE'
-          const fs=require('node:fs'),read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
-          const agg=read('data/places/natur/oslo/places_oslo_natur_akerselvarute.json'),rt=read('data/places/places_index.json'),a=new Map(agg.map(p=>[p.id,p])),r=new Map(rt.map(p=>[p.id,p]));
-          const checks={nydalsdammen:[59.9572011,10.7658593,'osm-relation:14637129'],bjoelsenfossen:[59.9408256,10.7693368,'osm-node:10679414566'],bjoelsenparken_elvenaer:[59.93914,10.75891,'osm-way:336602343']};
-          for(const [id,[lat,lon,src]] of Object.entries(checks)){const p=a.get(id);if(!p||p.lat!==lat||p.lon!==lon||p.sourceObjectId!==src||p.coordStatus!=='verified_geometry')throw new Error(id+' verified mismatch');}
-          for(const id of ['frysjadammen','nydalen_industristed','seilduksfabrikken_nydalen','stilla_nydalen'])if(a.get(id)?.coordStatus!=='needs_source')throw new Error(id+' not needs_source');
-          const ids=[...Object.keys(checks),'frysjadammen','nydalen_industristed','seilduksfabrikken_nydalen','stilla_nydalen'];
-          const coordKeys=['lat','lon','r','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordSourceId','coordSourceUrl','coordVerifiedAt','coordNote'];
-          for(const id of ids){
-            const p=a.get(id),s=read(`data/places/natur/oslo/places_oslo_natur_akerselvarute/${id}.json`),x=r.get(id);
-            if(!p||!s||!x)throw new Error(id+' missing canonical/split/runtime record');
-            for(const key of coordKeys){
-              const av=JSON.stringify(p[key]??null),sv=JSON.stringify(s[key]??null),rv=JSON.stringify(x[key]??null);
-              if(av!==sv)throw new Error(`${id} split coordinate mismatch at ${key}`);
-              if(av!==rv)throw new Error(`${id} runtime coordinate mismatch at ${key}`);
-            }
-          }
-          const pr=fs.readFileSync('docs/coordinates/coordinate-control-protocol.md','utf8');if(!pr.includes('154 verifiserte eller kildekontrollerte canonical steder')||!pr.includes('nå 44'))throw new Error('protocol counts mismatch');
-          NODE
+        run: node scripts/tmp-assert-oslo-coordinate-batch32.mjs
       - name: Render old/new map QA
         run: |
           out=reports/oslo-coordinate-control-batch-32/visual-qa; mkdir -p "$out"
@@ -99,8 +80,8 @@ jobs:
           if-no-files-found: error
       - name: Commit clean completed batch
         run: |
-          rm .github/workflows/oslo-coordinate-batch-32-final.yml .github/workflows/oslo-coordinate-batch-32-gates-diagnostic.yml scripts/tmp-complete-oslo-coordinate-batch32.mjs scripts/tmp-sync-oslo-coordinate-batch32-splits.mjs
+          rm .github/workflows/oslo-coordinate-batch-32-final.yml .github/workflows/oslo-coordinate-batch-32-gates-diagnostic.yml scripts/tmp-complete-oslo-coordinate-batch32.mjs scripts/tmp-sync-oslo-coordinate-batch32-splits.mjs scripts/tmp-assert-oslo-coordinate-batch32.mjs
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data docs reports .github/workflows/oslo-coordinate-batch-32-final.yml .github/workflows/oslo-coordinate-batch-32-gates-diagnostic.yml scripts/tmp-complete-oslo-coordinate-batch32.mjs scripts/tmp-sync-oslo-coordinate-batch32-splits.mjs
+          git add data docs reports .github/workflows/oslo-coordinate-batch-32-final.yml .github/workflows/oslo-coordinate-batch-32-gates-diagnostic.yml scripts/tmp-complete-oslo-coordinate-batch32.mjs scripts/tmp-sync-oslo-coordinate-batch32-splits.mjs scripts/tmp-assert-oslo-coordinate-batch32.mjs
           git commit -m "Complete Oslo coordinate control batch 32"
           git push origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-32-final
