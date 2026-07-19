@@ -106,6 +106,9 @@
               "venter_paa_svar": {
                 "status": "completed"
               }
+            },
+            "relasjoner": {
+              "venn": 6
             }
           },
           "konsekvensTekst": "Svaret koster deg mer enn du trodde å skrive — men når du trykker send, er skuldrene lavere."
@@ -126,6 +129,9 @@
               "venter_paa_svar": {
                 "status": "dormant"
               }
+            },
+            "relasjoner": {
+              "venn": -3
             }
           },
           "konsekvensTekst": "«Kan vi ta det i morgen?» Svaret kommer med tommel opp. Du vet begge at i morgen er et strikk."
@@ -147,6 +153,9 @@
               "venter_paa_svar": {
                 "status": "completed"
               }
+            },
+            "relasjoner": {
+              "venn": -4
             }
           },
           "konsekvensTekst": "Svaret er sendt og samvittigheten er halv. Noen ganger merker folk forskjellen. Denne personen gjør det."
@@ -628,6 +637,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 5
             }
           },
           "konsekvensTekst": "«ENDELIG,» svarer vennen med tre utropstegn. Du merker at du gleder deg — det er en stund siden sist."
@@ -648,6 +660,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 2
             }
           },
           "konsekvensTekst": "«Deal. Lørdag. Ingen unnskyldninger.» Et ærlig nei med en ny avtale i er bedre enn et halvt ja."
@@ -668,6 +683,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": -5
             }
           },
           "konsekvensTekst": "«Ok :)» Smilefjeset gjør ikke jobben sin. Du vet at det er tredje gangen du svarer sånn."
@@ -1019,6 +1037,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 6
             }
           },
           "konsekvensTekst": "På veien hjem merker du at du har ledd ordentlig for første gang på en stund. Det bærer lenger enn søvnen det kostet."
@@ -1039,6 +1060,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 1
             }
           },
           "konsekvensTekst": "«Godt du kom i det hele tatt,» sier vennen, og mener det. Dere er blitt gamle nok til at det er sant."
@@ -1079,6 +1103,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 3
             }
           },
           "konsekvensTekst": "«Det holder jeg deg til!» kommer svaret på sekunder. Døra du lot stå på gløtt, står fortsatt åpen."
@@ -1099,6 +1126,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": -2
             }
           },
           "konsekvensTekst": "Ikke alle kvelder skal deles. Denne var din, og den var god nok som den var."
@@ -1537,6 +1567,88 @@
             }
           },
           "konsekvensTekst": "«Kaffe funker! Si fra når.» Døra er ikke lukket — den er satt på gløtt, på dine premisser."
+        }
+      ]
+    },
+    {
+      "id": "familie_01_hilsen_hjemmefra",
+      "threadId": "folk_rundt_deg",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "telefon",
+      "avsender": "familie",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En hilsen hjemmefra",
+      "tekst": "Søsteren din ringer om noe helt hverdagslig — en oppskrift, en dato, en ting hun «bare lurte på». Dere vet begge at samtalen egentlig handler om å høre stemmen din.",
+      "valg": [
+        {
+          "id": "ta_praten",
+          "tekst": "Ta praten ordentlig — hverdagslige ting er aldri bare hverdagslige",
+          "tone": "nær",
+          "effekter": {
+            "relasjoner": {
+              "familie": 6
+            },
+            "meters": {
+              "psyke": 3,
+              "energi": -1
+            },
+            "flagg": {
+              "tok_familiepraten": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tjue minutter om ingenting og alt. «Snakkes snart,» sier hun, og denne gangen betyr det snart."
+        },
+        {
+          "id": "kort_svar",
+          "tekst": "Svar kort — du ringer skikkelig i helgen",
+          "tone": "praktisk",
+          "effekter": {
+            "relasjoner": {
+              "familie": 1
+            },
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "utsatte_familiepraten": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Helgen, ja. Du sa det forrige uke også.» Hun sier det mildt. Det treffer likevel."
+        },
+        {
+          "id": "la_ringe",
+          "tekst": "La den ringe ut — du orker ikke folk akkurat nå",
+          "tone": "sliten",
+          "effekter": {
+            "relasjoner": {
+              "familie": -4
+            },
+            "meters": {
+              "psyke": -2,
+              "energi": 1
+            },
+            "flagg": {
+              "lot_familien_ringe_ut": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Telefonen blir stille. Hun kommer til å si «det går fint» neste gang. Dere vet begge hva det betyr."
         }
       ]
     }
