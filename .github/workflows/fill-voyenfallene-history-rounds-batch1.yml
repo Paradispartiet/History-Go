@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Rebuild verified production script
-        if: hashFiles('reports/voyenfallene-production-error.log') == ''
+        if: hashFiles('reports/voyenfallene-production-error.log') == '' && hashFiles('reports/voyenfallene-validation-error.log') == ''
         run: |
           python - <<'PY'
           import base64
@@ -43,7 +43,7 @@ jobs:
 
       - name: Produce Vøyenfallene content
         id: production
-        if: hashFiles('reports/voyenfallene-production-error.log') == ''
+        if: hashFiles('reports/voyenfallene-production-error.log') == '' && hashFiles('reports/voyenfallene-validation-error.log') == ''
         continue-on-error: true
         run: python tools/tmp_produce_voyenfallene_decoded.py > tools/tmp_voyenfallene_production.log 2>&1
 
@@ -60,13 +60,16 @@ jobs:
           git push origin HEAD:"$BRANCH"
 
       - name: Validate targeted content
+        id: validation
         if: steps.production.outcome == 'success'
+        continue-on-error: true
         run: |
-          node tests/voyenfallene-history-rounds-batch1.test.js
-          node tests/place-card-rounds-runtime-audit.test.js
-          node tests/place-card-leksikon-content-audit.test.js
-          node tests/glads-molle-history-rounds-batch1.test.js
-          python - <<'PY'
+          {
+            node tests/voyenfallene-history-rounds-batch1.test.js
+            node tests/place-card-rounds-runtime-audit.test.js
+            node tests/place-card-leksikon-content-audit.test.js
+            node tests/glads-molle-history-rounds-batch1.test.js
+            python - <<'PY'
           import json
           from pathlib import Path
           paths = [
@@ -84,18 +87,33 @@ jobs:
               json.loads(Path(path).read_text(encoding='utf-8'))
           print('JSON parse OK')
           PY
-          git diff --check
+            git diff --check
+          } > tools/tmp_voyenfallene_validation.log 2>&1
+
+      - name: Persist validation failure
+        if: steps.validation.outcome == 'failure'
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cp tools/tmp_voyenfallene_validation.log reports/voyenfallene-validation-error.log
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add reports/voyenfallene-validation-error.log
+          git commit -m "Record Vøyenfallene validation error"
+          git push origin HEAD:"$BRANCH"
 
       - name: Commit production files and remove temporary files
-        if: steps.production.outcome == 'success'
+        if: steps.production.outcome == 'success' && steps.validation.outcome == 'success'
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           rm -f tools/tmp_produce_voyenfallene.py
           rm -f tools/tmp_produce_voyenfallene_decoded.py
           rm -f tools/tmp_voyenfallene_production.log
+          rm -f tools/tmp_voyenfallene_validation.log
           rm -f tools/.tmp_voyenfallene_payload_*.txt
           rm -f reports/voyenfallene-production-error.log
+          rm -f reports/voyenfallene-validation-error.log
           rm -f .github/workflows/fill-voyenfallene-history-rounds-batch1.yml
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
