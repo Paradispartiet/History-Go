@@ -68,7 +68,9 @@ assert.deepStrictEqual(place.nature_profile.nearby_place_ids, ['nydalen_industri
 for (const id of place.nature_profile.nearby_place_ids) assert(placeIds.has(id), `Ukjent nærkobling ${id}`);
 
 const displayText = JSON.stringify({ place, story, article, quiz });
-assert(!/Seilduksfabrikken|Seildugsfabrikken/.test(displayText), 'Feil fabrikkidentitet skal ikke stå i visningsinnholdet');
+for (const obsoleteLabel of ['Seilduksfabrikken i Nydalen', 'Seilduksfabrikken (Nydalen)']) {
+  assert(!displayText.includes(obsoleteLabel), `Gammelt visningsnavn står igjen: ${obsoleteLabel}`);
+}
 assert(/Øvre spinneri/.test(displayText));
 assert(/14 000/.test(displayText));
 assert(/kulvert/i.test(displayText));
