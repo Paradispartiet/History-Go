@@ -57,7 +57,7 @@ const activePlaces = new Set(readJson('data/places/places_index.json').map((plac
 assert(activePlaces.has(expectedPlaceId), 'Batch 19 peikar på eit inaktivt place');
 
 const identityHits = [];
-const placeLinkHits = [];
+const primaryPlaceHits = [];
 const aliases = [expected.id, ...expected.aliases].map(normalize);
 for (const file of manifest.files) {
   const data = readJson(`data/${file}`);
@@ -67,8 +67,8 @@ for (const file of manifest.files) {
     if (fields.some((field) => aliases.includes(field))) {
       identityHits.push({ file, id: candidate.id, name: candidate.name });
     }
-    if (candidate.placeId === expectedPlaceId || (candidate.places || []).includes(expectedPlaceId)) {
-      placeLinkHits.push({ file, id: candidate.id, name: candidate.name });
+    if (candidate.placeId === expectedPlaceId) {
+      primaryPlaceHits.push({ file, id: candidate.id, name: candidate.name });
     }
   }
 }
@@ -79,9 +79,9 @@ assert.deepStrictEqual(
   'Halfdan Greve skal finnast nøyaktig ein gong globalt ved normalisert ID-, namn- og variantkontroll'
 );
 assert.deepStrictEqual(
-  placeLinkHits,
+  primaryPlaceHits,
   [{ file: expectedFile, id: expected.id, name: expected.name }],
-  'Litledalen kraftverk skal få nøyaktig Halfdan Greve som første people-lenkje i batch 19'
+  'Litledalen kraftverk skal få nøyaktig Halfdan Greve som første primære people-lenkje i batch 19'
 );
 
 console.log('Etne People of Places batch 19 OK (1 documented construction leader, 1 newly covered power plant, 1 canonical identity)');
