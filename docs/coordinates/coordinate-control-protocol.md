@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 118 verifiserte eller kildekontrollerte canonical steder. Batch 20 avslutter Oslo-klyngen i globalmanifestet med tre godkjente historiske bygg og anlegg: Oslo Hospital som geometriforankret kompleksanker samt Botsfengselet og Gamle Rådhus som adresseverifiserte steder. Prinds Christian Augusts Minde står separat som `needs_review` fordi Storgata 36 gir flere ikke-entydige adressekandidater for det historiske komplekset. 9 fullførte kontroller fra Oslo-køen står dermed separat uten godkjent Oslo-koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-tabellen inneholder nå 124 verifiserte eller kildekontrollerte canonical steder. Batch 21 starter den sekundære Oslo-kildekøen og godkjenner 6 nye ankere: Ekebergparken, Camilla Collett-statuen, Henrik Wergeland-statuen, Grotten, Eldorado Bokhandel, Gamle Deichman. Ibsen-sitatene står som nye dokumenterte `needs_review`-utfall. 10 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat. Sekundærkøen bruker Oslo-manifeststier i leksikografisk rekkefølge, bevarer record-rekkefølgen i hvert manifest og hopper over placeId-er som allerede er kontrollert.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -139,6 +139,12 @@ Oslo-tabellen inneholder nå 118 verifiserte eller kildekontrollerte canonical s
 | 20 | `oslo_hospital` | Oslo Hospital | verified_geometry | `osm-way:111555053` |
 | 20 | `botsfengselet` | Botsfengselet | verified | `geonorge-adresser-v1:0301:18780:11` |
 | 20 | `gamle_radhus` | Gamle Rådhus | verified | `geonorge-adresser-v1:0301:15006:1` |
+| 21 | `ekebergparken` | Ekebergparken skulpturpark | verified_geometry | `ekebergparken:official-map` |
+| 21 | `camilla_collett_statue` | Camilla Collett-statuen | verified_geometry | `osm-node:7573449468` |
+| 21 | `henrik_wergeland_statue` | Henrik Wergeland-statuen | verified_geometry | `wikimedia-commons:oslo-museum-ob-a17403` |
+| 21 | `grotta` | Grotten | verified | `geonorge-adresser-v1:0301:18496:4` |
+| 21 | `eldorado_bokhandel` | Eldorado Bokhandel | verified | `geonorge-adresser-v1:0301:17635:9A` |
+| 21 | `gamle_deichman` | Gamle Deichman | verified | `geonorge-adresser-v1:0301:10244:4` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -146,7 +152,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 118 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 124 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -159,6 +165,7 @@ Disse kontrollene er fullført, men teller ikke blant de 118 verifiserte eller k
 | `akerhus_slott` – Akerhus Slott | needs_review | Dokumentert legacy-typofeil/duplikat av canonical `akershus_festning`; begge representerer samme fysiske anlegg. | Migrer gamle quiz/story-referanser til `akershus_festning`; ikke godkjenn et separat fysisk anker. |
 | `grini_fangeleir` – Grini fangeleir | needs_review; moved to Akershus/Bærum | Recorden lå feilaktig i Oslo-kilden. Bærum kommune dokumenterer leiren ved Ila, men dagens punkt mangler kildebelagt leirgeometri. | Finn offisiell/historisk leirgeometri; Grinimuseets adresse skal ikke brukes som sentrum for hele leiren. |
 | `prinds_christian_augusts_minde` – Prinds Christian Augusts Minde | needs_review | Storgata 36 gir flere ikke-entydige Geonorge-treff for et historisk bygningskompleks; ingen husbokstav er dokumentert som canonical hovedanker. | Krever offisiell kompleks-/eiendomsgeometri eller et dokumentert representativt anker. |
+| `ibsen_quotes` – Ibsen sitater / Sitatgaten | needs_review | Den fysiske installasjonen består av 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men recorden har bare ett punkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes. |
 
 ## Etne – historiesett
 
@@ -206,8 +213,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 126 og starter batch 21.
-- Batch 20 er fullført med 3 godkjente historiske bygg/anlegg og én dokumentert Prindsen-adressekonflikt.
-- Oslo-klyngen i det globale place-manifestet er nå ferdig kontrollert; batch 21 skal starte en eksplisitt sekundær Oslo-kildekø for aktive places som ligger utenfor dette manifestet.
-- Fortsett kilde for kilde i stabil manifest-/filrekkefølge og velg alltid koordinatmetode etter fysisk objekttype.
+- Neste nye Oslo-kontroll er nummer 133 og starter batch 22.
+- Batch 21 er fullført med 6 godkjente ankere og 1 nye dokumenterte `needs_review`-utfall.
+- Sekundær Oslo-kildekø: sorter Oslo-manifeststier leksikografisk, behold `order` i hvert manifest og hopp over alle placeId-er som allerede står i protokollen.
+- Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
