@@ -22,6 +22,14 @@ const requiredSources = [
   'https://www.grannar.no/nyhende/flyg-hogt-pa-bmx-sykkel/153573',
   'https://www.shapers.no/prosjekter/etne-pumptrack'
 ];
+const expectedPlaceHits = [
+  { file: expectedFile, id: expected.id, name: expected.name },
+  {
+    file: 'people/politikk/vestland/etne/mette_heidi_ekrheim_bergsvaag.json',
+    id: 'mette_heidi_ekrheim_bergsvaag',
+    name: 'Mette Heidi Ekrheim Bergsvåg'
+  }
+];
 
 const manifest = readJson('data/people/manifest.json');
 assert.strictEqual(manifest.files.filter((file) => file === expectedFile).length, 1, 'Batch 21 source must be registered exactly once');
@@ -58,8 +66,8 @@ for (const file of manifest.files) {
   }
 }
 
-const expectedHit = [{ file: expectedFile, id: expected.id, name: expected.name }];
-assert.deepStrictEqual(identityHits, expectedHit, 'Dzintrs Vitols must be globally unique');
-assert.deepStrictEqual(placeHits, expectedHit, 'Etne pumptrack must have exactly the intended batch 21 link');
+const expectedIdentityHit = [{ file: expectedFile, id: expected.id, name: expected.name }];
+assert.deepStrictEqual(identityHits, expectedIdentityHit, 'Dzintrs Vitols must be globally unique');
+assert.deepStrictEqual(placeHits, expectedPlaceHits, 'Etne pumptrack must include the documented builder and opening-role links');
 
-console.log('Etne People of Places batch 21 OK (1 documented pumptrack builder, 1 newly covered place, 1 canonical identity)');
+console.log('Etne People of Places batch 21 OK (1 documented builder identity, 2 documented pumptrack people links)');

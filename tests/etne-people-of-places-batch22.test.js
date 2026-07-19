@@ -30,6 +30,14 @@ const requiredSources = [
   'https://www.etneil.no/aktuelt/onsker-du-a-spille-tennis',
   'https://www.grannar.no/nyhende/stor-folkefest-pa-opninga-av-dei-nye-tennisbanane-i-etne/175247'
 ];
+const expectedPlaceHits = [
+  ...expectedPeople.map((expected) => ({ file: expectedFile, id: expected.id, name: expected.name })),
+  {
+    file: 'people/sport/vestland/etne/harald_ekornrud.json',
+    id: 'harald_ekornrud',
+    name: 'Harald Ekornrud'
+  }
+];
 
 const manifest = readJson('data/people/manifest.json');
 assert(Array.isArray(manifest.files), 'People manifest must expose a files array');
@@ -93,8 +101,8 @@ for (const expected of expectedPeople) {
 }
 assert.deepStrictEqual(
   placeHits,
-  expectedPeople.map((expected) => ({ file: expectedFile, id: expected.id, name: expected.name })),
-  'Etne tennisanlegg must have exactly the two intended batch 22 people links'
+  expectedPlaceHits,
+  'Etne tennisanlegg must include the two rehabilitation initiators and the documented current tennis leader'
 );
 
-console.log('Etne People of Places batch 22 OK (2 documented rehabilitation initiators, 1 newly covered tennis facility, 2 canonical identities)');
+console.log('Etne People of Places batch 22 OK (2 rehabilitation initiators, 1 current tennis leader, 3 documented place links)');
