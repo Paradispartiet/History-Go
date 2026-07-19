@@ -92,6 +92,10 @@ jobs:
       - name: Apply batch 24
         run: node scripts/tmp-complete-oslo-coordinate-batch24.mjs
 
+      - name: Keep protocol verified-count wording in sync
+        run: |
+          sed -i 's/Disse kontrollene er fullført, men teller ikke blant de 131 verifiserte eller kildekontrollerte canonical Oslo-stedene\./Disse kontrollene er fullført, men teller ikke blant de 135 verifiserte eller kildekontrollerte canonical Oslo-stedene./' docs/coordinates/coordinate-control-protocol.md
+
       - name: Build global place index
         run: |
           set -o pipefail
