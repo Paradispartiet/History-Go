@@ -19,44 +19,26 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: Resolve unresolved named squares with OSM Nominatim
+      - name: Resolve Grev Wedels plass with OSM Nominatim
         shell: bash
         run: |
           set -euo pipefail
           outdir='reports/oslo-oppdag-kvadraturen-batch-3/coordinates'
           mkdir -p "$outdir"
-          : > "$outdir/nominatim_status.txt"
-
-          fetch_square() {
-            local slug="$1"
-            local name="$2"
-            local outfile="$outdir/${slug}_nominatim.json"
-
-            curl --max-time 30 --retry 2 --fail --silent --show-error \
-              -H 'User-Agent: History-Go coordinate audit (github.com/Paradispartiet/History-Go)' \
-              --get 'https://nominatim.openstreetmap.org/search' \
-              --data-urlencode 'format=jsonv2' \
-              --data-urlencode "q=${name}, Oslo, Norge" \
-              --data-urlencode 'countrycodes=no' \
-              --data-urlencode 'limit=10' \
-              --data-urlencode 'addressdetails=1' \
-              --data-urlencode 'namedetails=1' \
-              --data-urlencode 'polygon_geojson=1' \
-              --data-urlencode 'viewbox=10.60,60.05,10.95,59.85' \
-              --data-urlencode 'bounded=1' \
-              -o "$outfile"
-
-            local count
-            count="$(jq 'length' "$outfile")"
-            printf '%s\t%s\t%s\n' "$slug" "$count" "$name" \
-              | tee -a "$outdir/nominatim_status.txt"
-          }
-
-          fetch_square wessels_plass 'Wessels plass'
-          sleep 1
-          fetch_square egertorget 'Egertorget'
-          sleep 1
-          fetch_square stortorget 'Stortorget'
+          curl --max-time 30 --retry 2 --fail --silent --show-error \
+            -H 'User-Agent: History-Go coordinate audit (github.com/Paradispartiet/History-Go)' \
+            --get 'https://nominatim.openstreetmap.org/search' \
+            --data-urlencode 'format=jsonv2' \
+            --data-urlencode 'q=Grev Wedels plass, Oslo, Norge' \
+            --data-urlencode 'countrycodes=no' \
+            --data-urlencode 'limit=10' \
+            --data-urlencode 'addressdetails=1' \
+            --data-urlencode 'namedetails=1' \
+            --data-urlencode 'polygon_geojson=1' \
+            --data-urlencode 'viewbox=10.60,60.05,10.95,59.85' \
+            --data-urlencode 'bounded=1' \
+            -o "$outdir/grev_wedels_plass_nominatim.json"
+          jq -e 'length > 0' "$outdir/grev_wedels_plass_nominatim.json" >/dev/null
 
       - name: Persist coordinate evidence
         shell: bash
@@ -64,6 +46,6 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/oslo-oppdag-kvadraturen-batch-3/coordinates
-          git commit -m "Save unresolved square OSM coordinate evidence"
+          git add reports/oslo-oppdag-kvadraturen-batch-3/coordinates/grev_wedels_plass_nominatim.json
+          git commit -m "Save Grev Wedels plass OSM coordinate evidence"
           git push origin "HEAD:${GITHUB_HEAD_REF}"
