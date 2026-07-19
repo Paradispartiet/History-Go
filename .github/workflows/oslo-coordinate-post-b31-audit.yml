@@ -1,0 +1,116 @@
+name: Oslo coordinate post batch 31 audit
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify merged runtime and resolve next queue
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-coordinate-post-b31-audit
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const indexRaw = read('data/places/places_index.json');
+          const index = Array.isArray(indexRaw) ? indexRaw : (indexRaw.places ?? []);
+          const byId = new Map(index.map((place) => [place.id, place]));
+
+          const alnabru = byId.get('alnabru_jernbane_og_logistikk');
+          if (!alnabru) throw new Error('Alnabru missing from runtime index');
+          if (alnabru.lat !== 59.9336032 || alnabru.lon !== 10.8382823 || alnabru.coordStatus !== 'verified_geometry' || alnabru.sourceObjectId !== 'osm-way:84268939' || alnabru.locatorType !== 'linear_area') {
+            throw new Error('Alnabru runtime result mismatch after merge');
+          }
+
+          const unresolved = [
+            'alnaelva',
+            'alnaelvstien',
+            'loelva_historisk',
+            'trosterud_friomrade',
+            'furuset_haugerud_skogbelte',
+            'hellerud_gard',
+          ];
+          for (const id of unresolved) {
+            const place = byId.get(id);
+            if (!place) throw new Error(`${id} missing from runtime index`);
+            if (place.coordStatus !== 'needs_source') throw new Error(`${id} is not needs_source after merge`);
+          }
+
+          const concurrentId = 'bla_skilt_helverschous_lokke_munkedamsveien_35';
+          const concurrent = byId.get(concurrentId);
+          if (!concurrent || concurrent.coordStatus !== 'verified') {
+            throw new Error('Concurrent blue plaque runtime record was lost or altered by batch 31 merge');
+          }
+
+          const protocol = fs.readFileSync('docs/coordinates/coordinate-control-protocol.md', 'utf8');
+          if (!protocol.includes('151 verifiserte eller kildekontrollerte canonical steder')) throw new Error('Protocol verified count 151 missing');
+          if (!protocol.includes('Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 40')) throw new Error('Protocol unresolved count 40 missing');
+          if (!protocol.includes('| 31 | `alnabru_jernbane_og_logistikk` | Alnabru godsterminal | verified_geometry | `osm-way:84268939` |')) throw new Error('Batch 31 protocol row missing');
+
+          const evidenceManifest = read('data/coordinate-evidence/manifest.json');
+          const topManifest = read('data/places/manifest.json');
+          const activeIds = new Set(index.map((row) => row?.id).filter(Boolean));
+          const controlled = new Set();
+          for (const match of protocol.matchAll(/`([^`]+)`/g)) {
+            const token = match[1];
+            if (/^[a-z0-9_æøå-]+$/i.test(token) && !token.includes(':') && !token.includes('/')) controlled.add(token);
+          }
+          for (const rel of evidenceManifest.files ?? []) {
+            if (rel.startsWith('oslo/')) controlled.add(path.basename(rel, '.json'));
+          }
+
+          const ordered = [];
+          const seenManifests = new Set();
+          for (const source of topManifest.files ?? []) {
+            if (typeof source !== 'string' || !source.includes('/oslo/')) continue;
+            const fullSource = source.startsWith('data/') ? source : `data/${source}`;
+            const dir = path.dirname(fullSource);
+            const base = path.basename(fullSource, '.json');
+            const manifestPath = path.join(dir, `${base}_manifest.json`).replaceAll('\\', '/');
+            if (seenManifests.has(manifestPath) || !fs.existsSync(manifestPath)) continue;
+            seenManifests.add(manifestPath);
+            let manifest;
+            try { manifest = read(manifestPath); } catch { continue; }
+            if (!Array.isArray(manifest?.places)) continue;
+            const rows = manifest.places
+              .filter((row) => row?.id && activeIds.has(row.id))
+              .sort((a, b) => (a.order ?? 1e9) - (b.order ?? 1e9));
+            const uncontrolled = rows.filter((row) => !controlled.has(row.id));
+            ordered.push({
+              source: fullSource,
+              manifest: manifestPath,
+              activeCount: rows.length,
+              uncontrolledCount: uncontrolled.length,
+              uncontrolled: uncontrolled.map((row) => ({ id: row.id, name: row.name ?? '', order: row.order ?? null })),
+            });
+          }
+
+          const nextQueue = ordered.find((row) => row.uncontrolledCount > 0) ?? null;
+          const result = {
+            integrity: {
+              batch31Runtime: 'ok',
+              concurrentBluePlaqueRuntime: 'ok',
+              protocolCounts: { verifiedOrSourceControlled: 151, completedWithoutApprovedCoordinate: 40 },
+            },
+            nextQueue,
+          };
+          fs.writeFileSync('reports/oslo-coordinate-post-b31-audit/result.json', JSON.stringify(result, null, 2) + '\n');
+          console.log(JSON.stringify(result, null, 2));
+          NODE
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-post-b31-audit
+          path: reports/oslo-coordinate-post-b31-audit/result.json
+          if-no-files-found: error
