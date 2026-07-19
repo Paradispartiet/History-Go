@@ -1,0 +1,86 @@
+{
+  "placeId": "christiania_seildugsfabrik",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9253444010033,
+    "lon": 10.75475549771365,
+    "r": 180,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Fossveien 24, kryssjekket mot Oslo byleksikons identifikasjon av Christiania Seildugsfabrik på denne adressen. Punktet brukes som representativ display-marker for det bevarte fabrikkanlegget."
+  },
+  "identity": {
+    "currentName": "Christiania Seildugsfabrik",
+    "resolvedIdentity": "det bevarte fabrikkanlegget i Fossveien 24",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisiell adresse",
+    "dokumentert fysisk identitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Fossveien%2024%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11891:24",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge returnerte ett tydelig adressetreff for Fossveien 24.",
+      "canVerifyCoordinate": true,
+      "reason": "Adressepunktet kryssjekkes mot dokumentert fabrikkanlegg."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Christiania Seildugsfabrik",
+      "sourceUrl": "https://oslobyleksikon.no/side/Christiania_Seildugsfabrik",
+      "sourceObjectId": "oslobyleksikon:christiania-seildugsfabrik",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Kilden identifiserer fabrikkanlegget som Fossveien 24.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden kobler den aktive recorden til den entydige adressen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11891:24",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11891:24",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:christiania-seildugsfabrik",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9253444010033,
+      "lon": 10.75475549771365,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisielt adresseanker og dokumentert fysisk identitet er anvendt på canonical place."
+  },
+  "notes": [
+    "Koordinatkontrakt anvendt i batch 26."
+  ]
+}

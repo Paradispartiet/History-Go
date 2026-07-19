@@ -1,0 +1,58 @@
+{
+  "placeId": "gronlikaia",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9001,
+    "lon": 10.7579,
+    "r": 220,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Grønlikaia",
+    "resolvedIdentity": "bredt tidligere havne-/containerområde og dagens utviklingsområde på Grønlia",
+    "identityStatus": "resolved_broad_area",
+    "identityProblem": "Offisielle kilder dokumenterer Grønlikaia som et større utviklings- og havneområde. OSM-søket ga bare serviceveier med navnet Grønlikaia, ikke en arealgeometri som kan bære verified-status for hele stedet.",
+    "locatorTypeCandidate": "quay",
+    "requiresSplit": false,
+    "splitReason": "Området kan beholdes, men trenger dokumentert quay-/områdegeometri eller flere area-ankre."
+  },
+  "requiredEvidence": [
+    "offisiell plan-/havnegeometri",
+    "eller flere kildebelagte area-/quay-ankre"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – utvikling av Grønlikaia",
+      "sourceUrl": "https://aktuelt.oslo.kommune.no/feil-retning-i-utviklingen-av-gronlikaia",
+      "sourceObjectId": "oslo-kommune:plan:gronlikaia",
+      "sourceQuality": "official_area_identity",
+      "finding": "Oslo kommune dokumenterer Grønlikaia som et større plan- og utviklingsområde knyttet til tidligere havnearealer.",
+      "canVerifyCoordinate": false,
+      "reason": "Områdeidentitet er dokumentert, men batchen har ikke maskinsporbar arealgeometri."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:plan:gronlikaia",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Offisielle kilder dokumenterer Grønlikaia som et større utviklings- og havneområde. OSM-søket ga bare serviceveier med navnet Grønlikaia, ikke en arealgeometri som kan bære verified-status for hele stedet.",
+    "nextAction": "Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre før verified coordinate contract."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 26."
+  ]
+}
