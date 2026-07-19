@@ -14,3 +14,4 @@ Kartverket SSR ga ingen treff for noen av navnene, og Geonorge-adressefinder ga 
 Begge faktiske markørflyttinger skal gjennom visuell kart-QA før merge.
 
 Før kart-QA isoleres batchen fra eksisterende stale litteratur-split drift slik at beriket innhold for andre steder ikke overskrives.
+Visual QA retriggered with image-only persistence.
