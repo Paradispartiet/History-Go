@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 124 verifiserte eller kildekontrollerte canonical steder. Batch 21 starter den sekundære Oslo-kildekøen og godkjenner 6 nye ankere: Ekebergparken, Camilla Collett-statuen, Henrik Wergeland-statuen, Grotten, Eldorado Bokhandel, Gamle Deichman. Ibsen-sitatene står som nye dokumenterte `needs_review`-utfall. 10 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat. Sekundærkøen bruker Oslo-manifeststier i leksikografisk rekkefølge, bevarer record-rekkefølgen i hvert manifest og hopper over placeId-er som allerede er kontrollert.
+Oslo-tabellen inneholder nå 129 verifiserte eller kildekontrollerte canonical steder. Batch 22 godkjenner 5 nye ankere: Kulturkirken Jakob, Ruth Maier-minnesmerket, Inger Hagerups plass, Oskar Braaten-bysten og Alexander Kiellands plass. Norli Universitetsgata og Sigrid Undset-statuen står som nye dokumenterte `needs_review`-utfall. 12 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat. Sekundærkøen bruker Oslo-manifeststier i leksikografisk rekkefølge, bevarer record-rekkefølgen i hvert manifest og hopper over placeId-er som allerede er kontrollert.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -145,6 +145,11 @@ Oslo-tabellen inneholder nå 124 verifiserte eller kildekontrollerte canonical s
 | 21 | `grotta` | Grotten | verified | `geonorge-adresser-v1:0301:18496:4` |
 | 21 | `eldorado_bokhandel` | Eldorado Bokhandel | verified | `geonorge-adresser-v1:0301:17635:9A` |
 | 21 | `gamle_deichman` | Gamle Deichman | verified | `geonorge-adresser-v1:0301:10244:4` |
+| 22 | `kulturkirken_jakob_litteratur` | Kulturkirken Jakob | verified | `geonorge-adresser-v1:0301:12782:14` |
+| 22 | `ruth_maier_minne` | Ruth Maier-minnesmerke | verified_geometry | `wikidata:Q44179381` |
+| 22 | `inger_hagerups_plass` | Inger Hagerups plass | verified_geometry | `lokalhistoriewiki:Inger_Hagerups_plass` |
+| 22 | `oscar_braaten_statuen` | Oscar Braaten-statuen | verified_geometry | `osm-node:10819902960` |
+| 22 | `alexander_kiellands_plass` | Alexander Kiellands plass | verified_geometry | `osm-relation:7723252` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -152,7 +157,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 124 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 129 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -166,6 +171,8 @@ Disse kontrollene er fullført, men teller ikke blant de 124 verifiserte eller k
 | `grini_fangeleir` – Grini fangeleir | needs_review; moved to Akershus/Bærum | Recorden lå feilaktig i Oslo-kilden. Bærum kommune dokumenterer leiren ved Ila, men dagens punkt mangler kildebelagt leirgeometri. | Finn offisiell/historisk leirgeometri; Grinimuseets adresse skal ikke brukes som sentrum for hele leiren. |
 | `prinds_christian_augusts_minde` – Prinds Christian Augusts Minde | needs_review | Storgata 36 gir flere ikke-entydige Geonorge-treff for et historisk bygningskompleks; ingen husbokstav er dokumentert som canonical hovedanker. | Krever offisiell kompleks-/eiendomsgeometri eller et dokumentert representativt anker. |
 | `ibsen_quotes` – Ibsen sitater / Sitatgaten | needs_review | Den fysiske installasjonen består av 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men recorden har bare ett punkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes. |
+| `norli_universitetsgata` – Norli Universitetsgata | needs_review | Den offisielle adressen er Universitetsgata 22–24, mens Geonorge gir separate punkter for 22 og 24 uten kilde som identifiserer ett canonical hovedanker. | Krever eksplisitt hovedinngang/POI eller bygningsgeometri for hele 22–24-komplekset. |
+| `sigrid_undset_statue` – Sigrid Undset-statuen | needs_review | Kildene dokumenterer statuen i Stensparken ved Fagerborg kirke, men ingen entydig maskinlesbar objektkoordinat ble funnet; dagens punkt ligger feil. | Krever kommunalt kunstobjekt, Wikidata/OSM-objekt eller annen stabil objektkilde med eksakt punkt. |
 
 ## Etne – historiesett
 
@@ -213,8 +220,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 133 og starter batch 22.
-- Batch 21 er fullført med 6 godkjente ankere og 1 nye dokumenterte `needs_review`-utfall.
+- Neste nye Oslo-kontroll er nummer 140 og starter batch 23.
+- Batch 22 er fullført med 5 godkjente ankere og 2 nye dokumenterte `needs_review`-utfall.
 - Sekundær Oslo-kildekø: sorter Oslo-manifeststier leksikografisk, behold `order` i hvert manifest og hopp over alle placeId-er som allerede står i protokollen.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

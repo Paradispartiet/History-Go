@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-19T03:35:33.565Z
+Generert: 2026-07-19T04:06:13.682Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **origin/main**
+- Base for nye/endrede place-objekter: **c2ae234f7dac3d083a74bfaf140e13235994e0e4**
 - Base method: **COORD_INTAKE_BASE**
 - Aktive manifest-filer lest: **479**
 - Place-objekter validert: **1177**
-- Nye/endrede koordinatobjekter mot base: **7**
+- Nye/endrede koordinatobjekter mot base: **5**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3687**
+- Backlog-funn: **3670**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -543,4 +543,4 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | lauvlia_kittelsen | Lauvlia / Theodor Kittelsens kunstnerhjem | data/places/kunst/buskerud/lauvlia_kittelsen.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3687 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3670 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T03:35:35.658Z
+Generert: 2026-07-19T04:06:16.643Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -83,3 +83,10 @@ Generert: 2026-07-19T03:35:35.658Z
 | eldorado_bokhandel | data/coordinate-evidence/oslo/litteratur/eldorado_bokhandel.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamle_deichman | data/coordinate-evidence/oslo/litteratur/gamle_deichman.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ibsen_quotes | data/coordinate-evidence/oslo/litteratur/ibsen_quotes.json | needs_research | needs_geometry | OK |
+| kulturkirken_jakob_litteratur | data/coordinate-evidence/oslo/litteratur/kulturkirken_jakob_litteratur.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| norli_universitetsgata | data/coordinate-evidence/oslo/litteratur/norli_universitetsgata.json | needs_research | needs_geometry | OK |
+| sigrid_undset_statue | data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json | needs_research | needs_geometry | OK |
+| ruth_maier_minne | data/coordinate-evidence/oslo/litteratur/ruth_maier_minne.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oscar_braaten_statuen | data/coordinate-evidence/oslo/litteratur/oscar_braaten_statuen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| alexander_kiellands_plass | data/coordinate-evidence/oslo/litteratur/alexander_kiellands_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
