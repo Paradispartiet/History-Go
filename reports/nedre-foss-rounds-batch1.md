@@ -48,4 +48,4 @@ Den materialiserte sluttstaten har bestått:
 - JSON-parse
 - `git diff --check`
 
-Sluttdiffen inneholder ingen midlertidige workflows eller helperfiler og bare ett valideringssett.
+Sluttdiffen inneholder ingen midlertidige workflows eller helperfiler og bare ett valideringssett. Denne rapporten er canonical valideringsoppsummering for batchen.
