@@ -12,4 +12,5 @@ Batch 30 avslutter de to siste ukontrollerte Oslo-litteraturrecordene.
 Kartverket SSR ga ingen treff for noen av navnene, og Geonorge-adressefinder ga ingen treff for Alexander Kiellands plass. Ingen naboadresse eller proxy ble brukt.
 
 Begge faktiske markørflyttinger skal gjennom visuell kart-QA før merge.
-Visual QA rendering triggered after the render workflow was present on the branch.
+
+Før kart-QA isoleres batchen fra eksisterende stale litteratur-split drift slik at beriket innhold for andre steder ikke overskrives.
