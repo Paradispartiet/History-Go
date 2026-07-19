@@ -42,6 +42,14 @@ def write_json(path: str, value) -> None:
     Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def place_rows(document):
+    if isinstance(document, list):
+        return document
+    if isinstance(document, dict) and isinstance(document.get("places"), list):
+        return document["places"]
+    raise TypeError("Expected a place list or an object with a places list")
+
+
 def api(token: str, url: str, method: str = "GET", payload=None):
     data = None if payload is None else json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(
@@ -84,12 +92,14 @@ def main() -> None:
     write_json(LEKSIKON_PATH, current_leksikon)
 
     for target in (INDEX_PATH, MANIFEST_PATH):
-        source_rows = json.loads(git_show(target).decode("utf-8"))
-        current_rows = read_json(target)
+        source_document = json.loads(git_show(target).decode("utf-8"))
+        current_document = read_json(target)
+        source_rows = place_rows(source_document)
+        current_rows = place_rows(current_document)
         source_row = next(row for row in source_rows if row.get("id") == "stilla_nydalen")
-        current_row = next(row for row in current_rows if row.get("id") == "stilla_nydalen")
-        current_row["name"] = source_row["name"]
-        write_json(target, current_rows)
+        current_index = next(i for i, row in enumerate(current_rows) if row.get("id") == "stilla_nydalen")
+        current_rows[current_index] = source_row
+        write_json(target, current_document)
 
     changed = subprocess.check_output(["git", "diff", "HEAD", "--name-only"], text=True).splitlines()
     changed = [path.strip() for path in changed if path.strip()]
