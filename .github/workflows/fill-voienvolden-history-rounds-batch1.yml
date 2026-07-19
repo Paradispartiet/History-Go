@@ -1,0 +1,74 @@
+name: Fill Vøienvolden history rounds batch 1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.event.pull_request.head.ref == 'agent/fill-voienvolden-history-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Rebuild verified production script
+        run: |
+          cat tools/tmp_voienvolden_payload.part0 \
+              tools/tmp_voienvolden_payload.part1 \
+              tools/tmp_voienvolden_payload.part2 \
+              tools/tmp_voienvolden_payload.part3 \
+              tools/tmp_voienvolden_payload.part4 \
+            | base64 --decode | gzip --decompress > /tmp/produce_voienvolden.py
+          echo "178acca6f04064cdf55fe7c80148a6d03494f8d4f41d26518c768497b8c48259  /tmp/produce_voienvolden.py" | sha256sum --check -
+          python -m py_compile /tmp/produce_voienvolden.py
+
+      - name: Produce Vøienvolden content
+        run: python /tmp/produce_voienvolden.py
+
+      - name: Validate targeted content
+        run: |
+          node tests/voienvolden-history-rounds-batch1.test.js
+          node tests/place-card-rounds-runtime-audit.test.js
+          node tests/place-card-leksikon-content-audit.test.js
+          node tests/voyenfallene-history-rounds-batch1.test.js
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          paths = [
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute/voien_gard_voienvolden.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+              'data/quiz/historie/voien_gard_voienvolden_sets.json',
+              'data/people/natur/oslo/people_natur_oslo.json',
+              'data/people/by/oslo/people_by_oslo.json',
+              'data/stories/stories_voien_gard_voienvolden.json',
+              'data/stories/stories_manifest_natur_batch_01.json',
+              'data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json',
+          ]
+          for path in paths:
+              json.loads(Path(path).read_text(encoding='utf-8'))
+          print('JSON parse OK')
+          PY
+          git diff --check
+
+      - name: Commit production files and remove temporary files
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          rm -f tools/tmp_voienvolden_payload.part0
+          rm -f tools/tmp_voienvolden_payload.part1
+          rm -f tools/tmp_voienvolden_payload.part2
+          rm -f tools/tmp_voienvolden_payload.part3
+          rm -f tools/tmp_voienvolden_payload.part4
+          rm -f .github/workflows/fill-voienvolden-history-rounds-batch1.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "Fill Vøienvolden history rounds batch 1"
+          git push origin HEAD:"$BRANCH"
