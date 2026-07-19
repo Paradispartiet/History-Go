@@ -1,0 +1,68 @@
+name: Oslo coordinate batch 31 queue audit
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve next active Oslo source queue
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const protocol = fs.readFileSync('docs/coordinates/coordinate-control-protocol.md', 'utf8');
+          const evidenceManifest = JSON.parse(fs.readFileSync('data/coordinate-evidence/manifest.json', 'utf8'));
+          const topManifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
+          const placeIndexRaw = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const indexRows = Array.isArray(placeIndexRaw) ? placeIndexRaw : (placeIndexRaw.places ?? []);
+          const activeIds = new Set(indexRows.map((row) => row?.id).filter(Boolean));
+
+          const controlled = new Set();
+          for (const match of protocol.matchAll(/`([^`]+)`/g)) {
+            const token = match[1];
+            if (/^[a-z0-9_æøå-]+$/i.test(token) && !token.includes(':') && !token.includes('/')) controlled.add(token);
+          }
+          for (const rel of evidenceManifest.files ?? []) {
+            if (rel.startsWith('oslo/')) controlled.add(path.basename(rel, '.json'));
+          }
+
+          const ordered = [];
+          const seenManifests = new Set();
+          for (const source of topManifest.files ?? []) {
+            if (typeof source !== 'string' || !source.includes('/oslo/')) continue;
+            const fullSource = source.startsWith('data/') ? source : `data/${source}`;
+            const dir = path.dirname(fullSource);
+            const base = path.basename(fullSource, '.json');
+            const manifestPath = path.join(dir, `${base}_manifest.json`).replaceAll('\\', '/');
+            if (seenManifests.has(manifestPath) || !fs.existsSync(manifestPath)) continue;
+            seenManifests.add(manifestPath);
+            let manifest;
+            try { manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')); } catch { continue; }
+            if (!Array.isArray(manifest?.places)) continue;
+            const rows = manifest.places
+              .filter((row) => row?.id && activeIds.has(row.id))
+              .sort((a, b) => (a.order ?? 1e9) - (b.order ?? 1e9));
+            const uncontrolled = rows.filter((row) => !controlled.has(row.id));
+            ordered.push({
+              source: fullSource,
+              manifest: manifestPath,
+              activeCount: rows.length,
+              uncontrolledCount: uncontrolled.length,
+              uncontrolled: uncontrolled.map((row) => ({ id: row.id, name: row.name ?? '', order: row.order ?? null })),
+            });
+          }
+
+          const nextQueue = ordered.find((row) => row.uncontrolledCount > 0) ?? null;
+          console.log('BATCH31_QUEUE_AUDIT_START');
+          console.log(JSON.stringify({ controlledIdCount: controlled.size, orderedOsloSources: ordered, nextQueue }, null, 2));
+          console.log('BATCH31_QUEUE_AUDIT_END');
+          NODE
