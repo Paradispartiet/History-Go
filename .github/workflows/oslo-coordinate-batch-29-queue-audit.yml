@@ -1,0 +1,98 @@
+name: Oslo coordinate batch 29 queue audit
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-coordinate-batch-29-queue-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-batch-29-queue-audit'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve next active Oslo source queue
+        run: |
+          mkdir -p reports/oslo-coordinate-batch-29-queue-audit
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const protocol = fs.readFileSync('docs/coordinates/coordinate-control-protocol.md', 'utf8');
+          const evidenceManifest = JSON.parse(fs.readFileSync('data/coordinate-evidence/manifest.json', 'utf8'));
+          const topManifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
+          const placeIndexRaw = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const indexRows = Array.isArray(placeIndexRaw) ? placeIndexRaw : (placeIndexRaw.places ?? []);
+          const activeIds = new Set(indexRows.map((r) => r?.id).filter(Boolean));
+
+          const controlled = new Set();
+          for (const m of protocol.matchAll(/`([^`]+)`/g)) {
+            const token = m[1];
+            if (/^[a-z0-9_æøå-]+$/i.test(token) && !token.includes(':') && !token.includes('/')) controlled.add(token);
+          }
+          for (const rel of evidenceManifest.files ?? []) {
+            if (rel.startsWith('oslo/')) controlled.add(path.basename(rel, '.json'));
+          }
+
+          const sources = topManifest.sources ?? topManifest.files ?? topManifest.manifests ?? [];
+          const ordered = [];
+          for (const raw of sources) {
+            const source = typeof raw === 'string' ? raw : (raw.path ?? raw.file ?? raw.source ?? '');
+            if (!source || !source.includes('/oslo/')) continue;
+            const fullSource = source.startsWith('data/places/') ? source : `data/places/${source}`;
+            const dir = path.dirname(fullSource);
+            const base = path.basename(fullSource, '.json');
+            const manifestPath = path.join(dir, `${base}_manifest.json`).replaceAll('\\', '/');
+            if (!fs.existsSync(manifestPath)) continue;
+            let manifest;
+            try { manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')); } catch { continue; }
+            if (!Array.isArray(manifest?.places)) continue;
+            const rows = manifest.places
+              .filter((r) => r?.id && activeIds.has(r.id))
+              .sort((a, b) => (a.order ?? 1e9) - (b.order ?? 1e9));
+            const uncontrolled = rows.filter((r) => !controlled.has(r.id));
+            ordered.push({
+              source: fullSource,
+              manifest: manifestPath,
+              activeCount: rows.length,
+              uncontrolledCount: uncontrolled.length,
+              uncontrolled: uncontrolled.map((r) => ({ id: r.id, name: r.name ?? '', order: r.order ?? null }))
+            });
+          }
+
+          const next = ordered.find((row) => row.uncontrolledCount > 0) ?? null;
+          const result = {
+            generatedAt: new Date().toISOString(),
+            rule: 'Follow data/places/manifest.json source order. For each Oslo source use its sibling split manifest, preserve manifest order, restrict to runtime-active placeIds, and remove all placeIds already recorded in coordinate protocol or evidence.',
+            controlledIdCount: controlled.size,
+            orderedOsloSources: ordered,
+            nextQueue: next
+          };
+          fs.writeFileSync('reports/oslo-coordinate-batch-29-queue-audit/queue-audit.json', JSON.stringify(result, null, 2) + '\n');
+
+          const lines = ['# Oslo coordinate batch 29 – next queue audit', '', `Generated: ${result.generatedAt}`, '', `Rule: ${result.rule}`, ''];
+          for (const row of ordered) {
+            lines.push(`- ${row.source} → ${row.manifest}: ${row.uncontrolledCount} uncontrolled / ${row.activeCount} active`);
+          }
+          lines.push('', '## Next queue', '');
+          if (next) {
+            lines.push(`- source: ${next.source}`);
+            lines.push(`- manifest: ${next.manifest}`);
+            lines.push(`- uncontrolled: ${next.uncontrolledCount}`);
+            lines.push('');
+            for (const row of next.uncontrolled.slice(0, 20)) lines.push(`- ${row.order ?? '-'} — \`${row.id}\` — ${row.name}`);
+          } else {
+            lines.push('No active uncontrolled Oslo queue found in top-level source order.');
+          }
+          fs.writeFileSync('reports/oslo-coordinate-batch-29-queue-audit/queue-audit.md', lines.join('\n') + '\n');
+          console.log(JSON.stringify({ nextQueue: next }, null, 2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-29-queue-audit
+          path: reports/oslo-coordinate-batch-29-queue-audit
+          if-no-files-found: error
