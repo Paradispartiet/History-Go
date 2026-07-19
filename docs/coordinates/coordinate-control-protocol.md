@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 151 verifiserte eller kildekontrollerte canonical steder. Batch 31 kontrollerer de sju recordene i Alna-naturkilden: Alnabru godsterminal får verified_geometry på eksakt terminalpolygon, mens seks brede, fragmenterte eller identitetsmessig uavklarte records avsluttes som needs_review. Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 40.
+Oslo-tabellen inneholder nå 154 verifiserte eller kildekontrollerte canonical steder. Batch 32 kontrollerer de sju første recordene i Akerselva-ruten: Nydalsdammen og Bjølsenfossen får eksakt navngitt OSM-geometri, den allerede verifiserte Advokat Dehlis plass-markøren føres inn i protokollen, mens fire konflikt- eller uavklarte records avsluttes uten ny godkjent koordinat. Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 44.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -172,6 +172,9 @@ Oslo-tabellen inneholder nå 151 verifiserte eller kildekontrollerte canonical s
 | 30 | `oscar_braaten_statuen` | Oskar Braaten-bysten | verified_geometry | `osm-node:10819902960` |
 | 30 | `alexander_kiellands_plass` | Alexander Kiellands plass | verified_geometry | `osm-way:3610607` |
 | 31 | `alnabru_jernbane_og_logistikk` | Alnabru godsterminal | verified_geometry | `osm-way:84268939` |
+| 32 | `nydalsdammen` | Nydalsdammen | verified_geometry | `osm-relation:14637129` |
+| 32 | `bjoelsenfossen` | Bjølsenfossen | verified_geometry | `osm-node:10679414566` |
+| 32 | `bjoelsenparken_elvenaer` | Advokat Dehlis plass – grøntarealet | verified_geometry | `osm-way:336602343` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -183,6 +186,10 @@ Disse kontrollene er fullført, men teller ikke blant de 151 verifiserte eller k
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
+| `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
+| `nydalen_industristed` – Nydalen industristed | needs_review | Fysisk overlapp med canonical `nydalen`. | Modeller som delprofil/relation eller avgrens et separat fysisk objekt. |
+| `seilduksfabrikken_nydalen` – Øvre spinneri | needs_review | Gjerdrums vei 12 er dokumentert, men Geonorge gir flere ikke-entydige treff. | Finn eksakt bygningsgeometri eller dokumenter ett konkret adressepunkt. |
+| `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
 | `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |
 | `alnaelvstien` – Alnaelvstien / Alnastien | needs_review | Oslo kommune dokumenterer turveien langs Alnaelva, men OSM har flere separate Alnastien-way-er og ingen samlet ruterelasjon i kontrollen. | Bygg routeSegments eller finn samlet offisiell rutetrase før canonical punkt godkjennes. |
 | `loelva_historisk` – Loelva, historisk navn på Alna | needs_review | Loelva er dokumentert som historisk/alternativt navn på Alna og er ikke et separat fysisk vassdrag. | Modeller som historisk alias/relation til `alnaelva`, eller dokumenter en eksplisitt historisk delstrekning. |
