@@ -173,6 +173,39 @@ assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være
   }
 }
 
+// --- 6c. «Dine egne timer»: hvert dag 1-valg har en dag 2-gren som lukker ---
+// Kalender/rutine-arcen: dag 1-morgenscenen setter alltid nøyaktig ett av
+// grenflaggene, og hver gren har sin egen dag 2-scene som leser flagget og
+// lukker tråden. Ingen gren skal etterlate tråden åpen uten oppfølging.
+{
+  const lifeScenes = readJson(manifest.life.scenes);
+  const byId = (id) => lifeScenes.scenes.find((s) => s.id === id);
+
+  const plan = byId("morgen_01_din_egen_plan");
+  assert.ok(plan && plan.dag === 1 && plan.fase === "morgen", "dag 1 har kalender/rutine-scenen om morgenen");
+  const GREN_TIL_SCENE = {
+    egen_time_satt: "d2_ettermiddag_timen_din",
+    lot_dagen_bestemme: "d2_ettermiddag_rommet_som_forsvant",
+    fylte_lista: "d2_ettermiddag_lista_moeter_veggen"
+  };
+  const setteFlagg = plan.valg.map((v) => {
+    const flagg = Object.keys(v.effekter?.flagg || {}).filter((f) => GREN_TIL_SCENE[f]);
+    assert.strictEqual(flagg.length, 1, `planvalget ${v.id} må sette nøyaktig ett grenflagg`);
+    return flagg[0];
+  });
+  assert.strictEqual(new Set(setteFlagg).size, Object.keys(GREN_TIL_SCENE).length,
+    "dag 1-valgene dekker alle tre grenene");
+  for (const [flagg, sceneId] of Object.entries(GREN_TIL_SCENE)) {
+    const gren = byId(sceneId);
+    assert.ok(gren && gren.dag === 2, `grenscenen ${sceneId} finnes på dag 2`);
+    assert.strictEqual(gren.conditions?.flagg?.[flagg], true, `${sceneId} leser flagget ${flagg}`);
+    for (const v of gren.valg) {
+      assert.strictEqual(v.effekter?.threads?.dine_egne_timer?.status, "completed",
+        `${sceneId}/${v.id} skal lukke dine_egne_timer — hver gren får en slutt`);
+    }
+  }
+}
+
 // --- 7. Delt privat persongalleri: venn + familie i ALLE roller ---
 // De delte livsscenene refererer avsenderne «venn» (Jonas) og «familie»
 // (Søsteren din) og flytter relasjonene deres. Da må hver rolle — også

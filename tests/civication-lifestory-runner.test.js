@@ -95,10 +95,18 @@ assert.strictEqual(view.scene.id, "skolevei_01_melding");
 const skolekontaktFoer = state.relasjoner.skolekontakt;
 const result = Runner.applyChoice(state, content, "skolevei_01_melding", "kartlegging");
 assert.deepStrictEqual(result.laasteOpp, ["skolevei_02_kartlegging"]);
-assert.strictEqual(result.faseSkifte, true, "morgenen er tom -> formiddag");
-assert.strictEqual(state.fase, "formiddag");
 assert.strictEqual(state.relasjoner.skolekontakt, skolekontaktFoer + 10);
 assert.strictEqual(state.tidligereValg.tok_skolevei_alvorlig, true);
+
+// Morgenen er ikke tom ennå: kalender/rutine-scenen («Dine egne timer»)
+// ligger sist i fasen. Først når den er spilt skifter fasen.
+assert.strictEqual(result.faseSkifte, false, "kalenderscenen gjenstår i morgenfasen");
+assert.strictEqual(state.fase, "morgen");
+view = Runner.getView(state, content);
+assert.strictEqual(view.scene.id, "morgen_01_din_egen_plan", "privat kalenderscene spilles sist i morgenen");
+const planResult = Runner.applyChoice(state, content, "morgen_01_din_egen_plan", "sette_av_en_time");
+assert.strictEqual(planResult.faseSkifte, true, "morgenen er tom -> formiddag");
+assert.strictEqual(state.fase, "formiddag");
 
 // De andre skolevei-oppfølgerne skal IKKE være tilgjengelige (ikke låst opp).
 const kandidater = Runner.getCandidateScenes(state, content).map((s) => s.id);

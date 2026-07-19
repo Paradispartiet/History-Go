@@ -2080,6 +2080,452 @@
           "konsekvensTekst": "Ikke alt skal evalueres. Noen dager skal bare få lov til å bli i går."
         }
       ]
+    },
+    {
+      "id": "morgen_01_din_egen_plan",
+      "threadId": "dine_egne_timer",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Hva står på din egen plan i dag?",
+      "tekst": "Dagen har allerede sine krav. Men mellom dem finnes det timer ingen andre har gjort krav på — ennå. Spørsmålet er om du rekker å gjøre krav på dem selv.",
+      "valg": [
+        {
+          "id": "sette_av_en_time",
+          "tekst": "Sette av én time i dag som bare er din",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 2
+            },
+            "flagg": {
+              "egen_time_satt": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Én time med gjerde rundt. Dagen får resten — men ikke den."
+        },
+        {
+          "id": "la_dagen_bestemme",
+          "tekst": "La dagen bestemme — du tar det som kommer",
+          "tone": "flytende",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "lot_dagen_bestemme": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Fleksibelt, kaller du det. Dagen pleier å ha egne ideer for folk uten planer."
+        },
+        {
+          "id": "fylle_lista",
+          "tekst": "Fylle lista helt full, så du i hvert fall er i gang",
+          "tone": "ambisiøs",
+          "effekter": {
+            "meters": {
+              "synlighet": 1,
+              "psyke": -2
+            },
+            "flagg": {
+              "fylte_lista": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lista er imponerende. Den vet bare ikke at du også skal hvile i dag."
+        }
+      ]
+    },
+    {
+      "id": "d2_ettermiddag_timen_din",
+      "threadId": "dine_egne_timer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "flagg": {
+          "egen_time_satt": true
+        }
+      },
+      "tittel": "Timen du satte av er nå",
+      "tekst": "Du satte gjerde rundt en time i går. Nå står den her og ser på deg — og det gjør alt det andre også.",
+      "valg": [
+        {
+          "id": "bruke_timen",
+          "tekst": "Bruke den — timen er din, resten får vente",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 2
+            },
+            "flagg": {
+              "brukte_timen": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Verden sto ikke stille mens du var borte fra den. Den trengte deg bare mindre enn den påsto."
+        },
+        {
+          "id": "gi_den_bort",
+          "tekst": "Gi den bort — noe annet virker viktigere",
+          "tone": "ettergivende",
+          "effekter": {
+            "meters": {
+              "psyke": -2,
+              "synlighet": 1
+            },
+            "flagg": {
+              "ga_bort_timen": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Det andre ble gjort. Timen din står fortsatt ubetalt — og den fører regnskap."
+        }
+      ]
+    },
+    {
+      "id": "d2_ettermiddag_rommet_som_forsvant",
+      "threadId": "dine_egne_timer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "flagg": {
+          "lot_dagen_bestemme": true
+        }
+      },
+      "tittel": "Dagen bestemte — igjen",
+      "tekst": "I går lot du dagen bestemme, og den tok alt den fikk. Nå står du i en ny ettermiddag og kjenner at ingen av timene så langt har vært dine.",
+      "valg": [
+        {
+          "id": "sette_gjerde_naa",
+          "tekst": "Sette gjerde rundt resten av ettermiddagen",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "energi": 1
+            },
+            "flagg": {
+              "satte_gjerde": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Det er sent i dagen, men ikke for sent. Resten av den er din."
+        },
+        {
+          "id": "fortsette_aa_flyte",
+          "tekst": "Fortsette å flyte — det ordner seg vel",
+          "tone": "flytende",
+          "effekter": {
+            "meters": {
+              "energi": 1,
+              "psyke": -1
+            },
+            "flagg": {
+              "fortsatte_aa_flyte": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Dagene som ordner seg selv har en tendens til å ordne seg for alle andre først."
+        }
+      ]
+    },
+    {
+      "id": "d2_ettermiddag_lista_moeter_veggen",
+      "threadId": "dine_egne_timer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "flagg": {
+          "fylte_lista": true
+        }
+      },
+      "tittel": "Lista møter veggen",
+      "tekst": "Lista fra i går er fortsatt ikke ferdig, og den nye dagen har allerede lagt til sitt. Et sted mellom punktene forsvant timene som skulle vært dine.",
+      "valg": [
+        {
+          "id": "stryke_halvparten",
+          "tekst": "Stryke halvparten — det viktigste er ikke alt",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 3
+            },
+            "flagg": {
+              "stroek_halvparten": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Halvparten av lista forsvant, og ingenting raste. Det som ble igjen er faktisk viktig."
+        },
+        {
+          "id": "jobbe_seg_gjennom",
+          "tekst": "Presse deg gjennom alt sammen",
+          "tone": "ambisiøs",
+          "effekter": {
+            "meters": {
+              "synlighet": 2,
+              "energi": -4,
+              "psyke": -1
+            },
+            "flagg": {
+              "presset_gjennom_lista": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Alt ble krysset av. Prisen står ikke på lista, men kroppen har notert den."
+        }
+      ]
+    },
+    {
+      "id": "d2_formiddag_maten",
+      "threadId": "kroppen_og_kreftene",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Lunsj: hva blir det til?",
+      "tekst": "Midt på dagen melder kroppen seg, uansett hva resten av dagen mener om saken. Spørsmålet er det samme som alltid: hva blir det til?",
+      "valg": [
+        {
+          "id": "lage_av_det_du_har",
+          "tekst": "Lage noe av det du har",
+          "tone": "sparsom",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "laget_mat_selv": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Det ble ikke fancy, men det ble mat — og pengene ble værende der de var."
+        },
+        {
+          "id": "kjoepe_raskt",
+          "tekst": "Kjøpe noe raskt",
+          "tone": "effektiv",
+          "effekter": {
+            "meters": {
+              "penger": -60,
+              "energi": 3
+            },
+            "flagg": {
+              "kjoepte_lunsj": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Raskt og godt, og kontoen merket det. Noen dager er det verdt det."
+        },
+        {
+          "id": "hoppe_over",
+          "tekst": "Hoppe over — du spiser senere",
+          "tone": "utsettende",
+          "effekter": {
+            "meters": {
+              "energi": -4,
+              "psyke": -1
+            },
+            "flagg": {
+              "hoppet_over_lunsj": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Senere har en tendens til å bli mye senere. Kroppen fører regnskap den også."
+        }
+      ]
+    },
+    {
+      "id": "d2_kveld_stille_middag",
+      "threadId": "kroppen_og_kreftene",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "conditions": {
+        "meters": {
+          "psyke": {
+            "max": 55
+          }
+        }
+      },
+      "tittel": "En stille middag hjemme",
+      "tekst": "Kvelden spør ikke om mye. Et måltid, litt varme, ingen som trenger noe av deg på en stund. Det er lov å la det være akkurat så enkelt.",
+      "valg": [
+        {
+          "id": "lage_noe_enkelt",
+          "tekst": "Lage noe enkelt og spise i fred",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 2
+            },
+            "flagg": {
+              "stille_middag": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Enkel mat, dempet lys, ingen krav. Det var dette kvelden hadde å gi — og det holdt."
+        },
+        {
+          "id": "spise_med_noe_kjent",
+          "tekst": "Spise med noe kjent på — noe du kan utenat",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 1
+            },
+            "flagg": {
+              "spiste_med_noe_kjent": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ingen overraskelser, bare selskap som ikke stiller spørsmål. Kjent er også en form for hvile."
+        }
+      ]
+    },
+    {
+      "id": "d2_morgen_ti_minutter_samling",
+      "threadId": "lysten_til_aa_laere",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "vitenskap",
+            "historie",
+            "litteratur"
+          ]
+        }
+      },
+      "tittel": "Ti minutter med noe du samler på",
+      "tekst": "Samlingen din ligger der fra i går — det du leser, det du kan, det du er i ferd med å forstå. Ti minutter nå, før dagen våkner, er nok til å legge én stein til.",
+      "valg": [
+        {
+          "id": "ta_ti_minuttene",
+          "tekst": "Ta de ti minuttene før dagen begynner",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "energi": 1
+            },
+            "flagg": {
+              "tok_ti_minutter_laering": true
+            },
+            "threads": {
+              "lysten_til_aa_laere": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ti minutter er ingenting, mener dagen. Men samlingen din vokste før dagen i det hele tatt våknet."
+        },
+        {
+          "id": "spare_dem",
+          "tekst": "Spare dem — dagen trenger deg først",
+          "tone": "pliktoppfyllende",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "sparte_laeringen": true
+            },
+            "threads": {
+              "lysten_til_aa_laere": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Det du samler på ligger der fortsatt. Det venter bedre enn det meste annet gjør."
+        }
+      ]
     }
   ]
 }
