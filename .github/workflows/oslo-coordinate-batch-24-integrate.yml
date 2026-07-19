@@ -118,9 +118,25 @@ jobs:
             | tee reports/oslo-coordinate-control-batch-24/strict-intake.txt
 
       - name: Validate coordinate evidence
+        id: evidence
+        continue-on-error: true
         run: |
           set -o pipefail
           npm run places:coords:evidence:audit | tee reports/oslo-coordinate-control-batch-24/evidence-audit.txt
+
+      - name: Upload evidence audit failure report
+        if: steps.evidence.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-24-evidence-audit-failure
+          path: |
+            reports/coordinate-evidence-audit.md
+            reports/oslo-coordinate-control-batch-24/evidence-audit.txt
+          if-no-files-found: error
+
+      - name: Stop on evidence audit failure
+        if: steps.evidence.outcome == 'failure'
+        run: exit 1
 
       - name: Validate diff whitespace
         run: git diff --check
