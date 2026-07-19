@@ -1,0 +1,68 @@
+name: Fill Skånevik discgolf rounds
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-validate-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generate Skånevik discgolf content
+        env:
+          GENERATOR_GZ_B64: "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"
+        run: |
+          printf '%s' "$GENERATOR_GZ_B64" | base64 -d | gzip -d > /tmp/agent-fill-skanevik-discgolf-rounds.js
+          node /tmp/agent-fill-skanevik-discgolf-rounds.js
+      - name: Dedicated and inherited tests
+        run: |
+          node tests/skanevik-discgolf-batch1-round-content.test.js
+          node tests/osnes-discgolf-batch1-round-content.test.js
+          node tests/skakkeringen-batch1-round-content.test.js
+          node tests/engebanen-batch1-round-content.test.js
+          node tests/steinsvollen-batch1-round-content.test.js
+          node tests/etne-pumptrack-batch1-round-content.test.js
+      - name: Leksikon ids
+        run: npm run leksikon:ids:check
+      - name: People of places
+        run: |
+          npm run audit:people-of-places
+          git checkout -- reports/people-of-places-status.json reports/people-of-places-status.md
+      - name: Typecheck tools
+        run: npm run typecheck:tools
+      - name: Typecheck web
+        run: npm run typecheck:web
+      - name: Story integrity without new Skånevik discgolf errors
+        run: |
+          set +e
+          npm run check:stories > /tmp/story-integrity.log 2>&1
+          set -e
+          cat /tmp/story-integrity.log
+          if grep -Ei 'story=.*skanevik_dugnad_til_sondagsliga|place_id=skanevik_discgolf|person_id=solve_funderud' /tmp/story-integrity.log; then
+            echo 'Skånevik discgolf introduced a story integrity error'
+            exit 1
+          fi
+      - name: Diff check
+        run: git diff --check
+      - name: Remove temporary workflow
+        run: rm .github/workflows/agent-fill-skanevik-discgolf-rounds.yml
+      - name: Commit generated content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data reports tests .github/workflows
+          git commit -m "Fill Skånevik discgolf sport rounds batch 1"
+          git push
