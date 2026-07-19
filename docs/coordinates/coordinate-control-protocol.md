@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 137 verifiserte eller kildekontrollerte canonical steder. Batch 26 avslutter næringslivsmanifestet med to nye godkjente ankere: Myrens Verksted som navngitt OSM-kompleks og Christiania Seildugsfabrik i Fossveien 24. `gronlikaia`, `lilleborg_fabrikker` og `akerselva_industri` står som nye dokumenterte `needs_review`-utfall. 30 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
+Oslo-tabellen inneholder nå 144 verifiserte eller kildekontrollerte canonical steder. Batch 27 godkjenner sju nye objekttilpassede ankere fra by-manifestet: seks navngitte bolig-/bydelsområder som semantic area anchors og Spikersuppa som eksakt navngitt OSM-objekt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er fortsatt 30.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -158,6 +158,13 @@ Oslo-tabellen inneholder nå 137 verifiserte eller kildekontrollerte canonical s
 | 24 | `akershus_slott_bakeriet` | Bakeriet ved Akershus | verified_geometry | `osm-way:669390521` |
 | 26 | `myrens_verksted` | Myrens Verksted | verified_geometry | `osm-way:99757039` |
 | 26 | `christiania_seildugsfabrik` | Christiania Seildugsfabrik | verified | `geonorge-adresser-v1:0301:11891:24` |
+| 27 | `ullevål_hageby` | Ullevål Hageby | verified_geometry | `osm-node:1125978057` |
+| 27 | `romsaås` | Romsås | verified_geometry | `osm-node:963813366` |
+| 27 | `rodelokka` | Rodeløkka | verified_geometry | `osm-node:1290871351` |
+| 27 | `vaalerenga` | Vålerenga | verified_geometry | `osm-node:366154118` |
+| 27 | `vinderen` | Vinderen | verified_geometry | `osm-node:1125573258` |
+| 27 | `ullern` | Ullern | verified_geometry | `osm-node:1370932493` |
+| 27 | `spikersuppa` | Spikersuppa | verified_geometry | `osm-relation:11158886` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -165,7 +172,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 137 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 144 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -246,8 +253,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 166 og starter batch 27.
-- Batch 26 er fullført med to nye godkjente ankere og tre nye dokumenterte `needs_review`-utfall; `places_naeringsliv_manifest.json` er nå ferdig kontrollert.
-- Næringslivsmanifestet er uttømt etter `akerselva_industri`. Før batch 27 starter skal neste sekundære Oslo-kildekø auditeres eksplisitt; ikke gjett neste manifest eller kategori.
+- Neste nye Oslo-kontroll er nummer 173 og starter batch 28.
+- Batch 27 er fullført med sju nye godkjente ankere fra `places_by_manifest.json`.
+- By-manifestet har to ukontrollerte records igjen etter batch 27: `bankplassen` og `christiania_torv`. Batch 28 avslutter denne kildekøen med disse to før neste sekundære Oslo-kilde velges eksplisitt.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

@@ -1,0 +1,76 @@
+{
+  "placeId": "spikersuppa",
+  "placeFile": "data/places/by/oslo/places_by.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9138411,
+    "lon": 10.7372086,
+    "r": 160,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 11158886 – Spikersuppa",
+    "coordType": "square_center",
+    "coordNote": "Eksakt navngitt OSM-relasjon for Spikersuppa-bassenget, kryssjekket mot Oslo byleksikon og Oslo kommunes omtale av Spikersuppa/Studenterlunden. Relasjonens geometriske senter brukes som site-center; eksisterende radius dekker den bredere offentlige byromsbruken recorden formidler."
+  },
+  "identity": {
+    "currentName": "Spikersuppa",
+    "resolvedIdentity": "Spikersuppa-bassenget og det tilknyttede offentlige byrommet i Studenterlunden",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "dokumentert fysisk område-/objektidentitet",
+    "navngitt OSM-objekt",
+    "canonical duplikatkontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Spikersuppa",
+      "sourceUrl": "https://oslobyleksikon.no/side/Spikersuppa",
+      "sourceObjectId": "identity:spikersuppa",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon – Spikersuppa dokumenterer Spikersuppa-bassenget og det tilknyttede offentlige byrommet i Studenterlunden.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden løser place-identiteten og avgrenser hvilken type fysisk sted recorden representerer."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 11158886 – Spikersuppa",
+      "sourceUrl": "https://www.openstreetmap.org/relation/11158886",
+      "sourceObjectId": "osm-relation:11158886",
+      "sourceQuality": "named_object_geometry",
+      "finding": "OSM-objektet er eksplisitt navngitt Spikersuppa og brukes som det sporbare fysiske ankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Navngitt objekt matcher den dokumenterte place-identiteten; alternative stasjons-/administrative treff er avvist der de finnes."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11158886",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9138411,
+      "lon": 10.7372086,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinatkontrakt anvendt på canonical place."
+  },
+  "notes": [
+    "Koordinatkontrakt anvendt i batch 27."
+  ]
+}
