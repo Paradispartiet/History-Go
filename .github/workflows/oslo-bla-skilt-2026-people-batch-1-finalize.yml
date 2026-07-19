@@ -1,0 +1,106 @@
+name: Oslo Blå skilt 2026 people batch 1 finalizer
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-bla-skilt-2026-people-batch-1-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Register people files
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-bla-skilt-2026-people-batch-1/validation'
+          mkdir -p "$outdir"
+          node <<'NODE' | tee "$outdir/manifest-registration.txt"
+          const fs = require('fs');
+          const path = 'data/people/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const files = [
+            'people/litteratur/oslo/bla_skilt_2026/stein_mehren.json',
+            'people/politikk/oslo/bla_skilt_2026/christopher_hornsrud.json'
+          ];
+          for (const file of files) if (!manifest.files.includes(file)) manifest.files.push(file);
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          console.log(`Registered ${files.length} people files`);
+          NODE
+
+      - name: Validate new people
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-bla-skilt-2026-people-batch-1/validation'
+          node <<'NODE' | tee "$outdir/new-people-validation.txt"
+          const fs = require('fs');
+          const manifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
+          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const placeIds = new Set(places.map(p => p.id));
+          const expected = new Map([
+            ['stein_mehren', 'bla_skilt_stein_mehren_ullevalsveien_60'],
+            ['christopher_hornsrud', 'bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5']
+          ]);
+          const counts = new Map();
+          for (const relative of manifest.files) {
+            const file = `data/${relative}`;
+            if (!fs.existsSync(file)) continue;
+            const rows = JSON.parse(fs.readFileSync(file, 'utf8'));
+            for (const person of Array.isArray(rows) ? rows : []) {
+              if (!person?.id) continue;
+              counts.set(person.id, (counts.get(person.id) || 0) + 1);
+              if (expected.has(person.id)) {
+                if (person.placeId !== expected.get(person.id)) throw new Error(`Wrong primary place for ${person.id}`);
+                if (!placeIds.has(person.placeId)) throw new Error(`Missing primary place ${person.placeId}`);
+                for (const placeId of person.places || []) if (!placeIds.has(placeId)) throw new Error(`Missing place ref ${person.id} -> ${placeId}`);
+              }
+            }
+          }
+          for (const id of expected.keys()) if (counts.get(id) !== 1) throw new Error(`${id} count=${counts.get(id) || 0}`);
+
+          const registry = JSON.parse(fs.readFileSync('data/visualDesignCodes.json', 'utf8'));
+          const registryText = JSON.stringify(registry);
+          for (const code of ['person_writer_miniature', 'person_politician_miniature']) {
+            if (!registryText.includes(`"${code}"`)) throw new Error(`Missing visual code ${code}`);
+          }
+          console.log('2/2 canonical people unique; all place refs resolve; both visual codes registered');
+          NODE
+
+      - name: Run People of Places gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run audit:people-of-places | tee reports/oslo-bla-skilt-2026-people-batch-1/validation/people-of-places.txt
+
+      - name: Remove generated global audit churn and persist batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git restore --source=HEAD -- reports/people-of-places-status.json reports/people-of-places-status.md 2>/dev/null || true
+          rm -f .github/workflows/oslo-bla-skilt-2026-people-batch-1-finalize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/people/manifest.json \
+                  reports/oslo-bla-skilt-2026-people-batch-1/validation \
+                  .github/workflows/oslo-bla-skilt-2026-people-batch-1-finalize.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Finalize Oslo blue plaques 2026 people batch 1'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
