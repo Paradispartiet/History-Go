@@ -29,14 +29,11 @@ assert(Array.isArray(place.brands) && place.brands.length >= 3, 'Aktører-rundin
 assert(place.for_na?.before && place.for_na?.now && place.for_na?.change, 'Før/nå-rundingen skal være komplett');
 assert(Array.isArray(place.emne_ids) && place.emne_ids.includes('em_by_infrastruktur_mobilitet'), 'Badge-rundingen skal beholde infrastrukturemnet');
 
-const peopleManifest = readJson('data/people/manifest.json');
-const oskarManifestPath = 'people/litteratur/oslo/akerselva/oskar_braaten.json';
-assert(peopleManifest.files.includes(oskarManifestPath), 'Oskar Braaten-filen skal være manifestlastet');
-const oskarRows = readJson('data/people/litteratur/oslo/akerselva/oskar_braaten.json');
-assert.strictEqual(oskarRows.length, 1);
-assert.strictEqual(oskarRows[0].id, 'oskar_braaten');
-assert.strictEqual(oskarRows[0].placeId, 'oscar_braaten_statuen', 'Personens primære fysiske anker skal være den eksisterende bysten');
-assert(!oskarRows[0].places.includes('beierbrua'), 'Beierbrua skal ikke påstås som fysisk personsted via people.places');
+const existingOskarRows = readJson('data/people/litteratur/oslo/people_litteratur_oslo.json');
+const oskar = existingOskarRows.find((row) => row.id === 'oskar_braaten');
+assert(oskar, 'Eksisterende canonical Oskar Braaten-record skal gjenbrukes');
+assert.strictEqual(oskar.placeId, 'oscar_braaten_statuen', 'Personens primære fysiske anker skal være den eksisterende bysten');
+assert(!oskar.places.includes('beierbrua'), 'Beierbrua skal ikke påstås som fysisk personsted via people.places');
 
 const relations = readJson('data/relations.json');
 assert(relations.some((row) => row.id === 'rel_oskar_braaten_beierbrua_litteraert_sted' && row.place === 'beierbrua' && row.person === 'oskar_braaten'), 'Oskar Braaten mangler litterær Beierbrua-relasjon');
