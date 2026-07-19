@@ -1,0 +1,51 @@
+{
+  "placeId": "frysja_industriomrade",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9608,
+    "lon": 10.7726,
+    "r": 260,
+    "coordStatus": "verified",
+    "coordSource": "manual_map_check",
+    "coordType": "area_center",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Frysja industriområde",
+    "resolvedIdentity": "det historiske industri- og transformasjonsområdet langs øvre Akerselva ved Frysja",
+    "identityStatus": "resolved_broad_area",
+    "identityProblem": "Frysja er et dokumentert område, men den aktive recorden har bare ett manuelt sentrumspunkt og ingen kildebelagt områdegeometri eller anchors. Et bredt industriområde kan ikke være `verified` på grunnlag av ett manuelt punkt.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "Området kan beholdes, men må få eksplisitt geometri eller flere dokumenterte area-ankre."
+  },
+  "requiredEvidence": [
+    "offisiell områdeavgrensning eller plan-geometri",
+    "flere area-ankre dersom full polygon ikke brukes",
+    "nedgradering av legacy verified-status inntil geometri er på plass"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Frysja: kvalitet og kvantitet",
+      "sourceUrl": "https://magasin.oslo.kommune.no/byplan/frysja-kvalitet-og-kvantitet",
+      "sourceObjectId": "oslo-kommune:byplan:frysja",
+      "sourceQuality": "official_area_identity",
+      "finding": "Oslo kommune dokumenterer Frysja som et større tidligere industriområde vest for Akerselva under transformasjon til byområde.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden dokumenterer områdeidentiteten, men evidence-passet har ikke en maskinsporbar polygon eller flere fysiske anchors."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Bredt område mangler kildebelagt geometri/anchors; dagens manual_map_check er ikke nok.",
+    "nextAction": "Hent offisiell plan-/områdegeometri eller legg inn dokumenterte area-ankre før canonical koordinatstatus kan verifiseres."
+  },
+  "notes": ["Ingen koordinatendring i batch 25."]
+}

@@ -1,0 +1,51 @@
+{
+  "placeId": "norges_varemesse",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.953,
+    "lon": 10.7525,
+    "r": 250,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Norges Varemesse",
+    "resolvedIdentity": "institusjonen Norges Varemesse, med tidligere Messehallen/Sjølystsenteret i Drammensveien 154 og dagens virksomhet i Lillestrøm",
+    "identityStatus": "conflict",
+    "identityProblem": "Recorden bruker institusjonsnavn og stiftelsesåret 1920, mens den konkrete Oslo-bygningen på Sjølyst åpnet i 1962, ble forlatt i 2002 og senere revet. Ett nåtidspunkt i Oslo kan ikke representere hele institusjonen eller et revet historisk bygg uten tydelig scope.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": true,
+    "splitReason": "Institusjonen og det historiske Oslo-messestedet må skilles før ett fysisk anker kan godkjennes."
+  },
+  "requiredEvidence": [
+    "beslutning om recorden skal være institusjon eller historisk Sjølyst-sted",
+    "historisk kart-/tomteanker dersom Messehallen beholdes som place",
+    "korrekt tidslinje for 1920, 1962, 2002 og rivning"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Norges Varemesse",
+      "sourceUrl": "https://oslobyleksikon.no/side/Norges_Varemesse",
+      "sourceObjectId": "oslobyleksikon:norges-varemesse",
+      "sourceQuality": "documented_identity_history",
+      "finding": "Kilden dokumenterer institusjonen stiftet i 1920, Messehallen i Drammensveien 154 fra 1962, flytting til Lillestrøm i 2002 og senere rivning av Oslo-bygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Den aktive recorden skiller ikke mellom institusjon og revet Oslo-venue."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Institusjonsrecord og historisk/revet Oslo-bygg er blandet sammen.",
+    "nextAction": "Omdefiner til historiske Messehallen på Sjølyst med historisk source contract, eller flytt institusjonsinnholdet ut av place-modellen."
+  },
+  "notes": ["Ingen koordinatendring i batch 25."]
+}

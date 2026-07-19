@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 135 verifiserte eller kildekontrollerte canonical steder. Batch 24 godkjenner fire nye ankere: Hjula Væverier som fysisk hovedanker for `ovre_foss`, Schous bryggeri i Trondheimsveien 2, Ringnes Bryggeris gamle brygghus i Thorvald Meyers gate 2A og Bakeriet som identifisert bygningsobjekt på Akershus festning. `sagene_kvernhus`, `st_halvard_bryggeri` og `oslo_kornmagasin` står som nye dokumenterte `needs_review`-utfall på grunn av uklar eller konfliktfylt fysisk identitet. 20 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
+Oslo-tabellen inneholder fortsatt 135 verifiserte eller kildekontrollerte canonical steder. Batch 25 avslutter sju nye kontroller som `needs_review` uten koordinatendringer: `jernbanetorget_trafikknutepunkt`, `oslo_kraftselskap`, `grensen_kjopesenter`, `vippetangen_fisketorg`, `frysja_industriomrade`, `norges_varemesse` og `bryn_industriomrade`. Konfliktene gjelder fysisk duplikat, institusjon uten ett sted, feilmodellert lineær gate, historisk identitet/tidslinje og brede områder uten kildebelagt geometri. 27 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -187,6 +187,13 @@ Disse kontrollene er fullført, men teller ikke blant de 135 verifiserte eller k
 | `sagene_kvernhus` – Sagene mølle og kvernhus | needs_review | Recorden kombinerer flere mølle-, sagbruks- og industriidentiteter langs Akerselva uten ett entydig fysisk anlegg; Hjula er allerede representert av `ovre_foss`. | Avgrens til ett dokumentert fysisk anlegg eller modeller industrimiljøet som område/relasjon med flere ankere. |
 | `st_halvard_bryggeri` – St. Halvard bryggeri | needs_review | Aktiv record oppgir feil år/geografi i forhold til det dokumenterte St. Halvards/Nora-anlegget i Pilestredet 75C. Det entydige Geonorge-punktet kan ikke anvendes før place-identiteten og historikken er korrigert. | Rett recordens historiske fakta og avklar bygningskontinuitet før Pilestredet 75C eventuelt godkjennes. |
 | `oslo_kornmagasin` – Christiania kornmagasin | needs_review | Aktiv 1785-record matcher ikke sikkert det dokumenterte Kornmagasinet på Akershus, inventar 0008 fra 1788, selv om et eksakt navngitt bygningsobjekt finnes. | Avklar historisk identitet og korriger/erstatt recorden før et Akershus-anker eventuelt brukes. |
+| `jernbanetorget_trafikknutepunkt` – Jernbanetorget – handelsknutepunktet | needs_review | Fysisk duplikat av allerede canonical og koordinatkontrollerte `jernbanetorget`; næringslivsvinkelen skaper ikke et nytt fysisk sted. | Migrer innhold/referanser til `jernbanetorget`, eller dokumenter en faktisk separat delentitet. |
+| `oslo_kraftselskap` – Oslo Lysverker | needs_review | Recorden beskriver en institusjon og et distribusjonssystem med flere historiske anlegg; Sommerrogata 1 er et senere hovedkontor, ikke en entydig representasjon av hele 1892-recorden. | Definer ett konkret bygg/anlegg som place eller flytt institusjonshistorien ut av place-modellen. |
+| `grensen_kjopesenter` – Grensen – handelens sentrum | needs_review | ID/type antyder kjøpesenter/knutepunkt, mens navn, tekst og kilder beskriver den lineære gaten Grensen. Ett punkt uten traségeometri/ankre kan ikke verifisere hele gata. | Normaliser til gate og legg inn kildebelagte endepunkter/traségeometri før koordinaten godkjennes. |
+| `vippetangen_fisketorg` – Vippetangen fisketorg | needs_review | Aktiv record oppgir 1890, men fisketorget/fiskehavna ble flyttet til Vippetangen i 1905 og recorden blander marked, havn og senere Fiskehallen. | Rett tidslinje og velg eksplisitt mellom historisk fiskehavn/område og konkret Fiskehallen-bygg. |
+| `frysja_industriomrade` – Frysja industriområde | needs_review | Området er reelt, men dagens legacy `verified`-punkt bygger på `manual_map_check` og mangler kildebelagt områdegeometri eller flere area-ankre. | Hent offisiell plan-/områdegeometri eller dokumenterte area-ankre før verified-status kan forsvares. |
+| `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
+| `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
 
 ## Etne – historiesett
 
@@ -234,8 +241,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 154 og starter batch 25.
-- Batch 24 er fullført med fire godkjente ankere og tre nye dokumenterte `needs_review`-utfall.
-- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `akershus_slott_bakeriet`; `jernbanetorget_trafikknutepunkt` er neste kandidat.
+- Neste nye Oslo-kontroll er nummer 161 og starter batch 26.
+- Batch 25 er fullført med null nye godkjente ankere og sju nye dokumenterte `needs_review`-utfall.
+- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `bryn_industriomrade`; `gronlikaia` er neste kandidat.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

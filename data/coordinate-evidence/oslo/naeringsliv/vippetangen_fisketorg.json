@@ -1,0 +1,51 @@
+{
+  "placeId": "vippetangen_fisketorg",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9012,
+    "lon": 10.7429,
+    "r": 160,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Vippetangen fisketorg",
+    "resolvedIdentity": "fiskehavna/fisketorget som ble flyttet til Vippetangen i 1905, med senere Fiskehallen ved Akershusstranda 23",
+    "identityStatus": "conflict",
+    "identityProblem": "Aktiv record oppgir 1890, men dokumentert fisketorg/fiskehavn på Vippetangen starter i 1905. Recorden blander marked, havn og senere fiskehall, slik at ett konkret fysisk objekt ikke kan velges uten å korrigere scope og tidslinje.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Det må avgjøres om place skal representere den historiske fiskehavna som område eller den konkrete Fiskehallen."
+  },
+  "requiredEvidence": [
+    "korrigert historisk tidslinje",
+    "valg mellom fiskehavn/marked og Fiskehallen",
+    "historisk geometri eller konkret bygningsanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Fiskehallen",
+      "sourceUrl": "https://oslobyleksikon.no/side/Fiskehallen",
+      "sourceObjectId": "oslobyleksikon:fiskehallen",
+      "sourceQuality": "documented_historical_identity",
+      "finding": "Kilden dokumenterer at fisketorget ble flyttet til ny fiskehavn på Vippetangen i 1905, og at dagens Fiskehallen-adresse er Akershusstranda 23 etter senere ombygging.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden avdekker en materiell tids- og scopekonflikt i den aktive recorden."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Recorden blander historisk fiskehavn/fisketorg og senere Fiskehallen og har feil startår.",
+    "nextAction": "Rett år og place-scope; bruk historisk områdegeometri for fiskehavna eller et konkret Fiskehallen-anker hvis recorden omdefineres til bygget."
+  },
+  "notes": ["Ingen koordinatendring i batch 25."]
+}
