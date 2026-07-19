@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 144 verifiserte eller kildekontrollerte canonical steder. Batch 27 godkjenner sju nye objekttilpassede ankere fra by-manifestet: seks navngitte bolig-/bydelsområder som semantic area anchors og Spikersuppa som eksakt navngitt OSM-objekt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er fortsatt 30.
+Oslo-tabellen inneholder nå 146 verifiserte eller kildekontrollerte canonical steder. Batch 28 avslutter by-manifestet med to eksakte navngitte plassgeometrier: Bankplassen og Christiania Torv. Antallet fullførte kontroller uten godkjent Oslo-koordinat er fortsatt 30.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -165,6 +165,8 @@ Oslo-tabellen inneholder nå 144 verifiserte eller kildekontrollerte canonical s
 | 27 | `vinderen` | Vinderen | verified_geometry | `osm-node:1125573258` |
 | 27 | `ullern` | Ullern | verified_geometry | `osm-node:1370932493` |
 | 27 | `spikersuppa` | Spikersuppa | verified_geometry | `osm-relation:11158886` |
+| 28 | `bankplassen` | Bankplassen | verified_geometry | `osm-relation:12044741` |
+| 28 | `christiania_torv` | Christiania Torv | verified_geometry | `osm-way:594329484` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -172,7 +174,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 144 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 146 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -253,8 +255,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 173 og starter batch 28.
-- Batch 27 er fullført med sju nye godkjente ankere fra `places_by_manifest.json`.
-- By-manifestet har to ukontrollerte records igjen etter batch 27: `bankplassen` og `christiania_torv`. Batch 28 avslutter denne kildekøen med disse to før neste sekundære Oslo-kilde velges eksplisitt.
+- Neste nye Oslo-kontroll er nummer 175 og starter batch 29.
+- Batch 28 er fullført med to nye godkjente plassankere; `places_by_manifest.json` er nå ferdig kontrollert.
+- By-manifestet er uttømt etter `christiania_torv`. Før batch 29 starter skal neste aktive sekundære Oslo-kildekø auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
