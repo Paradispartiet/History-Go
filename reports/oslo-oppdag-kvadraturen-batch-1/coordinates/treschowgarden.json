@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Fred Olsens gate 2 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+  "query": "Fred Olsens gate 2 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Fred%20Olsens%20gate%202%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:11926:2",
+  "coordinate": {
+    "lat": 59.9096247918653,
+    "lon": 10.74814929599479,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11926:2",
+    "address": {
+      "street": "Fred. Olsens gate",
+      "number": "2",
+      "postcode": "0152",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Fred. Olsens gate 2, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Fred. Olsens gate",
+    "adressetekst": "Fred. Olsens gate 2",
+    "adressetilleggsnavn": null,
+    "adressekode": 11926,
+    "nummer": 2,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 207,
+    "bruksnummer": 57,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0152",
+    "adressetekstutenadressetilleggsnavn": "Fred. Olsens gate 2",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.9096247918653,
+      "lon": 10.74814929599479
+    },
+    "oppdateringsdato": "2020-06-15T18:02:02"
+  }
+}
