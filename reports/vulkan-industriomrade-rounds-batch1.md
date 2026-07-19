@@ -43,3 +43,9 @@ Ingen full Akerselva-splitting. Bare `vulkan_industriomrade.json`, Vulkan-raden 
 - Store norske leksikon – Vulkan (område i Oslo)
 - Oslo byleksikon – Bagaas Brug
 - Store norske leksikon – Axel Ingvald Spone Amundsen
+
+## Sluttstatus
+
+Den materialiserte sluttstaten har bestått målrettet Vulkan-test, canonical PlaceCard-rundingaudit, place-index build/check, split-manifest sync, People-of-Places audit, JSON-parse og `git diff --check`.
+
+Koordinatparitet kontrolleres mot den canonical coordinate-evidence-posten fra Oslo coordinate control batch 34 i stedet for å hardkode lat/lon i innholdstesten. People-of-Places rapporterer null ugyldige stedsreferanser og null duplikate person-ID-er. Midlertidig finalizer og workflow er fjernet fra slutt­differansen.
