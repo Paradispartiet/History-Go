@@ -80,18 +80,60 @@ jobs:
           set -euo pipefail
           npm run places:index:build 2>&1 | tee "$RUNNER_REPORT_DIR/places-index-build.log"
 
-      - name: Run coordinate validation gates
+      - name: Validate split manifest sync
         if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
           npm run audit:places-split-manifest-sync 2>&1 | tee "$RUNNER_REPORT_DIR/split-manifest-sync.log"
+
+      - name: Validate place index sync
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           npm run places:index:check 2>&1 | tee "$RUNNER_REPORT_DIR/places-index-check.log"
+
+      - name: Validate coordinate source contract
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           npm run test:coordinate-source-contract 2>&1 | tee "$RUNNER_REPORT_DIR/coordinate-source-contract.log"
+
+      - name: Validate coordinate quality
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           npm run places:coords:quality 2>&1 | tee "$RUNNER_REPORT_DIR/coordinate-quality.log"
+
+      - name: Validate coordinate intake
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           npm run places:coords:intake 2>&1 | tee "$RUNNER_REPORT_DIR/coordinate-intake.log"
+
+      - name: Validate coordinate evidence
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           npm run places:coords:evidence:audit 2>&1 | tee "$RUNNER_REPORT_DIR/coordinate-evidence.log"
+
+      - name: Validate place health
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           npm run health:places 2>&1 | tee "$RUNNER_REPORT_DIR/health-places.log"
+
+      - name: Validate diff whitespace
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           git diff --check 2>&1 | tee "$RUNNER_REPORT_DIR/git-diff-check.log"
 
       - name: Mark job complete and commit generated changes
