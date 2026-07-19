@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T08:21:13.232Z
+Generert: 2026-07-19T08:31:32.930Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -111,3 +111,8 @@ Generert: 2026-07-19T08:21:13.232Z
 | frysja_industriomrade | data/coordinate-evidence/oslo/naeringsliv/frysja_industriomrade.json | needs_research | needs_geometry | OK |
 | norges_varemesse | data/coordinate-evidence/oslo/naeringsliv/norges_varemesse.json | needs_research | needs_identity_split | OK |
 | bryn_industriomrade | data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json | needs_research | needs_geometry | OK |
+| gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | needs_research | needs_geometry | OK |
+| myrens_verksted | data/coordinate-evidence/oslo/naeringsliv/myrens_verksted.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | needs_research | needs_identity_split | OK |
+| akerselva_industri | data/coordinate-evidence/oslo/naeringsliv/akerselva_industri.json | needs_research | needs_geometry | OK |

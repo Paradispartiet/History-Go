@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder fortsatt 135 verifiserte eller kildekontrollerte canonical steder. Batch 25 avslutter sju nye kontroller som `needs_review` uten koordinatendringer: `jernbanetorget_trafikknutepunkt`, `oslo_kraftselskap`, `grensen_kjopesenter`, `vippetangen_fisketorg`, `frysja_industriomrade`, `norges_varemesse` og `bryn_industriomrade`. Konfliktene gjelder fysisk duplikat, institusjon uten ett sted, feilmodellert lineær gate, historisk identitet/tidslinje og brede områder uten kildebelagt geometri. 27 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
+Oslo-tabellen inneholder nå 137 verifiserte eller kildekontrollerte canonical steder. Batch 26 avslutter næringslivsmanifestet med to nye godkjente ankere: Myrens Verksted som navngitt OSM-kompleks og Christiania Seildugsfabrik i Fossveien 24. `gronlikaia`, `lilleborg_fabrikker` og `akerselva_industri` står som nye dokumenterte `needs_review`-utfall. 30 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -156,6 +156,8 @@ Oslo-tabellen inneholder fortsatt 135 verifiserte eller kildekontrollerte canoni
 | 24 | `schous_bryggeri` | Schous bryggeri | verified | `geonorge-adresser-v1:0301:17749:2` |
 | 24 | `ringnes_bryggeri` | Ringnes bryggeri | verified | `geonorge-adresser-v1:0301:17489:2A` |
 | 24 | `akershus_slott_bakeriet` | Bakeriet ved Akershus | verified_geometry | `osm-way:669390521` |
+| 26 | `myrens_verksted` | Myrens Verksted | verified_geometry | `osm-way:99757039` |
+| 26 | `christiania_seildugsfabrik` | Christiania Seildugsfabrik | verified | `geonorge-adresser-v1:0301:11891:24` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -163,7 +165,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 135 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 137 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -194,6 +196,9 @@ Disse kontrollene er fullført, men teller ikke blant de 135 verifiserte eller k
 | `frysja_industriomrade` – Frysja industriområde | needs_review | Området er reelt, men dagens legacy `verified`-punkt bygger på `manual_map_check` og mangler kildebelagt områdegeometri eller flere area-ankre. | Hent offisiell plan-/områdegeometri eller dokumenterte area-ankre før verified-status kan forsvares. |
 | `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
 | `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
+| `gronlikaia` – Grønlikaia | needs_review | Grønlikaia er et bredt tidligere havne-/containerområde og dagens utviklingsområde; batchens OSM-treff er serviceveier, ikke arealgeometri for hele stedet. | Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre. |
+| `lilleborg_fabrikker` – Lilleborg Fabrikker | needs_review | Aktiv record bruker 1833, mens dette viser til oljemøllen; såpeproduksjon kom i 1842 og A/S Lilleborg Fabriker i 1897. Fabrikkomplekset har flere mulige fysiske ankere. | Rett historisk identitet/år og avgjør om fabrikkport, bevart bygg eller historisk områdegeometri skal være canonical anker. |
+| `akerselva_industri` – Akerselva industriområde | needs_review | Recorden beskriver en lang industrikorridor som overlapper canonical `akerselva` og flere separate industriplaces; ett punkt kan ikke representere hele systemet. | Legg inn lineær geometri/flere anchors eller modeller som tematisk relation til Akerselva og konkrete industristeder. |
 
 ## Etne – historiesett
 
@@ -241,8 +246,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 161 og starter batch 26.
-- Batch 25 er fullført med null nye godkjente ankere og sju nye dokumenterte `needs_review`-utfall.
-- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `bryn_industriomrade`; `gronlikaia` er neste kandidat.
+- Neste nye Oslo-kontroll er nummer 166 og starter batch 27.
+- Batch 26 er fullført med to nye godkjente ankere og tre nye dokumenterte `needs_review`-utfall; `places_naeringsliv_manifest.json` er nå ferdig kontrollert.
+- Næringslivsmanifestet er uttømt etter `akerselva_industri`. Før batch 27 starter skal neste sekundære Oslo-kildekø auditeres eksplisitt; ikke gjett neste manifest eller kategori.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

@@ -1,0 +1,81 @@
+{
+  "placeId": "myrens_verksted",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9346455,
+    "lon": 10.7594222,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "site_center",
+    "coordNote": "Navngitt OSM-områdeobjekt for Myrens Verksted, kryssjekket mot Oslo byleksikons identifikasjon av fabrikkanlegget i Sandakerveien 24c og dagens Myren Eiendom. Punktet er geometrisk senter for det navngitte komplekset og brukes som display-/site-center, ikke som påstått sentrum for én bestemt fabrikkbygning."
+  },
+  "identity": {
+    "currentName": "Myrens Verksted",
+    "resolvedIdentity": "det navngitte tidligere fabrikkomplekset Myrens Verksted ved Akerselva",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "dokumentert fysisk identitet",
+    "navngitt områdeobjekt",
+    "overlap-audit"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Myrens Verksted",
+      "sourceUrl": "https://oslobyleksikon.no/side/Myrens_Verksted",
+      "sourceObjectId": "oslobyleksikon:myrens-verksted",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Kilden identifiserer Myrens Verksted som det nedlagte fabrikkanlegget ved Akerselva, med historisk adresse Sandakerveien 24c.",
+      "canVerifyCoordinate": true,
+      "reason": "Løser fysisk identitet, mens Geonorge ikke har treff på 24C."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Myrens Verksted",
+      "sourceUrl": "https://www.openstreetmap.org/way/99757039",
+      "sourceObjectId": "osm-way:99757039",
+      "sourceQuality": "named_object_geometry",
+      "finding": "OSM way 99757039 er et eksplisitt navngitt områdeobjekt for Myrens Verksted-komplekset.",
+      "canVerifyCoordinate": true,
+      "reason": "Navngitt områdepresentasjon gir et sporbart fysisk site-center for komplekset."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:myrens-verksted",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:99757039",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9346455,
+      "lon": 10.7594222,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Navngitt OSM-kompleks og dokumentert fysisk identitet er anvendt på canonical place."
+  },
+  "notes": [
+    "Koordinatkontrakt anvendt i batch 26."
+  ]
+}

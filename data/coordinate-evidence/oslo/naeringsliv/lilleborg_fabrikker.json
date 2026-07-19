@@ -1,0 +1,79 @@
+{
+  "placeId": "lilleborg_fabrikker",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9284,
+    "lon": 10.7682,
+    "r": 180,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Lilleborg Fabrikker",
+    "resolvedIdentity": "historisk fabrikkmiljø ved Akerselva med fabrikkport i Sandakerveien 54 og administrasjonsbygg i Sandakerveien 56",
+    "identityStatus": "conflict",
+    "identityProblem": "Aktiv record bruker 1833 som etableringsår, men dette viser til en oljemølle på eiendommen. Såpefabrikk kom i 1842 og A/S Lilleborg Fabriker ble grunnlagt i 1897. Fabrikkområdet er dessuten delvis revet og ombygd, med flere mulige fysiske ankere.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Historisk identitet og representativt fysisk hovedanker må avklares før ett adressepunkt kan brukes."
+  },
+  "requiredEvidence": [
+    "korrigert historisk identitet/år",
+    "valg av fabrikkport, administrasjonsbygg eller historisk område som place-scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Sandakerveien%2054%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16161:54",
+      "sourceQuality": "official_address_candidate",
+      "finding": "Sandakerveien 54 gir ett entydig adressepunkt for den dokumenterte fabrikkporten.",
+      "canVerifyCoordinate": false,
+      "reason": "Fabrikkporten kan være et mulig anker, men recordens scope/år er ikke ryddet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Lilleborg AS",
+      "sourceUrl": "https://oslobyleksikon.no/side/Lilleborg_AS",
+      "sourceObjectId": "oslobyleksikon:lilleborg-as",
+      "sourceQuality": "identity_history_audit",
+      "finding": "Kilden skiller 1833-oljemøllen, 1842-såpeproduksjonen og selskapet Lilleborg Fabriker fra 1897, og dokumenterer flere fysiske bygg/adresser.",
+      "canVerifyCoordinate": false,
+      "reason": "Aktiv record sammenblander tidslag og hele fabrikkomplekset."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16161:54",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16161:54",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:lilleborg-as",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Aktiv record bruker 1833 som etableringsår, men dette viser til en oljemølle på eiendommen. Såpefabrikk kom i 1842 og A/S Lilleborg Fabriker ble grunnlagt i 1897. Fabrikkområdet er dessuten delvis revet og ombygd, med flere mulige fysiske ankere.",
+    "nextAction": "Rett år og place-scope; avgjør deretter om Sandakerveien 54, et annet bevart bygg eller historisk områdegeometri skal være canonical anker."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 26."
+  ]
+}
