@@ -34,7 +34,7 @@ jobs:
           npm run places:coords:find:address -- --address "Karl Johans gate 1 Oslo" \
             | tee reports/oslo-oppdag-kvadraturen-batch-3/coordinates/dfds_bygget.json
 
-      - name: Resolve exact named OSM square objects
+      - name: Resolve named squares with Kartverket Stedsnavn
         shell: bash
         run: |
           set -euo pipefail
@@ -43,27 +43,18 @@ jobs:
           fetch_square() {
             local slug="$1"
             local name="$2"
-            local outfile="$outdir/${slug}_osm.json"
-            curl --max-time 30 --retry 1 --fail --silent --show-error \
-              --user-agent 'History-Go-coordinate-audit/1.0' \
-              --get 'https://nominatim.openstreetmap.org/search' \
-              --data-urlencode "q=${name}, Oslo, Norway" \
-              --data-urlencode 'format=jsonv2' \
-              --data-urlencode 'addressdetails=1' \
-              --data-urlencode 'namedetails=1' \
-              --data-urlencode 'polygon_geojson=1' \
-              --data-urlencode 'limit=10' \
-              --data-urlencode 'countrycodes=no' \
-              -o "$outfile"
-            jq -e --arg name "$name" 'map(select((.namedetails.name // .display_name) | contains($name))) | length > 0' "$outfile" >/dev/null
+            curl --max-time 30 --retry 1 --fail --silent --show-error --get \
+              'https://api.kartverket.no/stedsnavn/v1/sted' \
+              --data-urlencode 'knr=0301' \
+              --data-urlencode "sok=${name}" \
+              --data-urlencode 'treffPerSide=100' \
+              --data-urlencode 'side=1' \
+              -o "$outdir/${slug}_kartverket_stedsnavn.json"
           }
 
           fetch_square wessels_plass "Wessels plass"
-          sleep 1
           fetch_square egertorget "Egertorget"
-          sleep 1
           fetch_square stortorget "Stortorget"
-          sleep 1
           fetch_square grev_wedels_plass "Grev Wedels plass"
 
       - name: Persist coordinate evidence
