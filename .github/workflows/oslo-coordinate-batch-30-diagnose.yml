@@ -1,0 +1,119 @@
+name: Diagnose Oslo coordinate batch 30
+
+on:
+  push:
+    branches:
+      - agent/oslo-coordinate-control-batch-30
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-30
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install and build coordinate tools
+        run: |
+          npm ci
+          npm run build:tools
+
+      - name: Query Kartverket SSR first
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-30/coordinates
+          mkdir -p "$out"
+
+          curl --fail --silent --show-error --get \
+            --data-urlencode "sok=Alexander Kiellands plass" \
+            --data-urlencode "knr=0301" \
+            --data-urlencode "treffPerSide=50" \
+            --data-urlencode "side=1" \
+            "https://api.kartverket.no/stedsnavn/v1/sted" \
+            | tee "$out/alexander_kiellands_plass_ssr.json"
+
+          curl --fail --silent --show-error --get \
+            --data-urlencode "sok=Oskar Braaten" \
+            --data-urlencode "knr=0301" \
+            --data-urlencode "treffPerSide=50" \
+            --data-urlencode "side=1" \
+            "https://api.kartverket.no/stedsnavn/v1/sted" \
+            | tee "$out/oskar_braaten_ssr.json"
+
+      - name: Test named-place address lookup for Alexander Kiellands plass
+        shell: bash
+        run: |
+          set +e
+          out=reports/oslo-coordinate-control-batch-30/coordinates
+          node dist/tools/address-first-coordinate-finder.mjs --address "Alexander Kiellands plass Oslo" \
+            | tee "$out/alexander_kiellands_plass_address.json"
+          status=${PIPESTATUS[0]}
+          printf '{"exit": %s}\n' "$status" > "$out/alexander_kiellands_plass_address_status.json"
+          exit 0
+
+      - name: Query exact named OSM objects only after SSR
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-30/coordinates
+
+          cat > /tmp/alexander.overpass <<'QL'
+          [out:json][timeout:60];
+          nwr["name"="Alexander Kiellands plass"](59.90,10.70,59.96,10.80);
+          out center tags;
+          QL
+          curl --fail --silent --show-error \
+            --data-urlencode "data@/tmp/alexander.overpass" \
+            "https://overpass-api.de/api/interpreter" \
+            | tee "$out/alexander_kiellands_plass_osm.json"
+
+          cat > /tmp/oskar.overpass <<'QL'
+          [out:json][timeout:60];
+          (
+            nwr["name"~"Oskar Braaten",i](around:600,59.930969,10.757267);
+            nwr["name"~"Oscar Braaten",i](around:600,59.930969,10.757267);
+          );
+          out center tags;
+          QL
+          curl --fail --silent --show-error \
+            --data-urlencode "data@/tmp/oskar.overpass" \
+            "https://overpass-api.de/api/interpreter" \
+            | tee "$out/oskar_braaten_byste_osm.json"
+
+      - name: Write compact diagnostic summary
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const p='reports/oslo-coordinate-control-batch-30/coordinates/';
+          const read=(f)=>JSON.parse(fs.readFileSync(p+f,'utf8'));
+          const compact=(obj)=>({metadata:obj.metadata??null,navn:obj.navn??null,steder:obj.steder??null,elements:obj.elements??null});
+          const out={
+            alexander_ssr: compact(read('alexander_kiellands_plass_ssr.json')),
+            oskar_ssr: compact(read('oskar_braaten_ssr.json')),
+            alexander_address: read('alexander_kiellands_plass_address.json'),
+            alexander_osm: read('alexander_kiellands_plass_osm.json').elements ?? [],
+            oskar_osm: read('oskar_braaten_byste_osm.json').elements ?? [],
+          };
+          fs.writeFileSync('reports/oslo-coordinate-control-batch-30/diagnostic-summary.json',JSON.stringify(out,null,2)+'\n');
+          NODE
+
+      - name: Persist diagnostics and remove workflow
+        run: |
+          set -euo pipefail
+          rm .github/workflows/oslo-coordinate-batch-30-diagnose.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-coordinate-control-batch-30 .github/workflows/oslo-coordinate-batch-30-diagnose.yml
+          git commit -m "Capture Oslo coordinate batch 30 diagnostics"
+          git push origin HEAD
