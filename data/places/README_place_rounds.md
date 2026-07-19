@@ -271,3 +271,22 @@ huben gjør det.
 - Kategorinavn som `football`, `music`, `art`, `literature`, `science`,
   `politics`, `history`, `market`, `transport`, `memorial` og `subculture` skal
   ikke brukes som canonical PlaceCard-rundinger.
+
+
+## Kuraterte eksklusjoner (`rounds_exclude`)
+
+Kategori-profilene er standardprofiler, ikke et krav om at alle steder skal tvinges inn i ni rundinger. Når en standardrunding er faglig irrelevant, kan stedet bruke `rounds_exclude`. Ekskluderte rundinger fjernes uten at runtime fyller hullet med en tilfeldig erstatning.
+
+### Minneskilt, minneplaketter og blå skilt
+
+Når gameplay-objektet er et **minneskilt, en minneplakett eller en tilsvarende liten offentlig minnemarkør**, skal stedet alltid ha:
+
+```json
+{
+  "rounds_exclude": ["nature"]
+}
+```
+
+Slike steder skal **ikke få Nature-rundingen**. Ikke fyll Nature med generell bynatur, vær, gatebeplantning, fasadematerialer eller andre tilfeldige omgivelser bare for å fylle et 3x3-grid. Dersom det historiske emnet faktisk har et eget natursted, skal det naturstedet representeres separat; naturen skal ikke legges på minneplaketten.
+
+Det er heller ikke tillatt å erstatte den fjernede Nature-rundingen med irrelevante `tasks`, `play` eller `training`. Et kuratert minneskilt kan derfor ha færre enn ni rundinger.

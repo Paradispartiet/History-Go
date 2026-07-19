@@ -350,3 +350,16 @@ Et sted kan kalles ferdig når:
 Kort sagt:
 
 > Et History GO-sted er ikke bare et punkt på kartet. Det er et spillobjekt med handling, mening, progresjon og koblinger.
+
+
+## Minneskilt og plaketter: ingen automatisk Nature
+
+For canonical steder der selve gameplay-objektet er et blått skilt, minneskilt, minneplakett eller en tilsvarende liten minnemarkør, gjelder en fast produksjonsregel:
+
+- sett `rounds_exclude: ["nature"]`;
+- ikke opprett `nature_profile`;
+- ikke bruk tilfeldig bynatur, vær, trær, fasadematerialer eller omgivelsesbeskrivelser som fyllstoff;
+- ikke erstatt Nature med en annen irrelevant handlingsrunding bare for å beholde ni ikoner;
+- fyll i stedet de faglig relevante rundingene rundt personen, historien, verket, minnet, aktørene og før/nå-laget.
+
+Denne regelen gjelder minnemarkøren som stedstype uavhengig av om primærkategorien er historie, politikk, litteratur, populærkultur eller et annet kulturfag.

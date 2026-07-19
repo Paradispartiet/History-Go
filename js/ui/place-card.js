@@ -29,6 +29,7 @@
  *   wonderkammer?: unknown[],
  *   rounds?: string[],
  *   rundinger?: string[],
+ *   rounds_exclude?: string[],
  *   emne_ids?: string[],
  *   quiz_profile?: PlaceCardRecord,
  *   social_profile?: PlaceCardRecord,
@@ -685,6 +686,11 @@ function getPlaceRounds(place) {
   const declared = Array.isArray(place?.rounds) ? place.rounds :
     Array.isArray(place?.rundinger) ? place.rundinger :
     [];
+  const excludedRoundIds = new Set(
+    (Array.isArray(place?.rounds_exclude) ? place.rounds_exclude : [])
+      .map((entry) => PLACE_ROUND_BY_ID[String(entry || "").trim()]?.id)
+      .filter(Boolean)
+  );
   const outputIds = profileIds.slice();
   const seenOverrideIds = new Set(outputIds);
 
@@ -712,7 +718,10 @@ function getPlaceRounds(place) {
     if (PLACE_ROUND_BY_ID[id] && !uniqueIds.includes(id)) uniqueIds.push(id);
   }
 
-  return uniqueIds.slice(0, 9).map(id => PLACE_ROUND_BY_ID[id]);
+  return uniqueIds
+    .filter(id => !excludedRoundIds.has(id))
+    .slice(0, 9)
+    .map(id => PLACE_ROUND_BY_ID[id]);
 }
 
 /**
@@ -1360,7 +1369,7 @@ if (!card.dataset.pcIconsBound) {
 
     if (kind === "tasks") html = renderPlaceCardTasksProfile(currentPlace || place);
     if (kind === "observations") html = `<div class="pc-empty">Ingen observasjoner ennå</div>`;
-    if (kind === "works") html = `<div class="pc-empty">Ingen verk eller prestasjoner ennå</div>`;
+    if (kind === "works") html = renderPlaceCardWorks(currentPlace || place);
     if (kind === "nature") html = renderPlaceCardNatureProfile(currentPlace || place);
     if (kind === "play") html = `<div class="pc-empty">Ingen lekeforslag ennå</div>`;
     if (kind === "training") html = `<div class="pc-empty">Ingen treningsinnhold ennå</div>`;

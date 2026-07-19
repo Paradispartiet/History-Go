@@ -278,3 +278,8 @@ Do not solve data problems by adding runtime filters, hardcoded exceptions or te
 If data is wrong, fix the relevant JSON source file or schema contract.
 
 Minimal, source-first data work is preferred over broad refactors.
+
+
+### Rundingsregel for minneskilt og plaketter
+
+Blå skilt, minneskilt og minneplaketter skal ikke automatisk arve Nature fra kategori-profilen. Nye slike records skal bruke `rounds_exclude: ["nature"]` og skal ikke ha `nature_profile`. Naturinnhold må tilhøre et faktisk natursted eller et sted der naturen er en selvstendig dokumentert del av gameplay-objektet, ikke selve minneplaketten.
