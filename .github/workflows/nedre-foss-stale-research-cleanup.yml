@@ -5,6 +5,8 @@ on:
     branches: [agent/cleanup-nedre-foss-stale-research-flags]
     paths:
       - '.github/workflows/nedre-foss-stale-research-cleanup.yml'
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
 
 permissions:
   contents: write
@@ -93,12 +95,12 @@ jobs:
           if (ids.has('nedre_foss_exact_mill_chronology') || ids.has('nedre_foss_building_specific_history')) throw new Error('stale research flags remain');
           if (!place.source_summary.resolved_research || place.source_summary.resolved_research.length < 2) throw new Error('resolved research summary missing');
           if (article.interpretation.counterpoints.some(x => /møllekronologi|bygningsspesifikk/i.test(x))) throw new Error('stale leksikon counterpoint remains');
+          const allIds = new Set([
+            ...article.facts.map(x => x.id),
+            ...article.stories.map(x => x.id),
+            ...article.artifacts.map(x => x.id)
+          ]);
           for (const id of article.ui.mini_panel.highlights) {
-            const allIds = new Set([
-              ...article.facts.map(x => x.id),
-              ...article.stories.map(x => x.id),
-              ...article.artifacts.map(x => x.id)
-            ]);
             if (!allIds.has(id)) throw new Error(`missing mini-panel highlight target: ${id}`);
           }
           console.log('Nedre Foss stale research cleanup audit OK');
