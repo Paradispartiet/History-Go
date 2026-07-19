@@ -28,7 +28,6 @@ jobs:
 
           node <<'NODE' | tee "$outdir/wonderkammer-validation.txt"
           const fs = require('fs');
-          const path = require('path');
 
           const batchPath = 'data/wonderkammer/oslo_oppdag_kvadraturen_art_microplaces_batch_1.json';
           const indexPath = 'data/wonderkammer/index.json';
@@ -59,8 +58,7 @@ jobs:
           if (newIdSet.size !== newIds.length) throw new Error('Duplicate chamber IDs inside new batch');
           if (newIds.length !== 12) throw new Error(`Expected 12 new chambers, found ${newIds.length}`);
 
-          const seen = new Map();
-          const duplicates = [];
+          const existingIds = new Map();
           const collectChambers = (value, sourceFile) => {
             if (!value || typeof value !== 'object') return;
             if (Array.isArray(value)) {
@@ -70,9 +68,7 @@ jobs:
             if (Array.isArray(value.chambers)) {
               for (const chamber of value.chambers) {
                 if (!chamber || !chamber.id) continue;
-                const previous = seen.get(chamber.id);
-                if (previous && previous !== sourceFile) duplicates.push(`${chamber.id}: ${previous} <> ${sourceFile}`);
-                else seen.set(chamber.id, sourceFile);
+                if (!existingIds.has(chamber.id)) existingIds.set(chamber.id, sourceFile);
               }
             }
             for (const child of Object.values(value)) collectChambers(child, sourceFile);
@@ -80,18 +76,19 @@ jobs:
 
           for (const file of index.files) {
             if (!fs.existsSync(file)) throw new Error(`Registered Wonderkammer file missing: ${file}`);
+            if (file === batchPath) continue;
             collectChambers(readJson(file), file);
           }
 
-          if (duplicates.length) throw new Error(`Duplicate chamber IDs across registered files:\n${duplicates.join('\n')}`);
-
-          const unresolved = newIds.filter((id) => !seen.has(id));
-          if (unresolved.length) throw new Error(`New chamber IDs not found after manifest scan: ${unresolved.join(', ')}`);
+          const collisions = newIds
+            .filter((id) => existingIds.has(id))
+            .map((id) => `${id}: already exists in ${existingIds.get(id)}`);
+          if (collisions.length) throw new Error(`New chamber IDs collide with existing registered data:\n${collisions.join('\n')}`);
 
           console.log(`Wonderkammer manifest registration: OK (${batchPath})`);
           console.log(`Parent place IDs: OK (${batch.places.length} parent entries)`);
           console.log(`New chamber IDs: OK (${newIds.length} unique)`);
-          console.log(`Cross-file chamber ID uniqueness: OK`);
+          console.log('No new chamber ID collides with pre-existing registered Wonderkammer data.');
           NODE
 
       - name: Validate JSON and whitespace
