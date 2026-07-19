@@ -44,32 +44,19 @@ jobs:
             grep -R -l --include='*.json' '"id"[[:space:]]*:[[:space:]]*"storgata"' data/places || true
           } | tee reports/geonorge-address-batch-7/target-files.txt
 
-      - name: Inspect ambiguous Geonorge candidates
-        run: |
-          set -euo pipefail
-          curl -fsSG 'https://ws.geonorge.no/adresser/v1/sok' --data-urlencode 'sok=Hausmanns gate 19 Oslo' \
-            | jq '{adresser: [.adresser[] | {adressetekst, adressenavn, nummer, bokstav, postnummer, poststed, kommunenummer, adressekode, representasjonspunkt}]}' \
-            | tee reports/geonorge-address-batch-7/hausmanns_gate_19_candidates.json
-          curl -fsSG 'https://ws.geonorge.no/adresser/v1/sok' --data-urlencode 'sok=Torggata 16 Oslo' \
-            | jq '{adresser: [.adresser[] | {adressetekst, adressenavn, nummer, bokstav, postnummer, poststed, kommunenummer, adressekode, representasjonspunkt}]}' \
-            | tee reports/geonorge-address-batch-7/torggata_16_candidates.json
-
       - name: Resolve Torggata Blad address
-        continue-on-error: true
         run: |
           set -o pipefail
-          npm run places:coords:find:address -- --address "Hausmanns gate 19 Oslo" \
+          npm run places:coords:find:address -- --address "Hausmanns gate 19A Oslo" \
             | tee reports/geonorge-address-batch-7/torggata_blad.json
 
       - name: Resolve Torggata address
-        continue-on-error: true
         run: |
           set -o pipefail
-          npm run places:coords:find:address -- --address "Torggata 16 Oslo" \
+          npm run places:coords:find:address -- --address "Torggata 14 Oslo" \
             | tee reports/geonorge-address-batch-7/torggata.json
 
       - name: Resolve Storgata address
-        continue-on-error: true
         run: |
           set -o pipefail
           npm run places:coords:find:address -- --address "Storgata 25 Oslo" \
