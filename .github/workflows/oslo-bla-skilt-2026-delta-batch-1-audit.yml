@@ -1,4 +1,4 @@
-name: Oslo Blå skilt 2026 delta batch 1 audit
+name: Oslo Blå skilt 2026 delta batch 1 finalizer
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  audit:
+  finalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -27,140 +27,187 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run normative address-first coordinate audit
+      - name: Register sources and link Aud Schønemann
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/coordinates'
-          mkdir -p "$outdir"
+          mkdir -p reports/oslo-bla-skilt-2026-delta-batch-1/validation
 
-          npm run places:coords:find:address -- --address "Vetlandsveien 69D Oslo" \
-            | tee "$outdir/aud-schonemann-vetlandsveien-69d.txt"
-
-          npm run places:coords:find:address -- --address "Ullevålsveien 60 Oslo" \
-            | tee "$outdir/stein-mehren-ullevalsveien-60.txt"
-
-          npm run places:coords:find:address -- --address "Mogens Thorsens gate 5 Oslo" \
-            | tee "$outdir/christopher-hornsrud-mogens-thorsens-gate-5.txt"
-
-          npm run places:coords:find:address -- --address "Munkedamsveien 35 Oslo" \
-            | tee "$outdir/helverschous-lokke-munkedamsveien-35.txt"
-
-          npm run places:coords:find:address -- --address "Smedgata 34 Oslo" \
-            | tee "$outdir/enerhaugen-samfund-smedgata-34.txt"
-
-      - name: Audit existing canonical place matches
-        shell: bash
-        run: |
-          set -euo pipefail
-          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/audit'
-          mkdir -p "$outdir"
-
-          node <<'NODE' | tee "$outdir/place-duplicate-audit.txt"
+          node <<'NODE' | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/registration.txt
           const fs = require('fs');
-          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
-          const normalize = (value) => String(value || '')
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, ' ')
-            .trim();
 
-          const candidates = [
-            {
-              label: 'Aud Schønemann / Vetlandsveien 69D',
-              terms: ['aud schonemann', 'vetlandsveien 69d'],
-              street: 'Vetlandsveien',
-              number: '69D'
-            },
-            {
-              label: 'Stein Mehren / Ullevålsveien 60',
-              terms: ['stein mehren', 'ullevalsveien 60'],
-              street: 'Ullevålsveien',
-              number: '60'
-            },
-            {
-              label: 'Christopher Hornsrud / Mogens Thorsens gate 5',
-              terms: ['christopher hornsrud', 'mogens thorsens gate 5', 'mogen thorsens gate 5'],
-              street: 'Mogens Thorsens gate',
-              number: '5'
-            },
-            {
-              label: 'Helverschous løkke / Munkedamsveien 35',
-              terms: ['helverschous lokke', 'sommerfryd', 'munkedamsveien 35'],
-              street: 'Munkedamsveien',
-              number: '35'
-            },
-            {
-              label: 'Enerhaugen Samfund / Smedgata 34',
-              terms: ['enerhaugen samfund', 'enerhaugens samfund', 'smedgata 34', 'smedgata 38'],
-              street: 'Smedgata',
-              number: '34'
-            }
+          const manifestPath = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          const sources = [
+            'places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json',
+            'places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json',
+            'places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json',
+            'places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json'
           ];
 
-          for (const candidate of candidates) {
-            console.log(`\n=== ${candidate.label} ===`);
-            const matches = [];
-            for (const place of places) {
-              const address = `${place.address?.street || ''} ${place.address?.number || ''}`.trim();
-              const haystack = normalize([
-                place.id,
-                place.name,
-                place.desc,
-                place.popupDesc,
-                place.period,
-                address
-              ].join(' '));
-              const exactAddress = normalize(place.address?.street) === normalize(candidate.street)
-                && normalize(place.address?.number) === normalize(candidate.number);
-              const termHits = candidate.terms.filter((term) => haystack.includes(normalize(term)));
-              if (exactAddress || termHits.length) {
-                matches.push({
-                  id: place.id,
-                  name: place.name,
-                  category: place.category,
-                  address,
-                  exactAddress,
-                  termHits,
-                  sourceFile: place.sourceFile || ''
-                });
-              }
-            }
-            if (!matches.length) {
-              console.log('(no canonical match)');
-              continue;
-            }
-            for (const match of matches) {
-              console.log(JSON.stringify(match));
-            }
+          for (const source of sources) {
+            if (!manifest.sources.includes(source)) manifest.sources.push(source);
           }
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+          const peoplePath = 'data/people/popkultur/oslo/people_popkultur_oslo.json';
+          const people = JSON.parse(fs.readFileSync(peoplePath, 'utf8'));
+          const aud = people.find((person) => person.id === 'aud_schonemann');
+          if (!aud) throw new Error('Missing canonical person aud_schonemann');
+          if (!Array.isArray(aud.places)) aud.places = aud.placeId ? [aud.placeId] : [];
+          const plaqueId = 'bla_skilt_aud_schonemann_vetlandsveien_69d';
+          if (!aud.places.includes(plaqueId)) aud.places.push(plaqueId);
+          fs.writeFileSync(peoplePath, JSON.stringify(people, null, 2) + '\n');
+
+          console.log(`Registered ${sources.length} source files`);
+          console.log(`Aud Schønemann places: ${aud.places.join(', ')}`);
           NODE
 
-      - name: Audit people and Wonderkammer coverage
+      - name: Validate source JSON and batch ids
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/audit'
-          mkdir -p "$outdir"
+          node <<'NODE' | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/source-json-and-ids.txt
+          const fs = require('fs');
+          const files = [
+            'data/places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json',
+            'data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json',
+            'data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json',
+            'data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json'
+          ];
+          const expected = new Map([
+            ['bla_skilt_aud_schonemann_vetlandsveien_69d', 'populaerkultur'],
+            ['bla_skilt_stein_mehren_ullevalsveien_60', 'litteratur'],
+            ['bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5', 'politikk'],
+            ['bla_skilt_helverschous_lokke_munkedamsveien_35', 'historie'],
+            ['bla_skilt_enerhaugen_samfund_smedgata_34', 'historie']
+          ]);
+          const seen = new Set();
+          for (const file of files) {
+            const rows = JSON.parse(fs.readFileSync(file, 'utf8'));
+            if (!Array.isArray(rows)) throw new Error(`${file} must contain an array`);
+            for (const row of rows) {
+              if (seen.has(row.id)) throw new Error(`Duplicate new id ${row.id}`);
+              seen.add(row.id);
+              if (!expected.has(row.id)) throw new Error(`Unexpected new id ${row.id}`);
+              if (row.category !== expected.get(row.id)) {
+                throw new Error(`Wrong category for ${row.id}: ${row.category}`);
+              }
+              if (row.year !== 2026) throw new Error(`Plaque year must be 2026 for ${row.id}`);
+              if (row.coordStatus !== 'verified' || row.coordSource !== 'geonorge_adresser_v1') {
+                throw new Error(`Coordinate contract mismatch for ${row.id}`);
+              }
+            }
+          }
+          if (seen.size !== expected.size) {
+            throw new Error(`Expected ${expected.size} new ids, found ${seen.size}`);
+          }
+          console.log(`JSON OK; ${seen.size}/5 expected blue-plaque ids present with expected categories`);
+          NODE
 
-          {
-            echo '=== People matches ==='
-            grep -RInEi 'Aud Schønemann|Aud Schonemann|Stein Mehren|Christopher Hornsrud|Helverschous|Enerhaugen Samfund|Enerhaugens Samfund' data/people || true
-            echo
-            echo '=== Wonderkammer matches ==='
-            grep -RInEi 'Aud Schønemann|Aud Schonemann|Stein Mehren|Christopher Hornsrud|Helverschous|Enerhaugen Samfund|Enerhaugens Samfund|Vetlandsveien 69D|Ullevålsveien 60|Mogens Thorsens gate 5|Munkedamsveien 35|Smedgata 34|Smedgata 38' data/wonderkammer || true
-          } | tee "$outdir/people-wonderkammer-audit.txt"
-
-      - name: Persist audit evidence
+      - name: Build places index
         shell: bash
         run: |
           set -euo pipefail
+          npm run places:index:build \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/places-index-build.txt
+
+      - name: Check places index parity
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:check \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/places-index-check.txt
+
+      - name: Run strict-new coordinate intake
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:coords:intake \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/coordinate-intake.txt
+
+      - name: Validate canonical emne ids
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:emner:check \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/emne-check.txt
+
+      - name: Check split manifest sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run audit:places-split-manifest-sync \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/split-manifest-sync.txt
+
+      - name: Check coordinate source contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run test:coordinate-source-contract \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/coordinate-source-contract.txt
+
+      - name: Verify runtime integration and Aud place link
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE' | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/runtime-integration.txt
+          const fs = require('fs');
+          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const people = JSON.parse(fs.readFileSync('data/people/popkultur/oslo/people_popkultur_oslo.json', 'utf8'));
+          const ids = [
+            'bla_skilt_aud_schonemann_vetlandsveien_69d',
+            'bla_skilt_stein_mehren_ullevalsveien_60',
+            'bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5',
+            'bla_skilt_helverschous_lokke_munkedamsveien_35',
+            'bla_skilt_enerhaugen_samfund_smedgata_34'
+          ];
+          const indexIds = new Set(places.map((place) => place.id));
+          for (const id of ids) {
+            if (!indexIds.has(id)) throw new Error(`Missing runtime place ${id}`);
+          }
+          const duplicates = places.map((place) => place.id).filter((id, index, all) => all.indexOf(id) !== index);
+          if (duplicates.some((id) => ids.includes(id))) {
+            throw new Error(`New duplicate ids: ${duplicates.filter((id) => ids.includes(id)).join(', ')}`);
+          }
+          const aud = people.find((person) => person.id === 'aud_schonemann');
+          if (!aud?.places?.includes('bla_skilt_aud_schonemann_vetlandsveien_69d')) {
+            throw new Error('Aud Schønemann is not linked to the new plaque place');
+          }
+          console.log('Runtime integration: 5/5 places present, 0 new duplicate ids');
+          console.log(`Aud Schønemann places: ${aud.places.join(', ')}`);
+          NODE
+
+      - name: Capture place health and reject new-id errors
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          npm run health:places \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-places.txt
+          health_status=${PIPESTATUS[0]}
+          set -e
+          echo "health_exit_status=$health_status" \
+            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-status.txt
+
+          if grep -Ei 'error.*(bla_skilt_aud_schonemann|bla_skilt_stein_mehren|bla_skilt_christopher_hornsrud|bla_skilt_helverschous|bla_skilt_enerhaugen)|((bla_skilt_aud_schonemann|bla_skilt_stein_mehren|bla_skilt_christopher_hornsrud|bla_skilt_helverschous|bla_skilt_enerhaugen).*(error|warning))' \
+            reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-places.txt; then
+            echo 'New blue-plaque place produced a health error or warning' >&2
+            exit 1
+          fi
+          echo 'No health error/warning references any of the five new blue-plaque ids' \
+            | tee -a reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-status.txt
+
+      - name: Remove temporary workflow and persist finalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-bla-skilt-2026-delta-batch-1-audit.yml
+
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/oslo-bla-skilt-2026-delta-batch-1/coordinates \
-                  reports/oslo-bla-skilt-2026-delta-batch-1/audit
+          git add -A
           if ! git diff --cached --quiet; then
-            git commit -m 'Save Oslo blue plaques 2026 delta audit evidence'
+            git commit -m 'Finalize Oslo blue plaques 2026 delta batch 1'
             git push origin "HEAD:${GITHUB_HEAD_REF}"
           fi
