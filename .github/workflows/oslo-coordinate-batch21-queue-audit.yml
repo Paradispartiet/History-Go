@@ -1,0 +1,191 @@
+name: Oslo coordinate batch 21 queue audit
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch21'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build secondary Oslo source queue
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const root = process.cwd();
+          const dataRoot = path.join(root, 'data/places');
+          const rel = (p) => path.relative(root, p).split(path.sep).join('/');
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const placeRows = (value) => Array.isArray(value)
+            ? value.filter((row) => row && typeof row === 'object' && typeof row.id === 'string')
+            : value && typeof value === 'object' && Array.isArray(value.places)
+              ? value.places.filter((row) => row && typeof row === 'object' && typeof row.id === 'string')
+              : value && typeof value === 'object' && typeof value.id === 'string'
+                ? [value]
+                : [];
+
+          function walk(dir) {
+            const out = [];
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              const full = path.join(dir, entry.name);
+              if (entry.isDirectory()) out.push(...walk(full));
+              else if (entry.isFile() && entry.name.endsWith('.json')) out.push(full);
+            }
+            return out.sort();
+          }
+
+          function siblingSplitManifest(sourcePath) {
+            const parsed = path.parse(sourcePath);
+            return path.join(parsed.dir, `${parsed.name}_manifest${parsed.ext || '.json'}`);
+          }
+
+          const allJson = walk(dataRoot);
+          const splitChildren = new Set();
+          for (const file of allJson.filter((p) => p.endsWith('_manifest.json'))) {
+            try {
+              const manifest = readJson(file);
+              if (!Array.isArray(manifest?.places)) continue;
+              for (const row of manifest.places) {
+                if (!row || typeof row.file !== 'string' || !row.file.trim()) continue;
+                splitChildren.add(path.resolve(path.dirname(file), row.file.trim()));
+              }
+            } catch {}
+          }
+
+          const globalManifest = readJson(path.join(dataRoot, 'manifest.json'));
+          const loadedIds = new Set();
+          const loadedSourceFiles = new Set();
+          for (const raw of globalManifest.files || []) {
+            const sourceFile = String(raw || '').trim();
+            if (!sourceFile) continue;
+            const sourcePath = path.join(root, 'data', sourceFile);
+            const splitPath = siblingSplitManifest(sourcePath);
+            let usedSplit = false;
+            if (fs.existsSync(splitPath)) {
+              try {
+                const split = readJson(splitPath);
+                if (Array.isArray(split?.places) && split.places.some((row) => row && typeof row.file === 'string')) {
+                  usedSplit = true;
+                  for (const row of split.places) {
+                    if (!row || typeof row.file !== 'string' || !row.file.trim()) continue;
+                    const childPath = path.resolve(path.dirname(splitPath), row.file.trim());
+                    if (!fs.existsSync(childPath)) continue;
+                    loadedSourceFiles.add(childPath);
+                    for (const place of placeRows(readJson(childPath))) loadedIds.add(place.id);
+                  }
+                }
+              } catch {}
+            }
+            if (!usedSplit && fs.existsSync(sourcePath)) {
+              loadedSourceFiles.add(path.resolve(sourcePath));
+              for (const place of placeRows(readJson(sourcePath))) loadedIds.add(place.id);
+            }
+          }
+
+          const protocol = fs.readFileSync(path.join(root, 'docs/coordinates/coordinate-control-protocol.md'), 'utf8');
+          const controlledIds = new Set();
+          for (const line of protocol.split(/\r?\n/)) {
+            let match = line.match(/^\|\s*\d+\s*\|\s*`([^`]+)`\s*\|/);
+            if (match) controlledIds.add(match[1]);
+            match = line.match(/^\|\s*`([^`]+)`\s*[–-]/);
+            if (match) controlledIds.add(match[1]);
+          }
+
+          const exclusionsPath = path.join(dataRoot, 'place_exclusions.json');
+          const disabledIds = new Set();
+          if (fs.existsSync(exclusionsPath)) {
+            const exclusions = readJson(exclusionsPath);
+            for (const id of exclusions.disabledPlaceIds || []) if (typeof id === 'string') disabledIds.add(id);
+          }
+
+          const generatedName = (name) => name === 'manifest.json'
+            || name === 'places_index.json'
+            || name === 'coordinate_overrides.json'
+            || name === 'place_exclusions.json'
+            || name.endsWith('_manifest.json')
+            || name.endsWith('_index.json');
+          const likelyOsloPath = (file) => {
+            const normalized = rel(file).toLowerCase();
+            const base = path.basename(file).toLowerCase();
+            return normalized.includes('/oslo/')
+              || normalized.includes('/norway/oslo')
+              || base.includes('oslo');
+          };
+
+          const queue = [];
+          const sourceSummaries = [];
+          for (const file of allJson) {
+            if (generatedName(path.basename(file))) continue;
+            if (splitChildren.has(path.resolve(file))) continue;
+            if (loadedSourceFiles.has(path.resolve(file))) continue;
+            if (!likelyOsloPath(file)) continue;
+
+            let rows;
+            try { rows = placeRows(readJson(file)); } catch { continue; }
+            const eligible = [];
+            for (let index = 0; index < rows.length; index += 1) {
+              const place = rows[index];
+              const id = String(place.id || '').trim();
+              if (!id || loadedIds.has(id) || controlledIds.has(id) || disabledIds.has(id)) continue;
+              eligible.push({
+                id,
+                name: place.name ?? null,
+                category: place.category ?? null,
+                sourceFile: rel(file),
+                sourceOrder: index,
+                lat: place.lat ?? null,
+                lon: place.lon ?? null,
+                r: place.r ?? null,
+                coordStatus: place.coordStatus ?? null,
+                coordSource: place.coordSource ?? null,
+                coordType: place.coordType ?? null,
+                hidden: place.hidden ?? false,
+                stub: place.stub ?? false,
+              });
+            }
+            if (eligible.length) {
+              sourceSummaries.push({ sourceFile: rel(file), count: eligible.length, firstPlaceId: eligible[0].id });
+              queue.push(...eligible);
+            }
+          }
+
+          const report = {
+            generatedAt: new Date().toISOString(),
+            method: 'All non-generated Oslo-like place source JSON files outside the global manifest-loaded source set; split child mirrors excluded; already loaded, controlled and disabled placeIds excluded. Sorted by source path, then original file order.',
+            loadedPlaceIdCount: loadedIds.size,
+            controlledPlaceIdCount: controlledIds.size,
+            secondarySourceCount: sourceSummaries.length,
+            secondaryCandidateCount: queue.length,
+            sources: sourceSummaries,
+            queue,
+          };
+          const outDir = path.join(root, 'reports/oslo-coordinate-control-batch-21');
+          fs.mkdirSync(outDir, { recursive: true });
+          fs.writeFileSync(path.join(outDir, 'secondary-source-queue.json'), `${JSON.stringify(report, null, 2)}\n`);
+          fs.writeFileSync(path.join(outDir, 'secondary-source-queue.tsv'), [
+            'order\tplaceId\tname\tcategory\tsourceFile\tsourceOrder\tcoordStatus\tcoordSource',
+            ...queue.map((row, i) => [i + 1, row.id, row.name ?? '', row.category ?? '', row.sourceFile, row.sourceOrder, row.coordStatus ?? '', row.coordSource ?? ''].join('\t')),
+          ].join('\n') + '\n');
+          console.log(`Secondary Oslo queue: ${queue.length} places from ${sourceSummaries.length} source files.`);
+          console.log(queue.slice(0, 20).map((row, i) => `${i + 1}. ${row.id} | ${row.sourceFile}`).join('\n'));
+          NODE
+      - name: Upload secondary queue audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch21-secondary-queue
+          path: reports/oslo-coordinate-control-batch-21/
+          if-no-files-found: error
