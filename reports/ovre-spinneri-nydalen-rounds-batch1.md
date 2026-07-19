@@ -29,6 +29,15 @@ Ingen manuell `rounds`- eller `rundinger`-override er lagt inn.
 - radius: `150`
 - canonical år: `1856`
 
+## Validering
+
+Bestått på sluttinnholdet:
+
+- `node tests/ovre-spinneri-nydalen-batch1-round-content.test.js`
+- `node tests/nydalen-industristed-batch1-round-content.test.js`
+- JSON-parse av alle fem endrede datafiler
+- `git diff --check`
+
 ## Kilder
 
 Store norske leksikon, Norsk biografisk leksikon, Oslo byleksikon, Oslobilder og eksisterende History Go-data for Nydalen.
