@@ -40,8 +40,8 @@ Det er ikke lagt inn manuell `rounds`- eller `rundinger`-overstyring.
 
 ## Runtime
 
-- Anders Hovda legges inn i eksisterende Etne-batch for næringslivspersoner.
-- Gudvin Hovdas eksisterende museumskort utvides med den dokumenterte SMV-koblingen.
+- Anders Hovda legges i en egen manifestert SMV-fil, slik at den eksisterende museumsbatchen beholder nøyaktig de tre dokumenterte museumsstifterne.
+- Gudvin Hovdas eksisterende museumskort utvides med den dokumenterte SMV-koblingen uten å endre primæranker, museumsår eller verifiseringsdato.
 - Paul Hovdas eksisterende SMV-kobling beholdes og får en eksplisitt relasjon til stedet.
 - Fortellingen legges i den allerede manifesterte fellesfilen for Etne næringsliv.
 - Leksikonartikkelen legges i den allerede manifesterte fellesfilen for Etne næringsliv.
