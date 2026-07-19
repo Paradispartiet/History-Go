@@ -1,0 +1,337 @@
+name: Fix Oslo address anchors
+
+on:
+  push:
+    branches:
+      - agent/fix-oslo-address-anchors-torggata-storgata-v2
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-oslo-address-anchors-torggata-storgata-v2
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    if: github.event.head_commit.message == 'Trigger Oslo address anchor repair'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run normative Geonorge address finder
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-address-anchor-repair-20260719/coordinates
+
+          npm run places:coords:find:address -- --address "Hausmanns gate 19 Oslo" \
+            | tee reports/oslo-address-anchor-repair-20260719/coordinates/torggata_blad.json
+
+          npm run places:coords:find:address -- --address "Torggata 22 Oslo" \
+            | tee reports/oslo-address-anchor-repair-20260719/coordinates/torggata.json
+
+          npm run places:coords:find:address -- --address "Storgata 26 Oslo" \
+            | tee reports/oslo-address-anchor-repair-20260719/coordinates/storgata.json
+
+      - name: Apply verified candidates to canonical data
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const reportDir = 'reports/oslo-address-anchor-repair-20260719/coordinates';
+          const verifiedAt = '2026-07-19';
+
+          function readJson(file) {
+            return JSON.parse(fs.readFileSync(file, 'utf8'));
+          }
+
+          function writeJson(file, value) {
+            fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
+          }
+
+          function readResult(name) {
+            const result = readJson(path.join(reportDir, `${name}.json`));
+            if (!result.ok || result.status !== 'verified_candidate' || !result.coordinate) {
+              throw new Error(`${name}: expected one verified_candidate, got ${JSON.stringify({ ok: result.ok, status: result.status, reason: result.reason })}`);
+            }
+            return result;
+          }
+
+          const results = {
+            torggata_blad: readResult('torggata_blad'),
+            torggata: readResult('torggata'),
+            storgata: readResult('storgata'),
+          };
+
+          const splitPaths = {
+            torggata: 'data/places/by/oslo/places/torggata.json',
+            storgata: 'data/places/by/oslo/places/storgata.json',
+            torggata_blad: 'data/places/subkultur/oslo/places_subkultur/torggata_blad.json',
+          };
+
+          function applyCommon(place, result, { locatorType, coordRole, radius, note }) {
+            const c = result.coordinate;
+            place.lat = c.lat;
+            place.lon = c.lon;
+            if (radius != null) place.r = radius;
+            place.coordType = 'address_point';
+            place.coordStatus = 'verified';
+            place.locatorType = locatorType;
+            place.sourceProvider = 'official_address';
+            place.sourceObjectId = result.sourceObjectId;
+            place.address = c.address;
+            place.geocodeAccuracy = c.geocodeAccuracy || 'rooftop';
+            place.coordRole = coordRole;
+            place.coordSource = 'geonorge_adresser_v1';
+            place.coordSourceId = result.sourceObjectId;
+            place.coordSourceUrl = result.sourceUrl;
+            place.coordVerifiedAt = verifiedAt;
+            place.coordNote = note;
+            delete place.coordPrecisionM;
+          }
+
+          const torggata = readJson(splitPaths.torggata);
+          applyCommon(torggata, results.torggata, {
+            locatorType: 'street',
+            coordRole: 'line_anchor',
+            radius: torggata.r,
+            note: 'Offisiell Geonorge-adressekoordinat for Torggata 22 brukes som et dokumentert representativt adresseanker for Torggata. Punktet er valgt i den sentrale oppgraderte gate-/serveringsstrekningen og er ikke et beregnet midtpunkt eller en påstand om at hele gaten ligger i bygningen på adressen.',
+          });
+          writeJson(splitPaths.torggata, torggata);
+
+          const storgata = readJson(splitPaths.storgata);
+          applyCommon(storgata, results.storgata, {
+            locatorType: 'street',
+            coordRole: 'line_anchor',
+            radius: storgata.r,
+            note: 'Offisiell Geonorge-adressekoordinat for Storgata 26 brukes som et dokumentert representativt adresseanker for Storgata. Punktet ligger på den sentrale handels- og sporveisstrekningen og er ikke et beregnet midtpunkt eller en påstand om at hele gaten ligger i bygningen på adressen.',
+          });
+          writeJson(splitPaths.storgata, storgata);
+
+          const blad = readJson(splitPaths.torggata_blad);
+          applyCommon(blad, results.torggata_blad, {
+            locatorType: 'building',
+            coordRole: 'display_marker',
+            radius: 60,
+            note: 'Offisiell Geonorge-adressekoordinat for Hausmanns gate 19 brukes som historisk redaksjonsanker for Torggata Blad, dokumentert i bladets 2008-materiale. Markøren representerer den dokumenterte redaksjonsadressen, ikke en nåværende bokhandel.',
+          });
+          blad.desc = 'Historisk redaksjons- og publiseringsanker for det uavhengige kulturbladet Torggata Blad, dokumentert i Hausmanns gate 19.';
+          blad.popupDesc = 'Torggata Blad representeres her gjennom den dokumenterte redaksjonsadressen Hausmanns gate 19 fra 2008. Markøren er et historisk publiserings- og redaksjonsanker, ikke en påstand om at stedet er en bokhandel eller at redaksjonen fortsatt holder til her. I History Go brukes stedet til å formidle hvordan små, uavhengige publikasjoner, ziner, tegneserier og kunstmiljøer skaper egne distribusjonskanaler og offentligheter utenfor de største kommersielle mediehusene.';
+          blad.quiz_profile.place_type = 'redaksjonssted';
+          blad.quiz_profile.subtype = 'uavhengig_kulturblad_og_publiseringsmiljo';
+          blad.quiz_profile.signature_features = [
+            'dokumentert historisk redaksjonsadresse i Hausmanns gate 19',
+            'uavhengig kulturblad med tilknytning til alternative publiseringsmiljøer',
+            'fysisk anker for småskala redaksjonell og subkulturell infrastruktur',
+          ];
+          blad.quiz_profile.primary_angles = [
+            'uavhengig_kultur',
+            'publiseringsmiljo',
+            'subkulturell_distribusjon',
+            'historisk_stedsbruk',
+          ];
+          blad.quiz_profile.must_include = [
+            'rollen som uavhengig kulturpublikasjon',
+            'Hausmanns gate 19 som dokumentert historisk redaksjonsanker',
+          ];
+          blad.quiz_profile.notes = 'Spør som historisk redaksjons- og publiseringssted, ikke som bokhandel.';
+          writeJson(splitPaths.torggata_blad, blad);
+
+          function replaceInAggregate(file, replacements) {
+            const data = readJson(file);
+            if (!Array.isArray(data)) throw new Error(`${file} is not an array`);
+            for (const [id, record] of Object.entries(replacements)) {
+              const index = data.findIndex((item) => item && item.id === id);
+              if (index < 0) throw new Error(`${id} not found in ${file}`);
+              data[index] = record;
+            }
+            writeJson(file, data);
+          }
+
+          replaceInAggregate('data/places/by/oslo/places_by.json', { torggata, storgata });
+          replaceInAggregate('data/places/subkultur/oslo/places_subkultur.json', { torggata_blad: blad });
+
+          function updateIndex(file, records) {
+            const data = readJson(file);
+            const list = Array.isArray(data) ? data : data.places;
+            if (!Array.isArray(list)) throw new Error(`Unsupported index shape: ${file}`);
+            for (const record of records) {
+              const item = list.find((candidate) => candidate && candidate.id === record.id);
+              if (!item) throw new Error(`${record.id} not found in ${file}`);
+              item.lat = record.lat;
+              item.lon = record.lon;
+              item.r = record.r;
+              item.coordStatus = record.coordStatus;
+              item.coordType = record.coordType;
+            }
+            writeJson(file, data);
+          }
+
+          updateIndex('data/places/by/oslo/places_by_index.json', [torggata, storgata]);
+          updateIndex('data/places/subkultur/oslo/places_subkultur_index.json', [blad]);
+
+          function writeStreetEvidence(place, result, extentUrl, extentId) {
+            const evidenceFile = `data/coordinate-evidence/oslo/by/${place.id}.json`;
+            const existing = readJson(evidenceFile);
+            const c = result.coordinate;
+            const evidence = {
+              ...existing,
+              evidenceStatus: 'applied_to_place',
+              coordinateDecision: 'change_coordinates_to_documented_address_anchor',
+              currentCoordinate: {
+                lat: place.lat,
+                lon: place.lon,
+                r: place.r,
+                coordStatus: place.coordStatus,
+                coordSource: place.coordSource,
+                coordType: place.coordType,
+                coordNote: place.coordNote,
+              },
+              identity: {
+                ...existing.identity,
+                resolvedIdentity: place.id === 'torggata'
+                  ? 'Torggata fra Stortorvet til Ankertorget, representert med dokumentert adresseanker i Torggata 22'
+                  : 'Storgata fra Dronningens gate ved Kirkeristen til Nybrua, representert med dokumentert adresseanker i Storgata 26',
+              },
+              evidence: [
+                {
+                  sourceProvider: 'manual_research',
+                  sourceName: place.id === 'torggata' ? 'Oslo byleksikon – Torggata' : 'Oslo byleksikon – Storgata',
+                  sourceUrl: extentUrl,
+                  sourceObjectId: extentId,
+                  sourceQuality: 'documented_street_extent',
+                  finding: 'Kilden dokumenterer gateløpet; hovedmarkøren flyttes fra et beregnet/semantisk midtpunkt til et konkret offisielt adresseanker på selve gaten.',
+                  canVerifyCoordinate: false,
+                  reason: 'Brukes til å dokumentere stedets gateidentitet og utstrekning, ikke selve koordinatpunktet.',
+                },
+                {
+                  sourceProvider: 'official_address',
+                  sourceName: 'Geonorge Adresser API v1',
+                  sourceUrl: result.sourceUrl,
+                  sourceObjectId: result.sourceObjectId,
+                  sourceQuality: 'official_address_point',
+                  finding: `${c.address.street} ${c.address.number} ga ett entydig verified_candidate og brukes som representativt adresseanker.`,
+                  canVerifyCoordinate: true,
+                  reason: place.coordNote,
+                },
+              ],
+              addressCandidates: [
+                {
+                  query: result.query,
+                  sourceProvider: 'official_address',
+                  sourceObjectId: result.sourceObjectId,
+                  lat: c.lat,
+                  lon: c.lon,
+                  canApplyToPlace: true,
+                },
+              ],
+              sourceObjectCandidates: [
+                {
+                  sourceProvider: 'official_address',
+                  sourceObjectId: result.sourceObjectId,
+                  canApplyToPlace: true,
+                },
+              ],
+              geometryCandidates: [],
+              coordinateCandidates: [
+                {
+                  lat: c.lat,
+                  lon: c.lon,
+                  coordRole: 'line_anchor',
+                  canApplyToPlace: true,
+                },
+              ],
+              decision: {
+                canBecomeVerified: true,
+                blockedReason: '',
+                nextAction: 'Det offisielle Geonorge-adresseankeret er anvendt på canonical place og alle runtime-kopier.',
+              },
+              notes: [place.coordNote],
+            };
+            writeJson(evidenceFile, evidence);
+          }
+
+          writeStreetEvidence(torggata, results.torggata, 'https://oslobyleksikon.no/side/Torggata', 'oslobyleksikon:torggata');
+          writeStreetEvidence(storgata, results.storgata, 'https://oslobyleksikon.no/side/Storgata', 'oslobyleksikon:storgata');
+
+          const summary = {
+            generatedAt: new Date().toISOString(),
+            results: Object.fromEntries(Object.entries(results).map(([id, result]) => [id, {
+              query: result.query,
+              status: result.status,
+              sourceObjectId: result.sourceObjectId,
+              lat: result.coordinate.lat,
+              lon: result.coordinate.lon,
+              address: result.coordinate.address,
+            }])),
+          };
+          writeJson('reports/oslo-address-anchor-repair-20260719/applied-summary.json', summary);
+          NODE
+
+      - name: Rebuild runtime index and validate
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+          npm run test:coordinate-source-contract
+          npm run places:coords:quality
+          npm run places:coords:intake
+          npm run places:coords:evidence:audit
+          git diff --check
+
+      - name: Verify marker movement numerically
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const old = {
+            torggata: [59.91535, 10.75335],
+            storgata: [59.9154, 10.7539],
+            torggata_blad: [59.91504, 10.75326],
+          };
+          const files = {
+            torggata: 'data/places/by/oslo/places/torggata.json',
+            storgata: 'data/places/by/oslo/places/storgata.json',
+            torggata_blad: 'data/places/subkultur/oslo/places_subkultur/torggata_blad.json',
+          };
+          function haversine(a, b) {
+            const R = 6371000;
+            const toRad = (x) => x * Math.PI / 180;
+            const dLat = toRad(b[0] - a[0]);
+            const dLon = toRad(b[1] - a[1]);
+            const lat1 = toRad(a[0]);
+            const lat2 = toRad(b[0]);
+            const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(h));
+          }
+          const out = {};
+          for (const [id, file] of Object.entries(files)) {
+            const place = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const meters = haversine(old[id], [place.lat, place.lon]);
+            if (meters < 20) throw new Error(`${id} moved only ${meters.toFixed(1)} m; expected a real marker move`);
+            out[id] = { from: { lat: old[id][0], lon: old[id][1] }, to: { lat: place.lat, lon: place.lon }, movedMeters: Math.round(meters) };
+          }
+          fs.writeFileSync('reports/oslo-address-anchor-repair-20260719/marker-movement.json', JSON.stringify(out, null, 2) + '\n');
+          console.log(out);
+          NODE
+
+      - name: Remove temporary workflow and commit results
+        run: |
+          set -euo pipefail
+          rm .github/workflows/fix-oslo-address-anchors.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data reports .github/workflows/fix-oslo-address-anchors.yml
+          git commit -m "Fix Oslo address anchors for Torggata, Storgata and Torggata Blad"
+          git push origin HEAD
