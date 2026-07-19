@@ -29,7 +29,7 @@ const expected = [
 
 for (const [id, latin] of expected) {
   const item = allFlora.get(id);
-  assert(item, `Faunamanifestet mangler florakort ${id}`);
+  assert(item, `Floramanifestet mangler florakort ${id}`);
   assert.strictEqual(item.latin, latin, `${id} har feil latinsk navn`);
 }
 
