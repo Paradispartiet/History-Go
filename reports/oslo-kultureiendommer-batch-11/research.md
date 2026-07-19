@@ -26,6 +26,10 @@ Display anchor:
 
 This point represents the named park geometry, not one individual ruin.
 
+## Validation path
+
+The temporary branch workflow registers the source exactly once, rebuilds the global place index, runs coordinate-index parity and strict new-coordinate intake, validates canonical emne IDs and saves the place-health report. The workflow file is removed before merge.
+
 ## Sources
 
 - Oslo kommune — Minneparken: https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/
