@@ -1,9 +1,9 @@
 name: Oslo address anchor final repair
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/fix-oslo-address-anchors-final
+      - main
 
 permissions:
   contents: write
