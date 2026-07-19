@@ -39,6 +39,7 @@ jobs:
           set -euo pipefail
           python3 <<'PY'
           import subprocess
+          import sys
           import yaml
           from pathlib import Path
 
@@ -51,6 +52,29 @@ jobs:
               if not command:
                   continue
               name = step.get('name', 'unnamed run step')
-              print(f'\n===== EXECUTING: {name} =====', flush=True)
-              subprocess.run(command, shell=True, executable='/bin/bash', check=True)
+              print(f'===== EXECUTING: {name} =====', flush=True)
+              result = subprocess.run(
+                  command,
+                  shell=True,
+                  executable='/bin/bash',
+                  text=True,
+                  stdout=subprocess.PIPE,
+                  stderr=subprocess.STDOUT,
+              )
+              output = result.stdout or ''
+              tail = '\n'.join(output.splitlines()[-120:])
+              if result.returncode != 0:
+                  report = Path('reports/oslo-coordinate-control-batch-30/clean-runner-error.txt')
+                  report.parent.mkdir(parents=True, exist_ok=True)
+                  report.write_text(
+                      f'FAILED STEP: {name}\nEXIT CODE: {result.returncode}\n\nLAST OUTPUT LINES:\n{tail}\n'
+                  )
+                  print(report.read_text(), flush=True)
+                  subprocess.run(['git','config','user.name','github-actions[bot]'], check=True)
+                  subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'], check=True)
+                  subprocess.run(['git','add',str(report)], check=True)
+                  subprocess.run(['git','commit','-m',f'Capture clean batch 30 failure: {name}'], check=True)
+                  subprocess.run(['git','push','origin','HEAD'], check=True)
+                  sys.exit(result.returncode)
+              print(tail, flush=True)
           PY
