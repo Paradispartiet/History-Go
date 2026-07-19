@@ -38,6 +38,18 @@ er lagt i stedfilen.
 - Den Norske Hesteskosømfabrik ved fallene fra 1881 til 1926/1927
 - Hjula nedlagt i 1957, brann i 1971 og gjenoppbygging i 1974
 
+## Validering
+
+Bestått i produksjonsjobben:
+
+- målrettet identitets-, koordinat- og rundingtest for Vøyenfallene
+- seks quizsett med sju spørsmål i hvert sett og kildeverifisert `claim_basis`
+- PlaceCard runtime-rundingaudit
+- leksikoninnholdsaudit
+- Glads mølle-regresjonstest
+- JSON-parse av alle endrede datafiler
+- `git diff --check`
+
 ## Kilder
 
 Oslo byleksikon, Store norske leksikon, Norsk biografisk leksikon, Industrimuseum,
