@@ -7,6 +7,13 @@ on:
       - 'agent/audit-oslo-coordinates-*'
     paths:
       - 'scripts/coordinate-branch-job.mjs'
+      - 'scripts/.coordinate-branch-job-complete'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'scripts/coordinate-branch-job.mjs'
+      - 'scripts/.coordinate-branch-job-complete'
   workflow_dispatch:
 
 permissions:
@@ -14,48 +21,67 @@ permissions:
 
 jobs:
   run-coordinate-job:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Check out triggering branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
+      - name: Detect pending coordinate job
+        id: pending
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f scripts/coordinate-branch-job.mjs && ! -f scripts/.coordinate-branch-job-complete ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Set up Node
+        if: steps.pending.outputs.run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
       - name: Prepare validation directory
+        if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          SAFE_REF="${GITHUB_REF_NAME//\//_}"
+          BRANCH_NAME="${{ github.head_ref || github.ref_name }}"
+          SAFE_REF="${BRANCH_NAME//\//_}"
+          echo "JOB_BRANCH=${BRANCH_NAME}" >> "$GITHUB_ENV"
           echo "RUNNER_REPORT_DIR=reports/coordinate-branch-runner/${SAFE_REF}" >> "$GITHUB_ENV"
           mkdir -p "reports/coordinate-branch-runner/${SAFE_REF}"
 
       - name: Install dependencies
+        if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
           npm ci 2>&1 | tee "$RUNNER_REPORT_DIR/npm-ci.log"
 
       - name: Run coordinate branch job
+        if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          test -f scripts/coordinate-branch-job.mjs
           node scripts/coordinate-branch-job.mjs 2>&1 | tee "$RUNNER_REPORT_DIR/job.log"
 
       - name: Rebuild runtime place index
+        if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
           npm run places:index:build 2>&1 | tee "$RUNNER_REPORT_DIR/places-index-build.log"
 
       - name: Run coordinate validation gates
+        if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -68,11 +94,12 @@ jobs:
           npm run health:places 2>&1 | tee "$RUNNER_REPORT_DIR/health-places.log"
           git diff --check 2>&1 | tee "$RUNNER_REPORT_DIR/git-diff-check.log"
 
-      - name: Commit generated coordinate changes
+      - name: Mark job complete and commit generated changes
+        if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          rm -f scripts/coordinate-branch-job.mjs
+          printf '%s\n' "completed-by-coordinate-branch-runner" > scripts/.coordinate-branch-job-complete
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
@@ -81,4 +108,4 @@ jobs:
             exit 0
           fi
           git commit -m "Apply coordinate branch job"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${JOB_BRANCH}"

@@ -76,6 +76,15 @@
       const actual = state.threadState[threadId] ? state.threadState[threadId].status : "dormant";
       if (actual !== requiredStatus) return false;
     }
+    if (cond.profil) {
+      // Profilgatet innhold er bonus: uten snapshot (ren Min dag-flate,
+      // Node-tester uten mock, spiller uten History GO-historikk) fyrer
+      // scenen ikke. Snapshotet holdes ved like av lifestoryShellBridge
+      // (async ProfileSignalBridge -> synkron global).
+      const tags = /** @type {any} */ (globalScope).CivicationLifestoryProfileTags;
+      if (!Array.isArray(tags) || !tags.length) return false;
+      if (!cond.profil.tags.some((t) => tags.indexOf(t) !== -1)) return false;
+    }
     return true;
   }
 
