@@ -21,16 +21,29 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Run and save address-first lookups
+      - name: Run and save all address-first lookups
         run: |
-          set -o pipefail
+          set -u
           mkdir -p reports/oslo-coordinate-control-batch-21/lookups
-          npm run places:coords:find:address -- --address "Tuengen allé 10C Oslo" \
-            | tee reports/oslo-coordinate-control-batch-21/lookups/villa_stenersen-geonorge.json
-          npm run places:coords:find:address -- --address "Enerhauggata 4 Oslo" \
-            | tee reports/oslo-coordinate-control-batch-21/lookups/st_hallvard_kirke_kloster-geonorge.json
-          npm run places:coords:find:address -- --address "Grimelundsveien 8 Oslo" \
-            | tee reports/oslo-coordinate-control-batch-21/lookups/emanuel_vigeland_mausoleum-geonorge.json
+          : > reports/oslo-coordinate-control-batch-21/lookups/exit-status.tsv
+
+          run_lookup() {
+            key="$1"
+            address="$2"
+            set +e
+            set -o pipefail
+            npm run places:coords:find:address -- --address "$address" \
+              | tee "reports/oslo-coordinate-control-batch-21/lookups/${key}-geonorge.json"
+            code=${PIPESTATUS[0]}
+            set +o pipefail
+            set -e
+            printf '%s\t%s\n' "$key" "$code" >> reports/oslo-coordinate-control-batch-21/lookups/exit-status.tsv
+          }
+
+          set -e
+          run_lookup villa_stenersen "Tuengen allé 10C Oslo"
+          run_lookup st_hallvard_kirke_kloster "Enerhauggata 4 Oslo"
+          run_lookup emanuel_vigeland_mausoleum "Grimelundsveien 8 Oslo"
       - name: Upload lookup evidence
         uses: actions/upload-artifact@v4
         with:
