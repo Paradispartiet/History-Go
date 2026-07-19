@@ -1,15 +1,65 @@
 
 > history-go@0.0.0 places:coords:find:address
-> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Bankplassen 1 Oslo
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Bankplassen 1B Oslo
 
 
 > history-go@0.0.0 build:tools
 > tsc -p tsconfig.tools.build.json
 
 {
-  "ok": false,
-  "status": "needs_review",
-  "reason": "Geonorge returnerte flere treff uten entydig match; må avklares manuelt.",
-  "query": "Bankplassen 1 Oslo",
-  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bankplassen%201%20Oslo"
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Bankplassen 1B Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bankplassen%201B%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:10412:1B",
+  "coordinate": {
+    "lat": 59.9089234456751,
+    "lon": 10.742103623159887,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:10412:1B",
+    "address": {
+      "street": "Bankplassen",
+      "number": "1B",
+      "postcode": "0151",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Bankplassen 1B, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Bankplassen",
+    "adressetekst": "Bankplassen 1B",
+    "adressetilleggsnavn": null,
+    "adressekode": 10412,
+    "nummer": 1,
+    "bokstav": "B",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 207,
+    "bruksnummer": 389,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0151",
+    "adressetekstutenadressetilleggsnavn": "Bankplassen 1B",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.9089234456751,
+      "lon": 10.742103623159887
+    },
+    "oppdateringsdato": "2020-06-15T18:02:02"
+  }
 }
