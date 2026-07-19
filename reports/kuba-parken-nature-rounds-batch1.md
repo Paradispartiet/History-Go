@@ -21,6 +21,18 @@ Denne batchen fyller de manglende PlaceCard-rundingene for canonical `kuba_parke
 - Navneopprinnelsen presenteres eksplisitt som usikker. Ingen av de konkurrerende teoriene løftes til canonical sannhet.
 - Fyrhuset behandles som et nærliggende fysisk/historisk lag i parkens gasshistorie, ikke som om bygningen er identisk med selve parken.
 
+## Akerselva split-regel
+
+De berikede enkeltfilene under `places_oslo_natur_akerselvarute/` har utviklet seg videre enn den eldre aggregate-filen. En rundingsbatch skal derfor **ikke** kjøre full `split-nature-oslo-akerselva-route.mjs`, fordi det kan overskrive ferdig rundingsinnhold på andre stopp med eldre aggregate-data.
+
+Denne batchen oppdaterer bare:
+
+- `kuba_parken.json`
+- Kuba-raden i route index
+- Kuba-radens hash i split-manifestet
+
+Den målrettede Akerselva-regresjonen bekrefter at eksisterende rundingsinnhold på andre rutestopp beholdes.
+
 ## Rundinger
 
 Canonical naturprofil:
