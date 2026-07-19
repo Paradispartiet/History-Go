@@ -1,0 +1,68 @@
+name: Fill Steinsvollen rounds
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - agent/fill-steinsvollen-rounds-runner
+
+permissions:
+  contents: write
+
+jobs:
+  fill-and-validate:
+    if: github.head_ref == 'agent/fill-steinsvollen-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate Steinsvollen round data
+        run: python tools/one_off/fill_steinsvollen_rounds.py
+
+      - name: Test Steinsvollen rounds
+        run: node tests/steinsvollen-batch1-round-content.test.js
+
+      - name: Test inherited Etne sport rounds
+        run: |
+          node tests/etne-pumptrack-batch1-round-content.test.js
+          node tests/etnesjoen-bmx-skate-batch1-round-content.test.js
+          node tests/etnesjoen-tennis-batch1-round-content.test.js
+          node tests/etnesjoen-idrettsanlegg-batch1-round-content.test.js
+
+      - name: Audit PlaceCard round runtime
+        run: node tests/place-card-rounds-runtime-audit.test.js
+
+      - name: Audit PlaceCard leksikon content
+        run: node tests/place-card-leksikon-content-audit.test.js
+
+      - name: Audit Etne people manifest
+        run: node tests/etne-people-manifest-integration.test.js
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript guards
+        run: |
+          npx tsc -p tsconfig.tools.json
+          npx tsc -p tsconfig.web.json
+
+      - name: Check diff
+        run: git diff --check
+
+      - name: Commit generated data
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm tools/one_off/fill_steinsvollen_rounds.py
+          git config user.name "History GO data bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Fill Steinsvollen place rounds"
+          git push origin HEAD:agent/fill-steinsvollen-rounds-batch1
