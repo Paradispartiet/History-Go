@@ -1,0 +1,76 @@
+name: Beierbrua final cleanup
+
+on:
+  push:
+    branches: [agent/fill-beierbrua-rounds-batch1]
+    paths:
+      - '.github/workflows/beierbrua-final-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-beierbrua-rounds-batch1
+          fetch-depth: 0
+
+      - name: Fix explicit 1986 wording and validate final state
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json')
+          rows = json.loads(path.read_text())
+          article = next((row for row in rows if row.get('place_id') == 'beierbrua'), None)
+          if article is None:
+              raise SystemExit('Missing Beierbrua leksikon article')
+
+          old = 'Året etter ble Ellen Jacobsens skulpturgruppe «Skulder ved skulder (Fabrikkjentene)» satt opp ved broen.'
+          new = 'I 1986 ble Ellen Jacobsens skulpturgruppe «Skulder ved skulder (Fabrikkjentene)» satt opp ved broen.'
+          wiki = article.get('wikiText', [])
+          joined = '\n'.join(wiki)
+          if old not in joined and new not in joined:
+              raise SystemExit('Expected Beierbrua 1986 sentence not found')
+          article['wikiText'] = [paragraph.replace(old, new) for paragraph in wiki]
+          path.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+          node tests/beierbrua-rounds-batch1.test.js
+          node tests/place-card-rounds-runtime-audit.test.js
+          npm ci --silent
+          npm run audit:people-of-places
+          npm run places:index:check
+          npm run audit:places-split-manifest-sync
+
+          node - <<'NODE'
+          const fs = require('fs');
+          for (const file of [
+            'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+            'data/places/places_index.json',
+            'data/relations.json',
+            'data/stories/stories_beierbrua.json',
+            'data/stories/stories_manifest.json'
+          ]) JSON.parse(fs.readFileSync(file, 'utf8'));
+          NODE
+
+          rm -f .github/workflows/beierbrua-existing-oskar-fix.yml
+          rm -f .github/workflows/beierbrua-final-cleanup.yml
+
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix: finalize Beierbrua rounds batch'
+          git push origin HEAD:agent/fill-beierbrua-rounds-batch1
