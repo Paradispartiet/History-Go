@@ -1,0 +1,44 @@
+name: Oslo Oppdag Kvadraturen Under bakken batch 1 coordinates
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-oppdag-kvadraturen-under-bakken-batch-1-coordinates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Resolve Norges Bank Bankplassen 2
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-under-bakken-batch-1/coordinates'
+          mkdir -p "$outdir"
+          npm run places:coords:find:address -- --address 'Bankplassen 2 Oslo' \
+            | tee "$outdir/norges_bank_bankplassen_2.json"
+
+      - name: Persist coordinate evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/oslo-oppdag-kvadraturen-under-bakken-batch-1/coordinates
+          git commit -m 'Save Under bakken batch 1 coordinate evidence'
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
