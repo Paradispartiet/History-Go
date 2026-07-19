@@ -33,9 +33,21 @@ jobs:
       - name: Check coordinate quality
         run: npm run places:coords:quality
       - name: Check strict coordinate intake
+        id: intake
+        continue-on-error: true
         env:
           COORD_INTAKE_BASE: origin/main
         run: npm run places:coords:intake
+      - name: Upload intake failure report
+        if: steps.intake.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch18-intake-report
+          path: reports/place-coordinate-intake-gate.md
+          if-no-files-found: error
+      - name: Stop on intake failure
+        if: steps.intake.outcome == 'failure'
+        run: exit 1
       - name: Check coordinate evidence
         run: npm run places:coords:evidence:audit
       - name: Check whitespace
