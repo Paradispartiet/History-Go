@@ -42,7 +42,7 @@ jobs:
           out=reports/oslo-coordinate-control-batch-30/coordinates
           mkdir -p "$out"
 
-          curl --fail --silent --show-error --get \
+          curl --fail --retry 3 --retry-delay 2 --silent --show-error --get \
             --data-urlencode "sok=Alexander Kiellands plass" \
             --data-urlencode "knr=0301" \
             --data-urlencode "treffPerSide=50" \
@@ -50,7 +50,7 @@ jobs:
             "https://api.kartverket.no/stedsnavn/v1/sted" \
             | tee "$out/alexander_kiellands_plass_ssr.json"
 
-          curl --fail --silent --show-error --get \
+          curl --fail --retry 3 --retry-delay 2 --silent --show-error --get \
             --data-urlencode "sok=Oskar Braaten" \
             --data-urlencode "knr=0301" \
             --data-urlencode "treffPerSide=50" \
@@ -72,7 +72,7 @@ jobs:
       - name: Query exact named OSM objects only after SSR
         shell: bash
         run: |
-          set -euo pipefail
+          set +e
           out=reports/oslo-coordinate-control-batch-30/coordinates
 
           cat > /tmp/alexander.overpass <<'QL'
@@ -80,10 +80,6 @@ jobs:
           nwr["name"="Alexander Kiellands plass"](59.90,10.70,59.96,10.80);
           out center tags;
           QL
-          curl --fail --silent --show-error \
-            --data-urlencode "data@/tmp/alexander.overpass" \
-            "https://overpass-api.de/api/interpreter" \
-            | tee "$out/alexander_kiellands_plass_osm.json"
 
           cat > /tmp/oskar.overpass <<'QL'
           [out:json][timeout:60];
@@ -93,10 +89,34 @@ jobs:
           );
           out center tags;
           QL
-          curl --fail --silent --show-error \
-            --data-urlencode "data@/tmp/oskar.overpass" \
-            "https://overpass-api.de/api/interpreter" \
-            | tee "$out/oskar_braaten_byste_osm.json"
+
+          query_overpass() {
+            local query_file="$1"
+            local output_file="$2"
+            local endpoint
+            for endpoint in \
+              "https://overpass-api.de/api/interpreter" \
+              "https://overpass.kumi.systems/api/interpreter" \
+              "https://overpass.nchc.org.tw/api/interpreter"
+            do
+              echo "Trying $endpoint" >&2
+              if curl --fail --retry 2 --retry-delay 2 --max-time 90 --silent --show-error \
+                --data-urlencode "data@${query_file}" "$endpoint" > "$output_file"; then
+                if jq -e '.elements | type == "array"' "$output_file" >/dev/null 2>&1; then
+                  return 0
+                fi
+              fi
+            done
+            printf '{"version":0.6,"generator":"unavailable","elements":[],"diagnostic":"All Overpass endpoints failed"}\n' > "$output_file"
+            return 1
+          }
+
+          query_overpass /tmp/alexander.overpass "$out/alexander_kiellands_plass_osm.json"
+          alexander_osm_status=$?
+          query_overpass /tmp/oskar.overpass "$out/oskar_braaten_byste_osm.json"
+          oskar_osm_status=$?
+          printf '{"alexander_osm":%s,"oskar_osm":%s}\n' "$alexander_osm_status" "$oskar_osm_status" > "$out/overpass-status.json"
+          exit 0
 
       - name: Write compact diagnostic summary
         run: |
@@ -104,11 +124,12 @@ jobs:
           const fs=require('fs');
           const p='reports/oslo-coordinate-control-batch-30/coordinates/';
           const read=(f)=>JSON.parse(fs.readFileSync(p+f,'utf8'));
-          const compact=(obj)=>({metadata:obj.metadata??null,navn:obj.navn??null,steder:obj.steder??null,elements:obj.elements??null});
+          const compactSsr=(obj)=>({metadata:obj.metadata??null,navn:obj.navn??null,steder:obj.steder??null});
           const out={
-            alexander_ssr: compact(read('alexander_kiellands_plass_ssr.json')),
-            oskar_ssr: compact(read('oskar_braaten_ssr.json')),
+            alexander_ssr: compactSsr(read('alexander_kiellands_plass_ssr.json')),
+            oskar_ssr: compactSsr(read('oskar_braaten_ssr.json')),
             alexander_address: read('alexander_kiellands_plass_address.json'),
+            overpass_status: read('overpass-status.json'),
             alexander_osm: read('alexander_kiellands_plass_osm.json').elements ?? [],
             oskar_osm: read('oskar_braaten_byste_osm.json').elements ?? [],
           };
