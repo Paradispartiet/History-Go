@@ -1,7 +1,7 @@
 {
   "targetId": "nedre_foss",
   "categoryId": "historie",
-  "generator_version": "chatgpt_history_go_manual_v2_compact",
+  "generator_version": "chatgpt_history_go_manual_v3_source_enriched",
   "generated_from": [
     "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
     "data/wonderkammer/base.json",
@@ -9,12 +9,12 @@
     "data/quiz/regler/SET_MAL_README_v3.md"
   ],
   "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Ingen presis møllekronologi.",
-      "Ingen nåværende virksomheter/restauranter/venues.",
-      "Ingen presise geologipåstander.",
-      "Ingen usikre personrelasjoner."
+    "quality_direction": "sted → observasjon → dokumentert historie → sammenheng",
+    "source_upgrade": "Den tidligere generiske quizpakken er oppgradert med dokumentert møllekronologi, Friedrich Grüner, bygninger og miljøparkhistorie.",
+    "source_caveats": [
+      "Skille mellom etableringsvindu 1148–1200 og første dokumenterte omtale i 1220.",
+      "Ikke bruk ett hardt sluttår for mølledriften fordi kildene varierer.",
+      "Ikke hardkod skiftende virksomheter eller presis geologi."
     ]
   },
   "sets": [
@@ -32,15 +32,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva gjør Nedre Foss til mer enn et pent punkt ved elva?",
+          "question": "Hva er det sikreste dokumenterte årstallet for kverna ved Nedre Foss?",
           "options": [
-            "Fallet viser hvordan vann kunne bli kraft og arbeid",
-            "Stedet er først og fremst en slottspark",
-            "Elva har ingen historisk funksjon"
+            "1220",
+            "1672",
+            "1953"
           ],
-          "answer": "Fallet viser hvordan vann kunne bli kraft og arbeid",
+          "answer": "1220",
           "answerIndex": 0,
-          "knowledge": "Nedre Foss er et sted der vann, fallhøyde og byhistorie møtes. Vannet kan leses som energi, ikke bare natur.",
+          "knowledge": "Kverna nevnes i 1220 som underlagt Hovedøya kloster. Oslo kommune daterer selve etableringen til perioden 1148–1200.",
           "difficulty": 1,
           "question_type": "scene",
           "question_layer": "intro_story",
@@ -50,9 +50,10 @@
             "vannkraft"
           ],
           "source": [
-            "History Go place data: nedre_foss"
+            "Store norske leksikon – Foss (Oslo)",
+            "Oslo byleksikon – Foss gård"
           ],
-          "claim_basis": "safe_place_data"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s1_q2",
@@ -118,15 +119,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva betyr det å lese Akerselva som mer enn natur her?",
+          "question": "Hvem var middelaldermølla ved Nedre Foss knyttet til?",
           "options": [
-            "Å se elva som energisystem og produksjonsinfrastruktur",
-            "Å late som elva ikke finnes",
-            "Å bare telle trær"
+            "Hovedøya kloster",
+            "Akershus festning",
+            "Det kongelige slott"
           ],
-          "answer": "Å se elva som energisystem og produksjonsinfrastruktur",
+          "answer": "Hovedøya kloster",
           "answerIndex": 0,
-          "knowledge": "Akerselva kunne drive møller og produksjon. Da blir elva del av byens tekniske system.",
+          "knowledge": "Kverna er dokumentert som underlagt Hovedøya kloster i 1220.",
           "difficulty": 1,
           "question_type": "kuriositet",
           "question_layer": "intro_story",
@@ -135,9 +136,9 @@
             "infrastruktur"
           ],
           "source": [
-            "History Go place data: nedre_foss"
+            "Store norske leksikon – Foss (Oslo)"
           ],
-          "claim_basis": "safe_place_data"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s1_q5",
@@ -238,15 +239,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva slags stedsliv kan leses ved Nedre Foss i dag?",
+          "question": "Hvorfor ble mølla kalt «Kongens mølle»?",
           "options": [
-            "Ferdsel, opphold, naturkontakt og eldre produksjonsspor",
-            "Kun lukket militær aktivitet",
-            "Bare jordbruk uten byforbindelse"
+            "Den ble krongods etter reformasjonen",
+            "Kongen bodde fast i mølla",
+            "Den malte bare korn for Slottet"
           ],
-          "answer": "Ferdsel, opphold, naturkontakt og eldre produksjonsspor",
+          "answer": "Den ble krongods etter reformasjonen",
           "answerIndex": 0,
-          "knowledge": "Nedre Foss er både gjennomgangssted, oppholdssted og historisk produksjonslandskap.",
+          "knowledge": "Etter reformasjonen gikk Nedre Foss over til kronen og ble kjent som Kongens mølle.",
           "difficulty": 1,
           "question_type": "bruk",
           "question_layer": "place_life",
@@ -254,9 +255,10 @@
             "stedsliv"
           ],
           "source": [
-            "History Go leksikon: nedre_foss"
+            "Store norske leksikon – Foss (Oslo)",
+            "Oslo byleksikon – Foss gård"
           ],
-          "claim_basis": "safe_leksikon_data"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s2_q2",
@@ -265,15 +267,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hvilken fysisk detalj hjelper deg å lese industrilaget?",
+          "question": "Hvem kjøpte Nedre Foss med Kongens mølle i 1672?",
           "options": [
-            "Murer, elvekanter, broer og høydeforskjeller",
-            "Bare reklameskilt",
-            "Kun gatenummer"
+            "Friedrich Grüner",
+            "Thorvald Meyer",
+            "Halvor Schou"
           ],
-          "answer": "Murer, elvekanter, broer og høydeforskjeller",
+          "answer": "Friedrich Grüner",
           "answerIndex": 0,
-          "knowledge": "Industrilag ligger ofte i fysiske strukturer som kanter, broer, murer og terreng.",
+          "knowledge": "Friedrich Grüner kjøpte Nedre Foss av kongen i 1672.",
           "difficulty": 1,
           "question_type": "fysisk_trekk",
           "question_layer": "place_life",
@@ -281,9 +283,9 @@
             "industrispor"
           ],
           "source": [
-            "History Go place data: nedre_foss"
+            "Store norske leksikon – Friedrich Grüner"
           ],
-          "claim_basis": "safe_place_data"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s2_q3",
@@ -440,15 +442,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva betyr vannkraft i lesningen av Nedre Foss?",
+          "question": "Når ble hovedbygningen på Nedre Foss oppført?",
           "options": [
-            "Bevegelse i vann kan brukes som energi",
-            "Vann er alltid stillestående",
-            "Energi kan bare komme fra kabler"
+            "1801/1802",
+            "1220",
+            "1953"
           ],
-          "answer": "Bevegelse i vann kan brukes som energi",
+          "answer": "1801/1802",
           "answerIndex": 0,
-          "knowledge": "Vannkraft handler om å utnytte vannets bevegelse og fall til arbeid eller energi.",
+          "knowledge": "Den bevarte hovedbygningen ble oppført i 1801/1802.",
           "difficulty": 2,
           "question_type": "begrep",
           "question_layer": "foundation",
@@ -456,9 +458,9 @@
             "vannkraft"
           ],
           "source": [
-            "History Go leksikon: nedre_foss"
+            "Store norske leksikon – Foss (Oslo)"
           ],
-          "claim_basis": "conceptual_safe"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s3_q2",
@@ -467,15 +469,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva er fallhøyde?",
+          "question": "Hva skjedde med kornsiloen fra 1953 i 2001?",
           "options": [
-            "Høydeforskjellen som gir vannet fart og kraft",
-            "Antall hus langs elva",
-            "Avstand til nærmeste parkbenk"
+            "Den ble bygd om til studentboliger",
+            "Den ble flyttet til Hovedøya",
+            "Den ble gjort om til vannkraftverk"
           ],
-          "answer": "Høydeforskjellen som gir vannet fart og kraft",
+          "answer": "Den ble bygd om til studentboliger",
           "answerIndex": 0,
-          "knowledge": "Fallhøyde gjør at vann får fart. Derfor er fosser viktige i industrihistorie.",
+          "knowledge": "Kornsiloen ble ombygd til Grünerløkka studenthus i 2001.",
           "difficulty": 2,
           "question_type": "definition",
           "question_layer": "foundation",
@@ -483,9 +485,10 @@
             "fallhøyde"
           ],
           "source": [
-            "History Go leksikon: nedre_foss"
+            "Store norske leksikon – Foss (Oslo)",
+            "Industrimuseum – Akerselva Digitalt"
           ],
-          "claim_basis": "conceptual_safe"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s3_q3",
@@ -638,15 +641,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva er en avansert observasjon ved Nedre Foss?",
+          "question": "Hva gjør dagens lekelandskap historisk stedsspesifikt?",
           "options": [
-            "Å se hvordan vannets fall, elvekant og byrom virker sammen",
-            "Å bare se på nærmeste skilt",
-            "Å ignorere elva"
+            "Det bruker møllehistorien og et møllehjul som del av leken",
+            "Det kopierer en middelalderborg",
+            "Det handler bare om moderne biltrafikk"
           ],
-          "answer": "Å se hvordan vannets fall, elvekant og byrom virker sammen",
+          "answer": "Det bruker møllehistorien og et møllehjul som del av leken",
           "answerIndex": 0,
-          "knowledge": "Avansert stedlesning ser sammenheng mellom natur, infrastruktur og bruk.",
+          "knowledge": "Oslo kommune beskriver lekelandskapet som inspirert av møllehistorien, blant annet gjennom et møllehjul.",
           "difficulty": 2,
           "question_type": "analyse",
           "question_layer": "advanced_place",
@@ -654,9 +657,9 @@
             "stedlesning"
           ],
           "source": [
-            "History Go leksikon: nedre_foss"
+            "Oslo kommune – Nedre Foss park"
           ],
-          "claim_basis": "safe_leksikon_data"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s4_q2",
@@ -665,15 +668,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva bør ikke hardkodes uten ny kilde?",
+          "question": "Hva er laksetrappens funksjon ved Nedre Foss?",
           "options": [
-            "Nåværende restauranter, virksomheter og presis møllekronologi",
-            "At elva har vann",
-            "At stedet ligger ved Akerselva"
+            "Å hjelpe fisk forbi fossen",
+            "Å føre fotgjengere over elva",
+            "Å lagre korn"
           ],
-          "answer": "Nåværende restauranter, virksomheter og presis møllekronologi",
+          "answer": "Å hjelpe fisk forbi fossen",
           "answerIndex": 0,
-          "knowledge": "Tidssensitiv og kildekrevende informasjon skal holdes ute av harde quizspørsmål.",
+          "knowledge": "Laksetrappen hjelper fisk forbi fossen.",
           "difficulty": 2,
           "question_type": "kildekritikk",
           "question_layer": "advanced_place",
@@ -681,9 +684,9 @@
             "kildekritikk"
           ],
           "source": [
-            "History Go place data: nedre_foss"
+            "Oslo kommune – Nedre Foss park"
           ],
-          "claim_basis": "holdback_rule"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s4_q3",
@@ -692,15 +695,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hvordan kan transformasjon forstås uten alle årstall?",
+          "question": "Hvorfor er det anlagt regnbed i Nedre Foss park?",
           "options": [
-            "Ved å sammenligne gamle industrispor med ny bruk",
-            "Ved å pugge tilfeldige datoer",
-            "Ved å se bort fra bygninger"
+            "For å håndtere overvann og redusere flomproblemer",
+            "For å drive kornmølla",
+            "For å holde elva helt tørr"
           ],
-          "answer": "Ved å sammenligne gamle industrispor med ny bruk",
+          "answer": "For å håndtere overvann og redusere flomproblemer",
           "answerIndex": 0,
-          "knowledge": "Transformasjon kan leses visuelt gjennom gamle strukturer, nye funksjoner og endret bruk.",
+          "knowledge": "Regnbedene er del av klimatilpasningen i et område med flomutfordringer.",
           "difficulty": 2,
           "question_type": "analyse",
           "question_layer": "advanced_place",
@@ -708,9 +711,9 @@
             "transformasjon"
           ],
           "source": [
-            "History Go leksikon: nedre_foss"
+            "Oslo kommune – Nedre Foss park"
           ],
-          "claim_basis": "safe_leksikon_data"
+          "claim_basis": "documented_external_sources"
         },
         {
           "id": "nedre_foss_s4_q4",
@@ -837,15 +840,15 @@
           "placeId": "nedre_foss",
           "targetId": "nedre_foss",
           "question_scope": "place",
-          "question": "Hva er den dypere sammenhengen mellom vannkraft og industrialisering?",
+          "question": "Hvorfor er 1220 et bedre canonical år enn 1148 for Nedre Foss i History Go?",
           "options": [
-            "Naturkraft kan organiseres til arbeid, produksjon og økonomisk vekst",
-            "Vannkraft gjør industri umulig",
-            "Industrialisering skjer uten energi"
+            "1220 er den sikre skriftlige omtalen, mens 1148–1200 er et etableringsvindu",
+            "1148 er årstallet for kornsiloen",
+            "1220 er året parken åpnet"
           ],
-          "answer": "Naturkraft kan organiseres til arbeid, produksjon og økonomisk vekst",
+          "answer": "1220 er den sikre skriftlige omtalen, mens 1148–1200 er et etableringsvindu",
           "answerIndex": 0,
-          "knowledge": "Industrialisering krever energikilder. Akerselvas fall kunne inngå i produksjonssystemer.",
+          "knowledge": "Kildekritisk skiller History Go mellom Oslo kommunes dateringsvindu og første dokumenterte omtale.",
           "difficulty": 3,
           "question_type": "emne_avansert",
           "question_layer": "advanced_emne",
@@ -853,9 +856,10 @@
             "industrialisering"
           ],
           "source": [
-            "History Go leksikon: nedre_foss"
+            "Oslo kommune – Nedre Foss park",
+            "Store norske leksikon – Foss (Oslo)"
           ],
-          "claim_basis": "conceptual_safe"
+          "claim_basis": "source_comparison"
         },
         {
           "id": "nedre_foss_s5_q2",
