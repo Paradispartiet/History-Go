@@ -16,3 +16,4 @@ Begge faktiske markørflyttinger skal gjennom visuell kart-QA før merge.
 Før kart-QA isoleres batchen fra eksisterende stale litteratur-split drift slik at beriket innhold for andre steder ikke overskrives.
 
 Isolation pass retriggered as the only active temporary workflow before final visual QA.
+Lossless aggregate promotion pass triggered for the enriched literature records.
