@@ -1,0 +1,47 @@
+name: Oslo coordinate batch 34 focused diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Resolve Vulkan address and Hausmannsbrua OSM object
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-batch-34-focused-diagnostic
+          mkdir -p "$out"
+          set +e
+          node --experimental-strip-types tools/address-first-coordinate-finder.mts --address 'Maridalsveien 17 Oslo' > "$out/vulkan-maridalsveien-17.json" 2>&1
+          code=$?
+          set -e
+          printf 'vulkan_geonorge=%s\n' "$code" > "$out/status.txt"
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request
+          from pathlib import Path
+          out=Path('reports/oslo-coordinate-batch-34-focused-diagnostic')
+          headers={'User-Agent':'History-Go-coordinate-audit/1.0 contact=repository-audit'}
+          lookup='https://nominatim.openstreetmap.org/lookup?'+urllib.parse.urlencode({'osm_ids':'W377766486','format':'jsonv2','addressdetails':1,'extratags':1,'namedetails':1})
+          req=urllib.request.Request(lookup,headers=headers)
+          with urllib.request.urlopen(req,timeout=45) as r: data=json.load(r)
+          (out/'hausmannsbrua-osm.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+          if len(data)!=1 or data[0].get('osm_type')!='way' or data[0].get('osm_id')!=377766486:
+              raise SystemExit(f'Unexpected Hausmannsbrua lookup: {data}')
+          print(json.dumps({'hausmannsbrua':data[0]},ensure_ascii=False,indent=2))
+          PY
+          | tee "$out/hausmannsbrua-summary.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-coordinate-batch-34-focused-diagnostic
+          path: reports/oslo-coordinate-batch-34-focused-diagnostic
+          if-no-files-found: error
