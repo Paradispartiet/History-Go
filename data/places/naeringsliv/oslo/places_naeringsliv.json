@@ -2,9 +2,9 @@
   {
     "id": "oslo_gassverk",
     "name": "Oslo Gassverk",
-    "lat": 59.9255,
-    "lon": 10.7472,
-    "r": 150,
+    "lat": 59.91496484210579,
+    "lon": 10.755405913862905,
+    "r": 120,
     "category": "naeringsliv",
     "rounds": [
       "people",
@@ -60,7 +60,19 @@
     },
     "underbadge_ids": [
       "industri"
-    ]
+    ],
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:gassverket:storgata-36c",
+    "geocodeAccuracy": "building",
+    "coordRole": "historical_anchor",
+    "coordType": "surviving_gasworks_building_anchor",
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslo byleksikon – Gassverket / Geonorge Storgata 36C",
+    "coordSourceId": "geonorge-adresser-v1:0301:17059:36C",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Gassverket",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Historisk representasjonsanker for Oslo/Christiania Gassverk ved den bevarte kontorbygningen i Storgata 36C. Oslo byleksikon dokumenterer at gassverket lå ved Storgata/Hausmanns gate og at kontorbygningen fra 1883 er bevart. Adressepunktet brukes eksplisitt som fysisk rest-anker, ikke som sentrum for hele det tidligere gassverksområdet."
   },
   {
     "id": "havnelageret",
@@ -191,25 +203,25 @@
     "geocodeAccuracy": "semantic_anchor",
     "coordRole": "line_anchor",
     "anchors": [
-    {
-      "id": "tollbukaia_linjeanker",
-      "name": "Tollbukaia – linjeanker",
-      "lat": 59.9091402,
-      "lon": 10.7493045,
-      "r": 130,
-      "type": "quay_anchor",
-      "sourceObjectId": "osm-way:280893929",
-      "role": "line_anchor",
-      "note": "Representativt anker på den kartfestede Tollbukaia-linjen."
+      {
+        "id": "tollbukaia_linjeanker",
+        "name": "Tollbukaia – linjeanker",
+        "lat": 59.9091402,
+        "lon": 10.7493045,
+        "r": 130,
+        "type": "quay_anchor",
+        "sourceObjectId": "osm-way:280893929",
+        "role": "line_anchor",
+        "note": "Representativt anker på den kartfestede Tollbukaia-linjen."
       }
     ]
   },
   {
     "id": "oslo_posthus",
     "name": "Oslo Posthus",
-    "lat": 59.9118,
-    "lon": 10.7515,
-    "r": 120,
+    "lat": 59.91038965689687,
+    "lon": 10.746007652609869,
+    "r": 60,
     "category": "naeringsliv",
     "year": 1924,
     "desc": "Oppført i 1924 – monumentalbygning for post og telegraf, et knutepunkt for kommunikasjon.",
@@ -253,13 +265,32 @@
         "barcode"
       ],
       "notes": "Spør stedet gjennom arbeid, infrastruktur og byøkonomi, ikke bare bygningens utseende."
-    }
+    },
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11309:15",
+    "address": {
+      "street": "Dronningens gate",
+      "number": "15",
+      "postcode": "0152",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Hovedpostkontoret i Dronningens gate 15. Oslo byleksikon dokumenterer bygget som hovedpostkontor oppført 1914–24 og hovedterminal til 1975. Det gamle punktet ved Postgirobygget var feil for denne 1924-recorden og flyttes til det historiske hovedpostkontoret.",
+    "coordSourceId": "geonorge-adresser-v1:0301:11309:15",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Dronningens%20gate%2015%20Oslo",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "telegrafbygningen",
     "name": "Telegrafbygningen",
-    "lat": 59.9105,
-    "lon": 10.7405,
+    "lat": 59.91128055555556,
+    "lon": 10.742319444444444,
     "r": 140,
     "category": "naeringsliv",
     "year": 1924,
@@ -305,7 +336,19 @@
         "barcode"
       ],
       "notes": "Spør stedet gjennom arbeid, infrastruktur og byøkonomi, ikke bare bygningens utseende."
-    }
+    },
+    "locatorType": "building",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "wikidata:Q17195132",
+    "geocodeAccuracy": "building",
+    "coordRole": "building_center",
+    "coordType": "building_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "Wikidata Q17195132 / OSM relation 13931026 / Telenor Kulturarv",
+    "coordSourceId": "wikidata:Q17195132",
+    "coordSourceUrl": "https://www.wikidata.org/wiki/Q17195132",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Geonorge-oppslaget for Kongens gate 21 ga flere ikke-entydige treff og ble ikke brukt. Bygningsankeret bruker det identifiserte Telegrafbygningen-objektet Wikidata Q17195132, kryssjekket mot OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv. Punktet representerer selve Telegrafbygningen."
   },
   {
     "id": "vinmonopolet_lager",
@@ -609,16 +652,16 @@
     "geocodeAccuracy": "geometric_center",
     "coordRole": "line_anchor",
     "anchors": [
-    {
-      "id": "akershuskaiene_linjeanker",
-      "name": "Akershuskaiene – linjeanker",
-      "lat": 59.906783,
-      "lon": 10.7352565,
-      "r": 200,
-      "type": "quay_anchor",
-      "sourceObjectId": "osm-way:4252516",
-      "role": "line_anchor",
-      "note": "Representativt anker på kaifronten langs Akershusstranda."
+      {
+        "id": "akershuskaiene_linjeanker",
+        "name": "Akershuskaiene – linjeanker",
+        "lat": 59.906783,
+        "lon": 10.7352565,
+        "r": 200,
+        "type": "quay_anchor",
+        "sourceObjectId": "osm-way:4252516",
+        "role": "line_anchor",
+        "note": "Representativt anker på kaifronten langs Akershusstranda."
       }
     ]
   },
@@ -944,10 +987,42 @@
     "geocodeAccuracy": "semantic_anchor",
     "coordRole": "area_anchor",
     "anchors": [
-      {"id": "akers_mek_marker_1", "name": "Akers Mek. Verksted – historisk markør 1", "lat": 59.9107933, "lon": 10.7271491, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352551"},
-      {"id": "akers_mek_marker_2", "name": "Akers Mek. Verksted – historisk markør 2", "lat": 59.9108462, "lon": 10.7269146, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352552"},
-      {"id": "akers_mek_marker_3", "name": "Akers Mek. Verksted – historisk markør 3", "lat": 59.9105795, "lon": 10.7264389, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352553"},
-      {"id": "akers_mek_marker_4", "name": "Akers Mek. Verksted – historisk markør 4", "lat": 59.9108182, "lon": 10.7255458, "r": 25, "type": "historic_marker", "sourceObjectId": "osm-node:12962352556"}
+      {
+        "id": "akers_mek_marker_1",
+        "name": "Akers Mek. Verksted – historisk markør 1",
+        "lat": 59.9107933,
+        "lon": 10.7271491,
+        "r": 25,
+        "type": "historic_marker",
+        "sourceObjectId": "osm-node:12962352551"
+      },
+      {
+        "id": "akers_mek_marker_2",
+        "name": "Akers Mek. Verksted – historisk markør 2",
+        "lat": 59.9108462,
+        "lon": 10.7269146,
+        "r": 25,
+        "type": "historic_marker",
+        "sourceObjectId": "osm-node:12962352552"
+      },
+      {
+        "id": "akers_mek_marker_3",
+        "name": "Akers Mek. Verksted – historisk markør 3",
+        "lat": 59.9105795,
+        "lon": 10.7264389,
+        "r": 25,
+        "type": "historic_marker",
+        "sourceObjectId": "osm-node:12962352553"
+      },
+      {
+        "id": "akers_mek_marker_4",
+        "name": "Akers Mek. Verksted – historisk markør 4",
+        "lat": 59.9108182,
+        "lon": 10.7255458,
+        "r": 25,
+        "type": "historic_marker",
+        "sourceObjectId": "osm-node:12962352556"
+      }
     ]
   },
   {

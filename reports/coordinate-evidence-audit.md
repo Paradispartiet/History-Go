@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T03:35:35.658Z
+Generert: 2026-07-19T03:57:38.002Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -83,3 +83,10 @@ Generert: 2026-07-19T03:35:35.658Z
 | eldorado_bokhandel | data/coordinate-evidence/oslo/litteratur/eldorado_bokhandel.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamle_deichman | data/coordinate-evidence/oslo/litteratur/gamle_deichman.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ibsen_quotes | data/coordinate-evidence/oslo/litteratur/ibsen_quotes.json | needs_research | needs_geometry | OK |
+| klassekampen_redaksjon | data/coordinate-evidence/oslo/media/klassekampen_redaksjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_gassverk | data/coordinate-evidence/oslo/naeringsliv/oslo_gassverk.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_posthus | data/coordinate-evidence/oslo/naeringsliv/oslo_posthus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| good_game_redaksjon | data/coordinate-evidence/oslo/media/good_game_redaksjon.json | needs_research | needs_identity_split | OK |
+| aftenposten_akersgata | data/coordinate-evidence/oslo/media/aftenposten_akersgata.json | needs_research | needs_identity_split | OK |
+| dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | needs_research | needs_identity_split | OK |

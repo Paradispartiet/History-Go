@@ -1,0 +1,53 @@
+{
+  "placeId": "aftenposten_akersgata",
+  "placeFile": "data/places/media/oslo/places_oslo_media.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9145,
+    "lon": 10.7417,
+    "r": 140,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Aftenposten i Akersgata",
+    "resolvedIdentity": "Aftenpostens Akersgata-forankring gjennom historiske 51/53 og 55, med dagens redaksjon i Akersgata 55",
+    "identityStatus": "conflict",
+    "identityProblem": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene."
+  },
+  "requiredEvidence": [
+    "entydig fysisk scope for canonical place",
+    "overlap-audit mot eksisterende canonical bygg",
+    "eventuelle flerankre for historiske adresseforløp"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go overlap-audit + dokumentert mediehistorie",
+      "sourceUrl": "",
+      "sourceObjectId": "history-go:coordinate-control:aftenposten_akersgata",
+      "sourceQuality": "identity_and_overlap_audit",
+      "finding": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene.",
+      "canVerifyCoordinate": false,
+      "reason": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene.",
+    "nextAction": "Avklar om recorden skal være en historisk flerankret Akersgata-record eller en institusjonsrelation til `vg_huset`/Akersgata 55."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 22."
+  ]
+}
