@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T03:57:38.002Z
+Generert: 2026-07-19T04:14:43.883Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -90,3 +90,10 @@ Generert: 2026-07-19T03:57:38.002Z
 | good_game_redaksjon | data/coordinate-evidence/oslo/media/good_game_redaksjon.json | needs_research | needs_identity_split | OK |
 | aftenposten_akersgata | data/coordinate-evidence/oslo/media/aftenposten_akersgata.json | needs_research | needs_identity_split | OK |
 | dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | needs_research | needs_identity_split | OK |
+| vinmonopolet_lager | data/coordinate-evidence/oslo/naeringsliv/vinmonopolet_lager.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| jernbaneverkstedet_lodalen | data/coordinate-evidence/oslo/naeringsliv/jernbaneverkstedet_lodalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grunnlovsbygget_bankplassen | data/coordinate-evidence/oslo/naeringsliv/grunnlovsbygget_bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nrk_marienlyst | data/coordinate-evidence/oslo/naeringsliv/nrk_marienlyst.json | rejected | needs_identity_split | OK |
+| fornebu_teknologipark | data/coordinate-evidence/oslo/naeringsliv/fornebu_teknologipark.json | needs_research | needs_identity_split | OK |
+| ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | needs_research | needs_identity_split | OK |
+| akershus_energi | data/coordinate-evidence/oslo/naeringsliv/akershus_energi.json | needs_research | needs_identity_split | OK |

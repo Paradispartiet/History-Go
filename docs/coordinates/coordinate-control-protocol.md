@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 128 verifiserte eller kildekontrollerte canonical steder. Batch 22 godkjenner fire nye ankere: Klassekampen-redaksjonen på dagens Grønland 4, Oslo Gassverk ved den bevarte kontorbygningen i Storgata 36C, det historiske Hovedpostkontoret i Dronningens gate 15 og Telegrafbygningen som identifisert bygningsobjekt i Kongens gate 21. Good Game-redaksjonen, Aftenposten i Akersgata og Dagbladet i Akersgata står som nye dokumenterte `needs_review`-utfall på grunn av fysisk overlap eller fleradresse-identitet. 13 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat. Sekundærkøen fortsetter i `naeringsliv` etter at `media` er ferdig og `musikk` ikke ga nye placeId-er.
+Oslo-tabellen inneholder nå 131 verifiserte eller kildekontrollerte canonical steder. Batch 23 godkjenner tre nye konkrete bygningsankre: Vinmonopolets historiske sentralanlegg på Hasle, Lodalen jernbaneverksted og Den gamle Norges Bank på Bankplassen 3. `nrk_marienlyst`, `fornebu_teknologipark`, `ulven_handelspark` og `akershus_energi` står som nye dokumenterte `needs_review`-utfall på grunn av duplikat, feil geografi eller manglende entydig fysisk scope. 17 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -149,6 +149,9 @@ Oslo-tabellen inneholder nå 128 verifiserte eller kildekontrollerte canonical s
 | 22 | `oslo_gassverk` | Oslo Gassverk | verified_historical_source | `oslobyleksikon:gassverket:storgata-36c` |
 | 22 | `oslo_posthus` | Oslo Posthus / Hovedpostkontoret | verified | `geonorge-adresser-v1:0301:11309:15` |
 | 22 | `telegrafbygningen` | Telegrafbygningen | verified_geometry | `wikidata:Q17195132` |
+| 23 | `vinmonopolet_lager` | Vinmonopolets hovedlager | verified | `geonorge-adresser-v1:0301:12723:16` |
+| 23 | `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | verified | `geonorge-adresser-v1:0301:11370:2` |
+| 23 | `grunnlovsbygget_bankplassen` | Den gamle Norges Bank | verified | `geonorge-adresser-v1:0301:10412:3` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -156,7 +159,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 128 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 131 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -173,6 +176,10 @@ Disse kontrollene er fullført, men teller ikke blant de 128 verifiserte eller k
 | `good_game_redaksjon` – Good Game-redaksjonen (NRK) | needs_review | Redaksjonelt delmiljø inne i allerede canonical NRK Marienlyst; ingen separat fysisk lokasjon er dokumentert. | Modeller som subplace/relation til `nrk_huset_marienlyst`, eller dokumenter eget studio-/romanker. |
 | `aftenposten_akersgata` – Aftenposten i Akersgata | needs_review | Dagens Akersgata 55 overlapper canonical `vg_huset`, mens den historiske recorden også omfatter 51/53. | Avklar om stedet skal være historisk flerankret Akersgata-record eller institusjonsrelation til A55. |
 | `dagbladet_akersgata` – Dagbladet i Akersgata | needs_review | Historisk redaksjonsforankring omfatter både Akersgata 36 og 47/49, men recorden har bare ett punkt. | Krever flerankre eller et eksplisitt tidsavgrenset hovedanker. |
+| `nrk_marienlyst` – NRK Marienlyst | needs_review | Repoets place-audit dokumenterer at recorden dupliserer canonical `nrk_huset_marienlyst` for det samme fysiske NRK-anlegget. | Migrer gamle næringsliv-referanser til `nrk_huset_marienlyst`; ikke godkjenn et separat fysisk punkt. |
+| `fornebu_teknologipark` – Fornebu Teknologipark | needs_review | Recorden ligger i Oslo-kilden, men Fornebu ligger i Bærum; navnet beskriver dessuten et bredt nærings-/utviklingsområde uten ett dokumentert fysisk hovedanker. | Flytt/erstatt i Bærum-kontekst etter at fysisk scope eller områdegeometri er eksplisitt definert. |
+| `ulven_handelspark` – Ulven handelspark | needs_review | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
+| `akershus_energi` – Akershus Energi Varme | needs_review | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
 
 ## Etne – historiesett
 
@@ -220,8 +227,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 140 og starter batch 23.
-- Batch 22 er fullført med fire godkjente ankere og tre nye dokumenterte `needs_review`-utfall.
-- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `telegrafbygningen`.
+- Neste nye Oslo-kontroll er nummer 147 og starter batch 24.
+- Batch 23 er fullført med tre godkjente ankere og fire nye dokumenterte `needs_review`-utfall.
+- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `akershus_energi`; `sagene_kvernhus` er neste kandidat.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

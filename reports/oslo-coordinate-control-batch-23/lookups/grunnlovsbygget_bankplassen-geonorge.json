@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Bankplassen 3 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Bankplassen 3 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bankplassen%203%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:10412:3",
+  "coordinate": {
+    "lat": 59.908727042084166,
+    "lon": 10.74038191009086,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:10412:3",
+    "address": {
+      "street": "Bankplassen",
+      "number": "3",
+      "postcode": "0151",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Bankplassen 3, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Bankplassen",
+    "adressetekst": "Bankplassen 3",
+    "adressetilleggsnavn": null,
+    "adressekode": 10412,
+    "nummer": 3,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 207,
+    "bruksnummer": 27,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0151",
+    "adressetekstutenadressetilleggsnavn": "Bankplassen 3",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.908727042084166,
+      "lon": 10.74038191009086
+    },
+    "oppdateringsdato": "2020-06-15T18:02:02"
+  }
+}

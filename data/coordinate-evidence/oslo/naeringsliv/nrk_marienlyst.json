@@ -1,0 +1,59 @@
+{
+  "placeId": "nrk_marienlyst",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "rejected",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9323,
+    "lon": 10.7182,
+    "r": 200,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "NRK Marienlyst",
+    "resolvedIdentity": "legacy/duplikat-record for samme fysiske Marienlyst-anlegg som canonical `nrk_huset_marienlyst`",
+    "identityStatus": "conflict",
+    "identityProblem": "Repoets Oslo place-audit dokumenterer at `nrk_marienlyst` allerede finnes funksjonelt som `nrk_huset_marienlyst`. Begge beskriver NRKs hovedanlegg på Marienlyst.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "Repoets Oslo place-audit dokumenterer at `nrk_marienlyst` allerede finnes funksjonelt som `nrk_huset_marienlyst`. Begge beskriver NRKs hovedanlegg på Marienlyst."
+  },
+  "requiredEvidence": [
+    "entydig fysisk scope",
+    "korrekt kommune/fylke der relevant",
+    "overlap-audit mot eksisterende canonical places"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go – Oslo place-audit batch 01",
+      "sourceUrl": "reports/oslo-place-audit-batch-01.md",
+      "sourceObjectId": "history-go:duplicate:nrk_marienlyst:nrk_huset_marienlyst",
+      "sourceQuality": "identity_geography_audit",
+      "finding": "Repoets Oslo place-audit dokumenterer at `nrk_marienlyst` allerede finnes funksjonelt som `nrk_huset_marienlyst`. Begge beskriver NRKs hovedanlegg på Marienlyst.",
+      "canVerifyCoordinate": false,
+      "reason": "Repoets Oslo place-audit dokumenterer at `nrk_marienlyst` allerede finnes funksjonelt som `nrk_huset_marienlyst`. Begge beskriver NRKs hovedanlegg på Marienlyst."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "history-go:duplicate:nrk_marienlyst:nrk_huset_marienlyst",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Repoets Oslo place-audit dokumenterer at `nrk_marienlyst` allerede finnes funksjonelt som `nrk_huset_marienlyst`. Begge beskriver NRKs hovedanlegg på Marienlyst.",
+    "nextAction": "Migrer eventuelle gamle naeringsliv-referanser til `nrk_huset_marienlyst`; ikke godkjenn et separat fysisk punkt for duplikatet."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 23."
+  ]
+}

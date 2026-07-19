@@ -1,0 +1,83 @@
+{
+  "placeId": "vinmonopolet_lager",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.926820467284585,
+    "lon": 10.793178356826628,
+    "r": 160,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Haslevangen 16, kryssjekket mot Oslo byleksikons identifikasjon av Vinmonopolets tidligere hovedkontor og sentralanlegg. Punktet brukes som display-marker for det historiske anlegget; radiusen beholdes for anleggets større fysiske omfang."
+  },
+  "identity": {
+    "currentName": "Vinmonopolets hovedlager",
+    "resolvedIdentity": "Vinmonopolets hovedlager / sentralanlegg på Hasle",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisiell adresse",
+    "dokumentert kobling mellom adressen og det fysiske stedet",
+    "fysisk overlap-audit"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Haslevangen%2016%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12723:16",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge returnerte ett entydig treff for Haslevangen 16 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge for Haslevangen 16, kryssjekket mot Oslo byleksikons identifikasjon av Vinmonopolets tidligere hovedkontor og sentralanlegg. Punktet brukes som display-marker for det historiske anlegget; radiusen beholdes for anleggets større fysiske omfang."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Haslevangen / Vinmonopolet",
+      "sourceUrl": "https://oslobyleksikon.no/side/Haslevangen",
+      "sourceObjectId": "identity:vinmonopolet_lager",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon dokumenterer Haslevangen 16 som det tidligere hovedkontoret og sentralanlegget til Vinmonopolet, tatt i bruk i 1933. Vinmonopolets egen historie dokumenterer det store produksjonsanlegget på Hasle.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden kobler det navngitte History Go-stedet til adressen som brukes som koordinatanker."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Haslevangen 16 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12723:16",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12723:16",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.926820467284585,
+      "lon": 10.793178356826628,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisielt adresseanker og dokumentert fysisk identitet er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge for Haslevangen 16, kryssjekket mot Oslo byleksikons identifikasjon av Vinmonopolets tidligere hovedkontor og sentralanlegg. Punktet brukes som display-marker for det historiske anlegget; radiusen beholdes for anleggets større fysiske omfang."
+  ]
+}
