@@ -65,12 +65,12 @@ jobs:
               -o "$outdir/festningsbyen_named_subplaces_overpass.json"
           fi
 
-          broad_query='[out:json][timeout:35];(nwr["name"~"Hoved|[Pp]ort|Stall|Arkel|Arkeli|Artilleri|Brønn|Festning",i](59.9035,10.7350,59.9085,10.7415);nwr["barrier"="gate"](59.9035,10.7350,59.9085,10.7415);nwr["entrance"="main"](59.9035,10.7350,59.9085,10.7415););out center geom tags;'
-          if ! curl --max-time 45 --retry 1 --fail --silent --show-error --get \
+          broad_query='[out:json][timeout:60];(nwr["name"](59.9035,10.7350,59.9085,10.7415);nwr["barrier"="gate"](59.9035,10.7350,59.9085,10.7415);nwr["entrance"](59.9035,10.7350,59.9085,10.7415););out center tags;'
+          if ! curl --max-time 75 --retry 1 --fail --silent --show-error --get \
             'https://overpass-api.de/api/interpreter' \
             --data-urlencode "data=${broad_query}" \
             -o "$outdir/festningsbyen_broad_subplaces_overpass.json"; then
-            curl --max-time 60 --retry 1 --fail --silent --show-error --get \
+            curl --max-time 90 --retry 1 --fail --silent --show-error --get \
               'https://overpass.kumi.systems/api/interpreter' \
               --data-urlencode "data=${broad_query}" \
               -o "$outdir/festningsbyen_broad_subplaces_overpass.json"
