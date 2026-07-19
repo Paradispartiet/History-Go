@@ -13,7 +13,6 @@ Kartverket SSR ga ingen treff for noen av navnene, og Geonorge-adressefinder ga 
 
 Begge faktiske markørflyttinger skal gjennom visuell kart-QA før merge.
 
-Før kart-QA isoleres batchen fra eksisterende stale litteratur-split drift slik at beriket innhold for andre steder ikke overskrives.
+Før kart-QA repareres den eksisterende canonical/split-driften tapsfritt: berikelsen fra `nasjonalbiblioteket` og den nyere koordinatverifikasjonen for `deichman_grunerlokka` løftes tilbake inn i canonical aggregate før regenerering.
 
-Isolation pass retriggered as the only active temporary workflow before final visual QA.
-Lossless aggregate promotion pass triggered for the enriched literature records.
+Lossless canonical reconciliation triggered as the sole temporary workflow before final visual QA.
