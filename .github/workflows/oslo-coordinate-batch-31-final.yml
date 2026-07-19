@@ -24,7 +24,9 @@ jobs:
           node-version: 22
 
       - name: Apply researched batch 31 decisions
-        run: node scripts/tmp-complete-oslo-coordinate-batch31.mjs
+        run: |
+          node scripts/tmp-complete-oslo-coordinate-batch31.mjs
+          node scripts/tmp-fix-oslo-coordinate-batch31-contract.mjs
 
       - name: Regenerate Alna source split data
         run: |
@@ -131,7 +133,7 @@ jobs:
           const byId = new Map(aggregate.map((place) => [place.id, place]));
           const runtimeById = new Map(runtime.map((place) => [place.id, place]));
           const verified = byId.get('alnabru_jernbane_og_logistikk');
-          if (verified.name !== 'Alnabru godsterminal' || verified.lat !== 59.9336032 || verified.lon !== 10.8382823 || verified.sourceObjectId !== 'osm-way:84268939' || verified.coordStatus !== 'verified_geometry') {
+          if (verified.name !== 'Alnabru godsterminal' || verified.lat !== 59.9336032 || verified.lon !== 10.8382823 || verified.sourceObjectId !== 'osm-way:84268939' || verified.coordStatus !== 'verified_geometry' || verified.locatorType !== 'linear_area') {
             throw new Error('Alnabru final result mismatch');
           }
           const needs = ['alnaelva','alnaelvstien','loelva_historisk','trosterud_friomrade','furuset_haugerud_skogbelte','hellerud_gard'];
@@ -194,8 +196,9 @@ jobs:
           set -euo pipefail
           rm .github/workflows/oslo-coordinate-batch-31-final.yml
           rm scripts/tmp-complete-oslo-coordinate-batch31.mjs
+          rm scripts/tmp-fix-oslo-coordinate-batch31-contract.mjs
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data docs reports .github/workflows/oslo-coordinate-batch-31-final.yml scripts/tmp-complete-oslo-coordinate-batch31.mjs
+          git add data docs reports .github/workflows/oslo-coordinate-batch-31-final.yml scripts/tmp-complete-oslo-coordinate-batch31.mjs scripts/tmp-fix-oslo-coordinate-batch31-contract.mjs
           git commit -m "Complete Oslo coordinate control batch 31"
           git push origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-31-final
