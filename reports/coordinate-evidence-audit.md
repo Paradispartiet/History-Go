@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T21:47:22.979Z
+Generert: 2026-07-19T22:28:49.923Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -148,3 +148,10 @@ Generert: 2026-07-19T21:47:22.979Z
 | stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | needs_research | needs_geometry | OK |
 | bjoelsenfossen | data/coordinate-evidence/oslo/natur/bjoelsenfossen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bjoelsenparken_elvenaer | data/coordinate-evidence/oslo/natur/bjoelsenparken_elvenaer.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| glads_molle | data/coordinate-evidence/oslo/natur/glads_molle.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| voienfossen | data/coordinate-evidence/oslo/natur/voienfossen.json | needs_research | needs_geometry | OK |
+| voien_gard_voienvolden | data/coordinate-evidence/oslo/natur/voien_gard_voienvolden.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| myralokka | data/coordinate-evidence/oslo/natur/myralokka.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kuba_parken | data/coordinate-evidence/oslo/natur/kuba_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| beierbrua | data/coordinate-evidence/oslo/natur/beierbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nedre_foss | data/coordinate-evidence/oslo/natur/nedre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
