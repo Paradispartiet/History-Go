@@ -11,6 +11,7 @@ Batchen fortsetter Akerselva-ruten etter Beierbrua og fyller Nedre Foss sine ni 
 - `year` endres fra den generiske verdien `1800` til `1220`, første dokumenterte omtale av kvernstedet.
 - Oslo kommunes etableringsvindu 1148–1200 beholdes som en separat kildebelagt opplysning og blandes ikke sammen med første skriftlige belegg.
 - Canonical `friedrich_gruner` brukes for myntmesteren som kjøpte Nedre Foss med Kongens mølle i 1672. Ingen alternativ `friederich_gruner` eller unødvendig Hans Grüner-record opprettes i denne batchen.
+- Kildene varierer om det eksakte året den siste mølleproduksjonen opphørte. Batchen bruker derfor ikke ett omstridt sluttår som canonical hardfakta.
 
 ## Innhold
 
@@ -41,7 +42,7 @@ Den materialiserte sluttstaten har bestått:
 
 - målrettet Nedre Foss-rundingtest
 - canonical PlaceCard round runtime audit
-- People-of-Places audit
+- People-of-Places audit med null ugyldige stedsreferanser og null duplikate person-ID-er
 - place index build/check
 - split-manifest sync
 - JSON-parse
