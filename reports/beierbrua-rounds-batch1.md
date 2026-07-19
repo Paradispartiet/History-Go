@@ -49,3 +49,5 @@ Canonical `by`-profil:
 ## Sluttstatus
 
 Den materialiserte sluttstaten har målrettet test, PlaceCard-rundingaudit, People-of-Places-kontroll, place-index-kontroll, split-manifest-kontroll, JSON-parse og `git diff --check` lagret i batchens valideringsmappe. Midlertidige workflow- og finalizerfiler er fjernet fra PR-diffen.
+
+Sluttdiffen inneholder heller ingen globale genererte People-statusrapporter; bare Beierbrua-data, runtime-indexer, test, batchrapport og batchens egne valideringslogger står igjen.
