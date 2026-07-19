@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "vaterland_historisk_elvelop",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9134578,
+    "lon": 10.7581117,
+    "r": 180,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslo byleksikon – Akerselva/Vaterlands bru + OpenStreetMap way 381749953",
+    "coordType": "historic_river_course_anchor",
+    "coordNote": "Dokumentert historisk linjeanker ved Vaterlands bru. Oslo byleksikon beskriver at den nedre Akerselva-strekningen fra Vaterlands bru til Bjørvika ble lagt i tunnel i 1964–1969. Den eksakte navngitte brogeometrien i OSM brukes som fysisk startanker for den historiske åpne elvestrekningen, ikke som et påstått sentrum for hele det tidligere elveløpet."
+  },
+  "identity": {
+    "currentName": "Vaterland – historisk elveløp",
+    "resolvedIdentity": "Vaterland – historisk elveløp",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [],
+  "evidence": [
+    {
+      "type": "historical_reference",
+      "source": "Oslo byleksikon – Akerselva",
+      "sourceObjectId": "oslobyleksikon:akerselva:vaterlands-bru",
+      "url": "https://oslobyleksikon.no/side/Akerselva",
+      "note": "Dokumenterer at den nedre Akerselva-strekningen fra Vaterlands bru til Bjørvika ble lagt i tunnel i 1964–1969."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceObjectId": "osm-way:381749953",
+      "name": "Vaterlands bru",
+      "lat": 59.9134578,
+      "lon": 10.7581117,
+      "role": "historical_anchor"
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceObjectId": "osm-way:381749953",
+      "type": "named_bridge_geometry",
+      "decision": "accepted_as_historical_start_anchor"
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9134578,
+      "lon": 10.7581117,
+      "sourceObjectId": "osm-way:381749953",
+      "role": "historical_anchor",
+      "status": "accepted"
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied to canonical place as a source-backed historical anchor."
+  },
+  "notes": [
+    "Dokumentert historisk linjeanker ved Vaterlands bru. Oslo byleksikon beskriver at den nedre Akerselva-strekningen fra Vaterlands bru til Bjørvika ble lagt i tunnel i 1964–1969. Den eksakte navngitte brogeometrien i OSM brukes som fysisk startanker for den historiske åpne elvestrekningen, ikke som et påstått sentrum for hele det tidligere elveløpet."
+  ]
+}
