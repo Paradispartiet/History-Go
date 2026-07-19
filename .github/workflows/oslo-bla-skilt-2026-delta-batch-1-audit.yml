@@ -27,26 +27,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Register sources and link Aud Schønemann
+      - name: Register source files and link Aud Schønemann
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p reports/oslo-bla-skilt-2026-delta-batch-1/validation
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/validation'
+          mkdir -p "$outdir"
 
-          node <<'NODE' | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/registration.txt
+          node <<'NODE' | tee "$outdir/registration.txt"
           const fs = require('fs');
 
           const manifestPath = 'data/places/manifest.json';
           const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-          const sources = [
+          if (!Array.isArray(manifest.files)) throw new Error('data/places/manifest.json missing files[]');
+          const files = [
             'places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json',
             'places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json',
             'places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json',
             'places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json'
           ];
-
-          for (const source of sources) {
-            if (!manifest.sources.includes(source)) manifest.sources.push(source);
+          for (const file of files) {
+            if (!manifest.files.includes(file)) manifest.files.push(file);
           }
           fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
 
@@ -59,17 +60,18 @@ jobs:
           if (!aud.places.includes(plaqueId)) aud.places.push(plaqueId);
           fs.writeFileSync(peoplePath, JSON.stringify(people, null, 2) + '\n');
 
-          console.log(`Registered ${sources.length} source files`);
+          console.log(`Registered ${files.length} place source files`);
           console.log(`Aud Schønemann places: ${aud.places.join(', ')}`);
           NODE
 
-      - name: Validate source JSON and batch ids
+      - name: Validate source JSON and expected records
         shell: bash
         run: |
           set -euo pipefail
-          node <<'NODE' | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/source-json-and-ids.txt
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/validation'
+          node <<'NODE' | tee "$outdir/source-json-and-ids.txt"
           const fs = require('fs');
-          const files = [
+          const paths = [
             'data/places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json',
             'data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json',
             'data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json',
@@ -83,75 +85,42 @@ jobs:
             ['bla_skilt_enerhaugen_samfund_smedgata_34', 'historie']
           ]);
           const seen = new Set();
-          for (const file of files) {
-            const rows = JSON.parse(fs.readFileSync(file, 'utf8'));
-            if (!Array.isArray(rows)) throw new Error(`${file} must contain an array`);
+          for (const path of paths) {
+            const rows = JSON.parse(fs.readFileSync(path, 'utf8'));
+            if (!Array.isArray(rows)) throw new Error(`${path} must contain an array`);
             for (const row of rows) {
+              if (!expected.has(row.id)) throw new Error(`Unexpected id ${row.id}`);
               if (seen.has(row.id)) throw new Error(`Duplicate new id ${row.id}`);
               seen.add(row.id);
-              if (!expected.has(row.id)) throw new Error(`Unexpected new id ${row.id}`);
-              if (row.category !== expected.get(row.id)) {
-                throw new Error(`Wrong category for ${row.id}: ${row.category}`);
-              }
-              if (row.year !== 2026) throw new Error(`Plaque year must be 2026 for ${row.id}`);
+              if (row.category !== expected.get(row.id)) throw new Error(`Wrong category for ${row.id}`);
+              if (row.year !== 2026) throw new Error(`Wrong plaque year for ${row.id}`);
               if (row.coordStatus !== 'verified' || row.coordSource !== 'geonorge_adresser_v1') {
                 throw new Error(`Coordinate contract mismatch for ${row.id}`);
               }
             }
           }
-          if (seen.size !== expected.size) {
-            throw new Error(`Expected ${expected.size} new ids, found ${seen.size}`);
-          }
-          console.log(`JSON OK; ${seen.size}/5 expected blue-plaque ids present with expected categories`);
+          if (seen.size !== 5) throw new Error(`Expected 5 new records, got ${seen.size}`);
+          console.log('JSON OK; 5/5 expected records present with expected categories and verified coordinates');
           NODE
 
-      - name: Build places index
+      - name: Build and validate place runtime
         shell: bash
         run: |
           set -euo pipefail
-          npm run places:index:build \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/places-index-build.txt
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/validation'
+          npm run places:index:build | tee "$outdir/places-index-build.txt"
+          npm run places:index:check | tee "$outdir/places-index-check.txt"
+          npm run places:coords:intake | tee "$outdir/coordinate-intake.txt"
+          npm run places:emner:check | tee "$outdir/emne-check.txt"
+          npm run audit:places-split-manifest-sync | tee "$outdir/split-manifest-sync.txt"
+          npm run test:coordinate-source-contract | tee "$outdir/coordinate-source-contract.txt"
 
-      - name: Check places index parity
+      - name: Verify runtime integration and person link
         shell: bash
         run: |
           set -euo pipefail
-          npm run places:index:check \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/places-index-check.txt
-
-      - name: Run strict-new coordinate intake
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run places:coords:intake \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/coordinate-intake.txt
-
-      - name: Validate canonical emne ids
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run places:emner:check \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/emne-check.txt
-
-      - name: Check split manifest sync
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run audit:places-split-manifest-sync \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/split-manifest-sync.txt
-
-      - name: Check coordinate source contract
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run test:coordinate-source-contract \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/coordinate-source-contract.txt
-
-      - name: Verify runtime integration and Aud place link
-        shell: bash
-        run: |
-          set -euo pipefail
-          node <<'NODE' | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/runtime-integration.txt
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/validation'
+          node <<'NODE' | tee "$outdir/runtime-integration.txt"
           const fs = require('fs');
           const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
           const people = JSON.parse(fs.readFileSync('data/people/popkultur/oslo/people_popkultur_oslo.json', 'utf8'));
@@ -162,48 +131,38 @@ jobs:
             'bla_skilt_helverschous_lokke_munkedamsveien_35',
             'bla_skilt_enerhaugen_samfund_smedgata_34'
           ];
-          const indexIds = new Set(places.map((place) => place.id));
+          const counts = new Map();
+          for (const place of places) counts.set(place.id, (counts.get(place.id) || 0) + 1);
           for (const id of ids) {
-            if (!indexIds.has(id)) throw new Error(`Missing runtime place ${id}`);
-          }
-          const duplicates = places.map((place) => place.id).filter((id, index, all) => all.indexOf(id) !== index);
-          if (duplicates.some((id) => ids.includes(id))) {
-            throw new Error(`New duplicate ids: ${duplicates.filter((id) => ids.includes(id)).join(', ')}`);
+            if (counts.get(id) !== 1) throw new Error(`Runtime id count for ${id}: ${counts.get(id) || 0}`);
           }
           const aud = people.find((person) => person.id === 'aud_schonemann');
-          if (!aud?.places?.includes('bla_skilt_aud_schonemann_vetlandsveien_69d')) {
-            throw new Error('Aud Schønemann is not linked to the new plaque place');
-          }
-          console.log('Runtime integration: 5/5 places present, 0 new duplicate ids');
+          if (!aud?.places?.includes(ids[0])) throw new Error('Aud Schønemann missing new plaque place link');
+          console.log('Runtime integration: 5/5 new ids present exactly once');
           console.log(`Aud Schønemann places: ${aud.places.join(', ')}`);
           NODE
 
-      - name: Capture place health and reject new-id errors
+      - name: Capture health report and reject new-record health findings
         shell: bash
         run: |
           set -euo pipefail
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/validation'
           set +e
-          npm run health:places \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-places.txt
-          health_status=${PIPESTATUS[0]}
+          npm run health:places | tee "$outdir/health-places.txt"
+          status=${PIPESTATUS[0]}
           set -e
-          echo "health_exit_status=$health_status" \
-            | tee reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-status.txt
-
-          if grep -Ei 'error.*(bla_skilt_aud_schonemann|bla_skilt_stein_mehren|bla_skilt_christopher_hornsrud|bla_skilt_helverschous|bla_skilt_enerhaugen)|((bla_skilt_aud_schonemann|bla_skilt_stein_mehren|bla_skilt_christopher_hornsrud|bla_skilt_helverschous|bla_skilt_enerhaugen).*(error|warning))' \
-            reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-places.txt; then
-            echo 'New blue-plaque place produced a health error or warning' >&2
+          echo "health_exit_status=$status" | tee "$outdir/health-status.txt"
+          if grep -Ei '(error|warning).*bla_skilt_(aud_schonemann|stein_mehren|christopher_hornsrud|helverschous|enerhaugen)|bla_skilt_(aud_schonemann|stein_mehren|christopher_hornsrud|helverschous|enerhaugen).*(error|warning)' "$outdir/health-places.txt"; then
+            echo 'New blue-plaque record produced a health error/warning' >&2
             exit 1
           fi
-          echo 'No health error/warning references any of the five new blue-plaque ids' \
-            | tee -a reports/oslo-bla-skilt-2026-delta-batch-1/validation/health-status.txt
+          echo 'No health error/warning references any new blue-plaque id' | tee -a "$outdir/health-status.txt"
 
       - name: Remove temporary workflow and persist finalization
         shell: bash
         run: |
           set -euo pipefail
           rm -f .github/workflows/oslo-bla-skilt-2026-delta-batch-1-audit.yml
-
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
