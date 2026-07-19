@@ -1,4 +1,4 @@
-name: Kuba-parken nature rounds finalizer
+name: Kuba-parken nature rounds diagnostic
 
 on:
   pull_request:
@@ -10,79 +10,44 @@ permissions:
   contents: write
 
 jobs:
-  finalize:
+  diagnose:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+          fetch-depth: 1
+          show-progress: false
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Apply Kuba-parken round content
+      - name: Rebuild Kuba working state
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
-          mkdir -p "$outdir"
-          node tools/finalize-kuba-parken-rounds.mjs | tee "$outdir/finalizer.txt"
-          node scripts/split-nature-oslo-akerselva-route.mjs | tee "$outdir/split-route.txt"
+          node tools/finalize-kuba-parken-rounds.mjs
+          node scripts/split-nature-oslo-akerselva-route.mjs
 
-      - name: Build and validate place runtime
+      - name: Run tests with explicit markers
         shell: bash
         run: |
-          set -euo pipefail
-          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
-          npm run places:index:build | tee "$outdir/places-index-build.txt"
-          npm run places:index:check | tee "$outdir/places-index-check.txt"
-          npm run audit:places-split-manifest-sync | tee "$outdir/split-manifest-sync.txt"
+          set +e
+          failed=0
+          echo '=== TARGETED KUBA TEST ==='
+          node tests/kuba-parken-nature-rounds-batch1.test.js
+          status=$?
+          echo "TARGETED_STATUS=$status"
+          if [ "$status" -ne 0 ]; then failed=1; fi
 
-      - name: Run targeted and route regressions
-        shell: bash
-        run: |
-          set -euo pipefail
-          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
-          node tests/kuba-parken-nature-rounds-batch1.test.js | tee "$outdir/kuba-targeted-test.txt"
-          node tests/place-card-rounds-runtime-audit.test.js | tee "$outdir/place-card-rounds-runtime.txt"
-          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js | tee "$outdir/akerselva-mid-regression.txt"
+          echo '=== PLACECARD ROUND RUNTIME ==='
+          node tests/place-card-rounds-runtime-audit.test.js
+          status=$?
+          echo "ROUNDS_STATUS=$status"
+          if [ "$status" -ne 0 ]; then failed=1; fi
 
-      - name: Parse changed data and check diff hygiene
-        shell: bash
-        run: |
-          set -euo pipefail
-          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
-          node <<'NODE' | tee "$outdir/json-parse.txt"
-          const fs = require('fs');
-          for (const file of [
-            'data/places/natur/oslo/places_oslo_natur_akerselvarute.json',
-            'data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json',
-            'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
-            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
-            'data/stories/stories_kuba_parken.json',
-            'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json'
-          ]) JSON.parse(fs.readFileSync(file, 'utf8'));
-          console.log('Kuba-parken changed JSON parses successfully.');
-          NODE
-          git diff --check | tee "$outdir/git-diff-check.txt"
+          echo '=== AKERSELVA MID REGRESSION ==='
+          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
+          status=$?
+          echo "MID_STATUS=$status"
+          if [ "$status" -ne 0 ]; then failed=1; fi
 
-      - name: Remove temporary tooling and persist batch
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -f .github/workflows/kuba-parken-nature-rounds-finalize.yml
-          rm -f tools/finalize-kuba-parken-rounds.mjs
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit --no-verify -m 'Fill Kuba-parken nature rounds batch 1'
-            git push origin "HEAD:${GITHUB_HEAD_REF}"
-          fi
+          exit "$failed"
