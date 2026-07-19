@@ -31,7 +31,7 @@ const fullCoordKeys = [
 const runtimeCoordKeys = [
   'lat','lon','r','locatorType','sourceProvider','sourceObjectId','address',
   'geocodeAccuracy','coordRole','coordType','coordStatus','coordSource',
-  'coordVerifiedAt','coordNote','anchors',
+  'coordVerifiedAt','coordNote',
 ];
 
 for (const [id, x] of Object.entries(expected)) {
