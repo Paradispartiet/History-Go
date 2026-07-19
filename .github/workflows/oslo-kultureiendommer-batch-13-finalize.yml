@@ -39,27 +39,62 @@ jobs:
             if (!manifest.files.includes(file)) manifest.files.push(file);
           }
           fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          fs.mkdirSync('reports/oslo-kultureiendommer-batch-13/validation', { recursive: true });
           NODE
 
-      - name: Build and validate places
+      - name: Build places index
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p reports/oslo-kultureiendommer-batch-13/validation
+          set -o pipefail
           npm run places:index:build \
             | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-build.txt
+
+      - name: Check places index
+        shell: bash
+        run: |
+          set -o pipefail
           npm run places:index:check \
             | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-check.txt
+
+      - name: Check strict coordinate intake
+        shell: bash
+        run: |
+          set -o pipefail
           npm run places:coords:intake \
             | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-intake.txt
+
+      - name: Check canonical emne IDs
+        shell: bash
+        run: |
+          set -o pipefail
           npm run places:emner:check \
             | tee reports/oslo-kultureiendommer-batch-13/validation/emne-check.txt
+
+      - name: Check place health
+        shell: bash
+        run: |
+          set -o pipefail
           npm run health:places \
             | tee reports/oslo-kultureiendommer-batch-13/validation/health-places.txt
+
+      - name: Check split manifest sync
+        shell: bash
+        run: |
+          set -o pipefail
           npm run audit:places-split-manifest-sync \
             | tee reports/oslo-kultureiendommer-batch-13/validation/split-manifest-sync.txt
+
+      - name: Check coordinate source contract
+        shell: bash
+        run: |
+          set -o pipefail
           npm run test:coordinate-source-contract \
             | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-contract.txt
+
+      - name: Check whitespace
+        shell: bash
+        run: |
+          set -o pipefail
           git diff --check \
             | tee reports/oslo-kultureiendommer-batch-13/validation/git-diff-check.txt
 
