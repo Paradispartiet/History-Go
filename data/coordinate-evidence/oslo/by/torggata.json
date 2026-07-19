@@ -4,17 +4,17 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.91535,
-    "lon": 10.75335,
+    "lat": 59.916435093332616,
+    "lon": 10.752031295338192,
     "r": 180,
-    "coordStatus": "verified_geometry",
-    "coordSource": "Oslo byleksikon – Torggata + dokumenterte ruteankre",
-    "coordType": "street_midpoint",
-    "coordNote": "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet."
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell Geonorge-adressekoordinat for Torggata 22 brukes som konkret representativt hovedanker for Torggata. Punktet ligger på den sentrale oppgraderte gate- og serveringsstrekningen. Det er ikke et beregnet midtpunkt og gjør ingen påstand om at hele gaten ligger i bygningen på adressen."
   },
   "identity": {
     "currentName": "Torggata",
-    "resolvedIdentity": "Torggata fra Stortorvet til Ankertorget, med History Go-linjeanker i den sentrale strekningen",
+    "resolvedIdentity": "Torggata representert med konkret offisielt adresseanker Torggata 22 innenfor det dokumenterte gateløpet.",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "street",
@@ -33,24 +33,43 @@
       "sourceUrl": "https://oslobyleksikon.no/side/Torggata",
       "sourceObjectId": "oslobyleksikon:torggata",
       "sourceQuality": "documented_street_extent",
-      "finding": "Oslo byleksikon dokumenterer hele gateløpet og gatehistorien; eksisterende ruteankre gir en eksplisitt lineær representasjon.",
+      "finding": "Kilden dokumenterer gateidentiteten og gateløpet. Den brukes ikke som koordinatgenerator.",
+      "canVerifyCoordinate": false,
+      "reason": "Koordinatet kommer fra det separate offisielle adresseankeret."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Torggata%2022%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17635:22",
+      "sourceQuality": "official_address_point",
+      "finding": "Torggata 22 ga ett entydig verified_candidate og er anvendt som konkret representativt hovedanker.",
       "canVerifyCoordinate": true,
-      "reason": "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet."
+      "reason": "Offisiell Geonorge-adressekoordinat for Torggata 22 brukes som konkret representativt hovedanker for Torggata. Punktet ligger på den sentrale oppgraderte gate- og serveringsstrekningen. Det er ikke et beregnet midtpunkt og gjør ingen påstand om at hele gaten ligger i bygningen på adressen."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "query": "Torggata 22 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17635:22",
+      "lat": 59.916435093332616,
+      "lon": 10.752031295338192,
+      "canApplyToPlace": true
+    }
+  ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:torggata",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17635:22",
       "canApplyToPlace": true
     }
   ],
   "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "lat": 59.91535,
-      "lon": 10.75335,
+      "lat": 59.916435093332616,
+      "lon": 10.752031295338192,
       "coordRole": "line_anchor",
       "canApplyToPlace": true
     }
@@ -58,9 +77,9 @@
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+    "nextAction": "Det offisielle adresseankeret er anvendt på canonical place, aggregate og runtime-indekser."
   },
   "notes": [
-    "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet."
+    "Offisiell Geonorge-adressekoordinat for Torggata 22 brukes som konkret representativt hovedanker for Torggata. Punktet ligger på den sentrale oppgraderte gate- og serveringsstrekningen. Det er ikke et beregnet midtpunkt og gjør ingen påstand om at hele gaten ligger i bygningen på adressen."
   ]
 }

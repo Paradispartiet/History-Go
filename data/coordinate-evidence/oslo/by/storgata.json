@@ -4,17 +4,17 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9154,
-    "lon": 10.7539,
+    "lat": 59.91394825604604,
+    "lon": 10.751953875941378,
     "r": 230,
-    "coordStatus": "verified_geometry",
-    "coordSource": "Oslo byleksikon – Storgata + dokumenterte ruteankre",
-    "coordType": "street_midpoint",
-    "coordNote": "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt."
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell Geonorge-adressekoordinat for Storgata 26 brukes som konkret representativt hovedanker for Storgata. Punktet ligger på den sentrale handels-, bylivs- og sporveisstrekningen. Det er ikke et beregnet midtpunkt og gjør ingen påstand om at hele gaten ligger i bygningen på adressen."
   },
   "identity": {
     "currentName": "Storgata",
-    "resolvedIdentity": "Storgata fra Dronningens gate ved Kirkeristen til Nybrua",
+    "resolvedIdentity": "Storgata representert med konkret offisielt adresseanker Storgata 26 innenfor det dokumenterte gateløpet.",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "street",
@@ -29,28 +29,47 @@
   "evidence": [
     {
       "sourceProvider": "manual_research",
-      "sourceName": "Oslo byleksikon – Storgata + dokumenterte ruteankre",
+      "sourceName": "Oslo byleksikon – Storgata",
       "sourceUrl": "https://oslobyleksikon.no/side/Storgata",
       "sourceObjectId": "oslobyleksikon:storgata",
-      "sourceQuality": "stable_object_or_extent",
-      "finding": "Oslo byleksikon dokumenterer gateutstrekningen; History Go har eksisterende ruteankre ved Kirkeristen og Nybrua.",
+      "sourceQuality": "documented_street_extent",
+      "finding": "Kilden dokumenterer gateidentiteten og gateløpet. Den brukes ikke som koordinatgenerator.",
+      "canVerifyCoordinate": false,
+      "reason": "Koordinatet kommer fra det separate offisielle adresseankeret."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Storgata%2026%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17059:26",
+      "sourceQuality": "official_address_point",
+      "finding": "Storgata 26 ga ett entydig verified_candidate og er anvendt som konkret representativt hovedanker.",
       "canVerifyCoordinate": true,
-      "reason": "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt."
+      "reason": "Offisiell Geonorge-adressekoordinat for Storgata 26 brukes som konkret representativt hovedanker for Storgata. Punktet ligger på den sentrale handels-, bylivs- og sporveisstrekningen. Det er ikke et beregnet midtpunkt og gjør ingen påstand om at hele gaten ligger i bygningen på adressen."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "query": "Storgata 26 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17059:26",
+      "lat": 59.91394825604604,
+      "lon": 10.751953875941378,
+      "canApplyToPlace": true
+    }
+  ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:storgata",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17059:26",
       "canApplyToPlace": true
     }
   ],
   "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "lat": 59.9154,
-      "lon": 10.7539,
+      "lat": 59.91394825604604,
+      "lon": 10.751953875941378,
       "coordRole": "line_anchor",
       "canApplyToPlace": true
     }
@@ -58,9 +77,9 @@
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+    "nextAction": "Det offisielle adresseankeret er anvendt på canonical place, aggregate og runtime-indekser."
   },
   "notes": [
-    "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt."
+    "Offisiell Geonorge-adressekoordinat for Storgata 26 brukes som konkret representativt hovedanker for Storgata. Punktet ligger på den sentrale handels-, bylivs- og sporveisstrekningen. Det er ikke et beregnet midtpunkt og gjør ingen påstand om at hele gaten ligger i bygningen på adressen."
   ]
 }
