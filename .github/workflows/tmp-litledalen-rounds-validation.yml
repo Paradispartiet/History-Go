@@ -1,0 +1,27 @@
+name: Temporary validate Litledalen rounds
+
+on:
+  push:
+    branches:
+      - agent/fill-litledalen-kraftverk-rounds-batch1
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node tests/litledalen-kraftverk-batch1-round-content.test.js
+      - run: npm run places:index:check
+      - run: npm run places:emner:check
+      - run: npm run check:stories
+      - run: npm run leksikon:ids:check
+      - run: node tests/etne-people-of-places-batch19.test.js
+      - run: git diff --check
