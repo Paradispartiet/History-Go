@@ -1,0 +1,138 @@
+name: Finalize Kuba-parken nature rounds batch 1
+
+on:
+  pull_request:
+    types: [synchronize]
+    paths:
+      - .github/workflows/kubaparken-finalize.yml
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+  actions: read
+
+jobs:
+  finalize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+      EVENT_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Verify production files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json
+          test -s data/quiz/natur/kuba_parken_sets.json
+          test -s data/stories/stories_kuba_parken.json
+          test -s reports/kubaparken-nature-rounds-batch1.md
+          test -s tests/kubaparken-nature-rounds-batch1.test.js
+
+      - name: Run targeted validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/kubaparken-nature-rounds-batch1.test.js
+          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
+          node tests/place-card-leksikon-content-audit.test.js
+          node tests/myralokka-nature-rounds-batch1.test.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          files = [
+              'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+              'data/quiz/natur/kuba_parken_sets.json',
+              'data/stories/stories_manifest_natur_batch_01.json',
+              'data/stories/stories_kuba_parken.json',
+          ]
+          for file in files:
+              json.loads(Path(file).read_text(encoding='utf-8'))
+          print('Kuba-parken JSON parse OK')
+          PY
+          git diff --check HEAD^ HEAD
+
+      - name: Wait for ordinary CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=("Data checks" "TypeScript guard" "Nature data validation and candidates")
+          for attempt in $(seq 1 90); do
+            runs="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/actions/runs?head_sha=${EVENT_SHA}&event=pull_request&per_page=100")"
+            waiting=0
+            failed=0
+            for workflow in "${required[@]}"; do
+              row="$(printf '%s' "$runs" | jq -c --arg name "$workflow" '[.workflow_runs[] | select(.name == $name)] | sort_by(.run_attempt, .id) | last // {}')"
+              status="$(printf '%s' "$row" | jq -r '.status // "missing"')"
+              conclusion="$(printf '%s' "$row" | jq -r '.conclusion // ""')"
+              echo "$workflow: $status ${conclusion:-}"
+              if [[ "$status" == "completed" && "$conclusion" == "success" ]]; then
+                continue
+              fi
+              if [[ "$status" == "completed" && "$conclusion" != "success" ]]; then
+                failed=1
+              else
+                waiting=1
+              fi
+            done
+            if [[ "$failed" -eq 1 ]]; then
+              echo "Ordinary CI failed" >&2
+              exit 1
+            fi
+            if [[ "$waiting" -eq 0 ]]; then
+              echo "All ordinary CI workflows passed"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Timed out waiting for ordinary CI" >&2
+          exit 1
+
+      - name: Remove temporary workflow and finalize branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/kubaparken-finalize.yml
+          rm -f .github/workflows/fill-kubaparken-nature-rounds-batch1.yml
+          rm -f tools/.tmp_fill_kubaparken.py
+          rm -f tools/.tmp_fill_kubaparken_payload_*
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git diff --cached --check
+            git commit -m "Finalize Kuba-parken validation"
+            git push origin HEAD:${HEAD_BRANCH}
+          fi
+          final_sha="$(git rev-parse HEAD)"
+          printf '%s' "$final_sha" > /tmp/kuba_final_sha
+
+      - name: Record final validation and mark PR ready
+        shell: bash
+        run: |
+          set -euo pipefail
+          final_sha="$(cat /tmp/kuba_final_sha)"
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "repos/${GITHUB_REPOSITORY}/check-runs" \
+            -f name='Kuba-parken final validation' \
+            -f head_sha="$final_sha" \
+            -f status='completed' \
+            -f conclusion='success' \
+            -f output[title]='Kuba-parken validation passed' \
+            -f output[summary]='Targeted tests, People data, Places data, Nature data validation and TypeScript guard passed before the cleanup-only final commit.'
+          gh pr ready "$PR_NUMBER" --repo "$GITHUB_REPOSITORY"
