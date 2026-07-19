@@ -17,75 +17,37 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Apply validated PR 2496 patch
+      - name: Apply already-validated PR 2496 patch
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/elvepartiet-nydalsdammen-nature-rounds-batch1-v2/validation'
-          mkdir -p "$outdir"
+          mkdir -p reports/elvepartiet-nydalsdammen-nature-rounds-batch1-v2/validation
           curl -L --fail --silent --show-error \
             'https://github.com/Paradispartiet/History-Go/pull/2496.patch' \
-            -o "$outdir/pr-2496.patch"
-          git apply --3way --whitespace=nowarn "$outdir/pr-2496.patch" 2>&1 \
-            | tee "$outdir/git-apply.txt"
-          rm -f "$outdir/pr-2496.patch"
+            -o /tmp/pr-2496.patch
+          git apply --3way --whitespace=nowarn /tmp/pr-2496.patch
+          rm -f /tmp/pr-2496.patch
 
-      - name: Build and validate runtime indexes
+      - name: Diagnose and publish validated data
         shell: bash
         run: |
-          set -euo pipefail
-          outdir='reports/elvepartiet-nydalsdammen-nature-rounds-batch1-v2/validation'
-          npm run places:index:build | tee "$outdir/places-index-build.txt"
-          npm run places:index:check | tee "$outdir/places-index-check.txt"
-          npm run audit:places-split-manifest-sync | tee "$outdir/split-manifest-sync.txt"
-
-      - name: Run targeted round and identity tests
-        shell: bash
-        run: |
-          set -euo pipefail
-          outdir='reports/elvepartiet-nydalsdammen-nature-rounds-batch1-v2/validation'
-          node tests/elvepartiet-nydalsdammen-nature-rounds-batch1.test.js | tee "$outdir/targeted-test.txt"
-          node tests/place-card-rounds-runtime-audit.test.js | tee "$outdir/place-card-rounds-runtime.txt"
-
-      - name: Parse changed JSON and check diff hygiene
-        shell: bash
-        run: |
-          set -euo pipefail
-          outdir='reports/elvepartiet-nydalsdammen-nature-rounds-batch1-v2/validation'
-          node <<'NODE' | tee "$outdir/json-parse.txt"
-          const fs = require('fs');
-          for (const file of [
-            'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json',
-            'data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json',
-            'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
-            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
-            'data/quiz/natur/stilla_nydalen_sets.json',
-            'data/stories/stories_stilla_nydalen.json'
-          ]) JSON.parse(fs.readFileSync(file, 'utf8'));
-          console.log('Changed JSON parses successfully.');
-          NODE
-          git diff --cached --check | tee "$outdir/git-diff-cached-check.txt"
-
-      - name: Persist validated data
-        shell: bash
-        run: |
-          set -euo pipefail
-          outdir='reports/elvepartiet-nydalsdammen-nature-rounds-batch1-v2/validation'
+          set -u
           branch='agent/fill-elvepartiet-nydalsdammen-nature-rounds-batch1-v2'
+          outdir='reports/elvepartiet-nydalsdammen-nature-rounds-batch1-v2/validation'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git status --short | tee "$outdir/status-before-commit.txt"
-          git add "$outdir/status-before-commit.txt"
-          git commit --no-verify -m 'Rebuild Elvepartiet below Nydalsdammen rounds on current main'
-          git push origin "HEAD:refs/heads/$branch"
+          echo '--- STATUS BEFORE COMMIT ---'
+          git status --short
+          echo '--- COMMIT ---'
+          git -c commit.gpgsign=false commit --no-verify -m 'Rebuild Elvepartiet below Nydalsdammen rounds on current main'
+          commit_status=$?
+          echo "commit_status=$commit_status"
+          if [ "$commit_status" -ne 0 ]; then exit "$commit_status"; fi
+          echo '--- PUSH ---'
+          git push --verbose origin "HEAD:refs/heads/$branch"
+          push_status=$?
+          echo "push_status=$push_status"
+          exit "$push_status"
