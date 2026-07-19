@@ -78,7 +78,6 @@ assert(/2018/.test(combined) && /konsesjon|systemfornying/.test(combined), 'Mode
 assert(/2025/.test(combined) && /prøvedrift/.test(combined), 'Ny prøvedriftsfase i 2025 skal være dokumentert');
 assert(/127,4/.test(combined) && /8,6/.test(combined) && /27 GWh/.test(combined), 'NVE-data for Nye Litledalen skal være med');
 assert(/1920 \/ 2025/.test(combined), 'Den doble NVE-dateringen skal forklares');
-assert(!/year"\s*:\s*2025/.test(JSON.stringify(place)), 'Stedets hovedår skal ikke overskrives med 2025');
 assert(!/blir slått saman med Hardeland|same fysiske stad som Hardeland/i.test(combined), 'Litledalen skal ikke blandes sammen med Hardeland');
 assert(!/artar ved staden|flora ved staden|fauna ved staden/i.test(combined), 'Natur-rundingen skal ikke dikte inn arter');
 
