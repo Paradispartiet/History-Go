@@ -1,4 +1,4 @@
-name: Oslo Oppdag Kvadraturen Barnas kvadratur batch 1 audit
+name: Oslo Oppdag Kvadraturen Barnas kvadratur batch 1 validate
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  audit:
+  validate:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -19,86 +19,33 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: List existing chambers on route parents
+      - name: Validate JSON syntax
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit'
+          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/validation'
           mkdir -p "$outdir"
-          node <<'NODE' | tee "$outdir/existing-parent-chambers.txt"
-          const fs = require('fs');
-          const index = JSON.parse(fs.readFileSync('data/wonderkammer/index.json', 'utf8'));
-          const parents = new Set([
-            'christiania_torv',
-            'kontraskjaeret',
-            'akershus_festning',
-            'waisenhuset_kongens_gate',
-            'grunnlovsbygget_bankplassen',
-            'norges_bank_bankplassen_4',
-            'grev_wedels_plass',
-            'garmanngarden'
-          ]);
-          const found = new Map([...parents].map((id) => [id, []]));
+          jq empty data/wonderkammer/oslo_oppdag_kvadraturen_barnas_kvadratur_microplaces_batch_1.json
+          jq empty data/wonderkammer/index.json
+          jq empty data/places/places_index.json
+          echo 'JSON syntax: OK' | tee "$outdir/json-syntax.txt"
 
-          for (const file of index.files) {
-            if (!fs.existsSync(file)) continue;
-            const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-            for (const entry of Array.isArray(data.places) ? data.places : []) {
-              if (!parents.has(entry.place_id)) continue;
-              for (const chamber of Array.isArray(entry.chambers) ? entry.chambers : []) {
-                found.get(entry.place_id).push({
-                  id: chamber.id,
-                  title: chamber.title,
-                  type: chamber.type,
-                  source: file
-                });
-              }
-            }
-          }
-
-          for (const id of parents) {
-            console.log(`\n## ${id}`);
-            const chambers = found.get(id);
-            if (!chambers.length) {
-              console.log('(no registered chambers)');
-              continue;
-            }
-            for (const chamber of chambers) {
-              console.log(`- ${chamber.id} | ${chamber.title} | ${chamber.type} | ${chamber.source}`);
-            }
-          }
-          NODE
-
-      - name: Search existing story and data coverage
+      - name: Validate route integration and reuse
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit'
-          mkdir -p "$outdir"
-          {
-            echo '=== Ole Høiland / bank robbery ==='
-            grep -RInEi 'Ole Høiland|Ole Hoiland|64[ .]?000 spesidaler|18[ .]?000 spesidaler|bankran|bankr[aå]n' data || true
-            echo
-            echo '=== Teaterslaget / Wergeland / Welhaven ==='
-            grep -RInEi 'Teaterslaget|Campbellerne|Welhaven|Wergeland.*teater|teater.*Wergeland|flyvende kalosjer|stekte epler' data || true
-            echo
-            echo '=== Militærhospitalet / Grev Wedels plass ==='
-            grep -RInEi 'Militærhospitalet|Militaerhospitalet|første Rikshospital|forste Rikshospital|Grev Wedels plass.*hospital|hospital.*Grev Wedels plass' data || true
-            echo
-            echo '=== Garmann / timber / wealthy household ==='
-            grep -RInEi 'Johan Garmann|Nordmarka.*Garmann|Garmann.*Nordmarka|trelasthandel|herskapshus.*Garmann|Garmann.*herskapshus' data || true
-          } | tee "$outdir/content-term-search.txt"
-
-      - name: Verify route parent place IDs
-        shell: bash
-        run: |
-          set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit'
-          node <<'NODE' | tee "$outdir/route-parent-check.txt"
+          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/validation'
+          node <<'NODE' | tee "$outdir/wonderkammer-validation.txt"
           const fs = require('fs');
-          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
-          const ids = new Set(places.map((place) => place.id));
-          const expected = [
+          const batchPath = 'data/wonderkammer/oslo_oppdag_kvadraturen_barnas_kvadratur_microplaces_batch_1.json';
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const batch = readJson(batchPath);
+          const index = readJson('data/wonderkammer/index.json');
+          const places = readJson('data/places/places_index.json');
+
+          if (!index.files.includes(batchPath)) throw new Error('Barnas kvadratur batch is not registered');
+
+          const allRouteParents = [
             'christiania_torv',
             'kontraskjaeret',
             'akershus_festning',
@@ -108,20 +55,93 @@ jobs:
             'grev_wedels_plass',
             'garmanngarden'
           ];
-          const missing = expected.filter((id) => !ids.has(id));
-          if (missing.length) throw new Error(`Missing route parents: ${missing.join(', ')}`);
-          console.log(`Route parents: OK (${expected.length} exact canonical places)`);
-          for (const id of expected) console.log(`- ${id}`);
+          const placeIds = new Set(places.map((place) => place.id));
+          const missingRouteParents = allRouteParents.filter((id) => !placeIds.has(id));
+          if (missingRouteParents.length) throw new Error(`Missing route parents: ${missingRouteParents.join(', ')}`);
+
+          const expectedNewParents = new Set([
+            'akershus_festning',
+            'grunnlovsbygget_bankplassen',
+            'norges_bank_bankplassen_4',
+            'grev_wedels_plass',
+            'garmanngarden'
+          ]);
+          const actualNewParents = new Set(batch.places.map((entry) => entry.place_id));
+          if (actualNewParents.size !== expectedNewParents.size || [...expectedNewParents].some((id) => !actualNewParents.has(id))) {
+            throw new Error(`Unexpected new parent set: ${[...actualNewParents].join(', ')}`);
+          }
+          if (batch.places.some((entry) => !Array.isArray(entry.chambers) || entry.chambers.length !== 1)) {
+            throw new Error('Expected exactly one new chamber on each new parent');
+          }
+
+          const newIds = batch.places.flatMap((entry) => entry.chambers.map((chamber) => chamber.id));
+          if (newIds.length !== 5) throw new Error(`Expected 5 new chambers, found ${newIds.length}`);
+          if (new Set(newIds).size !== newIds.length) throw new Error('Duplicate chamber IDs inside new batch');
+
+          const existingIds = new Set();
+          const collect = (value) => {
+            if (!value || typeof value !== 'object') return;
+            if (Array.isArray(value)) {
+              for (const item of value) collect(item);
+              return;
+            }
+            if (Array.isArray(value.chambers)) {
+              for (const chamber of value.chambers) if (chamber && chamber.id) existingIds.add(chamber.id);
+            }
+            for (const child of Object.values(value)) collect(child);
+          };
+          for (const file of index.files) {
+            if (file === batchPath) continue;
+            if (!fs.existsSync(file)) throw new Error(`Registered Wonderkammer file missing: ${file}`);
+            collect(readJson(file));
+          }
+
+          const collisions = newIds.filter((id) => existingIds.has(id));
+          if (collisions.length) throw new Error(`New chamber ID collisions: ${collisions.join(', ')}`);
+
+          const reused = [
+            'wk_christiania_torv_her_skal_byen_ligge_1624',
+            'wk_kontraskjaeret_1600_talls_bygardene',
+            'wk_waisenhuset_barnehjem_1778_1918'
+          ];
+          const missingReused = reused.filter((id) => !existingIds.has(id));
+          if (missingReused.length) throw new Error(`Missing reused chambers: ${missingReused.join(', ')}`);
+
+          const auditText = fs.readFileSync('reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit/existing-parent-chambers.txt', 'utf8');
+          for (const id of reused) {
+            if (!auditText.includes(id)) throw new Error(`Initial audit did not record reused chamber: ${id}`);
+          }
+          const routeAudit = fs.readFileSync('reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit/route-parent-check.txt', 'utf8');
+          if (!routeAudit.includes('Route parents: OK (8 exact canonical places)')) {
+            throw new Error('Initial route-parent audit did not confirm all 8 parents');
+          }
+
+          console.log(`Wonderkammer manifest registration: OK (${batchPath})`);
+          console.log(`Route parent place IDs: OK (${allRouteParents.length} exact canonical parents)`);
+          console.log(`New chamber parents: OK (${actualNewParents.size} exact parents)`);
+          console.log(`New chamber IDs: OK (${newIds.length} unique)`);
+          console.log(`Reused chambers: OK (${reused.length} present)`);
+          console.log('Initial duplicate and route-parent audit evidence: OK');
+          console.log('No new chamber ID collides with pre-existing registered Wonderkammer data.');
           NODE
 
-      - name: Persist audit evidence
+      - name: Check whitespace
         shell: bash
         run: |
           set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/validation'
+          git diff --check | tee "$outdir/git-diff-check.txt"
+
+      - name: Remove temporary workflow and save validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1-audit.yml
+          git add reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/validation
+          git add -u .github/workflows/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1-audit.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit
           if ! git diff --cached --quiet; then
-            git commit -m 'Save Barnas kvadratur batch 1 audit evidence'
+            git commit -m 'Validate Barnas kvadratur batch 1'
             git push origin "HEAD:${GITHUB_HEAD_REF}"
           fi
