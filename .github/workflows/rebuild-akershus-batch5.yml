@@ -1,0 +1,54 @@
+name: Rebuild Akershus festning people batch 5
+
+on:
+  push:
+    branches:
+      - agent/rebuild-akershus-festning-people-batch5
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Register people in manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('data/people/manifest.json')
+          data = json.loads(path.read_text())
+          additions = [
+            'people/historie/oslo/akershus_festning/albert_viljam_hagelin.json',
+            'people/historie/oslo/akershus_festning/einar_donnum.json',
+            'people/historie/oslo/akershus_festning/ragnar_skancke.json',
+            'people/historie/oslo/akershus_festning/reidar_haaland.json',
+            'people/historie/oslo/akershus_festning/siegfried_fehmer.json',
+          ]
+          for item in additions:
+              if item not in data['files']:
+                  data['files'].append(item)
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+          PY
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate people
+        run: |
+          npm run audit:people-of-places
+          npm run tools:check
+      - name: Remove temporary workflow
+        run: rm .github/workflows/rebuild-akershus-batch5.yml
+      - name: Commit finalized batch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/people/manifest.json .github/workflows/rebuild-akershus-batch5.yml
+          git commit -m "Finalize Akershus festning people batch 5" || exit 0
+          git push
