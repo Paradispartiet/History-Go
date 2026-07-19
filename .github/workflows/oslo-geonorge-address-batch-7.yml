@@ -1,0 +1,131 @@
+name: Oslo Geonorge address batch 7
+
+on:
+  push:
+    branches:
+      - agent/oslo-geonorge-address-batch-7
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  resolve-apply-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Resolve exact official address anchors
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/geonorge-address-batch-7
+          npm run places:coords:find:address -- --address "Hausmanns gate 19A Oslo" | tee reports/geonorge-address-batch-7/torggata_blad.json
+          npm run places:coords:find:address -- --address "Torggata 14 Oslo" | tee reports/geonorge-address-batch-7/torggata.json
+          npm run places:coords:find:address -- --address "Storgata 25 Oslo" | tee reports/geonorge-address-batch-7/storgata.json
+
+      - name: Require three verified candidates and apply everywhere
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const crypto = require('crypto');
+          const verifiedAt = '2026-07-19';
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const write = (p,d) => fs.writeFileSync(p, JSON.stringify(d,null,2)+'\n');
+          const sha256 = p => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+          function report(p){
+            const t=fs.readFileSync(p,'utf8'); const i=t.indexOf('{'); if(i<0) throw new Error(`No JSON in ${p}`);
+            const d=JSON.parse(t.slice(i));
+            if(!d.ok||d.status!=='verified_candidate'||!d.coordinate) throw new Error(`${p}: expected verified_candidate, got ${d.status}`);
+            return d;
+          }
+          const reports={
+            torggata_blad:report('reports/geonorge-address-batch-7/torggata_blad.json'),
+            torggata:report('reports/geonorge-address-batch-7/torggata.json'),
+            storgata:report('reports/geonorge-address-batch-7/storgata.json')
+          };
+          const targets={
+            torggata_blad:{aggregate:'data/places/subkultur/oslo/places_subkultur.json',split:'data/places/subkultur/oslo/places_subkultur/torggata_blad.json',index:'data/places/subkultur/oslo/places_subkultur_index.json',manifest:'data/places/subkultur/oslo/places_subkultur_manifest.json'},
+            torggata:{aggregate:'data/places/by/oslo/places_by.json',split:'data/places/by/oslo/places/torggata.json',index:'data/places/by/oslo/places_by_index.json',manifest:'data/places/by/oslo/places_by_manifest.json'},
+            storgata:{aggregate:'data/places/by/oslo/places_by.json',split:'data/places/by/oslo/places/storgata.json',index:'data/places/by/oslo/places_by_index.json',manifest:'data/places/by/oslo/places_by_manifest.json'}
+          };
+          const oldCoordinates={};
+          function apply(place,id,r){
+            const c=r.coordinate; oldCoordinates[id] ||= {lat:place.lat,lon:place.lon,r:place.r};
+            for(const k of ['anchors','coordSourceId','coordSourceUrl','coordPrecisionM']) delete place[k];
+            Object.assign(place,{lat:c.lat,lon:c.lon,r:c.r,locatorType:c.locatorType,sourceProvider:c.sourceProvider,sourceObjectId:c.sourceObjectId,address:c.address,geocodeAccuracy:c.geocodeAccuracy,coordRole:c.coordRole,coordStatus:c.coordStatus,coordSource:c.coordSource,coordType:c.coordType,coordNote:c.coordNote,coordVerifiedAt:verifiedAt});
+            if(id==='torggata_blad') place.coordNote += ' Den historiske kilden oppgir Hausmanns gate 19 uten bokstav; 19A brukes som dagens entydige adressepunkt for samme eiendom etter manuell kandidatoppløsning.';
+          }
+          for(const agg of [...new Set(Object.values(targets).map(t=>t.aggregate))]){
+            const d=read(agg), a=Array.isArray(d)?d:d.places; if(!Array.isArray(a)) throw new Error(`Bad aggregate ${agg}`);
+            for(const [id,t] of Object.entries(targets)) if(t.aggregate===agg){const p=a.find(x=>x?.id===id);if(!p)throw new Error(`Missing ${id} in ${agg}`);apply(p,id,reports[id]);}
+            write(agg,d);
+          }
+          for(const [id,t] of Object.entries(targets)){
+            const d=read(t.split), p=Array.isArray(d)?d.find(x=>x?.id===id):d; if(!p||p.id!==id) throw new Error(`Missing ${id} in ${t.split}`); apply(p,id,reports[id]); write(t.split,d);
+          }
+          for(const idx of [...new Set(Object.values(targets).map(t=>t.index))]){
+            const a=read(idx); if(!Array.isArray(a)) throw new Error(`Bad index ${idx}`);
+            for(const [id,t] of Object.entries(targets)) if(t.index===idx){const p=a.find(x=>x?.id===id);if(!p)throw new Error(`Missing ${id} in ${idx}`);const c=reports[id].coordinate;Object.assign(p,{lat:c.lat,lon:c.lon,r:c.r,coordStatus:c.coordStatus,coordType:c.coordType});}
+            write(idx,a);
+          }
+          for(const mp of [...new Set(Object.values(targets).map(t=>t.manifest))]){
+            const m=read(mp), dir=path.dirname(mp), src=path.join(dir,m.source_file); m.source_sha256=sha256(src);m.generated_at=new Date().toISOString();
+            for(const row of m.places||[]){const child=path.join(dir,row.file);if(fs.existsSync(child))row.sha256=sha256(child);} write(mp,m);
+          }
+          write('reports/geonorge-address-batch-7/apply-audit.json',{generatedAt:new Date().toISOString(),oldCoordinates,newCoordinates:Object.fromEntries(Object.entries(reports).map(([id,r])=>[id,r.coordinate]))});
+          NODE
+
+      - name: Rebuild runtime and validate
+        run: |
+          npm run places:index:build
+          npm run test:coordinate-source-contract
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+          npm run places:coords:quality
+          npm run places:coords:intake
+          git diff --check
+
+      - name: Build visual map audit
+        shell: bash
+        run: |
+          cat > reports/geonorge-address-batch-7/map-audit.html <<'HTML'
+          <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Batch 7 map audit</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><style>html,body,#map{height:100%;margin:0}.legend{background:#fff;padding:10px;font:14px system-ui;box-shadow:0 1px 8px #0004}</style></head><body><div id="map"></div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>fetch('./apply-audit.json').then(r=>r.json()).then(a=>{const m=L.map('map');L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(m);const b=[];for(const[id,n]of Object.entries(a.newCoordinates)){const o=a.oldCoordinates[id];L.circleMarker([o.lat,o.lon],{radius:9,color:'#b00020',fillOpacity:.35}).addTo(m).bindTooltip(id+' OLD',{permanent:true,direction:'left'});L.circleMarker([n.lat,n.lon],{radius:9,color:'#087f23',fillOpacity:.6}).addTo(m).bindTooltip(id+' NEW',{permanent:true,direction:'right'});L.polyline([[o.lat,o.lon],[n.lat,n.lon]],{color:'#222',dashArray:'5,6'}).addTo(m);b.push([o.lat,o.lon],[n.lat,n.lon]);}m.fitBounds(b,{padding:[80,80]});const c=L.control({position:'topright'});c.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>Oslo batch 7</b><br><span style="color:#b00020">● old</span> → <span style="color:#087f23">● verified address point</span>';return d};c.addTo(m);});</script></body></html>
+          HTML
+          npx playwright install chromium
+          python3 -m http.server 4173 --directory reports/geonorge-address-batch-7 >/tmp/map-audit-http.log 2>&1 &
+          P=$!; trap 'kill $P || true' EXIT
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{const b=await chromium.launch({headless:true});const p=await b.newPage({viewport:{width:1440,height:1000}});await p.goto('http://127.0.0.1:4173/map-audit.html',{waitUntil:'networkidle'});await p.waitForTimeout(1200);await p.screenshot({path:'reports/geonorge-address-batch-7/map-audit.png',fullPage:true});await b.close()})().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-geonorge-address-batch-7-applied
+          path: reports/geonorge-address-batch-7
+
+      - name: Commit batch and remove temporary automation
+        if: github.event_name == 'push'
+        run: |
+          rm -f .github/workflows/oslo-geonorge-address-batch-7.yml .github/workflows/oslo-geonorge-address-batch-7-apply.yml
+          rm -f reports/geonorge-address-batch-7/apply-trigger.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places reports/geonorge-address-batch-7 .github/workflows
+          git commit -m "Apply Geonorge address batch 7 for Oslo street markers"
+          git push
