@@ -1,0 +1,78 @@
+name: Oslo kultureiendommer batch 13 finalize
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-kultureiendommer-batch-13-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.event.pull_request.head.ref == 'agent/oslo-kultureiendommer-batch-13'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Register batch sources
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const additions = [
+            'places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json',
+            'places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json'
+          ];
+          for (const file of additions) {
+            if (!manifest.files.includes(file)) manifest.files.push(file);
+          }
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Build and validate places
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-kultureiendommer-batch-13/validation
+          npm run places:index:build \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-build.txt
+          npm run places:index:check \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-check.txt
+          npm run places:coords:intake \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-intake.txt
+          npm run places:emner:check \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/emne-check.txt
+          npm run health:places \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/health-places.txt
+          npm run audit:places-split-manifest-sync \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/split-manifest-sync.txt
+          npm run test:coordinate-source-contract \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-contract.txt
+          git diff --check \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/git-diff-check.txt
+
+      - name: Remove temporary workflow and commit results
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-kultureiendommer-batch-13-finalize.yml
+          git add data/places/manifest.json
+          git add data/places/places_index.json
+          git add reports/oslo-kultureiendommer-batch-13/validation
+          git add -u .github/workflows/oslo-kultureiendommer-batch-13-finalize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Register and validate Oslo kultureiendommer batch 13'
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
