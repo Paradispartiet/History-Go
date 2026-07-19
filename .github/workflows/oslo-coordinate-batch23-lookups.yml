@@ -48,6 +48,30 @@ jobs:
       - name: Stop on apply failure
         if: steps.apply.outcome == 'failure'
         run: exit 1
+      - name: Synchronize naeringsliv category index coordinate metadata
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const indexPath = 'data/places/naeringsliv/oslo/places_naeringsliv_index.json';
+          const splitDir = 'data/places/naeringsliv/oslo/places_naeringsliv';
+          const ids = ['vinmonopolet_lager', 'jernbaneverkstedet_lodalen', 'grunnlovsbygget_bankplassen'];
+          const fields = [
+            'lat', 'lon', 'r', 'locatorType', 'sourceProvider', 'sourceObjectId', 'address',
+            'geocodeAccuracy', 'coordRole', 'coordType', 'coordStatus', 'coordSource',
+            'coordVerifiedAt', 'coordNote'
+          ];
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          for (const id of ids) {
+            const source = JSON.parse(fs.readFileSync(`${splitDir}/${id}.json`, 'utf8'));
+            const row = index.find((item) => item?.id === id);
+            if (!row) throw new Error(`Mangler index-rad for ${id}`);
+            for (const field of fields) {
+              if (Object.prototype.hasOwnProperty.call(source, field)) row[field] = source[field];
+              else delete row[field];
+            }
+          }
+          fs.writeFileSync(indexPath, JSON.stringify(index, null, 2) + '\n');
+          NODE
       - name: Rebuild place index
         run: npm run places:index:build
       - name: Check place index
