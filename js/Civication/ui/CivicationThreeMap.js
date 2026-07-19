@@ -537,6 +537,12 @@
     nordstrand: [
       [0.655, 0.76], [0.81, 0.76], [0.88, 0.86], [0.84, 0.95],
       [0.72, 0.98], [0.635, 0.89]
+    ],
+    // Frogner-slaben dekket vannstripen utenfor Aker Brygge/Frognerkilen;
+    // sørkanten følger nå kystlinjen (litt innenfor).
+    frogner: [
+      [0.22, 0.57], [0.40, 0.57], [0.43, 0.65], [0.398, 0.674],
+      [0.352, 0.698], [0.245, 0.696], [0.20, 0.67]
     ]
   };
   const districtShape3D = (d) => DISTRICT_SHAPE_OVERRIDES[d.id] || d.shape;
@@ -673,9 +679,10 @@
       0.018, 0xf5ead0, baseY + 0.006
     ));
 
-    // Ring 1 – svak sentrumssløyfe rundt kjernen.
+    // Ring 1 – svak sentrumssløyfe rundt kjernen. Sørbenet holder seg på land
+    // nord for Pipervika-bukta (gikk før rett over vannet).
     addRoad(g,
-      [[0.44, 0.60], [0.50, 0.585], [0.56, 0.595], [0.59, 0.635], [0.55, 0.665], [0.47, 0.665], [0.44, 0.63], [0.44, 0.60]],
+      [[0.44, 0.60], [0.50, 0.585], [0.56, 0.595], [0.59, 0.635], [0.548, 0.652], [0.505, 0.640], [0.472, 0.620], [0.44, 0.622], [0.44, 0.60]],
       0.010, baseY, { marking: true }
     );
 
@@ -685,10 +692,17 @@
       0.013, baseY, { marking: true }
     );
 
-    // E18 / havneakse langs fjorden vest–øst. Runder Bjørvika-bukta på nordsiden
-    // (som Operatunnel-traséen) i stedet for å krysse rett over vannet.
+    // E18 / havneakse langs fjorden vest–øst, i to synlige deler med
+    // «tunnel-gap» under Rådhusplassen/festningen (Festningstunnelen): vestre
+    // del ender ved Aker Brygge, østre del gjenoppstår øst for Akershus og
+    // runder Bjørvika-bukta på nordsiden (Operatunnel-traséen). Ingen av delene
+    // krysser vannet i Pipervika eller Bjørvika.
     addRoad(g,
-      [[0.30, 0.685], [0.40, 0.667], [0.47, 0.657], [0.54, 0.655], [0.60, 0.627], [0.66, 0.641], [0.70, 0.675]],
+      [[0.30, 0.685], [0.36, 0.675], [0.40, 0.664]],
+      0.012, baseY - 0.002, { color: shade(ROAD_ASPHALT, -0.05), marking: true }
+    );
+    addRoad(g,
+      [[0.52, 0.668], [0.54, 0.655], [0.60, 0.627], [0.66, 0.641], [0.70, 0.675]],
       0.012, baseY - 0.002, { color: shade(ROAD_ASPHALT, -0.05), marking: true }
     );
 
