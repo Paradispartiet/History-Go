@@ -1,4 +1,4 @@
-name: Oslo Oppdag Kvadraturen Stil og arkitektur batch 1 audit
+name: Oslo Oppdag Kvadraturen Stil og arkitektur batch 1 finalize
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  audit:
+  finalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -24,64 +24,212 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Audit existing canonical coverage
+      - name: Register place source
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/audit'
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
           mkdir -p "$outdir"
+          python3 <<'PY' | tee "$outdir/source-registration.txt"
+          import json
+          from pathlib import Path
+
+          path = Path('data/places/manifest.json')
+          source = 'places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_stil_arkitektur_batch_01.json'
+          data = json.loads(path.read_text(encoding='utf-8'))
+          files = data.setdefault('files', [])
+          if source not in files:
+              files.append(source)
+              path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              print(f'Added place source: {source}')
+          else:
+              print(f'Place source already registered: {source}')
+          print(f'Manifest source count: {len(files)}')
+          PY
+
+      - name: Validate JSON syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          jq empty data/places/manifest.json
+          jq empty data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_stil_arkitektur_batch_01.json
+          jq empty data/wonderkammer/oslo_oppdag_kvadraturen_stil_arkitektur_microplaces_batch_1.json
+          jq empty data/wonderkammer/index.json
+          echo 'JSON syntax: OK' | tee "$outdir/json-syntax.txt"
+
+      - name: Build places index
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          npm run places:index:build 2>&1 | tee "$outdir/places-index-build.txt"
+
+      - name: Check places index
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          npm run places:index:check 2>&1 | tee "$outdir/places-index-check.txt"
+
+      - name: Check strict coordinate intake against branch merge-base
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          npm run places:coords:intake 2>&1 | tee "$outdir/coordinate-intake.txt"
+
+      - name: Check canonical emne IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          npm run places:emner:check 2>&1 | tee "$outdir/emne-check.txt"
+
+      - name: Capture place health and hold baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          set +e
+          npm run health:places 2>&1 | tee "$outdir/health-places.txt"
+          status=${PIPESTATUS[0]}
+          set -e
+          errors=$(awk '/^Errors: [0-9]+$/ {print $2; exit}' "$outdir/health-places.txt")
+          if [[ -z "$errors" ]]; then
+            echo 'Could not parse place-health error count' >&2
+            exit 1
+          fi
           {
-            echo '=== Candidate name/address search ==='
-            grep -RInEi 'Sjøfartsbygningen|Sjofartsbygningen|Kirkegata 5|Kirkegata 7|Kongens gate 6' data/places || true
-            echo
-            echo '=== Candidate id search ==='
-            grep -RInE '"id"[[:space:]]*:[[:space:]]*"(sjofarts|sjoefarts|kirkegata_5)' data/places || true
-          } | tee "$outdir/existing-place-search.txt"
+            echo "Place health command exit: $status"
+            echo 'Held error baseline: 40'
+            echo "Observed errors: $errors"
+          } | tee "$outdir/health-baseline.txt"
+          if [[ "$errors" != '40' ]]; then
+            echo "Place health baseline changed: expected 40, got $errors" >&2
+            exit 1
+          fi
 
-      - name: Resolve address candidates
+      - name: Check split manifest sync
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/coordinates'
-          mkdir -p "$outdir"
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          npm run audit:places-split-manifest-sync 2>&1 | tee "$outdir/split-manifest-sync.txt"
 
-          npm run places:coords:find:address -- --address 'Kirkegata 5 Oslo' \
-            | tee "$outdir/kirkegata_5.json"
-
-          npm run places:coords:find:address -- --address 'Kirkegata 7 Oslo' \
-            | tee "$outdir/sjofartsbygningen_kirkegata_7.json"
-
-          npm run places:coords:find:address -- --address 'Kongens gate 6 Oslo' \
-            | tee "$outdir/sjofartsbygningen_kongens_gate_6.json"
-
-      - name: Resolve named Sjøfartsbygningen geometry
+      - name: Check coordinate source contract
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/coordinates'
-          mkdir -p "$outdir"
-          curl --max-time 30 --retry 2 --fail --silent --show-error \
-            -H 'User-Agent: History-Go coordinate audit (github.com/Paradispartiet/History-Go)' \
-            --get 'https://nominatim.openstreetmap.org/search' \
-            --data-urlencode 'format=jsonv2' \
-            --data-urlencode 'q=Sjøfartsbygningen, Oslo, Norge' \
-            --data-urlencode 'countrycodes=no' \
-            --data-urlencode 'limit=10' \
-            --data-urlencode 'addressdetails=1' \
-            --data-urlencode 'namedetails=1' \
-            --data-urlencode 'polygon_geojson=1' \
-            --data-urlencode 'viewbox=10.72,59.92,10.76,59.89' \
-            --data-urlencode 'bounded=1' \
-            | tee "$outdir/sjofartsbygningen_nominatim.json"
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          npm run test:coordinate-source-contract 2>&1 | tee "$outdir/coordinate-source-contract.txt"
 
-      - name: Persist audit evidence
+      - name: Validate Stil og arkitektur integration
         shell: bash
         run: |
           set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          node <<'NODE' | tee "$outdir/wonderkammer-validation.txt"
+          const fs = require('fs');
+          const batchPath = 'data/wonderkammer/oslo_oppdag_kvadraturen_stil_arkitektur_microplaces_batch_1.json';
+          const placeSource = 'places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_stil_arkitektur_batch_01.json';
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const batch = readJson(batchPath);
+          const wonderIndex = readJson('data/wonderkammer/index.json');
+          const placeManifest = readJson('data/places/manifest.json');
+          const places = readJson('data/places/places_index.json');
+
+          if (!placeManifest.files.includes(placeSource)) throw new Error('New place source is not registered');
+          if (!wonderIndex.files.includes(batchPath)) throw new Error('Wonderkammer batch is not registered');
+
+          const placeIds = new Set(places.map((place) => place.id));
+          if (!placeIds.has('kirkegata_5')) throw new Error('Generated places index is missing kirkegata_5');
+
+          const expectedParents = new Set([
+            'christiania_torv',
+            'wessels_plass',
+            'telegrafbygningen',
+            'oslo_posthus',
+            'centralbanken_kirkegata',
+            'kirkegata_5',
+            'bankplassen'
+          ]);
+          const actualParents = new Set(batch.places.map((entry) => entry.place_id));
+          if (actualParents.size !== expectedParents.size || [...expectedParents].some((id) => !actualParents.has(id))) {
+            throw new Error(`Unexpected parent set: ${[...actualParents].join(', ')}`);
+          }
+          const missingParents = [...actualParents].filter((id) => !placeIds.has(id));
+          if (missingParents.length) throw new Error(`Missing route parents: ${missingParents.join(', ')}`);
+
+          const newIds = batch.places.flatMap((entry) => (entry.chambers || []).map((chamber) => chamber.id));
+          if (newIds.length !== 7) throw new Error(`Expected 7 new chambers, found ${newIds.length}`);
+          if (new Set(newIds).size !== newIds.length) throw new Error('Duplicate chamber IDs inside new batch');
+          if (batch.places.some((entry) => !Array.isArray(entry.chambers) || entry.chambers.length !== 1)) {
+            throw new Error('Expected exactly one architecture chamber on each route parent');
+          }
+
+          const existingIds = new Set();
+          const collect = (value) => {
+            if (!value || typeof value !== 'object') return;
+            if (Array.isArray(value)) {
+              for (const item of value) collect(item);
+              return;
+            }
+            if (Array.isArray(value.chambers)) {
+              for (const chamber of value.chambers) if (chamber && chamber.id) existingIds.add(chamber.id);
+            }
+            for (const child of Object.values(value)) collect(child);
+          };
+          for (const file of wonderIndex.files) {
+            if (file === batchPath) continue;
+            if (!fs.existsSync(file)) throw new Error(`Registered Wonderkammer file missing: ${file}`);
+            collect(readJson(file));
+          }
+          const collisions = newIds.filter((id) => existingIds.has(id));
+          if (collisions.length) throw new Error(`New chamber ID collisions: ${collisions.join(', ')}`);
+
+          const referencedComparisonPlaces = [
+            'steen_og_strom',
+            'stattholdergarden',
+            'sjofartsbygningen',
+            'norges_bank_bankplassen_2',
+            'grunnlovsbygget_bankplassen',
+            'norges_bank_bankplassen_4'
+          ];
+          const missingReferenced = referencedComparisonPlaces.filter((id) => !placeIds.has(id));
+          if (missingReferenced.length) throw new Error(`Missing comparison place IDs: ${missingReferenced.join(', ')}`);
+
+          const auditText = fs.readFileSync('reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/audit/existing-place-search.txt', 'utf8');
+          if (!auditText.includes('"id": "sjofartsbygningen"')) throw new Error('Audit no longer proves existing sjofartsbygningen canonical coverage');
+
+          console.log(`Place source registration: OK (${placeSource})`);
+          console.log('New canonical place in generated index: OK (kirkegata_5)');
+          console.log(`Wonderkammer manifest registration: OK (${batchPath})`);
+          console.log(`Route parent place IDs: OK (${actualParents.size} exact parents)`);
+          console.log(`New chamber IDs: OK (${newIds.length} unique)`);
+          console.log('Referenced comparison place IDs: OK (6 existing canonical places)');
+          console.log('Existing Sjøfartsbygningen duplicate audit: OK');
+          console.log('No new chamber ID collides with pre-existing registered Wonderkammer data.');
+          NODE
+
+      - name: Check whitespace
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation'
+          git diff --check | tee "$outdir/git-diff-check.txt"
+
+      - name: Remove temporary workflow and commit final results
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1-audit.yml
+          git add data/places/manifest.json data/places/places_index.json
+          git add reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1/validation
+          git add -u .github/workflows/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1-audit.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/oslo-oppdag-kvadraturen-stil-arkitektur-batch-1
           if ! git diff --cached --quiet; then
-            git commit -m 'Save Stil og arkitektur batch 1 audit evidence'
+            git commit -m 'Finalize Stil og arkitektur batch 1'
             git push origin "HEAD:${GITHUB_HEAD_REF}"
           fi
