@@ -2,6 +2,7 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 
+// Revalidate the park batch against the repaired People baseline on main.
 const repo = path.resolve(__dirname, '..');
 const readJson = relativePath => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
 
