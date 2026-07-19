@@ -141,6 +141,14 @@ jobs:
           set -euo pipefail
           git diff --check 2>&1 | tee "$RUNNER_REPORT_DIR/git-diff-check.log"
 
+      - name: Upload coordinate runner logs
+        if: always() && steps.pending.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coordinate-runner-${{ github.run_id }}
+          path: ${{ env.RUNNER_REPORT_DIR }}
+          if-no-files-found: warn
+
       - name: Mark job complete and publish generated changes
         if: steps.pending.outputs.run == 'true'
         shell: bash
