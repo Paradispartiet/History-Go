@@ -1,0 +1,358 @@
+name: Fill Advokat Dehlis plass nature rounds batch 1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'agent/fill-advokat-dehlis-plass-nature-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Produce corrected place identity and all nature rounds
+        run: |
+          python3 <<'PY'
+          import json, hashlib
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def dump(path, value):
+              Path(path).parent.mkdir(parents=True, exist_ok=True)
+              Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          place_path = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenparken_elvenaer.json'
+          place = load(place_path)
+          place.update({
+              'name': 'Advokat Dehlis plass – grøntarealet',
+              'lat': 59.93914,
+              'lon': 10.75891,
+              'r': 160,
+              'category': 'natur',
+              'desc': 'Lite offentlig grøntareal ved Advokat Dehlis plass, med plen, trær, monument og harde gatekanter.',
+              'tags': ['urbannatur', 'plass', 'grontareal', 'nabolagsnatur', 'overvann', 'minnested'],
+              'year': 1934,
+              'popupDesc': 'Det tekniske stedet lå tidligere feilaktig som «Bjølsenparken (elvenær del)». Koordinatet hører til Advokat Dehlis plass ved krysset Maridalsveien og Bentsebrugata, sørøst for den egentlige Bjølsenparken. Plassen fikk navn i 1934 etter juristen og samvirkepioneren Ole Dehli. Monumentet av Asbjørg Borgfelt ble reist i 1946.\n\nNaturverdien ligger i det lille grønne byrommet: plen, trær og vegeterte kanter møter asfalt, trafikk, skole og tett bebyggelse. Stedet viser hvordan selv et lite grøntareal kan gi skygge, ta imot noe regnvann og fungere som et lokalt oppholdssted og økologisk mellomledd på vei mot Akerselva.',
+              'locatorType': 'square',
+              'sourceProvider': 'osm',
+              'sourceObjectId': 'osm:way:336602343',
+              'geocodeAccuracy': 'geometric_center',
+              'coordRole': 'area_anchor',
+              'coordType': 'osm_area_centroid',
+              'coordStatus': 'verified_geometry',
+              'coordNote': 'Områdeanker for grøntarealet på Advokat Dehlis plass, OSM way 336602343. Tidligere navn og punkt beskrev feilaktig Bjølsenparken.',
+              'coordVerifiedAt': '2026-07-19',
+              'externalLinks': [
+                  {'type':'reference','label':'Oslo byleksikon – Advokat Dehlis plass','url':'https://oslobyleksikon.no/side/Advokat_Dehlis_plass','lang':'nb','verifiedAt':'2026-07-19'},
+                  {'type':'local_history','label':'Lokalhistoriewiki – Advokat Dehlis plass','url':'https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass','lang':'nb','verifiedAt':'2026-07-19'},
+                  {'type':'map','label':'OpenStreetMap/Wikimedia – Advokat Dehlis plass','url':'https://commons.wikimedia.org/wiki/Category:Advokat_Dehlis_plass,_Oslo','lang':'nb','verifiedAt':'2026-07-19'},
+                  {'type':'biography','label':'Store norske leksikon – Ole Dehli','url':'https://snl.no/Ole_Dehli','lang':'nb','verifiedAt':'2026-07-19'},
+                  {'type':'biography','label':'Norsk biografisk leksikon – Ole Dehli','url':'https://nbl.snl.no/Ole_Dehli','lang':'nb','verifiedAt':'2026-07-19'},
+                  {'type':'reference','label':'Oslo byleksikon – Bentsebrugata','url':'https://oslobyleksikon.no/side/Bentsebrugata','lang':'nb','verifiedAt':'2026-07-19'},
+                  {'type':'contrast','label':'Oslo byleksikon – Bjølsenparken','url':'https://oslobyleksikon.no/side/Bj%C3%B8lsenparken','lang':'nb','verifiedAt':'2026-07-19'}
+              ],
+              'underbadge_ids': ['urbannatur', 'park_og_hage', 'flom_og_overvann', 'nabolagsnatur', 'traer', 'fremmede_arter'],
+              'tasks_profile': {
+                  'title': 'Les det lille grøntarealet som bynatur',
+                  'tasks': [
+                      {'id':'advokat_dehli_identitet','title':'Kontroller stedsidentiteten','instruction':'Finn monumentet og gatekrysset. Legg merke til at dette er Advokat Dehlis plass, mens selve Bjølsenparken ligger lenger nordvest.','evidence':'Noter ett fysisk kjennetegn som skiller plassen fra en stor bydelspark.'},
+                      {'id':'advokat_dehli_gronn_hard','title':'Kartlegg grønt og hardt dekke','instruction':'Følg kanten av plenen og registrer overgangene mellom gress, trær, fortau, vei og bebyggelse.','evidence':'Tegn en enkel skisse med minst fire overganger.'},
+                      {'id':'advokat_dehli_skygge','title':'Sammenlign sol og skygge','instruction':'Sammenlign en solutsatt asfaltflate med et skyggelagt parti ved vegetasjonen.','evidence':'Beskriv forskjellen i temperaturfølelse og oppholdskvalitet.'},
+                      {'id':'advokat_dehli_overvann','title':'Følg regnvannets retning','instruction':'Se etter fall, kantstein og sluk som styrer vann fra gateflatene. Hold deg på fortau og grøntareal.','evidence':'Marker hvor vann sannsynligvis samles eller ledes videre.'}
+                  ]
+              },
+              'training_profile': {
+                  'title': 'Kort feltøkt rundt plassrommet',
+                  'safety': 'Hold deg på fortau og grøntareal. Kryss bare gatene i oppmerket kryss og ikke gå ut i kjørebanen.',
+                  'exercises': [
+                      {'id':'advokat_dehli_kantloop','title':'Kantløkken','duration_minutes':4,'instruction':'Gå rolig én runde langs grøntarealets ytre kant og registrer hvert skifte i dekke.'},
+                      {'id':'advokat_dehli_skyggestopp','title':'Skyggestopp','duration_minutes':3,'instruction':'Stå stille ved et tre eller vegetert parti og gjør tre rolige observasjoner av lys, vind og lyd.'},
+                      {'id':'advokat_dehli_blindkart','title':'Blindkart','duration_minutes':4,'instruction':'Se på plassens form i ett minutt, vend deg bort og tegn hovedlinjene uten å krysse vei.'}
+                  ]
+              },
+              'civication_store': [
+                  {'id':'advokat_dehli_plass_snitmodell','title':'Snittmodell av grøntarealet','type':'feltmodell','kind':'physical_object','desc':'En fysisk lagmodell som viser plen, trerotssone, fortau, kantstein og gate i samme bysnitt.','placeSpecificReason':'Objektet gjengir den tette overgangen mellom vegetasjon og hardt dekke på Advokat Dehlis plass.','physicalObject':True,'placeSpecific':True,'storePrice':30,'currency':'PC','collection':'bjoelsenparken_elvenaer','collectable':True},
+                  {'id':'advokat_dehli_reliefplate','title':'Monumentets samfunnsplate','type':'relieffplate','kind':'physical_object','desc':'En fysisk studietavle med de fire samfunnsmotivene bonde, arbeider, fisker og mor med barn, forklart i tekst.','placeSpecificReason':'Motivene bygger på Asbjørg Borgfelts monument over Ole Dehli på plassen.','physicalObject':True,'placeSpecific':True,'storePrice':35,'currency':'PC','collection':'bjoelsenparken_elvenaer','collectable':True},
+                  {'id':'advokat_dehli_overvannskart','title':'Overvannskart for gatekrysset','type':'kartplate','kind':'physical_object','desc':'En gjennomsiktig fysisk kartplate som lar spilleren tegne forventet avrenning fra vei, fortau og plen.','placeSpecificReason':'Plassen er et lite grønt innslag omgitt av harde flater der regnvannets vei kan leses direkte.','physicalObject':True,'placeSpecific':True,'storePrice':25,'currency':'PC','collection':'bjoelsenparken_elvenaer','collectable':True}
+              ],
+              'brands': [
+                  {'id':'oslo_kommune_advokat_dehli','name':'Oslo kommune','brand_kind':'municipal_land_owner','brand_type':'public_space_actor'},
+                  {'id':'bymiljoetaten_advokat_dehli','name':'Bymiljøetaten','brand_kind':'urban_green_management','brand_type':'maintenance_actor'},
+                  {'id':'bydel_sagene_advokat_dehli','name':'Bydel Sagene','brand_kind':'district_administration','brand_type':'local_public_actor'},
+                  {'id':'bjoelsen_skole_advokat_dehli','name':'Bjølsen skole','brand_kind':'neighbouring_school','brand_type':'daily_use_actor'},
+                  {'id':'kristiania_kooperative_selskab','name':'Kristiania Kooperative Selskab','brand_kind':'historic_consumer_cooperative','brand_type':'namesake_context'},
+                  {'id':'norges_kooperative_landsforening','name':'Norges Kooperative Landsforening','brand_kind':'historic_cooperative_federation','brand_type':'namesake_context'},
+                  {'id':'asbjorg_borgfelt_advokat_dehli','name':'Asbjørg Borgfelt','brand_kind':'monument_artist','brand_type':'cultural_actor'}
+              ],
+              'for_na': {
+                  'title':'Fra navnløst veikryss til grønt minnested',
+                  'before':{'period':'før 1934','desc':'Området var et lite byrom ved veikrysset uten dagens navn og monument. Den store Bjølsenparken lå allerede som et eget parkanlegg lenger nordvest.'},
+                  'now':{'period':'1934–2026','desc':'Plassen er et navngitt offentlig grøntareal med monument, plen, trær og daglig ferdsel mellom skole, boliger og kollektivårer.'},
+                  'change':'Navnevedtaket i 1934 og monumentet i 1946 gjorde et lite trafikk- og grøntrom til et tydelig minnested. Naturfunksjonen er fortsatt liten i areal, men viktig lokalt som skygge, opphold og myk flate mellom gatene.',
+                  'look_for':['monumentet over Ole Dehli','de fire dype relieffmotivene','overgangen mellom plen og asfalt','trærnes skygge over oppholdsarealet','siktlinjen mot Bentsebrugata og Bjølsen skole'],
+                  'sources':['Oslo byleksikon','Lokalhistoriewiki','Store norske leksikon','OpenStreetMap']
+              },
+              'nature_profile': {
+                  'type':'urbant grøntareal / plen og trær / hard kantflate',
+                  'title':'Et lite grønt mellomledd i tett by',
+                  'summary':'Natur-rundingen handler om et lite grøntareal på Advokat Dehlis plass, ikke om den egentlige Bjølsenparken og ikke om en elvebredde. Plen, trær og vegeterte kanter ligger tett mellom Maridalsveien, Bentsebrugata, Bjølsen skole og omkringliggende bebyggelse. Den begrensede størrelsen gjør kantvirkninger tydelige: varme, trafikk, tråkk, salt, klipping og avrenning påvirker nesten hele flaten. Samtidig gir vegetasjonen skygge, mykere overflate og et lite oppholds- og spredningsledd i nabolaget. Repoets Artskart-baserte naturkart beholder den dokumenterte artskoblingen, mens artsdata fortsatt lastes fra naturkartet og ikke kopieres inn i stedfilen.',
+                  'themes':['lite urbant grøntareal mellom trafikkflater','plen og trær som skygge- og oppholdsstruktur','overvann fra vei, fortau og kantstein','kantvirkning fra trafikk, salt, klipping og tråkk','grønt mellomledd mellom skole, boligområde og Akerselva-korridoren','Artskart-basert observasjon av fremmed planteart','forskjellen mellom en plass, et grøntareal og en bydelspark'],
+                  'nearby_place_ids':['bjoelsenfossen','glads_molle','myralokka']
+              }
+          })
+          for forbidden in ['rounds','rundinger','routes','works','people','play_profile','flora','fauna']:
+              place.pop(forbidden, None)
+          dump(place_path, place)
+
+          quiz_path = 'data/quiz/natur/bjoelsenparken_elvenaer_sets.json'
+          def q(i, question, options, answer, knowledge, tags, qtype='observasjon', layer='intro_story'):
+              return {'id':i,'quiz_id':i.replace('_s','_set_').replace('_q','_q'),'categoryId':'natur','placeId':'bjoelsenparken_elvenaer','targetId':'bjoelsenparken_elvenaer','question_scope':'place','question':question,'options':options,'answer':answer,'answerIndex':options.index(answer),'knowledge':knowledge,'difficulty':1,'question_type':qtype,'question_layer':layer,'tags':tags,'source':['History Go place data: bjoelsenparken_elvenaer'],'claim_basis':'source_checked_place_data'}
+          sets=[]
+          set1=[
+              q('bjoelsenparken_elvenaer_s1_q1','Hvilket sted viser markøren faktisk?',['Advokat Dehlis plass – grøntarealet','Den sentrale delen av Bjølsenparken','En elveøy i Akerselva'],'Advokat Dehlis plass – grøntarealet','Koordinatet ligger ved Advokat Dehlis plass, ikke i den egentlige Bjølsenparken.',['stedsidentitet','advokat_dehlis_plass']),
+              q('bjoelsenparken_elvenaer_s1_q2','Hva skiller dette stedet fra Bjølsenparken?',['Dette er et lite grønt plassrom ved et gatekryss','Dette er en 34 dekar stor bydelspark','Dette er en skog uten gater'],'Dette er et lite grønt plassrom ved et gatekryss','Bjølsenparken ligger lenger nordvest og er et eget større parkanlegg.',['kildekritikk','byrom']),
+              q('bjoelsenparken_elvenaer_s1_q3','Hva bør observeres først i grøntarealet?',['Overgangen mellom plen, trær, fortau og vei','Bare butikkvinduer','Kun Akerselvas vannføring'],'Overgangen mellom plen, trær, fortau og vei','Stedets naturfunksjon blir tydelig i møtet mellom myke og harde flater.',['urbannatur','kantflate']),
+              q('bjoelsenparken_elvenaer_s1_q4','Hvorfor kan et lite grøntareal ha naturverdi?',['Det kan gi skygge, mykere overflate og et lokalt mellomledd for arter','Bare store skoger har naturverdi','Plen og trær påvirker aldri nærmiljøet'],'Det kan gi skygge, mykere overflate og et lokalt mellomledd for arter','Små grøntarealer kan gi lokale økosystemtjenester selv om de er sterkt påvirket.',['okosystemtjenester','nabolagsnatur']),
+              q('bjoelsenparken_elvenaer_s1_q5','Når fikk plassen navnet Advokat Dehlis plass?',['1934','1701','1998'],'1934','Plassen ble oppkalt etter Ole Dehli i 1934.',['1934','stedshistorie'],'historisk_fakta'),
+              q('bjoelsenparken_elvenaer_s1_q6','Hva står sentralt på plassen?',['Monumentet over Ole Dehli fra 1946','En bevart vannturbin','En middelalderkirke'],'Monumentet over Ole Dehli fra 1946','Asbjørg Borgfelts monument gjør plassen til både grøntrom og minnested.',['monument','1946'],'gjenkjenning'),
+              q('bjoelsenparken_elvenaer_s1_q7','Hva er trygg feltatferd her?',['Hold deg på fortau og grøntareal og bruk oppmerkede kryss','Gå ut i kjørebanen for å måle','Klatre på monumentet'],'Hold deg på fortau og grøntareal og bruk oppmerkede kryss','Stedet ligger ved trafikkerte gater og må observeres fra lovlig og trygg flate.',['sikkerhet','feltarbeid'])
+          ]
+          set2=[
+              q('bjoelsenparken_elvenaer_s2_q1','Hva skjer med regnvann på harde flater rundt plassen?',['Det ledes raskt mot kantstein og sluk','Det forsvinner alltid før bakken','Det blir automatisk drikkevann'],'Det ledes raskt mot kantstein og sluk','Asfalt og fortau gir rask avrenning, mens grøntarealet kan holde tilbake noe vann.',['overvann','avrenning'],layer='place_life'),
+              q('bjoelsenparken_elvenaer_s2_q2','Hva er en typisk kantvirkning i dette grøntarealet?',['Trafikk, salt, tråkk og klipping påvirker store deler av flaten','Ingen ytre påvirkning når inn','Bare tidevann påvirker stedet'],'Trafikk, salt, tråkk og klipping påvirker store deler av flaten','Små grøntarealer har mye kant i forhold til totalarealet.',['kantvirkning','urbannatur'],layer='place_life'),
+              q('bjoelsenparken_elvenaer_s2_q3','Hvordan kan trær forbedre oppholdskvaliteten?',['De gir skygge og demper varme på solrike dager','De gjør alltid asfalten varmere','De fjerner all lyd'],'De gir skygge og demper varme på solrike dager','Trekroner påvirker lys, temperatur og opplevelsen av plassrommet.',['traer','skygge'],layer='place_life'),
+              q('bjoelsenparken_elvenaer_s2_q4','Hva viser repoets Artskart-baserte naturkart ved stedet?',['En dokumentert kobling til parkslirekne','En sikker ulvebestand','Et korallrev'],'En dokumentert kobling til parkslirekne','Artskoblingen ligger i naturkartet og skal ikke erstattes av gjettede artslister.',['parkslirekne','artskart','fremmede_arter'],layer='place_life'),
+              q('bjoelsenparken_elvenaer_s2_q5','Hvorfor er identitetsrettelsen viktig for naturinnholdet?',['Naturbeskrivelsen må passe det faktiske grøntarealet rundt koordinatet','Alle parker har identisk natur','Stedsnavn påvirker aldri observasjoner'],'Naturbeskrivelsen må passe det faktiske grøntarealet rundt koordinatet','Feil navn førte tidligere til påstander om en elvenær park som ikke lå ved punktet.',['datakvalitet','stedsidentitet'],layer='place_life'),
+              q('bjoelsenparken_elvenaer_s2_q6','Hvordan henger stedet sammen med Akerselva-ruten?',['Det er et lite grønt mellomledd vest for elva mellom Bjølsenfossen og sørligere stopp','Det ligger midt ute i Oslofjorden','Det avslutter all ferdsel langs ruta'],'Det er et lite grønt mellomledd vest for elva mellom Bjølsenfossen og sørligere stopp','Stoppet viser nabolagsnatur mellom de større elve- og industripunktene.',['akerselva_rute','gront_mellomledd'],layer='place_life'),
+              q('bjoelsenparken_elvenaer_s2_q7','Hva kan plassen lære om offentlig rom?',['Et sted kan være grøntareal, ferdselsrom og minnested samtidig','Et offentlig rom har bare én funksjon','Monumenter kan ikke stå i grøntareal'],'Et sted kan være grøntareal, ferdselsrom og minnested samtidig','Plassen kombinerer naturkontakt, trafikk, skolevei og kollektivt minne.',['offentlig_rom','minnested'],layer='place_life')
+          ]
+          set3=[
+              q('bjoelsenparken_elvenaer_s3_q1','Hva betyr urbannatur på dette stedet?',['Naturprosesser og vegetasjon inne i et sterkt menneskepåvirket byrom','Bare villmark uten mennesker','Kun dyr i zoologisk hage'],'Naturprosesser og vegetasjon inne i et sterkt menneskepåvirket byrom','Urbannatur omfatter også små plener, trær og jordflater mellom gater.',['urbannatur','begrep'],layer='emne_foundation'),
+              q('bjoelsenparken_elvenaer_s3_q2','Hva er et grønt mellomledd?',['En liten vegetert flate som kan koble større grøntområder funksjonelt','En underjordisk tunnel uten planter','Et privat rom uten adgang'],'En liten vegetert flate som kan koble større grøntområder funksjonelt','Små arealer kan fungere som hvile-, sprednings- eller orienteringspunkt.',['spredningskorridor','gronn_korridor'],layer='emne_foundation'),
+              q('bjoelsenparken_elvenaer_s3_q3','Hvorfor er overvann relevant i en liten plass?',['Fordi andelen asfalt og fortau rundt grøntarealet er høy','Fordi stedet er en innsjø','Fordi regn aldri faller i byen'],'Fordi andelen asfalt og fortau rundt grøntarealet er høy','Små grønne flater kan forsinke noe vann i et ellers hardt byrom.',['flom_og_overvann','klimatilpasning'],layer='emne_foundation'),
+              q('bjoelsenparken_elvenaer_s3_q4','Hva krever en fremmed planteart i byrommet?',['Korrekt artsbestemmelse og planlagt skjøtsel, ikke tilfeldig rydding','At alle planter fjernes','At funnet ignoreres'],'Korrekt artsbestemmelse og planlagt skjøtsel, ikke tilfeldig rydding','Fremmede arter må håndteres med kunnskap om spredning og lovlig skjøtsel.',['fremmede_arter','skjotsel'],layer='emne_foundation'),
+              q('bjoelsenparken_elvenaer_s3_q5','Hva er forskjellen på en plass og en park?',['En plass er et byrom som kan ha grøntareal, mens en park vanligvis er et større sammenhengende grøntanlegg','Det finnes ingen forskjell','En plass må alltid være innendørs'],'En plass er et byrom som kan ha grøntareal, mens en park vanligvis er et større sammenhengende grøntanlegg','Identitetskontrollen viser hvorfor byromstype betyr noe for naturbeskrivelsen.',['byromstype','kildekritikk'],layer='emne_foundation'),
+              q('bjoelsenparken_elvenaer_s3_q6','Hvilken økosystemtjeneste er lettest å observere her?',['Skygge og temperaturdemping fra trær','Produksjon av havsalt','Snøskredvern'],'Skygge og temperaturdemping fra trær','Trekroner kan gi merkbar mikroklimaeffekt i et lite gatekryss.',['okosystemtjenester','mikroklima'],layer='emne_foundation'),
+              q('bjoelsenparken_elvenaer_s3_q7','Hva er beste kildekritiske regel for artsinnhold?',['Vis dokumenterte arter fra naturkartet og ikke gjett direkte i stedfilen','Fyll inn alle arter som kan finnes i Oslo','Bruk bare pyntende artsnavn'],'Vis dokumenterte arter fra naturkartet og ikke gjett direkte i stedfilen','Artsdata skal komme fra dokumenterte kartkoblinger og beholdes separat fra stedsteksten.',['artskart','datakvalitet'],layer='emne_foundation')
+          ]
+          for order, questions in enumerate([set1,set2,set3], start=1):
+              sets.append({'set_id':f'natur_bjoelsenparken_elvenaer_set_{order}','level':order,'order':order,'xp':40+order*10,'mode':['place_intro_story','place_life_people_events','emne_based_foundation'][order-1],'questions':questions})
+          quiz={'targetId':'bjoelsenparken_elvenaer','categoryId':'natur','generator_version':'chatgpt_history_go_source_checked_v2','generated_from':[place_path,'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json','data/natur/nature_oslo_expansion_place_map.json','data/quiz/regler/SET_MAL_README_v3.md'],'manual_production_notes':{'quality_direction':'korrekt sted → observasjon → emne → forståelse','hold_back':['Ingen direkte artslister i stedfilen.','Ingen påstand om at punktet ligger i Bjølsenparken eller på Akerselvas elvebredde.','Ingen dagsaktuelle arrangementer.','Ingen ferdsel ut i kjørebanen.']},'sets':sets}
+          dump(quiz_path, quiz)
+
+          story_path='data/stories/stories_bjoelsenparken_elvenaer.json'
+          story=[{
+              'id':'st_advokat_dehlis_plass_fire_bilder','place_id':'bjoelsenparken_elvenaer','person_id':None,'title':'Fire bilder i et lite grønt rom','summary':'Et lite grøntareal ved et travelt gatekryss bærer historien om Ole Dehli, samvirket og fire samfunnsgrupper støpt inn i monumentet.','chapters':[
+                  {'title':'Et punkt som het feil','text':'Kartpunktet ble først registrert som en elvenær del av Bjølsenparken. Kildene og koordinatet viser noe annet: dette er Advokat Dehlis plass ved Maridalsveien og Bentsebrugata. Den egentlige Bjølsenparken ligger lenger nordvest.'},
+                  {'title':'Navnet fra 1934','text':'Plassen fikk navn etter høyesterettsadvokat Ole Dehli i 1934. Dehli hadde tatt initiativ til Kristiania Kooperative Selskab i 1894 og var en hovedkraft bak Norges Kooperative Landsforening fra 1906.'},
+                  {'title':'Monumentet fra 1946','text':'Asbjørg Borgfelts monument ble reist i 1946. Fire dype relieffer viser en bonde, en arbeider, en fisker og en kvinne med barn og kurv. Motivene gjør samvirkets idé om mange forbrukergrupper synlig midt i hverdagsbyen.'},
+                  {'title':'Bynatur i liten skala','text':'Rundt monumentet er naturen beskjeden, men lesbar. Plen, trær og jord møter asfalt, trafikk og skolevei. Nettopp derfor blir skygge, avrenning, tråkk og kantvirkning tydelige. Det lille grønne rommet er både minnested og nabolagsnatur.'}
+              ],
+              'related_places':['bjoelsenfossen','glads_molle','myralokka'],
+              'related_people':[],
+              'sources':[
+                  {'title':'Oslo byleksikon: Advokat Dehlis plass','url':'https://oslobyleksikon.no/side/Advokat_Dehlis_plass'},
+                  {'title':'Lokalhistoriewiki: Advokat Dehlis plass','url':'https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass'},
+                  {'title':'Store norske leksikon: Ole Dehli','url':'https://snl.no/Ole_Dehli'},
+                  {'title':'Norsk biografisk leksikon: Ole Dehli','url':'https://nbl.snl.no/Ole_Dehli'},
+                  {'title':'Wikimedia Commons: Advokat Dehlis plass','url':'https://commons.wikimedia.org/wiki/Category:Advokat_Dehlis_plass,_Oslo'},
+                  {'title':'Oslo byleksikon: Bjølsenparken','url':'https://oslobyleksikon.no/side/Bj%C3%B8lsenparken'}
+              ]
+          }]
+          dump(story_path, story)
+
+          story_manifest_path='data/stories/stories_manifest_natur_batch_01.json'
+          story_manifest=load(story_manifest_path)
+          story_manifest['files']=[x for x in story_manifest.get('files',[]) if x.get('entity_id')!='bjoelsenparken_elvenaer']
+          story_manifest['files'].append({'category':'natur','entity_id':'bjoelsenparken_elvenaer','path':story_path})
+          dump(story_manifest_path, story_manifest)
+
+          article_path='data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json'
+          articles=load(article_path)
+          article={
+              'place_id':'bjoelsenparken_elvenaer','visual':{'designCode':'article_urban_green_memory_miniature'},'version':2,
+              'popupDesc':'Advokat Dehlis plass er et lite grønt byrom ved Maridalsveien og Bentsebrugata, med monument, plen og trær. Punktet ble tidligere feilaktig presentert som en del av Bjølsenparken.',
+              'wikiText':[
+                  'Advokat Dehlis plass ligger på Bjølsen ved krysset Maridalsveien og Bentsebrugata. Plassen fikk navn i 1934 etter juristen og organisasjonsmannen Ole Dehli. Koordinat- og kildekontrollen viser at History Go-punktet tilhører dette plassrommet, ikke den egentlige Bjølsenparken lenger nordvest.',
+                  'Ole Dehli tok initiativ til Kristiania Kooperative Selskab i 1894 og var en sentral grunnlegger av Norges Kooperative Landsforening i 1906. Monumentet over ham ble reist på plassen i 1946 og er utført av Asbjørg Borgfelt. Fire relieffer viser en bonde, en arbeider, en fisker og en kvinne med barn og kurv.',
+                  'Grøntarealet rundt monumentet består av plen, trær og vegeterte kanter omgitt av trafikkflater, skole og tett boligbebyggelse. Naturfunksjonen er derfor typisk urban: skygge, mykere overflate, noe tilbakeholdelse av regnvann og et lite oppholdspunkt mellom større grøntområder.',
+                  'Stedet ligger i nærheten av Akerselva-korridoren, men er ikke en elvebredde. Denne forskjellen er viktig for stedslæringen. Artsinnhold vises fra repoets Artskart-baserte naturkart, mens stedsteksten beskriver de observerbare strukturene uten å legge inn gjettede arter.'
+              ],
+              'summary':{'one_liner':'Lite grønt minnested ved et bykryss, oppkalt etter samvirkepioneren Ole Dehli.','themes':['urbannatur','offentlig plass','samvirkehistorie','monument','overvann','stedsidentitet'],'tone':['nøktern','faglig','stedsspesifikk']},
+              'facts':[
+                  {'id':'fact_01','label':'Korrekt sted','desc':'Koordinatet ligger ved Advokat Dehlis plass, ikke i den egentlige Bjølsenparken.','confidence':'high','sources':['https://oslobyleksikon.no/side/Advokat_Dehlis_plass','https://commons.wikimedia.org/wiki/Category:Advokat_Dehlis_plass,_Oslo','https://oslobyleksikon.no/side/Bj%C3%B8lsenparken']},
+                  {'id':'fact_02','label':'Navnevedtak','desc':'Plassen ble oppkalt etter Ole Dehli i 1934.','confidence':'high','sources':['https://oslobyleksikon.no/side/Advokat_Dehlis_plass','https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass']},
+                  {'id':'fact_03','label':'Monument','desc':'Monumentet av Asbjørg Borgfelt ble reist i 1946.','confidence':'high','sources':['https://oslobyleksikon.no/side/Advokat_Dehlis_plass','https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass']},
+                  {'id':'fact_04','label':'Fire relieffer','desc':'Relieffene viser en bonde, en arbeider, en fisker og en kvinne med barn og kurv.','confidence':'high','sources':['https://oslobyleksikon.no/side/Advokat_Dehlis_plass']},
+                  {'id':'fact_05','label':'Samvirkepioner','desc':'Ole Dehli stiftet Kristiania Kooperative Selskab og var sentral i grunnleggelsen av Norges Kooperative Landsforening.','confidence':'high','sources':['https://snl.no/Ole_Dehli','https://nbl.snl.no/Ole_Dehli']},
+                  {'id':'fact_06','label':'Dokumentert artskobling','desc':'Repoets Artskart-baserte naturkart har en aktiv florakobling for stedet; artsdata beholdes separat fra stedfilen.','confidence':'high','sources':['data/natur/nature_oslo_expansion_place_map.json']}
+              ],
+              'chronology':[
+                  {'id':'chrono_01','year':1894,'period':'Samvirkehistorie','desc':'Ole Dehli tar initiativ til Kristiania Kooperative Selskab.','confidence':'high','sources':['https://snl.no/Ole_Dehli','https://nbl.snl.no/Ole_Dehli']},
+                  {'id':'chrono_02','year':1906,'period':'Samvirkehistorie','desc':'Norges Kooperative Landsforening blir stiftet med Dehli som sentral grunnlegger og formann.','confidence':'high','sources':['https://snl.no/Ole_Dehli','https://nbl.snl.no/Ole_Dehli']},
+                  {'id':'chrono_03','year':1934,'period':'Byrom og navngivning','desc':'Plassen får navnet Advokat Dehlis plass.','confidence':'high','sources':['https://oslobyleksikon.no/side/Advokat_Dehlis_plass']},
+                  {'id':'chrono_04','year':1946,'period':'Monumenthistorie','desc':'Asbjørg Borgfelts monument over Ole Dehli blir reist.','confidence':'high','sources':['https://oslobyleksikon.no/side/Advokat_Dehlis_plass','https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass']}
+              ],
+              'sources':[
+                  {'title':'Oslo byleksikon: Advokat Dehlis plass','url':'https://oslobyleksikon.no/side/Advokat_Dehlis_plass'},
+                  {'title':'Lokalhistoriewiki: Advokat Dehlis plass','url':'https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass'},
+                  {'title':'Wikimedia Commons: Advokat Dehlis plass','url':'https://commons.wikimedia.org/wiki/Category:Advokat_Dehlis_plass,_Oslo'},
+                  {'title':'Store norske leksikon: Ole Dehli','url':'https://snl.no/Ole_Dehli'},
+                  {'title':'Norsk biografisk leksikon: Ole Dehli','url':'https://nbl.snl.no/Ole_Dehli'},
+                  {'title':'Oslo byleksikon: Bentsebrugata','url':'https://oslobyleksikon.no/side/Bentsebrugata'},
+                  {'title':'Oslo byleksikon: Bjølsenparken','url':'https://oslobyleksikon.no/side/Bj%C3%B8lsenparken'}
+              ]
+          }
+          replaced=False
+          for i,row in enumerate(articles):
+              if row.get('place_id')=='bjoelsenparken_elvenaer':
+                  articles[i]=article; replaced=True; break
+          if not replaced: articles.append(article)
+          dump(article_path, articles)
+
+          index_path='data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json'
+          index=load(index_path)
+          row=next(x for x in index if x.get('id')=='bjoelsenparken_elvenaer')
+          row.update({'name':place['name'],'lat':place['lat'],'lon':place['lon'],'r':place['r'],'year':place['year'],'coordStatus':place['coordStatus'],'coordType':place['coordType']})
+          dump(index_path,index)
+
+          manifest_path='data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json'
+          manifest=load(manifest_path)
+          mrow=next(x for x in manifest['places'] if x.get('id')=='bjoelsenparken_elvenaer')
+          mrow['name']=place['name']
+          mrow['sha256']=hashlib.sha256(Path(place_path).read_bytes()).hexdigest()
+          manifest['generated_at']='2026-07-19T21:00:00+02:00'
+          dump(manifest_path,manifest)
+
+          report='''# Advokat Dehlis plass – natur-rundinger batch 1
+
+Dato: 2026-07-19
+
+## Identitets- og koordinatkontroll
+
+Det tekniske stedet `bjoelsenparken_elvenaer` var feilaktig kalt **Bjølsenparken (elvenær del)**. Punktet lå ved Advokat Dehlis plass og var samtidig ført som en gjenværende faktisk feil i koordinatprotokollen.
+
+Visningsstedet er rettet til **Advokat Dehlis plass – grøntarealet**. Områdeankeret bruker OSM way `336602343` med geometrisk sentrum `59.93914, 10.75891`. Teknisk ID er beholdt for kompatibilitet. Radiusen er beholdt på 160 meter. Canonical år er rettet fra et omtrentelig 1930 til det dokumenterte navnevedtaket i 1934.
+
+## Fylte natur-rundinger
+
+- Oppgaver: stedsidentitet, grønt/hardt dekke, skygge og overvann
+- Natur: urbant grøntareal, kantvirkning, trær, overvann og dokumentert artskartkobling
+- Merker: seks kanoniske natur-underbadges
+- Trening: trygg kortøkt på fortau og grøntareal
+- Civication: snittmodell, monumentplate og overvannskart
+- Aktører: kommunal forvaltning, skole, samvirkehistorie og monumentkunst
+- Før / nå: fra navnløst veikryss til grønt minnested
+- Fortellinger: `Fire bilder i et lite grønt rom`
+- Leksikon: full kildebelagt artikkel med identitetsrettelsen
+
+Ingen manuell `rounds`- eller `rundinger`-override er lagt inn. Ingen direkte flora- eller faunalister er lagt i stedfilen. Den eksisterende Artskart-baserte koblingen beholdes i naturkartet.
+
+## Dokumenterte hovedpunkter
+
+- Plassen ligger ved krysset Maridalsveien/Bentsebrugata
+- navnet ble vedtatt i 1934
+- monumentet av Asbjørg Borgfelt ble reist i 1946
+- monumentets fire relieffer viser bonde, arbeider, fisker og kvinne med barn og kurv
+- den egentlige Bjølsenparken ligger lenger nordvest og er et separat parkanlegg
+
+## Kilder
+
+Oslo byleksikon, Lokalhistoriewiki, Store norske leksikon, Norsk biografisk leksikon, Wikimedia/OpenStreetMap og repoets Artskart-baserte naturkart.
+'''
+          Path('reports/advokat-dehlis-plass-nature-rounds-batch1.md').write_text(report,encoding='utf-8')
+
+          test=r'''const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const repo = path.resolve(__dirname, '..');
+const readJson = p => JSON.parse(fs.readFileSync(path.join(repo, p), 'utf8'));
+const expectedRounds = ['tasks','nature','badges','training','civication','brands','før_nå','fortellinger','leksikon'];
+const runtime = fs.readFileSync(path.join(repo,'js/ui/place-card.js'),'utf8');
+const match = runtime.match(/natur:\s*\[([^\]]+)\]/);
+assert(match);
+assert.deepStrictEqual(JSON.parse(`[${match[1]}]`), expectedRounds);
+const placePath='data/places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenparken_elvenaer.json';
+const place=readJson(placePath);
+const quiz=readJson('data/quiz/natur/bjoelsenparken_elvenaer_sets.json');
+const storyPath='data/stories/stories_bjoelsenparken_elvenaer.json';
+const story=readJson(storyPath)[0];
+const articlePath='data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json';
+const article=readJson(articlePath).find(x=>x.place_id===place.id);
+const storyManifest=readJson('data/stories/stories_manifest_natur_batch_01.json');
+const validBadges=new Set(readJson('data/badges/natur.json').sub);
+const index=readJson('data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json').find(x=>x.id===place.id);
+const manifest=readJson('data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json').places.find(x=>x.id===place.id);
+const natureMap=readJson('data/natur/nature_oslo_expansion_place_map.json').places[place.id];
+assert.strictEqual(place.id,'bjoelsenparken_elvenaer');
+assert.strictEqual(place.name,'Advokat Dehlis plass – grøntarealet');
+assert.deepStrictEqual([place.lat,place.lon,place.r,place.year],[59.93914,10.75891,160,1934]);
+assert.strictEqual(place.coordStatus,'verified_geometry');
+assert.strictEqual(place.sourceObjectId,'osm:way:336602343');
+assert.strictEqual(place.locatorType,'square');
+for(const key of ['rounds','rundinger','routes','works','people','play_profile','flora','fauna']) assert(!Object.prototype.hasOwnProperty.call(place,key),`forbudt felt ${key}`);
+assert.strictEqual(index.name,place.name); assert.deepStrictEqual([index.lat,index.lon,index.year],[place.lat,place.lon,place.year]);
+assert.strictEqual(manifest.name,place.name);
+assert(storyManifest.files.some(x=>x.path===storyPath && x.entity_id===place.id));
+assert(story && story.place_id===place.id && story.person_id===null && story.sources.length>=6);
+assert(article && article.sources.length>=7 && article.facts.length>=6 && article.chronology.length>=4);
+assert(natureMap && natureMap.flora.includes('emne_flora_parkslirekne'));
+assert(place.externalLinks.length>=7 && place.externalLinks.every(x=>/^https:\/\//.test(x.url)));
+assert(place.underbadge_ids.length>=6 && place.underbadge_ids.every(x=>validBadges.has(x)));
+assert(place.tasks_profile.tasks.length>=4);
+assert(place.training_profile.exercises.length>=3 && /oppmerket kryss/i.test(place.training_profile.safety));
+assert(place.civication_store.length>=3 && place.civication_store.every(x=>x.physicalObject && x.placeSpecific));
+assert(place.brands.length>=7);
+assert(place.for_na.before && place.for_na.now && place.for_na.look_for.length>=5);
+assert(place.nature_profile.summary.length>=450 && place.nature_profile.themes.length>=7);
+assert.deepStrictEqual(place.nature_profile.nearby_place_ids,['bjoelsenfossen','glads_molle','myralokka']);
+assert.strictEqual(quiz.sets.length,3); assert(quiz.sets.every(s=>s.questions.length===7));
+const all=JSON.stringify({place,quiz,story,article});
+for(const token of ['Advokat Dehlis plass','1934','1946','Ole Dehli','Asbjørg Borgfelt']) assert(all.includes(token),`mangler ${token}`);
+assert(/ikke.*Bjølsenparken|Bjølsenparken.*separat/i.test(all));
+assert(!/parkdrag langs Akerselva|kantsonene mot elva|elvenære delen av Bjølsenparken/i.test(all));
+console.log('Advokat Dehlis plass nature rounds batch 1 OK');
+'''
+          Path('tests/advokat-dehlis-plass-nature-rounds-batch1.test.js').write_text(test,encoding='utf-8')
+          PY
+
+      - name: Validate targeted content
+        run: |
+          node tests/advokat-dehlis-plass-nature-rounds-batch1.test.js
+          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
+          node tests/place-card-rounds-runtime-audit.test.js
+          node tests/place-card-leksikon-content-audit.test.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          files=[
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenparken_elvenaer.json',
+            'data/quiz/natur/bjoelsenparken_elvenaer_sets.json',
+            'data/stories/stories_bjoelsenparken_elvenaer.json',
+            'data/stories/stories_manifest_natur_batch_01.json',
+            'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json'
+          ]
+          for f in files: json.loads(Path(f).read_text(encoding='utf-8'))
+          print('JSON OK')
+          PY
+          git diff --check
+
+      - name: Commit content and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/fill-advokat-dehlis-plass-nature-rounds-batch1.yml
+          git add -A
+          git commit -m "Fill Advokat Dehlis plass nature rounds batch 1"
+          git push origin HEAD:${{ github.head_ref }}
