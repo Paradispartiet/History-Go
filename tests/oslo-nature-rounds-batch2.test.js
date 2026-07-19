@@ -9,7 +9,6 @@ const targets = [
   ['olaf_ryes_plass', 'data/places/by/oslo/places/olaf_ryes_plass.json'],
   ['nydalen', 'data/places/by/oslo/places/nydalen.json'],
   ['abelhaugen', 'data/places/vitenskap/oslo/places_vitenskap/abelhaugen.json'],
-  ['inger_hagerups_plass', 'data/places/litteratur/oslo/places_litteratur/inger_hagerups_plass.json'],
   ['holmenkollen_nasjonalanlegg', 'data/places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json']
 ];
 
@@ -59,5 +58,12 @@ for (const [placeId, file] of targets) {
   assert(mapEntry, `${placeId} mangler artskartoppføring`);
   assert(mapEntry.flora.length + mapEntry.fauna.length > 0, `${placeId} mangler kartlagte arter`);
 }
+
+const inger = readJson('data/places/litteratur/oslo/places_litteratur/inger_hagerups_plass.json');
+assert(!inger.nature_profile, 'Inger Hagerups plass skal ikke ha nature_profile');
+assert(Array.isArray(inger.rounds) && inger.rounds.length === 9, 'Inger Hagerups plass skal ha nøyaktig ni kuraterte rundinger');
+assert(!inger.rounds.includes('nature'), 'Inger Hagerups plass skal ikke ha Natur-runding');
+assert(inger.rounds.includes('tasks'), 'Inger Hagerups plass skal bruke Oppgaver i stedet for Natur');
+assert(Array.isArray(inger.tasks_profile?.tasks) && inger.tasks_profile.tasks.length >= 3, 'Inger Hagerups plass skal ha konkrete stedsoppgaver');
 
 console.log('Oslo Nature round batch 2 OK');
