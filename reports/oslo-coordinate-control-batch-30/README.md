@@ -10,3 +10,4 @@ Method: Kartverket SSR first; only exact physical objects or geometry with docum
 Diagnostics completed. Exact-object identity is confirmed: Oskar Braaten resolves to an OSM artwork node tagged as a bust, while the Alexander Kiellands plass park polygon is linked to the corresponding Wikidata and Norwegian Wikipedia identity. Final integration now runs the full coordinate/data validation suite.
 
 Integration trigger recorded after all diagnostic workflows completed.
+Final integration retriggered after the workflow file was present on the branch.
