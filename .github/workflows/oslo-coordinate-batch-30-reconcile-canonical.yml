@@ -32,9 +32,9 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m pip install --quiet pyyaml
-          git fetch origin main:refs/remotes/origin/main
-          git fetch origin agent/oslo-coordinate-control-batch-30:refs/remotes/origin/agent/oslo-coordinate-control-batch-30
-          git fetch origin 88a92e46ef79b9b46875a0befa0da6cd7927f2e4
+          git fetch --depth=200 origin main:refs/remotes/origin/main
+          git fetch --depth=200 origin agent/oslo-coordinate-control-batch-30:refs/remotes/origin/agent/oslo-coordinate-control-batch-30
+          git cat-file -e 88a92e46ef79b9b46875a0befa0da6cd7927f2e4^{commit}
           cat > /tmp/run_clean_step.py <<'PY'
           import subprocess
           import sys
