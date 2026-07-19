@@ -1,0 +1,96 @@
+name: Oslo coordinate batch 25 finalize
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-coordinate-batch-25-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch-25-v2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Update protocol and batch report
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const protocolPath = 'docs/coordinates/coordinate-control-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+
+          protocol = protocol.replace(
+            /Oslo-tabellen inneholder nå 135 verifiserte eller kildekontrollerte canonical steder\.[^\n]*/,
+            'Oslo-tabellen inneholder fortsatt 135 verifiserte eller kildekontrollerte canonical steder. Batch 25 avslutter sju nye kontroller som `needs_review` uten koordinatendringer: `jernbanetorget_trafikknutepunkt`, `oslo_kraftselskap`, `grensen_kjopesenter`, `vippetangen_fisketorg`, `frysja_industriomrade`, `norges_varemesse` og `bryn_industriomrade`. Konfliktene gjelder fysisk duplikat, institusjon uten ett sted, feilmodellert lineær gate, historisk identitet/tidslinje og brede områder uten kildebelagt geometri. 27 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.'
+          );
+
+          const anchor = '| `oslo_kornmagasin` – Christiania kornmagasin | needs_review | Aktiv 1785-record matcher ikke sikkert det dokumenterte Kornmagasinet på Akershus, inventar 0008 fra 1788, selv om et eksakt navngitt bygningsobjekt finnes. | Avklar historisk identitet og korriger/erstatt recorden før et Akershus-anker eventuelt brukes. |';
+          const rows = [
+            '| `jernbanetorget_trafikknutepunkt` – Jernbanetorget – handelsknutepunktet | needs_review | Fysisk duplikat av allerede canonical og koordinatkontrollerte `jernbanetorget`; næringslivsvinkelen skaper ikke et nytt fysisk sted. | Migrer innhold/referanser til `jernbanetorget`, eller dokumenter en faktisk separat delentitet. |',
+            '| `oslo_kraftselskap` – Oslo Lysverker | needs_review | Recorden beskriver en institusjon og et distribusjonssystem med flere historiske anlegg; Sommerrogata 1 er et senere hovedkontor, ikke en entydig representasjon av hele 1892-recorden. | Definer ett konkret bygg/anlegg som place eller flytt institusjonshistorien ut av place-modellen. |',
+            '| `grensen_kjopesenter` – Grensen – handelens sentrum | needs_review | ID/type antyder kjøpesenter/knutepunkt, mens navn, tekst og kilder beskriver den lineære gaten Grensen. Ett punkt uten traségeometri/ankre kan ikke verifisere hele gata. | Normaliser til gate og legg inn kildebelagte endepunkter/traségeometri før koordinaten godkjennes. |',
+            '| `vippetangen_fisketorg` – Vippetangen fisketorg | needs_review | Aktiv record oppgir 1890, men fisketorget/fiskehavna ble flyttet til Vippetangen i 1905 og recorden blander marked, havn og senere Fiskehallen. | Rett tidslinje og velg eksplisitt mellom historisk fiskehavn/område og konkret Fiskehallen-bygg. |',
+            '| `frysja_industriomrade` – Frysja industriområde | needs_review | Området er reelt, men dagens legacy `verified`-punkt bygger på `manual_map_check` og mangler kildebelagt områdegeometri eller flere area-ankre. | Hent offisiell plan-/områdegeometri eller dokumenterte area-ankre før verified-status kan forsvares. |',
+            '| `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |',
+            '| `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |'
+          ];
+          if (!protocol.includes(rows[0])) {
+            if (!protocol.includes(anchor)) throw new Error('Fant ikke batch 24 needs_review-anker');
+            protocol = protocol.replace(anchor, `${anchor}\n${rows.join('\n')}`);
+          }
+
+          protocol = protocol.replace(
+            '- Neste nye Oslo-kontroll er nummer 154 og starter batch 25.',
+            '- Neste nye Oslo-kontroll er nummer 161 og starter batch 26.'
+          );
+          protocol = protocol.replace(
+            '- Batch 24 er fullført med fire godkjente ankere og tre nye dokumenterte `needs_review`-utfall.',
+            '- Batch 25 er fullført med null nye godkjente ankere og sju nye dokumenterte `needs_review`-utfall.'
+          );
+          protocol = protocol.replace(
+            '- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `akershus_slott_bakeriet`; `jernbanetorget_trafikknutepunkt` er neste kandidat.',
+            '- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `bryn_industriomrade`; `gronlikaia` er neste kandidat.'
+          );
+          fs.writeFileSync(protocolPath, protocol);
+
+          const out = 'reports/oslo-coordinate-control-batch-25';
+          fs.mkdirSync(out, { recursive: true });
+          fs.writeFileSync(path.join(out, 'README.md'), `# Oslo koordinatkontroll – batch 25\n\nDato: 2026-07-19\n\nKontroll 154–160 er fullført. Ingen av de sju aktive recordene kan få et nytt verified coordinate contract uten først å løse identitet, objekttype eller områdegeometri. Ingen place-koordinater er derfor endret.\n\n| placeId | resultat | hovedkonflikt |\n|---|---|---|\n| \`jernbanetorget_trafikknutepunkt\` | needs_review | fysisk duplikat av canonical \`jernbanetorget\` |\n| \`oslo_kraftselskap\` | needs_review | institusjon/system uten ett entydig fysisk place-scope |\n| \`grensen_kjopesenter\` | needs_review | gate feilmodellert som kjøpesenter/knutepunkt; mangler lineær geometri |\n| \`vippetangen_fisketorg\` | needs_review | feil tidslinje og sammenblanding av fiskehavn, marked og Fiskehallen |\n| \`frysja_industriomrade\` | needs_review | bredt område uten kildebelagt geometri/area-ankre |\n| \`norges_varemesse\` | needs_review | institusjon blandet med revet historisk Sjølyst-venue |\n| \`bryn_industriomrade\` | needs_review | bredt, uavgrenset industriområde uten geometri/area-ankre |\n\n## Kilder og metode\n\n- Canonical overlap-audit mot eksisterende \`jernbanetorget\`.\n- Oslo byleksikon: Oslo Lysverker, Grensen, Fiskehallen/Vippetangen, Norges Varemesse og Bryn.\n- Oslo kommune: Frysja-området som transformasjonsområde.\n- Ingen nærmeste-punkt-, midpoint- eller adressegjetting er brukt.\n`);
+          NODE
+
+      - name: Validate source and runtime parity
+        run: |
+          set -o pipefail
+          npm run places:index:check | tee reports/oslo-coordinate-control-batch-25/places-index-check.txt
+
+      - name: Validate coordinate evidence
+        run: |
+          set -o pipefail
+          npm run places:coords:evidence:audit | tee reports/oslo-coordinate-control-batch-25/evidence-audit.txt
+
+      - name: Validate diff whitespace
+        run: git diff --check
+
+      - name: Remove temporary workflow and commit result
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-coordinate-batch-25-finalize.yml
+          git add -A
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Complete Oslo coordinate control batch 25'
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
