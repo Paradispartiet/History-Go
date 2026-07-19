@@ -1,0 +1,78 @@
+name: Oslo Geonorge address batch 7
+
+on:
+  push:
+    branches:
+      - agent/oslo-geonorge-address-batch-7
+
+permissions:
+  contents: write
+
+jobs:
+  resolve-addresses:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Find target files and resolve official addresses
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/geonorge-address-batch-7
+
+          {
+            echo '=== torggata_blad ==='
+            grep -R -l --include='*.json' '"id"[[:space:]]*:[[:space:]]*"torggata_blad"' data/places || true
+            echo '=== torggata ==='
+            grep -R -l --include='*.json' '"id"[[:space:]]*:[[:space:]]*"torggata"' data/places || true
+            echo '=== storgata ==='
+            grep -R -l --include='*.json' '"id"[[:space:]]*:[[:space:]]*"storgata"' data/places || true
+          } | tee reports/geonorge-address-batch-7/target-files.txt
+
+          npm run places:coords:find:address -- --address "Hausmanns gate 19 Oslo" \
+            | tee reports/geonorge-address-batch-7/torggata_blad.json
+
+          npm run places:coords:find:address -- --address "Torggata 16 Oslo" \
+            | tee reports/geonorge-address-batch-7/torggata.json
+
+          npm run places:coords:find:address -- --address "Storgata 25 Oslo" \
+            | tee reports/geonorge-address-batch-7/storgata.json
+
+      - name: Require three verified candidates
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const files = [
+            'reports/geonorge-address-batch-7/torggata_blad.json',
+            'reports/geonorge-address-batch-7/torggata.json',
+            'reports/geonorge-address-batch-7/storgata.json',
+          ];
+          for (const file of files) {
+            const text = fs.readFileSync(file, 'utf8');
+            const start = text.indexOf('{');
+            if (start < 0) throw new Error(`No JSON output in ${file}`);
+            const data = JSON.parse(text.slice(start));
+            if (!data.ok || data.status !== 'verified_candidate') {
+              throw new Error(`${file}: expected verified_candidate, got ${data.status}`);
+            }
+          }
+          console.log('All three addresses resolved as verified_candidate.');
+          NODE
+
+      - name: Save address evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/geonorge-address-batch-7
+          git commit -m "Add Geonorge address batch 7 results" || exit 0
+          git push
