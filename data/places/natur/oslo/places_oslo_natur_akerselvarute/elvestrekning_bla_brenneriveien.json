@@ -51,40 +51,10 @@
     ],
     "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
   },
-  "coordType": "route_midpoint",
-  "coordStatus": "verified",
-  "coordSource": "manual_map_check",
-  "coordPrecisionM": 60,
-  "coordVerifiedAt": "2026-05-01",
-  "anchors": [
-    {
-      "id": "bla_ovre",
-      "name": "Blå-strekningen – øvre del",
-      "lat": 59.9236,
-      "lon": 10.7415,
-      "r": 90,
-      "type": "route_point",
-      "note": "Øvre del av elvekanten ved Brenneriveien."
-    },
-    {
-      "id": "bla_scene",
-      "name": "Blå-strekningen – ved Blå",
-      "lat": 59.923,
-      "lon": 10.7407,
-      "r": 90,
-      "type": "unlock_anchor",
-      "note": "Kjernepunkt ved kulturarenaen Blå og synlig elveløp."
-    },
-    {
-      "id": "bla_nedre",
-      "name": "Blå-strekningen – nedre del",
-      "lat": 59.9223,
-      "lon": 10.7398,
-      "r": 90,
-      "type": "route_point",
-      "note": "Nedre overgang mot Fossveien-partiet."
-    }
-  ],
+  "coordType": "legacy_unverified",
+  "coordStatus": "needs_source",
+  "coordSource": "named_river_segment_unresolved",
+  "coordVerifiedAt": "2026-07-19",
   "primary_category": "natur",
   "secondary_category": "by",
   "hybrid": true,
@@ -110,5 +80,11 @@
       "fossveien_elvestrekning",
       "myralokka"
     ]
-  }
+  },
+  "locatorType": "route",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "akerselva-segment:bla-brenneriveien:unresolved",
+  "geocodeAccuracy": "unknown",
+  "coordRole": "line_anchor",
+  "coordNote": "Recorden beskriver en lokalt definert Akerselva-strekning ved Blå/Brenneriveien, men kontrollen fant ikke ett entydig navngitt kildeobjekt som avgrenser akkurat denne strekningen. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
 }
