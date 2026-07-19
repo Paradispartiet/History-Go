@@ -20,7 +20,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p reports/oslo-coordinate-batch-32-address-diagnostic
-          node --experimental-strip-types tools/find-place-coordinate-by-address.mts \
+          node --experimental-strip-types tools/address-first-coordinate-finder.mts \
             --address "Gjerdrums vei 12 Oslo" \
             | tee reports/oslo-coordinate-batch-32-address-diagnostic/gjerdrums-vei-12.json
       - uses: actions/upload-artifact@v4
