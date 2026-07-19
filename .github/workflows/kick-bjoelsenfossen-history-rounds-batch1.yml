@@ -1,0 +1,12 @@
+name: Kick Bjølsenfossen history rounds batch 1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  kick:
+    if: github.head_ref == 'agent/fill-bjoelsenfossen-history-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Trigger production workflow"
