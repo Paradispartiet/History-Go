@@ -48,7 +48,7 @@ New historical Wonderkammer layer:
 
 The layer represents Sadelmakerhullet and the trade in food, tobacco, coffee, spices, porcelain and other imported goods. It complements rather than duplicates the `Under bakken` archaeological layer about the buried wharves and boat wreck.
 
-### 6. Waisenhuset → `waisenhuset`
+### 6. Waisenhuset → `waisenhuset_kongens_gate`
 
 New historical Wonderkammer layer:
 
@@ -68,7 +68,7 @@ Creating a second near-identical chamber would duplicate the same visible house 
 
 ## Result
 
-The seven route stops are represented by five new Wonderkammer layers plus one reused archaeological chamber. The canonical places themselves were already complete before this batch.
+The seven route stops are represented by six new Wonderkammer layers plus one reused archaeological chamber. The canonical places themselves were already complete before this batch.
 
 ## Primary sources
 
