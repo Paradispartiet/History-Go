@@ -7,47 +7,47 @@ on:
       - '.github/workflows/kuba-parken-nature-rounds-finalize.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   diagnose:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 1
-          show-progress: false
-
-      - name: Rebuild Kuba working state
-        shell: bash
-        run: |
-          set -euo pipefail
-          node tools/finalize-kuba-parken-rounds.mjs
-          node scripts/split-nature-oslo-akerselva-route.mjs
-
-      - name: Run tests with explicit markers
+      - name: Clone, rebuild and run marked tests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
         shell: bash
         run: |
           set +e
-          failed=0
+          git clone --quiet --depth=1 --branch "$BRANCH" \
+            "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" work
+          cd work || exit 1
+
+          echo '=== REBUILD ==='
+          node tools/finalize-kuba-parken-rounds.mjs
+          rebuild_status=$?
+          node scripts/split-nature-oslo-akerselva-route.mjs
+          split_status=$?
+          echo "REBUILD_STATUS=$rebuild_status SPLIT_STATUS=$split_status"
+
           echo '=== TARGETED KUBA TEST ==='
           node tests/kuba-parken-nature-rounds-batch1.test.js
-          status=$?
-          echo "TARGETED_STATUS=$status"
-          if [ "$status" -ne 0 ]; then failed=1; fi
+          targeted_status=$?
+          echo "TARGETED_STATUS=$targeted_status"
 
           echo '=== PLACECARD ROUND RUNTIME ==='
           node tests/place-card-rounds-runtime-audit.test.js
-          status=$?
-          echo "ROUNDS_STATUS=$status"
-          if [ "$status" -ne 0 ]; then failed=1; fi
+          rounds_status=$?
+          echo "ROUNDS_STATUS=$rounds_status"
 
           echo '=== AKERSELVA MID REGRESSION ==='
           node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
-          status=$?
-          echo "MID_STATUS=$status"
-          if [ "$status" -ne 0 ]; then failed=1; fi
+          mid_status=$?
+          echo "MID_STATUS=$mid_status"
 
-          exit "$failed"
+          if [ "$rebuild_status" -ne 0 ] || [ "$split_status" -ne 0 ] || [ "$targeted_status" -ne 0 ] || [ "$rounds_status" -ne 0 ] || [ "$mid_status" -ne 0 ]; then
+            exit 1
+          fi
