@@ -1,9 +1,9 @@
 name: Sync Oslo address anchor repair with main
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/fix-oslo-address-anchors-torggata-storgata-v2
+      - main
 
 permissions:
   contents: write
