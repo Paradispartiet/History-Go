@@ -1,0 +1,93 @@
+name: Oslo Oppdag Kvadraturen Hovedstaden batch 1 coordinates
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-oppdag-kvadraturen-hovedstaden-batch-1-coordinates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Resolve addressed candidates
+        shell: bash
+        run: |
+          set -u
+          set -o pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-1/coordinates'
+          mkdir -p "$outdir"
+          : > "$outdir/address_status.txt"
+
+          run_lookup() {
+            local slug="$1"
+            local address="$2"
+            set +e
+            npm run places:coords:find:address -- --address "$address" \
+              | tee "$outdir/${slug}.json"
+            local status=${PIPESTATUS[0]}
+            set -e
+            printf '%s\t%s\t%s\n' "$slug" "$status" "$address" \
+              | tee -a "$outdir/address_status.txt"
+          }
+
+          set -e
+          run_lookup avisen_tiden_radhusgata_10 'Rådhusgata 10 Oslo'
+          run_lookup sjofartsbygningen_radhusgata_13 'Rådhusgata 13 Oslo'
+          run_lookup sjofartsbygningen_kongens_gate_6 'Kongens gate 6 Oslo'
+          run_lookup sjofartsbygningen_kirkegata_7 'Kirkegata 7 Oslo'
+
+      - name: Resolve Sjøfartsbygningen exact map identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-1/coordinates'
+
+          curl --max-time 30 --retry 2 --fail --silent --show-error \
+            -H 'User-Agent: History-Go coordinate audit (github.com/Paradispartiet/History-Go)' \
+            --get 'https://nominatim.openstreetmap.org/search' \
+            --data-urlencode 'format=jsonv2' \
+            --data-urlencode 'q=Sjøfartsbygningen, Oslo, Norge' \
+            --data-urlencode 'countrycodes=no' \
+            --data-urlencode 'limit=10' \
+            --data-urlencode 'addressdetails=1' \
+            --data-urlencode 'namedetails=1' \
+            --data-urlencode 'polygon_geojson=1' \
+            --data-urlencode 'viewbox=10.70,59.94,10.78,59.88' \
+            --data-urlencode 'bounded=1' \
+            -o "$outdir/sjofartsbygningen_nominatim.json"
+
+          query='[out:json][timeout:25];nwr["name"="Sjøfartsbygningen"](59.900,10.720,59.920,10.760);out center geom tags;'
+          if ! curl --max-time 35 --retry 1 --fail --silent --show-error --get \
+            'https://overpass-api.de/api/interpreter' \
+            --data-urlencode "data=${query}" \
+            -o "$outdir/sjofartsbygningen_overpass.json"; then
+            curl --max-time 45 --retry 1 --fail --silent --show-error --get \
+              'https://overpass.kumi.systems/api/interpreter' \
+              --data-urlencode "data=${query}" \
+              -o "$outdir/sjofartsbygningen_overpass.json"
+          fi
+
+      - name: Persist coordinate evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/oslo-oppdag-kvadraturen-hovedstaden-batch-1/coordinates
+          git commit -m 'Save Hovedstaden Christiania batch 1 coordinate evidence'
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
