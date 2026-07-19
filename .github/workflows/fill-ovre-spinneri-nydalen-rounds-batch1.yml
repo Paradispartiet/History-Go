@@ -1,0 +1,610 @@
+name: Fill Upper Spinneri Nydalen rounds batch 1
+
+on:
+  push:
+    branches:
+      - agent/fill-ovre-spinneri-nydalen-rounds-batch1
+    paths:
+      - .github/workflows/fill-ovre-spinneri-nydalen-rounds-batch1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-ovre-spinneri-nydalen-rounds-batch1
+          fetch-depth: 0
+
+      - name: Fill documented round content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json
+          from pathlib import Path
+
+          ROOT = Path('.')
+          PLACE_ID = 'seilduksfabrikken_nydalen'
+          PLACE_PATH = ROOT / 'data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json'
+          PEOPLE_PATH = ROOT / 'data/people/natur/oslo/people_natur_oslo.json'
+          STORIES_PATH = ROOT / 'data/stories/stories_nydalsdammen.json'
+          ARTICLE_PATH = ROOT / 'data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json'
+          QUIZ_PATH = ROOT / 'data/quiz/historie/seilduksfabrikken_nydalen_sets.json'
+
+          def read_json(path):
+              return json.loads(path.read_text(encoding='utf-8'))
+
+          def write_json(path, data):
+              path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          place = read_json(PLACE_PATH)
+          assert place['id'] == PLACE_ID
+          assert [place['lat'], place['lon'], place['r'], place['year']] == [59.9469, 10.7671, 150, 1856]
+
+          place.update({
+              'name': 'Øvre spinneri (Nydalens Compagnie)',
+              'desc': 'Øvre spinneri fra 1856 ved Akerselva, oppført for Nydalens Bomuldsspinderi.',
+              'tags': ['spinneri', 'tekstilindustri', 'akerselva', 'industribygning'],
+              'popupDesc': 'Øvre spinneri ble oppført i 1856 som den store utvidelsen av Nydalens Bomuldsspinderi. Bygningen rommet 14 000 nye spindler og gjorde anlegget til et av Christianias største spinnerimiljøer. Ingeniøren Oluf Nicolai Roll planla og tegnet utvidelsen som del av fabrikkens tekniske system.\n\nAkerselva går i kulvert under spinneriet. Stedet viser derfor særlig tydelig hvordan fabrikkbygning, maskiner og vannløp ble konstruert som én produksjonsenhet. Den etablerte tekniske ID-en beholdes av kompatibilitetshensyn, men stedet er ikke Christiania Seildugsfabrik, som lå ved Øvre Foss i Fossveien.',
+              'externalLinks': [
+                  {
+                      'type': 'reference',
+                      'label': 'Store norske leksikon – Nydalens Compagnie',
+                      'url': 'https://snl.no/Nydalens_Compagnie',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'biography',
+                      'label': 'Norsk biografisk leksikon – Oluf Roll',
+                      'url': 'https://nbl.snl.no/Oluf_Roll',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'reference',
+                      'label': 'Oslo byleksikon – Nydalens Compagnie',
+                      'url': 'https://oslobyleksikon.no/side/Nydalens_Compagnie',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'reference',
+                      'label': 'Oslo byleksikon – Øvre Spinneri bru',
+                      'url': 'https://oslobyleksikon.no/side/Spinneri_bru_(Øvre)',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'museum',
+                      'label': 'Oslobilder – Væveriet og Øvre Spinderi omkring 1878',
+                      'url': 'https://oslobilder.no/OMU/OB.F04310k/image/94181',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  }
+              ],
+              'quiz_profile': {
+                  'place_type': 'historisk spinneribygning',
+                  'subtype': 'akerselva_industriarkitektur',
+                  'signature_features': [
+                      'Øvre spinneri fra 1856',
+                      'Akerselva ført i kulvert under bygningen',
+                      '14 000 spindler i utvidelsen',
+                      'Oluf Nicolai Rolls industriarkitektur'
+                  ],
+                  'primary_angles': [
+                      'industri_og_arbeid',
+                      'arkitektur_og_materialitet',
+                      'natur_vannlop',
+                      'byutvikling_transformasjon'
+                  ],
+                  'question_families': [
+                      'historisk_endring',
+                      'stedsspesifikk_funksjon',
+                      'fabrikkarkitektur',
+                      'vannkraft_og_infrastruktur'
+                  ],
+                  'avoid_angles': [
+                      'christiania_seildugsfabrik_ved_ovre_foss',
+                      'generisk_tursti',
+                      'usikre_artsdetaljer',
+                      'udokumentert_dagens_virksomhet'
+                  ],
+                  'must_include': [
+                      'at stedet er Øvre spinneri i Nydalen',
+                      'koblingen mellom Akerselva, kulvert, fabrikkbygning og maskiner'
+                  ],
+                  'contrast_targets': [
+                      'nydalen_industristed',
+                      'nydalsdammen',
+                      'vulkan_industriomrade'
+                  ],
+                  'notes': 'Skill det konkrete Øvre spinneri fra den overordnede Nydalen-markøren og fra Christiania Seildugsfabrik ved Øvre Foss.'
+              },
+              'underbadge_ids': [
+                  'attenhundretallet',
+                  'nittenhundre_1900_1945',
+                  'byhistorie',
+                  'industrihistorie'
+              ],
+              'works': [
+                  {
+                      'id': 'ovre_spinneri_nydalen_1856',
+                      'title': 'Øvre spinneri',
+                      'type': 'industribygning',
+                      'kind': 'cotton_spinning_mill',
+                      'year': 1856,
+                      'desc': 'Det nye spinneriet ble oppført som en stor utvidelse av Nydalens Bomuldsspinderi.',
+                      'why_here': 'Dette er den konkrete fabrikkbygningen som den etablerte steds-ID-en viser til.'
+                  },
+                  {
+                      'id': 'ovre_spinneri_14000_spindler_1856',
+                      'title': '14 000 nye spindler',
+                      'type': 'produksjonsutvidelse',
+                      'kind': 'spinning_capacity_expansion',
+                      'year': 1856,
+                      'desc': 'Utvidelsen fikk 14 000 spindler og løftet selskapets samlede spinnerikapasitet kraftig.',
+                      'why_here': 'Maskinparken forklarer bygningens størrelse, etasjeinndeling og industrielle funksjon.'
+                  },
+                  {
+                      'id': 'ovre_spinneri_roll_industriarkitektur_1856',
+                      'title': 'Oluf Nicolai Rolls industribygg',
+                      'type': 'arkitekturverk',
+                      'kind': 'industrial_engineering_and_architecture',
+                      'year': 1856,
+                      'desc': 'Ingeniøren Oluf Nicolai Roll deltok aktivt i planleggingen og tegnet utvidelsen av spinneriet.',
+                      'why_here': 'Bygningen viser hvordan maskinteknikk, konstruksjon og arkitektur måtte planlegges samlet.'
+                  },
+                  {
+                      'id': 'ovre_spinneri_akerselva_kulvert',
+                      'title': 'Akerselva under spinneriet',
+                      'type': 'vannkraftinfrastruktur',
+                      'kind': 'river_culvert_factory_integration',
+                      'year': 1856,
+                      'desc': 'Elva føres i kulvert under spinneriet og binder vannløpet direkte til fabrikkens fysiske struktur.',
+                      'why_here': 'Kulverten er stedets tydeligste forbindelse mellom naturgrunnlag og produksjonsanlegg.'
+                  },
+                  {
+                      'id': 'ovre_spinneri_arbeidsstokk_1856',
+                      'title': 'Et spinnerimiljø med 450 arbeidere',
+                      'type': 'arbeidsmiljø',
+                      'kind': 'industrial_workforce_expansion',
+                      'year': 1856,
+                      'desc': 'Etter utvidelsen hadde bedriften omkring 450 arbeidere i det samlede Nydalen-anlegget.',
+                      'why_here': 'Tallet viser at spinneriet var del av et stort arbeids- og hverdagsmiljø, ikke bare en maskinbygning.'
+                  },
+                  {
+                      'id': 'ovre_spinneri_nydalens_compagnie_1867',
+                      'title': 'Fra Bomuldsspinderi til Nydalens Compagnie',
+                      'type': 'selskapsutvikling',
+                      'kind': 'textile_company_reorganization',
+                      'year': 1867,
+                      'desc': 'Virksomheten ble aksjeselskap under navnet Nydalens Compagnie og utviklet en komplett produksjonskjede for bomullsvarer.',
+                      'why_here': 'Øvre spinneri ble et sentralt ledd i selskapets større system av spinning, veving, farging og bleking.'
+                  },
+                  {
+                      'id': 'ovre_spinneri_ombruk_nydalen_park_1990',
+                      'title': 'Industribygning i Nydalen Park',
+                      'type': 'ombruk',
+                      'kind': 'adaptive_reuse_industrial_building',
+                      'year': 1990,
+                      'desc': 'Da industriområdet ble åpnet som Nydalen Park, ble eldre fabrikkbygninger bevart som deler av den nye bydelen.',
+                      'why_here': 'Stedet gjør overgangen fra lukket produksjonsanlegg til ombrukt industrimiljø synlig.'
+                  }
+              ],
+              'for_na': {
+                  'title': 'Fra maskindrevet spinneri til bevart industribygg',
+                  'before': {
+                      'period': '1856–1963',
+                      'desc': 'Øvre spinneri var en del av Nydalens Compagnies tekstilproduksjon. Elva, kulverten, fabrikkrommene og spindlene dannet ett sammenhengende produksjonssystem.'
+                  },
+                  'now': {
+                      'period': '1990–2026',
+                      'desc': 'Bygningen inngår i et omformet Nydalen der eldre fabrikkstruktur er bevart mellom kontorer, boliger, offentlige passasjer og elvepromenade.'
+                  },
+                  'change': 'Produksjonen og maskinene forsvant, men bygningen og elvas løp ble stående som fysisk industriarv. Den tidligere fabrikkgrensen er blitt del av et mer åpent byrom.',
+                  'look_for': [
+                      'fabrikkbygningens lange og regelmessige volum',
+                      'forholdet mellom vindusrekker og tidligere produksjonsetasjer',
+                      'punktet der Akerselva går i kulvert under anlegget',
+                      'overgangen mellom eldre fabrikkmaterialer og nyere bybebyggelse'
+                  ],
+                  'sources': [
+                      'Store norske leksikon',
+                      'Norsk biografisk leksikon',
+                      'Oslo byleksikon',
+                      'Oslobilder'
+                  ]
+              },
+              'civication_store': [
+                  {
+                      'id': 'ovre_spinneri_spindelmodell',
+                      'title': 'Spindelmodellen fra Øvre spinneri',
+                      'type': 'maskinmodell',
+                      'kind': 'physical_object',
+                      'desc': 'En fysisk miniatyr av en tekstilspindel med garnspole, laget for å vise hvordan mange like enheter arbeidet parallelt i spinneriet.',
+                      'placeSpecificReason': 'Objektet viser til de 14 000 spindlene som ble installert ved utvidelsen i 1856.',
+                      'historicalFunction': 'Gjør skalaen og repetisjonen i mekanisert spinning konkret.',
+                      'physicalObject': True,
+                      'placeSpecific': True,
+                      'storePrice': 35,
+                      'currency': 'PC',
+                      'collection': 'ovre_spinneri_nydalen',
+                      'collectable': True
+                  },
+                  {
+                      'id': 'ovre_spinneri_kulvertmodell',
+                      'title': 'Snittmodell: elva under fabrikken',
+                      'type': 'bygningssnitt',
+                      'kind': 'physical_object',
+                      'desc': 'En fysisk snittmodell som viser fabrikkgulv, bærende konstruksjon og Akerselvas kulvert under spinneriet.',
+                      'placeSpecificReason': 'Modellen bygger på den uvanlig tydelige fysiske forbindelsen mellom Øvre spinneri og elveløpet.',
+                      'historicalFunction': 'Viser hvordan vannkraftlandskap og industribygning ble planlagt som ett system.',
+                      'physicalObject': True,
+                      'placeSpecific': True,
+                      'storePrice': 45,
+                      'currency': 'PC',
+                      'collection': 'ovre_spinneri_nydalen',
+                      'collectable': True
+                  }
+              ],
+              'brands': [
+                  {
+                      'id': 'nydalens_bomuldsspinderi',
+                      'name': 'Nydalens Bomuldsspinderi',
+                      'brand_kind': 'historic_textile_company',
+                      'brand_type': 'builder_and_original_operator'
+                  },
+                  {
+                      'id': 'nydalens_compagnie',
+                      'name': 'Nydalens Compagnie',
+                      'brand_kind': 'historic_textile_company',
+                      'brand_type': 'successor_and_long_term_operator'
+                  },
+                  {
+                      'id': 'akerselvens_brugseierforening',
+                      'name': 'Akerselvens Brugseierforening',
+                      'brand_kind': 'historic_water_governance_association',
+                      'brand_type': 'river_regulation_context'
+                  },
+                  {
+                      'id': 'nydalen_park',
+                      'name': 'Nydalen Park',
+                      'brand_kind': 'industrial_reuse_district',
+                      'brand_type': 'transformation_context'
+                  },
+                  {
+                      'id': 'avantor_nydalen',
+                      'name': 'Avantor',
+                      'brand_kind': 'property_development_company',
+                      'brand_type': 'transformation_actor'
+                  }
+              ],
+              'nature_profile': {
+                  'type': 'industrialisert elveløp / kulvert / stryklandskap',
+                  'title': 'Akerselva ført under spinneriet',
+                  'summary': 'Natur-rundingen viser et av Akerselvas mest direkte møter mellom elv og fabrikkbygning. Ved Øvre spinneri føres vannet i kulvert under anlegget, og elvas fall, stryk og regulerte løp blir del av selve bygningsstrukturen. Stedet skal derfor leses som et industrinaturpunkt: vannet er fortsatt et levende vassdrag, men strømretning, bredder og tilgjengelighet er formet av tekniske inngrep. Rundingen handler om vannkraft, kulvert, topografi, fuktig elverom og dagens blågrønne forbindelse, uten å konstruere artslister som ikke er dokumentert for akkurat dette punktet.',
+                  'themes': [
+                      'Akerselva i kulvert under fabrikkbygningen',
+                      'fall og stryk som historisk energigrunnlag',
+                      'teknisk formet elveløp',
+                      'fuktig og skyggepreget elverom mellom bygninger',
+                      'overgangen fra privat produksjonsrom til offentlig elvedrag',
+                      'sammenhengen mellom vannføring, topografi og fabrikkplassering'
+                  ],
+                  'nearby_place_ids': [
+                      'nydalen_industristed',
+                      'nydalsdammen',
+                      'stilla_nydalen'
+                  ]
+              },
+              'primary_category': 'historie',
+              'secondary_category': 'natur',
+              'hybrid': True
+          })
+          for forbidden in ('rounds', 'rundinger', 'routes', 'tasks', 'play', 'training', 'flora', 'fauna'):
+              place.pop(forbidden, None)
+          write_json(PLACE_PATH, place)
+
+          people = read_json(PEOPLE_PATH)
+          adam = next(row for row in people if row.get('id') == 'adam_severin_hiorth_nydalen')
+          if PLACE_ID not in adam.setdefault('places', []):
+              adam['places'].append(PLACE_ID)
+
+          roll_id = 'oluf_nicolai_roll_nydalen'
+          roll = {
+              'id': roll_id,
+              'name': 'Oluf Nicolai Roll',
+              'initials': 'ONR',
+              'desc': 'Ingeniør og arkitekt som planla og tegnet spinneribygningene i Nydalen, inkludert utvidelsen i 1856.',
+              'tags': ['historie', 'industri', 'arkitektur', 'ingeniørkunst', 'akerselva', 'nydalen'],
+              'placeId': PLACE_ID,
+              'places': [PLACE_ID, 'nydalen_industristed'],
+              'category': 'historie',
+              'year': 1856,
+              'period': 'tidlig_industrialisering',
+              'popupDesc': 'Oluf Nicolai Roll var en av initiativtakerne til Nydalens Bomuldsspinderi og deltok aktivt i planleggingen og byggingen av anlegget. Han tegnet det første spinneriet, utvidelsen med Øvre spinneri i 1856 og Væveri A i 1864. Ved Øvre spinneri blir rollen hans konkret: konstruksjon, maskinteknikk og elvekraft måtte løses som ett samlet industribygg.',
+              'image': '',
+              'cardImage': '',
+              'source_urls': [
+                  'https://snl.no/Oluf_Nicolai_Roll',
+                  'https://nbl.snl.no/Oluf_Roll',
+                  'https://snl.no/Nydalens_Compagnie'
+              ],
+              'verifiedAt': '2026-07-19'
+          }
+          existing_roll = next((row for row in people if row.get('id') == roll_id), None)
+          if existing_roll:
+              existing_roll.clear()
+              existing_roll.update(roll)
+          else:
+              people.append(roll)
+          write_json(PEOPLE_PATH, people)
+
+          stories = read_json(STORIES_PATH)
+          for existing in stories:
+              if existing.get('id') == 'st_nydalen_industristed_fra_fossedal_til_bydel':
+                  for scene in existing.get('next_scenes', []):
+                      if scene.get('place_id') == PLACE_ID:
+                          scene['reason'] = 'Gå til Øvre spinneri og se tekstilindustriens bygning, kulvert og produksjonsmiljø mer detaljert.'
+
+          story_id = 'st_ovre_spinneri_nydalen_elva_under_fabrikken'
+          story = {
+              'id': story_id,
+              'type': 'industrial_architecture_history',
+              'title': 'Elva under fabrikken',
+              'year': 1856,
+              'place_id': PLACE_ID,
+              'person_id': roll_id,
+              'summary': 'Øvre spinneri ble reist over Akerselvas løp og viser hvordan vannkraft, maskiner, arkitektur og arbeid ble samlet i én produksjonsbygning.',
+              'story': 'I 1847 kom det første spinneriet i Nydalen i drift. Etterspørselen etter garn økte raskt, og i 1856 ble virksomheten utvidet med et nytt spinneri bare et kort stykke fra det første. Den nye bygningen fikk 14 000 spindler. Samlet hadde bedriften da rundt 450 arbeidere og var blitt et av Christianias største spinnerimiljøer.\n\nIngeniøren Oluf Nicolai Roll hadde vært med på å starte virksomheten og arbeidet både med bygningene og det tekniske anlegget. Øvre spinneri viser hvorfor den tidlige industrien krevde mer enn et vanlig hus: etasjene måtte bære maskiner, vinduene måtte gi arbeidslys, og kraftoverføringen måtte kobles til Akerselva.\n\nElva går i kulvert under spinneriet. Vannet er dermed ikke bare bakgrunn for fabrikken, men føres fysisk inn i anleggets konstruksjon. Når man står ved bygningen, kan man lese industrihistorien i forholdet mellom stryk, kulvert, bro, fabrikkvolum og de regelmessige vindusrekkene.\n\nStedet har lenge vært registrert med den tekniske ID-en seilduksfabrikken_nydalen, men Christiania Seildugsfabrik lå ved Øvre Foss i Fossveien. Dette stedet er Øvre spinneri i Nydalen, oppført for Nydalens Bomuldsspinderi og senere del av Nydalens Compagnie. Den presiseringen gjør også historien sterkere: dette er stedet der elva bokstavelig talt går under tekstilfabrikken.',
+              'sources': [
+                  {'title': 'Store norske leksikon: Nydalens Compagnie', 'url': 'https://snl.no/Nydalens_Compagnie'},
+                  {'title': 'Store norske leksikon: Oluf Nicolai Roll', 'url': 'https://snl.no/Oluf_Nicolai_Roll'},
+                  {'title': 'Norsk biografisk leksikon: Oluf Roll', 'url': 'https://nbl.snl.no/Oluf_Roll'},
+                  {'title': 'Oslo byleksikon: Nydalens Compagnie', 'url': 'https://oslobyleksikon.no/side/Nydalens_Compagnie'},
+                  {'title': 'Oslo byleksikon: Øvre Spinneri bru', 'url': 'https://oslobyleksikon.no/side/Spinneri_bru_(Øvre)'},
+                  {'title': 'Oslobilder: Væveriet og Øvre Spinderi', 'url': 'https://oslobilder.no/OMU/OB.F04310k/image/94181'}
+              ],
+              'tags': ['Øvre spinneri', 'Nydalens Compagnie', 'Akerselva', 'tekstilindustri', 'industriarkitektur', 'kulvert', 'arbeiderhistorie'],
+              'related_people': ['adam_severin_hiorth_nydalen', roll_id],
+              'related_places': ['nydalen_industristed', 'nydalsdammen', 'stilla_nydalen'],
+              'score': {'narrative': 5, 'historical': 5, 'source': 5, 'play_value': 5, 'originality': 5, 'total': 25},
+              'arc': {
+                  'start': 'Et voksende bomullsspinneri trenger langt større maskinkapasitet.',
+                  'middle': 'Roll tegner en fabrikk der bygning, spindler og Akerselva inngår i samme tekniske system.',
+                  'end': 'Den bevarte bygningen lar spilleren lese elva under fabrikken og skille stedet fra Christiania Seildugsfabrik ved Øvre Foss.'
+              },
+              'next_scenes': [
+                  {'place_id': 'nydalsdammen', 'reason': 'Følg vannet oppstrøms til reguleringspunktet som styrte vannføringen gjennom industrien.'},
+                  {'place_id': 'nydalen_industristed', 'reason': 'Zoom ut fra ett spinneri til hele tekstil- og industrisamfunnet i Nydalen.'}
+              ]
+          }
+          old_story = next((row for row in stories if row.get('id') == story_id), None)
+          if old_story:
+              old_story.clear()
+              old_story.update(story)
+          else:
+              stories.append(story)
+          write_json(STORIES_PATH, stories)
+
+          articles = read_json(ARTICLE_PATH)
+          article = next(row for row in articles if row.get('place_id') == PLACE_ID)
+          article.clear()
+          article.update({
+              'place_id': PLACE_ID,
+              'visual': {'designCode': 'article_industrial_history_miniature'},
+              'version': 2,
+              'popupDesc': 'Øvre spinneri fra 1856 viser hvordan Nydalens tekstilindustri bygde Akerselvas vannløp inn i selve fabrikkarkitekturen.',
+              'wikiText': [
+                  'Øvre spinneri ble oppført i 1856 som en utvidelse av Nydalens Bomuldsspinderi. Bygningen fikk 14 000 spindler, og bedriften hadde etter utvidelsen omkring 450 arbeidere. Spinneriet ble senere en del av Nydalens Compagnie, som utviklet en komplett produksjon av bomullsvarer.',
+                  'Ingeniøren Oluf Nicolai Roll planla og tegnet utvidelsen. Akerselva føres i kulvert under spinneriet, slik at topografi, vannføring, kraftsystem, maskiner og bygningskonstruksjon kan leses som deler av samme industrielle anlegg.',
+                  'Den tekniske steds-ID-en er eldre og beholdes for kompatibilitet. Det korrekte stedsnavnet er Øvre spinneri i Nydalen. Christiania Seildugsfabrik var en annen fabrikk og lå ved Øvre Foss i Fossveien.'
+              ],
+              'summary': {
+                  'one_liner': 'Spinneribygning fra 1856 der Akerselva går i kulvert under fabrikken.',
+                  'themes': ['tekstilindustri', 'industriarkitektur', 'vannkraft', 'arbeidsliv', 'stedsidentitet'],
+                  'tone': ['nøktern', 'faglig', 'stedsspesifikk']
+              },
+              'facts': [
+                  {
+                      'id': 'fact_01',
+                      'label': 'Øvre spinneri',
+                      'desc': 'Bygningen ble oppført i 1856 for Nydalens Bomuldsspinderi og fikk 14 000 spindler.',
+                      'confidence': 'high',
+                      'sources': ['https://snl.no/Nydalens_Compagnie', 'https://nbl.snl.no/Oluf_Roll']
+                  },
+                  {
+                      'id': 'fact_02',
+                      'label': 'Elva under bygningen',
+                      'desc': 'Akerselva går i kulvert under Øvre spinneri.',
+                      'confidence': 'high',
+                      'sources': ['https://oslobyleksikon.no/side/Spinneri_bru_(Øvre)']
+                  },
+                  {
+                      'id': 'fact_03',
+                      'label': 'Ikke Seildugsfabrikken',
+                      'desc': 'Christiania Seildugsfabrik lå ved Øvre Foss i Fossveien og er et annet sted.',
+                      'confidence': 'high',
+                      'sources': ['https://snl.no/Christiania_Seildugsfabrik']
+                  }
+              ],
+              'chronology': [
+                  {'id': 'chrono_01', 'year': 1856, 'period': 'Industrialisering', 'desc': 'Øvre spinneri oppføres som utvidelse med 14 000 spindler.', 'confidence': 'high', 'sources': ['https://nbl.snl.no/Oluf_Roll']},
+                  {'id': 'chrono_02', 'year': 1867, 'period': 'Industrialisering', 'desc': 'Virksomheten blir aksjeselskap under navnet Nydalens Compagnie.', 'confidence': 'high', 'sources': ['https://snl.no/Nydalens_Compagnie']},
+                  {'id': 'chrono_03', 'year': 1963, 'period': 'Avindustrialisering', 'desc': 'Den siste tekstilproduksjonen i Nydalen opphører.', 'confidence': 'high', 'sources': ['https://snl.no/Nydalens_Compagnie']},
+                  {'id': 'chrono_04', 'year': 1990, 'period': 'Byomforming', 'desc': 'Det tidligere industriområdet åpnes som Nydalen Park.', 'confidence': 'high', 'sources': ['https://oslobyleksikon.no/side/Nydalens_Compagnie']}
+              ],
+              'sources': [
+                  {'title': 'Store norske leksikon: Nydalens Compagnie', 'url': 'https://snl.no/Nydalens_Compagnie'},
+                  {'title': 'Norsk biografisk leksikon: Oluf Roll', 'url': 'https://nbl.snl.no/Oluf_Roll'},
+                  {'title': 'Oslo byleksikon: Nydalens Compagnie', 'url': 'https://oslobyleksikon.no/side/Nydalens_Compagnie'},
+                  {'title': 'Oslo byleksikon: Øvre Spinneri bru', 'url': 'https://oslobyleksikon.no/side/Spinneri_bru_(Øvre)'},
+                  {'title': 'Oslobilder: Væveriet og Øvre Spinderi', 'url': 'https://oslobilder.no/OMU/OB.F04310k/image/94181'}
+              ]
+          })
+          write_json(ARTICLE_PATH, articles)
+
+          quiz = read_json(QUIZ_PATH)
+          replacements = {
+              'Seilduksfabrikken (Nydalen)': 'Øvre spinneri (Nydalens Compagnie)',
+              'Seilduksfabrikken i Nydalen': 'Øvre spinneri i Nydalen',
+              'Seilduksfabrikken': 'Øvre spinneri'
+          }
+          def replace_strings(value):
+              if isinstance(value, str):
+                  for old, new in replacements.items():
+                      value = value.replace(old, new)
+                  return value
+              if isinstance(value, list):
+                  return [replace_strings(item) for item in value]
+              if isinstance(value, dict):
+                  return {key: replace_strings(item) for key, item in value.items()}
+              return value
+          quiz = replace_strings(quiz)
+          quiz['manual_production_notes']['identity_correction'] = 'Canonical targetId beholdes, men korrekt navn er Øvre spinneri i Nydalen. Christiania Seildugsfabrik lå ved Øvre Foss.'
+          write_json(QUIZ_PATH, quiz)
+
+          report = '''# Øvre spinneri i Nydalen – rundinger batch 1
+
+Dato: 2026-07-19
+
+## Identitetsretting
+
+Den etablerte ID-en `seilduksfabrikken_nydalen` beholdes for kompatibilitet. Visningsnavnet og innholdet er rettet til **Øvre spinneri (Nydalens Compagnie)**.
+
+Christiania Seildugsfabrik var et annet anlegg og lå ved Øvre Foss i Fossveien. Nydalen-stedet er utvidelsen av Nydalens Bomuldsspinderi som ble oppført i 1856.
+
+## Fylte historierundinger
+
+- People: Adam Severin Hiorth og Oluf Nicolai Roll
+- Verk: spinneriet, spindlene, Rolls industribygg, kulverten, arbeidsmiljøet, selskapsutviklingen og ombruk
+- Badges: fire kanoniske historie-underbadges
+- Før / nå: produksjonsbygg til bevart industrimiljø
+- Civication Store: spindelmodell og kulvertsnitt
+- Brands: dokumenterte industri-, vassdrags- og transformasjonsaktører
+- Natur: Akerselva i kulvert under spinneriet, uten gjettede arter
+- Fortellinger: `Elva under fabrikken`
+- Leksikon: korrigert og kildebelagt artikkel
+
+Ingen manuell `rounds`- eller `rundinger`-override er lagt inn.
+
+## Bevarte kartdata
+
+- ID: `seilduksfabrikken_nydalen`
+- koordinat: `59.9469, 10.7671`
+- radius: `150`
+- canonical år: `1856`
+
+## Kilder
+
+Store norske leksikon, Norsk biografisk leksikon, Oslo byleksikon, Oslobilder og eksisterende History Go-data for Nydalen.
+'''
+          Path('reports/ovre-spinneri-nydalen-rounds-batch1.md').write_text(report, encoding='utf-8')
+
+          test = r'''const assert = require('assert');
+          const fs = require('fs');
+          const path = require('path');
+
+          const repo = path.resolve(__dirname, '..');
+          const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
+          const expectedRounds = ['people', 'works', 'badges', 'før_nå', 'civication', 'brands', 'nature', 'fortellinger', 'leksikon'];
+
+          const runtimeSource = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
+          const match = runtimeSource.match(/historie:\s*\[([^\]]+)\]/);
+          assert(match, 'Runtime skal ha historieprofil');
+          assert.deepStrictEqual(JSON.parse(`[${match[1]}]`), expectedRounds);
+
+          const placePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json';
+          const place = readJson(placePath);
+          const people = readJson('data/people/natur/oslo/people_natur_oslo.json');
+          const adam = people.find((row) => row.id === 'adam_severin_hiorth_nydalen');
+          const roll = people.find((row) => row.id === 'oluf_nicolai_roll_nydalen');
+          const stories = readJson('data/stories/stories_nydalsdammen.json');
+          const story = stories.find((row) => row.id === 'st_ovre_spinneri_nydalen_elva_under_fabrikken');
+          const articles = readJson('data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json');
+          const article = articles.find((row) => row.place_id === place.id);
+          const quiz = readJson('data/quiz/historie/seilduksfabrikken_nydalen_sets.json');
+          const validBadges = new Set(readJson('data/badges/historie.json').sub);
+          const placeIds = new Set(readJson('data/places/places_index.json').map((row) => row.id));
+
+          assert.strictEqual(place.id, 'seilduksfabrikken_nydalen', 'Canonical ID skal bevares');
+          assert.strictEqual(place.name, 'Øvre spinneri (Nydalens Compagnie)');
+          assert.strictEqual(place.category, 'historie');
+          assert.deepStrictEqual([place.lat, place.lon, place.r, place.year], [59.9469, 10.7671, 150, 1856]);
+          for (const forbidden of ['rounds', 'rundinger', 'routes', 'tasks', 'play', 'training', 'flora', 'fauna']) {
+            assert(!Object.prototype.hasOwnProperty.call(place, forbidden), `Stedet skal ikke ha ${forbidden}`);
+          }
+
+          assert(adam && adam.places.includes(place.id), 'Adam Hiorth skal være koblet til Øvre spinneri');
+          assert(roll && roll.placeId === place.id && roll.places.includes('nydalen_industristed'), 'Oluf Roll skal forankres i spinneriet og Nydalen');
+          assert(roll.source_urls.length >= 3 && roll.image === '' && roll.cardImage === '', 'Roll skal være kildebelagt uten oppdiktede bilder');
+          assert(story && story.place_id === place.id && story.person_id === roll.id, 'Fortellingen skal være forankret i stedet og Roll');
+          assert(story.sources.length >= 5 && story.related_people.includes(adam.id), 'Fortellingen skal ha kilder og people-koblinger');
+          assert(article && article.version >= 2 && article.sources.length >= 5, 'Leksikon-rundingen skal være korrigert og kildebelagt');
+
+          const content = {
+            people: [adam, roll],
+            works: place.works,
+            badges: place.underbadge_ids,
+            før_nå: place.for_na,
+            civication: place.civication_store,
+            brands: place.brands,
+            nature: place.nature_profile,
+            fortellinger: [story],
+            leksikon: [article]
+          };
+          assert.deepStrictEqual(Object.keys(content), expectedRounds);
+          for (const [roundId, value] of Object.entries(content)) {
+            const filled = Array.isArray(value) ? value.length > 0 : Boolean(value && typeof value === 'object');
+            assert(filled, `Mangler ${roundId}`);
+          }
+
+          assert(place.externalLinks.length >= 5 && place.externalLinks.every((link) => /^https:\/\//.test(link.url)));
+          assert(place.underbadge_ids.length >= 4 && place.underbadge_ids.every((id) => validBadges.has(id)));
+          assert(place.works.length >= 7);
+          assert(place.civication_store.length >= 2 && place.civication_store.every((item) => item.physicalObject && item.placeSpecific));
+          assert(place.brands.length >= 5);
+          assert(place.for_na.before && place.for_na.now && place.for_na.change && place.for_na.look_for.length >= 4);
+          assert(place.nature_profile.summary.length >= 350 && place.nature_profile.themes.length >= 6);
+          assert.strictEqual(new Set(place.nature_profile.themes).size, place.nature_profile.themes.length);
+          assert.deepStrictEqual(place.nature_profile.nearby_place_ids, ['nydalen_industristed', 'nydalsdammen', 'stilla_nydalen']);
+          for (const id of place.nature_profile.nearby_place_ids) assert(placeIds.has(id), `Ukjent nærkobling ${id}`);
+
+          const displayText = JSON.stringify({ place, story, article, quiz });
+          assert(!/Seilduksfabrikken|Seildugsfabrikken/.test(displayText), 'Feil fabrikkidentitet skal ikke stå i visningsinnholdet');
+          assert(/Øvre spinneri/.test(displayText));
+          assert(/14 000/.test(displayText));
+          assert(/kulvert/i.test(displayText));
+          assert(/Oluf Nicolai Roll/.test(JSON.stringify({ roll, place, story, article })));
+          assert(/Christiania Seildugsfabrik/.test(place.popupDesc) && /Øvre Foss/.test(place.popupDesc), 'Identitetsgrensen skal forklares eksplisitt i steddata');
+
+          console.log('Øvre spinneri Nydalen batch 1 round content OK');
+          '''
+          test = '\n'.join(line[10:] if line.startswith('          ') else line for line in test.splitlines()) + '\n'
+          Path('tests/ovre-spinneri-nydalen-batch1-round-content.test.js').write_text(test, encoding='utf-8')
+          PY
+
+      - name: Validate targeted content
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/ovre-spinneri-nydalen-batch1-round-content.test.js
+          node tests/nydalen-industristed-batch1-round-content.test.js
+          node -e "for (const f of ['data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json','data/people/natur/oslo/people_natur_oslo.json','data/stories/stories_nydalsdammen.json','data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json','data/quiz/historie/seilduksfabrikken_nydalen_sets.json']) JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('JSON parse OK')"
+          git diff --check
+
+      - name: Commit generated content and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/fill-ovre-spinneri-nydalen-rounds-batch1.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fill Upper Spinneri Nydalen history rounds batch 1"
+          git push origin HEAD:agent/fill-ovre-spinneri-nydalen-rounds-batch1
