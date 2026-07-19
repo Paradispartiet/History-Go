@@ -38,7 +38,28 @@ jobs:
           npm run places:coords:find:address -- --address "President Harbitz' gate 11 Oslo" \
             | tee reports/oslo-coordinate-control-batch-17/hartvig_nissens_skole_skam-geonorge.json
       - name: Apply batch
-        run: node scripts/tmp-complete-oslo-coordinate-batch17.mjs
+        id: apply
+        continue-on-error: true
+        run: node scripts/tmp-complete-oslo-coordinate-batch17.mjs 2>&1 | tee /tmp/apply-batch17.log
+      - name: Post apply failure
+        if: steps.apply.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo 'Batch 17 apply failed:'
+            echo
+            cat /tmp/apply-batch17.log
+          } > /tmp/apply-body.txt
+          jq -n --rawfile body /tmp/apply-body.txt '{body:$body}' > /tmp/apply-comment.json
+          curl --fail-with-body -L \
+            -X POST \
+            -H 'Accept: application/vnd.github+json' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'X-GitHub-Api-Version: 2022-11-28' \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            -d @/tmp/apply-comment.json
+          exit 1
       - name: Rebuild place index
         run: npm run places:index:build
       - name: Check place index
