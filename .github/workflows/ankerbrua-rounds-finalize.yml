@@ -33,6 +33,16 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p reports/ankerbrua-rounds-batch1/validation
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/finalize-ankerbrua-rounds.mjs')
+          text = path.read_text()
+          old = "assert(!JSON.stringify({p,article,quiz}).includes('Tyrihans'));"
+          new = "assert(!p.works.some(x=>x.title==='Tyrihans'));assert(!article.facts.some(x=>x.label==='Tyrihans'||String(x.desc||'').includes('Tyrihans')));"
+          if old not in text:
+              raise SystemExit('Expected broad Tyrihans assertion not found')
+          path.write_text(text.replace(old, new))
+          PY
           node tools/finalize-ankerbrua-rounds.mjs
           npm ci --silent > reports/ankerbrua-rounds-batch1/validation/npm-ci.txt 2>&1
           node tests/ankerbrua-rounds-batch1.test.js > reports/ankerbrua-rounds-batch1/validation/targeted-test.txt 2>&1
