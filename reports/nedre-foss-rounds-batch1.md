@@ -44,3 +44,15 @@ Canonical `historie`-profil:
 7. Natur
 8. Fortellinger
 9. Leksikon
+
+## Validering
+
+Finalizer-kjøringen passerte:
+
+- place index build og parity-check
+- split-manifest sync
+- målrettet Nedre Foss-rundingtest
+- canonical PlaceCard round runtime audit
+- People-of-Places med 0 ugyldige referanser og 0 duplikat-ID-er
+- guard mot endringer i andre Akerselva-place-filer
+- JSON-parse og `git diff --check`
