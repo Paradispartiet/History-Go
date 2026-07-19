@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T18:01:15.962Z
+Generert: 2026-07-19T18:43:53.832Z
 
 ## Oppsummering
 - Aktive filer validert: **500**
 - Antall steder validert: **1210**
 - Harde feil: **0**
-- Varsler: **428**
-- Coordinate review candidates: **711** signaler fordelt på **563** steder
+- Varsler: **426**
+- Coordinate review candidates: **708** signaler fordelt på **561** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -743,8 +743,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/litteratur/oslo/places_litteratur.json#deichman_grunerlokka: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#kulturkirken_jakob_litteratur: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#ruth_maier_minne: coordStatus=verified uten coordPrecisionM
-- data/places/litteratur/oslo/places_litteratur.json#oscar_braaten_statuen: lav koordinatpresisjon (<4 desimaler)
-- data/places/litteratur/oslo/places_litteratur.json#alexander_kiellands_plass: lav koordinatpresisjon (<4 desimaler)
 - data/places/media/oslo/places_oslo_media.json#vg_huset: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#nrk_huset_marienlyst: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#klassekampen_redaksjon: coordStatus=verified uten coordPrecisionM
@@ -954,7 +952,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 711 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 708 signaler fordelt på 561 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -962,8 +960,8 @@ Totalt 711 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandi
 | --- | --- |
 | coordStatus=verified uten coordPrecisionM | 100 |
 | lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 104 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 95 |
+| lav koordinatpresisjon (<4 desimaler) | 102 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 94 |
 | park/stort område uten anchors eller coordNote | 134 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 1 |
@@ -1159,7 +1157,7 @@ Totalt 711 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandi
 | sporveismuseet | Sporveismuseet | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.931307601915144 | 10.71602648075083 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (104)
+### lav koordinatpresisjon (<4 desimaler) (102)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1191,8 +1189,6 @@ Totalt 711 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandi
 | stamford_bridge_battlefield | Stamford Bridge battlefield | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 53.989 | -0.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | jelling_kongsgard | Jelling kongsgård og monumentområde | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 55.756 | 9.419 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | orkney_birsay | Brough of Birsay / Orknøyene | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.136 | -3.322 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.938 | 10.76 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akershus_energi | Akershus Energi Varme | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.947 | 10.8355 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | jernbanetorget_trafikknutepunkt | Jernbanetorget – handelsknutepunktet | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.911 | 10.7508 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | oslo_kraftselskap | Oslo Lysverker | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.919 | 10.7479 | 140 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1268,7 +1264,7 @@ Totalt 711 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (95)
+### stasjon/park/gate/torg/elv uten coordinate metadata (94)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1329,7 +1325,6 @@ Totalt 711 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandi
 | setesdal_mineralpark_evje | Setesdal mineralpark Evje | vitenskap | data/places/vitenskap/agder/setesdal_mineralpark_evje.json | 58.5949 | 7.7867 | 460 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | natur | data/places/natur/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | by | data/places/by/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | ulven_handelspark | Ulven handelspark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9229 | 10.8215 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | jernbanetorget_trafikknutepunkt | Jernbanetorget – handelsknutepunktet | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.911 | 10.7508 | 150 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |

@@ -1,13 +1,14 @@
 # Oslo coordinate control batch 30
 
-Strict diagnostic pass for the two remaining Oslo literature records after batch 29:
+Dato: 2026-07-19
 
-- `oscar_braaten_statuen`
-- `alexander_kiellands_plass`
+Batch 30 avslutter de to siste ukontrollerte Oslo-litteraturrecordene.
 
-Method: Kartverket SSR first; only exact physical objects or geometry with documented identity may be considered afterward. No neighbouring address, arbitrary midpoint or unrelated proxy may be promoted to verified coordinates.
+## Resultat
 
-Diagnostics completed. Exact-object identity is confirmed: Oskar Braaten resolves to an OSM artwork node tagged as a bust, while the Alexander Kiellands plass park polygon is linked to the corresponding Wikidata and Norwegian Wikipedia identity. Final integration now runs the full coordinate/data validation suite.
+- `oscar_braaten_statuen` → **verified_geometry** på eksakt OSM artwork-node `10819902960`. Identiteten er korrigert til Oskar Braaten-bysten ved Beierbrua, og årstallet til 1961.
+- `alexander_kiellands_plass` → **verified_geometry** på OSM park-way `3610607`, som dekker parken innenfor Oslo kommunes dokumenterte gateavgrensning. Navneåret er korrigert fra 1913 til 1914.
 
-Integration trigger recorded after all diagnostic workflows completed.
-Final integration retriggered after the workflow file was present on the branch.
+Kartverket SSR ga ingen treff for noen av navnene, og Geonorge-adressefinder ga ingen treff for Alexander Kiellands plass. Ingen naboadresse eller proxy ble brukt.
+
+Begge faktiske markørflyttinger skal gjennom visuell kart-QA før merge.

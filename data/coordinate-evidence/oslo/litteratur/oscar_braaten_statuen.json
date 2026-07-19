@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "oscar_braaten_statuen",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9309838,
+    "lon": 10.7578832,
+    "r": 45,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 10819902960 – OSKAR BRAATEN 1881 1939",
+    "coordType": "monument",
+    "coordNote": "Presist objektanker for selve Oskar Braaten-bysten ved Beierbrua. Store norske leksikon og Lokalhistoriewiki dokumenterer bronsebysten av Arne Durban ved broen og avduking i 1961; OSM node 10819902960 er et eksakt tourism=artwork-punkt med navnet OSKAR BRAATEN 1881 1939. Det gamle punktet i Glads vei er erstattet."
+  },
+  "identity": {
+    "currentName": "Oskar Braaten-bysten",
+    "resolvedIdentity": "Oskar Braaten-bysten av Arne Durban ved Beierbrua, avduket i 1961",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "dokumentert fysisk identitet",
+    "eksakt fysisk objekt eller arealgeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Beierbrua",
+      "sourceUrl": "https://snl.no/Beierbrua",
+      "sourceObjectId": "snl:beierbrua:oskar-braaten-byste",
+      "sourceQuality": "documented_monument_identity",
+      "finding": "SNL dokumenterer at en bronsebyste av Braaten, utført av Arne Durban, ble avduket ved Beierbrua i 1961.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden dokumenterer identitet, plassering ved broen og årstall, mens koordinatet kommer fra det eksakte monumentobjektet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Beierbrua",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Beierbrua",
+      "sourceObjectId": "lokalhistoriewiki:beierbrua:oskar-braaten-byste",
+      "sourceQuality": "documented_local_position",
+      "finding": "Kilden plasserer bysten på østsiden av Beierbrua, over veien fra Hønse-Lovisas hus.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som lokal posisjonskontroll av monumentidentiteten."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 10819902960",
+      "sourceUrl": "https://www.openstreetmap.org/node/10819902960",
+      "sourceObjectId": "osm-node:10819902960",
+      "sourceQuality": "exact_named_artwork_point",
+      "finding": "Eksakt tourism=artwork-punkt med navnet OSKAR BRAATEN 1881 1939 på stedet ved Beierbrua.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte objektpunkt for selve minnesmerket."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:beierbrua:oskar-braaten-byste",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:beierbrua:oskar-braaten-byste",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:10819902960",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:10819902960",
+      "lat": 59.9309838,
+      "lon": 10.7578832,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9309838,
+      "lon": 10.7578832,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Verified geometry is applied to canonical place data and must be visually checked before merge."
+  },
+  "notes": [
+    "Presist objektanker for selve Oskar Braaten-bysten ved Beierbrua. Store norske leksikon og Lokalhistoriewiki dokumenterer bronsebysten av Arne Durban ved broen og avduking i 1961; OSM node 10819902960 er et eksakt tourism=artwork-punkt med navnet OSKAR BRAATEN 1881 1939. Det gamle punktet i Glads vei er erstattet."
+  ]
+}
