@@ -1,0 +1,156 @@
+name: Refresh Ankerbrua on current main
+
+on:
+  push:
+    branches:
+      - agent/fill-ankerbrua-rounds-batch1
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-ankerbrua-rounds-batch1
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Rebuild branch from current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          BACKUP="$(mktemp -d)"
+          mkdir -p "$BACKUP/files"
+
+          keep_files=(
+            data/people/kunst/oslo/dyre_vaa.json
+            data/places/natur/oslo/places_oslo_natur_akerselvarute/ankerbrua.json
+            data/quiz/historie/ankerbrua_sets.json
+            data/stories/stories_ankerbrua.json
+            reports/ankerbrua-rounds-batch1.md
+            tests/ankerbrua-rounds-batch1.test.js
+          )
+          for file in "${keep_files[@]}"; do
+            mkdir -p "$BACKUP/files/$(dirname "$file")"
+            cp "$file" "$BACKUP/files/$file"
+          done
+          if [ -d reports/ankerbrua-rounds-batch1 ]; then
+            mkdir -p "$BACKUP/files/reports"
+            cp -R reports/ankerbrua-rounds-batch1 "$BACKUP/files/reports/"
+          fi
+
+          BACKUP="$BACKUP" node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const out = process.env.BACKUP;
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const write = (name, value) => fs.writeFileSync(path.join(out, name), JSON.stringify(value, null, 2) + '\n');
+
+          const lex = read('data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json');
+          const lexEntry = lex.find(x => x && x.place_id === 'ankerbrua');
+          if (!lexEntry) throw new Error('Missing Ankerbrua leksikon entry');
+          write('leksikon-entry.json', lexEntry);
+
+          const rels = read('data/relations.json');
+          const relation = rels.find(x => x && x.id === 'rel_dyre_vaa_ankerbrua_eventyrgrupper');
+          if (!relation) throw new Error('Missing Ankerbrua relation');
+          write('relation.json', relation);
+
+          const stories = read('data/stories/stories_manifest.json');
+          const storyEntry = stories.files.find(x => x && x.entity_id === 'ankerbrua');
+          if (!storyEntry) throw new Error('Missing Ankerbrua story manifest entry');
+          write('story-entry.json', storyEntry);
+          NODE
+
+          git fetch origin main
+          git reset --hard origin/main
+          cp -R "$BACKUP/files/." .
+
+          BACKUP="$BACKUP" node <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+          const path = require('path');
+          const backup = process.env.BACKUP;
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const write = (p, value) => fs.writeFileSync(p, JSON.stringify(value, null, 2) + '\n');
+
+          const lexPath = 'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json';
+          const lex = read(lexPath);
+          const lexEntry = read(path.join(backup, 'leksikon-entry.json'));
+          const lexIndex = lex.findIndex(x => x && x.place_id === 'ankerbrua');
+          if (lexIndex >= 0) lex[lexIndex] = lexEntry; else lex.push(lexEntry);
+          write(lexPath, lex);
+
+          const peoplePath = 'data/people/manifest.json';
+          const people = read(peoplePath);
+          const personFile = 'people/kunst/oslo/dyre_vaa.json';
+          if (!people.files.includes(personFile)) people.files.push(personFile);
+          write(peoplePath, people);
+
+          const relPath = 'data/relations.json';
+          const rels = read(relPath);
+          const relation = read(path.join(backup, 'relation.json'));
+          const relIndex = rels.findIndex(x => x && x.id === relation.id);
+          if (relIndex >= 0) rels[relIndex] = relation; else rels.push(relation);
+          write(relPath, rels);
+
+          const storyManifestPath = 'data/stories/stories_manifest.json';
+          const storyManifest = read(storyManifestPath);
+          const storyEntry = read(path.join(backup, 'story-entry.json'));
+          const storyIndex = storyManifest.files.findIndex(x => x && x.entity_id === 'ankerbrua');
+          if (storyIndex >= 0) storyManifest.files[storyIndex] = storyEntry; else storyManifest.files.push(storyEntry);
+          write(storyManifestPath, storyManifest);
+
+          const placePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/ankerbrua.json';
+          const place = read(placePath);
+          const manifestPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json';
+          const manifest = read(manifestPath);
+          const row = manifest.places.find(x => x && x.id === 'ankerbrua');
+          if (!row) throw new Error('Missing Ankerbrua split manifest row');
+          row.name = place.name;
+          row.category = place.category;
+          row.sha256 = crypto.createHash('sha256').update(fs.readFileSync(placePath)).digest('hex');
+          write(manifestPath, manifest);
+          NODE
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Rebuild and validate indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run places:index:check
+          npm run audit:places-split-manifest-sync
+
+      - name: Validate Ankerbrua content
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/ankerbrua-rounds-batch1.test.js
+          npm run audit:people-of-places
+          npm run leksikon:ids:check
+          npm run check:stories
+          npm run typecheck:tools
+          npm run typecheck:web
+          git diff --check
+
+      - name: Commit refreshed branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/refresh-ankerbrua-on-main.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "Refresh Ankerbrua rounds on current main"
+          git push --force-with-lease origin HEAD:agent/fill-ankerbrua-rounds-batch1
