@@ -1,0 +1,36 @@
+name: Remove legacy Oslo City Hall quiz
+
+on:
+  push:
+    paths:
+      - ".github/workflows/oslo-radhus-legacy-cleanup.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove all legacy Oslo City Hall questions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/quiz/quiz_politikk.json';
+          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const before = data.length;
+          const clean = data.filter(q => !['oslo_radhus','radhuset'].includes(String(q?.placeId || '')));
+          const removed = before - clean.length;
+          if (removed < 1) throw new Error('No remaining Oslo City Hall legacy questions found');
+          fs.writeFileSync(path, JSON.stringify(clean, null, 2) + '\n');
+          console.log(`Removed ${removed} remaining legacy questions`);
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/quiz_politikk.json
+          git rm .github/workflows/oslo-radhus-legacy-cleanup.yml
+          git commit -m "Remove remaining legacy Oslo City Hall quiz"
+          git push
