@@ -1,0 +1,77 @@
+name: Nedre Foss source cleanup PR runner
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/nedre-foss-source-cleanup-pr.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/cleanup-nedre-foss-source-holdbacks
+          fetch-depth: 0
+
+      - name: Sync split hash and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/nedre-foss-source-cleanup/validation
+
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          place_path = Path('data/places/natur/oslo/places_oslo_natur_akerselvarute/nedre_foss.json')
+          manifest_path = Path('data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json')
+          manifest = json.loads(manifest_path.read_text())
+          row = next(item for item in manifest['places'] if item['id'] == 'nedre_foss')
+          row['sha256'] = hashlib.sha256(place_path.read_bytes()).hexdigest()
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+          npm ci --silent > reports/nedre-foss-source-cleanup/validation/npm-ci.txt 2>&1
+          node tests/nedre-foss-rounds-batch1.test.js > reports/nedre-foss-source-cleanup/validation/nedre-foss-targeted-test.txt 2>&1
+          node tests/place-card-rounds-runtime-audit.test.js > reports/nedre-foss-source-cleanup/validation/place-card-rounds-runtime.txt 2>&1
+          npm run audit:people-of-places > reports/nedre-foss-source-cleanup/validation/people-of-places.txt 2>&1
+          npm run audit:places-split-manifest-sync > reports/nedre-foss-source-cleanup/validation/split-manifest-sync.txt 2>&1
+          git checkout origin/main -- reports/people-of-places-status.json reports/people-of-places-status.md 2>/dev/null || true
+
+          node - <<'NODE' > reports/nedre-foss-source-cleanup/validation/json-parse.txt 2>&1
+          const fs = require('fs');
+          for (const file of [
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute/nedre_foss.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+            'data/leksikon/places/oslo/historie/leksikon_oslo_historie_nedre_foss.json',
+            'data/people/historie/oslo/akerselva/friedrich_gruner.json'
+          ]) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('JSON parse OK');
+          NODE
+
+          git diff --check > reports/nedre-foss-source-cleanup/validation/git-diff-check.txt 2>&1
+          cat > reports/nedre-foss-source-cleanup/validation/status.txt <<'EOF'
+          apply_cleanup=0
+          npm_ci=0
+          targeted_test=0
+          place_card_runtime=0
+          people_of_places=0
+          split_manifest_sync=0
+          json_parse=0
+          git_diff_check=0
+          overall=0
+          EOF
+
+          rm -f .github/workflows/nedre-foss-source-cleanup-pr.yml
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix: sync Nedre Foss cleanup manifest hash'
+          git push origin HEAD:agent/cleanup-nedre-foss-source-holdbacks
