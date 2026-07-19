@@ -27,12 +27,25 @@ jobs:
       - name: Resolve official address evidence
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
+          set -o pipefail
           out='reports/oslo-oppdag-kvadraturen-core-final/coordinates'
           mkdir -p "$out"
-          npm run places:coords:find:address -- --address "Jernbanetorget 1 Oslo" | tee "$out/ostbanestasjonen_address.json"
-          npm run places:coords:find:address -- --address "Tollbugata 1 Oslo" | tee "$out/tollbodene_address.json"
-          npm run places:coords:find:address -- --address "Bankplassen 4 Oslo" | tee "$out/norges_bank_bankplassen_4.json"
+          : > "$out/address_status.txt"
+
+          run_lookup() {
+            slug="$1"; address="$2"
+            set +e
+            npm run places:coords:find:address -- --address "$address" | tee "$out/${slug}.json"
+            status=${PIPESTATUS[0]}
+            set -e
+            printf '%s\t%s\t%s\n' "$slug" "$status" "$address" | tee -a "$out/address_status.txt"
+          }
+
+          set -e
+          run_lookup ostbanestasjonen_address "Jernbanetorget 1 Oslo"
+          run_lookup tollbodene_address "Tollbugata 1 Oslo"
+          run_lookup norges_bank_bankplassen_4 "Bankplassen 4 Oslo"
 
       - name: Resolve exact physical OSM objects
         shell: bash
