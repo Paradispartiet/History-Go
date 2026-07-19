@@ -1,4 +1,4 @@
-name: Kuba-parken nature rounds diagnostic
+name: Kuba-parken nature rounds finalizer
 
 on:
   pull_request:
@@ -7,47 +7,140 @@ on:
       - '.github/workflows/kuba-parken-nature-rounds-finalize.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  finalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Clone, rebuild and run marked tests
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REPO: ${{ github.repository }}
-          BRANCH: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          show-progress: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply Kuba content without regenerating other Akerselva places
         shell: bash
         run: |
-          set +e
-          git clone --quiet --depth=1 --branch "$BRANCH" \
-            "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" work
-          cd work || exit 1
+          set -euo pipefail
+          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
+          mkdir -p "$outdir"
+          node tools/finalize-kuba-parken-rounds.mjs | tee "$outdir/finalizer.txt"
 
-          echo '=== REBUILD ==='
-          node tools/finalize-kuba-parken-rounds.mjs
-          rebuild_status=$?
-          node scripts/split-nature-oslo-akerselva-route.mjs
-          split_status=$?
-          echo "REBUILD_STATUS=$rebuild_status SPLIT_STATUS=$split_status"
+          node <<'NODE' | tee "$outdir/split-update.txt"
+          const fs = require('fs');
+          const crypto = require('crypto');
+          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
+          const write = (path, value) => fs.writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
 
-          echo '=== TARGETED KUBA TEST ==='
-          node tests/kuba-parken-nature-rounds-batch1.test.js
-          targeted_status=$?
-          echo "TARGETED_STATUS=$targeted_status"
+          const aggregatePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute.json';
+          const splitPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json';
+          const indexPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json';
+          const manifestPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json';
 
-          echo '=== PLACECARD ROUND RUNTIME ==='
-          node tests/place-card-rounds-runtime-audit.test.js
-          rounds_status=$?
-          echo "ROUNDS_STATUS=$rounds_status"
+          const aggregate = read(aggregatePath);
+          const place = aggregate.find((row) => row.id === 'kuba_parken');
+          if (!place) throw new Error('Missing enriched kuba_parken in working aggregate');
+          const splitContent = `${JSON.stringify(place, null, 2)}\n`;
+          fs.writeFileSync(splitPath, splitContent);
 
-          echo '=== AKERSELVA MID REGRESSION ==='
-          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
-          mid_status=$?
-          echo "MID_STATUS=$mid_status"
+          const index = read(indexPath);
+          const indexRow = index.find((row) => row.id === 'kuba_parken');
+          if (!indexRow) throw new Error('Missing Kuba route index row');
+          Object.assign(indexRow, {
+            name: place.name ?? null,
+            category: place.category ?? null,
+            lat: place.lat ?? null,
+            lon: place.lon ?? null,
+            r: place.r ?? null,
+            year: place.year ?? null,
+            coordStatus: place.coordStatus ?? null,
+            coordType: place.coordType ?? null
+          });
+          write(indexPath, index);
 
-          if [ "$rebuild_status" -ne 0 ] || [ "$split_status" -ne 0 ] || [ "$targeted_status" -ne 0 ] || [ "$rounds_status" -ne 0 ] || [ "$mid_status" -ne 0 ]; then
+          const manifest = read(manifestPath);
+          const manifestRow = manifest.places.find((row) => row.id === 'kuba_parken');
+          if (!manifestRow) throw new Error('Missing Kuba split-manifest row');
+          manifestRow.name = place.name ?? null;
+          manifestRow.category = place.category ?? null;
+          manifestRow.sha256 = crypto.createHash('sha256').update(splitContent, 'utf8').digest('hex');
+          write(manifestPath, manifest);
+
+          console.log('Updated only kuba_parken split record, index row and manifest hash.');
+          NODE
+
+          git restore --source=HEAD -- data/places/natur/oslo/places_oslo_natur_akerselvarute.json
+
+      - name: Build and validate place runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
+          npm run places:index:build | tee "$outdir/places-index-build.txt"
+          npm run places:index:check | tee "$outdir/places-index-check.txt"
+          npm run audit:places-split-manifest-sync | tee "$outdir/split-manifest-sync.txt"
+
+      - name: Run targeted and route regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
+          node tests/kuba-parken-nature-rounds-batch1.test.js | tee "$outdir/kuba-targeted-test.txt"
+          node tests/place-card-rounds-runtime-audit.test.js | tee "$outdir/place-card-rounds-runtime.txt"
+          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js | tee "$outdir/akerselva-mid-regression.txt"
+
+      - name: Guard against unrelated Akerselva split churn
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
+          git diff --name-only | tee "$outdir/changed-files-before-commit.txt"
+          unexpected=$(git diff --name-only -- 'data/places/natur/oslo/places_oslo_natur_akerselvarute/*.json' \
+            | grep -v '^data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json$' || true)
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected Akerselva place-file churn:" >&2
+            echo "$unexpected" >&2
             exit 1
+          fi
+
+      - name: Parse changed data and check diff hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/kuba-parken-nature-rounds-batch1/validation'
+          node <<'NODE' | tee "$outdir/json-parse.txt"
+          const fs = require('fs');
+          for (const file of [
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+            'data/stories/stories_kuba_parken.json',
+            'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json'
+          ]) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('Kuba-parken changed JSON parses successfully.');
+          NODE
+          git diff --check | tee "$outdir/git-diff-check.txt"
+
+      - name: Remove temporary tooling and persist batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/kuba-parken-nature-rounds-finalize.yml
+          rm -f tools/finalize-kuba-parken-rounds.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit --no-verify -m 'Fill Kuba-parken nature rounds batch 1'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
           fi
