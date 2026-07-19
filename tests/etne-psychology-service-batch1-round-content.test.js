@@ -51,7 +51,7 @@ const expectations = {
     coordinates: [59.66534125070043, 5.943034081601908, 60, null],
     storyId: 'st_etne_psykisk_helse_fra_direkte_kontakt_til_koordinert_oppfolging',
     articleTitle: /Psykisk helse og rus i Etne/,
-    nearby: ['etne_senter', 'etneelva', 'etneelva_forskningsplattform']
+    nearby: ['etnesjoen_tettstad', 'etneelva', 'etneelva_forskningsplattform']
   },
   psykisk_helse_rus_skanevik: {
     coordinates: [59.73234389428389, 5.935277893100119, 60, null],
