@@ -1,0 +1,87 @@
+name: Oslo address anchor final repair
+
+on:
+  push:
+    branches:
+      - agent/fix-oslo-address-anchors-final
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fix-oslo-address-anchors-final
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies and build tools
+        run: |
+          npm ci
+          npm run build:tools
+
+      - name: Confirm generic Hausmanns gate 19 is ambiguous
+        shell: bash
+        run: |
+          set +e
+          mkdir -p reports/oslo-address-anchor-repair-20260719/research
+          node dist/tools/address-first-coordinate-finder.mjs --address "Hausmanns gate 19 Oslo" \
+            | tee reports/oslo-address-anchor-repair-20260719/research/hausmanns_gate_19_generic.json
+          set -e
+          test "$(jq -r '.status' reports/oslo-address-anchor-repair-20260719/research/hausmanns_gate_19_generic.json)" = "needs_review"
+
+      - name: Run exact normative Geonorge lookups
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/oslo-address-anchor-repair-20260719/verified-coordinates
+          mkdir -p "$out"
+
+          node dist/tools/address-first-coordinate-finder.mjs --address "Hausmanns gate 19A Oslo" | tee "$out/torggata_blad.json"
+          test "$(jq -r '.status' "$out/torggata_blad.json")" = "verified_candidate"
+
+          node dist/tools/address-first-coordinate-finder.mjs --address "Torggata 22 Oslo" | tee "$out/torggata.json"
+          test "$(jq -r '.status' "$out/torggata.json")" = "verified_candidate"
+
+          node dist/tools/address-first-coordinate-finder.mjs --address "Storgata 26 Oslo" | tee "$out/storgata.json"
+          test "$(jq -r '.status' "$out/storgata.json")" = "verified_candidate"
+
+      - name: Apply verified candidates
+        run: node tools/tmp-oslo-address-anchor-final.mjs
+
+      - name: Rebuild runtime index
+        run: npm run places:index:build
+
+      - name: Validate final data
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/oslo-address-anchor-repair-20260719/validation
+          mkdir -p "$out"
+          npm run audit:places-split-manifest-sync | tee "$out/split-manifest-sync.txt"
+          npm run places:index:check | tee "$out/places-index-check.txt"
+          npm run test:coordinate-source-contract | tee "$out/coordinate-source-contract.txt"
+          npm run places:coords:quality | tee "$out/coordinate-quality.txt"
+          npm run places:coords:intake | tee "$out/coordinate-intake.txt"
+          npm run places:coords:evidence:audit | tee "$out/coordinate-evidence-audit.txt"
+          git diff --check | tee "$out/git-diff-check.txt"
+
+      - name: Commit clean final repair
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-address-anchor-final.yml
+          rm -f tools/tmp-oslo-address-anchor-final.mjs
+          rm -f reports/oslo-address-anchor-repair-20260719/.trigger
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix Oslo address anchors for Torggata, Storgata and Torggata Blad"
+          git push origin HEAD
