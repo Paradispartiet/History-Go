@@ -23,7 +23,7 @@ jobs:
       - name: Reproduce batch state
         run: |
           node scripts/tmp-complete-oslo-coordinate-batch32.mjs
-          node scripts/split-nature-oslo-akerselva-route.mjs
+          node scripts/tmp-sync-oslo-coordinate-batch32-splits.mjs
           rm -rf dist/tools
           node <<'NODE'
           const fs=require('node:fs'),path=require('node:path'),{stripTypeScriptTypes}=require('node:module');
