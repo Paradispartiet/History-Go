@@ -18,15 +18,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node scripts/_tmp_reconcile_kunst_oslo_ekeberg_metadata.mjs
       - run: node scripts/split-kunst-oslo-places.mjs
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/places/kunst/oslo/places_kunst.json data/places/kunst/oslo/places_kunst data/places/kunst/oslo/places_kunst_manifest.json data/places/kunst/oslo/places_kunst_index.json data/places/kunst/oslo/places_kunst_split_report.txt
+          git add data/places/kunst/oslo/places_kunst data/places/kunst/oslo/places_kunst_manifest.json data/places/kunst/oslo/places_kunst_index.json data/places/kunst/oslo/places_kunst_split_report.txt
           if git diff --cached --quiet; then
             echo "No generated file changes."
           else
-            git commit -m "Reconcile and generate Kunst Oslo place files"
+            git commit -m "Generate split Kunst Oslo place files"
             git push
           fi
