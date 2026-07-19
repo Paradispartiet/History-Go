@@ -8,6 +8,7 @@ const glads = read(`${sourceDir}/glads-molle-geonorge.json`);
 const voienvolden = read(`${sourceDir}/voienvolden-geonorge.json`);
 const osmRows = read(`${sourceDir}/osm-lookup.json`);
 const osm = new Map(osmRows.map((row) => [`${row.osm_type}:${row.osm_id}`, row]));
+const summary = read('reports/oslo-coordinate-control-batch-33/applied-summary.json');
 
 const expected = {
   glads_molle: { status: 'verified', sourceObjectId: 'geonorge-adresser-v1:0301:16161:10A', lat: glads.coordinate.lat, lon: glads.coordinate.lon },
@@ -16,7 +17,6 @@ const expected = {
   kuba_parken: { status: 'verified_geometry', sourceObjectId: 'osm-relation:1103963', lat: Number(osm.get('relation:1103963').lat), lon: Number(osm.get('relation:1103963').lon) },
   beierbrua: { status: 'verified_geometry', sourceObjectId: 'osm-way:532768329', lat: Number(osm.get('way:532768329').lat), lon: Number(osm.get('way:532768329').lon) },
   nedre_foss: { status: 'verified_geometry', sourceObjectId: 'osm-node:4171862592', lat: Number(osm.get('node:4171862592').lat), lon: Number(osm.get('node:4171862592').lon) },
-  voienfossen: { status: 'needs_source', sourceObjectId: 'wikidata:Q114345801', lat: 59.93065, lon: 10.75703 },
 };
 
 for (const [id, exp] of Object.entries(expected)) {
@@ -26,6 +26,14 @@ for (const [id, exp] of Object.entries(expected)) {
   if (place.sourceObjectId !== exp.sourceObjectId) throw new Error(`${id}: sourceObjectId ${place.sourceObjectId} != ${exp.sourceObjectId}`);
   if (place.lat !== exp.lat || place.lon !== exp.lon) throw new Error(`${id}: coordinate mismatch ${place.lat},${place.lon} != ${exp.lat},${exp.lon}`);
 }
+
+const voien = byId.get('voienfossen');
+if (!voien) throw new Error('voienfossen: missing aggregate record');
+if (voien.coordStatus !== 'needs_source') throw new Error(`voienfossen: coordStatus ${voien.coordStatus} != needs_source`);
+if (voien.sourceObjectId !== 'wikidata:Q114345801') throw new Error(`voienfossen: sourceObjectId ${voien.sourceObjectId} != wikidata:Q114345801`);
+const voienMove = summary?.moves?.voienfossen;
+if (!voienMove || voienMove.changed !== false) throw new Error(`voienfossen: legacy point moved unexpectedly: ${JSON.stringify(voienMove)}`);
+if (JSON.stringify(voienMove.from) !== JSON.stringify(voienMove.to)) throw new Error(`voienfossen: from/to differ unexpectedly: ${JSON.stringify(voienMove)}`);
 
 const protocol = fs.readFileSync('docs/coordinates/coordinate-control-protocol.md', 'utf8');
 for (const needle of [
