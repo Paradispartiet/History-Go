@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "id": "arbeidsledig",
+  "navn": "Arbeidsledig",
+  "kjernefantasi": "Du har ingen jobb — ennå. Dagene må bygges av deg selv: meldekort, søknader, rammer og det du faktisk kan. Kunnskap åpner dører.",
+  "arbeidsoppgaver": [
+    "holde meldekort og dokumentasjon i orden",
+    "søke jobber og stå i selvpresentasjonen",
+    "bygge ramme i dager uten ramme",
+    "bruke tiden på det som faktisk åpner dører: kunnskap"
+  ],
+  "personer": [
+    { "id": "nav_veileder", "navn": "NAV-veilederen", "beskrivelse": "Følger opp meldekort og dokumentasjon. Systemet er firkantet; hun er ikke." },
+    { "id": "bekjent", "navn": "Bekjenten", "beskrivelse": "Kjenner folk. Spør hver gang: «Har du hørt noe?»" }
+  ],
+  "hovedkonflikter": [
+    "systemkrav vs verdighet",
+    "ærlighet vs selvpresentasjon",
+    "struktur vs dager som flyter",
+    "søke bredt vs bygge på det du kan"
+  ],
+  "endings": [
+    { "id": "kom_i_jobb", "navn": "Kom i jobb" },
+    { "id": "bygget_kompetanse", "navn": "Bygget kompetanse" },
+    { "id": "mistet_rytmen", "navn": "Mistet rytmen" },
+    { "id": "sto_i_det", "navn": "Sto i det" }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 240,
+      "psyke": 55,
+      "energi": 65,
+      "integritet": 50,
+      "synlighet": 20,
+      "handlingsrom": 30
+    },
+    "relasjoner": {
+      "nav_veileder": 45,
+      "bekjent": 50
+    }
+  },
+  "dagsplan": {
+    "1": [
+      { "klokke": "09:00", "tekst": "Meldekortfristen" },
+      { "klokke": "11:00", "tekst": "Søknaden" },
+      { "klokke": "14:00", "tekst": "Resten av dagen" }
+    ],
+    "2": [
+      { "klokke": "10:00", "tekst": "Veien videre" }
+    ]
+  }
+}

@@ -306,8 +306,17 @@ data/Civication/lifestory/
     └── scenes.json
 ```
 
-**Rollevalg:** Min dag spiller `arealplanlegger` som standard. En annen rolle
-velges eksplisitt med `Civication.html?lifestoryRole=renholder` (persisteres i
+**Startkontrakten — du starter arbeidsledig:** Uten jobb og uten eksplisitt
+valg spiller Min dag rollen `arbeidsledig` (meldekort, søknader, dager uten
+ramme — bygget på `lifeMails/arbeidsledig`-universet). Jobb kommer via den
+dokumenterte kjeden (dashboardet: «Ta quiz og åpne jobbtilbud for å starte et
+livsløp»): quiz/merker i History GO → jobbtilbud i skallet → aksept → Min dag
+adopterer jobbens rolle automatisk. `arbeidsledig` har bevisst INGEN
+`role_scope`-binding — ingen jobb mapper til den. Kontrakten håndheves av
+`tests/civication-lifestory-arbeidsledig.test.js`.
+
+**Rollevalg:** En annen rolle kan fortsatt velges eksplisitt med
+`Civication.html?lifestoryRole=renholder` (persisteres i
 localStorage `civication_lifestory_role_v1`). Ukjent rolle-id feiler fast i
 manifest-oppslaget — ingen stille fallback. Bytte av rolle starter en ny
 Player State (én lagringsplass, `civication_lifestory_v1`).

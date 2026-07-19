@@ -15,11 +15,13 @@ const ROOT = path.join(__dirname, "..");
 
 async function main() {
   // Bevisst UTEN shell-DOM (#civiMapWorld): dette er en isolert Min dag-flate,
-  // så shell-loaderen skal holde seg inert.
+  // så shell-loaderen skal holde seg inert. Rollen velges EKSPLISITT via URL
+  // (pilotrollen arealplanlegger) — standard uten valg/jobb er arbeidsledig,
+  // og den kontrakten eies av civication-lifestory-arbeidsledig.test.js.
   const dom = new JSDOM(`<!doctype html><html><body class="civi-app">
     <header><div id="civiLifestoryHeaderStatus"></div></header>
     <section id="civiLifestorySection"><h2>Min dag</h2><div id="civiLifestoryPanel"></div></section>
-  </body></html>`, { url: "http://localhost/Civication.html", runScripts: "outside-only" });
+  </body></html>`, { url: "http://localhost/Civication.html?lifestoryRole=arealplanlegger", runScripts: "outside-only" });
 
   const { window } = dom;
   window.fetch = async (p) => {
