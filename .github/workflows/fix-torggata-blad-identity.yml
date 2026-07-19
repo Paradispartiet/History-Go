@@ -1,0 +1,71 @@
+name: Fix Torggata Blad identity
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fix-torggata-blad-identity
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply identity correction
+        run: node tools/tmp-fix-torggata-blad-identity.mjs
+
+      - name: Regenerate subkultur split and runtime index
+        run: |
+          node scripts/split-subkultur-oslo-places.mjs
+          npm run places:index:build
+
+      - name: Validate identity and data parity
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const place = JSON.parse(fs.readFileSync('data/places/subkultur/oslo/places_subkultur/torggata_blad.json', 'utf8'));
+          const aggregate = JSON.parse(fs.readFileSync('data/places/subkultur/oslo/places_subkultur.json', 'utf8')).find(x => x.id === 'torggata_blad');
+          const runtime = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8')).find(x => x.id === 'torggata_blad');
+          const expected = { lat: 59.91657334372696, lon: 10.75561428991178, year: 2007 };
+          for (const [name, record] of Object.entries({ place, aggregate, runtime })) {
+            if (!record) throw new Error(`${name}: missing torggata_blad`);
+            if (record.lat !== expected.lat || record.lon !== expected.lon) throw new Error(`${name}: coordinate changed`);
+            if (record.year !== expected.year) throw new Error(`${name}: expected year 2007`);
+          }
+          const text = `${place.desc}\n${place.popupDesc}\n${JSON.stringify(place.quiz_profile)}`.toLowerCase();
+          if (text.includes('uavhengig bokhandel') || place.quiz_profile?.place_type === 'bokhandel') {
+            throw new Error('Old bookstore identity is still present');
+          }
+          if (place.quiz_profile?.place_type !== 'redaksjonssted') throw new Error('Expected redaksjonssted quiz profile');
+          NODE
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+          npm run test:coordinate-source-contract
+          git diff --check
+
+      - name: Commit correction
+        run: |
+          set -euo pipefail
+          rm .github/workflows/fix-torggata-blad-identity.yml
+          rm tools/tmp-fix-torggata-blad-identity.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Correct Torggata Blad historical place identity"
+          git push origin HEAD
