@@ -30,3 +30,4 @@ Dependency-free Node 22 tool execution enabled for the final clean batch pass.
 Dependency-free runner retriggered through observable PR synchronization.
 Final single PR-trigger event issued after the runner became pull-request-only.
 Stable observable dependency-free run triggered with no competing push workflow.
+Branch-depth history fetch enabled so the preserved batch script can be resolved without raw-SHA fetch.
