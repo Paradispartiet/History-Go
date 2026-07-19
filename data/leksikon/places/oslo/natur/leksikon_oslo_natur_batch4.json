@@ -263,46 +263,168 @@
   {
     "place_id": "bjoelsenparken_elvenaer",
     "visual": {
-      "designCode": "article_nature_route_miniature"
+      "designCode": "article_urban_green_memory_miniature"
     },
-    "version": 1,
-    "popupDesc": "Den elvenære delen av Bjølsenparken er et parkdrag langs Akerselva med busker, åpne flater og gangforbindelser. Området binder sammen oppholdssoner og ferdsel tett på vannet.",
+    "version": 2,
+    "popupDesc": "Advokat Dehlis plass er et lite grønt byrom ved Maridalsveien og Bentsebrugata, med monument, plen og trær. Punktet ble tidligere feilaktig presentert som en del av Bjølsenparken.",
     "wikiText": [
-      "Parkpartiet ligger i overgangen mellom boligområder og elveløp, der vegetasjonssoner og gressflater skaper et åpent, men strukturert landskapsrom. Nærheten til vannet gjør at parken fungerer som en tydelig del av Akerselvas sammenhengende grøntdrag.",
-      "Bjølsenparken brukes både til gjennomgang og korte opphold, noe som gir jevn belastning på kantsonene mot elva. Stedets naturkvalitet avhenger av at kratt og jorddekte partier får stå som buffer mellom turvei og vannkant."
+      "Advokat Dehlis plass ligger på Bjølsen ved krysset Maridalsveien og Bentsebrugata. Plassen fikk navn i 1934 etter juristen og organisasjonsmannen Ole Dehli. Koordinat- og kildekontrollen viser at History Go-punktet tilhører dette plassrommet, ikke den egentlige Bjølsenparken lenger nordvest.",
+      "Ole Dehli tok initiativ til Kristiania Kooperative Selskab i 1894 og var en sentral grunnlegger av Norges Kooperative Landsforening i 1906. Monumentet over ham ble reist på plassen i 1946 og er utført av Asbjørg Borgfelt. Fire relieffer viser en bonde, en arbeider, en fisker og en kvinne med barn og kurv.",
+      "Grøntarealet rundt monumentet består av plen, trær og vegeterte kanter omgitt av trafikkflater, skole og tett boligbebyggelse. Naturfunksjonen er derfor typisk urban: skygge, mykere overflate, noe tilbakeholdelse av regnvann og et lite oppholdspunkt mellom større grøntområder.",
+      "Stedet ligger i nærheten av Akerselva-korridoren, men er ikke en elvebredde. Denne forskjellen er viktig for stedslæringen. Artsinnhold vises fra repoets Artskart-baserte naturkart, mens stedsteksten beskriver de observerbare strukturene uten å legge inn gjettede arter."
     ],
     "summary": {
-      "one_liner": "Elvenært parkdrag som kobler ferdsel og opphold ved Akerselva.",
+      "one_liner": "Lite grønt minnested ved et bykryss, oppkalt etter samvirkepioneren Ole Dehli.",
       "themes": [
-        "parkdrag",
-        "elvepark",
-        "grønn korridor"
+        "urbannatur",
+        "offentlig plass",
+        "samvirkehistorie",
+        "monument",
+        "overvann",
+        "stedsidentitet"
       ],
       "tone": [
         "nøktern",
-        "faglig"
+        "faglig",
+        "stedsspesifikk"
       ]
     },
     "facts": [
       {
         "id": "fact_01",
-        "label": "Stedsspesifikk naturfunksjon",
-        "desc": "Bjølsenparkens elvenære del fungerer som buffer og ferdselsledd i Akerselvas parkstruktur.",
-        "confidence": "medium",
-        "sources": []
+        "label": "Korrekt sted",
+        "desc": "Koordinatet ligger ved Advokat Dehlis plass, ikke i den egentlige Bjølsenparken.",
+        "confidence": "high",
+        "sources": [
+          "https://oslobyleksikon.no/side/Advokat_Dehlis_plass",
+          "https://commons.wikimedia.org/wiki/Category:Advokat_Dehlis_plass,_Oslo",
+          "https://oslobyleksikon.no/side/Bj%C3%B8lsenparken"
+        ]
+      },
+      {
+        "id": "fact_02",
+        "label": "Navnevedtak",
+        "desc": "Plassen ble oppkalt etter Ole Dehli i 1934.",
+        "confidence": "high",
+        "sources": [
+          "https://oslobyleksikon.no/side/Advokat_Dehlis_plass",
+          "https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass"
+        ]
+      },
+      {
+        "id": "fact_03",
+        "label": "Monument",
+        "desc": "Monumentet av Asbjørg Borgfelt ble reist i 1946.",
+        "confidence": "high",
+        "sources": [
+          "https://oslobyleksikon.no/side/Advokat_Dehlis_plass",
+          "https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass"
+        ]
+      },
+      {
+        "id": "fact_04",
+        "label": "Fire relieffer",
+        "desc": "Relieffene viser en bonde, en arbeider, en fisker og en kvinne med barn og kurv.",
+        "confidence": "high",
+        "sources": [
+          "https://oslobyleksikon.no/side/Advokat_Dehlis_plass"
+        ]
+      },
+      {
+        "id": "fact_05",
+        "label": "Samvirkepioner",
+        "desc": "Ole Dehli stiftet Kristiania Kooperative Selskab og var sentral i grunnleggelsen av Norges Kooperative Landsforening.",
+        "confidence": "high",
+        "sources": [
+          "https://snl.no/Ole_Dehli",
+          "https://nbl.snl.no/Ole_Dehli"
+        ]
+      },
+      {
+        "id": "fact_06",
+        "label": "Dokumentert artskobling",
+        "desc": "Repoets Artskart-baserte naturkart har en aktiv florakobling for stedet; artsdata beholdes separat fra stedfilen.",
+        "confidence": "high",
+        "sources": [
+          "data/natur/nature_oslo_expansion_place_map.json"
+        ]
       }
     ],
     "chronology": [
       {
         "id": "chrono_01",
-        "year": null,
-        "period": "Utviklingsløp",
-        "desc": "Området har gått fra produksjonsnære randsoner til et tilgjengelig parkrom med tydeligere byøkologisk rolle.",
-        "confidence": "medium",
-        "sources": []
+        "year": 1894,
+        "period": "Samvirkehistorie",
+        "desc": "Ole Dehli tar initiativ til Kristiania Kooperative Selskab.",
+        "confidence": "high",
+        "sources": [
+          "https://snl.no/Ole_Dehli",
+          "https://nbl.snl.no/Ole_Dehli"
+        ]
+      },
+      {
+        "id": "chrono_02",
+        "year": 1906,
+        "period": "Samvirkehistorie",
+        "desc": "Norges Kooperative Landsforening blir stiftet med Dehli som sentral grunnlegger og formann.",
+        "confidence": "high",
+        "sources": [
+          "https://snl.no/Ole_Dehli",
+          "https://nbl.snl.no/Ole_Dehli"
+        ]
+      },
+      {
+        "id": "chrono_03",
+        "year": 1934,
+        "period": "Byrom og navngivning",
+        "desc": "Plassen får navnet Advokat Dehlis plass.",
+        "confidence": "high",
+        "sources": [
+          "https://oslobyleksikon.no/side/Advokat_Dehlis_plass"
+        ]
+      },
+      {
+        "id": "chrono_04",
+        "year": 1946,
+        "period": "Monumenthistorie",
+        "desc": "Asbjørg Borgfelts monument over Ole Dehli blir reist.",
+        "confidence": "high",
+        "sources": [
+          "https://oslobyleksikon.no/side/Advokat_Dehlis_plass",
+          "https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass"
+        ]
       }
     ],
-    "sources": []
+    "sources": [
+      {
+        "title": "Oslo byleksikon: Advokat Dehlis plass",
+        "url": "https://oslobyleksikon.no/side/Advokat_Dehlis_plass"
+      },
+      {
+        "title": "Lokalhistoriewiki: Advokat Dehlis plass",
+        "url": "https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass"
+      },
+      {
+        "title": "Wikimedia Commons: Advokat Dehlis plass",
+        "url": "https://commons.wikimedia.org/wiki/Category:Advokat_Dehlis_plass,_Oslo"
+      },
+      {
+        "title": "Store norske leksikon: Ole Dehli",
+        "url": "https://snl.no/Ole_Dehli"
+      },
+      {
+        "title": "Norsk biografisk leksikon: Ole Dehli",
+        "url": "https://nbl.snl.no/Ole_Dehli"
+      },
+      {
+        "title": "Oslo byleksikon: Bentsebrugata",
+        "url": "https://oslobyleksikon.no/side/Bentsebrugata"
+      },
+      {
+        "title": "Oslo byleksikon: Bjølsenparken",
+        "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsenparken"
+      }
+    ]
   },
   {
     "place_id": "elvestrekning_bla_brenneriveien",
