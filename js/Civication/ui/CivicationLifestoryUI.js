@@ -13,7 +13,10 @@
 (function () {
   "use strict";
 
-  const DEFAULT_ROLE_ID = "arealplanlegger"; // pilotrollen
+  // Startkontrakten (dashboardet/SYSTEM_MAP): du starter ARBEIDSLEDIG.
+  // Jobb kommer via quiz/merker -> jobbtilbud i skallet -> maybeAdoptShellRole
+  // bytter til jobbens rolle. Arealplanlegger er pilotrolle, ikke standard.
+  const DEFAULT_ROLE_ID = "arbeidsledig";
   const ROLE_STORAGE_KEY = "civication_lifestory_role_v1";
 
   /**

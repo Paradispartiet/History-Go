@@ -4,7 +4,7 @@
 // Dag 1 gjennom Day Runner, og verifiserer at Dag 2 forgrenes på Dag 1
 // (avviksmelding => vernerunde-oppfølging, ikke glatt gulv-etterspillet).
 // Verifiserer også at Min dag-UI-en kan velge rolle eksplisitt
-// (?lifestoryRole= / localStorage) med arealplanlegger som uendret standard.
+// (?lifestoryRole= / localStorage); standard uten valg/jobb er arbeidsledig.
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
@@ -145,8 +145,8 @@ assert.ok(!gren2Kandidater.includes("d2_avvik_fulgt_opp"),
 
 // --- Min dag-UI: rollevalg er eksplisitt, standard er uendret ---
 const uiSource = fs.readFileSync(path.join(ROOT, "js/Civication/ui/CivicationLifestoryUI.js"), "utf8");
-assert.ok(uiSource.includes('DEFAULT_ROLE_ID = "arealplanlegger"'),
-  "standardrollen er fortsatt arealplanlegger");
+assert.ok(uiSource.includes('DEFAULT_ROLE_ID = "arbeidsledig"'),
+  "startkontrakten: du starter arbeidsledig (jobb via quiz/merker)");
 assert.ok(uiSource.includes("lifestoryRole"), "rolle kan velges via ?lifestoryRole=");
 assert.ok(uiSource.includes("civication_lifestory_role_v1"), "rollevalget persisteres i localStorage");
 

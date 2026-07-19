@@ -17,6 +17,11 @@ const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/Civication/lif
 // --- 1. Manifest-bindingene er gyldige og unike ---
 const scopes = [];
 for (const [roleId, entry] of Object.entries(manifest.roles)) {
+  if (roleId === "arbeidsledig") {
+    // Startrollen: ingen jobb mapper til arbeidsledighet — bevisst uten binding.
+    assert.strictEqual(entry.role_scope, undefined, "arbeidsledig skal ikke ha role_scope");
+    continue;
+  }
   assert.ok(typeof entry.role_scope === "string" && entry.role_scope.trim(),
     `rollen ${roleId} mangler role_scope-binding`);
   scopes.push(entry.role_scope);
