@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T22:46:00.073Z
+Generert: 2026-07-19T23:02:43.305Z
 
 ## Oppsummering
 - Aktive filer validert: **504**
 - Antall steder validert: **1215**
 - Harde feil: **0**
-- Varsler: **429**
-- Coordinate review candidates: **712** signaler fordelt på **568** steder
+- Varsler: **428**
+- Coordinate review candidates: **711** signaler fordelt på **568** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -791,8 +791,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#hausmannsomradet_elvelop: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#vaterland_historisk_elvelop: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#akerselva_utlop_bjorvika: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#akerselva_utlop_bjorvika: coordinate_regression_risk (673 m fra tidligere verified)
 - data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#alnaparken: coordStatus=verified uten coordNote for område/gate/rute
 - data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#svartdalen: coordStatus=verified uten coordNote for område/gate/rute
 - data/places/natur/oslo/places_oslo_natur_hovedsteder.json#hovedoya: stort område uten coordNote/coordStatus
@@ -959,21 +958,28 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 712 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
+| coordinate_regression_risk | 1 |
 | coordStatus=verified uten coordPrecisionM | 108 |
-| lineært sted uten anchors | 82 |
+| lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 99 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 91 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 90 |
 | park/stort område uten anchors eller coordNote | 132 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
+
+### coordinate_regression_risk (1)
+
+| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| akerselva_utlop_bjorvika | Akerselvas utløp mot fjorden (Bjørvika) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9075303 | 10.7554479 | 220 | Flyttet ~673 m fra tidligere verified. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (108)
 
@@ -1088,7 +1094,7 @@ Totalt 712 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bla_skilt_enerhaugen_samfund_smedgata_34 | Blått skilt: Enerhaugens Samfund | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.91369333254918 | 10.77036298230481 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (82)
+### lineært sted uten anchors (81)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1144,7 +1150,6 @@ Totalt 712 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.923 | 10.7407 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | fossveien_elvestrekning | Fossveien – elvestrekning | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9218 | 10.7391 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9197 | 10.7364 | 170 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| vaterland_historisk_elvelop | Vaterland – historisk elveløp | historie | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9158 | 10.7332 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | noklevann_ljanselva_start | Nøklevann (Ljanselva start) | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8836 | 10.878 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_skullerud | Ljanselva ved Skullerud | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8642 | 10.8423 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_hauketo | Ljanselva ved Hauketo | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8485 | 10.816 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -1279,7 +1284,7 @@ Totalt 712 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (91)
+### stasjon/park/gate/torg/elv uten coordinate metadata (90)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1345,7 +1350,6 @@ Totalt 712 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | jernbanetorget_trafikknutepunkt | Jernbanetorget – handelsknutepunktet | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.911 | 10.7508 | 150 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | vippetangen_fisketorg | Vippetangen fisketorg | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9012 | 10.7429 | 160 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| vaterland_historisk_elvelop | Vaterland – historisk elveløp | historie | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9158 | 10.7332 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | eidsvolls_plass | Eidsvolls plass | politikk | data/places/politikk/oslo/places_politikk.json | 59.9157 | 10.7388 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | slottsplassen | Slottsplassen | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.9169 | 10.7276 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | daelenenga_idrettspark | Dælenenga idrettspark | sport | data/places/sport/europa/norway/oslo_sport.json | 59.9264 | 10.76449 | 170 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |

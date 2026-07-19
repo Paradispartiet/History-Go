@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 163 verifiserte eller kildekontrollerte canonical steder. Batch 34 kontrollerer de neste sju recordene i Akerselva-ruten: Vulkan industriområde får et dokumentert Geonorge-adresseanker i Maridalsveien 17; Hausmannsbrua og Ankerbrua får eksakte navngitte OSM-broobjekter; tre lokalt definerte elvestrekninger og den sammenslåtte Nybrua/Vaterlandsparken-recorden avsluttes uten ny godkjent koordinat. Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 49.
+Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical steder. Batch 35 fullfører Akerselva-ruten: Vaterland – historisk elveløp får et dokumentert historisk linjeanker ved Vaterlands bru, mens Akerselvas utløp i Bjørvika flyttes fra et feilplassert manuelt punkt ved Karl Johans gate til endepunktet på den navngitte nederste Akerselva-geometrien. Antallet fullførte kontroller uten godkjent Oslo-koordinat forblir 49.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -185,13 +185,16 @@ Oslo-tabellen inneholder nå 163 verifiserte eller kildekontrollerte canonical s
 | 34 | `hausmannsbrua` | Hausmannsbrua | verified_geometry | `osm-way:377766486` |
 | 34 | `ankerbrua` | Ankerbrua | verified_geometry | `osm-way:381749949` |
 
+| 35 | `vaterland_historisk_elvelop` | Vaterland – historisk elveløp | verified_historical_source | `oslobyleksikon:akerselva:vaterlands-bru` |
+| 35 | `akerselva_utlop_bjorvika` | Akerselvas utløp mot fjorden (Bjørvika) | verified_geometry | `osm-way:246047712` |
+
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 163 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 165 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|

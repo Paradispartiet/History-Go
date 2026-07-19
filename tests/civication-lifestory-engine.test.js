@@ -306,9 +306,18 @@ const content = Content.buildContent(raw);
   const arkivEntry = s.arkiv[s.arkiv.length - 1];
   assert.ok(arkivEntry.konsekvensTekst, "konsekvensTekst havner i arkivet");
 
-  // Valg uten konsekvensTekst returnerer null, men er fortsatt gyldig
-  const s2 = State.createInitialState(content);
-  const res2 = Runner.applyChoice(s2, content, "privat_morgen_start", "rolig_start");
+  // Valg uten konsekvensTekst returnerer null, men er fortsatt gyldig.
+  // (Syntetisk innhold: ekte livsscener har alltid konsekvenstekst — det
+  // håndheves av civication-lifestory-arbeidsledig.test.js — så null-stien
+  // testes på en kopi der teksten er fjernet.)
+  const rawUtenTekst = JSON.parse(JSON.stringify(raw));
+  const morgenValg = rawUtenTekst.lifeScenes.scenes
+    .find((sc) => sc.id === "privat_morgen_start").valg
+    .find((v) => v.id === "rolig_start");
+  delete morgenValg.konsekvensTekst;
+  const contentUtenTekst = Content.buildContent(rawUtenTekst);
+  const s2 = State.createInitialState(contentUtenTekst);
+  const res2 = Runner.applyChoice(s2, contentUtenTekst, "privat_morgen_start", "rolig_start");
   assert.strictEqual(res2.konsekvensTekst, null, "valg uten konsekvensTekst gir null");
   assert.ok(!s2.arkiv[s2.arkiv.length - 1].konsekvensTekst, "ingen konsekvensTekst i arkiv når feltet mangler");
 
