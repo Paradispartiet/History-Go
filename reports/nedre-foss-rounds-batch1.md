@@ -4,15 +4,28 @@ Dato: 2026-07-19
 
 ## Avgrensning
 
-Batchen fortsetter Akerselva-ruten etter Beierbrua og fyller Nedre Foss sine ni kanoniske historie-rundinger. Koordinater og radius er urørt.
+Batchen fortsetter Akerselva-ruten etter Beierbrua og fyller Nedre Foss sine ni kanoniske historierundinger. Canonical ID, koordinater og radius er urørt; eventuell koordinatkorrigering tilhører den separate Oslo-koordinatkontrollen.
 
-## Canonical person
+## Canonical identitet og person
 
-Den allerede opprettede `friedrich_gruner` gjenbrukes. Ingen alternativ `friederich_gruner` opprettes. Personfilen registreres i people-manifestet og kobles fysisk til Nedre Foss gjennom eierskapet fra 1672.
+- `year` endres fra den generiske verdien `1800` til `1220`, første dokumenterte omtale av kvernstedet.
+- Oslo kommunes etableringsvindu 1148–1200 beholdes som en separat kildebelagt opplysning og blandes ikke sammen med første skriftlige belegg.
+- Canonical `friedrich_gruner` brukes for myntmesteren som kjøpte Nedre Foss med Kongens mølle i 1672. Ingen alternativ `friederich_gruner` eller unødvendig Hans Grüner-record opprettes i denne batchen.
 
-## Kildebeslutning
+## Innhold
 
-Canonical `year` endres fra `1800` til `1220`, første dokumenterte omtale av kverna. Oslo kommune oppgir samtidig et etableringsvindu mellom 1148 og 1200; dette beholdes som en egen kildebelagt opplysning.
+Batchen konkretiserer:
+
+- middelaldermøllen og Hovedøya kloster
+- Kongens mølle og krongodsperioden
+- Friedrich Grüners kjøp i 1672
+- hovedbygningen fra 1801/1802
+- kornsiloen fra 1953 og ombyggingen til studentboliger i 2001
+- parkens mølleformidling
+- laksetrappen og regnbedene
+- transformasjonen fra produksjonssted til offentlig elve- og parkrom
+
+Eksisterende quiz er oppgradert til stedsspesifikke, kildebelagte spørsmål. Leksikonet er oppgradert med ekstern kildebase og konkret kronologi, og stedet har fått en egen fortelling.
 
 ## Rundinger
 
@@ -20,4 +33,18 @@ Personer, Verk, Merker, Før/nå, Civication, Aktører, Natur, Fortellinger og L
 
 ## Split-sikkerhet
 
-Ingen full Akerselva-splitting. Bare Nedre Foss-filen, dens route-indexrad og manifest-hash endres blant route-place-filene.
+Ingen full Akerselva-splitting. Bare Nedre Foss-filen, dens route-indexrad og manifest-hash endres blant route-place-filene. En målrettet churn-guard beskytter de nyere berikede Akerselva-splitfilene.
+
+## Validering
+
+Den materialiserte sluttstaten har bestått:
+
+- målrettet Nedre Foss-rundingtest
+- canonical PlaceCard round runtime audit
+- People-of-Places audit
+- place index build/check
+- split-manifest sync
+- JSON-parse
+- `git diff --check`
+
+Sluttdiffen inneholder ingen midlertidige workflows eller helperfiler og bare ett valideringssett.
