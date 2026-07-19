@@ -64,6 +64,32 @@ jobs:
       - name: Apply batch 22
         run: node scripts/apply-oslo-coordinate-batch-22.mjs
 
+      - name: Normalize needs-review evidence snapshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const places = JSON.parse(fs.readFileSync('data/places/litteratur/oslo/places_litteratur.json', 'utf8'));
+          const ids = ['norli_universitetsgata', 'sigrid_undset_statue'];
+          for (const id of ids) {
+            const place = places.find((row) => row && row.id === id);
+            if (!place) throw new Error(`Missing active place ${id}`);
+            const evidencePath = `data/coordinate-evidence/oslo/litteratur/${id}.json`;
+            const evidence = JSON.parse(fs.readFileSync(evidencePath, 'utf8'));
+            evidence.currentCoordinate = {
+              lat: place.lat ?? null,
+              lon: place.lon ?? null,
+              r: place.r ?? null,
+              coordStatus: place.coordStatus ?? '',
+              coordSource: place.coordSource ?? '',
+              coordType: place.coordType ?? '',
+              coordNote: place.coordNote ?? ''
+            };
+            fs.writeFileSync(evidencePath, JSON.stringify(evidence, null, 2) + '\n');
+          }
+          NODE
+
       - name: Build global place index
         run: |
           set -o pipefail
