@@ -51,40 +51,10 @@
     ],
     "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
   },
-  "coordType": "route_midpoint",
-  "coordStatus": "verified",
-  "coordSource": "manual_map_check",
-  "coordPrecisionM": 60,
-  "coordVerifiedAt": "2026-05-01",
-  "anchors": [
-    {
-      "id": "fossv_nord",
-      "name": "Fossveien – nord",
-      "lat": 59.9224,
-      "lon": 10.7398,
-      "r": 90,
-      "type": "route_point",
-      "note": "Nordlig del av elvestrekningen ved Fossveien."
-    },
-    {
-      "id": "fossv_midt",
-      "name": "Fossveien – midtre løp",
-      "lat": 59.9218,
-      "lon": 10.7391,
-      "r": 90,
-      "type": "unlock_anchor",
-      "note": "Midtpunkt i elvenær passasje ved Fossveien."
-    },
-    {
-      "id": "fossv_sor",
-      "name": "Fossveien – sør",
-      "lat": 59.9212,
-      "lon": 10.7385,
-      "r": 90,
-      "type": "route_point",
-      "note": "Sørlig overgang mot Hausmannsområdet."
-    }
-  ],
+  "coordType": "legacy_unverified",
+  "coordStatus": "needs_source",
+  "coordSource": "named_river_segment_unresolved",
+  "coordVerifiedAt": "2026-07-19",
   "primary_category": "natur",
   "secondary_category": "historie",
   "hybrid": true,
@@ -110,5 +80,11 @@
       "nedre_foss",
       "kuba_parken"
     ]
-  }
+  },
+  "locatorType": "route",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "akerselva-segment:fossveien:unresolved",
+  "geocodeAccuracy": "unknown",
+  "coordRole": "line_anchor",
+  "coordNote": "Recorden beskriver en lokalt definert Akerselva-strekning ved Fossveien, men kontrollen fant ikke ett entydig navngitt kildeobjekt som avgrenser akkurat denne strekningen. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
 }

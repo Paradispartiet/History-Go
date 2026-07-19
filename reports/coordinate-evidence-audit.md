@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T22:28:49.923Z
+Generert: 2026-07-19T22:46:01.852Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -155,3 +155,10 @@ Generert: 2026-07-19T22:28:49.923Z
 | kuba_parken | data/coordinate-evidence/oslo/natur/kuba_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | beierbrua | data/coordinate-evidence/oslo/natur/beierbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nedre_foss | data/coordinate-evidence/oslo/natur/nedre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vulkan_industriomrade | data/coordinate-evidence/oslo/natur/vulkan_industriomrade.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| elvestrekning_bla_brenneriveien | data/coordinate-evidence/oslo/natur/elvestrekning_bla_brenneriveien.json | needs_research | needs_geometry | OK |
+| fossveien_elvestrekning | data/coordinate-evidence/oslo/natur/fossveien_elvestrekning.json | needs_research | needs_geometry | OK |
+| hausmannsbrua | data/coordinate-evidence/oslo/natur/hausmannsbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| hausmannsomradet_elvelop | data/coordinate-evidence/oslo/natur/hausmannsomradet_elvelop.json | needs_research | needs_geometry | OK |
+| ankerbrua | data/coordinate-evidence/oslo/natur/ankerbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | needs_research | needs_identity_split | OK |

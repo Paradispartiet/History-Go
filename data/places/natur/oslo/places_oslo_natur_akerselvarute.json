@@ -1234,8 +1234,8 @@
   {
     "id": "vulkan_industriomrade",
     "name": "Vulkan industriområde",
-    "lat": 59.9247,
-    "lon": 10.7424,
+    "lat": 59.922646873289004,
+    "lon": 10.751204856903922,
     "r": 180,
     "category": "by",
     "desc": "Tidligere industriområde langs Akerselva, nå byomformet.",
@@ -1286,7 +1286,26 @@
     },
     "primary_category": "by",
     "secondary_category": "historie",
-    "hybrid": true
+    "hybrid": true,
+    "locatorType": "linear_area",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14622:17",
+    "address": {
+      "street": "Maridalsveien",
+      "number": "17",
+      "postcode": "0178",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "area_anchor",
+    "coordType": "area_address_anchor",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordSourceId": "geonorge-adresser-v1:0301:14622:17",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Maridalsveien%2017%20Oslo",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Offisiell Geonorge-adressekoordinat for Maridalsveien 17 brukes som dokumentert area_anchor for Vulkan som tidligere industriområde. SNL, Oslo byleksikon og Vulkan Oslo dokumenterer Vulkan-området ved denne adressen. Punktet er et adresseanker for området, ikke et geometrisk sentrum og ikke samme objekt som den separate Vulkan energisentral-recorden på Vulkan 5."
   },
   {
     "id": "elvestrekning_bla_brenneriveien",
@@ -1341,40 +1360,10 @@
       ],
       "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
     },
-    "coordType": "route_midpoint",
-    "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordPrecisionM": 60,
-    "coordVerifiedAt": "2026-05-01",
-    "anchors": [
-      {
-        "id": "bla_ovre",
-        "name": "Blå-strekningen – øvre del",
-        "lat": 59.9236,
-        "lon": 10.7415,
-        "r": 90,
-        "type": "route_point",
-        "note": "Øvre del av elvekanten ved Brenneriveien."
-      },
-      {
-        "id": "bla_scene",
-        "name": "Blå-strekningen – ved Blå",
-        "lat": 59.923,
-        "lon": 10.7407,
-        "r": 90,
-        "type": "unlock_anchor",
-        "note": "Kjernepunkt ved kulturarenaen Blå og synlig elveløp."
-      },
-      {
-        "id": "bla_nedre",
-        "name": "Blå-strekningen – nedre del",
-        "lat": 59.9223,
-        "lon": 10.7398,
-        "r": 90,
-        "type": "route_point",
-        "note": "Nedre overgang mot Fossveien-partiet."
-      }
-    ],
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "named_river_segment_unresolved",
+    "coordVerifiedAt": "2026-07-19",
     "primary_category": "natur",
     "secondary_category": "by",
     "hybrid": true,
@@ -1382,7 +1371,13 @@
       "elv",
       "vann_og_vassdrag",
       "kantvegetasjon"
-    ]
+    ],
+    "locatorType": "route",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "akerselva-segment:bla-brenneriveien:unresolved",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "line_anchor",
+    "coordNote": "Recorden beskriver en lokalt definert Akerselva-strekning ved Blå/Brenneriveien, men kontrollen fant ikke ett entydig navngitt kildeobjekt som avgrenser akkurat denne strekningen. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
   },
   {
     "id": "fossveien_elvestrekning",
@@ -1437,40 +1432,10 @@
       ],
       "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
     },
-    "coordType": "route_midpoint",
-    "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordPrecisionM": 60,
-    "coordVerifiedAt": "2026-05-01",
-    "anchors": [
-      {
-        "id": "fossv_nord",
-        "name": "Fossveien – nord",
-        "lat": 59.9224,
-        "lon": 10.7398,
-        "r": 90,
-        "type": "route_point",
-        "note": "Nordlig del av elvestrekningen ved Fossveien."
-      },
-      {
-        "id": "fossv_midt",
-        "name": "Fossveien – midtre løp",
-        "lat": 59.9218,
-        "lon": 10.7391,
-        "r": 90,
-        "type": "unlock_anchor",
-        "note": "Midtpunkt i elvenær passasje ved Fossveien."
-      },
-      {
-        "id": "fossv_sor",
-        "name": "Fossveien – sør",
-        "lat": 59.9212,
-        "lon": 10.7385,
-        "r": 90,
-        "type": "route_point",
-        "note": "Sørlig overgang mot Hausmannsområdet."
-      }
-    ],
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "named_river_segment_unresolved",
+    "coordVerifiedAt": "2026-07-19",
     "primary_category": "natur",
     "secondary_category": "historie",
     "hybrid": true,
@@ -1478,13 +1443,19 @@
       "elv",
       "vann_og_vassdrag",
       "foss_og_stryk"
-    ]
+    ],
+    "locatorType": "route",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "akerselva-segment:fossveien:unresolved",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "line_anchor",
+    "coordNote": "Recorden beskriver en lokalt definert Akerselva-strekning ved Fossveien, men kontrollen fant ikke ett entydig navngitt kildeobjekt som avgrenser akkurat denne strekningen. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
   },
   {
     "id": "hausmannsbrua",
     "name": "Hausmannsbrua",
-    "lat": 59.9205,
-    "lon": 10.7374,
+    "lat": 59.9151848,
+    "lon": 10.7599143,
     "r": 120,
     "category": "by",
     "desc": "Bro over Akerselva i tett byområde.",
@@ -1537,7 +1508,19 @@
     "hybrid": false,
     "underbadge_ids": [
       "infrastruktur"
-    ]
+    ],
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:377766486",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "line_anchor",
+    "coordType": "bridge_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 377766486 – Hausmanns bru",
+    "coordSourceId": "osm-way:377766486",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/377766486",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Eksakt navngitt OSM-way for Hausmanns bru, way 377766486, koblet til Wikidata Q11974529. Wayens representasjonspunkt brukes som line_anchor for selve broen; den gamle markøren lå langt vest for Akerselva."
   },
   {
     "id": "hausmannsomradet_elvelop",
@@ -1592,52 +1575,28 @@
       ],
       "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
     },
-    "coordType": "route_midpoint",
-    "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordPrecisionM": 70,
-    "coordVerifiedAt": "2026-05-01",
-    "anchors": [
-      {
-        "id": "haus_ovre",
-        "name": "Hausmannsområdet – øvre elveløp",
-        "lat": 59.9202,
-        "lon": 10.7371,
-        "r": 100,
-        "type": "route_point",
-        "note": "Øvre del av elverommet ved Hausmannsbrua."
-      },
-      {
-        "id": "haus_midt",
-        "name": "Hausmannsområdet – midtre elveløp",
-        "lat": 59.9197,
-        "lon": 10.7364,
-        "r": 100,
-        "type": "unlock_anchor",
-        "note": "Kjernepunkt i synlig elveløp gjennom kulturmiljøet."
-      },
-      {
-        "id": "haus_nedre",
-        "name": "Hausmannsområdet – nedre elveløp",
-        "lat": 59.919,
-        "lon": 10.7356,
-        "r": 100,
-        "type": "route_point",
-        "note": "Nedre overgang mot Nybrua/Vaterlandsparken."
-      }
-    ],
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "named_river_segment_unresolved",
+    "coordVerifiedAt": "2026-07-19",
     "primary_category": "by",
     "secondary_category": "historie",
     "hybrid": true,
     "underbadge_ids": [
       "infrastruktur"
-    ]
+    ],
+    "locatorType": "route",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "akerselva-segment:hausmannsomradet:unresolved",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "line_anchor",
+    "coordNote": "Recorden beskriver et bredt elveløp gjennom Hausmannsområdet uten en entydig fysisk avgrensning i dagens modell. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
   },
   {
     "id": "ankerbrua",
     "name": "Ankerbrua",
-    "lat": 59.9185,
-    "lon": 10.7351,
+    "lat": 59.9182571,
+    "lon": 10.7562989,
     "r": 120,
     "category": "by",
     "desc": "Markant bro og byrom ved Akerselva.",
@@ -1690,7 +1649,19 @@
     "hybrid": false,
     "underbadge_ids": [
       "infrastruktur"
-    ]
+    ],
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:381749949",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "line_anchor",
+    "coordType": "bridge_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 381749949 – Ankerbrua",
+    "coordSourceId": "osm-way:381749949",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/381749949",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Eksakt navngitt OSM-way for Ankerbrua, way 381749949, koblet til Wikidata Q557132. Wayens representasjonspunkt brukes som line_anchor for selve broen; den gamle markøren lå langt vest for Akerselva."
   },
   {
     "id": "nybrua_vaterlandsparken",
@@ -1744,49 +1715,22 @@
       ],
       "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
     },
-    "coordType": "park_center",
-    "coordStatus": "verified",
-    "coordSource": "osm_geometry_or_address",
-    "coordPrecisionM": 20,
-    "coordVerifiedAt": "2026-05-03",
-    "anchors": [
-      {
-        "id": "nybrua_nord",
-        "name": "Nybrua – nord",
-        "lat": 59.9175,
-        "lon": 10.7348,
-        "r": 100,
-        "type": "route_point",
-        "note": "Nordlig overgang ved brokrysset og elvekanten."
-      },
-      {
-        "id": "nybrua_park",
-        "name": "Nybrua – parkrom",
-        "lat": 59.9169,
-        "lon": 10.734,
-        "r": 100,
-        "type": "unlock_anchor",
-        "note": "Midtre del ved Vaterlandsparken og historisk elveløp."
-      },
-      {
-        "id": "nybrua_sor",
-        "name": "Nybrua – sør",
-        "lat": 59.9162,
-        "lon": 10.7334,
-        "r": 100,
-        "type": "route_point",
-        "note": "Sørlig overgang mot nederste del av elverommet."
-      }
-    ],
-    "coordSourceId": "osm_park:Vaterlandsparken",
-    "coordSourceUrl": "https://www.openstreetmap.org/search?query=Vaterlandsparken%20Oslo",
-    "coordNote": "Koordinat rettet etter faktisk gate-/bygg-/parkgeometri, ikke manuell midpoint-patch.",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "identity_conflict_unresolved",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Recorden kombinerer to separate fysiske objekter: Nybrua (OSM way 315066295) og Vaterlandsparken (OSM way 4334996), omtrent 538 meter fra hverandre. Dagens punkt ligger på et tredje objekt og kan ikke verifiseres som representasjon for begge. De gamle manuelle ankrene er fjernet. Recorden må splittes eller få én eksplisitt canonical identitet før ny koordinat godkjennes.",
     "primary_category": "by",
     "secondary_category": "historie",
     "hybrid": true,
     "underbadge_ids": [
       "infrastruktur"
-    ]
+    ],
+    "locatorType": "unknown",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "identity-conflict:nybrua-vaterlandsparken",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "display_marker"
   },
   {
     "id": "vaterland_historisk_elvelop",

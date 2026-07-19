@@ -50,47 +50,20 @@
     ],
     "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
   },
-  "coordType": "park_center",
-  "coordStatus": "verified",
-  "coordSource": "osm_geometry_or_address",
-  "coordPrecisionM": 20,
-  "coordVerifiedAt": "2026-05-03",
-  "anchors": [
-    {
-      "id": "nybrua_nord",
-      "name": "Nybrua – nord",
-      "lat": 59.9175,
-      "lon": 10.7348,
-      "r": 100,
-      "type": "route_point",
-      "note": "Nordlig overgang ved brokrysset og elvekanten."
-    },
-    {
-      "id": "nybrua_park",
-      "name": "Nybrua – parkrom",
-      "lat": 59.9169,
-      "lon": 10.734,
-      "r": 100,
-      "type": "unlock_anchor",
-      "note": "Midtre del ved Vaterlandsparken og historisk elveløp."
-    },
-    {
-      "id": "nybrua_sor",
-      "name": "Nybrua – sør",
-      "lat": 59.9162,
-      "lon": 10.7334,
-      "r": 100,
-      "type": "route_point",
-      "note": "Sørlig overgang mot nederste del av elverommet."
-    }
-  ],
-  "coordSourceId": "osm_park:Vaterlandsparken",
-  "coordSourceUrl": "https://www.openstreetmap.org/search?query=Vaterlandsparken%20Oslo",
-  "coordNote": "Koordinat rettet etter faktisk gate-/bygg-/parkgeometri, ikke manuell midpoint-patch.",
+  "coordType": "legacy_unverified",
+  "coordStatus": "needs_source",
+  "coordSource": "identity_conflict_unresolved",
+  "coordVerifiedAt": "2026-07-19",
+  "coordNote": "Recorden kombinerer to separate fysiske objekter: Nybrua (OSM way 315066295) og Vaterlandsparken (OSM way 4334996), omtrent 538 meter fra hverandre. Dagens punkt ligger på et tredje objekt og kan ikke verifiseres som representasjon for begge. De gamle manuelle ankrene er fjernet. Recorden må splittes eller få én eksplisitt canonical identitet før ny koordinat godkjennes.",
   "primary_category": "by",
   "secondary_category": "historie",
   "hybrid": true,
   "underbadge_ids": [
     "infrastruktur"
-  ]
+  ],
+  "locatorType": "unknown",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "identity-conflict:nybrua-vaterlandsparken",
+  "geocodeAccuracy": "unknown",
+  "coordRole": "display_marker"
 }
