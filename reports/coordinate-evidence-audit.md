@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-18T23:51:01.389Z
+Generert: 2026-07-19T02:56:16.795Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -51,3 +51,10 @@ Generert: 2026-07-18T23:51:01.389Z
 | okern | data/coordinate-evidence/oslo/by/okern.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skoyen | data/coordinate-evidence/oslo/by/skoyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | torshov | data/coordinate-evidence/oslo/by/torshov.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grorud | data/coordinate-evidence/oslo/by/grorud.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| sagene | data/coordinate-evidence/oslo/by/sagene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| saga_kino | data/coordinate-evidence/oslo/film/saga_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| klingenberg_kino | data/coordinate-evidence/oslo/film/klingenberg_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| gimle_kino | data/coordinate-evidence/oslo/film/gimle_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vika_kino | data/coordinate-evidence/oslo/film/vika_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| hartvig_nissens_skole_skam | data/coordinate-evidence/oslo/film/hartvig_nissens_skole_skam.json | needs_research | needs_geometry | OK |

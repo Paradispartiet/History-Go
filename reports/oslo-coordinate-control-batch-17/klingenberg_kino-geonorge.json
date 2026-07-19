@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Olav Vs gate 4 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Olav Vs gate 4 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Olav%20Vs%20gate%204%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:20950:4",
+  "coordinate": {
+    "lat": 59.913419951009054,
+    "lon": 10.732806189784029,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:20950:4",
+    "address": {
+      "street": "Olav Vs gate",
+      "number": "4",
+      "postcode": "0161",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Olav Vs gate 4, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Olav Vs gate",
+    "adressetekst": "Olav Vs gate 4",
+    "adressetilleggsnavn": null,
+    "adressekode": 20950,
+    "nummer": 4,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 209,
+    "bruksnummer": 306,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0161",
+    "adressetekstutenadressetilleggsnavn": "Olav Vs gate 4",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.913419951009054,
+      "lon": 10.732806189784029
+    },
+    "oppdateringsdato": "2020-06-15T18:05:05"
+  }
+}
