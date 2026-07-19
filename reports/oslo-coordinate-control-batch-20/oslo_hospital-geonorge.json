@@ -1,0 +1,15 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Ekebergveien 1 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": false,
+  "status": "needs_review",
+  "reason": "Geonorge returnerte flere treff uten entydig match; må avklares manuelt.",
+  "query": "Ekebergveien 1 Oslo",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ekebergveien%201%20Oslo"
+}

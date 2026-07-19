@@ -1,0 +1,72 @@
+{
+  "placeId": "oslo_hospital",
+  "placeFile": "data/places/historie/oslo/places_historie_added_batch_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.903189,
+    "lon": 10.767664,
+    "r": 130,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 111555053 – Oslo Hospital; kryssjekket mot Oslo Hospital/Ekebergveien 1",
+    "coordType": "historic_hospital_complex_anchor",
+    "coordNote": "Geonorge-adressen Ekebergveien 1 ga flere ikke-entydige treff fordi Oslo Hospital er et historisk bygningskompleks. Det eksisterende hovedpunktet beholdes på det sentrale historiske hospitalbygget modellert som OSM way 111555053. Den offisielle Oslo Hospital-kilden dokumenterer at tomten avgrenses av Ekebergveien, Oslo gate og Konows gate. Punktet er derfor et representativt kompleksanker, ikke et påstått sentrum for hele eiendommen."
+  },
+  "identity": {
+    "currentName": "Oslo hospital",
+    "resolvedIdentity": "det historiske Oslo Hospital-komplekset i Ekebergveien 1",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 111555053 – Oslo Hospital; kryssjekket mot Oslo Hospital/Ekebergveien 1",
+      "sourceUrl": "https://www.openstreetmap.org/way/111555053",
+      "sourceObjectId": "osm-way:111555053",
+      "sourceQuality": "stable_geometry_plus_official_site_identity",
+      "finding": "Geonorge-adressen er flertydig, men OSM way 111555053 gir et konkret fysisk anker på det sentrale historiske hospitalbygget, mens den offisielle Oslo Hospital-kilden avgrenser hele tomten.",
+      "canVerifyCoordinate": true,
+      "reason": "Geonorge-adressen Ekebergveien 1 ga flere ikke-entydige treff fordi Oslo Hospital er et historisk bygningskompleks. Det eksisterende hovedpunktet beholdes på det sentrale historiske hospitalbygget modellert som OSM way 111555053. Den offisielle Oslo Hospital-kilden dokumenterer at tomten avgrenses av Ekebergveien, Oslo gate og Konows gate. Punktet er derfor et representativt kompleksanker, ikke et påstått sentrum for hele eiendommen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ekebergveien 1 Oslo",
+      "sourceProvider": "official_address",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111555053",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.903189,
+      "lon": 10.767664,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Geonorge-adressen Ekebergveien 1 ga flere ikke-entydige treff fordi Oslo Hospital er et historisk bygningskompleks. Det eksisterende hovedpunktet beholdes på det sentrale historiske hospitalbygget modellert som OSM way 111555053. Den offisielle Oslo Hospital-kilden dokumenterer at tomten avgrenses av Ekebergveien, Oslo gate og Konows gate. Punktet er derfor et representativt kompleksanker, ikke et påstått sentrum for hele eiendommen."
+  ]
+}

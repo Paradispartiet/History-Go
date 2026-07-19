@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-19T03:14:19.386Z
+Generert: 2026-07-19T03:24:51.162Z
 
 ## Hvorfor denne gaten finnes
 
@@ -16,9 +16,9 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Base method: **COORD_INTAKE_BASE**
 - Aktive manifest-filer lest: **479**
 - Place-objekter validert: **1177**
-- Nye/endrede koordinatobjekter mot base: **7**
+- Nye/endrede koordinatobjekter mot base: **3**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3714**
+- Backlog-funn: **3710**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -65,11 +65,7 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordNote | coordType=historical_site krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
-| backlog | nei | oslo_hospital | Oslo hospital | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | oslo_hospital | Oslo hospital | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | coordType=historical_site krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
-| backlog | nei | botsfengselet | Botsfengselet | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | prinds_christian_augusts_minde | Prinds Christian Augusts Minde | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | gamle_radhus | Gamle rådhus | data/places/by/oslo/gamle_radhus.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +537,10 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | krokkleiva_kongeveien | Krokkleiva / Den bergenske kongevei | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Stor radius r=420 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | bragernes_kirke | Bragernes kirke | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | bragernes_kirke | Bragernes kirke | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | bragernes_kirke | Bragernes kirke | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | lauvlia_kittelsen | Lauvlia / Theodor Kittelsens kunstnerhjem | data/places/kunst/buskerud/lauvlia_kittelsen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | lauvlia_kittelsen | Lauvlia / Theodor Kittelsens kunstnerhjem | data/places/kunst/buskerud/lauvlia_kittelsen.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | lauvlia_kittelsen | Lauvlia / Theodor Kittelsens kunstnerhjem | data/places/kunst/buskerud/lauvlia_kittelsen.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3714 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3710 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
