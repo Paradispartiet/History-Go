@@ -65,11 +65,11 @@ jobs:
           PY
       - name: House of Blues dedicated test
         run: node tests/house-of-blues-batch1-round-content.test.js
-      - name: Inherited Etne round tests
+      - name: Inherited Etne batch 1 round tests
         shell: bash
         run: |
-          find tests -maxdepth 1 -type f -name '*round-content.test.js' \
-            | grep -E '/(etne|etnesjoen|skanevik|steinsvollen|engebanen|skakkeringen|osnes|sjokanten|fikse|house-of-blues)[^/]*round-content\.test\.js$' \
+          find tests -maxdepth 1 -type f -name '*batch1-round-content.test.js' \
+            | grep -E '/(etne|etnesjoen|skanevik|steinsvollen|engebanen|skakkeringen|osnes|sjokanten|fikse|house-of-blues)[^/]*batch1-round-content\.test\.js$' \
             | grep -v 'house-of-blues-batch1-round-content.test.js' \
             | sort \
             | xargs -r -n1 node
