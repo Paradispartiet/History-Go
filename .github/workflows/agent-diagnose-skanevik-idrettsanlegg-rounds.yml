@@ -1,0 +1,41 @@
+name: Diagnose Skånevik idrettsanlegg rounds
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Extract and run generator
+        run: |
+          python - <<'PY'
+          import base64, gzip, pathlib, re
+          text = pathlib.Path('.github/workflows/agent-fill-skanevik-idrettsanlegg-rounds.yml').read_text()
+          payload = re.search(r'GENERATOR_GZ_B64: "([A-Za-z0-9+/=]+)"', text).group(1)
+          pathlib.Path('/tmp/g.js').write_bytes(gzip.decompress(base64.b64decode(payload)))
+          PY
+          node /tmp/g.js
+      - name: Dedicated Skånevik idrettsanlegg test
+        run: node tests/skanevik-idrettsanlegg-batch1-round-content.test.js
+      - name: Skånevik discgolf regression
+        run: node tests/skanevik-discgolf-batch1-round-content.test.js
+      - name: Osnes regression
+        run: node tests/osnes-discgolf-batch1-round-content.test.js
+      - name: Skakkeringen regression
+        run: node tests/skakkeringen-batch1-round-content.test.js
+      - name: Engebanen regression
+        run: node tests/engebanen-batch1-round-content.test.js
+      - name: Steinsvollen regression
+        run: node tests/steinsvollen-batch1-round-content.test.js
+      - name: Pumptrack regression
+        run: node tests/etne-pumptrack-batch1-round-content.test.js
