@@ -1,4 +1,4 @@
-name: Oslo Oppdag Kvadraturen Hovedstaden batch 2 coordinates
+name: Oslo Oppdag Kvadraturen Hovedstaden batch 2 finalize
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  coordinates:
+  finalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -24,21 +24,166 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Resolve Prinsens gate 26
+      - name: Register place source
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/coordinates'
-          mkdir -p "$outdir"
-          npm run places:coords:find:address -- --address 'Prinsens gate 26 Oslo' \
-            | tee "$outdir/prinsens_gate_26.json"
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const addition = 'places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02.json';
+          if (!Array.isArray(manifest.files)) throw new Error('data/places/manifest.json must contain files[]');
+          if (!manifest.files.includes(addition)) manifest.files.push(addition);
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          console.log(`Registered ${addition}`);
+          NODE
 
-      - name: Persist coordinate evidence
+      - name: Validate JSON syntax
         shell: bash
         run: |
           set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          mkdir -p "$outdir"
+          jq empty data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02.json
+          jq empty data/wonderkammer/oslo_oppdag_kvadraturen_hovedstaden_microplaces_batch_2.json
+          jq empty data/wonderkammer/index.json
+          jq empty data/places/manifest.json
+          echo 'JSON syntax: OK' | tee "$outdir/json-syntax.txt"
+
+      - name: Build places index
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+
+      - name: Check places index
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          npm run places:index:check | tee "$outdir/places-index-check.txt"
+
+      - name: Check strict coordinate intake against branch merge-base
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          npm run places:coords:intake | tee "$outdir/coordinate-intake.txt"
+
+      - name: Check canonical emne IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          npm run places:emner:check | tee "$outdir/emne-validation.txt"
+
+      - name: Capture place health and hold baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          set +e
+          npm run health:places | tee "$outdir/health-places.txt"
+          health_status=${PIPESTATUS[0]}
+          set -e
+          errors=$(grep -E '^Errors: [0-9]+' "$outdir/health-places.txt" | head -1 | awk '{print $2}')
+          if [[ -z "${errors:-}" ]]; then
+            echo 'Could not parse place health error count.' >&2
+            exit 1
+          fi
+          if (( errors > 40 )); then
+            echo "Place health errors increased above held baseline: ${errors} > 40" >&2
+            exit 1
+          fi
+          printf 'Place health command exit: %s\nHeld error baseline: 40\nObserved errors: %s\n' "$health_status" "$errors" \
+            | tee "$outdir/health-baseline.txt"
+
+      - name: Check split manifest sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          npm run audit:places-split-manifest-sync | tee "$outdir/split-manifest-sync.txt"
+
+      - name: Check coordinate source contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          npm run test:coordinate-source-contract | tee "$outdir/coordinate-source-contract.txt"
+
+      - name: Validate Hovedstaden batch 2 Wonderkammer integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          node <<'NODE' | tee "$outdir/wonderkammer-validation.txt"
+          const fs = require('fs');
+          const batchPath = 'data/wonderkammer/oslo_oppdag_kvadraturen_hovedstaden_microplaces_batch_2.json';
+          const indexPath = 'data/wonderkammer/index.json';
+          const placesPath = 'data/places/places_index.json';
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const batch = readJson(batchPath);
+          const index = readJson(indexPath);
+          const places = readJson(placesPath);
+
+          if (!Array.isArray(batch.places)) throw new Error('Batch must contain places[]');
+          if (!index.files.includes(batchPath)) throw new Error('Batch file is not registered in Wonderkammer index');
+
+          const placeIds = new Set(places.map((place) => place.id));
+          const missingParents = [...new Set(batch.places.map((entry) => entry.place_id).filter((id) => !placeIds.has(id)))];
+          if (missingParents.length) throw new Error(`Missing parent place IDs: ${missingParents.join(', ')}`);
+
+          const newIds = batch.places.flatMap((entry) => (entry.chambers || []).map((chamber) => chamber.id));
+          if (newIds.some((id) => !id)) throw new Error('Missing chamber ID in new batch');
+          if (new Set(newIds).size !== newIds.length) throw new Error('Duplicate chamber IDs inside new batch');
+          if (newIds.length !== 1) throw new Error(`Expected 1 new chamber, found ${newIds.length}`);
+
+          const existingIds = new Set();
+          const collect = (value) => {
+            if (!value || typeof value !== 'object') return;
+            if (Array.isArray(value)) {
+              for (const item of value) collect(item);
+              return;
+            }
+            if (Array.isArray(value.chambers)) {
+              for (const chamber of value.chambers) if (chamber && chamber.id) existingIds.add(chamber.id);
+            }
+            for (const child of Object.values(value)) collect(child);
+          };
+          for (const file of index.files) {
+            if (file === batchPath) continue;
+            if (!fs.existsSync(file)) throw new Error(`Registered Wonderkammer file missing: ${file}`);
+            collect(readJson(file));
+          }
+          const collisions = newIds.filter((id) => existingIds.has(id));
+          if (collisions.length) throw new Error(`New chamber ID collisions: ${collisions.join(', ')}`);
+
+          console.log(`Wonderkammer manifest registration: OK (${batchPath})`);
+          console.log(`Parent place IDs: OK (${batch.places.length} parent entry)`);
+          console.log(`New chamber IDs: OK (${newIds.length} unique)`);
+          console.log('No new chamber ID collides with pre-existing registered Wonderkammer data.');
+          NODE
+
+      - name: Check whitespace
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation'
+          git diff --check | tee "$outdir/git-diff-check.txt"
+
+      - name: Remove temporary workflow and commit final results
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-oppdag-kvadraturen-hovedstaden-batch-2-coordinates.yml
+          git add data/places/manifest.json data/places/places_index.json
+          git add reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/validation
+          git add -u .github/workflows/oslo-oppdag-kvadraturen-hovedstaden-batch-2-coordinates.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/coordinates
-          git commit -m 'Save Hovedstaden Christiania batch 2 coordinate evidence'
-          git push origin "HEAD:${GITHUB_HEAD_REF}"
+          if ! git diff --cached --quiet; then
+            git commit -m 'Finalize Hovedstaden Christiania batch 2'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
