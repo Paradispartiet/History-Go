@@ -1,0 +1,77 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Mogens Thorsens gate 5 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Mogens Thorsens gate 5 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Mogens%20Thorsens%20gate%205%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:14777:5",
+  "coordinate": {
+    "lat": 59.91573336836374,
+    "lon": 10.711784503719619,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14777:5",
+    "address": {
+      "street": "Mogens Thorsens gate",
+      "number": "5",
+      "postcode": "0264",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Mogens Thorsens gate 5, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Mogens Thorsens gate",
+    "adressetekst": "Mogens Thorsens gate 5",
+    "adressetilleggsnavn": null,
+    "adressekode": 14777,
+    "nummer": 5,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 211,
+    "bruksnummer": 133,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [
+      "H0101",
+      "H0102",
+      "H0201",
+      "H0202",
+      "H0301",
+      "H0302",
+      "H0401",
+      "H0402",
+      "H0501",
+      "H0502",
+      "U0101"
+    ],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0264",
+    "adressetekstutenadressetilleggsnavn": "Mogens Thorsens gate 5",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91573336836374,
+      "lon": 10.711784503719619
+    },
+    "oppdateringsdato": "2023-03-01T18:43:43"
+  }
+}
