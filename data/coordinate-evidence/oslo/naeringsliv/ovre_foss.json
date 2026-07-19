@@ -1,16 +1,16 @@
 {
   "placeId": "ovre_foss",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "applied_to_place",
-  "coordinateDecision": "do_not_change_coordinates_yet",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
   "currentCoordinate": {
     "lat": 59.931317,
     "lon": 10.756994,
     "r": 180,
-    "coordStatus": "verified_geometry",
-    "coordSource": "manual_research",
-    "coordType": "building_center",
-    "coordNote": "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+    "coordStatus": "needs_source",
+    "coordSource": "ambiguous_official_address_and_exact_hjula_geometry_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Adresse-first ble faktisk fulgt: det lagrede Geonorge-oppslaget for Sagveien 23 ga flere treff uten entydig match. Hjula Væverier er identifisert som kulturminne 164747, men dagens canonical punkt stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som et offisielt kulturminnepunkt eller et eksakt bygningsanker. Punktet beholdes kun som legacy til eksakt Hjula-geometri er dokumentert."
   },
   "identity": {
     "currentName": "Øvre Foss – Hjula Veveri",
@@ -22,20 +22,19 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "entydig fysisk Hjula-identitet",
-    "navngitt kildeobjekt med koordinat",
-    "overlap-audit mot Sagene-kvernhus-recorden"
+    "ett entydig fysisk Hjula Væverier-objekt eller offisiell kulturminnegeometri",
+    "representasjonspunkt som kan reproduseres fra kilden"
   ],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "Wikidata",
-      "sourceUrl": "https://www.wikidata.org/wiki/Q11975545",
-      "sourceObjectId": "wikidata:Q11975545",
-      "sourceQuality": "named_place_geometry",
-      "finding": "Wikidata Q11975545 identifiserer Hjula Væverier og gir koordinatet 59.931317, 10.756994.",
-      "canVerifyCoordinate": true,
-      "reason": "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+      "sourceProvider": "official_heritage",
+      "sourceName": "Kulturminnesøk – Hjula Væverier",
+      "sourceUrl": "https://www.kulturminnesok.no/",
+      "sourceObjectId": "kulturminnesok:164747",
+      "sourceQuality": "official_cultural_heritage_identity",
+      "finding": "Kulturminne 164747 identifiserer Hjula Væverier.",
+      "canVerifyCoordinate": false,
+      "reason": "Identiteten er dokumentert, men exact canonical koordinat er ikke hentet fra objektgeometri i denne kontrollen."
     },
     {
       "sourceProvider": "manual_research",
@@ -43,40 +42,35 @@
       "sourceUrl": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
       "sourceObjectId": "oslobyleksikon:hjula-vaeverier",
       "sourceQuality": "documented_physical_identity",
-      "finding": "Oslo byleksikon identifiserer Hjula Væverier som det historiske industrianlegget i Sagveien 23 ved Hjulafossen.",
-      "canVerifyCoordinate": true,
-      "reason": "Kilden avgrenser recordens fysiske hovedidentitet til Hjula-anlegget."
+      "finding": "Oslo byleksikon dokumenterer Hjula Væverier i Sagveien 23.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som identitets- og adressekryssjekk."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "address": "Sagveien 23 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "canApplyToPlace": false,
+      "reason": "Geonorge returnerte flere treff uten entydig match; råkjøringen er lagret i batch-24-rapporten."
+    }
+  ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "wikidata:Q11975545",
-      "canApplyToPlace": true
+      "sourceProvider": "official_heritage",
+      "sourceObjectId": "kulturminnesok:164747",
+      "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [
-    {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "wikidata:Q11975545",
-      "canApplyToPlace": true
-    }
-  ],
-  "coordinateCandidates": [
-    {
-      "lat": 59.931317,
-      "lon": 10.756994,
-      "coordRole": "display_marker",
-      "canApplyToPlace": true
-    }
-  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
   "decision": {
-    "canBecomeVerified": true,
-    "blockedReason": "",
-    "nextAction": "Kildebelagt fysisk anker er anvendt på canonical place."
+    "canBecomeVerified": false,
+    "blockedReason": "Adresse-first ble faktisk fulgt: det lagrede Geonorge-oppslaget for Sagveien 23 ga flere treff uten entydig match. Hjula Væverier er identifisert som kulturminne 164747, men dagens canonical punkt stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som et offisielt kulturminnepunkt eller et eksakt bygningsanker. Punktet beholdes kun som legacy til eksakt Hjula-geometri er dokumentert.",
+    "nextAction": "Hent eksakt kulturminne-/OSM-geometri for Hjula Væverier og dokumenter ett reproduserbart hovedanker."
   },
   "notes": [
-    "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+    "Adresse-first ble faktisk fulgt: det lagrede Geonorge-oppslaget for Sagveien 23 ga flere treff uten entydig match. Hjula Væverier er identifisert som kulturminne 164747, men dagens canonical punkt stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som et offisielt kulturminnepunkt eller et eksakt bygningsanker. Punktet beholdes kun som legacy til eksakt Hjula-geometri er dokumentert."
   ]
 }

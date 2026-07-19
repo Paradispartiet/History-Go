@@ -1,16 +1,16 @@
 {
   "placeId": "telegrafbygningen",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "applied_to_place",
-  "coordinateDecision": "do_not_change_coordinates_yet",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
   "currentCoordinate": {
     "lat": 59.91128055555556,
     "lon": 10.742319444444444,
     "r": 140,
-    "coordStatus": "verified_geometry",
-    "coordSource": "Wikidata Q17195132 / OSM relation 13931026 / Telenor Kulturarv",
-    "coordType": "building_center",
-    "coordNote": "Geonorge-oppslaget for Kongens gate 21 ga flere ikke-entydige treff og ble ikke brukt. Bygningsankeret bruker det identifiserte Telegrafbygningen-objektet Wikidata Q17195132, kryssjekket mot OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv. Punktet representerer selve Telegrafbygningen."
+    "coordStatus": "needs_source",
+    "coordSource": "exact_osm_building_geometry_not_applied",
+    "coordType": "legacy_unverified",
+    "coordNote": "Geonorge-oppslaget for Kongens gate 21 ble kjørt først og var tvetydig. Evidence peker på OSM relation 13931026 som sannsynlig eksakt bygningsobjekt, men dagens canonical koordinat stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som avledet fra relationens geometri. Punktet beholdes kun som legacy til relationens faktiske geometri/representasjonspunkt er hentet og kontrollert."
   },
   "identity": {
     "currentName": "Telegrafbygningen",
@@ -22,20 +22,29 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "stabil kildeidentitet",
-    "objekttilpasset representasjonsanker",
-    "fysisk avgrensning mot nærliggende canonical steder"
+    "eksakt OSM relation 13931026-geometri eller annen offisiell bygningsgeometri",
+    "verifisert representasjonspunkt innen korrekt Telegrafbygning"
   ],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "Wikidata Q17195132 / OSM relation 13931026 / Telenor Kulturarv",
-      "sourceUrl": "https://www.wikidata.org/wiki/Q17195132",
-      "sourceObjectId": "wikidata:Q17195132",
-      "sourceQuality": "crosschecked_building_object_after_ambiguous_address",
-      "finding": "Geonorge ga flere ikke-entydige adressepunkter for Kongens gate 21. Wikidata Q17195132, OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv identifiserer samme Telegrafbygning, og objektpunktet brukes derfor som bygningsanker.",
-      "canVerifyCoordinate": true,
-      "reason": "Geonorge-oppslaget for Kongens gate 21 ga flere ikke-entydige treff og ble ikke brukt. Bygningsankeret bruker det identifiserte Telegrafbygningen-objektet Wikidata Q17195132, kryssjekket mot OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv. Punktet representerer selve Telegrafbygningen."
+      "sourceProvider": "official_heritage",
+      "sourceName": "Kulturminnesøk – Telegrafbygningen",
+      "sourceUrl": "https://www.kulturminnesok.no/",
+      "sourceObjectId": "kulturminnesok:163682",
+      "sourceQuality": "official_building_identity",
+      "finding": "Kulturminne 163682 identifiserer Telegrafbygningen som fysisk kulturminne.",
+      "canVerifyCoordinate": false,
+      "reason": "Identiteten er dokumentert, men exact canonical koordinat er ikke avledet fra kulturminnegeometri i denne kontrollen."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 13931026",
+      "sourceUrl": "https://www.openstreetmap.org/relation/13931026",
+      "sourceObjectId": "osm-relation:13931026",
+      "sourceQuality": "exact_geometry_candidate_unfetched",
+      "finding": "Relation 13931026 er dokumentert som kandidat for selve bygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Relationens faktiske geometri/representasjonspunkt må hentes før koordinaten kan promoteres."
     }
   ],
   "addressCandidates": [
@@ -44,37 +53,24 @@
       "sourceProvider": "official_address",
       "sourceObjectId": null,
       "canApplyToPlace": false,
-      "reason": "Geonorge returnerte flere treff uten entydig match; må avklares manuelt."
+      "reason": "Geonorge returnerte flere treff uten entydig match."
     }
   ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "wikidata:Q17195132",
-      "canApplyToPlace": true
-    }
-  ],
-  "geometryCandidates": [
-    {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-relation:13931026",
-      "canApplyToPlace": true
+      "canApplyToPlace": false
     }
   ],
-  "coordinateCandidates": [
-    {
-      "lat": 59.91128055555556,
-      "lon": 10.742319444444444,
-      "coordRole": "building_center",
-      "canApplyToPlace": true
-    }
-  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
   "decision": {
-    "canBecomeVerified": true,
-    "blockedReason": "",
-    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+    "canBecomeVerified": false,
+    "blockedReason": "Geonorge-oppslaget for Kongens gate 21 ble kjørt først og var tvetydig. Evidence peker på OSM relation 13931026 som sannsynlig eksakt bygningsobjekt, men dagens canonical koordinat stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som avledet fra relationens geometri. Punktet beholdes kun som legacy til relationens faktiske geometri/representasjonspunkt er hentet og kontrollert.",
+    "nextAction": "Hent OSM relation 13931026 direkte og bruk dens dokumenterte geometri/representasjonspunkt før verified_geometry gjenopprettes."
   },
   "notes": [
-    "Geonorge-oppslaget for Kongens gate 21 ga flere ikke-entydige treff og ble ikke brukt. Bygningsankeret bruker det identifiserte Telegrafbygningen-objektet Wikidata Q17195132, kryssjekket mot OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv. Punktet representerer selve Telegrafbygningen."
+    "Geonorge-oppslaget for Kongens gate 21 ble kjørt først og var tvetydig. Evidence peker på OSM relation 13931026 som sannsynlig eksakt bygningsobjekt, men dagens canonical koordinat stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som avledet fra relationens geometri. Punktet beholdes kun som legacy til relationens faktiske geometri/representasjonspunkt er hentet og kontrollert."
   ]
 }

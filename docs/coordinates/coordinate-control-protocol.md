@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical steder. Batch 35 fullfører Akerselva-ruten: Vaterland – historisk elveløp får et dokumentert historisk linjeanker ved Vaterlands bru, mens Akerselvas utløp i Bjørvika flyttes fra et feilplassert manuelt punkt ved Karl Johans gate til endepunktet på den navngitte nederste Akerselva-geometrien. Antallet fullførte kontroller uten godkjent Oslo-koordinat forblir 49.
+Oslo-tabellen inneholder nå 162 verifiserte eller kildekontrollerte canonical steder. Batch 35 fullfører Akerselva-ruten: Vaterland – historisk elveløp får et dokumentert historisk linjeanker ved Vaterlands bru, mens Akerselvas utløp i Bjørvika flyttes fra et feilplassert manuelt punkt ved Karl Johans gate til endepunktet på den navngitte nederste Akerselva-geometrien. Antallet fullførte kontroller uten godkjent Oslo-koordinat forblir 49.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -141,18 +141,15 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 20 | `gamle_radhus` | Gamle Rådhus | verified | `geonorge-adresser-v1:0301:15006:1` |
 | 21 | `ekebergparken` | Ekebergparken skulpturpark | verified_geometry | `ekebergparken:official-map` |
 | 21 | `camilla_collett_statue` | Camilla Collett-statuen | verified_geometry | `osm-node:7573449468` |
-| 21 | `henrik_wergeland_statue` | Henrik Wergeland-statuen | verified_geometry | `wikimedia-commons:oslo-museum-ob-a17403` |
 | 21 | `grotta` | Grotten | verified | `geonorge-adresser-v1:0301:18496:4` |
 | 21 | `eldorado_bokhandel` | Eldorado Bokhandel | verified | `geonorge-adresser-v1:0301:17635:9A` |
 | 21 | `gamle_deichman` | Gamle Deichman | verified | `geonorge-adresser-v1:0301:10244:4` |
 | 22 | `klassekampen_redaksjon` | Klassekampen-redaksjonen | verified | `geonorge-adresser-v1:0301:12446:4` |
 | 22 | `oslo_gassverk` | Oslo Gassverk | verified_historical_source | `oslobyleksikon:gassverket:storgata-36c` |
 | 22 | `oslo_posthus` | Oslo Posthus / Hovedpostkontoret | verified | `geonorge-adresser-v1:0301:11309:15` |
-| 22 | `telegrafbygningen` | Telegrafbygningen | verified_geometry | `wikidata:Q17195132` |
 | 23 | `vinmonopolet_lager` | Vinmonopolets hovedlager | verified | `geonorge-adresser-v1:0301:12723:16` |
 | 23 | `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | verified | `geonorge-adresser-v1:0301:11370:2` |
 | 23 | `grunnlovsbygget_bankplassen` | Den gamle Norges Bank | verified | `geonorge-adresser-v1:0301:10412:3` |
-| 24 | `ovre_foss` | Øvre Foss – Hjula Veveri | verified_geometry | `wikidata:Q11975545` |
 | 24 | `schous_bryggeri` | Schous bryggeri | verified | `geonorge-adresser-v1:0301:17749:2` |
 | 24 | `ringnes_bryggeri` | Ringnes bryggeri | verified | `geonorge-adresser-v1:0301:17489:2A` |
 | 24 | `akershus_slott_bakeriet` | Bakeriet ved Akershus | verified_geometry | `osm-way:669390521` |
@@ -196,12 +193,17 @@ Retrokontroll fra batch 6 (2026-07-20): Batch 6 er korrigert tilbake til den lå
 
 Retrokontroll fra batch 6 (2026-07-20), pass 2: `torggata` og `storgata` er tilbakeført fra feilaktige enkeltadresseankre til dokumenterte lineære gateankre med ruteankre. `botsparken` bruker nå kommunal parkdefinisjon. De fire batch-16-recordene `carl_berner_plass`, `okern`, `skoyen` og `torshov` har fått dokumenterte steds-/områdefinisjoner fra Oslo byleksikon i stedet for Wikidata som primær verifikasjonskilde.
 
+Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen`, `ovre_foss` og `henrik_wergeland_statue` er nedgradert fra `verified_geometry` til `needs_source` fordi den kjente identitetskilden ikke dokumenterer at dagens canonical punkt faktisk er avledet fra den eksakte fysiske objektgeometrien. Ingen av de gamle Wikidata-/Commons-punktene beholdes som verifisert bare ved å bytte kildeetikett.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 165 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
+| `telegrafbygningen` – Telegrafbygningen | needs_review | Geonorge-adressen var tvetydig; OSM relation 13931026 er kandidat, men dagens canonical punkt er ikke dokumentert som avledet fra relationens geometri. | Hent relationens faktiske geometri/representasjonspunkt og kontroller bygget. |
+| `ovre_foss` – Øvre Foss – Hjula Veveri | needs_review | Geonorge Sagveien 23 var tvetydig; kulturminneidentiteten er kjent, men dagens punkt er ikke dokumentert fra eksakt Hjula-geometri. | Hent eksakt kulturminne-/OSM-geometri og dokumenter hovedanker. |
+| `henrik_wergeland_statue` – Henrik Wergeland-statuen | needs_review | Monumentidentiteten er kjent, men museum/Commons-lokasjonen er ikke alene tilstrekkelig canonical geometrikilde. | Finn eksakt monumentobjekt eller kildebelagt sokkelgeometri. |
 | `elvestrekning_bla_brenneriveien` – Elvestrekning ved Blå (Brenneriveien) | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
 | `fossveien_elvestrekning` – Fossveien – elvestrekning | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
 | `hausmannsomradet_elvelop` – Hausmannsområdet (elveløp) | needs_review | Bredt elveløp uten stabil fysisk avgrensning i recorden; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |

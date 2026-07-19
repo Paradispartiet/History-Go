@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T23:42:44.292Z
+Generert: 2026-07-19T23:56:59.757Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -78,7 +78,7 @@ Generert: 2026-07-19T23:42:44.292Z
 | gamle_radhus | data/coordinate-evidence/oslo/by/gamle_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | camilla_collett_statue | data/coordinate-evidence/oslo/litteratur/camilla_collett_statue.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| henrik_wergeland_statue | data/coordinate-evidence/oslo/litteratur/henrik_wergeland_statue.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| henrik_wergeland_statue | data/coordinate-evidence/oslo/litteratur/henrik_wergeland_statue.json | needs_research | needs_geometry | OK |
 | grotta | data/coordinate-evidence/oslo/litteratur/grotta.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | eldorado_bokhandel | data/coordinate-evidence/oslo/litteratur/eldorado_bokhandel.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamle_deichman | data/coordinate-evidence/oslo/litteratur/gamle_deichman.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -86,7 +86,7 @@ Generert: 2026-07-19T23:42:44.292Z
 | klassekampen_redaksjon | data/coordinate-evidence/oslo/media/klassekampen_redaksjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_gassverk | data/coordinate-evidence/oslo/naeringsliv/oslo_gassverk.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_posthus | data/coordinate-evidence/oslo/naeringsliv/oslo_posthus.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | needs_research | needs_geometry | OK |
 | good_game_redaksjon | data/coordinate-evidence/oslo/media/good_game_redaksjon.json | needs_research | needs_identity_split | OK |
 | aftenposten_akersgata | data/coordinate-evidence/oslo/media/aftenposten_akersgata.json | needs_research | needs_identity_split | OK |
 | dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | needs_research | needs_identity_split | OK |
@@ -98,7 +98,7 @@ Generert: 2026-07-19T23:42:44.292Z
 | ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | needs_research | needs_identity_split | OK |
 | akershus_energi | data/coordinate-evidence/oslo/naeringsliv/akershus_energi.json | needs_research | needs_identity_split | OK |
 | sagene_kvernhus | data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json | needs_research | needs_identity_split | OK |
-| ovre_foss | data/coordinate-evidence/oslo/naeringsliv/ovre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ovre_foss | data/coordinate-evidence/oslo/naeringsliv/ovre_foss.json | needs_research | needs_geometry | OK |
 | schous_bryggeri | data/coordinate-evidence/oslo/naeringsliv/schous_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ringnes_bryggeri | data/coordinate-evidence/oslo/naeringsliv/ringnes_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | needs_research | needs_identity_split | OK |

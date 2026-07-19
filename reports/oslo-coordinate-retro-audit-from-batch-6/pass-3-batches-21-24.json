@@ -1,0 +1,53 @@
+{
+  "date": "2026-07-20",
+  "result": "downgraded_unresolved_source_object_cases",
+  "downgraded": [
+    {
+      "batch": 22,
+      "id": "telegrafbygningen",
+      "name": "Telegrafbygningen",
+      "before": {
+        "lat": 59.91128055555556,
+        "lon": 10.742319444444444,
+        "coordStatus": "verified_geometry",
+        "coordType": "building_center",
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "wikidata:Q17195132"
+      },
+      "reason": "Geonorge-oppslaget for Kongens gate 21 ble kjørt først og var tvetydig. Evidence peker på OSM relation 13931026 som sannsynlig eksakt bygningsobjekt, men dagens canonical koordinat stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som avledet fra relationens geometri. Punktet beholdes kun som legacy til relationens faktiske geometri/representasjonspunkt er hentet og kontrollert."
+    },
+    {
+      "batch": 24,
+      "id": "ovre_foss",
+      "name": "Øvre Foss – Hjula Veveri",
+      "before": {
+        "lat": 59.931317,
+        "lon": 10.756994,
+        "coordStatus": "verified_geometry",
+        "coordType": "building_center",
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "wikidata:Q11975545"
+      },
+      "reason": "Adresse-first ble faktisk fulgt: det lagrede Geonorge-oppslaget for Sagveien 23 ga flere treff uten entydig match. Hjula Væverier er identifisert som kulturminne 164747, men dagens canonical punkt stammer fra den tidligere Wikidata-forankringen og er ikke dokumentert som et offisielt kulturminnepunkt eller et eksakt bygningsanker. Punktet beholdes kun som legacy til eksakt Hjula-geometri er dokumentert."
+    },
+    {
+      "batch": 21,
+      "id": "henrik_wergeland_statue",
+      "name": "Henrik Wergeland-statuen",
+      "before": {
+        "lat": 59.914084,
+        "lon": 10.736378,
+        "coordStatus": "verified_geometry",
+        "coordType": "monument",
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "wikimedia-commons:oslo-museum-ob-a17403"
+      },
+      "reason": "Henrik Wergeland-statuen er dokumentert på Eidsvolls plass, og Oslo Museum-aksesjonen OB.A17403 er en stabil identitetskilde. Den tidligere canonical koordinaten var likevel båret av en Commons-/museumslokasjon uten et separat dokumentert canonical monumentobjekt i koordinatkontrakten. Punktet beholdes kun som legacy til eksakt sokkel-/monumentgeometri er dokumentert."
+    }
+  ],
+  "findings": [
+    "Øvre Foss/Hjula was not an address-first omission: the saved batch-24 Geonorge lookup for Sagveien 23 exists and is ambiguous.",
+    "Telegrafbygningen also had a documented ambiguous Geonorge lookup before fallback, but the canonical point still needs to be tied explicitly to relation 13931026 geometry.",
+    "Henrik Wergeland-statuen is a monument-object case, not an address case; museum/Commons location is retained as research evidence, not as verified canonical geometry."
+  ]
+}

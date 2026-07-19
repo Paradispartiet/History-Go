@@ -40,3 +40,7 @@ Continue with batch 8 and classify every record by physical object before decidi
 - Batch 16: `carl_berner_plass`, `okern`, `skoyen` and `torshov` no longer use Wikidata as the primary verification source.
 
 Remaining research corrections: `henrik_wergeland_statue`, `telegrafbygningen`, `ovre_foss`.
+
+## Pass 3 — unresolved source-object corrections
+
+The audit removes false confidence rather than relabeling old points. `telegrafbygningen`, `ovre_foss` and `henrik_wergeland_statue` are downgraded to `needs_source` until their canonical point can be reproduced from an exact physical source object. The saved Sagveien 23 Geonorge run confirms that Øvre Foss/Hjula did follow address-first and ended in an ambiguous address result.
