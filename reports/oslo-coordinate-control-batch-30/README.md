@@ -6,3 +6,5 @@ Strict diagnostic pass for the two remaining Oslo literature records after batch
 - `alexander_kiellands_plass`
 
 Method: Kartverket SSR first; only exact named physical objects may be considered afterward. No neighbouring address, arbitrary midpoint or unrelated proxy may be promoted to verified coordinates.
+
+Diagnostic rerun: SSR results must be persisted even if all Overpass mirrors are temporarily unavailable.
