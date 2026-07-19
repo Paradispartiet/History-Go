@@ -20,9 +20,11 @@
   const ROLE_STORAGE_KEY = "civication_lifestory_role_v1";
 
   /**
-   * Eksplisitt rollevalg: URL (?lifestoryRole=renholder) vinner og
-   * persisteres; ellers localStorage. Null når spilleren ikke har valgt —
-   * da kan Min dag følge skall-jobben (se maybeAdoptShellRole).
+   * DEV-/TESTVERKTØY — ikke produktflate. Roller velges aldri av spilleren;
+   * de fortjenes gjennom quiz (se startkontrakten i civication-life-story-
+   * system.md). ?lifestoryRole=<id> tvinger en rolle for utvikling/innholds-
+   * arbeid/tester og persisteres; ellers localStorage. Null i normal drift —
+   * da følger Min dag skall-jobben (se maybeAdoptShellRole).
    * @returns {string|null}
    */
   function resolveExplicitRoleId() {
@@ -139,7 +141,7 @@
   }
 
   // ---- Skall-jobb -> Life Story-rolle ----
-  // Uten eksplisitt rollevalg følger Min dag skallets aktive jobb: tar
+  // Uten dev-parameteren følger Min dag skallets aktive jobb: tar
   // spilleren Renholder-jobben, spiller Life Story renholder. Mappingen er
   // canonical resolver (CivicationCareerRoleResolver) + role_scope-binding i
   // lifestory-manifestet — se resolveRoleIdForActivePosition. Jobb uten
@@ -149,7 +151,7 @@
   let adopting = false;
 
   async function maybeAdoptShellRole() {
-    if (EXPLICIT_ROLE_ID || adopting) return; // spillerens valg vinner alltid
+    if (EXPLICIT_ROLE_ID || adopting) return; // dev-parameteren vinner alltid
     // Ikke memoiser før resolveren finnes — den injiseres av shell-loaderen,
     // og en tidlig updateProfile skal ikke låse sjekken for godt.
     if (!(/** @type {any} */ (window).CivicationCareerRoleResolver?.resolveCareerRoleScope)) return;

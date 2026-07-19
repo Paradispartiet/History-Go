@@ -315,11 +315,19 @@ adopterer jobbens rolle automatisk. `arbeidsledig` har bevisst INGEN
 `role_scope`-binding — ingen jobb mapper til den. Kontrakten håndheves av
 `tests/civication-lifestory-arbeidsledig.test.js`.
 
-**Rollevalg:** En annen rolle kan fortsatt velges eksplisitt med
-`Civication.html?lifestoryRole=renholder` (persisteres i
-localStorage `civication_lifestory_role_v1`). Ukjent rolle-id feiler fast i
+**Roller velges ALDRI av spilleren — de fortjenes gjennom quiz.** Det finnes
+ingen rollevelger i produktet, og det skal aldri bygges en: en velger ville
+latt spilleren hoppe over hele kunnskapsmekanikken som binder Civication til
+History GO. Den eneste veien til en rolle er startkontrakten over
+(quiz/merker → jobbtilbud → aksept → adopsjon).
+
+**Dev-/testverktøy (ikke produktflate):** `Civication.html?lifestoryRole=<id>`
+tvinger en bestemt rolle for utvikling, innholdsarbeid og deterministiske
+tester (persisteres i localStorage `civication_lifestory_role_v1`; fjern
+nøkkelen for å gå tilbake til normal oppførsel). Ukjent rolle-id feiler fast i
 manifest-oppslaget — ingen stille fallback. Bytte av rolle starter en ny
-Player State (én lagringsplass, `civication_lifestory_v1`).
+Player State (én lagringsplass, `civication_lifestory_v1`). Parameteren skal
+aldri lenkes fra UI eller omtales som spillerfunksjon.
 
 **Life Story → skallets psyke (konsekvensbroen):** Når spilleren tar et valg
 i Min dag, skrives de faktiske meter-endringene (etter clamping) videre til
@@ -346,7 +354,7 @@ for å påstå en posisjon vi ikke har. Kun visning — markøren skriver aldri
 state, og den oppdateres av `civi:lifestoryChanged` (dispatches nå også etter
 første render), `civi:booted`, `civi:homeChanged` og karttransform-events.
 
-**Skall-jobb → Life Story-rolle:** Uten eksplisitt rollevalg følger Min dag
+**Skall-jobb → Life Story-rolle:** Uten dev-parameteren følger Min dag
 skallets aktive jobb. Mappingen er canonical: skallets aktive posisjon
 (`hg_active_position_v1`) → `CivicationCareerRoleResolver.resolveCareerRoleScope`
 → `role_scope`-bindingen i lifestory-manifestet
@@ -380,7 +388,7 @@ automatisk av `npm run test:civication`:
 - `tests/civication-lifestory-engine.test.js` — conditions, thread state,
   day progression, konsekvenstekst.
 - `tests/civication-lifestory-renholder.test.js` — rolle nummer to: hele
-  dag 1 + begge dag-2-grener, rolle-agnostiske livsscener, rollevalg i UI.
+  dag 1 + begge dag-2-grener, rolle-agnostiske livsscener, dev-parameteren.
 - `tests/civication-lifestory-ekspeditor.test.js` — rolle nummer tre: hele
   dag 1 + begge dag-2-grener (lukkingen/kassadifferansen), jobb-binding.
 - `tests/civication-lifestory-shell-role-bridge.test.js` — skall-jobb →
