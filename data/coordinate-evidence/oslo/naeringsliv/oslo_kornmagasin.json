@@ -1,0 +1,76 @@
+{
+  "placeId": "oslo_kornmagasin",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9119,
+    "lon": 10.7428,
+    "r": 120,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Christiania kornmagasin",
+    "resolvedIdentity": "mulig sammenblanding med Kornmagasinet, inventar 0008 på Akershus festning",
+    "identityStatus": "conflict",
+    "identityProblem": "Aktiv record heter «Christiania kornmagasin» og oppgir 1785, mens det konkrete stående Kornmagasinet på Akershus er dokumentert som inventar 0008 fra 1788. Et eksakt OSM-bygningsobjekt finnes, men recorden kan ikke retargetes til dette bygget uten eksplisitt identitets- og innholdsavgjørelse.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Aktiv record heter «Christiania kornmagasin» og oppgir 1785, mens det konkrete stående Kornmagasinet på Akershus er dokumentert som inventar 0008 fra 1788. Et eksakt OSM-bygningsobjekt finnes, men recorden kan ikke retargetes til dette bygget uten eksplisitt identitets- og innholdsavgjørelse."
+  },
+  "requiredEvidence": [
+    "avklaring av hvilken historisk institusjon recorden beskriver",
+    "korrigert navn/år/faktagrunnlag dersom Akershus-bygget er ment",
+    "overlap-audit mot eksisterende Akershus-records"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap",
+      "sourceUrl": "https://www.openstreetmap.org/way/669390505",
+      "sourceObjectId": "osm-way:669390505",
+      "sourceQuality": "named_building_candidate",
+      "finding": "Objektsøket finner et navngitt Kornmagasinet-bygg inne på Akershus festning.",
+      "canVerifyCoordinate": false,
+      "reason": "Den aktive History Go-recordens navn og år matcher ikke sikkert det dokumenterte 1788-bygget."
+    },
+    {
+      "sourceProvider": "official_heritage",
+      "sourceName": "Lovdata – fredningsforskrift for Akershus festning",
+      "sourceUrl": "https://lovdata.no/dokument/LF/forskrift/2014-12-17-1696/%C2%A73",
+      "sourceObjectId": "akershus-inventar:0008",
+      "sourceQuality": "official_heritage_identity",
+      "finding": "Fredningsforskriften identifiserer inventar 8 som Kornmagasinet, datert 1788.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden styrker kandidatobjektet, men løser ikke om aktiv 1785-record faktisk skal representere dette bygget."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:669390505",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9071958,
+      "lon": 10.7379439,
+      "coordRole": "display_marker",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Aktiv record heter «Christiania kornmagasin» og oppgir 1785, mens det konkrete stående Kornmagasinet på Akershus er dokumentert som inventar 0008 fra 1788. Et eksakt OSM-bygningsobjekt finnes, men recorden kan ikke retargetes til dette bygget uten eksplisitt identitets- og innholdsavgjørelse.",
+    "nextAction": "Auditér historisk kildegrunnlag og bestem om recorden skal korrigeres til Akershus Kornmagasinet eller erstattes/fjernes som feilkonstruert place."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 24."
+  ]
+}

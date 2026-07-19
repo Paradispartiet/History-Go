@@ -1,0 +1,83 @@
+{
+  "placeId": "ringnes_bryggeri",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.930179384813485,
+    "lon": 10.759251969442406,
+    "r": 160,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Thorvald Meyers gate 2A, kryssjekket mot Oslo byleksikons identifikasjon av nr. 2A som Ringnes Bryggeris gamle brygghus. Punktet brukes som display-marker for det historiske bryggerikomplekset."
+  },
+  "identity": {
+    "currentName": "Ringnes bryggeri",
+    "resolvedIdentity": "Ringnes Bryggeris gamle brygghus i Thorvald Meyers gate 2A",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "presist bygganker innen det historiske komplekset",
+    "entydig offisiell adresse",
+    "dokumentert kobling til det gamle brygghuset"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Thorvald%20Meyers%20gate%202A%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:2A",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge returnerte ett tydelig adressetreff for Thorvald Meyers gate 2A.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge for Thorvald Meyers gate 2A, kryssjekket mot Oslo byleksikons identifikasjon av nr. 2A som Ringnes Bryggeris gamle brygghus. Punktet brukes som display-marker for det historiske bryggerikomplekset."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Thorvald Meyers gate",
+      "sourceUrl": "https://oslobyleksikon.no/side/Thorvald_Meyers_gate",
+      "sourceObjectId": "oslobyleksikon:thorvald-meyers-gate:2a",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon identifiserer nr. 2A som Ringnes Bryggeris gamle brygghus.",
+      "canVerifyCoordinate": true,
+      "reason": "Det presise 2A-ankeret løser tvetydigheten i det bredere nr. 2-oppslaget."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Thorvald Meyers gate 2A Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:2A",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:2A",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.930179384813485,
+      "lon": 10.759251969442406,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildebelagt fysisk anker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge for Thorvald Meyers gate 2A, kryssjekket mot Oslo byleksikons identifikasjon av nr. 2A som Ringnes Bryggeris gamle brygghus. Punktet brukes som display-marker for det historiske bryggerikomplekset."
+  ]
+}

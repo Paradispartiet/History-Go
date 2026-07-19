@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 131 verifiserte eller kildekontrollerte canonical steder. Batch 23 godkjenner tre nye konkrete bygningsankre: Vinmonopolets historiske sentralanlegg på Hasle, Lodalen jernbaneverksted og Den gamle Norges Bank på Bankplassen 3. `nrk_marienlyst`, `fornebu_teknologipark`, `ulven_handelspark` og `akershus_energi` står som nye dokumenterte `needs_review`-utfall på grunn av duplikat, feil geografi eller manglende entydig fysisk scope. 17 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
+Oslo-tabellen inneholder nå 135 verifiserte eller kildekontrollerte canonical steder. Batch 24 godkjenner fire nye ankere: Hjula Væverier som fysisk hovedanker for `ovre_foss`, Schous bryggeri i Trondheimsveien 2, Ringnes Bryggeris gamle brygghus i Thorvald Meyers gate 2A og Bakeriet som identifisert bygningsobjekt på Akershus festning. `sagene_kvernhus`, `st_halvard_bryggeri` og `oslo_kornmagasin` står som nye dokumenterte `needs_review`-utfall på grunn av uklar eller konfliktfylt fysisk identitet. 20 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -152,6 +152,10 @@ Oslo-tabellen inneholder nå 131 verifiserte eller kildekontrollerte canonical s
 | 23 | `vinmonopolet_lager` | Vinmonopolets hovedlager | verified | `geonorge-adresser-v1:0301:12723:16` |
 | 23 | `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | verified | `geonorge-adresser-v1:0301:11370:2` |
 | 23 | `grunnlovsbygget_bankplassen` | Den gamle Norges Bank | verified | `geonorge-adresser-v1:0301:10412:3` |
+| 24 | `ovre_foss` | Øvre Foss – Hjula Veveri | verified_geometry | `wikidata:Q11975545` |
+| 24 | `schous_bryggeri` | Schous bryggeri | verified | `geonorge-adresser-v1:0301:17749:2` |
+| 24 | `ringnes_bryggeri` | Ringnes bryggeri | verified | `geonorge-adresser-v1:0301:17489:2A` |
+| 24 | `akershus_slott_bakeriet` | Bakeriet ved Akershus | verified_geometry | `osm-way:669390521` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -159,7 +163,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 131 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 135 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -180,6 +184,9 @@ Disse kontrollene er fullført, men teller ikke blant de 131 verifiserte eller k
 | `fornebu_teknologipark` – Fornebu Teknologipark | needs_review | Recorden ligger i Oslo-kilden, men Fornebu ligger i Bærum; navnet beskriver dessuten et bredt nærings-/utviklingsområde uten ett dokumentert fysisk hovedanker. | Flytt/erstatt i Bærum-kontekst etter at fysisk scope eller områdegeometri er eksplisitt definert. |
 | `ulven_handelspark` – Ulven handelspark | needs_review | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
 | `akershus_energi` – Akershus Energi Varme | needs_review | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
+| `sagene_kvernhus` – Sagene mølle og kvernhus | needs_review | Recorden kombinerer flere mølle-, sagbruks- og industriidentiteter langs Akerselva uten ett entydig fysisk anlegg; Hjula er allerede representert av `ovre_foss`. | Avgrens til ett dokumentert fysisk anlegg eller modeller industrimiljøet som område/relasjon med flere ankere. |
+| `st_halvard_bryggeri` – St. Halvard bryggeri | needs_review | Aktiv record oppgir feil år/geografi i forhold til det dokumenterte St. Halvards/Nora-anlegget i Pilestredet 75C. Det entydige Geonorge-punktet kan ikke anvendes før place-identiteten og historikken er korrigert. | Rett recordens historiske fakta og avklar bygningskontinuitet før Pilestredet 75C eventuelt godkjennes. |
+| `oslo_kornmagasin` – Christiania kornmagasin | needs_review | Aktiv 1785-record matcher ikke sikkert det dokumenterte Kornmagasinet på Akershus, inventar 0008 fra 1788, selv om et eksakt navngitt bygningsobjekt finnes. | Avklar historisk identitet og korriger/erstatt recorden før et Akershus-anker eventuelt brukes. |
 
 ## Etne – historiesett
 
@@ -227,8 +234,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 147 og starter batch 24.
-- Batch 23 er fullført med tre godkjente ankere og fire nye dokumenterte `needs_review`-utfall.
-- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `akershus_energi`; `sagene_kvernhus` er neste kandidat.
+- Neste nye Oslo-kontroll er nummer 154 og starter batch 25.
+- Batch 24 er fullført med fire godkjente ankere og tre nye dokumenterte `needs_review`-utfall.
+- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `akershus_slott_bakeriet`; `jernbanetorget_trafikknutepunkt` er neste kandidat.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

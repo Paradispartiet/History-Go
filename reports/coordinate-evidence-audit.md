@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T04:14:43.883Z
+Generert: 2026-07-19T08:10:50.508Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -97,3 +97,10 @@ Generert: 2026-07-19T04:14:43.883Z
 | fornebu_teknologipark | data/coordinate-evidence/oslo/naeringsliv/fornebu_teknologipark.json | needs_research | needs_identity_split | OK |
 | ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | needs_research | needs_identity_split | OK |
 | akershus_energi | data/coordinate-evidence/oslo/naeringsliv/akershus_energi.json | needs_research | needs_identity_split | OK |
+| sagene_kvernhus | data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json | needs_research | needs_identity_split | OK |
+| ovre_foss | data/coordinate-evidence/oslo/naeringsliv/ovre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| schous_bryggeri | data/coordinate-evidence/oslo/naeringsliv/schous_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ringnes_bryggeri | data/coordinate-evidence/oslo/naeringsliv/ringnes_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | needs_research | needs_identity_split | OK |
+| oslo_kornmagasin | data/coordinate-evidence/oslo/naeringsliv/oslo_kornmagasin.json | needs_research | needs_identity_split | OK |
+| akershus_slott_bakeriet | data/coordinate-evidence/oslo/naeringsliv/akershus_slott_bakeriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
