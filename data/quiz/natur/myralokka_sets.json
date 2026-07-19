@@ -1,19 +1,22 @@
 {
   "targetId": "myralokka",
   "categoryId": "natur",
-  "generator_version": "chatgpt_history_go_manual_v1",
+  "generator_version": "chatgpt_history_go_manual_v2",
   "generated_from": [
-    "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
-    "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json",
+    "data/places/natur/oslo/places_oslo_natur_akerselvarute/myralokka.json",
+    "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json",
+    "data/natur/nature_bird_place_map.json",
+    "data/natur/nature_oslo_expansion_place_map.json",
     "data/quiz/regler/SET_MAL_README_v3.md"
   ],
   "manual_production_notes": {
     "quality_direction": "sted → observasjon → emne → forståelse",
+    "verified_species_rule": "Bruk alle og bare de aktive Myraløkka-artene fra naturkartene.",
     "hold_back": [
-      "Ingen detaljerte artsfunn uten kilde.",
+      "Ingen påstand om arter utover aktive repo-kart uten ny kilde.",
       "Ingen dagsaktuelle arrangementer eller virksomheter.",
-      "Ingen presis parkhistorisk kronologi utover interne sikre data.",
-      "Ingen usikre personrelasjoner."
+      "Ingen graving, klatring, bading eller ferdsel i våt/bratt skråning.",
+      "1813 brukes som hovedår for teglverket med kildebevissthet om eldre lokal forhistorie."
     ]
   },
   "sets": [
@@ -24,13 +27,207 @@
       "xp": 50,
       "mode": "place_intro_story",
       "questions": [
-        {"id":"myralokka_s1_q1","quiz_id":"natur_myralokka_set_1_q1","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva gjør Myraløkka til mer enn en åpen gressflate?","options":["Den viser hvordan Akerselva-grøntdraget kan fungere som hverdagsrom og sosial infrastruktur","Den ligger uten kontakt med Akerselva","Den er bare et lukket kontorområde"],"answer":"Den viser hvordan Akerselva-grøntdraget kan fungere som hverdagsrom og sosial infrastruktur","answerIndex":0,"knowledge":"Myraløkka er viktig fordi den gjør grøntdraget konkret som gratis møteplass, nærnatur og tilgjengelig byrom.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["myralokka","akerselva","grøntdrag"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s1_q2","quiz_id":"natur_myralokka_set_1_q2","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva bør spilleren se etter først på Myraløkka?","options":["Åpne flater, kratt, stier, opphold og kontakten mot Akerselva","Bare butikklogoer","Kun biltrafikk"],"answer":"Åpne flater, kratt, stier, opphold og kontakten mot Akerselva","answerIndex":0,"knowledge":"Myraløkka kan leses gjennom enkle, observerbare trekk: grønnflate, kantvegetasjon, ferdsel og lavterskel bruk.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","bypark"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s1_q3","quiz_id":"natur_myralokka_set_1_q3","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hvorfor passer Myraløkka i Akerselva-ruta?","options":["Den viser et lavterskel grønt stopp mellom tettere byrom og elva","Den bryter all sammenheng med ruta","Den handler bare om et innendørsrom"],"answer":"Den viser et lavterskel grønt stopp mellom tettere byrom og elva","answerIndex":0,"knowledge":"Ruten trenger også steder som handler om pause, lek, opphold og tilgjengelighet, ikke bare foss og industri.","difficulty":1,"question_type":"rutekobling","question_layer":"intro_story","tags":["rute","møteplass"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s1_q4","quiz_id":"natur_myralokka_set_1_q4","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva er den beste korte forklaringen på Myraløkka?","options":["Et åpent elvenært grøntområde for opphold, lek og hverdagslig bynatur","Et rent fabrikkbygg","En fjelltopp uten bykontakt"],"answer":"Et åpent elvenært grøntområde for opphold, lek og hverdagslig bynatur","answerIndex":0,"knowledge":"Myraløkka er et hverdagslig pusterom langs Akerselva.","difficulty":1,"question_type":"saertrekk","question_layer":"intro_story","tags":["hverdagsrom","bynatur"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s1_q5","quiz_id":"natur_myralokka_set_1_q5","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva viser at Myraløkka er del av grøntdraget?","options":["Elvenær beliggenhet, åpen grønnflate, stier og forbindelser videre langs Akerselva","At stedet mangler grønt","At det bare er privat rom"],"answer":"Elvenær beliggenhet, åpen grønnflate, stier og forbindelser videre langs Akerselva","answerIndex":0,"knowledge":"Grøntdrag handler om sammenheng: parker, stier og elverom virker sammen over tid og avstand.","difficulty":1,"question_type":"gjenkjenning","question_layer":"intro_story","tags":["parkdrag","elv"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s1_q6","quiz_id":"natur_myralokka_set_1_q6","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva binder Myraløkka til Bjølsenparken?","options":["Begge viser parkdrag og hverdagsrom langs Akerselva","Begge er kongelige anlegg","Begge er uten grønt preg"],"answer":"Begge viser parkdrag og hverdagsrom langs Akerselva","answerIndex":0,"knowledge":"Bjølsenparken og Myraløkka viser hvordan elvenære grøntområder kan fungere som sosial infrastruktur.","difficulty":1,"question_type":"rutekobling","question_layer":"intro_story","tags":["bjoelsenparken_elvenaer","rute"],"source":["History Go place data: myralokka","History Go quiz: bjoelsenparken_elvenaer"],"claim_basis":"safe_internal_data"},
-        {"id":"myralokka_s1_q7","quiz_id":"natur_myralokka_set_1_q7","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan gjør den åpne flaten stedet brukbart for pause, lek og møte?","Hvorfor finnes det ingen park her?","Hvilket arrangement skjer i kveld?"],"answer":"Hvordan gjør den åpne flaten stedet brukbart for pause, lek og møte?","answerIndex":0,"knowledge":"Spørsmålet kobler stedets fysiske form til sosial bruk, uten å bruke dagsaktuelle detaljer.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "myralokka_s1_q1",
+          "quiz_id": "natur_myralokka_set_1_q1",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva skapte den amfilignende formen på Myraløkka?",
+          "options": [
+            "Leiruttak til Bentse teglverk",
+            "En isbre som stoppet her i 1813",
+            "Et moderne parkeringsanlegg"
+          ],
+          "answer": "Leiruttak til Bentse teglverk",
+          "answerIndex": 0,
+          "knowledge": "Parkdalen er et industrispor: leire ble gravd ut til teglproduksjon.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "intro_story",
+          "tags": [
+            "leireuttak",
+            "teglverk"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+            "https://lokalhistoriewiki.no/wiki/Myral%C3%B8kka"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s1_q2",
+          "quiz_id": "natur_myralokka_set_1_q2",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvor ligger Myraløkka?",
+          "options": [
+            "Mellom Akerselva og Maridalsveien sør for Arendalsgata",
+            "På Bygdøy",
+            "Ved Nydalsdammen"
+          ],
+          "answer": "Mellom Akerselva og Maridalsveien sør for Arendalsgata",
+          "answerIndex": 0,
+          "knowledge": "Den korrekte parkflaten ligger øst for Maridalsveien og vest for Akerselva.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "intro_story",
+          "tags": [
+            "koordinat",
+            "sted"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+            "https://lokalhistoriewiki.no/wiki/Myral%C3%B8kka"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s1_q3",
+          "quiz_id": "natur_myralokka_set_1_q3",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva skjuler haugen nederst i parken?",
+          "options": [
+            "Rester av en fabrikkpipe",
+            "En gravhaug fra jernalderen",
+            "Et vannreservoar"
+          ],
+          "answer": "Rester av en fabrikkpipe",
+          "answerIndex": 0,
+          "knowledge": "Fabrikkpipa fra Bentse teglverk ligger nedgravd under en parkhaug.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "intro_story",
+          "tags": [
+            "pipehaug",
+            "industrispor"
+          ],
+          "source": [
+            "https://lokalhistoriewiki.no/wiki/Myral%C3%B8kka",
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s1_q4",
+          "quiz_id": "natur_myralokka_set_1_q4",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvorfor heter området Myraløkka?",
+          "options": [
+            "Navnet viser til Myrens Verksted og den åpne løkka",
+            "Det var en stor naturlig myr",
+            "Det ble oppkalt etter en konge"
+          ],
+          "answer": "Navnet viser til Myrens Verksted og den åpne løkka",
+          "answerIndex": 0,
+          "knowledge": "Navnet må ikke brukes som bevis på at området var en naturlig myr.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "intro_story",
+          "tags": [
+            "navn",
+            "Myrens Verksted"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+            "https://lokalhistoriewiki.no/wiki/Myral%C3%B8kka"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s1_q5",
+          "quiz_id": "natur_myralokka_set_1_q5",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvilket år flyttet Myrens Verksted til området?",
+          "options": [
+            "1854",
+            "1813",
+            "1914"
+          ],
+          "answer": "1854",
+          "answerIndex": 0,
+          "knowledge": "Myrens Verksted flyttet til Myraløkka i 1854.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "intro_story",
+          "tags": [
+            "Myrens Verksted",
+            "1854"
+          ],
+          "source": [
+            "https://snl.no/Myrens_Verksted",
+            "https://oslobyleksikon.no/side/Myrens_Verksted"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s1_q6",
+          "quiz_id": "natur_myralokka_set_1_q6",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvilken plante er aktivt kartlagt til Myraløkka?",
+          "options": [
+            "Gullstjerne",
+            "Blåveis",
+            "Russesvalerot"
+          ],
+          "answer": "Gullstjerne",
+          "answerIndex": 0,
+          "knowledge": "Gullstjerne er floraarten i det aktive utvidelseskartet for stedet.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "intro_story",
+          "tags": [
+            "gullstjerne",
+            "artskart"
+          ],
+          "source": [
+            "data/natur/nature_oslo_expansion_place_map.json"
+          ],
+          "claim_basis": "active_repo_nature_map"
+        },
+        {
+          "id": "myralokka_s1_q7",
+          "quiz_id": "natur_myralokka_set_1_q7",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva er et godt første observasjonsspørsmål her?",
+          "options": [
+            "Hvordan henger dalformen, skråningene og den åpne flaten sammen?",
+            "Hvor kan jeg grave i haugen?",
+            "Hvilket arrangement skjer i kveld?"
+          ],
+          "answer": "Hvordan henger dalformen, skråningene og den åpne flaten sammen?",
+          "answerIndex": 0,
+          "knowledge": "Spørsmålet trener stedlesning uten å skade terreng eller bruke ustabile arrangementsdata.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "intro_story",
+          "tags": [
+            "stedlesning",
+            "sikkerhet"
+          ],
+          "source": [
+            "data/places/README_place_rounds.md"
+          ],
+          "claim_basis": "generator_rule"
+        }
       ]
     },
     {
@@ -40,13 +237,209 @@
       "xp": 60,
       "mode": "place_life_people_events",
       "questions": [
-        {"id":"myralokka_s2_q1","quiz_id":"natur_myralokka_set_2_q1","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva slags stedsliv kan leses på Myraløkka?","options":["Lavterskel opphold, lek, passasje, møte og naturkontakt","Kun lukket fabrikkdrift","Bare bilparkering"],"answer":"Lavterskel opphold, lek, passasje, møte og naturkontakt","answerIndex":0,"knowledge":"Myraløkka fungerer fordi mange typer uformell bruk kan skje samtidig uten kjøpspress.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["lavterskel","møteplass"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s2_q2","quiz_id":"natur_myralokka_set_2_q2","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva kan åpen grønnflate og kratt fortelle?","options":["At bynatur kan være både enkel, brukbar og økologisk variert i små skalaer","At stedet er uten natur","At bare store parker teller"],"answer":"At bynatur kan være både enkel, brukbar og økologisk variert i små skalaer","answerIndex":0,"knowledge":"Bynatur må ikke være spektakulær for å være viktig. Hverdagsgrønt er også en del av grøntdraget.","difficulty":1,"question_type":"fysisk_trekk","question_layer":"place_life","tags":["bynatur","vegetasjon"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s2_q3","quiz_id":"natur_myralokka_set_2_q3","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva er en trygg måte å omtale naturen her uten artsliste?","options":["Som åpen grønnflate, kratt, elvenær bynatur og parkdrag","Som sjeldne arter uten kilde","Som et helt naturtomt område"],"answer":"Som åpen grønnflate, kratt, elvenær bynatur og parkdrag","answerIndex":0,"knowledge":"Uten sikre artsfunn bør quizzen bruke observerbare naturtrekk og ikke gjette arter.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback","bynatur"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"},
-        {"id":"myralokka_s2_q4","quiz_id":"natur_myralokka_set_2_q4","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva kan stier og åpenhet fortelle om offentlig rom?","options":["At området er laget for enkel adgang, bevegelse og opphold","At parken stenger folk ute","At grøntområder ikke har funksjon"],"answer":"At området er laget for enkel adgang, bevegelse og opphold","answerIndex":0,"knowledge":"Offentlig rom kan være helt hverdagslig: en flate man kan gå over, stoppe på eller bruke fritt.","difficulty":1,"question_type":"stedskobling","question_layer":"place_life","tags":["offentlig_rom"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s2_q5","quiz_id":"natur_myralokka_set_2_q5","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva viser Myraløkka om byomforming langs Akerselva?","options":["Elvenære byrom kan få rolle som grønt, sosialt og tilgjengelig hverdagsrom","Elverom kan aldri endre bruk","Parker har ingen byhistorie"],"answer":"Elvenære byrom kan få rolle som grønt, sosialt og tilgjengelig hverdagsrom","answerIndex":0,"knowledge":"Myraløkka viser hvordan grøntdraget ikke bare er natur, men også sosial byutvikling.","difficulty":1,"question_type":"historisk_endring","question_layer":"place_life","tags":["byomforming"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s2_q6","quiz_id":"natur_myralokka_set_2_q6","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva betyr lav terskel i denne sammenhengen?","options":["At stedet kan brukes uten billett, kjøp eller formell organisering","At stedet er stengt","At bare eksperter kan bruke det"],"answer":"At stedet kan brukes uten billett, kjøp eller formell organisering","answerIndex":0,"knowledge":"Lavterskel møteplasser er viktige fordi de gir gratis og uformelle rom i byen.","difficulty":1,"question_type":"begrep_i_sted","question_layer":"place_life","tags":["lavterskel_møteplass"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s2_q7","quiz_id":"natur_myralokka_set_2_q7","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva gir Myraløkka sin History Go-stemning?","options":["Møtet mellom elvenær natur, åpen parkflate og uformelt hverdagsliv","At stedet mangler alle forbindelser","At alt må forstås innendørs"],"answer":"Møtet mellom elvenær natur, åpen parkflate og uformelt hverdagsliv","answerIndex":0,"knowledge":"Stedet er sterkt fordi det viser byens små, tilgjengelige pusterom langs en større historisk elv.","difficulty":1,"question_type":"bruk_stemning","question_layer":"place_life","tags":["hverdagsrom"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"}
+        {
+          "id": "myralokka_s2_q1",
+          "quiz_id": "natur_myralokka_set_2_q1",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva produserte Bentse teglverk?",
+          "options": [
+            "Teglstein av lokal leire",
+            "Papir av tekstilfiller",
+            "Bomullsgarn"
+          ],
+          "answer": "Teglstein av lokal leire",
+          "answerIndex": 0,
+          "knowledge": "Leiruttaket og teglproduksjonen formet dagens parkterreng.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "place_life",
+          "tags": [
+            "tegl",
+            "leire"
+          ],
+          "source": [
+            "https://lokalhistoriewiki.no/wiki/Bentse_teglverk",
+            "https://teglverk.no/teglverk/bentse-teglverk/"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s2_q2",
+          "quiz_id": "natur_myralokka_set_2_q2",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Når ble Bentse teglverk vanligvis etablert?",
+          "options": [
+            "1813",
+            "1854",
+            "1914"
+          ],
+          "answer": "1813",
+          "answerIndex": 0,
+          "knowledge": "1813 brukes som dokumentert hovedår, med kildebevissthet om eldre forhistorie i området.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "place_life",
+          "tags": [
+            "1813",
+            "teglverk"
+          ],
+          "source": [
+            "https://lokalhistoriewiki.no/wiki/Bentse_teglverk",
+            "https://teglverk.no/teglverk/bentse-teglverk/"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s2_q3",
+          "quiz_id": "natur_myralokka_set_2_q3",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Når ble teglverket nedlagt?",
+          "options": [
+            "Omkring 1900",
+            "I 1813",
+            "Etter 2000"
+          ],
+          "answer": "Omkring 1900",
+          "answerIndex": 0,
+          "knowledge": "Teglverket ble lagt ned rundt år 1900 etter lang drift og uttak av leire.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "place_life",
+          "tags": [
+            "1900",
+            "nedleggelse"
+          ],
+          "source": [
+            "https://lokalhistoriewiki.no/wiki/Bentse_teglverk",
+            "https://teglverk.no/teglverk/bentse-teglverk/"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s2_q4",
+          "quiz_id": "natur_myralokka_set_2_q4",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva er Myragården?",
+          "options": [
+            "Arbeiderboliger i Arendalsgata 5–45",
+            "En gammel dam",
+            "En fabrikkpipe"
+          ],
+          "answer": "Arbeiderboliger i Arendalsgata 5–45",
+          "answerIndex": 0,
+          "knowledge": "Myragården viser hvordan industrien også skapte boligmiljø rundt Myraløkka.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "place_life",
+          "tags": [
+            "Myragården",
+            "arbeiderboliger"
+          ],
+          "source": [
+            "https://snl.no/Myrens_Verksted",
+            "https://lokalhistoriewiki.no/wiki/Myrag%C3%A5rden"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s2_q5",
+          "quiz_id": "natur_myralokka_set_2_q5",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Når stod Myragården ferdig?",
+          "options": [
+            "1914",
+            "1854",
+            "1941"
+          ],
+          "answer": "1914",
+          "answerIndex": 0,
+          "knowledge": "Arbeiderboligene stod ferdige i 1914.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "place_life",
+          "tags": [
+            "1914",
+            "arbeiderboliger"
+          ],
+          "source": [
+            "https://snl.no/Myrens_Verksted",
+            "https://lokalhistoriewiki.no/wiki/Myrag%C3%A5rden"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s2_q6",
+          "quiz_id": "natur_myralokka_set_2_q6",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvem tegnet Myragården?",
+          "options": [
+            "Morgenstierne & Eide",
+            "Magnus Poulsson",
+            "Oluf Nicolai Roll"
+          ],
+          "answer": "Morgenstierne & Eide",
+          "answerIndex": 0,
+          "knowledge": "Arkitektene Christian Morgenstierne og Arne Eide tegnet anlegget.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "place_life",
+          "tags": [
+            "arkitektur",
+            "Morgenstierne & Eide"
+          ],
+          "source": [
+            "https://snl.no/Myrens_Verksted",
+            "https://lokalhistoriewiki.no/wiki/Myrag%C3%A5rden"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s2_q7",
+          "quiz_id": "natur_myralokka_set_2_q7",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva viser Myraløkka om forholdet mellom industri og natur?",
+          "options": [
+            "Et industriformet terreng kan få ny økologisk og sosial funksjon",
+            "Natur må alltid være urørt",
+            "Parken har ingen industrihistorie"
+          ],
+          "answer": "Et industriformet terreng kan få ny økologisk og sosial funksjon",
+          "answerIndex": 0,
+          "knowledge": "Byens natur kan bygge videre på kraftig omformede landskap.",
+          "difficulty": 1,
+          "question_type": "stedsspesifikk",
+          "question_layer": "place_life",
+          "tags": [
+            "bynatur",
+            "transformasjon"
+          ],
+          "source": [
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug",
+            "https://www.oslo.kommune.no/slik-bygger-vi-oslo/dannevigsveien-og-gronn-forbindelse-til-myralokka/"
+          ],
+          "claim_basis": "sourced_interpretation"
+        }
       ]
     },
     {
@@ -56,13 +449,199 @@
       "xp": 70,
       "mode": "emne_based_foundation",
       "questions": [
-        {"id":"myralokka_s3_q1","quiz_id":"natur_myralokka_set_3_q1","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva er sosial infrastruktur?","options":["Steder og strukturer som gjør hverdagsmøter, trygghet og fellesskap lettere","Bare rør og kabler","Et sted uten mennesker"],"answer":"Steder og strukturer som gjør hverdagsmøter, trygghet og fellesskap lettere","answerIndex":0,"knowledge":"Myraløkka er sosial infrastruktur fordi den gir rom for møte, opphold og uorganisert aktivitet.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["sosial_infrastruktur"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s3_q2","quiz_id":"natur_myralokka_set_3_q2","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva er et grøntdrag?","options":["En sammenhengende grønn og blå struktur for natur, ferdsel og opphold","Et enkelt tre uten forbindelse","Et lukket kontorbygg"],"answer":"En sammenhengende grønn og blå struktur for natur, ferdsel og opphold","answerIndex":0,"knowledge":"Myraløkka er del av Akerselvas større grøntdrag.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["grøntdrag"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s3_q3","quiz_id":"natur_myralokka_set_3_q3","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva betyr lavterskel møteplass?","options":["Et sted mange kan bruke uten kjøp, medlemskap eller planlegging","Et privat lukket rom","Et sted bare for eksperter"],"answer":"Et sted mange kan bruke uten kjøp, medlemskap eller planlegging","answerIndex":0,"knowledge":"Myraløkka passer godt som eksempel på lavterskel møteplass i byen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["lavterskel_møteplass"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s3_q4","quiz_id":"natur_myralokka_set_3_q4","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva er bynatur?","options":["Natur som finnes og virker inne i byen","Natur som bare finnes langt fra mennesker","Et annet ord for asfalt"],"answer":"Natur som finnes og virker inne i byen","answerIndex":0,"knowledge":"Myraløkka viser bynatur gjennom grønnflate, kratt og elvenær beliggenhet.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["bynatur"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s3_q5","quiz_id":"natur_myralokka_set_3_q5","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva betyr offentlig rom?","options":["Et rom mange kan bruke til ferdsel, stopp, møte og opphold","Et privat låst rom","Et sted uten adgang"],"answer":"Et rom mange kan bruke til ferdsel, stopp, møte og opphold","answerIndex":0,"knowledge":"Myraløkka fungerer som offentlig rom gjennom åpenhet og brukbarhet.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["offentlig_rom"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s3_q6","quiz_id":"natur_myralokka_set_3_q6","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva betyr uorganisert aktivitet?","options":["Lek, opphold og bruk som skjer uten fast program eller institusjon","Kun planlagte konserter","Bare kommersiell aktivitet"],"answer":"Lek, opphold og bruk som skjer uten fast program eller institusjon","answerIndex":0,"knowledge":"Myraløkka er viktig nettopp fordi den tåler uformell og uorganisert bruk.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["uorganisert_aktivitet"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s3_q7","quiz_id":"natur_myralokka_set_3_q7","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva betyr stedlesning?","options":["Å bruke observasjoner på stedet til å forstå større sammenhenger","Å svare uten å se seg rundt","Å pugge løsrevne navn"],"answer":"Å bruke observasjoner på stedet til å forstå større sammenhenger","answerIndex":0,"knowledge":"Myraløkka trener stedlesning ved å koble flate, kratt, opphold og elvenærhet.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "myralokka_s3_q1",
+          "quiz_id": "natur_myralokka_set_3_q1",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva er et industriformet landskap?",
+          "options": [
+            "Terreng og naturpreg formet av produksjon og uttak",
+            "Et område uten menneskelig påvirkning",
+            "Bare innsiden av en fabrikk"
+          ],
+          "answer": "Terreng og naturpreg formet av produksjon og uttak",
+          "answerIndex": 0,
+          "knowledge": "Myraløkka er industriformet fordi leiruttaket skapte dalen.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "industriformet_landskap"
+          ],
+          "source": [
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug"
+          ],
+          "claim_basis": "concept_from_place"
+        },
+        {
+          "id": "myralokka_s3_q2",
+          "quiz_id": "natur_myralokka_set_3_q2",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva er en urban grønnkorridor?",
+          "options": [
+            "Sammenhengende grønt og vann som støtter arter og ferdsel gjennom byen",
+            "En lukket privat hage",
+            "Et underjordisk fabrikkløp"
+          ],
+          "answer": "Sammenhengende grønt og vann som støtter arter og ferdsel gjennom byen",
+          "answerIndex": 0,
+          "knowledge": "Akerselva binder Myraløkka til andre parker og kantsoner.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "grontdrag",
+            "Akerselva"
+          ],
+          "source": [
+            "data/places/README_place_rounds.md"
+          ],
+          "claim_basis": "conceptual_safe"
+        },
+        {
+          "id": "myralokka_s3_q3",
+          "quiz_id": "natur_myralokka_set_3_q3",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva betyr kantsone ved elva?",
+          "options": [
+            "Overgangen mellom vann og land",
+            "Midten av en asfaltplass",
+            "Taket på en fabrikk"
+          ],
+          "answer": "Overgangen mellom vann og land",
+          "answerIndex": 0,
+          "knowledge": "Kantsonen gir vegetasjon, skjul og overgang mellom elv og park.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "elvebredde",
+            "kantvegetasjon"
+          ],
+          "source": [
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "canonical_nature_concept"
+        },
+        {
+          "id": "myralokka_s3_q4",
+          "quiz_id": "natur_myralokka_set_3_q4",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva betyr artsregistrering?",
+          "options": [
+            "Å dokumentere en art på et bestemt sted og tidspunkt",
+            "Å anta at alle mulige arter finnes",
+            "Å plukke alle planter"
+          ],
+          "answer": "Å dokumentere en art på et bestemt sted og tidspunkt",
+          "answerIndex": 0,
+          "knowledge": "Artskort er utgangspunkt; brukeren skal bare registrere faktiske observasjoner.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "artsregistrering"
+          ],
+          "source": [
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "canonical_nature_concept"
+        },
+        {
+          "id": "myralokka_s3_q5",
+          "quiz_id": "natur_myralokka_set_3_q5",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hvorfor er åpen plen og skråning ulike habitater?",
+          "options": [
+            "De har ulikt lys, vegetasjonsdekke, ferdsel og skjerming",
+            "De er alltid helt like",
+            "Bare fargen er forskjellig"
+          ],
+          "answer": "De har ulikt lys, vegetasjonsdekke, ferdsel og skjerming",
+          "answerIndex": 0,
+          "knowledge": "Mosaikken gir flere små natursoner innenfor samme park.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "habitat",
+            "mosaikk"
+          ],
+          "source": [
+            "data/places/natur/oslo/places_oslo_natur_akerselvarute/myralokka.json"
+          ],
+          "claim_basis": "place_profile_concept"
+        },
+        {
+          "id": "myralokka_s3_q6",
+          "quiz_id": "natur_myralokka_set_3_q6",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva betyr jordpakking?",
+          "options": [
+            "At mye tråkk presser jorda sammen og reduserer luft og vannrom",
+            "At jord blir til tegl i naturen",
+            "At elva fryser"
+          ],
+          "answer": "At mye tråkk presser jorda sammen og reduserer luft og vannrom",
+          "answerIndex": 0,
+          "knowledge": "Intensiv parkbruk kan endre jorda og vegetasjonen langs snarveier.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "jordpakking",
+            "slitasje"
+          ],
+          "source": [
+            "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json"
+          ],
+          "claim_basis": "place_article_concept"
+        },
+        {
+          "id": "myralokka_s3_q7",
+          "quiz_id": "natur_myralokka_set_3_q7",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva betyr stedlesning på Myraløkka?",
+          "options": [
+            "Å bruke terreng, vegetasjon og spor til å forstå både natur og historie",
+            "Å ignorere landskapet",
+            "Å pugge navnet alene"
+          ],
+          "answer": "Å bruke terreng, vegetasjon og spor til å forstå både natur og historie",
+          "answerIndex": 0,
+          "knowledge": "Stedet kan leses gjennom dalformen, pipehaugen, parksonene og artene.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "stedlesning"
+          ],
+          "source": [
+            "data/quiz/regler/SET_MAL_README_v3.md"
+          ],
+          "claim_basis": "generator_rule"
+        }
       ]
     },
     {
@@ -72,13 +651,204 @@
       "xp": 80,
       "mode": "place_concrete_advanced",
       "questions": [
-        {"id":"myralokka_s4_q1","quiz_id":"natur_myralokka_set_4_q1","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva er en avansert observasjon på Myraløkka?","options":["Å se hvordan åpen flate, vegetasjon, elv og uformell bruk virker sammen","Å bare se etter ett skilt","Å ignorere menneskene"],"answer":"Å se hvordan åpen flate, vegetasjon, elv og uformell bruk virker sammen","answerIndex":0,"knowledge":"Avansert stedlesning kobler fysisk form, bynatur og sosial bruk.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["stedlesning"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s4_q2","quiz_id":"natur_myralokka_set_4_q2","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva bør holdes ute av en trygg Myraløkka-quiz?","options":["Usikre artsfunn, dagsaktuelle arrangementer og detaljer uten kilde","Begrepet grøntdrag","Observasjon av åpen flate"],"answer":"Usikre artsfunn, dagsaktuelle arrangementer og detaljer uten kilde","answerIndex":0,"knowledge":"Trygg quizdata bør bruke varige trekk som grønnflate, elvekobling og hverdagsbruk.","difficulty":2,"question_type":"kildekritikk","question_layer":"advanced_place","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"},
-        {"id":"myralokka_s4_q3","quiz_id":"natur_myralokka_set_4_q3","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hvordan kan spilleren lese Myraløkka som sosial infrastruktur?","options":["Ved å se hvordan stedet gir gratis rom for ferdsel, lek, pause og møte","Ved å late som ingen bruker parken","Ved å se bort fra stiene"],"answer":"Ved å se hvordan stedet gir gratis rom for ferdsel, lek, pause og møte","answerIndex":0,"knowledge":"Sosial infrastruktur blir synlig når et sted gjør hverdagsmøter enklere.","difficulty":2,"question_type":"stedskonkret","question_layer":"advanced_place","tags":["sosial_infrastruktur"],"source":["History Go place data: myralokka"],"claim_basis":"safe_place_data"},
-        {"id":"myralokka_s4_q4","quiz_id":"natur_myralokka_set_4_q4","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva gjør Myraløkka til et godt stopp etter Vøienvolden?","options":["Vøienvolden viser eldre landskapslag; Myraløkka viser lavterskel hverdagsgrønt i samme elvekorridor","Stedene har ingen sammenheng","Begge er flyplasser"],"answer":"Vøienvolden viser eldre landskapslag; Myraløkka viser lavterskel hverdagsgrønt i samme elvekorridor","answerIndex":0,"knowledge":"Ruten blir rikere når den veksler mellom historiske gårdslandskap og dagens åpne grøntrom.","difficulty":2,"question_type":"rutekobling","question_layer":"advanced_place","tags":["voien_gard_voienvolden","rute"],"source":["History Go quiz: voien_gard_voienvolden","History Go place data: myralokka"],"claim_basis":"safe_internal_data"},
-        {"id":"myralokka_s4_q5","quiz_id":"natur_myralokka_set_4_q5","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva kan Myraløkka fortelle om byens behov?","options":["At tett by trenger gratis åpne rom for hvile, lek, bevegelse og møte","At parker bare er pynt","At alle møteplasser må være kommersielle"],"answer":"At tett by trenger gratis åpne rom for hvile, lek, bevegelse og møte","answerIndex":0,"knowledge":"Myraløkka gjør lavterskel byliv konkret: det viktige er ofte at rommet er åpent og brukbart.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["lavterskel","offentlig_rom"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s4_q6","quiz_id":"natur_myralokka_set_4_q6","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva kan hverdagsbruk lære oss om bynatur?","options":["At bynatur er formet av både økologi, skjøtsel, ferdsel og sosial bruk","At natur alltid er urørt","At mennesker ikke påvirker parker"],"answer":"At bynatur er formet av både økologi, skjøtsel, ferdsel og sosial bruk","answerIndex":0,"knowledge":"Bynatur i byen er ikke villmark; den er et brukt og vedlikeholdt landskap.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["bynatur","bruk"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s4_q7","quiz_id":"natur_myralokka_set_4_q7","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"place","question":"Hva bør en god Myraløkka-quiz trene spilleren i?","options":["Å lese grøntdrag, lavterskel møteplass, bynatur og sosial infrastruktur sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese grøntdrag, lavterskel møteplass, bynatur og sosial infrastruktur sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå hverdagsrommet de står i.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "myralokka_s4_q1",
+          "quiz_id": "natur_myralokka_set_4_q1",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvordan kan du kontrollere at dalen ikke er naturlig?",
+          "options": [
+            "Sammenhold terrengformen med historien om leiruttaket",
+            "Grav et hull i skråningen",
+            "Anta det ut fra navnet"
+          ],
+          "answer": "Sammenhold terrengformen med historien om leiruttaket",
+          "answerIndex": 0,
+          "knowledge": "Kilder og fysisk observasjon peker sammen mot industriformet terreng.",
+          "difficulty": 2,
+          "question_type": "stedsspesifikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "kildekritikk",
+            "terreng"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug"
+          ],
+          "claim_basis": "sourced_place_analysis"
+        },
+        {
+          "id": "myralokka_s4_q2",
+          "quiz_id": "natur_myralokka_set_4_q2",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva er tryggeste måte å undersøke pipehaugen på?",
+          "options": [
+            "Observere fra offentlig ganglinje uten graving eller klatring",
+            "Grave for å finne murstein",
+            "Klatre på våt skråning"
+          ],
+          "answer": "Observere fra offentlig ganglinje uten graving eller klatring",
+          "answerIndex": 0,
+          "knowledge": "Industrisporet skal forstås uten inngrep i terreng eller risiko.",
+          "difficulty": 2,
+          "question_type": "stedsspesifikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "sikkerhet",
+            "pipehaug"
+          ],
+          "source": [
+            "data/places/README_place_rounds.md"
+          ],
+          "claim_basis": "place_safety_rule"
+        },
+        {
+          "id": "myralokka_s4_q3",
+          "quiz_id": "natur_myralokka_set_4_q3",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvilket artspar er begge meiser i Myraløkka-kartet?",
+          "options": [
+            "Kjøttmeis og blåmeis",
+            "Fiskemåke og gråmåke",
+            "Ringdue og skjære"
+          ],
+          "answer": "Kjøttmeis og blåmeis",
+          "answerIndex": 0,
+          "knowledge": "Begge artene ligger i det aktive fuglekartet for stedet.",
+          "difficulty": 2,
+          "question_type": "stedsspesifikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "kjøttmeis",
+            "blåmeis"
+          ],
+          "source": [
+            "data/natur/nature_bird_place_map.json"
+          ],
+          "claim_basis": "active_repo_nature_map"
+        },
+        {
+          "id": "myralokka_s4_q4",
+          "quiz_id": "natur_myralokka_set_4_q4",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvilket artspar er begge måker i Myraløkka-kartet?",
+          "options": [
+            "Fiskemåke og gråmåke",
+            "Svarttrost og gråspurv",
+            "Ringdue og skjære"
+          ],
+          "answer": "Fiskemåke og gråmåke",
+          "answerIndex": 0,
+          "knowledge": "Begge måkeartene er aktivt kartlagt til Myraløkka.",
+          "difficulty": 2,
+          "question_type": "stedsspesifikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "fiskemåke",
+            "gråmåke"
+          ],
+          "source": [
+            "data/natur/nature_bird_place_map.json"
+          ],
+          "claim_basis": "active_repo_nature_map"
+        },
+        {
+          "id": "myralokka_s4_q5",
+          "quiz_id": "natur_myralokka_set_4_q5",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvilke tre fugler representerer trost, spurv og due?",
+          "options": [
+            "Svarttrost, gråspurv og ringdue",
+            "Kjøttmeis, blåmeis og skjære",
+            "Fiskemåke, gråmåke og skjære"
+          ],
+          "answer": "Svarttrost, gråspurv og ringdue",
+          "answerIndex": 0,
+          "knowledge": "Alle tre er aktive Myraløkka-arter i fuglekartet.",
+          "difficulty": 2,
+          "question_type": "stedsspesifikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "svarttrost",
+            "gråspurv",
+            "ringdue"
+          ],
+          "source": [
+            "data/natur/nature_bird_place_map.json"
+          ],
+          "claim_basis": "active_repo_nature_map"
+        },
+        {
+          "id": "myralokka_s4_q6",
+          "quiz_id": "natur_myralokka_set_4_q6",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hvilken aktivt kartlagt fugl er en kråkefugl?",
+          "options": [
+            "Skjære",
+            "Ringdue",
+            "Fiskemåke"
+          ],
+          "answer": "Skjære",
+          "answerIndex": 0,
+          "knowledge": "Skjære er den aktivt kartlagte kråkefuglen i Myraløkka-listen.",
+          "difficulty": 2,
+          "question_type": "stedsspesifikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "skjære",
+            "kråkefugl"
+          ],
+          "source": [
+            "data/natur/nature_bird_place_map.json"
+          ],
+          "claim_basis": "active_repo_nature_map"
+        },
+        {
+          "id": "myralokka_s4_q7",
+          "quiz_id": "natur_myralokka_set_4_q7",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "place",
+          "question": "Hva er den beste avanserte lesningen av parken?",
+          "options": [
+            "Industriform, parkøkologi, sosial bruk og artsdata virker sammen",
+            "Bare plenens størrelse betyr noe",
+            "Historien og naturen må holdes helt adskilt"
+          ],
+          "answer": "Industriform, parkøkologi, sosial bruk og artsdata virker sammen",
+          "answerIndex": 0,
+          "knowledge": "Myraløkka er både produksjonsspor, parkrom og levende grønnkorridor.",
+          "difficulty": 2,
+          "question_type": "stedsspesifikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "helhetsanalyse"
+          ],
+          "source": [
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug",
+            "data/natur/nature_bird_place_map.json"
+          ],
+          "claim_basis": "sourced_interpretation"
+        }
       ]
     },
     {
@@ -88,13 +858,203 @@
       "xp": 90,
       "mode": "emne_based_advanced",
       "questions": [
-        {"id":"myralokka_s5_q1","quiz_id":"natur_myralokka_set_5_q1","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva er den dypere læringen i Myraløkka?","options":["At små, åpne grøntrom kan være like viktige for byliv som store monumenter","At bare historiske bygninger teller","At parker ikke kan lære noe"],"answer":"At små, åpne grøntrom kan være like viktige for byliv som store monumenter","answerIndex":0,"knowledge":"Myraløkka viser verdien av lavterskel, hverdagslig bynatur.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["sosial_infrastruktur","hverdagsrom"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s5_q2","quiz_id":"natur_myralokka_set_5_q2","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hvorfor er lavterskel møteplasser viktige i tett by?","options":["De gir gratis, uformelle rom for opphold, lek, møte og pause","De gjør byen mindre tilgjengelig","De krever alltid betaling"],"answer":"De gir gratis, uformelle rom for opphold, lek, møte og pause","answerIndex":0,"knowledge":"Lavterskel møteplasser motvirker at alt byliv må være kjøpt eller organisert.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["lavterskel_møteplass"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s5_q3","quiz_id":"natur_myralokka_set_5_q3","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva er forskjellen på Vøienvolden og Myraløkka som læringssteder?","options":["Vøienvolden forklarer eldre landskapslag; Myraløkka forklarer lavterskel hverdagsgrønt","Det finnes ingen forskjell","Begge mangler grønt preg"],"answer":"Vøienvolden forklarer eldre landskapslag; Myraløkka forklarer lavterskel hverdagsgrønt","answerIndex":0,"knowledge":"Sammen viser de at grøntområder langs Akerselva kan lære både historie og sosial bybruk.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["sammenligning","voien_gard_voienvolden"],"source":["History Go quiz: voien_gard_voienvolden","History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s5_q4","quiz_id":"natur_myralokka_set_5_q4","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva kan være en konflikt i åpne byparker?","options":["Balansen mellom bruk, slitasje, naturhensyn, trygghet og tilgjengelighet","At ingen bruker dem","At parker aldri trenger skjøtsel"],"answer":"Balansen mellom bruk, slitasje, naturhensyn, trygghet og tilgjengelighet","answerIndex":0,"knowledge":"Åpne byparker må tåle mange typer hverdagsbruk samtidig.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["forvaltning","brukspress"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s5_q5","quiz_id":"natur_myralokka_set_5_q5","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva er viktig for trygg parkquiz her?","options":["Bruke observerbare park- og brukstrekk, ikke usikre arts- eller arrangementsdetaljer","Finne på sjeldne arter","Hardkode dagens program"],"answer":"Bruke observerbare park- og brukstrekk, ikke usikre arts- eller arrangementsdetaljer","answerIndex":0,"knowledge":"Trygg quizdata bygger på varige stedstrekk: åpen flate, kratt, elvenærhet, opphold og ferdsel.","difficulty":3,"question_type":"kildekritikk","question_layer":"advanced_emne","tags":["kildekritikk"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"},
-        {"id":"myralokka_s5_q6","quiz_id":"natur_myralokka_set_5_q6","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hvordan fungerer Akerselva som læringsstruktur her?","options":["Elva binder kraftpunkter, gårdslandskap og hverdagsgrønt til én rute","Elva gjør steder isolerte","Elva er bare bakgrunn"],"answer":"Elva binder kraftpunkter, gårdslandskap og hverdagsgrønt til én rute","answerIndex":0,"knowledge":"Myraløkka gir ruta et tydelig hverdags- og parkdrag etter eldre gårds- og fosselag.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["stedslæring","elvekorridor"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"},
-        {"id":"myralokka_s5_q7","quiz_id":"natur_myralokka_set_5_q7","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"emne","question":"Hva gjør Myraløkka god for History Go-læring?","options":["Den lar spilleren forstå sosial infrastruktur og bynatur gjennom et konkret hverdagsrom","Den krever at man ignorerer stedet","Den handler bare om løsrevne årstall"],"answer":"Den lar spilleren forstå sosial infrastruktur og bynatur gjennom et konkret hverdagsrom","answerIndex":0,"knowledge":"Myraløkka gjør abstrakte begreper konkrete: lavterskel møteplass, sosial infrastruktur og bynatur.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "myralokka_s5_q1",
+          "quiz_id": "natur_myralokka_set_5_q1",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hvorfor er gullstjerne viktig i Myraløkka-rundingen?",
+          "options": [
+            "Den er stedets eneste aktivt kartlagte floraart",
+            "Den beviser at hele parken er urørt",
+            "Den ble produsert på teglverket"
+          ],
+          "answer": "Den er stedets eneste aktivt kartlagte floraart",
+          "answerIndex": 0,
+          "knowledge": "Gullstjerne skal vises sammen med alle åtte fuglearter, uten å overdrive artsgrunnlaget.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "gullstjerne",
+            "flora"
+          ],
+          "source": [
+            "data/natur/nature_oslo_expansion_place_map.json"
+          ],
+          "claim_basis": "active_repo_nature_map"
+        },
+        {
+          "id": "myralokka_s5_q2",
+          "quiz_id": "natur_myralokka_set_5_q2",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva viser de ni artskortene metodisk?",
+          "options": [
+            "At aktive kartdata kan avgrense hva rundingen påstår finnes på stedet",
+            "At alle Oslo-arter må legges inn",
+            "At observasjonstidspunkt er irrelevant"
+          ],
+          "answer": "At aktive kartdata kan avgrense hva rundingen påstår finnes på stedet",
+          "answerIndex": 0,
+          "knowledge": "Rundingen bruker den dokumenterte kartunionen, ikke gjetning.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "artsdata",
+            "metode"
+          ],
+          "source": [
+            "js/nature_place_map_bridge.js"
+          ],
+          "claim_basis": "runtime_data_method"
+        },
+        {
+          "id": "myralokka_s5_q3",
+          "quiz_id": "natur_myralokka_set_5_q3",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hvorfor skal direkte flora- og faunafelt ikke legges i stedfilen?",
+          "options": [
+            "Fordi naturbroen allerede henter og slår sammen aktive artskart",
+            "Fordi arter ikke skal vises",
+            "Fordi bare quiz kan ha arter"
+          ],
+          "answer": "Fordi naturbroen allerede henter og slår sammen aktive artskart",
+          "answerIndex": 0,
+          "knowledge": "Dette unngår duplikater og holder artskildene samlet.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "runtime",
+            "datamodell"
+          ],
+          "source": [
+            "js/nature_place_map_bridge.js"
+          ],
+          "claim_basis": "runtime_contract"
+        },
+        {
+          "id": "myralokka_s5_q4",
+          "quiz_id": "natur_myralokka_set_5_q4",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva er parkens viktigste før-og-nå-endring?",
+          "options": [
+            "Fra leiruttak og teglproduksjon til offentlig park og artsrom",
+            "Fra naturlig fjell til flyplass",
+            "Fra kloster til kjøpesenter"
+          ],
+          "answer": "Fra leiruttak og teglproduksjon til offentlig park og artsrom",
+          "answerIndex": 0,
+          "knowledge": "Terrengformen består, mens funksjonen er endret.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "før_nå",
+            "transformasjon"
+          ],
+          "source": [
+            "https://lokalhistoriewiki.no/wiki/Myral%C3%B8kka",
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug"
+          ],
+          "claim_basis": "sourced_place_fact"
+        },
+        {
+          "id": "myralokka_s5_q5",
+          "quiz_id": "natur_myralokka_set_5_q5",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hvordan henger Myrens Verksted og Myragården sammen med parken?",
+          "options": [
+            "De viser industriens arbeids- og boliglandskap rundt den åpne løkka",
+            "De er tilfeldige navn uten stedskobling",
+            "De var naturreservater"
+          ],
+          "answer": "De viser industriens arbeids- og boliglandskap rundt den åpne løkka",
+          "answerIndex": 0,
+          "knowledge": "Parken må forstås som del av et større industrisamfunn.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "arbeidsliv",
+            "bolig"
+          ],
+          "source": [
+            "https://snl.no/Myrens_Verksted",
+            "https://lokalhistoriewiki.no/wiki/Myrag%C3%A5rden"
+          ],
+          "claim_basis": "sourced_place_analysis"
+        },
+        {
+          "id": "myralokka_s5_q6",
+          "quiz_id": "natur_myralokka_set_5_q6",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva kan høy parkbruk gjøre med vegetasjonen?",
+          "options": [
+            "Skape opptråkk, jordpakking og press på kantsoner",
+            "Alltid øke artsmangfoldet",
+            "Gjøre skråningene brattere uten påvirkning"
+          ],
+          "answer": "Skape opptråkk, jordpakking og press på kantsoner",
+          "answerIndex": 0,
+          "knowledge": "Robuste ganglinjer beskytter de mer sårbare sonene.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "slitasje",
+            "forvaltning"
+          ],
+          "source": [
+            "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json"
+          ],
+          "claim_basis": "place_article_concept"
+        },
+        {
+          "id": "myralokka_s5_q7",
+          "quiz_id": "natur_myralokka_set_5_q7",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "emne",
+          "question": "Hva gjør Myraløkka til et godt History Go-sted?",
+          "options": [
+            "Fysisk terreng, industrihistorie, bynatur og arter kan leses på samme sted",
+            "Stedet krever ingen observasjon",
+            "Bare navnet har betydning"
+          ],
+          "answer": "Fysisk terreng, industrihistorie, bynatur og arter kan leses på samme sted",
+          "answerIndex": 0,
+          "knowledge": "Stedet gjør abstrakte begreper konkrete gjennom synlige og skjulte spor.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "stedbasert_læring"
+          ],
+          "source": [
+            "data/quiz/regler/SET_MAL_README_v3.md"
+          ],
+          "claim_basis": "generator_rule"
+        }
       ]
     },
     {
@@ -104,13 +1064,197 @@
       "xp": 100,
       "mode": "concept_based",
       "questions": [
-        {"id":"myralokka_s6_q1","quiz_id":"natur_myralokka_set_6_q1","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"concept","question":"Hvilket begrep beskriver steder som støtter hverdagsmøter og fellesskap?","options":["Sosial infrastruktur","Privat lager","Flyplass"],"answer":"Sosial infrastruktur","answerIndex":0,"knowledge":"Myraløkka er et konkret eksempel på sosial infrastruktur i byrommet.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["sosial_infrastruktur"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s6_q2","quiz_id":"natur_myralokka_set_6_q2","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"concept","question":"Hva betyr lavterskel møteplass?","options":["Et sted mange kan bruke uten kjøp, medlemskap eller planlegging","Et lukket privat rom","Et rom bare for eksperter"],"answer":"Et sted mange kan bruke uten kjøp, medlemskap eller planlegging","answerIndex":0,"knowledge":"Myraløkka fungerer som lavterskel møteplass fordi den er åpen og enkel å bruke.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["lavterskel_møteplass"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s6_q3","quiz_id":"natur_myralokka_set_6_q3","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"concept","question":"Hva er et grøntdrag?","options":["En sammenhengende grønn og blå struktur for natur, ferdsel og opphold","Et lukket kontorrom","En tilfeldig asfaltflate"],"answer":"En sammenhengende grønn og blå struktur for natur, ferdsel og opphold","answerIndex":0,"knowledge":"Myraløkka er del av Akerselvas grøntdrag.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["grøntdrag"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s6_q4","quiz_id":"natur_myralokka_set_6_q4","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"concept","question":"Hva betyr bynatur?","options":["Natur som finnes og virker inne i byen","Natur som bare finnes langt fra mennesker","Et ord for asfalt"],"answer":"Natur som finnes og virker inne i byen","answerIndex":0,"knowledge":"Myraløkka viser bynatur gjennom grønnflate, kratt og elvenærhet.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["bynatur"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s6_q5","quiz_id":"natur_myralokka_set_6_q5","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"concept","question":"Hva betyr offentlig rom?","options":["Et rom mange kan bruke til ferdsel, stopp, møte og opphold","Et privat låst rom","Et sted uten adgang"],"answer":"Et rom mange kan bruke til ferdsel, stopp, møte og opphold","answerIndex":0,"knowledge":"Myraløkka er offentlig rom fordi den kan brukes av mange i hverdagen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["offentlig_rom"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s6_q6","quiz_id":"natur_myralokka_set_6_q6","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"concept","question":"Hva betyr uorganisert aktivitet?","options":["Lek, opphold og bruk uten fast program eller institusjon","Kun planlagte konserter","Bare kommersiell aktivitet"],"answer":"Lek, opphold og bruk uten fast program eller institusjon","answerIndex":0,"knowledge":"Myraløkka tåler uformell bruk, og det er en viktig del av stedets funksjon.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["uorganisert_aktivitet"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"},
-        {"id":"myralokka_s6_q7","quiz_id":"natur_myralokka_set_6_q7","categoryId":"natur","placeId":"myralokka","targetId":"myralokka","question_scope":"concept","question":"Hvilket begrepspar forklarer Myraløkka best?","options":["Lavterskel møteplass og sosial infrastruktur","Vannkraft og fabrikkmaskin","Flyplass og høyfjell"],"answer":"Lavterskel møteplass og sosial infrastruktur","answerIndex":0,"knowledge":"Myraløkka blir tydeligst når den leses som et åpent hverdagsrom i byen.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["lavterskel_møteplass","sosial_infrastruktur"],"source":["History Go place data: myralokka"],"claim_basis":"conceptual_safe"}
+        {
+          "id": "myralokka_s6_q1",
+          "quiz_id": "natur_myralokka_set_6_q1",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver Myraløkkas dalform best?",
+          "options": [
+            "Industriformet landskap",
+            "Urørt villmark",
+            "Marin strandvoll"
+          ],
+          "answer": "Industriformet landskap",
+          "answerIndex": 0,
+          "knowledge": "Leiruttaket skapte en terrengform som senere ble park.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "industriformet_landskap"
+          ],
+          "source": [
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug"
+          ],
+          "claim_basis": "concept_from_place"
+        },
+        {
+          "id": "myralokka_s6_q2",
+          "quiz_id": "natur_myralokka_set_6_q2",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver Akerselvas rolle for arter og ferdsel?",
+          "options": [
+            "Blågrønn korridor",
+            "Lukket bakgård",
+            "Teglproduksjon"
+          ],
+          "answer": "Blågrønn korridor",
+          "answerIndex": 0,
+          "knowledge": "Elv og parker danner en sammenhengende struktur gjennom byen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "blagronn_struktur"
+          ],
+          "source": [
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "canonical_nature_concept"
+        },
+        {
+          "id": "myralokka_s6_q3",
+          "quiz_id": "natur_myralokka_set_6_q3",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver overgangen mellom elv og park?",
+          "options": [
+            "Elvebredde",
+            "Takflate",
+            "Fabrikkskorstein"
+          ],
+          "answer": "Elvebredde",
+          "answerIndex": 0,
+          "knowledge": "Elvebredden er en kantsone med vegetasjon, ferdsel og erosjon.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "elvebredde"
+          ],
+          "source": [
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "canonical_nature_concept"
+        },
+        {
+          "id": "myralokka_s6_q4",
+          "quiz_id": "natur_myralokka_set_6_q4",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver gullstjerne og fuglene samlet?",
+          "options": [
+            "Biologisk mangfold",
+            "Teglserie",
+            "Boligtypologi"
+          ],
+          "answer": "Biologisk mangfold",
+          "answerIndex": 0,
+          "knowledge": "Artslisten viser flere livsformer i et lite urbant grøntrom.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "biologisk_mangfold"
+          ],
+          "source": [
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "canonical_nature_concept"
+        },
+        {
+          "id": "myralokka_s6_q5",
+          "quiz_id": "natur_myralokka_set_6_q5",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver styrt vedlikehold av parkvegetasjon?",
+          "options": [
+            "Skjøtsel",
+            "Utvasking",
+            "Industrialisering"
+          ],
+          "answer": "Skjøtsel",
+          "answerIndex": 0,
+          "knowledge": "Parknatur opprettholdes gjennom valg om klipping, vegetasjon og ferdsel.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "skjotsel"
+          ],
+          "source": [
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "canonical_nature_concept"
+        },
+        {
+          "id": "myralokka_s6_q6",
+          "quiz_id": "natur_myralokka_set_6_q6",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver faktiske registreringer av arter?",
+          "options": [
+            "Artsregistrering",
+            "Navnegjetning",
+            "Masseproduksjon"
+          ],
+          "answer": "Artsregistrering",
+          "answerIndex": 0,
+          "knowledge": "Observasjoner må knyttes til sted og tidspunkt.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "artsregistrering"
+          ],
+          "source": [
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "canonical_nature_concept"
+        },
+        {
+          "id": "myralokka_s6_q7",
+          "quiz_id": "natur_myralokka_set_6_q7",
+          "categoryId": "natur",
+          "placeId": "myralokka",
+          "targetId": "myralokka",
+          "question_scope": "concept",
+          "question": "Hvilket begrepspar forklarer Myraløkka best?",
+          "options": [
+            "Industriformet landskap og urbannatur",
+            "Høyfjell og isbre",
+            "Havn og tidevann"
+          ],
+          "answer": "Industriformet landskap og urbannatur",
+          "answerIndex": 0,
+          "knowledge": "Stedets hovedpoeng er overgangen fra leireuttak til levende parkrom.",
+          "difficulty": 3,
+          "question_type": "concept_pair",
+          "question_layer": "concept",
+          "tags": [
+            "industriformet_landskap",
+            "urbannatur"
+          ],
+          "source": [
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug",
+            "data/badges/natur.json"
+          ],
+          "claim_basis": "concept_pair"
+        }
       ]
     }
   ]
