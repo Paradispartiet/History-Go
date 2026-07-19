@@ -1,0 +1,60 @@
+name: Verify Oslo coordinate batch 30 OSM object identity
+
+on:
+  push:
+    branches:
+      - agent/oslo-coordinate-control-batch-30
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-coordinate-batch-30-object-identity
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-30
+          fetch-depth: 0
+
+      - name: Fetch exact OSM object identity metadata
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-30/coordinates
+          mkdir -p "$out"
+          ua="History-Go-coordinate-audit/1.0 (Paradispartiet/History-Go)"
+
+          curl --fail --retry 3 --retry-delay 2 --silent --show-error -A "$ua" \
+            "https://nominatim.openstreetmap.org/lookup?osm_ids=W3610607&format=json&extratags=1&namedetails=1&polygon_geojson=1" \
+            | tee "$out/alexander_kiellands_plass_osm_identity.json"
+
+          sleep 1
+
+          curl --fail --retry 3 --retry-delay 2 --silent --show-error -A "$ua" \
+            "https://nominatim.openstreetmap.org/lookup?osm_ids=N10819902960&format=json&extratags=1&namedetails=1" \
+            | tee "$out/oskar_braaten_byste_osm_identity.json"
+
+          jq '.[0] | {osm_type,osm_id,lat,lon,class,type,name,display_name,extratags,namedetails,boundingbox}' \
+            "$out/alexander_kiellands_plass_osm_identity.json" \
+            > "$out/alexander_kiellands_plass_osm_identity_compact.json"
+          jq '.[0] | {osm_type,osm_id,lat,lon,class,type,name,display_name,extratags,namedetails,boundingbox}' \
+            "$out/oskar_braaten_byste_osm_identity.json" \
+            > "$out/oskar_braaten_byste_osm_identity_compact.json"
+
+      - name: Persist identity evidence and remove workflow
+        run: |
+          set -euo pipefail
+          rm .github/workflows/oslo-coordinate-batch-30-object-identity.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-coordinate-control-batch-30/coordinates .github/workflows/oslo-coordinate-batch-30-object-identity.yml
+          git commit -m "Verify batch 30 exact OSM object identities"
+          git push origin HEAD
