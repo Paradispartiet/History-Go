@@ -4,30 +4,12 @@
   "visual": {
     "designCode": "street_miniature"
   },
-  "lat": 59.9154,
-  "lon": 10.7539,
-  "r": 230,
-  "coordType": "street_midpoint",
-  "coordStatus": "verified_geometry",
-  "coordNote": "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt.",
-  "anchors": [
-    {
-      "id": "storgata_sorvest_kirkeristen",
-      "name": "Storgata sørvest (Kirkeristen)",
-      "type": "route_point",
-      "lat": 59.914,
-      "lon": 10.7512,
-      "r": 70
-    },
-    {
-      "id": "storgata_nordost_nybrua",
-      "name": "Storgata nordøst (Nybrua)",
-      "type": "route_point",
-      "lat": 59.9166,
-      "lon": 10.7567,
-      "r": 70
-    }
-  ],
+  "lat": 59.91401231902849,
+  "lon": 10.751188150585149,
+  "r": 60,
+  "coordType": "address_point",
+  "coordStatus": "verified",
+  "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Storgata 25, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
   "category": "by",
   "year": 1850,
   "emne_ids": [
@@ -72,13 +54,18 @@
     ],
     "notes": "Skal spørres som historisk hybrid mellom ferdsel og handel."
   },
-  "locatorType": "street",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "oslobyleksikon:storgata",
-  "geocodeAccuracy": "semantic_anchor",
-  "coordRole": "line_anchor",
-  "coordSource": "Oslo byleksikon – Storgata + dokumenterte ruteankre",
-  "coordSourceId": "oslobyleksikon:storgata",
-  "coordSourceUrl": "https://oslobyleksikon.no/side/Storgata",
-  "coordVerifiedAt": "2026-07-19"
+  "locatorType": "building",
+  "sourceProvider": "official_address",
+  "sourceObjectId": "geonorge-adresser-v1:0301:17059:25",
+  "geocodeAccuracy": "rooftop",
+  "coordRole": "display_marker",
+  "coordSource": "geonorge_adresser_v1",
+  "coordVerifiedAt": "2026-07-19",
+  "address": {
+    "street": "Storgata",
+    "number": "25",
+    "postcode": "0184",
+    "city": "Oslo",
+    "country": "NO"
+  }
 }
