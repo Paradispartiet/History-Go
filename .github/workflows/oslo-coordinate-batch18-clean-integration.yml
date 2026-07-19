@@ -1,20 +1,21 @@
 name: Oslo coordinate batch 18 clean integration
 
 on:
-  push:
-    branches:
-      - agent/oslo-coordinate-control-batch18-clean
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
 
 jobs:
   integrate:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch18-clean'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/oslo-coordinate-control-batch18-clean
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -50,4 +51,4 @@ jobs:
           git add -A
           git diff --cached --quiet && { echo 'No changes to commit'; exit 1; }
           git commit -m 'Complete Oslo coordinate control batch 18'
-          git push origin HEAD:agent/oslo-coordinate-control-batch18-clean
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
