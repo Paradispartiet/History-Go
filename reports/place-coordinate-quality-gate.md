@@ -1,6 +1,6 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T23:27:56.426Z
+Generert: 2026-07-19T23:38:20.932Z
 
 ## Oppsummering
 - Aktive filer validert: **504**
@@ -527,13 +527,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - Ingen
 
 ## Varsler
-- data/places/by/oslo/places_by.json#torggata: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#torggata: coordinate_regression_risk (155 m fra tidligere verified)
 - data/places/by/oslo/places_by.json#gronland_basarene: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
-- data/places/by/oslo/places_by.json#storgata: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#storgata: coordinate_regression_risk (216 m fra tidligere verified)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
 - data/places/film/oslo/places_oslo_film.json#saga_kino: coordStatus=verified uten coordPrecisionM
@@ -966,7 +966,8 @@ Totalt 713 signaler fordelt på 570 steder. Et sted kan ha flere signaler. Kandi
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 111 |
+| coordinate_regression_risk | 2 |
+| coordStatus=verified uten coordPrecisionM | 109 |
 | lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 99 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 90 |
@@ -976,14 +977,19 @@ Totalt 713 signaler fordelt på 570 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (111)
+### coordinate_regression_risk (2)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| torggata | Torggata | by | data/places/by/oslo/places_by.json | 59.91577558074357 | 10.750699720958542 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| torggata | Torggata | by | data/places/by/oslo/places_by.json | 59.91535 | 10.75335 | 180 | Flyttet ~155 m fra tidligere verified. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
+| storgata | Storgata | by | data/places/by/oslo/places_by.json | 59.9154 | 10.7539 | 230 | Flyttet ~216 m fra tidligere verified. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
+
+### coordStatus=verified uten coordPrecisionM (109)
+
+| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | gronland_basarene | Grønland basarene | by | data/places/by/oslo/places_by.json | 59.91278287002734 | 10.76391148376898 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vulkan_energisentral | Vulkan energisentral | by | data/places/by/oslo/places_by.json | 59.92225253860743 | 10.751749415749577 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| storgata | Storgata | by | data/places/by/oslo/places_by.json | 59.91401231902849 | 10.751188150585149 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | voienvolden | Voienvolden | by | data/places/by/oslo/places_by.json | 59.93436330000289 | 10.75464137146488 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | saga_kino | Saga kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.914483496767964 | 10.73252179359581 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | klingenberg_kino | Klingenberg kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.913419951009054 | 10.732806189784029 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |

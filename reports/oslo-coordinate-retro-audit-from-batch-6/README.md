@@ -31,3 +31,12 @@ Batch 7 is therefore classified as method-compliant after source-priority review
 ## Next
 
 Continue with batch 8 and classify every record by physical object before deciding whether it must use an official address or object/geometry evidence.
+
+## Pass 2 — deterministic corrections through batch 16
+
+- Batch 11: `torggata` restored to documented street/line representation.
+- Batch 13: `storgata` restored to documented street/line representation.
+- Batch 14: `botsparken` now uses Oslo kommune as the primary park-definition source.
+- Batch 16: `carl_berner_plass`, `okern`, `skoyen` and `torshov` no longer use Wikidata as the primary verification source.
+
+Remaining research corrections: `henrik_wergeland_statue`, `telegrafbygningen`, `ovre_foss`.

@@ -99,7 +99,7 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 13 | `gronlandsleiret` | Grønlandsleiret | verified_geometry | `oslobyleksikon:gronlandsleiret` |
 | 13 | `storgata` | Storgata | verified_geometry | `oslobyleksikon:storgata` |
 | 14 | `slottsparken` | Slottsparken | verified_geometry | `royalcourt:palace-park` |
-| 14 | `botsparken` | Botsparken | verified_geometry | `lokalhistoriewiki:gronlands-park` |
+| 14 | `botsparken` | Botsparken | verified_geometry | `oslo-kommune:park:gronland-park-klosterenga` |
 | 14 | `stensparken` | Stensparken | verified_geometry | `oslo-kommune:parks:stensparken` |
 | 14 | `nydalen` | Nydalen | verified_geometry | `oslobyleksikon:nydalen` |
 | 14 | `tjuvholmen` | Tjuvholmen | verified_geometry | `oslo-kommune:fjordbyen:tjuvholmen` |
@@ -113,11 +113,11 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 15 | `barcode` | Barcode | verified_geometry | `osm-node:8071120191` |
 | 16 | `vigelandsparken` | Vigelandsparken | verified_geometry | `vigelandmuseet:vigeland-park` |
 | 16 | `voienvolden` | Vøienvolden | verified | `geonorge-adresser-v1:0301:14622:120` |
-| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `wikidata:Q5039902` |
+| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `oslobyleksikon:carl-berners-plass` |
 | 16 | `tullin` | Tullin | verified_geometry | `osm-way:666946874` |
-| 16 | `okern` | Økern | verified_geometry | `wikidata:Q12011791` |
-| 16 | `skoyen` | Skøyen | verified_geometry | `wikidata:Q6514682` |
-| 16 | `torshov` | Torshov | verified_geometry | `wikidata:Q7827191` |
+| 16 | `okern` | Økern | verified_geometry | `oslobyleksikon:okern-strok` |
+| 16 | `skoyen` | Skøyen | verified_geometry | `oslobyleksikon:skoyen-strok` |
+| 16 | `torshov` | Torshov | verified_geometry | `oslobyleksikon:torshov-strok` |
 | 17 | `grorud` | Grorud | verified_geometry | `oslobyleksikon:grorud-strok` |
 | 17 | `sagene` | Sagene | verified_geometry | `oslobyleksikon:sagene-strok` |
 | 17 | `saga_kino` | Saga kino | verified | `geonorge-adresser-v1:0301:17079:28` |
@@ -193,6 +193,8 @@ Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste v
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
 
 Retrokontroll fra batch 6 (2026-07-20): Batch 6 er korrigert tilbake til den låste adresse-first-metoden. `gronland_basarene`, `mollergata_19` og `villa_grande` bruker igjen de entydige Geonorge-resultatene fra den opprinnelige batch-6-kjøringen; senere OSM-baserte visual-marker-overstyringer er fjernet fra canonical koordinatkilde. OSM kan fortsatt brukes som visuell QA, men ikke som primær koordinatkilde for disse tre konkrete adressebare byggene.
+
+Retrokontroll fra batch 6 (2026-07-20), pass 2: `torggata` og `storgata` er tilbakeført fra feilaktige enkeltadresseankre til dokumenterte lineære gateankre med ruteankre. `botsparken` bruker nå kommunal parkdefinisjon. De fire batch-16-recordene `carl_berner_plass`, `okern`, `skoyen` og `torshov` har fått dokumenterte steds-/områdefinisjoner fra Oslo byleksikon i stedet for Wikidata som primær verifikasjonskilde.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
