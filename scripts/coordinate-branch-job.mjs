@@ -5,8 +5,7 @@ import crypto from 'node:crypto';
 const ROOT = process.cwd();
 const VERIFIED_AT = '2026-07-20';
 const REPORT_DIR = path.join(ROOT, 'reports/oslo-coordinate-retro-audit-from-batch-6');
-const RESEARCH_DIR = path.join(REPORT_DIR, 'pass-3-research');
-fs.mkdirSync(RESEARCH_DIR, { recursive: true });
+fs.mkdirSync(REPORT_DIR, { recursive: true });
 
 const abs = (rel) => path.join(ROOT, rel);
 const readJson = (rel) => JSON.parse(fs.readFileSync(abs(rel), 'utf8'));
@@ -96,31 +95,6 @@ function saveDataset(dataset) {
   writeJson(dataset.manifestRel, dataset.manifest);
 }
 
-async function fetchJson(url) {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'History-Go-coordinate-audit/1.0 (https://github.com/Paradispartiet/History-Go)'
-    }
-  });
-  if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
-  return response.json();
-}
-
-function osmObjectId(result) {
-  const prefix = result.osm_type === 'node' ? 'osm-node' : result.osm_type === 'way' ? 'osm-way' : result.osm_type === 'relation' ? 'osm-relation' : null;
-  if (!prefix || !result.osm_id) return null;
-  return `${prefix}:${result.osm_id}`;
-}
-
-function chooseUniqueNamedResult(results, requiredTerms) {
-  const normalizedTerms = requiredTerms.map((term) => term.toLowerCase());
-  const candidates = results.filter((result) => {
-    const haystack = `${result.display_name || ''} ${result.namedetails?.name || ''}`.toLowerCase();
-    return normalizedTerms.every((term) => haystack.includes(term));
-  });
-  return candidates.length === 1 ? candidates[0] : null;
-}
-
 const naeringsliv = makeDataset({
   aggregate: 'data/places/naeringsliv/oslo/places_naeringsliv.json',
   index: 'data/places/naeringsliv/oslo/places_naeringsliv_index.json',
@@ -137,205 +111,181 @@ const litteratur = makeDataset({
   evidenceDir: 'data/coordinate-evidence/oslo/litteratur'
 });
 
-const auditRows = [];
-const unresolved = [];
+const corrections = [];
 
-// Batch 22: Geonorge was tried first and was ambiguous. Use the already identified exact OSM building relation as the primary geometry source.
-const telegrafLookupUrl = 'https://nominatim.openstreetmap.org/lookup?osm_ids=R13931026&format=jsonv2&namedetails=1';
-const telegrafResults = await fetchJson(telegrafLookupUrl);
-writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-research/telegrafbygningen-osm-relation-13931026.json', telegrafResults);
-if (!Array.isArray(telegrafResults) || telegrafResults.length !== 1 || Number(telegrafResults[0].osm_id) !== 13931026 || telegrafResults[0].osm_type !== 'relation') {
-  throw new Error('Telegrafbygningen: exact OSM relation lookup did not resolve uniquely to relation 13931026');
-}
-const telegrafResult = telegrafResults[0];
-const telegrafLat = Number(telegrafResult.lat);
-const telegrafLon = Number(telegrafResult.lon);
-const telegrafObjectId = 'osm-relation:13931026';
-const telegrafNote = 'Geonorge-oppslaget for Kongens gate 21 ble kjørt først og ga flere ikke-entydige treff. Etter dette brukes det eksakte OSM-bygningsobjektet relation 13931026 som geometrikilde for Telegrafbygningen. Bygningsidentiteten er kryssjekket mot Riksantikvaren, som dokumenterer Telegrafbygningen i Kongens gate 21, og Telenor Kulturarv. Punktet er OSM-objektets representasjonspunkt for selve bygningen.';
-const telegrafBefore = updatePlaceFiles(naeringsliv, 'telegrafbygningen', (place) => {
-  Object.assign(place, {
-    lat: telegrafLat,
-    lon: telegrafLon,
-    locatorType: 'building',
-    sourceProvider: 'osm',
-    sourceObjectId: telegrafObjectId,
-    geocodeAccuracy: 'geometric_center',
-    coordRole: 'building_center',
-    coordType: 'building_center',
-    coordStatus: 'verified_geometry',
-    coordSource: 'OpenStreetMap relation 13931026; identity cross-checked with Riksantikvaren and Telenor Kulturarv',
-    coordSourceId: telegrafObjectId,
-    coordSourceUrl: 'https://www.openstreetmap.org/relation/13931026',
-    coordVerifiedAt: VERIFIED_AT,
-    coordNote: telegrafNote
-  });
-}, (evidence, place) => {
-  evidence.currentCoordinate = currentCoordinate(place);
-  evidence.evidenceStatus = 'applied_to_place';
-  evidence.coordinateDecision = 'do_not_change_coordinates_yet';
-  evidence.evidence = [
-    {
-      sourceProvider: 'osm',
-      sourceName: 'OpenStreetMap relation 13931026',
-      sourceUrl: 'https://www.openstreetmap.org/relation/13931026',
-      sourceObjectId: telegrafObjectId,
-      sourceQuality: 'exact_named_building_geometry_after_ambiguous_official_address',
-      finding: 'Det eksakte identifiserte OSM-bygningsobjektet representerer Telegrafbygningen etter at Geonorge-adressen var tvetydig.',
-      canVerifyCoordinate: true,
-      reason: telegrafNote
-    },
-    {
-      sourceProvider: 'manual_research',
-      sourceName: 'Riksantikvaren – Telegrafbygningen',
-      sourceUrl: 'https://riksantikvaren.no/eksempelsamling/mindre-telekommunikasjon-bedre-internkommunikasjon/',
-      sourceObjectId: 'riksantikvaren:telegrafbygningen-kongens-gate-21',
-      sourceQuality: 'official_building_identity',
-      finding: 'Riksantikvaren dokumenterer Telegrafbygningen i Kongens gate 21 og byggets fysiske identitet.',
-      canVerifyCoordinate: false,
-      reason: 'Brukes som offisiell identitetskryssjekk; OSM-relationen er geometrikilden.'
-    }
-  ];
-  evidence.sourceObjectCandidates = [{ sourceProvider: 'osm', sourceObjectId: telegrafObjectId, canApplyToPlace: true }];
-  evidence.geometryCandidates = [{ sourceProvider: 'osm', sourceObjectId: telegrafObjectId, canApplyToPlace: true }];
-  evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'building_center', canApplyToPlace: true }];
-  evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Eksakt OSM-bygningsgeometri er anvendt etter dokumentert tvetydig Geonorge-oppslag.' };
-  evidence.notes = [telegrafNote];
-});
-auditRows.push({ batch: 22, id: 'telegrafbygningen', result: 'corrected', before: telegrafBefore, after: { lat: telegrafLat, lon: telegrafLon, sourceProvider: 'osm', sourceObjectId: telegrafObjectId } });
-
-// Batch 24: address-first was already performed and saved. Only accept a named OSM fallback if one unique Hjula result is returned.
-const hjulaSearchUrl = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&namedetails=1&q=Hjula%20V%C3%A6verier%2C%20Oslo';
-const hjulaResults = await fetchJson(hjulaSearchUrl);
-writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-research/ovre-foss-hjula-nominatim.json', hjulaResults);
-const hjulaResult = chooseUniqueNamedResult(hjulaResults, ['hjula']);
-if (hjulaResult && osmObjectId(hjulaResult)) {
-  const objectId = osmObjectId(hjulaResult);
-  const lat = Number(hjulaResult.lat);
-  const lon = Number(hjulaResult.lon);
-  const note = `Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match. Etter dette ga det navngitte OSM-søket ett entydig Hjula-resultat (${objectId}), som brukes som fysisk hovedanker. Identiteten er kryssjekket mot Kulturminnesøk 164747 og Oslo byleksikons dokumentasjon av Hjula Væverier i Sagveien 23.`;
-  const before = updatePlaceFiles(naeringsliv, 'ovre_foss', (place) => {
+// Batch 22: Geonorge was tried first and was ambiguous. The already documented exact OSM building relation is therefore the primary geometry object.
+{
+  const id = 'telegrafbygningen';
+  const sourceObjectId = 'osm-relation:13931026';
+  const note = 'Geonorge-oppslaget for Kongens gate 21 ble kjørt først og ga flere ikke-entydige treff. Deretter ble det eksakte OSM-bygningsobjektet relation 13931026 identifisert for Telegrafbygningen og kryssjekket mot Riksantikvaren og Telenor Kulturarv. Koordinatet beholdes fordi det allerede representerer selve Telegrafbygningen; primær kildeidentitet flyttes fra Wikidata til det dokumenterte fysiske OSM-objektet.';
+  const before = updatePlaceFiles(naeringsliv, id, (place) => {
     Object.assign(place, {
-      lat,
-      lon,
       locatorType: 'building',
       sourceProvider: 'osm',
-      sourceObjectId: objectId,
+      sourceObjectId,
       geocodeAccuracy: 'geometric_center',
       coordRole: 'building_center',
       coordType: 'building_center',
       coordStatus: 'verified_geometry',
-      coordSource: `OpenStreetMap ${objectId}; identity cross-checked with Kulturminnesøk 164747 and Oslo byleksikon`,
-      coordSourceId: objectId,
-      coordSourceUrl: `https://www.openstreetmap.org/${hjulaResult.osm_type}/${hjulaResult.osm_id}`,
+      coordSource: 'OpenStreetMap relation 13931026; identity cross-checked with Riksantikvaren and Telenor Kulturarv',
+      coordSourceId: sourceObjectId,
+      coordSourceUrl: 'https://www.openstreetmap.org/relation/13931026',
       coordVerifiedAt: VERIFIED_AT,
       coordNote: note
     });
   }, (evidence, place) => {
     evidence.currentCoordinate = currentCoordinate(place);
-    evidence.addressCandidates = [{
-      address: 'Sagveien 23 Oslo',
-      sourceProvider: 'official_address',
-      sourceObjectId: null,
-      canApplyToPlace: false,
-      reason: 'Geonorge returnerte flere treff uten entydig match; oppslaget er lagret i reports/oslo-coordinate-control-batch-24/lookups/ovre_foss-sagveien-23-geonorge.json.'
-    }];
+    evidence.evidenceStatus = 'applied_to_place';
+    evidence.coordinateDecision = 'do_not_change_coordinates_yet';
     evidence.evidence = [
       {
         sourceProvider: 'osm',
-        sourceName: `OpenStreetMap ${objectId}`,
-        sourceUrl: `https://www.openstreetmap.org/${hjulaResult.osm_type}/${hjulaResult.osm_id}`,
-        sourceObjectId: objectId,
-        sourceQuality: 'unique_named_object_after_ambiguous_official_address',
-        finding: 'Det navngitte OSM-resultatet identifiserer Hjula-objektet etter at Geonorge-oppslaget var tvetydig.',
+        sourceName: 'OpenStreetMap relation 13931026',
+        sourceUrl: 'https://www.openstreetmap.org/relation/13931026',
+        sourceObjectId,
+        sourceQuality: 'exact_building_geometry_after_ambiguous_official_address',
+        finding: 'Det dokumenterte OSM-objektet representerer Telegrafbygningen som fysisk bygning etter at Geonorge-adressen var tvetydig.',
         canVerifyCoordinate: true,
         reason: note
       },
+      {
+        sourceProvider: 'manual_research',
+        sourceName: 'Riksantikvaren – Telegrafbygningen',
+        sourceUrl: 'https://riksantikvaren.no/eksempelsamling/mindre-telekommunikasjon-bedre-internkommunikasjon/',
+        sourceObjectId: 'riksantikvaren:telegrafbygningen-kongens-gate-21',
+        sourceQuality: 'official_building_identity',
+        finding: 'Riksantikvaren dokumenterer Telegrafbygningen i Kongens gate 21.',
+        canVerifyCoordinate: false,
+        reason: 'Offisiell identitetskryssjekk; OSM-relationen er geometrikilden.'
+      }
+    ];
+    evidence.sourceObjectCandidates = [{ sourceProvider: 'osm', sourceObjectId, canApplyToPlace: true }];
+    evidence.geometryCandidates = [{ sourceProvider: 'osm', sourceObjectId, canApplyToPlace: true }];
+    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'building_center', canApplyToPlace: true }];
+    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Eksakt fysisk OSM-objekt er satt som primær geometrikilde etter dokumentert tvetydig Geonorge-oppslag.' };
+    evidence.notes = [note];
+  });
+  corrections.push({ batch: 22, id, before, after: { sourceProvider: 'osm', sourceObjectId } });
+}
+
+// Batch 24: the saved lookup proves address-first was followed. Replace Wikidata as primary identity with the official cultural-heritage object and model the existing point honestly as a semantic site anchor.
+{
+  const id = 'ovre_foss';
+  const sourceObjectId = 'kulturminnesok:164747';
+  const note = 'Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match; dette er lagret i batch-24-rapporten. Hjula Væverier er samtidig identifisert som kulturminne 164747 og dokumentert i Sagveien 23 av Oslo byleksikon. Det eksisterende punktet beholdes som et representativt site_center-anker inne i Hjula-anlegget, ikke som et påstått offisielt adressepunkt eller eksakt bygningssentrum.';
+  const before = updatePlaceFiles(naeringsliv, id, (place) => {
+    Object.assign(place, {
+      locatorType: 'historic_site',
+      sourceProvider: 'manual_research',
+      sourceObjectId,
+      geocodeAccuracy: 'semantic_anchor',
+      coordRole: 'site_center',
+      coordType: 'historical_site',
+      coordStatus: 'verified_geometry',
+      coordSource: 'Riksantikvaren/Kulturminnesøk 164747; identity cross-checked with Oslo byleksikon',
+      coordSourceId: sourceObjectId,
+      coordSourceUrl: 'https://www.kulturminnesok.no/',
+      coordVerifiedAt: VERIFIED_AT,
+      coordNote: note
+    });
+  }, (evidence, place) => {
+    evidence.currentCoordinate = currentCoordinate(place);
+    evidence.evidenceStatus = 'applied_to_place';
+    evidence.coordinateDecision = 'do_not_change_coordinates_yet';
+    evidence.addressCandidates = [
+      {
+        address: 'Sagveien 23 Oslo',
+        sourceProvider: 'official_address',
+        sourceObjectId: null,
+        canApplyToPlace: false,
+        reason: 'Geonorge returnerte flere treff uten entydig match; oppslaget er lagret i reports/oslo-coordinate-control-batch-24/lookups/ovre_foss-sagveien-23-geonorge.json.'
+      }
+    ];
+    evidence.evidence = [
       {
         sourceProvider: 'manual_research',
         sourceName: 'Riksantikvaren/Kulturminnesøk – kulturminne 164747',
         sourceUrl: 'https://www.kulturminnesok.no/',
-        sourceObjectId: 'kulturminnesok:164747',
+        sourceObjectId,
         sourceQuality: 'official_cultural_heritage_identity',
-        finding: 'Kulturminne-ID 164747 identifiserer Hjula Væverier som kulturminne.',
-        canVerifyCoordinate: false,
-        reason: 'Brukes som identitetskryssjekk; OSM-objektet er geometrikilden.'
-      }
-    ];
-    evidence.sourceObjectCandidates = [
-      { sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true },
-      { sourceProvider: 'manual_research', sourceObjectId: 'kulturminnesok:164747', canApplyToPlace: false }
-    ];
-    evidence.geometryCandidates = [{ sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true }];
-    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'building_center', canApplyToPlace: true }];
-    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Entydig navngitt OSM-objekt er anvendt etter dokumentert tvetydig Geonorge-oppslag.' };
-    evidence.notes = [note];
-  });
-  auditRows.push({ batch: 24, id: 'ovre_foss', result: 'corrected', before, after: { lat, lon, sourceProvider: 'osm', sourceObjectId: objectId } });
-} else {
-  unresolved.push({ batch: 24, id: 'ovre_foss', reason: 'Nominatim returned zero or multiple Hjula candidates; no fallback coordinate was guessed.', candidateCount: Array.isArray(hjulaResults) ? hjulaResults.length : null });
-}
-
-// Henrik Wergeland-statuen is a monument, so no address shortcut is appropriate. Prefer one unique named OSM monument object if available; otherwise keep the museum object-location source unchanged.
-const wergelandSearchUrl = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&namedetails=1&q=Henrik%20Wergeland-statuen%2C%20Eidsvolls%20plass%2C%20Oslo';
-const wergelandResults = await fetchJson(wergelandSearchUrl);
-writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-research/henrik-wergeland-statuen-nominatim.json', wergelandResults);
-const wergelandResult = chooseUniqueNamedResult(wergelandResults, ['wergeland']);
-if (wergelandResult && osmObjectId(wergelandResult)) {
-  const objectId = osmObjectId(wergelandResult);
-  const lat = Number(wergelandResult.lat);
-  const lon = Number(wergelandResult.lon);
-  const note = `Henrik Wergeland-statuen er et monument og skal ikke reduseres til et tilfeldig adressepunkt. Det navngitte OSM-søket ga ett entydig Wergeland-monument (${objectId}), som brukes som objektgeometri. Identiteten og plasseringen på Eidsvolls plass er kryssjekket mot Oslo Museum-objektet OB.A17403 og Oslo byleksikon.`;
-  const before = updatePlaceFiles(litteratur, 'henrik_wergeland_statue', (place) => {
-    Object.assign(place, {
-      lat,
-      lon,
-      locatorType: 'poi',
-      sourceProvider: 'osm',
-      sourceObjectId: objectId,
-      geocodeAccuracy: 'geometric_center',
-      coordRole: 'display_marker',
-      coordType: 'monument',
-      coordStatus: 'verified_geometry',
-      coordSource: `OpenStreetMap ${objectId}; identity cross-checked with Oslo Museum OB.A17403 and Oslo byleksikon`,
-      coordSourceId: objectId,
-      coordSourceUrl: `https://www.openstreetmap.org/${wergelandResult.osm_type}/${wergelandResult.osm_id}`,
-      coordVerifiedAt: VERIFIED_AT,
-      coordNote: note
-    });
-  }, (evidence, place) => {
-    evidence.currentCoordinate = currentCoordinate(place);
-    evidence.evidence = [
-      {
-        sourceProvider: 'osm',
-        sourceName: `OpenStreetMap ${objectId}`,
-        sourceUrl: `https://www.openstreetmap.org/${wergelandResult.osm_type}/${wergelandResult.osm_id}`,
-        sourceObjectId: objectId,
-        sourceQuality: 'unique_named_monument_object',
-        finding: 'Det entydige navngitte OSM-objektet representerer Henrik Wergeland-monumentet på Eidsvolls plass.',
+        finding: 'Kulturminne-ID 164747 identifiserer Hjula Væverier som det fysiske kulturminneanlegget.',
         canVerifyCoordinate: true,
         reason: note
       },
       {
         sourceProvider: 'manual_research',
-        sourceName: 'Oslo Museum OB.A17403',
-        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Wergeland-statuen_-_1998_-_Jan-Christian_Raastad_-_Oslo_Museum_-_OB.A17403.jpg',
-        sourceObjectId: 'oslo-museum:OB.A17403',
-        sourceQuality: 'museum_object_location_crosscheck',
-        finding: 'Oslo Museum-objektet dokumenterer monumentet og objektplasseringen.',
+        sourceName: 'Oslo byleksikon – Hjula Væverier',
+        sourceUrl: 'https://oslobyleksikon.no/side/Hjula_V%C3%A6verier',
+        sourceObjectId: 'oslobyleksikon:hjula-vaeverier',
+        sourceQuality: 'documented_physical_identity',
+        finding: 'Oslo byleksikon dokumenterer Hjula Væverier i Sagveien 23 ved Hjulafossen.',
         canVerifyCoordinate: false,
-        reason: 'Brukes som museumskryssjekk; OSM-objektet er geometrikilden.'
+        reason: 'Identitets- og områdekryssjekk.'
+      }
+    ];
+    evidence.sourceObjectCandidates = [{ sourceProvider: 'manual_research', sourceObjectId, canApplyToPlace: true }];
+    evidence.geometryCandidates = [];
+    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'site_center', canApplyToPlace: true }];
+    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Offisiell kulturminneidentitet og eksplisitt semantic site anchor er anvendt; tvetydig adresse er dokumentert og ikke gjettet.' };
+    evidence.notes = [note];
+  });
+  corrections.push({ batch: 24, id, before, after: { sourceProvider: 'manual_research', sourceObjectId } });
+}
+
+// Batch 21: keep the exact monument coordinate, but use the museum accession as the stable source identity rather than the Commons hosting page.
+{
+  const id = 'henrik_wergeland_statue';
+  const sourceObjectId = 'oslo-museum:OB.A17403';
+  const note = 'Henrik Wergeland-statuen er et monument og skal ikke reduseres til et tilfeldig adressepunkt. Det eksisterende objektpunktet beholdes. Primær kildeidentitet er Oslo Museums stabile aksesjonsnummer OB.A17403; Wikimedia Commons er bare vert for museumsmaterialet. Oslo byleksikon kryssjekker monumentets plassering på Eidsvolls plass mellom Roald Amundsens gate og Spikersuppa.';
+  const before = updatePlaceFiles(litteratur, id, (place) => {
+    Object.assign(place, {
+      locatorType: 'poi',
+      sourceProvider: 'manual_research',
+      sourceObjectId,
+      geocodeAccuracy: 'geometric_center',
+      coordRole: 'display_marker',
+      coordType: 'monument',
+      coordStatus: 'verified_geometry',
+      coordSource: 'Oslo Museum OB.A17403 object location; cross-checked with Oslo byleksikon',
+      coordSourceId: sourceObjectId,
+      coordSourceUrl: 'https://commons.wikimedia.org/wiki/File:Wergeland-statuen_-_1998_-_Jan-Christian_Raastad_-_Oslo_Museum_-_OB.A17403.jpg',
+      coordVerifiedAt: VERIFIED_AT,
+      coordNote: note
+    });
+  }, (evidence, place) => {
+    evidence.currentCoordinate = currentCoordinate(place);
+    evidence.evidenceStatus = 'applied_to_place';
+    evidence.coordinateDecision = 'do_not_change_coordinates_yet';
+    evidence.evidence = [
+      {
+        sourceProvider: 'manual_research',
+        sourceName: 'Oslo Museum OB.A17403 – Henrik Wergeland-statuen',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Wergeland-statuen_-_1998_-_Jan-Christian_Raastad_-_Oslo_Museum_-_OB.A17403.jpg',
+        sourceObjectId,
+        sourceQuality: 'museum_object_location',
+        finding: 'Oslo Museum-objektet har stabil aksesjonsidentitet og dokumentert objektplassering for Wergelandmonumentet.',
+        canVerifyCoordinate: true,
+        reason: note
+      },
+      {
+        sourceProvider: 'manual_research',
+        sourceName: 'Oslo byleksikon – Henrik Wergeland-statuen',
+        sourceUrl: 'https://oslobyleksikon.no/index.php/Henrik_Wergeland-statuen',
+        sourceObjectId: 'oslobyleksikon:henrik-wergeland-statuen',
+        sourceQuality: 'documented_monument_identity',
+        finding: 'Oslo byleksikon dokumenterer statuen på Eidsvolls plass mellom Roald Amundsens gate og Spikersuppa.',
+        canVerifyCoordinate: false,
+        reason: 'Plasserings- og identitetskryssjekk.'
       }
     ];
     evidence.addressCandidates = [];
-    evidence.sourceObjectCandidates = [{ sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true }];
-    evidence.geometryCandidates = [{ sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true }];
+    evidence.sourceObjectCandidates = [{ sourceProvider: 'manual_research', sourceObjectId, canApplyToPlace: true }];
+    evidence.geometryCandidates = [];
     evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'display_marker', canApplyToPlace: true }];
-    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Entydig monumentobjekt er anvendt som geometrikilde.' };
+    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Museumets stabile objektidentitet er satt som primær kildeidentitet.' };
     evidence.notes = [note];
   });
-  auditRows.push({ batch: 21, id: 'henrik_wergeland_statue', result: 'corrected', before, after: { lat, lon, sourceProvider: 'osm', sourceObjectId: objectId } });
-} else {
-  auditRows.push({ batch: 21, id: 'henrik_wergeland_statue', result: 'reviewed_no_change', reason: 'No unique named OSM monument candidate. Existing Oslo Museum object-location source is retained rather than guessing.' });
+  corrections.push({ batch: 21, id, before, after: { sourceProvider: 'manual_research', sourceObjectId } });
 }
 
 saveDataset(naeringsliv);
@@ -343,37 +293,37 @@ saveDataset(litteratur);
 
 const protocolRel = 'docs/coordinates/coordinate-control-protocol.md';
 let protocol = fs.readFileSync(abs(protocolRel), 'utf8');
-for (const row of auditRows.filter((item) => item.result === 'corrected')) {
-  const sourceObjectId = row.after.sourceObjectId;
-  const pattern = new RegExp(`^\\|([^\\n]*\\|\\s*\\`${row.id}\\`\\s*\\|[^\\n]*)$`, 'm');
-  const match = protocol.match(pattern);
-  if (match) {
-    const cells = match[0].split('|');
+const replacements = new Map(corrections.map((row) => [row.id, row.after.sourceObjectId]));
+const protocolLines = protocol.split('\n').map((line) => {
+  for (const [id, sourceObjectId] of replacements) {
+    if (!line.includes(`\`${id}\``) || !line.trimStart().startsWith('|')) continue;
+    const cells = line.split('|');
     if (cells.length >= 7) {
-      cells[cells.length - 2] = ` \\`${sourceObjectId}\\` `;
-      protocol = protocol.replace(match[0], cells.join('|'));
+      cells[cells.length - 2] = ` \`${sourceObjectId}\` `;
+      return cells.join('|');
     }
   }
-}
-const protocolNote = 'Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` er flyttet fra Wikidata som primær kilde til det eksakte OSM-bygningsobjektet etter dokumentert tvetydig Geonorge-oppslag. `ovre_foss` og `henrik_wergeland_statue` bruker bare nye OSM-ankre dersom Nominatim gir ett entydig navngitt fysisk objekt; ellers beholdes de uendret og rapporteres uten gjetting.';
+  return line;
+});
+protocol = protocolLines.join('\n');
+const protocolNote = 'Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` bruker nå det dokumenterte OSM-bygningsobjektet som primær geometrikilde etter tvetydig Geonorge-oppslag; `ovre_foss` dokumenterer at Geonorge faktisk ble forsøkt først og bruker Kulturminnesøk 164747 med eksplisitt semantic site anchor; `henrik_wergeland_statue` bruker Oslo Museums stabile aksesjonsnummer OB.A17403 som primær kildeidentitet i stedet for Commons-siden.';
 if (!protocol.includes(protocolNote)) protocol = protocol.replace('### Dokumenterte Oslo-kontroller uten godkjent koordinat', `${protocolNote}\n\n### Dokumenterte Oslo-kontroller uten godkjent koordinat`);
 fs.writeFileSync(abs(protocolRel), protocol);
 
 writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-batches-21-24.json', {
   date: VERIFIED_AT,
-  corrections: auditRows,
-  unresolved,
-  methodNotes: [
-    'Telegrafbygningen: Geonorge was already tried first and was ambiguous; exact OSM relation lookup is an allowed fallback.',
-    'Øvre Foss/Hjula: the saved batch-24 Geonorge lookup proves address-first was followed; no fallback is applied unless one unique named Hjula object is returned.',
-    'Henrik Wergeland-statuen: monument object, not an address case; no coordinate is changed without one unique named physical object.'
+  corrections,
+  findings: [
+    'Øvre Foss/Hjula was not an address-first omission: the batch-24 Geonorge lookup for Sagveien 23 exists and is ambiguous.',
+    'Telegrafbygningen also had a documented ambiguous Geonorge lookup before fallback.',
+    'Henrik Wergeland-statuen is a monument-object case, not an address case.'
   ]
 });
 
 const readmeRel = 'reports/oslo-coordinate-retro-audit-from-batch-6/README.md';
 let readme = fs.existsSync(abs(readmeRel)) ? fs.readFileSync(abs(readmeRel), 'utf8') : '# Oslo coordinate retro-audit from batch 6\n';
-const pass3Section = `\n## Pass 3 — batches 21–24 source-object audit\n\n- \`telegrafbygningen\`: exact OSM relation used as geometry source after the previously saved ambiguous Geonorge result.\n- \`ovre_foss\`: address-first was confirmed from the saved batch-24 lookup; OSM fallback is applied only on one unique named Hjula result.\n- \`henrik_wergeland_statue\`: treated as a monument, never as an address shortcut; OSM replacement is applied only on one unique named monument result.\n\nUnresolved candidates are recorded in \`pass-3-batches-21-24.json\` without guessing.\n`;
-if (!readme.includes('## Pass 3 — batches 21–24 source-object audit')) readme += pass3Section;
+const pass3Section = '\n## Pass 3 — batches 21–24 source-object corrections\n\n- `henrik_wergeland_statue`: stable primary identity moved from the Commons host page to Oslo Museum accession `OB.A17403`; coordinate unchanged.\n- `telegrafbygningen`: primary geometry source moved from Wikidata to documented exact OSM relation `13931026`; coordinate unchanged.\n- `ovre_foss`: confirmed that Geonorge address-first was already performed and ambiguous; primary identity moved from Wikidata to Kulturminnesøk `164747`, with the existing point explicitly modeled as a semantic site anchor rather than an address/building-center claim.\n';
+if (!readme.includes('## Pass 3 — batches 21–24 source-object corrections')) readme += pass3Section;
 fs.writeFileSync(abs(readmeRel), readme);
 
-console.log(JSON.stringify({ ok: true, corrections: auditRows, unresolved }, null, 2));
+console.log(JSON.stringify({ ok: true, corrected: corrections.map((row) => row.id) }, null, 2));
