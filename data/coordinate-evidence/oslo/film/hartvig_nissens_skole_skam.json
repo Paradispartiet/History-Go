@@ -1,0 +1,64 @@
+{
+  "placeId": "hartvig_nissens_skole_skam",
+  "placeFile": "data/places/film/oslo/places_oslo_film.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9254,
+    "lon": 10.7313,
+    "r": 130,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Hartvig Nissens skole (SKAM)",
+    "resolvedIdentity": "det historiske Hartvig Nissen-bygget brukt som SKAM-lokasjon, tidligere Niels Juels gate 56 og nå knyttet til President Harbitz' gate 11",
+    "identityStatus": "resolved",
+    "identityProblem": "Den fysiske bygningen er identifisert, men Geonorge-adressen gir flere ikke-entydige treff.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell objektgeometri for det historiske skolebygget",
+    "entydig kobling mellom bygningen og ett Geonorge-adressepunkt",
+    "fysisk kontroll mot resten av skolecampuset"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 + dokumentert Hartvig Nissen-identitet",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=President%20Harbitz'%20gate%2011%20Oslo",
+      "sourceObjectId": "",
+      "sourceQuality": "ambiguous_address_candidates",
+      "finding": "Adressefinneren returnerer flere treff for President Harbitz' gate 11. Ingen av treffene kan velges som canonical SKAM-bygganker uten ytterligere fysisk dokumentasjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Geonorge returnerer flere treff for President Harbitz' gate 11 uten én entydig fysisk match. Den historiske SKAM-bygningen er identifisert, men riktig adressepunkt kan ikke velges uten objektgeometri eller en eksplisitt kobling til ett av treffene."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "President Harbitz' gate 11, Oslo",
+      "sourceProvider": "official_address",
+      "canApplyToPlace": false
+    },
+    {
+      "address": "Niels Juels gate 56, Oslo (tidligere adresse)",
+      "sourceProvider": "manual_research",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Geonorge returnerer flere treff for President Harbitz' gate 11 uten én entydig fysisk match. Den historiske SKAM-bygningen er identifisert, men riktig adressepunkt kan ikke velges uten objektgeometri eller en eksplisitt kobling til ett av treffene.",
+    "nextAction": "Finn offisiell bygningsgeometri eller en eksplisitt adressepunktkobling for det historiske Hartvig Nissen-bygget før koordinaten endres."
+  },
+  "notes": [
+    "Ikke velg første eller nærmeste Geonorge-treff. Behold eksisterende koordinat uendret til fysisk bygganker er entydig dokumentert."
+  ]
+}

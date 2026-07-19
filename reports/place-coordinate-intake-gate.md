@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-18T23:50:58.537Z
+Generert: 2026-07-19T02:56:13.979Z
 
 ## Hvorfor denne gaten finnes
 
@@ -16,9 +16,9 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Base method: **COORD_INTAKE_BASE**
 - Aktive manifest-filer lest: **478**
 - Place-objekter validert: **1178**
-- Nye/endrede koordinatobjekter mot base: **7**
+- Nye/endrede koordinatobjekter mot base: **6**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3804**
+- Backlog-funn: **3792**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -56,18 +56,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
 | backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | saga_kino | Saga kino | data/places/film/oslo/places_oslo_film.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | saga_kino | Saga kino | data/places/film/oslo/places_oslo_film.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | saga_kino | Saga kino | data/places/film/oslo/places_oslo_film.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | klingenberg_kino | Klingenberg kino | data/places/film/oslo/places_oslo_film.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | klingenberg_kino | Klingenberg kino | data/places/film/oslo/places_oslo_film.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | klingenberg_kino | Klingenberg kino | data/places/film/oslo/places_oslo_film.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | gimle_kino | Gimle kino | data/places/film/oslo/places_oslo_film.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | gimle_kino | Gimle kino | data/places/film/oslo/places_oslo_film.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | gimle_kino | Gimle kino | data/places/film/oslo/places_oslo_film.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | vika_kino | Vika kino | data/places/film/oslo/places_oslo_film.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | vika_kino | Vika kino | data/places/film/oslo/places_oslo_film.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | vika_kino | Vika kino | data/places/film/oslo/places_oslo_film.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | hartvig_nissens_skole_skam | Hartvig Nissens skole (SKAM) | data/places/film/oslo/places_oslo_film.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | hartvig_nissens_skole_skam | Hartvig Nissens skole (SKAM) | data/places/film/oslo/places_oslo_film.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | hartvig_nissens_skole_skam | Hartvig Nissens skole (SKAM) | data/places/film/oslo/places_oslo_film.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +529,18 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | lier_bygdetun | Lier Bygdetun | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | lier_bygdetun | Lier Bygdetun | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | lier_bygdetun | Lier Bygdetun | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | lier_bygdetun | Lier Bygdetun | data/places/historie/buskerud/places_historie_buskerud_batch2.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | data/places/by/buskerud/kroderbanen_kroderen_stasjon.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | data/places/by/buskerud/kroderbanen_kroderen_stasjon.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | data/places/by/buskerud/kroderbanen_kroderen_stasjon.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | data/places/by/buskerud/kroderbanen_kroderen_stasjon.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | nostetangen_glassverk | Nøstetangen glassverk | data/places/naeringsliv/buskerud/nostetangen_glassverk.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | nostetangen_glassverk | Nøstetangen glassverk | data/places/naeringsliv/buskerud/nostetangen_glassverk.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | nostetangen_glassverk | Nøstetangen glassverk | data/places/naeringsliv/buskerud/nostetangen_glassverk.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | nostetangen_glassverk | Nøstetangen glassverk | data/places/naeringsliv/buskerud/nostetangen_glassverk.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | boensnes_kirke | Bønsnes kirke | data/places/historie/buskerud/places_historie_buskerud_batch3.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | boensnes_kirke | Bønsnes kirke | data/places/historie/buskerud/places_historie_buskerud_batch3.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | boensnes_kirke | Bønsnes kirke | data/places/historie/buskerud/places_historie_buskerud_batch3.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3804 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3792 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

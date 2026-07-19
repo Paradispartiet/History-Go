@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Ruseløkkveien 14 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Ruseløkkveien 14 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Rusel%C3%B8kkveien%2014%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:16038:14",
+  "coordinate": {
+    "lat": 59.913498581158905,
+    "lon": 10.7284586944203,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16038:14",
+    "address": {
+      "street": "Ruseløkkveien",
+      "number": "14",
+      "postcode": "0251",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Ruseløkkveien 14, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Ruseløkkveien",
+    "adressetekst": "Ruseløkkveien 14",
+    "adressetilleggsnavn": null,
+    "adressekode": 16038,
+    "nummer": 14,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 209,
+    "bruksnummer": 210,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0251",
+    "adressetekstutenadressetilleggsnavn": "Ruseløkkveien 14",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.913498581158905,
+      "lon": 10.7284586944203
+    },
+    "oppdateringsdato": "2020-09-10T10:36:36"
+  }
+}

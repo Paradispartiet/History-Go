@@ -1,0 +1,73 @@
+{
+  "placeId": "vika_kino",
+  "placeFile": "data/places/film/oslo/places_oslo_film.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.913498581158905,
+    "lon": 10.7284586944203,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Vika kino i Ruseløkkveien 14. Nordisk Film Kino dokumenterer kinoen på samme adresse. Punktet representerer kinoen og holdes adskilt fra Oslo Konserthus og det bredere Vika-området."
+  },
+  "identity": {
+    "currentName": "Vika kino",
+    "resolvedIdentity": "Vika kino i Ruseløkkveien 14",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Rusel%C3%B8kkveien%2014%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:14",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Identiteten er dokumentert på Ruseløkkveien 14 Oslo; Geonorge gir ett entydig offisielt adressepunkt som kan anvendes på stedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Vika kino i Ruseløkkveien 14. Nordisk Film Kino dokumenterer kinoen på samme adresse. Punktet representerer kinoen og holdes adskilt fra Oslo Konserthus og det bredere Vika-området."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ruseløkkveien 14 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:14",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:14",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.913498581158905,
+      "lon": 10.7284586944203,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Vika kino i Ruseløkkveien 14. Nordisk Film Kino dokumenterer kinoen på samme adresse. Punktet representerer kinoen og holdes adskilt fra Oslo Konserthus og det bredere Vika-området."
+  ]
+}

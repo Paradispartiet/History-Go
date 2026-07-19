@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-18T23:50:54.263Z
+Generert: 2026-07-19T02:56:09.767Z
 
 ## Oppsummering
 - Aktive filer validert: **478**
 - Antall steder validert: **1178**
 - Harde feil: **0**
-- Varsler: **390**
-- Coordinate review candidates: **677** signaler fordelt på **529** steder
+- Varsler: **394**
+- Coordinate review candidates: **681** signaler fordelt på **533** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -507,6 +507,10 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
+- data/places/film/oslo/places_oslo_film.json#saga_kino: coordStatus=verified uten coordPrecisionM
+- data/places/film/oslo/places_oslo_film.json#klingenberg_kino: coordStatus=verified uten coordPrecisionM
+- data/places/film/oslo/places_oslo_film.json#gimle_kino: coordStatus=verified uten coordPrecisionM
+- data/places/film/oslo/places_oslo_film.json#vika_kino: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#middelalder_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#gamlebyen_gravlund: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#gamle_aker_kirke: coordStatus=verified uten coordPrecisionM
@@ -894,7 +898,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 677 signaler fordelt på 529 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 681 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -902,7 +906,7 @@ Totalt 677 signaler fordelt på 529 steder. Et sted kan ha flere signaler. Kandi
 | --- | --- |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 108 |
-| coordStatus=verified uten coordPrecisionM | 58 |
+| coordStatus=verified uten coordPrecisionM | 62 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 98 |
 | park/stort område uten anchors eller coordNote | 134 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1106,12 +1110,16 @@ Totalt 677 signaler fordelt på 529 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### coordStatus=verified uten coordPrecisionM (58)
+### coordStatus=verified uten coordPrecisionM (62)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | vulkan_energisentral | Vulkan energisentral | by | data/places/by/oslo/places_by.json | 59.92225253860743 | 10.751749415749577 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | voienvolden | Voienvolden | by | data/places/by/oslo/places_by.json | 59.93436330000289 | 10.75464137146488 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| saga_kino | Saga kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.914483496767964 | 10.73252179359581 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| klingenberg_kino | Klingenberg kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.913419951009054 | 10.732806189784029 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| gimle_kino | Gimle kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.91723919101994 | 10.709250463305766 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| vika_kino | Vika kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.913498581158905 | 10.7284586944203 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | middelalder_oslo | Middelalderparken | historie | data/places/historie/oslo/places_historie.json | 59.90418 | 10.76366 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamlebyen_gravlund | Gamlebyen gravlund | historie | data/places/historie/oslo/places_historie.json | 59.9027 | 10.7735 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_aker_kirke | Gamle Aker kirke | historie | data/places/historie/oslo/places_historie.json | 59.923779239528116 | 10.74681853984208 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |

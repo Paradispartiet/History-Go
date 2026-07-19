@@ -1,0 +1,102 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Bygdøy allé 39 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+  "query": "Bygdøy allé 39 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bygd%C3%B8y%20all%C3%A9%2039%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:10967:39",
+  "coordinate": {
+    "lat": 59.91723919101994,
+    "lon": 10.709250463305766,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:10967:39",
+    "address": {
+      "street": "Bygdøy allé",
+      "number": "39",
+      "postcode": "0265",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Bygdøy allé 39, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Bygdøy allé",
+    "adressetekst": "Bygdøy allé 39",
+    "adressetilleggsnavn": null,
+    "adressekode": 10967,
+    "nummer": 39,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 212,
+    "bruksnummer": 35,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [
+      "H0101",
+      "H0102",
+      "H0301",
+      "H0302",
+      "H0303",
+      "H0304",
+      "H0305",
+      "H0306",
+      "H0307",
+      "H0401",
+      "H0402",
+      "H0403",
+      "H0404",
+      "H0405",
+      "H0406",
+      "H0407",
+      "H0501",
+      "H0502",
+      "H0503",
+      "H0504",
+      "H0505",
+      "H0506",
+      "H0507",
+      "H0601",
+      "H0602",
+      "H0603",
+      "H0604",
+      "H0605",
+      "H0606",
+      "H0607",
+      "H0701",
+      "H0702",
+      "H0703",
+      "H0704",
+      "H0705",
+      "H0706"
+    ],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0265",
+    "adressetekstutenadressetilleggsnavn": "Bygdøy allé 39",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91723919101994,
+      "lon": 10.709250463305766
+    },
+    "oppdateringsdato": "2023-03-01T18:43:43"
+  }
+}
