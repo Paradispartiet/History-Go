@@ -69,54 +69,24 @@ jobs:
           printf '{"exit": %s}\n' "$status" > "$out/alexander_kiellands_plass_address_status.json"
           exit 0
 
-      - name: Query exact named OSM objects only after SSR
+      - name: Fetch exact OSM objects only after SSR
         shell: bash
         run: |
-          set +e
+          set -euo pipefail
           out=reports/oslo-coordinate-control-batch-30/coordinates
+          user_agent="History-Go-coordinate-audit/1.0 (Paradispartiet/History-Go)"
 
-          cat > /tmp/alexander.overpass <<'QL'
-          [out:json][timeout:60];
-          nwr["name"="Alexander Kiellands plass"](59.90,10.70,59.96,10.80);
-          out center tags;
-          QL
+          curl --fail --retry 3 --retry-delay 2 --max-time 45 --silent --show-error \
+            -A "$user_agent" \
+            "https://nominatim.openstreetmap.org/lookup?osm_ids=W3610607&format=json&polygon_geojson=1" \
+            | tee "$out/alexander_kiellands_plass_osm.json"
 
-          cat > /tmp/oskar.overpass <<'QL'
-          [out:json][timeout:60];
-          (
-            nwr["name"~"Oskar Braaten",i](around:600,59.930969,10.757267);
-            nwr["name"~"Oscar Braaten",i](around:600,59.930969,10.757267);
-          );
-          out center tags;
-          QL
+          sleep 1
 
-          query_overpass() {
-            local query_file="$1"
-            local output_file="$2"
-            local endpoint
-            for endpoint in \
-              "https://overpass-api.de/api/interpreter" \
-              "https://overpass.kumi.systems/api/interpreter" \
-              "https://overpass.nchc.org.tw/api/interpreter"
-            do
-              echo "Trying $endpoint" >&2
-              if curl --fail --retry 2 --retry-delay 2 --max-time 90 --silent --show-error \
-                --data-urlencode "data@${query_file}" "$endpoint" > "$output_file"; then
-                if jq -e '.elements | type == "array"' "$output_file" >/dev/null 2>&1; then
-                  return 0
-                fi
-              fi
-            done
-            printf '{"version":0.6,"generator":"unavailable","elements":[],"diagnostic":"All Overpass endpoints failed"}\n' > "$output_file"
-            return 1
-          }
-
-          query_overpass /tmp/alexander.overpass "$out/alexander_kiellands_plass_osm.json"
-          alexander_osm_status=$?
-          query_overpass /tmp/oskar.overpass "$out/oskar_braaten_byste_osm.json"
-          oskar_osm_status=$?
-          printf '{"alexander_osm":%s,"oskar_osm":%s}\n' "$alexander_osm_status" "$oskar_osm_status" > "$out/overpass-status.json"
-          exit 0
+          curl --fail --retry 3 --retry-delay 2 --max-time 45 --silent --show-error \
+            -A "$user_agent" \
+            "https://nominatim.openstreetmap.org/lookup?osm_ids=N10819902960&format=json" \
+            | tee "$out/oskar_braaten_byste_osm.json"
 
       - name: Write compact diagnostic summary
         run: |
@@ -129,9 +99,8 @@ jobs:
             alexander_ssr: compactSsr(read('alexander_kiellands_plass_ssr.json')),
             oskar_ssr: compactSsr(read('oskar_braaten_ssr.json')),
             alexander_address: read('alexander_kiellands_plass_address.json'),
-            overpass_status: read('overpass-status.json'),
-            alexander_osm: read('alexander_kiellands_plass_osm.json').elements ?? [],
-            oskar_osm: read('oskar_braaten_byste_osm.json').elements ?? [],
+            alexander_osm: read('alexander_kiellands_plass_osm.json'),
+            oskar_osm: read('oskar_braaten_byste_osm.json'),
           };
           fs.writeFileSync('reports/oslo-coordinate-control-batch-30/diagnostic-summary.json',JSON.stringify(out,null,2)+'\n');
           NODE
