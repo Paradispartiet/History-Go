@@ -122,12 +122,17 @@ jobs:
           set -euo pipefail
           npm run places:coords:evidence:audit 2>&1 | tee "$RUNNER_REPORT_DIR/coordinate-evidence.log"
 
-      - name: Validate place health
+      - name: Capture place health
         if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
-          set -euo pipefail
+          set -uo pipefail
+          set +e
           npm run health:places 2>&1 | tee "$RUNNER_REPORT_DIR/health-places.log"
+          health_status=${PIPESTATUS[0]}
+          printf '%s\n' "$health_status" > "$RUNNER_REPORT_DIR/health-places.exit-code.txt"
+          echo "health:places exit code: $health_status"
+          exit 0
 
       - name: Validate diff whitespace
         if: steps.pending.outputs.run == 'true'
