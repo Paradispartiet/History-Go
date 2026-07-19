@@ -1,0 +1,127 @@
+name: Oslo Oppdag Kvadraturen Barnas kvadratur batch 1 audit
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: List existing chambers on route parents
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit'
+          mkdir -p "$outdir"
+          node <<'NODE' | tee "$outdir/existing-parent-chambers.txt"
+          const fs = require('fs');
+          const index = JSON.parse(fs.readFileSync('data/wonderkammer/index.json', 'utf8'));
+          const parents = new Set([
+            'christiania_torv',
+            'kontraskjaeret',
+            'akershus_festning',
+            'waisenhuset_kongens_gate',
+            'grunnlovsbygget_bankplassen',
+            'norges_bank_bankplassen_4',
+            'grev_wedels_plass',
+            'garmanngarden'
+          ]);
+          const found = new Map([...parents].map((id) => [id, []]));
+
+          for (const file of index.files) {
+            if (!fs.existsSync(file)) continue;
+            const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            for (const entry of Array.isArray(data.places) ? data.places : []) {
+              if (!parents.has(entry.place_id)) continue;
+              for (const chamber of Array.isArray(entry.chambers) ? entry.chambers : []) {
+                found.get(entry.place_id).push({
+                  id: chamber.id,
+                  title: chamber.title,
+                  type: chamber.type,
+                  source: file
+                });
+              }
+            }
+          }
+
+          for (const id of parents) {
+            console.log(`\n## ${id}`);
+            const chambers = found.get(id);
+            if (!chambers.length) {
+              console.log('(no registered chambers)');
+              continue;
+            }
+            for (const chamber of chambers) {
+              console.log(`- ${chamber.id} | ${chamber.title} | ${chamber.type} | ${chamber.source}`);
+            }
+          }
+          NODE
+
+      - name: Search existing story and data coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit'
+          mkdir -p "$outdir"
+          {
+            echo '=== Ole Høiland / bank robbery ==='
+            grep -RInEi 'Ole Høiland|Ole Hoiland|64[ .]?000 spesidaler|18[ .]?000 spesidaler|bankran|bankr[aå]n' data || true
+            echo
+            echo '=== Teaterslaget / Wergeland / Welhaven ==='
+            grep -RInEi 'Teaterslaget|Campbellerne|Welhaven|Wergeland.*teater|teater.*Wergeland|flyvende kalosjer|stekte epler' data || true
+            echo
+            echo '=== Militærhospitalet / Grev Wedels plass ==='
+            grep -RInEi 'Militærhospitalet|Militaerhospitalet|første Rikshospital|forste Rikshospital|Grev Wedels plass.*hospital|hospital.*Grev Wedels plass' data || true
+            echo
+            echo '=== Garmann / timber / wealthy household ==='
+            grep -RInEi 'Johan Garmann|Nordmarka.*Garmann|Garmann.*Nordmarka|trelasthandel|herskapshus.*Garmann|Garmann.*herskapshus' data || true
+          } | tee "$outdir/content-term-search.txt"
+
+      - name: Verify route parent place IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit'
+          node <<'NODE' | tee "$outdir/route-parent-check.txt"
+          const fs = require('fs');
+          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const ids = new Set(places.map((place) => place.id));
+          const expected = [
+            'christiania_torv',
+            'kontraskjaeret',
+            'akershus_festning',
+            'waisenhuset_kongens_gate',
+            'grunnlovsbygget_bankplassen',
+            'norges_bank_bankplassen_4',
+            'grev_wedels_plass',
+            'garmanngarden'
+          ];
+          const missing = expected.filter((id) => !ids.has(id));
+          if (missing.length) throw new Error(`Missing route parents: ${missing.join(', ')}`);
+          console.log(`Route parents: OK (${expected.length} exact canonical places)`);
+          for (const id of expected) console.log(`- ${id}`);
+          NODE
+
+      - name: Persist audit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/oslo-oppdag-kvadraturen-barnas-kvadratur-batch-1/audit
+          if ! git diff --cached --quiet; then
+            git commit -m 'Save Barnas kvadratur batch 1 audit evidence'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
