@@ -24,49 +24,30 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Register batch sources
-        shell: bash
-        run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const path = 'data/places/manifest.json';
-          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
-          const additions = [
-            'places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json',
-            'places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json'
-          ];
-          for (const file of additions) {
-            if (!manifest.files.includes(file)) manifest.files.push(file);
-          }
-          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
-          fs.mkdirSync('reports/oslo-kultureiendommer-batch-13/validation', { recursive: true });
-          NODE
-
-      - name: Build places index
+      - name: Rebuild places index
         shell: bash
         run: |
           set -o pipefail
+          mkdir -p reports/oslo-kultureiendommer-batch-13/validation
           npm run places:index:build \
             | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-build.txt
 
       - name: Check places index
-        continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
           npm run places:index:check \
             | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-check.txt
 
-      - name: Check strict coordinate intake
-        continue-on-error: true
+      - name: Check strict coordinate intake against branch merge-base
         shell: bash
         run: |
           set -o pipefail
-          npm run places:coords:intake \
+          BASE="$(git merge-base HEAD origin/main)"
+          COORD_INTAKE_BASE="$BASE" npm run places:coords:intake \
             | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-intake.txt
 
       - name: Check canonical emne IDs
-        continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
@@ -74,7 +55,6 @@ jobs:
             | tee reports/oslo-kultureiendommer-batch-13/validation/emne-check.txt
 
       - name: Check place health
-        continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
@@ -82,7 +62,6 @@ jobs:
             | tee reports/oslo-kultureiendommer-batch-13/validation/health-places.txt
 
       - name: Check split manifest sync
-        continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
@@ -90,7 +69,6 @@ jobs:
             | tee reports/oslo-kultureiendommer-batch-13/validation/split-manifest-sync.txt
 
       - name: Check coordinate source contract
-        continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
@@ -98,21 +76,21 @@ jobs:
             | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-contract.txt
 
       - name: Check whitespace
-        continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
           git diff --check \
             | tee reports/oslo-kultureiendommer-batch-13/validation/git-diff-check.txt
 
-      - name: Commit diagnostic integration results
+      - name: Remove temporary workflow and commit final results
         shell: bash
         run: |
           set -euo pipefail
-          git add data/places/manifest.json
+          rm -f .github/workflows/oslo-kultureiendommer-batch-13-finalize.yml
           git add data/places/places_index.json
           git add reports/oslo-kultureiendommer-batch-13/validation
+          git add -u .github/workflows/oslo-kultureiendommer-batch-13-finalize.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Save Oslo kultureiendommer batch 13 validation results'
+          git commit -m 'Finalize Oslo kultureiendommer batch 13'
           git push origin "HEAD:${GITHUB_HEAD_REF}"
