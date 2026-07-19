@@ -24,11 +24,16 @@ jobs:
       - run: npm ci
       - name: Find address coordinates
         run: |
+          set -o pipefail
           mkdir -p reports/oslo-coordinate-control-batch-22
           npm run places:coords:find:address -- --address "Grønland 4 Oslo" | tee reports/oslo-coordinate-control-batch-22/klassekampen_redaksjon-geonorge.json
           npm run places:coords:find:address -- --address "Storgata 36C Oslo" | tee reports/oslo-coordinate-control-batch-22/oslo_gassverk-geonorge.json
           npm run places:coords:find:address -- --address "Dronningens gate 15 Oslo" | tee reports/oslo-coordinate-control-batch-22/oslo_posthus-geonorge.json
+          set +e
           npm run places:coords:find:address -- --address "Kongens gate 21 Oslo" | tee reports/oslo-coordinate-control-batch-22/telegrafbygningen-geonorge.json
+          telegraf_exit=${PIPESTATUS[0]}
+          set -e
+          printf 'telegrafbygningen\t%s\n' "$telegraf_exit" > reports/oslo-coordinate-control-batch-22/telegrafbygningen-geonorge-exit.tsv
       - name: Apply batch
         id: apply
         continue-on-error: true
@@ -54,9 +59,8 @@ jobs:
       - name: Check coordinate quality
         run: npm run places:coords:quality
       - name: Check strict coordinate intake
-        env:
-          COORD_INTAKE_BASE: origin/main
-        run: npm run places:coords:intake
+        run: |
+          COORD_INTAKE_BASE="$(git merge-base HEAD origin/main)" npm run places:coords:intake
       - name: Check coordinate evidence
         run: npm run places:coords:evidence:audit
       - name: Check whitespace
