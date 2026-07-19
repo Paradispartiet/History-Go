@@ -66,3 +66,7 @@ Det er ikke lagt inn manuell `rounds`- eller `rundinger`-overstyring.
 - uendrede koordinater, radius og hovedår
 - representativt områdeanker, ikke eksakt fabrikkfotavtrykk
 - fysisk og redaksjonelt skille mellom fabrikk og Gjestgjevargard
+
+## Valideringsresultat
+
+Den målrettede generatorjobben bestod rundingstesten, den låste Christian Bjelland-testen, alle arvede Etne-rundingstester, stedindeks, emnekontroll, leksikon-ID-kontroll, People-audit, begge TypeScript-porter, story-integritet og `git diff --check` før de midlertidige filene ble fjernet.
