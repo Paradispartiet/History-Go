@@ -1,7 +1,24 @@
 // Header menu: keeps secondary topbar tools out of the fixed header row while
 // preserving the original DOM ids/event hooks for search, map mode and panels.
 (function () {
+  function promoteMinDayToHeader() {
+    const minDayButton = document.getElementById("btnMinDag");
+    const geoStatus = document.getElementById("geoStatus");
+    if (!minDayButton || !geoStatus || typeof geoStatus.insertAdjacentElement !== "function") return;
+
+    minDayButton.className = "iconbtn header-min-day-button";
+    minDayButton.removeAttribute("role");
+
+    const icon = minDayButton.querySelector?.(".header-menu-action-icon");
+    if (icon) icon.className = "hg-header-icon";
+
+    minDayButton.querySelector?.(".header-menu-action-label")?.remove();
+    geoStatus.insertAdjacentElement("afterend", minDayButton);
+  }
+
   function initHeaderMenu() {
+    promoteMinDayToHeader();
+
     const root = document.getElementById("headerMenu");
     const button = document.getElementById("headerMenuButton");
     const panel = document.getElementById("headerMenuPanel");
