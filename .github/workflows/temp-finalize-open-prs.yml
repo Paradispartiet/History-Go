@@ -1,0 +1,142 @@
+name: Temporary finalizer for stale open PRs
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize-akershus:
+    if: github.head_ref == 'agent/akershus-festning-people-batch5'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Merge current main
+        run: |
+          git fetch origin main
+          git merge origin/main -X theirs --no-edit
+      - name: Restore manifest entries
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('data/people/manifest.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          entries = [
+            'people/historie/oslo/akershus_festning/albert_viljam_hagelin.json',
+            'people/historie/oslo/akershus_festning/einar_donnum.json',
+            'people/historie/oslo/akershus_festning/ragnar_skancke.json',
+            'people/historie/oslo/akershus_festning/reidar_haaland.json',
+            'people/historie/oslo/akershus_festning/siegfried_fehmer.json',
+          ]
+          for entry in entries:
+              if entry not in data['files']:
+                  data['files'].append(entry)
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+      - run: npm ci
+      - name: Validate
+        run: |
+          npm run audit:people-of-places
+          npm run tools:check
+          git diff --check
+      - name: Clean temporary files and push
+        run: |
+          rm -f .github/workflows/finalize-akershus-festning-people-batch5.yml
+          rm -f .github/agent-finalize-trigger-akershus.txt
+          git config user.name "History Go data agent"
+          git config user.email "history-go-agent@users.noreply.github.com"
+          git add -A
+          git commit -m "Finalize Akershus festning people batch 5 on current main" || true
+          git push origin HEAD:${{ github.head_ref }}
+
+  finalize-etne-psychology:
+    if: github.head_ref == 'agent/fill-etne-psychology-service-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Merge current main
+        run: |
+          git fetch origin main
+          git merge origin/main -X theirs --no-edit
+      - run: npm ci
+      - name: Generate content
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          def load(path): return json.loads(Path(path).read_text(encoding='utf-8'))
+          def save(path, value):
+              p = Path(path); p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          def upsert(rows, new_rows):
+              repl = {r['id']: r for r in new_rows}; out=[]; seen=set()
+              for r in rows:
+                  rid=r.get('id')
+                  if rid in repl: out.append(repl[rid]); seen.add(rid)
+                  else: out.append(r)
+              out.extend(r for rid,r in repl.items() if rid not in seen)
+              return out
+          pd = Path('.github/agent-payloads')
+          places = load(pd/'psych-places.json')
+          targets = {
+            'psykisk_helse_rus_etne':'data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json',
+            'psykisk_helse_rus_skanevik':'data/places/psykologi/vestland/etne/psykisk_helse_rus_skanevik.json'}
+          for pid, path in targets.items():
+              rows=load(path); rows[0].update(places[pid]); save(path, rows)
+          people_path='data/people/psykologi/vestland/etne/people_etne_psykisk_helse_rus_batch1.json'
+          save(people_path, load(pd/'psych-people.json'))
+          manifest=load('data/people/manifest.json'); entry=people_path.removeprefix('data/')
+          if entry not in manifest['files']: manifest['files'].append(entry)
+          save('data/people/manifest.json', manifest)
+          save('data/relations.json', upsert(load('data/relations.json'), load(pd/'psych-relations.json')))
+          story_path='data/stories/stories_etne_psykologi_rounds_batch1.json'; save(story_path, load(pd/'psych-stories.json'))
+          sm=load('data/stories/stories_manifest.json')
+          if not any(x.get('path')==story_path for x in sm['files']): sm['files'].append({'category':'psykologi','path':story_path})
+          save('data/stories/stories_manifest.json', sm)
+          article_path='data/leksikon/places/vestland/etne/psykologi/leksikon_etne_psykologi_rounds_batch1.json'; save(article_path, load(pd/'psych-articles.json'))
+          lm=load('data/leksikon/manifest.json')
+          if article_path not in lm['files']: lm['files'].append(article_path)
+          save('data/leksikon/manifest.json', lm)
+          PY
+      - name: Validate
+        run: |
+          node tests/etne-psychology-service-batch1-round-content.test.js
+          npm run places:index:check
+          npm run places:emner:check
+          npm run leksikon:ids:check
+          bash scripts/check-people.sh
+          git checkout origin/main -- reports/people-invalid-place-refs.json reports/people-invalid-place-refs.md reports/people-of-places-status.json reports/people-of-places-status.md reports/people-place-coverage.json reports/people-place-coverage.md || true
+          npm run typecheck:tools
+          npm run typecheck:web
+          git diff --check
+      - name: Clean temporary files and push
+        run: |
+          rm -rf .github/agent-payloads
+          rm -f .github/workflows/agent-fill-etne-psychology-service-rounds.yml
+          rm -f .github/workflows/finalize-etne-psychology-service-rounds.yml
+          rm -f .github/agent-finalize-trigger-etne.txt
+          git config user.name "History Go data agent"
+          git config user.email "history-go-agent@users.noreply.github.com"
+          git add -A
+          git commit -m "Finalize Etne psychology service place rounds batch 1 on current main" || true
+          git push origin HEAD:${{ github.head_ref }}
