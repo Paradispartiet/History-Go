@@ -1,0 +1,166 @@
+name: Oslo Blå skilt 2026 delta batch 1 audit
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-bla-skilt-2026-delta-batch-1-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run normative address-first coordinate audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/coordinates'
+          mkdir -p "$outdir"
+
+          npm run places:coords:find:address -- --address "Vetlandsveien 69D Oslo" \
+            | tee "$outdir/aud-schonemann-vetlandsveien-69d.txt"
+
+          npm run places:coords:find:address -- --address "Ullevålsveien 60 Oslo" \
+            | tee "$outdir/stein-mehren-ullevalsveien-60.txt"
+
+          npm run places:coords:find:address -- --address "Mogens Thorsens gate 5 Oslo" \
+            | tee "$outdir/christopher-hornsrud-mogens-thorsens-gate-5.txt"
+
+          npm run places:coords:find:address -- --address "Munkedamsveien 35 Oslo" \
+            | tee "$outdir/helverschous-lokke-munkedamsveien-35.txt"
+
+          npm run places:coords:find:address -- --address "Smedgata 34 Oslo" \
+            | tee "$outdir/enerhaugen-samfund-smedgata-34.txt"
+
+      - name: Audit existing canonical place matches
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/audit'
+          mkdir -p "$outdir"
+
+          node <<'NODE' | tee "$outdir/place-duplicate-audit.txt"
+          const fs = require('fs');
+          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const normalize = (value) => String(value || '')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+
+          const candidates = [
+            {
+              label: 'Aud Schønemann / Vetlandsveien 69D',
+              terms: ['aud schonemann', 'vetlandsveien 69d'],
+              street: 'Vetlandsveien',
+              number: '69D'
+            },
+            {
+              label: 'Stein Mehren / Ullevålsveien 60',
+              terms: ['stein mehren', 'ullevalsveien 60'],
+              street: 'Ullevålsveien',
+              number: '60'
+            },
+            {
+              label: 'Christopher Hornsrud / Mogens Thorsens gate 5',
+              terms: ['christopher hornsrud', 'mogens thorsens gate 5', 'mogen thorsens gate 5'],
+              street: 'Mogens Thorsens gate',
+              number: '5'
+            },
+            {
+              label: 'Helverschous løkke / Munkedamsveien 35',
+              terms: ['helverschous lokke', 'sommerfryd', 'munkedamsveien 35'],
+              street: 'Munkedamsveien',
+              number: '35'
+            },
+            {
+              label: 'Enerhaugen Samfund / Smedgata 34',
+              terms: ['enerhaugen samfund', 'enerhaugens samfund', 'smedgata 34', 'smedgata 38'],
+              street: 'Smedgata',
+              number: '34'
+            }
+          ];
+
+          for (const candidate of candidates) {
+            console.log(`\n=== ${candidate.label} ===`);
+            const matches = [];
+            for (const place of places) {
+              const address = `${place.address?.street || ''} ${place.address?.number || ''}`.trim();
+              const haystack = normalize([
+                place.id,
+                place.name,
+                place.desc,
+                place.popupDesc,
+                place.period,
+                address
+              ].join(' '));
+              const exactAddress = normalize(place.address?.street) === normalize(candidate.street)
+                && normalize(place.address?.number) === normalize(candidate.number);
+              const termHits = candidate.terms.filter((term) => haystack.includes(normalize(term)));
+              if (exactAddress || termHits.length) {
+                matches.push({
+                  id: place.id,
+                  name: place.name,
+                  category: place.category,
+                  address,
+                  exactAddress,
+                  termHits,
+                  sourceFile: place.sourceFile || ''
+                });
+              }
+            }
+            if (!matches.length) {
+              console.log('(no canonical match)');
+              continue;
+            }
+            for (const match of matches) {
+              console.log(JSON.stringify(match));
+            }
+          }
+          NODE
+
+      - name: Audit people and Wonderkammer coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-bla-skilt-2026-delta-batch-1/audit'
+          mkdir -p "$outdir"
+
+          {
+            echo '=== People matches ==='
+            grep -RInEi 'Aud Schønemann|Aud Schonemann|Stein Mehren|Christopher Hornsrud|Helverschous|Enerhaugen Samfund|Enerhaugens Samfund' data/people || true
+            echo
+            echo '=== Wonderkammer matches ==='
+            grep -RInEi 'Aud Schønemann|Aud Schonemann|Stein Mehren|Christopher Hornsrud|Helverschous|Enerhaugen Samfund|Enerhaugens Samfund|Vetlandsveien 69D|Ullevålsveien 60|Mogens Thorsens gate 5|Munkedamsveien 35|Smedgata 34|Smedgata 38' data/wonderkammer || true
+          } | tee "$outdir/people-wonderkammer-audit.txt"
+
+      - name: Persist audit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/oslo-bla-skilt-2026-delta-batch-1/coordinates \
+                  reports/oslo-bla-skilt-2026-delta-batch-1/audit
+          if ! git diff --cached --quiet; then
+            git commit -m 'Save Oslo blue plaques 2026 delta audit evidence'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
