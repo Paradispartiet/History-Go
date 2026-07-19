@@ -1,0 +1,44 @@
+name: Oslo Oppdag Kvadraturen Hovedstaden batch 2 coordinates
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-oppdag-kvadraturen-hovedstaden-batch-2-coordinates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Resolve Prinsens gate 26
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/coordinates'
+          mkdir -p "$outdir"
+          npm run places:coords:find:address -- --address 'Prinsens gate 26 Oslo' \
+            | tee "$outdir/prinsens_gate_26.json"
+
+      - name: Persist coordinate evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/oslo-oppdag-kvadraturen-hovedstaden-batch-2/coordinates
+          git commit -m 'Save Hovedstaden Christiania batch 2 coordinate evidence'
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
