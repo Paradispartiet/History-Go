@@ -4,11 +4,9 @@ import crypto from 'node:crypto';
 
 const ROOT = process.cwd();
 const VERIFIED_AT = '2026-07-20';
-const AGGREGATE = 'data/places/by/oslo/places_by.json';
-const INDEX = 'data/places/by/oslo/places_by_index.json';
-const MANIFEST = 'data/places/by/oslo/places_by_manifest.json';
 const REPORT_DIR = path.join(ROOT, 'reports/oslo-coordinate-retro-audit-from-batch-6');
-fs.mkdirSync(REPORT_DIR, { recursive: true });
+const RESEARCH_DIR = path.join(REPORT_DIR, 'pass-3-research');
+fs.mkdirSync(RESEARCH_DIR, { recursive: true });
 
 const abs = (rel) => path.join(ROOT, rel);
 const readJson = (rel) => JSON.parse(fs.readFileSync(abs(rel), 'utf8'));
@@ -37,212 +35,345 @@ function currentCoordinate(place) {
   };
 }
 
-const streetCorrections = {
-  torggata: {
-    batch: 11,
-    lat: 59.91535,
-    lon: 10.75335,
-    r: 180,
-    coordType: 'street_midpoint',
-    note: 'Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet.',
-    sourceName: 'Oslo byleksikon – Torggata + dokumenterte ruteankre',
-    sourceObjectId: 'oslobyleksikon:torggata',
-    sourceUrl: 'https://oslobyleksikon.no/side/Torggata',
-    anchors: [
-      { id: 'torggata_sor_youngstorget', name: 'Torggata sør (Youngstorget)', type: 'route_point', lat: 59.9143, lon: 10.7513, r: 60 },
-      { id: 'torggata_nord_ankerbrua', name: 'Torggata nord (Ankerbrua)', type: 'route_point', lat: 59.9164, lon: 10.7554, r: 60 }
-    ]
-  },
-  storgata: {
-    batch: 13,
-    lat: 59.9154,
-    lon: 10.7539,
-    r: 230,
-    coordType: 'street_midpoint',
-    note: 'Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt.',
-    sourceName: 'Oslo byleksikon – Storgata + dokumenterte ruteankre',
-    sourceObjectId: 'oslobyleksikon:storgata',
-    sourceUrl: 'https://oslobyleksikon.no/side/Storgata',
-    anchors: [
-      { id: 'storgata_sorvest_kirkeristen', name: 'Storgata sørvest (Kirkeristen)', type: 'route_point', lat: 59.914, lon: 10.7512, r: 70 },
-      { id: 'storgata_nordost_nybrua', name: 'Storgata nordøst (Nybrua)', type: 'route_point', lat: 59.9166, lon: 10.7567, r: 70 }
-    ]
-  }
-};
+function makeDataset({ aggregate, index, manifest, childDir, evidenceDir }) {
+  return {
+    aggregateRel: aggregate,
+    indexRel: index,
+    manifestRel: manifest,
+    childDir,
+    evidenceDir,
+    aggregate: readJson(aggregate),
+    index: readJson(index),
+    manifest: readJson(manifest),
+    touched: []
+  };
+}
 
-const sourceCorrections = {
-  botsparken: {
-    batch: 14,
-    provider: 'municipality',
-    name: 'Oslo kommune – Grønland park, del av Klosterenga',
-    url: 'https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/gronland-park-del-av-klosterenga',
-    objectId: 'oslo-kommune:park:gronland-park-klosterenga',
-    quality: 'official_area_definition',
-    finding: 'Oslo kommune dokumenterer Grønland park som del av Klosterenga og dermed den kommunale parkidentiteten som Botsparken-recorden representerer.',
-    note: 'Representativt parkanker i Grønlands park/Botsparken, den vestlige delen av Klosterenga-systemet. Oslo kommune dokumenterer Grønland park som del av Klosterenga; punktet representerer parkrommet og ikke Botsfengselet eller Politihuset.'
-  },
-  carl_berner_plass: {
-    batch: 16,
-    provider: 'manual_research',
-    name: 'Oslo byleksikon – Carl Berners plass',
-    url: 'https://oslobyleksikon.no/side/Carl_Berners_plass',
-    objectId: 'oslobyleksikon:carl-berners-plass',
-    quality: 'documented_place_or_area_definition',
-    finding: 'Oslo byleksikon dokumenterer Carl Berners plass som det navngitte trafikale plassrommet ved krysset Christian Michelsens gate, Tromsøgata, Trondheimsveien og Grenseveien.',
-    note: 'Representativt områdeanker for selve Carl Berners plass som trafikalt plass- og fordelingsrom. Oslo byleksikon dokumenterer plassen ved krysset Christian Michelsens gate, Tromsøgata, Trondheimsveien og Grenseveien. Punktet brukes som area_anchor for plassrommet og holdes adskilt fra T-banestasjonen og holdeplasser med samme navn.'
-  },
-  okern: {
-    batch: 16,
-    provider: 'manual_research',
-    name: 'Oslo byleksikon – Økern (strøk)',
-    url: 'https://oslobyleksikon.no/side/%C3%98kern_%28str%C3%B8k%29',
-    objectId: 'oslobyleksikon:okern-strok',
-    quality: 'documented_place_or_area_definition',
-    finding: 'Oslo byleksikon dokumenterer Økern som industri- og boligstrøk øst for Sinsen, øst for Ring 3 og med kommunikasjonssenteret ved Østre Aker vei og T-banen.',
-    note: 'Representativt områdeanker for Økern som industri- og boligstrøk øst for Sinsen. Oslo byleksikon dokumenterer strøkets områdeidentitet og kommunikasjonssenter. Punktet er et semantic area anchor, ikke en enkelt adresse eller et påstått geometrisk sentrum for hele strøket.'
-  },
-  skoyen: {
-    batch: 16,
-    provider: 'manual_research',
-    name: 'Oslo byleksikon – Skøyen (strøk)',
-    url: 'https://oslobyleksikon.no/side/Sk%C3%B8yen_%28str%C3%B8k%29',
-    objectId: 'oslobyleksikon:skoyen-strok',
-    quality: 'documented_place_or_area_definition',
-    finding: 'Oslo byleksikon dokumenterer Skøyen som bolig- og industristrøk innenfor eidet mellom Frognerkilen og Bestumkilen.',
-    note: 'Representativt områdeanker for Skøyen som bolig- og industristrøk mellom Frognerkilen og Bestumkilen. Oslo byleksikon dokumenterer strøkets områdeidentitet; punktet er et semantic area anchor i det sentrale Skøyen-området, ikke stasjonen eller én adresse.'
-  },
-  torshov: {
-    batch: 16,
-    provider: 'manual_research',
-    name: 'Oslo byleksikon – Torshov (strøk)',
-    url: 'https://oslobyleksikon.no/side/Torshov_%28str%C3%B8k%29',
-    objectId: 'oslobyleksikon:torshov-strok',
-    quality: 'documented_place_or_area_definition',
-    finding: 'Oslo byleksikon dokumenterer Torshov som sogn og boligstrøk nord for Grünerløkka med Torshovbyen, Torshovparken og Torshovdalen som sentrale deler.',
-    note: 'Representativt områdeanker for Torshov som boligstrøk nord for Grünerløkka. Oslo byleksikon dokumenterer strøkets områdeidentitet rundt Torshovbyen, Torshovparken og Torshovdalen; punktet er et semantic area anchor, ikke én adresse eller et påstått geometrisk sentrum.'
-  }
-};
-
-const aggregate = readJson(AGGREGATE);
-const index = readJson(INDEX);
-const touched = [];
-const auditRows = [];
-
-function updateFiles(id, mutatePlace, mutateEvidence) {
-  const childRel = `data/places/by/oslo/places/${id}.json`;
-  const evidenceRel = `data/coordinate-evidence/oslo/by/${id}.json`;
+function updatePlaceFiles(dataset, id, mutatePlace, mutateEvidence) {
+  const childRel = `${dataset.childDir}/${id}.json`;
+  const evidenceRel = `${dataset.evidenceDir}/${id}.json`;
   const child = readJson(childRel);
-  const a = findPlace(aggregate, id, AGGREGATE);
-  const c = findPlace(child, id, childRel);
-  const i = findPlace(index, id, INDEX);
-  const before = { lat: c.lat, lon: c.lon, coordType: c.coordType, coordStatus: c.coordStatus, sourceProvider: c.sourceProvider, sourceObjectId: c.sourceObjectId };
-  mutatePlace(a);
-  mutatePlace(c);
-  i.lat = c.lat;
-  i.lon = c.lon;
-  i.r = c.r;
-  i.coordStatus = c.coordStatus;
-  i.coordType = c.coordType;
+  const aggregatePlace = findPlace(dataset.aggregate, id, dataset.aggregateRel);
+  const childPlace = findPlace(child, id, childRel);
+  const indexPlace = findPlace(dataset.index, id, dataset.indexRel);
+  const before = {
+    lat: childPlace.lat,
+    lon: childPlace.lon,
+    coordType: childPlace.coordType,
+    coordStatus: childPlace.coordStatus,
+    sourceProvider: childPlace.sourceProvider,
+    sourceObjectId: childPlace.sourceObjectId
+  };
+
+  mutatePlace(aggregatePlace);
+  mutatePlace(childPlace);
+
+  indexPlace.lat = childPlace.lat;
+  indexPlace.lon = childPlace.lon;
+  indexPlace.r = childPlace.r;
+  indexPlace.coordStatus = childPlace.coordStatus;
+  indexPlace.coordType = childPlace.coordType;
+
   const evidence = readJson(evidenceRel);
-  mutateEvidence(evidence, c);
+  mutateEvidence(evidence, childPlace);
   writeJson(childRel, child);
   writeJson(evidenceRel, evidence);
-  touched.push({ id, rel: childRel });
+  dataset.touched.push({ id, childRel });
   return before;
 }
 
-for (const [id, cfg] of Object.entries(streetCorrections)) {
-  const before = updateFiles(id, (place) => {
-    delete place.address;
-    Object.assign(place, {
-      lat: cfg.lat,
-      lon: cfg.lon,
-      r: cfg.r,
-      coordType: cfg.coordType,
-      coordStatus: 'verified_geometry',
-      coordNote: cfg.note,
-      anchors: cfg.anchors,
-      locatorType: 'street',
+function saveDataset(dataset) {
+  if (dataset.touched.length === 0) return;
+  writeJson(dataset.aggregateRel, dataset.aggregate);
+  writeJson(dataset.indexRel, dataset.index);
+  dataset.manifest.source_sha256 = sha256(dataset.aggregateRel);
+  dataset.manifest.generated_at = new Date().toISOString();
+  for (const { id, childRel } of dataset.touched) {
+    const row = (dataset.manifest.places || []).find((item) => item.id === id);
+    if (!row) throw new Error(`${dataset.manifestRel}: missing row for ${id}`);
+    row.sha256 = sha256(childRel);
+  }
+  writeJson(dataset.manifestRel, dataset.manifest);
+}
+
+async function fetchJson(url) {
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': 'History-Go-coordinate-audit/1.0 (https://github.com/Paradispartiet/History-Go)'
+    }
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+  return response.json();
+}
+
+function osmObjectId(result) {
+  const prefix = result.osm_type === 'node' ? 'osm-node' : result.osm_type === 'way' ? 'osm-way' : result.osm_type === 'relation' ? 'osm-relation' : null;
+  if (!prefix || !result.osm_id) return null;
+  return `${prefix}:${result.osm_id}`;
+}
+
+function chooseUniqueNamedResult(results, requiredTerms) {
+  const normalizedTerms = requiredTerms.map((term) => term.toLowerCase());
+  const candidates = results.filter((result) => {
+    const haystack = `${result.display_name || ''} ${result.namedetails?.name || ''}`.toLowerCase();
+    return normalizedTerms.every((term) => haystack.includes(term));
+  });
+  return candidates.length === 1 ? candidates[0] : null;
+}
+
+const naeringsliv = makeDataset({
+  aggregate: 'data/places/naeringsliv/oslo/places_naeringsliv.json',
+  index: 'data/places/naeringsliv/oslo/places_naeringsliv_index.json',
+  manifest: 'data/places/naeringsliv/oslo/places_naeringsliv_manifest.json',
+  childDir: 'data/places/naeringsliv/oslo/places_naeringsliv',
+  evidenceDir: 'data/coordinate-evidence/oslo/naeringsliv'
+});
+
+const litteratur = makeDataset({
+  aggregate: 'data/places/litteratur/oslo/places_litteratur.json',
+  index: 'data/places/litteratur/oslo/places_litteratur_index.json',
+  manifest: 'data/places/litteratur/oslo/places_litteratur_manifest.json',
+  childDir: 'data/places/litteratur/oslo/places_litteratur',
+  evidenceDir: 'data/coordinate-evidence/oslo/litteratur'
+});
+
+const auditRows = [];
+const unresolved = [];
+
+// Batch 22: Geonorge was tried first and was ambiguous. Use the already identified exact OSM building relation as the primary geometry source.
+const telegrafLookupUrl = 'https://nominatim.openstreetmap.org/lookup?osm_ids=R13931026&format=jsonv2&namedetails=1';
+const telegrafResults = await fetchJson(telegrafLookupUrl);
+writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-research/telegrafbygningen-osm-relation-13931026.json', telegrafResults);
+if (!Array.isArray(telegrafResults) || telegrafResults.length !== 1 || Number(telegrafResults[0].osm_id) !== 13931026 || telegrafResults[0].osm_type !== 'relation') {
+  throw new Error('Telegrafbygningen: exact OSM relation lookup did not resolve uniquely to relation 13931026');
+}
+const telegrafResult = telegrafResults[0];
+const telegrafLat = Number(telegrafResult.lat);
+const telegrafLon = Number(telegrafResult.lon);
+const telegrafObjectId = 'osm-relation:13931026';
+const telegrafNote = 'Geonorge-oppslaget for Kongens gate 21 ble kjørt først og ga flere ikke-entydige treff. Etter dette brukes det eksakte OSM-bygningsobjektet relation 13931026 som geometrikilde for Telegrafbygningen. Bygningsidentiteten er kryssjekket mot Riksantikvaren, som dokumenterer Telegrafbygningen i Kongens gate 21, og Telenor Kulturarv. Punktet er OSM-objektets representasjonspunkt for selve bygningen.';
+const telegrafBefore = updatePlaceFiles(naeringsliv, 'telegrafbygningen', (place) => {
+  Object.assign(place, {
+    lat: telegrafLat,
+    lon: telegrafLon,
+    locatorType: 'building',
+    sourceProvider: 'osm',
+    sourceObjectId: telegrafObjectId,
+    geocodeAccuracy: 'geometric_center',
+    coordRole: 'building_center',
+    coordType: 'building_center',
+    coordStatus: 'verified_geometry',
+    coordSource: 'OpenStreetMap relation 13931026; identity cross-checked with Riksantikvaren and Telenor Kulturarv',
+    coordSourceId: telegrafObjectId,
+    coordSourceUrl: 'https://www.openstreetmap.org/relation/13931026',
+    coordVerifiedAt: VERIFIED_AT,
+    coordNote: telegrafNote
+  });
+}, (evidence, place) => {
+  evidence.currentCoordinate = currentCoordinate(place);
+  evidence.evidenceStatus = 'applied_to_place';
+  evidence.coordinateDecision = 'do_not_change_coordinates_yet';
+  evidence.evidence = [
+    {
+      sourceProvider: 'osm',
+      sourceName: 'OpenStreetMap relation 13931026',
+      sourceUrl: 'https://www.openstreetmap.org/relation/13931026',
+      sourceObjectId: telegrafObjectId,
+      sourceQuality: 'exact_named_building_geometry_after_ambiguous_official_address',
+      finding: 'Det eksakte identifiserte OSM-bygningsobjektet representerer Telegrafbygningen etter at Geonorge-adressen var tvetydig.',
+      canVerifyCoordinate: true,
+      reason: telegrafNote
+    },
+    {
       sourceProvider: 'manual_research',
-      sourceObjectId: cfg.sourceObjectId,
-      geocodeAccuracy: 'semantic_anchor',
-      coordRole: 'line_anchor',
-      coordSource: cfg.sourceName,
-      coordSourceId: cfg.sourceObjectId,
-      coordSourceUrl: cfg.sourceUrl,
-      coordVerifiedAt: VERIFIED_AT
-    });
-  }, (evidence, place) => {
-    evidence.currentCoordinate = currentCoordinate(place);
-  });
-  auditRows.push({ batch: cfg.batch, id, reason: 'Street record restored from incorrect single-address anchor to documented line representation.', before, after: { lat: cfg.lat, lon: cfg.lon, coordType: cfg.coordType, coordStatus: 'verified_geometry', sourceObjectId: cfg.sourceObjectId } });
-}
+      sourceName: 'Riksantikvaren – Telegrafbygningen',
+      sourceUrl: 'https://riksantikvaren.no/eksempelsamling/mindre-telekommunikasjon-bedre-internkommunikasjon/',
+      sourceObjectId: 'riksantikvaren:telegrafbygningen-kongens-gate-21',
+      sourceQuality: 'official_building_identity',
+      finding: 'Riksantikvaren dokumenterer Telegrafbygningen i Kongens gate 21 og byggets fysiske identitet.',
+      canVerifyCoordinate: false,
+      reason: 'Brukes som offisiell identitetskryssjekk; OSM-relationen er geometrikilden.'
+    }
+  ];
+  evidence.sourceObjectCandidates = [{ sourceProvider: 'osm', sourceObjectId: telegrafObjectId, canApplyToPlace: true }];
+  evidence.geometryCandidates = [{ sourceProvider: 'osm', sourceObjectId: telegrafObjectId, canApplyToPlace: true }];
+  evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'building_center', canApplyToPlace: true }];
+  evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Eksakt OSM-bygningsgeometri er anvendt etter dokumentert tvetydig Geonorge-oppslag.' };
+  evidence.notes = [telegrafNote];
+});
+auditRows.push({ batch: 22, id: 'telegrafbygningen', result: 'corrected', before: telegrafBefore, after: { lat: telegrafLat, lon: telegrafLon, sourceProvider: 'osm', sourceObjectId: telegrafObjectId } });
 
-for (const [id, cfg] of Object.entries(sourceCorrections)) {
-  const before = updateFiles(id, (place) => {
+// Batch 24: address-first was already performed and saved. Only accept a named OSM fallback if one unique Hjula result is returned.
+const hjulaSearchUrl = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&namedetails=1&q=Hjula%20V%C3%A6verier%2C%20Oslo';
+const hjulaResults = await fetchJson(hjulaSearchUrl);
+writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-research/ovre-foss-hjula-nominatim.json', hjulaResults);
+const hjulaResult = chooseUniqueNamedResult(hjulaResults, ['hjula']);
+if (hjulaResult && osmObjectId(hjulaResult)) {
+  const objectId = osmObjectId(hjulaResult);
+  const lat = Number(hjulaResult.lat);
+  const lon = Number(hjulaResult.lon);
+  const note = `Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match. Etter dette ga det navngitte OSM-søket ett entydig Hjula-resultat (${objectId}), som brukes som fysisk hovedanker. Identiteten er kryssjekket mot Kulturminnesøk 164747 og Oslo byleksikons dokumentasjon av Hjula Væverier i Sagveien 23.`;
+  const before = updatePlaceFiles(naeringsliv, 'ovre_foss', (place) => {
     Object.assign(place, {
-      sourceProvider: cfg.provider,
-      sourceObjectId: cfg.objectId,
-      coordSource: cfg.name,
-      coordSourceId: cfg.objectId,
-      coordSourceUrl: cfg.url,
-      coordVerifiedAt: VERIFIED_AT,
-      coordNote: cfg.note,
+      lat,
+      lon,
+      locatorType: 'building',
+      sourceProvider: 'osm',
+      sourceObjectId: objectId,
+      geocodeAccuracy: 'geometric_center',
+      coordRole: 'building_center',
+      coordType: 'building_center',
       coordStatus: 'verified_geometry',
-      geocodeAccuracy: 'semantic_anchor',
-      coordRole: 'area_anchor'
+      coordSource: `OpenStreetMap ${objectId}; identity cross-checked with Kulturminnesøk 164747 and Oslo byleksikon`,
+      coordSourceId: objectId,
+      coordSourceUrl: `https://www.openstreetmap.org/${hjulaResult.osm_type}/${hjulaResult.osm_id}`,
+      coordVerifiedAt: VERIFIED_AT,
+      coordNote: note
     });
   }, (evidence, place) => {
     evidence.currentCoordinate = currentCoordinate(place);
-    evidence.evidenceStatus = 'applied_to_place';
-    evidence.coordinateDecision = 'do_not_change_coordinates_yet';
-    evidence.evidence = [{ sourceProvider: cfg.provider, sourceName: cfg.name, sourceUrl: cfg.url, sourceObjectId: cfg.objectId, sourceQuality: cfg.quality, finding: cfg.finding, canVerifyCoordinate: true, reason: cfg.note }];
-    evidence.addressCandidates = [];
-    evidence.sourceObjectCandidates = [{ sourceProvider: cfg.provider, sourceObjectId: cfg.objectId, canApplyToPlace: true }];
-    evidence.geometryCandidates = [];
-    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: place.coordRole, canApplyToPlace: true }];
-    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Kildekontrakt og representasjonsanker er anvendt på canonical place.' };
-    evidence.notes = [cfg.note];
+    evidence.addressCandidates = [{
+      address: 'Sagveien 23 Oslo',
+      sourceProvider: 'official_address',
+      sourceObjectId: null,
+      canApplyToPlace: false,
+      reason: 'Geonorge returnerte flere treff uten entydig match; oppslaget er lagret i reports/oslo-coordinate-control-batch-24/lookups/ovre_foss-sagveien-23-geonorge.json.'
+    }];
+    evidence.evidence = [
+      {
+        sourceProvider: 'osm',
+        sourceName: `OpenStreetMap ${objectId}`,
+        sourceUrl: `https://www.openstreetmap.org/${hjulaResult.osm_type}/${hjulaResult.osm_id}`,
+        sourceObjectId: objectId,
+        sourceQuality: 'unique_named_object_after_ambiguous_official_address',
+        finding: 'Det navngitte OSM-resultatet identifiserer Hjula-objektet etter at Geonorge-oppslaget var tvetydig.',
+        canVerifyCoordinate: true,
+        reason: note
+      },
+      {
+        sourceProvider: 'manual_research',
+        sourceName: 'Riksantikvaren/Kulturminnesøk – kulturminne 164747',
+        sourceUrl: 'https://www.kulturminnesok.no/',
+        sourceObjectId: 'kulturminnesok:164747',
+        sourceQuality: 'official_cultural_heritage_identity',
+        finding: 'Kulturminne-ID 164747 identifiserer Hjula Væverier som kulturminne.',
+        canVerifyCoordinate: false,
+        reason: 'Brukes som identitetskryssjekk; OSM-objektet er geometrikilden.'
+      }
+    ];
+    evidence.sourceObjectCandidates = [
+      { sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true },
+      { sourceProvider: 'manual_research', sourceObjectId: 'kulturminnesok:164747', canApplyToPlace: false }
+    ];
+    evidence.geometryCandidates = [{ sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true }];
+    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'building_center', canApplyToPlace: true }];
+    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Entydig navngitt OSM-objekt er anvendt etter dokumentert tvetydig Geonorge-oppslag.' };
+    evidence.notes = [note];
   });
-  auditRows.push({ batch: cfg.batch, id, reason: 'Primary verification source replaced with a source that follows current source-priority rules.', before, after: { coordStatus: 'verified_geometry', sourceProvider: cfg.provider, sourceObjectId: cfg.objectId } });
+  auditRows.push({ batch: 24, id: 'ovre_foss', result: 'corrected', before, after: { lat, lon, sourceProvider: 'osm', sourceObjectId: objectId } });
+} else {
+  unresolved.push({ batch: 24, id: 'ovre_foss', reason: 'Nominatim returned zero or multiple Hjula candidates; no fallback coordinate was guessed.', candidateCount: Array.isArray(hjulaResults) ? hjulaResults.length : null });
 }
 
-writeJson(AGGREGATE, aggregate);
-writeJson(INDEX, index);
-const manifest = readJson(MANIFEST);
-manifest.source_sha256 = sha256(AGGREGATE);
-manifest.generated_at = new Date().toISOString();
-for (const child of touched) {
-  const row = (manifest.places || []).find((item) => item.id === child.id);
-  if (!row) throw new Error(`${MANIFEST}: missing row for ${child.id}`);
-  row.sha256 = sha256(child.rel);
+// Henrik Wergeland-statuen is a monument, so no address shortcut is appropriate. Prefer one unique named OSM monument object if available; otherwise keep the museum object-location source unchanged.
+const wergelandSearchUrl = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&namedetails=1&q=Henrik%20Wergeland-statuen%2C%20Eidsvolls%20plass%2C%20Oslo';
+const wergelandResults = await fetchJson(wergelandSearchUrl);
+writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-research/henrik-wergeland-statuen-nominatim.json', wergelandResults);
+const wergelandResult = chooseUniqueNamedResult(wergelandResults, ['wergeland']);
+if (wergelandResult && osmObjectId(wergelandResult)) {
+  const objectId = osmObjectId(wergelandResult);
+  const lat = Number(wergelandResult.lat);
+  const lon = Number(wergelandResult.lon);
+  const note = `Henrik Wergeland-statuen er et monument og skal ikke reduseres til et tilfeldig adressepunkt. Det navngitte OSM-søket ga ett entydig Wergeland-monument (${objectId}), som brukes som objektgeometri. Identiteten og plasseringen på Eidsvolls plass er kryssjekket mot Oslo Museum-objektet OB.A17403 og Oslo byleksikon.`;
+  const before = updatePlaceFiles(litteratur, 'henrik_wergeland_statue', (place) => {
+    Object.assign(place, {
+      lat,
+      lon,
+      locatorType: 'poi',
+      sourceProvider: 'osm',
+      sourceObjectId: objectId,
+      geocodeAccuracy: 'geometric_center',
+      coordRole: 'display_marker',
+      coordType: 'monument',
+      coordStatus: 'verified_geometry',
+      coordSource: `OpenStreetMap ${objectId}; identity cross-checked with Oslo Museum OB.A17403 and Oslo byleksikon`,
+      coordSourceId: objectId,
+      coordSourceUrl: `https://www.openstreetmap.org/${wergelandResult.osm_type}/${wergelandResult.osm_id}`,
+      coordVerifiedAt: VERIFIED_AT,
+      coordNote: note
+    });
+  }, (evidence, place) => {
+    evidence.currentCoordinate = currentCoordinate(place);
+    evidence.evidence = [
+      {
+        sourceProvider: 'osm',
+        sourceName: `OpenStreetMap ${objectId}`,
+        sourceUrl: `https://www.openstreetmap.org/${wergelandResult.osm_type}/${wergelandResult.osm_id}`,
+        sourceObjectId: objectId,
+        sourceQuality: 'unique_named_monument_object',
+        finding: 'Det entydige navngitte OSM-objektet representerer Henrik Wergeland-monumentet på Eidsvolls plass.',
+        canVerifyCoordinate: true,
+        reason: note
+      },
+      {
+        sourceProvider: 'manual_research',
+        sourceName: 'Oslo Museum OB.A17403',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Wergeland-statuen_-_1998_-_Jan-Christian_Raastad_-_Oslo_Museum_-_OB.A17403.jpg',
+        sourceObjectId: 'oslo-museum:OB.A17403',
+        sourceQuality: 'museum_object_location_crosscheck',
+        finding: 'Oslo Museum-objektet dokumenterer monumentet og objektplasseringen.',
+        canVerifyCoordinate: false,
+        reason: 'Brukes som museumskryssjekk; OSM-objektet er geometrikilden.'
+      }
+    ];
+    evidence.addressCandidates = [];
+    evidence.sourceObjectCandidates = [{ sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true }];
+    evidence.geometryCandidates = [{ sourceProvider: 'osm', sourceObjectId: objectId, canApplyToPlace: true }];
+    evidence.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'display_marker', canApplyToPlace: true }];
+    evidence.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Entydig monumentobjekt er anvendt som geometrikilde.' };
+    evidence.notes = [note];
+  });
+  auditRows.push({ batch: 21, id: 'henrik_wergeland_statue', result: 'corrected', before, after: { lat, lon, sourceProvider: 'osm', sourceObjectId: objectId } });
+} else {
+  auditRows.push({ batch: 21, id: 'henrik_wergeland_statue', result: 'reviewed_no_change', reason: 'No unique named OSM monument candidate. Existing Oslo Museum object-location source is retained rather than guessing.' });
 }
-writeJson(MANIFEST, manifest);
+
+saveDataset(naeringsliv);
+saveDataset(litteratur);
 
 const protocolRel = 'docs/coordinates/coordinate-control-protocol.md';
 let protocol = fs.readFileSync(abs(protocolRel), 'utf8');
-const protocolPairs = [
-  ['| 11 | `torggata` | Torggata | verified | `geonorge-adresser-v1:0301:17635:14` |', '| 11 | `torggata` | Torggata | verified_geometry | `oslobyleksikon:torggata` |'],
-  ['| 13 | `storgata` | Storgata | verified | `geonorge-adresser-v1:0301:17059:25` |', '| 13 | `storgata` | Storgata | verified_geometry | `oslobyleksikon:storgata` |'],
-  ['| 14 | `botsparken` | Botsparken | verified_geometry | `lokalhistoriewiki:gronlands-park` |', '| 14 | `botsparken` | Botsparken | verified_geometry | `oslo-kommune:park:gronland-park-klosterenga` |'],
-  ['| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `wikidata:Q5039902` |', '| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `oslobyleksikon:carl-berners-plass` |'],
-  ['| 16 | `okern` | Økern | verified_geometry | `wikidata:Q12011791` |', '| 16 | `okern` | Økern | verified_geometry | `oslobyleksikon:okern-strok` |'],
-  ['| 16 | `skoyen` | Skøyen | verified_geometry | `wikidata:Q6514682` |', '| 16 | `skoyen` | Skøyen | verified_geometry | `oslobyleksikon:skoyen-strok` |'],
-  ['| 16 | `torshov` | Torshov | verified_geometry | `wikidata:Q7827191` |', '| 16 | `torshov` | Torshov | verified_geometry | `oslobyleksikon:torshov-strok` |']
-];
-for (const [oldRow, newRow] of protocolPairs) {
-  if (protocol.includes(oldRow)) protocol = protocol.replace(oldRow, newRow);
-  else if (!protocol.includes(newRow)) throw new Error(`Protocol contains neither expected row: ${oldRow}`);
+for (const row of auditRows.filter((item) => item.result === 'corrected')) {
+  const sourceObjectId = row.after.sourceObjectId;
+  const pattern = new RegExp(`^\\|([^\\n]*\\|\\s*\\`${row.id}\\`\\s*\\|[^\\n]*)$`, 'm');
+  const match = protocol.match(pattern);
+  if (match) {
+    const cells = match[0].split('|');
+    if (cells.length >= 7) {
+      cells[cells.length - 2] = ` \\`${sourceObjectId}\\` `;
+      protocol = protocol.replace(match[0], cells.join('|'));
+    }
+  }
 }
-const note = 'Retrokontroll fra batch 6 (2026-07-20), pass 2: `torggata` og `storgata` er tilbakeført fra feilaktige enkeltadresseankre til dokumenterte lineære gateankre med ruteankre. `botsparken` bruker nå kommunal parkdefinisjon. De fire batch-16-recordene `carl_berner_plass`, `okern`, `skoyen` og `torshov` har fått dokumenterte steds-/områdefinisjoner fra Oslo byleksikon i stedet for Wikidata som primær verifikasjonskilde.';
-if (!protocol.includes(note)) protocol = protocol.replace('### Dokumenterte Oslo-kontroller uten godkjent koordinat', `${note}\n\n### Dokumenterte Oslo-kontroller uten godkjent koordinat`);
+const protocolNote = 'Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` er flyttet fra Wikidata som primær kilde til det eksakte OSM-bygningsobjektet etter dokumentert tvetydig Geonorge-oppslag. `ovre_foss` og `henrik_wergeland_statue` bruker bare nye OSM-ankre dersom Nominatim gir ett entydig navngitt fysisk objekt; ellers beholdes de uendret og rapporteres uten gjetting.';
+if (!protocol.includes(protocolNote)) protocol = protocol.replace('### Dokumenterte Oslo-kontroller uten godkjent koordinat', `${protocolNote}\n\n### Dokumenterte Oslo-kontroller uten godkjent koordinat`);
 fs.writeFileSync(abs(protocolRel), protocol);
 
-writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-2-batches-11-16.json', { date: VERIFIED_AT, corrections: auditRows, nextResearchPass: ['henrik_wergeland_statue', 'telegrafbygningen', 'ovre_foss'] });
+writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-3-batches-21-24.json', {
+  date: VERIFIED_AT,
+  corrections: auditRows,
+  unresolved,
+  methodNotes: [
+    'Telegrafbygningen: Geonorge was already tried first and was ambiguous; exact OSM relation lookup is an allowed fallback.',
+    'Øvre Foss/Hjula: the saved batch-24 Geonorge lookup proves address-first was followed; no fallback is applied unless one unique named Hjula object is returned.',
+    'Henrik Wergeland-statuen: monument object, not an address case; no coordinate is changed without one unique named physical object.'
+  ]
+});
+
 const readmeRel = 'reports/oslo-coordinate-retro-audit-from-batch-6/README.md';
 let readme = fs.existsSync(abs(readmeRel)) ? fs.readFileSync(abs(readmeRel), 'utf8') : '# Oslo coordinate retro-audit from batch 6\n';
-const section = '\n## Pass 2 — deterministic corrections through batch 16\n\n- Batch 11: `torggata` restored to documented street/line representation.\n- Batch 13: `storgata` restored to documented street/line representation.\n- Batch 14: `botsparken` now uses Oslo kommune as the primary park-definition source.\n- Batch 16: `carl_berner_plass`, `okern`, `skoyen` and `torshov` no longer use Wikidata as the primary verification source.\n\nRemaining research corrections: `henrik_wergeland_statue`, `telegrafbygningen`, `ovre_foss`.\n';
-if (!readme.includes('## Pass 2 — deterministic corrections through batch 16')) readme += section;
+const pass3Section = `\n## Pass 3 — batches 21–24 source-object audit\n\n- \`telegrafbygningen\`: exact OSM relation used as geometry source after the previously saved ambiguous Geonorge result.\n- \`ovre_foss\`: address-first was confirmed from the saved batch-24 lookup; OSM fallback is applied only on one unique named Hjula result.\n- \`henrik_wergeland_statue\`: treated as a monument, never as an address shortcut; OSM replacement is applied only on one unique named monument result.\n\nUnresolved candidates are recorded in \`pass-3-batches-21-24.json\` without guessing.\n`;
+if (!readme.includes('## Pass 3 — batches 21–24 source-object audit')) readme += pass3Section;
 fs.writeFileSync(abs(readmeRel), readme);
 
-console.log(JSON.stringify({ ok: true, corrected: auditRows.map((row) => row.id), nextResearchPass: ['henrik_wergeland_statue', 'telegrafbygningen', 'ovre_foss'] }, null, 2));
+console.log(JSON.stringify({ ok: true, corrections: auditRows, unresolved }, null, 2));
