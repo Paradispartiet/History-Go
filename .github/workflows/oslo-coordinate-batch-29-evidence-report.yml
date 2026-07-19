@@ -1,0 +1,47 @@
+name: Capture Oslo batch 29 evidence audit report
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-29-v3
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Reproduce batch and evidence audit
+        shell: bash
+        run: |
+          set +e
+          node scripts/tmp-complete-oslo-coordinate-batch29-v3.mjs
+          npm run places:index:build
+          npm run places:coords:evidence:audit
+          status=$?
+          mkdir -p reports/oslo-coordinate-control-batch-29-v3/validation-diagnose
+          cp reports/coordinate-evidence-audit.md reports/oslo-coordinate-control-batch-29-v3/validation-diagnose/evidence-audit-report.md
+          printf '{"evidence_audit_exit": %s}\n' "$status" > reports/oslo-coordinate-control-batch-29-v3/validation-diagnose/evidence-audit-exit.json
+          exit 0
+      - name: Persist report only
+        run: |
+          set -euo pipefail
+          rm .github/workflows/oslo-coordinate-batch-29-evidence-report.yml
+          git restore --source=HEAD --staged --worktree data docs
+          git clean -fd -- data docs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-coordinate-control-batch-29-v3/validation-diagnose .github/workflows/oslo-coordinate-batch-29-evidence-report.yml
+          git commit -m "Capture batch 29 evidence audit report"
+          git push origin HEAD
