@@ -1,4 +1,4 @@
-name: Diagnose Etne Tinghus rounds
+name: Finalize Etne Tinghus rounds
 
 on:
   pull_request:
@@ -9,14 +9,14 @@ permissions:
   contents: write
 
 jobs:
-  diagnose-and-finish:
+  finalize:
     if: github.head_ref == 'agent/fill-etne-tinghus-rounds-batch1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-          fetch-depth: 0
+          fetch-depth: 1
           persist-credentials: true
           show-progress: false
       - uses: actions/setup-node@v4
@@ -35,6 +35,26 @@ jobs:
           if not match:
               raise SystemExit('Embedded Tinghus generator not found')
           exec(zlib.decompress(base64.b64decode(match.group(1))).decode('utf-8'))
+          PY
+      - name: Canonicalize Geir Arne Havreberg references
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          paths = [
+              Path('data/relations.json'),
+              Path('data/stories/stories_etnesjoen_sport_rounds_batch1.json'),
+              Path('data/leksikon/places/vestland/etne/sport/leksikon_etnesjoen_sport_rounds_batch1.json'),
+              Path('tests/etnesjoen-dojo-batch1-round-content.test.js'),
+          ]
+          for path in paths:
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('geir_havreberg', 'geir_arne_havreberg')
+              text = text.replace(
+                  'people/sport/vestland/etne/geir_arne_havreberg.json',
+                  'people/sport/vestland/etne/people_sport_etne_batch2.json'
+              )
+              path.write_text(text, encoding='utf-8')
           PY
       - name: Etne Tinghus dedicated test
         run: node tests/etne-tinghus-batch1-round-content.test.js
@@ -67,8 +87,11 @@ jobs:
       - run: git diff --check
       - name: Remove temporary workflows
         run: |
-          rm .github/workflows/agent-fill-etne-tinghus-rounds.yml
-          rm .github/workflows/agent-diagnose-etne-tinghus-rounds.yml
+          rm -f .github/workflows/agent-fill-etne-tinghus-rounds.yml
+          rm -f .github/workflows/agent-diagnose-etne-tinghus-rounds.yml
+          rm -f .github/workflows/agent-trace-etne-tinghus-inherited.yml
+          rm -f .github/workflows/agent-record-etne-tinghus-inherited.yml
+          rm -f reports/etne-tinghus-inherited-test-diagnostic.txt
       - name: Commit
         shell: bash
         run: |
