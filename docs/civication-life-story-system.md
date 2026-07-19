@@ -418,8 +418,17 @@ alltid `la_deg_i_tide` eller `sen_kveld`, dag 2-morgenen leser natten
 «Ett øyeblikk før du sovner». I tillegg: energigated ro-scene («Kroppen
 sier fra», energi ≤ 45 — ro-regelen gjelder også lav energi: aldri mer
 press) og en profilgated hvile-scene på `low_energy`/`rest`-taggene.
-Søvn-arc-kontrakten eies av arbeidsledig-testen. Gjenstår: små resterende
-varianter (morgenrutine-, kalender- og mat-temaene) og dag 3+.
+Søvn-arc-kontrakten eies av arbeidsledig-testen. Batch 5 fullførte
+mailmigreringen med de siste temaene: ny tråd «Dine egne timer»
+(kalender/rutine — dag 1-morgenscenen setter nøyaktig ett av tre grenflagg,
+og hver gren har sin egen dag 2-ettermiddagsscene som lukker tråden),
+mat-scenene «Lunsj: hva blir det til?» (dag 2, formiddag) og «En stille
+middag hjemme» (dag 2, kveld, psyke ≤ 55 — ro-regelen), og den profilgatede
+morgenscenen «Ti minutter med noe du samler på»
+(vitenskap/historie/litteratur-taggene) på tråden «Lysten til å lære».
+Grenkontrakten (ett flagg per valg, én lukkende gren-scene per flagg) eies
+av arbeidsledig-testen. **Alle de 45 gamle private mailene er nå dekket av
+livsscener.** Gjenstår: dag 3+ (lengre trådbuer).
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp
