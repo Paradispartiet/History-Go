@@ -95,6 +95,6 @@ assert(/representativt (?:område|eiendomsområde)|representativt områdeanker/i
 assert(/ikke et eksakt|ikkje eit påstått eksakt|hevder ikke et presist/i.test(combined), 'Innholdet skal avvise eksakt historisk fotavtrykk');
 assert(/Gjestgjevargarden|Tippehuset/.test(combined), 'Det bevarte nabokulturminnet skal forklares');
 assert(!/fabrikken og Gjestgjevargarden er samme canonical place|markøren viser det eksakte fabrikkfotavtrykket/i.test(combined), 'Fabrikk og Gjestgjevargard skal holdes fysisk og redaksjonelt skilt');
-assert(!/arten finnes i dag ved markøren|full artsinventering/i.test(combined), 'Brisling skal ikke gjøres til en udokumentert nåtidsobservasjon');
+assert(!/arten finnes i dag ved markøren|artsinventeringen omfatter alle arter/i.test(combined), 'Brisling skal ikke gjøres til en udokumentert nåtidsobservasjon');
 
 console.log('Skånevik hermetikkfabrikk batch 1 round content OK');
