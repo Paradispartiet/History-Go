@@ -410,8 +410,16 @@ nå History GO-profilen. Batch 3 ga privatlivet et navngitt persongalleri:
 og `startState.relasjoner` (kontrakten eies av arbeidsledig-testen), de
 delte venne-scenene flytter `relasjoner.venn`, og en ny familiescene
 («Hilsen hjemmefra», dag 2) flytter `relasjoner.familie` — relasjoner i
-privatlivet beveger seg nå over dager i stedet for å stå stille. Gjenstår:
-resten av de 45 mailene (helse/søvn/dagslutt-temaene) og dag 3+.
+privatlivet beveger seg nå over dager i stedet for å stå stille. Batch 4
+dekket søvn/helse/dagslutt-familien (den siste mailfamilien uten scener):
+ny tråd «Natten og søvnen» med en to-dagers arc — dag 1-nattscenen setter
+alltid `la_deg_i_tide` eller `sen_kveld`, dag 2-morgenen leser natten
+(uthvilt vs tung start), og dag 2-kvelden lukker tråden med refleksjonen
+«Ett øyeblikk før du sovner». I tillegg: energigated ro-scene («Kroppen
+sier fra», energi ≤ 45 — ro-regelen gjelder også lav energi: aldri mer
+press) og en profilgated hvile-scene på `low_energy`/`rest`-taggene.
+Søvn-arc-kontrakten eies av arbeidsledig-testen. Gjenstår: små resterende
+varianter (morgenrutine-, kalender- og mat-temaene) og dag 3+.
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp
