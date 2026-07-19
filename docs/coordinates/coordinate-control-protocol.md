@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 124 verifiserte eller kildekontrollerte canonical steder. Batch 21 starter den sekundære Oslo-kildekøen og godkjenner 6 nye ankere: Ekebergparken, Camilla Collett-statuen, Henrik Wergeland-statuen, Grotten, Eldorado Bokhandel, Gamle Deichman. Ibsen-sitatene står som nye dokumenterte `needs_review`-utfall. 10 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat. Sekundærkøen bruker Oslo-manifeststier i leksikografisk rekkefølge, bevarer record-rekkefølgen i hvert manifest og hopper over placeId-er som allerede er kontrollert.
+Oslo-tabellen inneholder nå 128 verifiserte eller kildekontrollerte canonical steder. Batch 22 godkjenner fire nye ankere: Klassekampen-redaksjonen på dagens Grønland 4, Oslo Gassverk ved den bevarte kontorbygningen i Storgata 36C, det historiske Hovedpostkontoret i Dronningens gate 15 og Telegrafbygningen som identifisert bygningsobjekt i Kongens gate 21. Good Game-redaksjonen, Aftenposten i Akersgata og Dagbladet i Akersgata står som nye dokumenterte `needs_review`-utfall på grunn av fysisk overlap eller fleradresse-identitet. 13 fullførte kontroller står dermed separat uten godkjent Oslo-koordinat. Sekundærkøen fortsetter i `naeringsliv` etter at `media` er ferdig og `musikk` ikke ga nye placeId-er.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -145,6 +145,10 @@ Oslo-tabellen inneholder nå 124 verifiserte eller kildekontrollerte canonical s
 | 21 | `grotta` | Grotten | verified | `geonorge-adresser-v1:0301:18496:4` |
 | 21 | `eldorado_bokhandel` | Eldorado Bokhandel | verified | `geonorge-adresser-v1:0301:17635:9A` |
 | 21 | `gamle_deichman` | Gamle Deichman | verified | `geonorge-adresser-v1:0301:10244:4` |
+| 22 | `klassekampen_redaksjon` | Klassekampen-redaksjonen | verified | `geonorge-adresser-v1:0301:12446:4` |
+| 22 | `oslo_gassverk` | Oslo Gassverk | verified_historical_source | `oslobyleksikon:gassverket:storgata-36c` |
+| 22 | `oslo_posthus` | Oslo Posthus / Hovedpostkontoret | verified | `geonorge-adresser-v1:0301:11309:15` |
+| 22 | `telegrafbygningen` | Telegrafbygningen | verified_geometry | `wikidata:Q17195132` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -152,7 +156,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 124 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 128 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -166,6 +170,9 @@ Disse kontrollene er fullført, men teller ikke blant de 124 verifiserte eller k
 | `grini_fangeleir` – Grini fangeleir | needs_review; moved to Akershus/Bærum | Recorden lå feilaktig i Oslo-kilden. Bærum kommune dokumenterer leiren ved Ila, men dagens punkt mangler kildebelagt leirgeometri. | Finn offisiell/historisk leirgeometri; Grinimuseets adresse skal ikke brukes som sentrum for hele leiren. |
 | `prinds_christian_augusts_minde` – Prinds Christian Augusts Minde | needs_review | Storgata 36 gir flere ikke-entydige Geonorge-treff for et historisk bygningskompleks; ingen husbokstav er dokumentert som canonical hovedanker. | Krever offisiell kompleks-/eiendomsgeometri eller et dokumentert representativt anker. |
 | `ibsen_quotes` – Ibsen sitater / Sitatgaten | needs_review | Den fysiske installasjonen består av 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men recorden har bare ett punkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes. |
+| `good_game_redaksjon` – Good Game-redaksjonen (NRK) | needs_review | Redaksjonelt delmiljø inne i allerede canonical NRK Marienlyst; ingen separat fysisk lokasjon er dokumentert. | Modeller som subplace/relation til `nrk_huset_marienlyst`, eller dokumenter eget studio-/romanker. |
+| `aftenposten_akersgata` – Aftenposten i Akersgata | needs_review | Dagens Akersgata 55 overlapper canonical `vg_huset`, mens den historiske recorden også omfatter 51/53. | Avklar om stedet skal være historisk flerankret Akersgata-record eller institusjonsrelation til A55. |
+| `dagbladet_akersgata` – Dagbladet i Akersgata | needs_review | Historisk redaksjonsforankring omfatter både Akersgata 36 og 47/49, men recorden har bare ett punkt. | Krever flerankre eller et eksplisitt tidsavgrenset hovedanker. |
 
 ## Etne – historiesett
 
@@ -213,8 +220,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 133 og starter batch 22.
-- Batch 21 er fullført med 6 godkjente ankere og 1 nye dokumenterte `needs_review`-utfall.
-- Sekundær Oslo-kildekø: sorter Oslo-manifeststier leksikografisk, behold `order` i hvert manifest og hopp over alle placeId-er som allerede står i protokollen.
+- Neste nye Oslo-kontroll er nummer 140 og starter batch 23.
+- Batch 22 er fullført med fire godkjente ankere og tre nye dokumenterte `needs_review`-utfall.
+- Sekundærkøen fortsetter i `data/places/naeringsliv/oslo/places_naeringsliv_manifest.json` fra første ukontrollerte record etter `telegrafbygningen`.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

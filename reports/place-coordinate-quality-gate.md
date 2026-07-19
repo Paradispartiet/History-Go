@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-19T03:35:30.319Z
+Generert: 2026-07-19T03:57:30.809Z
 
 ## Oppsummering
 - Aktive filer validert: **479**
 - Antall steder validert: **1177**
 - Harde feil: **0**
 - Varsler: **394**
-- Coordinate review candidates: **680** signaler fordelt på **533** steder
+- Coordinate review candidates: **679** signaler fordelt på **534** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -723,13 +723,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/litteratur/oslo/places_litteratur.json#alexander_kiellands_plass: lav koordinatpresisjon (<4 desimaler)
 - data/places/media/oslo/places_oslo_media.json#vg_huset: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#nrk_huset_marienlyst: coordStatus=verified uten coordPrecisionM
-- data/places/media/oslo/places_oslo_media.json#klassekampen_redaksjon: lineært sted uten anchors
-- data/places/media/oslo/places_oslo_media.json#klassekampen_redaksjon: lav koordinatpresisjon (<4 desimaler)
+- data/places/media/oslo/places_oslo_media.json#klassekampen_redaksjon: coordStatus=verified uten coordPrecisionM
 - data/places/musikk/oslo/places_musikk.json#det_norske_teatret: coordStatus=verified uten coordPrecisionM
 - data/places/musikk/oslo/places_musikk.json#rockefeller: coordStatus=verified uten coordPrecisionM
 - data/places/musikk/oslo/places_musikk.json#john_dee: coordStatus=verified uten coordPrecisionM
 - data/places/musikk/oslo/places_musikk.json#sentrum_scene: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#havnelageret: coordStatus=verified uten coordPrecisionM
+- data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_posthus: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#fornebu_teknologipark: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/oslo/places_naeringsliv.json#akershus_energi: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#ovre_foss: lav koordinatpresisjon (<4 desimaler)
@@ -899,22 +899,22 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 679 signaler fordelt på 534 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 107 |
-| coordStatus=verified uten coordPrecisionM | 63 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 97 |
+| lineært sted uten anchors | 78 |
+| lav koordinatpresisjon (<4 desimaler) | 106 |
+| coordStatus=verified uten coordPrecisionM | 65 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 96 |
 | park/stort område uten anchors eller coordNote | 134 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 16 |
 | ligger svært langt fra de andre stedene i samme fil | 118 |
 
-### lineært sted uten anchors (79)
+### lineært sted uten anchors (78)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -960,7 +960,6 @@ Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | natur | data/places/natur/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | stiklestad | Stiklestad | historie | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | 63.7956 | 11.559 | 220 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | vagar_lofoten_storvagan | Vågar i Storvågan/Kabelvåg | by | data/places/by/nordland/vagar_lofoten_storvagan.json | 68.2145 | 14.4759 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | data/places/media/oslo/places_oslo_media.json | 59.917 | 10.756 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | oslo_kornmagasin | Christiania kornmagasin | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9119 | 10.7428 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | christiania_seildugsfabrik | Christiania Seildugsfabrik | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9297 | 10.7576 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -998,7 +997,7 @@ Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | sagene_festivitetshus | Sagene festivitetshus | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05.json | 59.93137049982586 | 10.760854064462801 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | sporveismuseet | Sporveismuseet | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.931307601915144 | 10.71602648075083 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (107)
+### lav koordinatpresisjon (<4 desimaler) (106)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1033,7 +1032,6 @@ Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | data/places/litteratur/oslo/places_litteratur.json | 60.062 | 10.875 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.938 | 10.76 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | data/places/media/oslo/places_oslo_media.json | 59.917 | 10.756 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akershus_energi | Akershus Energi Varme | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.947 | 10.8355 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | ovre_foss | Øvre Foss – Hjula Veveri | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9276 | 10.755 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | jernbanetorget_trafikknutepunkt | Jernbanetorget – handelsknutepunktet | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.911 | 10.7508 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1110,7 +1108,7 @@ Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### coordStatus=verified uten coordPrecisionM (63)
+### coordStatus=verified uten coordPrecisionM (65)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1140,11 +1138,13 @@ Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | deichman_grunerlokka | Deichman Grünerløkka | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.920789784433865 | 10.760221823170998 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vg_huset | VG-huset | media | data/places/media/oslo/places_oslo_media.json | 59.91512243824226 | 10.743666267309775 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nrk_huset_marienlyst | NRK-huset på Marienlyst | media | data/places/media/oslo/places_oslo_media.json | 59.934722555717045 | 10.719662425687908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| klassekampen_redaksjon | Klassekampen-redaksjonen | media | data/places/media/oslo/places_oslo_media.json | 59.91335273517942 | 10.759577592129606 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | det_norske_teatret | Det Norske Teatret | musikk | data/places/musikk/oslo/places_musikk.json | 59.91521126103172 | 10.738641190958791 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | rockefeller | Rockefeller Music Hall | musikk | data/places/musikk/oslo/places_musikk.json | 59.916235041685646 | 10.750323246840185 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | john_dee | John Dee | musikk | data/places/musikk/oslo/places_musikk.json | 59.916145361023055 | 10.750313157984397 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sentrum_scene | Sentrum Scene | musikk | data/places/musikk/oslo/places_musikk.json | 59.91552200049789 | 10.751804295846025 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | havnelageret | Oslo Havnelager | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.90760281927637 | 10.746880614147818 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oslo_posthus | Oslo Posthus | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.91038965689687 | 10.746007652609869 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | tinghuset | Oslo tinghus | politikk | data/places/politikk/oslo/places_politikk.json | 59.915618872260445 | 10.741442136536953 | 30 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | folketeateret | Folketeateret | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.9145532904993 | 10.749678422671124 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1178,7 +1178,7 @@ Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | lokomotivverkstedet | Lokomotivverkstedet | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.90431860322039 | 10.763516120997933 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | tveten_gard | Tveten gård | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.913061375377836 | 10.836900380109173 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (97)
+### stasjon/park/gate/torg/elv uten coordinate metadata (96)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1241,7 +1241,6 @@ Totalt 680 signaler fordelt på 533 steder. Et sted kan ha flere signaler. Kandi
 | audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | by | data/places/by/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | inger_hagerups_plass | Inger Hagerups plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9427 | 10.8553 | 130 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | data/places/media/oslo/places_oslo_media.json | 59.917 | 10.756 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | ulven_handelspark | Ulven handelspark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9229 | 10.8215 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | jernbanetorget_trafikknutepunkt | Jernbanetorget – handelsknutepunktet | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.911 | 10.7508 | 150 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |

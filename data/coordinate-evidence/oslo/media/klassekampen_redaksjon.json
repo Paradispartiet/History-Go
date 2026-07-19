@@ -1,0 +1,74 @@
+{
+  "placeId": "klassekampen_redaksjon",
+  "placeFile": "data/places/media/oslo/places_oslo_media.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91335273517942,
+    "lon": 10.759577592129606,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Klassekampens nåværende besøksadresse Grønland 4. Klassekampens offisielle kontaktside dokumenterer samme adresse. Recorden oppdateres fra den utdaterte Hausmanns gate-identiteten til dagens redaksjonsanker."
+  },
+  "identity": {
+    "currentName": "Klassekampen-redaksjonen",
+    "resolvedIdentity": "Klassekampens nåværende redaksjon på Grønland 4",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Gr%C3%B8nland%204%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12446:4",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Klassekampens offisielle kontaktside dokumenterer besøksadressen Grønland 4; Geonorge gir ett entydig offisielt adressepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Klassekampens nåværende besøksadresse Grønland 4. Klassekampens offisielle kontaktside dokumenterer samme adresse. Recorden oppdateres fra den utdaterte Hausmanns gate-identiteten til dagens redaksjonsanker."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Grønland 4 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12446:4",
+      "canApplyToPlace": true,
+      "reason": "Entydig Geonorge-adressekandidat."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12446:4",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91335273517942,
+      "lon": 10.759577592129606,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Klassekampens nåværende besøksadresse Grønland 4. Klassekampens offisielle kontaktside dokumenterer samme adresse. Recorden oppdateres fra den utdaterte Hausmanns gate-identiteten til dagens redaksjonsanker."
+  ]
+}

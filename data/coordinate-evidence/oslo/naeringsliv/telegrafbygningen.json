@@ -1,0 +1,80 @@
+{
+  "placeId": "telegrafbygningen",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91128055555556,
+    "lon": 10.742319444444444,
+    "r": 140,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Wikidata Q17195132 / OSM relation 13931026 / Telenor Kulturarv",
+    "coordType": "building_center",
+    "coordNote": "Geonorge-oppslaget for Kongens gate 21 ga flere ikke-entydige treff og ble ikke brukt. Bygningsankeret bruker det identifiserte Telegrafbygningen-objektet Wikidata Q17195132, kryssjekket mot OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv. Punktet representerer selve Telegrafbygningen."
+  },
+  "identity": {
+    "currentName": "Telegrafbygningen",
+    "resolvedIdentity": "Telegrafbygningen i Kongens gate 21 som identifisert bygningsobjekt",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Wikidata Q17195132 / OSM relation 13931026 / Telenor Kulturarv",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q17195132",
+      "sourceObjectId": "wikidata:Q17195132",
+      "sourceQuality": "crosschecked_building_object_after_ambiguous_address",
+      "finding": "Geonorge ga flere ikke-entydige adressepunkter for Kongens gate 21. Wikidata Q17195132, OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv identifiserer samme Telegrafbygning, og objektpunktet brukes derfor som bygningsanker.",
+      "canVerifyCoordinate": true,
+      "reason": "Geonorge-oppslaget for Kongens gate 21 ga flere ikke-entydige treff og ble ikke brukt. Bygningsankeret bruker det identifiserte Telegrafbygningen-objektet Wikidata Q17195132, kryssjekket mot OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv. Punktet representerer selve Telegrafbygningen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kongens gate 21 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "canApplyToPlace": false,
+      "reason": "Geonorge returnerte flere treff uten entydig match; må avklares manuelt."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q17195132",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:13931026",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91128055555556,
+      "lon": 10.742319444444444,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Geonorge-oppslaget for Kongens gate 21 ga flere ikke-entydige treff og ble ikke brukt. Bygningsankeret bruker det identifiserte Telegrafbygningen-objektet Wikidata Q17195132, kryssjekket mot OSM relation 13931026, Kulturminne 163682, Oslo byleksikon og Telenor Kulturarv. Punktet representerer selve Telegrafbygningen."
+  ]
+}

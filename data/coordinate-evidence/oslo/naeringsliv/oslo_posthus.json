@@ -1,0 +1,74 @@
+{
+  "placeId": "oslo_posthus",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91038965689687,
+    "lon": 10.746007652609869,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Hovedpostkontoret i Dronningens gate 15. Oslo byleksikon dokumenterer bygget som hovedpostkontor oppført 1914–24 og hovedterminal til 1975. Det gamle punktet ved Postgirobygget var feil for denne 1924-recorden og flyttes til det historiske hovedpostkontoret."
+  },
+  "identity": {
+    "currentName": "Oslo Posthus",
+    "resolvedIdentity": "Hovedpostkontoret i Dronningens gate 15",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Dronningens%20gate%2015%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11309:15",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Oslo byleksikon dokumenterer Hovedpostkontoret oppført 1914–24 i Dronningens gate 15; Geonorge gir ett entydig adressepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Hovedpostkontoret i Dronningens gate 15. Oslo byleksikon dokumenterer bygget som hovedpostkontor oppført 1914–24 og hovedterminal til 1975. Det gamle punktet ved Postgirobygget var feil for denne 1924-recorden og flyttes til det historiske hovedpostkontoret."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Dronningens gate 15 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11309:15",
+      "canApplyToPlace": true,
+      "reason": "Entydig Geonorge-adressekandidat."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11309:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91038965689687,
+      "lon": 10.746007652609869,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Hovedpostkontoret i Dronningens gate 15. Oslo byleksikon dokumenterer bygget som hovedpostkontor oppført 1914–24 og hovedterminal til 1975. Det gamle punktet ved Postgirobygget var feil for denne 1924-recorden og flyttes til det historiske hovedpostkontoret."
+  ]
+}
