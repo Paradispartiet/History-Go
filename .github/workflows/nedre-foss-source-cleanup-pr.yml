@@ -1,0 +1,50 @@
+name: Nedre Foss source cleanup PR runner
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/nedre-foss-source-cleanup-pr.yml'
+      - 'tools/cleanup-nedre-foss-source-holdbacks.py'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/cleanup-nedre-foss-source-holdbacks
+          fetch-depth: 0
+
+      - name: Apply cleanup and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/nedre-foss-source-cleanup/validation
+          python tools/cleanup-nedre-foss-source-holdbacks.py
+          npm ci --silent
+          node tests/nedre-foss-rounds-batch1.test.js | tee reports/nedre-foss-source-cleanup/validation/nedre-foss-targeted-test.txt
+          node tests/place-card-rounds-runtime-audit.test.js | tee reports/nedre-foss-source-cleanup/validation/place-card-rounds-runtime.txt
+          npm run audit:people-of-places | tee reports/nedre-foss-source-cleanup/validation/people-of-places.txt
+          git checkout origin/main -- reports/people-of-places-status.json reports/people-of-places-status.md 2>/dev/null || true
+          node - <<'NODE' | tee reports/nedre-foss-source-cleanup/validation/json-parse.txt
+          const fs = require('fs');
+          for (const file of [
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute/nedre_foss.json',
+            'data/leksikon/places/oslo/historie/leksikon_oslo_historie_nedre_foss.json',
+            'data/people/historie/oslo/akerselva/friedrich_gruner.json'
+          ]) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('JSON parse OK');
+          NODE
+          git diff --check | tee reports/nedre-foss-source-cleanup/validation/git-diff-check.txt
+          rm -f .github/workflows/nedre-foss-source-cleanup.yml
+          rm -f .github/workflows/nedre-foss-source-cleanup-pr.yml
+          rm -f tools/cleanup-nedre-foss-source-holdbacks.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix: resolve stale Nedre Foss source holdbacks'
+          git push origin HEAD:agent/cleanup-nedre-foss-source-holdbacks
