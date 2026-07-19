@@ -45,12 +45,12 @@
       "updated": "2026-01-09"
     },
     "sourceHint": "Oslo byleksikon beskriver Alna som Oslos lengste elv, fra Alnsjøen til Bjørvika. Koordinatet er et sentralt rute-/områdepunk.",
-    "coordType": "route_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "manual_map_check",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "river_route_geometry_unresolved",
     "coordPrecisionM": 130,
-    "coordVerifiedAt": "2026-05-01",
-    "coordNote": "Representerer pedagogisk ankerpunkt for hele området/ruta.",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes.",
     "anchors": [
       {
         "id": "alna_bryn",
@@ -127,7 +127,14 @@
       "vann_og_vassdrag",
       "naturrestaurering",
       "blagronn_struktur"
-    ]
+    ],
+    "locatorType": "route",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "snl:alna-elv-oslo",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "line_anchor",
+    "coordSourceId": "snl:alna-elv-oslo",
+    "coordSourceUrl": "https://snl.no/Alna_(elv_i_Oslo)"
   },
   {
     "id": "alnaelvstien",
@@ -180,11 +187,23 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslo-kommune:turvei-langs-alnaelva",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "line_anchor",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "trail_route_geometry_unresolved",
+    "coordSourceId": "oslo-kommune:turvei-langs-alnaelva",
+    "coordSourceUrl": "https://aktuelt.oslo.kommune.no/rehabilitering-av-hengebrua-i-svartdalsparken",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert."
   },
   {
     "id": "loelva_historisk",
-    "name": "Loelva (historisk vassdrag)",
+    "name": "Loelva – historisk navn på Alna",
     "lat": 59.928,
     "lon": 10.82,
     "r": 250,
@@ -199,7 +218,7 @@
       "also": []
     },
     "year": null,
-    "desc": "Tidligere åpent vassdrag som i dag hovedsakelig er lagt i rør.",
+    "desc": "Historisk navn på Alnaelva, ikke et eget separat vassdrag. Recorden beholdes som historisk navne- og landskapsreferanse til Alna.",
     "tags": [
       "naturtap",
       "historisk_landskap"
@@ -224,14 +243,26 @@
       "source_note": "",
       "updated": "2026-01-09"
     },
-    "popupDesc": "Loelva er et historisk vassdrag i Alna-området som tidligere var synlig i landskapet, men som i dag i stor grad ligger i rør. Stedet gjør det mulig å lese fravær som en del av byens vannhistorie: løpstrukturen finnes i kart og terreng, men er lite synlig i overflaten. Dette knytter naturhistorie, utbygging og teknisk infrastruktur tett sammen. Punktet er interessant fordi det viser hvordan et elveløp kan forsvinne fra byrommet uten å forsvinne fra systemet.",
+    "popupDesc": "Loelva er et historisk navn som har vært brukt om Alna. Kildene identifiserer derfor ikke Loelva som et separat fysisk vassdrag som kan få sin egen selvstendige canonical koordinat. History Go-recorden beholdes foreløpig som historisk navne- og landskapsreferanse, men det gamle punktet er ikke godkjent som en egen elvelokasjon.",
     "underbadge_ids": [
       "bekk",
       "vann_og_vassdrag"
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "snl:alna:loelva-alias",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "display_marker",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "historical_alias_no_separate_geometry",
+    "coordSourceId": "snl:alna:loelva-alias",
+    "coordSourceUrl": "https://snl.no/Alna_(elv_i_Oslo)",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Store norske leksikon og OSM-data identifiserer Loelva som alternativt/historisk navn på Alna, ikke som et separat vassdrag. Eksisterende punkt kan derfor ikke godkjennes som egen fysisk Loelva-koordinat. Recorden bør senere modelleres som historisk alias/relation til `alnaelva` fremfor som et selvstendig fysisk sted."
   },
   {
     "id": "trosterud_friomrade",
@@ -283,7 +314,19 @@
     ],
     "visual": {
       "designCode": "park_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslo-kommune:trosterud-haugerud-planprogram",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "display_marker",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "named_area_identity_unresolved",
+    "coordSourceId": "oslo-kommune:trosterud-haugerud-planprogram",
+    "coordSourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/planprogram-for-trosterud-og-haugerud",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt."
   },
   {
     "id": "furuset_haugerud_skogbelte",
@@ -335,7 +378,19 @@
     ],
     "visual": {
       "designCode": "park_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslo-kommune:alna-grontdrag-unresolved",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "display_marker",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "named_area_identity_unresolved",
+    "coordSourceId": "oslo-kommune:alna-grontdrag-unresolved",
+    "coordSourceUrl": "https://www.oslo.kommune.no/fag-og-utviklingsprosjekter/omradesatsingenes-prosjekter/omradeloft-trosterud-og-haugerud-2017-2026/",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Furuset–Haugerud skogbelte». Navnet beskriver et bredt grønt overgangsområde, og ett legacy-punkt kan ikke verifisere utstrekningen. Recorden må kobles til dokumentert grøntdrag-/skoggeometri eller erstattes med et konkret navngitt naturområde før koordinaten kan godkjennes."
   },
   {
     "id": "hellerud_gard",
@@ -357,7 +412,7 @@
       "also": []
     },
     "year": null,
-    "desc": "Bevart gårdsanlegg som viser landskapet før byutviklingen.",
+    "desc": "Historisk gårdsnavn knyttet til Hellerud-området. Den eksisterende recorden har en uløst identitetskonflikt og er ikke sikkert koblet til ett bestemt bevart gårdsanlegg.",
     "tags": [
       "gård",
       "jordbruk"
@@ -382,16 +437,28 @@
       "source_note": "",
       "updated": "2026-01-09"
     },
-    "popupDesc": "Hellerud gård er et bevart gårdsmiljø som synliggjør eldre jordbrukslandskap i dagens bydel. Tun, bygningsstruktur og åpne arealer gir spor av en førurban arealbruk som fortsatt kan leses i terrenget. Området brukes samtidig som lokalt kultur- og aktivitetssted for nærmiljøet. Punktet knytter historiske landskapsspor til nåtidig bybruk."
+    "popupDesc": "Hellerud-navnet er knyttet til flere historiske gårdsbruk. Oslo byleksikon beskriver Øvre og Nedre Hellerud i området, mens den bevarte gården på Haugerudtunet 1 er Østre Haugerud gård – et annet gårdsnavn. Den eksisterende History Go-recorden hevdet et bevart Hellerud-gårdsanlegg, men kontrollen kan ikke dokumentere hvilket fysisk anlegg dette skulle være. Punktet beholdes derfor bare som legacy inntil riktig gård og fysisk identitet er avklart.",
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:hellerud-nordre:identity-conflict",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "display_marker",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "farm_identity_unresolved",
+    "coordSourceId": "oslobyleksikon:hellerud-nordre:identity-conflict",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Hellerud%2C_Nordre",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Recorden har en dokumentert identitetskonflikt. Nordre Hellerud omfatter historisk Øvre og Nedre Hellerud, mens det entydige Geonorge-punktet Haugerudtunet 1 gjelder den separate Østre Haugerud gård og kan ikke brukes som erstatning. Eksisterende lat/lon beholdes kun som legacy til riktig Hellerud-gård og fysisk hovedanker er identifisert."
   },
   {
     "id": "alnabru_jernbane_og_logistikk",
     "visual": {
       "designCode": "station_miniature"
     },
-    "name": "Alnabru – jernbane og logistikk",
-    "lat": 59.936,
-    "lon": 10.814,
+    "name": "Alnabru godsterminal",
+    "lat": 59.9336032,
+    "lon": 10.8382823,
     "r": 350,
     "category": "by",
     "badge_refs": {
@@ -404,8 +471,8 @@
       "also": []
     },
     "year": null,
-    "desc": "Nasjonalt knutepunkt for godstransport og logistikk.",
-    "popupDesc": "Alnabru er et sentralt område for godsterminaler, jernbanespor og logistikk som holder vareflyten i gang inn og ut av Oslo. De store arealene og forbindelsene her gjør at transport kan samordnes før varer fordeles videre i byen og regionen. For mange er dette et lite synlig sted i hverdagen, men funksjonen er avgjørende for forsyning av butikker, byggeplasser og tjenester. Stedet er interessant fordi det viser infrastrukturen bak den daglige byrytmen.",
+    "desc": "Norges største godsterminal for jernbane og et nasjonalt knutepunkt for intermodal godstransport i Groruddalen.",
+    "popupDesc": "Alnabru godsterminal er navet i norsk godstransport på jernbane. Bane NOR beskriver terminalen som Nordens største jernbanegodsterminal, med laste- og lossespor, hensettingsspor, gjennomkjøringsspor og store arealer for containere og semihengere. Markøren er flyttet fra et generelt punkt vest for terminalen til representasjonspunktet for den konkrete, navngitte OSM-terminalpolygonen.",
     "tags": [
       "infrastruktur",
       "logistikk"
@@ -429,6 +496,18 @@
       "priority": 75,
       "source_note": "",
       "updated": "2026-01-09"
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:84268939",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "rail_terminal_area",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 84268939 – Alnabruterminalen",
+    "coordSourceId": "osm-way:84268939",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/84268939",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Eksakt navngitt OSM-polygon for Alnabruterminalen, way 84268939, koblet til Wikidata Q76079 og kryssjekket mot Bane NORs offisielle beskrivelse av Alnabru godsterminal. Polygonens representasjonspunkt brukes som area_anchor for terminalområdet; dette er ikke et tilfeldig adresse- eller nabolagspunkt."
   }
 ]

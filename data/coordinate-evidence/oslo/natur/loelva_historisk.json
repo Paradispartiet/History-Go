@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "loelva_historisk",
+  "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.928,
+    "lon": 10.82,
+    "r": 250,
+    "coordStatus": "needs_source",
+    "coordSource": "historical_alias_no_separate_geometry",
+    "coordType": "legacy_unverified",
+    "coordNote": "Store norske leksikon og OSM-data identifiserer Loelva som alternativt/historisk navn på Alna, ikke som et separat vassdrag. Eksisterende punkt kan derfor ikke godkjennes som egen fysisk Loelva-koordinat. Recorden bør senere modelleres som historisk alias/relation til `alnaelva` fremfor som et selvstendig fysisk sted."
+  },
+  "identity": {
+    "currentName": "Loelva – historisk navn på Alna",
+    "resolvedIdentity": "Loelva som historisk/alternativt navn på Alna",
+    "identityStatus": "conflict",
+    "identityProblem": "Recorden representerer ikke et separat fysisk vassdrag og bør senere modelleres som alias/relation til alnaelva.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "alias-/relationsmodell til alnaelva i stedet for separat koordinat"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Alna",
+      "sourceUrl": "https://snl.no/Alna_(elv_i_Oslo)",
+      "sourceObjectId": "snl:alna:loelva-alias",
+      "sourceQuality": "documented_historical_name",
+      "finding": "Loelva er dokumentert som tidligere/alternativt navn på Alna.",
+      "canVerifyCoordinate": false,
+      "reason": "Et historisk alias gir ikke grunnlag for et separat fysisk canonical punkt."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:alna:loelva-alias",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Store norske leksikon og OSM-data identifiserer Loelva som alternativt/historisk navn på Alna, ikke som et separat vassdrag. Eksisterende punkt kan derfor ikke godkjennes som egen fysisk Loelva-koordinat. Recorden bør senere modelleres som historisk alias/relation til `alnaelva` fremfor som et selvstendig fysisk sted.",
+    "nextAction": "Migrer recorden til historisk alias/relation til alnaelva eller definer en eksplisitt historisk delstrekning med kilde."
+  },
+  "notes": [
+    "Store norske leksikon og OSM-data identifiserer Loelva som alternativt/historisk navn på Alna, ikke som et separat vassdrag. Eksisterende punkt kan derfor ikke godkjennes som egen fysisk Loelva-koordinat. Recorden bør senere modelleres som historisk alias/relation til `alnaelva` fremfor som et selvstendig fysisk sted."
+  ]
+}
