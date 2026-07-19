@@ -3,23 +3,6 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-run_check() {
-  local label="$1"
-  shift
-  local output
-  output="$(mktemp)"
-  echo "== ${label} =="
-  if "$@" >"$output" 2>&1; then
-    echo "ok"
-    rm -f "$output"
-    return 0
-  fi
-  local status=$?
-  cat "$output"
-  rm -f "$output"
-  return "$status"
-}
-
 echo "== People JSON parse and duplicate ID check =="
 node <<'NODE'
 const fs = require('fs');
@@ -106,14 +89,77 @@ console.log(`json ok (${files.length} files)`);
 console.log(`people ids ok (${peopleCount} entries, ${seenPeopleIds.size} unique ids)`);
 NODE
 
-run_check "Build tools" npm run build:tools
-run_check "People invalid place refs" node dist/tools/audit-people-invalid-place-refs.mjs
-run_check "People of places status" node dist/tools/audit-people-of-places-status.mjs
-run_check "People place coverage" node dist/tools/audit-people-place-coverage.mjs
-run_check "Etne people manifest integration" node tests/etne-people-manifest-integration.test.js
+echo "== Build tools =="
+npm run build:tools
 
-for batch in $(seq 9 26); do
-  run_check "Etne People of Places batch ${batch}" node "tests/etne-people-of-places-batch${batch}.test.js"
-done
+echo "== People invalid place refs =="
+node dist/tools/audit-people-invalid-place-refs.mjs
+
+echo "== People of places status =="
+node dist/tools/audit-people-of-places-status.mjs
+
+echo "== People place coverage =="
+node dist/tools/audit-people-place-coverage.mjs
+
+echo "== Etne people manifest integration =="
+node tests/etne-people-manifest-integration.test.js
+
+echo "== Etne People of Places batch 9 =="
+node tests/etne-people-of-places-batch9.test.js
+
+echo "== Etne People of Places batch 10 =="
+node tests/etne-people-of-places-batch10.test.js
+
+echo "== Etne People of Places batch 11 =="
+node tests/etne-people-of-places-batch11.test.js
+
+echo "== Etne People of Places batch 12 =="
+node tests/etne-people-of-places-batch12.test.js
+
+echo "== Etne People of Places batch 13 =="
+node tests/etne-people-of-places-batch13.test.js
+
+echo "== Etne People of Places batch 14 =="
+node tests/etne-people-of-places-batch14.test.js
+
+echo "== Etne People of Places batch 15 =="
+node tests/etne-people-of-places-batch15.test.js
+
+echo "== Etne People of Places batch 16 =="
+node tests/etne-people-of-places-batch16.test.js
+
+echo "== Etne People of Places batch 17 =="
+node tests/etne-people-of-places-batch17.test.js
+
+echo "== Etne People of Places batch 18 =="
+node tests/etne-people-of-places-batch18.test.js
+
+# Batch 19 validation output: reports/etne-people-of-places-batch19/
+echo "== Etne People of Places batch 19 =="
+node tests/etne-people-of-places-batch19.test.js
+
+# Batch 20 validation output: reports/etne-people-of-places-batch20/
+echo "== Etne People of Places batch 20 =="
+node tests/etne-people-of-places-batch20.test.js
+
+# Batch 21 validation output: reports/etne-people-of-places-batch21/
+echo "== Etne People of Places batch 21 =="
+node tests/etne-people-of-places-batch21.test.js
+
+# Batch 22 stored validation output: reports/etne-people-of-places-batch22/
+echo "== Etne People of Places batch 22 =="
+node tests/etne-people-of-places-batch22.test.js
+
+echo "== Etne People of Places batch 23 =="
+node tests/etne-people-of-places-batch23.test.js
+
+echo "== Etne People of Places batch 24 =="
+node tests/etne-people-of-places-batch24.test.js
+
+echo "== Etne People of Places batch 25 =="
+node tests/etne-people-of-places-batch25.test.js
+
+echo "== Etne People of Places batch 26 =="
+node tests/etne-people-of-places-batch26.test.js
 
 echo "== People check complete =="
