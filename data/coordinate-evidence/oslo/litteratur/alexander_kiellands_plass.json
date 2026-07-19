@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alexander_kiellands_plass",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9270478,
+    "lon": 10.7504014,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 3610607 – parkpolygon for Alexander Kiellands plass",
+    "coordType": "park_center",
+    "coordNote": "Kartverket SSR og Geonorge adresse ga ingen direkte treff. Oslo kommune dokumenterer parken mellom Uelands gate, Maridalsveien og Waldemar Thranes gate. OSM way 3610607 er den konkrete parkpolygonen innenfor denne avgrensningen; polygonens representasjonspunkt brukes som area_anchor, ikke en naboadresse eller et beregnet gatepunkt."
+  },
+  "identity": {
+    "currentName": "Alexander Kiellands plass",
+    "resolvedIdentity": "Alexander Kiellands plass, parken mellom Uelands gate, Maridalsveien og Waldemar Thranes gate",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "dokumentert fysisk identitet",
+    "eksakt fysisk objekt eller arealgeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Alexander Kiellands plass",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/alexander-kiellands-plass/",
+      "sourceObjectId": "oslo-kommune:park:alexander-kiellands-plass",
+      "sourceQuality": "official_park_extent_description",
+      "finding": "Oslo kommune dokumenterer parken mellom Uelands gate, Maridalsveien og Waldemar Thranes gate.",
+      "canVerifyCoordinate": false,
+      "reason": "Kommunekilden identifiserer og avgrenser parken, men publiserer ikke et eget maskinlesbart koordinatobjekt i denne passeringen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Alexander Kiellands plass",
+      "sourceUrl": "https://oslobyleksikon.no/side/Alexander_Kiellands_plass",
+      "sourceObjectId": "oslobyleksikon:alexander-kiellands-plass",
+      "sourceQuality": "documented_place_history",
+      "finding": "Kilden dokumenterer navneåret 1914 og at området ble opparbeidet til park i 1918.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes til identitet og historikk, ikke som koordinatgenerator."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 3610607",
+      "sourceUrl": "https://www.openstreetmap.org/way/3610607",
+      "sourceObjectId": "osm-way:3610607",
+      "sourceQuality": "exact_park_polygon",
+      "finding": "Den konkrete leisure=park-polygonen dekker parken innenfor den offisielt dokumenterte gateavgrensningen.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt arealgeometri for det dokumenterte parkarealet; representasjonspunktet brukes som area_anchor."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:park:alexander-kiellands-plass",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:alexander-kiellands-plass",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:3610607",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:3610607",
+      "lat": 59.9270478,
+      "lon": 10.7504014,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9270478,
+      "lon": 10.7504014,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Verified geometry is applied to canonical place data and has been visually checked before merge."
+  },
+  "notes": [
+    "Kartverket SSR og Geonorge adresse ga ingen direkte treff. Oslo kommune dokumenterer parken mellom Uelands gate, Maridalsveien og Waldemar Thranes gate. OSM way 3610607 er den konkrete parkpolygonen innenfor denne avgrensningen; polygonens representasjonspunkt brukes som area_anchor, ikke en naboadresse eller et beregnet gatepunkt."
+  ]
+}

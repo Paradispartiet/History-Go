@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T18:01:22.332Z
+Generert: 2026-07-19T20:06:40.652Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -132,3 +132,5 @@ Generert: 2026-07-19T18:01:22.332Z
 | alf_proysen_statue_nittedal | data/coordinate-evidence/akershus/nittedal/alf_proysen_statue_nittedal.json | needs_research | needs_geometry | OK |
 | proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | needs_research | needs_geometry | OK |
+| oscar_braaten_statuen | data/coordinate-evidence/oslo/litteratur/oscar_braaten_statuen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| alexander_kiellands_plass | data/coordinate-evidence/oslo/litteratur/alexander_kiellands_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
