@@ -16,3 +16,4 @@ Begge faktiske markørflyttinger er rendret i kart-QA før merge.
 Den eksisterende canonical/split-driften repareres tapsfritt: berikelsen fra `nasjonalbiblioteket` og den nyere koordinatverifikasjonen for `deichman_grunerlokka` løftes tilbake inn i canonical aggregate før regenerering.
 
 Final lossless canonical reconciliation triggered after visual QA completed and all competing temporary workflows were removed.
+Reconciliation retriggered against the current `origin/main` before branch synchronization.
