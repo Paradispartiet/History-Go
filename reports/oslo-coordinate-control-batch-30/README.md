@@ -22,3 +22,4 @@ Exact failing-step capture enabled for the clean runner.
 Detached-HEAD pushes now target the clean branch explicitly.
 Runner logs are now reduced so the exact failing clean step is visible through the connector.
 Clean workflow is now executed as individually observable Actions steps.
+Dependency install now retries with cache cleanup while preserving the unchanged lockfile.
