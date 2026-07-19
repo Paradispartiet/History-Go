@@ -173,7 +173,7 @@ jobs:
                   script.append(f"mk('{mid}',{lat},{lon});")
               doc=f'''<!doctype html><html><head><meta charset="utf-8"><style>html,body{{margin:0;width:1600px;height:{height}px;font-family:Arial}}.grid{{display:grid;grid-template-columns:1fr 1fr;width:1600px;height:{height}px}}.p{{position:relative;height:500px}}.m{{width:800px;height:500px}}.l{{position:absolute;z-index:9999;top:12px;left:12px;background:#fff;padding:9px 12px;border:3px solid #111;font-size:19px;font-weight:700}}.s{{display:block;font-size:13px;font-weight:400;margin-top:3px}}.mk{{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #111;box-sizing:border-box}}</style><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script></head><body><div class="grid">{''.join(cells)}</div><script>const I=L.divIcon({{className:'',html:'<div class="mk"></div>',iconSize:[26,26],iconAnchor:[13,13]}});function mk(id,lat,lon){{const m=L.map(id,{{zoomControl:false,attributionControl:false}}).setView([lat,lon],17);L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:19}}).addTo(m);L.marker([lat,lon],{{icon:I}}).addTo(m);}}{''.join(script)}</script></body></html>'''
               (qa/f'{slug}.html').write_text(doc)
-              (qa/f'{slug}.size').write_text(f'1600,{height}')
+              (qa/f'{slug}.size').write_text(f'1600,{height}\n')
           (qa/'README.md').write_text('# Batch 33 visual map QA\n\nOld/new map comparisons for all six records whose lat/lon changed.\n')
           PY
           (cd "$out" && python3 -m http.server 8767 >/tmp/b33-http.log 2>&1 & echo $! >/tmp/b33-http.pid)
