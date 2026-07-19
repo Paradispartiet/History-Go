@@ -1,0 +1,36 @@
+name: Beierbrua restore generated reports
+
+on:
+  push:
+    branches: [agent/fill-beierbrua-rounds-batch1]
+    paths:
+      - '.github/workflows/beierbrua-restore-generated-reports.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-beierbrua-rounds-batch1
+          fetch-depth: 0
+      - name: Restore unrelated generated reports from main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout origin/main -- \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/people-of-places-status.json reports/people-of-places-status.md
+          if ! git diff --cached --quiet; then
+            git commit --no-verify -m 'chore: restore unrelated people status reports'
+            git push origin HEAD:agent/fill-beierbrua-rounds-batch1
+          fi
