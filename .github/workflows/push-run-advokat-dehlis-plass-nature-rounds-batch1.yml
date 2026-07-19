@@ -1,0 +1,66 @@
+name: Run Advokat Dehlis plass production on push
+
+on:
+  push:
+    branches:
+      - agent/fill-advokat-dehlis-plass-nature-rounds-batch1
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-advokat-dehlis-plass-nature-rounds-batch1
+          fetch-depth: 0
+
+      - name: Extract and run production script
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          src = Path('.github/workflows/fill-advokat-dehlis-plass-nature-rounds-batch1.yml').read_text(encoding='utf-8').splitlines()
+          start = next(i for i, line in enumerate(src) if "python3 <<'PY'" in line) + 1
+          end = next(i for i in range(start, len(src)) if src[i].strip() == 'PY')
+          lines = src[start:end]
+          indent = min(len(line) - len(line.lstrip()) for line in lines if line.strip())
+          Path('/tmp/produce_advokat_dehli.py').write_text('\n'.join(line[indent:] for line in lines) + '\n', encoding='utf-8')
+          PY
+          python3 /tmp/produce_advokat_dehli.py
+
+      - name: Validate final content
+        run: |
+          node tests/advokat-dehlis-plass-nature-rounds-batch1.test.js
+          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
+          node tests/place-card-rounds-runtime-audit.test.js
+          node tests/place-card-leksikon-content-audit.test.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for p in [
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenparken_elvenaer.json',
+            'data/quiz/natur/bjoelsenparken_elvenaer_sets.json',
+            'data/stories/stories_bjoelsenparken_elvenaer.json',
+            'data/stories/stories_manifest_natur_batch_01.json',
+            'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+            'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json'
+          ]:
+              json.loads(Path(p).read_text(encoding='utf-8'))
+          print('JSON OK')
+          PY
+          git diff --check
+
+      - name: Commit production files and remove temporary workflows
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f \
+            .github/workflows/fill-advokat-dehlis-plass-nature-rounds-batch1.yml \
+            .github/workflows/kick-advokat-dehlis-plass-nature-rounds-batch1.yml \
+            .github/workflows/push-run-advokat-dehlis-plass-nature-rounds-batch1.yml
+          git add -A
+          git commit -m "Fill Advokat Dehlis plass nature rounds batch 1"
+          git push origin HEAD:agent/fill-advokat-dehlis-plass-nature-rounds-batch1
