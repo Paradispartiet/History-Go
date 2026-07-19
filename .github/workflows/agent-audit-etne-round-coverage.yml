@@ -1,0 +1,185 @@
+name: Audit Etne round coverage
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.head_ref == 'agent/audit-etne-round-coverage'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 1
+          persist-credentials: true
+          show-progress: false
+      - name: Build Etne round coverage report
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          ROOT = Path('.')
+          PROFILES = {
+              'by': ['people','nature','badges','works','civication','brands','før_nå','fortellinger','leksikon'],
+              'historie': ['people','works','badges','før_nå','civication','brands','nature','fortellinger','leksikon'],
+              'historisk': ['people','works','badges','før_nå','civication','brands','nature','fortellinger','leksikon'],
+              'natur': ['tasks','nature','badges','training','civication','brands','før_nå','fortellinger','leksikon'],
+              'sport': ['people','training','badges','works','civication','brands','før_nå','fortellinger','leksikon'],
+              'lekeplass': ['play','nature','badges','tasks','civication','brands','før_nå','fortellinger','leksikon'],
+              'trening': ['people','nature','badges','training','civication','brands','før_nå','tasks','leksikon'],
+              'politikk': ['people','works','badges','før_nå','civication','brands','nature','fortellinger','leksikon'],
+              'kunst': ['people','works','badges','nature','civication','brands','før_nå','fortellinger','leksikon'],
+              'litteratur': ['people','works','badges','nature','civication','brands','før_nå','fortellinger','leksikon'],
+              'musikk': ['people','works','badges','nature','civication','brands','før_nå','fortellinger','leksikon'],
+              'vitenskap': ['people','nature','badges','works','civication','brands','før_nå','fortellinger','leksikon'],
+              'media': ['people','nature','badges','works','civication','brands','før_nå','fortellinger','leksikon'],
+              'popkultur': ['people','nature','badges','works','civication','brands','før_nå','fortellinger','leksikon'],
+              'psykologi': ['people','nature','badges','works','civication','brands','før_nå','fortellinger','leksikon'],
+              'subkultur': ['people','works','badges','play','civication','brands','før_nå','fortellinger','leksikon'],
+              'naeringsliv': ['people','works','badges','før_nå','civication','brands','nature','fortellinger','leksikon'],
+              'transport': ['people','works','badges','før_nå','civication','brands','nature','fortellinger','leksikon'],
+          }
+
+          def load_json(path):
+              try:
+                  return json.loads(path.read_text(encoding='utf-8'))
+              except Exception:
+                  return None
+
+          relations = load_json(ROOT/'data/relations.json') or []
+          related_places = {row.get('place') for row in relations if row.get('place') and row.get('person')}
+
+          story_places = set()
+          for path in (ROOT/'data/stories').rglob('*.json'):
+              data = load_json(path)
+              rows = data if isinstance(data, list) else []
+              story_places.update(row.get('place_id') for row in rows if isinstance(row, dict) and row.get('place_id'))
+
+          article_places = set()
+          for path in (ROOT/'data/leksikon').rglob('*.json'):
+              data = load_json(path)
+              rows = data if isinstance(data, list) else []
+              article_places.update(row.get('place_id') for row in rows if isinstance(row, dict) and row.get('place_id'))
+
+          manifest = load_json(ROOT/'data/places/manifest.json') or {}
+          paths = []
+          for rel in manifest.get('files', []):
+              if isinstance(rel, str) and '/vestland/etne/' in rel:
+                  paths.append(ROOT/'data'/rel)
+
+          def nonempty(value):
+              if isinstance(value, (list, dict, str)):
+                  return bool(value)
+              return value is not None
+
+          def has_round(place, round_id):
+              pid = place.get('id')
+              checks = {
+                  'people': pid in related_places,
+                  'nature': nonempty(place.get('nature_profile')),
+                  'badges': nonempty(place.get('underbadge_ids')),
+                  'works': nonempty(place.get('works')),
+                  'civication': nonempty(place.get('civication_store')),
+                  'brands': nonempty(place.get('brands')),
+                  'før_nå': nonempty(place.get('for_na')),
+                  'fortellinger': pid in story_places,
+                  'leksikon': pid in article_places,
+                  'training': nonempty(place.get('training_profile')),
+                  'tasks': nonempty(place.get('tasks_profile')) or nonempty(place.get('tasks')),
+                  'play': nonempty(place.get('play_profile')) or nonempty(place.get('play')),
+              }
+              return checks.get(round_id, False)
+
+          rows = []
+          seen = set()
+          for path in sorted(paths):
+              data = load_json(path)
+              records = data if isinstance(data, list) else [data] if isinstance(data, dict) else []
+              for place in records:
+                  if not isinstance(place, dict) or place.get('disabled') is True:
+                      continue
+                  pid = place.get('id')
+                  if not pid or pid in seen:
+                      continue
+                  seen.add(pid)
+                  category = place.get('category')
+                  profile = PROFILES.get(category)
+                  if not profile:
+                      rows.append((category or 'ukjent', pid, 0, ['UKJENT_PROFIL'], path.as_posix()))
+                      continue
+                  missing = [rid for rid in profile if not has_round(place, rid)]
+                  rows.append((category, pid, len(profile)-len(missing), missing, path.as_posix()))
+
+          rows.sort(key=lambda row: (len(row[3]) == 0, row[0], row[1]))
+          complete = sum(1 for row in rows if not row[3])
+          incomplete = len(rows) - complete
+          by_category = {}
+          for category, pid, filled, missing, source in rows:
+              entry = by_category.setdefault(category, {'total': 0, 'complete': 0, 'incomplete': 0})
+              entry['total'] += 1
+              if missing:
+                  entry['incomplete'] += 1
+              else:
+                  entry['complete'] += 1
+
+          lines = [
+              '# Etne round coverage audit',
+              '',
+              f'- Aktive Etne-steder kontrollert: **{len(rows)}**',
+              f'- Komplette kategori-profiler: **{complete}**',
+              f'- Ufullstendige/ukjente profiler: **{incomplete}**',
+              '',
+              '## Kategorier',
+              '',
+              '| Kategori | Totalt | Komplette | Ufullstendige |',
+              '|---|---:|---:|---:|',
+          ]
+          for category in sorted(by_category):
+              item = by_category[category]
+              lines.append(f"| `{category}` | {item['total']} | {item['complete']} | {item['incomplete']} |")
+
+          lines += [
+              '',
+              '## Ufullstendige steder',
+              '',
+              '| Kategori | Place ID | Fylt | Mangler | Kilde |',
+              '|---|---|---:|---|---|',
+          ]
+          for category, pid, filled, missing, source in rows:
+              if missing:
+                  lines.append(f"| `{category}` | `{pid}` | {filled}/9 | {', '.join(f'`{item}`' for item in missing)} | `{source}` |")
+          if incomplete == 0:
+              lines.append('| – | – | 9/9 | Ingen | – |')
+
+          lines += [
+              '',
+              '## Komplette steder',
+              '',
+          ]
+          for category in sorted(by_category):
+              ids = [pid for cat, pid, filled, missing, source in rows if cat == category and not missing]
+              if ids:
+                  lines.append(f"- **{category}:** " + ', '.join(f'`{pid}`' for pid in ids))
+
+          out = ROOT/'reports/etne-round-coverage-audit.md'
+          out.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+          print('\n'.join(lines[:80]))
+          PY
+      - name: Remove temporary workflow
+        run: rm .github/workflows/agent-audit-etne-round-coverage.yml
+      - name: Commit report
+        shell: bash
+        run: |
+          git config user.name "History Go data agent"
+          git config user.email "history-go-agent@users.noreply.github.com"
+          git add -A
+          git commit -m "Audit Etne round coverage"
+          git push origin HEAD:${{ github.head_ref }}
