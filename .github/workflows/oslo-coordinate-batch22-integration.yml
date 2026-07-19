@@ -30,9 +30,21 @@ jobs:
           npm run places:coords:find:address -- --address "Dronningens gate 15 Oslo" | tee reports/oslo-coordinate-control-batch-22/oslo_posthus-geonorge.json
           npm run places:coords:find:address -- --address "Kongens gate 21 Oslo" | tee reports/oslo-coordinate-control-batch-22/telegrafbygningen-geonorge.json
       - name: Apply batch
+        id: apply
+        continue-on-error: true
         run: |
           set -o pipefail
           node scripts/tmp-complete-oslo-coordinate-batch22.mjs 2>&1 | tee /tmp/apply-batch22.log
+      - name: Upload apply failure log
+        if: steps.apply.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch22-apply-log
+          path: /tmp/apply-batch22.log
+          if-no-files-found: error
+      - name: Stop on apply failure
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
       - name: Rebuild place index
         run: npm run places:index:build
       - name: Check place index
