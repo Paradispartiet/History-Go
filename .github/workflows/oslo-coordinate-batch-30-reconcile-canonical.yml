@@ -43,6 +43,7 @@ jobs:
           import yaml
           from pathlib import Path
 
+          target_branch = 'agent/oslo-coordinate-control-batch-30-clean'
           workflow_path = Path('.github/workflows/oslo-coordinate-batch-30-clean.yml')
           workflow = yaml.safe_load(workflow_path.read_text())
           steps = workflow['jobs']['complete']['steps']
@@ -51,6 +52,7 @@ jobs:
               command = step.get('run')
               if not command:
                   continue
+              command = command.replace('git push origin HEAD', f'git push origin HEAD:{target_branch}')
               name = step.get('name', 'unnamed run step')
               print(f'===== EXECUTING: {name} =====', flush=True)
               result = subprocess.run(
@@ -74,7 +76,7 @@ jobs:
                   subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'], check=True)
                   subprocess.run(['git','add',str(report)], check=True)
                   subprocess.run(['git','commit','-m',f'Capture clean batch 30 failure: {name}'], check=True)
-                  subprocess.run(['git','push','origin','HEAD'], check=True)
+                  subprocess.run(['git','push','origin',f'HEAD:{target_branch}'], check=True)
                   sys.exit(result.returncode)
               print(tail, flush=True)
           PY
