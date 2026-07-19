@@ -1,0 +1,123 @@
+name: Refresh Oslo coordinate batch 31 on current main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-31-final
+          fetch-depth: 0
+          show-progress: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Preserve completed batch 31 payload
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/b31/data/coordinate-evidence/oslo/natur /tmp/b31/reports
+          cp data/places/natur/oslo/places_oslo_alna.json /tmp/b31/places_oslo_alna.json
+          cp data/coordinate-evidence/manifest.json /tmp/b31/evidence-manifest.json
+          cp data/coordinate-evidence/oslo/natur/{alnaelva,alnaelvstien,loelva_historisk,trosterud_friomrade,furuset_haugerud_skogbelte,hellerud_gard,alnabru_jernbane_og_logistikk}.json /tmp/b31/data/coordinate-evidence/oslo/natur/
+          cp docs/coordinates/coordinate-control-protocol.md /tmp/b31/coordinate-control-protocol.md
+          cp -a reports/oslo-coordinate-control-batch-31 /tmp/b31/reports/
+
+      - name: Reset working branch to current main and restore batch payload
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/b31/places_oslo_alna.json data/places/natur/oslo/places_oslo_alna.json
+          cp /tmp/b31/evidence-manifest.json data/coordinate-evidence/manifest.json
+          mkdir -p data/coordinate-evidence/oslo/natur
+          cp /tmp/b31/data/coordinate-evidence/oslo/natur/*.json data/coordinate-evidence/oslo/natur/
+          cp /tmp/b31/coordinate-control-protocol.md docs/coordinates/coordinate-control-protocol.md
+          rm -rf reports/oslo-coordinate-control-batch-31
+          cp -a /tmp/b31/reports/oslo-coordinate-control-batch-31 reports/
+
+      - name: Regenerate split data and build tools
+        run: |
+          set -euo pipefail
+          node scripts/split-natur-oslo-alna-places.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('data/places/natur/oslo/places_oslo_alna_split_report.txt')
+          p.write_text(p.read_text().rstrip() + '\n')
+          PY
+          rm -rf dist/tools
+          node <<'NODE'
+          const fs=require('node:fs'),path=require('node:path');
+          const {stripTypeScriptTypes}=require('node:module');
+          const src=path.resolve('tools'),out=path.resolve('dist/tools');
+          function walk(d){return fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>{const f=path.join(d,e.name);return e.isDirectory()?walk(f):(/\.(?:mts|ts|cts)$/.test(e.name)?[f]:[])});}
+          for(const f of walk(src)){const rel=path.relative(src,f),ext=path.extname(rel),oe=ext==='.mts'?'.mjs':ext==='.cts'?'.cjs':'.js',dest=path.join(out,rel.slice(0,-ext.length)+oe),s=fs.readFileSync(f,'utf8'),nl=s.indexOf('\n'),hs=s.startsWith('#!'),sh=hs?s.slice(0,nl+1):'',body=hs?s.slice(nl+1):s;fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,sh+stripTypeScriptTypes(body,{mode:'transform'}));}
+          NODE
+          node dist/tools/build_places_index.mjs
+
+      - name: Prove batch scope and current-main preservation
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs=require('node:fs'),cp=require('node:child_process');
+          const file='data/places/natur/oslo/places_oslo_alna.json';
+          const before=JSON.parse(cp.execFileSync('git',['show',`origin/main:${file}`],{encoding:'utf8'}));
+          const after=JSON.parse(fs.readFileSync(file,'utf8'));
+          const beforeById=new Map(before.map(p=>[p.id,p]));
+          const changed=after.filter(p=>JSON.stringify(p)!==JSON.stringify(beforeById.get(p.id))).map(p=>p.id);
+          const expected=new Set(['alnaelva','alnaelvstien','loelva_historisk','trosterud_friomrade','furuset_haugerud_skogbelte','hellerud_gard','alnabru_jernbane_og_logistikk']);
+          const unexpected=changed.filter(id=>!expected.has(id));
+          if(unexpected.length)throw new Error(`Unexpected Alna changes: ${unexpected.join(', ')}`);
+          for(const id of expected)if(!changed.includes(id))throw new Error(`Missing expected batch change: ${id}`);
+          const index=JSON.parse(fs.readFileSync('data/places/places_index.json','utf8'));
+          for(const id of ['honoratus_halling','nils_helverschou']) {
+            // People IDs are not place-index rows; this loop intentionally does not assert them.
+          }
+          console.log('Batch 31 source scope preserved on current main:',changed.join(', '));
+          NODE
+
+      - name: Run all hard validation gates on refreshed state
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-31/validation
+          mkdir -p "$out"
+          node dist/tools/audit-places-split-manifest-sync.mjs | tee "$out/split-manifest-sync.txt"
+          node dist/tools/check_no_lng_coordinates.mjs | tee "$out/places-index-check.txt"
+          node dist/tools/check_places_index_sync.mjs | tee -a "$out/places-index-check.txt"
+          node tests/place-coordinate-index-parity.test.js | tee -a "$out/places-index-check.txt"
+          node tests/coordinate-source-contract-anchor-trust.test.mjs | tee "$out/coordinate-source-contract.txt"
+          node dist/tools/place-coordinate-quality-gate.mjs | tee "$out/coordinate-quality.txt"
+          node dist/tools/place-coordinate-intake-gate.mjs --strict-new | tee "$out/coordinate-intake.txt"
+          node dist/tools/audit-coordinate-evidence.mjs | tee "$out/coordinate-evidence-audit.txt"
+          git diff --check | tee "$out/git-diff-check.txt"
+
+      - name: Assert final batch 31 state
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs');const read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+          const places=read('data/places/natur/oslo/places_oslo_alna.json');const byId=new Map(places.map(p=>[p.id,p]));
+          const a=byId.get('alnabru_jernbane_og_logistikk');
+          if(a?.name!=='Alnabru godsterminal'||a?.lat!==59.9336032||a?.lon!==10.8382823||a?.sourceObjectId!=='osm-way:84268939'||a?.coordStatus!=='verified_geometry'||a?.locatorType!=='linear_area')throw new Error('Alnabru final state mismatch');
+          for(const id of ['alnaelva','alnaelvstien','loelva_historisk','trosterud_friomrade','furuset_haugerud_skogbelte','hellerud_gard'])if(byId.get(id)?.coordStatus!=='needs_source')throw new Error(`${id} final state mismatch`);
+          const protocol=fs.readFileSync('docs/coordinates/coordinate-control-protocol.md','utf8');
+          if(!protocol.includes('151 verifiserte eller kildekontrollerte canonical steder')||!protocol.includes('| 31 | `alnabru_jernbane_og_logistikk`'))throw new Error('Batch 31 protocol mismatch');
+          NODE
+
+      - name: Commit refreshed clean branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs reports
+          git commit -m "Complete Oslo coordinate control batch 31"
+          git push --force-with-lease origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-31-final
