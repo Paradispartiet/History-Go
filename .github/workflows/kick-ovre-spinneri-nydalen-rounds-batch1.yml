@@ -1,0 +1,56 @@
+name: Kick Upper Spinneri Nydalen rounds batch 1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/kick-ovre-spinneri-nydalen-rounds-batch1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'agent/fill-ovre-spinneri-nydalen-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-ovre-spinneri-nydalen-rounds-batch1
+          fetch-depth: 0
+
+      - name: Execute production payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          workflow = Path('.github/workflows/fill-ovre-spinneri-nydalen-rounds-batch1.yml').read_text(encoding='utf-8')
+          start_marker = "          python3 <<'PY'\n"
+          end_marker = "\n          PY\n\n      - name: Validate targeted content"
+          start = workflow.index(start_marker) + len(start_marker)
+          end = workflow.index(end_marker, start)
+          payload = workflow[start:end]
+          payload = '\n'.join(line[10:] if line.startswith('          ') else line for line in payload.splitlines()) + '\n'
+          subprocess.run(['python3', '-c', payload], check=True)
+          PY
+
+          node tests/ovre-spinneri-nydalen-batch1-round-content.test.js
+          node tests/nydalen-industristed-batch1-round-content.test.js
+          node -e "for (const f of ['data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json','data/people/natur/oslo/people_natur_oslo.json','data/stories/stories_nydalsdammen.json','data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json','data/quiz/historie/seilduksfabrikken_nydalen_sets.json']) JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('JSON parse OK')"
+          git diff --check
+
+      - name: Commit content and remove temporary workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/fill-ovre-spinneri-nydalen-rounds-batch1.yml
+          rm .github/workflows/kick-ovre-spinneri-nydalen-rounds-batch1.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fill Upper Spinneri Nydalen history rounds batch 1"
+          git push origin HEAD:agent/fill-ovre-spinneri-nydalen-rounds-batch1
