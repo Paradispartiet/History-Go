@@ -1,0 +1,65 @@
+name: Trace House of Blues inherited tests
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  trace:
+    if: github.head_ref == 'agent/fill-house-of-blues-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 1
+          persist-credentials: true
+          show-progress: false
+      - name: Generate House of Blues content
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          def load(path): return json.loads(Path(path).read_text(encoding='utf-8'))
+          def save(path, value): Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          payload = load('.github/agent-payloads/house-of-blues-batch1.json')
+          place_path = 'data/places/kunst/vestland/etne/house_of_blues_skanevik.json'
+          rows = load(place_path); rows[0].update(payload['place_update']); save(place_path, rows)
+          relations = load('data/relations.json'); ids = {row['id'] for row in payload['relations']}; save('data/relations.json', [row for row in relations if row.get('id') not in ids] + payload['relations'])
+          stories = [row for row in load('data/stories/stories_etnesjoen_kunst_rounds_batch1.json') if row.get('id') != payload['story']['id']]; save('data/stories/stories_etnesjoen_kunst_rounds_batch1.json', stories + [payload['story']])
+          articles = [row for row in load('data/leksikon/places/vestland/etne/kunst/leksikon_etnesjoen_kunst_rounds_batch1.json') if row.get('place_id') != payload['article']['place_id']]; save('data/leksikon/places/vestland/etne/kunst/leksikon_etnesjoen_kunst_rounds_batch1.json', articles + [payload['article']])
+          PY
+      - name: Record inherited test results
+        shell: bash
+        run: |
+          set +e
+          report=reports/house-of-blues-inherited-test-diagnostic.txt
+          : > "$report"
+          while IFS= read -r testfile; do
+            echo "=== RUN $testfile ===" >> "$report"
+            node "$testfile" >> "$report" 2>&1
+            status=$?
+            if [ $status -ne 0 ]; then
+              echo "=== FAILED $testfile ($status) ===" >> "$report"
+            else
+              echo "=== PASS $testfile ===" >> "$report"
+            fi
+          done < <(find tests -maxdepth 1 -type f -name '*round-content.test.js' \
+            | grep -E '/(etne|etnesjoen|skanevik|steinsvollen|engebanen|skakkeringen|osnes|sjokanten|fikse|house-of-blues)[^/]*round-content\.test\.js$' \
+            | grep -v 'house-of-blues-batch1-round-content.test.js' \
+            | sort)
+          cat "$report"
+          exit 0
+      - name: Commit diagnostic
+        shell: bash
+        run: |
+          git config user.name "History Go data agent"
+          git config user.email "history-go-agent@users.noreply.github.com"
+          git add reports/house-of-blues-inherited-test-diagnostic.txt
+          git commit -m "Record House of Blues inherited test diagnostic"
+          git push origin HEAD:${{ github.head_ref }}
