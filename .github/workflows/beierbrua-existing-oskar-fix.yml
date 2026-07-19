@@ -1,0 +1,55 @@
+name: Beierbrua existing Oskar fix
+
+on:
+  push:
+    branches: [agent/fill-beierbrua-rounds-batch1]
+    paths:
+      - '.github/workflows/beierbrua-existing-oskar-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-beierbrua-rounds-batch1
+          fetch-depth: 0
+      - name: Reuse existing canonical Oskar Braaten
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          helper = Path('tools/finalize-beierbrua-rounds.mjs')
+          text = helper.read_text()
+          text = text.replace("const peopleManifestPath = 'data/people/manifest.json';\n", '')
+          block = """const peopleManifest = read(peopleManifestPath);\nappendUnique(peopleManifest.files, 'people/litteratur/oslo/akerselva/oskar_braaten.json');\nwrite(peopleManifestPath, peopleManifest);\n\n"""
+          if block not in text:
+              raise SystemExit('Expected people-manifest block not found')
+          helper.write_text(text.replace(block, ''))
+
+          test = Path('tests/beierbrua-rounds-batch1.test.js')
+          text = test.read_text()
+          old = """const peopleManifest = readJson('data/people/manifest.json');\nconst oskarPath = 'people/litteratur/oslo/akerselva/oskar_braaten.json';\nassert(peopleManifest.files.includes(oskarPath), 'Oskar Braaten-filen skal være manifestlastet');\nconst oskarRows = readJson(`data/people/${oskarPath}`);\nassert.strictEqual(oskarRows.length, 1);\nassert.strictEqual(oskarRows[0].id, 'oskar_braaten');\nassert.strictEqual(oskarRows[0].placeId, 'oscar_braaten_statuen', 'Personens primære fysiske anker skal være den eksisterende bysten');\nassert(!oskarRows[0].places.includes('beierbrua'), 'Beierbrua skal ikke påstås som fysisk personsted via people.places');\n"""
+          new = """const oskarRows = readJson('data/people/litteratur/oslo/people_litteratur_oslo.json');\nconst oskar = oskarRows.find((row) => row.id === 'oskar_braaten');\nassert(oskar, 'Eksisterende canonical Oskar Braaten-person mangler');\nassert.strictEqual(oskar.placeId, 'oscar_braaten_statuen', 'Personens primære fysiske anker skal være den eksisterende bysten');\nassert(oskar.places.includes('oscar_braaten_statuen'), 'Canonical Oskar Braaten skal beholde bysten i places');\nassert(!oskar.places.includes('beierbrua'), 'Beierbrua skal ikke påstås som fysisk personsted via people.places');\n"""
+          if old not in text:
+              raise SystemExit('Expected Oskar test block not found')
+          test.write_text(text.replace(old, new))
+
+          report = Path('reports/beierbrua-rounds-batch1.md')
+          text = report.read_text()
+          text = text.replace('oppretter Oskar Braaten som canonical person', 'gjenbruker eksisterende canonical Oskar Braaten-person')
+          text = text.replace('opprettes som canonical person', 'gjenbrukes som eksisterende canonical person')
+          report.write_text(text)
+          PY
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/finalize-beierbrua-rounds.mjs tests/beierbrua-rounds-batch1.test.js reports/beierbrua-rounds-batch1.md
+          git commit -m 'fix: reuse existing canonical Oskar Braaten'
+          git push origin HEAD:agent/fill-beierbrua-rounds-batch1
