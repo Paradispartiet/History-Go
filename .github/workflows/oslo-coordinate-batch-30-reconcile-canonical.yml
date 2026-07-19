@@ -50,7 +50,15 @@ jobs:
           run_steps = [step for step in workflow['jobs']['complete']['steps'] if step.get('run')]
           step = run_steps[index]
           name = step.get('name', f'run step {index}')
-          command = step['run'].replace('git push origin HEAD', f'git push origin HEAD:{target_ref}')
+          if index == 0:
+              command = '''set -euo pipefail
+          npm ci --no-audit --no-fund --prefer-offline || {
+            npm cache clean --force
+            npm ci --no-audit --no-fund
+          }
+          '''
+          else:
+              command = step['run'].replace('git push origin HEAD', f'git push origin HEAD:{target_ref}')
           print(f'===== EXECUTING {index}: {name} =====', flush=True)
           result = subprocess.run(command, shell=True, executable='/bin/bash')
           sys.exit(result.returncode)
