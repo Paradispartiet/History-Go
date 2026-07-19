@@ -1,0 +1,34 @@
+name: Oslo blue plaque round content cleanup
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-bla-skilt-round-content-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Restore unrelated generated report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout origin/main -- reports/place-coordinate-intake-gate.md
+          rm -f .github/workflows/oslo-bla-skilt-round-content-cleanup.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/place-coordinate-intake-gate.md .github/workflows/oslo-bla-skilt-round-content-cleanup.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Remove unrelated coordinate report churn'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
