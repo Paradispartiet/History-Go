@@ -1,0 +1,97 @@
+name: Oslo coordinate batch 31 fast diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose-fast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run normative address finder
+        run: |
+          set +e
+          out=reports/oslo-coordinate-control-batch-31/fast
+          mkdir -p "$out"
+          for spec in \
+            'haugerudtunet_1|Haugerudtunet 1 Oslo' \
+            'alfaset_3|Alfaset 3 Oslo' \
+            'industrivei_27|Industrivei 27 Oslo'
+          do
+            key=${spec%%|*}; q=${spec#*|}
+            node --experimental-strip-types tools/address-first-coordinate-finder.mts --address "$q" > "$out/$key.json"
+            echo $? > "$out/$key.status"
+          done
+          exit 0
+
+      - name: Look up exact OSM objects and concise name searches
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-31/fast
+          ua='History-Go-coordinate-audit/1.0 (Paradispartiet/History-Go)'
+
+          curl --fail --silent --show-error --get -H "User-Agent: $ua" \
+            --data-urlencode 'format=jsonv2' \
+            --data-urlencode 'osm_ids=W84268939,W911465555' \
+            --data-urlencode 'extratags=1' \
+            --data-urlencode 'namedetails=1' \
+            'https://nominatim.openstreetmap.org/lookup' > "$out/exact_osm_lookup.json"
+
+          for spec in \
+            'alna|Alna Oslo Norway' \
+            'alnaelvstien|Alnaelvstien Oslo Norway' \
+            'alnastien|Alnastien Oslo Norway' \
+            'trosterud_friomrade|Trosterud friområde Oslo Norway' \
+            'trosterudparken|Trosterudparken Oslo Norway' \
+            'haugerudparken|Haugerudparken Oslo Norway' \
+            'furuset_haugerud_skogbelte|Furuset Haugerud skogbelte Oslo Norway'
+          do
+            key=${spec%%|*}; q=${spec#*|}
+            curl --fail --silent --show-error --get -H "User-Agent: $ua" \
+              --data-urlencode 'format=jsonv2' \
+              --data-urlencode 'limit=5' \
+              --data-urlencode 'extratags=1' \
+              --data-urlencode 'namedetails=1' \
+              --data-urlencode "q=$q" \
+              'https://nominatim.openstreetmap.org/search' > "$out/$key.json" || echo '[]' > "$out/$key.json"
+          done
+
+      - name: Build result artifact
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs');
+          const dir='reports/oslo-coordinate-control-batch-31/fast';
+          const read=(n)=>JSON.parse(fs.readFileSync(`${dir}/${n}`,'utf8'));
+          const result={
+            addresses:{
+              haugerudtunet_1:read('haugerudtunet_1.json'),
+              alfaset_3:read('alfaset_3.json'),
+              industrivei_27:read('industrivei_27.json'),
+            },
+            exactOsm:read('exact_osm_lookup.json'),
+            searches:{
+              alna:read('alna.json'),
+              alnaelvstien:read('alnaelvstien.json'),
+              alnastien:read('alnastien.json'),
+              trosterud_friomrade:read('trosterud_friomrade.json'),
+              trosterudparken:read('trosterudparken.json'),
+              haugerudparken:read('haugerudparken.json'),
+              furuset_haugerud_skogbelte:read('furuset_haugerud_skogbelte.json'),
+            }
+          };
+          fs.writeFileSync(`${dir}/result.json`,JSON.stringify(result,null,2)+'\n');
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-31-fast-diagnostic
+          path: reports/oslo-coordinate-control-batch-31/fast/result.json
+          if-no-files-found: error
