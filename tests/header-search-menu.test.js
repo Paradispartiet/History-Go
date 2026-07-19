@@ -146,7 +146,16 @@ function testSearchWidthRules() {
   assert.match(search, /body\.hg-app\.hg-phone \.header-menu-search #globalSearch\s*\{[^}]*max-width:\s*none/s);
 }
 
+function testMenuLabelsDescribeTheirRealDestinations() {
+  const index = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
+
+  assert.match(index, /class="header-menu-action[^\"]*civication-nav-link"[\s\S]*aria-label="Civication"[\s\S]*<span class="header-menu-action-label">Civication<\/span>/);
+  assert.match(index, /<span class="header-menu-action-label">Lås opp testmodus<\/span>[\s\S]*<input id="openToggle"/);
+  assert.doesNotMatch(index, /<span class="header-menu-action-label">Vis åpne steder<\/span>/);
+}
+
 testHeaderMenuApi();
 testPlaceSelectionClosesWholeMenu();
 testSearchWidthRules();
+testMenuLabelsDescribeTheirRealDestinations();
 console.log("header search menu tests passed");
