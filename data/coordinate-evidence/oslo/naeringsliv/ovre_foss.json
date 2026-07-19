@@ -7,10 +7,10 @@
     "lat": 59.931317,
     "lon": 10.756994,
     "r": 180,
-    "coordStatus": "verified_geometry",
-    "coordSource": "manual_research",
-    "coordType": "building_center",
-    "coordNote": "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Riksantikvaren/Kulturminnesøk 164747; identity cross-checked with Oslo byleksikon",
+    "coordType": "historical_site",
+    "coordNote": "Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match; dette er lagret i batch-24-rapporten. Hjula Væverier er identifisert som kulturminne 164747 og dokumentert i Sagveien 23 av Oslo byleksikon. Det eksisterende punktet beholdes som et semantisk historisk områdeanker inne i Hjula-anlegget, ikke som et påstått offisielt adressepunkt eller eksakt bygningssentrum."
   },
   "identity": {
     "currentName": "Øvre Foss – Hjula Veveri",
@@ -29,13 +29,13 @@
   "evidence": [
     {
       "sourceProvider": "manual_research",
-      "sourceName": "Wikidata",
-      "sourceUrl": "https://www.wikidata.org/wiki/Q11975545",
-      "sourceObjectId": "wikidata:Q11975545",
-      "sourceQuality": "named_place_geometry",
-      "finding": "Wikidata Q11975545 identifiserer Hjula Væverier og gir koordinatet 59.931317, 10.756994.",
+      "sourceName": "Riksantikvaren/Kulturminnesøk – kulturminne 164747",
+      "sourceUrl": "https://www.kulturminnesok.no/",
+      "sourceObjectId": "kulturminnesok:164747",
+      "sourceQuality": "official_cultural_heritage_identity",
+      "finding": "Kulturminne-ID 164747 identifiserer Hjula Væverier som det fysiske kulturminneanlegget.",
       "canVerifyCoordinate": true,
-      "reason": "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+      "reason": "Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match; dette er lagret i batch-24-rapporten. Hjula Væverier er identifisert som kulturminne 164747 og dokumentert i Sagveien 23 av Oslo byleksikon. Det eksisterende punktet beholdes som et semantisk historisk områdeanker inne i Hjula-anlegget, ikke som et påstått offisielt adressepunkt eller eksakt bygningssentrum."
     },
     {
       "sourceProvider": "manual_research",
@@ -43,40 +43,42 @@
       "sourceUrl": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
       "sourceObjectId": "oslobyleksikon:hjula-vaeverier",
       "sourceQuality": "documented_physical_identity",
-      "finding": "Oslo byleksikon identifiserer Hjula Væverier som det historiske industrianlegget i Sagveien 23 ved Hjulafossen.",
-      "canVerifyCoordinate": true,
-      "reason": "Kilden avgrenser recordens fysiske hovedidentitet til Hjula-anlegget."
+      "finding": "Oslo byleksikon dokumenterer Hjula Væverier i Sagveien 23 ved Hjulafossen.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og områdekryssjekk."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "address": "Sagveien 23 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "canApplyToPlace": false,
+      "reason": "Geonorge returnerte flere treff uten entydig match; oppslaget er lagret i reports/oslo-coordinate-control-batch-24/lookups/ovre_foss-sagveien-23-geonorge.json."
+    }
+  ],
   "sourceObjectCandidates": [
     {
       "sourceProvider": "manual_research",
-      "sourceObjectId": "wikidata:Q11975545",
+      "sourceObjectId": "kulturminnesok:164747",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [
-    {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "wikidata:Q11975545",
-      "canApplyToPlace": true
-    }
-  ],
+  "geometryCandidates": [],
   "coordinateCandidates": [
     {
       "lat": 59.931317,
       "lon": 10.756994,
-      "coordRole": "display_marker",
+      "coordRole": "area_anchor",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildebelagt fysisk anker er anvendt på canonical place."
+    "nextAction": "Offisiell kulturminneidentitet og eksplisitt semantisk historisk områdeanker er anvendt; tvetydig adresse er dokumentert og ikke gjettet."
   },
   "notes": [
-    "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+    "Geonorge-oppslaget for Sagveien 23 Oslo ble kjørt først og ga flere treff uten entydig match; dette er lagret i batch-24-rapporten. Hjula Væverier er identifisert som kulturminne 164747 og dokumentert i Sagveien 23 av Oslo byleksikon. Det eksisterende punktet beholdes som et semantisk historisk områdeanker inne i Hjula-anlegget, ikke som et påstått offisielt adressepunkt eller eksakt bygningssentrum."
   ]
 }

@@ -40,3 +40,9 @@ Continue with batch 8 and classify every record by physical object before decidi
 - Batch 16: `carl_berner_plass`, `okern`, `skoyen` and `torshov` no longer use Wikidata as the primary verification source.
 
 Remaining research corrections: `henrik_wergeland_statue`, `telegrafbygningen`, `ovre_foss`.
+
+## Pass 3 — batches 21–24 source-object corrections
+
+- `henrik_wergeland_statue`: stable primary identity moved from the Commons host page to Oslo Museum accession `OB.A17403`; coordinate unchanged.
+- `telegrafbygningen`: primary geometry source moved from Wikidata to documented exact OSM relation `13931026`; coordinate unchanged.
+- `ovre_foss`: confirmed that Geonorge address-first was already performed and ambiguous; primary identity moved from Wikidata to Kulturminnesøk `164747`, with the existing point explicitly modeled as a semantic historical area anchor and `verified_historical_source`.
