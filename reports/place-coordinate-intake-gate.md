@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-19T03:08:23.762Z
+Generert: 2026-07-19T03:14:19.386Z
 
 ## Hvorfor denne gaten finnes
 
@@ -16,9 +16,9 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Base method: **COORD_INTAKE_BASE**
 - Aktive manifest-filer lest: **479**
 - Place-objekter validert: **1177**
-- Nye/endrede koordinatobjekter mot base: **5**
+- Nye/endrede koordinatobjekter mot base: **7**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3754**
+- Backlog-funn: **3714**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -65,46 +65,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordNote | coordType=historical_site krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | coordType | Coordinate source contract v1: Verified krever coordType. | downgrade_to_needs_source |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | coordVerifiedAt | coordStatus=verified mangler coordVerifiedAt. | Legg inn konkret coordVerifiedAt, eller senk coordStatus til needs_manual_visual_qa/unverified. |
-| backlog | nei | sagene_skole | Sagene skole | data/places/historie/oslo/places_historie.json | coordType | coordStatus=verified mangler coordType. | Legg inn konkret coordType, eller senk coordStatus til needs_manual_visual_qa/unverified. |
-| backlog | nei | damstredet_telthusbakken | Damstredet og Telthusbakken | data/places/by/oslo/damstredet_telthusbakken.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | damstredet_telthusbakken | Damstredet og Telthusbakken | data/places/by/oslo/damstredet_telthusbakken.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | damstredet_telthusbakken | Damstredet og Telthusbakken | data/places/by/oslo/damstredet_telthusbakken.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | damstredet_telthusbakken | Damstredet og Telthusbakken | data/places/by/oslo/damstredet_telthusbakken.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | damstredet_telthusbakken | Damstredet og Telthusbakken | data/places/by/oslo/damstredet_telthusbakken.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | damstredet_telthusbakken | Damstredet og Telthusbakken | data/places/by/oslo/damstredet_telthusbakken.json | coordNote | coordType=street_midpoint krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | coordType | Coordinate source contract v1: Verified krever coordType. | downgrade_to_needs_source |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | coordVerifiedAt | coordStatus=verified mangler coordVerifiedAt. | Legg inn konkret coordVerifiedAt, eller senk coordStatus til needs_manual_visual_qa/unverified. |
-| backlog | nei | gamle_trikkestallen | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json | coordType | coordStatus=verified mangler coordType. | Legg inn konkret coordType, eller senk coordStatus til needs_manual_visual_qa/unverified. |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | coordType | Coordinate source contract v1: Verified krever coordType. | downgrade_to_needs_source |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | lat/lon | Coordinate source contract v1: Lavpresisjons lat/lon kan ikke være verified. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | coordVerifiedAt | coordStatus=verified mangler coordVerifiedAt. | Legg inn konkret coordVerifiedAt, eller senk coordStatus til needs_manual_visual_qa/unverified. |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | coordType | coordStatus=verified mangler coordType. | Legg inn konkret coordType, eller senk coordStatus til needs_manual_visual_qa/unverified. |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | coordStatus | Lavpresisjonskoordinat (<4 desimaler) kan ikke være verified. | Bruk mer presise koordinater eller sett coordStatus til needs_manual_visual_qa. |
-| backlog | nei | trefoldighetskirken | Trefoldighetskirken | data/places/by/oslo/trefoldighetskirken.json | coordStatus | Lavpresisjonskoordinat må markeres som usikker. | Sett coordStatus=needs_manual_visual_qa eller tilsvarende usikker status. |
-| backlog | nei | nonneseter_kloster | Nonneseter kloster | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | nonneseter_kloster | Nonneseter kloster | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | coordType=historical_site krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
-| backlog | nei | oslo_ladegard | Oslo ladegård | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | galgeberg | Galgeberg | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | oslo_hospital | Oslo hospital | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | oslo_hospital | Oslo hospital | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | coordType=historical_site krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
 | backlog | nei | botsfengselet | Botsfengselet | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +501,46 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | hvalsmoen_leir | Hvalsmoen leir | data/places/historie/buskerud/places_historie_buskerud_batch4.json | coordNote | Stor radius r=420 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | dagali_museum | Dagali Museum | data/places/historie/buskerud/places_historie_buskerud_batch4.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | dagali_museum | Dagali Museum | data/places/historie/buskerud/places_historie_buskerud_batch4.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | dagali_museum | Dagali Museum | data/places/historie/buskerud/places_historie_buskerud_batch4.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | dagali_museum | Dagali Museum | data/places/historie/buskerud/places_historie_buskerud_batch4.json | coordStatus | Lavpresisjonskoordinat må markeres som usikker. | Sett coordStatus=needs_manual_visual_qa eller tilsvarende usikker status. |
+| backlog | nei | dagali_museum | Dagali Museum | data/places/historie/buskerud/places_historie_buskerud_batch4.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | kjerraten_i_asa | Kjerraten i Åsa | data/places/naeringsliv/buskerud/kjerraten_i_asa.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | kjerraten_i_asa | Kjerraten i Åsa | data/places/naeringsliv/buskerud/kjerraten_i_asa.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | kjerraten_i_asa | Kjerraten i Åsa | data/places/naeringsliv/buskerud/kjerraten_i_asa.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | kjerraten_i_asa | Kjerraten i Åsa | data/places/naeringsliv/buskerud/kjerraten_i_asa.json | coordNote | Stor radius r=420 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | hassel_jernverk | Hassel jernverk | data/places/naeringsliv/buskerud/hassel_jernverk.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | hassel_jernverk | Hassel jernverk | data/places/naeringsliv/buskerud/hassel_jernverk.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | hassel_jernverk | Hassel jernverk | data/places/naeringsliv/buskerud/hassel_jernverk.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | hassel_jernverk | Hassel jernverk | data/places/naeringsliv/buskerud/hassel_jernverk.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | bergseminaret_kongsberg | Bergseminaret på Kongsberg | data/places/vitenskap/buskerud/bergseminaret_kongsberg.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | bergseminaret_kongsberg | Bergseminaret på Kongsberg | data/places/vitenskap/buskerud/bergseminaret_kongsberg.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | bergseminaret_kongsberg | Bergseminaret på Kongsberg | data/places/vitenskap/buskerud/bergseminaret_kongsberg.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | gamle_nesbyen | Gamle Nesbyen | data/places/by/buskerud/gamle_nesbyen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | gamle_nesbyen | Gamle Nesbyen | data/places/by/buskerud/gamle_nesbyen.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | gamle_nesbyen | Gamle Nesbyen | data/places/by/buskerud/gamle_nesbyen.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | gamle_nesbyen | Gamle Nesbyen | data/places/by/buskerud/gamle_nesbyen.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | gulskogen_gard | Gulskogen gård | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | gulskogen_gard | Gulskogen gård | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | gulskogen_gard | Gulskogen gård | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | gulskogen_gard | Gulskogen gård | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | aal_bygdamuseum | Ål Bygdamuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | aal_bygdamuseum | Ål Bygdamuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | aal_bygdamuseum | Ål Bygdamuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | aal_bygdamuseum | Ål Bygdamuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | gol_bygdemuseum | Gol Bygdemuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | gol_bygdemuseum | Gol Bygdemuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | gol_bygdemuseum | Gol Bygdemuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | gol_bygdemuseum | Gol Bygdemuseum | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | hemsedal_bygdatun | Hemsedal Bygdatun / Øvre Løkji | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | hemsedal_bygdatun | Hemsedal Bygdatun / Øvre Løkji | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | hemsedal_bygdatun | Hemsedal Bygdatun / Øvre Løkji | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | hemsedal_bygdatun | Hemsedal Bygdatun / Øvre Løkji | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | krokkleiva_kongeveien | Krokkleiva / Den bergenske kongevei | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | krokkleiva_kongeveien | Krokkleiva / Den bergenske kongevei | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | krokkleiva_kongeveien | Krokkleiva / Den bergenske kongevei | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | krokkleiva_kongeveien | Krokkleiva / Den bergenske kongevei | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordNote | Stor radius r=420 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | bragernes_kirke | Bragernes kirke | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | bragernes_kirke | Bragernes kirke | data/places/historie/buskerud/places_historie_buskerud_batch5.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3754 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3714 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
