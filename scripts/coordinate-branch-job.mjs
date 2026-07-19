@@ -4,91 +4,16 @@ import crypto from 'node:crypto';
 
 const ROOT = process.cwd();
 const VERIFIED_AT = '2026-07-20';
+const AGGREGATE = 'data/places/by/oslo/places_by.json';
+const INDEX = 'data/places/by/oslo/places_by_index.json';
+const MANIFEST = 'data/places/by/oslo/places_by_manifest.json';
 const REPORT_DIR = path.join(ROOT, 'reports/oslo-coordinate-retro-audit-from-batch-6');
 fs.mkdirSync(REPORT_DIR, { recursive: true });
-
-const fixes = [
-  {
-    id: 'gronland_basarene',
-    name: 'Grønland basarene',
-    aggregate: 'data/places/by/oslo/places_by.json',
-    child: 'data/places/by/oslo/places/gronland_basarene.json',
-    manifest: 'data/places/by/oslo/places_by_manifest.json',
-    index: 'data/places/by/oslo/places_by_index.json',
-    fields: {
-      lat: 59.91278287002734,
-      lon: 10.76391148376898,
-      r: 60,
-      locatorType: 'building',
-      sourceProvider: 'official_address',
-      sourceObjectId: 'geonorge-adresser-v1:0301:17875:2',
-      address: { street: 'Tøyengata', number: '2', postcode: '0190', city: 'Oslo', country: 'NO' },
-      geocodeAccuracy: 'rooftop',
-      coordRole: 'display_marker',
-      coordType: 'address_point',
-      coordStatus: 'verified',
-      coordSource: 'geonorge_adresser_v1',
-      coordNote: 'Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 2, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.',
-      coordVerifiedAt: VERIFIED_AT
-    }
-  },
-  {
-    id: 'mollergata_19',
-    name: 'Møllergata 19',
-    aggregate: 'data/places/historie/oslo/places_historie.json',
-    child: 'data/places/historie/oslo/places_historie/mollergata_19.json',
-    manifest: 'data/places/historie/oslo/places_historie_manifest.json',
-    index: 'data/places/historie/oslo/places_historie_index.json',
-    fields: {
-      lat: 59.91528413168428,
-      lon: 10.747869191554551,
-      r: 60,
-      locatorType: 'building',
-      sourceProvider: 'official_address',
-      sourceObjectId: 'geonorge-adresser-v1:0301:14943:19',
-      address: { street: 'Møllergata', number: '19', postcode: '0179', city: 'Oslo', country: 'NO' },
-      geocodeAccuracy: 'rooftop',
-      coordRole: 'display_marker',
-      coordType: 'address_point',
-      coordStatus: 'verified',
-      coordSource: 'geonorge_adresser_v1',
-      coordNote: 'Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 19, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.',
-      coordVerifiedAt: VERIFIED_AT
-    }
-  },
-  {
-    id: 'villa_grande',
-    name: 'Villa Grande',
-    aggregate: 'data/places/historie/oslo/places_historie.json',
-    child: 'data/places/historie/oslo/places_historie/villa_grande.json',
-    manifest: 'data/places/historie/oslo/places_historie_manifest.json',
-    index: 'data/places/historie/oslo/places_historie_index.json',
-    fields: {
-      lat: 59.89911019330011,
-      lon: 10.678158888428362,
-      r: 60,
-      locatorType: 'building',
-      sourceProvider: 'official_address',
-      sourceObjectId: 'geonorge-adresser-v1:0301:13153:56',
-      address: { street: 'Huk aveny', number: '56', postcode: '0287', city: 'Oslo', country: 'NO' },
-      geocodeAccuracy: 'rooftop',
-      coordRole: 'display_marker',
-      coordType: 'address_point',
-      coordStatus: 'verified',
-      coordSource: 'geonorge_adresser_v1',
-      coordNote: 'Offisiell adressekoordinat fra Geonorge Adresser API for Huk aveny 56, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.',
-      coordVerifiedAt: VERIFIED_AT
-    }
-  }
-];
-
-const obsoleteCoordinateFields = ['coordPrecision', 'coordPrecisionM', 'coordSourceId', 'coordSourceUrl'];
 
 function abs(rel) { return path.join(ROOT, rel); }
 function readJson(rel) { return JSON.parse(fs.readFileSync(abs(rel), 'utf8')); }
 function writeJson(rel, value) { fs.writeFileSync(abs(rel), `${JSON.stringify(value, null, 2)}\n`); }
 function sha256(rel) { return crypto.createHash('sha256').update(fs.readFileSync(abs(rel))).digest('hex'); }
-
 function findPlace(data, id, rel) {
   if (Array.isArray(data)) {
     const matches = data.filter((row) => row && row.id === id);
@@ -98,91 +23,294 @@ function findPlace(data, id, rel) {
   if (data && typeof data === 'object' && data.id === id) return data;
   throw new Error(`${rel}: place ${id} not found`);
 }
-
-function applyFields(place, fields) {
-  for (const key of obsoleteCoordinateFields) delete place[key];
-  Object.assign(place, fields);
+function currentCoordinate(place) {
+  return {
+    lat: place.lat,
+    lon: place.lon,
+    r: place.r,
+    coordStatus: place.coordStatus,
+    coordSource: place.coordSource,
+    coordType: place.coordType,
+    coordNote: place.coordNote
+  };
 }
 
-const beforeAfter = [];
-for (const fix of fixes) {
-  for (const rel of [fix.aggregate, fix.child]) {
-    const data = readJson(rel);
-    const place = findPlace(data, fix.id, rel);
-    const before = {
-      lat: place.lat,
-      lon: place.lon,
-      coordType: place.coordType,
-      coordStatus: place.coordStatus,
-      sourceProvider: place.sourceProvider,
-      sourceObjectId: place.sourceObjectId
+const corrections = [
+  {
+    id: 'torggata',
+    batch: 11,
+    reason: 'Street record was incorrectly converted to a single Geonorge house-number point in PR #2486.',
+    fields: {
+      lat: 59.91535,
+      lon: 10.75335,
+      r: 180,
+      coordType: 'street_midpoint',
+      coordStatus: 'verified_geometry',
+      coordNote: 'Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet.',
+      anchors: [
+        { id: 'torggata_sor_youngstorget', name: 'Torggata sør (Youngstorget)', type: 'route_point', lat: 59.9143, lon: 10.7513, r: 60 },
+        { id: 'torggata_nord_ankerbrua', name: 'Torggata nord (Ankerbrua)', type: 'route_point', lat: 59.9164, lon: 10.7554, r: 60 }
+      ],
+      locatorType: 'street',
+      sourceProvider: 'manual_research',
+      sourceObjectId: 'oslobyleksikon:torggata',
+      geocodeAccuracy: 'semantic_anchor',
+      coordRole: 'line_anchor',
+      coordSource: 'Oslo byleksikon – Torggata + dokumenterte ruteankre',
+      coordSourceId: 'oslobyleksikon:torggata',
+      coordSourceUrl: 'https://oslobyleksikon.no/side/Torggata',
+      coordVerifiedAt: VERIFIED_AT
+    },
+    deleteFields: ['address']
+  },
+  {
+    id: 'storgata',
+    batch: 13,
+    reason: 'Street record was incorrectly converted to a single Geonorge house-number point in PR #2486.',
+    fields: {
+      lat: 59.9154,
+      lon: 10.7539,
+      r: 230,
+      coordType: 'street_midpoint',
+      coordStatus: 'verified_geometry',
+      coordNote: 'Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt.',
+      anchors: [
+        { id: 'storgata_sorvest_kirkeristen', name: 'Storgata sørvest (Kirkeristen)', type: 'route_point', lat: 59.914, lon: 10.7512, r: 70 },
+        { id: 'storgata_nordost_nybrua', name: 'Storgata nordøst (Nybrua)', type: 'route_point', lat: 59.9166, lon: 10.7567, r: 70 }
+      ],
+      locatorType: 'street',
+      sourceProvider: 'manual_research',
+      sourceObjectId: 'oslobyleksikon:storgata',
+      geocodeAccuracy: 'semantic_anchor',
+      coordRole: 'line_anchor',
+      coordSource: 'Oslo byleksikon – Storgata + dokumenterte ruteankre',
+      coordSourceId: 'oslobyleksikon:storgata',
+      coordSourceUrl: 'https://oslobyleksikon.no/side/Storgata',
+      coordVerifiedAt: VERIFIED_AT
+    },
+    deleteFields: ['address']
+  },
+  {
+    id: 'botsparken',
+    batch: 14,
+    reason: 'An official municipal park definition is available and has higher source priority than the prior Lokalhistoriewiki source.',
+    source: {
+      provider: 'municipality',
+      name: 'Oslo kommune – Grønland park, del av Klosterenga',
+      url: 'https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/gronland-park-del-av-klosterenga',
+      objectId: 'oslo-kommune:park:gronland-park-klosterenga',
+      quality: 'official_area_definition',
+      finding: 'Oslo kommune dokumenterer Grønland park som del av Klosterenga og dermed den kommunale parkidentiteten som Botsparken-recorden representerer.',
+      note: 'Representativt parkanker i Grønlands park/Botsparken, den vestlige delen av Klosterenga-systemet. Oslo kommune dokumenterer Grønland park som del av Klosterenga; punktet representerer parkrommet og ikke Botsfengselet eller Politihuset.'
+    }
+  },
+  {
+    id: 'carl_berner_plass',
+    batch: 16,
+    reason: 'Wikidata cannot remain the primary source for verified geometry.',
+    source: {
+      provider: 'manual_research',
+      name: 'Oslo byleksikon – Carl Berners plass',
+      url: 'https://oslobyleksikon.no/side/Carl_Berners_plass',
+      objectId: 'oslobyleksikon:carl-berners-plass',
+      quality: 'documented_place_or_area_definition',
+      finding: 'Oslo byleksikon dokumenterer Carl Berners plass som det navngitte trafikale plassrommet ved krysset Christian Michelsens gate, Tromsøgata, Trondheimsveien og Grenseveien.',
+      note: 'Representativt områdeanker for selve Carl Berners plass som trafikalt plass- og fordelingsrom. Oslo byleksikon dokumenterer plassen ved krysset Christian Michelsens gate, Tromsøgata, Trondheimsveien og Grenseveien. Punktet brukes som area_anchor for plassrommet og holdes adskilt fra T-banestasjonen og holdeplasser med samme navn.'
+    }
+  },
+  {
+    id: 'okern',
+    batch: 16,
+    reason: 'Wikidata cannot remain the primary source for verified geometry.',
+    source: {
+      provider: 'manual_research',
+      name: 'Oslo byleksikon – Økern (strøk)',
+      url: 'https://oslobyleksikon.no/side/%C3%98kern_%28str%C3%B8k%29',
+      objectId: 'oslobyleksikon:okern-strok',
+      quality: 'documented_place_or_area_definition',
+      finding: 'Oslo byleksikon dokumenterer Økern som industri- og boligstrøk øst for Sinsen, øst for Ring 3 og med kommunikasjonssenteret ved Østre Aker vei og T-banen.',
+      note: 'Representativt områdeanker for Økern som industri- og boligstrøk øst for Sinsen. Oslo byleksikon dokumenterer strøkets områdeidentitet og kommunikasjonssenter. Punktet er et semantic area anchor, ikke en enkelt adresse eller et påstått geometrisk sentrum for hele strøket.'
+    }
+  },
+  {
+    id: 'skoyen',
+    batch: 16,
+    reason: 'Wikidata cannot remain the primary source for verified geometry.',
+    source: {
+      provider: 'manual_research',
+      name: 'Oslo byleksikon – Skøyen (strøk)',
+      url: 'https://oslobyleksikon.no/side/Sk%C3%B8yen_%28str%C3%B8k%29',
+      objectId: 'oslobyleksikon:skoyen-strok',
+      quality: 'documented_place_or_area_definition',
+      finding: 'Oslo byleksikon dokumenterer Skøyen som bolig- og industristrøk innenfor eidet mellom Frognerkilen og Bestumkilen.',
+      note: 'Representativt områdeanker for Skøyen som bolig- og industristrøk mellom Frognerkilen og Bestumkilen. Oslo byleksikon dokumenterer strøkets områdeidentitet; punktet er et semantic area anchor i det sentrale Skøyen-området, ikke stasjonen eller én adresse.'
+    }
+  },
+  {
+    id: 'torshov',
+    batch: 16,
+    reason: 'Wikidata cannot remain the primary source for verified geometry.',
+    source: {
+      provider: 'manual_research',
+      name: 'Oslo byleksikon – Torshov (strøk)',
+      url: 'https://oslobyleksikon.no/side/Torshov_%28str%C3%B8k%29',
+      objectId: 'oslobyleksikon:torshov-strok',
+      quality: 'documented_place_or_area_definition',
+      finding: 'Oslo byleksikon dokumenterer Torshov som sogn og boligstrøk nord for Grünerløkka med Torshovbyen, Torshovparken og Torshovdalen som sentrale deler.',
+      note: 'Representativt områdeanker for Torshov som boligstrøk nord for Grünerløkka. Oslo byleksikon dokumenterer strøkets områdeidentitet rundt Torshovbyen, Torshovparken og Torshovdalen; punktet er et semantic area anchor, ikke én adresse eller et påstått geometrisk sentrum.'
+    }
+  }
+];
+
+const aggregate = readJson(AGGREGATE);
+const index = readJson(INDEX);
+const touchedChildren = [];
+const auditRows = [];
+
+for (const correction of corrections) {
+  const childRel = `data/places/by/oslo/places/${correction.id}.json`;
+  const evidenceRel = `data/coordinate-evidence/oslo/by/${correction.id}.json`;
+  const child = readJson(childRel);
+  const aggregatePlace = findPlace(aggregate, correction.id, AGGREGATE);
+  const childPlace = findPlace(child, correction.id, childRel);
+  const indexPlace = findPlace(index, correction.id, INDEX);
+  const before = {
+    lat: childPlace.lat,
+    lon: childPlace.lon,
+    coordType: childPlace.coordType,
+    coordStatus: childPlace.coordStatus,
+    sourceProvider: childPlace.sourceProvider,
+    sourceObjectId: childPlace.sourceObjectId
+  };
+
+  for (const place of [aggregatePlace, childPlace]) {
+    if (correction.deleteFields) for (const field of correction.deleteFields) delete place[field];
+    if (correction.fields) Object.assign(place, correction.fields);
+    if (correction.source) {
+      place.sourceProvider = correction.source.provider;
+      place.sourceObjectId = correction.source.objectId;
+      place.coordSource = correction.source.name;
+      place.coordSourceId = correction.source.objectId;
+      place.coordSourceUrl = correction.source.url;
+      place.coordVerifiedAt = VERIFIED_AT;
+      place.coordNote = correction.source.note;
+      place.coordStatus = 'verified_geometry';
+      place.geocodeAccuracy = 'semantic_anchor';
+      place.coordRole = 'area_anchor';
+    }
+  }
+
+  indexPlace.lat = childPlace.lat;
+  indexPlace.lon = childPlace.lon;
+  indexPlace.r = childPlace.r;
+  indexPlace.coordStatus = childPlace.coordStatus;
+  indexPlace.coordType = childPlace.coordType;
+
+  const evidence = readJson(evidenceRel);
+  evidence.currentCoordinate = currentCoordinate(childPlace);
+  if (correction.source) {
+    evidence.evidenceStatus = 'applied_to_place';
+    evidence.coordinateDecision = 'do_not_change_coordinates_yet';
+    evidence.evidence = [{
+      sourceProvider: correction.source.provider,
+      sourceName: correction.source.name,
+      sourceUrl: correction.source.url,
+      sourceObjectId: correction.source.objectId,
+      sourceQuality: correction.source.quality,
+      finding: correction.source.finding,
+      canVerifyCoordinate: true,
+      reason: correction.source.note
+    }];
+    evidence.addressCandidates = [];
+    evidence.sourceObjectCandidates = [{
+      sourceProvider: correction.source.provider,
+      sourceObjectId: correction.source.objectId,
+      canApplyToPlace: true
+    }];
+    evidence.geometryCandidates = [];
+    evidence.coordinateCandidates = [{
+      lat: childPlace.lat,
+      lon: childPlace.lon,
+      coordRole: childPlace.coordRole,
+      canApplyToPlace: true
+    }];
+    evidence.decision = {
+      canBecomeVerified: true,
+      blockedReason: '',
+      nextAction: 'Kildekontrakt og representasjonsanker er anvendt på canonical place.'
     };
-    applyFields(place, fix.fields);
-    writeJson(rel, data);
-    if (rel === fix.child) beforeAfter.push({ id: fix.id, name: fix.name, before, after: { ...fix.fields } });
+    evidence.notes = [correction.source.note];
   }
-
-  if (fs.existsSync(abs(fix.index))) {
-    const index = readJson(fix.index);
-    const row = findPlace(index, fix.id, fix.index);
-    row.lat = fix.fields.lat;
-    row.lon = fix.fields.lon;
-    row.r = fix.fields.r;
-    row.coordStatus = fix.fields.coordStatus;
-    row.coordType = fix.fields.coordType;
-    writeJson(fix.index, index);
-  }
+  writeJson(evidenceRel, evidence);
+  writeJson(childRel, child);
+  touchedChildren.push({ id: correction.id, rel: childRel });
+  auditRows.push({
+    batch: correction.batch,
+    id: correction.id,
+    reason: correction.reason,
+    before,
+    after: {
+      lat: childPlace.lat,
+      lon: childPlace.lon,
+      coordType: childPlace.coordType,
+      coordStatus: childPlace.coordStatus,
+      sourceProvider: childPlace.sourceProvider,
+      sourceObjectId: childPlace.sourceObjectId
+    }
+  });
 }
 
-const manifestGroups = new Map();
-for (const fix of fixes) {
-  const key = `${fix.manifest}|${fix.aggregate}`;
-  if (!manifestGroups.has(key)) manifestGroups.set(key, { manifest: fix.manifest, aggregate: fix.aggregate, children: [] });
-  manifestGroups.get(key).children.push({ id: fix.id, child: fix.child });
+writeJson(AGGREGATE, aggregate);
+writeJson(INDEX, index);
+
+const manifest = readJson(MANIFEST);
+manifest.source_sha256 = sha256(AGGREGATE);
+manifest.generated_at = new Date().toISOString();
+for (const child of touchedChildren) {
+  const row = (manifest.places || []).find((item) => item.id === child.id);
+  if (!row) throw new Error(`${MANIFEST}: missing manifest row for ${child.id}`);
+  row.sha256 = sha256(child.rel);
 }
-for (const group of manifestGroups.values()) {
-  const manifest = readJson(group.manifest);
-  manifest.source_sha256 = sha256(group.aggregate);
-  manifest.generated_at = new Date().toISOString();
-  for (const child of group.children) {
-    const row = (manifest.places || []).find((item) => item.id === child.id);
-    if (!row) throw new Error(`${group.manifest}: missing manifest row for ${child.id}`);
-    row.sha256 = sha256(child.child);
-  }
-  writeJson(group.manifest, manifest);
-}
+writeJson(MANIFEST, manifest);
 
 const protocolRel = 'docs/coordinates/coordinate-control-protocol.md';
 let protocol = fs.readFileSync(abs(protocolRel), 'utf8');
-const protocolReplacements = [
-  ['| 6 | `gronland_basarene` | Grønland basarene | verified | `osm-node:1022312515` |', '| 6 | `gronland_basarene` | Grønland basarene | verified | `geonorge-adresser-v1:0301:17875:2` |'],
-  ['| 6 | `mollergata_19` | Møllergata 19 | verified | `osm-way:112207578` |', '| 6 | `mollergata_19` | Møllergata 19 | verified | `geonorge-adresser-v1:0301:14943:19` |'],
-  ['| 6 | `villa_grande` | Villa Grande | verified | `osm-node:12591050047` |', '| 6 | `villa_grande` | Villa Grande | verified | `geonorge-adresser-v1:0301:13153:56` |']
+const replacements = [
+  ['| 11 | `torggata` | Torggata | verified | `geonorge-adresser-v1:0301:17635:14` |', '| 11 | `torggata` | Torggata | verified_geometry | `oslobyleksikon:torggata` |'],
+  ['| 13 | `storgata` | Storgata | verified | `geonorge-adresser-v1:0301:17059:25` |', '| 13 | `storgata` | Storgata | verified_geometry | `oslobyleksikon:storgata` |'],
+  ['| 14 | `botsparken` | Botsparken | verified_geometry | `lokalhistoriewiki:gronlands-park` |', '| 14 | `botsparken` | Botsparken | verified_geometry | `oslo-kommune:park:gronland-park-klosterenga` |'],
+  ['| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `wikidata:Q5039902` |', '| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `oslobyleksikon:carl-berners-plass` |'],
+  ['| 16 | `okern` | Økern | verified_geometry | `wikidata:Q12011791` |', '| 16 | `okern` | Økern | verified_geometry | `oslobyleksikon:okern-strok` |'],
+  ['| 16 | `skoyen` | Skøyen | verified_geometry | `wikidata:Q6514682` |', '| 16 | `skoyen` | Skøyen | verified_geometry | `oslobyleksikon:skoyen-strok` |'],
+  ['| 16 | `torshov` | Torshov | verified_geometry | `wikidata:Q7827191` |', '| 16 | `torshov` | Torshov | verified_geometry | `oslobyleksikon:torshov-strok` |']
 ];
-for (const [from, to] of protocolReplacements) {
+for (const [from, to] of replacements) {
   if (!protocol.includes(from)) throw new Error(`Protocol row not found: ${from}`);
   protocol = protocol.replace(from, to);
 }
-const auditNote = 'Retrokontroll fra batch 6 (2026-07-20): Batch 6 er korrigert tilbake til den låste adresse-first-metoden. `gronland_basarene`, `mollergata_19` og `villa_grande` bruker igjen de entydige Geonorge-resultatene fra den opprinnelige batch-6-kjøringen; senere OSM-baserte visual-marker-overstyringer er fjernet fra canonical koordinatkilde. OSM kan fortsatt brukes som visuell QA, men ikke som primær koordinatkilde for disse tre konkrete adressebare byggene.';
-if (!protocol.includes(auditNote)) {
+const note = 'Retrokontroll fra batch 6 (2026-07-20), pass 2: `torggata` og `storgata` er tilbakeført fra feilaktige enkeltadresseankre til dokumenterte lineære gateankre med ruteankre. `botsparken` bruker nå kommunal parkdefinisjon. De fire batch-16-recordene `carl_berner_plass`, `okern`, `skoyen` og `torshov` har fått dokumenterte steds-/områdefinisjoner fra Oslo byleksikon i stedet for Wikidata som primær verifikasjonskilde.';
+if (!protocol.includes(note)) {
   const marker = '### Dokumenterte Oslo-kontroller uten godkjent koordinat';
   if (!protocol.includes(marker)) throw new Error('Protocol insertion marker not found');
-  protocol = protocol.replace(marker, `${auditNote}\n\n${marker}`);
+  protocol = protocol.replace(marker, `${note}\n\n${marker}`);
 }
 fs.writeFileSync(abs(protocolRel), protocol);
 
-writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/batch-6-summary.json', {
-  auditStartBatch: 6,
-  auditedThroughBatch: 6,
+writeJson('reports/oslo-coordinate-retro-audit-from-batch-6/pass-2-batches-11-16.json', {
   date: VERIFIED_AT,
-  status: 'batch_6_corrected_address_first',
-  finding: 'Three addressable buildings had later OSM visual-marker overrides despite stored unambiguous Geonorge verified candidates.',
-  correctedPlaces: beforeAfter,
-  sourceEvidence: 'reports/geonorge-address-batch-6/*.json and reports/address-first-coordinate-batch-6-apply.md',
-  nextBatch: 7
+  auditStartBatch: 6,
+  corrections: auditRows,
+  nextResearchPass: [
+    'henrik_wergeland_statue: exact monument object or downgrade',
+    'telegrafbygningen: replace Wikidata primary source with exact physical object geometry',
+    'ovre_foss: run address-first lookup for Sagveien 23 before any geometry fallback'
+  ]
 });
 
-const readme = `# Oslo coordinate retro-audit from batch 6\n\n## Scope\n\nRetroactive method audit of Oslo coordinate-control batches starting at batch 6, against the locked address-first/object-geometry documentation. The audit proceeds sequentially; no later batch is assumed compliant merely because it is marked verified.\n\n## Batch 6 — corrected\n\nThe original batch-6 Geonorge run stored unambiguous verified candidates for three concrete addressable buildings. Those results were applied, but later visual-marker corrections replaced the canonical source with OSM building/entrance geometry. Under the locked method this was a source-priority regression: for a concrete relevant Norwegian address, Geonorge must be the primary coordinate source. OSM may be used for visual QA, not as the canonical replacement when the address itself represents the place.\n\nCorrected back to the stored Geonorge candidates:\n\n- \`gronland_basarene\` — Tøyengata 2 — \`geonorge-adresser-v1:0301:17875:2\`\n- \`mollergata_19\` — Møllergata 19 — \`geonorge-adresser-v1:0301:14943:19\`\n- \`villa_grande\` — Huk aveny 56 — \`geonorge-adresser-v1:0301:13153:56\`\n\nThe aggregate source files, split child files, split indexes, split-manifest hashes and running coordinate-control protocol are updated together. The runtime place index is regenerated by the coordinate branch runner.\n\n## Batch 7 — method audit\n\n- \`blaa\`: address-first was attempted for Brenneriveien 9C and Geonorge returned \`not_found\`; exact named OSM POI is a documented fallback.\n- \`tinghuset\`: official Geonorge address point.\n- \`bogstad_gard\`: address-first was attempted; the estate address resolves to multiple lettered address points, while the record models the whole named manor complex. Exact estate geometry is retained instead of arbitrarily selecting one address point.\n- \`salt\`: Langkaia 1 is documented as the nearest GPS address and its Geonorge point belongs to Havnelageret, not the SALT site; exact named site POI is appropriate.\n- \`tollbukaia\`: historical quay identity; historical-source treatment is appropriate.\n- \`akershus_kaier\`: quay/linear object; geometry treatment is appropriate.\n- \`oslo_mek\`: historical industrial site; historical-source treatment is appropriate.\n\nBatch 7 is therefore classified as method-compliant after source-priority review.\n\n## Next\n\nContinue with batch 8 and classify every record by physical object before deciding whether it must use an official address or object/geometry evidence.\n`;
-fs.writeFileSync(path.join(REPORT_DIR, 'README.md'), readme);
+const readmeRel = 'reports/oslo-coordinate-retro-audit-from-batch-6/README.md';
+let readme = fs.existsSync(abs(readmeRel)) ? fs.readFileSync(abs(readmeRel), 'utf8') : '# Oslo coordinate retro-audit from batch 6\n';
+const section = `\n## Pass 2 — deterministic corrections through batch 16\n\n- Batch 11: \`torggata\` restored to its documented street/line representation. The Geonorge point for Torggata 14 is a valid address point, but it does not represent the street record.\n- Batch 13: \`storgata\` restored to its documented street/line representation for the same reason.\n- Batch 14: \`botsparken\` moved from a lower-priority Lokalhistoriewiki source to Oslo kommune's official park definition.\n- Batch 16: \`carl_berner_plass\`, \`okern\`, \`skoyen\` and \`torshov\` no longer use Wikidata as the primary source for \`verified_geometry\`; each now uses a documented Oslo byleksikon place/area definition with an explicit semantic area-anchor rule.\n\n### Remaining source-research corrections already identified\n\n- Batch 21: \`henrik_wergeland_statue\` needs an exact monument object or must be downgraded; a geotagged Wikimedia photo is not sufficient as sole primary geometry source.\n- Batch 22: \`telegrafbygningen\` needs its exact physical OSM/cultural-heritage object promoted over Wikidata.\n- Batch 24: \`ovre_foss\` has a concrete documented address at Sagveien 23 and must go through the Geonorge address-first finder before any fallback is accepted.\n`;
+if (!readme.includes('## Pass 2 — deterministic corrections through batch 16')) readme += section;
+fs.writeFileSync(abs(readmeRel), readme);
 
-console.log(JSON.stringify({ ok: true, correctedBatch6: fixes.map((f) => f.id), auditedThroughBatch: 7 }, null, 2));
+console.log(JSON.stringify({ ok: true, corrected: auditRows.map((row) => row.id), nextResearchPass: ['henrik_wergeland_statue', 'telegrafbygningen', 'ovre_foss'] }, null, 2));
