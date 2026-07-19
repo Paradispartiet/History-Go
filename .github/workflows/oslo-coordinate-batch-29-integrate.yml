@@ -92,6 +92,18 @@ jobs:
           - Inger Hagerups plass: navngitt plassobjekt Wikidata Q19347867 kryssjekkes mot Lokalhistoriewiki; år korrigeres til 1994.
           EOF
 
+      - name: Capture baseline place health
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          npm run health:places | tee reports/oslo-coordinate-control-batch-29/places-health-baseline.txt
+          CODE=${PIPESTATUS[0]}
+          set +o pipefail
+          set -e
+          echo "$CODE" > reports/oslo-coordinate-control-batch-29/places-health-baseline.exit-status.txt
+          exit 0
+
       - name: Apply batch 29
         run: node scripts/tmp-complete-oslo-coordinate-batch29.mjs
 
@@ -110,10 +122,40 @@ jobs:
           set -o pipefail
           npm run places:index:check | tee reports/oslo-coordinate-control-batch-29/places-index-check.txt
 
-      - name: Validate place health after municipality moves
+      - name: Validate no new place health errors
+        shell: bash
         run: |
+          set +e
           set -o pipefail
-          npm run health:places | tee reports/oslo-coordinate-control-batch-29/places-health.txt
+          npm run health:places | tee reports/oslo-coordinate-control-batch-29/places-health-post.txt
+          POST_CODE=${PIPESTATUS[0]}
+          set +o pipefail
+          set -e
+          echo "$POST_CODE" > reports/oslo-coordinate-control-batch-29/places-health-post.exit-status.txt
+
+          extract_errors() {
+            awk '
+              $0 == "Errors:" { capture=1; next }
+              $0 == "Warnings:" { capture=0 }
+              capture && /^- / { print }
+            ' "$1" | sort -u
+          }
+
+          extract_errors reports/oslo-coordinate-control-batch-29/places-health-baseline.txt \
+            > reports/oslo-coordinate-control-batch-29/places-health-baseline-errors.txt
+          extract_errors reports/oslo-coordinate-control-batch-29/places-health-post.txt \
+            > reports/oslo-coordinate-control-batch-29/places-health-post-errors.txt
+          comm -13 \
+            reports/oslo-coordinate-control-batch-29/places-health-baseline-errors.txt \
+            reports/oslo-coordinate-control-batch-29/places-health-post-errors.txt \
+            > reports/oslo-coordinate-control-batch-29/places-health-new-errors.txt
+
+          if [ -s reports/oslo-coordinate-control-batch-29/places-health-new-errors.txt ]; then
+            echo 'Batch 29 introduced new place-health errors:'
+            cat reports/oslo-coordinate-control-batch-29/places-health-new-errors.txt
+            exit 1
+          fi
+          echo 'No new place-health errors introduced by batch 29.'
 
       - name: Validate coordinate quality
         run: |
