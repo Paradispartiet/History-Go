@@ -1,0 +1,630 @@
+name: Fill Elvepartiet below Nydalsdammen nature rounds batch 1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/fill-elvepartiet-nydalsdammen-nature-rounds-batch1.yml
+      - .github/workflows/kick-elvepartiet-nydalsdammen-nature-rounds-batch1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'agent/fill-elvepartiet-nydalsdammen-nature-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-elvepartiet-nydalsdammen-nature-rounds-batch1
+          fetch-depth: 0
+
+      - name: Produce corrected place identity and all nature rounds
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          def read(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, value):
+              Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          place_path = Path('data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json')
+          story_path = Path('data/stories/stories_stilla_nydalen.json')
+          quiz_path = Path('data/quiz/natur/stilla_nydalen_sets.json')
+          article_path = Path('data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json')
+          route_index_path = Path('data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json')
+          route_manifest_path = Path('data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json')
+
+          place = read(place_path)
+          assert place['id'] == 'stilla_nydalen'
+          assert [place['lat'], place['lon'], place['r'], place['year']] == [59.9449, 10.7654, 120, 1900]
+
+          place.update({
+              'name': 'Elvepartiet nedenfor Nydalsdammen',
+              'desc': 'Elveparti i Akerselva rett nedenfor Nydalsdammen, der vannet går fra oppdemmet damflate til et smalere løp med vegeterte bredder.',
+              'tags': ['elvepunkt', 'akerselva', 'nedenfor_dam', 'elvebredde', 'kantvegetasjon'],
+              'popupDesc': 'Kartpunktet ligger om lag 100 meter nedenfor Nydalsdammen og viser overgangen fra den oppdemmede damflaten til det videre elveløpet gjennom Nydalen. Her kan vannhastighet, breddeform, trekroner, røtter og offentlig ferdsel leses som deler av samme byvassdrag.\n\nDen tekniske ID-en stilla_nydalen er eldre og beholdes for kompatibilitet. Det historiske stedsnavnet Stilla tilhører badekulpene i øvre Akerselva, fra Grandalen nord for Nydalsbakken mot Brekkefossen, og ikke dette punktet nedenfor Nydalsdammen. Visningsnavnet er derfor rettet uten å flytte koordinatet.',
+              'quiz_profile': {
+                  'place_type': 'elveparti nedenfor dam',
+                  'subtype': 'akerselva_overgang_fra_dam_til_elvelop',
+                  'signature_features': [
+                      'ligger rett nedenfor Nydalsdammen',
+                      'overgang fra oppdemmet vann til løpende elv',
+                      'vegeterte bredder i et omformet industriområde',
+                      'eldre teknisk ID som ikke skal forveksles med historiske Stilla'
+                  ],
+                  'primary_angles': [
+                      'natur_vannlop',
+                      'elvebredde_og_kantvegetasjon',
+                      'byutvikling_transformasjon',
+                      'kartnavn_og_stedsidentitet'
+                  ],
+                  'question_families': [
+                      'stedsspesifikk_observasjon',
+                      'sammenligning_ovenfor_og_nedenfor_dam',
+                      'historisk_endring',
+                      'kildekritikk_og_stedsnavn'
+                  ],
+                  'avoid_angles': [
+                      'påstand_om_at_punktet_er_historiske_stilla',
+                      'generisk_tursti',
+                      'usikre_artsdetaljer',
+                      'oppfordring_til_bading'
+                  ],
+                  'must_include': [
+                      'koblingen til Nydalsdammen',
+                      'at historiske Stilla ligger lenger nord i Akerselva',
+                      'overgangen fra industrinært elverom til offentlig grøntdrag'
+                  ],
+                  'contrast_targets': ['nydalsdammen', 'frysjadammen', 'bjoelsenfossen'],
+                  'notes': 'Bruk koordinatet som elvepunkt nedenfor Nydalsdammen. Ikke gjenbruk badehistorien til Stilla ved Svensenga.'
+              },
+              'primary_category': 'natur',
+              'secondary_category': 'historie',
+              'hybrid': False,
+              'underbadge_ids': ['elv', 'vann_og_vassdrag', 'elvebredde', 'kantvegetasjon', 'gronn_korridor'],
+              'nature_profile': {
+                  'type': 'damutløp / byelv / vegetert elvebredde',
+                  'title': 'Der damflaten blir løpende elv igjen',
+                  'summary': 'Natur-rundingen viser Akerselva rett nedenfor Nydalsdammen, der den oppdemmede vannflaten går over i et smalere og mer bevegelig elveløp. Vannets tempo, breddenes form, røtter, skygge og løvfall skaper andre forhold enn i selve dammen, samtidig som stedet fortsatt er sterkt formet av regulering og byutvikling. De dokumenterte naturkartene for punktet kobler flere trær, urter og vanlige byfugler til området, men observasjonene må brukes som spor å kontrollere og ikke som garanti for hva som står eller flyr her akkurat i dag. Stedet gjør det mulig å lese hvordan et offentlig grøntdrag kan romme både teknisk vannhistorie, levende elvebredder og hverdagsferdsel på svært kort avstand.',
+                  'themes': [
+                      'overgangen fra damflate til elveløp',
+                      'variasjon i vannhastighet',
+                      'vegeterte bredder og røtter',
+                      'skygge, løvfall og fuktighet',
+                      'dokumenterte arter som observasjonsspor',
+                      'offentlig grøntdrag i tidligere industridal',
+                      'presis stedsidentitet langs Akerselva'
+                  ],
+                  'nearby_place_ids': ['nydalsdammen', 'seilduksfabrikken_nydalen', 'bjoelsenparken_elvenaer']
+              },
+              'externalLinks': [
+                  {
+                      'type': 'reference',
+                      'label': 'Oslo byleksikon – Stilla',
+                      'url': 'https://oslobyleksikon.no/side/Stilla',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'reference',
+                      'label': 'Oslo byleksikon – Svensenga bru og Stilla',
+                      'url': 'https://oslobyleksikon.no/side/Svensenga_bru',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'reference',
+                      'label': 'Oslo byleksikon – Nydalsdammen',
+                      'url': 'https://oslobyleksikon.no/side/Nydalsdammen',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'reference',
+                      'label': 'Oslo byleksikon – Akerselva',
+                      'url': 'https://oslobyleksikon.no/side/Akerselva',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'reference',
+                      'label': 'Oslo byleksikon – Nydalen',
+                      'url': 'https://oslobyleksikon.no/side/Nydalen',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'local',
+                      'label': 'Nydalen – om åpningen av elva og felles uteområder',
+                      'url': 'https://www.nydalen.no/om-nydalen/',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  },
+                  {
+                      'type': 'environment',
+                      'label': 'Akerselvas Venner – planter og trær langs elva',
+                      'url': 'https://www.akerselvasvenner.no/2014/08/04/planter-og-traer/',
+                      'lang': 'nb',
+                      'verifiedAt': '2026-07-19'
+                  }
+              ],
+              'tasks_profile': {
+                  'title': 'Les overgangen nedenfor dammen',
+                  'summary': 'Tre oppgaver som undersøker vannets skifte, elvebredden og hvorfor presise stedsnavn betyr noe.',
+                  'tasks': [
+                      {
+                          'id': 'elvepartiet_nydalsdammen_oppgave_vannskifte',
+                          'title': 'Finn skiftet i vannet',
+                          'instruction': 'Stå på offentlig sti og sammenlign vannflaten ved Nydalsdammen med elveløpet ved dette punktet. Se etter forskjeller i strøm, bredde, overflate og lyd uten å gå ned på våte steiner.',
+                          'why': 'Punktet er valgt nettopp for overgangen fra oppdemmet vann til løpende elv.'
+                      },
+                      {
+                          'id': 'elvepartiet_nydalsdammen_oppgave_bredd',
+                          'title': 'Les elvebredden',
+                          'instruction': 'Finn tre synlige trekk ved bredden, for eksempel røtter, skygge, jord, stein, løv eller busksjikt. Noter hvordan de kan påvirke vannkanten.',
+                          'why': 'Kantvegetasjon og breddeform er konkrete naturprosesser som kan observeres uten å gjette arter.'
+                      },
+                      {
+                          'id': 'elvepartiet_nydalsdammen_oppgave_stedsnavn',
+                          'title': 'Kontroller navnet på kartet',
+                          'instruction': 'Åpne kart eller kildelenken om Stilla og sammenlign plasseringen med dette punktet nedenfor Nydalsdammen. Forklar med én setning hvorfor de ikke er samme sted.',
+                          'why': 'Oppgaven trener kildekritikk og hindrer at badehistorien til Stilla flyttes til feil del av Akerselva.'
+                      }
+                  ]
+              },
+              'training_profile': {
+                  'title': 'Tørr elvestiøkt nedenfor dammen',
+                  'summary': 'En kort og rolig økt på offentlig turvei som bruker overgangen i landskapet uten å bruke vannkanten som treningsflate.',
+                  'safety': 'Hold deg på offentlig, tørr og oversiktlig sti. Det er ingen svømming, hopping eller trening på damkant, våte steiner, røtter eller bratt elvebredd.',
+                  'exercises': [
+                      {
+                          'id': 'elvepartiet_nydalsdammen_trening_rolig_gange',
+                          'title': 'Rolig overgangsgange',
+                          'instruction': 'Gå i 8 minutter mellom et trygt utsyn mot dammen og elvepartiet nedenfor. Legg merke til hvordan lyden og vannflaten endrer seg.',
+                          'why': 'Øvelsen gjør det korte landskapsskiftet fysisk merkbart.',
+                          'duration_minutes': 8,
+                          'intensity': 'rolig'
+                      },
+                      {
+                          'id': 'elvepartiet_nydalsdammen_trening_gangdrag',
+                          'title': 'Tre kontrollerte gangdrag',
+                          'instruction': 'På en flat del av stien går du raskt i 90 sekunder og rolig i 90 sekunder, tre ganger. Gi alltid plass til andre.',
+                          'why': 'Den sammenhengende elvestien gir en enkel økt uten behov for utstyr eller vannkontakt.',
+                          'duration_minutes': 9,
+                          'intensity': 'moderat'
+                      },
+                      {
+                          'id': 'elvepartiet_nydalsdammen_trening_balanse',
+                          'title': 'Stabilitet på fast dekke',
+                          'instruction': 'Stå på fast og flatt dekke godt unna kanten. Gjør rolige vektoverføringer og ankelbevegelser i 4 minutter.',
+                          'why': 'Avslutningen trener kontroll uten å bruke ujevne eller glatte naturflater.',
+                          'duration_minutes': 4,
+                          'intensity': 'lett'
+                      }
+                  ]
+              },
+              'civication_store': [
+                  {
+                      'id': 'elvepartiet_nydalsdammen_damutlop_snittbrikke',
+                      'title': 'Snittbrikken for damutløpet',
+                      'type': 'landskapsmodell',
+                      'kind': 'physical_object',
+                      'desc': 'En fysisk lagbrikke som viser Nydalsdammens vannflate, damkanten og det smalere elveløpet ved kartpunktet nedenfor.',
+                      'placeSpecificReason': 'Objektet gir bare mening i den korte overgangen mellom Nydalsdammen og dette elvepartiet.',
+                      'historicalFunction': 'Viser hvordan regulert vann og levende elvebredde inngår i samme landskap.',
+                      'physicalObject': True,
+                      'placeSpecific': True,
+                      'storePrice': 35,
+                      'currency': 'PC',
+                      'collection': 'elvepartiet_nedenfor_nydalsdammen',
+                      'collectable': True
+                  },
+                  {
+                      'id': 'elvepartiet_nydalsdammen_navnekorreksjonskart',
+                      'title': 'Navnekartet Stilla–Nydalen',
+                      'type': 'utbrettskart',
+                      'kind': 'physical_object',
+                      'desc': 'Et fysisk utbrettskart som markerer kartpunktet nedenfor Nydalsdammen og det historiske Stilla lenger nord ved Svensenga og Brekkefossen.',
+                      'placeSpecificReason': 'Kartet bevarer den tekniske ID-en, men gjør den dokumenterte stedsforskjellen synlig.',
+                      'historicalFunction': 'Trener presis stedfesting og viser hvordan feil navn kan flytte historie langs en rute.',
+                      'physicalObject': True,
+                      'placeSpecific': True,
+                      'storePrice': 30,
+                      'currency': 'PC',
+                      'collection': 'elvepartiet_nedenfor_nydalsdammen',
+                      'collectable': True
+                  }
+              ],
+              'brands': [
+                  {
+                      'id': 'oslo_kommune_bymiljoetaten',
+                      'name': 'Oslo kommune – Bymiljøetaten',
+                      'brand_kind': 'municipal_public_space_authority',
+                      'brand_type': 'current_green_corridor_context'
+                  },
+                  {
+                      'id': 'akerselvas_venner',
+                      'name': 'Akerselvas Venner',
+                      'brand_kind': 'river_environment_association',
+                      'brand_type': 'environmental_knowledge_actor'
+                  },
+                  {
+                      'id': 'nydalen_gardeierforening',
+                      'name': 'Nydalen Gårdeierforening',
+                      'brand_kind': 'district_property_association',
+                      'brand_type': 'shared_outdoor_space_context'
+                  },
+                  {
+                      'id': 'avantor_nydalen',
+                      'name': 'Avantor',
+                      'brand_kind': 'urban_redevelopment_actor',
+                      'brand_type': 'nydalen_public_space_development_context'
+                  },
+                  {
+                      'id': 'nydalens_compagnie',
+                      'name': 'Nydalens Compagnie',
+                      'brand_kind': 'historic_textile_company',
+                      'brand_type': 'historic_industrial_river_context'
+                  }
+              ],
+              'for_na': {
+                  'title': 'Fra industrikorridor til lesbart elverom',
+                  'before': 'Fra midten av 1800-tallet var Nydalen dominert av tekstil- og jernindustri. Elva var kraftkilde og produksjonsstruktur, og store deler av elverommet var vanskelig tilgjengelig for tilfeldig ferdsel.',
+                  'now': 'Punktet ligger i et offentlig tilgjengelig grøntdrag der turvei, vegeterte bredder og utsyn mot vannet gjør overgangen nedenfor Nydalsdammen lesbar i hverdagen.',
+                  'change': 'Elva har gått fra å være en utilgjengelig bakside og teknisk ressurs i industridalen til å bli en synlig struktur for ferdsel, naturkontakt og stedskunnskap. Samtidig er navnet korrigert slik at historiske Stilla ikke plasseres feil.',
+                  'look_for': [
+                      'forskjellen mellom damflate og elveløp',
+                      'røtter, skygge og vegetasjon ved bredden',
+                      'offentlig sti og tilgjengelighet langs vannet',
+                      'industribygninger eller tekniske spor i nærheten',
+                      'kartavstanden til historiske Stilla lenger nord'
+                  ],
+                  'sources': ['Oslo byleksikon', 'Nydalen.no', 'Akerselvas Venner']
+              }
+          })
+          for forbidden in ['rounds', 'rundinger', 'routes', 'works', 'people', 'play_profile', 'flora', 'fauna']:
+              place.pop(forbidden, None)
+          write(place_path, place)
+
+          stories = read(story_path)
+          story = next(row for row in stories if row['id'] == 'st_stilla_nydalen_elva_som_senker_farten')
+          story.update({
+              'type': 'place_identity_and_urban_nature',
+              'title': 'Et elveparti med lånt navn',
+              'year': 2026,
+              'summary': 'Kartpunktet nedenfor Nydalsdammen hadde arvet navnet Stilla, men kildene plasserer det historiske badeområdet langt lenger nord i Akerselva.',
+              'story': 'På kartet lå et rolig elvepunkt rett nedenfor Nydalsdammen. Den tekniske ID-en kalte det stilla_nydalen, og etter hvert begynte også tekstene å omtale punktet som Stilla. Problemet var at navnet allerede tilhørte et annet og godt dokumentert sted.\n\nOslo byleksikon beskriver Stilla som badekulpene i øvre Akerselva, fra Grandalen nord for Nydalsbakken mot Brekkefossen. Ved Svensenga bru renner elva rolig i det flate landskapet som kalles Stilla, med gamle navn som Jentestilla, Guttestilla og Hestestilla. Kartpunktet i History Go ligger derimot bare rundt hundre meter nedenfor Nydalsdammen i det omformede Nydalen.\n\nFeilen var mer enn et ord. Dersom navnet ble stående, ville badehistorien fra øvre Akerselva bli flyttet inn i industridalen, og brukeren ville lære en uriktig geografi. Derfor beholdes den tekniske ID-en for kompatibilitet, mens visningsnavnet rettes til Elvepartiet nedenfor Nydalsdammen.\n\nDet korrigerte stedet har sin egen verdi. Her kan man sammenligne den oppdemmede vannflaten med elva som begynner å bevege seg videre, lese røtter og vegetasjon langs bredden og se hvordan et tidligere industrilandskap er gjort tilgjengelig som offentlig grøntdrag. Historien handler dermed både om bynatur og om hvorfor presise navn er en del av god stedskunnskap.',
+              'sources': [
+                  {'title': 'Oslo byleksikon: Stilla', 'url': 'https://oslobyleksikon.no/side/Stilla'},
+                  {'title': 'Oslo byleksikon: Svensenga bru', 'url': 'https://oslobyleksikon.no/side/Svensenga_bru'},
+                  {'title': 'Oslo byleksikon: Nydalsdammen', 'url': 'https://oslobyleksikon.no/side/Nydalsdammen'},
+                  {'title': 'Oslo byleksikon: Akerselva', 'url': 'https://oslobyleksikon.no/side/Akerselva'},
+                  {'title': 'Oslo byleksikon: Nydalen', 'url': 'https://oslobyleksikon.no/side/Nydalen'},
+                  {'title': 'Nydalen: Om Nydalen', 'url': 'https://www.nydalen.no/om-nydalen/'}
+              ],
+              'tags': ['natur', 'akerselva', 'nydalsdammen', 'elvebredde', 'stedsidentitet', 'kildekritikk', 'oslo'],
+              'related_people': [],
+              'related_places': ['nydalsdammen', 'nydalen_industristed', 'seilduksfabrikken_nydalen', 'bjoelsenfossen'],
+              'score': {'narrative': 5, 'historical': 5, 'source': 5, 'play_value': 5, 'originality': 5, 'total': 25},
+              'arc': {
+                  'start': 'Et kartpunkt nedenfor Nydalsdammen blir omtalt med navnet Stilla.',
+                  'middle': 'Kildene viser at det historiske Stilla ligger lenger nord ved Svensenga og Brekkefossen.',
+                  'end': 'Visningsnavnet rettes, og elvepartiet får en egen fortelling om vannskifte, bynatur og presis stedfesting.'
+              },
+              'next_scenes': [
+                  {'place_id': 'bjoelsenfossen', 'reason': 'Følg elva sørover til et nytt kraft- og landskapspunkt der vannets fall blir tydelig igjen.'}
+              ]
+          })
+          write(story_path, stories)
+
+          articles = read(article_path)
+          article = next(row for row in articles if row['place_id'] == 'stilla_nydalen')
+          article.clear()
+          article.update({
+              'place_id': 'stilla_nydalen',
+              'visual': {'designCode': 'article_nature_route_miniature'},
+              'version': 2,
+              'popupDesc': 'Elvepartiet nedenfor Nydalsdammen viser overgangen fra oppdemmet vann til et smalere løp med vegeterte bredder. Den eldre tekniske ID-en må ikke forveksles med badeområdet Stilla lenger nord.',
+              'wikiText': [
+                  'Kartpunktet ligger ved Akerselva omtrent hundre meter nedenfor Nydalsdammen. Det er et godt observasjonspunkt for overgangen fra den rolige, oppdemmede vannflaten til et smalere elveløp, der vannbevegelse, breddeform, trekroner og røtter virker sammen. Naturkartet knytter flere trær, urter og vanlige byfugler til området, men disse oppføringene bør brukes som dokumenterte observasjonsspor og ikke som løfte om dagens artsfunn.',
+                  'Den tekniske ID-en stilla_nydalen er beholdt for kompatibilitet, men stedsnavnet er rettet. Oslo byleksikon bruker Stilla om badekulpene i øvre Akerselva fra Grandalen nord for Nydalsbakken mot Brekkefossen. Svensenga bru ligger ved dette flate, rolige landskapet og kalles ofte Stilla bru. Badehistorien og navnene Jentestilla, Guttestilla og Hestestilla hører derfor ikke til punktet nedenfor Nydalsdammen.',
+                  'Elvepartiet inngår samtidig i den større omformingen av Nydalen. Området utviklet seg fra en industridal der elva var kraftkilde og store deler av breddene var utilgjengelige, til et byområde med offentlig ferdsel, grønne fellesarealer og synlig vann. Stedet viser derfor både elveøkologi, bytransformasjon og betydningen av nøyaktig geografisk kildekritikk.'
+              ],
+              'summary': {
+                  'one_liner': 'Elvepunkt nedenfor Nydalsdammen der damutløp, vegetert bredde og korrigert stedsidentitet møtes.',
+                  'themes': ['damutløp', 'elvebredde', 'kantvegetasjon', 'byomforming', 'stedsnavn'],
+                  'tone': ['nøktern', 'faglig', 'stedsspesifikk']
+              },
+              'facts': [
+                  {
+                      'id': 'fact_01',
+                      'label': 'Nedenfor Nydalsdammen',
+                      'desc': 'History Go-koordinatene plasserer punktet omtrent 105 meter fra Nydalsdammen og videre nedstrøms i Akerselva.',
+                      'confidence': 'high',
+                      'sources': ['data/places/natur/oslo/places_oslo_natur_akerselvarute/nydalsdammen.json', 'data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json']
+                  },
+                  {
+                      'id': 'fact_02',
+                      'label': 'Historiske Stilla ligger lenger nord',
+                      'desc': 'Stilla er navnet på badekulpene i øvre Akerselva fra Grandalen nord for Nydalsbakken mot Brekkefossen.',
+                      'confidence': 'high',
+                      'sources': ['https://oslobyleksikon.no/side/Stilla']
+                  },
+                  {
+                      'id': 'fact_03',
+                      'label': 'Stilla ved Svensenga',
+                      'desc': 'På nordsiden av Svensenga bru renner Akerselva rolig i det flate terrenget som kalles Stilla.',
+                      'confidence': 'high',
+                      'sources': ['https://oslobyleksikon.no/side/Svensenga_bru']
+                  },
+                  {
+                      'id': 'fact_04',
+                      'label': 'Dokumentert naturkart',
+                      'desc': 'Repoets Artskart-baserte naturkart har medium eller høyt konfidensnivå for flere eksisterende artskort ved punktet.',
+                      'confidence': 'high',
+                      'sources': ['data/natur/nature_oslo_expansion_place_map.json']
+                  },
+                  {
+                      'id': 'fact_05',
+                      'label': 'Åpnet elverom',
+                      'desc': 'Omformingen av Nydalen gjorde Akerselva og felles uteområder mer tilgjengelige enn i industriperioden.',
+                      'confidence': 'medium',
+                      'sources': ['https://www.nydalen.no/om-nydalen/', 'https://oslobyleksikon.no/side/Nydalen']
+                  }
+              ],
+              'chronology': [
+                  {
+                      'id': 'chrono_01',
+                      'year': 1845,
+                      'period': 'Industrialisering',
+                      'desc': 'Nydalens Compagnie etableres og innleder den sterke industriveksten langs Akerselva i Nydalen.',
+                      'confidence': 'high',
+                      'sources': ['https://oslobyleksikon.no/side/Nydalen']
+                  },
+                  {
+                      'id': 'chrono_02',
+                      'year': 1915,
+                      'period': 'Elveparkidé',
+                      'desc': 'Ideen om et sammenhengende parkbelte langs Akerselva blir lansert som motvekt til kanalisering og overbygging.',
+                      'confidence': 'high',
+                      'sources': ['https://oslobyleksikon.no/side/Akerselva']
+                  },
+                  {
+                      'id': 'chrono_03',
+                      'year': 1990,
+                      'period': 'Byomforming',
+                      'desc': 'Fra 1990-årene utvikles Nydalen sterkt fra industriområde til bydel med boliger, tjenester, utdanning og mer tilgjengelige elverom.',
+                      'confidence': 'high',
+                      'sources': ['https://snl.no/Nydalen', 'https://www.nydalen.no/om-nydalen/']
+                  },
+                  {
+                      'id': 'chrono_04',
+                      'year': 2026,
+                      'period': 'Datakorreksjon',
+                      'desc': 'History Go beholder teknisk ID, men retter visningsnavnet slik at punktet nedenfor Nydalsdammen ikke lenger fremstilles som historiske Stilla.',
+                      'confidence': 'high',
+                      'sources': ['https://oslobyleksikon.no/side/Stilla', 'data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json']
+                  }
+              ],
+              'sources': [
+                  {'title': 'Oslo byleksikon: Stilla', 'url': 'https://oslobyleksikon.no/side/Stilla'},
+                  {'title': 'Oslo byleksikon: Svensenga bru', 'url': 'https://oslobyleksikon.no/side/Svensenga_bru'},
+                  {'title': 'Oslo byleksikon: Nydalsdammen', 'url': 'https://oslobyleksikon.no/side/Nydalsdammen'},
+                  {'title': 'Oslo byleksikon: Akerselva', 'url': 'https://oslobyleksikon.no/side/Akerselva'},
+                  {'title': 'Oslo byleksikon: Nydalen', 'url': 'https://oslobyleksikon.no/side/Nydalen'},
+                  {'title': 'Store norske leksikon: Nydalen', 'url': 'https://snl.no/Nydalen'},
+                  {'title': 'Nydalen: Om Nydalen', 'url': 'https://www.nydalen.no/om-nydalen/'},
+                  {'title': 'History Go: Artskart-basert naturkart', 'url': 'data/natur/nature_oslo_expansion_place_map.json'}
+              ]
+          })
+          write(article_path, articles)
+
+          quiz = read(quiz_path)
+          replacements = [
+              ('Stilla ved Nydalen', 'Elvepartiet nedenfor Nydalsdammen'),
+              ('Stilla i Nydalen', 'elvepartiet nedenfor Nydalsdammen'),
+              ('ved Stilla', 'ved elvepartiet'),
+              ('Stilla', 'Elvepartiet')
+          ]
+
+          def rewrite(value):
+              if isinstance(value, str):
+                  for old, new in replacements:
+                      value = value.replace(old, new)
+                  return value
+              if isinstance(value, list):
+                  return [rewrite(item) for item in value]
+              if isinstance(value, dict):
+                  return {key: rewrite(item) for key, item in value.items()}
+              return value
+
+          quiz = rewrite(quiz)
+          quiz['manual_production_notes']['identity_correction'] = 'Teknisk ID beholdes, men brukerrettet tekst omtaler punktet som Elvepartiet nedenfor Nydalsdammen. Historiske Stilla ligger lenger nord ved Svensenga og Brekkefossen.'
+          quiz['manual_production_notes']['hold_back'] = [
+              'Ikke framstill punktet som badeområdet Stilla.',
+              'Ingen detaljerte artsfunn uten støtte i det aktive naturkartet.',
+              'Ingen oppfordring til bading eller ferdsel på våte steiner.',
+              'Ingen dagsaktuelle virksomheter eller arrangementer.'
+          ]
+          write(quiz_path, quiz)
+
+          route_index = read(route_index_path)
+          for row in route_index:
+              if row.get('id') == 'stilla_nydalen':
+                  row['name'] = 'Elvepartiet nedenfor Nydalsdammen'
+          write(route_index_path, route_index)
+
+          route_manifest = read(route_manifest_path)
+          for row in route_manifest.get('places', []):
+              if row.get('id') == 'stilla_nydalen':
+                  row['name'] = 'Elvepartiet nedenfor Nydalsdammen'
+          write(route_manifest_path, route_manifest)
+          PY
+
+          cat > reports/elvepartiet-nydalsdammen-nature-rounds-batch1.md <<'EOF'
+          # Elvepartiet nedenfor Nydalsdammen – natur-rundinger batch 1
+
+          Dato: 2026-07-19
+
+          ## Identitetskontroll
+
+          Det tekniske stedet `stilla_nydalen` ligger på `59.9449, 10.7654`, omtrent 105 meter nedenfor Nydalsdammen. Oslo byleksikon plasserer det historiske Stilla ved badekulpene i øvre Akerselva, fra Grandalen nord for Nydalsbakken mot Brekkefossen. Ved Svensenga bru ligger det flate elvelandskapet som kalles Stilla.
+
+          Visningsnavnet er derfor rettet til **Elvepartiet nedenfor Nydalsdammen**. ID, koordinat, radius og canonical år er beholdt for kompatibilitet.
+
+          ## Fylte natur-rundinger
+
+          - Oppgaver: vannskiftet, elvebredden og kontroll av kartnavn
+          - Natur: damutløp, vannhastighet, vegetert bredde og dokumenterte observasjonsspor
+          - Merker: fem kanoniske natur-underbadges
+          - Trening: tørr økt på offentlig sti uten vannaktivitet
+          - Civication: snittbrikke for damutløpet og navnekart Stilla–Nydalen
+          - Aktører: offentlig forvaltning, miljøarbeid, eiersamarbeid, byomforming og historisk industri
+          - Før / nå: industrikorridor til tilgjengelig grøntdrag
+          - Fortellinger: `Et elveparti med lånt navn`
+          - Leksikon: kildebelagt artikkel om naturpunktet og identitetsrettelsen
+
+          Ingen manuell `rounds`- eller `rundinger`-override er lagt inn.
+
+          ## Bevarte kartdata
+
+          - ID: `stilla_nydalen`
+          - koordinat: `59.9449, 10.7654`
+          - radius: `120`
+          - canonical år: `1900`
+
+          ## Kilder
+
+          Oslo byleksikon, Store norske leksikon, Nydalen.no, Akerselvas Venner og repoets Artskart-baserte naturkart.
+          EOF
+
+          cat > tests/elvepartiet-nydalsdammen-nature-rounds-batch1.test.js <<'EOF'
+          const assert = require('assert');
+          const fs = require('fs');
+          const path = require('path');
+
+          const repo = path.resolve(__dirname, '..');
+          const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
+          const expectedRounds = ['tasks', 'nature', 'badges', 'training', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon'];
+
+          const runtimeSource = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
+          const profileMatch = runtimeSource.match(/natur:\s*\[([^\]]+)\]/);
+          assert(profileMatch, 'Runtime skal ha naturprofil');
+          assert.deepStrictEqual(JSON.parse(`[${profileMatch[1]}]`), expectedRounds, 'Stedet skal bruke de ni natur-rundingene');
+
+          const placePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json';
+          const storiesPath = 'data/stories/stories_stilla_nydalen.json';
+          const articlePath = 'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json';
+          const quizPath = 'data/quiz/natur/stilla_nydalen_sets.json';
+          const place = readJson(placePath);
+          const story = readJson(storiesPath).find((row) => row.id === 'st_stilla_nydalen_elva_som_senker_farten');
+          const article = readJson(articlePath).find((row) => row.place_id === place.id);
+          const quiz = readJson(quizPath);
+          const validBadges = new Set(readJson('data/badges/natur.json').sub);
+          const placeIds = new Set(readJson('data/places/places_index.json').map((row) => row.id));
+          const natureMap = readJson('data/natur/nature_oslo_expansion_place_map.json').places[place.id];
+          const storyManifest = readJson('data/stories/stories_manifest_natur_batch_01.json');
+          const leksikonManifest = readJson('data/leksikon/manifest.json');
+          const routeIndex = readJson('data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json').find((row) => row.id === place.id);
+          const routeManifest = readJson('data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json').places.find((row) => row.id === place.id);
+
+          assert.strictEqual(place.id, 'stilla_nydalen');
+          assert.strictEqual(place.name, 'Elvepartiet nedenfor Nydalsdammen');
+          assert.strictEqual(place.category, 'natur');
+          assert.deepStrictEqual([place.lat, place.lon, place.r, place.year], [59.9449, 10.7654, 120, 1900]);
+          assert.strictEqual(routeIndex.name, place.name);
+          assert.strictEqual(routeManifest.name, place.name);
+          for (const forbidden of ['rounds', 'rundinger', 'routes', 'works', 'people', 'play_profile', 'flora', 'fauna']) {
+            assert(!Object.prototype.hasOwnProperty.call(place, forbidden), `Stedet skal ikke ha ${forbidden}`);
+          }
+
+          assert(storyManifest.files.some((entry) => entry.path === storiesPath), 'Story-filen skal være manifestlastet');
+          assert(leksikonManifest.files.includes(articlePath), 'Leksikonfilen skal være manifestlastet');
+          assert(story && story.place_id === place.id && story.person_id === null, 'Fortellingen skal være stedskoblet uten oppdiktet person');
+          assert(article && article.place_id === place.id, 'Leksikon-rundingen skal ha egen artikkel');
+
+          const roundContent = {
+            tasks: place.tasks_profile,
+            nature: place.nature_profile,
+            badges: place.underbadge_ids,
+            training: place.training_profile,
+            civication: place.civication_store,
+            brands: place.brands,
+            før_nå: place.for_na,
+            fortellinger: [story],
+            leksikon: [article]
+          };
+          assert.deepStrictEqual(Object.keys(roundContent), expectedRounds);
+          for (const [roundId, value] of Object.entries(roundContent)) {
+            const filled = Array.isArray(value) ? value.length > 0 : Boolean(value && typeof value === 'object');
+            assert(filled, `Stedet mangler ${roundId}`);
+          }
+
+          assert(place.externalLinks.length >= 7 && place.externalLinks.every((link) => /^https:\/\//.test(link.url)), 'Kildelenker skal være komplette HTTPS-lenker');
+          assert(place.underbadge_ids.length >= 5 && place.underbadge_ids.every((id) => validBadges.has(id)), 'Natur-underbadges skal være kanoniske');
+          assert(place.tasks_profile.tasks.length >= 3, 'Oppgaver-rundingen skal ha minst tre stedsspesifikke oppgaver');
+          assert(place.training_profile.exercises.length >= 3 && /ingen svømming/i.test(place.training_profile.safety), 'Trening skal være tørr og sikker');
+          assert(place.civication_store.length >= 2 && place.civication_store.every((item) => item.physicalObject && item.placeSpecific), 'Civication skal ha fysiske stedsspesifikke objekter');
+          assert(place.brands.length >= 5, 'Aktør-rundingen skal være fylt');
+          assert(typeof place.for_na.before === 'string' && typeof place.for_na.now === 'string' && place.for_na.look_for.length >= 5, 'Før/nå skal være runtime-lesbar');
+          assert(place.nature_profile.summary.length >= 450 && place.nature_profile.themes.length >= 7, 'Natur-rundingen skal være fyldig');
+          assert.strictEqual(new Set(place.nature_profile.themes).size, place.nature_profile.themes.length, 'Naturtemaene skal være unike');
+          assert.deepStrictEqual(place.nature_profile.nearby_place_ids, ['nydalsdammen', 'seilduksfabrikken_nydalen', 'bjoelsenparken_elvenaer']);
+          for (const id of place.nature_profile.nearby_place_ids) assert(placeIds.has(id), `Ukjent nærkobling ${id}`);
+
+          assert(natureMap && natureMap.flora.length >= 10 && natureMap.fauna.length >= 3, 'Dokumenterte artskartkoblinger skal beholdes');
+          assert(story.sources.length >= 6 && story.related_places.includes('nydalsdammen'), 'Fortellingen skal være kildebelagt og stedskoblet');
+          assert(article.sources.length >= 8 && article.facts.length >= 5 && article.chronology.length >= 4, 'Leksikonartikkelen skal være komplett');
+
+          const combined = JSON.stringify({ place, story, article, quiz });
+          assert(/historiske Stilla/.test(combined), 'Rettelsen skal forklare hvor historiske Stilla ligger');
+          assert(/Svensenga/.test(combined));
+          assert(/Brekkefossen/.test(combined));
+          assert(/Nydalsdammen/.test(combined));
+          assert(!/Stilla ved Nydalen/.test(combined), 'Feil visningsnavn skal være fjernet');
+          assert(!/Stilla i Nydalen/.test(combined), 'Feil quiznavn skal være fjernet');
+          assert(!/populært badested ved dette punktet/i.test(combined), 'Badehistorien skal ikke flyttes til feil punkt');
+
+          console.log('Elvepartiet below Nydalsdammen nature rounds batch 1 OK');
+          EOF
+
+      - name: Validate targeted content
+        shell: bash
+        run: |
+          node tests/elvepartiet-nydalsdammen-nature-rounds-batch1.test.js
+          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
+          node tests/place-card-rounds-runtime-audit.test.js
+          node tests/place-card-leksikon-content-audit.test.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for path in [
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json',
+              'data/stories/stories_stilla_nydalen.json',
+              'data/quiz/natur/stilla_nydalen_sets.json',
+              'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json'
+          ]:
+              json.loads(Path(path).read_text(encoding='utf-8'))
+          print('Changed JSON files parse OK')
+          PY
+          git diff --check
+
+      - name: Commit content and remove temporary workflows
+        shell: bash
+        run: |
+          rm -f .github/workflows/fill-elvepartiet-nydalsdammen-nature-rounds-batch1.yml
+          rm -f .github/workflows/kick-elvepartiet-nydalsdammen-nature-rounds-batch1.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data reports tests .github/workflows
+          git commit -m 'Fill Elvepartiet below Nydalsdammen nature rounds'
+          git push origin HEAD:agent/fill-elvepartiet-nydalsdammen-nature-rounds-batch1
