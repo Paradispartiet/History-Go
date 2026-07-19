@@ -1,0 +1,39 @@
+name: Oslo coordinate batch 23 address lookups
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  lookup:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch-23'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Run and save address-first lookups
+        run: |
+          set -o pipefail
+          mkdir -p reports/oslo-coordinate-control-batch-23/lookups
+          npm run places:coords:find:address -- --address "Haslevangen 16 Oslo" \
+            | tee reports/oslo-coordinate-control-batch-23/lookups/vinmonopolet_lager-geonorge.json
+          npm run places:coords:find:address -- --address "Dyvekes vei 2 Oslo" \
+            | tee reports/oslo-coordinate-control-batch-23/lookups/jernbaneverkstedet_lodalen-geonorge.json
+          npm run places:coords:find:address -- --address "Bankplassen 3 Oslo" \
+            | tee reports/oslo-coordinate-control-batch-23/lookups/grunnlovsbygget_bankplassen-geonorge.json
+      - name: Upload lookup evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch23-lookups
+          path: reports/oslo-coordinate-control-batch-23/lookups/
+          if-no-files-found: error
