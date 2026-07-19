@@ -36,6 +36,9 @@ jobs:
       - name: Apply strict batch 29 decisions
         run: node scripts/tmp-complete-oslo-coordinate-batch29-v3.mjs
 
+      - name: Repair pre-existing evidence drift and normalize report EOF
+        run: node scripts/tmp-fix-batch29-validation-prereqs.mjs
+
       - name: Rebuild runtime index
         run: npm run places:index:build
 
@@ -115,8 +118,9 @@ jobs:
           set -euo pipefail
           rm .github/workflows/oslo-coordinate-batch-29-integrate-v3.yml
           rm scripts/tmp-complete-oslo-coordinate-batch29-v3.mjs
+          rm scripts/tmp-fix-batch29-validation-prereqs.mjs
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data docs reports .github/workflows/oslo-coordinate-batch-29-integrate-v3.yml scripts/tmp-complete-oslo-coordinate-batch29-v3.mjs
+          git add data docs reports .github/workflows/oslo-coordinate-batch-29-integrate-v3.yml scripts/tmp-complete-oslo-coordinate-batch29-v3.mjs scripts/tmp-fix-batch29-validation-prereqs.mjs
           git commit -m "Complete Oslo coordinate control batch 29 with strict address-first method"
           git push origin HEAD
