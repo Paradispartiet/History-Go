@@ -1,0 +1,92 @@
+name: Oslo coordinate batch 33 diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Query Geonorge and exact OSM candidates
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-batch-33-diagnostic
+          mkdir -p "$out/geonorge" "$out/osm" "$out/reverse"
+          npm run build:tools >/dev/null
+
+          run_address() {
+            slug="$1"; address="$2"
+            set +e
+            npm run places:coords:find:address -- --address "$address" > "$out/geonorge/$slug.json" 2>&1
+            code=$?
+            set -e
+            printf '%s=%s\n' "$slug" "$code" >> "$out/geonorge/status.txt"
+          }
+          run_address glads-molle 'Sandakerveien 10A Oslo'
+          run_address voienvolden 'Maridalsveien 120 Oslo'
+
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request, time
+          from pathlib import Path
+          out=Path('reports/oslo-coordinate-batch-33-diagnostic')
+          queries={
+            'voienfallene':'Vøyenfallene, Oslo, Norway',
+            'myralokka':'Myraløkka, Oslo, Norway',
+            'kuba_parken':'Kuba park, Oslo, Norway',
+            'beierbrua':'Beierbrua, Oslo, Norway',
+            'nedre_foss':'Nedre Foss, Oslo, Norway',
+          }
+          headers={'User-Agent':'History-Go-coordinate-audit/1.0 (GitHub Actions)'}
+          for slug,q in queries.items():
+            url='https://nominatim.openstreetmap.org/search?'+urllib.parse.urlencode({'q':q,'format':'jsonv2','limit':10,'addressdetails':1,'extratags':1,'namedetails':1})
+            req=urllib.request.Request(url,headers=headers)
+            with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
+            (out/'osm'/f'{slug}.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+            time.sleep(1)
+          points={
+            'voienfallene_current':(59.93065,10.75703),
+            'myralokka_current':(59.935817,10.757414),
+            'kuba_parken_current':(59.92472,10.75244),
+            'beierbrua_current':(59.9283,10.7464),
+            'nedre_foss_current':(59.9256,10.7435),
+          }
+          for slug,(lat,lon) in points.items():
+            url='https://nominatim.openstreetmap.org/reverse?'+urllib.parse.urlencode({'lat':lat,'lon':lon,'format':'jsonv2','zoom':18,'addressdetails':1,'extratags':1,'namedetails':1})
+            req=urllib.request.Request(url,headers=headers)
+            with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
+            (out/'reverse'/f'{slug}.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+            time.sleep(1)
+          PY
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('reports/oslo-coordinate-batch-33-diagnostic')
+          summary={'geonorge':{},'osm':{},'reverse':{}}
+          for p in sorted((root/'geonorge').glob('*.json')):
+            try: d=json.loads(p.read_text())
+            except Exception: d={'raw':p.read_text()[:1000]}
+            summary['geonorge'][p.stem]=d
+          for p in sorted((root/'osm').glob('*.json')):
+            rows=json.loads(p.read_text())
+            summary['osm'][p.stem]=[{
+              'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'type':r.get('type'),'category':r.get('category'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'importance':r.get('importance'),'extratags':r.get('extratags',{})
+            } for r in rows]
+          for p in sorted((root/'reverse').glob('*.json')):
+            r=json.loads(p.read_text())
+            summary['reverse'][p.stem]={'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'type':r.get('type'),'category':r.get('category'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'extratags':r.get('extratags',{})}
+          (root/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-33-diagnostic
+          path: reports/oslo-coordinate-batch-33-diagnostic
+          if-no-files-found: error
