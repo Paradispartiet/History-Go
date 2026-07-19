@@ -1,0 +1,79 @@
+name: Oslo coordinate batch 22 evidence
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-coordinate-batch-22-evidence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Collect address-first and object evidence
+        shell: bash
+        run: |
+          set -uo pipefail
+          OUT="reports/oslo-coordinate-control-batch-22/evidence"
+          mkdir -p "$OUT"
+
+          run_lookup() {
+            local slug="$1"
+            local address="$2"
+            echo "=== $address ===" | tee "$OUT/${slug}.status.txt"
+            set +e
+            npm run places:coords:find:address -- --address "$address" \
+              2>&1 | tee "$OUT/${slug}.json"
+            code=${PIPESTATUS[0]}
+            set -e
+            echo "exit_code=$code" | tee -a "$OUT/${slug}.status.txt"
+          }
+
+          set -e
+          run_lookup kulturkirken_jakob "Hausmanns gate 14 Oslo"
+          run_lookup norli_universitetsgata_22 "Universitetsgata 22 Oslo"
+          run_lookup norli_universitetsgata_24 "Universitetsgata 24 Oslo"
+          run_lookup ruth_maier_context "Dalsbergstien 3 Oslo"
+
+          curl_json() {
+            local slug="$1"
+            local url="$2"
+            curl -fsSL -A 'History-Go-coordinate-audit/1.0' "$url" | tee "$OUT/${slug}.json"
+          }
+
+          curl_json sigrid_undset_nominatim "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&q=Sigrid%20Undset%20statue%20Stensparken%20Oslo"
+          sleep 1
+          curl_json inger_hagerups_plass_nominatim "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&q=Inger%20Hagerups%20plass%20Oslo"
+          sleep 1
+          curl_json alexander_kiellands_plass_nominatim "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&q=Alexander%20Kiellands%20plass%20Oslo"
+          sleep 1
+          curl_json oskar_braaten_osm_node "https://api.openstreetmap.org/api/0.6/node/10819902960.json"
+          curl_json ruth_maier_wikidata "https://www.wikidata.org/wiki/Special:EntityData/Q44179381.json"
+          curl_json ruth_maiers_plass_wikidata "https://www.wikidata.org/wiki/Special:EntityData/Q109392373.json"
+
+          printf '%s\n' \
+            'Queue order:' \
+            '133 kulturkirken_jakob_litteratur' \
+            '134 norli_universitetsgata' \
+            '135 sigrid_undset_statue' \
+            '136 ruth_maier_minne' \
+            '137 inger_hagerups_plass' \
+            '138 oscar_braaten_statuen' \
+            '139 alexander_kiellands_plass' \
+            > "$OUT/queue.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-22-evidence
+          path: reports/oslo-coordinate-control-batch-22/evidence
+          if-no-files-found: error
