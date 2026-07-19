@@ -84,6 +84,11 @@ jobs:
           - Bakeriet ved Akershus: OSM way 669390521 er navngitt Bakeriet på Akershus festning; Lovdatas fredningsforskrift identifiserer inventar 14 som Bakeriet fra 1759.
           EOF
 
+      - name: Normalize coordinate source providers
+        run: |
+          sed -i "s/sourceProvider: 'wikidata'/sourceProvider: 'manual_research'/g" scripts/tmp-complete-oslo-coordinate-batch24.mjs
+          sed -i "s/sourceProvider: 'openstreetmap'/sourceProvider: 'osm'/g" scripts/tmp-complete-oslo-coordinate-batch24.mjs
+
       - name: Apply batch 24
         run: node scripts/tmp-complete-oslo-coordinate-batch24.mjs
 
