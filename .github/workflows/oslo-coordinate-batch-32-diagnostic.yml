@@ -1,0 +1,91 @@
+name: Oslo coordinate batch 32 diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Query exact OSM candidates
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-coordinate-batch-32-diagnostic
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request, time
+
+          queries = {
+            'frysjadammen': 'Frysjadammen, Oslo, Norway',
+            'ovre_spinneri': 'Øvre spinneri, Nydalen, Oslo, Norway',
+            'nydalsdammen': 'Nydalsdammen, Oslo, Norway',
+            'stilla_nydalen': 'Stilla, Nydalen, Oslo, Norway',
+            'bjoelsenfossen': 'Bjølsenfossen, Oslo, Norway',
+            'advokat_dehlis_plass': 'Advokat Dehlis plass, Oslo, Norway',
+          }
+
+          out = {}
+          headers = {'User-Agent': 'History-Go-coordinate-audit/1.0'}
+          for key, query in queries.items():
+            params = urllib.parse.urlencode({
+              'format': 'jsonv2',
+              'q': query,
+              'limit': 10,
+              'polygon_geojson': 1,
+              'extratags': 1,
+              'namedetails': 1,
+              'addressdetails': 1,
+            })
+            req = urllib.request.Request('https://nominatim.openstreetmap.org/search?' + params, headers=headers)
+            try:
+              with urllib.request.urlopen(req, timeout=30) as r:
+                rows = json.load(r)
+            except Exception as e:
+              rows = [{'error': str(e)}]
+            out[key] = rows
+            time.sleep(1.2)
+
+          with open('reports/oslo-coordinate-batch-32-diagnostic/nominatim.json', 'w') as f:
+            json.dump(out, f, ensure_ascii=False, indent=2)
+          PY
+
+      - name: Build compact candidate summary
+        run: |
+          python3 - <<'PY'
+          import json
+          src = json.load(open('reports/oslo-coordinate-batch-32-diagnostic/nominatim.json'))
+          compact = {}
+          for key, rows in src.items():
+            compact[key] = []
+            for row in rows[:5]:
+              if 'error' in row:
+                compact[key].append(row)
+                continue
+              compact[key].append({
+                'osm_type': row.get('osm_type'),
+                'osm_id': row.get('osm_id'),
+                'class': row.get('class'),
+                'type': row.get('type'),
+                'name': row.get('name'),
+                'display_name': row.get('display_name'),
+                'lat': row.get('lat'),
+                'lon': row.get('lon'),
+                'place_rank': row.get('place_rank'),
+                'importance': row.get('importance'),
+                'extratags': row.get('extratags'),
+                'address': row.get('address'),
+              })
+          json.dump(compact, open('reports/oslo-coordinate-batch-32-diagnostic/summary.json','w'), ensure_ascii=False, indent=2)
+          print(json.dumps(compact, ensure_ascii=False, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-32-diagnostic
+          path: reports/oslo-coordinate-batch-32-diagnostic
+          if-no-files-found: error
