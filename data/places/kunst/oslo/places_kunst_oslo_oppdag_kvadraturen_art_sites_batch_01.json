@@ -2,9 +2,9 @@
   {
     "id": "skulptursonen_ovre_slottsgate",
     "name": "Skulptursonen i Øvre Slottsgate",
-    "lat": 59.91090475759994,
-    "lon": 10.740251806375902,
-    "r": 90,
+    "lat": 59.9112353280587,
+    "lon": 10.740582917313654,
+    "r": 100,
     "category": "kunst",
     "year": 2019,
     "kindLabel": "Offentlig kunstplattform / skulptursone",
@@ -78,17 +78,39 @@
       "skulptur"
     ],
     "locatorType": "art_zone",
-    "sourceProvider": "osm",
-    "sourceObjectId": "osm-way:972903959",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oppdag-kvadraturen:skulptursonen-i-ovre-slottsgate",
     "geocodeAccuracy": "semantic_anchor",
-    "coordRole": "area_anchor",
+    "coordRole": "line_anchor",
     "coordStatus": "verified_geometry",
-    "coordSource": "OpenStreetMap way 972903959 – Øvre Slottsgate, segmentet mellom Tollbugata og Prinsens gate",
-    "coordSourceId": "osm-way:972903959",
-    "coordSourceUrl": "https://www.openstreetmap.org/way/972903959",
-    "coordType": "street_segment_midpoint",
+    "coordSource": "Oppdag Kvadraturen + OpenStreetMap ways 972903959, 995344351, 995344352 and 306572322",
+    "coordSourceId": "oppdag-kvadraturen:skulptursonen-i-ovre-slottsgate",
+    "coordSourceUrl": "https://www.oppdagkvadraturen.no/stoppesteder/skulptursonen-i-ovre-slottsgate",
+    "coordType": "exhibition_street_segment_midpoint",
     "coordVerifiedAt": "2026-07-19",
-    "coordNote": "Oppdag Kvadraturen avgrenser Skulptursonen til Øvre Slottsgate mellom Tollbugata og Prinsens gate. Punktet er beregnet som lengdevektet midtpunkt på det eksakte OSM-gatesegmentet way 972903959 som dekker denne strekningen, og brukes som semantisk områdeanker for kunstsonen — ikke som koordinat for ett bestemt skulpturverk.",
+    "coordNote": "Oppdag Kvadraturen avgrenser Skulptursonen til Øvre Slottsgate mellom Tollbugata og Prinsens gate. Rå Overpass-geometri viser at denne sammenhengende strekningen består av OSM ways 972903959, 995344351, 995344352 og 306572322, fra 59.9105601, 10.7399039 til 59.9119100, 10.7412640. Punktet er det lengdevektede midtpunktet langs hele den ca. 168 meter lange dokumenterte gatekjeden og brukes som linjeanker for kunstsonen, ikke som koordinat for ett bestemt skulpturverk.",
+    "anchors": [
+      {
+        "id": "skulptursonen_tollbugata_boundary",
+        "name": "Skulptursonen – Tollbugata-grense",
+        "lat": 59.9105601,
+        "lon": 10.7399039,
+        "r": 30,
+        "type": "segment_boundary",
+        "sourceObjectId": "osm-way:972903959",
+        "role": "line_boundary"
+      },
+      {
+        "id": "skulptursonen_prinsens_gate_boundary",
+        "name": "Skulptursonen – Prinsens gate-grense",
+        "lat": 59.91191,
+        "lon": 10.741264,
+        "r": 30,
+        "type": "segment_boundary",
+        "sourceObjectId": "osm-way:306572322",
+        "role": "line_boundary"
+      }
+    ],
     "externalLinks": [
       {
         "type": "official",
@@ -100,7 +122,7 @@
       {
         "type": "official",
         "label": "Norsk Billedhoggerforening – Skulptursonen",
-        "url": "https://www.norskebilledhoggerforening.no/",
+        "url": "https://www.norskbilledhoggerforening.no/",
         "lang": "nb",
         "verifiedAt": "2026-07-19"
       }
