@@ -65,6 +65,12 @@ jobs:
           run_finder 'Pilestredet 75C Oslo' 'st_halvard_bryggeri-pilestredet-75c-geonorge.json'
 
           run_curl \
+            'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Hjula%20V%C3%A6verier%20Oslo' \
+            'ovre_foss-hjula-vaeverier-nominatim.json'
+          run_curl \
+            'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Ringnes%20Bryggeri%20Thorvald%20Meyers%20gate%202%20Oslo' \
+            'ringnes_bryggeri-nominatim.json'
+          run_curl \
             'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Bakeriet%20Akershus%20festning%20Oslo' \
             'akershus_slott_bakeriet-nominatim.json'
           run_curl \
@@ -77,9 +83,9 @@ jobs:
           cat > "$OUT/source-notes.md" <<'EOF'
           # Batch 24 – identitetsnotater før integrasjon
 
-          - `ovre_foss`: Oslo byleksikon identifiserer Hjula Væverier ved Sagveien 23. Adressepunkt kan bare brukes dersom finder-resultatet er entydig og recorden eksplisitt avgrenses til Hjula-anlegget, ikke et generisk «Øvre Foss»-område.
+          - `ovre_foss`: Oslo byleksikon identifiserer Hjula Væverier ved Sagveien 23. Adressepunkt kan bare brukes dersom finder-resultatet er entydig; ved tvetydighet kan et eksakt navngitt Hjula-objekt brukes dersom det fysisk matcher anlegget og ikke et generisk «Øvre Foss»-område.
           - `schous_bryggeri`: Oslo byleksikon identifiserer det historiske Schous-anlegget ved Trondheimsveien 2. Et entydig Geonorge-treff kan brukes som display-marker for det større bryggerikomplekset.
-          - `ringnes_bryggeri`: Oslo byleksikon identifiserer det historiske bryggeriet ved Thorvald Meyers gate 2. Et entydig Geonorge-treff kan brukes som display-marker for det større komplekset.
+          - `ringnes_bryggeri`: Oslo byleksikon identifiserer det historiske bryggeriet ved Thorvald Meyers gate 2. Ved tvetydig adresseoppslag kan bare et eksakt navngitt bryggeri-/bygningsobjekt brukes som alternativt anker.
           - `sagene_kvernhus`: Aktiv record beskriver et bredt og sammenblandet mølle-/kvernområde langs Akerselva. Ikke forankre den til Hjula uten egen identitetsavklaring, fordi `ovre_foss` allerede representerer Hjula-anlegget.
           - `st_halvard_bryggeri`: Aktiv record har materiell konflikt i år, geografi og historie. Pilestredet 75C-oppslaget er kun utforskende og skal ikke automatisk anvendes.
           - `oslo_kornmagasin`: Det dokumenterte Kornmagasinet på Akershus er et konkret 1788-bygg, mens aktiv record heter «Christiania kornmagasin» og oppgir 1785. Ikke retarget recorden uten eksplisitt identitetsavgjørelse.
