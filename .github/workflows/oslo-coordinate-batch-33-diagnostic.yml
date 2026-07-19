@@ -17,26 +17,32 @@ jobs:
           node-version: 22
       - name: Query Geonorge and exact OSM candidates
         run: |
-          set -euo pipefail
+          set -u
           out=reports/oslo-coordinate-batch-33-diagnostic
           mkdir -p "$out/geonorge" "$out/osm" "$out/reverse"
-          npm run build:tools >/dev/null
+          npm run build:tools > "$out/build-tools.txt" 2>&1 || true
 
           run_address() {
             slug="$1"; address="$2"
-            set +e
             npm run places:coords:find:address -- --address "$address" > "$out/geonorge/$slug.json" 2>&1
             code=$?
-            set -e
             printf '%s=%s\n' "$slug" "$code" >> "$out/geonorge/status.txt"
           }
           run_address glads-molle 'Sandakerveien 10A Oslo'
           run_address voienvolden 'Maridalsveien 120 Oslo'
 
           python3 - <<'PY'
-          import json, urllib.parse, urllib.request, time
+          import json, urllib.parse, urllib.request, urllib.error, time
           from pathlib import Path
           out=Path('reports/oslo-coordinate-batch-33-diagnostic')
+          headers={'User-Agent':'History-Go-coordinate-audit/1.0 contact=repository-audit'}
+          def fetch(url):
+              req=urllib.request.Request(url,headers=headers)
+              try:
+                  with urllib.request.urlopen(req,timeout=40) as r:
+                      return {'ok':True,'data':json.load(r)}
+              except Exception as e:
+                  return {'ok':False,'error':repr(e),'url':url}
           queries={
             'voienfallene':'Vøyenfallene, Oslo, Norway',
             'myralokka':'Myraløkka, Oslo, Norway',
@@ -44,13 +50,11 @@ jobs:
             'beierbrua':'Beierbrua, Oslo, Norway',
             'nedre_foss':'Nedre Foss, Oslo, Norway',
           }
-          headers={'User-Agent':'History-Go-coordinate-audit/1.0 (GitHub Actions)'}
           for slug,q in queries.items():
-            url='https://nominatim.openstreetmap.org/search?'+urllib.parse.urlencode({'q':q,'format':'jsonv2','limit':10,'addressdetails':1,'extratags':1,'namedetails':1})
-            req=urllib.request.Request(url,headers=headers)
-            with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
-            (out/'osm'/f'{slug}.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
-            time.sleep(1)
+              url='https://nominatim.openstreetmap.org/search?'+urllib.parse.urlencode({'q':q,'format':'jsonv2','limit':10,'addressdetails':1,'extratags':1,'namedetails':1})
+              result=fetch(url)
+              (out/'osm'/f'{slug}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+              time.sleep(1.2)
           points={
             'voienfallene_current':(59.93065,10.75703),
             'myralokka_current':(59.935817,10.757414),
@@ -59,11 +63,10 @@ jobs:
             'nedre_foss_current':(59.9256,10.7435),
           }
           for slug,(lat,lon) in points.items():
-            url='https://nominatim.openstreetmap.org/reverse?'+urllib.parse.urlencode({'lat':lat,'lon':lon,'format':'jsonv2','zoom':18,'addressdetails':1,'extratags':1,'namedetails':1})
-            req=urllib.request.Request(url,headers=headers)
-            with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
-            (out/'reverse'/f'{slug}.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
-            time.sleep(1)
+              url='https://nominatim.openstreetmap.org/reverse?'+urllib.parse.urlencode({'lat':lat,'lon':lon,'format':'jsonv2','zoom':18,'addressdetails':1,'extratags':1,'namedetails':1})
+              result=fetch(url)
+              (out/'reverse'/f'{slug}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+              time.sleep(1.2)
           PY
 
           python3 - <<'PY'
@@ -72,19 +75,28 @@ jobs:
           root=Path('reports/oslo-coordinate-batch-33-diagnostic')
           summary={'geonorge':{},'osm':{},'reverse':{}}
           for p in sorted((root/'geonorge').glob('*.json')):
-            try: d=json.loads(p.read_text())
-            except Exception: d={'raw':p.read_text()[:1000]}
-            summary['geonorge'][p.stem]=d
+              try: d=json.loads(p.read_text())
+              except Exception: d={'raw':p.read_text()[:4000]}
+              summary['geonorge'][p.stem]=d
           for p in sorted((root/'osm').glob('*.json')):
-            rows=json.loads(p.read_text())
-            summary['osm'][p.stem]=[{
-              'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'type':r.get('type'),'category':r.get('category'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'importance':r.get('importance'),'extratags':r.get('extratags',{})
-            } for r in rows]
+              result=json.loads(p.read_text())
+              if not result.get('ok'):
+                  summary['osm'][p.stem]=result
+                  continue
+              rows=result.get('data') or []
+              summary['osm'][p.stem]=[{
+                  'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'type':r.get('type'),'category':r.get('category'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'importance':r.get('importance'),'extratags':r.get('extratags',{})
+              } for r in rows]
           for p in sorted((root/'reverse').glob('*.json')):
-            r=json.loads(p.read_text())
-            summary['reverse'][p.stem]={'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'type':r.get('type'),'category':r.get('category'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'extratags':r.get('extratags',{})}
+              result=json.loads(p.read_text())
+              if not result.get('ok'):
+                  summary['reverse'][p.stem]=result
+                  continue
+              r=result.get('data') or {}
+              summary['reverse'][p.stem]={'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'type':r.get('type'),'category':r.get('category'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'extratags':r.get('extratags',{})}
           (root/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
           PY
+          exit 0
       - uses: actions/upload-artifact@v4
         with:
           name: oslo-coordinate-batch-33-diagnostic
