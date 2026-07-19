@@ -1,0 +1,53 @@
+{
+  "placeId": "jernbanetorget_trafikknutepunkt",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.911,
+    "lon": 10.7508,
+    "r": 150,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Jernbanetorget – handelsknutepunktet",
+    "resolvedIdentity": "samme fysiske Jernbanetorget som canonical `jernbanetorget`, men med næringslivsvinkel",
+    "identityStatus": "conflict",
+    "identityProblem": "Repoet har allerede canonical `jernbanetorget` med verifisert fysisk anker. Denne recorden beskriver samme byrom og kan ikke få et separat fysisk punkt bare fordi fagvinkelen er næringsliv.",
+    "locatorTypeCandidate": "square",
+    "requiresSplit": false,
+    "splitReason": "Faglig perspektiv må modelleres som innhold/relation til canonical Jernbanetorget, ikke som ny fysisk place."
+  },
+  "requiredEvidence": [
+    "canonical duplikatavgjørelse",
+    "migrering av eventuelle referanser til `jernbanetorget`",
+    "bekreftelse på at ingen separat fysisk delentitet er ment"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go canonical coordinate protocol",
+      "sourceUrl": "docs/coordinates/coordinate-control-protocol.md",
+      "sourceObjectId": "history-go:canonical:jernbanetorget",
+      "sourceQuality": "canonical_overlap_audit",
+      "finding": "Canonical `jernbanetorget` er allerede kontrollert som Jernbanetorget med verifisert geometri, mens denne recorden beskriver samme handels- og transportknutepunkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Et eget punkt ville skape et fysisk duplikat."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Fysisk duplikat av canonical `jernbanetorget`.",
+    "nextAction": "Migrer næringslivsinnhold og referanser til canonical `jernbanetorget`, eller dokumenter en faktisk separat fysisk delentitet."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 25."
+  ]
+}
