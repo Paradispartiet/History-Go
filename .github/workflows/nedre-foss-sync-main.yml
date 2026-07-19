@@ -1,0 +1,34 @@
+name: Sync Nedre Foss branch with latest main
+
+on:
+  push:
+    branches: [agent/fill-nedre-foss-history-rounds-batch1]
+    paths:
+      - '.github/workflows/nedre-foss-sync-main.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-nedre-foss-history-rounds-batch1
+          fetch-depth: 0
+      - name: Merge latest main without overwriting conflicts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+          rm -f .github/workflows/nedre-foss-sync-main.yml
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit --no-verify -m 'chore: remove temporary Nedre Foss sync workflow'
+          fi
+          git push origin HEAD:agent/fill-nedre-foss-history-rounds-batch1
