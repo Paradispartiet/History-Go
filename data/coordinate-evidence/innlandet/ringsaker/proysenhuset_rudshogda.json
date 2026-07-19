@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "proysenhuset_rudshogda",
+  "placeFile": "data/places/litteratur/innlandet/proysenhuset_rudshogda.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 60.912182010287836,
+    "lon": 10.791215743205731,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell Geonorge-adressekoordinat for Prøysenhuset på Prestvegen 1, Rudshøgda, dokumentert av Prøysenhuset som besøksadresse. Recorden er samtidig flyttet ut av Oslo-kilden til Innlandet/Ringsaker."
+  },
+  "identity": {
+    "currentName": "Prøysenhuset – Rudshøgda",
+    "resolvedIdentity": "Prøysenhuset på Prestvegen 1, Rudshøgda i Ringsaker",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Recorden flyttes fra Oslo til Ringsaker og får dokumentert adresseanker."
+  },
+  "requiredEvidence": [
+    "sporbar fysisk identitet",
+    "entydig offisielt adresseanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Prøysenhuset – offisiell besøksadresse",
+      "sourceUrl": "https://www.proysenhuset.no/",
+      "sourceObjectId": "proysenhuset:prestvegen-1",
+      "sourceQuality": "official_institution_address",
+      "finding": "Prøysenhuset oppgir Prestvegen 1, 2360 Rudshøgda som besøksadresse.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell institusjonskilde kobler place-identiteten til adressen."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Prestvegen%201%20Rudsh%C3%B8gda",
+      "sourceObjectId": "geonorge-adresser-v1:3411:8235:1",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge ga ett eksakt verified_candidate for Prestvegen 1 i Ringsaker.",
+      "canVerifyCoordinate": true,
+      "reason": "Konkret museumsbygg med dokumentert adresse."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3411:8235:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "proysenhuset:prestvegen-1",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3411:8235:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 60.912182010287836,
+      "lon": 10.791215743205731,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Coordinate source contract is applied to canonical data."
+  },
+  "notes": [
+    "Offisiell Geonorge-adressekoordinat for Prøysenhuset på Prestvegen 1, Rudshøgda, dokumentert av Prøysenhuset som besøksadresse. Recorden er samtidig flyttet ut av Oslo-kilden til Innlandet/Ringsaker."
+  ]
+}

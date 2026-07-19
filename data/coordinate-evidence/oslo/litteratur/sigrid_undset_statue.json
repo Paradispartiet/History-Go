@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "sigrid_undset_statue",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9242,
+    "lon": 10.7297,
+    "r": 120,
+    "coordStatus": "needs_source",
+    "coordSource": "manual_research",
+    "coordType": "unverified_monument_point",
+    "coordNote": "Oslo kommune dokumenterer Sigrid Undsets skulptur i Stensparken, og lokalhistorisk kilde dokumenterer avduking i 1991. Ingen konkret adresse eller entydig maskinsporbar sokkelkoordinat er dokumentert i denne passeringen; eksisterende lat/lon er derfor ikke godkjent som verified."
+  },
+  "identity": {
+    "currentName": "Sigrid Undset-statuen",
+    "resolvedIdentity": "Sigrid Undset-skulpturen i Stensparken, avduket i 1991",
+    "identityStatus": "resolved",
+    "identityProblem": "Fysisk identitet er dokumentert, men batchens strenge koordinatkrav er ikke oppfylt for ett entydig canonical punkt.",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig canonical hovedanker eller eksakt objektgeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – 17. mai-bekransninger",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/17-mai/bekransninger/",
+      "sourceObjectId": "oslo-kommune:stensparken:sigrid-undset-skulptur",
+      "sourceQuality": "official_monument_identity",
+      "finding": "Oslo kommune dokumenterer Sigrid Undsets skulptur i Stensparken.",
+      "canVerifyCoordinate": false,
+      "reason": "Siden identifiserer park og monument, men gir ikke eksakt sokkelpunkt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Stensparken",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Stensparken",
+      "sourceObjectId": "lokalhistoriewiki:stensparken:sigrid-undset",
+      "sourceQuality": "documented_monument_history",
+      "finding": "Kilden oppgir at Kjersti Wexelsen Goksøyrs Sigrid Undset-statue ble avduket i 1991.",
+      "canVerifyCoordinate": false,
+      "reason": "Historien er dokumentert, men eksakt monumentgeometri mangler."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:stensparken:sigrid-undset-skulptur",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:stensparken:sigrid-undset",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Oslo kommune dokumenterer Sigrid Undsets skulptur i Stensparken, og lokalhistorisk kilde dokumenterer avduking i 1991. Ingen konkret adresse eller entydig maskinsporbar sokkelkoordinat er dokumentert i denne passeringen; eksisterende lat/lon er derfor ikke godkjent som verified.",
+    "nextAction": "Do not promote to verified until one exact canonical anchor is documented."
+  },
+  "notes": [
+    "Oslo kommune dokumenterer Sigrid Undsets skulptur i Stensparken, og lokalhistorisk kilde dokumenterer avduking i 1991. Ingen konkret adresse eller entydig maskinsporbar sokkelkoordinat er dokumentert i denne passeringen; eksisterende lat/lon er derfor ikke godkjent som verified."
+  ]
+}

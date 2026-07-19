@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kulturkirken_jakob_litteratur",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9180329772343,
+    "lon": 10.754119014784367,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell Geonorge-adressekoordinat for Hausmanns gate 14, dokumentert av Kulturkirken JAKOB som besøksadresse. Punktet representerer selve kulturkirken og erstatter det tidligere omtrentlige legacy-punktet."
+  },
+  "identity": {
+    "currentName": "Kulturkirken Jakob",
+    "resolvedIdentity": "Kulturkirken Jakob i Hausmanns gate 14",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "sporbar fysisk identitet",
+    "entydig offisielt adresseanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hausmanns%20gate%2014%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:14",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge ga ett entydig verified_candidate for Hausmanns gate 14.",
+      "canVerifyCoordinate": true,
+      "reason": "Konkret bygg med dokumentert besøksadresse."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Kulturkirken JAKOB – Praktisk info/adkomst",
+      "sourceUrl": "https://www.jakob.no/om-jakob/praktisk/adkomst",
+      "sourceObjectId": "kulturkirken-jakob:hausmanns-gate-14",
+      "sourceQuality": "official_institution_address",
+      "finding": "Kulturkirken JAKOB oppgir at kirken ligger i Hausmanns gate 14.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell institusjonskilde kobler place-identiteten til adressen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:14",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:14",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturkirken-jakob:hausmanns-gate-14",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9180329772343,
+      "lon": 10.754119014784367,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Coordinate source contract is applied to canonical data."
+  },
+  "notes": [
+    "Offisiell Geonorge-adressekoordinat for Hausmanns gate 14, dokumentert av Kulturkirken JAKOB som besøksadresse. Punktet representerer selve kulturkirken og erstatter det tidligere omtrentlige legacy-punktet."
+  ]
+}
