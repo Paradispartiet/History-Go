@@ -52,7 +52,7 @@ for (const [id, exp] of Object.entries(expected)) {
 const myraSplit = read('data/places/natur/oslo/places_oslo_natur_akerselvarute/myralokka.json');
 if (!myraSplit.tasks_profile || !myraSplit.nature_profile?.species_inventory) throw new Error('Myraløkka rich split content was lost');
 const kubaSplit = read('data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json');
-if (!kubaSplit.tasks_profile || !kubaSplit.nature_profile?.species_inventory) throw new Error('Kuba rich split content was lost');
+if (!kubaSplit.tasks_profile || !kubaSplit.nature_profile || !kubaSplit.training_profile) throw new Error('Kuba rich split content was lost');
 const voienSplit = read('data/places/natur/oslo/places_oslo_natur_akerselvarute/voienfossen.json');
 if (!voienSplit.works || !voienSplit.quiz_profile) throw new Error('Vøyenfallene rich split content was lost');
 
