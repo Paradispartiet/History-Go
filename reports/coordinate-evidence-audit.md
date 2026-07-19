@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T02:56:16.795Z
+Generert: 2026-07-19T03:08:26.784Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -58,3 +58,10 @@ Generert: 2026-07-19T02:56:16.795Z
 | gimle_kino | data/coordinate-evidence/oslo/film/gimle_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vika_kino | data/coordinate-evidence/oslo/film/vika_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hartvig_nissens_skole_skam | data/coordinate-evidence/oslo/film/hartvig_nissens_skole_skam.json | needs_research | needs_geometry | OK |
+| middelalder_oslo | data/coordinate-evidence/oslo/historie/middelalder_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| gamlebyen_gravlund | data/coordinate-evidence/oslo/historie/gamlebyen_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akershus_festning | data/coordinate-evidence/oslo/historie/akershus_festning.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| hovedoya_kloster | data/coordinate-evidence/oslo/historie/hovedoya_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akerhus_slott | data/coordinate-evidence/oslo/historie/akerhus_slott.json | needs_research | needs_identity_split | OK |
+| grini_fangeleir | data/coordinate-evidence/akershus/baerum/grini_fangeleir.json | needs_research | needs_geometry | OK |

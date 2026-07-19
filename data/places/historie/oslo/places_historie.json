@@ -63,10 +63,19 @@
     "underbadge_ids": [
       "middelalder"
     ],
-    "coordStatus": "verified",
+    "coordStatus": "verified_geometry",
     "coordPrecision": "park centroid",
-    "coordSource": "Mapcarta/OpenStreetMap + manual map review",
-    "coordNote": "Flyttet til parkflaten/ruinområdet i Middelalderparken, ikke bare Gamlebyen-området."
+    "coordSource": "Oslo kommune – Middelalderparken",
+    "coordNote": "Dokumentert områdeanker inne i Middelalderparken. Oslo kommune avgrenser parken sør for Bispegata og øst for Sørenggata og dokumenterer ruinene i området. Det eksisterende punktet beholdes som representativt park-/ruinanker, ikke som koordinat for én enkelt ruin.",
+    "locatorType": "park",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:kultureiendom:middelalderparken",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordType": "park_ruin_area_anchor",
+    "coordSourceId": "oslo-kommune:kultureiendom:middelalderparken",
+    "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/middelalderparken/",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "gamlebyen_gravlund",
@@ -124,10 +133,19 @@
     "underbadge_ids": [
       "sosialhistorie"
     ],
-    "coordStatus": "verified",
+    "coordStatus": "verified_geometry",
     "coordPrecision": "cemetery",
-    "coordSource": "existing coordinate + manual map review",
-    "coordNote": "Punktet ligger på Gamlebyen gravlund."
+    "coordSource": "Oslo kommune – Gamlebyen gravlund",
+    "coordNote": "Dokumentert områdeanker for Gamlebyen gravlund. Oslo kommune identifiserer gravlunden og besøksadressen Ekebergveien 4, men adressepunktet brukes ikke som snarvei for hele gravlunden. Det eksisterende punktet beholdes som representativt anker inne i gravplassområdet.",
+    "locatorType": "linear_area",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:gravplass:gamlebyen",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordType": "cemetery_area_anchor",
+    "coordSourceId": "oslo-kommune:gravplass:gamlebyen",
+    "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/gamlebyen-gravlund/",
+    "coordVerifiedAt": "2026-07-19"
   },
   {
     "id": "akerhus_slott",
@@ -252,18 +270,22 @@
       ],
       "notes": "Skal forstås som Akershus festning sin lange tidslinje for makt og forsvar."
     },
-    "coordStatus": "verified",
-    "coordSource": "existing coordinate + manual map review",
-    "coordSourceId": "Q644464",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q644464",
-    "coordPrecisionM": 20,
-    "coordVerifiedAt": "2026-05-03",
-    "coordNote": "Punktet ligger i Akershus festning-komplekset.",
-    "coordType": "historical_site",
+    "coordStatus": "verified_geometry",
+    "coordSource": "Forsvarsbygg – Akershus festning",
+    "coordSourceId": "forsvarsbygg:akershus-festning",
+    "coordSourceUrl": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Dokumentert områdeanker inne i Akershus festning. Forsvarsbygg forvalter og identifiserer festningsområdet som eget historisk anlegg. Punktet representerer festningskomplekset og skal ikke tolkes som et separat anker for legacy-typofeilen `akerhus_slott`.",
+    "coordType": "fortress_area_anchor",
     "underbadge_ids": [
       "middelalder"
     ],
-    "coordPrecision": "fortress complex"
+    "coordPrecision": "fortress complex",
+    "locatorType": "linear_area",
+    "sourceProvider": "official_map",
+    "sourceObjectId": "forsvarsbygg:akershus-festning",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "gamle_aker_kirke",
@@ -760,10 +782,10 @@
       ],
       "notes": "Skal spørres som offentlig minnearkiv, ikke bare som kirkegård."
     },
-    "coordType": "area_center",
-    "coordStatus": "verified",
-    "coordSource": "existing coordinate + manual map review",
-    "coordVerifiedAt": null,
+    "coordType": "cemetery_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "Oslo kommune – Vår Frelsers gravlund",
+    "coordVerifiedAt": "2026-07-19",
     "underbadge_ids": [
       "kulturminner_og_bevaring"
     ],
@@ -1088,7 +1110,14 @@
       ]
     },
     "coordPrecision": "cemetery",
-    "coordNote": "Punktet ligger inne på Vår Frelsers gravlund."
+    "coordNote": "Dokumentert områdeanker for Vår Frelsers gravlund. Oslo kommune identifiserer gravlunden og besøksadressen Akersbakken 32, men stedet behandles som et utstrakt gravplassområde. Det eksisterende punktet beholdes som representativt anker inne i gravlunden.",
+    "locatorType": "linear_area",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:gravplass:var-frelsers",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "oslo-kommune:gravplass:var-frelsers",
+    "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/var-frelsers-gravlund/"
   },
   {
     "id": "hovedoya_kloster",
@@ -1096,8 +1125,8 @@
     "visual": {
       "designCode": "church_miniature"
     },
-    "lat": 59.8953,
-    "lon": 10.7336,
+    "lat": 59.89633,
+    "lon": 10.72838,
     "r": 180,
     "category": "historie",
     "year": 1147,
@@ -1145,77 +1174,22 @@
       ],
       "notes": "Skal spørres som klostermakt og reformasjonsspor, ikke bare som ruin på øy."
     },
-    "coordType": "ruin_center",
-    "coordStatus": "verified",
-    "coordSource": "existing coordinate + manual map review",
-    "coordVerifiedAt": null,
+    "coordType": "ruin_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 457724681 – Hovedøya kloster / Hovedøya Abbey",
+    "coordVerifiedAt": "2026-07-19",
     "underbadge_ids": [
       "middelalder"
     ],
     "coordPrecision": "ruin complex",
-    "coordNote": "Punktet ligger ved klosterruinene på Hovedøya."
-  },
-  {
-    "id": "grini_fangeleir",
-    "visual": {
-      "designCode": "prison_miniature"
-    },
-    "name": "Grini fangeleir",
-    "lat": 59.9565,
-    "lon": 10.5909,
-    "r": 240,
-    "category": "historie",
-    "year": 1941,
-    "desc": "Den største tyske fangeleiren i Norge under andre verdenskrig, med nærmere 20 000 registrerte fanger.",
-    "image": "",
-    "cardImage": "",
-    "popupDesc": "Grini fangeleir i Bærum var den største tyske fangeleiren i Norge under andre verdenskrig. Nærmere 20 000 mennesker ble registrert som fanger, de fleste norske politiske fanger. Stedet er historisk viktig fordi det samler okkupasjonshistorie, motstand, tvang, overvåkning og etterkrigstidens minnearbeid i ett landskap. Grini gjør krigen konkret gjennom fangenskapets hverdag: transport, registrering, disiplin, frykt, fellesskap og overlevelse.",
-    "emne_ids": [
-      "em_his_fangenskap_kontroll",
-      "em_his_okkupasjon_motstand",
-      "em_his_minnesteder_historiebruk",
-      "em_his_rett_politi_fengsel"
-    ],
-    "quiz_profile": {
-      "place_type": "minnested",
-      "subtype": "okkupasjonsleir_og_fangeminne",
-      "signature_features": [
-        "største tyske fangeleir i Norge",
-        "nærmere 20 000 registrerte fanger",
-        "sterkt minnepunkt for okkupasjon, motstand og fangenskap"
-      ],
-      "primary_angles": [
-        "historie",
-        "minnekultur",
-        "konflikt_forandring",
-        "institusjon"
-      ],
-      "question_families": [
-        "historisk_endring",
-        "tidslag",
-        "saertrekk",
-        "kontrast"
-      ],
-      "avoid_angles": [
-        "generisk_fangeleir",
-        "generisk_krigsminne"
-      ],
-      "must_include": [
-        "at Grini var den største tyske fangeleiren i Norge",
-        "at de fleste fangene var norske politiske fanger"
-      ],
-      "contrast_targets": [
-        "mollergata_19",
-        "akershus_slott"
-      ],
-      "notes": "Skal spørres som system for fangenskap og motstand, ikke bare som krigssted."
-    },
-    "coordType": "historical_site",
-    "coordStatus": "needs_review",
-    "coordSource": "existing coordinate + manual review needed",
-    "coordVerifiedAt": null,
-    "coordPrecision": "historic camp area",
-    "coordNote": "Historisk leir er et område med flere mulige fysiske markører; beholdt eksisterende punkt og merket for stedlig etterkontroll."
+    "coordNote": "Geometriforankret områdeanker for selve klosterruinene på Hovedøya. OSM way 457724681 modellerer ruin-/arkeologiobjektet, og Oslo kommune dokumenterer klosterruinen på øya. Det tidligere punktet lå flere hundre meter øst for ruinområdet og er derfor flyttet til ruinens representasjonspunkt.",
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:457724681",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-way:457724681",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/457724681"
   },
   {
     "id": "villa_grande",

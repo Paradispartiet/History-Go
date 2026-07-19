@@ -1,0 +1,66 @@
+{
+  "placeId": "akershus_festning",
+  "placeFile": "data/places/historie/oslo/places_historie.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.906611,
+    "lon": 10.73625,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Forsvarsbygg – Akershus festning",
+    "coordType": "fortress_area_anchor",
+    "coordNote": "Dokumentert områdeanker inne i Akershus festning. Forsvarsbygg forvalter og identifiserer festningsområdet som eget historisk anlegg. Punktet representerer festningskomplekset og skal ikke tolkes som et separat anker for legacy-typofeilen `akerhus_slott`."
+  },
+  "identity": {
+    "currentName": "Akershus festning",
+    "resolvedIdentity": "det canonical festningsområdet Akershus festning",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Forsvarsbygg – Akershus festning",
+      "sourceUrl": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+      "sourceObjectId": "forsvarsbygg:akershus-festning",
+      "sourceQuality": "stable_area_or_geometry_source",
+      "finding": "Forsvarsbygg dokumenterer og forvalter Akershus festning som eget historisk festningsområde.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumentert områdeanker inne i Akershus festning. Forsvarsbygg forvalter og identifiserer festningsområdet som eget historisk anlegg. Punktet representerer festningskomplekset og skal ikke tolkes som et separat anker for legacy-typofeilen `akerhus_slott`."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "forsvarsbygg:akershus-festning",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.906611,
+      "lon": 10.73625,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Dokumentert områdeanker inne i Akershus festning. Forsvarsbygg forvalter og identifiserer festningsområdet som eget historisk anlegg. Punktet representerer festningskomplekset og skal ikke tolkes som et separat anker for legacy-typofeilen `akerhus_slott`."
+  ]
+}
