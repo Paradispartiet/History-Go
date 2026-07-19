@@ -70,6 +70,110 @@ jobs:
           git commit -m "Record Vøyenfallene production error"
           git push origin HEAD:"$BRANCH"
 
+      - name: Complete sixth Vøyenfallene quiz set
+        if: steps.production.outcome == 'success'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          quiz_path = Path('data/quiz/historie/voienfossen_sets.json')
+          quiz = json.loads(quiz_path.read_text(encoding='utf-8'))
+          source_falls = [
+              'https://oslobyleksikon.no/side/V%C3%B8yenfallene',
+              'https://lokalhistoriewiki.no/wiki/V%C3%B8yenfallene',
+          ]
+          source_spinneri = [
+              'https://oslobyleksikon.no/side/V%C3%B8iens_Bomuldsspinderi',
+              'https://nbl.snl.no/Knud_Graah',
+          ]
+          source_hjula = [
+              'https://oslobyleksikon.no/side/Hjula_V%C3%A6verier',
+              'https://snl.no/Hjula_V%C3%A6veri',
+          ]
+          source_roll = [
+              'https://nbl.snl.no/Oluf_Roll',
+              'https://snl.no/Oluf_Nicolai_Roll',
+          ]
+          updates = {
+              'voienfossen_s6_q1': {
+                  'question': 'Hva består Vøyenfallene av?',
+                  'options': ['Tre fossefall mellom Bentsebrua og Sannerbrua', 'Ett kunstig basseng uten fall', 'Fem fosser ved Maridalsvannet'],
+                  'answer': 'Tre fossefall mellom Bentsebrua og Sannerbrua',
+                  'knowledge': 'Vøyenfallene er et sammenhengende system av tre fall i Akerselva, ikke én enkelt foss.',
+                  'source': source_falls,
+                  'tags': ['voyenfallene', 'tre_fall', 'akerselva'],
+              },
+              'voienfossen_s6_q2': {
+                  'question': 'Hvilken virksomhet utnyttet fallet på 16 fot?',
+                  'options': ['Nedre Vøiens Kornmølle', 'Nydalens Compagnie', 'Christiania Spigerverk'],
+                  'answer': 'Nedre Vøiens Kornmølle',
+                  'knowledge': 'Det øverste av de tre dokumenterte fallene, på 16 fot, var knyttet til Nedre Vøiens Kornmølle.',
+                  'source': source_falls,
+                  'tags': ['kornmolle', '16_fot', 'vannkraft'],
+              },
+              'voienfossen_s6_q3': {
+                  'question': 'Hvilken fabrikk brukte 22-fotsfallet på vestsiden?',
+                  'options': ['Hjula Væverier', 'Bjølsen Valsemølle', 'Foss Bryggeri'],
+                  'answer': 'Hjula Væverier',
+                  'knowledge': 'Hjula Væverier utnyttet det midtre fallet på vestsiden; Labakkenfallet lå på østsiden.',
+                  'source': source_falls + source_hjula,
+                  'tags': ['hjula_vaeverier', '22_fot', 'tekstilindustri'],
+              },
+              'voienfossen_s6_q4': {
+                  'question': 'Hvilken fabrikk var knyttet til det nederste fallet på 28 fot?',
+                  'options': ['Vøiens Bomuldsspinderi', 'Glads mølle', 'Sandaker sag'],
+                  'answer': 'Vøiens Bomuldsspinderi',
+                  'knowledge': 'Det nederste og høyeste av de tre fallene drev Vøiens Bomuldsspinderi.',
+                  'source': source_falls + source_spinneri,
+                  'tags': ['voyens_bomuldsspinderi', '28_fot', 'spinneri'],
+              },
+              'voienfossen_s6_q5': {
+                  'question': 'Hvem kjøpte fallrettighetene til Vøiens Bomuldsspinderi i 1844?',
+                  'options': ['Knud Graah og Niels O. Young', 'Halvor Schou og Fredrik Glad', 'Gerhard Treschow og Ole Amundsen'],
+                  'answer': 'Knud Graah og Niels O. Young',
+                  'knowledge': 'Knud Graah og Niels O. Young kjøpte fallrettighetene i 1844; spinneriet kom i drift i 1846.',
+                  'source': source_spinneri,
+                  'tags': ['knud_graah', 'fallrettigheter', '1844'],
+              },
+              'voienfossen_s6_q6': {
+                  'question': 'Hva knytter ingeniøren Oluf Nicolai Roll til Vøyenfallene?',
+                  'options': ['Han tegnet Hjula-anlegget og gjenoppbygde Vøiens spinneri etter brann', 'Han grunnla Bjølsen Valsemølle', 'Han bygde Bentsebrua i middelalderen'],
+                  'answer': 'Han tegnet Hjula-anlegget og gjenoppbygde Vøiens spinneri etter brann',
+                  'knowledge': 'Roll spesialiserte seg på industribygg og vannkraft og arbeidet på begge sider av Vøyenfallene.',
+                  'source': source_roll + source_hjula,
+                  'tags': ['oluf_nicolai_roll', 'industriarkitektur', '1860'],
+              },
+              'voienfossen_s6_q7': {
+                  'question': 'Hva viser de tre Vøyenfallene samlet?',
+                  'options': ['Hvordan samme korte elvestrekning kunne drive mølle, tekstilindustri og mekanisk produksjon', 'At Akerselva aldri ble brukt til arbeid', 'At all industri lå langt fra vannet'],
+                  'answer': 'Hvordan samme korte elvestrekning kunne drive mølle, tekstilindustri og mekanisk produksjon',
+                  'knowledge': 'Kornmølle, spinneri, veveri og hesteskosømfabrikk gjorde fossesystemet til et konsentrert industrilandskap.',
+                  'source': source_falls + source_spinneri + source_hjula,
+                  'tags': ['industrilandskap', 'vannkraft', 'arbeid'],
+              },
+          }
+          seen = set()
+          for quiz_set in quiz['sets']:
+              for question in quiz_set['questions']:
+                  patch = updates.get(question['id'])
+                  if not patch:
+                      continue
+                  question.update(patch)
+                  question['answerIndex'] = question['options'].index(question['answer'])
+                  question['claim_basis'] = 'verified_sources'
+                  seen.add(question['id'])
+          assert seen == set(updates), f'Missing sixth-set questions: {set(updates) - seen}'
+          quiz_path.write_text(json.dumps(quiz, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          test_path = Path('tests/voyenfallene-history-rounds-batch1.test.js')
+          test = test_path.read_text(encoding='utf-8')
+          old = "assert.strictEqual(quiz.sets.length, 5);"
+          assert old in test, 'Quiz set-count assertion missing'
+          test_path.write_text(test.replace(old, "assert.strictEqual(quiz.sets.length, 6);", 1), encoding='utf-8')
+          print('Completed and sourced Vøyenfallene quiz set 6')
+          PY
+
       - name: Validate targeted content
         id: validation
         if: steps.production.outcome == 'success'
