@@ -1,0 +1,43 @@
+name: Validate Upper Spinneri Nydalen batch 1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/validate-ovre-spinneri-nydalen-batch1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    if: github.head_ref == 'agent/fill-ovre-spinneri-nydalen-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-ovre-spinneri-nydalen-rounds-batch1
+          fetch-depth: 0
+
+      - name: Run targeted validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/ovre-spinneri-nydalen-batch1-round-content.test.js
+          node tests/nydalen-industristed-batch1-round-content.test.js
+          node -e "for (const f of ['data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json','data/people/natur/oslo/people_natur_oslo.json','data/stories/stories_nydalsdammen.json','data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json','data/quiz/historie/seilduksfabrikken_nydalen_sets.json']) JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('JSON parse OK')"
+          git diff --check
+
+      - name: Remove diagnostics and temporary validator
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f reports/ovre-spinneri-nydalen-batch1-validation.log
+          rm -f reports/ovre-spinneri-nydalen-batch1-validation.status
+          rm .github/workflows/validate-ovre-spinneri-nydalen-batch1.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Validate Upper Spinneri Nydalen round content"
+          git push origin HEAD:agent/fill-ovre-spinneri-nydalen-rounds-batch1
