@@ -364,6 +364,13 @@ livsscene kan aldri referere rollespesifikke tråder eller relasjoner i
 rollens egen `scenes.json` (den kan fortsatt ligge på en privatlivstråd).
 Renholder-testen håndhever dette.
 
+**Og tekstene må være livssituasjon-nøytrale:** delte scener spilles også av
+arbeidsledig. Ingen delt tekst kan anta jobb, pendling, lønning, kontor eller
+en bestemt rolle — og aldri hardkode beløp (startpenger varierer per rolle).
+Forbudslisten håndheves av `civication-lifestory-arbeidsledig.test.js`
+(«frokost, dusj, gå til jobben»-bugen skal ikke kunne komme tilbake).
+Rollefarget tekst hører hjemme i rollens egne scener.
+
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp
 automatisk av `npm run test:civication`:
