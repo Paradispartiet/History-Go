@@ -34,6 +34,7 @@ jobs:
       - name: Record inherited results
         shell: bash
         run: |
+          set +e
           report=reports/etne-tinghus-inherited-test-diagnostic.txt
           : > "$report"
           while IFS= read -r testfile; do
@@ -50,6 +51,7 @@ jobs:
             | grep -v 'etne-tinghus-batch1-round-content.test.js' \
             | sort)
           cat "$report"
+          exit 0
       - name: Commit diagnostic report
         shell: bash
         run: |
