@@ -45,23 +45,39 @@ jobs:
           }
 
           nominatim_lookup hovedporten 'Hovedporten'
+          nominatim_lookup festningsporten 'Festningsporten'
+          nominatim_lookup hovedportens_vakt 'Hovedportens vakt'
           nominatim_lookup festningsplassen 'Festningsplassen'
           nominatim_lookup michael_von_sundts_plass 'Michael von Sundts plass'
           nominatim_lookup stallgarden 'Stallgården'
+          nominatim_lookup bronnhuset_stallgarden 'Brønnhuset i Stallgården'
           nominatim_lookup arkeliggaarden 'Arkeliggården'
+          nominatim_lookup artillerigarden 'Artillerigården'
 
-          query='[out:json][timeout:35];(nwr["name"="Hovedporten"](59.89,10.72,59.92,10.75);nwr["name"="Festningsplassen"](59.89,10.72,59.92,10.75);nwr["name"="Michael von Sundts plass"](59.89,10.72,59.92,10.75);nwr["name"="Stallgården"](59.89,10.72,59.92,10.75);nwr["name"="Arkeliggården"](59.89,10.72,59.92,10.75););out center geom tags;'
+          exact_query='[out:json][timeout:35];(nwr["name"="Hovedporten"](59.89,10.72,59.92,10.75);nwr["name"="Festningsporten"](59.89,10.72,59.92,10.75);nwr["name"="Hovedportens vakt"](59.89,10.72,59.92,10.75);nwr["name"="Festningsplassen"](59.89,10.72,59.92,10.75);nwr["name"="Michael von Sundts plass"](59.89,10.72,59.92,10.75);nwr["name"="Stallgården"](59.89,10.72,59.92,10.75);nwr["name"="Brønnhuset i Stallgården"](59.89,10.72,59.92,10.75);nwr["name"="Arkeliggården"](59.89,10.72,59.92,10.75);nwr["name"="Artillerigården"](59.89,10.72,59.92,10.75););out center geom tags;'
           if ! curl --max-time 45 --retry 1 --fail --silent --show-error --get \
             'https://overpass-api.de/api/interpreter' \
-            --data-urlencode "data=${query}" \
+            --data-urlencode "data=${exact_query}" \
             -o "$outdir/festningsbyen_named_subplaces_overpass.json"; then
             curl --max-time 60 --retry 1 --fail --silent --show-error --get \
               'https://overpass.kumi.systems/api/interpreter' \
-              --data-urlencode "data=${query}" \
+              --data-urlencode "data=${exact_query}" \
               -o "$outdir/festningsbyen_named_subplaces_overpass.json"
           fi
 
+          broad_query='[out:json][timeout:35];(nwr["name"~"Hoved|[Pp]ort|Stall|Arkel|Arkeli|Artilleri|Brønn|Festning",i](59.9035,10.7350,59.9085,10.7415);nwr["barrier"="gate"](59.9035,10.7350,59.9085,10.7415);nwr["entrance"="main"](59.9035,10.7350,59.9085,10.7415););out center geom tags;'
+          if ! curl --max-time 45 --retry 1 --fail --silent --show-error --get \
+            'https://overpass-api.de/api/interpreter' \
+            --data-urlencode "data=${broad_query}" \
+            -o "$outdir/festningsbyen_broad_subplaces_overpass.json"; then
+            curl --max-time 60 --retry 1 --fail --silent --show-error --get \
+              'https://overpass.kumi.systems/api/interpreter' \
+              --data-urlencode "data=${broad_query}" \
+              -o "$outdir/festningsbyen_broad_subplaces_overpass.json"
+          fi
+
           jq -e '.elements | length > 0' "$outdir/festningsbyen_named_subplaces_overpass.json" >/dev/null
+          jq -e '.elements | length > 0' "$outdir/festningsbyen_broad_subplaces_overpass.json" >/dev/null
 
       - name: Persist coordinate evidence
         shell: bash
@@ -70,5 +86,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/coordinates
-          git commit -m 'Save Festningsbyen batch 1 coordinate evidence'
-          git push origin "HEAD:${GITHUB_HEAD_REF}"
+          if ! git diff --cached --quiet; then
+            git commit -m 'Save expanded Festningsbyen coordinate evidence'
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
