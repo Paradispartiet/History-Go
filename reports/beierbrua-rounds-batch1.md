@@ -17,7 +17,7 @@ Batchen fyller Beierbruas kanoniske `by`-rundinger uten å endre koordinat, radi
 
 - `year` rettes fra `1889` til `1837`, året broen ble nybygd som kjørebro.
 - Koordinater og radius beholdes urørt; eventuell koordinatkontroll tilhører den separate koordinat-workstreamen.
-- Oskar Braaten opprettes som canonical person med `oscar_braaten_statuen` som primært fysisk minneanker. Beierbrua kobles som litterært sted, ikke som påstått bosted.
+- Eksisterende canonical `oskar_braaten` gjenbrukes. `oscar_braaten_statuen` forblir personens primære fysiske minneanker, mens Beierbrua kobles som litterært sted og ikke som påstått bosted.
 - `Skulder ved skulder (Fabrikkjentene)` av Ellen Jacobsen behandles som et stedsspesifikt verk ved broen.
 - Hønse-Lovisas hus forblir et separat canonical sted og gjenbrukes som relatert sted.
 - Nature-rundingen beholdes fordi selve gameplay-objektet er en bro over Akerselva og gir direkte kontakt med elverommet. Det legges ikke inn udokumenterte arter.
