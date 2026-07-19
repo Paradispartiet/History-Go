@@ -1,0 +1,125 @@
+name: Oslo coordinate batch 29 evidence
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-coordinate-batch-29-evidence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch-29'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Collect read-only address, object and duplicate evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT='reports/oslo-coordinate-control-batch-29'
+          mkdir -p "$OUT/lookups" "$OUT/sources"
+
+          run_finder() {
+            local address="$1"
+            local file="$2"
+            set +e
+            set -o pipefail
+            npm run places:coords:find:address -- --address "$address" | tee "$OUT/lookups/$file"
+            local code=${PIPESTATUS[0]}
+            set +o pipefail
+            set -e
+            printf '%s\n' "$code" > "$OUT/lookups/$file.exit-status.txt"
+          }
+
+          run_curl() {
+            local url="$1"
+            local file="$2"
+            set +e
+            curl --retry 3 --retry-delay 2 -fsSL -A 'History-Go-coordinate-audit/1.0' "$url" \
+              | tee "$OUT/sources/$file" >/dev/null
+            local code=${PIPESTATUS[0]}
+            set -e
+            printf '%s\n' "$code" > "$OUT/sources/$file.exit-status.txt"
+          }
+
+          run_finder 'Hausmanns gate 14 Oslo' 'kulturkirken-jakob-hausmanns-gate-14-geonorge.json'
+          run_finder 'Universitetsgata 22 Oslo' 'norli-universitetsgata-22-geonorge.json'
+          run_finder 'Universitetsgata 24 Oslo' 'norli-universitetsgata-24-geonorge.json'
+          run_finder 'Dalsbergstien 3 Oslo' 'ruth-maier-dalsbergstien-3-geonorge.json'
+          run_finder 'Borghild Ruds vei 3 Nittedal' 'alf-proysen-nittedal-kulturhus-geonorge.json'
+
+          run_curl 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Kulturkirken%20Jakob%20Oslo' 'kulturkirken-jakob-nominatim.json'
+          run_curl 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Norli%20Universitetsgata%20Oslo' 'norli-universitetsgata-nominatim.json'
+          run_curl 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Sigrid%20Undset%20statue%20Oslo' 'sigrid-undset-statue-nominatim.json'
+          run_curl 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Ruth%20Maier%20memorial%20Oslo' 'ruth-maier-minne-nominatim.json'
+          run_curl 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Alf%20Pr%C3%B8ysen%20statue%20Nittedal%20kulturhus' 'alf-proysen-statue-nittedal-nominatim.json'
+          run_curl 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Pr%C3%B8ysenhuset%20Rudsh%C3%B8gda' 'proysenhuset-rudshogda-nominatim.json'
+          run_curl 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Inger%20Hagerups%20plass%20Oslo' 'inger-hagerups-plass-nominatim.json'
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const targets = [
+            ['kulturkirken_jakob_litteratur', 'Kulturkirken Jakob'],
+            ['norli_universitetsgata', 'Norli Universitetsgata'],
+            ['sigrid_undset_statue', 'Sigrid Undset-statuen'],
+            ['ruth_maier_minne', 'Ruth Maier-minnesmerke'],
+            ['alf_proysen_statue_nittedal', 'Alf Prøysen-statuen – Nittedal kulturhus'],
+            ['proysenhuset_rudshogda', 'Prøysenhuset – Rudshøgda'],
+            ['inger_hagerups_plass', 'Inger Hagerups plass']
+          ];
+          const normalize = (s) => String(s ?? '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+          const rows = [];
+          function walk(dir) {
+            const out = [];
+            for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+              const full = path.join(dir, ent.name);
+              if (ent.isDirectory()) out.push(...walk(full));
+              else if (ent.isFile() && ent.name.endsWith('.json')) out.push(full);
+            }
+            return out;
+          }
+          for (const file of walk('data/places')) {
+            let data;
+            try { data = JSON.parse(fs.readFileSync(file, 'utf8')); } catch { continue; }
+            const values = Array.isArray(data) ? data : [data];
+            for (const rec of values) {
+              if (!rec || typeof rec !== 'object' || !rec.id || !rec.name) continue;
+              rows.push({ id: rec.id, name: rec.name, file: file.replaceAll('\\', '/') });
+            }
+          }
+          const result = targets.map(([id, name]) => ({
+            id,
+            name,
+            matches: rows.filter((row) => row.id !== id && (normalize(row.id) === normalize(id) || normalize(row.name) === normalize(name)))
+          }));
+          fs.writeFileSync(`${process.env.OUT ?? 'reports/oslo-coordinate-control-batch-29'}/duplicate-audit.json`, JSON.stringify(result, null, 2) + '\n');
+          NODE
+
+          cat > "$OUT/source-notes.md" <<'EOF'
+          # Batch 29 – foreløpige identitetsnotater
+
+          - `kulturkirken_jakob_litteratur`: fysisk duplikat må auditeres mot eventuelle andre Kulturkirken/Jakob-records før eget coordinate contract godkjennes.
+          - `norli_universitetsgata`: offisielt butikk-/adresse-scope må avgjøre om 22 eller 24 kan brukes; ingen midpoint eller tilfeldig husnummer.
+          - `sigrid_undset_statue`: krever eksplisitt statueobjekt/pedestalpunkt; Stensparken generelt er ikke nok.
+          - `ruth_maier_minne`: aktiv tekst sier minnetavle; et eventuelt Stolperstein-anker ved Dalsbergstien 3 kan bare brukes dersom record-identiteten matcher dette minnesmerket.
+          - `alf_proysen_statue_nittedal`: navnet og koordinatene plasserer recorden i Nittedal, Akershus, ikke Oslo.
+          - `proysenhuset_rudshogda`: navnet og koordinatene plasserer recorden på Rudshøgda i Ringsaker, Innlandet, ikke Oslo.
+          - `inger_hagerups_plass`: recorden beskriver en navngitt plass/snuplass på Haugerud; krever eksakt place-/gateobjekt, ikke dagens legacy-punkt dersom det ligger utenfor objektet.
+          EOF
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-29-evidence
+          path: reports/oslo-coordinate-control-batch-29
+          if-no-files-found: error
