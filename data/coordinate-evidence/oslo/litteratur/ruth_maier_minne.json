@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "ruth_maier_minne",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.922730001268235,
+    "lon": 10.737930723902437,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell Geonorge-adressekoordinat for Dalsbergstien 3 brukes som dokumentert adresseanker for Ruth Maiers snublestein. Snublestein.no knytter minnesmerket eksplisitt til Dalsbergstien 3; punktet er et adresseanker for minnesmerket, ikke en påstand om millimeterpresis steinplassering."
+  },
+  "identity": {
+    "currentName": "Ruth Maier-minnesmerke",
+    "resolvedIdentity": "Ruth Maiers snublestein ved Dalsbergstien 3",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "sporbar fysisk identitet",
+    "entydig offisielt adresseanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Snublestein.no – Ruth Maier",
+      "sourceUrl": "https://www.snublestein.no/Ruth-Maier/p%3D92/",
+      "sourceObjectId": "snublestein:ruth-maier:dalsbergstien-3",
+      "sourceQuality": "official_memorial_project_address",
+      "finding": "Snublestein.no dokumenterer Ruth Maier-minnesmerket på Dalsbergstien 3 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Prosjektkilden kobler konkret minnesmerke til konkret adresse."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Dalsbergstien%203%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11153:3",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge ga ett entydig verified_candidate for Dalsbergstien 3.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumentert adresseanker for minnesmerket."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11153:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snublestein:ruth-maier:dalsbergstien-3",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11153:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.922730001268235,
+      "lon": 10.737930723902437,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Coordinate source contract is applied to canonical data."
+  },
+  "notes": [
+    "Offisiell Geonorge-adressekoordinat for Dalsbergstien 3 brukes som dokumentert adresseanker for Ruth Maiers snublestein. Snublestein.no knytter minnesmerket eksplisitt til Dalsbergstien 3; punktet er et adresseanker for minnesmerket, ikke en påstand om millimeterpresis steinplassering."
+  ]
+}

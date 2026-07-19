@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alf_proysen_statue_nittedal",
+  "placeFile": "data/places/litteratur/akershus/alf_proysen_statue_nittedal.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 60.04401205900787,
+    "lon": 10.880400225286696,
+    "r": 60,
+    "coordStatus": "needs_manual_visual_qa",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Geonorge-adressepunktet for Borghild Ruds vei 3 markerer Kulturverket Flammen, som er dokumentert vertssted for Alf Prøysen-monumentet. Nittedal kommunes kunstdatabase plasserer skulpturen utenfor nedre inngang, men denne passeringen har ikke et eksakt sokkelpunkt; koordinaten er derfor et foreløpig host/site-anchor og ikke verified."
+  },
+  "identity": {
+    "currentName": "Alf Prøysen-monumentet – Kulturverket Flammen",
+    "resolvedIdentity": "Sivert Donalis Trubaduren (Alf Prøysen) ved Kulturverket Flammen i Nittedal",
+    "identityStatus": "resolved",
+    "identityProblem": "Fysisk identitet er dokumentert, men batchens strenge koordinatkrav er ikke oppfylt for ett entydig canonical punkt.",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": "Recorden flyttes fra Oslo til Nittedal; koordinaten forblir foreløpig host/site-anchor."
+  },
+  "requiredEvidence": [
+    "entydig canonical hovedanker eller eksakt objektgeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Nittedal kommunes kunstdatabase – Trubaduren (Alf Prøysen)",
+      "sourceUrl": "https://nittedal.nkdb.no/objekt/420000/Trubaduren%2B%28Alf%2BPr%C3%B8ysen%29",
+      "sourceObjectId": "nittedal-nkdb:420000",
+      "sourceQuality": "official_art_object_identity",
+      "finding": "Kommunens kunstdatabase identifiserer verket, år 2001 og plassering utenfor nedre inngang ved Kulturverket Flammen.",
+      "canVerifyCoordinate": false,
+      "reason": "Objektets plassering er dokumentert tekstlig, men eksakt sokkelkoordinat er ikke tilgjengelig i denne passeringen."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Borghild%20Ruds%20vei%203%20Nittedal",
+      "sourceObjectId": "geonorge-adresser-v1:3232:2380:3",
+      "sourceQuality": "official_host_address",
+      "finding": "Geonorge ga ett entydig verified_candidate for Kulturverket Flammens adresse Borghild Ruds vei 3.",
+      "canVerifyCoordinate": false,
+      "reason": "Adressepunktet verifiserer vertsstedet, ikke monumentets sokkel."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3232:2380:3",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "nittedal-nkdb:420000",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3232:2380:3",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Geonorge-adressepunktet for Borghild Ruds vei 3 markerer Kulturverket Flammen, som er dokumentert vertssted for Alf Prøysen-monumentet. Nittedal kommunes kunstdatabase plasserer skulpturen utenfor nedre inngang, men denne passeringen har ikke et eksakt sokkelpunkt; koordinaten er derfor et foreløpig host/site-anchor og ikke verified.",
+    "nextAction": "Do not promote to verified until one exact canonical anchor is documented."
+  },
+  "notes": [
+    "Geonorge-adressepunktet for Borghild Ruds vei 3 markerer Kulturverket Flammen, som er dokumentert vertssted for Alf Prøysen-monumentet. Nittedal kommunes kunstdatabase plasserer skulpturen utenfor nedre inngang, men denne passeringen har ikke et eksakt sokkelpunkt; koordinaten er derfor et foreløpig host/site-anchor og ikke verified."
+  ]
+}

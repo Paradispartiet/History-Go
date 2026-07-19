@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T08:54:10.866Z
+Generert: 2026-07-19T18:01:22.332Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -125,3 +125,10 @@ Generert: 2026-07-19T08:54:10.866Z
 | spikersuppa | data/coordinate-evidence/oslo/by/spikersuppa.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankplassen | data/coordinate-evidence/oslo/by/bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | christiania_torv | data/coordinate-evidence/oslo/by/christiania_torv.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kulturkirken_jakob_litteratur | data/coordinate-evidence/oslo/litteratur/kulturkirken_jakob_litteratur.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| norli_universitetsgata | data/coordinate-evidence/oslo/litteratur/norli_universitetsgata.json | needs_research | needs_address_source | OK |
+| sigrid_undset_statue | data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json | needs_research | needs_geometry | OK |
+| ruth_maier_minne | data/coordinate-evidence/oslo/litteratur/ruth_maier_minne.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| alf_proysen_statue_nittedal | data/coordinate-evidence/akershus/nittedal/alf_proysen_statue_nittedal.json | needs_research | needs_geometry | OK |
+| proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | needs_research | needs_geometry | OK |

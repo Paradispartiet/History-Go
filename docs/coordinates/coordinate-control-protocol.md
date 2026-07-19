@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 146 verifiserte eller kildekontrollerte canonical steder. Batch 28 avslutter by-manifestet med to eksakte navngitte plassgeometrier: Bankplassen og Christiania Torv. Antallet fullførte kontroller uten godkjent Oslo-koordinat er fortsatt 30.
+Oslo-tabellen inneholder nå 148 verifiserte eller kildekontrollerte canonical steder. Batch 29 starter litteratur-manifestet med to nye godkjente adresseankre: Kulturkirken Jakob og Ruth Maier-minnesmerket. Tre ytterligere Oslo-records avsluttes som needs_review, mens to feilplasserte Prøysen-records flyttes ut av Oslo. Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 34.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -167,6 +167,8 @@ Oslo-tabellen inneholder nå 146 verifiserte eller kildekontrollerte canonical s
 | 27 | `spikersuppa` | Spikersuppa | verified_geometry | `osm-relation:11158886` |
 | 28 | `bankplassen` | Bankplassen | verified_geometry | `osm-relation:12044741` |
 | 28 | `christiania_torv` | Christiania Torv | verified_geometry | `osm-way:594329484` |
+| 29 | `kulturkirken_jakob_litteratur` | Kulturkirken Jakob | verified | `geonorge-adresser-v1:0301:12782:14` |
+| 29 | `ruth_maier_minne` | Ruth Maier-minnesmerke | verified | `geonorge-adresser-v1:0301:11153:3` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -174,10 +176,14 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 146 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 148 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
+| `norli_universitetsgata` – Norli Universitetsgata | needs_review | Norli oppgir Universitetsgata 22–24. Intervallsøket gir ikke ett Geonorge-treff, mens 22 og 24 gir hvert sitt separate entydige adressepunkt. | Krever dokumentert hovedinngang eller annen kilde som velger ett konkret adresseanker; ikke velg 22 eller 24 vilkårlig. |
+| `sigrid_undset_statue` – Sigrid Undset-skulpturen | needs_review | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
+| `inger_hagerups_plass` – Inger Hagerups plass | needs_review | Oslo byleksikon identifiserer plassen som snuplassen i enden av Hagapynten og navn fra 1999, men gir ikke ett adressepunkt eller offisiell plassgeometri. | Hent offisiell plassgeometri eller et eksplisitt dokumentert representativt anker. |
+| `alf_proysen_statue_nittedal` – Alf Prøysen-monumentet ved Kulturverket Flammen | needs_review; moved to Akershus/Nittedal | Recorden lå feilaktig i Oslo-kilden. Kulturverket Flammen er dokumentert på Borghild Ruds vei 3 og kommunens kunstdatabase plasserer monumentet utenfor nedre inngang, men Geonorge-adressepunktet er ikke selve sokkelen. | Finn eksakt monument-/sokkelpunkt; behold Flammen-adressen kun som foreløpig host/site-anchor. |
 | Frysja 33 / Brekke kraftstasjon | needs_review | Korrekt adresse er Kjelsåsveien 151, men Geonorge gir både 151B og 151C uten kilde som identifiserer hvilken bygning som er kraftstasjonen/hovedankeret. | Krever offisiell objektgeometri eller dokumentert kobling mellom bygning og husbokstav. |
 | Bånkall gård | needs_review | Trondheimsveien 640 ga flere ikke-entydige Geonorge-treff uten én eksakt fysisk match. | Krever mer presis offisiell adresse eller objektgeometri før canonical koordinat kan godkjennes. |
 | `ring_3` – Ring 3 | needs_review | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |

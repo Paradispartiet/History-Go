@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "norli_universitetsgata",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_address_source",
+  "currentCoordinate": {
+    "lat": 59.9181,
+    "lon": 10.7385,
+    "r": 120,
+    "coordStatus": "needs_source",
+    "coordSource": "official_address_range_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Norli oppgir Universitetsgata 22–24 som offisiell adresse. Repoets Geonorge-finder gir separate entydige adressepunkter for 22 og 24, mens intervallsøket ikke gir ett treff. Ingen av endepunktene velges vilkårlig; eksisterende lat/lon beholdes kun som legacy inntil en kilde identifiserer butikkens konkrete inngang/hovedanker."
+  },
+  "identity": {
+    "currentName": "Norli Universitetsgata",
+    "resolvedIdentity": "Norli Universitetsgata med offisiell adresse Universitetsgata 22–24",
+    "identityStatus": "resolved",
+    "identityProblem": "Fysisk identitet er dokumentert, men batchens strenge koordinatkrav er ikke oppfylt for ett entydig canonical punkt.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig canonical hovedanker eller eksakt objektgeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Norli – Om oss",
+      "sourceUrl": "https://www.norli.no/kundeservice/omoss",
+      "sourceObjectId": "norli:universitetsgata:22-24",
+      "sourceQuality": "official_institution_address",
+      "finding": "Norli oppgir Universitetsgata 22–24 som adresse.",
+      "canVerifyCoordinate": false,
+      "reason": "Adresseintervallet identifiserer ikke hvilket av to separate Geonorge-punkter som skal være canonical hovedanker."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Universitetsgata 22",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Universitetsgata%2022%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:22",
+      "sourceQuality": "official_address_candidate",
+      "finding": "Universitetsgata 22 gir ett entydig adressepunkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell Norli-kilde oppgir 22–24; 22 kan ikke velges alene uten ytterligere inngangs-/hovedankerkilde."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Universitetsgata 24",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Universitetsgata%2024%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:24",
+      "sourceQuality": "official_address_candidate",
+      "finding": "Universitetsgata 24 gir ett annet entydig adressepunkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell Norli-kilde oppgir 22–24; 24 kan ikke velges alene uten ytterligere inngangs-/hovedankerkilde."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:22",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:24",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "norli:universitetsgata:22-24",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:22",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:24",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Norli oppgir Universitetsgata 22–24 som offisiell adresse. Repoets Geonorge-finder gir separate entydige adressepunkter for 22 og 24, mens intervallsøket ikke gir ett treff. Ingen av endepunktene velges vilkårlig; eksisterende lat/lon beholdes kun som legacy inntil en kilde identifiserer butikkens konkrete inngang/hovedanker.",
+    "nextAction": "Do not promote to verified until one exact canonical anchor is documented."
+  },
+  "notes": [
+    "Norli oppgir Universitetsgata 22–24 som offisiell adresse. Repoets Geonorge-finder gir separate entydige adressepunkter for 22 og 24, mens intervallsøket ikke gir ett treff. Ingen av endepunktene velges vilkårlig; eksisterende lat/lon beholdes kun som legacy inntil en kilde identifiserer butikkens konkrete inngang/hovedanker."
+  ]
+}

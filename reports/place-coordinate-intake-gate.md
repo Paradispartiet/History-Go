@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-19T08:54:08.015Z
+Generert: 2026-07-19T18:01:19.789Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **75bcdd8665c1f677fa8b87f0f0c95f6df42d371b**
-- Base method: **COORD_INTAKE_BASE**
-- Aktive manifest-filer lest: **482**
-- Place-objekter validert: **1180**
-- Nye/endrede koordinatobjekter mot base: **2**
+- Base for nye/endrede place-objekter: **origin/main**
+- Base method: **origin/${GITHUB_BASE_REF}**
+- Aktive manifest-filer lest: **500**
+- Place-objekter validert: **1210**
+- Nye/endrede koordinatobjekter mot base: **5**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3632**
+- Backlog-funn: **3605**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -543,4 +543,4 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | lier_sykehus_historisk_omrade | Lier sykehus / historisk område | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3632 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3605 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
