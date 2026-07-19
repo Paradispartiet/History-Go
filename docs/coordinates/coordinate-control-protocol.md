@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 108 verifiserte eller kildekontrollerte canonical steder. Batch 18 omfatter sju fullførte kontroller fra Oslo-køen: fem godkjente park-, gravplass-, festnings- og ruinankre, legacy-typofeilen `akerhus_slott` som duplikatkonflikt, og `grini_fangeleir` som er flyttet til Akershus/Bærum uten at det eldre leirpunktet ble godkjent. Åtte fullførte kontroller fra Oslo-køen står dermed separat uten godkjent Oslo-koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
+Oslo-tabellen inneholder nå 115 verifiserte eller kildekontrollerte canonical steder. Batch 19 legger til sju godkjente skole-, bymiljø-, bygnings- og historiske ankere: Sagene skole, Damstredet/Telthusbakken, Gamle trikkestallen, Trefoldighetskirken, Nonneseter kloster, Oslo ladegård og Galgeberg. Åtte fullførte kontroller fra Oslo-køen står fortsatt separat uten godkjent Oslo-koordinat. Senere visuell kontroll korrigerte ankrene for Oslo domkirke, Tronsmo Bokhandel, Grønland basarene, Møllergata 19 og Villa Grande uten at de ble telt på nytt.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -129,6 +129,13 @@ Oslo-tabellen inneholder nå 108 verifiserte eller kildekontrollerte canonical s
 | 18 | `akershus_festning` | Akershus festning | verified_geometry | `forsvarsbygg:akershus-festning` |
 | 18 | `var_frelsers_gravlund` | Vår Frelsers gravlund | verified_geometry | `oslo-kommune:gravplass:var-frelsers` |
 | 18 | `hovedoya_kloster` | Hovedøya kloster | verified_geometry | `osm-way:457724681` |
+| 19 | `sagene_skole` | Sagene skole | verified | `geonorge-adresser-v1:0301:10585:2` |
+| 19 | `damstredet_telthusbakken` | Damstredet og Telthusbakken | verified_geometry | `oslobyleksikon:damstredet+telthusbakken` |
+| 19 | `gamle_trikkestallen` | Gamle trikkestallen på Sagene | verified | `geonorge-adresser-v1:0301:17667:33` |
+| 19 | `trefoldighetskirken` | Trefoldighetskirken | verified | `geonorge-adresser-v1:0301:10069:60` |
+| 19 | `nonneseter_kloster` | Nonneseter kloster | verified_historical_source | `oslobyleksikon:nonneseter` |
+| 19 | `oslo_ladegard` | Oslo ladegård | verified | `geonorge-adresser-v1:0301:15449:13` |
+| 19 | `galgeberg` | Galgeberg | verified_historical_source | `oslobyleksikon:galgeberg-rettersted` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -136,7 +143,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 108 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 115 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -195,7 +202,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 115 og starter batch 19.
-- Batch 18 er fullført med fem godkjente Oslo-ankre, én dokumentert legacy-duplikatkonflikt og én geografisk feilplassering flyttet til Akershus/Bærum uten koordinatgodkjenning.
+- Neste nye Oslo-kontroll er nummer 122 og starter batch 20.
+- Batch 19 er fullført med sju godkjente skole-, bymiljø-, bygnings- og historiske ankere.
 - Fortsett i canonical filrekkefølge når det gir en naturlig arbeidskø, men velg alltid koordinatmetode etter fysisk objekttype.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.

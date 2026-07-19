@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Oslo gate 13 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+  "query": "Oslo gate 13 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Oslo%20gate%2013%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:15449:13",
+  "coordinate": {
+    "lat": 59.906175969346684,
+    "lon": 10.767673829543098,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:15449:13",
+    "address": {
+      "street": "Oslo gate",
+      "number": "13",
+      "postcode": "0192",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Oslo gate 13, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Oslo gate",
+    "adressetekst": "Oslo gate 13",
+    "adressetilleggsnavn": null,
+    "adressekode": 15449,
+    "nummer": 13,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 234,
+    "bruksnummer": 19,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0192",
+    "adressetekstutenadressetilleggsnavn": "Oslo gate 13",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.906175969346684,
+      "lon": 10.767673829543098
+    },
+    "oppdateringsdato": "2020-06-15T18:04:04"
+  }
+}

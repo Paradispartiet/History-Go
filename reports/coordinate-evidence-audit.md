@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T03:08:26.784Z
+Generert: 2026-07-19T03:14:21.123Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -65,3 +65,10 @@ Generert: 2026-07-19T03:08:26.784Z
 | hovedoya_kloster | data/coordinate-evidence/oslo/historie/hovedoya_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerhus_slott | data/coordinate-evidence/oslo/historie/akerhus_slott.json | needs_research | needs_identity_split | OK |
 | grini_fangeleir | data/coordinate-evidence/akershus/baerum/grini_fangeleir.json | needs_research | needs_geometry | OK |
+| sagene_skole | data/coordinate-evidence/oslo/historie/sagene_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| damstredet_telthusbakken | data/coordinate-evidence/oslo/by/damstredet_telthusbakken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| gamle_trikkestallen | data/coordinate-evidence/oslo/by/gamle_trikkestallen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| trefoldighetskirken | data/coordinate-evidence/oslo/by/trefoldighetskirken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nonneseter_kloster | data/coordinate-evidence/oslo/historie/nonneseter_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_ladegard | data/coordinate-evidence/oslo/historie/oslo_ladegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| galgeberg | data/coordinate-evidence/oslo/historie/galgeberg.json | applied_to_place | do_not_change_coordinates_yet | OK |
