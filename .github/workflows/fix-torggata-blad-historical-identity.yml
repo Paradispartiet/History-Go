@@ -1,0 +1,192 @@
+name: Fix Torggata Blad historical identity
+
+on:
+  push:
+    branches:
+      - agent/fix-torggata-blad-historical-editorial-identity
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fix-torggata-blad-historical-editorial-identity
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Correct canonical aggregate identity
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'data/places/subkultur/oslo/places_subkultur.json';
+          const places = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const place = places.find((p) => p?.id === 'torggata_blad');
+          if (!place) throw new Error('torggata_blad not found');
+
+          const coordinateSnapshot = JSON.stringify({
+            lat: place.lat,
+            lon: place.lon,
+            r: place.r,
+            coordType: place.coordType,
+            coordStatus: place.coordStatus,
+            coordSource: place.coordSource,
+            coordVerifiedAt: place.coordVerifiedAt,
+            coordNote: place.coordNote,
+            locatorType: place.locatorType,
+            sourceProvider: place.sourceProvider,
+            sourceObjectId: place.sourceObjectId,
+            address: place.address,
+            geocodeAccuracy: place.geocodeAccuracy,
+            coordRole: place.coordRole,
+          });
+
+          place.year = 2007;
+          place.desc = 'Historisk redaksjons- og publiseringssted for det uavhengige Torggata Blad, dokumentert i Hausmannsgate 19 i tidlige utgaver fra 2007–2008.';
+          place.popupDesc = 'Torggata Blads egne tidlige papirutgaver dokumenterer redaksjonen i Hausmannsgate 19, 6. etasje. Nummer 2 fra 2007 beskriver stedet som redaksjonens lokale, og mastheadene i 2008 gjentar Hausmannsgate 19, 0182 Oslo som bladets adresse. History Go-markøren representerer derfor et historisk redaksjons- og publiseringssted, ikke en bokhandel. Dagens offisielle Geonorge-punkt for Hausmanns gate 19A brukes som displayanker for samme eiendom; bokstaven A er en moderne adresseoppløsning og står ikke i den historiske mastheaden.';
+          place.quiz_profile = {
+            ...place.quiz_profile,
+            place_type: 'redaksjonssted',
+            subtype: 'uavhengig_lokal_og_kulturpublikasjon',
+            signature_features: [
+              'historisk redaksjon i Hausmannsgate 19, 6. etasje',
+              'uavhengig blad- og publiseringsmiljø dokumentert i utgaver fra 2007–2008',
+              'redaksjonelt miljø knyttet til Torggata og Hausmannsgate-området'
+            ],
+            primary_angles: [
+              'historie',
+              'uavhengig_kultur',
+              'publisering',
+              'lokaloffentlighet'
+            ],
+            question_families: [
+              'historisk_stedsbruk',
+              'miljo',
+              'publisering',
+              'kontrast'
+            ],
+            avoid_angles: [
+              'generisk_bokhandel',
+              'nåværende_redaksjonsadresse',
+              'påstått_grunnleggingsår_uten_kilde'
+            ],
+            must_include: [
+              'Hausmannsgate 19 som dokumentert historisk redaksjonsadresse',
+              'at markøren representerer redaksjon og publisering, ikke bokhandel'
+            ],
+            notes: 'Spør som historisk redaksjons- og publiseringssted. Året 2007 er tidligste dokumenterte utgave i denne kildepasseringen, ikke en udokumentert påstand om formell stiftelsesdato.'
+          };
+
+          const afterCoordinate = JSON.stringify({
+            lat: place.lat,
+            lon: place.lon,
+            r: place.r,
+            coordType: place.coordType,
+            coordStatus: place.coordStatus,
+            coordSource: place.coordSource,
+            coordVerifiedAt: place.coordVerifiedAt,
+            coordNote: place.coordNote,
+            locatorType: place.locatorType,
+            sourceProvider: place.sourceProvider,
+            sourceObjectId: place.sourceObjectId,
+            address: place.address,
+            geocodeAccuracy: place.geocodeAccuracy,
+            coordRole: place.coordRole,
+          });
+          if (coordinateSnapshot !== afterCoordinate) {
+            throw new Error('Coordinate metadata changed during identity-only correction');
+          }
+
+          fs.writeFileSync(file, JSON.stringify(places, null, 2) + '\n');
+          NODE
+
+      - name: Regenerate split files and runtime index
+        run: |
+          set -euo pipefail
+          node scripts/split-subkultur-oslo-places.mjs
+          npm run places:index:build
+
+      - name: Write source and scope report
+        run: |
+          mkdir -p reports
+          cat > reports/torggata-blad-historical-identity-fix-20260719.md <<'EOF'
+          # Torggata Blad — historical identity correction
+
+          ## Problem
+
+          The canonical `torggata_blad` record had been described as an independent bookstore selling comics, zines and art books. The coordinate repair in PR #2486 correctly moved the marker to the documented historical address property, but it deliberately did not repair this content identity.
+
+          ## Primary-source evidence
+
+          Torggata Blad's own early PDF issues document a newsroom/editorial office, not a bookstore:
+
+          - **Torggata Blad nr. 2, 2007** describes the editorial office as being in **Hausmannsgate 19, 6th floor**.
+          - **Torggata Blad nr. 1, 2008** lists **Hausmannsgate 19, 0182 Oslo** in the masthead together with the editorial staff.
+          - **Torggata Blad nr. 2, 2008** repeats **Hausmannsgate 19, 0182 Oslo** in the masthead.
+
+          Primary PDFs:
+
+          - https://torggatablad.no/wp-content/uploads/2020/04/torggatablad_nr02_07_web.pdf
+          - https://torggatablad.no/wp-content/uploads/2020/04/torggatablad_nr01_08_web.pdf
+          - https://torggatablad.no/wp-content/uploads/2020/04/torggatablad_nr02_08_web.pdf
+
+          ## Data decision
+
+          - Keep the verified coordinate from PR #2486 unchanged: current Geonorge display point **Hausmanns gate 19A**.
+          - Keep the existing explicit coordinate note that the historical source says number 19 without a letter and that 19A is the modern unambiguous address-point normalization.
+          - Correct the place identity from `bokhandel` to historical `redaksjonssted` / independent publication environment.
+          - Use `year: 2007` as the earliest directly documented publication year in this source pass; do not present it as a separately proven formal founding date.
+          - Do not change any coordinate field or coordinate-source metadata.
+          EOF
+
+      - name: Validate generated parity and correction scope
+        run: |
+          set -euo pipefail
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+          npm run test:coordinate-source-contract
+          node <<'NODE'
+          const fs = require('fs');
+          const split = JSON.parse(fs.readFileSync('data/places/subkultur/oslo/places_subkultur/torggata_blad.json', 'utf8'));
+          const aggregate = JSON.parse(fs.readFileSync('data/places/subkultur/oslo/places_subkultur.json', 'utf8')).find((p) => p.id === 'torggata_blad');
+          const runtime = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8')).find((p) => p.id === 'torggata_blad');
+          if (!aggregate || !runtime) throw new Error('torggata_blad missing after regeneration');
+          if (JSON.stringify(split) !== JSON.stringify(aggregate)) throw new Error('split/aggregate mismatch');
+          for (const record of [split, aggregate, runtime]) {
+            const text = JSON.stringify(record).toLowerCase();
+            if (text.includes('uavhengig bokhandel') || text.includes('place_type":"bokhandel')) {
+              throw new Error('obsolete bookstore identity remains');
+            }
+            if (record.lat !== 59.91657334372696 || record.lon !== 10.75561428991178) {
+              throw new Error('verified coordinate changed');
+            }
+          }
+          if (split.sourceObjectId !== 'geonorge-adresser-v1:0301:12782:19A') {
+            throw new Error('Geonorge source identity changed');
+          }
+          if (split.quiz_profile?.place_type !== 'redaksjonssted') {
+            throw new Error('historical editorial identity not applied');
+          }
+          NODE
+          git diff --check
+
+      - name: Commit final correction and remove temporary workflow
+        run: |
+          set -euo pipefail
+          rm .github/workflows/fix-torggata-blad-historical-identity.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/subkultur/oslo data/places/places_index.json reports/torggata-blad-historical-identity-fix-20260719.md .github/workflows/fix-torggata-blad-historical-identity.yml
+          git commit -m "Correct Torggata Blad historical editorial identity"
+          git push origin HEAD
