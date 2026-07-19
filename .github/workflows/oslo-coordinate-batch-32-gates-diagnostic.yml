@@ -53,6 +53,7 @@ jobs:
           run_gate coordinate-quality node dist/tools/place-coordinate-quality-gate.mjs
           run_gate coordinate-intake node dist/tools/place-coordinate-intake-gate.mjs --strict-new
           run_gate coordinate-evidence node dist/tools/audit-coordinate-evidence.mjs
+          run_gate final-assertion node scripts/tmp-assert-oslo-coordinate-batch32.mjs
           git diff --check > "$out/git-diff-check.txt" 2>&1
           code=$?
           printf 'git-diff-check=%s\n' "$code" | tee -a "$out/status.txt"
