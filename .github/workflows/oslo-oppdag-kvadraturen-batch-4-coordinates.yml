@@ -18,46 +18,16 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
 
-      - name: Resolve addressed candidates
-        shell: bash
-        run: |
-          set -u
-          set -o pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-batch-4/coordinates'
-          mkdir -p "$outdir"
-          : > "$outdir/address_status.txt"
-
-          run_lookup() {
-            local slug="$1"
-            local address="$2"
-            set +e
-            npm run places:coords:find:address -- --address "$address" \
-              | tee "$outdir/${slug}_address.json"
-            local status=${PIPESTATUS[0]}
-            set -e
-            printf '%s\t%s\t%s\n' "$slug" "$status" "$address" \
-              | tee -a "$outdir/address_status.txt"
-          }
-
-          set -e
-          run_lookup tollpakkhuset 'Tollbugata 1 Oslo'
-          run_lookup ostbanestasjonen 'Jernbanetorget 1 Oslo'
-          run_lookup norges_bank_bankplassen_4 'Bankplassen 4 Oslo'
-
-      - name: Resolve named site geometries with OSM Nominatim
+      - name: Resolve Tollpakkhuset identity variants with OSM Nominatim
         shell: bash
         run: |
           set -euo pipefail
           outdir='reports/oslo-oppdag-kvadraturen-batch-4/coordinates'
-          : > "$outdir/nominatim_status.txt"
+          mkdir -p "$outdir"
+          : > "$outdir/tollpakkhuset_variant_status.txt"
 
-          fetch_site() {
+          fetch_variant() {
             local slug="$1"
             local query="$2"
             local outfile="$outdir/${slug}_nominatim.json"
@@ -71,28 +41,26 @@ jobs:
               --data-urlencode 'addressdetails=1' \
               --data-urlencode 'namedetails=1' \
               --data-urlencode 'polygon_geojson=1' \
-              --data-urlencode 'viewbox=10.60,60.05,10.95,59.85' \
+              --data-urlencode 'viewbox=10.70,59.94,10.80,59.88' \
               --data-urlencode 'bounded=1' \
               -o "$outfile"
-            local count
-            count="$(jq 'length' "$outfile")"
-            printf '%s\t%s\t%s\n' "$slug" "$count" "$query" \
-              | tee -a "$outdir/nominatim_status.txt"
+            printf '%s\t%s\t%s\n' "$slug" "$(jq 'length' "$outfile")" "$query" \
+              | tee -a "$outdir/tollpakkhuset_variant_status.txt"
             sleep 1
           }
 
-          fetch_site kontraskjaeret 'Kontraskjæret'
-          fetch_site tollpakkhuset 'Tollpakkhuset'
-          fetch_site ostbanestasjonen 'Østbanehallen'
-          fetch_site christian_frederiks_plass 'Christian Frederiks plass'
-          fetch_site norges_bank_bankplassen_4 'Bankplassen 4'
+          fetch_variant tollpakkhuset_steinpakkhuset 'Steinpakkhuset'
+          fetch_variant tollpakkhuset_stenpakkhuset 'Stenpakkhuset'
+          fetch_variant tollpakkhuset_norsk_tollmuseum 'Norsk Tollmuseum'
+          fetch_variant tollpakkhuset_tollboden 'Tollboden'
+          fetch_variant tollpakkhuset_1a 'Tollbugata 1A'
 
-      - name: Persist coordinate evidence
+      - name: Persist Tollpakkhuset coordinate evidence
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reports/oslo-oppdag-kvadraturen-batch-4/coordinates
-          git commit -m 'Save Oppdag Kvadraturen batch 4 coordinate evidence'
+          git commit -m 'Resolve Tollpakkhuset coordinate identity'
           git push origin "HEAD:${GITHUB_HEAD_REF}"
