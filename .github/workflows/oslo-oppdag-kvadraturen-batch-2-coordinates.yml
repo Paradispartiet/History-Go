@@ -26,20 +26,30 @@ jobs:
       - name: Resolve and save address evidence
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
+          set -o pipefail
           mkdir -p reports/oslo-oppdag-kvadraturen-batch-2/coordinates
-          npm run places:coords:find:address -- --address "Dronningens gate 13 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/hotel_du_nord.json
-          npm run places:coords:find:address -- --address "Rådhusgata 7 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/garmanngarden.json
-          npm run places:coords:find:address -- --address "Bankplassen 1 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/cafe_engebret.json
-          npm run places:coords:find:address -- --address "Rådhusgata 11 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/stattholdergarden.json
-          npm run places:coords:find:address -- --address "Kongens gate 1 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/waisenhuset.json
-          npm run places:coords:find:address -- --address "Myntgata 2 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/myntgatakvartalet.json
+          : > reports/oslo-oppdag-kvadraturen-batch-2/coordinates/status.txt
+
+          run_lookup() {
+            local slug="$1"
+            local address="$2"
+            set +e
+            npm run places:coords:find:address -- --address "$address" \
+              | tee "reports/oslo-oppdag-kvadraturen-batch-2/coordinates/${slug}.json"
+            local status=${PIPESTATUS[0]}
+            set -e
+            printf '%s\t%s\t%s\n' "$slug" "$status" "$address" \
+              | tee -a reports/oslo-oppdag-kvadraturen-batch-2/coordinates/status.txt
+          }
+
+          set -e
+          run_lookup hotel_du_nord "Dronningens gate 13 Oslo"
+          run_lookup garmanngarden "Rådhusgata 7 Oslo"
+          run_lookup cafe_engebret "Bankplassen 1 Oslo"
+          run_lookup stattholdergarden "Rådhusgata 11 Oslo"
+          run_lookup waisenhuset "Kongens gate 1 Oslo"
+          run_lookup myntgatakvartalet "Myntgata 2 Oslo"
       - name: Persist coordinate results
         shell: bash
         run: |
