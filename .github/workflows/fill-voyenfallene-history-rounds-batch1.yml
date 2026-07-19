@@ -31,10 +31,9 @@ jobs:
           raw = gzip.decompress(base64.b64decode(payload))
           assert hashlib.sha256(raw).hexdigest() == '76ecec38feaa5784acbf9271d5f6432e58a7fa1512bc6656ce1a5cf61d5568e8'
           script = raw.decode('utf-8')
-          old = 'upsert(manifest["files"], "id", place["id"], manifest_record)'
-          new = 'upsert(manifest["places"], "id", place["id"], manifest_record)'
-          assert old in script, 'Expected manifest patch point missing'
-          script = script.replace(old, new, 1)
+          old = 'manifest["files"]'
+          assert script.count(old) == 2, f'Expected exactly two route manifest references, found {script.count(old)}'
+          script = script.replace(old, 'manifest["places"]')
           Path('tools/tmp_produce_voyenfallene_decoded.py').write_text(script, encoding='utf-8')
           print('Verified and patched Vøyenfallene production payload')
           PY
