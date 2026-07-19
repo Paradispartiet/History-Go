@@ -29,6 +29,17 @@ Ingen manuell `rounds`- eller `rundinger`-override er lagt inn.
 - radius: `120`
 - canonical år: `1900`
 
+## Lokal validering
+
+Bestått i produksjonsjobben:
+
+- målrettet runding- og identitetstest
+- eksisterende Akerselva naturtest
+- PlaceCard runtime-rundingaudit
+- leksikoninnholdsaudit
+- JSON-parse av alle endrede datafiler
+- `git diff --check`
+
 ## Kilder
 
 Oslo byleksikon, Store norske leksikon, Nydalen.no, Akerselvas Venner og repoets Artskart-baserte naturkart.
