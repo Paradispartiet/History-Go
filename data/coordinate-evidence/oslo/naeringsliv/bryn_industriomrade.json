@@ -1,0 +1,63 @@
+{
+  "placeId": "bryn_industriomrade",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9129,
+    "lon": 10.8251,
+    "r": 250,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Bryn industriområde",
+    "resolvedIdentity": "det brede industri- og utviklingsområdet på Bryn i Oslo øst",
+    "identityStatus": "resolved",
+    "identityProblem": "Bryn industriområde er et større strøk/område med mange fabrikker, lager og transportanlegg. Det eksakte objektsøket ga ingen én navngitt industriområdegeometri som kan erstatte dagens generiske punkt.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "Bryn industriområde er et større strøk/område med mange fabrikker, lager og transportanlegg. Det eksakte objektsøket ga ingen én navngitt industriområdegeometri som kan erstatte dagens generiske punkt."
+  },
+  "requiredEvidence": [
+    "offisiell områdegeometri eller dokumentert fleranker",
+    "area_anchor/geometry-kontrakt",
+    "avgrensing mot hele Bryn-strøket"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Bryn (strøk)",
+      "sourceUrl": "https://oslobyleksikon.no/side/Bryn_%28str%C3%B8k%29",
+      "sourceObjectId": "oslobyleksikon:bryn-strok",
+      "sourceQuality": "documented_area_identity",
+      "finding": "Oslo byleksikon beskriver Bryn som et industri- og boligstrøk med sterk industriutvikling rundt Brynsfossen, jernbanen og transportforbindelsene.",
+      "canVerifyCoordinate": false,
+      "reason": "Det brede strøket gir ikke ett tilfeldig punkt som sikkert industriområdeanker."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – kommuneplanens utviklingsområder",
+      "sourceUrl": "https://www.oslo.kommune.no/politikk/kommuneplan/kommuneplanens-arealdel/utviklingsomrader/",
+      "sourceObjectId": "oslo-kommune:utviklingsomrade:bryn",
+      "sourceQuality": "official_area_context",
+      "finding": "Bryn er definert som et større utviklingsområde i kommuneplanen.",
+      "canVerifyCoordinate": false,
+      "reason": "Batchen mangler fortsatt en eksplisitt polygon eller et dokumentert fleranker for næringslivsrecordens fysiske scope."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Bryn industriområde er et større strøk/område med mange fabrikker, lager og transportanlegg. Det eksakte objektsøket ga ingen én navngitt industriområdegeometri som kan erstatte dagens generiske punkt.",
+    "nextAction": "Hent offisiell utviklings-/industriområdegeometri eller dokumenter et fleranker før canonical koordinat godkjennes."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 25."
+  ]
+}

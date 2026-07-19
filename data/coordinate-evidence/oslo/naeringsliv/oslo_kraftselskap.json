@@ -1,0 +1,83 @@
+{
+  "placeId": "oslo_kraftselskap",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.915245305085435,
+    "lon": 10.719611579321567,
+    "r": 140,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Sommerrogata 1, kryssjekket mot Oslo byleksikons identifikasjon av bygningen som Oslo Lysverkers monumentale hovedbygning. Punktet er et representativt institusjonsanker for Oslo Lysverker, ikke et påstått sentrum for hele strømnettet eller selskapets samlede anleggsstruktur."
+  },
+  "identity": {
+    "currentName": "Oslo Lysverker",
+    "resolvedIdentity": "Oslo Lysverkers tidligere hovedbygning i Sommerrogata 1 som representativt institusjonsanker",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisiell adresse",
+    "dokumentert kobling mellom bygningen og Oslo Lysverker",
+    "overlap-audit mot andre canonical places"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Sommerrogata%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16854:1",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge returnerte ett tydelig treff for Sommerrogata 1.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge for Sommerrogata 1, kryssjekket mot Oslo byleksikons identifikasjon av bygningen som Oslo Lysverkers monumentale hovedbygning. Punktet er et representativt institusjonsanker for Oslo Lysverker, ikke et påstått sentrum for hele strømnettet eller selskapets samlede anleggsstruktur."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Oslo Lysverker",
+      "sourceUrl": "https://oslobyleksikon.no/side/Oslo_Lysverker",
+      "sourceObjectId": "oslobyleksikon:oslo-lysverker:sommerrogata-1",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon identifiserer Sommerrogata 1 som Oslo Lysverkers monumentale hovedbygning.",
+      "canVerifyCoordinate": true,
+      "reason": "Bygningen gir et dokumentert fysisk hovedanker for institusjonen uten å påstå at ett punkt representerer hele energinettet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Sommerrogata 1 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16854:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16854:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.915245305085435,
+      "lon": 10.719611579321567,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildebelagt fysisk anker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge for Sommerrogata 1, kryssjekket mot Oslo byleksikons identifikasjon av bygningen som Oslo Lysverkers monumentale hovedbygning. Punktet er et representativt institusjonsanker for Oslo Lysverker, ikke et påstått sentrum for hele strømnettet eller selskapets samlede anleggsstruktur."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "placeId": "frysja_industriomrade",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9608,
+    "lon": 10.7726,
+    "r": 260,
+    "coordStatus": "verified",
+    "coordSource": "manual_map_check",
+    "coordType": "area_center",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Frysja industriområde",
+    "resolvedIdentity": "det brede historiske og transformerte industriområdet på Frysja langs øvre Akerselva",
+    "identityStatus": "resolved",
+    "identityProblem": "Frysja industriområde er et areal, ikke ett bygg. Det eksakte objektsøket ga ingen stabil navngitt industriområdegeometri, og dagens manuelle punkt har ingen v1-kildekontrakt.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "Frysja industriområde er et areal, ikke ett bygg. Det eksakte objektsøket ga ingen stabil navngitt industriområdegeometri, og dagens manuelle punkt har ingen v1-kildekontrakt."
+  },
+  "requiredEvidence": [
+    "offisiell områdegeometri eller dokumentert fleranker",
+    "area_anchor/geometry-kontrakt",
+    "fysisk avgrensing mot bredere Frysja-strøk"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Frysja: kvalitet og kvantitet",
+      "sourceUrl": "https://magasin.oslo.kommune.no/byplan/frysja-kvalitet-og-kvantitet",
+      "sourceObjectId": "oslo-kommune:frysja-industriomrade-transformasjon",
+      "sourceQuality": "official_area_identity",
+      "finding": "Oslo kommune beskriver Frysja industriområde som et gammelt industri- og lagerområde vest for Akerselva under transformasjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden avklarer området, men batchen har ikke en kildebelagt polygon eller et dokumentert fleranker."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Frysja",
+      "sourceUrl": "https://oslobyleksikon.no/side/Frysja",
+      "sourceObjectId": "oslobyleksikon:frysja",
+      "sourceQuality": "documented_area_context",
+      "finding": "Frysja brukes om et bredt bolig- og industriområde langs Akerselva mellom Maridalsvannet og Nydalen.",
+      "canVerifyCoordinate": false,
+      "reason": "Det bredere strøket kan ikke brukes som automatisk punkt for det smalere industriområdet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Frysja industriområde er et areal, ikke ett bygg. Det eksakte objektsøket ga ingen stabil navngitt industriområdegeometri, og dagens manuelle punkt har ingen v1-kildekontrakt.",
+    "nextAction": "Hent offisiell plan-/områdegeometri eller dokumenter flere fysiske ankerpunkter for det gamle industriområdet før canonical koordinat godkjennes."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 25."
+  ]
+}

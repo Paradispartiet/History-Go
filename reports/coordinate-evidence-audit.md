@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T08:10:50.508Z
+Generert: 2026-07-19T08:22:51.195Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -104,3 +104,10 @@ Generert: 2026-07-19T08:10:50.508Z
 | st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | needs_research | needs_identity_split | OK |
 | oslo_kornmagasin | data/coordinate-evidence/oslo/naeringsliv/oslo_kornmagasin.json | needs_research | needs_identity_split | OK |
 | akershus_slott_bakeriet | data/coordinate-evidence/oslo/naeringsliv/akershus_slott_bakeriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_kraftselskap | data/coordinate-evidence/oslo/naeringsliv/oslo_kraftselskap.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| jernbanetorget_trafikknutepunkt | data/coordinate-evidence/oslo/naeringsliv/jernbanetorget_trafikknutepunkt.json | rejected | needs_identity_split | OK |
+| grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | candidate_sources_collected | needs_geometry | OK |
+| vippetangen_fisketorg | data/coordinate-evidence/oslo/naeringsliv/vippetangen_fisketorg.json | needs_research | needs_identity_split | OK |
+| frysja_industriomrade | data/coordinate-evidence/oslo/naeringsliv/frysja_industriomrade.json | candidate_sources_collected | needs_geometry | OK |
+| norges_varemesse | data/coordinate-evidence/oslo/naeringsliv/norges_varemesse.json | needs_research | needs_identity_split | OK |
+| bryn_industriomrade | data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json | candidate_sources_collected | needs_geometry | OK |

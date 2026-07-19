@@ -1,0 +1,98 @@
+{
+  "placeId": "grensen_kjopesenter",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9138,
+    "lon": 10.7441,
+    "r": 120,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Grensen – handelens sentrum",
+    "resolvedIdentity": "gaten Grensen som historisk og nåværende handelsgate i Oslo sentrum",
+    "identityStatus": "resolved",
+    "identityProblem": "Aktiv record beskriver hele gaten Grensen, mens OSM representerer gaten med flere separate way-segmenter. Ett av segmentpunktene kan ikke alene verifisere hele den lineære place-identiteten.",
+    "locatorTypeCandidate": "street",
+    "requiresSplit": false,
+    "splitReason": "Aktiv record beskriver hele gaten Grensen, mens OSM representerer gaten med flere separate way-segmenter. Ett av segmentpunktene kan ikke alene verifisere hele den lineære place-identiteten."
+  },
+  "requiredEvidence": [
+    "komplett gategeometri eller dokumentert segmentsett",
+    "line_anchor/geometry-kontrakt",
+    "avklaring av misvisende legacy-id `grensen_kjopesenter`"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Grensen",
+      "sourceUrl": "https://oslobyleksikon.no/side/Grensen",
+      "sourceObjectId": "oslobyleksikon:grensen",
+      "sourceQuality": "documented_linear_identity",
+      "finding": "Oslo byleksikon beskriver Grensen som en gate fra Møllergata ved Stortorvet til Professor Aschehougs plass og som en viktig handelsgate.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden avklarer identiteten, men ikke én enkelt punktkoordinat for hele gaten."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap / Nominatim",
+      "sourceUrl": "https://www.openstreetmap.org/",
+      "sourceObjectId": "osm:grensen-multiway",
+      "sourceQuality": "multi_segment_geometry_candidates",
+      "finding": "Objektsøket returnerte 3 navngitte Grensen-way-kandidater, som viser at gaten er segmentert og må modelleres samlet.",
+      "canVerifyCoordinate": false,
+      "reason": "Batchen velger ikke første eller nærmeste segment som hele gatens koordinat."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:67882889",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:179095459",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:696754516",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9137324,
+      "lon": 10.7435193,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "lat": 59.9129351,
+      "lon": 10.7455317,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "lat": 59.9129933,
+      "lon": 10.7455599,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Aktiv record beskriver hele gaten Grensen, mens OSM representerer gaten med flere separate way-segmenter. Ett av segmentpunktene kan ikke alene verifisere hele den lineære place-identiteten.",
+    "nextAction": "Bygg dokumentert flersegment-geometri/anchors for hele Grensen og bruk et eksplisitt line_anchor; vurder samtidig å migrere legacy-id-en til en gate-identitet."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 25."
+  ]
+}

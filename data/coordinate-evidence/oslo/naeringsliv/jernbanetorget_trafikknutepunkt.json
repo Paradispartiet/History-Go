@@ -1,0 +1,53 @@
+{
+  "placeId": "jernbanetorget_trafikknutepunkt",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "rejected",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.911,
+    "lon": 10.7508,
+    "r": 150,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Jernbanetorget – handelsknutepunktet",
+    "resolvedIdentity": "duplikat næringslivsrecord for samme fysiske byrom som canonical `jernbanetorget`",
+    "identityStatus": "conflict",
+    "identityProblem": "Repoet har allerede canonical `jernbanetorget` for det samme fysiske torget og transportknutepunktet. Næringslivsvinkelen skaper ikke et separat fysisk sted.",
+    "locatorTypeCandidate": "square",
+    "requiresSplit": false,
+    "splitReason": "Repoet har allerede canonical `jernbanetorget` for det samme fysiske torget og transportknutepunktet. Næringslivsvinkelen skaper ikke et separat fysisk sted."
+  },
+  "requiredEvidence": [
+    "canonical place-id-migrering",
+    "referanseopprydding",
+    "ingen separat koordinat"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go canonical place audit",
+      "sourceUrl": "data/places/by/oslo/places/jernbanetorget.json",
+      "sourceObjectId": "history-go:duplicate:jernbanetorget_trafikknutepunkt:jernbanetorget",
+      "sourceQuality": "identity_overlap_audit",
+      "finding": "Begge recordene representerer Jernbanetorget som fysisk byrom; forskjellen er redaksjonell kategori/vinkel.",
+      "canVerifyCoordinate": false,
+      "reason": "Et separat punkt ville bevare et fysisk duplikat i canonical place-laget."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Repoet har allerede canonical `jernbanetorget` for det samme fysiske torget og transportknutepunktet. Næringslivsvinkelen skaper ikke et separat fysisk sted.",
+    "nextAction": "Migrer næringslivsinnhold og referanser til canonical `jernbanetorget`; ikke godkjenn et separat fysisk anker."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 25."
+  ]
+}

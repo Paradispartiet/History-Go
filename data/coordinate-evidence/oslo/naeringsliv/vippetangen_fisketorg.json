@@ -1,0 +1,83 @@
+{
+  "placeId": "vippetangen_fisketorg",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9012,
+    "lon": 10.7429,
+    "r": 160,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Vippetangen fisketorg",
+    "resolvedIdentity": "historisk fisketorg/fiskehavn på Vippetangen, med senere Fiskehallen i Akershusstranda 23",
+    "identityStatus": "conflict",
+    "identityProblem": "Aktiv record oppgir 1890 og beskriver et bredt historisk fisketorg, mens kildene flytter fisketorget til Vippetangen i 1905 og knytter dagens konkrete Fiskehallen til Akershusstranda 23 i en senere fase. Adressepunktet kan derfor ikke automatisk erstatte recordens brede historiske identitet.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Aktiv record oppgir 1890 og beskriver et bredt historisk fisketorg, mens kildene flytter fisketorget til Vippetangen i 1905 og knytter dagens konkrete Fiskehallen til Akershusstranda 23 i en senere fase. Adressepunktet kan derfor ikke automatisk erstatte recordens brede historiske identitet."
+  },
+  "requiredEvidence": [
+    "korrigert tidslinje",
+    "valg mellom historisk fiskehavn/område og konkret Fiskehallen-bygg",
+    "historisk områdeanker eller eksplisitt bygningsanker etter identitetsvalg"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Akershusstranda%2023%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:23",
+      "sourceQuality": "official_address_candidate",
+      "finding": "Geonorge returnerte ett tydelig adressepunkt for Akershusstranda 23.",
+      "canVerifyCoordinate": false,
+      "reason": "Adressepunktet gjelder den konkrete Fiskehallen, mens aktiv record ikke er tydelig avgrenset til dette bygget."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Fiskehallen",
+      "sourceUrl": "https://oslobyleksikon.no/side/Fiskehallen",
+      "sourceObjectId": "oslobyleksikon:fiskehallen:vippetangen",
+      "sourceQuality": "documented_historical_identity",
+      "finding": "Kilden dokumenterer flytting av fisketorget til Vippetangen i 1905 og senere Fiskehallen i Akershusstranda 23.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden viser at recordens nåværende 1890-identitet og det konkrete 23-ankeret ikke er samme uavklarte tidslag."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Akershusstranda 23 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:23",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:23",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90297426597389,
+      "lon": 10.740325792625368,
+      "coordRole": "display_marker",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Aktiv record oppgir 1890 og beskriver et bredt historisk fisketorg, mens kildene flytter fisketorget til Vippetangen i 1905 og knytter dagens konkrete Fiskehallen til Akershusstranda 23 i en senere fase. Adressepunktet kan derfor ikke automatisk erstatte recordens brede historiske identitet.",
+    "nextAction": "Rett recordens tidslinje og bestem om place skal være Fiskehallen som bygg eller den historiske fiskehavna/fisketorget som område før koordinat godkjennes."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 25."
+  ]
+}
