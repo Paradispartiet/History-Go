@@ -6,6 +6,7 @@ const sourcePath = `${root}/places_oslo_natur_akerselvarute.json`;
 const manifestPath = `${root}/places_oslo_natur_akerselvarute_manifest.json`;
 const indexPath = `${root}/places_oslo_natur_akerselvarute_index.json`;
 const splitDir = `${root}/places_oslo_natur_akerselvarute`;
+const evidenceDir = 'data/coordinate-evidence/oslo/natur';
 const ids = [
   'frysjadammen',
   'nydalen_industristed',
@@ -23,6 +24,15 @@ const coordinateKeys = [
 const read = path => JSON.parse(fs.readFileSync(path, 'utf8'));
 const write = (path, value) => fs.writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
 const sha256 = path => crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex');
+const snapshot = place => ({
+  lat: place.lat ?? null,
+  lon: place.lon ?? null,
+  r: place.r ?? null,
+  coordStatus: place.coordStatus ?? '',
+  coordSource: place.coordSource ?? '',
+  coordType: place.coordType ?? '',
+  coordNote: place.coordNote ?? '',
+});
 
 const aggregate = read(sourcePath);
 const byId = new Map(aggregate.map(place => [place.id, place]));
@@ -56,11 +66,18 @@ for (const id of ids) {
     else delete child[key];
   }
   write(childPath, child);
+
+  const evidencePath = `${evidenceDir}/${id}.json`;
+  if (fs.existsSync(evidencePath)) {
+    const evidence = read(evidencePath);
+    evidence.currentCoordinate = snapshot(source);
+    write(evidencePath, evidence);
+  }
 }
 
 const manifest = read(manifestPath);
 manifest.source_sha256 = sha256(sourcePath);
-manifest.generated_at = '2026-07-19T23:20:00+02:00';
+manifest.generated_at = '2026-07-19T23:30:00+02:00';
 for (const row of manifest.places || []) {
   const childPath = `${root}/${row.file}`;
   if (!fs.existsSync(childPath)) throw new Error(`Missing split child ${row.file}`);
@@ -85,4 +102,4 @@ const index = (manifest.places || []).map(row => {
 });
 write(indexPath, index);
 
-console.log('Synchronized batch 32 coordinate fields into existing Akerselva split files without replacing split content.');
+console.log('Synchronized batch 32 coordinate fields and evidence snapshots without replacing existing Akerselva split content.');
