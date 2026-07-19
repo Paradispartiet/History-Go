@@ -6,7 +6,7 @@ Dato: 2026-07-19
 
 Det tekniske stedet `bjoelsenparken_elvenaer` var feilaktig kalt **Bjølsenparken (elvenær del)**. Punktet lå ved Advokat Dehlis plass og var samtidig ført som en gjenværende faktisk feil i koordinatprotokollen.
 
-Visningsstedet er rettet til **Advokat Dehlis plass – grøntarealet**. Områdeankeret bruker OSM way `336602343` med geometrisk sentrum `59.93914, 10.75891`. Teknisk ID er beholdt for kompatibilitet. Radiusen er beholdt på 160 meter. Canonical år er rettet fra et omtrentelig 1930 til det dokumenterte navnevedtaket i 1934.
+Visningsstedet er rettet til **Advokat Dehlis plass – grøntarealet**. Områdeankeret bruker OSM way `336602343` med geometrisk sentrum `59.93914, 10.75891`. Teknisk ID er beholdt for kompatibilitet. Radiusen er beholdt på 160 meter. Canonical år er rettet fra et omtrentlig 1930 til det dokumenterte navnevedtaket i 1934.
 
 ## Fylte natur-rundinger
 
@@ -33,3 +33,7 @@ Ingen manuell `rounds`- eller `rundinger`-override er lagt inn. Ingen direkte fl
 ## Kilder
 
 Oslo byleksikon, Lokalhistoriewiki, Store norske leksikon, Norsk biografisk leksikon, Wikimedia/OpenStreetMap og repoets Artskart-baserte naturkart.
+
+## Kontrollstatus
+
+Målrettet identitets- og rundingtest, eksisterende Akerselva-naturtest, PlaceCard runtime-rundingaudit, leksikonaudit, JSON-parse og `git diff --check` besto i produksjonsjobben. Denne sluttoppdateringen utløser ordinær repository-CI på den endelige diffen.
