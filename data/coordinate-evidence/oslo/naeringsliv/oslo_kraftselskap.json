@@ -1,0 +1,51 @@
+{
+  "placeId": "oslo_kraftselskap",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.919,
+    "lon": 10.7479,
+    "r": 140,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "Oslo Lysverker",
+    "resolvedIdentity": "kommunalt energiselskap og distribusjonssystem med flere historiske anlegg og senere hovedkontor",
+    "identityStatus": "conflict",
+    "identityProblem": "Recorden beskriver Oslo Lysverker som institusjon og strømnett, ikke ett fysisk sted. Forløperen startet kraftproduksjon i Rosenkrantz' gate 14 i 1892, mens den monumentale Lysverker-bygningen i Sommerrogata 1 først ble oppført i 1931.",
+    "locatorTypeCandidate": "unknown",
+    "requiresSplit": true,
+    "splitReason": "Institusjonen må skilles fra konkrete fysiske anlegg eller hovedkontor før ett coordinate anchor kan godkjennes."
+  },
+  "requiredEvidence": [
+    "beslutning om place-scope: selskap, hovedkontor eller kraftanlegg",
+    "konkret fysisk objekt dersom recorden beholdes som place",
+    "overlap-audit mot eksisterende kraft- og energisteder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Oslo Lysverker",
+      "sourceUrl": "https://oslobyleksikon.no/side/Oslo_Lysverker",
+      "sourceObjectId": "oslobyleksikon:oslo-lysverker",
+      "sourceQuality": "documented_identity_history",
+      "finding": "Kilden dokumenterer Oslo Lysverker som en virksomhet med produksjon, nett og flere anlegg; Sommerrogata 1 var senere kontorbygning, mens elektrisitetsverket startet ved en annen fysisk lokasjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden løser institusjonshistorien, men ikke hvilket enkelt fysisk objekt den aktive place-recorden skal representere."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Aktiv record er en institusjons-/systemrecord uten ett entydig fysisk hovedobjekt.",
+    "nextAction": "Definer recorden som konkret Sommerrogata 1-bygg, et bestemt kraftanlegg eller flytt institusjonshistorien ut av place-modellen."
+  },
+  "notes": ["Ingen koordinatendring i batch 25."]
+}
