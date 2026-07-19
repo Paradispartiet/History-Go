@@ -1,0 +1,86 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Hausmanns gate 19A Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Hausmanns gate 19A Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hausmanns%20gate%2019A%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:12782:19A",
+  "coordinate": {
+    "lat": 59.91657334372696,
+    "lon": 10.75561428991178,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:12782:19A",
+    "address": {
+      "street": "Hausmanns gate",
+      "number": "19A",
+      "postcode": "0182",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Hausmanns gate 19A, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Hausmanns gate",
+    "adressetekst": "Hausmanns gate 19A",
+    "adressetilleggsnavn": null,
+    "adressekode": 12782,
+    "nummer": 19,
+    "bokstav": "A",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 208,
+    "bruksnummer": 99,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [
+      "H0101",
+      "H0102",
+      "H0103",
+      "H0201",
+      "H0202",
+      "H0203",
+      "H0204",
+      "H0301",
+      "H0302",
+      "H0303",
+      "H0304",
+      "H0401",
+      "H0402",
+      "H0403",
+      "H0404",
+      "H0501",
+      "H0502",
+      "H0503",
+      "H0504",
+      "H0601"
+    ],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0182",
+    "adressetekstutenadressetilleggsnavn": "Hausmanns gate 19A",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91657334372696,
+      "lon": 10.75561428991178
+    },
+    "oppdateringsdato": "2026-03-26T19:41:41"
+  }
+}
