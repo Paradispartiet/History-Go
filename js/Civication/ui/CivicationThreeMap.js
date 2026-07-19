@@ -518,6 +518,29 @@
   ];
   const WEST_SHORE_H = 0.15;
 
+  // 3D-brettet følger kystlinjen: de delte 2D-polygonene (MapModel) er tegnet
+  // for flatkartet og bryr seg ikke om fjord/bukter. Polygoner som ellers ville
+  // dekket vann overstyres lokalt her (kun ThreeMap – 2D-kartet beholder sine):
+  // - ekebergRidge dekket hele Bjørvika-bukta, Sørenga og havnebassenget med
+  //   NV-hjørnet sitt; vestkanten flyttes øst for buktas kystlinje.
+  // - gamle_oslo-slaben la tan grunn over bukta; følger nå LAND_COAST-notchen.
+  // - nordstrand-slaben stakk ut i havnebassenget; vestkanten trekkes inn.
+  const EKEBERG_RIDGE_3D = [
+    [0.672, 0.664], [0.80, 0.68], [0.87, 0.84], [0.76, 0.94],
+    [0.63, 0.89], [0.648, 0.78], [0.700, 0.730]
+  ];
+  const DISTRICT_SHAPE_OVERRIDES = {
+    gamle_oslo: [
+      [0.55, 0.62], [0.70, 0.62], [0.752, 0.700], [0.707, 0.732],
+      [0.662, 0.658], [0.625, 0.637], [0.600, 0.673], [0.563, 0.697], [0.548, 0.698]
+    ],
+    nordstrand: [
+      [0.655, 0.76], [0.81, 0.76], [0.88, 0.86], [0.84, 0.95],
+      [0.72, 0.98], [0.635, 0.89]
+    ]
+  };
+  const districtShape3D = (d) => DISTRICT_SHAPE_OVERRIDES[d.id] || d.shape;
+
   function buildBoard() {
     // Hevet modellbrett / sokkel.
     const board = new THREE.Mesh(new THREE.BoxGeometry(MAP_W + 3.4, 1.1, MAP_D + 3.4), toMat(PAL.board));
@@ -551,7 +574,7 @@
 
     // Marka som hevet skogsplatå i nord, Ekeberg som ås i sørøst.
     if (land.markaNorth) scene.add(extrudeShape(land.markaNorth, MARKA_H, PAL.marka, 0, { cast: true, bevel: 0.04 }));
-    if (land.ekebergRidge) scene.add(extrudeShape(land.ekebergRidge, EKEBERG_H, PAL.ekeberg, 0, { cast: true, bevel: 0.03 }));
+    if (land.ekebergRidge) scene.add(extrudeShape(EKEBERG_RIDGE_3D, EKEBERG_H, PAL.ekeberg, 0, { cast: true, bevel: 0.03 }));
 
     // Oslos indre øyklynge (Hovedøya størst, nærmest sentrum, så Lindøya,
     // Bleikøya, Gressholmen, Nakholmen utover). Flate modelløyer på strandsokkel.
@@ -576,8 +599,12 @@
     });
 
     // Tynne bydels-slabs som farget grunn (gir per-bydel identitet).
+    // Delte MapModel-polygoner er tegnet for 2D-kartet og bryr seg ikke om
+    // kystlinjen; 3D-kartet overstyrer de som ellers ville dekket fjord/bukter
+    // (Gamle Oslo la en tan plate over hele Bjørvika-bukta). Overriden følger
+    // LAND_COAST rundt bukta, så vannet ved Operaen/Sørenga faktisk synes.
     (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
-      const slab = extrudeShape(d.shape, 0.035, districtTint(d), GROUND_Y, { cast: false });
+      const slab = extrudeShape(districtShape3D(d), 0.035, districtTint(d), GROUND_Y, { cast: false });
       scene.add(slab);
     });
 
@@ -658,9 +685,10 @@
       0.013, baseY, { marking: true }
     );
 
-    // E18 / havneakse langs fjorden vest–øst.
+    // E18 / havneakse langs fjorden vest–øst. Runder Bjørvika-bukta på nordsiden
+    // (som Operatunnel-traséen) i stedet for å krysse rett over vannet.
     addRoad(g,
-      [[0.30, 0.685], [0.40, 0.667], [0.47, 0.657], [0.54, 0.66], [0.62, 0.66], [0.70, 0.675]],
+      [[0.30, 0.685], [0.40, 0.667], [0.47, 0.657], [0.54, 0.655], [0.60, 0.627], [0.66, 0.641], [0.70, 0.675]],
       0.012, baseY - 0.002, { color: shade(ROAD_ASPHALT, -0.05), marking: true }
     );
 
@@ -1128,12 +1156,12 @@
     // conifer = andel bartrær (gran/furu). Marka/Ekeberg er nesten bare barskog;
     // parker og villastrøk får mer løvtre.
     if (land.markaNorth) regions.push({ poly: land.markaNorth, baseY: MARKA_H, n: 460, conifer: 0.9 });
-    if (land.ekebergRidge) regions.push({ poly: land.ekebergRidge, baseY: EKEBERG_H, n: 160, conifer: 0.78 });
+    if (land.ekebergRidge) regions.push({ poly: EKEBERG_RIDGE_3D, baseY: EKEBERG_H, n: 160, conifer: 0.78 });
     regions.push({ poly: BYGDOY, baseY: BYGDOY_H, n: 90, conifer: 0.5 });
     regions.push({ poly: WEST_SHORE, baseY: WEST_SHORE_H, n: 100, conifer: 0.85 });
     const greenDistricts = ["nordstrand", "stovner", "ullern"];
     (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
-      if (greenDistricts.includes(d.id)) regions.push({ poly: d.shape, baseY: GROUND_Y, n: 56, conifer: 0.35 });
+      if (greenDistricts.includes(d.id)) regions.push({ poly: districtShape3D(d), baseY: GROUND_Y, n: 56, conifer: 0.35 });
     });
 
     const pts = [];
