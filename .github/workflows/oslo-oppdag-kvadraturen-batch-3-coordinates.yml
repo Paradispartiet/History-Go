@@ -38,28 +38,30 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-batch-3/coordinates'
+          raw="$outdir/oslo_named_squares_osm_raw.json"
+          query='[out:json][timeout:25];nwr["name"~"^(Wessels plass|Egertorget|Stortorget|Grev Wedels plass)$"](59.85,10.60,60.05,10.95);out center tags;'
 
-          fetch_square() {
+          if ! curl --max-time 35 --retry 1 --fail --silent --show-error --get \
+            'https://overpass-api.de/api/interpreter' \
+            --data-urlencode "data=${query}" -o "$raw"; then
+            curl --max-time 45 --retry 1 --fail --silent --show-error --get \
+              'https://overpass.kumi.systems/api/interpreter' \
+              --data-urlencode "data=${query}" -o "$raw"
+          fi
+
+          extract_exact() {
             local slug="$1"
             local name="$2"
-            local outfile="reports/oslo-oppdag-kvadraturen-batch-3/coordinates/${slug}_osm.json"
-            local query="[out:json][timeout:20];nwr[\"name\"=\"${name}\"](59.85,10.60,60.05,10.95);out center tags;"
-
-            if ! curl --max-time 30 --retry 1 --fail --silent --show-error --get \
-              'https://overpass-api.de/api/interpreter' \
-              --data-urlencode "data=${query}" -o "$outfile"; then
-              curl --max-time 40 --retry 1 --fail --silent --show-error --get \
-                'https://overpass.kumi.systems/api/interpreter' \
-                --data-urlencode "data=${query}" -o "$outfile"
-            fi
-
-            jq -e --arg name "$name" '.elements | map(select(.tags.name == $name)) | length > 0' "$outfile" >/dev/null
+            jq --arg name "$name" '{version, generator, osm3s, elements: [.elements[] | select(.tags.name == $name)]}' \
+              "$raw" > "$outdir/${slug}_osm.json"
+            jq -e '.elements | length > 0' "$outdir/${slug}_osm.json" >/dev/null
           }
 
-          fetch_square wessels_plass "Wessels plass"
-          fetch_square egertorget "Egertorget"
-          fetch_square stortorget "Stortorget"
-          fetch_square grev_wedels_plass "Grev Wedels plass"
+          extract_exact wessels_plass "Wessels plass"
+          extract_exact egertorget "Egertorget"
+          extract_exact stortorget "Stortorget"
+          extract_exact grev_wedels_plass "Grev Wedels plass"
 
       - name: Persist coordinate evidence
         shell: bash
