@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-19T19:49:57.097Z
+Generert: 2026-07-19T20:06:40.565Z
 
 ## Hvorfor denne gaten finnes
 
@@ -16,9 +16,9 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Base method: **origin/${GITHUB_BASE_REF}**
 - Aktive manifest-filer lest: **504**
 - Place-objekter validert: **1215**
-- Nye/endrede koordinatobjekter mot base: **5**
+- Nye/endrede koordinatobjekter mot base: **4**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3605**
+- Backlog-funn: **3597**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -543,4 +543,4 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | lier_sykehus_historisk_omrade | Lier sykehus / historisk område | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3605 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3597 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

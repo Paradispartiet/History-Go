@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 148 verifiserte eller kildekontrollerte canonical steder. Batch 29 starter litteratur-manifestet med to nye godkjente adresseankre: Kulturkirken Jakob og Ruth Maier-minnesmerket. Tre ytterligere Oslo-records avsluttes som needs_review, mens to feilplasserte Prøysen-records flyttes ut av Oslo. Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 34.
+Oslo-tabellen inneholder nå 150 verifiserte eller kildekontrollerte canonical steder. Batch 30 avslutter de to siste ukontrollerte recordene i Oslo-litteraturmanifestet med verified_geometry for Oskar Braaten-bysten ved Beierbrua og Alexander Kiellands plass. Antallet fullførte kontroller uten godkjent Oslo-koordinat er fortsatt 34.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -169,6 +169,8 @@ Oslo-tabellen inneholder nå 148 verifiserte eller kildekontrollerte canonical s
 | 28 | `christiania_torv` | Christiania Torv | verified_geometry | `osm-way:594329484` |
 | 29 | `kulturkirken_jakob_litteratur` | Kulturkirken Jakob | verified | `geonorge-adresser-v1:0301:12782:14` |
 | 29 | `ruth_maier_minne` | Ruth Maier-minnesmerke | verified | `geonorge-adresser-v1:0301:11153:3` |
+| 30 | `oscar_braaten_statuen` | Oskar Braaten-bysten | verified_geometry | `osm-node:10819902960` |
+| 30 | `alexander_kiellands_plass` | Alexander Kiellands plass | verified_geometry | `osm-way:3610607` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -176,7 +178,7 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 148 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 150 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
