@@ -1,0 +1,75 @@
+name: Fill Kuba-parken nature rounds batch 1
+
+on:
+  pull_request:
+    types: [opened]
+    paths:
+      - tools/.tmp_fill_kubaparken.py
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Verify production script
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s tools/.tmp_fill_kubaparken.py
+          python3 -m py_compile tools/.tmp_fill_kubaparken.py
+          sha256sum tools/.tmp_fill_kubaparken.py
+
+      - name: Produce Kuba-parken content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/.tmp_fill_kubaparken.py
+
+      - name: Validate targeted content
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/kubaparken-nature-rounds-batch1.test.js
+          node tests/oslo-nature-rounds-batch9-akerselva-mid.test.js
+          node tests/place-card-leksikon-content-audit.test.js
+          node tests/myralokka-nature-rounds-batch1.test.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          files = [
+              'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+              'data/quiz/natur/kuba_parken_sets.json',
+              'data/stories/stories_manifest_natur_batch_01.json',
+              'data/stories/stories_kuba_parken.json',
+          ]
+          for file in files:
+              json.loads(Path(file).read_text(encoding='utf-8'))
+          print('Changed JSON parses OK')
+          PY
+          git diff --check
+
+      - name: Commit production files and remove temporary files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/.tmp_fill_kubaparken.py
+          rm -f tools/.tmp_fill_kubaparken_payload_*
+          rm -f .github/workflows/fill-kubaparken-nature-rounds-batch1.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Fill Kuba-parken nature rounds batch 1"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
