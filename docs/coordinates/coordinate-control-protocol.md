@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 154 verifiserte eller kildekontrollerte canonical steder. Batch 32 kontrollerer de sju første recordene i Akerselva-ruten: Nydalsdammen og Bjølsenfossen får eksakt navngitt OSM-geometri, den allerede verifiserte Advokat Dehlis plass-markøren føres inn i protokollen, mens fire konflikt- eller uavklarte records avsluttes uten ny godkjent koordinat. Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 44.
+Oslo-tabellen inneholder nå 160 verifiserte eller kildekontrollerte canonical steder. Batch 33 kontrollerer de neste sju recordene i Akerselva-ruten: Glads mølle og Vøienvolden får entydige Geonorge-adressepunkter; Myraløkka, Kuba-parken, Beierbrua og Nedre Foss får eksakte navngitte OSM-objekter; Vøyenfallene avsluttes uten ny godkjent koordinat fordi tre-fallsystemet mangler én stabil kildegeometri. Antallet fullførte kontroller uten godkjent Oslo-koordinat er nå 45.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -175,6 +175,12 @@ Oslo-tabellen inneholder nå 154 verifiserte eller kildekontrollerte canonical s
 | 32 | `nydalsdammen` | Nydalsdammen | verified_geometry | `osm-relation:14637129` |
 | 32 | `bjoelsenfossen` | Bjølsenfossen | verified_geometry | `osm-node:10679414566` |
 | 32 | `bjoelsenparken_elvenaer` | Advokat Dehlis plass – grøntarealet | verified_geometry | `osm-way:336602343` |
+| 33 | `glads_molle` | Glads mølle | verified | `geonorge-adresser-v1:0301:16161:10A` |
+| 33 | `voien_gard_voienvolden` | Vøienvolden gård | verified | `geonorge-adresser-v1:0301:14622:120` |
+| 33 | `myralokka` | Myraløkka | verified_geometry | `osm-way:4648305` |
+| 33 | `kuba_parken` | Kuba-parken | verified_geometry | `osm-relation:1103963` |
+| 33 | `beierbrua` | Beierbrua | verified_geometry | `osm-way:532768329` |
+| 33 | `nedre_foss` | Nedre Foss | verified_geometry | `osm-node:4171862592` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -182,10 +188,11 @@ Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 154 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 160 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
+| `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
 | `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
 | `nydalen_industristed` – Nydalen industristed | needs_review | Fysisk overlapp med canonical `nydalen`. | Modeller som delprofil/relation eller avgrens et separat fysisk objekt. |
 | `seilduksfabrikken_nydalen` – Øvre spinneri | needs_review | Gjerdrums vei 12 er dokumentert, men Geonorge gir flere ikke-entydige treff. | Finn eksakt bygningsgeometri eller dokumenter ett konkret adressepunkt. |
