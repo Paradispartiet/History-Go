@@ -69,10 +69,15 @@ jobs:
           const place = JSON.parse(fs.readFileSync('data/places/film/oslo/places/hartvig_nissens_skole_skam.json', 'utf8'));
           const evidencePath = 'data/coordinate-evidence/oslo/film/hartvig_nissens_skole_skam.json';
           const evidence = JSON.parse(fs.readFileSync(evidencePath, 'utf8'));
-          evidence.currentCoordinate = { lat: place.lat, lon: place.lon, r: place.r };
-          for (const key of ['coordStatus', 'coordSource', 'coordType', 'coordNote']) {
-            if (place[key] !== undefined) evidence.currentCoordinate[key] = place[key];
-          }
+          evidence.currentCoordinate = {
+            lat: place.lat ?? null,
+            lon: place.lon ?? null,
+            r: place.r ?? null,
+            coordStatus: place.coordStatus ?? '',
+            coordSource: place.coordSource ?? '',
+            coordType: place.coordType ?? '',
+            coordNote: place.coordNote ?? ''
+          };
           fs.writeFileSync(evidencePath, JSON.stringify(evidence, null, 2) + '\n');
           NODE
       - name: Rebuild place index
