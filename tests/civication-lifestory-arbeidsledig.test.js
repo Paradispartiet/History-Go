@@ -122,6 +122,23 @@ assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være
     assert.ok(!alt.includes(ord.toLowerCase()),
       `delt livsscene/tråd antar jobb eller rolle: fant «${ord}»`);
   }
+
+  // Kvalitetskrav: hvert valg i delte livsscener har konsekvenstekst.
+  for (const sc of lifeScenes.scenes) {
+    for (const v of sc.valg || []) {
+      assert.ok(typeof v.konsekvensTekst === "string" && v.konsekvensTekst.trim(),
+        `livsscene ${sc.id}/${v.id} mangler konsekvensTekst`);
+    }
+  }
+
+  // Jobben først: private scener i arbeidsfasene (formiddag/ettermiddag) skal
+  // ha lav prioritet (<= 5) så rollescenene alltid spilles først i fasen.
+  for (const sc of lifeScenes.scenes) {
+    if (sc.fase === "formiddag" || sc.fase === "ettermiddag") {
+      assert.ok((sc.prioritet || 0) <= 5,
+        `livsscene ${sc.id} (${sc.fase}) har prioritet ${sc.prioritet} — private scener skal ligge etter jobben`);
+    }
+  }
 }
 
 // --- 7. Pakken peker mot den faktiske mekanikken: kunnskap/merker -> jobb ---
