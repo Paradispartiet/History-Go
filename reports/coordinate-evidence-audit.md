@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T20:42:43.455Z
+Generert: 2026-07-19T21:33:42.533Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -141,3 +141,10 @@ Generert: 2026-07-19T20:42:43.455Z
 | furuset_haugerud_skogbelte | data/coordinate-evidence/oslo/natur/furuset_haugerud_skogbelte.json | needs_research | needs_geometry | OK |
 | hellerud_gard | data/coordinate-evidence/oslo/natur/hellerud_gard.json | needs_research | needs_identity_split | OK |
 | alnabru_jernbane_og_logistikk | data/coordinate-evidence/oslo/natur/alnabru_jernbane_og_logistikk.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| frysjadammen | data/coordinate-evidence/oslo/natur/frysjadammen.json | needs_research | needs_identity_split | OK |
+| nydalen_industristed | data/coordinate-evidence/oslo/natur/nydalen_industristed.json | needs_research | needs_identity_split | OK |
+| seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | needs_research | needs_address_source | OK |
+| nydalsdammen | data/coordinate-evidence/oslo/natur/nydalsdammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | needs_research | needs_geometry | OK |
+| bjoelsenfossen | data/coordinate-evidence/oslo/natur/bjoelsenfossen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bjoelsenparken_elvenaer | data/coordinate-evidence/oslo/natur/bjoelsenparken_elvenaer.json | applied_to_place | do_not_change_coordinates_yet | OK |
