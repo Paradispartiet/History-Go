@@ -1,0 +1,96 @@
+name: Complete Oslo coordinate control batch 32 v3
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  complete:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-32-v3
+          fetch-depth: 0
+          show-progress: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Merge latest main before applying coordinates
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/oslo-coordinate-control-batch-32-final
+          git merge --no-edit origin/main
+          git show b1b4a3258f006a7d40e75fd9d802fd48b322a057:scripts/tmp-complete-oslo-coordinate-batch32.mjs > /tmp/b32-complete.mjs
+          git show b1b4a3258f006a7d40e75fd9d802fd48b322a057:scripts/tmp-sync-oslo-coordinate-batch32-splits.mjs > /tmp/b32-sync.mjs
+          git show b1b4a3258f006a7d40e75fd9d802fd48b322a057:scripts/tmp-assert-oslo-coordinate-batch32.mjs > /tmp/b32-assert.mjs
+      - name: Apply batch 32 decisions
+        run: node /tmp/b32-complete.mjs
+      - name: Synchronize targeted Akerselva split coordinate fields
+        run: node /tmp/b32-sync.mjs
+      - name: Build repository tools without npm install
+        run: |
+          rm -rf dist/tools
+          node <<'NODE'
+          const fs=require('node:fs'),path=require('node:path'),{stripTypeScriptTypes}=require('node:module');
+          const src=path.resolve('tools'),out=path.resolve('dist/tools');
+          function walk(d){return fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>{const f=path.join(d,e.name);return e.isDirectory()?walk(f):(/\.(mts|ts|cts)$/.test(e.name)?[f]:[])});}
+          for(const f of walk(src)){const rel=path.relative(src,f),ext=path.extname(rel),oe=ext==='.mts'?'.mjs':ext==='.cts'?'.cjs':'.js',dest=path.join(out,rel.slice(0,-ext.length)+oe),s=fs.readFileSync(f,'utf8'),nl=s.indexOf('\n'),sh=s.startsWith('#!')?s.slice(0,nl+1):'',body=s.startsWith('#!')?s.slice(nl+1):s;fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,sh+stripTypeScriptTypes(body,{mode:'transform'}));}
+          NODE
+      - name: Rebuild runtime index
+        run: node dist/tools/build_places_index.mjs
+      - name: Prove exact batch scope against merged main
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs'),cp=require('node:child_process');
+          const file='data/places/natur/oslo/places_oslo_natur_akerselvarute.json';
+          const before=JSON.parse(cp.execFileSync('git',['show',`origin/main:${file}`],{encoding:'utf8'}));
+          const after=JSON.parse(fs.readFileSync(file,'utf8'));const b=new Map(before.map(p=>[p.id,p]));
+          const changed=after.filter(p=>JSON.stringify(p)!==JSON.stringify(b.get(p.id))).map(p=>p.id);
+          const expected=['frysjadammen','nydalen_industristed','seilduksfabrikken_nydalen','nydalsdammen','stilla_nydalen','bjoelsenfossen','bjoelsenparken_elvenaer'];
+          const bad=changed.filter(id=>!expected.includes(id));if(bad.length)throw new Error('Unexpected: '+bad.join(','));
+          for(const id of expected)if(!changed.includes(id))throw new Error('Expected unchanged: '+id);
+          console.log(changed.join('\n'));
+          NODE
+      - name: Run hard validation gates
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-32/validation; mkdir -p "$out"
+          node dist/tools/audit-places-split-manifest-sync.mjs | tee "$out/split-manifest-sync.txt"
+          node dist/tools/check_no_lng_coordinates.mjs | tee "$out/places-index-check.txt"
+          node dist/tools/check_places_index_sync.mjs | tee -a "$out/places-index-check.txt"
+          node tests/place-coordinate-index-parity.test.js | tee -a "$out/places-index-check.txt"
+          node tests/coordinate-source-contract-anchor-trust.test.mjs | tee "$out/coordinate-source-contract.txt"
+          node dist/tools/place-coordinate-quality-gate.mjs | tee "$out/coordinate-quality.txt"
+          node dist/tools/place-coordinate-intake-gate.mjs --strict-new | tee "$out/coordinate-intake.txt"
+          node dist/tools/audit-coordinate-evidence.mjs | tee "$out/coordinate-evidence-audit.txt"
+          git diff --check | tee "$out/git-diff-check.txt"
+      - name: Assert canonical split runtime and protocol result
+        run: node /tmp/b32-assert.mjs
+      - name: Render old/new map QA
+        run: |
+          out=reports/oslo-coordinate-control-batch-32/visual-qa; mkdir -p "$out"
+          cat > "$out/map.html" <<'EOF'
+          <!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:1600px;height:1000px;font-family:Arial}.grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:1600px;height:1000px}.p{position:relative}.m{width:800px;height:500px}.l{position:absolute;z-index:9999;top:12px;left:12px;background:#fff;padding:9px 12px;border:3px solid #111;font-size:19px;font-weight:700}.s{display:block;font-size:13px;font-weight:400;margin-top:3px}.mk{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #111;box-sizing:border-box}</style><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script></head><body><div class="grid"><div class="p"><div class="l">Nydalsdammen – gammel<span class="s">59.9458, 10.7660</span></div><div id="a" class="m"></div></div><div class="p"><div class="l">Nydalsdammen – ny<span class="s">59.9572011, 10.7658593</span></div><div id="b" class="m"></div></div><div class="p"><div class="l">Bjølsenfossen – gammel<span class="s">59.9398, 10.7602</span></div><div id="c" class="m"></div></div><div class="p"><div class="l">Bjølsenfossen – ny<span class="s">59.9408256, 10.7693368</span></div><div id="d" class="m"></div></div></div><script>const I=L.divIcon({className:'',html:'<div class="mk"></div>',iconSize:[26,26],iconAnchor:[13,13]});for(const [id,lat,lon]of[['a',59.9458,10.766],['b',59.9572011,10.7658593],['c',59.9398,10.7602],['d',59.9408256,10.7693368]]){const m=L.map(id,{zoomControl:false,attributionControl:false}).setView([lat,lon],16);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(m);L.marker([lat,lon],{icon:I}).addTo(m);}</script></body></html>
+          EOF
+          (cd "$out" && python3 -m http.server 8766 >/tmp/b32v3-http.log 2>&1 & echo $! >/tmp/b32v3-http.pid); sleep 2
+          chrome=$(command -v google-chrome || command -v chromium || command -v chromium-browser); "$chrome" --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=1600,1000 --virtual-time-budget=7000 --screenshot="$PWD/$out/batch32-old-new.png" http://127.0.0.1:8766/map.html
+          kill "$(cat /tmp/b32v3-http.pid)" 2>/dev/null || true; rm "$out/map.html"; test -s "$out/batch32-old-new.png"
+          printf '# Batch 32 visual map QA\n\nOld/new comparison for Nydalsdammen and Bjølsenfossen.\n' > "$out/README.md"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-32-v3-visual-qa
+          path: reports/oslo-coordinate-control-batch-32/visual-qa/batch32-old-new.png
+          if-no-files-found: error
+      - name: Commit clean completed batch
+        run: |
+          rm -f .github/workflows/oslo-coordinate-batch-32-v3.yml
+          git add data docs reports .github/workflows/oslo-coordinate-batch-32-v3.yml
+          git commit -m "Complete Oslo coordinate control batch 32"
+          git push origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-32-v3
