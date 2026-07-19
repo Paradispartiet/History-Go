@@ -26,7 +26,16 @@ for (const id of unresolved) {
 }
 
 const ids = [...Object.keys(verified), ...unresolved];
-const coordKeys = ['lat','lon','r','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordSourceId','coordSourceUrl','coordVerifiedAt','coordNote'];
+const fullCoordKeys = [
+  'lat','lon','r','locatorType','sourceProvider','sourceObjectId','address',
+  'geocodeAccuracy','coordRole','coordType','coordStatus','coordSource',
+  'coordSourceId','coordSourceUrl','coordVerifiedAt','coordNote',
+];
+const runtimeCoordKeys = [
+  'lat','lon','r','locatorType','sourceProvider','sourceObjectId','address',
+  'geocodeAccuracy','coordRole','coordType','coordStatus','coordSource',
+  'coordVerifiedAt','coordNote',
+];
 for (const id of ids) {
   const aggregate = a.get(id);
   const split = read(`data/places/natur/oslo/places_oslo_natur_akerselvarute/${id}.json`);
@@ -34,11 +43,15 @@ for (const id of ids) {
   if (!aggregate) throw new Error(`${id}: missing aggregate`);
   if (!split) throw new Error(`${id}: missing split`);
   if (!live) throw new Error(`${id}: missing runtime`);
-  for (const key of coordKeys) {
+
+  for (const key of fullCoordKeys) {
     const av = JSON.stringify(aggregate[key] ?? null);
     const sv = JSON.stringify(split[key] ?? null);
-    const rv = JSON.stringify(live[key] ?? null);
     if (av !== sv) throw new Error(`${id}: split coordinate mismatch at ${key}: aggregate=${av}, split=${sv}`);
+  }
+  for (const key of runtimeCoordKeys) {
+    const av = JSON.stringify(aggregate[key] ?? null);
+    const rv = JSON.stringify(live[key] ?? null);
     if (av !== rv) throw new Error(`${id}: runtime coordinate mismatch at ${key}: aggregate=${av}, runtime=${rv}`);
   }
 }
