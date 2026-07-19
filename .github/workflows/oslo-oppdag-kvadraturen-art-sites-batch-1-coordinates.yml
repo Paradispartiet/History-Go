@@ -1,4 +1,4 @@
-name: Oslo Oppdag Kvadraturen art sites batch 1 coordinates
+name: Oslo Oppdag Kvadraturen art sites batch 1 finalize
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  coordinates:
+  finalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -24,53 +24,158 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Resolve Mustadgården address
+      - name: Register place sources
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-art-sites-batch-1/coordinates'
-          mkdir -p "$outdir"
-          npm run places:coords:find:address -- --address 'Kongens gate 3 Oslo' \
-            | tee "$outdir/mustadgarden_kongens_gate_3.json"
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const additions = [
+            'places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json',
+            'places/kunst/oslo/places_kunst_oslo_oppdag_kvadraturen_art_sites_batch_01.json'
+          ];
+          for (const file of additions) {
+            if (!manifest.files.includes(file)) manifest.files.push(file);
+          }
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          fs.mkdirSync('reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation', { recursive: true });
+          NODE
 
-      - name: Resolve Skulptursonen street geometry
+      - name: Validate JSON syntax
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-art-sites-batch-1/coordinates'
+          jq empty data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json
+          jq empty data/places/kunst/oslo/places_kunst_oslo_oppdag_kvadraturen_art_sites_batch_01.json
+          jq empty data/wonderkammer/oslo_oppdag_kvadraturen_art_microplaces_batch_2.json
+          jq empty data/wonderkammer/index.json
+          echo 'Art sites batch 1 JSON syntax: OK' \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/json-syntax.txt
 
-          curl --max-time 30 --retry 2 --fail --silent --show-error \
-            -H 'User-Agent: History-Go coordinate audit (github.com/Paradispartiet/History-Go)' \
-            --get 'https://nominatim.openstreetmap.org/search' \
-            --data-urlencode 'format=jsonv2' \
-            --data-urlencode 'q=Skulptursonen i Øvre Slottsgate, Oslo, Norge' \
-            --data-urlencode 'countrycodes=no' \
-            --data-urlencode 'limit=10' \
-            --data-urlencode 'addressdetails=1' \
-            --data-urlencode 'namedetails=1' \
-            --data-urlencode 'polygon_geojson=1' \
-            --data-urlencode 'viewbox=10.70,59.94,10.78,59.88' \
-            --data-urlencode 'bounded=1' \
-            -o "$outdir/skulptursonen_nominatim.json"
+      - name: Build places index
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run places:index:build \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/places-index-build.txt
 
-          query='[out:json][timeout:25];way["highway"]["name"="Øvre Slottsgate"](59.900,10.720,59.920,10.760);out geom tags;'
-          if ! curl --max-time 35 --retry 1 --fail --silent --show-error --get \
-            'https://overpass-api.de/api/interpreter' \
-            --data-urlencode "data=${query}" \
-            -o "$outdir/ovre_slottsgate_overpass.json"; then
-            curl --max-time 45 --retry 1 --fail --silent --show-error --get \
-              'https://overpass.kumi.systems/api/interpreter' \
-              --data-urlencode "data=${query}" \
-              -o "$outdir/ovre_slottsgate_overpass.json"
-          fi
-          jq -e '.elements | length > 0' "$outdir/ovre_slottsgate_overpass.json" >/dev/null
+      - name: Check places index
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run places:index:check \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/places-index-check.txt
 
-      - name: Persist coordinate evidence
+      - name: Check strict coordinate intake against branch merge-base
+        shell: bash
+        run: |
+          set -o pipefail
+          BASE="$(git merge-base HEAD origin/main)"
+          COORD_INTAKE_BASE="$BASE" npm run places:coords:intake \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/coordinate-intake.txt
+
+      - name: Check canonical emne IDs
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run places:emner:check \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/emne-check.txt
+
+      - name: Capture place health and hold baseline
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          npm run health:places \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/health-places.txt
+          HEALTH_STATUS=${PIPESTATUS[0]}
+          set -e
+          grep -q '^Errors: 40$' reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/health-places.txt
+          echo "Raw health exit: ${HEALTH_STATUS}; baseline errors remain 40."
+
+      - name: Check split manifest sync
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run audit:places-split-manifest-sync \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/split-manifest-sync.txt
+
+      - name: Check coordinate source contract
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run test:coordinate-source-contract \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/coordinate-contract.txt
+
+      - name: Validate Den røde prikk Wonderkammer integration
         shell: bash
         run: |
           set -euo pipefail
+          node <<'NODE' | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/wonderkammer-validation.txt
+          const fs = require('fs');
+          const batchPath = 'data/wonderkammer/oslo_oppdag_kvadraturen_art_microplaces_batch_2.json';
+          const index = JSON.parse(fs.readFileSync('data/wonderkammer/index.json', 'utf8'));
+          const places = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'));
+
+          if (!index.files.includes(batchPath)) throw new Error('Wonderkammer batch 2 is not registered');
+          const placeIds = new Set(places.map((p) => p.id));
+          if (!placeIds.has('mustadgarden_kongens_gate_3')) throw new Error('Mustadgården parent missing from places index');
+
+          const expectedId = 'wk_mustadgarden_kongens_gate_3_den_rode_prikk_otto_kunzli';
+          const batchIds = [];
+          for (const entry of batch.places || []) {
+            if (!placeIds.has(entry.place_id)) throw new Error(`Missing parent place: ${entry.place_id}`);
+            for (const chamber of entry.chambers || []) batchIds.push(chamber.id);
+          }
+          if (!batchIds.includes(expectedId)) throw new Error('Expected Den røde prikk chamber is missing');
+          if (new Set(batchIds).size !== batchIds.length) throw new Error('Duplicate IDs inside new Wonderkammer batch');
+
+          const existingIds = new Map();
+          const collect = (value, file) => {
+            if (!value || typeof value !== 'object') return;
+            if (Array.isArray(value)) {
+              for (const item of value) collect(item, file);
+              return;
+            }
+            if (Array.isArray(value.chambers)) {
+              for (const chamber of value.chambers) {
+                if (chamber?.id && !existingIds.has(chamber.id)) existingIds.set(chamber.id, file);
+              }
+            }
+            for (const child of Object.values(value)) collect(child, file);
+          };
+          for (const file of index.files) {
+            if (file === batchPath) continue;
+            if (!fs.existsSync(file)) throw new Error(`Registered Wonderkammer file missing: ${file}`);
+            collect(JSON.parse(fs.readFileSync(file, 'utf8')), file);
+          }
+          const collisions = batchIds.filter((id) => existingIds.has(id));
+          if (collisions.length) throw new Error(`New Wonderkammer ID collision: ${collisions.join(', ')}`);
+
+          console.log('Mustadgården parent resolves against places_index.json.');
+          console.log(`Den røde prikk chamber ID is unique: ${expectedId}`);
+          NODE
+
+      - name: Check whitespace
+        shell: bash
+        run: |
+          set -o pipefail
+          git diff --check \
+            | tee reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation/git-diff-check.txt
+
+      - name: Remove temporary workflow and commit final results
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-oppdag-kvadraturen-art-sites-batch-1-coordinates.yml
+          git add data/places/manifest.json
+          git add data/places/places_index.json
+          git add reports/oslo-oppdag-kvadraturen-art-sites-batch-1/validation
+          git add -u .github/workflows/oslo-oppdag-kvadraturen-art-sites-batch-1-coordinates.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/oslo-oppdag-kvadraturen-art-sites-batch-1/coordinates
-          git commit -m 'Save Oppdag Kvadraturen art site coordinate evidence'
+          git commit -m 'Finalize Oppdag Kvadraturen art sites batch 1'
           git push origin "HEAD:${GITHUB_HEAD_REF}"
