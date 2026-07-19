@@ -86,11 +86,22 @@ Before adding it, audit whether Kongens gate 3 has an independently place-worthy
 
 `data/places/kunst/oslo/places_kunst_manifest.json` still declares only four split records, while the authoritative aggregate now contains later records including Emanuel Vigelands mausoleum and Framtidsbiblioteket. The manifest metadata is therefore stale relative to the aggregate.
 
-No new canonical Oslo art record should be added until the repository-standard art split/generation flow has repaired aggregate/split/manifest parity. Writing another canonical record through a direct file-only connector change would compound the drift.
+A controlled run of the repository's existing `scripts/split-kunst-oslo-places.mjs` workflow correctly regenerated the manifest and index from four to six records. The same run also exposed a second drift: the current split record for `ekebergparken` contains a 17-line `nature_profile` that is absent from the authoritative aggregate. A direct regeneration would therefore delete valid Ekeberg nature content while fixing the manifest.
+
+The generated PR #2472 was not merged. All temporary migration/workflow edits were removed, and the PR was closed with zero remaining diff. No valid place data was changed or lost.
+
+No new canonical Oslo art record should be added until both directions of the drift are repaired:
+
+1. copy the verified Ekeberg `nature_profile` into the aggregate on a fresh branch;
+2. run the standard splitter;
+3. verify a lossless aggregate-to-split round trip with six records;
+4. review the Ekeberg diff explicitly before merge.
+
+Writing another canonical record through a direct file-only connector change would compound the drift.
 
 ## Next implementation batch
 
-1. Regenerate and validate the Oslo art split manifest from fresh `main`.
+1. Repair Ekeberg aggregate/split parity, then regenerate and validate the six-record Oslo art manifest from fresh `main`.
 2. Resolve exact geometry for the bounded Skulptursonen street segment and preserve the raw evidence.
 3. Add `skulptursonen_ovre_slottsgate` as one canonical `kunst` place if all coordinate gates pass.
 4. Keep individual rotating sculptures outside the permanent canonical place record; represent them as time-aware Wonderkammer content.
