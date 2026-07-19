@@ -16,11 +16,14 @@ jobs:
         with:
           node-version: 22
       - name: Query Geonorge and exact OSM candidates
+        continue-on-error: true
         run: |
+          set +e
           set -u
           out=reports/oslo-coordinate-batch-33-diagnostic
           mkdir -p "$out/geonorge" "$out/osm" "$out/reverse"
-          npm run build:tools > "$out/build-tools.txt" 2>&1 || true
+          npm run build:tools > "$out/build-tools.txt" 2>&1
+          printf 'build_tools=%s\n' "$?" > "$out/status.txt"
 
           run_address() {
             slug="$1"; address="$2"
@@ -32,7 +35,7 @@ jobs:
           run_address voienvolden 'Maridalsveien 120 Oslo'
 
           python3 - <<'PY'
-          import json, urllib.parse, urllib.request, urllib.error, time
+          import json, urllib.parse, urllib.request, time
           from pathlib import Path
           out=Path('reports/oslo-coordinate-batch-33-diagnostic')
           headers={'User-Agent':'History-Go-coordinate-audit/1.0 contact=repository-audit'}
@@ -68,6 +71,7 @@ jobs:
               (out/'reverse'/f'{slug}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
               time.sleep(1.2)
           PY
+          printf 'network_queries=%s\n' "$?" >> "$out/status.txt"
 
           python3 - <<'PY'
           import json
@@ -96,9 +100,11 @@ jobs:
               summary['reverse'][p.stem]={'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'type':r.get('type'),'category':r.get('category'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'extratags':r.get('extratags',{})}
           (root/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
           PY
+          printf 'summary=%s\n' "$?" >> "$out/status.txt"
           exit 0
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: oslo-coordinate-batch-33-diagnostic
           path: reports/oslo-coordinate-batch-33-diagnostic
-          if-no-files-found: error
+          if-no-files-found: warn
