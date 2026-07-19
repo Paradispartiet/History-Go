@@ -3,6 +3,8 @@ name: Temporary Ankerbrua refresh trigger
 on:
   issue_comment:
     types: [created]
+  pull_request_target:
+    types: [reopened]
 
 permissions:
   contents: write
@@ -11,9 +13,12 @@ permissions:
 jobs:
   refresh:
     if: >-
-      github.event.issue.pull_request &&
-      github.event.issue.number == 2553 &&
-      github.event.comment.body == '/refresh-ankerbrua'
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       github.event.issue.number == 2553 &&
+       github.event.comment.body == '/refresh-ankerbrua') ||
+      (github.event_name == 'pull_request_target' &&
+       github.event.pull_request.number == 2553)
     runs-on: ubuntu-latest
     steps:
       - name: Check out Ankerbrua branch
