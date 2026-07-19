@@ -40,7 +40,9 @@ jobs:
       - name: Apply batch
         id: apply
         continue-on-error: true
-        run: node scripts/tmp-complete-oslo-coordinate-batch17.mjs 2>&1 | tee /tmp/apply-batch17.log
+        run: |
+          set -o pipefail
+          node scripts/tmp-complete-oslo-coordinate-batch17.mjs 2>&1 | tee /tmp/apply-batch17.log
       - name: Post apply failure
         if: steps.apply.outcome == 'failure'
         env:
