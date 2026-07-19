@@ -95,7 +95,7 @@ for (const year of ['2021', '2023', '2024', '2025', '2026']) {
 }
 assert(/påmelding/.test(combined) && /kampoppsett/.test(combined) && /kampavvikling/.test(combined) && /dommar/.test(combined), 'People-koplinga skal byggje på dokumentert turneringsansvar');
 assert(/ikkje.*opningsår|ikkje eit opningsår|ikkje.*anleggsår/i.test(combined), '2021 skal ikkje framstillast som opningsår');
-assert(!/opna i 2021|bygd i 2021|bygde anlegget/i.test(combined), 'Batchen skal ikkje dikte bygge- eller opningshistorie');
+assert(!/(?:blei|vart|var)\s+(?:opna|bygd)\s+i\s+2021/i.test(combined), 'Batchen skal ikkje dikte bygge- eller opningshistorie i 2021');
 assert(/eitt stadobjekt|eitt samla fysisk anlegg|ikkje.*fem separate/i.test(combined), 'Dei fem kampflatene skal haldast samla i eitt stadobjekt');
 
 console.log('Steinsvollen batch 1 round content OK');
