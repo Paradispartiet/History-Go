@@ -20,76 +20,28 @@ permissions:
   contents: read
 
 jobs:
-  people:
-    name: People data
+  people-manifest:
+    name: People manifest integration
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          show-progress: false
+      - name: Run manifest integration
+        run: node tests/etne-people-manifest-integration.test.js
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Run people check
-        run: bash scripts/check-people.sh
-
-  places:
-    name: Places data
+  people-batches:
+    name: People batch ${{ matrix.batch }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        batch: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Run places check
-        run: |
-          if [ -f scripts/check-places.sh ]; then
-            bash scripts/check-places.sh
-          else
-            echo "scripts/check-places.sh not found; using inline places checks"
-            node <<'NODE'
-          const fs = require('fs');
-          const path = require('path');
-          function readJson(file) {
-            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
-            catch (error) {
-              console.error(`JSON parse failed: ${file}`);
-              console.error(error.message);
-              process.exit(1);
-            }
-          }
-          const manifestPath = 'data/places/manifest.json';
-          const placesIndexPath = 'data/places/places_index.json';
-          const manifest = readJson(manifestPath);
-          if (!manifest || !Array.isArray(manifest.files)) {
-            console.error(`${manifestPath} must contain a files array`);
-            process.exit(1);
-          }
-          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
-          for (const file of files) {
-            if (!fs.existsSync(file)) {
-              console.error(`Missing expected file: ${file}`);
-              process.exit(1);
-            }
-            readJson(file);
-          }
-          console.log(`json ok (${files.length} files)`);
-          NODE
-            npm run places:index:build
-            npm run build:tools
-            npm run places:index:check
-            npm run places:emner:check
-            npm run places:coords:check
-          fi
+          show-progress: false
+      - name: Run batch test
+        run: node tests/etne-people-of-places-batch${{ matrix.batch }}.test.js
