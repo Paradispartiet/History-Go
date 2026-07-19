@@ -59,11 +59,15 @@ jobs:
           run_finder 'Sagveien 23 Oslo' 'ovre_foss-sagveien-23-geonorge.json'
           run_finder 'Trondheimsveien 2 Oslo' 'schous_bryggeri-trondheimsveien-2-geonorge.json'
           run_finder 'Thorvald Meyers gate 2 Oslo' 'ringnes_bryggeri-thorvald-meyers-gate-2-geonorge.json'
+          run_finder 'Thorvald Meyers gate 2A Oslo' 'ringnes_bryggeri-thorvald-meyers-gate-2a-geonorge.json'
 
           # Exploratory only: this lookup must not be auto-applied because the active
           # St. Halvard record has a material identity/history conflict.
           run_finder 'Pilestredet 75C Oslo' 'st_halvard_bryggeri-pilestredet-75c-geonorge.json'
 
+          run_curl \
+            'https://www.wikidata.org/wiki/Special:EntityData/Q11975545.json' \
+            'ovre_foss-hjula-wikidata-Q11975545.json'
           run_curl \
             'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Hjula%20V%C3%A6verier%20Oslo' \
             'ovre_foss-hjula-vaeverier-nominatim.json'
@@ -83,13 +87,13 @@ jobs:
           cat > "$OUT/source-notes.md" <<'EOF'
           # Batch 24 – identitetsnotater før integrasjon
 
-          - `ovre_foss`: Oslo byleksikon identifiserer Hjula Væverier ved Sagveien 23. Adressepunkt kan bare brukes dersom finder-resultatet er entydig; ved tvetydighet kan et eksakt navngitt Hjula-objekt brukes dersom det fysisk matcher anlegget og ikke et generisk «Øvre Foss»-område.
+          - `ovre_foss`: Oslo byleksikon identifiserer Hjula Væverier ved Sagveien 23. Adressepunktet er tvetydig, så batchen bruker bare et eksplisitt Hjula-kildeobjekt dersom Wikidata/tilhørende dokumentasjon gir et entydig fysisk punkt.
           - `schous_bryggeri`: Oslo byleksikon identifiserer det historiske Schous-anlegget ved Trondheimsveien 2. Et entydig Geonorge-treff kan brukes som display-marker for det større bryggerikomplekset.
-          - `ringnes_bryggeri`: Oslo byleksikon identifiserer det historiske bryggeriet ved Thorvald Meyers gate 2. Ved tvetydig adresseoppslag kan bare et eksakt navngitt bryggeri-/bygningsobjekt brukes som alternativt anker.
+          - `ringnes_bryggeri`: Oslo byleksikon identifiserer det gamle brygghuset spesifikt som Thorvald Meyers gate 2A. Det presise 2A-oppslaget kan brukes dersom Geonorge gir ett entydig treff; det brede nr. 2-oppslaget forblir bare historikk.
           - `sagene_kvernhus`: Aktiv record beskriver et bredt og sammenblandet mølle-/kvernområde langs Akerselva. Ikke forankre den til Hjula uten egen identitetsavklaring, fordi `ovre_foss` allerede representerer Hjula-anlegget.
           - `st_halvard_bryggeri`: Aktiv record har materiell konflikt i år, geografi og historie. Pilestredet 75C-oppslaget er kun utforskende og skal ikke automatisk anvendes.
           - `oslo_kornmagasin`: Det dokumenterte Kornmagasinet på Akershus er et konkret 1788-bygg, mens aktiv record heter «Christiania kornmagasin» og oppgir 1785. Ikke retarget recorden uten eksplisitt identitetsavgjørelse.
-          - `akershus_slott_bakeriet`: Forsvarsbygg/Lovdata identifiserer Bakeriet som et konkret fredet festningsbygg (objekt 0014, 1759). Godkjenn bare et navngitt objektpunkt som fysisk matcher dette bygget; ikke bruk festningens generelle sentrum.
+          - `akershus_slott_bakeriet`: Forsvarsbygg/Lovdata identifiserer Bakeriet som et konkret fredet festningsbygg (objekt 0014, 1759). Godkjenn bare det navngitte Bakeriet-objektet på Akershus, ikke festningens generelle sentrum.
           EOF
 
       - name: Upload evidence pass
