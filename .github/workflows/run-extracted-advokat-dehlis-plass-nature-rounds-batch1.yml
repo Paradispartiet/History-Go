@@ -24,9 +24,8 @@ jobs:
           src = Path('.github/workflows/fill-advokat-dehlis-plass-nature-rounds-batch1.yml').read_text(encoding='utf-8').splitlines()
           start = next(i for i, line in enumerate(src) if "python3 <<'PY'" in line) + 1
           end = next(i for i in range(start, len(src)) if src[i].strip() == 'PY')
-          lines = src[start:end]
-          indent = min(len(line) - len(line.lstrip()) for line in lines if line.strip())
-          Path('/tmp/produce_advokat_dehli.py').write_text('\n'.join(line[indent:] for line in lines) + '\n', encoding='utf-8')
+          lines = [line[10:] if line.startswith('          ') else line for line in src[start:end]]
+          Path('/tmp/produce_advokat_dehli.py').write_text('\n'.join(lines) + '\n', encoding='utf-8')
           PY
           python3 /tmp/produce_advokat_dehli.py
 
