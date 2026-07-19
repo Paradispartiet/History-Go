@@ -35,7 +35,9 @@ jobs:
               return json.loads(Path(path).read_text(encoding='utf-8'))
 
           def save(path, value):
-              Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              target = Path(path)
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
           def upsert_by_id(rows, new_rows):
               replacements = {row['id']: row for row in new_rows}
@@ -62,9 +64,18 @@ jobs:
           places[0].update(load(payload_dir / 'smv-place.json'))
           save(place_path, places)
 
-          people_path = 'data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch2.json'
-          people = upsert_by_id(load(people_path), load(payload_dir / 'smv-people.json'))
-          save(people_path, people)
+          museum_people_path = 'data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch2.json'
+          museum_people = upsert_by_id(load(museum_people_path), load(payload_dir / 'smv-people.json'))
+          save(museum_people_path, museum_people)
+
+          anders_people_path = 'data/people/naeringsliv/vestland/etne/people_smv_leknestangen_batch1.json'
+          save(anders_people_path, [load(payload_dir / 'smv-anders-person.json')])
+          people_manifest_path = 'data/people/manifest.json'
+          people_manifest = load(people_manifest_path)
+          manifest_entry = anders_people_path.removeprefix('data/')
+          if manifest_entry not in people_manifest['files']:
+              people_manifest['files'].append(manifest_entry)
+          save(people_manifest_path, people_manifest)
 
           relations_path = 'data/relations.json'
           relations = upsert_by_id(load(relations_path), load(payload_dir / 'smv-relations.json'))
