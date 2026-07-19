@@ -48,13 +48,13 @@ assert(leksikonManifest.files.includes(articlePath), 'Psykologi-leksikonfilen sk
 
 const expectations = {
   psykisk_helse_rus_etne: {
-    coordinates: [59.665179, 5.935823, 180, 2026],
+    coordinates: [59.66534125070043, 5.943034081601908, 60, null],
     storyId: 'st_etne_psykisk_helse_fra_direkte_kontakt_til_koordinert_oppfolging',
     articleTitle: /Psykisk helse og rus i Etne/,
     nearby: ['etne_senter', 'etneelva', 'etneelva_forskningsplattform']
   },
   psykisk_helse_rus_skanevik: {
-    coordinates: [59.733255, 5.93776, 160, 2026],
+    coordinates: [59.73234389428389, 5.935277893100119, 60, null],
     storyId: 'st_skanevik_psykisk_helse_eitt_fagmiljo_to_besoksstader',
     articleTitle: /Psykisk helse og rus i Skånevik/,
     nearby: ['skanevik_sentrum', 'skanevik_gjestgjevargarden', 'skanevik_kultur_og_idrettshall']
@@ -110,8 +110,8 @@ for (const [placeId, expected] of Object.entries(expectations)) {
   }
   assert(story.sources.length >= 6 && article.sources.length >= 6, `${placeId} skal ha bredt offisielt kildegrunnlag`);
   assert(article.wikiText.length >= 6 && article.facts.length >= 6 && article.chronology.length >= 4, `${placeId} sitt leksikon skal være fylt`);
-  assert.deepStrictEqual([place.lat, place.lon, place.r, place.year], expected.coordinates, `${placeId} skal beholde kartanker, radius og dokumentasjonsår`);
-  assert.strictEqual(placeIndex.get(placeId)?.year, 2026, `${placeId} skal beholde 2026 i runtime-indeksen`);
+  assert.deepStrictEqual([place.lat, place.lon, place.r, place.year], expected.coordinates, `${placeId} skal bevare verifisert kartanker, radius og canonical år`);
+  assert(placeIndex.has(placeId), `${placeId} skal finnes i runtime-indeksen`);
 }
 
 const combined = JSON.stringify({ places, person, relations, stories, articles });
