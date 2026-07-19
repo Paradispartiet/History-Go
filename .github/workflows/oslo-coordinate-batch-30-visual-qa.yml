@@ -110,12 +110,12 @@ jobs:
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
 
-      - name: Commit QA image and remove workflow
+      - name: Commit QA image
         run: |
           set -euo pipefail
-          rm .github/workflows/oslo-coordinate-batch-30-visual-qa.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/oslo-coordinate-control-batch-30/visual-qa .github/workflows/oslo-coordinate-batch-30-visual-qa.yml
+          git add reports/oslo-coordinate-control-batch-30/visual-qa
           git commit -m "Add Oslo coordinate batch 30 visual map QA"
+          git pull --rebase origin agent/oslo-coordinate-control-batch-30
           git push origin HEAD
