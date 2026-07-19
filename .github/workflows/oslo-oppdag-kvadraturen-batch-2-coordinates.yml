@@ -1,0 +1,51 @@
+name: Oslo Oppdag Kvadraturen batch 2 coordinates
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-oppdag-kvadraturen-batch-2-coordinates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  coordinates:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Resolve and save address evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-oppdag-kvadraturen-batch-2/coordinates
+          npm run places:coords:find:address -- --address "Dronningens gate 13 Oslo" \
+            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/hotel_du_nord.json
+          npm run places:coords:find:address -- --address "Rådhusgata 7 Oslo" \
+            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/garmanngarden.json
+          npm run places:coords:find:address -- --address "Bankplassen 1 Oslo" \
+            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/cafe_engebret.json
+          npm run places:coords:find:address -- --address "Rådhusgata 11 Oslo" \
+            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/stattholdergarden.json
+          npm run places:coords:find:address -- --address "Kongens gate 1 Oslo" \
+            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/waisenhuset.json
+          npm run places:coords:find:address -- --address "Myntgata 2 Oslo" \
+            | tee reports/oslo-oppdag-kvadraturen-batch-2/coordinates/myntgatakvartalet.json
+      - name: Persist coordinate results
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-oppdag-kvadraturen-batch-2/coordinates
+          git commit -m "Save Oppdag Kvadraturen batch 2 coordinate results"
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
