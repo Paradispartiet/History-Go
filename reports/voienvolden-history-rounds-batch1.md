@@ -47,6 +47,18 @@ Ingen manuell `rounds`- eller `rundinger`-override er lagt inn. Ingen direkte fl
 - Fortidsminneforeningen overtok i 1954
 - åpnet for publikum omkring 1960
 
+## Validering
+
+Bestått i produksjonsjobben:
+
+- målrettet identitets-, koordinat-, arts- og rundingtest
+- alle seks quizsett med sju kildeverifiserte spørsmål
+- PlaceCard runtime-rundingaudit
+- leksikoninnholdsaudit
+- Vøyenfallene-regresjonstest
+- JSON-parse av alle endrede datafiler
+- `git diff --check`
+
 ## Kilder
 
 Fortidsminneforeningen, Store norske leksikon, Oslo byleksikon, Lokalhistoriewiki,
