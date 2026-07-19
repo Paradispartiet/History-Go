@@ -1,0 +1,72 @@
+name: Oslo coordinate batch 24 evidence
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/oslo-coordinate-batch-24-evidence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch-24'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Collect address-first and object evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT='reports/oslo-coordinate-control-batch-24/evidence-pass'
+          mkdir -p "$OUT"
+
+          npm run places:coords:find:address -- --address 'Sagveien 23 Oslo' \
+            | tee "$OUT/ovre_foss-sagveien-23-geonorge.json"
+          npm run places:coords:find:address -- --address 'Trondheimsveien 2 Oslo' \
+            | tee "$OUT/schous_bryggeri-trondheimsveien-2-geonorge.json"
+          npm run places:coords:find:address -- --address 'Thorvald Meyers gate 2 Oslo' \
+            | tee "$OUT/ringnes_bryggeri-thorvald-meyers-gate-2-geonorge.json"
+
+          # Exploratory only: this lookup must not be auto-applied because the active
+          # St. Halvard record has a material identity/history conflict.
+          npm run places:coords:find:address -- --address 'Pilestredet 75C Oslo' \
+            | tee "$OUT/st_halvard_bryggeri-pilestredet-75c-geonorge.json"
+
+          curl -fsSL -A 'History-Go-coordinate-audit/1.0' \
+            'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Bakeriet%20Akershus%20festning%20Oslo' \
+            | tee "$OUT/akershus_slott_bakeriet-nominatim.json" >/dev/null
+          curl -fsSL -A 'History-Go-coordinate-audit/1.0' \
+            'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Kornmagasinet%20Akershus%20festning%20Oslo' \
+            | tee "$OUT/oslo_kornmagasin-nominatim.json" >/dev/null
+          curl -fsSL -A 'History-Go-coordinate-audit/1.0' \
+            'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&namedetails=1&q=Sagene%20m%C3%B8lle%20og%20kvernhus%20Oslo' \
+            | tee "$OUT/sagene_kvernhus-nominatim.json" >/dev/null
+
+          cat > "$OUT/source-notes.md" <<'EOF'
+          # Batch 24 – identitetsnotater før integrasjon
+
+          - `ovre_foss`: Oslo byleksikon identifiserer Hjula Væverier ved Sagveien 23. Adressepunkt kan bare brukes dersom finder-resultatet er entydig og recorden eksplisitt avgrenses til Hjula-anlegget, ikke et generisk «Øvre Foss»-område.
+          - `schous_bryggeri`: Oslo byleksikon identifiserer det historiske Schous-anlegget ved Trondheimsveien 2. Et entydig Geonorge-treff kan brukes som display-marker for det større bryggerikomplekset.
+          - `ringnes_bryggeri`: Oslo byleksikon identifiserer det historiske bryggeriet ved Thorvald Meyers gate 2. Et entydig Geonorge-treff kan brukes som display-marker for det større komplekset.
+          - `sagene_kvernhus`: Aktiv record beskriver et bredt og sammenblandet mølle-/kvernområde langs Akerselva. Ikke forankre den til Hjula uten egen identitetsavklaring, fordi `ovre_foss` allerede representerer Hjula-anlegget.
+          - `st_halvard_bryggeri`: Aktiv record har materiell konflikt i år, geografi og historie. Pilestredet 75C-oppslaget er kun utforskende og skal ikke automatisk anvendes.
+          - `oslo_kornmagasin`: Det dokumenterte Kornmagasinet på Akershus er et konkret 1788-bygg, mens aktiv record heter «Christiania kornmagasin» og oppgir 1785. Ikke retarget recorden uten eksplisitt identitetsavgjørelse.
+          - `akershus_slott_bakeriet`: Forsvarsbygg/Lovdata identifiserer Bakeriet som et konkret fredet festningsbygg (objekt 0014, 1759). Godkjenn bare et navngitt objektpunkt som fysisk matcher dette bygget; ikke bruk festningens generelle sentrum.
+          EOF
+
+      - name: Upload evidence pass
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-24-evidence
+          path: reports/oslo-coordinate-control-batch-24/evidence-pass
+          if-no-files-found: error
