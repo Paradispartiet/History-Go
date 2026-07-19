@@ -12,8 +12,9 @@ assert(profileMatch, 'Runtime skal ha en dokumentert næringslivsprofil');
 assert.deepStrictEqual(JSON.parse(`[${profileMatch[1]}]`), expectedRounds, 'SMV skal bruke næringslivsprofilen');
 
 const place = readJson('data/places/naeringsliv/vestland/etne/sunnhordland_mek_verkstad_leknestangen.json')[0];
-const peoplePath = 'data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch2.json';
-const people = readJson(peoplePath);
+const museumPeoplePath = 'data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch2.json';
+const andersPeoplePath = 'data/people/naeringsliv/vestland/etne/people_smv_leknestangen_batch1.json';
+const people = [...readJson(museumPeoplePath), ...readJson(andersPeoplePath)];
 const peopleIds = ['anders_hovda', 'paul_hovda', 'gudvin_hovda'];
 const peopleById = new Map(people.map((person) => [person.id, person]));
 const relations = readJson('data/relations.json').filter((row) => row.place === place.id && peopleIds.includes(row.person));
@@ -31,7 +32,8 @@ assert.strictEqual(place.category, 'naeringsliv');
 for (const forbidden of ['rounds', 'rundinger', 'routes', 'tasks', 'play', 'training']) {
   assert(!Object.prototype.hasOwnProperty.call(place, forbidden), `SMV skal ikke ha ${forbidden}`);
 }
-assert(peopleManifest.files.includes(peoplePath.replace(/^data\//, '')), 'People-batchen skal være manifestlastet');
+assert(peopleManifest.files.includes(museumPeoplePath.replace(/^data\//, '')), 'Museumspersonene skal være manifestlastet');
+assert(peopleManifest.files.includes(andersPeoplePath.replace(/^data\//, '')), 'Anders Hovda-filen skal være manifestlastet');
 assert(storyManifest.files.some((entry) => entry.category === 'naeringsliv' && entry.path === storyPath), 'Felles Etne-storyfil skal være manifestlastet');
 assert(leksikonManifest.files.includes(articlePath), 'Felles Etne-leksikonfil skal være manifestlastet');
 
@@ -41,6 +43,9 @@ for (const personId of peopleIds) {
   assert(person.places.includes(place.id), `${personId} skal peke på Leknestangen-anlegget`);
 }
 assert.strictEqual(peopleById.get('anders_hovda').placeId, place.id, 'Anders Hovda skal ha SMV som primæranker');
+assert.strictEqual(peopleById.get('gudvin_hovda').placeId, 'norsk_motormuseum_skanevik', 'Gudvin skal beholde museet som primæranker');
+assert.strictEqual(peopleById.get('gudvin_hovda').year, 1986, 'Gudvin skal beholde museumsstiftelsesåret');
+assert.strictEqual(peopleById.get('gudvin_hovda').verifiedAt, '2026-07-18', 'Gudvin skal beholde museumskortets verifiseringsdato');
 assert(peopleById.get('gudvin_hovda').places.includes('norsk_motormuseum_skanevik'), 'Gudvin Hovdas dokumenterte museumskobling skal bevares');
 assert(peopleById.get('paul_hovda').places.includes('norsk_motormuseum_skanevik'), 'Paul Hovdas dokumenterte museumskobling skal bevares');
 assert.strictEqual(relations.length, 3, 'People-rundingen skal ha tre dokumenterte SMV-relasjoner');
