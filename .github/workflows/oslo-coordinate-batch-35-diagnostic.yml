@@ -1,0 +1,79 @@
+name: Oslo coordinate batch 35 diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve Vaterland historical anchor and Akerselva mouth geometry
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-batch-35-diagnostic
+          mkdir -p "$out"
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request, time, math
+          from pathlib import Path
+          out=Path('reports/oslo-coordinate-batch-35-diagnostic')
+          headers={'User-Agent':'History-Go-coordinate-audit/1.0 contact=repository-audit'}
+          def get_json(url, data=None):
+              req=urllib.request.Request(url,data=data,headers=headers)
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  return json.load(r)
+          searches={}
+          for slug,q in {
+              'vaterlands_bru':'Vaterlands bru, Oslo, Norway',
+              'akerselva_mouth':'Akerselva Munchs brygge, Oslo, Norway',
+              'akerselva':'Akerselva, Oslo, Norway',
+          }.items():
+              url='https://nominatim.openstreetmap.org/search?'+urllib.parse.urlencode({'q':q,'format':'jsonv2','limit':12,'addressdetails':1,'extratags':1,'namedetails':1})
+              searches[slug]=get_json(url)
+              time.sleep(1.1)
+          (out/'nominatim-searches.json').write_text(json.dumps(searches,ensure_ascii=False,indent=2)+'\n')
+
+          queries={
+              'vaterland':'''[out:json][timeout:45];(way(around:900,59.91345,10.7582)[waterway][name="Akerselva"];relation(around:900,59.91345,10.7582)[waterway][name="Akerselva"];way(around:500,59.91345,10.7582)[bridge][name];way(around:500,59.91345,10.7582)[man_made=bridge][name];);out geom tags;''',
+              'mouth':'''[out:json][timeout:45];(way(around:1400,59.9071,10.7556)[waterway][name="Akerselva"];relation(around:1400,59.9071,10.7556)[waterway][name="Akerselva"];way(around:1400,59.9071,10.7556)[water][name="Akerselva"];relation(around:1400,59.9071,10.7556)[water][name="Akerselva"];);out geom tags;''',
+          }
+          overpass={}
+          for slug,q in queries.items():
+              data=urllib.parse.urlencode({'data':q}).encode()
+              result=get_json('https://overpass-api.de/api/interpreter',data=data)
+              overpass[slug]=result
+              (out/f'overpass-{slug}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+              time.sleep(1.5)
+
+          def geom_summary(e):
+              geom=e.get('geometry') or []
+              pts=[(float(p['lat']),float(p['lon'])) for p in geom if 'lat' in p and 'lon' in p]
+              first=pts[0] if pts else None
+              last=pts[-1] if pts else None
+              south=min(pts,key=lambda p:p[0]) if pts else None
+              north=max(pts,key=lambda p:p[0]) if pts else None
+              return {
+                  'type':e.get('type'),'id':e.get('id'),'tags':e.get('tags',{}),
+                  'center':e.get('center'),'first':first,'last':last,'southmost':south,'northmost':north,
+                  'geometry_points':len(pts),
+              }
+          summary={
+              'searches':{
+                  k:[{'osm_type':r.get('osm_type'),'osm_id':r.get('osm_id'),'display_name':r.get('display_name'),'lat':r.get('lat'),'lon':r.get('lon'),'type':r.get('type'),'category':r.get('category'),'extratags':r.get('extratags',{})} for r in rows]
+                  for k,rows in searches.items()
+              },
+              'vaterland_objects':[geom_summary(e) for e in overpass['vaterland'].get('elements',[])],
+              'mouth_objects':[geom_summary(e) for e in overpass['mouth'].get('elements',[])],
+          }
+          (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(summary,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch-35-diagnostic
+          path: reports/oslo-coordinate-batch-35-diagnostic
+          if-no-files-found: error
