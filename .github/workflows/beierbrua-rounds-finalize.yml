@@ -34,6 +34,15 @@ jobs:
           outdir='reports/beierbrua-rounds-batch1/validation'
           mkdir -p "$outdir"
           node tools/finalize-beierbrua-rounds.mjs | tee "$outdir/finalizer.txt"
+          node <<'NODE' | tee "$outdir/canonical-person-reuse.txt"
+          const fs = require('fs');
+          const path = 'data/people/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const duplicatePath = 'people/litteratur/oslo/akerselva/oskar_braaten.json';
+          manifest.files = manifest.files.filter((file) => file !== duplicatePath);
+          fs.writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`);
+          console.log('Reusing existing canonical oskar_braaten; removed duplicate manifest path.');
+          NODE
 
       - name: Build and validate place runtime
         shell: bash
@@ -80,7 +89,6 @@ jobs:
             'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
             'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
             'data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json',
-            'data/people/litteratur/oslo/akerselva/oskar_braaten.json',
             'data/people/manifest.json',
             'data/stories/stories_beierbrua.json',
             'data/stories/stories_manifest.json',
