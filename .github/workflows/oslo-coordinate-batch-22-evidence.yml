@@ -52,6 +52,15 @@ jobs:
             curl -fsSL -A 'History-Go-coordinate-audit/1.0' "$url" | tee "$OUT/${slug}.json"
           }
 
+          curl_overpass() {
+            local slug="$1"
+            local query="$2"
+            curl -fsSL -G -A 'History-Go-coordinate-audit/1.0' \
+              --data-urlencode "data=$query" \
+              'https://overpass-api.de/api/interpreter' \
+              | tee "$OUT/${slug}.json"
+          }
+
           curl_json sigrid_undset_nominatim "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&q=Sigrid%20Undset%20statue%20Stensparken%20Oslo"
           sleep 1
           curl_json inger_hagerups_plass_nominatim "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&q=Inger%20Hagerups%20plass%20Oslo"
@@ -61,6 +70,9 @@ jobs:
           curl_json oskar_braaten_osm_node "https://api.openstreetmap.org/api/0.6/node/10819902960.json"
           curl_json ruth_maier_wikidata "https://www.wikidata.org/wiki/Special:EntityData/Q44179381.json"
           curl_json ruth_maiers_plass_wikidata "https://www.wikidata.org/wiki/Special:EntityData/Q109392373.json"
+
+          curl_overpass sigrid_undset_overpass '[out:json];nwr(around:600,59.928571,10.730418)["name"~"Sigrid Undset",i];out center tags;'
+          curl_overpass norli_universitetsgata_overpass '[out:json];nwr(around:400,59.9152,10.7371)["name"~"Norli",i];out center tags;'
 
           printf '%s\n' \
             'Queue order:' \
