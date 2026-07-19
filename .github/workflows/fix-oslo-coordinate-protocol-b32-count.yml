@@ -1,0 +1,40 @@
+name: Fix Oslo coordinate protocol batch 32 count
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/oslo-coordinate-protocol-b32-count
+          fetch-depth: 0
+      - name: Correct stale controlled-count sentence
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('docs/coordinates/coordinate-control-protocol.md')
+          s = p.read_text()
+          old = 'Disse kontrollene er fullført, men teller ikke blant de 151 verifiserte eller kildekontrollerte canonical Oslo-stedene.'
+          new = 'Disse kontrollene er fullført, men teller ikke blant de 154 verifiserte eller kildekontrollerte canonical Oslo-stedene.'
+          if old not in s:
+              raise SystemExit('Expected stale 151-count sentence not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+          grep -F '154 verifiserte eller kildekontrollerte canonical Oslo-stedene' docs/coordinates/coordinate-control-protocol.md
+          git diff --check
+      - name: Commit clean documentation fix
+        run: |
+          rm .github/workflows/fix-oslo-coordinate-protocol-b32-count.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/coordinates/coordinate-control-protocol.md .github/workflows/fix-oslo-coordinate-protocol-b32-count.yml
+          git commit -m "Fix Oslo coordinate protocol batch 32 count"
+          git push origin HEAD:refs/heads/fix/oslo-coordinate-protocol-b32-count
