@@ -1,0 +1,69 @@
+name: Temporary integrate Oslo kultureiendommer batch 13
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-kultureiendommer-batch-13
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Register batch sources
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const additions = [
+            'places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json',
+            'places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json'
+          ];
+          for (const file of additions) {
+            if (!manifest.files.includes(file)) manifest.files.push(file);
+          }
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+      - name: Build and validate places
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-kultureiendommer-batch-13/validation
+          npm run places:index:build \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-build.txt
+          npm run places:index:check \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/places-index-check.txt
+          npm run places:coords:quality \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-quality.txt
+          npm run places:coords:intake \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/coordinate-intake.txt
+          npm run places:emner:check \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/emne-check.txt
+          npm run health:places \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/health-places.txt
+          npm run audit:places-split-manifest-sync \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/split-manifest-sync.txt
+          git diff --check \
+            | tee reports/oslo-kultureiendommer-batch-13/validation/git-diff-check.txt
+      - name: Commit integration results to batch branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/manifest.json data/places/places_index.json reports/oslo-kultureiendommer-batch-13/validation
+          git commit -m "Register and validate Oslo kultureiendommer batch 13"
+          git push origin HEAD:agent/oslo-kultureiendommer-batch-13
