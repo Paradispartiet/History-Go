@@ -1,0 +1,215 @@
+name: Run final clean Oslo coordinate batch 30
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  complete-batch30:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out clean batch branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-30-clean
+          fetch-depth: 0
+          show-progress: false
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch comparison and QA refs
+        run: |
+          set -euo pipefail
+          git fetch origin main:refs/remotes/origin/main
+          git fetch origin agent/oslo-coordinate-control-batch-30:refs/remotes/origin/agent/oslo-coordinate-control-batch-30
+
+      - name: Apply researched batch 30 decisions and preserve enriched canonical records
+        run: node scripts/tmp-complete-oslo-coordinate-batch30-final.mjs
+
+      - name: Regenerate Oslo literature split data
+        run: |
+          set -euo pipefail
+          node scripts/split-litteratur-oslo-places.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('data/places/litteratur/oslo/places_litteratur_split_report.txt')
+          p.write_text(p.read_text().rstrip() + '\n')
+          PY
+
+      - name: Build repository tools without npm install
+        run: |
+          set -euo pipefail
+          rm -rf dist/tools
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { stripTypeScriptTypes } = require('node:module');
+
+          const src = path.resolve('tools');
+          const out = path.resolve('dist/tools');
+          function walk(dir) {
+            return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+              const file = path.join(dir, entry.name);
+              return entry.isDirectory()
+                ? walk(file)
+                : (/\.(?:mts|ts|cts)$/.test(entry.name) ? [file] : []);
+            });
+          }
+
+          let count = 0;
+          for (const file of walk(src)) {
+            const rel = path.relative(src, file);
+            const ext = path.extname(rel);
+            const outExt = ext === '.mts' ? '.mjs' : ext === '.cts' ? '.cjs' : '.js';
+            const dest = path.join(out, rel.slice(0, -ext.length) + outExt);
+            const source = fs.readFileSync(file, 'utf8');
+            const newline = source.indexOf('\n');
+            const hasShebang = source.startsWith('#!');
+            const shebang = hasShebang ? source.slice(0, newline + 1) : '';
+            const body = hasShebang ? source.slice(newline + 1) : source;
+            const transformed = stripTypeScriptTypes(body, { mode: 'transform' });
+            fs.mkdirSync(path.dirname(dest), { recursive: true });
+            fs.writeFileSync(dest, shebang + transformed);
+            count += 1;
+          }
+          console.log(`Built ${count} repository tool files without npm install.`);
+          NODE
+          test -f dist/tools/build_places_index.mjs
+          test -f dist/tools/audit-places-split-manifest-sync.mjs
+          test -f dist/tools/audit-coordinate-evidence.mjs
+
+      - name: Rebuild global runtime index
+        run: node dist/tools/build_places_index.mjs
+
+      - name: Prove minimal and lossless literature scope
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const cp = require('node:child_process');
+          const file = 'data/places/litteratur/oslo/places_litteratur.json';
+          const before = JSON.parse(cp.execFileSync('git', ['show', `origin/main:${file}`], { encoding: 'utf8' }));
+          const after = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const beforeById = new Map(before.map((place) => [place.id, place]));
+          const afterById = new Map(after.map((place) => [place.id, place]));
+          const changed = [];
+          for (const [id, place] of afterById) {
+            if (JSON.stringify(place) !== JSON.stringify(beforeById.get(id))) changed.push(id);
+          }
+          const allowed = new Set([
+            'nasjonalbiblioteket',
+            'deichman_grunerlokka',
+            'oscar_braaten_statuen',
+            'alexander_kiellands_plass',
+          ]);
+          const unexpected = changed.filter((id) => !allowed.has(id));
+          if (unexpected.length) throw new Error(`Unexpected aggregate changes: ${unexpected.join(', ')}`);
+          for (const id of ['oscar_braaten_statuen', 'alexander_kiellands_plass']) {
+            if (!changed.includes(id)) throw new Error(`Expected batch record did not change: ${id}`);
+          }
+          const nb = afterById.get('nasjonalbiblioteket');
+          if (!nb?.nature_profile || !Array.isArray(nb.externalLinks) || !Array.isArray(nb.works) || !nb.for_na || !Array.isArray(nb.civication_store)) {
+            throw new Error('Nasjonalbiblioteket enrichment was not preserved in canonical aggregate');
+          }
+          const dg = afterById.get('deichman_grunerlokka');
+          if (dg?.coordVerifiedAt !== '2026-07-17') {
+            throw new Error(`Deichman Grünerløkka coordVerifiedAt mismatch: ${dg?.coordVerifiedAt}`);
+          }
+          console.log('Changed aggregate records:', changed.join(', '));
+          NODE
+
+          unexpected_splits=$(git diff --name-only origin/main -- data/places/litteratur/oslo/places_litteratur/ \
+            | grep -vE '(^|/)(oscar_braaten_statuen|alexander_kiellands_plass)\.json$' || true)
+          if [ -n "$unexpected_splits" ]; then
+            echo "Unexpected split-file changes:" >&2
+            echo "$unexpected_splits" >&2
+            exit 1
+          fi
+
+      - name: Run all hard coordinate and synchronization gates
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-30/validation
+          mkdir -p "$out"
+          node dist/tools/audit-places-split-manifest-sync.mjs | tee "$out/split-manifest-sync.txt"
+          node dist/tools/check_no_lng_coordinates.mjs | tee "$out/places-index-check.txt"
+          node dist/tools/check_places_index_sync.mjs | tee -a "$out/places-index-check.txt"
+          node tests/place-coordinate-index-parity.test.js | tee -a "$out/places-index-check.txt"
+          node tests/coordinate-source-contract-anchor-trust.test.mjs | tee "$out/coordinate-source-contract.txt"
+          node dist/tools/place-coordinate-quality-gate.mjs | tee "$out/coordinate-quality.txt"
+          node dist/tools/place-coordinate-intake-gate.mjs --strict-new | tee "$out/coordinate-intake.txt"
+          node dist/tools/audit-coordinate-evidence.mjs | tee "$out/coordinate-evidence-audit.txt"
+          git diff --check | tee "$out/git-diff-check.txt"
+
+      - name: Assert exact canonical split runtime and protocol result
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const aggregate = read('data/places/litteratur/oslo/places_litteratur.json');
+          const runtime = read('data/places/places_index.json');
+          const byId = new Map(aggregate.map((place) => [place.id, place]));
+          const runtimeById = new Map(runtime.map((place) => [place.id, place]));
+          const expected = {
+            oscar_braaten_statuen: {
+              name: 'Oskar Braaten-bysten', year: 1961,
+              lat: 59.9309838, lon: 10.7578832,
+              sourceObjectId: 'osm-node:10819902960', coordStatus: 'verified_geometry',
+            },
+            alexander_kiellands_plass: {
+              name: 'Alexander Kiellands plass', year: 1914,
+              lat: 59.9270478, lon: 10.7504014,
+              sourceObjectId: 'osm-way:3610607', coordStatus: 'verified_geometry',
+            },
+          };
+          for (const [id, values] of Object.entries(expected)) {
+            const canonical = byId.get(id);
+            const split = read(`data/places/litteratur/oslo/places_litteratur/${id}.json`);
+            const rt = runtimeById.get(id);
+            if (!canonical || !rt) throw new Error(`${id} missing canonical/runtime`);
+            for (const [key, value] of Object.entries(values)) {
+              if (canonical[key] !== value) throw new Error(`${id}.${key} mismatch`);
+            }
+            if (JSON.stringify(split) !== JSON.stringify(canonical)) throw new Error(`${id} split/aggregate mismatch`);
+            for (const key of ['name', 'year', 'lat', 'lon', 'coordStatus']) {
+              if (rt[key] !== values[key]) throw new Error(`${id} runtime ${key} mismatch`);
+            }
+          }
+          const protocol = fs.readFileSync('docs/coordinates/coordinate-control-protocol.md', 'utf8');
+          if (!protocol.includes('| 30 | `oscar_braaten_statuen`') || !protocol.includes('| 30 | `alexander_kiellands_plass`')) {
+            throw new Error('Batch 30 protocol rows missing');
+          }
+          if (!protocol.includes('150 verifiserte eller kildekontrollerte canonical steder')) {
+            throw new Error('Protocol count 150 missing');
+          }
+          NODE
+
+      - name: Retain already inspected visual map QA
+        run: |
+          set -euo pipefail
+          mkdir -p reports/oslo-coordinate-control-batch-30/visual-qa
+          git show origin/agent/oslo-coordinate-control-batch-30:reports/oslo-coordinate-control-batch-30/visual-qa/batch30-map-qa.png \
+            > reports/oslo-coordinate-control-batch-30/visual-qa/batch30-map-qa.png
+          test -s reports/oslo-coordinate-control-batch-30/visual-qa/batch30-map-qa.png
+          cat > reports/oslo-coordinate-control-batch-30/visual-qa/README.md <<'EOF'
+          # Batch 30 visual map QA
+
+          2×2 old/new comparison rendered from the same final batch-30 coordinates and manually inspected before this clean rebuild. The image is retained byte-identically because both final coordinates and source-object IDs are unchanged.
+          EOF
+
+      - name: Commit clean completed batch to PR 2500 branch
+        run: |
+          set -euo pipefail
+          rm scripts/tmp-complete-oslo-coordinate-batch30-final.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs reports scripts/tmp-complete-oslo-coordinate-batch30-final.mjs
+          git commit -m "Complete clean Oslo coordinate control batch 30"
+          git push origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-30-clean
