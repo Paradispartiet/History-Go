@@ -405,8 +405,13 @@ batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
 og kveldsro. Batch 2 la til `profil`-conditions i motoren og seks
 profilgatede scener på tråden «Byen og deg» (kulturell omvei, grønt
 kveldslys, banen, lokalmøtet, miljøet, invitasjonen) — privatlivet speiler
-nå History GO-profilen. Gjenstår: resten av de 45 mailene og navngitt
-privat persongalleri.
+nå History GO-profilen. Batch 3 ga privatlivet et navngitt persongalleri:
+«venn» (Jonas) og «familie» (Søsteren din) finnes i ALLE rollers `personer`
+og `startState.relasjoner` (kontrakten eies av arbeidsledig-testen), de
+delte venne-scenene flytter `relasjoner.venn`, og en ny familiescene
+(«Hilsen hjemmefra», dag 2) flytter `relasjoner.familie` — relasjoner i
+privatlivet beveger seg nå over dager i stedet for å stå stille. Gjenstår:
+resten av de 45 mailene (helse/søvn/dagslutt-temaene) og dag 3+.
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp

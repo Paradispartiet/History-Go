@@ -10,8 +10,26 @@
     "bruke tiden på det som faktisk åpner dører: kunnskap"
   ],
   "personer": [
-    { "id": "nav_veileder", "navn": "NAV-veilederen", "beskrivelse": "Følger opp meldekort og dokumentasjon. Systemet er firkantet; hun er ikke." },
-    { "id": "bekjent", "navn": "Bekjenten", "beskrivelse": "Kjenner folk. Spør hver gang: «Har du hørt noe?»" }
+    {
+      "id": "nav_veileder",
+      "navn": "NAV-veilederen",
+      "beskrivelse": "Følger opp meldekort og dokumentasjon. Systemet er firkantet; hun er ikke."
+    },
+    {
+      "id": "bekjent",
+      "navn": "Bekjenten",
+      "beskrivelse": "Kjenner folk. Spør hver gang: «Har du hørt noe?»"
+    },
+    {
+      "id": "venn",
+      "navn": "Jonas",
+      "beskrivelse": "Vennen din. Har kjent deg lenge nok til å høre forskjell på «det går bra» og «det går bra»."
+    },
+    {
+      "id": "familie",
+      "navn": "Søsteren din",
+      "beskrivelse": "Ringer om hverdagslige ting som aldri bare er hverdagslige."
+    }
   ],
   "hovedkonflikter": [
     "systemkrav vs verdighet",
@@ -20,10 +38,22 @@
     "søke bredt vs bygge på det du kan"
   ],
   "endings": [
-    { "id": "kom_i_jobb", "navn": "Kom i jobb" },
-    { "id": "bygget_kompetanse", "navn": "Bygget kompetanse" },
-    { "id": "mistet_rytmen", "navn": "Mistet rytmen" },
-    { "id": "sto_i_det", "navn": "Sto i det" }
+    {
+      "id": "kom_i_jobb",
+      "navn": "Kom i jobb"
+    },
+    {
+      "id": "bygget_kompetanse",
+      "navn": "Bygget kompetanse"
+    },
+    {
+      "id": "mistet_rytmen",
+      "navn": "Mistet rytmen"
+    },
+    {
+      "id": "sto_i_det",
+      "navn": "Sto i det"
+    }
   ],
   "startState": {
     "meters": {
@@ -36,17 +66,31 @@
     },
     "relasjoner": {
       "nav_veileder": 45,
-      "bekjent": 50
+      "bekjent": 50,
+      "venn": 60,
+      "familie": 55
     }
   },
   "dagsplan": {
     "1": [
-      { "klokke": "09:00", "tekst": "Meldekortfristen" },
-      { "klokke": "11:00", "tekst": "Søknaden" },
-      { "klokke": "14:00", "tekst": "Resten av dagen" }
+      {
+        "klokke": "09:00",
+        "tekst": "Meldekortfristen"
+      },
+      {
+        "klokke": "11:00",
+        "tekst": "Søknaden"
+      },
+      {
+        "klokke": "14:00",
+        "tekst": "Resten av dagen"
+      }
     ],
     "2": [
-      { "klokke": "10:00", "tekst": "Veien videre" }
+      {
+        "klokke": "10:00",
+        "tekst": "Veien videre"
+      }
     ]
   }
 }

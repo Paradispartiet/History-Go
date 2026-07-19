@@ -141,7 +141,24 @@ assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være
   }
 }
 
-// --- 7. Pakken peker mot den faktiske mekanikken: kunnskap/merker -> jobb ---
+// --- 7. Delt privat persongalleri: venn + familie i ALLE roller ---
+// De delte livsscenene refererer avsenderne «venn» (Jonas) og «familie»
+// (Søsteren din) og flytter relasjonene deres. Da må hver rolle — også
+// arbeidsledig — ha begge i personer og en tallverdi i startState.relasjoner,
+// ellers spilles scenene mot personer som ikke finnes.
+for (const [roleId, entry] of Object.entries(manifest.roles)) {
+  const role = readJson(entry.role);
+  for (const [personId, navn] of [["venn", "Jonas"], ["familie", "Søsteren din"]]) {
+    const person = (role.personer || []).find((p) => p.id === personId);
+    assert.ok(person, `rollen ${roleId} mangler den delte personen «${personId}»`);
+    assert.strictEqual(person.navn, navn,
+      `rollen ${roleId}: «${personId}» skal hete «${navn}» i alle roller (delt cast)`);
+    assert.strictEqual(typeof role.startState?.relasjoner?.[personId], "number",
+      `rollen ${roleId} mangler startrelasjon for «${personId}»`);
+  }
+}
+
+// --- 8. Pakken peker mot den faktiske mekanikken: kunnskap/merker -> jobb ---
 const scenesText = JSON.stringify(raw.roleScenes);
 assert.ok(/[Kk]unnskap/.test(scenesText) && /merke/i.test(scenesText),
   "arbeidsledig-dagene peker spilleren mot kunnskap/merker — veien til jobbtilbud");
