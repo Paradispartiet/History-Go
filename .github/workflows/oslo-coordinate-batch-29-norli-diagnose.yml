@@ -1,0 +1,39 @@
+name: Diagnose Norli Universitetsgata address interval
+
+on:
+  push:
+    branches:
+      - agent/oslo-coordinate-control-batch-29-v3
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-29-v3
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build:tools
+      - name: Capture both official address endpoints
+        run: |
+          set -euo pipefail
+          out=reports/oslo-coordinate-control-batch-29-v3/address-results
+          node dist/tools/address-first-coordinate-finder.mjs --address "Universitetsgata 22 Oslo" | tee "$out/norli_universitetsgata_22.json"
+          node dist/tools/address-first-coordinate-finder.mjs --address "Universitetsgata 24 Oslo" | tee "$out/norli_universitetsgata_24.json"
+      - name: Persist and remove workflow
+        run: |
+          rm .github/workflows/oslo-coordinate-batch-29-norli-diagnose.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-coordinate-control-batch-29-v3 .github/workflows/oslo-coordinate-batch-29-norli-diagnose.yml
+          git commit -m "Document Norli Universitetsgata address ambiguity"
+          git push origin HEAD
