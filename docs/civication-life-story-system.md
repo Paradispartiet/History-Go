@@ -379,6 +379,24 @@ Forbudslisten håndheves av `civication-lifestory-arbeidsledig.test.js`
 («frokost, dusj, gå til jobben»-bugen skal ikke kunne komme tilbake).
 Rollefarget tekst hører hjemme i rollens egne scener.
 
+**Kvalitetskrav for delte livsscener (håndhevet av samme test):**
+
+- Hvert valg har `konsekvensTekst` — spilleren skal alltid få fortellings-
+  messig svar på det de gjorde.
+- Private scener i arbeidsfasene (formiddag/ettermiddag) har prioritet ≤ 5,
+  så rollescenene alltid spilles først — privatlivet fyller pausene, det
+  fortrenger ikke jobben.
+- **Lav psyke gir ro, aldri mer press** (arvet designregel fra det gamle
+  privatmail-systemet): ro-/hvilescener gates på `meters.psyke.max`, slik at
+  de tilbys når spilleren trenger dem (se `kveld_01_lande_dagen`).
+
+**Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
+private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
+batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
+og kveldsro. Gjenstår: flere av de 45 (natur/kultur/trening/politikk-
+temaene), og `profil`-conditions som kobler `ProfileSignalBridge` til
+scenevalg — da får spillere med ulik History GO-profil ulikt privatliv.
+
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp
 automatisk av `npm run test:civication`:
@@ -461,7 +479,10 @@ Privattråder dag 1 (delt av alle roller):
 1. Du har sovet dårlig
 2. Økonomien er stram
 3. Noen forventer svar i kveld
-4. Du vurderer om jobben passer deg
+4. Hvor står du i arbeidslivet?
+5. Kroppen og kreftene (måltider, pauser, ro — migrert fra privatfase-mailene)
+6. Folkene rundt deg (venner/nærhet — migrert)
+7. Lysten til å lære (migrert)
 
 Dag 2 er ekte innhold og forgrenes på dag 1 via `conditions` — se §5b.
 Arealplanlegger: morgenen leser identitetsvalget fra kvelden, formiddagen
