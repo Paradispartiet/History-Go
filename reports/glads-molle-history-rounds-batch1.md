@@ -32,6 +32,17 @@ Ingen manuell `rounds`- eller `rundinger`-override er lagt inn. Ingen direkte fl
 - fredet i 1967
 - restaurert i 1992
 
+## Målrettet validering
+
+Bestått i produksjonsjobben:
+
+- Glads mølle identitets-, koordinat- og rundingtest
+- PlaceCard runtime-rundingaudit
+- leksikoninnholdsaudit
+- Bjølsenfossen-regresjonstest
+- JSON-parse av alle endrede datafiler
+- `git diff --check`
+
 ## Kilder
 
 Oslo byleksikon, Lokalhistoriewiki, Oslo kommune, Industrimuseum, Store norske leksikon, Norsk biografisk leksikon og Kulturminnesøk.
