@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-17T20:50:59.486Z
+Generated: 2026-07-19T08:05:47.643Z
 
 ## Sammendrag
-- People-filer lest: **360**
-- People lest: **858**
+- People-filer lest: **564**
+- People lest: **1144**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **858**
+- Duplikate interne place-referanser: **1144**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -185,6 +185,10 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/kunst/oslo/people_kunst_oslo.json :: rolf_nesch (Rolf Nesch) -> nasjonalmuseet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: per_kleiva (Per Kleiva) -> nasjonalmuseet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: kjersti_wexelsen_goksoyr (Kjersti Wexelsen Goksøyr) -> stensparken x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: pablo_picasso (Pablo Picasso) -> regjeringskvartalet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: carl_nesjar (Carl Nesjar) -> regjeringskvartalet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: henrik_sorensen (Henrik Sørensen) -> oslo_radhus x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: alf_rolfsen (Alf Rolfsen) -> oslo_radhus x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: calouste_gulbenkian (Calouste Gulbenkian) -> lisbon_fundacao_calouste_gulbenkian x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: joana_vasconcelos (Joana Vasconcelos) -> lisbon_maat x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: maria_helena_vieira_da_silva (Maria Helena Vieira da Silva) -> lisbon_museu_arpad_szenes_vieira_da_silva x2
@@ -225,6 +229,11 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: holger_sinding_larsen (Holger Sinding-Larsen) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: emanuel_vigeland (Emanuel Vigeland) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: per_krohg (Per Krohg) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: axel_revold (Axel Revold) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json :: ase_wetas (Åse Wetås) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json :: bjorn_bjornson (Bjørn Bjørnson) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json :: johanne_dybwad (Johanne Dybwad) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/halfdan_christensen.json :: halfdan_christensen (Halfdan Christensen) -> nationaltheatret x2
@@ -462,6 +471,12 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/politikk/oslo/people_politikk_oslo.json :: kirsti_kolle_grondahl (Kirsti Kolle Grøndahl) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: jo_benkow (Jo Benkow) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: carl_i_hagen (Carl I. Hagen) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: jacob_wilhelm_nordan (Jacob Wilhelm Nordan) -> youngstorget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: per_palle_storm (Per Palle Storm) -> youngstorget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: hagbart_sollos (Hagbart Solløs) -> youngstorget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: knut_knutsen_arkitekt (Knut Knutsen) -> folkets_hus_oslo x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: harald_ohlsen (Harald Ohlsen) -> folkets_hus_oslo x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: sverre_iversen (Sverre Iversen) -> folketeateret x2
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: salgueiro_maia (Salgueiro Maia) -> lisbon_largo_do_carmo x2
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: celeste_caeiro (Celeste Caeiro) -> lisbon_largo_do_carmo x2
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: marcelo_caetano (Marcelo Caetano) -> lisbon_largo_do_carmo x2
@@ -503,6 +518,111 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/sport/oslo/people_sport_oslo.json :: petter_thoresen (Petter Thoresen) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: mathias_trygg (Mathias Trygg) -> manglerudhallen x2
 - data/people/sport/oslo/people_sport_oslo.json :: einar_bruno_larsen (Einar Bruno Larsen) -> jordal_amfi x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/thorleif_haug.json :: thorleif_haug (Thorleif Haug) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/birger_ruud.json :: birger_ruud (Birger Ruud) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/gjermund_eggen.json :: gjermund_eggen (Gjermund Eggen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/matti_nykanen.json :: matti_nykanen (Matti Nykänen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/maren_lundby.json :: maren_lundby (Maren Lundby) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/lauritz_bergendahl.json :: lauritz_bergendahl (Lauritz Bergendahl) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/anette_sagen.json :: anette_sagen (Anette Sagen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/petter_northug.json :: petter_northug (Petter Northug) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/ole_einar_bjorndalen.json :: ole_einar_bjorndalen (Ole Einar Bjørndalen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/johannes_thingnes_bo.json :: johannes_thingnes_bo (Johannes Thingnes Bø) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/oddvar_bra.json :: oddvar_bra (Oddvar Brå) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/vegard_ulvang.json :: vegard_ulvang (Vegard Ulvang) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/magnar_estenstad.json :: magnar_estenstad (Magnar Estenstad) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/vladimir_smirnov.json :: vladimir_smirnov (Vladimir Smirnov) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/bente_skari.json :: bente_skari (Bente Skari) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/thomas_alsgaard.json :: thomas_alsgaard (Thomas Alsgaard) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/adam_malysz.json :: adam_malysz (Adam Małysz) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/simon_ammann.json :: simon_ammann (Simon Ammann) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/jens_weissflog.json :: jens_weissflog (Jens Weissflog) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/espen_bredesen.json :: espen_bredesen (Espen Bredesen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/bjorn_wirkola.json :: bjorn_wirkola (Bjørn Wirkola) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/reidar_andersen.json :: reidar_andersen (Reidar Andersen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/arne_hoel.json :: arne_hoel (Arne Hoel) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/berit_aunli.json :: berit_aunli (Berit Aunli) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/odd_bjorn_hjelmeset.json :: odd_bjorn_hjelmeset (Odd-Bjørn Hjelmeset) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/brit_pettersen.json :: brit_pettersen (Brit Pettersen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/anette_boe.json :: anette_boe (Anette Bøe) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/ingolf_mork.json :: ingolf_mork (Ingolf Mork) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/noriaki_kasai.json :: noriaki_kasai (Noriaki Kasai) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/sara_takanashi.json :: sara_takanashi (Sara Takanashi) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/gregor_schlierenzauer.json :: gregor_schlierenzauer (Gregor Schlierenzauer) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/severin_freund.json :: severin_freund (Severin Freund) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/stefan_kraft.json :: stefan_kraft (Stefan Kraft) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/martin_koch.json :: martin_koch (Martin Koch) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/matti_hautamaki.json :: matti_hautamaki (Matti Hautamäki) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/torbjorn_falkanger.json :: torbjorn_falkanger (Torbjørn Falkanger) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/helmut_recknagel.json :: helmut_recknagel (Helmut Recknagel) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/toralf_engan.json :: toralf_engan (Toralf Engan) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/torbjorn_yggeseth.json :: torbjorn_yggeseth (Torbjørn Yggeseth) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/roger_ruud.json :: roger_ruud (Roger Ruud) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/marjatta_kajosmaa.json :: marjatta_kajosmaa (Marjatta Kajosmaa) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/raisa_smetanina.json :: raisa_smetanina (Raisa Smetanina) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/alevtina_koltsjina.json :: alevtina_koltsjina (Alevtina Koltsjina) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/galina_kulakova.json :: galina_kulakova (Galina Kulakova) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/hallgeir_brenden.json :: hallgeir_brenden (Hallgeir Brenden) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/toini_gustafsson.json :: toini_gustafsson (Toini Gustafsson) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/klavdija_bojarskikh.json :: klavdija_bojarskikh (Klavdija Bojarskikh) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/helena_takalo.json :: helena_takalo (Helena Takalo) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/hilkka_riihivuori.json :: hilkka_riihivuori (Hilkka Riihivuori) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/jelena_valbe.json :: jelena_valbe (Jelena Välbe) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/marjo_matikainen.json :: marjo_matikainen (Marjo Matikainen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/ljubov_jegorova.json :: ljubov_jegorova (Ljubov Jegorova) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/larissa_lazutina.json :: larissa_lazutina (Larissa Lazutina) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/stefania_belmondo.json :: stefania_belmondo (Stefania Belmondo) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/julija_tsjepalova.json :: julija_tsjepalova (Julija Tsjepalova) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/per_bergerud.json :: per_bergerud (Per Bergerud) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/armin_kogler.json :: armin_kogler (Armin Kogler) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/steinar_braten.json :: steinar_braten (Steinar Bråten) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/ernst_vettori.json :: ernst_vettori (Ernst Vettori) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/andreas_felder.json :: andreas_felder (Andreas Felder) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/vladimir_podzimek.json :: vladimir_podzimek (Vladimir Podzimek) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/toni_nieminen.json :: toni_nieminen (Toni Nieminen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/andreas_goldberger.json :: andreas_goldberger (Andreas Goldberger) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/kazuyoshi_funaki.json :: kazuyoshi_funaki (Kazuyoshi Funaki) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/primoz_peterka.json :: primoz_peterka (Primož Peterka) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/sven_hannawald.json :: sven_hannawald (Sven Hannawald) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/roar_ljokelsoy.json :: roar_ljokelsoy (Roar Ljøkelsøy) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/daniel_andre_tande.json :: daniel_andre_tande (Daniel-André Tande) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/robert_johansson.json :: robert_johansson (Robert Johansson) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/marius_lindvik.json :: marius_lindvik (Marius Lindvik) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/piotr_zyla.json :: piotr_zyla (Piotr Żyła) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/johann_andre_forfang.json :: johann_andre_forfang (Johann André Forfang) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/ryoyu_kobayashi.json :: ryoyu_kobayashi (Ryoyu Kobayashi) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/gregor_deschwanden.json :: gregor_deschwanden (Gregor Deschwanden) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/tomofumi_naito.json :: tomofumi_naito (Tomofumi Naito) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/daniela_iraschko_stolz.json :: daniela_iraschko_stolz (Daniela Iraschko-Stolz) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/sarah_hendrickson.json :: sarah_hendrickson (Sarah Hendrickson) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/yuki_ito.json :: yuki_ito (Yuki Ito) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/silje_opseth.json :: silje_opseth (Silje Opseth) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/ema_klinec.json :: ema_klinec (Ema Klinec) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/helena_olsson.json :: helena_olsson (Helena Olsson) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/eirin_maria_kvandal.json :: eirin_maria_kvandal (Eirin Maria Kvandal) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/nika_prevc.json :: nika_prevc (Nika Prevc) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/gyda_westvold_hansen.json :: gyda_westvold_hansen (Gyda Westvold Hansen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/ida_marie_hagen.json :: ida_marie_hagen (Ida Marie Hagen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/oddbjorn_hagen.json :: oddbjorn_hagen (Oddbjørn Hagen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/arne_rustadstuen.json :: arne_rustadstuen (Arne Rustadstuen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/nils_karlsson.json :: nils_karlsson (Nils Karlsson) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/martin_lundstrom.json :: martin_lundstrom (Martin Lundström) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/eero_kolehmainen.json :: eero_kolehmainen (Eero Kolehmainen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/kalle_heikkinen.json :: kalle_heikkinen (Kalle Heikkinen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/martin_matsbo.json :: martin_matsbo (Martin Matsbo) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/john_westberg.json :: john_westberg (John Westberg) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/trygve_brodahl.json :: trygve_brodahl (Trygve Brodahl) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/olav_okern.json :: olav_okern (Olav Økern) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/thorleif_vangen.json :: thorleif_vangen (Thorleif Vangen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/nils_ostensson.json :: nils_ostensson (Nils Östensson) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/paavo_lonkila.json :: paavo_lonkila (Paavo Lonkila) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/veikko_hakulinen.json :: veikko_hakulinen (Veikko Hakulinen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/sixten_jernberg.json :: sixten_jernberg (Sixten Jernberg) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/aarne_hiiva.json :: aarne_hiiva (Aarne Hiiva) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/pavel_koltsjin.json :: pavel_koltsjin (Pavel Koltsjin) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/kalevi_oikarainen.json :: kalevi_oikarainen (Kalevi Oikarainen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/harald_gronningen.json :: harald_gronningen (Harald Grønningen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/holmenkollen_nasjonalanlegg/eero_mantyranta.json :: eero_mantyranta (Eero Mäntyranta) -> holmenkollen_nasjonalanlegg x2
 - data/people/sport/oslo/nordre_aasen_idrettspark/harald_hennum.json :: harald_hennum (Harald Hennum) -> nordre_aasen_idrettspark x2
 - data/people/sport/oslo/nordre_aasen_idrettspark/hans_nordahl.json :: hans_nordahl (Hans Nordahl) -> nordre_aasen_idrettspark x2
 - data/people/sport/oslo/nordre_aasen_idrettspark/finn_gundersen.json :: finn_gundersen (Finn Gundersen) -> nordre_aasen_idrettspark x2
@@ -698,6 +818,17 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: kate_naess (Kate Næss) -> club_7_vika x2
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: sossen_krohg (Sossen Krohg) -> club_7_vika x2
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: attila_horvath (Attila Horvath) -> club_7_vika x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: stein_lillevolden (Stein Lillevolden) -> blitzhuset x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: bror_wyller (Bror Wyller) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: hermann_stene (Hermann Stene) -> oslo_skatehall x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: paul_brady (Paul Brady) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: hege_vadstein (Hege Vadstein) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: anne_rita_andal (Anne Rita Andal) -> torggata_blad x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: christian_engfelt (Christian Engfelt) -> oslo_skatehall x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: renald_antoinette (Renald Antoinette) -> karl_johan x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: lars_poverud (Lars Poverud) -> karl_johan x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: karl_rognstad (Karl «Sving Deg» Rognstad) -> botsfengselet x2
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json :: astrid_christensen (Astrid Christensen) -> karl_johan x2
 - data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json :: oslo_skatehall_miljoet (Oslo Skatehall-miljøet) -> oslo_skatehall x2
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: sub_scene_miljoet (Sub Scene-miljøet) -> sub_scene x2
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json :: mir_grunerlokka_lufthavn_miljoet (MIR / Grünerløkka Lufthavn-miljøet) -> mir_grunerlokka_lufthavn x2
@@ -876,5 +1007,160 @@ Generated: 2026-07-17T20:50:59.486Z
 - data/people/politikk/akershus/eidsvollsbygningen/john_collett.json :: john_collett (John Collett) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/lauritz_weidemann.json :: lauritz_weidemann (Lauritz Weidemann) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/anders_lysgaard.json :: anders_lysgaard (Anders Lysgaard) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/ole_elias_holck.json :: ole_elias_holck (Ole Elias Holck) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/christian_adolph_diriks.json :: christian_adolph_diriks (Christian Adolph Diriks) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/hans_jacob_grogaard.json :: hans_jacob_grogaard (Hans Jacob Grøgaard) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_schmidt.json :: frederik_schmidt (Frederik Schmidt) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/peder_hjermann.json :: peder_hjermann (Peder Hjermann) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/jens_schow_fabricius.json :: jens_schow_fabricius (Jens Schow Fabricius) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_meltzer.json :: frederik_meltzer (Frederik Meltzer) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/jonas_rein.json :: jonas_rein (Jonas Rein) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/andreas_rogert.json :: andreas_rogert (Andreas Rogert) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/valentin_sibbern.json :: valentin_sibbern (Valentin Christian Wilhelm Sibbern) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/christopher_frimann_omsen.json :: christopher_frimann_omsen (Christopher Frimann Omsen) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_wilhelm_stabell.json :: frederik_wilhelm_stabell (Frederik Wilhelm Bruenech Stabell) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/hans_haslum.json :: hans_haslum (Hans Haslum) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/poul_steenstrup.json :: poul_steenstrup (Poul Steenstrup) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/theis_lundegaard.json :: theis_lundegaard (Theis Jacob Thorkildsen Lundegaard) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/ole_rasmussen_apeness.json :: ole_rasmussen_apeness (Ole Rasmussen Apeness) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/zacharias_mellebye.json :: zacharias_mellebye (Zacharias Rasmussen Mellebye) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/christian_hersleb_horneman.json :: christian_hersleb_horneman (Christian Hersleb Horneman) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/peter_ulrik_magnus_hount.json :: peter_ulrik_magnus_hount (Peter Ulrik Magnus Hount) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/claus_bendeke.json :: claus_bendeke (Claus Bendeke) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/hilmar_meincke_krohg.json :: hilmar_meincke_krohg (Hilmar Meincke Krohg) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/frederik_hartvig_johan_heidmann.json :: frederik_hartvig_johan_heidmann (Frederik Hartvig Johan Heidmann) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/peder_valentin_rosenkilde.json :: peder_valentin_rosenkilde (Peder Valentin Rosenkilde) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/hans_christian_ulrik_midelfart.json :: hans_christian_ulrik_midelfart (Hans Christian Ulrik Midelfart) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/arnoldus_von_westen_sylow_koren.json :: arnoldus_von_westen_sylow_koren (Arnoldus von Westen Sylow Koren) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/gregers_winther_wulfsberg.json :: gregers_winther_wulfsberg (Gregers Winther Wulfsberg) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/tallev_olsen_huvestad.json :: tallev_olsen_huvestad (Tallev Olsen Huvestad) -> eidsvollsbygningen x2
+- data/people/politikk/akershus/eidsvollsbygningen/ole_olsen_evenstad.json :: ole_olsen_evenstad (Ole Olsen Evenstad) -> eidsvollsbygningen x2
+- data/people/historie/oslo/akershus_festning/hannibal_sehested.json :: hannibal_sehested (Hannibal Sehested) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/ulrik_frederik_gyldenlove.json :: ulrik_frederik_gyldenlove (Ulrik Frederik Gyldenløve) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/karl_xii.json :: karl_xii (Karl XII) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/jorgen_christopher_von_klenow.json :: jorgen_christopher_von_klenow (Jørgen Christopher von Klenow) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/knut_alvsson.json :: knut_alvsson (Knut Alvsson) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/christian_jensen_lofthuus.json :: christian_jensen_lofthuus (Christian Jensen Lofthuus) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/ole_hoiland.json :: ole_hoiland (Ole Høiland) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/gjest_baardsen.json :: gjest_baardsen (Gjest Baardsen) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/lars_haetta.json :: lars_haetta (Lars Hætta) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/peder_hansson_litle.json :: peder_hansson_litle (Peder Hanssøn Litle) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/hans_van_paeschen.json :: hans_van_paeschen (Hans van Paeschen) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/hans_van_steenwinckel_den_eldre.json :: hans_van_steenwinckel_den_eldre (Hans van Steenwinckel den eldre) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/isaac_van_geelkerck.json :: isaac_van_geelkerck (Isaac van Geelkerck) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/michael_smith_arentz.json :: michael_smith_arentz (Michael Smith Arentz) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/anthony_coucheron.json :: anthony_coucheron (Anthony Coucheron) -> akershus_festning x2
+- data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json :: abelone_kristensen (Abelone Kristensen) -> abelonegarden x2
+- data/people/historie/oslo/akershus_festning/hartvig_krummedike.json :: hartvig_krummedike (Hartvig Krummedike) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/henrik_krummedike.json :: henrik_krummedike (Henrik Krummedike) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/odd_alvsson.json :: odd_alvsson (Odd Alvsson) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/olav_galle.json :: olav_galle (Olav Galle) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/mogens_gyldenstierne.json :: mogens_gyldenstierne (Mogens Gyldenstierne) -> akershus_festning x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json :: helgaberget_ristningsskaparane (Ristningsskaparane på Helgaberget) -> helgaberget_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json :: borgasen_borgbyggjarane (Borgbyggjarane på Borgåsen) -> borgasen_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json :: saebotunet_gardsfolket (Gardsfolket på Sæbø) -> saebotunet_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json :: gjerde_kyrkjelyden (Kyrkjelyden på Gjerde) -> gjerde_kyrkje_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json :: grindheim_kyrkjelyden (Kyrkjelyden på Grindheim) -> grindheim_kyrkje_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json :: bruteigsteinen_ristningsskaparane (Ristningsskaparane på Bruteigsteinen) -> bruteigsteinen_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json :: duesteinen_ristningsskaparane (Ristningsskaparane på Duesteinen) -> duesteinen_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json :: steine_heio_borgbyggjarane (Borgbyggjarane på Steine-Heio) -> steine_heio_bygdeborg x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json :: tormod_grindheim_runereisar (Tormod på Grindheim) -> grindheim_runestein x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json :: tormod_svidande (Tormod Svidande) -> grindheim_runestein x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json :: grindheim_kross_samlingsmiljoet (Samlingsmiljøet ved Grindheim-krossen) -> grindheim_steinkross x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json :: grindheim_gravfolket (Gravfolket på Grindheim og Rygg) -> grindheimsveien_nord_gravfelt x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json :: grindheim_jernvinnemiljoet (Jernvinnemiljøet på Grindheim) -> grindheim_jernvinne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch4.json :: sorheimsmoen_gravfolket (Gravfolket på Sørheimsmoen) -> sorheimsmoen_gravfelt x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch4.json :: tesdal_gravfolket (Gravfolket på Tesdal) -> tesdal_gravfelt x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch4.json :: etnesjoen_landsbyfolket (Landsbyfolket ved Etnesjøen) -> etnesjoen_forromersk_landsby x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch4.json :: varhaug_nervik_gravmiljoet (Gravmiljøet ved Varhaug) -> varhaug_nervik x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch5.json :: nesjarhaugen_steinringmiljoet (Miljøet kring Nesjarhaugen) -> nesjarhaugen_byrkjenes x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch5.json :: keisarhaugen_gravmiljoet (Gravmiljøet ved Keisarhaugen) -> keisarhaugen_frette x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch5.json :: dysjanes_gravmiljoet (Gravmiljøet på Dysjanes) -> dysjanes_rivaisen_gravroys x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch5.json :: hidlesnes_gravmiljoet (Gravmiljøet på Hidlesnes) -> hidlesnes_nernes_gravroys x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch6.json :: vardahaugen_gravmiljoet (Gravmiljøet på Vardahaugen) -> vardahaugen_lauareid x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch6.json :: stampehaug_gravmiljoet (Gravmiljøet ved Stampehaug) -> stampehaug_meland x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch6.json :: hoyland_gravmiljoet (Gravmiljøet på Høyland) -> hoyland_gravhaug_etne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch6.json :: etne_prestegard_tunmiljoet (Tunmiljøet ved Etne prestegard) -> etne_prestebustad x2
+- data/people/litteratur/vestland/etne/ivar_aasen.json :: ivar_aasen (Ivar Aasen) -> skanevik_gjestgjevargarden x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch7.json :: skanevik_kyrkjelyden (Skånevik kyrkjelyd) -> skanevik_kyrkjestad x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch7.json :: fjaera_kyrkjelyden (Fjæra kyrkjelyd) -> fjaera_kapell x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch7.json :: akrafjordvegen_arbeidslaget (Arbeidslaget på Åkrafjordvegen) -> gamle_akrafjordvegen x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch7.json :: rullestad_postferdselsmiljoet (Postferdselsmiljøet i Rullestadjuvet) -> postvegen_rullestadjuvet x2
+- data/people/musikk/vestland/etne/abc_studio/nils_osmund_halleland.json :: nils_osmund_halleland (Nils Osmund Halleland) -> abc_studio_etne x2
+- data/people/musikk/vestland/etne/abc_studio/stig_morten_sorheim.json :: stig_morten_sorheim (Stig Morten Sørheim) -> abc_studio_etne x2
+- data/people/musikk/vestland/etne/abc_studio/reinhardt_toresen.json :: reinhardt_toresen (Reinhardt Toresen) -> abc_studio_etne x2
+- data/people/musikk/vestland/etne/abc_studio/knut_bjarne_bjorkhaug.json :: knut_bjarne_bjorkhaug (Knut Bjarne Bjørkhaug) -> abc_studio_etne x2
+- data/people/musikk/vestland/etne/abc_studio/kjetil_ulland.json :: kjetil_ulland (Kjetil Ulland) -> abc_studio_etne x2
+- data/people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json :: alf_warloe_christophersen (Alf Warloe Christophersen) -> house_of_blues_skanevik x2
+- data/people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json :: frode_ronli (Frode Rønli) -> house_of_blues_skanevik x2
+- data/people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json :: anders_bru (Anders Bru) -> house_of_blues_skanevik x2
+- data/people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json :: oystein_eldoy (Øystein Eldøy) -> house_of_blues_skanevik x2
+- data/people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json :: knut_konigsberg (Knut Kønigsberg) -> house_of_blues_skanevik x2
+- data/people/media/vestland/etne/ann_margit_gronstad.json :: ann_margit_gronstad (Ann Margit Grønstad) -> grannar_redaksjon_etne x2
+- data/people/vitenskap/vestland/etne/etneelva_forskningsplattform_people_batch1.json :: per_tommy_fjeldheim (Per Tommy Fjeldheim) -> etneelva_forskningsplattform x2
+- data/people/vitenskap/vestland/etne/etneelva_forskningsplattform_people_batch1.json :: oystein_skaala (Øystein Skaala) -> etneelva_forskningsplattform x2
+- data/people/musikk/vestland/etne/old_river_saloon/people_old_river_saloon_batch1.json :: aslaug_olden_mala (Aslaug Olden Mala) -> old_river_saloon_etne x2
+- data/people/musikk/vestland/etne/old_river_saloon/people_old_river_saloon_batch1.json :: rune_kringlebotten (Rune Kringlebotten) -> old_river_saloon_etne x2
+- data/people/musikk/vestland/etne/old_river_saloon/people_old_river_saloon_batch1.json :: amalie_kringlebotten (Amalie Kringlebotten) -> old_river_saloon_etne x2
+- data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json :: audun_stene (Audun Stene) -> fugl_fonix_etne x2
+- data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json :: jan_terje_rafdal (Jan Terje Rafdal) -> fugl_fonix_etne x2
+- data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json :: vidar_lund (Vidar Lund) -> fugl_fonix_etne x2
+- data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json :: asbjorn_moe (Asbjørn Moe) -> fugl_fonix_etne x2
+- data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json :: carina_vevang (Carina Vevang) -> fugl_fonix_etne x2
+- data/people/kunst/vestland/etne/pippifestivalen/people_pippifestivalen_batch1.json :: inger_karin_larsen (Inger Karin Larsen) -> skanevik_fjordhotel_pippifestivalen x2
+- data/people/kunst/vestland/etne/pippifestivalen/people_pippifestivalen_batch1.json :: bard_henrik_tungesvik_hereide (Bård Henrik Tungesvik Hereide) -> skanevik_fjordhotel_pippifestivalen x2
+- data/people/kunst/vestland/etne/pippifestivalen/people_pippifestivalen_batch1.json :: theresa_tungesvik_hereide (Theresa Tungesvik Hereide) -> skanevik_fjordhotel_pippifestivalen x2
+- data/people/kunst/vestland/etne/people_musikkpaviljongen_doktorhagen_batch1.json :: bygdafolket_og_lions_musikkpaviljongen (Bygdafolket og Lions bak musikkpaviljongen) -> musikkpaviljongen_doktorhagen x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json :: skanevik_gjestgjevarmiljoet (Gjestgjevarmiljøet i Skånevik) -> skanevik_gjestgjevargarden x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json :: stordalen_drifteferdselsmiljoet (Drifte- og ferdselsmiljøet i Stordalen) -> driftevegen_stordalen_roldal x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json :: folgefonden_minnemiljoet (Minnemiljøet etter Folgefonden) -> folgefonden_minnesmerke_skanevik x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json :: hans_reichwald (Hans Reichwald) -> reichwald_snublesteiner_skanevik x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json :: edith_reichwald (Edith Reichwald) -> reichwald_snublesteiner_skanevik x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json :: harry_reichwald (Harry Reichwald) -> reichwald_snublesteiner_skanevik x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch9.json :: gjerdesvagen_jernvinnemiljoet (Jernvinnemiljøet i Gjerdesvågen) -> gjerdesvagen_jernvinne x2
+- data/people/historie/vestland/etne/people_historie_etne_rounds_batch9.json :: etne_skanevik_postferdselsmiljoet (Postferdselsmiljøet mellom Etne og Skånevik) -> postvegen_etne_skanevik x2
+- data/people/litteratur/vestland/etne/people_litteratur_etne_batch1.json :: ingvar_moe (Ingvar Moe) -> ingvar_moe_byste_etne x2
+- data/people/litteratur/vestland/etne/people_litteratur_etne_batch1.json :: olav_vik (Olav Vik) -> olav_vik_garden_osnes x2
+- data/people/litteratur/vestland/etne/people_litteratur_etne_batch1.json :: johan_ebne (Johan Ebne) -> gurine_johan_ebnes_minde x2
+- data/people/by/vestland/etne/people_by_etne_rounds_batch1.json :: etnesjoen_sentrumsmiljoet (Sentrumsmiljøet i Etnesjøen) -> etnesjoen_tettstad x2
+- data/people/by/vestland/etne/people_by_etne_rounds_batch1.json :: etnesjoen_kai_og_torgmiljoet (Kai- og torgmiljøet i Etnesjøen) -> etnesjoen_torg_og_kai x2
+- data/people/by/vestland/etne/people_by_etne_rounds_batch1.json :: kyrping_ferdsels_og_handelsmiljoet (Ferdsels- og handelsmiljøet på Kyrping) -> kyrping_handelsstad x2
+- data/people/by/vestland/etne/people_by_etne_rounds_batch1.json :: skanevik_ferjemiljoet (Ferjemiljøet i Skånevik) -> skanevik_ferjekai x2
+- data/people/by/vestland/etne/people_by_etne_rounds_batch1.json :: morten_rosendahl_skanevik (Morten Rosendahl) -> skanevik_sentrum x2
+- data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch1.json :: christian_bjelland_industrimann (Christian Bjelland) -> skanevik_hermetikkfabrikk x2
+- data/people/sport/vestland/etne/people_sport_etne_batch1.json :: christine_gjermo (Christine Gjermo) -> skakkeringen_etne x2
+- data/people/sport/vestland/etne/people_sport_etne_batch1.json :: ellen_reitan (Ellen Reitan) -> skakkeringen_etne x2
+- data/people/sport/vestland/etne/people_sport_etne_batch2.json :: geir_arne_havreberg (Geir Arne Havreberg) -> etne_kyokushin_dojo x2
+- data/people/sport/vestland/etne/people_skanevik_discgolf_batch1.json :: solve_funderud (Sølve Funderud) -> skanevik_discgolf x2
+- data/people/sport/vestland/etne/people_skanevik_idrettsanlegg_batch1.json :: leif_bjornar_larsen (Leif Bjørnar Larsen) -> skanevik_idrettsanlegg x2
+- data/people/sport/vestland/etne/people_skanevik_idrettsanlegg_batch1.json :: torleiv_sydnes (Torleiv Sydnes) -> skanevik_idrettsanlegg x2
+- data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch2.json :: ove_wiland (Ove Wiland) -> norsk_motormuseum_skanevik x2
+- data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch2.json :: paul_hovda (Paul Hovda) -> norsk_motormuseum_skanevik x2
+- data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch2.json :: gudvin_hovda (Gudvin Hovda) -> norsk_motormuseum_skanevik x2
+- data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json :: jan_henning_jespersen (Jan Henning Jespersen) -> skanevik_kultur_og_idrettshall x2
+- data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json :: leif_jonny_johansen (Leif Jonny Johansen) -> skanevik_kultur_og_idrettshall x2
+- data/people/sport/vestland/etne/people_sjokanten_trivsel_batch1.json :: heidi_wannberg (Heidi Wannberg) -> sjokanten_trivsel_skanevik x2
+- data/people/sport/vestland/etne/people_sjokanten_trivsel_batch1.json :: arne_tveit (Arne Tveit) -> sjokanten_trivsel_skanevik x2
+- data/people/sport/vestland/etne/people_sjokanten_trivsel_batch1.json :: jarle_vik (Jarle Vik) -> sjokanten_trivsel_skanevik x2
+- data/people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json :: halfdan_greve (Halfdan Greve) -> litledalen_kraftverk x2
+- data/people/sport/vestland/etne/people_osnes_discgolfbane_batch1.json :: erling_bjarte_rullestad (Erling Bjarte Rullestad) -> osnes_discgolfbane x2
+- data/people/sport/vestland/etne/people_osnes_discgolfbane_batch1.json :: bjornar_aastvedt (Bjørnar Aastvedt) -> osnes_discgolfbane x2
+- data/people/sport/vestland/etne/people_osnes_discgolfbane_batch1.json :: lars_kristian_aastvedt (Lars Kristian Aastvedt) -> osnes_discgolfbane x2
+- data/people/sport/vestland/etne/people_etne_pumptrack_batch1.json :: dzintrs_vitols (Dzintrs Vitols) -> etne_pumptrack x2
+- data/people/sport/vestland/etne/people_etne_tennisanlegg_batch1.json :: morten_goa_aadnoy (Morten Goa Aadnøy) -> etne_tennisanlegg x2
+- data/people/sport/vestland/etne/people_etne_tennisanlegg_batch1.json :: ole_storhaug (Ole Storhaug) -> etne_tennisanlegg x2
+- data/people/politikk/vestland/etne/people_etne_tinghus_batch1.json :: anna_molden (Anna Molden) -> etne_tinghus x2
+- data/people/sport/vestland/etne/people_fikse_skytebane_batch1.json :: johannes_hundseid (Johannes Hundseid) -> fikse_skytebane x2
+- data/people/natur/vestland/etne/people_langfoss_batch1.json :: leif_grindheim (Leif Grindheim) -> langfoss_etne x2
+- data/people/natur/vestland/etne/people_stordalsvatnet_batch1.json :: oyvind_gvein (Øyvind Gvein) -> stordalsvatnet_etne x2
+- data/people/kunst/vestland/etne/skakke/goril_eidhammer.json :: goril_eidhammer (Gøril Eidhammer) -> skakke_kultursenter_etne x2
+- data/people/sport/vestland/etne/havard_matre.json :: havard_matre (Håvard Matre) -> etne_idrettsanlegg x2
+- data/people/sport/vestland/etne/harald_ekornrud.json :: harald_ekornrud (Harald Ekornrud) -> etne_tennisanlegg x2
+- data/people/sport/vestland/etne/etne_bmx_og_skatefellesskapet.json :: etne_bmx_og_skatefellesskapet (BMX- og skatefellesskapet i Etne) -> etne_bmx_og_skatepark x2
+- data/people/politikk/vestland/etne/mette_heidi_ekrheim_bergsvaag.json :: mette_heidi_ekrheim_bergsvaag (Mette Heidi Ekrheim Bergsvåg) -> etne_pumptrack x2
+- data/people/sport/vestland/etne/pal_askvig.json :: pal_askvig (Pål Askvig) -> steinsvollen_fotballanlegg x2
+- data/people/sport/vestland/etne/roar_knudsen_skanevik.json :: roar_knudsen_skanevik (Roar Knudsen) -> skanevik_skytebane x2
+- data/people/sport/vestland/etne/people_skanevik_skatepark_batch1.json :: oyvind_hammer_betongpark (Øyvind Hammer) -> skanevik_skatepark x2
+- data/people/sport/vestland/etne/people_skanevik_skatepark_batch1.json :: kasper_gaspard_helle_betongpark (Kasper Gaspard Helle) -> skanevik_skatepark x2
 
 ## Anbefalt neste ryddebatch

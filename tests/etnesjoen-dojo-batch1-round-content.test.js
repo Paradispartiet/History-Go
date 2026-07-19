@@ -14,11 +14,11 @@ assert.deepStrictEqual(profiles.sport, expectedRounds, 'Etne-dojoen skal bruke d
 
 const placePath = 'data/places/sport/vestland/etne/etne_kyokushin_dojo.json';
 const place = readJson(placePath)[0];
-const peoplePath = 'people/sport/vestland/etne/geir_havreberg.json';
+const peoplePath = 'people/sport/vestland/etne/people_sport_etne_batch2.json';
 const person = readJson(`data/${peoplePath}`)[0];
 const peopleManifest = readJson('data/people/manifest.json');
 const relations = readJson('data/relations.json');
-const relation = relations.find((row) => row.id === 'rel_geir_havreberg_etne_kyokushin_dojo');
+const relation = relations.find((row) => row.id === 'rel_geir_arne_havreberg_etne_kyokushin_dojo');
 const storyPath = 'data/stories/stories_etnesjoen_sport_rounds_batch1.json';
 const story = readJson(storyPath)[0];
 const storyManifest = readJson('data/stories/stories_manifest.json');
@@ -35,7 +35,7 @@ for (const forbidden of ['rounds', 'rundinger', 'routes', 'tasks_profile', 'play
 }
 
 assert(peopleManifest.files.includes(peoplePath), 'Hovudtrenaren skal vere manifestlasta');
-assert.strictEqual(person.id, 'geir_havreberg', 'People-rundingen skal bruke dokumentert klubbgrunnleggjar og hovudtrenar');
+assert.strictEqual(person.id, 'geir_arne_havreberg', 'People-rundingen skal bruke dokumentert klubbgrunnleggjar og hovudtrenar');
 assert.strictEqual(person.placeId, place.id, 'Geir Havreberg skal ha dojoen som primæranker');
 assert(person.places.includes(place.id), 'Geir Havreberg skal peike på dojoen i places');
 assert(relation, 'People-rundingen skal ha ei eksplisitt person–stad-kopling');
