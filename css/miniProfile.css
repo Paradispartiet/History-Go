@@ -601,6 +601,12 @@ body.hg-app .header-menu-panel{
   max-height: calc(100vh - var(--hg-visual-header-height, 56px) - 16px);
 }
 
+/* The menu owns a full-size switch even when the compact phone header scales
+   its inline controls down. */
+body.hg-app.hg-phone .site-header .top-actions .header-menu-toggle .toggle{
+  transform: none;
+}
+
 @media (max-width: 380px){
   body.hg-app .site-header .top-actions,
   body.hg-app.hg-phone .site-header .top-actions{

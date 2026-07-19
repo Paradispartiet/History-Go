@@ -135,6 +135,11 @@
               aria-expanded="false">☰</button>
 
       <div id="headerMenuPanel" class="header-menu-panel" role="menu" aria-label="Headerverktøy" hidden>
+        <div class="header-menu-intro">
+          <span class="header-menu-eyebrow">History Go</span>
+          <strong>Hurtigmeny</strong>
+        </div>
+
         <div class="header-menu-search">
           <input id="globalSearch" type="search" placeholder="Søk…" data-hg-i18n-placeholder="ui.attr.search" autocomplete="off">
           <div id="searchResults"></div>
@@ -143,12 +148,12 @@
         <div class="header-menu-actions" aria-label="Sekundære headerverktøy">
           <!-- Civication inngang -->
           <a href="/History-Go/Civication.html"
-             class="header-menu-action civication-nav-link"
+             class="header-menu-action header-menu-action--featured civication-nav-link"
              role="menuitem"
-             aria-label="Steder"
-             title="Steder">
+             aria-label="Civication"
+             title="Civication">
              <span class="header-menu-action-icon" aria-hidden="true">🏛️</span>
-             <span class="header-menu-action-label">Steder</span>
+             <span class="header-menu-action-label">Civication</span>
              <span id="civicationUnreadBadge" class="nav-unread-badge" hidden aria-hidden="true"></span>
           </a>
 
@@ -194,11 +199,11 @@
             <span class="header-menu-action-label">Ruter / Utforsk</span>
           </button>
 
-          <label class="header-menu-action header-menu-toggle" role="menuitem">
-            <span class="header-menu-action-icon" aria-hidden="true">◐</span>
-            <span class="header-menu-action-label">Vis åpne steder</span>
+          <label class="header-menu-action header-menu-toggle">
+            <span class="header-menu-action-icon" aria-hidden="true">🔓</span>
+            <span class="header-menu-action-label">Lås opp testmodus</span>
             <span class="toggle">
-              <input id="openToggle" type="checkbox" />
+              <input id="openToggle" type="checkbox" aria-label="Lås opp testmodus" />
               <span></span>
             </span>
           </label>
