@@ -19,3 +19,4 @@ Final lossless canonical reconciliation triggered after visual QA completed and 
 Reconciliation retriggered against the current `origin/main` before branch synchronization.
 Established batch-30 runner now targets the clean PR #2500 branch for the final deterministic completion pass.
 Exact failing-step capture enabled for the clean runner.
+Detached-HEAD pushes now target the clean branch explicitly.
