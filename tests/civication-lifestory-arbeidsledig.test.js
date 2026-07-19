@@ -98,7 +98,33 @@ kandidater = Runner.getCandidateScenes(state2, content).map((s) => s.id);
 assert.ok(kandidater.includes("d2_meldekort_ok"), "sendt meldekort => alt i orden-scenen");
 assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være kandidat når kortet ble sendt");
 
-// --- 6. Pakken peker mot den faktiske mekanikken: kunnskap/merker -> jobb ---
+// --- 6. Delte livsscener er livssituasjon-nøytrale ---
+// De spilles av ALLE roller — også arbeidsledig. Ingen delt scene/tråd kan
+// anta jobb, pendling, lønning eller en bestemt rolle (bugen som ble funnet:
+// «frokost, dusj, gå til jobben» + «Kontoen viser 420 kroner» for en
+// arbeidsledig spiller med 240 PC).
+{
+  const lifeScenes = readJson(manifest.life.scenes);
+  const lifeThreads = readJson(manifest.life.threads);
+  const FORBUDT = [
+    "til jobben", "jobben din", "etter jobb", "på jobb", "kontoret",
+    "lønning", "planlegger", "plansjef", "skolevei", "utbygger",
+    "toget", "kroner til over helgen"
+  ];
+  const tekster = [];
+  for (const t of lifeThreads.threads) tekster.push(t.tittel, t.konflikt, ...(t.muligeRetninger || []));
+  for (const sc of lifeScenes.scenes) {
+    tekster.push(sc.tittel, sc.tekst);
+    for (const v of sc.valg || []) tekster.push(v.tekst, v.konsekvensTekst || "");
+  }
+  const alt = tekster.join(" || ").toLowerCase();
+  for (const ord of FORBUDT) {
+    assert.ok(!alt.includes(ord.toLowerCase()),
+      `delt livsscene/tråd antar jobb eller rolle: fant «${ord}»`);
+  }
+}
+
+// --- 7. Pakken peker mot den faktiske mekanikken: kunnskap/merker -> jobb ---
 const scenesText = JSON.stringify(raw.roleScenes);
 assert.ok(/[Kk]unnskap/.test(scenesText) && /merke/i.test(scenesText),
   "arbeidsledig-dagene peker spilleren mot kunnskap/merker — veien til jobbtilbud");
