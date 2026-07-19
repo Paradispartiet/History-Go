@@ -1,0 +1,52 @@
+name: Oslo coordinate batch 33 address and Wikidata diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run normative address finder from source and fetch Vøyenfallene entity
+        run: |
+          set +e
+          out=reports/oslo-coordinate-batch-33-address-wikidata
+          mkdir -p "$out"
+          node --experimental-strip-types tools/address-first-coordinate-finder.mts --address 'Sandakerveien 10A Oslo' > "$out/glads-molle.json" 2>&1
+          printf 'glads=%s\n' "$?" > "$out/status.txt"
+          node --experimental-strip-types tools/address-first-coordinate-finder.mts --address 'Maridalsveien 120 Oslo' > "$out/voienvolden.json" 2>&1
+          printf 'voienvolden=%s\n' "$?" >> "$out/status.txt"
+          python3 - <<'PY'
+          import json, urllib.request
+          from pathlib import Path
+          out=Path('reports/oslo-coordinate-batch-33-address-wikidata')
+          url='https://www.wikidata.org/wiki/Special:EntityData/Q114345801.json'
+          req=urllib.request.Request(url,headers={'User-Agent':'History-Go-coordinate-audit/1.0'})
+          try:
+              with urllib.request.urlopen(req,timeout=40) as r: data=json.load(r)
+              ent=data['entities']['Q114345801']
+              claims=ent.get('claims',{})
+              coords=[]
+              for c in claims.get('P625',[]):
+                  value=c.get('mainsnak',{}).get('datavalue',{}).get('value',{})
+                  if isinstance(value,dict): coords.append(value)
+              result={'ok':True,'id':'Q114345801','labels':ent.get('labels',{}),'coordinates':coords}
+          except Exception as e:
+              result={'ok':False,'error':repr(e),'url':url}
+          (out/'voienfallene-wikidata.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          PY
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-coordinate-batch-33-address-wikidata
+          path: reports/oslo-coordinate-batch-33-address-wikidata
+          if-no-files-found: error
