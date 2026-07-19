@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Arne Garborgs plass 4 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Arne Garborgs plass 4 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Arne%20Garborgs%20plass%204%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:10244:4",
+  "coordinate": {
+    "lat": 59.91655515223004,
+    "lon": 10.74636730347388,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:10244:4",
+    "address": {
+      "street": "Arne Garborgs plass",
+      "number": "4",
+      "postcode": "0179",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Arne Garborgs plass 4, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Arne Garborgs plass",
+    "adressetekst": "Arne Garborgs plass 4",
+    "adressetilleggsnavn": null,
+    "adressekode": 10244,
+    "nummer": 4,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 208,
+    "bruksnummer": 305,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0179",
+    "adressetekstutenadressetilleggsnavn": "Arne Garborgs plass 4",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91655515223004,
+      "lon": 10.74636730347388
+    },
+    "oppdateringsdato": "2026-03-26T19:41:41"
+  }
+}

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-19T03:24:53.987Z
+Generert: 2026-07-19T03:35:35.658Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -76,3 +76,10 @@ Generert: 2026-07-19T03:24:53.987Z
 | botsfengselet | data/coordinate-evidence/oslo/historie/botsfengselet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | prinds_christian_augusts_minde | data/coordinate-evidence/oslo/historie/prinds_christian_augusts_minde.json | needs_research | needs_geometry | OK |
 | gamle_radhus | data/coordinate-evidence/oslo/by/gamle_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| camilla_collett_statue | data/coordinate-evidence/oslo/litteratur/camilla_collett_statue.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| henrik_wergeland_statue | data/coordinate-evidence/oslo/litteratur/henrik_wergeland_statue.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grotta | data/coordinate-evidence/oslo/litteratur/grotta.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| eldorado_bokhandel | data/coordinate-evidence/oslo/litteratur/eldorado_bokhandel.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| gamle_deichman | data/coordinate-evidence/oslo/litteratur/gamle_deichman.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ibsen_quotes | data/coordinate-evidence/oslo/litteratur/ibsen_quotes.json | needs_research | needs_geometry | OK |

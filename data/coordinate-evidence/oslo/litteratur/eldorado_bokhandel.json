@@ -1,0 +1,73 @@
+{
+  "placeId": "eldorado_bokhandel",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91394802646695,
+    "lon": 10.747911617247832,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Eldorado-bygget i Torggata 9A. Punktet representerer det konkrete tidligere kino-/bokhandelbygget og erstatter eldre OSM-adressemetadata med full Coordinate Source Contract v1."
+  },
+  "identity": {
+    "currentName": "Eldorado Bokhandel",
+    "resolvedIdentity": "Eldorado Bokhandel på Torggata 9A Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet",
+    "objekttilpasset representasjonsanker",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Torggata%209A%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17635:9A",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir ett entydig offisielt adressepunkt for Torggata 9A Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Eldorado-bygget i Torggata 9A. Punktet representerer det konkrete tidligere kino-/bokhandelbygget og erstatter eldre OSM-adressemetadata med full Coordinate Source Contract v1."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Torggata 9A Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17635:9A",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17635:9A",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91394802646695,
+      "lon": 10.747911617247832,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Eldorado-bygget i Torggata 9A. Punktet representerer det konkrete tidligere kino-/bokhandelbygget og erstatter eldre OSM-adressemetadata med full Coordinate Source Contract v1."
+  ]
+}

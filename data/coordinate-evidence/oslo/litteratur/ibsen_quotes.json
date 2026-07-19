@@ -1,0 +1,66 @@
+{
+  "placeId": "ibsen_quotes",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9139,
+    "lon": 10.7383,
+    "r": 100,
+    "coordStatus": "needs_source",
+    "coordSource": "IBSEN Museum & Teater – Sitatgaten",
+    "coordType": "distributed_quote_route",
+    "coordNote": "IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate. Ett enkelt punkt kan ikke verifisere den distribuerte installasjonen. Eksisterende punkt beholdes kun som uverifisert representasjonsanker til rutegeometri eller flere kildebelagte ankere er modellert."
+  },
+  "identity": {
+    "currentName": "Ibsen sitater",
+    "resolvedIdentity": "Sitatgaten med 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate",
+    "identityStatus": "resolved",
+    "identityProblem": "Den fysiske installasjonen er distribuert langs to gateløp, mens recorden bare har ett punkt.",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "rutegeometri eller flere kildebelagte sitatankre",
+    "dokumentert start-/sluttpunkt eller representativt fellessegment",
+    "visuell kontroll av hele installasjonens utstrekning"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "IBSEN Museum & Teater – Sitatgaten",
+      "sourceUrl": "https://ibsenmt.no/skoletilbud",
+      "sourceObjectId": "ibsen-museum:sitatgaten",
+      "sourceQuality": "official_identity_and_extent_description",
+      "finding": "IBSEN Museum & Teater dokumenterer 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men siden gir ikke en maskinlesbar traségeometri som kan anvendes direkte.",
+      "canVerifyCoordinate": false,
+      "reason": "Sitatgaten består av 69 sitater langs både Karl Johans gate og Henrik Ibsens gate. Ett enkelt hovedpunkt kan ikke verifisere hele den distribuerte installasjonen uten rutegeometri eller flere kildebelagte ankere."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ibsen-museum:sitatgaten",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9139,
+      "lon": 10.7383,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Sitatgaten består av 69 sitater langs både Karl Johans gate og Henrik Ibsens gate. Ett enkelt hovedpunkt kan ikke verifisere hele den distribuerte installasjonen uten rutegeometri eller flere kildebelagte ankere.",
+    "nextAction": "Modeller rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes."
+  },
+  "notes": [
+    "IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate. Ett enkelt punkt kan ikke verifisere den distribuerte installasjonen. Eksisterende punkt beholdes kun som uverifisert representasjonsanker til rutegeometri eller flere kildebelagte ankere er modellert."
+  ]
+}
