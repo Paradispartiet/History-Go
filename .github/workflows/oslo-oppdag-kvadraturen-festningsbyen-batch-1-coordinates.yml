@@ -1,4 +1,4 @@
-name: Oslo Oppdag Kvadraturen Festningsbyen batch 1 coordinates
+name: Oslo Oppdag Kvadraturen Festningsbyen batch 1 validate
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  coordinates:
+  validate:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -19,34 +19,133 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: Resolve broader fortress subplace map objects
+      - name: Validate JSON syntax
         shell: bash
         run: |
           set -euo pipefail
-          outdir='reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/coordinates'
+          outdir='reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/validation'
           mkdir -p "$outdir"
+          jq empty data/wonderkammer/oslo_oppdag_kvadraturen_festningsbyen_microplaces_batch_1.json
+          jq empty data/wonderkammer/index.json
+          jq empty data/places/places_index.json
+          echo 'JSON syntax: OK' | tee "$outdir/json-syntax.txt"
 
-          broad_query='[out:json][timeout:60];(nwr["name"](59.9035,10.7350,59.9085,10.7415);nwr["barrier"="gate"](59.9035,10.7350,59.9085,10.7415);nwr["entrance"](59.9035,10.7350,59.9085,10.7415););out center tags;'
-          if ! curl --max-time 75 --retry 1 --fail --silent --show-error --get \
-            'https://overpass-api.de/api/interpreter' \
-            --data-urlencode "data=${broad_query}" \
-            -o "$outdir/festningsbyen_broad_subplaces_overpass.json"; then
-            curl --max-time 90 --retry 1 --fail --silent --show-error --get \
-              'https://overpass.kumi.systems/api/interpreter' \
-              --data-urlencode "data=${broad_query}" \
-              -o "$outdir/festningsbyen_broad_subplaces_overpass.json"
-          fi
-
-          jq -e '.elements | length > 0' "$outdir/festningsbyen_broad_subplaces_overpass.json" >/dev/null
-
-      - name: Persist coordinate evidence
+      - name: Validate Wonderkammer integration and reuse
         shell: bash
         run: |
           set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/validation'
+          node <<'NODE' | tee "$outdir/wonderkammer-validation.txt"
+          const fs = require('fs');
+          const batchPath = 'data/wonderkammer/oslo_oppdag_kvadraturen_festningsbyen_microplaces_batch_1.json';
+          const reusedId = 'wk_christiania_torv_her_skal_byen_ligge_1624';
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const batch = readJson(batchPath);
+          const index = readJson('data/wonderkammer/index.json');
+          const places = readJson('data/places/places_index.json');
+
+          if (!Array.isArray(batch.places)) throw new Error('Batch must contain places[]');
+          if (!index.files.includes(batchPath)) throw new Error('Batch is not registered in Wonderkammer index');
+
+          const expectedParents = new Set([
+            'oslo_posthus',
+            'den_gamle_krigsskolen',
+            'akershus_festning'
+          ]);
+          const actualParents = new Set(batch.places.map((entry) => entry.place_id));
+          if (actualParents.size !== expectedParents.size || [...expectedParents].some((id) => !actualParents.has(id))) {
+            throw new Error(`Unexpected parent set: ${[...actualParents].join(', ')}`);
+          }
+
+          const placeIds = new Set(places.map((place) => place.id));
+          const missingParents = [...actualParents].filter((id) => !placeIds.has(id));
+          if (missingParents.length) throw new Error(`Missing parent place IDs: ${missingParents.join(', ')}`);
+
+          const chamberCountFor = (id) => {
+            const entry = batch.places.find((place) => place.place_id === id);
+            return Array.isArray(entry?.chambers) ? entry.chambers.length : 0;
+          };
+          if (chamberCountFor('akershus_festning') !== 5) {
+            throw new Error(`Expected 5 Akershus microplace chambers, found ${chamberCountFor('akershus_festning')}`);
+          }
+          if (chamberCountFor('oslo_posthus') !== 1 || chamberCountFor('den_gamle_krigsskolen') !== 1) {
+            throw new Error('Expected exactly one chamber on each non-fortress parent');
+          }
+
+          const newIds = batch.places.flatMap((entry) => (entry.chambers || []).map((chamber) => chamber.id));
+          if (newIds.some((id) => !id)) throw new Error('Missing chamber ID in new batch');
+          if (new Set(newIds).size !== newIds.length) throw new Error('Duplicate chamber IDs inside new batch');
+          if (newIds.length !== 7) throw new Error(`Expected 7 new chambers, found ${newIds.length}`);
+
+          const existingIds = new Set();
+          const collect = (value) => {
+            if (!value || typeof value !== 'object') return;
+            if (Array.isArray(value)) {
+              for (const item of value) collect(item);
+              return;
+            }
+            if (Array.isArray(value.chambers)) {
+              for (const chamber of value.chambers) if (chamber && chamber.id) existingIds.add(chamber.id);
+            }
+            for (const child of Object.values(value)) collect(child);
+          };
+
+          for (const file of index.files) {
+            if (file === batchPath) continue;
+            if (!fs.existsSync(file)) throw new Error(`Registered Wonderkammer file missing: ${file}`);
+            collect(readJson(file));
+          }
+
+          const collisions = newIds.filter((id) => existingIds.has(id));
+          if (collisions.length) throw new Error(`New chamber ID collisions: ${collisions.join(', ')}`);
+          if (!existingIds.has(reusedId)) throw new Error(`Expected reused chamber is missing: ${reusedId}`);
+
+          console.log(`Wonderkammer manifest registration: OK (${batchPath})`);
+          console.log(`Parent place IDs: OK (${actualParents.size} exact canonical parents)`);
+          console.log('Akershus microplace chambers: OK (5)');
+          console.log(`New chamber IDs: OK (${newIds.length} unique)`);
+          console.log(`Reused chamber present: OK (${reusedId})`);
+          console.log('No new chamber ID collides with pre-existing registered Wonderkammer data.');
+          NODE
+
+      - name: Validate persisted coordinate audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/validation'
+          coorddir='reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/coordinates'
+
+          jq -e 'type == "array" and length > 0' "$coorddir/festningsplassen_nominatim.json" >/dev/null
+          jq -e 'type == "array" and length > 0' "$coorddir/michael_von_sundts_plass_nominatim.json" >/dev/null
+          jq -e 'type == "array"' "$coorddir/hovedporten_nominatim.json" >/dev/null
+          jq -e 'type == "array"' "$coorddir/stallgarden_nominatim.json" >/dev/null
+          jq -e 'type == "array"' "$coorddir/arkeliggaarden_nominatim.json" >/dev/null
+          jq -e '.elements | length > 0' "$coorddir/festningsbyen_named_subplaces_overpass.json" >/dev/null
+
+          {
+            echo 'Festningsplassen exact evidence: OK'
+            echo 'Michael von Sundts plass exact evidence: OK'
+            echo 'Hovedporten/Stallgården/Arkeliggården exact-search files: valid persisted arrays'
+            echo 'Exact named Overpass evidence: OK'
+          } | tee "$outdir/coordinate-audit.txt"
+
+      - name: Check whitespace
+        shell: bash
+        run: |
+          set -euo pipefail
+          outdir='reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/validation'
+          git diff --check | tee "$outdir/git-diff-check.txt"
+
+      - name: Remove temporary workflow and save validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-oppdag-kvadraturen-festningsbyen-batch-1-coordinates.yml
+          git add reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/validation
+          git add -u .github/workflows/oslo-oppdag-kvadraturen-festningsbyen-batch-1-coordinates.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/oslo-oppdag-kvadraturen-festningsbyen-batch-1/coordinates
           if ! git diff --cached --quiet; then
-            git commit -m 'Save expanded Festningsbyen coordinate evidence'
+            git commit -m 'Validate Festningsbyen batch 1'
             git push origin "HEAD:${GITHUB_HEAD_REF}"
           fi
