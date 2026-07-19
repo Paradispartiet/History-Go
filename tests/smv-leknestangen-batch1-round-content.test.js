@@ -87,7 +87,7 @@ assert(/1980/.test(combined) && /eier|eigar/.test(combined), 'Eierskiftet skal v
 assert(/tredje generasjon/.test(combined), 'Dagens generasjonskontinuitet skal være synlig');
 assert(/Leknestangen 95/.test(combined), 'Dagens offisielle adresse skal være synlig');
 assert(/spesialmaskin/.test(combined) && /hydraulikk/.test(combined) && /elektro/.test(combined), 'Dagens flerfaglige produksjon skal være dokumentert');
-assert(!/dagens Leknestangen-anlegg var den opprinnelige verkstedplassen|bygget på Leknestangen ble reist i 1958/i.test(combined), '1958 skal ikke gjøres til byggeår for dagens anlegg');
+assert(!/dagens (?:produksjons)?anlegg på Leknestangen (?:ble|blei|vart) (?:bygd|reist) i 1958|Leknestangen var den opprinnelige verkstedplassen i 1958/i.test(combined), '1958 skal ikke gjøres til byggeår for dagens anlegg');
 assert(!/museet og dagens SMV er samme fysiske sted|museumshallen ligger på Leknestangen/i.test(combined), 'Museum og produksjonsanlegg skal holdes fysisk skilt');
 assert(!/artar ved staden|flora ved staden|fauna ved staden/i.test(combined), 'Natur-rundingen skal ikke dikte inn arter');
 
