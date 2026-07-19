@@ -25,7 +25,7 @@ jobs:
           code=$?
           set -e
           printf 'vulkan_geonorge=%s\n' "$code" > "$out/status.txt"
-          python3 - <<'PY'
+          python3 - <<'PY' | tee "$out/hausmannsbrua-summary.json"
           import json, urllib.parse, urllib.request
           from pathlib import Path
           out=Path('reports/oslo-coordinate-batch-34-focused-diagnostic')
@@ -38,7 +38,6 @@ jobs:
               raise SystemExit(f'Unexpected Hausmannsbrua lookup: {data}')
           print(json.dumps({'hausmannsbrua':data[0]},ensure_ascii=False,indent=2))
           PY
-          | tee "$out/hausmannsbrua-summary.json"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
