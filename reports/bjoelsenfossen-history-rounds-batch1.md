@@ -38,3 +38,7 @@ Koordinatet er ikke endret i denne rundingsbatchen og må eventuelt behandles i 
 ## Kilder
 
 Oslo byleksikon, Store norske leksikon, Norsk biografisk leksikon, Akerselvas Venner, Industrimuseum og Regal.
+
+## Kontrollstatus
+
+Målrettet rundingtest, runtime-rundingaudit, leksikonaudit, JSON-parse og `git diff --check` besto i produksjonsjobben. Denne sluttoppdateringen utløser ordinær repository-CI på den endelige diffen.
