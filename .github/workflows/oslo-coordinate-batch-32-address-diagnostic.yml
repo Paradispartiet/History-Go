@@ -18,11 +18,15 @@ jobs:
           node-version: 22
       - name: Run normative Geonorge finder for Øvre spinneri
         run: |
-          set -euo pipefail
           mkdir -p reports/oslo-coordinate-batch-32-address-diagnostic
+          set +e
           node --experimental-strip-types tools/address-first-coordinate-finder.mts \
             --address "Gjerdrums vei 12 Oslo" \
-            | tee reports/oslo-coordinate-batch-32-address-diagnostic/gjerdrums-vei-12.json
+            > reports/oslo-coordinate-batch-32-address-diagnostic/gjerdrums-vei-12.json 2>&1
+          code=$?
+          set -e
+          cat reports/oslo-coordinate-batch-32-address-diagnostic/gjerdrums-vei-12.json
+          echo "finder_exit_code=$code"
       - uses: actions/upload-artifact@v4
         with:
           name: oslo-coordinate-batch-32-address-diagnostic
