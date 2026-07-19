@@ -23,7 +23,21 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Apply batch 18
-        run: node scripts/tmp-complete-oslo-coordinate-batch18.mjs
+        id: apply
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          node scripts/tmp-complete-oslo-coordinate-batch18.mjs 2>&1 | tee /tmp/batch18-apply.log
+      - name: Upload apply failure log
+        if: steps.apply.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch18-v2-apply-log
+          path: /tmp/batch18-apply.log
+          if-no-files-found: error
+      - name: Stop on apply failure
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
       - name: Rebuild global place index
         run: npm run places:index:build
       - name: Check global place index
