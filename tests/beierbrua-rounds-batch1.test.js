@@ -58,7 +58,7 @@ assert(Array.isArray(article.sources) && article.sources.length >= 3, 'Leksikone
 assert(article.wikiText.join(' ').includes('1837'));
 assert(article.wikiText.join(' ').includes('1974'));
 assert(article.wikiText.join(' ').includes('1985'));
-assert(article.wikiText.join(' ').includes('1986'));
+assert(article.chronology.some((row) => row.year === 1986), 'Leksikonets strukturerte kronologi skal inneholde Fabrikkjentene i 1986');
 
 const routeIndex = readJson('data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json');
 const indexRow = routeIndex.find((row) => row.id === 'beierbrua');
