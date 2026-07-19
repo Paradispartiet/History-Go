@@ -43,11 +43,13 @@ jobs:
             local slug="$1"
             local name="$2"
             local outfile="reports/oslo-oppdag-kvadraturen-batch-3/coordinates/${slug}_osm.json"
-            local query="[out:json][timeout:30];nwr[\"name\"=\"${name}\"](59.85,10.60,60.05,10.95);out center tags;"
+            local query="[out:json][timeout:20];nwr[\"name\"=\"${name}\"](59.85,10.60,60.05,10.95);out center tags;"
 
-            if ! curl --fail --silent --show-error --get 'https://overpass-api.de/api/interpreter' \
+            if ! curl --max-time 30 --retry 1 --fail --silent --show-error --get \
+              'https://overpass-api.de/api/interpreter' \
               --data-urlencode "data=${query}" -o "$outfile"; then
-              curl --fail --silent --show-error --get 'https://overpass.kumi.systems/api/interpreter' \
+              curl --max-time 40 --retry 1 --fail --silent --show-error --get \
+                'https://overpass.kumi.systems/api/interpreter' \
                 --data-urlencode "data=${query}" -o "$outfile"
             fi
 
