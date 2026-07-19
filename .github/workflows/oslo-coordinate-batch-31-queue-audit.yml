@@ -62,7 +62,9 @@ jobs:
           }
 
           const nextQueue = ordered.find((row) => row.uncontrolledCount > 0) ?? null;
-          console.log('BATCH31_QUEUE_AUDIT_START');
-          console.log(JSON.stringify({ controlledIdCount: controlled.size, orderedOsloSources: ordered, nextQueue }, null, 2));
-          console.log('BATCH31_QUEUE_AUDIT_END');
+          const summary = ordered.map(({ source, uncontrolledCount, activeCount }) => ({ source, uncontrolledCount, activeCount }));
+          console.log('BATCH31_NEXT_QUEUE');
+          console.log(JSON.stringify(nextQueue, null, 2));
+          console.log('BATCH31_SOURCE_SUMMARY');
+          console.log(JSON.stringify(summary, null, 2));
           NODE
