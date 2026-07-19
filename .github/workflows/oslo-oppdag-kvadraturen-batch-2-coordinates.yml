@@ -46,7 +46,7 @@ jobs:
           set -e
           run_lookup hotel_du_nord "Dronningens gate 13 Oslo"
           run_lookup garmanngarden "Rådhusgata 7 Oslo"
-          run_lookup cafe_engebret "Bankplassen 1 Oslo"
+          run_lookup cafe_engebret "Bankplassen 1B Oslo"
           run_lookup stattholdergarden "Rådhusgata 11 Oslo"
           run_lookup waisenhuset "Kongens gate 1 Oslo"
           run_lookup myntgatakvartalet "Myntgata 2 Oslo"
@@ -57,5 +57,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports/oslo-oppdag-kvadraturen-batch-2/coordinates
-          git commit -m "Save Oppdag Kvadraturen batch 2 coordinate results"
+          git commit -m "Resolve Engebret address and refresh batch 2 coordinates"
           git push origin "HEAD:${GITHUB_HEAD_REF}"
