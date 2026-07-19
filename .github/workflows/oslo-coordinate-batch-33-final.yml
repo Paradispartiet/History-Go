@@ -36,7 +36,7 @@ jobs:
             | tee "$out/glads-molle-geonorge.json"
           node --experimental-strip-types tools/address-first-coordinate-finder.mts --address 'Maridalsveien 120 Oslo' \
             | tee "$out/voienvolden-geonorge.json"
-          python3 - <<'PY'
+          python3 - <<'PY' | tee "$out/source-resolution-summary.json"
           import json, urllib.parse, urllib.request
           from pathlib import Path
           out=Path('reports/oslo-coordinate-control-batch-33/sources')
@@ -74,7 +74,6 @@ jobs:
               raise SystemExit('Vøyenfallene Wikidata entity now has coordinates; manual re-audit required')
           print(json.dumps({'osm_objects':sorted([f'{t}:{i}' for t,i in found]),'voienfallene_nominatim_hits':len(search_data),'voienfallene_wikidata_coordinates':len(coords)},ensure_ascii=False,indent=2))
           PY
-          | tee "$out/source-resolution-summary.json"
       - name: Apply researched batch 33 decisions safely
         run: node scripts/tmp-complete-oslo-coordinate-batch33.mjs
       - name: Build repository tools without npm install
@@ -175,7 +174,7 @@ jobs:
           if-no-files-found: error
       - name: Commit clean completed batch
         run: |
-          rm -f .github/workflows/oslo-coordinate-batch-33-final.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
-          git add data docs reports .github/workflows/oslo-coordinate-batch-33-final.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
+          rm -f .github/workflows/oslo-coordinate-batch-33-final.yml .github/workflows/fix-oslo-coordinate-batch-33-workflow.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
+          git add data docs reports .github/workflows/oslo-coordinate-batch-33-final.yml .github/workflows/fix-oslo-coordinate-batch-33-workflow.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
           git commit -m 'Complete Oslo coordinate control batch 33'
           git push origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-33-final
