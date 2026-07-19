@@ -116,8 +116,28 @@ jobs:
           node dist/tools/place-coordinate-intake-gate.mjs --strict-new | tee "$out/coordinate-intake.txt"
           node dist/tools/audit-coordinate-evidence.mjs | tee "$out/coordinate-evidence-audit.txt"
           git diff --check | tee "$out/git-diff-check.txt"
-      - name: Assert canonical split runtime content and protocol result
-        run: node scripts/tmp-assert-oslo-coordinate-batch33.mjs
+      - name: Assert Batch 33 decisions and protocol
+        id: final_assertion
+        continue-on-error: true
+        run: |
+          set +e
+          out=reports/oslo-coordinate-control-batch-33/validation
+          mkdir -p "$out"
+          node scripts/tmp-assert-oslo-coordinate-batch33.mjs > "$out/final-assertion.txt" 2>&1
+          code=$?
+          cat "$out/final-assertion.txt"
+          printf '%s\n' "$code" > "$out/final-assertion-exit-code.txt"
+          exit "$code"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-coordinate-batch-33-final-assertion
+          path: |
+            reports/oslo-coordinate-control-batch-33/validation/final-assertion.txt
+            reports/oslo-coordinate-control-batch-33/validation/final-assertion-exit-code.txt
+          if-no-files-found: error
+      - name: Require final assertion
+        run: test "$(cat reports/oslo-coordinate-control-batch-33/validation/final-assertion-exit-code.txt)" = "0"
       - name: Render old/new map QA for every coordinate change
         run: |
           set -euo pipefail
@@ -174,7 +194,7 @@ jobs:
           if-no-files-found: error
       - name: Commit clean completed batch
         run: |
-          rm -f .github/workflows/oslo-coordinate-batch-33-final.yml .github/workflows/fix-oslo-coordinate-batch-33-workflow.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
-          git add data docs reports .github/workflows/oslo-coordinate-batch-33-final.yml .github/workflows/fix-oslo-coordinate-batch-33-workflow.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
+          rm -f .github/workflows/oslo-coordinate-batch-33-final.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
+          git add data docs reports .github/workflows/oslo-coordinate-batch-33-final.yml scripts/tmp-complete-oslo-coordinate-batch33.mjs scripts/tmp-assert-oslo-coordinate-batch33.mjs
           git commit -m 'Complete Oslo coordinate control batch 33'
           git push origin HEAD:refs/heads/agent/oslo-coordinate-control-batch-33-final
