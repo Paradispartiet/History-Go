@@ -1,0 +1,77 @@
+name: Oslo coordinate batch 18 v2 integration
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: github.event.pull_request.head.ref == 'agent/oslo-coordinate-control-batch18-v2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Apply batch 18
+        run: node scripts/tmp-complete-oslo-coordinate-batch18.mjs
+      - name: Rebuild global place index
+        run: npm run places:index:build
+      - name: Check global place index
+        run: npm run places:index:check
+      - name: Check split manifest sync
+        run: npm run audit:places-split-manifest-sync
+      - name: Check coordinate quality
+        run: npm run places:coords:quality
+      - name: Check strict coordinate intake
+        id: intake
+        continue-on-error: true
+        run: |
+          COORD_INTAKE_BASE="$(git merge-base HEAD origin/main)" npm run places:coords:intake
+      - name: Upload intake failure report
+        if: steps.intake.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch18-v2-intake-report
+          path: reports/place-coordinate-intake-gate.md
+          if-no-files-found: error
+      - name: Stop on intake failure
+        if: steps.intake.outcome == 'failure'
+        run: exit 1
+      - name: Check coordinate evidence
+        id: evidence
+        continue-on-error: true
+        run: npm run places:coords:evidence:audit
+      - name: Upload evidence failure report
+        if: steps.evidence.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-coordinate-batch18-v2-evidence-report
+          path: reports/coordinate-evidence-audit.md
+          if-no-files-found: error
+      - name: Stop on evidence failure
+        if: steps.evidence.outcome == 'failure'
+        run: exit 1
+      - name: Check whitespace
+        run: git diff --check
+      - name: Remove temporary integration files
+        run: |
+          rm scripts/tmp-complete-oslo-coordinate-batch18.mjs
+          rm .github/workflows/oslo-coordinate-batch18-v2-integration.yml
+      - name: Commit integrated batch
+        run: |
+          git config user.name 'history-go-coordinate-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet && { echo 'No changes to commit'; exit 1; }
+          git commit -m 'Complete Oslo coordinate control batch 18'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
