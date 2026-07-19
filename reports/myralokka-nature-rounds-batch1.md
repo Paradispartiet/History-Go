@@ -48,6 +48,11 @@ Fauna:
 - Myragården ferdig i 1914, tegnet av Morgenstierne & Eide
 - industriformet terreng senere brukt som park og urbant artsrom
 
+## Validering
+
+Produksjonsjobben bestod målrettet identitets-, koordinat-, arts- og rundingtest, Akerselva naturprofil-regresjon,
+PlaceCard leksikon-audit, Vøienvolden-regresjon, JSON-parse og `git diff --check`.
+
 ## Kilder
 
 Oslo byleksikon, Lokalhistoriewiki, Industrimuseum, Store norske leksikon,
