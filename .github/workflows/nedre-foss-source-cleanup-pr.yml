@@ -22,6 +22,7 @@ jobs:
       - name: Apply cleanup and capture validation
         shell: bash
         run: |
+          set +e
           set -uo pipefail
           mkdir -p reports/nedre-foss-source-cleanup/validation
 
