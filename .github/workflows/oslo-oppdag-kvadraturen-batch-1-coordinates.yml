@@ -1,4 +1,4 @@
-name: Oslo Oppdag Kvadraturen batch 1 coordinates
+name: Oslo Oppdag Kvadraturen batch 1 finalize
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  coordinates:
+  finalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -23,31 +23,98 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Resolve and save address evidence
+
+      - name: Register batch sources
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p reports/oslo-oppdag-kvadraturen-batch-1/coordinates
-          npm run places:coords:find:address -- --address "Kongens gate 23 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-1/coordinates/steen_og_strom.json
-          npm run places:coords:find:address -- --address "Kirkegata 18 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-1/coordinates/centralbanken.json
-          npm run places:coords:find:address -- --address "Dronningens gate 27 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-1/coordinates/kirkeristen_basarene_brannvakten.json
-          npm run places:coords:find:address -- --address "Skippergata 3 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-1/coordinates/kafe_grei.json
-          npm run places:coords:find:address -- --address "Tollbugata 2 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-1/coordinates/borsen.json
-          npm run places:coords:find:address -- --address "Fred Olsens gate 2 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-1/coordinates/treschowgarden.json
-          npm run places:coords:find:address -- --address "Tollbugata 10 Oslo" \
-            | tee reports/oslo-oppdag-kvadraturen-batch-1/coordinates/den_gamle_krigsskolen.json
-      - name: Persist coordinate results
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const additions = [
+            'places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json',
+            'places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01.json'
+          ];
+          for (const file of additions) {
+            if (!manifest.files.includes(file)) manifest.files.push(file);
+          }
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n');
+          fs.mkdirSync('reports/oslo-oppdag-kvadraturen-batch-1/validation', { recursive: true });
+          NODE
+
+      - name: Build places index
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run places:index:build \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/places-index-build.txt
+
+      - name: Check places index
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run places:index:check \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/places-index-check.txt
+
+      - name: Check strict coordinate intake against branch merge-base
+        shell: bash
+        run: |
+          set -o pipefail
+          BASE="$(git merge-base HEAD origin/main)"
+          COORD_INTAKE_BASE="$BASE" npm run places:coords:intake \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/coordinate-intake.txt
+
+      - name: Check canonical emne IDs
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run places:emner:check \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/emne-check.txt
+
+      - name: Capture place health and hold baseline
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          npm run health:places \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/health-places.txt
+          HEALTH_STATUS=${PIPESTATUS[0]}
+          set -e
+          grep -q '^Errors: 40$' reports/oslo-oppdag-kvadraturen-batch-1/validation/health-places.txt
+          echo "Raw health exit: ${HEALTH_STATUS}; baseline errors remain 40."
+
+      - name: Check split manifest sync
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run audit:places-split-manifest-sync \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/split-manifest-sync.txt
+
+      - name: Check coordinate source contract
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run test:coordinate-source-contract \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/coordinate-contract.txt
+
+      - name: Check whitespace
+        shell: bash
+        run: |
+          set -o pipefail
+          git diff --check \
+            | tee reports/oslo-oppdag-kvadraturen-batch-1/validation/git-diff-check.txt
+
+      - name: Remove temporary workflow and commit final results
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/oslo-oppdag-kvadraturen-batch-1/coordinates
-          git commit -m "Save Oppdag Kvadraturen batch 1 coordinate results"
+          rm -f .github/workflows/oslo-oppdag-kvadraturen-batch-1-coordinates.yml
+          git add data/places/manifest.json
+          git add data/places/places_index.json
+          git add reports/oslo-oppdag-kvadraturen-batch-1/validation
+          git add -u .github/workflows/oslo-oppdag-kvadraturen-batch-1-coordinates.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Finalize Oppdag Kvadraturen batch 1'
           git push origin "HEAD:${GITHUB_HEAD_REF}"
