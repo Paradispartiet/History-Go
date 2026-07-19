@@ -1,0 +1,83 @@
+{
+  "placeId": "st_halvard_bryggeri",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_identity_split",
+  "currentCoordinate": {
+    "lat": 59.9109,
+    "lon": 10.7833,
+    "r": 140,
+    "coordStatus": "",
+    "coordSource": "",
+    "coordType": "",
+    "coordNote": ""
+  },
+  "identity": {
+    "currentName": "St. Halvard bryggeri",
+    "resolvedIdentity": "det historiske St. Halvards Bryggeri/Nora Bryggeri i Pilestredet 75C",
+    "identityStatus": "conflict",
+    "identityProblem": "Aktiv record oppgir 1843 og beskriver et østkantbryggeri, mens kildene plasserer det dokumenterte St. Halvards/Nora-anlegget i Pilestredet 75C og med en annen historisk tidslinje. Det entydige adressepunktet kan derfor ikke brukes før recordens identitet og faktagrunnlag er ryddet.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Aktiv record oppgir 1843 og beskriver et østkantbryggeri, mens kildene plasserer det dokumenterte St. Halvards/Nora-anlegget i Pilestredet 75C og med en annen historisk tidslinje. Det entydige adressepunktet kan derfor ikke brukes før recordens identitet og faktagrunnlag er ryddet."
+  },
+  "requiredEvidence": [
+    "korrigert historisk identitet og tidslinje",
+    "avklaring av om dagens 75C-bygg representerer det historiske anlegget",
+    "ny overlap-audit etter innholdsretting"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Pilestredet%2075C%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:75C",
+      "sourceQuality": "official_address",
+      "finding": "Geonorge gir ett tydelig adressepunkt for Pilestredet 75C.",
+      "canVerifyCoordinate": false,
+      "reason": "Adressepunktet er entydig, men den aktive recorden har en materiell identitets- og historiekonflikt som må løses først."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – St. Halvards Bryggeri",
+      "sourceUrl": "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
+      "sourceObjectId": "oslobyleksikon:st-halvards-bryggeri",
+      "sourceQuality": "documented_historical_identity",
+      "finding": "Kilden knytter bryggeriet til Pilestredet 75C og en annen etableringshistorie enn den aktive recorden.",
+      "canVerifyCoordinate": false,
+      "reason": "Place-innholdet må korrigeres før koordinaten kan representere samme historiske objekt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Pilestredet 75C Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:75C",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:75C",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.926947161930386,
+      "lon": 10.728609002744596,
+      "coordRole": "display_marker",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Aktiv record oppgir 1843 og beskriver et østkantbryggeri, mens kildene plasserer det dokumenterte St. Halvards/Nora-anlegget i Pilestredet 75C og med en annen historisk tidslinje. Det entydige adressepunktet kan derfor ikke brukes før recordens identitet og faktagrunnlag er ryddet.",
+    "nextAction": "Rett name/year/desc/popupDesc og avklar historisk bygningskontinuitet før Pilestredet 75C eventuelt godkjennes."
+  },
+  "notes": [
+    "Ingen koordinatendring i batch 24."
+  ]
+}

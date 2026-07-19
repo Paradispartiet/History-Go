@@ -1,0 +1,82 @@
+{
+  "placeId": "ovre_foss",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.931317,
+    "lon": 10.756994,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "manual_research",
+    "coordType": "building_center",
+    "coordNote": "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+  },
+  "identity": {
+    "currentName": "Øvre Foss – Hjula Veveri",
+    "resolvedIdentity": "Hjula Væverier ved Hjulafossen / Sagveien 23",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig fysisk Hjula-identitet",
+    "navngitt kildeobjekt med koordinat",
+    "overlap-audit mot Sagene-kvernhus-recorden"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Wikidata",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q11975545",
+      "sourceObjectId": "wikidata:Q11975545",
+      "sourceQuality": "named_place_geometry",
+      "finding": "Wikidata Q11975545 identifiserer Hjula Væverier og gir koordinatet 59.931317, 10.756994.",
+      "canVerifyCoordinate": true,
+      "reason": "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Hjula Væverier",
+      "sourceUrl": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+      "sourceObjectId": "oslobyleksikon:hjula-vaeverier",
+      "sourceQuality": "documented_physical_identity",
+      "finding": "Oslo byleksikon identifiserer Hjula Væverier som det historiske industrianlegget i Sagveien 23 ved Hjulafossen.",
+      "canVerifyCoordinate": true,
+      "reason": "Kilden avgrenser recordens fysiske hovedidentitet til Hjula-anlegget."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q11975545",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q11975545",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.931317,
+      "lon": 10.756994,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildebelagt fysisk anker er anvendt på canonical place."
+  },
+  "notes": [
+    "Navngitt stedspunkt for Hjula Væverier fra Wikidata Q11975545, kryssjekket mot Oslo byleksikons identifikasjon av Hjula Væverier i Sagveien 23. Punktet representerer Hjula-anlegget som recordens fysiske hovedanker, ikke et generisk Øvre Foss-område."
+  ]
+}
