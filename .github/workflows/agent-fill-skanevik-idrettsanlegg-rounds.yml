@@ -1,0 +1,53 @@
+name: Fill Skånevik idrettsanlegg rounds
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  build-validate-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generate content
+        env:
+          GENERATOR_GZ_B64: "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"
+        run: |
+          printf '%s' "$GENERATOR_GZ_B64" | base64 -d | gzip -d > /tmp/g.js
+          node /tmp/g.js
+      - name: Dedicated and inherited tests
+        run: |
+          node tests/skanevik-idrettsanlegg-batch1-round-content.test.js
+          node tests/skanevik-discgolf-batch1-round-content.test.js
+          node tests/osnes-discgolf-batch1-round-content.test.js
+          node tests/skakkeringen-batch1-round-content.test.js
+          node tests/engebanen-batch1-round-content.test.js
+          node tests/steinsvollen-batch1-round-content.test.js
+          node tests/etne-pumptrack-batch1-round-content.test.js
+      - run: npm run leksikon:ids:check
+      - run: |
+          npm run audit:people-of-places
+          git checkout -- reports/people-of-places-status.json reports/people-of-places-status.md
+      - run: npm run typecheck:tools
+      - run: npm run typecheck:web
+      - name: Story integrity
+        run: |
+          set +e; npm run check:stories > /tmp/story.log 2>&1; set -e; cat /tmp/story.log
+          if grep -Ei 'story=.*skanevik_fra_stadion_til_nytt_kunstgras|place_id=skanevik_idrettsanlegg|person_id=(leif_bjornar_larsen|torleiv_sydnes)' /tmp/story.log; then exit 1; fi
+      - run: git diff --check
+      - run: rm .github/workflows/agent-fill-skanevik-idrettsanlegg-rounds.yml
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data reports tests .github/workflows
+          git commit -m "Fill Skånevik idrettsanlegg sport rounds batch 1"
+          git push
