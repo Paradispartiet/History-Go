@@ -1,0 +1,59 @@
+name: Fill Vøyenfallene history rounds batch 1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.event.pull_request.head.ref == 'agent/fill-voyenfallene-history-rounds-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Produce Vøyenfallene content
+        run: python tools/tmp_produce_voyenfallene.py
+
+      - name: Validate targeted content
+        run: |
+          node tests/voyenfallene-history-rounds-batch1.test.js
+          node tests/place-card-rounds-runtime-audit.test.js
+          node tests/place-card-leksikon-content-audit.test.js
+          node tests/glads-molle-history-rounds-batch1.test.js
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          paths = [
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute/voienfossen.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json',
+              'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json',
+              'data/quiz/historie/voienfossen_sets.json',
+              'data/people/natur/oslo/people_natur_oslo.json',
+              'data/people/naeringsliv/oslo/people_naeringsliv_oslo.json',
+              'data/stories/stories_voienfossen.json',
+              'data/stories/stories_manifest_natur_batch_01.json',
+              'data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json',
+          ]
+          for path in paths:
+              json.loads(Path(path).read_text(encoding='utf-8'))
+          print('JSON parse OK')
+          PY
+          git diff --check
+
+      - name: Commit production files and remove temporary files
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          rm -f tools/tmp_produce_voyenfallene.py
+          rm -f .github/workflows/fill-voyenfallene-history-rounds-batch1.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "Fill Vøyenfallene history rounds batch 1"
+          git push origin HEAD:"$BRANCH"
