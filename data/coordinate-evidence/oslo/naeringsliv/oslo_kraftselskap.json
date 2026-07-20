@@ -1,51 +1,95 @@
 {
   "placeId": "oslo_kraftselskap",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_identity_split",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.919,
-    "lon": 10.7479,
-    "r": 140,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "lat": 59.915245305085435,
+    "lon": 10.719611579321567,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Sommerrogata 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker. History Go-recorden er avgrenset til Oslo Lysverkers bevarte hovedkontor i Sommerrogata 1, oppført i 1931; punktet skal ikke tolkes som anker for hele strømnettet eller for Christiania Elektricitetsværks første kraftstasjon i Rosenkrantz' gate 14 fra 1892."
   },
   "identity": {
-    "currentName": "Oslo Lysverker",
-    "resolvedIdentity": "kommunalt energiselskap og distribusjonssystem med flere historiske anlegg og senere hovedkontor",
-    "identityStatus": "conflict",
-    "identityProblem": "Recorden beskriver Oslo Lysverker som institusjon og strømnett, ikke ett fysisk sted. Forløperen startet kraftproduksjon i Rosenkrantz' gate 14 i 1892, mens den monumentale Lysverker-bygningen i Sommerrogata 1 først ble oppført i 1931.",
-    "locatorTypeCandidate": "unknown",
-    "requiresSplit": true,
-    "splitReason": "Institusjonen må skilles fra konkrete fysiske anlegg eller hovedkontor før ett coordinate anchor kan godkjennes."
+    "currentName": "Oslo Lysverkers hovedkontor",
+    "resolvedIdentity": "Oslo Lysverkers hovedkontor i Sommerrogata 1, oppført i 1931",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Institusjonshistorien er avgrenset fra det fysiske place-objektet: recorden representerer hovedkontorbygningen i Sommerrogata 1. Kraftstasjonen i Rosenkrantz' gate 14 og øvrige anlegg er historisk kontekst, ikke samme fysiske anker."
   },
   "requiredEvidence": [
-    "beslutning om place-scope: selskap, hovedkontor eller kraftanlegg",
-    "konkret fysisk objekt dersom recorden beholdes som place",
-    "overlap-audit mot eksisterende kraft- og energisteder"
+    "entydig offisielt adressepunkt for Sommerrogata 1",
+    "dokumentert identitet som Oslo Lysverkers hovedkontorbygning fra 1931",
+    "overlap-audit mot eksisterende canonical places på samme adresse"
   ],
   "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Sommerrogata%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16854:1",
+      "sourceQuality": "official_address_for_resolved_surviving_headquarters_building",
+      "finding": "Geonorge returnerte et entydig adressepunkt for Sommerrogata 1: 59.915245305085435, 10.719611579321567.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden er eksplisitt avgrenset til den adressebare hovedkontorbygningen, så offisiell adressekoordinat er riktig primær koordinatkilde."
+    },
     {
       "sourceProvider": "manual_research",
       "sourceName": "Oslo byleksikon – Oslo Lysverker",
       "sourceUrl": "https://oslobyleksikon.no/side/Oslo_Lysverker",
       "sourceObjectId": "oslobyleksikon:oslo-lysverker",
-      "sourceQuality": "documented_identity_history",
-      "finding": "Kilden dokumenterer Oslo Lysverker som en virksomhet med produksjon, nett og flere anlegg; Sommerrogata 1 var senere kontorbygning, mens elektrisitetsverket startet ved en annen fysisk lokasjon.",
+      "sourceQuality": "documented_building_identity_and_institution_history",
+      "finding": "Kilden skiller institusjonens start i 1892 fra hovedkontorbygningen i Sommerrogata 1, oppført i 1931.",
       "canVerifyCoordinate": false,
-      "reason": "Kilden løser institusjonshistorien, men ikke hvilket enkelt fysisk objekt den aktive place-recorden skal representere."
+      "reason": "Brukes til identitets- og tidsavgrensning; Geonorge er primær koordinatkilde."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Sommerrogata",
+      "sourceUrl": "https://oslobyleksikon.no/side/Sommerrogata",
+      "sourceObjectId": "oslobyleksikon:sommerrogata",
+      "sourceQuality": "documented_address_building_identity",
+      "finding": "Sommerrogata 1 dokumenteres som bygningen oppført for Oslo Lysverker i 1931.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker at det offisielle adressepunktet representerer riktig historisk hovedobjekt."
     }
   ],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [],
+  "addressCandidates": [
+    {
+      "address": "Sommerrogata 1 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16854:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16854:1",
+      "canApplyToPlace": true
+    }
+  ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.915245305085435,
+      "lon": 10.719611579321567,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Aktiv record er en institusjons-/systemrecord uten ett entydig fysisk hovedobjekt.",
-    "nextAction": "Definer recorden som konkret Sommerrogata 1-bygg, et bestemt kraftanlegg eller flytt institusjonshistorien ut av place-modellen."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Use Sommerrogata 1 as the verified address anchor for the resolved 1931 headquarters building; keep 1892 and the first power station as institutional history only."
   },
-  "notes": ["Ingen koordinatendring i batch 25."]
+  "notes": [
+    "Geonorge address-first result is saved in reports/oslo-kraftselskap-headquarters-coordinate-control/address-sommerrogata-1.json.",
+    "No separate canonical place at Sommerrogata 1 was found in the repository overlap audit.",
+    "The place year is 1931 because the active physical object is the headquarters building; 1892 remains in the historical narrative."
+  ]
 }
