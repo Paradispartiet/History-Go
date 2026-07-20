@@ -101,7 +101,12 @@ function showToastNow(msg, ms = null, options = {}) {
 
   t.appendChild(closeBtn);
   t.appendChild(body);
-  applyToastPresentation(t, closeBtn, options);
+
+  const compactByDuration = Number.isFinite(ms) && Number(ms) <= 1600;
+  applyToastPresentation(t, closeBtn, {
+    ...options,
+    compact: options.compact === true || (options.compact !== false && compactByDuration)
+  });
   t.style.display = "block";
 
   const duration = Number.isFinite(ms) ? Number(ms) : getToastDuration(msg);
