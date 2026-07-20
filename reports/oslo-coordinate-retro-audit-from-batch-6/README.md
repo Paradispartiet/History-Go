@@ -37,7 +37,9 @@ Corrected back to the stored Geonorge candidates:
 
 ## Sequential completeness result
 
-All coordinate-control batches from 6 through 35 were reviewed. The following batches required canonical corrections: **6, 11, 13, 14, 16, 21, 22 and 24**. The remaining batches were method-compliant after review, including the replacement batch 29 v3 that superseded the closed method-mixed PR #2459.
+All coordinate-control batches from 6 through 35 were reviewed. The following batches required canonical corrections: **6, 11, 13, 14, 16, 21, 22 and 24**. Batches **7–10, 12, 15, 17–20, 23 and 26–35** were method-compliant after review, including replacement batch 29 v3 that superseded the closed method-mixed PR #2459.
+
+**Batch 25 was also method-compliant, but its merged final version deliberately approved no coordinates.** All seven controls ended as documented `needs_review` cases because of duplicate identity, lack of one physical main object, unresolved linear geometry, historical identity conflict or broad unbounded areas. It therefore counts as a completed conservative control batch, not as a batch with verified coordinates.
 
 The audit corrected 13 canonical records:
 
