@@ -1,0 +1,75 @@
+{
+  "placeId": "toyen_hovedgard",
+  "placeFile": "data/places/historie/oslo/places_historie/toyen_hovedgard.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.917956019816764,
+    "lon": 10.770625820146192,
+    "r": 70,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Trondheimsveien 23B, OSLO. Punktet brukes som display- og unlock-marker for Tøyen hovedgårds historiske hovedanlegg. Det representerer ikke Botanisk hage, Naturhistorisk museum eller Tøyen som byområde."
+  },
+  "identity": {
+    "currentName": "Tøyen hovedgård",
+    "resolvedIdentity": "Det fredede historiske hovedgårdsanlegget Tøyen hovedgård ved Trondheimsveien 23B, fysisk inne i dagens Botanisk hage men historisk eldre enn hagen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Trondheimsveien 23B",
+    "dokumentert identitet som historisk hovedgårdsanlegg",
+    "eksplisitt fysisk og institusjonelt skille fra Botanisk hage, Naturhistorisk museum og Klimahuset",
+    "canonical identitets- og nærhetskontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Trondheimsveien%2023B%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17749:23B",
+      "sourceQuality": "official_address_plus_documented_historic_identity_plus_parent_place_overlap_audit",
+      "finding": "Geonorge gir ett tydelig adressepunkt for Trondheimsveien 23B. Oslo byleksikon dokumenterer Tøyen hovedgård som et eget fredet historisk gårdsanlegg. Ingen canonical identitetsmatch finnes; de nærliggende stedene Naturhistorisk museum, Klimahuset og Botanisk hage representerer bredere eller separate fysiske og institusjonelle skalaer.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Trondheimsveien 23B, OSLO. Punktet brukes som display- og unlock-marker for Tøyen hovedgårds historiske hovedanlegg. Det representerer ikke Botanisk hage, Naturhistorisk museum eller Tøyen som byområde."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Trondheimsveien 23B Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17749:23B",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17749:23B",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.917956019816764,
+      "lon": 10.770625820146192,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the exact Trondheimsveien 23B Geonorge point to Tøyen hovedgård after identity and parent-place overlap review."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Trondheimsveien 23B, OSLO. Punktet brukes som display- og unlock-marker for Tøyen hovedgårds historiske hovedanlegg. Det representerer ikke Botanisk hage, Naturhistorisk museum eller Tøyen som byområde.",
+    "Geografisk plassering inne i Botanisk hage er ikke en duplikattilstand; hovedgården er et eget eldre fysisk anlegg."
+  ]
+}
