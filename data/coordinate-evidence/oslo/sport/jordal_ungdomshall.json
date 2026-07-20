@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "jordal_ungdomshall",
+  "placeFile": "data/places/sport/oslo/places_sport/jordal_ungdomshall.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91027218303978,
+    "lon": 10.78314155270237,
+    "r": 60,
+    "coordStatus": "verified_geometry",
+    "coordSource": "openstreetmap_named_building_geometry",
+    "coordType": "building_centroid",
+    "coordNote": "Geometrisk senter av OSM way 33263069, eksplisitt navngitt «Jordal ungdomshallen» og tagget som egen ishall med Oslobygg KF som eier, anleggsreferanse 31177 og bygningsnummer 81040303. Punktet brukes som building-specific anker og skiller ungdomshallen fra Jordal Amfi til tross for delt besøksadresse."
+  },
+  "identity": {
+    "currentName": "Jordal ungdomshall",
+    "resolvedIdentity": "Separate Jordal youth ice hall represented by OSM way 33263069, named Jordal ungdomshallen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "completed but non-applicable address-first audit for shared Jordalgata 12",
+    "separate named building object for Jordal ungdomshallen",
+    "distinct facility identity from Jordal Amfi and Jordal idrettshall",
+    "building-specific geometry rather than shared-address proxy"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "openstreetmap",
+      "sourceName": "OpenStreetMap named building geometry",
+      "sourceUrl": "https://www.openstreetmap.org/way/33263069",
+      "sourceObjectId": "osm:way:33263069",
+      "sourceQuality": "named_building_polygon_cross_checked_with_official_facility_identity",
+      "finding": "OSM way 33263069 is explicitly named Jordal ungdomshallen, tagged as an ice rink, owned by Oslobygg KF, and carries its own facility reference 31177 and building number 81040303. This provides a building-specific geometry distinct from Jordal Amfi.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometrisk senter av OSM way 33263069, eksplisitt navngitt «Jordal ungdomshallen» og tagget som egen ishall med Oslobygg KF som eier, anleggsreferanse 31177 og bygningsnummer 81040303. Punktet brukes som building-specific anker og skiller ungdomshallen fra Jordal Amfi til tross for delt besøksadresse."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Jordalgata 12 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "openstreetmap",
+      "sourceObjectId": "osm:way:33263069",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "openstreetmap",
+      "sourceObjectId": "osm:way:33263069",
+      "geometryType": "Polygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91027218303978,
+      "lon": 10.78314155270237,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the centroid of the separate named youth-hall building polygon after the shared-address gate was found non-specific."
+  },
+  "notes": [
+    "Geometrisk senter av OSM way 33263069, eksplisitt navngitt «Jordal ungdomshallen» og tagget som egen ishall med Oslobygg KF som eier, anleggsreferanse 31177 og bygningsnummer 81040303. Punktet brukes som building-specific anker og skiller ungdomshallen fra Jordal Amfi til tross for delt besøksadresse."
+  ]
+}
