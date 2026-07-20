@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 227 verifiserte eller kildekontrollerte canonical steder. Batch 80 legger til Kunsthall Oslo med den entydige offisielle Geonorge-adressekoordinaten for dagens gallerirom i Kjølberggata 21 / Factory Tøyen; tidligere Bjørvika-adresser beholdes kun som historiske lokasjonslag. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 228 verifiserte eller kildekontrollerte canonical steder. Batch 81 legger til Mariakirken-ruinen med et geometrisk representasjonspunkt fra Riksantikvarens offisielle MultiPolygon for lokalitet 42178, eksplisitt skilt fra områdeankeret Middelalderparken og Hallvardskirken. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -248,6 +248,7 @@ Oslo-tabellen inneholder nå 227 verifiserte eller kildekontrollerte canonical s
 | 78 | `the_oslo_gallery` | The Oslo Gallery | verified | `geonorge-adresser-v1:0301:13536:2A` |
 | 79 | `valerenga_kirke` | Vålerenga kirke | verified | `geonorge-adresser-v1:0301:12974:3` |
 | 80 | `kunsthall_oslo` | Kunsthall Oslo | verified | `geonorge-adresser-v1:0301:13764:21` |
+| 81 | `mariakirken_ruin_oslo` | Mariakirken-ruinen | verified_geometry | `kulturminnesok:42178` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
