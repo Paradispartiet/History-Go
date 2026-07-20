@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T00:51:55.153Z
+Generert: 2026-07-20T01:12:31.730Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -111,7 +111,7 @@ Generert: 2026-07-20T00:51:55.153Z
 | christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fornebu_teknologipark | data/coordinate-evidence/oslo/naeringsliv/fornebu_teknologipark.json | needs_research | needs_identity_split | OK |
 | frysja_industriomrade | data/coordinate-evidence/oslo/naeringsliv/frysja_industriomrade.json | needs_research | needs_geometry | OK |
-| grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | needs_research | needs_identity_split | OK |
+| grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | needs_research | needs_geometry | OK |
 | grunnlovsbygget_bankplassen | data/coordinate-evidence/oslo/naeringsliv/grunnlovsbygget_bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jernbanetorget_trafikknutepunkt | data/coordinate-evidence/oslo/naeringsliv/jernbanetorget_trafikknutepunkt.json | needs_research | needs_identity_split | OK |

@@ -1,0 +1,59 @@
+{
+  "date": "2026-07-20",
+  "applied": [
+    {
+      "id": "grensen_kjopesenter",
+      "before": {
+        "lat": 59.9138,
+        "lon": 10.7441,
+        "r": 120,
+        "coordStatus": "",
+        "coordSource": "",
+        "coordType": "",
+        "coordNote": ""
+      },
+      "after": {
+        "lat": 59.91337935,
+        "lon": 10.74439645,
+        "r": 170,
+        "coordStatus": "verified_geometry",
+        "coordSource": "Oslo byleksikon – Grensen; OpenStreetMap ways 67882889, 179095459 og 696754516",
+        "coordType": "street_midpoint",
+        "coordNote": "Recorden representerer gaten Grensen, ikke et kjøpesenter eller ett knutepunkt. Oslo byleksikon avgrenser gaten fra Møllergata ved Stortorvet til Professor Aschehougs plass. History Go bruker et representativt linjeanker (line_anchor) mellom de to dokumenterte gateendene. Tre eksakte OSM-way-segmenter med navnet Grensen dokumenterer den fysiske gaten; fordi østlige deler er modellert som parallelle kjørebaner og ikke deler alle noder med vestsegmentet, behandles de som segmentgeometri og ikke som én kunstig sammenhengende polyline."
+      },
+      "sourceObjectId": "oslobyleksikon:grensen",
+      "segmentObjectIds": [
+        "osm-way:67882889",
+        "osm-way:179095459",
+        "osm-way:696754516"
+      ],
+      "anchors": [
+        {
+          "id": "grensen_nordvest_professor_aschehougs_plass",
+          "name": "Grensen nordvest – Professor Aschehougs plass",
+          "type": "route_point",
+          "lat": 59.9140357,
+          "lon": 10.7426391,
+          "r": 55,
+          "sourceObjectId": "osm-node:1180721060"
+        },
+        {
+          "id": "grensen_sorost_stortorvet_mollergata",
+          "name": "Grensen sørøst – Møllergata ved Stortorvet",
+          "type": "route_point",
+          "lat": 59.912723,
+          "lon": 10.7461538,
+          "r": 55,
+          "sourceObjectId": "osm-node:1894342703"
+        }
+      ]
+    }
+  ],
+  "unchanged": [
+    {
+      "id": "ring_3",
+      "result": "unchanged_needs_review",
+      "reason": "Research did not yield an unambiguous complete route-anchor chain."
+    }
+  ]
+}

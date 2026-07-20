@@ -1,9 +1,9 @@
 {
   "id": "grensen_kjopesenter",
-  "name": "Grensen – handelens sentrum",
-  "lat": 59.9138,
-  "lon": 10.7441,
-  "r": 120,
+  "name": "Grensen – handelsgate",
+  "lat": 59.91337935,
+  "lon": 10.74439645,
+  "r": 170,
   "category": "naeringsliv",
   "year": 1800,
   "desc": "Fra kolonialhandel og manufaktur til moderne butikker – handelens hovedgate siden 1800-tallet.",
@@ -14,12 +14,12 @@
     "em_by_kommersielle_gater"
   ],
   "quiz_profile": {
-    "place_type": "knutepunkt",
-    "subtype": "handel_distribusjon",
+    "place_type": "gate",
+    "subtype": "historisk_handelsgate",
     "signature_features": [
-      "Grensen – handelens sentrum",
-      "Fra kolonialhandel og manufaktur til moderne butikker – handelens hovedgate siden 1800-tal",
-      "knyttet til næringslivets infrastruktur"
+      "historisk handelsgate mellom Stortorvet og Professor Aschehougs plass",
+      "tett sentrumshandel og vareflyt langs et kort lineært gateløp",
+      "fysisk gatestruktur dokumentert med flere OSM-segmenter og to endeankre"
     ],
     "primary_angles": [
       "historie",
@@ -46,6 +46,38 @@
       "jernbanetorget",
       "barcode"
     ],
-    "notes": "Spør stedet gjennom arbeid, infrastruktur og byøkonomi, ikke bare bygningens utseende."
-  }
+    "notes": "Spør Grensen som historisk handelsgate og lineært byrom, ikke som kjøpesenter eller generisk knutepunkt."
+  },
+  "locatorType": "street",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "oslobyleksikon:grensen",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "coordType": "street_midpoint",
+  "coordStatus": "verified_geometry",
+  "coordSource": "Oslo byleksikon – Grensen; OpenStreetMap ways 67882889, 179095459 og 696754516",
+  "coordSourceId": "oslobyleksikon:grensen",
+  "coordSourceUrl": "https://oslobyleksikon.no/side/Grensen",
+  "coordVerifiedAt": "2026-07-20",
+  "coordNote": "Recorden representerer gaten Grensen, ikke et kjøpesenter eller ett knutepunkt. Oslo byleksikon avgrenser gaten fra Møllergata ved Stortorvet til Professor Aschehougs plass. History Go bruker et representativt linjeanker (line_anchor) mellom de to dokumenterte gateendene. Tre eksakte OSM-way-segmenter med navnet Grensen dokumenterer den fysiske gaten; fordi østlige deler er modellert som parallelle kjørebaner og ikke deler alle noder med vestsegmentet, behandles de som segmentgeometri og ikke som én kunstig sammenhengende polyline.",
+  "anchors": [
+    {
+      "id": "grensen_nordvest_professor_aschehougs_plass",
+      "name": "Grensen nordvest – Professor Aschehougs plass",
+      "type": "route_point",
+      "lat": 59.9140357,
+      "lon": 10.7426391,
+      "r": 55,
+      "sourceObjectId": "osm-node:1180721060"
+    },
+    {
+      "id": "grensen_sorost_stortorvet_mollergata",
+      "name": "Grensen sørøst – Møllergata ved Stortorvet",
+      "type": "route_point",
+      "lat": 59.912723,
+      "lon": 10.7461538,
+      "r": 55,
+      "sourceObjectId": "osm-node:1894342703"
+    }
+  ]
 }
