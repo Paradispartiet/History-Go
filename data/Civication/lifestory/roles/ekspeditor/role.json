@@ -52,23 +52,91 @@
   "endings": [
     {
       "id": "trygg_paa_gulvet",
-      "navn": "Trygg på gulvet"
+      "navn": "Trygg på gulvet",
+      "tekst": "Du holdt flyten uten å miste nøyaktigheten: rettet feil synlig, var ærlig om lageret, holdt reglene selv i kø. Kundene fikk en de kunne stole på — og du ble trygg der du sto.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 70
+          }
+        },
+        "flagg": {
+          "rettet_feilen_synlig": true,
+          "aerlig_om_lageret": true,
+          "holdt_regelen": true
+        }
+      },
+      "standard": true
     },
     {
       "id": "faar_ting_unna",
-      "navn": "En som bare får ting unna"
+      "navn": "En som bare får ting unna",
+      "tekst": "Du fikk ting unna — raskt, effektivt, uten å henge deg opp i detaljer. Køen gikk fort. Om det holdt kvalitet for neste skift, er en annen sak.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "min": 40
+          }
+        },
+        "flagg": {
+          "aapnet_raskt": true,
+          "kuttet_lukkingen": true,
+          "gjettet_prisen": true
+        }
+      }
     },
     {
       "id": "nokkelbaerer",
-      "navn": "Nøkkelbærer"
+      "navn": "Nøkkelbærer",
+      "tekst": "Du fant lovlige løsninger der andre ga etter, tok ansvar for lukkingen, holdt standarden når ingen så på. Tillit er en nøkkel man får utlevert — og du fikk den.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 60
+          }
+        },
+        "flagg": {
+          "fant_lovlig_losning": true,
+          "tok_nokkelansvar": true,
+          "ryddet_for_neste_skift": true
+        }
+      }
     },
     {
       "id": "mistet_tilliten",
-      "navn": "Mistet tilliten"
+      "navn": "Mistet tilliten",
+      "tekst": "Du bøyde reglene, ga etter for press, skyldte på kunden. Det gikk fort der og da — men tillit som gis bort én gang, kreves inn dyrere neste gang.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "max": 45
+          }
+        },
+        "flagg": {
+          "ga_etter_igjen": true,
+          "boyde_regelen": true,
+          "skyldte_paa_kunden": true
+        }
+      }
     },
     {
       "id": "butikksjef_emne",
-      "navn": "Butikksjef-emne"
+      "navn": "Butikksjef-emne",
+      "tekst": "Du så hele gulvet, ikke bare din egen kasse: lærte bort metoder, ryddet for neste skift, tok nøkkelansvar. Det er sånt en butikksjef gjøres av.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "min": 47
+          },
+          "integritet": {
+            "min": 60
+          }
+        },
+        "flagg": {
+          "laerte_bort_metoden": true,
+          "tok_nokkelansvar": true
+        }
+      }
     }
   ],
   "startState": {
