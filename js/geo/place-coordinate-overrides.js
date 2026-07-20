@@ -20,17 +20,30 @@
     return typeof value === "number" && Number.isFinite(value);
   }
 
+  function asOptions(value) {
+    return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+  }
+
+  function optionsFromArgs(args) {
+    for (let i = args.length - 1; i >= 0; i -= 1) {
+      const candidate = asOptions(args[i]);
+      if (Object.keys(candidate).length || args[i] === candidate) return candidate;
+    }
+    return {};
+  }
+
   function dataUrl(filename) {
     const base = String(DataHub.DEFAULTS?.DATA_BASE || "data").replace(/\/+$/, "");
     return `${base}/places/${filename}`;
   }
 
   async function loadCoordinateOverrides(opts = {}) {
-    if (coordinateOverridesPromise && !opts?.bust) return coordinateOverridesPromise;
+    opts = asOptions(opts);
+    if (coordinateOverridesPromise && !opts.bust) return coordinateOverridesPromise;
 
     coordinateOverridesPromise = DataHub.fetchJSON(dataUrl("coordinate_overrides.json"), {
       ...opts,
-      cache: opts?.cache || "no-store"
+      cache: opts.cache || "no-store"
     })
       .then((data) => Array.isArray(data) ? data : [])
       .catch(() => []);
@@ -39,11 +52,12 @@
   }
 
   async function loadCategoryOverrides(opts = {}) {
-    if (categoryOverridesPromise && !opts?.bust) return categoryOverridesPromise;
+    opts = asOptions(opts);
+    if (categoryOverridesPromise && !opts.bust) return categoryOverridesPromise;
 
     categoryOverridesPromise = DataHub.fetchJSON(dataUrl("category_overrides.json"), {
       ...opts,
-      cache: opts?.cache || "no-store"
+      cache: opts.cache || "no-store"
     })
       .then((data) => Array.isArray(data) ? data : [])
       .catch(() => []);
@@ -89,7 +103,8 @@
     const normalizer = window.DomainRegistry?.toRuntimeCategoryId;
     if (typeof normalizer === "function") {
       try {
-        return { id, category: String(normalizer(category) || "").trim() };
+        const normalizedCategory = String(normalizer(category) || "").trim();
+        return normalizedCategory ? { id, category: normalizedCategory } : null;
       } catch (err) {
         console.warn("[place-overrides] ugyldig kategori-override", id, category, err);
         return null;
@@ -178,6 +193,7 @@
 
   const originalLoadPlacesBase = DataHub.loadPlacesBase.bind(DataHub);
   DataHub.loadPlacesBase = async function loadPlacesBaseWithOverrides(opts = {}) {
+    opts = asOptions(opts);
     const [places, coordinateOverrides, categoryOverrides] = await Promise.all([
       originalLoadPlacesBase(opts),
       loadCoordinateOverrides(opts),
@@ -196,9 +212,10 @@
     if (typeof original !== "function") continue;
 
     DataHub[methodName] = async function placeMethodWithCategoryOverrides(...args) {
+      const opts = optionsFromArgs(args);
       const [result, categoryOverrides] = await Promise.all([
         Reflect.apply(original, DataHub, args),
-        loadCategoryOverrides(args[1] || args[0] || {}),
+        loadCategoryOverrides(opts),
       ]);
       return applyCategoryOverrides(result, categoryOverrides);
     };
