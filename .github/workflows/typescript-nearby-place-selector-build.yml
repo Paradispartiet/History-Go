@@ -26,9 +26,31 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Apply Nearby place selector extraction
         run: python3 .github/scripts/apply_nearby_place_selector.py
-      - name: Verify browser TypeScript and generate bundle
+      - name: Capture browser TypeScript diagnostics
+        shell: bash
         run: |
-          npm run typecheck:web
+          set +e
+          npm run typecheck:web > nearby-place-selector-typecheck.log 2>&1
+          status=$?
+          echo "exit_code=$status" >> nearby-place-selector-typecheck.log
+          echo "$status" > nearby-place-selector-typecheck.status
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nearby-place-selector-typecheck
+          path: |
+            nearby-place-selector-typecheck.log
+            nearby-place-selector-typecheck.status
+          retention-days: 1
+      - name: Stop on typecheck failure
+        shell: bash
+        run: |
+          status=$(cat nearby-place-selector-typecheck.status)
+          if [ "$status" != "0" ]; then
+            exit "$status"
+          fi
+      - name: Generate browser bundle
+        run: |
           npm run build:web
           git diff --check
       - name: Commit integration and generated browser runtime
