@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const tempPath = path.resolve('scripts/.art-queue-tail-current-main-job.mjs');
+const tempPath = path.resolve('scripts/.art-queue-tail-direct-job.mjs');
 const sourceUrl = 'https://raw.githubusercontent.com/Paradispartiet/History-Go/f734447aac2f49555f250666baa2dee4b4264708/scripts/coordinate-branch-job.mjs';
 const response = await fetch(sourceUrl);
 if (!response.ok) {
@@ -10,6 +10,28 @@ if (!response.ok) {
 }
 
 let source = await response.text();
+const selfRebaseBlock = `const run = (args) => execFileSync('git', args, { stdio: 'inherit' });
+const selfPath = path.resolve('scripts/coordinate-branch-job.mjs');
+const selfSource = fs.readFileSync(selfPath, 'utf8');
+const branchName = execFileSync('git', ['branch', '--show-current'], { encoding: 'utf8' }).trim();
+if (!branchName) throw new Error('Kunne ikke identifisere koordinatbranchen.');
+
+run(['config', 'user.name', 'github-actions[bot]']);
+run(['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
+run(['fetch', 'origin', 'main']);
+run(['reset', '--hard', 'origin/main']);
+fs.mkdirSync(path.dirname(selfPath), { recursive: true });
+fs.writeFileSync(selfPath, selfSource);
+run(['add', 'scripts/coordinate-branch-job.mjs']);
+run(['commit', '-m', 'Rebase art queue coordinate runner onto latest main']);
+run(['push', '--force-with-lease', 'origin', \`HEAD:\${branchName}\`]);
+
+`;
+if (!source.includes(selfRebaseBlock)) {
+  throw new Error('Fant ikke self-rebase-blokken i immutable art-queue-runner.');
+}
+source = source.replace(selfRebaseBlock, '');
+
 const oldTotalBlock = `const totalMatch = protocol.match(/Oslo-tabellen inneholder nå (\\d+) (?:dokumenterte )?verifiserte eller kildekontrollerte canonical steder\\./);
 if (!totalMatch) throw new Error('Kunne ikke lese Oslo-totalen i protokollen.');
 const newTotal = Number(totalMatch[1]) + ids.length;`;
@@ -20,7 +42,6 @@ const osloPrimarySection = protocol.slice(osloSectionStart, osloCorrectionsMarke
 const existingVerifiedIds = new Set([...osloPrimarySection.matchAll(/^\\|\\s*\\d+\\s*\\|\\s*\\x60([^\\x60]+)\\x60\\s*\\|/gm)].map((match) => match[1]));
 const newIds = ids.filter((id) => !existingVerifiedIds.has(id));
 const newTotal = existingVerifiedIds.size + newIds.length;`;
-
 if (!source.includes(oldTotalBlock)) {
   throw new Error('Fant ikke den gamle Oslo-tellerblokken i immutable art-queue-runner.');
 }
