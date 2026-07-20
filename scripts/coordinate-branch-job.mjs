@@ -4,11 +4,8 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const REPORT_DIR = 'reports/oslo-coordinate-control-batch-40';
 const PLACE_MANIFEST = 'data/places/manifest.json';
-const BBOX = '59.85,10.60,60.02,10.90';
-const OVERPASS_ENDPOINTS = [
-  'https://overpass.kumi.systems/api/interpreter',
-  'https://overpass-api.de/api/interpreter'
-];
+const ENTUR_GEOCODER = 'https://api.entur.io/geocoder/v1/autocomplete';
+const OSLO_LOCALITY = 'KVE:TopographicPlace:0301';
 
 const anchors = [
   { key: 'gaustadalleen', name: 'Gaustadalléen', role: 'shared_west_terminus' },
@@ -55,74 +52,88 @@ function activeSource(placeId) {
   }
   return hits;
 }
-function coordinateFor(element) {
-  if (typeof element.lat === 'number' && typeof element.lon === 'number') return { lat: element.lat, lon: element.lon };
-  if (element.center && typeof element.center.lat === 'number' && typeof element.center.lon === 'number') return { lat: element.center.lat, lon: element.center.lon };
-  return null;
-}
-function toCandidate(element) {
-  return {
-    osm_type: element.type,
-    osm_id: element.id,
-    sourceObjectId: `osm-${element.type}:${element.id}`,
-    coordinate: coordinateFor(element),
-    tags: element.tags || {},
-    memberCount: Array.isArray(element.members) ? element.members.length : 0
-  };
+
+function featureCoordinate(feature) {
+  const coords = feature?.geometry?.coordinates;
+  if (!Array.isArray(coords) || coords.length < 2) return null;
+  const [lon, lat] = coords;
+  return typeof lat === 'number' && typeof lon === 'number' ? { lat, lon } : null;
 }
 
-const namesRegex = `^(${anchors.map((anchor) => anchor.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`;
-const query = `[out:json][timeout:90];\n(\n  rel["name"~"${namesRegex}"]["type"="public_transport"]["public_transport"="stop_area"](${BBOX});\n  nwr["name"~"${namesRegex}"]["railway"="tram_stop"](${BBOX});\n  nwr["name"~"${namesRegex}"]["public_transport"="stop_position"](${BBOX});\n  nwr["name"~"${namesRegex}"]["public_transport"="platform"](${BBOX});\n);\nout center tags;`;
+function featureName(feature) {
+  return String(feature?.properties?.name || feature?.properties?.label || '').trim();
+}
 
-async function fetchOverpass() {
-  const attempts = [];
-  for (const endpoint of OVERPASS_ENDPOINTS) {
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-          'User-Agent': 'History-Go-coordinate-control/1.0 (repository audit)'
-        },
-        body: new URLSearchParams({ data: query }).toString()
-      });
-      attempts.push({ endpoint, status: response.status });
-      if (!response.ok) continue;
-      return { endpoint, attempts, payload: await response.json() };
-    } catch (error) {
-      attempts.push({ endpoint, error: String(error) });
+function featureId(feature) {
+  return String(feature?.properties?.id || feature?.properties?.gid || '').trim();
+}
+
+function categoryValues(feature) {
+  const category = feature?.properties?.category;
+  if (Array.isArray(category)) return category.map(String);
+  if (typeof category === 'string') return [category];
+  const categories = feature?.properties?.categories;
+  return Array.isArray(categories) ? categories.map(String) : [];
+}
+
+async function enturAutocomplete(name) {
+  const url = new URL(ENTUR_GEOCODER);
+  url.searchParams.set('text', name);
+  url.searchParams.set('lang', 'no');
+  url.searchParams.set('size', '25');
+  url.searchParams.set('layers', 'venue');
+  url.searchParams.set('boundary.locality_ids', OSLO_LOCALITY);
+  url.searchParams.set('multiModal', 'all');
+  const response = await fetch(url, {
+    headers: {
+      'ET-Client-Name': 'Paradispartiet-History-Go',
+      'User-Agent': 'History-Go-coordinate-control/1.0'
     }
-  }
-  throw new Error(`All Overpass endpoints failed: ${JSON.stringify(attempts)}`);
+  });
+  if (!response.ok) throw new Error(`Entur geocoder ${response.status} for ${name}`);
+  return { url: url.toString(), payload: await response.json() };
 }
 
-const { endpoint, attempts, payload } = await fetchOverpass();
-writeJson(`${REPORT_DIR}/overpass-results/all-route-anchors.json`, { endpoint, attempts, query, payload });
-
-const allCandidates = (payload.elements || []).map(toCandidate);
-const researched = anchors.map((anchor) => {
-  const candidates = allCandidates.filter((candidate) => candidate.tags.name === anchor.name);
-  const preferredStopAreas = candidates.filter((candidate) => candidate.osm_type === 'relation' && candidate.tags.type === 'public_transport' && candidate.tags.public_transport === 'stop_area');
-  const tramStops = candidates.filter((candidate) => candidate.tags.railway === 'tram_stop');
-  const stopPositions = candidates.filter((candidate) => candidate.tags.public_transport === 'stop_position');
-  const platforms = candidates.filter((candidate) => candidate.tags.public_transport === 'platform');
-  const decisionHint = preferredStopAreas.length === 1
-    ? 'unique_stop_area_relation'
-    : preferredStopAreas.length > 1
-      ? 'multiple_stop_area_relations'
-      : tramStops.length === 1
-        ? 'unique_tram_stop_object'
-        : stopPositions.length === 1
-          ? 'unique_stop_position_object'
-          : 'needs_manual_candidate_review';
-  return { ...anchor, candidates, preferredStopAreas, tramStops, stopPositions, platforms, decisionHint };
-});
+const researched = [];
+for (const anchor of anchors) {
+  const { url, payload } = await enturAutocomplete(anchor.name);
+  writeJson(`${REPORT_DIR}/entur-results/${anchor.key}.json`, { name: anchor.name, role: anchor.role, requestUrl: url, payload });
+  const candidates = (payload.features || []).map((feature) => ({
+    name: featureName(feature),
+    id: featureId(feature),
+    coordinate: featureCoordinate(feature),
+    layer: feature?.properties?.layer || '',
+    categories: categoryValues(feature),
+    locality: feature?.properties?.locality || '',
+    county: feature?.properties?.county || '',
+    label: feature?.properties?.label || '',
+    source: feature?.properties?.source || '',
+    rawProperties: feature?.properties || {}
+  }));
+  const exactName = candidates.filter((candidate) => candidate.name.toLocaleLowerCase('nb-NO') === anchor.name.toLocaleLowerCase('nb-NO'));
+  const tramRelevant = exactName.filter((candidate) => candidate.categories.some((category) => /tram/i.test(category)));
+  const nsrCandidates = exactName.filter((candidate) => /^NSR:StopPlace:/i.test(candidate.id) || /NSR:StopPlace:/i.test(candidate.id));
+  let decisionHint = 'needs_manual_candidate_review';
+  let preferredCandidates = [];
+  if (tramRelevant.length === 1) {
+    decisionHint = 'unique_exact_tram_stop';
+    preferredCandidates = tramRelevant;
+  } else if (tramRelevant.length > 1) {
+    decisionHint = 'multiple_exact_tram_stops';
+    preferredCandidates = tramRelevant;
+  } else if (nsrCandidates.length === 1) {
+    decisionHint = 'unique_exact_nsr_stop_place';
+    preferredCandidates = nsrCandidates;
+  } else if (nsrCandidates.length > 1) {
+    decisionHint = 'multiple_exact_nsr_stop_places';
+    preferredCandidates = nsrCandidates;
+  }
+  researched.push({ ...anchor, candidates, exactName, tramRelevant, nsrCandidates, preferredCandidates, decisionHint });
+}
 
 writeJson(`${REPORT_DIR}/research-summary.json`, {
   date: '2026-07-20',
-  method: 'Current Ruter route definition is authoritative. Exact-name OSM public-transport objects are collected in one combined Overpass request with endpoint fallback. stop_area relation is preferred, then a unique tram_stop/stop_position object. No nearest or first result is selected.',
-  overpassEndpoint: endpoint,
-  overpassAttempts: attempts,
+  method: 'Ruter current timetable defines the route branches. Entur National Stop Register/Geocoder supplies official stop-place anchor candidates. Exact name is required; a unique tram-relevant stop is preferred, otherwise a unique NSR StopPlace. No nearest or first result is selected.',
   activeSource: activeSource('trikk_17_18'),
   officialRouteDefinition: {
     sourceProvider: 'official_map',
@@ -131,26 +142,29 @@ writeJson(`${REPORT_DIR}/research-summary.json`, {
     sourceObjectId: 'ruter:tram-lines:17+18:2026-04-20',
     line17: 'Gaustadalléen – Sinsen – Grefsen stasjon',
     line18: 'Gaustadalléen – Storo – Grefsen stasjon',
-    modellingNote: 'Combined record is a branched route pair. Required anchors: shared west terminus, shared central anchor before/at route split, line-17 branch anchor, line-18 branch anchor, shared Grefsen terminus.'
+    modellingNote: 'Combined record is a branched route pair. Required anchors: shared west terminus, shared central anchor, line-17 branch anchor, line-18 branch anchor, shared Grefsen terminus.'
+  },
+  stopRegistrySource: {
+    sourceProvider: 'official_map',
+    sourceName: 'Entur National Stop Register via Geocoder API',
+    sourceUrl: 'https://api.entur.io/geocoder/v1/autocomplete',
+    sourceObjectId: 'entur:nsr-geocoder',
+    note: 'NSR is the national master database for public transport stops; Geocoder venue results expose current stop place IDs and positions.'
   },
   anchorResearch: researched
 });
 
 fs.mkdirSync(abs(REPORT_DIR), { recursive: true });
-fs.writeFileSync(abs(`${REPORT_DIR}/README.md`), `# Oslo koordinatkontroll – batch 40 research\n\nDato: 2026-07-20\n\nRuters gjeldende rutetabell fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Combined-recorden vurderes som et forgrenet rutepar, ikke ett symbolsk midtpunkt.\n\nResearch-passet bruker én kombinert OSM/Overpass-query med endpoint-fallback. Ett entydig public_transport=stop_area-objekt foretrekkes per anker; ellers kan bare ett entydig tram_stop- eller stop_position-objekt brukes. Ingen nærmeste- eller første-treff-gjetting er tillatt.\n`);
+fs.writeFileSync(abs(`${REPORT_DIR}/README.md`), `# Oslo koordinatkontroll – batch 40 research\n\nDato: 2026-07-20\n\nRuters gjeldende rutetabell fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Combined-recorden vurderes som et forgrenet rutepar, ikke ett symbolsk midtpunkt.\n\nAnkerresearch bruker Enturs nasjonale stoppregister via Geocoder API. Bare eksakt navnematch vurderes; ett entydig trikkerelevant stopp foretrekkes, ellers ett entydig NSR StopPlace. Ingen nærmeste- eller første-treff-gjetting er tillatt.\n`);
 
 console.log(JSON.stringify({
   ok: true,
-  overpassEndpoint: endpoint,
-  attempts,
-  anchorResearch: researched.map(({ key, name, role, decisionHint, preferredStopAreas, tramStops, stopPositions, platforms }) => ({
+  anchorResearch: researched.map(({ key, name, role, decisionHint, preferredCandidates, exactName }) => ({
     key,
     name,
     role,
     decisionHint,
-    preferredStopAreas,
-    tramStops,
-    stopPositions,
-    platforms
+    preferredCandidates,
+    exactName
   }))
 }, null, 2));
