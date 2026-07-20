@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T17:05:51.329Z
+Generert: 2026-07-20T17:20:47.849Z
 
 ## Oppsummering
-- Aktive filer validert: **543**
+- Aktive filer validert: **544**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **429**
@@ -561,6 +561,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/norway/oslo_sport/sorenga_sjobad.json
 - data/places/historie/oslo/places_historie/ekeberg_helleristninger.json
 - data/places/sport/europa/norway/oslo_sport/frigo_friluftssenteret.json
+- data/places/kunst/oslo/places_kunst/galleri_map.json
 
 ## Harde feil
 - Ingen

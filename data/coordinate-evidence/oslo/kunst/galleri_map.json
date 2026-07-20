@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "galleri_map",
+  "placeFile": "data/places/kunst/oslo/places_kunst/galleri_map.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.914355410309014,
+    "lon": 10.767876268395765,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 32, OSLO, source object geonorge-adresser-v1:0301:17875:32. Punktet brukes som display- og unlock-anker for Galleri MAPs faste galleriadresse. Galleriidentiteten og dagens besøksadresse er kryssjekket mot galleriets egen nettside; en uavhengig lokalhistorisk koordinat ligger praktisk talt på samme punkt."
+  },
+  "identity": {
+    "currentName": "Galleri MAP",
+    "resolvedIdentity": "Galleri MAP, fast kunstgalleri i Tøyengata 32",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "aktuell galleridentitet og besøksadresse",
+    "duplikatkontroll mot canonical kunststeder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=T%C3%B8yengata%2032%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:32",
+      "sourceQuality": "official_address_plus_current_gallery_identity",
+      "finding": "Geonorge gir ett entydig adressepunkt for Tøyengata 32. Galleri MAPs egen nettside oppgir samme faste galleriadresse, og repo-auditen fant ingen eksisterende canonical place med samme institusjonsidentitet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 32, OSLO, source object geonorge-adresser-v1:0301:17875:32. Punktet brukes som display- og unlock-anker for Galleri MAPs faste galleriadresse. Galleriidentiteten og dagens besøksadresse er kryssjekket mot galleriets egen nettside; en uavhengig lokalhistorisk koordinat ligger praktisk talt på samme punkt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Tøyengata 32 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:32",
+      "lat": 59.914355410309014,
+      "lon": 10.767876268395765,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:32",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.914355410309014,
+      "lon": 10.767876268395765,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 32, OSLO, source object geonorge-adresser-v1:0301:17875:32. Punktet brukes som display- og unlock-anker for Galleri MAPs faste galleriadresse. Galleriidentiteten og dagens besøksadresse er kryssjekket mot galleriets egen nettside; en uavhengig lokalhistorisk koordinat ligger praktisk talt på samme punkt."
+  ]
+}
