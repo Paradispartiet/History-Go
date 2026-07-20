@@ -134,7 +134,15 @@ class SocialMeetSafetyService:
         *,
         now: datetime | None = None,
     ) -> SocialMeetDeletionResult:
-        self._actor(auth_user_id)
+        actor = self._actor(auth_user_id)
+        existing_deleted_at = self._safety_repository.get_deleted_at(auth_user_id)
+        if existing_deleted_at is not None:
+            return SocialMeetDeletionResult(
+                status="deleted",
+                profile_id=actor.profile_id,
+                deleted_at=existing_deleted_at,
+            )
+
         deleted_at = now or datetime.now(UTC)
         profile_id = self._safety_repository.mark_social_meet_deleted(auth_user_id, deleted_at)
         return SocialMeetDeletionResult(
