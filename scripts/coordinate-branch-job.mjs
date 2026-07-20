@@ -19,3 +19,4 @@ run('npm', ['run', 'typecheck:tools']);
 run('npm', ['run', 'typecheck:web']);
 run('git', ['diff', '--check']);
 console.log('Nybrua/Vaterlandsparken split production job completed.');
+// explicit coordinate-runner trigger
