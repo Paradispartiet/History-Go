@@ -1,303 +1,296 @@
-(function () {
-  "use strict";
+type LayerMode = "explore" | "map";
 
-  function readLayerIndex(property, fallback) {
-    const value = getComputedStyle(document.documentElement).getPropertyValue(property);
-    const parsed = Number.parseInt(value, 10);
-    return Number.isFinite(parsed) ? parsed : fallback;
-  }
+type LayerOptions = {
+  hideInMapMode?: boolean;
+  showInMapMode?: boolean;
+  ariaHiddenControlsDisplay?: boolean;
+  display?: string;
+};
 
-  // CSS eier lagkontrakten. Runtime bruker de samme variablene når inline
-  // z-index settes, slik at JS aldri kan gjeninnføre en annen lagrekkefølge.
-  const Z = {
-    MAP: readLayerIndex("--hg-z-map", 0),
-    MAP_CONTROLS: 50,
+type NormalizedLayerOptions = Required<LayerOptions>;
 
-    NEARBY: readLayerIndex("--hg-z-nearby", 80),
-    PLACECARD: readLayerIndex("--hg-z-placecard", 100),
-    FOOTER: readLayerIndex("--hg-z-footer", 110),
-    NEXTUP: 115,
-    HEADER: readLayerIndex("--hg-z-header", 120),
+type LayerEntry = {
+  name: string;
+  el: HTMLElement;
+  z: number;
+  opts: NormalizedLayerOptions;
+};
 
-    SEARCH: 130,   // #searchResults ligger i header, men ok å reservere
-    TOAST: 900,
-    MODAL: 1000
+type LayerManagerApi = {
+  init: () => void;
+  register: (name: string, element: Element | null, z: number, options?: LayerOptions) => LayerEntry | null;
+  show: (name: string) => void;
+  hide: (name: string) => void;
+  setMode: (mode: LayerMode) => void;
+  getMode: () => LayerMode;
+  Z: Readonly<Record<string, number>>;
+};
+
+type RuntimeWindow = Window & typeof globalThis & {
+  LayerManager?: LayerManagerApi;
+  HGMap?: {
+    resize?: () => void;
+    maybeDrawMarkers?: () => void;
   };
+};
 
-  const state = {
-    mode: "explore", // "explore" | "map"
-    layers: new Map(),
-    initialized: false
-  };
+const win = window as RuntimeWindow;
 
-  function $(sel) {
-    return document.querySelector(sel);
-  }
-
-  function byId(id) {
-    return document.getElementById(id);
-  }
-
-  function setZ(el, z) {
-    if (!el) return;
-    el.style.zIndex = String(z);
-  }
-
-function showEl(el, display = "") {
-  if (!el) return;
-  el.style.display = display || "";
-  el.style.pointerEvents = "";
+function readLayerIndex(property: string, fallback: number): number {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(property);
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-function hideEl(el) {
-  if (!el) return;
-  el.style.display = "none";
-  el.style.pointerEvents = "none";
+// CSS owns the layer contract. Runtime reads the same values whenever it must
+// apply an inline z-index, so JavaScript cannot silently create another order.
+const Z = Object.freeze({
+  MAP: readLayerIndex("--hg-z-map", 0),
+  MAP_CONTROLS: 50,
+  NEARBY: readLayerIndex("--hg-z-nearby", 80),
+  PLACECARD: readLayerIndex("--hg-z-placecard", 100),
+  FOOTER: readLayerIndex("--hg-z-footer", 110),
+  NEXTUP: 115,
+  HEADER: readLayerIndex("--hg-z-header", 120),
+  SEARCH: 130,
+  TOAST: 900,
+  MODAL: 1000
+});
+
+const state: {
+  mode: LayerMode;
+  layers: Map<string, LayerEntry>;
+  initialized: boolean;
+} = {
+  mode: "explore",
+  layers: new Map(),
+  initialized: false
+};
+
+function query(selector: string): HTMLElement | null {
+  return document.querySelector<HTMLElement>(selector);
 }
 
-  function register(name, el, z, opts = {}) {
-    if (!el) return null;
-    const entry = {
-      name,
-      el,
-      z,
-      opts: {
-        hideInMapMode: !!opts.hideInMapMode,
-        showInMapMode: !!opts.showInMapMode,
-        // If true, visibility is controlled by aria-hidden (default false)
-        ariaHiddenControlsDisplay: !!opts.ariaHiddenControlsDisplay,
-        // Default display when shown (optional)
-        display: opts.display ?? ""
-      }
-    };
-    state.layers.set(name, entry);
-    setZ(el, z);
-    return entry;
-  }
+function byId(id: string): HTMLElement | null {
+  return document.getElementById(id);
+}
 
-  function applyVisibilityFromAria(entry) {
-    const el = entry.el;
-    if (!el) return;
+function setZ(element: Element | null, z: number): void {
+  if (!(element instanceof HTMLElement)) return;
+  element.style.zIndex = String(z);
+}
 
-    // Only apply if this layer is aria-driven
-    if (!entry.opts.ariaHiddenControlsDisplay) return;
+function showEl(element: HTMLElement | null, display = ""): void {
+  if (!element) return;
+  element.style.display = display;
+  element.style.pointerEvents = "";
+}
 
-    const aria = el.getAttribute("aria-hidden");
-    const hidden = aria === "true";
+function hideEl(element: HTMLElement | null): void {
+  if (!element) return;
+  element.style.display = "none";
+  element.style.pointerEvents = "none";
+}
 
-    if (state.mode === "map") {
-      // Map mode overrides everything else (handled in applyMode)
-      return;
+function register(
+  name: string,
+  element: Element | null,
+  z: number,
+  options: LayerOptions = {}
+): LayerEntry | null {
+  if (!(element instanceof HTMLElement)) return null;
+
+  const entry: LayerEntry = {
+    name,
+    el: element,
+    z,
+    opts: {
+      hideInMapMode: Boolean(options.hideInMapMode),
+      showInMapMode: Boolean(options.showInMapMode),
+      ariaHiddenControlsDisplay: Boolean(options.ariaHiddenControlsDisplay),
+      display: options.display ?? ""
     }
+  };
 
-    if (hidden) hideEl(el);
-    else showEl(el, entry.opts.display);
+  state.layers.set(name, entry);
+  setZ(element, z);
+  return entry;
+}
+
+function applyVisibilityFromAria(entry: LayerEntry): void {
+  if (!entry.opts.ariaHiddenControlsDisplay || state.mode === "map") return;
+  const hidden = entry.el.getAttribute("aria-hidden") === "true";
+  if (hidden) hideEl(entry.el);
+  else showEl(entry.el, entry.opts.display);
+}
+
+function syncMapViewportLock(isMap: boolean): void {
+  const docEl = document.documentElement;
+  const body = document.body;
+  if (!docEl || !body) return;
+
+  if (isMap) {
+    window.scrollTo(0, 0);
+    docEl.scrollTop = 0;
+    body.scrollTop = 0;
+    docEl.classList.add("map-scroll-locked");
+    body.classList.add("map-scroll-locked");
+  } else {
+    docEl.classList.remove("map-scroll-locked");
+    body.classList.remove("map-scroll-locked");
   }
+}
 
-  
-
-  function syncMapViewportLock(isMap) {
-    const docEl = document.documentElement;
-    const body = document.body;
-    if (!docEl || !body) return;
-
-    if (isMap) {
-      window.scrollTo(0, 0);
-      docEl.scrollTop = 0;
-      body.scrollTop = 0;
-      docEl.classList.add("map-scroll-locked");
-      body.classList.add("map-scroll-locked");
-    } else {
-      docEl.classList.remove("map-scroll-locked");
-      body.classList.remove("map-scroll-locked");
-    }
-  }
-
-function applyMode(mode) {
+function applyMode(mode: LayerMode): void {
   state.mode = mode;
-
   const isMap = mode === "map";
 
   for (const entry of state.layers.values()) {
     const { el, opts, name } = entry;
-    if (!el) continue;
-
     if (name === "toast" || name === "badgeModal") continue;
+
+    // The map-controls host exists in both modes. CSS decides which controls are
+    // visible in explore mode (category filter only) and map mode (full dock).
+    if (name === "mapControls") {
+      showEl(el, "flex");
+      continue;
+    }
 
     if (isMap) {
       if (opts.showInMapMode) showEl(el, opts.display);
       else if (opts.hideInMapMode) hideEl(el);
       else showEl(el, opts.display);
-    } else {
-      if (opts.ariaHiddenControlsDisplay) {
-        applyVisibilityFromAria(entry);
-      } else {
-        showEl(el, opts.display);
-      }
+      continue;
     }
-  }
 
-  const mapControls = state.layers.get("mapControls")?.el || $(".map-controls");
-  if (mapControls) {
-    if (isMap) showEl(mapControls, "flex");
-    else hideEl(mapControls);
+    if (opts.ariaHiddenControlsDisplay) applyVisibilityFromAria(entry);
+    else showEl(el, opts.display);
   }
 
   document.body.classList.toggle("mode-map", isMap);
   syncMapViewportLock(isMap);
 
   if (isMap) {
-    // Make sure the map layer is visible before MapLibre measures/resizes,
-    // otherwise it only paints a thin grey strip.
+    // The map layer must be visible before MapLibre measures the viewport;
+    // otherwise a previously hidden map can render as a thin grey strip.
     const mapLayer = byId("mapLayer");
     const map = byId("map");
-    showEl(mapLayer || map, "");
+    showEl(mapLayer || map);
 
     requestAnimationFrame(() => {
-      window.HGMap?.resize?.();
-      window.HGMap?.maybeDrawMarkers?.();
+      win.HGMap?.resize?.();
+      win.HGMap?.maybeDrawMarkers?.();
     });
   }
 }
 
-  
-  function wireButtons() {
-    const btnSeeMap = byId("btnSeeMap");
-    const btnExitMap = byId("btnExitMap");
+function wireButtons(): void {
+  const btnSeeMap = byId("btnSeeMap");
+  const btnExitMap = byId("btnExitMap");
 
-    if (btnSeeMap) {
-      btnSeeMap.addEventListener("click", () => {
-        LayerManager.setMode(state.mode === "map" ? "explore" : "map");
-      });
-    }
-
-    if (btnExitMap) {
-      btnExitMap.addEventListener("click", () => {
-        LayerManager.setMode("explore");
-      });
-    }
-  }
-
-  function observeAriaHidden(layerName) {
-    const entry = state.layers.get(layerName);
-    if (!entry || !entry.el) return;
-
-    const el = entry.el;
-    const obs = new MutationObserver(() => applyVisibilityFromAria(entry));
-
-    obs.observe(el, { attributes: true, attributeFilter: ["aria-hidden"] });
-
-    // apply immediately
-    applyVisibilityFromAria(entry);
-  }
-
-  function init() {
-    if (state.initialized) return;
-    state.initialized = true;
-
-    // Core DOM from index (161).html
-    const header = $("header.site-header");
-    const mapLayer = byId("mapLayer");
-    const map = byId("map");
-    const mapControls = $(".map-controls");
-    const nearby = byId("nearbyListContainer");
-    const placeCard = byId("placeCard");
-    const footer = $(".app-footer");
-    const nextUp = byId("mpNextUp");
-    const toast = byId("toast");
-    const badgeModal = byId("badgeModal");
-
-    // Register layers
-    // mapLayer is the full-bleed map container; #map remains inside it for HGMap/MapLibre
-    register("map", mapLayer || map, Z.MAP, { display: "" });
-
-    register("mapControls", mapControls, Z.MAP_CONTROLS, {
-      display: "flex",
-      showInMapMode: true,
-      hideInMapMode: false
+  if (btnSeeMap) {
+    btnSeeMap.addEventListener("click", () => {
+      LayerManager.setMode(state.mode === "map" ? "explore" : "map");
     });
-
-    register("nearby", nearby, Z.NEARBY, {
-     hideInMapMode: true,
-     ariaHiddenControlsDisplay: false,
-     display: ""
-    
-    });
-
-    register("footer", footer, Z.FOOTER, {
-      hideInMapMode: true,
-      display: "flex"
-    });
-
-    register("nextUp", nextUp, Z.NEXTUP, {
-      hideInMapMode: true,
-      display: ""
-    });
-
-    // PlaceCard: visibility drives from aria-hidden in explore mode
-    register("placeCard", placeCard, Z.PLACECARD, {
-      hideInMapMode: true,
-      ariaHiddenControlsDisplay: false,
-      display: ""
-    });
-
-    register("header", header, Z.HEADER, {
-      hideInMapMode: true,
-      display: "flex"
-    });
-
-    // Toast + modal: always on top, we do not map-hide them
-    register("toast", toast, Z.TOAST, { display: "" });
-    register("badgeModal", badgeModal, Z.MODAL, { display: "" });
-
-    // Ensure fixed UI bits behave deterministically
-    setZ(header, Z.HEADER);
-    setZ(placeCard, Z.PLACECARD);
-    setZ(footer, Z.FOOTER);
-    setZ(nearby, Z.NEARBY);
-    setZ(mapControls, Z.MAP_CONTROLS);
-
-    // Map controls hidden in explore by default
-    if (mapControls) hideEl(mapControls);
-
-    // Observe nearby aria-hidden
-    observeAriaHidden("nearby");
-
-    // Wire map mode buttons
-    wireButtons();
-
-    // Apply initial mode
-    applyMode("explore");
   }
 
-  function show(name) {
-    const entry = state.layers.get(name);
-    if (!entry || !entry.el) return;
-    showEl(entry.el, entry.opts.display);
+  if (btnExitMap) {
+    btnExitMap.addEventListener("click", () => {
+      LayerManager.setMode("explore");
+    });
   }
+}
 
-  function hide(name) {
-    const entry = state.layers.get(name);
-    if (!entry || !entry.el) return;
-    hideEl(entry.el);
-  }
+function observeAriaHidden(layerName: string): void {
+  const entry = state.layers.get(layerName);
+  if (!entry) return;
 
-  function setMode(mode) {
-    if (mode !== "explore" && mode !== "map") return;
-    applyMode(mode);
-  }
+  const observer = new MutationObserver(() => applyVisibilityFromAria(entry));
+  observer.observe(entry.el, { attributes: true, attributeFilter: ["aria-hidden"] });
+  applyVisibilityFromAria(entry);
+}
 
-  function getMode() {
-    return state.mode;
-  }
+function init(): void {
+  if (state.initialized) return;
+  state.initialized = true;
 
-  window.LayerManager = {
-    init,
-    register,   // exposed for future layers (search overlay, quiz modal, etc.)
-    show,
-    hide,
-    setMode,
-    getMode,
-    Z
-  };
-})();
+  const header = query("header.site-header");
+  const mapLayer = byId("mapLayer");
+  const map = byId("map");
+  const mapControls = query(".map-controls");
+  const nearby = byId("nearbyListContainer");
+  const placeCard = byId("placeCard");
+  const footer = query(".app-footer");
+  const nextUp = byId("mpNextUp");
+  const toast = byId("toast");
+  const badgeModal = byId("badgeModal");
+
+  register("map", mapLayer || map, Z.MAP);
+  register("mapControls", mapControls, Z.MAP_CONTROLS, {
+    display: "flex",
+    showInMapMode: true
+  });
+  register("nearby", nearby, Z.NEARBY, {
+    hideInMapMode: true
+  });
+  register("footer", footer, Z.FOOTER, {
+    hideInMapMode: true,
+    display: "flex"
+  });
+  register("nextUp", nextUp, Z.NEXTUP, {
+    hideInMapMode: true
+  });
+  register("placeCard", placeCard, Z.PLACECARD, {
+    hideInMapMode: true
+  });
+  register("header", header, Z.HEADER, {
+    hideInMapMode: true,
+    display: "flex"
+  });
+  register("toast", toast, Z.TOAST);
+  register("badgeModal", badgeModal, Z.MODAL);
+
+  setZ(header, Z.HEADER);
+  setZ(placeCard, Z.PLACECARD);
+  setZ(footer, Z.FOOTER);
+  setZ(nearby, Z.NEARBY);
+  setZ(mapControls, Z.MAP_CONTROLS);
+
+  observeAriaHidden("nearby");
+  wireButtons();
+  applyMode("explore");
+}
+
+function show(name: string): void {
+  const entry = state.layers.get(name);
+  if (entry) showEl(entry.el, entry.opts.display);
+}
+
+function hide(name: string): void {
+  const entry = state.layers.get(name);
+  if (entry) hideEl(entry.el);
+}
+
+function setMode(mode: LayerMode): void {
+  if (mode !== "explore" && mode !== "map") return;
+  applyMode(mode);
+}
+
+function getMode(): LayerMode {
+  return state.mode;
+}
+
+const LayerManager: LayerManagerApi = {
+  init,
+  register,
+  show,
+  hide,
+  setMode,
+  getMode,
+  Z
+};
+
+win.LayerManager = LayerManager;
+
+export { LayerManager };
+export type { LayerEntry, LayerManagerApi, LayerMode, LayerOptions };
