@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "paulus_kirke",
+  "placeFile": "data/places/historie/oslo/places_historie/paulus_kirke.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9263530529718,
+    "lon": 10.757922110312622,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Entydig offisiell adressekoordinat for Thorvald Meyers gate 31, kryssjekket mot Den norske kirkes identifikasjon av Paulus kirke på samme adresse."
+  },
+  "identity": {
+    "currentName": "Paulus kirke",
+    "resolvedIdentity": "Paulus kirke, aktiv kirke ved Birkelunden i Thorvald Meyers gate 31",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "uavhengig dokumentert kirkebygning på samme adresse"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Thorvald%20Meyers%20gate%2031%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:31",
+      "sourceQuality": "exact_official_address",
+      "finding": "Geonorge returnerer ett tydelig treff for Thorvald Meyers gate 31, Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Den norske kirke identifiserer Paulus kirke på den samme adressen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Thorvald Meyers gate 31 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:31",
+      "lat": 59.9263530529718,
+      "lon": 10.757922110312622,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:31",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9263530529718,
+      "lon": 10.757922110312622,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact official address point applied to the canonical church place."
+  },
+  "notes": [
+    "Active church runtime category is handled through the canonical category override model."
+  ]
+}
