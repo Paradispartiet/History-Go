@@ -207,6 +207,6 @@ def _optional_string(value: object) -> str | None:
 
 
 def _string_tuple(value: object) -> tuple[str, ...]:
-    if not isinstance(value, (list, tuple)):
+    if not isinstance(value, list | tuple):
         return ()
     return tuple(str(item) for item in value if str(item).strip())
