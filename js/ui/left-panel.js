@@ -36,13 +36,7 @@ function hgActiveLeftPanelMode() {
   return window.HGLeftPanelMode?.getActiveMode?.() || "nearby";
 }
 
-function normalizeNearbySort(mode) {
-  return window.HGNearbyFilters?.normalizeSort?.(mode) || "distance";
-}
 
-function getNearbyControlsContainer(placeFilterBtn) {
-  return document.querySelector(".nearby-controls") || placeFilterBtn?.parentElement || null;
-}
 
 function updateNearbyControlVisibility() {
   window.HGLeftPanelMode?.updateControlVisibility?.();
@@ -124,26 +118,12 @@ function syncLeftPanelFrame() {
 // BADGE FILTER HELPERS
 // ============================================================
 
-let _badgeFilterTapLockedUntil = 0;
-
 function badgeFilterTapIsLocked() {
-  const now = Date.now();
-  if (now < _badgeFilterTapLockedUntil) return true;
-  _badgeFilterTapLockedUntil = now + 120;
-  return false;
+  return !!window.HGNearbyControls?.badgeFilterTapIsLocked?.();
 }
 
-function getCategoryById(id) {
-  return window.HGNearbyFilters?.getCategoryById?.(id) || null;
-}
 
-function getNearbyBadgeOptions() {
-  return window.HGNearbyFilters?.getBadgeOptions?.() || ["all"];
-}
 
-function normalizeBadgeFilter(id) {
-  return window.HGNearbyFilters?.normalizeBadgeFilter?.(id) || "all";
-}
 
 function getActiveBadgeFilter() {
   return window.HGNearbyFilters?.getActiveBadgeFilter?.() || "all";
@@ -248,67 +228,6 @@ function renderLeftBadges() {
 }
 
 // ============================================================
-// NEARBY BADGE FILTER BUTTON
-// ============================================================
-
-function ensureNearbyBadgeFilterButton(placeFilterBtn) {
-  if (!placeFilterBtn) return null;
-
-  const controls = getNearbyControlsContainer(placeFilterBtn);
-  if (!controls) return null;
-
-  let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbyBadgeFilterBtn"));
-  if (!btn) {
-    btn = document.createElement("button");
-    btn.id = "nearbyBadgeFilterBtn";
-    btn.className = "nearby-filter-icon nearby-badge-filter-icon";
-    btn.type = "button";
-    btn.setAttribute("aria-label", tUI("ui.badges.badgeFilter", "Badgefilter"));
-  }
-
-  const sortBtn = document.getElementById("nearbySortBtn");
-  controls.insertBefore(btn, sortBtn?.parentElement === controls ? sortBtn : null);
-  return btn;
-}
-
-function ensureNearbyFavoritesFilterButton(placeFilterBtn) {
-  if (!placeFilterBtn) return null;
-
-  const controls = getNearbyControlsContainer(placeFilterBtn);
-  if (!controls) return null;
-
-  let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbyFavoritesFilterBtn"));
-  if (!btn) {
-    btn = document.createElement("button");
-    btn.id = "nearbyFavoritesFilterBtn";
-    btn.className = "nearby-filter-icon nearby-favorites-filter-icon";
-    btn.type = "button";
-  }
-
-  controls.appendChild(btn);
-  return btn;
-}
-
-function ensureNearbySortButton(placeFilterBtn) {
-  if (!placeFilterBtn) return null;
-
-  const controls = getNearbyControlsContainer(placeFilterBtn);
-  if (!controls) return null;
-
-  let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbySortBtn"));
-  if (!btn) {
-    btn = document.createElement("button");
-    btn.id = "nearbySortBtn";
-    btn.className = "nearby-filter-icon nearby-sort-icon";
-    btn.type = "button";
-    btn.setAttribute("aria-label", tUI("ui.sort.sortDistance", "Sortering: avstand"));
-  }
-
-  controls.appendChild(btn);
-  return btn;
-}
-
-// ============================================================
 // INIT
 // ============================================================
 
@@ -376,150 +295,8 @@ function initLeftPanel() {
   }
 
 
-  // =====================================
-  // Nearby filter button
-  // =====================================
-
-  const btn = document.getElementById("nearbyFilterBtn");
-  const badgeBtn = ensureNearbyBadgeFilterButton(btn);
-  const favoritesBtn = ensureNearbyFavoritesFilterButton(btn);
-  const sortBtn = ensureNearbySortButton(btn);
-  updateNearbyControlVisibility();
-
-  const PLACES_ICONS = { unvisited: "🎯", unlocked: "🔓", all: "🌍" };
-
-  const NATURE_ICONS = { all: "🌍", unlocked: "🔓", flora: "🌿", fauna: "🐞" };
-  const SORT_ICONS = { distance: "📍", oldest: "⏳", newest: "🕰️" };
-  const SORT_TITLES = {
-    distance: () => tUI("ui.sort.sortDistance", "Sortering: Avstand"),
-    oldest: () => tUI("ui.sort.sortOldest", "Sortering: Eldst"),
-    newest: () => tUI("ui.sort.sortNewest", "Sortering: Nyest")
-  };
-
-  function updateBadgeFilterButton() {
-    if (!badgeBtn) return;
-    const activeMode = hgActiveLeftPanelMode();
-    if (activeMode === "nature") {
-      updateNearbyControlVisibility();
-      return;
-    }
-
-    const filter = getActiveBadgeFilter();
-    const cat = getCategoryById(filter);
-
-    if (!cat || filter === "all") {
-      badgeBtn.textContent = "🏅";
-      badgeBtn.title = tUI("ui.badges.badgeFilterAll", "Badgefilter: alle");
-      badgeBtn.setAttribute("aria-label", tUI("ui.badges.badgeFilterAll", "Badgefilter: alle"));
-      updateNearbyControlVisibility();
-      return;
-    }
-
-    badgeBtn.innerHTML = `<img src="bilder/merker/${cat.id}.PNG" alt="" loading="lazy" decoding="async" style="width:22px;height:22px;object-fit:contain;display:block;">`;
-    const badgeFilterCategory = tfUI("ui.badges.badgeFilterCategory", "Badgefilter: {category}", { category: cat.name || cat.id });
-    badgeBtn.title = badgeFilterCategory;
-    badgeBtn.setAttribute("aria-label", badgeFilterCategory);
-    updateNearbyControlVisibility();
-  }
-  window.updateNearbyBadgeFilterButton = updateBadgeFilterButton;
-
-  function updateFilterButton() {
-    if (!btn) return;
-    const mode = hgActiveLeftPanelMode();
-    if (mode === "nature") {
-      btn.style.display = "inline-flex";
-      btn.textContent = NATURE_ICONS[window.HG_NATURE_FILTER] || "🌍";
-      btn.title = `Natur-filter: ${window.HG_NATURE_FILTER}`;
-    } else if (mode === "nearby") {
-      btn.style.display = "inline-flex";
-      btn.textContent = PLACES_ICONS[window.HG_NEARBY_FILTER] || "🎯";
-      btn.title = `Filter: ${window.HG_NEARBY_FILTER}`;
-    } else {
-      btn.style.display = "none";
-    }
-
-    updateBadgeFilterButton();
-    updateNearbyControlVisibility();
-  }
-  window.updateNearbyFilterButton = updateFilterButton;
-
-  function updateNearbyFavoritesFilterButton() {
-    if (!favoritesBtn) return;
-    const active = !!window.HG_NEARBY_FAVORITES_ONLY;
-    favoritesBtn.classList.toggle("is-active", active);
-    favoritesBtn.textContent = active ? "★" : "☆";
-    const label = active ? "Favorittfilter: på" : "Favorittfilter: av";
-    favoritesBtn.title = label;
-    favoritesBtn.setAttribute("aria-label", label);
-    favoritesBtn.setAttribute("aria-pressed", active ? "true" : "false");
-    updateNearbyControlVisibility();
-  }
-  window.updateNearbyFavoritesFilterButton = updateNearbyFavoritesFilterButton;
-
-  function updateNearbySortButton() {
-    if (!sortBtn) return;
-    const mode = hgActiveLeftPanelMode();
-    const isSortableMode = mode === "nearby";
-    updateNearbyControlVisibility();
-    if (!isSortableMode) return;
-
-    const activeSort = normalizeNearbySort(window.HG_NEARBY_SORT);
-    sortBtn.textContent = SORT_ICONS[activeSort] || "📍";
-    const sortTitle = (SORT_TITLES[activeSort] || SORT_TITLES.distance)();
-    sortBtn.title = sortTitle;
-    sortBtn.setAttribute("aria-label", sortTitle);
-  }
-  window.updateNearbySortButton = updateNearbySortButton;
-
-  if (btn) {
-    btn.addEventListener("click", () => {
-      const mode = hgActiveLeftPanelMode();
-      if (mode === "nature") {
-        window.HGNearbyFilters?.cycleNatureFilter?.();
-        updateFilterButton();
-        if (typeof renderNearbyNature === "function") renderNearbyNature();
-      } else if (mode === "nearby") {
-        window.HGNearbyFilters?.cyclePlaceFilter?.();
-        updateFilterButton();
-        rerenderActiveLeftPanelMode();
-      }
-    });
-  }
-
-  if (badgeBtn) {
-    badgeBtn.addEventListener("click", () => {
-      if (badgeFilterTapIsLocked()) return;
-
-      const next = window.HGNearbyFilters?.cycleBadgeFilter?.() || "all";
-      setActiveBadgeFilter(next, { forceRender: true });
-    });
-  }
-
-  if (favoritesBtn) {
-    favoritesBtn.addEventListener("click", () => {
-      if (hgActiveLeftPanelMode() !== "nearby") return;
-      window.HGNearbyFilters?.toggleFavorites?.();
-      updateNearbyFavoritesFilterButton();
-      rerenderActiveLeftPanelMode();
-    });
-  }
-
-  if (sortBtn) {
-    sortBtn.addEventListener("click", () => {
-      const mode = hgActiveLeftPanelMode();
-      if (mode !== "nearby") return;
-
-      window.HGNearbyFilters?.cycleSort?.();
-      updateNearbySortButton();
-      rerenderActiveLeftPanelMode();
-    });
-  }
-
-  updateFilterButton();
-  updateBadgeFilterButton();
-  updateNearbyFavoritesFilterButton();
-  updateNearbySortButton();
-  updateNearbyControlVisibility();
+  // Filter control creation, rendering and interactions are owned by TypeScript.
+  window.HGNearbyControls?.bind?.();
 }
 
 // ============================================================

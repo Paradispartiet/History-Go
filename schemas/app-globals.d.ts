@@ -96,6 +96,19 @@ declare global {
       rerender?: () => void;
       updateControlVisibility?: () => void;
     };
+    HGNearbyControls?: {
+      bind?: () => void;
+      refresh?: () => void;
+      updateFilterButton?: () => void;
+      updateBadgeFilterButton?: () => void;
+      updateFavoritesFilterButton?: () => void;
+      updateSortButton?: () => void;
+      badgeFilterTapIsLocked?: () => boolean;
+    };
+    updateNearbyFilterButton?: () => void;
+    updateNearbyBadgeFilterButton?: () => void;
+    updateNearbyFavoritesFilterButton?: () => void;
+    updateNearbySortButton?: () => void;
     HGNearbyDrawer?: {
       isOpen?: () => boolean;
       setOpen?: (open: boolean) => void;
