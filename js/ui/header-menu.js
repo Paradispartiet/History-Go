@@ -1,6 +1,16 @@
 // Header menu: keeps secondary topbar tools out of the fixed header row while
 // preserving the original DOM ids/event hooks for search, map mode and panels.
 (function () {
+  function ensureLesesporStyles() {
+    if (document.querySelector('link[data-hg-lesespor-styles="1"]')) return;
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "css/lesespor.css";
+    link.dataset.hgLesesporStyles = "1";
+    document.head.appendChild(link);
+  }
+
   function promoteMinDayToHeader() {
     const minDayButton = document.getElementById("btnMinDag");
     const geoStatus = document.getElementById("geoStatus");
@@ -51,6 +61,7 @@
   }
 
   function initHeaderMenu() {
+    ensureLesesporStyles();
     promoteMinDayToHeader();
     setLesesporMenuLabel();
     ensureKnowledgeMenuEntry();
@@ -92,6 +103,10 @@
 
     panel.addEventListener("click", (event) => {
       event.stopPropagation();
+    });
+
+    document.getElementById("btnLesespor")?.addEventListener("click", () => {
+      headerMenuApi.close();
     });
 
     document.addEventListener("click", (event) => {
