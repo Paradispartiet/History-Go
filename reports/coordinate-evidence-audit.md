@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T07:43:45.556Z
+Generert: 2026-07-20T07:50:23.921Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -20,6 +20,8 @@ Generert: 2026-07-20T07:43:45.556Z
 | carl_berner_plass | data/coordinate-evidence/oslo/by/carl_berner_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | christiania_torv | data/coordinate-evidence/oslo/by/christiania_torv.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | damstredet_telthusbakken | data/coordinate-evidence/oslo/by/damstredet_telthusbakken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| fagerborg_kirke | data/coordinate-evidence/oslo/by/fagerborg_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| frogner_kirke | data/coordinate-evidence/oslo/by/frogner_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamle_radhus | data/coordinate-evidence/oslo/by/gamle_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamle_trikkestallen | data/coordinate-evidence/oslo/by/gamle_trikkestallen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlandsleiret | data/coordinate-evidence/oslo/by/gronlandsleiret.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -58,6 +60,7 @@ Generert: 2026-07-20T07:43:45.556Z
 | ullern | data/coordinate-evidence/oslo/by/ullern.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ullevål_hageby | data/coordinate-evidence/oslo/by/ullevål_hageby.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | universitetsplassen | data/coordinate-evidence/oslo/by/universitetsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| uranienborg_kirke | data/coordinate-evidence/oslo/by/uranienborg_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vaalerenga | data/coordinate-evidence/oslo/by/vaalerenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vigelandsparken | data/coordinate-evidence/oslo/by/vigelandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vinderen | data/coordinate-evidence/oslo/by/vinderen.json | applied_to_place | do_not_change_coordinates_yet | OK |

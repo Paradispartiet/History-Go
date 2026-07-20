@@ -1,0 +1,73 @@
+{
+  "placeId": "frogner_kirke",
+  "placeFile": "data/places/by/oslo/places/frogner_kirke.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91765709217892,
+    "lon": 10.70680343212464,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Bygdøy allé 36, OSLO. Punktet brukes som display- og unlock-marker for Frogner kirke-bygningen."
+  },
+  "identity": {
+    "currentName": "Frogner kirke",
+    "resolvedIdentity": "Frogner kirke at Bygdøy allé 36, Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "normative Geonorge address-first result for Bygdøy allé 36 Oslo",
+    "external institution and local-history sources"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bygd%C3%B8y%20all%C3%A9%2036%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10967:36",
+      "sourceQuality": "official_address_plus_institution_and_local_history_sources",
+      "finding": "Address-first lookup resolves the documented current church address for Frogner kirke.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Bygdøy allé 36, OSLO. Punktet brukes som display- og unlock-marker for Frogner kirke-bygningen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Bygdøy allé 36 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10967:36",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10967:36",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91765709217892,
+      "lon": 10.70680343212464,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keep the verified building-address marker and treat the church as one distinct canonical by place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Bygdøy allé 36, OSLO. Punktet brukes som display- og unlock-marker for Frogner kirke-bygningen."
+  ]
+}

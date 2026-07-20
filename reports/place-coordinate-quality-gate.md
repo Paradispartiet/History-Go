@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T07:43:38.410Z
+Generert: 2026-07-20T07:50:16.671Z
 
 ## Oppsummering
-- Aktive filer validert: **524**
+- Aktive filer validert: **527**
 - Antall steder validert: **1214**
 - Harde feil: **0**
 - Varsler: **428**
@@ -542,6 +542,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/norway/oslo_sport/ekt_rideskole_husdyrpark.json
 - data/places/kunst/oslo/places_kunst/dronning_sonja_kunststall.json
 - data/places/sport/europa/norway/oslo_sport/holmlia_bad.json
+- data/places/by/oslo/places/fagerborg_kirke.json
+- data/places/by/oslo/places/uranienborg_kirke.json
+- data/places/by/oslo/places/frogner_kirke.json
 
 ## Harde feil
 - Ingen
