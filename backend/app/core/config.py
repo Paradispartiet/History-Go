@@ -39,7 +39,6 @@ class Settings(BaseSettings):
     # the private PostgreSQL rollout flag introduced by migration 007.
     spotmeeting_invite_writes_enabled: bool = False
     spotmeeting_discovery_enabled: bool = False
-    spotmeeting_discovery_pool_limit: int = Field(default=200, ge=20, le=1000)
     spotmeeting_discovery_max_candidates: int = Field(default=20, ge=1, le=50)
     spotmeeting_discovery_stale_after_seconds: int = Field(default=300, ge=30, le=3600)
 
