@@ -3,6 +3,7 @@
   var win = window;
   var CATEGORY_LIST = [
     { id: "historie", name: "Historie", icon: "\u{1F3DB}\uFE0F", color: "#f6c800", scope: "runtime_domain" },
+    { id: "religion", name: "Religion", icon: "\u{1F6D0}", color: "#d7b46a", scope: "runtime_domain" },
     { id: "vitenskap", name: "Vitenskap & filosofi", icon: "\u{1F9EA}", color: "#6ee7ff", scope: "runtime_domain" },
     { id: "kunst", name: "Kunst & kultur", icon: "\u{1F3A8}", color: "#ff5aa5", scope: "runtime_domain" },
     { id: "musikk", name: "Musikk & scenekunst", icon: "\u{1F3AD}", color: "#b48cff", scope: "runtime_domain" },
