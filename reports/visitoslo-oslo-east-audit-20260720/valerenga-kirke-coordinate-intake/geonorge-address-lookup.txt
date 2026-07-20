@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Hjaltlandsgata 3 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Hjaltlandsgata 3 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hjaltlandsgata%203%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:12974:3",
+  "coordinate": {
+    "lat": 59.906858612988856,
+    "lon": 10.788310607669317,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:12974:3",
+    "address": {
+      "street": "Hjaltlandsgata",
+      "number": "3",
+      "postcode": "0658",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Hjaltlandsgata 3, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Hjaltlandsgata",
+    "adressetekst": "Hjaltlandsgata 3",
+    "adressetilleggsnavn": null,
+    "adressekode": 12974,
+    "nummer": 3,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 232,
+    "bruksnummer": 173,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0658",
+    "adressetekstutenadressetilleggsnavn": "Hjaltlandsgata 3",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.906858612988856,
+      "lon": 10.788310607669317
+    },
+    "oppdateringsdato": "2023-03-01T18:43:43"
+  }
+}
