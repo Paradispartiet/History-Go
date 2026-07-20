@@ -5,11 +5,13 @@ on:
     paths:
       - 'data/people/**'
       - 'data/places/**'
+      - 'data/quiz/**'
       - 'tests/etne-people-manifest-integration.test.js'
       - 'tests/etne-people-of-places-*.test.js'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
+      - 'scripts/audit-knowledge-contract.mjs'
       - 'data/Civication/historyPeople_index.json'
       - 'data/Civication/people_access_map.json'
       - 'tools/**'
@@ -128,3 +130,15 @@ jobs:
 
       - name: Run Knowledge V2 model tests
         run: npm run test:knowledge-v2
+
+      - name: Generate Knowledge contract audit
+        continue-on-error: true
+        run: npm run audit:knowledge
+
+      - name: Upload Knowledge contract audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-contract-audit
+          path: reports/knowledge-contract-audit.json
+          if-no-files-found: warn
