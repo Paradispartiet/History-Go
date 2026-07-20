@@ -8,3 +8,4 @@ run('npm',['run','typecheck:tools']);
 run('npm',['run','typecheck:web']);
 run('git',['diff','--check']);
 console.log('Vaterland clean validation completed on latest main.');
+// explicit clean validation trigger
