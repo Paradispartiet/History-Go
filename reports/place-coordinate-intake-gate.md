@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-20T23:29:57.532Z
+Generert: 2026-07-20T23:33:39.621Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,11 +12,11 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **8f00768cc906717735dea9e2b06c64b0ba00ff7e**
+- Base for nye/endrede place-objekter: **b1cac0a37f49dd79e056112717b42e1898dfa1c6**
 - Base method: **git merge-base HEAD origin/main**
 - Aktive manifest-filer lest: **562**
 - Place-objekter validert: **1217**
-- Nye/endrede koordinatobjekter mot base: **0**
+- Nye/endrede koordinatobjekter mot base: **1**
 - Blokkerende feil i denne kjøringen: **0**
 - Backlog-funn: **3356**
 - Rapport-warnings: **0**

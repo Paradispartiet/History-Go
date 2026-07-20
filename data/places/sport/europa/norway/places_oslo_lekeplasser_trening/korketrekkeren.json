@@ -1,8 +1,8 @@
 {
   "id": "korketrekkeren",
   "name": "Korketrekkeren",
-  "lat": 59.97722,
-  "lon": 10.67878,
+  "lat": 59.9790042,
+  "lon": 10.6762408,
   "r": 120,
   "category": "sport",
   "rounds": [
@@ -88,11 +88,40 @@
   },
   "locatorType": "route_start",
   "coordType": "route_start",
-  "coordStatus": "verified_source_coordinate",
-  "coordSource": "trailforks_trailhead_coordinate_crosschecked_with_oslo_kommune",
-  "coordSourceId": "trailforks:204744",
-  "coordSourceUrl": "https://www.trailforks.com/trails/korketrekkeren/",
-  "coordVerifiedAt": "2026-07-18",
-  "coordPrecisionM": 30,
-  "coordNote": "Trailforks oppgir trailhead 59.97722, 10.67878. Punktet er kryssjekket mot Oslo kommunes trasebeskrivelse og besøksadresse ved Frognerseteren. Displaymarkøren representerer toppen/startområdet, ikke et kunstig midpoint for den 2,7 km lange bakken."
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap route relation 1459739 + Oslo kommune route identity",
+  "coordSourceId": "osm-relation:1459739",
+  "coordSourceUrl": "https://www.openstreetmap.org/relation/1459739",
+  "coordVerifiedAt": "2026-07-21",
+  "coordNote": "Eksakt øvre endepunkt i OSM-ruterelasjon 1459739, eksplisitt navngitt Korketrekkeren og tagget type=route, route=sled og piste:type=sled. Relasjonen har 16 ordnede medlems-way-er fordelt på to internt sammenhengende komponenter: en 409 m øvre sled-del ved Frognerseteren og en 2027 m hoveddel mot Midtstuen. Mellom komponentene er et dokumentert kartgap på 31.8 m; derfor brukes relasjonen som semantisk ruteobjekt og det eksakte øvre relasjonsendepunktet som route_start, uten å hevde at hele traseen er én ubrutt polyline. Medlemgeometri pluss gap er 2467 m, innenfor ca.-angivelsen 2700 m fra Oslo kommune. Startankeret ligger 25 m fra Frognerseteren stasjon og nedre relasjonsende 41 m fra Midtstuen stasjon. Trailforks er fjernet som primær koordinatkilde.",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-relation:1459739",
+  "geocodeAccuracy": "exact_route_endpoint",
+  "coordRole": "route_start",
+  "routeAnchors": [
+    {
+      "role": "route_start",
+      "lat": 59.9790042,
+      "lon": 10.6762408,
+      "sourceObjectId": "osm-node:26485869"
+    },
+    {
+      "role": "component_gap_upper",
+      "lat": 59.9774571,
+      "lon": 10.678839,
+      "sourceObjectId": "osm-node:7542465149"
+    },
+    {
+      "role": "component_gap_lower",
+      "lat": 59.9771931,
+      "lon": 10.6786205,
+      "sourceObjectId": "osm-node:287211755"
+    },
+    {
+      "role": "route_end",
+      "lat": 59.961607,
+      "lon": 10.6835259,
+      "sourceObjectId": "osm-node:560084487"
+    }
+  ]
 }
