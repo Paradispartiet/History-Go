@@ -1,8 +1,14 @@
 import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import './materialize-groruddammen-nature-rounds.mjs';
 
-// One-shot job: the established main-branch runner executes this file,
-// publishes the generated content, and then removes the runner entrypoint.
+const run = (command, args) => execFileSync(command, args, { stdio: 'inherit' });
+run(process.execPath, ['tests/groruddammen-nature-rounds-batch1.test.js']);
+run(process.execPath, ['tests/oslo-nature-rounds-batch5-alna.test.js']);
+run(process.execPath, ['tests/oslo-nature-rounds-batch4.test.js']);
+run('bash', ['scripts/check-places.sh']);
+run('git', ['diff', '--check']);
+
 for (const file of [
   'scripts/materialize-groruddammen-nature-rounds.mjs',
   '.github/workflows/materialize-groruddammen-nature-rounds.yml',
@@ -11,4 +17,4 @@ for (const file of [
   fs.rmSync(file, { force: true });
 }
 
-console.log('Groruddammen materialized; temporary files removed.');
+console.log('Groruddammen materialized, tested, and temporary files removed.');
