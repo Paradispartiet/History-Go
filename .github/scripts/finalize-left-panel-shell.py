@@ -35,6 +35,23 @@ replace_once(
     '  "dist/web/left-panel.js",',
 )
 
+# Remove two accidental dependencies on globals leaked by the old classic script.
+replace_once(
+    "js/routes.js",
+    '  sel.addEventListener("change", () => setLeftPanelMode(sel.value));',
+    '  sel.addEventListener("change", () => hgWindow.setLeftPanelMode?.(sel.value));',
+)
+replace_once(
+    "js/routes.js",
+    '  setLeftPanelMode(sel.value || "nearby");',
+    '  hgWindow.setLeftPanelMode?.(sel.value || "nearby");',
+)
+replace_once(
+    "js/ui/place-card.js",
+    '  return hg$("placeCard");',
+    '  return document.getElementById("placeCard");',
+)
+
 # The favorites regression test should follow the new canonical owners rather than
 # keeping the deleted legacy shell file alive as a test fixture.
 test_path = Path("tests/nearby-card-favorite-control.test.js")
@@ -74,12 +91,15 @@ if legacy_shell.exists():
     legacy_shell.unlink()
 
 # The existing finalize workflow stages the canonical/build files itself. Stage the
-# runtime-path, cache and regression-test changes here so the bot commit is atomic.
+# runtime-path, cache, consumer cleanup and regression-test changes here so the bot
+# commit is atomic.
 subprocess.run(
     [
         "git", "add", "-A", "--",
         "js/app.js",
         "sw.js",
+        "js/routes.js",
+        "js/ui/place-card.js",
         "tests/nearby-card-favorite-control.test.js",
         "js/ui/left-panel.js",
     ],
