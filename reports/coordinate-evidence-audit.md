@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T21:18:32.353Z
+Generert: 2026-07-20T21:06:11.809Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -216,3 +216,4 @@ Generert: 2026-07-20T21:18:32.353Z
 | mariakirken_ruin_oslo | data/coordinate-evidence/oslo/historie/mariakirken_ruin_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | clemenskirken_ruin_oslo | data/coordinate-evidence/oslo/historie/clemenskirken_ruin_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | biblo_toyen | data/coordinate-evidence/oslo/litteratur/biblo_toyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ekebergparken_museum | data/coordinate-evidence/oslo/historie/ekebergparken_museum.json | applied_to_place | do_not_change_coordinates_yet | OK |
