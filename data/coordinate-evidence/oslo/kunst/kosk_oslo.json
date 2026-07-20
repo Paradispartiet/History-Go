@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kosk_oslo",
+  "placeFile": "data/places/kunst/oslo/places_kunst/kosk_oslo.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90679399014945,
+    "lon": 10.758198688033378,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Operagata 63C, OSLO. Punktet brukes som display- og unlock-anker for KÖSKs nåværende offentlige galleriadresse. Operagata 63A beholdes kun som alternativ hentings-/eldre oppføring og skal ikke ha en egen aktiv markør."
+  },
+  "identity": {
+    "currentName": "KÖSK",
+    "resolvedIdentity": "KÖSK contemporary art gallery at current public address Operagata 63C",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Operagata 63C",
+    "eksplisitt to-adresse-audit mot Operagata 63A",
+    "dokumentert nåværende offentlig galleriadresse på KÖSKs egne sider",
+    "duplikat- og fysisk overlap-kontroll mot Bjørvika-steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Operagata%2063C%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21508:63C",
+      "sourceQuality": "official_address_plus_current_gallery_identity",
+      "finding": "Geonorge returnerer entydige adressepunkter for både Operagata 63A og 63C. KÖSKs nåværende hoved-, kontakt- og om-sider bruker 63C konsekvent som offentlig galleriadresse; 63A opptrer som hentings-/VisitOSLO-adresse og produseres ikke som separat aktiv markør.",
+      "canVerifyCoordinate": true,
+      "reason": "63C er det sterkeste nåværende besøksankeret og har et eget entydig offisielt adressepunkt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Operagata 63C Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21508:63C",
+      "lat": 59.90679399014945,
+      "lon": 10.758198688033378,
+      "canApplyToPlace": true
+    },
+    {
+      "address": "Operagata 63A Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21508:63A",
+      "lat": 59.906685874683745,
+      "lon": 10.758291323082018,
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21508:63C",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21508:63A",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90679399014945,
+      "lon": 10.758198688033378,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, to-adresse-audit og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Operagata 63C, OSLO. Punktet brukes som display- og unlock-anker for KÖSKs nåværende offentlige galleriadresse. Operagata 63A beholdes kun som alternativ hentings-/eldre oppføring og skal ikke ha en egen aktiv markør."
+  ]
+}
