@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T04:46:03.702Z
+Generert: 2026-07-20T06:26:41.939Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -131,12 +131,10 @@ Generert: 2026-07-20T04:46:03.702Z
 | grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | needs_research | needs_geometry | OK |
 | grunnlovsbygget_bankplassen | data/coordinate-evidence/oslo/naeringsliv/grunnlovsbygget_bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| jernbanetorget_trafikknutepunkt | data/coordinate-evidence/oslo/naeringsliv/jernbanetorget_trafikknutepunkt.json | needs_research | needs_identity_split | OK |
 | jernbaneverkstedet_lodalen | data/coordinate-evidence/oslo/naeringsliv/jernbaneverkstedet_lodalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | myrens_verksted | data/coordinate-evidence/oslo/naeringsliv/myrens_verksted.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | norges_varemesse | data/coordinate-evidence/oslo/naeringsliv/norges_varemesse.json | needs_research | needs_identity_split | OK |
-| nrk_marienlyst | data/coordinate-evidence/oslo/naeringsliv/nrk_marienlyst.json | rejected | needs_identity_split | OK |
 | oslo_gassverk | data/coordinate-evidence/oslo/naeringsliv/oslo_gassverk.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_kornmagasin | data/coordinate-evidence/oslo/naeringsliv/oslo_kornmagasin.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_kraftselskap | data/coordinate-evidence/oslo/naeringsliv/oslo_kraftselskap.json | needs_research | needs_identity_split | OK |
