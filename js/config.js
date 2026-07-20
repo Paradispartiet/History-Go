@@ -59,3 +59,107 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     load();
   }
 })();
+
+// Korrigerer den forrige feilendringen på PlaceCard-rundingene og legger den
+// ønskede sorte ytterkanten på de faktiske stedsprikkene i kartet.
+(function installMapPointBorderFix() {
+  const PLACE_DOTS_LAYER = "hg-places-dots";
+  const WRONG_PLACE_CARD_STYLE_ID = "hgPlaceCardRoundBorderStyle";
+  let patchedApi = null;
+  let boundMap = null;
+  let retryTimer = null;
+
+  function restorePlaceCardRounds() {
+    document.getElementById(WRONG_PLACE_CARD_STYLE_ID)?.remove();
+  }
+
+  function applyBlackMapPointBorder() {
+    const map = window.HGMap?.getMap?.();
+    if (!map || typeof map.getLayer !== "function" || typeof map.setPaintProperty !== "function") {
+      return false;
+    }
+    if (!map.getLayer(PLACE_DOTS_LAYER)) return false;
+
+    try {
+      map.setPaintProperty(PLACE_DOTS_LAYER, "circle-stroke-color", "#000000");
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function scheduleApply() {
+    restorePlaceCardRounds();
+    requestAnimationFrame(() => {
+      restorePlaceCardRounds();
+      applyBlackMapPointBorder();
+    });
+  }
+
+  function wrapRedrawMethod(api, methodName) {
+    const original = api?.[methodName];
+    if (typeof original !== "function" || original.__hgBlackMapPointBorderWrapped) return;
+
+    function wrappedMapRedraw(...args) {
+      const result = original.apply(this, args);
+      scheduleApply();
+      return result;
+    }
+
+    wrappedMapRedraw.__hgBlackMapPointBorderWrapped = true;
+    api[methodName] = wrappedMapRedraw;
+  }
+
+  function bindMapEvents(map) {
+    if (!map || boundMap === map || typeof map.on !== "function") return;
+    boundMap = map;
+
+    map.on("load", scheduleApply);
+    map.on("style.load", () => {
+      if (typeof map.once === "function") map.once("idle", scheduleApply);
+      setTimeout(scheduleApply, 0);
+    });
+  }
+
+  function attach() {
+    restorePlaceCardRounds();
+
+    const api = window.HGMap;
+    if (!api) return false;
+
+    if (patchedApi !== api) {
+      ["setPlaces", "setVisited", "setCatColor", "maybeDrawMarkers", "refreshMarkers"]
+        .forEach((methodName) => wrapRedrawMethod(api, methodName));
+      patchedApi = api;
+    }
+
+    bindMapEvents(api.getMap?.());
+    scheduleApply();
+    return true;
+  }
+
+  function start() {
+    restorePlaceCardRounds();
+
+    let attempts = 0;
+    retryTimer = setInterval(() => {
+      attempts += 1;
+      const attached = attach();
+      const applied = applyBlackMapPointBorder();
+
+      if ((attached && applied) || attempts >= 200) {
+        clearInterval(retryTimer);
+        retryTimer = null;
+      }
+    }, 50);
+  }
+
+  const headObserver = new MutationObserver(restorePlaceCardRounds);
+  headObserver.observe(document.head, { childList: true });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start, { once: true });
+  } else {
+    start();
+  }
+})();
