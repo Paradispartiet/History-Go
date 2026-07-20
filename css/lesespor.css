@@ -1,0 +1,408 @@
+/* ============================================================
+   LESESPOR
+   Egen scroll-eier og et mer redaksjonelt visuelt hierarki.
+   ============================================================ */
+
+body.hg-app .hg-popup.lesespor-entry-popup{
+  padding:
+    max(8px, env(safe-area-inset-top))
+    max(8px, env(safe-area-inset-right))
+    max(8px, env(safe-area-inset-bottom))
+    max(8px, env(safe-area-inset-left));
+  background:
+    radial-gradient(circle at 12% 0%, rgba(246,200,0,.15), transparent 30%),
+    radial-gradient(circle at 88% 100%, rgba(35,104,170,.16), transparent 34%),
+    rgba(2,6,12,.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .hg-popup-inner{
+  display:flex;
+  flex-direction:column;
+  width:min(780px, calc(100vw - 24px));
+  height:min(90dvh, 920px);
+  max-height:min(90dvh, 920px);
+  min-height:0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:26px;
+  background:linear-gradient(180deg, rgba(18,24,35,.99), rgba(5,8,14,.99));
+  box-shadow:0 30px 90px rgba(0,0,0,.64), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .hg-popup-close{
+  z-index:8;
+  top:14px;
+  right:14px;
+  width:42px;
+  height:42px;
+  background:rgba(6,10,17,.74);
+  border-color:rgba(255,255,255,.16);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+/* Den globale Lesespor-visningen scroller her, ikke i popup-skallet. */
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor{
+  flex:1 1 auto;
+  min-height:0;
+  height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior-y:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+  scrollbar-gutter:stable;
+  padding:34px 30px 42px;
+}
+
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor{
+  padding:28px 26px 36px;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor::-webkit-scrollbar{ width:7px; }
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor::-webkit-scrollbar-track{ background:transparent; }
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor::-webkit-scrollbar-thumb{
+  border-radius:999px;
+  background:rgba(255,255,255,.18);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-kicker,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:fit-content;
+  margin:0 0 12px;
+  padding:6px 10px;
+  border:1px solid rgba(246,200,0,.30);
+  border-radius:999px;
+  background:rgba(246,200,0,.10);
+  color:#ffe16a;
+  font-size:11px;
+  line-height:1;
+  font-weight:850;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-kicker::before,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-kicker::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#f6c800;
+  box-shadow:0 0 12px rgba(246,200,0,.65);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor > .hg-popup-name,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor > .hg-popup-name{
+  max-width:16ch;
+  margin:0;
+  color:#fff;
+  font-size:clamp(30px, 5.6vw, 44px);
+  line-height:.98;
+  font-weight:900;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-one-liner,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-one-liner{
+  max-width:62ch;
+  margin:14px 0 0;
+  color:rgba(255,255,255,.70);
+  font-size:15px;
+  line-height:1.58;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-tools,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-tools{
+  position:sticky;
+  top:-1px;
+  z-index:5;
+  display:grid;
+  grid-template-columns:minmax(0, 1.55fr) minmax(170px, .75fr);
+  gap:10px;
+  align-items:end;
+  margin:22px -6px 24px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:rgba(9,14,23,.92);
+  box-shadow:0 12px 32px rgba(0,0,0,.22);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-field,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-field{
+  display:grid;
+  gap:7px;
+  min-width:0;
+  color:rgba(255,255,255,.58);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-field input,
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-field select,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-field input,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-field select{
+  min-height:46px;
+  padding:0 14px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:13px;
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0;
+  text-transform:none;
+  outline:none;
+  transition:border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-field input:focus,
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-field select:focus,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-field input:focus,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-field select:focus{
+  border-color:rgba(246,200,0,.54);
+  background:rgba(255,255,255,.075);
+  box-shadow:0 0 0 3px rgba(246,200,0,.10);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-count,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-count{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  width:fit-content;
+  margin:0 0 12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.70);
+  font-size:11px;
+  font-weight:750;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-count::before,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-count::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.56);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-list,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-list{
+  display:grid;
+  gap:13px;
+  counter-reset:hg-lesespor;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item{
+  position:relative;
+  counter-increment:hg-lesespor;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+  overflow:hidden;
+  width:100%;
+  padding:18px 58px 18px 20px;
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:20px;
+  background:linear-gradient(135deg, rgba(255,255,255,.065), rgba(255,255,255,.025) 58%), rgba(6,10,17,.55);
+  box-shadow:0 12px 28px rgba(0,0,0,.20);
+  color:#fff;
+  text-align:left;
+  cursor:default;
+  transform:none;
+  transition:border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item::before,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:3px;
+  background:linear-gradient(180deg, #f6c800, rgba(246,200,0,.12));
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item::after,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item::after{
+  content:counter(hg-lesespor, decimal-leading-zero);
+  position:absolute;
+  top:18px;
+  right:17px;
+  color:rgba(255,255,255,.28);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  font-variant-numeric:tabular-nums;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item:hover,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item:hover{
+  transform:none;
+  border-color:rgba(246,200,0,.20);
+  background:linear-gradient(135deg, rgba(246,200,0,.075), rgba(255,255,255,.035) 58%), rgba(6,10,17,.60);
+  box-shadow:0 15px 34px rgba(0,0,0,.26);
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item .pc-leksikon-entry-title,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item .pc-leksikon-entry-title{
+  margin:0;
+  color:#fff;
+  font-size:clamp(17px, 2.6vw, 20px);
+  line-height:1.22;
+  font-weight:850;
+  letter-spacing:-.018em;
+  text-wrap:pretty;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item .pc-leksikon-entry-meta,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item .pc-leksikon-entry-meta{
+  color:rgba(255,255,255,.54);
+  font-size:11px;
+  line-height:1.45;
+  font-weight:620;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item .pc-leksikon-entry-meta strong,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item .pc-leksikon-entry-meta strong{
+  color:rgba(255,225,106,.88);
+  font-weight:800;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-relevance,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-relevance{
+  margin:3px 0 1px;
+  color:rgba(255,255,255,.82);
+  font-size:14px;
+  line-height:1.55;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item .pc-leksikon-tags,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item .pc-leksikon-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:2px;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item .pc-leksikon-tags span,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item .pc-leksikon-tags span{
+  padding:5px 8px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:999px;
+  background:rgba(255,255,255,.055);
+  color:rgba(255,255,255,.68);
+  font-size:10px;
+  font-weight:700;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-link,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-link{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:36px;
+  margin-top:6px;
+  padding:0 12px;
+  border:1px solid rgba(246,200,0,.26);
+  border-radius:999px;
+  background:rgba(246,200,0,.10);
+  color:#ffe16a;
+  font-size:12px;
+  font-weight:850;
+  text-decoration:none;
+  transition:background .16s ease, border-color .16s ease, transform .16s ease;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-link::after,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-link::after{
+  content:"↗";
+  font-size:13px;
+}
+
+body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-link:hover,
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-link:hover{
+  border-color:rgba(246,200,0,.48);
+  background:rgba(246,200,0,.16);
+  transform:translateY(-1px);
+}
+
+body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-back{
+  margin-bottom:18px;
+  border-color:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.055);
+  color:rgba(255,255,255,.78);
+  font-size:12px;
+}
+
+@media (max-width:620px){
+  body.hg-app .hg-popup.lesespor-entry-popup{
+    padding:
+      max(5px, env(safe-area-inset-top))
+      max(5px, env(safe-area-inset-right))
+      max(5px, env(safe-area-inset-bottom))
+      max(5px, env(safe-area-inset-left));
+  }
+
+  body.hg-app .hg-popup.lesespor-entry-popup .hg-popup-inner{
+    width:calc(100vw - 10px);
+    height:calc(100dvh - 10px);
+    max-height:calc(100dvh - 10px);
+    border-radius:20px;
+  }
+
+  body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor,
+  body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor{
+    padding:24px 15px 34px;
+  }
+
+  body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor > .hg-popup-name,
+  body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor > .hg-popup-name{
+    max-width:13ch;
+    padding-right:32px;
+    font-size:clamp(29px, 9vw, 38px);
+  }
+
+  body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-tools,
+  body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-tools{
+    grid-template-columns:1fr;
+    margin:20px -3px;
+    padding:10px;
+    border-radius:16px;
+  }
+
+  body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-field input,
+  body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-field select,
+  body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-field input,
+  body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-field select{
+    min-height:44px;
+    font-size:16px;
+  }
+
+  body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item,
+  body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item{
+    padding:16px 44px 16px 17px;
+    border-radius:18px;
+  }
+
+  body.hg-app .hg-popup.lesespor-entry-popup .pc-leksikon-lesespor-item::after,
+  body.hg-app .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor .pc-leksikon-lesespor-item::after{
+    top:16px;
+    right:14px;
+  }
+}
