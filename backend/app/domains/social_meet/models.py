@@ -60,16 +60,12 @@ class ProfileUpsertRequest(ApiModel):
     favorite_eras: list[str] = Field(default_factory=list, max_length=24)
     interest_places: list[str] = Field(default_factory=list, max_length=24)
     learning_goals: list[str] = Field(default_factory=list, max_length=12)
-    fingerprint_inputs: KnowledgeFingerprint = Field(
-        default_factory=KnowledgeFingerprint
-    )
+    fingerprint_inputs: KnowledgeFingerprint = Field(default_factory=KnowledgeFingerprint)
     profile_visibility: WritableProfileVisibility = WritableProfileVisibility.DRAFT
     consent_version: str | None = Field(default=None, max_length=80)
     preview_confirmed: bool = False
 
-    @field_validator(
-        "display_name", "avatar_ref", "short_bio", "consent_version", mode="before"
-    )
+    @field_validator("display_name", "avatar_ref", "short_bio", "consent_version", mode="before")
     @classmethod
     def normalize_strings(cls, value: object) -> object:
         if value is None:
