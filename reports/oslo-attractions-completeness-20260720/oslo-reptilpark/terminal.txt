@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address St. Olavs gate 2 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+  "query": "St. Olavs gate 2 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=St.%20Olavs%20gate%202%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:16935:2",
+  "coordinate": {
+    "lat": 59.918158949801764,
+    "lon": 10.74326746089802,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16935:2",
+    "address": {
+      "street": "St. Olavs gate",
+      "number": "2",
+      "postcode": "0165",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for St. Olavs gate 2, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "St. Olavs gate",
+    "adressetekst": "St. Olavs gate 2",
+    "adressetilleggsnavn": null,
+    "adressekode": 16935,
+    "nummer": 2,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 208,
+    "bruksnummer": 477,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0165",
+    "adressetekstutenadressetilleggsnavn": "St. Olavs gate 2",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.918158949801764,
+      "lon": 10.74326746089802
+    },
+    "oppdateringsdato": "2026-03-26T19:41:41"
+  }
+}
