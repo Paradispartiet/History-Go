@@ -16,6 +16,7 @@ from app.domains.social_meet.safety_models import (
     CreateBlockRequest,
     CreateReportRequest,
     ExportedInvite,
+    ReportDetailCode,
     ReportReasonCode,
     ReportStatus,
     SafetyContextReference,
@@ -194,9 +195,15 @@ class PostgresSocialMeetSafetyRepository:
                       from public.hg_social_meet_blocks
                       where status = 'active'
                         and (
-                          (blocker_profile_id = :first_profile_id and blocked_profile_id = :second_profile_id)
+                          (
+                            blocker_profile_id = :first_profile_id
+                            and blocked_profile_id = :second_profile_id
+                          )
                           or
-                          (blocker_profile_id = :second_profile_id and blocked_profile_id = :first_profile_id)
+                          (
+                            blocker_profile_id = :second_profile_id
+                            and blocked_profile_id = :first_profile_id
+                          )
                         )
                     )
                     """
@@ -217,7 +224,7 @@ class PostgresSocialMeetSafetyRepository:
             "related_invite_id": request.related_invite_id,
             "related_context": _context_json(request.related_context),
             "reason_code": request.reason_code.value,
-            "structured_details": request.structured_details,
+            "structured_details": [detail.value for detail in request.structured_details],
             "source_surface": request.source_surface,
         }
         with self._database.engine.begin() as connection:
@@ -300,7 +307,10 @@ class PostgresSocialMeetSafetyRepository:
                         """
                         select
                           i.id,
-                          case when i.created_by = :auth_user_id then 'sent' else 'received' end as direction,
+                          case
+                            when i.created_by = :auth_user_id then 'sent'
+                            else 'received'
+                          end as direction,
                           case
                             when i.created_by = :auth_user_id then target_profile.profile_id
                             else creator_profile.profile_id
@@ -380,10 +390,7 @@ def _context_json(context: SafetyContextReference | None) -> str:
 def _map_context(value: object) -> SafetyContextReference | None:
     if value in (None, {}, "{}"):
         return None
-    if isinstance(value, str):
-        payload = json.loads(value)
-    else:
-        payload = value
+    payload = json.loads(value) if isinstance(value, str) else value
     return SafetyContextReference.model_validate(payload)
 
 
@@ -403,13 +410,14 @@ def _map_block(row: RowMapping) -> BlockView:
 
 
 def _map_report(row: RowMapping) -> SubmittedReportView:
+    details = cast(list[object], row.get("structured_details") or [])
     return SubmittedReportView(
         report_id=cast(UUID, row["id"]),
         reported_profile_id=cast(UUID, row["reported_profile_id"]),
         related_invite_id=cast(UUID | None, row.get("related_invite_id")),
         related_context=_map_context(row.get("related_context")),
         reason_code=ReportReasonCode(str(row["reason_code"])),
-        structured_details=list(cast(list[str], row.get("structured_details") or [])),
+        structured_details=[ReportDetailCode(str(item)) for item in details],
         status=ReportStatus(str(row["status"])),
         source_surface=_optional_string(row.get("source_surface")),
         created_at=cast(datetime, row["created_at"]),
