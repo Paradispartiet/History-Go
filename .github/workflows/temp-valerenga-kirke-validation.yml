@@ -1,0 +1,78 @@
+name: Temporary Vålerenga kirke validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    if: github.head_ref == 'agent/oslo-coordinate-valerenga-kirke-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-valerenga-kirke-production
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run blocking validation gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-valerenga-kirke-production"
+          mkdir -p "$LOGDIR"
+          : > "$LOGDIR/gate-status.txt"
+
+          run_gate() {
+            name="$1"
+            shift
+            set +e
+            "$@" > >(tee "$LOGDIR/$name.log") 2>&1
+            code=$?
+            set -e
+            printf '%s\n' "$code" > "$LOGDIR/$name.exit-code.txt"
+            echo "$name=$code" >> "$LOGDIR/gate-status.txt"
+            if [ "$code" -ne 0 ]; then
+              return "$code"
+            fi
+          }
+
+          run_gate places-index-build npm run places:index:build
+          run_gate split-manifest-sync npm run audit:places-split-manifest-sync
+          run_gate places-index-check npm run places:index:check
+          run_gate coordinate-source-contract npm run test:coordinate-source-contract
+          run_gate coordinate-quality npm run places:coords:quality
+          run_gate coordinate-intake npm run places:coords:intake -- --strict-new
+          run_gate coordinate-evidence npm run places:coords:evidence:audit
+          run_gate git-diff-check git diff --check
+
+          set +e
+          npm run health:places 2>&1 | tee "$LOGDIR/health-places.log"
+          HEALTH_CODE=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$HEALTH_CODE" > "$LOGDIR/health-places.exit-code.txt"
+          echo "health-places=$HEALTH_CODE" >> "$LOGDIR/gate-status.txt"
+
+      - name: Commit validated result
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-valerenga-kirke-validation.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Validate Vålerenga kirke canonical production"
+          git push origin HEAD:agent/oslo-coordinate-valerenga-kirke-production
