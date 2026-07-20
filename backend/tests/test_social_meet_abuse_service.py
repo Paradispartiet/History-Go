@@ -17,6 +17,7 @@ from app.domains.social_meet.models import ProfileVisibility, SocialMeetProfileR
 from app.domains.social_meet.service import SUPPORTED_CONSENT_VERSION, SocialMeetDomainError
 
 NOW = datetime(2026, 7, 20, 15, 0, tzinfo=UTC)
+_DEFAULT_SNAPSHOT = object()
 
 
 class FakeIdentityRepository:
@@ -90,7 +91,7 @@ def test_standard_profile_is_allowed_under_limits() -> None:
 
 
 def test_new_profile_uses_restricted_policy() -> None:
-    snapshot = _snapshot(sender_profile_created_at=NOW - timedelta(days=2))
+    snapshot = _snapshot(sender_social_meet_started_at=NOW - timedelta(days=2))
     service, _, _, sender, recipient = _service(snapshot=snapshot)
 
     allowance = service.ensure_invite_creation_allowed(
@@ -137,6 +138,15 @@ def test_recent_recipient_report_is_non_enumerating() -> None:
     assert error.code == "recipient_unavailable"
 
 
+def test_recent_pair_block_is_non_enumerating_after_unblock() -> None:
+    snapshot = _snapshot(last_pair_block_at=NOW - timedelta(hours=6))
+    service, _, _, sender, recipient = _service(snapshot=snapshot)
+
+    error = _assert_denied(service, sender, recipient)
+
+    assert error.code == "recipient_unavailable"
+
+
 def test_decline_cooldown_is_rate_limited() -> None:
     snapshot = _snapshot(last_declined_at=NOW - timedelta(hours=2))
     service, _, _, sender, recipient = _service(snapshot=snapshot)
@@ -176,7 +186,7 @@ def test_standard_rate_thresholds_fail_closed(field: str, value: int) -> None:
 
 def test_restricted_rate_threshold_is_lower() -> None:
     snapshot = _snapshot(
-        sender_profile_created_at=NOW - timedelta(days=1),
+        sender_social_meet_started_at=NOW - timedelta(days=1),
         sender_hour_count=RESTRICTED_INVITE_POLICY.sender_per_hour,
     )
     service, _, _, sender, recipient = _service(snapshot=snapshot)
@@ -288,7 +298,7 @@ def _assert_denied(
 
 def _service(
     *,
-    snapshot: InviteAbuseSnapshot | None = ...,  # type: ignore[assignment]
+    snapshot: InviteAbuseSnapshot | None | object = _DEFAULT_SNAPSHOT,
     sender: SocialMeetProfileRecord | None = None,
     recipient: SocialMeetProfileRecord | None = None,
 ) -> tuple[
@@ -300,7 +310,8 @@ def _service(
 ]:
     sender_record = sender or _profile()
     recipient_record = recipient or _profile()
-    resolved_snapshot = _snapshot() if snapshot is ... else snapshot
+    resolved_snapshot = _snapshot() if snapshot is _DEFAULT_SNAPSHOT else snapshot
+    assert resolved_snapshot is None or isinstance(resolved_snapshot, InviteAbuseSnapshot)
     abuse_repository = FakeAbuseRepository(resolved_snapshot)
     guard = FakeInteractionGuard()
     service = SocialMeetInviteAbuseService(
@@ -343,7 +354,7 @@ def _profile_id(profile: SocialMeetProfileRecord) -> UUID:
 
 def _snapshot(**overrides: object) -> InviteAbuseSnapshot:
     snapshot = InviteAbuseSnapshot(
-        sender_profile_created_at=NOW - timedelta(days=30),
+        sender_social_meet_started_at=NOW - timedelta(days=30),
         sender_minute_count=0,
         sender_hour_count=0,
         sender_day_count=0,
@@ -353,6 +364,7 @@ def _snapshot(**overrides: object) -> InviteAbuseSnapshot:
         duplicate_active_invite=False,
         last_declined_at=None,
         last_recipient_report_at=None,
+        last_pair_block_at=None,
         unresolved_reports_against_sender=0,
     )
     return replace(snapshot, **overrides)
