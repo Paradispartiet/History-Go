@@ -3,72 +3,96 @@ name: Data checks
 on:
   pull_request:
     paths:
-      - 'scripts/botsfengselet-people-finalizer.mjs'
+      - 'data/people/**'
+      - 'data/places/**'
+      - 'tests/etne-people-manifest-integration.test.js'
+      - 'tests/etne-people-of-places-*.test.js'
+      - 'scripts/check-people.sh'
+      - 'scripts/check-places.sh'
+      - 'scripts/build-civication-history-people-index.mts'
+      - 'data/Civication/historyPeople_index.json'
+      - 'data/Civication/people_access_map.json'
+      - 'tools/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.tools*.json'
       - '.github/workflows/data-checks.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  materialize_botsfengselet:
-    name: Materialize Botsfengselet people
-    if: github.head_ref == 'agent/people-botsfengselet-batch1-clean'
+  people:
+    name: People data
     runs-on: ubuntu-latest
     steps:
-      - name: Clone clean Botsfengselet branch quietly
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          git clone --depth=1 --branch agent/people-botsfengselet-batch1-clean \
-            "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" . \
-            >/dev/null 2>&1
-
-      - name: Run canonical materializer gate
-        run: node scripts/botsfengselet-people-finalizer.mjs > /tmp/botsfengselet-materializer.json
+      - name: Check out repository
+        uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies quietly
-        run: npm install --no-audit --no-fund >/dev/null 2>&1
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
 
-      - name: Regenerate Civication history people index
-        run: npm run civication:history-people:build >/dev/null
+      - name: Run people check
+        run: bash scripts/check-people.sh
 
-      - name: Validate People of Places
-        shell: bash
+  places:
+    name: Places data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run places check
         run: |
-          set +e
-          bash scripts/check-people.sh > /tmp/botsfengselet-people-check.log 2>&1
-          status=$?
-          if [ "$status" -ne 0 ]; then
-            echo "--- people check failure tail ---"
-            tail -60 /tmp/botsfengselet-people-check.log
-            exit "$status"
+          if [ -f scripts/check-places.sh ]; then
+            bash scripts/check-places.sh
+          else
+            echo "scripts/check-places.sh not found; using inline places checks"
+            node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          function readJson(file) {
+            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+            catch (error) {
+              console.error(`JSON parse failed: ${file}`);
+              console.error(error.message);
+              process.exit(1);
+            }
+          }
+          const manifestPath = 'data/places/manifest.json';
+          const placesIndexPath = 'data/places/places_index.json';
+          const manifest = readJson(manifestPath);
+          if (!manifest || !Array.isArray(manifest.files)) {
+            console.error(`${manifestPath} must contain a files array`);
+            process.exit(1);
+          }
+          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
+          for (const file of files) {
+            if (!fs.existsSync(file)) {
+              console.error(`Missing expected file: ${file}`);
+              process.exit(1);
+            }
+            readJson(file);
+          }
+          console.log(`json ok (${files.length} files)`);
+          NODE
+            npm run places:index:build
+            npm run build:tools
+            npm run places:index:check
+            npm run places:emner:check
+            npm run places:coords:check
           fi
-          tail -30 /tmp/botsfengselet-people-check.log
-
-      - name: Publish clean data branch
-        shell: bash
-        run: |
-          set -euo pipefail
-          git fetch --depth=1 origin main:refs/remotes/origin/main >/dev/null 2>&1
-          git checkout origin/main -- \
-            .github/workflows/data-checks.yml \
-            reports/people-invalid-place-refs.json \
-            reports/people-invalid-place-refs.md \
-            reports/people-of-places-status.json \
-            reports/people-of-places-status.md \
-            reports/people-place-coverage.json \
-            reports/people-place-coverage.md
-          git diff --check
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Add Botsfengselet people batch 1"
-          git push origin HEAD:agent/people-botsfengselet-batch1-clean
