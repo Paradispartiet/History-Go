@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "oslo_prosjektrom",
+  "placeFile": "data/places/kunst/oslo/places_kunst/oslo_prosjektrom.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91112080426534,
+    "lon": 10.76528983153175,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Platous gate 18, OSLO, source object geonorge-adresser-v1:0301:15684:18. Punktet brukes som display- og unlock-anker for Oslo Prosjektrom. Platous gate 10 ble kontrollert separat og finnes ikke som offisiell Geonorge-adresse; den forekommer i ett enkelt utstillingsinnlegg fra september 2025, mens galleriets egne innlegg før og etter og Oslo Art Guide konsekvent bruker Platous gate 18. Platous gate 10 behandles derfor som en isolert skrivefeil, ikke som alternativ aktiv inngang."
+  },
+  "identity": {
+    "currentName": "Oslo Prosjektrom",
+    "resolvedIdentity": "Oslo Prosjektrom, kunstnerstyrt galleri og atelierfellesskap med inngang i Platous gate 18",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "aktuell publikumsinngang",
+    "avklaring av Platous gate 10-avviket"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Platous%20gate%2018%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+      "sourceQuality": "official_address_plus_repeated_current_gallery_identity",
+      "finding": "Geonorge gir ett entydig adressepunkt for Platous gate 18 og ingen treff for Platous gate 10. Oslo Prosjektroms egne innlegg før og etter den isolerte 10-oppføringen, inkludert januar–mars 2026, bruker Platous gate 18. Oslo Art Guide oppgir også inngang Platous gate 18.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Platous gate 18, OSLO, source object geonorge-adresser-v1:0301:15684:18. Punktet brukes som display- og unlock-anker for Oslo Prosjektrom. Platous gate 10 ble kontrollert separat og finnes ikke som offisiell Geonorge-adresse; den forekommer i ett enkelt utstillingsinnlegg fra september 2025, mens galleriets egne innlegg før og etter og Oslo Art Guide konsekvent bruker Platous gate 18. Platous gate 10 behandles derfor som en isolert skrivefeil, ikke som alternativ aktiv inngang."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Platous gate 18 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+      "lat": 59.91112080426534,
+      "lon": 10.76528983153175,
+      "canApplyToPlace": true
+    },
+    {
+      "address": "Platous gate 10 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "lat": null,
+      "lon": null,
+      "canApplyToPlace": false,
+      "reason": "Geonorge not_found; isolated erroneous gallery post."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91112080426534,
+      "lon": 10.76528983153175,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, adressetvist og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Platous gate 18, OSLO, source object geonorge-adresser-v1:0301:15684:18. Punktet brukes som display- og unlock-anker for Oslo Prosjektrom. Platous gate 10 ble kontrollert separat og finnes ikke som offisiell Geonorge-adresse; den forekommer i ett enkelt utstillingsinnlegg fra september 2025, mens galleriets egne innlegg før og etter og Oslo Art Guide konsekvent bruker Platous gate 18. Platous gate 10 behandles derfor som en isolert skrivefeil, ikke som alternativ aktiv inngang."
+  ]
+}
