@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 211 verifiserte eller kildekontrollerte canonical steder. Batch 64 legger til Kampen Økologiske Barnebondegård som et eget urbant gårds-, lærings- og nærmiljøsted på Skedsmogata 23. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 30.
+Oslo-tabellen inneholder nå 212 verifiserte eller kildekontrollerte canonical steder. Batch 65 legger til Klimahuset som et eget klimavitenskapelig utstillings- og kunnskapsbygg på Monrads gate 12. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 30.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -233,6 +233,7 @@ Oslo-tabellen inneholder nå 211 verifiserte eller kildekontrollerte canonical s
 | 62 | `skoytemuseet` | Skøytemuseet | verified | `geonorge-adresser-v1:0301:14742:26` |
 | 63 | `vikaterrassen` | Vikaterrassen | verified | `osm-relation:14169568` |
 | 64 | `kampen_okologiske_barnebondegard` | Kampen Økologiske Barnebondegård | verified | `geonorge-adresser-v1:0301:16443:23` |
+| 65 | `klimahuset` | Klimahuset | verified | `geonorge-adresser-v1:0301:14797:12` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -298,6 +299,8 @@ Batch 62 (2026-07-20) legger til `skoytemuseet` som en egen sportshistorisk muse
 Batch 63 (2026-07-20) legger til `vikaterrassen` med et navngitt OSM-geometrianker kryssjekket mot de offisielle Geonorge-adressene Ruseløkkveien 3 og 5. Stedet behandles som ett gate- og bygningskompleks med historiske lag fra Ruseløkkbakken og Ruseløkkbasarene via 1960-tallets modernistiske utbygging til dagens gågate. `victoria_terrasse` er ikke en eksisterende canonical place og blandes ikke inn som identisk sted.
 
 Batch 64 (2026-07-20) legger til `kampen_okologiske_barnebondegard` etter separat adresse- og taxonomy-gate. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:16443:23` for Skedsmogata 23 brukes som display- og unlock-anker for det integrerte gårdsstedet med gårdstun, skolehage, fjøs og stall. Canonical primærkategori er `by` fordi stedet ble skapt som et barnedrevet nærmiljøinitiativ og i dag fungerer som lavterskel møteplass, pedagogisk tilbud og sosial infrastruktur; `natur` beholdes som sekundært faglag for dokumentert dyrking, matproduksjon, dyrestell og naturens kretsløp. Husdyrene skal ikke behandles som vill fauna, og stedet skal ikke splittes i overlappende markører.
+
+Batch 65 (2026-07-20) legger til `klimahuset` etter separat overlap-, adresse- og taxonomy-gate. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:14797:12` for Monrads gate 12 brukes som display- og unlock-anker. Punktet ligger om lag 13,2 meter fra den separat navngitte Klimahuset-geometrien `osm-way:762832690`, som brukes som identitets- og visuell QA, ikke som erstatning for den normative adressekilden. Klimahuset beholdes som et fysisk eget `vitenskap`-sted med `natur` som sekundært faglag; `naturhistorisk_museum` representerer fortsatt den bredere institusjonen og `botanisk_hage` den større hage- og campusarenaen.
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -313,7 +316,7 @@ Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk p
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 211 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 212 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|

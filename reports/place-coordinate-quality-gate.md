@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T12:12:17.365Z
+Generert: 2026-07-20T12:33:47.645Z
 
 ## Oppsummering
-- Aktive filer validert: **533**
+- Aktive filer validert: **534**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **426**
@@ -551,6 +551,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/norway/oslo_sport/skoytemuseet.json
 - data/places/by/oslo/places/vikaterrassen.json
 - data/places/by/oslo/places/kampen_okologiske_barnebondegard.json
+- data/places/vitenskap/oslo/places_vitenskap/klimahuset.json
 
 ## Harde feil
 - Ingen
