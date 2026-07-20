@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
 from datetime import datetime
 from typing import Any, Protocol, cast
 from uuid import UUID
 
 from sqlalchemy import text
+from sqlalchemy.engine import RowMapping
 
 from app.core.database import Database
 from app.domains.social_meet.models import (
@@ -188,7 +188,7 @@ class PostgresSocialMeetIdentityRepository:
         return _map_record(row)
 
 
-def _map_record(row: Mapping[str, Any]) -> SocialMeetProfileRecord:
+def _map_record(row: RowMapping) -> SocialMeetProfileRecord:
     raw_fingerprint = row.get("knowledge_fingerprint_summary") or {}
     if isinstance(raw_fingerprint, str):
         parsed_fingerprint = json.loads(raw_fingerprint)
