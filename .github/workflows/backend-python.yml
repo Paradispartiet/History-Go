@@ -42,7 +42,20 @@ jobs:
           python -m pip install -e './backend[dev]'
 
       - name: Ruff lint
-        run: python -m ruff check backend
+        id: ruff-lint
+        run: |
+          mkdir -p reports/backend-ci
+          set -o pipefail
+          python -m ruff check backend 2>&1 \
+            | tee reports/backend-ci/ruff-lint.log
+
+      - name: Upload Ruff lint diagnostics
+        if: failure() && steps.ruff-lint.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-ruff-lint-diagnostics-${{ github.run_id }}
+          path: reports/backend-ci/ruff-lint.log
+          if-no-files-found: error
 
       - name: Ruff format check
         id: ruff-format

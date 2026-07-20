@@ -14,6 +14,8 @@ from app.auth.supabase import (
 from app.core.config import Settings
 from app.core.database import Database
 from app.domains.social_meet.repository import PostgresSocialMeetIdentityRepository
+from app.domains.social_meet.safety_repository import PostgresSocialMeetSafetyRepository
+from app.domains.social_meet.safety_service import SocialMeetSafetyService
 from app.domains.social_meet.service import SocialMeetIdentityService
 
 _bearer = HTTPBearer(auto_error=False)
@@ -31,9 +33,7 @@ def get_token_verifier(request: Request) -> SupabaseTokenVerifier:
     return cast(SupabaseTokenVerifier, request.app.state.token_verifier)
 
 
-def get_social_meet_identity_service(
-    database: Database = Depends(get_database),
-) -> SocialMeetIdentityService:
+def _require_database(database: Database) -> None:
     if not database.configured:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -42,7 +42,23 @@ def get_social_meet_identity_service(
                 "message": "Database is not configured",
             },
         )
+
+
+def get_social_meet_identity_service(
+    database: Database = Depends(get_database),
+) -> SocialMeetIdentityService:
+    _require_database(database)
     return SocialMeetIdentityService(PostgresSocialMeetIdentityRepository(database))
+
+
+def get_social_meet_safety_service(
+    database: Database = Depends(get_database),
+) -> SocialMeetSafetyService:
+    _require_database(database)
+    return SocialMeetSafetyService(
+        PostgresSocialMeetIdentityRepository(database),
+        PostgresSocialMeetSafetyRepository(database),
+    )
 
 
 def get_current_user(
