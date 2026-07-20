@@ -37,6 +37,9 @@ jobs:
       - name: Install dependencies quietly
         run: npm install --no-audit --no-fund >/dev/null 2>&1
 
+      - name: Regenerate Civication history people index
+        run: npm run civication:history-people:build >/dev/null
+
       - name: Validate People of Places
         shell: bash
         run: |
