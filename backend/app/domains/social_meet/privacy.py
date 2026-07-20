@@ -62,7 +62,7 @@ def _scan(value: object, *, path: str, found: list[ForbiddenField]) -> None:
             _scan(nested, path=nested_path, found=found)
         return
 
-    if isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):
+    if isinstance(value, Sequence) and not isinstance(value, str | bytes | bytearray):
         for index, nested in enumerate(value):
             nested_path = f"{path}[{index}]" if path else f"[{index}]"
             _scan(nested, path=nested_path, found=found)
