@@ -1,0 +1,71 @@
+{
+  "version": "2026-07-20-named-building-object-final",
+  "placeId": "jordal_ungdomshall",
+  "candidateName": "Jordal ungdomshall",
+  "status": "verified_geometry_candidate",
+  "productionGate": "ready_for_canonical_production",
+  "primaryCategory": "sport",
+  "identity": {
+    "currentName": "Jordal ungdomshall",
+    "osmObjectName": "Jordal ungdomshallen",
+    "currentAddress": "Jordalgata 12, 0657 Oslo",
+    "distinctFrom": [
+      "Jordal Amfi",
+      "Jordal idrettshall"
+    ],
+    "summary": "Separat innendørs ishall i Jordal idrettspark, brukt til blant annet trening, kunstløp, ishockey og publikumsskøyting."
+  },
+  "resolvedObject": {
+    "sourceProvider": "openstreetmap",
+    "sourceObjectId": "osm:way:33263069",
+    "osmType": "way",
+    "osmId": 33263069,
+    "name": "Jordal ungdomshallen",
+    "owner": "Oslobygg KF",
+    "refAnlegg": "31177",
+    "refBygningsnr": "81040303",
+    "building": "yes",
+    "leisure": "ice_rink",
+    "sport": "ice_hockey",
+    "geometryPointCount": 13
+  },
+  "coordinate": {
+    "lat": 59.91027218303978,
+    "lon": 10.78314155270237,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "openstreetmap",
+    "sourceObjectId": "osm:way:33263069",
+    "geocodeAccuracy": "building_polygon_centroid",
+    "coordRole": "display_marker",
+    "coordStatus": "verified_geometry",
+    "coordSource": "openstreetmap_named_building_geometry",
+    "coordType": "building_centroid",
+    "coordNote": "Geometrisk senter av OSM way 33263069, eksplisitt navngitt «Jordal ungdomshallen» og tagget som egen ishall med Oslobygg KF som eier, anleggsreferanse 31177 og bygningsnummer 81040303. Punktet brukes som building-specific anker og skiller ungdomshallen fra Jordal Amfi til tross for delt besøksadresse."
+  },
+  "identityEvidence": [
+    "The map object is explicitly named Jordal ungdomshallen, a definite-form spelling variant of Jordal ungdomshall.",
+    "The object is separately tagged as an ice rink and ice-hockey building with its own Oslobygg owner, facility reference 31177 and building number 81040303.",
+    "Oslo municipality documents Jordal idrettspark as having two separate ice halls: Jordal Amfi and Jordal ungdomshall.",
+    "Oslo byleksikon identifies Jordal ungdomshall at Jordalgata 12, distinct from Jordal idrettshall at 12A."
+  ],
+  "discardedDiagnostics": [
+    {
+      "type": "exact_name_false_negative",
+      "reason": "The first exact-name gate searched for «Jordal ungdomshall» and missed the actual named object because OSM uses the definite form «Jordal ungdomshallen»."
+    },
+    {
+      "type": "interior_point_containment_overlap",
+      "reason": "Two defibrillator nodes explicitly named Jordal Ungdomshall fall inside an overlapping/stale polygon currently tagged as Jordal amfi. That containment result conflicts with the separately named youth-hall building object and is therefore not used as the canonical coordinate source."
+    }
+  ],
+  "duplicateGate": {
+    "canonicalIdentityMatches": [],
+    "knownSeparateNearbyPlace": "jordal_amfi",
+    "conclusion": "Jordal ungdomshall is a distinct physical hall with its own named building object and must not reuse the Jordal Amfi marker."
+  },
+  "historyGuardrails": {
+    "yearHandling": "Sources differ between 1988 and 1989. Use 1989 only as an opening/use-era anchor if a single year is technically required, and describe the construction period conservatively as 1988–89.",
+    "visitOsloScope": "Treat VisitOSLO's Jordal skøytebane listing as the public-skating use of Jordal ungdomshall, not as a separate third ice venue."
+  }
+}
