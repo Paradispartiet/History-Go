@@ -1,16 +1,16 @@
 {
   "placeId": "st_halvard_bryggeri",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_identity_split",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9109,
-    "lon": 10.7833,
+    "lat": 59.926947161930386,
+    "lon": 10.728609002744596,
     "r": 140,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslo byleksikon – St. Halvards Bryggeri; Geonorge Adresser API v1 – Pilestredet 75C",
+    "coordType": "historical_site_address_anchor",
+    "coordNote": "Oslo byleksikon dokumenterer bryggeristedet i Pilestredet 75C: virksomheten startet som Nora Bryggeri i 1877, fikk St. Halvards-navnet i 1905 og ble nedlagt i 1918. Det allerede lagrede entydige Geonorge-punktet for Pilestredet 75C brukes som historisk adresseanker for stedet etter at recordens feilaktige år og østkant-identitet er korrigert; koblingen mellom dagens adressepunkt og det historiske anleggets eksakte bygningsutstrekning behandles derfor som en historisk tilnærming, ikke som et eksakt historisk bygningssentrum."
   },
   "identity": {
     "currentName": "St. Halvard bryggeri",
@@ -28,24 +28,24 @@
   ],
   "evidence": [
     {
-      "sourceProvider": "official_address",
-      "sourceName": "Geonorge Adresser API v1",
-      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Pilestredet%2075C%20Oslo",
-      "sourceObjectId": "geonorge-adresser-v1:0301:15670:75C",
-      "sourceQuality": "official_address",
-      "finding": "Geonorge gir ett tydelig adressepunkt for Pilestredet 75C.",
-      "canVerifyCoordinate": false,
-      "reason": "Adressepunktet er entydig, men den aktive recorden har en materiell identitets- og historiekonflikt som må løses først."
-    },
-    {
       "sourceProvider": "manual_research",
       "sourceName": "Oslo byleksikon – St. Halvards Bryggeri",
       "sourceUrl": "https://oslobyleksikon.no/side/St._Halvards_Bryggeri",
       "sourceObjectId": "oslobyleksikon:st-halvards-bryggeri",
-      "sourceQuality": "documented_historical_identity",
-      "finding": "Kilden knytter bryggeriet til Pilestredet 75C og en annen etableringshistorie enn den aktive recorden.",
-      "canVerifyCoordinate": false,
-      "reason": "Place-innholdet må korrigeres før koordinaten kan representere samme historiske objekt."
+      "sourceQuality": "documented_historical_identity_and_address",
+      "finding": "Bryggeristedet dokumenteres i Pilestredet 75C fra 1877, med St. Halvards-navnet fra 1905 og nedleggelse i 1918.",
+      "canVerifyCoordinate": true,
+      "reason": "Oslo byleksikon dokumenterer bryggeristedet i Pilestredet 75C: virksomheten startet som Nora Bryggeri i 1877, fikk St. Halvards-navnet i 1905 og ble nedlagt i 1918. Det allerede lagrede entydige Geonorge-punktet for Pilestredet 75C brukes som historisk adresseanker for stedet etter at recordens feilaktige år og østkant-identitet er korrigert; koblingen mellom dagens adressepunkt og det historiske anleggets eksakte bygningsutstrekning behandles derfor som en historisk tilnærming, ikke som et eksakt historisk bygningssentrum."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Pilestredet 75C",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Pilestredet%2075C%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:75C",
+      "sourceQuality": "official_address_site_anchor",
+      "finding": "Ett entydig adressepunkt for den historisk dokumenterte adressen.",
+      "canVerifyCoordinate": true,
+      "reason": "Historisk adresseanker, ikke eksakt historisk bygningssentrum."
     }
   ],
   "addressCandidates": [
@@ -53,14 +53,14 @@
       "address": "Pilestredet 75C Oslo",
       "sourceProvider": "official_address",
       "sourceObjectId": "geonorge-adresser-v1:0301:15670:75C",
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "official_address",
-      "sourceObjectId": "geonorge-adresser-v1:0301:15670:75C",
-      "canApplyToPlace": false
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:st-halvards-bryggeri",
+      "canApplyToPlace": true
     }
   ],
   "geometryCandidates": [],
@@ -68,16 +68,16 @@
     {
       "lat": 59.926947161930386,
       "lon": 10.728609002744596,
-      "coordRole": "display_marker",
-      "canApplyToPlace": false
+      "coordRole": "historical_anchor",
+      "canApplyToPlace": true
     }
   ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Aktiv record oppgir 1843 og beskriver et østkantbryggeri, mens kildene plasserer det dokumenterte St. Halvards/Nora-anlegget i Pilestredet 75C og med en annen historisk tidslinje. Det entydige adressepunktet kan derfor ikke brukes før recordens identitet og faktagrunnlag er ryddet.",
-    "nextAction": "Rett name/year/desc/popupDesc og avklar historisk bygningskontinuitet før Pilestredet 75C eventuelt godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildebelagt anker er anvendt på canonical place."
   },
   "notes": [
-    "Ingen koordinatendring i batch 24."
+    "Oslo byleksikon dokumenterer bryggeristedet i Pilestredet 75C: virksomheten startet som Nora Bryggeri i 1877, fikk St. Halvards-navnet i 1905 og ble nedlagt i 1918. Det allerede lagrede entydige Geonorge-punktet for Pilestredet 75C brukes som historisk adresseanker for stedet etter at recordens feilaktige år og østkant-identitet er korrigert; koblingen mellom dagens adressepunkt og det historiske anleggets eksakte bygningsutstrekning behandles derfor som en historisk tilnærming, ikke som et eksakt historisk bygningssentrum."
   ]
 }

@@ -1,7 +1,8 @@
-# Oslo koordinatkontroll – batch 38 research
+# Oslo koordinatkontroll – batch 38
 
 Dato: 2026-07-20
 
-Research-passet undersøker `bislett`, `sigrid_undset_statue`, `st_halvard_bryggeri` og `grensen_kjopesenter`. Ingen canonical koordinater endres i dette passet.
-
-Metoden er objekt-type-først: Bislett vurderes som strøk/byknutepunkt separat fra stadion, Sigrid Undset som monument, St. Halvards Bryggeri som historisk industristed med identitetsretting før koordinat, og Grensen som lineær gate. Alle rå Nominatim-svar lagres i `nominatim-results/`.
+- `bislett` → **verified_geometry** på eget navngitt OSM-strøksanker `osm-node:1126526860`, fysisk og semantisk skilt fra `bislett_stadion`.
+- `st_halvard_bryggeri` → historikken er korrigert til Nora Bryggeri fra 1877 / St. Halvards-navnet fra 1905 / nedlagt 1918, og recorden får **verified_historical_source** på det dokumenterte Pilestredet 75C-stedet med Geonorge-adressepunkt som historisk tilnærmet site-anchor.
+- `sigrid_undset_statue` → fortsatt **needs_review**; eksakt sokkelpunkt mangler.
+- `grensen_kjopesenter` → utsatt til eget lineært gatepass; tre separate OSM-way-er skal ikke presses inn i ett tilfeldig punkt.

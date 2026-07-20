@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T00:44:08.387Z
+Generert: 2026-07-20T00:51:48.036Z
 
 ## Oppsummering
 - Aktive filer validert: **504**
 - Antall steder validert: **1215**
 - Harde feil: **0**
 - Varsler: **429**
-- Coordinate review candidates: **712** signaler fordelt på **569** steder
+- Coordinate review candidates: **711** signaler fordelt på **568** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -959,7 +959,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -972,7 +972,7 @@ Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandi
 | park/stort område uten anchors eller coordNote | 132 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
-| identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
+| identisk/nesten identisk lat/lon som annet sted uten forklaring | 14 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
 ### coordStatus=verified uten coordPrecisionM (110)
@@ -1590,11 +1590,10 @@ Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandi
 | norges_bank_bankplassen_4 | Norges Bank – Bankplassen 4 | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json | 59.90866481462448 | 10.741285328997623 | 55 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 
-### identisk/nesten identisk lat/lon som annet sted uten forklaring (15)
+### identisk/nesten identisk lat/lon som annet sted uten forklaring (14)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| bislett_stadion | Bislett Stadion | sport | data/places/sport/europa/norway/oslo_sport.json | 59.924722 | 10.733333 | 180 | Deler punkt med: bislett. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | good_game_redaksjon | Good Game-redaksjonen (NRK) | media | data/places/media/oslo/places_oslo_media.json | 59.9323 | 10.7182 | 80 | Deler punkt med: nrk_marienlyst. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | nrk_marienlyst | NRK Marienlyst | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9323 | 10.7182 | 200 | Deler punkt med: good_game_redaksjon. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lekeplass_kampen_park | Kampen park lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9148 | 10.779 | 140 | Deler punkt med: treningssted_kampen_park. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
