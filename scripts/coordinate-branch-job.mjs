@@ -14,7 +14,12 @@ const childDir = path.join(targetDir, "places_historie_added_batch_01");
 const placeManifestPath = path.join(DATA, "places", "manifest.json");
 const evidenceManifestPath = path.join(DATA, "coordinate-evidence", "manifest.json");
 const reportDir = path.join(ROOT, "reports", "visitoslo-oslo-east-audit-20260720");
-const restoredIds = ["villa_stenersen", "st_hallvard_kirke_kloster"];
+const restoredIds = [
+  "peststotten_krist_kirkegard",
+  "kjaerlighetskarusellen",
+  "villa_stenersen",
+  "st_hallvard_kirke_kloster",
+];
 
 fs.mkdirSync(childDir, { recursive: true });
 fs.mkdirSync(reportDir, { recursive: true });
@@ -39,7 +44,6 @@ function parseFinderOutput(output) {
     throw new Error("Address finder did not return JSON.");
   }
 }
-
 function findAddress(address) {
   const output = execFileSync(process.execPath, ["dist/tools/address-first-coordinate-finder.mjs", "--address", address], { encoding: "utf8" });
   process.stdout.write(output);
@@ -49,7 +53,6 @@ function findAddress(address) {
   }
   return result;
 }
-
 function reverseGapAudit() {
   const manifest = readJson(placeManifestPath);
   const gaps = [];
@@ -76,40 +79,89 @@ for (const id of restoredIds) {
 }
 
 execFileSync("npm", ["run", "build:tools"], { stdio: "inherit" });
-const coordinateResults = {
-  villa_stenersen: findAddress("Tuengen allé 10C Oslo"),
-  st_hallvard_kirke_kloster: findAddress("Enerhauggata 4 Oslo"),
-};
-const notes = {
-  villa_stenersen: "Offisiell adressekoordinat fra Geonorge Adresser API for Tuengen allé 10C, OSLO. Punktet brukes som display-marker for Villa Stenersen og erstatter den eldre kildekoordinaten etter den låste address-first-metoden.",
-  st_hallvard_kirke_kloster: "Offisiell adressekoordinat fra Geonorge Adresser API for Enerhauggata 4, OSLO. Punktet brukes som display-marker for St. Hallvard kirke og kloster og erstatter den eldre publiserte punktkoordinaten etter den låste address-first-metoden.",
-};
+const villaResult = findAddress("Tuengen allé 10C Oslo");
+const hallvardResult = findAddress("Enerhauggata 4 Oslo");
 
-let aggregate = placesFrom(readJson(targetPath));
-aggregate = aggregate.map((place) => {
-  const result = coordinateResults[place.id];
-  if (!result) return place;
-  const coordinate = result.coordinate;
-  return {
-    ...place,
-    lat: coordinate.lat,
-    lon: coordinate.lon,
-    r: place.id === "st_hallvard_kirke_kloster" ? 80 : 70,
+const coordinateConfigs = {
+  villa_stenersen: {
+    lat: villaResult.coordinate.lat,
+    lon: villaResult.coordinate.lon,
+    r: 70,
     locatorType: "building",
     sourceProvider: "official_address",
-    sourceObjectId: result.sourceObjectId,
-    address: coordinate.address,
+    sourceObjectId: villaResult.sourceObjectId,
+    address: villaResult.coordinate.address,
     geocodeAccuracy: "rooftop",
     coordRole: "display_marker",
     coordType: "address_point",
     coordStatus: "verified",
     coordSource: "geonorge_adresser_v1",
-    coordSourceId: result.sourceObjectId,
-    coordSourceUrl: result.sourceUrl,
+    coordSourceId: villaResult.sourceObjectId,
+    coordSourceUrl: villaResult.sourceUrl,
     coordVerifiedAt: "2026-07-20",
-    coordNote: notes[place.id],
-  };
-});
+    coordNote: "Offisiell adressekoordinat fra Geonorge Adresser API for Tuengen allé 10C, OSLO. Punktet brukes som display-marker for Villa Stenersen og erstatter den eldre kildekoordinaten etter den låste address-first-metoden.",
+    evidenceFinding: `Geonorge gir ett tydelig adressetreff for ${villaResult.query}.`,
+  },
+  st_hallvard_kirke_kloster: {
+    lat: hallvardResult.coordinate.lat,
+    lon: hallvardResult.coordinate.lon,
+    r: 80,
+    locatorType: "building",
+    sourceProvider: "official_address",
+    sourceObjectId: hallvardResult.sourceObjectId,
+    address: hallvardResult.coordinate.address,
+    geocodeAccuracy: "rooftop",
+    coordRole: "display_marker",
+    coordType: "address_point",
+    coordStatus: "verified",
+    coordSource: "geonorge_adresser_v1",
+    coordSourceId: hallvardResult.sourceObjectId,
+    coordSourceUrl: hallvardResult.sourceUrl,
+    coordVerifiedAt: "2026-07-20",
+    coordNote: "Offisiell adressekoordinat fra Geonorge Adresser API for Enerhauggata 4, OSLO. Punktet brukes som display-marker for St. Hallvard kirke og kloster og erstatter den eldre publiserte punktkoordinaten etter den låste address-first-metoden.",
+    evidenceFinding: `Geonorge gir ett tydelig adressetreff for ${hallvardResult.query}.`,
+  },
+  peststotten_krist_kirkegard: {
+    lat: 59.917469,
+    lon: 10.746586,
+    r: 70,
+    locatorType: "poi",
+    sourceProvider: "manual_research",
+    sourceObjectId: "atlasobscura:black-death-monument-peststotten",
+    geocodeAccuracy: "geometric_center",
+    coordRole: "display_marker",
+    coordType: "monument_point",
+    coordStatus: "verified",
+    coordSource: "Atlas Obscura coordinate cross-checked with Oslo kommune and Oslo byleksikon",
+    coordSourceId: "atlasobscura:black-death-monument-peststotten",
+    coordSourceUrl: "https://www.atlasobscura.com/places/black-death-monument-peststotten",
+    coordVerifiedAt: "2026-07-20",
+    coordNote: "Punktkoordinat for selve Peststøtten ved inngangen til Krist kirkegård. Atlas Obscura-punktet er kryssjekket mot Oslo kommunes gravplassinformasjon og Oslo byleksikons plassering av monumentet ved kirkegårdsinngangen. Punktet representerer monumentet, ikke hele Krist kirkegård.",
+    evidenceFinding: "Atlas Obscura publiserer punktkoordinaten for Peststøtten; monumentidentitet og plassering ved inngangen til Krist kirkegård er kryssjekket mot Oslo kommune og Oslo byleksikon.",
+  },
+  kjaerlighetskarusellen: {
+    lat: 59.9267,
+    lon: 10.7296528,
+    r: 45,
+    locatorType: "poi",
+    sourceProvider: "osm",
+    sourceObjectId: "osm-node:1346356285",
+    geocodeAccuracy: "geometric_center",
+    coordRole: "display_marker",
+    coordType: "poi_node",
+    coordStatus: "verified_geometry",
+    coordSource: "OpenStreetMap node 1346356285; identity cross-checked with Wikidata Q6419506 and Oslo byleksikon",
+    coordSourceId: "osm-node:1346356285",
+    coordSourceUrl: "https://www.openstreetmap.org/node/1346356285",
+    coordVerifiedAt: "2026-07-20",
+    coordNote: "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet.",
+    evidenceFinding: "Kjærlighetskarusellen er knyttet til det navngitte OSM-objektet node 1346356285; identiteten er kryssjekket mot Wikidata Q6419506 og Oslo byleksikon.",
+  },
+};
+
+let aggregate = placesFrom(readJson(targetPath));
+aggregate = aggregate.map((place) => coordinateConfigs[place.id] ? { ...place, ...coordinateConfigs[place.id], evidenceFinding: undefined } : place);
+for (const place of aggregate) delete place.evidenceFinding;
 writeJson(targetPath, aggregate);
 
 const splitManifest = readJson(splitManifestPath);
@@ -150,7 +202,7 @@ const evidenceManifest = readJson(evidenceManifestPath);
 if (!Array.isArray(evidenceManifest.files)) throw new Error("Coordinate evidence manifest has no files array.");
 for (const id of restoredIds) {
   const place = aggregate.find((candidate) => candidate.id === id);
-  const result = coordinateResults[id];
+  const config = coordinateConfigs[id];
   const evidenceRel = `oslo/historie/${id}.json`;
   const evidencePath = path.join(DATA, "coordinate-evidence", evidenceRel);
   writeJson(evidencePath, {
@@ -172,26 +224,26 @@ for (const id of restoredIds) {
       resolvedIdentity: place.name,
       identityStatus: "resolved",
       identityProblem: "",
-      locatorTypeCandidate: "building",
+      locatorTypeCandidate: place.locatorType,
       requiresSplit: false,
       splitReason: "",
     },
-    requiredEvidence: ["entydig offisielt adressepunkt", "eksisterende canonical identitet i aggregate place-kilden", "runtime-restaurering gjennom synkronisert split-manifest"],
+    requiredEvidence: ["stabil kildeidentitet for koordinatankeret", "eksisterende canonical identitet i aggregate place-kilden", "runtime-restaurering gjennom synkronisert split-manifest"],
     evidence: [{
-      sourceProvider: "official_address",
-      sourceName: "geonorge_adresser_v1",
-      sourceUrl: result.sourceUrl,
-      sourceObjectId: result.sourceObjectId,
-      sourceQuality: "official_address_plus_existing_canonical_identity",
-      finding: `Geonorge gir ett tydelig adressetreff for ${result.query}. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten å opprette ny place-id.`,
+      sourceProvider: place.sourceProvider,
+      sourceName: place.coordSource,
+      sourceUrl: place.coordSourceUrl,
+      sourceObjectId: place.sourceObjectId,
+      sourceQuality: "stable_source_identity_plus_existing_canonical_identity",
+      finding: `${config.evidenceFinding} Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten å opprette ny place-id.`,
       canVerifyCoordinate: true,
       reason: place.coordNote,
     }],
-    addressCandidates: [{ address: result.query, sourceProvider: "official_address", sourceObjectId: result.sourceObjectId, canApplyToPlace: true }],
-    sourceObjectCandidates: [{ sourceProvider: "official_address", sourceObjectId: result.sourceObjectId, canApplyToPlace: true }],
+    addressCandidates: place.address ? [{ address: `${place.address.street} ${place.address.number} Oslo`, sourceProvider: place.sourceProvider, sourceObjectId: place.sourceObjectId, canApplyToPlace: true }] : [],
+    sourceObjectCandidates: [{ sourceProvider: place.sourceProvider, sourceObjectId: place.sourceObjectId, canApplyToPlace: true }],
     geometryCandidates: [],
-    coordinateCandidates: [{ lat: place.lat, lon: place.lon, coordRole: "display_marker", canApplyToPlace: true }],
-    decision: { canBecomeVerified: true, blockedReason: "", nextAction: "Restored the existing canonical place to split/runtime materialization with a verified address-first coordinate." },
+    coordinateCandidates: [{ lat: place.lat, lon: place.lon, coordRole: place.coordRole, canApplyToPlace: true }],
+    decision: { canBecomeVerified: true, blockedReason: "", nextAction: "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source." },
     notes: ["This is a runtime restoration of an existing canonical place, not a new place creation.", place.coordNote],
   });
   if (!evidenceManifest.files.includes(evidenceRel)) evidenceManifest.files.push(evidenceRel);
@@ -200,19 +252,23 @@ writeJson(evidenceManifestPath, evidenceManifest);
 
 const gapsAfter = reverseGapAudit();
 if (gapsAfter.some((row) => row.manifestEntry === targetRel)) throw new Error("Target split manifest still omits aggregate records.");
-
 const beforeCount = gapsBefore.reduce((sum, row) => sum + row.missing.length, 0);
 const afterCount = gapsAfter.reduce((sum, row) => sum + row.missing.length, 0);
 writeJson(path.join(reportDir, "split-manifest-reverse-coverage-repair.json"), {
   generatedAt: new Date().toISOString(),
   targetManifestEntry: targetRel,
-  diagnosis: "The runtime index builder prefers valid sibling split manifests. This split manifest had six rows while the aggregate later grew to eight places, hiding Villa Stenersen and St. Hallvard kirke og kloster from runtime.",
+  diagnosis: "The runtime index builder prefers valid sibling split manifests. This split manifest had six rows while the aggregate later grew with four additional canonical records, hiding them from runtime.",
   restoredPlaceIds: restoredIds,
   gapsBefore,
   gapsAfter,
-  coordinateResults: Object.fromEntries(Object.entries(coordinateResults).map(([id, result]) => [id, { query: result.query, sourceObjectId: result.sourceObjectId, coordinate: result.coordinate }])),
+  coordinateSources: Object.fromEntries(restoredIds.map((id) => [id, {
+    sourceProvider: coordinateConfigs[id].sourceProvider,
+    sourceObjectId: coordinateConfigs[id].sourceObjectId,
+    lat: coordinateConfigs[id].lat,
+    lon: coordinateConfigs[id].lon,
+  }])),
 });
-fs.writeFileSync(path.join(reportDir, "split-manifest-reverse-coverage-repair.md"), `# Split-manifest reverse coverage repair\n\nDate: 2026-07-20\n\nThe runtime index builder prefers a valid sibling split manifest over its aggregate source. The Oslo history split manifest had six rows while the aggregate later grew to eight records, hiding \`villa_stenersen\` and \`st_hallvard_kirke_kloster\` from runtime.\n\nBoth existing canonical places are restored as split children, the split manifest and split index are synchronized, and both coordinates are reverified through the locked Geonorge address-first method.\n\nReverse aggregate-to-split gaps before this repair: **${beforeCount}** across **${gapsBefore.length}** split manifests.\n\nReverse aggregate-to-split gaps after this targeted repair: **${afterCount}** across **${gapsAfter.length}** split manifests.\n`, "utf8");
+fs.writeFileSync(path.join(reportDir, "split-manifest-reverse-coverage-repair.md"), `# Split-manifest reverse coverage repair\n\nDate: 2026-07-20\n\nThe runtime index builder prefers a valid sibling split manifest over its aggregate source. The Oslo history split manifest had six rows while the aggregate later grew with four more canonical records, hiding \`peststotten_krist_kirkegard\`, \`kjaerlighetskarusellen\`, \`villa_stenersen\` and \`st_hallvard_kirke_kloster\` from runtime.\n\nAll four existing canonical places are restored as split children and the split manifest/index are synchronized. Villa Stenersen and St. Hallvard are reverified with exact Geonorge address-first points; Peststøtten and Kjærlighetskarusellen receive stable v1-compatible object/source identities.\n\nReverse aggregate-to-split gaps before this repair: **${beforeCount}** across **${gapsBefore.length}** split manifests.\n\nReverse aggregate-to-split gaps after this targeted repair: **${afterCount}** across **${gapsAfter.length}** split manifests.\n`, "utf8");
 
-console.log("Restored Villa Stenersen and St. Hallvard kirke og kloster to split/runtime materialization.");
+console.log(`Restored ${restoredIds.join(", ")} to split/runtime materialization.`);
 console.log(`Reverse aggregate-to-split gaps before: ${beforeCount}; after: ${afterCount}.`);
