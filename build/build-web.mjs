@@ -42,7 +42,8 @@ const ENTRIES = [
   { in: "js/knowledge.ts", out: "knowledge" },
   { in: "js/trivia.ts", out: "trivia" },
   { in: "js/courses.ts", out: "courses" },
-  { in: "js/emneDekning.ts", out: "emneDekning" }
+  { in: "js/emneDekning.ts", out: "emneDekning" },
+  { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" }
 ];
 
 const watch = process.argv.includes("--watch");
