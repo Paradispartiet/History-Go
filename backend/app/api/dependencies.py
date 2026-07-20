@@ -37,7 +37,10 @@ def get_social_meet_identity_service(
     if not database.configured:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail={"code": "backend_not_enabled", "message": "Database is not configured"},
+            detail={
+                "code": "backend_not_enabled",
+                "message": "Database is not configured",
+            },
         )
     return SocialMeetIdentityService(PostgresSocialMeetIdentityRepository(database))
 
