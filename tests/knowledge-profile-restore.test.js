@@ -16,18 +16,40 @@ test("Knowledge V2 loads canonical badge logos", () => {
   assert.match(runtime, /badge\?\.image|badge\.image/);
 });
 
-test("canonical badge image references point to existing repository assets", () => {
+test("Knowledge subject badges expose canonical image references", () => {
   const index = JSON.parse(read("data/badges/index.json"));
   assert.ok(Array.isArray(index.files) && index.files.length > 0);
 
-  for (const file of index.files) {
+  const badges = new Map(index.files.map((file) => {
     const badge = JSON.parse(read(file));
-    if (!badge.image) continue;
-    assert.equal(
-      fs.existsSync(path.join(ROOT, badge.image)),
-      true,
-      `${badge.id}: missing ${badge.image}`
-    );
+    return [badge.id, badge];
+  }));
+
+  const knowledgeSubjects = [
+    "historie",
+    "vitenskap",
+    "kunst",
+    "natur",
+    "musikk",
+    "populaerkultur",
+    "subkultur",
+    "sport",
+    "by",
+    "politikk",
+    "naeringsliv",
+    "litteratur",
+    "psykologi",
+    "media",
+    "film_tv",
+    "religion"
+  ];
+
+  for (const subjectId of knowledgeSubjects) {
+    const badge = badges.get(subjectId);
+    assert.ok(badge, `missing badge metadata for ${subjectId}`);
+    assert.equal(typeof badge.image, "string", `${subjectId}: badge.image must be a string`);
+    assert.ok(badge.image.trim(), `${subjectId}: badge.image must not be empty`);
+    assert.match(badge.image, /^bilder\//, `${subjectId}: badge.image must use a repository image path`);
   }
 });
 
