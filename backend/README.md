@@ -1,6 +1,6 @@
 # History GO backend
 
-Status: **The shared FastAPI foundation and the first two server-owned Social Meet slices are implemented: Identity & Public Profile, followed by participant safety, export and Social Meet deletion.**
+Status: **The shared FastAPI foundation and the first three server-owned Social Meet slices are implemented: Identity & Public Profile, participant safety/export/deletion, and moderation/appeals. Production Spotmeeting discovery remains gated.**
 
 The canonical technical architecture is defined in:
 
@@ -82,8 +82,6 @@ The profile migration is:
 
 - `supabase/migrations/002_social_meet_identity_profiles.sql`
 
-It extends `hg_profiles` with opaque Social Meet IDs, visibility, consent and public learning-profile fields while preserving the existing basic History GO profile fields.
-
 ## Server-owned domain: Social Meet participant safety, export and deletion
 
 The second migrated slice adds the participant-facing safety and data-rights boundary required before production Spotmeeting can be enabled.
@@ -107,28 +105,83 @@ The safety migration is:
 
 - `supabase/migrations/003_social_meet_safety.sql`
 
-It adds:
+Safety rules enforced by the backend include:
 
-- private `hg_social_meet_blocks` relationships,
-- confidential `hg_social_meet_reports`,
-- participant-only RLS reads,
-- server-authoritative write boundaries,
-- a private `deleted_at` Social Meet tombstone,
-- indexes and constraints for active block enforcement and report processing.
-
-Safety rules enforced by the backend:
-
-- block and report targets are addressed only by opaque public `profile_id` values;
+- block and report targets use opaque public `profile_id` values;
 - active block checks are bidirectional;
-- the reusable `ensure_interaction_allowed` domain gate is available for future candidate discovery and invite delivery;
-- a blocked profile is never told who blocked it through the block API;
+- the reusable `ensure_interaction_allowed` gate is available for future discovery and invite delivery;
+- blocked users are not told who blocked them through the block API;
 - unknown targets and inaccessible safety records use non-enumerating errors;
-- report creation returns only a safe receipt containing report ID, state and timestamp;
-- report detail fields are a server-owned allow-list of structured codes, not arbitrary free text;
-- nested GPS, live location, nearby, presence, last-seen, chat, public visit history and equivalent forbidden data are rejected before domain execution;
-- exports include only the current user's Social Meet identity/profile state, their block records, their submitted reports and participant-scoped invite records;
-- exports do not expose raw auth provider IDs or reporter-private fields;
-- Social Meet deletion is idempotent and tombstones Social Meet publication data without deleting the Supabase auth account or shared History GO profile fields such as display name, avatar and home place.
+- report creation returns only a safe receipt;
+- report detail fields are structured server allow-lists, not arbitrary free text;
+- nested GPS, live location, nearby, presence, last-seen, chat, public visit history and equivalent forbidden data are rejected;
+- exports contain only participant-scoped Social Meet data;
+- Social Meet deletion is idempotent and tombstones Social Meet publication data without deleting the Supabase auth account or unrelated History GO profile fields.
+
+## Server-owned domain: Social Meet moderation and appeals
+
+The third migrated slice implements the private moderation work queue, trusted staff authorization, server-authoritative suspension/restore behavior and structured participant appeals.
+
+Detailed implementation documentation:
+
+- [`docs/HG_SOCIAL_MEET_MODERATION_BACKEND.md`](../docs/HG_SOCIAL_MEET_MODERATION_BACKEND.md)
+
+Trusted staff roles come only from verified Supabase `app_metadata`:
+
+```text
+history_go_moderator
+history_go_admin
+```
+
+Email addresses, public profile data, browser state and user-editable metadata never grant moderator privileges. `history_go_admin` inherits moderator access.
+
+Moderator/admin API:
+
+```text
+GET  /api/v1/social-meet/moderation/queue
+GET  /api/v1/social-meet/moderation/queue/{queueItemId}
+POST /api/v1/social-meet/moderation/queue/{queueItemId}/actions
+POST /api/v1/social-meet/moderation/reports/{reportId}/resolve
+POST /api/v1/social-meet/moderation/profiles/{profileId}/suspend
+```
+
+Admin-only API:
+
+```text
+POST /api/v1/social-meet/moderation/profiles/{profileId}/restore
+POST /api/v1/social-meet/appeals/{appealId}/decision
+```
+
+Participant appeal API:
+
+```text
+GET  /api/v1/social-meet/appeals
+POST /api/v1/social-meet/appeals
+```
+
+The moderation migration is:
+
+- `supabase/migrations/004_social_meet_moderation.sql`
+
+It adds server-owned persistence for:
+
+- moderation queue items reconciled from durable reports,
+- profile suspension restrictions,
+- structured appeals,
+- private structured safety audit events.
+
+Moderation rules enforced by the backend include:
+
+- queue actions are allow-listed as `claim`, `release` and `escalate`;
+- report resolutions use stable structured codes and no moderator free-text payloads;
+- a suspension resolution requires a structured reason before report state is mutated;
+- suspension moves the profile to `blocked_or_suspended`;
+- the shared interaction gate rejects restricted profiles as well as bidirectionally blocked profile pairs;
+- restore is admin-only and returns the profile to `paused`, never directly to `discoverable`;
+- participants may appeal only restrictions associated with their own profile;
+- appeal decisions are admin-only;
+- modifying or reversing a full suspension lifts it and leaves the profile `paused` until the user explicitly republishes;
+- moderation audit records store structured action/decision identifiers and never location, presence, free-chat or participant-visible moderator-note data.
 
 ### Transitional direct Supabase access
 
@@ -137,9 +190,7 @@ The existing browser adapter remains transitional infrastructure:
 - `js/social/HGSocialMeetSupabaseClient.js`
 - `js/social/HGSocialMeetAdapter.js`
 
-The identity migration restricts the authenticated browser role so it may continue writing the legacy basic profile fields required by the current client, but it cannot directly self-authorize Social Meet publication or write the new server-owned consent/fingerprint/visibility fields.
-
-The safety migration does not grant direct browser writes to blocks or reports. Those mutations are owned by FastAPI.
+The identity migration restricts the authenticated browser role so it cannot directly self-authorize publication or write server-owned consent/fingerprint/visibility fields. The safety and moderation migrations keep server-authoritative mutations behind FastAPI rather than introducing new direct browser write paths.
 
 The intended migration remains:
 
@@ -157,16 +208,15 @@ Do not create a second set of Social Meet tables or a parallel invite model.
 
 ## Production Social Meet remains gated
 
-The implemented identity and participant-safety slices are prerequisites, not permission to enable production discovery.
+The implemented identity, participant-safety and moderation slices are prerequisites, not permission to enable production discovery.
 
-The following still needs a complete server-owned implementation before production Spotmeeting discovery is enabled:
+The following still needs complete server-owned implementation before production Spotmeeting discovery is enabled:
 
-1. moderation queue, moderator/admin actions and appeal handling;
-2. abuse prevention and rate limiting;
-3. durable Spotmeeting invite lifecycle behind FastAPI;
-4. candidate discovery using only explicit, coarse knowledge-profile inputs;
-5. cross-device sync;
-6. frontend migration away from direct client writes for migrated server-owned operations.
+1. abuse prevention, rate limits, duplicate suppression and cooldowns;
+2. durable Spotmeeting invite lifecycle behind FastAPI using the existing `hg_spotmeeting_invites` model;
+3. candidate discovery using only explicit, coarse knowledge-profile inputs with stale-result safety revalidation;
+4. cross-device sync;
+5. frontend migration away from direct client writes for migrated server-owned operations.
 
 Until these prerequisites are complete, local/demo discovery behavior and the existing production safety gates must remain in place.
 
@@ -177,10 +227,12 @@ The repository already contains:
 - `supabase/migrations/001_social_meet.sql` — original PostgreSQL schema + RLS,
 - `supabase/migrations/002_social_meet_identity_profiles.sql` — server-owned identity/profile evolution,
 - `supabase/migrations/003_social_meet_safety.sql` — participant safety, export and deletion support,
+- `supabase/migrations/004_social_meet_moderation.sql` — moderation queue, restrictions, appeals and audit,
 - `docs/social-meet-backend.md`,
 - `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`,
 - `docs/HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`,
 - `docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`,
+- `docs/HG_SOCIAL_MEET_MODERATION_BACKEND.md`,
 - the existing Social Meet browser adapters.
 
 Backend work must evolve these contracts and schemas rather than replacing them.
@@ -235,7 +287,7 @@ The auth boundary does not store the Supabase legacy JWT secret.
 - Modern asymmetric `RS256` / `ES256` access tokens are verified locally against the Supabase project JWKS.
 - Legacy `HS256` tokens are verified through the Supabase Auth `/user` endpoint and require the public/publishable project key.
 - Unsupported JWT algorithms fail closed.
-- Domain code receives only a verified minimal `AuthPrincipal`, not raw auth infrastructure.
+- Domain code receives only a verified minimal `AuthPrincipal`, including trusted server-controlled `app_metadata` roles where present.
 
 ## Validation
 
@@ -267,8 +319,8 @@ The backend does **not** automatically own the editorial datasets under `data/`.
 
 ## Next backend slice
 
-The next server-owned slice should implement the **Social Meet moderation queue and moderator/admin enforcement boundary**, including safe status transitions, private moderation notes, appeals and the audit events required by the existing safety contract.
+The next server-owned slice should implement **Social Meet abuse prevention and rate limiting**: invite/report creation limits, duplicate suppression, recipient pressure limits and policy cooldowns after decline, report, block or repeated cancellation.
 
-After moderation enforcement is in place, move the existing Spotmeeting invite state machine behind FastAPI while reusing `hg_spotmeeting_invites` and the bidirectional block gate rather than creating a new invite model.
+After abuse prevention is in place, move the existing Spotmeeting invite state machine behind FastAPI while reusing `hg_spotmeeting_invites`, the moderation restriction state and the bidirectional block gate rather than creating a new invite model.
 
 Do not attempt a whole-app backend rewrite.
