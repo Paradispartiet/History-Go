@@ -23,7 +23,9 @@
   --hg-map-control-width: min(228px, calc(100vw - 24px));
 
   position: fixed;
-  right: calc(12px + env(safe-area-inset-right, 0px));
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   bottom: calc(var(--hg-bottom-nav-height, 72px) + 14px);
   z-index: 10050;
 
@@ -31,11 +33,12 @@
      Kategorien skal nå være tilgjengelig i begge moduser, derfor eier CSS
      den endelige display-kontrakten. */
   display: flex !important;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
 
-  width: var(--hg-map-control-width);
+  width: auto;
   max-width: calc(100vw - 24px);
 
   pointer-events: none;
@@ -44,17 +47,15 @@
 
 body.mode-map .map-controls,
 body.map-only .map-controls{
-  /* Hold hele docken over MapLibres native zoomkontroller. */
-  bottom: calc(96px + var(--hg-safe-area-bottom, env(safe-area-inset-bottom, 0px)));
+  bottom: calc(var(--hg-bottom-nav-height, 72px) + 14px + env(safe-area-inset-bottom, 0px));
 }
 
 .map-controls > *{
   pointer-events: auto;
 }
 
-/* I vanlig modus vises bare kategoriprikkvelgeren. */
-body:not(.mode-map):not(.map-only) .map-controls > .hg-map-style-toggle,
-body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
+/* Alle kontrollene ligger på samme flate rad; X skjules utenfor faktisk kartmodus. */
+body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{
   display: none !important;
 }
 
@@ -83,7 +84,8 @@ body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
   align-items: center;
   gap: 4px;
 
-  width: 100%;
+  width: auto;
+  min-width: 154px;
   height: 46px;
   padding: 4px;
   box-sizing: border-box;
@@ -140,7 +142,8 @@ body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
 
 .hg-map-category-filter{
   position: relative;
-  width: 100%;
+  width: 88px;
+  flex: 0 0 88px;
   pointer-events: auto;
 }
 
@@ -150,7 +153,7 @@ body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
   padding: 0 13px;
 
   display: grid;
-  grid-template-columns: 26px minmax(0, 1fr) 18px;
+  grid-template-columns: minmax(0, 1fr) 14px;
   align-items: center;
   gap: 9px;
 
@@ -194,8 +197,8 @@ body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
   bottom: calc(100% + 8px);
   z-index: 10080;
 
-  width: 100%;
-  max-height: min(56dvh, 520px);
+  width: 88px;
+  max-height: min(52dvh, 430px);
   padding: 8px;
   box-sizing: border-box;
   overflow: auto;
@@ -220,9 +223,9 @@ body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
   padding: 8px 10px;
 
   display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) 22px;
-  align-items: center;
-  gap: 9px;
+  grid-template-columns: 1fr;
+  place-items: center;
+  gap: 0;
 
   border: 0;
   border-radius: 12px;
@@ -278,7 +281,7 @@ body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
   justify-content: center;
   align-items: center;
   gap: 10px;
-  width: 100%;
+  width: auto;
 }
 
 .map-controls .hg-map-utility-btn{
@@ -316,12 +319,12 @@ body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
 @media (max-width: 640px){
   .map-controls{
     --hg-map-control-width: min(208px, calc(100vw - 20px));
-    right: calc(10px + env(safe-area-inset-right, 0px));
+    right: auto;
     bottom: calc(var(--hg-bottom-nav-height, 72px) + 10px);
   }
 
   body.mode-map .map-controls,
   body.map-only .map-controls{
-    bottom: calc(90px + var(--hg-safe-area-bottom, env(safe-area-inset-bottom, 0px)));
+    bottom: calc(var(--hg-bottom-nav-height, 72px) + 10px + env(safe-area-inset-bottom, 0px));
   }
 }

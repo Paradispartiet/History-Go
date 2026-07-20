@@ -1,7 +1,23 @@
 /* History Go map controls: compact, flat and transparent presentation. */
 
 body .map-controls {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  bottom: calc(var(--hg-bottom-nav-height, 72px) + 12px + env(safe-area-inset-bottom, 0px)) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
   gap: 6px;
+  width: auto !important;
+  max-width: calc(100vw - 24px) !important;
+  padding: 0 !important;
+}
+
+body.mode-map .map-controls,
+body.map-only .map-controls {
+  bottom: calc(var(--hg-bottom-nav-height, 72px) + 12px + env(safe-area-inset-bottom, 0px)) !important;
 }
 
 /* Keep the map style switch visually flat instead of a raised dark pill. */
@@ -32,12 +48,13 @@ body .map-controls .hg-map-style-toggle .hg-map-style-btn.is-active {
 
 /* Badge/category picker: narrower trigger with larger badge artwork and no visible names. */
 body .map-controls .hg-map-category-filter {
-  width: 170px !important;
+  width: 88px !important;
+  flex: 0 0 88px;
   align-self: flex-end;
 }
 
 body .map-controls .hg-map-category-trigger {
-  width: 170px !important;
+  width: 88px !important;
   height: 44px;
   padding: 0 10px;
   grid-template-columns: minmax(0, 1fr) 18px !important;
@@ -83,9 +100,7 @@ body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo.is-stack
 }
 
 body .map-controls .hg-map-category-options:not([hidden]) {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
+  display: block !important;
 }
 
 body .map-controls .hg-map-category-options[hidden] {
@@ -93,7 +108,7 @@ body .map-controls .hg-map-category-options[hidden] {
 }
 
 body .map-controls .hg-map-category-options {
-  width: 170px !important;
+  width: 88px !important;
   padding: 8px;
   max-height: min(52dvh, 430px);
   background: rgba(10, 18, 28, 0.38) !important;
@@ -109,7 +124,7 @@ body .map-controls .hg-map-category-option {
   width: 100% !important;
   min-width: 0;
   min-height: 48px !important;
-  aspect-ratio: 1;
+  aspect-ratio: auto;
   padding: 4px !important;
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -189,7 +204,7 @@ body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn {
   body .map-controls .hg-map-category-filter,
   body .map-controls .hg-map-category-trigger,
   body .map-controls .hg-map-category-options {
-    width: 158px !important;
+    width: 74px !important;
   }
 
   body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo {
