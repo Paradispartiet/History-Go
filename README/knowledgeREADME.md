@@ -2,9 +2,18 @@
 
 ## Kanonisk definisjon
 
-> **Knowledge er brukerens personlige, systematiserte forhold til kanonisk fagkunnskap: emner, begreper, terminologi, kunnskapsenheter, relasjoner og historier som brukeren har møtt gjennom vurdert læring.**
+> **Knowledge er brukerens personlige, systematiserte forhold til fagkunnskap: emner, begreper, terminologi, kunnskapsenheter, relasjoner og historier som brukeren har møtt, lest og arbeidet med i History Go.**
 
-Knowledge er ikke en samling av quizspørsmål. Quiz er vurdering og evidens. Selve kunnskapen skal finnes som egne faglige objekter som kan gjenbrukes, kobles og forstås på tvers av quizzer, steder og personer.
+Kunnskapen kan komme fra mange flater: steder, personer, emner, fagtekster, historier, Wonderkammer og quiz.
+
+Quiz har en særrolle. Den er både:
+
+- et sted kunnskap samles og formidles
+- en prøve
+- dokumentasjon på hva brukeren har møtt og lest
+- dokumentasjon på hva brukeren har mestret
+
+Knowledge skal ikke være en flat liste over quizspørsmål. Quizinnholdet skal kobles til stabile faglige objekter slik at samme kunnskap kan finnes igjen og settes i sammenheng på tvers av hele appen.
 
 Den fullstendige arkitekturen står i:
 
@@ -12,6 +21,7 @@ Den fullstendige arkitekturen står i:
 README/KNOWLEDGE_MEMORY_CHAMBER.md
 data/knowledge/knowledge_system_policy_v1.json
 data/knowledge/knowledge_unit_schema_v1.json
+data/quiz/quiz_knowledge_delivery_contract_v1.json
 ```
 
 ---
@@ -27,7 +37,9 @@ Begreper og terminologi
         ↓
 Kunnskapsenheter og historier
         ↓
-Quiz / vurdering
+Formidling gjennom steder, personer, emner, historier og quiz
+        ↓
+Quizlesing og vurdering
         ↓
 Læringsevidens og mestring
         ↓
@@ -46,7 +58,7 @@ Definerer fagets domener, progresjon, metoder og faglige grenser.
 
 ### Emne
 
-Er den faglige beholderen. Et emne samler kunnskapsenheter, begreper, terminologi, metoder, steder, personer og historier.
+Er den faglige beholderen. Et emne samler kunnskapsenheter, begreper, terminologi, metoder, steder, personer, quizzer og historier.
 
 Et emne er ikke en quiz og ikke et enkelt faktum.
 
@@ -60,9 +72,9 @@ Et `term_id` representerer en presis fagterm med foretrukket navn og definisjon.
 
 ### Kunnskapsenhet
 
-En `knowledge_unit_id` representerer det minste selvstendige faglige innholdet som kan forstås, kobles, testes og repeteres.
+En `knowledge_unit_id` representerer det minste selvstendige faglige innholdet som kan formidles, forstås, kobles, testes og repeteres.
 
-Eksempler på typer:
+Eksempler:
 
 ```text
 definition
@@ -79,6 +91,8 @@ story_fragment
 interpretation
 ```
 
+Den samme kunnskapsenheten kan vises på stedssiden, personsiden, emnesiden, historiesiden, i Wonderkammer, i quiz og på Knowledge-siden.
+
 ### Historie
 
 En `story_id` binder sammen hendelser, steder, personer og kunnskapsenheter i et faglig eller kronologisk forløp.
@@ -87,14 +101,33 @@ En rekke quizspørsmål om samme sted er ikke automatisk en historie.
 
 ### Quiz
 
-Quiz peker til kunnskapsenhetene den tester. Et riktig svar skaper læringsevidens og oppdaterer brukerens mestring av den kanoniske kunnskapen.
+Quiz er både læringsflate og prøve.
+
+Den skal:
+
+1. samle relevant kunnskap i et faglig forløp
+2. formidle kunnskapen gjennom spørsmål, svaralternativer og forklaring
+3. teste bestemte kunnskapsenheter, begreper og termer
+4. vise kunnskapsforklaring etter svaret
+5. registrere at stoffet er møtt og lest
+6. registrere vurdering og mestring
+
+Quiz kan bære hele kunnskapsforklaringen i `knowledge` eller `knowledge_payload`, men innholdet skal samtidig ha stabile faglige ID-er.
 
 ### Knowledge
 
-Knowledge lagrer brukerens relasjon til kunnskapen:
+Knowledge lagrer brukerens relasjon til kunnskapen, ikke bare quizresultatet.
+
+Lesetilstander:
 
 ```text
 encountered
+read
+```
+
+Mestringstilstander:
+
+```text
 recognized
 understood
 explained
@@ -102,31 +135,67 @@ applied
 repeated
 ```
 
-Quiz-ID, sted og person beholdes som proveniens og kontekst.
+Quiz-ID, sted, person og andre flater beholdes som proveniens og kontekst.
 
 ---
 
-## 3. Hva skaper Knowledge?
+## 3. Hva vet vi gjennom quizen?
 
-En vurdert læringssituasjon skaper evidens. Quiz er dagens hovedkilde.
-
-Observasjon, besøk, innsjekk, samling og notater kan gi kontekst og progresjonssignal, men de skaper ikke alene en vurdert Knowledge-mestring.
+Det må skilles mellom tre ting:
 
 ```text
-Handling / besøk / observasjon
-        ↓
-Learning log / erfaring / kontekst
-
-Riktig quiz-svar / vurdert forståelse
-        ↓
-Learning evidence
-        ↓
-Personlig mestring av canonical knowledge units
+har møtt kunnskapen
+har lest kunnskapen
+har mestret kunnskapen
 ```
+
+### Møtt
+
+Når spørsmålet og kunnskapsforklaringen er vist, kan `encountered` registreres.
+
+### Lest
+
+Når forklaringen er vist og brukeren aktivt går videre, kan `read` registreres.
+
+### Mestret
+
+Et riktig svar gir vurderingsevidens i henhold til spørsmålets `evidence_type`:
+
+```text
+recognize
+recall
+explain
+compare
+connect
+apply
+```
+
+Et feil svar kan fortsatt dokumentere at stoffet er møtt og lest. Det skal ikke late som brukeren har mestret det. Kunnskapen kan markeres for repetisjon.
 
 ---
 
-## 4. Nye quizkontrakter
+## 4. Andre kunnskapskilder
+
+Kanonisk kunnskap kan formidles gjennom:
+
+```text
+place_page
+person_page
+emne_page
+story_page
+wonderkammer
+quiz
+knowledge_page
+curated_external_source
+```
+
+Disse flatene skal ikke opprette konkurrerende versjoner av samme faglige påstand. De skal referere til samme `knowledge_unit_id` når innholdet er det samme.
+
+Quiz er flaten som tydeligst kan dokumentere at brukeren faktisk har lest og arbeidet med stoffet, fordi den krever et aktivt svar og en aktiv videreføring etter forklaringen.
+
+---
+
+## 5. Nye quizkontrakter
 
 Nye quizspørsmål skal minst ha:
 
@@ -139,6 +208,8 @@ concept_ids
 term_ids
 learning_objective_id
 evidence_type
+knowledge eller knowledge_payload
+feedback_basis
 source / claim_basis
 ```
 
@@ -151,7 +222,19 @@ method_ids
 chronology_ids
 ```
 
-Legacy-feltene kan beholdes:
+`knowledge_payload` kan inneholde:
+
+```text
+summary
+explanation
+why_it_matters
+term_definitions
+story_fragment
+relations
+source_note
+```
+
+Legacy-feltene skal beholdes:
 
 ```text
 knowledge
@@ -159,17 +242,15 @@ core_concepts
 related_emner
 ```
 
-Men de skal ikke være eneste faglige kobling i ny produksjon.
-
-`knowledge` kan brukes som kort feedbacktekst, men den kanoniske påstanden skal ligge i kunnskapsenheten.
+De skal kobles inn i den strukturerte modellen, ikke fjernes.
 
 ---
 
-## 5. Begreper skal være presise
+## 6. Begreper skal være presise
 
 Begreper og terminologi er minnekammerets semantiske motor.
 
-De skal brukes til:
+De brukes til:
 
 - emnekobling
 - fagordregister
@@ -192,7 +273,7 @@ Dagens V2-runtime inkluderer fortsatt `tags` i sin legacy-normalisering. Dette e
 
 ---
 
-## 6. Knowledge-siden
+## 7. Knowledge-siden
 
 Canonical side:
 
@@ -204,23 +285,24 @@ knowledge.html?subject=sport
 ...
 ```
 
-Siden skal utvikles til én samlet read-model med disse inngangene:
+Siden skal bygge én samlet read-model med:
 
 1. fag og emner
 2. begreper og terminologi
 3. kunnskapsenheter
 4. historier og tidsforløp
 5. relasjoner mellom ideer, steder, personer og hendelser
-6. kilder og proveniens
-7. mestring og repetisjon
+6. kilder og steder kunnskapen ble lest
+7. lesing, mestring og repetisjon
+8. quizforløpene som formidlet og prøvde kunnskapen
 
-Quizspørsmål kan vises under «slik lærte du dette», men skal ikke være hovedorganiseringen.
+Quizene skal være synlige som viktige læringsrom og som dokumentasjon under «slik lærte du dette». Hovedorganiseringen skal likevel være fagkunnskapen, ikke rekkefølgen quizene ble tatt i.
 
-> **Knowledge-siden er et minnekammer, ikke en gjennomføringslogg.**
+> **Knowledge-siden er et minnekammer, ikke bare en gjennomføringslogg.**
 
 ---
 
-## 7. Runtime-status
+## 8. Runtime-status
 
 ### Aktiv overgangsmodell
 
@@ -232,13 +314,18 @@ history_go_knowledge_entry_v2
 
 V2 bevares for bakoverkompatibilitet. Den fanger quiztekst og organiserer entries etter fag og emner.
 
-V2 er nå en overgangsmodell. Videre runtimearbeid skal:
+Dagens quizmotor lagrer i hovedsak Knowledge ved riktig svar og viser bare «Riktig» eller «Feil» som umiddelbar feedback. Det er ikke tilstrekkelig for den nye modellen.
 
-1. lagre `knowledge_unit_id`, `concept_id`, `term_id` og `story_id`
-2. skille canonical content fra personlig mestring
-3. samle flere quizbevis under samme kunnskapsenhet
-4. hindre at tags behandles som fagbegreper
-5. bygge Knowledge-siden fra faglige objekter, ikke fra en flat liste over quiztekster
+Videre runtimearbeid skal:
+
+1. vise kunnskapsforklaringen etter hvert svar
+2. registrere `encountered` når forklaringen vises
+3. registrere `read` når brukeren aktivt går videre
+4. registrere mestring separat ved riktig svar
+5. lagre `knowledge_unit_id`, `concept_id`, `term_id` og `story_id`
+6. samle flere quizbevis under samme kunnskapsenhet
+7. hindre at tags behandles som fagbegreper
+8. bygge Knowledge-siden fra faglige objekter og læringsevidens
 
 ### Legacy
 
@@ -253,9 +340,7 @@ Legacy-data skal bevares. Usikre koblinger skal merkes som uløste, ikke gis fal
 
 ---
 
-## 8. Canonical personlig memory node
-
-Målmodellen for personlig Knowledge er en referanse til canonical kunnskap, ikke en ny kopi av hele quizspørsmålet.
+## 9. Canonical personlig memory node
 
 ```json
 {
@@ -268,14 +353,23 @@ Målmodellen for personlig Knowledge er en referanse til canonical kunnskap, ikk
   "concept_ids": ["concept_sport_idrettshukommelse"],
   "term_ids": ["term_sport_idrettshukommelse"],
   "story_ids": ["story_sport_norsk_skoytehistorie"],
+  "reading_state": "read",
   "mastery_state": "understood",
   "evidence": [
     {
-      "type": "quiz",
+      "type": "quiz_read",
       "quiz_id": "sport_skoytemuseet_set_1_q1",
       "target_id": "skoytemuseet",
+      "knowledge_presented": true,
+      "continued_after_feedback": true,
+      "recorded_at": "2026-07-21T00:00:00.000Z"
+    },
+    {
+      "type": "quiz_assessment",
+      "quiz_id": "sport_skoytemuseet_set_1_q1",
       "correct": true,
-      "learned_at": "2026-07-21T00:00:00.000Z"
+      "evidence_type": "explain",
+      "recorded_at": "2026-07-21T00:00:00.000Z"
     }
   ],
   "last_seen_at": "2026-07-21T00:00:00.000Z",
@@ -285,7 +379,7 @@ Målmodellen for personlig Knowledge er en referanse til canonical kunnskap, ikk
 
 ---
 
-## 9. Audit-regler
+## 10. Audit-regler
 
 For ny produksjon skal audit kontrollere:
 
@@ -295,10 +389,12 @@ For ny produksjon skal audit kontrollere:
 4. knowledge unit peker tilbake til emne
 5. `concept_ids` og `term_ids` finnes og er faglige
 6. story-koblinger finnes når de brukes
-7. quizfeedback kan spores til canonical claim
+7. quizens kunnskapsinnhold kan spores til canonical claim
 8. source/claim basis finnes
 9. samme påstand gjenbruker samme knowledge unit
-10. Knowledge lagrer mestring og proveniens, ikke bare en ny kopi av quizen
+10. kunnskapsforklaringen faktisk vises etter svaret
+11. `read` og mestring registreres separat
+12. feil svar ikke gir falsk mestring
 
 Audit skal skille mellom:
 
@@ -309,7 +405,7 @@ Ingen data skal slettes automatisk.
 
 ---
 
-## 10. Låste regler
+## Låste regler
 
 - Én canonical Knowledge-arkitektur.
 - Strenge ID-er og ingen automatisk normalisering.
@@ -317,9 +413,10 @@ Ingen data skal slettes automatisk.
 - Begreper og termer gir presist språk.
 - Kunnskapsenheter bærer påstander og forklaringer.
 - Historier binder kunnskapsenheter sammen.
-- Quiz tester; den eier ikke kunnskapen.
-- Knowledge lagrer personlig mestring og proveniens.
-- Steder og personer er kontekst, ikke kunnskap i seg selv.
+- Steder, personer, emner, historier og quiz kan formidle kunnskapen.
+- Quiz samler, formidler og prøver kunnskapen.
+- Quiz viser både hva brukeren har lest og hva brukeren har mestret.
+- Knowledge systematiserer personlig lesing, mestring og proveniens.
 - Legacy-data bevares ærlig.
 
 ---
@@ -332,7 +429,8 @@ Emne = hvor kunnskapen hører hjemme
 Begrep og term = språket kunnskapen forstås med
 Knowledge unit = det faglige innholdet
 Historie = sammenhengen over tid og på tvers
-Quiz = vurdert møte med kunnskapen
-Learning evidence = dokumentasjon på møtet
-Knowledge = brukerens systematiserte minnekammer og mestring
+Quiz = kunnskapsrom og prøve
+Quizlesing = dokumentasjon på hva brukeren har møtt og lest
+Quizsvar = dokumentasjon på hva brukeren har mestret
+Knowledge = brukerens systematiserte minnekammer
 ```
