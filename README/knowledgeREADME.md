@@ -1,219 +1,198 @@
-# Knowledge – personlig kunnskapsunivers i History GO
+# Knowledge – personlig minnekammer i History Go
 
 ## Kanonisk definisjon
 
-> **Knowledge er brukerens personlige kart over hva de faktisk har forstått, slik dette uttrykkes gjennom quiz eller quiz-lignende vurdering og kobles til fag, emner og begreper.**
+> **Knowledge er brukerens personlige, systematiserte forhold til kanonisk fagkunnskap: emner, begreper, terminologi, kunnskapsenheter, relasjoner og historier som brukeren har møtt gjennom vurdert læring.**
 
-Knowledge er ikke fagplan, fagkart, emner, merker, samling eller besøkslogg. Alt faglig innhold er åpent. Knowledge beskriver brukerens **relasjon til kunnskapen**, ikke tilgang til den.
+Knowledge er ikke en samling av quizspørsmål. Quiz er vurdering og evidens. Selve kunnskapen skal finnes som egne faglige objekter som kan gjenbrukes, kobles og forstås på tvers av quizzer, steder og personer.
+
+Den fullstendige arkitekturen står i:
+
+```text
+README/KNOWLEDGE_MEMORY_CHAMBER.md
+data/knowledge/knowledge_system_policy_v1.json
+data/knowledge/knowledge_unit_schema_v1.json
+```
 
 ---
 
-## 1. Hva skaper Knowledge?
+## 1. Den faglige kjeden
 
-### Quiz er kilden
+```text
+Fagkart / pensum
+        ↓
+Emne
+        ↓
+Begreper og terminologi
+        ↓
+Kunnskapsenheter og historier
+        ↓
+Quiz / vurdering
+        ↓
+Læringsevidens og mestring
+        ↓
+Personlig Knowledge-minnekammer
+```
 
-En Knowledge-entry oppstår når brukeren svarer riktig i en quiz eller fullfører en annen vurdering som eksplisitt er definert som knowledge-skapende.
+Alle nye Knowledge-koblinger skal kunne spores gjennom denne kjeden.
 
-Observasjon, besøk, innsjekk, samling av et sted eller en person og notater kan:
+---
 
-- gi kontekst
-- gi progresjonssignal
-- dokumentere erfaring
-- hjelpe anbefalingsmotorer
+## 2. Ansvarsdeling
 
-Men de skaper **ikke** en Knowledge-entry alene.
+### Fagkart og pensum
 
-Dette skillet er låst:
+Definerer fagets domener, progresjon, metoder og faglige grenser.
+
+### Emne
+
+Er den faglige beholderen. Et emne samler kunnskapsenheter, begreper, terminologi, metoder, steder, personer og historier.
+
+Et emne er ikke en quiz og ikke et enkelt faktum.
+
+### Begrep
+
+Et `concept_id` representerer en faglig idé, prosess, sammenheng, motsetning eller analytisk kategori.
+
+### Terminologi
+
+Et `term_id` representerer en presis fagterm med foretrukket navn og definisjon. Synonymer skal registreres eksplisitt. History Go skal ikke normalisere seg fram til nye begreper eller synonymer.
+
+### Kunnskapsenhet
+
+En `knowledge_unit_id` representerer det minste selvstendige faglige innholdet som kan forstås, kobles, testes og repeteres.
+
+Eksempler på typer:
+
+```text
+definition
+fact
+process
+cause_effect
+relation
+comparison
+method
+event
+biography
+place_reading
+story_fragment
+interpretation
+```
+
+### Historie
+
+En `story_id` binder sammen hendelser, steder, personer og kunnskapsenheter i et faglig eller kronologisk forløp.
+
+En rekke quizspørsmål om samme sted er ikke automatisk en historie.
+
+### Quiz
+
+Quiz peker til kunnskapsenhetene den tester. Et riktig svar skaper læringsevidens og oppdaterer brukerens mestring av den kanoniske kunnskapen.
+
+### Knowledge
+
+Knowledge lagrer brukerens relasjon til kunnskapen:
+
+```text
+encountered
+recognized
+understood
+explained
+applied
+repeated
+```
+
+Quiz-ID, sted og person beholdes som proveniens og kontekst.
+
+---
+
+## 3. Hva skaper Knowledge?
+
+En vurdert læringssituasjon skaper evidens. Quiz er dagens hovedkilde.
+
+Observasjon, besøk, innsjekk, samling og notater kan gi kontekst og progresjonssignal, men de skaper ikke alene en vurdert Knowledge-mestring.
 
 ```text
 Handling / besøk / observasjon
         ↓
-Learning log / progresjon / kontekst
+Learning log / erfaring / kontekst
 
 Riktig quiz-svar / vurdert forståelse
         ↓
-Knowledge
+Learning evidence
+        ↓
+Personlig mestring av canonical knowledge units
 ```
 
 ---
 
-## 2. Canonical Knowledge-entry
+## 4. Nye quizkontrakter
 
-Ny canonical runtime-modell er `history_go_knowledge_entry_v2`.
-
-Lagringsnøkkel:
+Nye quizspørsmål skal minst ha:
 
 ```text
-hg_knowledge_entries_v2
+subject_id eller categoryId
+emne_id eller emne_ids
+primary_knowledge_unit_id
+knowledge_unit_ids
+concept_ids
+term_ids
+learning_objective_id
+evidence_type
+source / claim_basis
 ```
 
-Minimumsform:
+Når relevant:
 
-```json
-{
-  "schema": "history_go_knowledge_entry_v2",
-  "version": 2,
-  "id": "kv2_by_torggata_gentrifisering",
-  "subject_id": "by",
-  "fagkart_category_id": "by",
-  "emne_ids": ["em_by_gentrifisering_eiendom"],
-  "concepts": ["gentrifisering", "eiendomsverdi", "planmakt"],
-  "dimension": "konflikt_forandring",
-  "topic": "Gentrifisering i Torggata",
-  "text": "...",
-  "source": {
-    "type": "quiz",
-    "quiz_id": "...",
-    "target_id": "torggata",
-    "place_id": "torggata",
-    "person_id": null
-  },
-  "learned_at": "2026-07-20T00:00:00.000Z",
-  "last_seen_at": "2026-07-20T00:00:00.000Z",
-  "times_seen": 1,
-  "link_status": "linked"
-}
+```text
+story_ids
+relation_ids
+method_ids
+chronology_ids
 ```
 
-### Obligatoriske faglige koblinger
+Legacy-feltene kan beholdes:
 
-En ferdig produsert Knowledge-entry skal kunne kobles til:
+```text
+knowledge
+core_concepts
+related_emner
+```
 
-- `subject_id` / `fagkart_category_id`
-- minst ett `emne_id` når fagstrukturen har relevante emner
-- konkrete `concepts`
-- en faktisk knowledge-tekst
-- en quiz-/vurderingskilde
+Men de skal ikke være eneste faglige kobling i ny produksjon.
 
-`emne_ids` er et array fordi én quiz kan treffe flere emner.
+`knowledge` kan brukes som kort feedbacktekst, men den kanoniske påstanden skal ligge i kunnskapsenheten.
 
 ---
 
-## 3. Begreper er semantisk motor
+## 5. Begreper skal være presise
 
-`concepts` skal beskrive faktiske ideer brukeren har jobbet med:
+Begreper og terminologi er minnekammerets semantiske motor.
 
-- fagbegreper
-- fenomen
-- prosesser
-- mønstre
-- sammenhenger
-- motsetninger
-
-Begrepene brukes til:
+De skal brukes til:
 
 - emnekobling
-- kunnskapsprofil
-- matching
-- anbefalinger
-- AHA / innsiktsmotor
+- fagordregister
+- sammenhenger mellom kunnskapsenheter
+- søk og gjenfinning
 - videre læringsforslag
+- AHA / innsiktsmotor
+- repetisjon og mestring
 
-Begreper skal ikke fylles med tilfeldige quiz-id-er, UI-tags eller generiske stemningsord.
+Følgende skal ikke automatisk bli begreper:
 
----
+- tags
+- quiz-ID-er
+- target-ID-er
+- sted-ID-er
+- generelle stemningsord
+- UI-etiketter
 
-## 4. Proveniens: kunnskap skal kunne spores tilbake
-
-En Knowledge-entry skal bevare hvor forståelsen kom fra.
-
-Minimum:
-
-```text
-Knowledge-entry
-→ quiz/vurdering
-→ target (sted/person når relevant)
-→ fag
-→ emne
-→ concepts
-```
-
-Stedet eller personen er **kilde og kontekst**, ikke Knowledge i seg selv.
-
-Dette gjør det mulig å svare på:
-
-- Hva har brukeren lært?
-- Hvilket emne hører det til?
-- Hvilke begreper har de arbeidet med?
-- Hvilken quiz skapte kunnskapspunktet?
-- Hvilket sted eller hvilken person ga konteksten?
+Dagens V2-runtime inkluderer fortsatt `tags` i sin legacy-normalisering. Dette er en overgangsfunksjon og skal ikke brukes som fasit for ny produksjon.
 
 ---
 
-## 5. Runtime: én capture-modell og én read-model
-
-### Capture
-
-`js/knowledgeV2.js` eier den nye capture-kontrakten.
-
-Den:
-
-1. beholder eksisterende `saveKnowledgeFromQuiz()` for bakoverkompatibilitet
-2. skriver samtidig canonical entries til `hg_knowledge_entries_v2`
-3. dedupliserer samme kunnskapspunkt og øker `times_seen`
-4. forsøker å koble manglende `emne_ids` mot learning-loggen
-5. bevarer ufullstendige legacy-entries i stedet for å slette dem
-
-### Read-model
-
-All ny Knowledge-UI skal lese:
-
-```js
-await HGKnowledgeV2.buildProfile()
-```
-
-Read-modellen organiserer Knowledge slik:
-
-```text
-Knowledge-profil
-├── fagfelt
-│   ├── emner
-│   │   └── knowledge entries
-│   ├── concepts
-│   └── kursstatus (separat progresjonslag)
-└── uløste legacy-koblinger
-```
-
-UI skal ikke selv bygge en alternativ sannhet direkte fra tre-fire localStorage-nøkler.
-
----
-
-## 6. Forholdet til eksisterende lagring
-
-### `hg_knowledge_entries_v2`
-
-Canonical Knowledge-storage for nye entries.
-
-### `knowledge_universe`
-
-Legacy tekstarkiv. Beholdes for bakoverkompatibilitet og migreres inn i V2-read-modellen uten datatap.
-
-Legacy-data som mangler emne eller concepts skal markeres som uløst, ikke gjøres om til falskt presise koblinger.
-
-### `hg_learning_log_v1`
-
-Append-only evidens- og progresjonslogg.
-
-Kan inneholde:
-
-- quiz-sett
-- emnetreff
-- concepts
-- observations
-
-Learning log kan hjelpe med å forklare eller koble Knowledge, men **loggen er ikke Knowledge**.
-
-### `hg_learning_v1`
-
-Avledet læringsstatus (`seen`, `understood`, `applied`). Dette er progresjonstilstand, ikke selve Knowledge-arkivet.
-
-### `hg_insights_events_v1`
-
-Legacy/sekundær begrepsstrøm. Ny Knowledge-UI skal ikke bruke den som eneste kilde til hva brukeren kan.
-
----
-
-## 7. Knowledge-siden
+## 6. Knowledge-siden
 
 Canonical side:
 
@@ -221,81 +200,127 @@ Canonical side:
 knowledge.html
 knowledge.html?subject=by
 knowledge.html?subject=historie
+knowledge.html?subject=sport
 ...
 ```
 
-Siden viser:
+Siden skal utvikles til én samlet read-model med disse inngangene:
 
-- samlet Knowledge
-- fagfelt
-- emner med faktisk Knowledge
-- begreper
-- konkrete kunnskapspunkter
-- proveniens
-- uløste eldre koblinger
-- kursprogresjon som et separat tolkningslag
+1. fag og emner
+2. begreper og terminologi
+3. kunnskapsenheter
+4. historier og tidsforløp
+5. relasjoner mellom ideer, steder, personer og hendelser
+6. kilder og proveniens
+7. mestring og repetisjon
 
-Separate `knowledge/knowledge_<subject>.html`-sider er legacy og skal ikke utvikles videre som egne implementasjoner.
+Quizspørsmål kan vises under «slik lærte du dette», men skal ikke være hovedorganiseringen.
+
+> **Knowledge-siden er et minnekammer, ikke en gjennomføringslogg.**
 
 ---
 
-## 8. Samling vs Knowledge
+## 7. Runtime-status
 
-Samling er stedlig og objektrettet.
-
-Knowledge er forståelsen som oppstår gjennom vurdert læring.
-
-Eksempel:
+### Aktiv overgangsmodell
 
 ```text
-Besøk Torggata
-→ stedet registreres som erfaring/samling
-
-Svar riktig på quiz om gentrifisering
-→ Knowledge-entry opprettes
-→ kobles til By
-→ kobles til emne om gentrifisering og eiendom
-→ concepts registreres
-→ Torggata beholdes som kildekontekst
+js/knowledgeV2.js
+hg_knowledge_entries_v2
+history_go_knowledge_entry_v2
 ```
 
-> **Samling er ikke Knowledge. Stedet er ikke Knowledge. Forståelsen er Knowledge.**
+V2 bevares for bakoverkompatibilitet. Den fanger quiztekst og organiserer entries etter fag og emner.
+
+V2 er nå en overgangsmodell. Videre runtimearbeid skal:
+
+1. lagre `knowledge_unit_id`, `concept_id`, `term_id` og `story_id`
+2. skille canonical content fra personlig mestring
+3. samle flere quizbevis under samme kunnskapsenhet
+4. hindre at tags behandles som fagbegreper
+5. bygge Knowledge-siden fra faglige objekter, ikke fra en flat liste over quiztekster
+
+### Legacy
+
+```text
+knowledge_universe
+hg_learning_log_v1
+hg_learning_v1
+hg_insights_events_v1
+```
+
+Legacy-data skal bevares. Usikre koblinger skal merkes som uløste, ikke gis falsk presisjon.
+
+---
+
+## 8. Canonical personlig memory node
+
+Målmodellen for personlig Knowledge er en referanse til canonical kunnskap, ikke en ny kopi av hele quizspørsmålet.
+
+```json
+{
+  "schema": "history_go_personal_memory_node_v1",
+  "version": 1,
+  "memory_node_id": "km_sport_ku_skoytemuseet_samling",
+  "knowledge_unit_id": "ku_sport_skoytemuseet_samling",
+  "subject_id": "sport",
+  "emne_ids": ["em_sport_stedlig_idrettshukommelse"],
+  "concept_ids": ["concept_sport_idrettshukommelse"],
+  "term_ids": ["term_sport_idrettshukommelse"],
+  "story_ids": ["story_sport_norsk_skoytehistorie"],
+  "mastery_state": "understood",
+  "evidence": [
+    {
+      "type": "quiz",
+      "quiz_id": "sport_skoytemuseet_set_1_q1",
+      "target_id": "skoytemuseet",
+      "correct": true,
+      "learned_at": "2026-07-21T00:00:00.000Z"
+    }
+  ],
+  "last_seen_at": "2026-07-21T00:00:00.000Z",
+  "times_seen": 1
+}
+```
 
 ---
 
 ## 9. Audit-regler
 
-Knowledge-produksjonen skal kunne auditeres.
+For ny produksjon skal audit kontrollere:
 
-For quizspørsmål som har `knowledge`, kontroller:
-
-1. kategori/fag finnes
-2. knowledge-tekst finnes
-3. `core_concepts`/concepts finnes
-4. `related_emner` eller annen gyldig emnekobling finnes
-5. refererte emner finnes i aktiv emnefil
-6. target kan spores når quizen er sted-/personbundet
+1. fag finnes
+2. emne finnes
+3. `primary_knowledge_unit_id` finnes
+4. knowledge unit peker tilbake til emne
+5. `concept_ids` og `term_ids` finnes og er faglige
+6. story-koblinger finnes når de brukes
+7. quizfeedback kan spores til canonical claim
+8. source/claim basis finnes
+9. samme påstand gjenbruker samme knowledge unit
+10. Knowledge lagrer mestring og proveniens, ikke bare en ny kopi av quizen
 
 Audit skal skille mellom:
 
-- `error`: kunnskap kan ikke plasseres faglig
-- `warning`: kunnskap er bevart, men koblingen er svak eller legacy
+- `error`: faglig kjede er brutt
+- `warning`: data er bevart, men legacy eller svakt koblet
 
-Ingen data skal slettes automatisk av audit.
+Ingen data skal slettes automatisk.
 
 ---
 
-## 10. Låste arkitekturregler
+## 10. Låste regler
 
-- Én canonical Knowledge-entry-modell.
-- Én canonical Knowledge read-model.
-- Quiz/vurdering skaper Knowledge.
-- Observasjon og besøk skaper ikke Knowledge alene.
-- Alle nye Knowledge-entries skal ha faglig proveniens.
-- Legacy-data bevares og merkes når koblinger mangler.
-- UI skal vise hva som er kjent, og være ærlig om hva som ikke kan kobles sikkert.
-- Pensum/Courses tolker erfaring og Knowledge til progresjon, men eier ikke Knowledge.
-- Fagplan, fagkart og emner er åpne strukturer og endres ikke av brukerens Knowledge.
+- Én canonical Knowledge-arkitektur.
+- Strenge ID-er og ingen automatisk normalisering.
+- Emner organiserer faget.
+- Begreper og termer gir presist språk.
+- Kunnskapsenheter bærer påstander og forklaringer.
+- Historier binder kunnskapsenheter sammen.
+- Quiz tester; den eier ikke kunnskapen.
+- Knowledge lagrer personlig mestring og proveniens.
+- Steder og personer er kontekst, ikke kunnskap i seg selv.
+- Legacy-data bevares ærlig.
 
 ---
 
@@ -303,9 +328,11 @@ Ingen data skal slettes automatisk av audit.
 
 ```text
 Fagstruktur = hva som finnes å lære
+Emne = hvor kunnskapen hører hjemme
+Begrep og term = språket kunnskapen forstås med
+Knowledge unit = det faglige innholdet
+Historie = sammenhengen over tid og på tvers
 Quiz = vurdert møte med kunnskapen
-Knowledge = hva brukeren faktisk har forstått
-Learning log = evidens om hva brukeren har gjort
-Courses/pensum = tolkning til progresjon
-Knowledge UI = personlig kart over forståelsen
+Learning evidence = dokumentasjon på møtet
+Knowledge = brukerens systematiserte minnekammer og mestring
 ```
