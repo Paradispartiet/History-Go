@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 197 verifiserte eller kildekontrollerte canonical steder. Batch 51 legger til Oslo Reptilpark med det entydige Geonorge-punktet for dagens besøksadresse i St. Olavs gate 2, samtidig som åpningen i Storgata i 2002 bevares som et separat historisk lokaliseringslag. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 33.
+Oslo-tabellen inneholder nå 198 verifiserte eller kildekontrollerte canonical steder. Batch 52 legger til Tøyenbadet med det entydige Geonorge-punktet for dagens besøksanlegg i Helgesens gate 90 og bevarer 1976-badet som et historisk lag på samme tomt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 33.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -219,6 +219,7 @@ Oslo-tabellen inneholder nå 197 verifiserte eller kildekontrollerte canonical s
 | 49 | `det_internasjonale_barnekunstmuseet` | Det internasjonale Barnekunstmuseet | verified | `geonorge-adresser-v1:0301:14283:4` |
 | 50 | `ibsen_museum_teater` | IBSEN Museum & Teater | verified | `geonorge-adresser-v1:0301:21471:26` |
 | 51 | `oslo_reptilpark` | Oslo Reptilpark | verified | `geonorge-adresser-v1:0301:16935:2` |
+| 52 | `toyenbadet` | Tøyenbadet | verified | `geonorge-adresser-v1:0301:12860:90` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -262,6 +263,8 @@ Batch 50 (2026-07-20) fullfører den siste spesialkoordinatsaken fra museumsaudi
 
 Batch 51 (2026-07-20) starter den avgrensede completeness-passeringen for VisitOSLO-attraksjoner utenfor museumskategorien. `oslo_reptilpark` bruker det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:16935:2` for St. Olavs gate 2 som dagens bygnings- og displayanker. Oslo Reptilparks egen historikk dokumenterer at institusjonen åpnet i Storgata 10. januar 2002 og flyttet til større lokaler i St. Olavs gate 2 i september 2007. Dagens koordinat representerer derfor nåværende besøkssted, ikke den opprinnelige 2002-lokasjonen.
 
+
+Batch 52 (2026-07-20) fortsetter den avgrensede completeness-passeringen for VisitOSLO-attraksjoner utenfor museumskategorien. `toyenbadet` bruker det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:12860:90` for Helgesens gate 90 som dagens bygnings-, display- og unlock-anker. Oslo kommune dokumenterer at det nye hovedbadet åpnet 6. januar 2025 på samme tomt som det opprinnelige Tøyenbadet fra 1976. Stedet modelleres derfor som én fysisk canonical place med to bygningshistoriske lag, ikke som to overlappende markører.
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -272,7 +275,7 @@ Duplikatmigrering (2026-07-20): `good_game_redaksjon` er fjernet som separat fys
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 197 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 198 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
