@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "0.9.0",
+    "version": "0.10.0",
     "purpose": "Kildekontrollert artskobling for Etne-steder. Kartet viser bare arter som er eksplisitt dokumentert for stedet eller vassdraget; Artskart-utvidelser skal kurateres separat.",
     "updatedAt": "2026-07-21",
     "sources": [
@@ -20,7 +20,8 @@
       "https://artskart.artsdatabanken.no/publicapi/api/observations/list/",
       "https://lovdata.no/dokument/LF/forskrift/1987-04-03-245",
       "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28705433.3263871255+8364787.747050965%2C706073.3263871255+8364787.747050965%2C706073.3263871255+8365427.747050965%2C705433.3263871255+8365427.747050965%2C705433.3263871255+8364787.747050965%29%29",
-      "https://www.nve.no/vann-og-vassdrag/vassdragsforvaltning/verneplan-for-vassdrag/vestland/042-1-vaulaelva-m-langfossen/"
+      "https://www.nve.no/vann-og-vassdrag/vassdragsforvaltning/verneplan-for-vassdrag/vestland/042-1-vaulaelva-m-langfossen/",
+      "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28717729.5273050789+8371811.382068809%2C718209.5273050789+8371811.382068809%2C718209.5273050789+8372291.382068809%2C717729.5273050789+8372291.382068809%2C717729.5273050789+8371811.382068809%29%29"
     ]
   },
   "places": {
@@ -145,6 +146,22 @@
       "documentation": "Artskart-revisjonen fant tre observasjoner i den lokale 320-meters analyseflaten. To besto år- og presisjonsfiltrene: småtorvlibelle og tettegras. Analyseflaten er History GO-stedets lokale spillområde og ikke en offisiell naturgrense.",
       "species_audit": "reports/etne-natur-batch-6-langfoss-artskart-candidates.json",
       "analysis_scope": "square_320m_from_canonical_place_anchor",
+      "unmatched_taxa_count": 0
+    },
+    "jettegrytene_rullestad": {
+      "flora": [
+        "emne_ved_einer",
+        "emne_ved_furu",
+        "emne_urt_rome",
+        "emne_flora_rosslyng",
+        "emne_siv_bjorneskjegg"
+      ],
+      "fauna": [
+        "emne_fauna_blagratt_kveldfly"
+      ],
+      "documentation": "Artskart-revisjonen fant seks presise observasjoner i den lokale 240-meters analyseflaten: einer, furu, rome, røsslyng, bjørneskjegg og blågrått kveldfly. Analyseflaten representerer History GO-stedet og er ikke en offisiell naturgrense.",
+      "species_audit": "reports/etne-natur-batch-7-jettegrytene-artskart-candidates.json",
+      "analysis_scope": "square_240m_from_canonical_place_anchor",
       "unmatched_taxa_count": 0
     }
   }

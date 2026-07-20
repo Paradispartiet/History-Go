@@ -37,3 +37,14 @@ Stedets hovedtema forblir kvartærgeologi. Arter kan bare kobles til rundingen n
 
 - Geopark Sunnhordland / Etne kommune for identiteten til jettegryte-lokaliteten
 - Artskart public API for observasjonene
+
+## Kuratert resultat
+
+- Einer – *Juniperus communis* (`emne_ved_einer`)
+- Furu – *Pinus sylvestris* (`emne_ved_furu`)
+- Rome – *Narthecium ossifragum* (`emne_urt_rome`)
+- Røsslyng – *Calluna vulgaris* (`emne_flora_rosslyng`)
+- Bjørneskjegg – *Trichophorum cespitosum* (`emne_siv_bjorneskjegg`)
+- Blågrått kveldfly – *Acronicta cinerea* (`emne_fauna_blagratt_kveldfly`)
+
+Navnene `cespitosum` og `cinerea` er artsnavneledd fra de samme to observasjonene, ikke egne taxa. Alle seks aksepterte observasjoner har dermed kanoniske artskort.
