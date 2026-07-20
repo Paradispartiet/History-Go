@@ -21,10 +21,17 @@ type Candidate = {
   reasons: string[];
   reviewHints: string[];
 };
+type CandidateReview = {
+  id: string;
+  category: string;
+  reason: string;
+};
 
 const ROOT = process.cwd();
 const DATA_ROOT = path.join(ROOT, 'data');
 const MANIFEST_PATH = path.join(DATA_ROOT, 'places/manifest.json');
+const REVIEW_PATH = path.join(DATA_ROOT, 'places/religion_candidate_review.json');
+const CATEGORY_ID_PATTERN = /^[a-z0-9_]+$/;
 
 const RELIGIOUS_PLACE_TYPES = new Set([
   'kirke',
@@ -88,6 +95,49 @@ function isObject(value: unknown): value is JsonObject {
 
 async function readJson(filePath: string): Promise<unknown> {
   return JSON.parse(await fs.readFile(filePath, 'utf8')) as unknown;
+}
+
+async function readCandidateReviews(): Promise<Map<string, CandidateReview>> {
+  let data: unknown;
+  try {
+    data = await readJson(REVIEW_PATH);
+  } catch (error: unknown) {
+    const code = isObject(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Map();
+    throw error;
+  }
+
+  if (!Array.isArray(data)) {
+    throw new Error('data/places/religion_candidate_review.json must be a JSON array.');
+  }
+
+  const reviews = new Map<string, CandidateReview>();
+  for (const [index, raw] of data.entries()) {
+    if (!isObject(raw)) {
+      throw new Error(`religion_candidate_review.json[${index}] must be an object.`);
+    }
+    if (typeof raw.id !== 'string' || !raw.id.trim()) {
+      throw new Error(`religion_candidate_review.json[${index}] must have a non-empty string id.`);
+    }
+    if (typeof raw.category !== 'string' || !CATEGORY_ID_PATTERN.test(raw.category.trim())) {
+      throw new Error(`religion_candidate_review.json#${raw.id.trim()} has an invalid category.`);
+    }
+    if (typeof raw.reason !== 'string' || !raw.reason.trim()) {
+      throw new Error(`religion_candidate_review.json#${raw.id.trim()} must have a non-empty reason.`);
+    }
+
+    const review: CandidateReview = {
+      id: raw.id.trim(),
+      category: raw.category.trim(),
+      reason: raw.reason.trim(),
+    };
+    if (reviews.has(review.id)) {
+      throw new Error(`religion_candidate_review.json contains duplicate id "${review.id}".`);
+    }
+    reviews.set(review.id, review);
+  }
+
+  return reviews;
 }
 
 function normalizeToken(value: unknown): string {
@@ -206,6 +256,8 @@ async function main(): Promise<void> {
   }
 
   const categoryOverrides = await readCategoryOverrides(ROOT);
+  const reviewed = await readCandidateReviews();
+  const seenReviewIds = new Set<string>();
   const candidates = new Map<string, Candidate>();
 
   for (const rawSourceFile of (manifest as PlaceManifest).files || []) {
@@ -215,7 +267,21 @@ async function main(): Promise<void> {
     for (const { place, sourceFile: actualSourceFile } of await loadEntries(sourceFile)) {
       const id = typeof place.id === 'string' ? place.id.trim() : '';
       if (!id) continue;
-      if (String(place.category || '').trim() === 'religion') continue;
+
+      const rawCategory = String(place.category || '').trim();
+      const review = reviewed.get(id);
+      if (review) {
+        seenReviewIds.add(id);
+        if (categoryOverrides.has(id) || rawCategory === 'religion') {
+          throw new Error(`Reviewed candidate ${id} is now explicitly classified as Religion/override; remove it from religion_candidate_review.json.`);
+        }
+        if (review.category !== rawCategory) {
+          throw new Error(`Reviewed candidate ${id} expects category "${review.category}", but source data now has "${rawCategory}".`);
+        }
+        continue;
+      }
+
+      if (rawCategory === 'religion') continue;
       if (categoryOverrides.has(id)) continue;
 
       const reasons = candidateReasons(place);
@@ -224,7 +290,7 @@ async function main(): Promise<void> {
       const candidate: Candidate = {
         id,
         name: String(place.name || id).trim(),
-        category: String(place.category || '').trim() || '(missing)',
+        category: rawCategory || '(missing)',
         sourceFile: actualSourceFile,
         reasons,
         reviewHints: candidateReviewHints(place),
@@ -235,11 +301,16 @@ async function main(): Promise<void> {
     }
   }
 
+  const missingReviewedPlaces = [...reviewed.keys()].filter((id) => !seenReviewIds.has(id));
+  if (missingReviewedPlaces.length) {
+    throw new Error(`Reviewed Religion candidates are missing from canonical place data: ${missingReviewedPlaces.join(', ')}`);
+  }
+
   const sorted = [...candidates.values()].sort((a, b) =>
     a.sourceFile.localeCompare(b.sourceFile, 'nb') || a.id.localeCompare(b.id, 'nb')
   );
 
-  console.log(`Religion candidate audit: ${sorted.length} unreviewed candidate(s).`);
+  console.log(`Religion candidate audit: ${sorted.length} unreviewed candidate(s); ${reviewed.size} reviewed non-Religion decision(s).`);
   for (const candidate of sorted) {
     const hints = candidate.reviewHints.length ? `; review hints: ${candidate.reviewHints.join(', ')}` : '';
     console.log(`- ${candidate.id} [${candidate.category}] ${candidate.name}`);
