@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 
 const placeId = 'seilduksfabrikken_nydalen';
-const placePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json';
+const splitPlacePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json';
+const aggregatePlacePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute.json';
 const legacyIndexPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json';
 const evidencePath = 'data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json';
 const protocolPath = 'docs/coordinates/coordinate-control-protocol.md';
@@ -30,28 +31,42 @@ function readJson(path) {
 function writeJson(path, value) {
   fs.writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
 }
+function applyCoordinate(place) {
+  Object.assign(place, {
+    lat: coordinate.lat,
+    lon: coordinate.lon,
+    coordStatus: coordinate.coordStatus,
+    coordSource: coordinate.coordSource,
+    coordType: coordinate.coordType,
+    coordRole: coordinate.coordRole,
+    locatorType: coordinate.locatorType,
+    sourceProvider: coordinate.sourceProvider,
+    sourceObjectId: coordinate.sourceObjectId,
+    coordSourceUrl: coordinate.coordSourceUrl,
+    geocodeAccuracy: coordinate.geocodeAccuracy,
+    coordVerifiedAt: coordinate.coordVerifiedAt,
+    coordNote: coordinate.coordNote,
+  });
+}
 
-const place = readJson(placePath);
-Object.assign(place, {
-  lat: coordinate.lat,
-  lon: coordinate.lon,
-  coordStatus: coordinate.coordStatus,
-  coordSource: coordinate.coordSource,
-  coordType: coordinate.coordType,
-  coordRole: coordinate.coordRole,
-  locatorType: coordinate.locatorType,
-  sourceProvider: coordinate.sourceProvider,
-  sourceObjectId: coordinate.sourceObjectId,
-  coordSourceUrl: coordinate.coordSourceUrl,
-  geocodeAccuracy: coordinate.geocodeAccuracy,
-  coordVerifiedAt: coordinate.coordVerifiedAt,
-  coordNote: coordinate.coordNote,
-});
-writeJson(placePath, place);
+// Keep all three still-live representations synchronized until the Akerselva
+// source is fully migrated away from the manifest-loaded aggregate copy.
+const splitPlace = readJson(splitPlacePath);
+applyCoordinate(splitPlace);
+writeJson(splitPlacePath, splitPlace);
 
-// This Akerselva source still has a checked-in per-source index that is part of
-// the runtime/source parity contract. Keep its generated coordinate snapshot in
-// sync with the canonical split place record before the runner validates parity.
+const aggregatePayload = readJson(aggregatePlacePath);
+const aggregatePlaces = Array.isArray(aggregatePayload)
+  ? aggregatePayload
+  : Array.isArray(aggregatePayload?.places)
+    ? aggregatePayload.places
+    : null;
+if (!aggregatePlaces) throw new Error(`Unsupported aggregate shape in ${aggregatePlacePath}.`);
+const aggregatePlace = aggregatePlaces.find((entry) => entry.id === placeId);
+if (!aggregatePlace) throw new Error(`Could not find ${placeId} in ${aggregatePlacePath}.`);
+applyCoordinate(aggregatePlace);
+writeJson(aggregatePlacePath, aggregatePayload);
+
 const legacyIndex = readJson(legacyIndexPath);
 const legacyEntry = legacyIndex.find((entry) => entry.id === placeId);
 if (!legacyEntry) throw new Error(`Could not find ${placeId} in ${legacyIndexPath}.`);
@@ -65,20 +80,22 @@ writeJson(legacyIndexPath, legacyIndex);
 
 const evidence = readJson(evidencePath);
 evidence.placeId = placeId;
-evidence.placeFile = placePath;
+// The evidence auditor resolves active places from data/places/manifest.json;
+// this source family is still active there through the aggregate file.
+evidence.placeFile = aggregatePlacePath;
 evidence.evidenceStatus = 'applied_to_place';
 evidence.coordinateDecision = 'do_not_change_coordinates_yet';
 evidence.currentCoordinate = {
   lat: coordinate.lat,
   lon: coordinate.lon,
-  r: place.r,
+  r: aggregatePlace.r,
   coordStatus: coordinate.coordStatus,
   coordSource: coordinate.coordSource,
   coordType: coordinate.coordType,
   coordNote: coordinate.coordNote,
 };
 evidence.identity = {
-  currentName: place.name,
+  currentName: aggregatePlace.name,
   resolvedIdentity:
     'Øvre spinneri / Riksantikvaren enkeltminne 165570-6, Spinneri (bygn 108), Gjerdrums vei 12',
   identityStatus: 'resolved',
@@ -203,7 +220,7 @@ const previousBatchParagraphRegex = /Batch 65 \(2026-07-20\)[^\n]*/;
 if (!previousBatchParagraphRegex.test(protocol)) {
   throw new Error('Could not locate batch 65 paragraph insertion point.');
 }
-const newBatchParagraph = `Batch ${nextBatch} (2026-07-20) løser \`${placeId}\` etter at tidligere legacy-punkt, adressebokstav-korrelasjon og feilplasserte bygningskandidater ble forkastet. Riksantikvarens offentlige enkeltminne \`165570-6\` er registrert av Byantikvaren i Oslo som «Nydalen Compagnie Bomullsspinneri – Gjerdrums vei 12» og eksplisitt som «Spinneri (bygn 108)». Den separate enkeltminnegeometrien \`165570-5\` er «Veveri (bygn 113)», slik at spinneriet og veveriet kan skilles fysisk uten proxy-gjetting. Geometrisk senter for 165570-6 brukes som canonical \`building_center\`; stedet fjernes samtidig fra needs_review-tabellen.`;
+const newBatchParagraph = `Batch ${nextBatch} (2026-07-20) løser \`${placeId}\` etter at tidligere legacy-punkt, adressebokstav-korrelasjon og feilplasserte bygningskandidater ble forkastet. Riksantikvarens offentlige enkeltminne \`165570-6\` er registrert av Byantikvaren i Oslo som «Nydalen Compagnie Bomullsspinneri – Gjerdrums vei 12» og eksplisitt som «Spinneri (bygn 108)». Den separate enkeltminnegeometrien \`165570-5\` er «Veveri (bygn 113)», slik at spinneriet og veveriet kan skilles fysisk uten proxy-gjetting. Geometrisk senter for 165570-6 brukes som canonical \`building_center\`; stedet fjernes samtidig fra needs_review-tabellen. Aggregate, split-record og per-source legacy-index holdes eksplisitt synkronisert i denne batchen fordi Akerselva-kilden fortsatt er manifest-lastet gjennom aggregate-filen.`;
 protocol = protocol.replace(
   previousBatchParagraphRegex,
   (match) => `${match}\n\n${newBatchParagraph}`,
@@ -232,6 +249,7 @@ console.log(
       nextBatch,
       sourceObjectId: coordinate.sourceObjectId,
       coordinate: { lat: coordinate.lat, lon: coordinate.lon },
+      synchronizedRepresentations: [splitPlacePath, aggregatePlacePath, legacyIndexPath],
     },
     null,
     2,
