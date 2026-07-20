@@ -1,0 +1,90 @@
+{
+  "date": "2026-07-21",
+  "batch": 91,
+  "sourceFile": "data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json",
+  "method": "object-type-first + Geonorge address-first for two addressable museum buildings",
+  "officialIdentitySources": [
+    {
+      "id": "frammuseet",
+      "officialIdentityUrl": "https://frammuseum.no/nb/kontakt/",
+      "address": "Bygdøynesveien 39 Oslo"
+    },
+    {
+      "id": "kon_tiki_museet",
+      "officialIdentityUrl": "https://www.kon-tiki.no/no/find-us",
+      "address": "Bygdøynesveien 36 Oslo"
+    }
+  ],
+  "physicalOverlapAudit": {
+    "distinctSourceObjectIds": true,
+    "separationMeters": 51.7,
+    "result": "separate_physical_address_objects"
+  },
+  "changes": [
+    {
+      "id": "frammuseet",
+      "name": "Frammuseet",
+      "officialIdentityUrl": "https://frammuseum.no/nb/kontakt/",
+      "previous": {
+        "lat": 59.903331,
+        "lon": 10.699439,
+        "coordStatus": "verified_source_coordinate",
+        "coordSource": "wikidata_coordinate_crosschecked_with_official_museum_address",
+        "coordSourceId": "Q941250",
+        "coordSourceUrl": "https://www.wikidata.org/wiki/Q941250"
+      },
+      "current": {
+        "lat": 59.90320332524704,
+        "lon": 10.699091907892317,
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordSourceId": "geonorge-adresser-v1:0301:10977:39",
+        "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bygd%C3%B8ynesveien%2039%20Oslo",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:10977:39",
+        "address": {
+          "street": "Bygdøynesveien",
+          "number": "39",
+          "postcode": "0286",
+          "city": "Oslo",
+          "country": "NO"
+        }
+      }
+    },
+    {
+      "id": "kon_tiki_museet",
+      "name": "Kon-Tiki Museet",
+      "officialIdentityUrl": "https://www.kon-tiki.no/no/find-us",
+      "previous": {
+        "lat": 59.903611,
+        "lon": 10.698056,
+        "coordStatus": "verified_source_coordinate",
+        "coordSource": "wikidata_coordinate_crosschecked_with_official_museum_address",
+        "coordSourceId": "Q1415972",
+        "coordSourceUrl": "https://www.wikidata.org/wiki/Q1415972"
+      },
+      "current": {
+        "lat": 59.90342401326082,
+        "lon": 10.698275332643746,
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordSourceId": "geonorge-adresser-v1:0301:10977:36",
+        "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bygd%C3%B8ynesveien%2036%20Oslo",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:10977:36",
+        "address": {
+          "street": "Bygdøynesveien",
+          "number": "36",
+          "postcode": "0286",
+          "city": "Oslo",
+          "country": "NO"
+        }
+      }
+    }
+  ],
+  "deferred": {
+    "id": "gol_stavkirke_bygdoy",
+    "reason": "Museumsveien 10 is the broader Norsk Folkemuseum visitor address; exact building geometry must be audited separately."
+  },
+  "protocolVerifiedCountAfterBatch": 238
+}
