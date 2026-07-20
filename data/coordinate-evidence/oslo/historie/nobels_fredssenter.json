@@ -1,0 +1,74 @@
+{
+  "placeId": "nobels_fredssenter",
+  "placeFile": "data/places/historie/oslo/places_historie/nobels_fredssenter.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.911609366245315,
+    "lon": 10.730476225834142,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Brynjulf Bulls plass 1, OSLO. Punktet brukes som display-marker for Nobels Fredssenter i den tidligere Vestbanestasjonens hovedbygning, ikke som områdeanker for Rådhusplassen."
+  },
+  "identity": {
+    "currentName": "Nobels Fredssenter",
+    "resolvedIdentity": "Nobels Fredssenter, museet for Nobels fredspris i den tidligere Vestbanestasjonens hovedbygning på Brynjulf Bulls plass 1",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell institusjons- eller stedsidentitet",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Brynjulf%20Bulls%20plass%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18199:1",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Brynjulf Bulls plass 1 Oslo. `radhusplassen` er et åpent byrom, og `nobelinstituttet` er Nobelkomiteens arbeids- og sekretariatsinstitusjon. Nobels Fredssenter er et separat museum i den tidligere Vestbanestasjonen.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Brynjulf Bulls plass 1, OSLO. Punktet brukes som display-marker for Nobels Fredssenter i den tidligere Vestbanestasjonens hovedbygning, ikke som områdeanker for Rådhusplassen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Brynjulf Bulls plass 1 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18199:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18199:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.911609366245315,
+      "lon": 10.730476225834142,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Brynjulf Bulls plass 1, OSLO. Punktet brukes som display-marker for Nobels Fredssenter i den tidligere Vestbanestasjonens hovedbygning, ikke som områdeanker for Rådhusplassen.",
+    "`radhusplassen` er et åpent byrom, og `nobelinstituttet` er Nobelkomiteens arbeids- og sekretariatsinstitusjon. Nobels Fredssenter er et separat museum i den tidligere Vestbanestasjonen."
+  ]
+}
