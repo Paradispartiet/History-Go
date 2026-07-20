@@ -1,0 +1,201 @@
+name: VisitOSLO Grünerløkka coordinate intake
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  intake:
+    if: github.head_ref == 'agent/visitoslo-grunerlokka-coordinate-intake'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run address-first intake
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="reports/visitoslo-grunerlokka-audit-20260721/coordinate-intake"
+          mkdir -p "$OUT"
+
+          npm run places:coords:find:address -- --address "Thorvald Meyers gate 31 Oslo" \
+            2>&1 | tee "$OUT/paulus-kirke-geonorge.json"
+
+          npm run places:coords:find:address -- --address "Grüners gate 3 Oslo" \
+            2>&1 | tee "$OUT/purenkel-geonorge.json"
+
+      - name: Query named geometry and exact artwork objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="reports/visitoslo-grunerlokka-audit-20260721/coordinate-intake"
+          UA="History-Go coordinate audit (github.com/Paradispartiet/History-Go)"
+
+          curl --retry 4 --retry-all-errors --connect-timeout 20 --max-time 90 \
+            -A "$UA" -fsSLG "https://nominatim.openstreetmap.org/search" \
+            --data-urlencode "q=Torshovparken Oslo Norway" \
+            --data-urlencode "format=jsonv2" \
+            --data-urlencode "polygon_geojson=1" \
+            --data-urlencode "addressdetails=1" \
+            --data-urlencode "limit=10" \
+            | tee "$OUT/torshovparken-nominatim.json"
+
+          curl --retry 4 --retry-all-errors --connect-timeout 20 --max-time 90 \
+            -A "$UA" -fsSLG "https://nominatim.openstreetmap.org/search" \
+            --data-urlencode "q=HODET N.N. Torshovdalen Oslo Norway" \
+            --data-urlencode "format=jsonv2" \
+            --data-urlencode "polygon_geojson=1" \
+            --data-urlencode "addressdetails=1" \
+            --data-urlencode "limit=10" \
+            | tee "$OUT/hodet-nn-nominatim.json"
+
+          sleep 1
+
+          OVERPASS_QUERY='[out:json][timeout:90];area["name"="Oslo"]["boundary"="administrative"]->.searchArea;(nwr["name"~"HODET N\\.N\\.|HEAD N\\.N\\.|Hodet N\\.N\\.",i](area.searchArea);nwr["artist_name"~"Marianne Heske",i](area.searchArea);nwr["artist"~"Marianne Heske",i](area.searchArea););out center tags;'
+          curl --retry 4 --retry-all-errors --connect-timeout 20 --max-time 120 \
+            -A "$UA" -fsSLG "https://overpass-api.de/api/interpreter" \
+            --data-urlencode "data=$OVERPASS_QUERY" \
+            | tee "$OUT/hodet-nn-overpass.json"
+
+      - name: Summarize candidates and repository overlap
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json
+          import math
+          import re
+          from pathlib import Path
+
+          out = Path('reports/visitoslo-grunerlokka-audit-20260721/coordinate-intake')
+          places = json.loads(Path('data/places/places_index.json').read_text())
+
+          def load_json(path):
+              text = path.read_text(errors='replace')
+              start_candidates = [i for i in (text.find('{'), text.find('[')) if i >= 0]
+              if not start_candidates:
+                  return None
+              start = min(start_candidates)
+              try:
+                  return json.loads(text[start:])
+              except Exception:
+                  return {'rawParseFailed': True, 'rawTail': text[-2000:]}
+
+          def haversine(lat1, lon1, lat2, lon2):
+              r = 6371000.0
+              p1, p2 = math.radians(lat1), math.radians(lat2)
+              dp = math.radians(lat2-lat1)
+              dl = math.radians(lon2-lon1)
+              a = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2*r*math.asin(math.sqrt(a))
+
+          def nominatim_candidates(filename):
+              data = load_json(out / filename)
+              if not isinstance(data, list):
+                  return []
+              result = []
+              for row in data:
+                  result.append({
+                      'osm_type': row.get('osm_type'),
+                      'osm_id': row.get('osm_id'),
+                      'display_name': row.get('display_name'),
+                      'name': row.get('name'),
+                      'type': row.get('type'),
+                      'class': row.get('class'),
+                      'lat': float(row['lat']) if row.get('lat') else None,
+                      'lon': float(row['lon']) if row.get('lon') else None,
+                      'geojson_type': (row.get('geojson') or {}).get('type')
+                  })
+              return result
+
+          torshov = nominatim_candidates('torshovparken-nominatim.json')
+          hodet = nominatim_candidates('hodet-nn-nominatim.json')
+          overpass = load_json(out / 'hodet-nn-overpass.json')
+          overpass_elements = overpass.get('elements', []) if isinstance(overpass, dict) else []
+
+          exact_name_terms = {
+              'paulus_kirke': ['paulus kirke', 'paulus church'],
+              'purenkel_galleri': ['purenkel', 'purenkel galleri'],
+              'torshovparken': ['torshovparken', 'torshov park'],
+              'hodet_nn_torshovdalen': ['hodet n.n.', 'head n.n.', 'marianne heske']
+          }
+          duplicate_hits = {}
+          for proposed_id, terms in exact_name_terms.items():
+              hits = []
+              for place in places:
+                  hay = ' '.join([str(place.get('id','')), str(place.get('name','')), str(place.get('desc',''))]).casefold()
+                  if any(term.casefold() in hay for term in terms):
+                      hits.append({'id': place.get('id'), 'name': place.get('name'), 'category': place.get('category'), 'sourceFile': place.get('sourceFile')})
+              duplicate_hits[proposed_id] = hits
+
+          geometry_points = []
+          for source, rows in [('torshovparken', torshov), ('hodet_nn', hodet)]:
+              for row in rows:
+                  if row.get('lat') is not None and row.get('lon') is not None:
+                      geometry_points.append((source, row))
+          for element in overpass_elements:
+              lat = element.get('lat') or (element.get('center') or {}).get('lat')
+              lon = element.get('lon') or (element.get('center') or {}).get('lon')
+              if lat is not None and lon is not None:
+                  geometry_points.append(('hodet_nn_overpass', {
+                      'lat': float(lat), 'lon': float(lon), 'osm_type': element.get('type'),
+                      'osm_id': element.get('id'), 'name': (element.get('tags') or {}).get('name'),
+                      'tags': element.get('tags') or {}
+                  }))
+
+          nearby = {}
+          for source, row in geometry_points:
+              key = f"{source}:{row.get('osm_type')}:{row.get('osm_id')}"
+              distances = []
+              for place in places:
+                  try:
+                      d = haversine(float(row['lat']), float(row['lon']), float(place['lat']), float(place['lon']))
+                  except Exception:
+                      continue
+                  if d <= 400:
+                      distances.append({'id': place.get('id'), 'name': place.get('name'), 'distance_m': round(d, 1), 'category': place.get('category')})
+              distances.sort(key=lambda x: x['distance_m'])
+              nearby[key] = distances[:20]
+
+          summary = {
+              'proposedCandidates': ['paulus_kirke', 'purenkel_galleri', 'torshovparken', 'hodet_nn_torshovdalen'],
+              'addressInputs': {
+                  'paulus_kirke': 'Thorvald Meyers gate 31 Oslo',
+                  'purenkel_galleri': 'Grüners gate 3 Oslo'
+              },
+              'nominatim': {
+                  'torshovparken': torshov,
+                  'hodet_nn_torshovdalen': hodet
+              },
+              'hodetOverpassElements': overpass_elements,
+              'repositoryDuplicateHits': duplicate_hits,
+              'nearbyCanonicalPlaces': nearby,
+              'decisionRule': 'No production coordinate is approved by this intake alone. Address results must be exact and unique; named geometry/object results must be identity-matched and cross-checked before use.'
+          }
+          (out / 'intake-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+      - name: Remove one-shot workflow and commit intake results
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/visitoslo-grunerlokka-coordinate-intake.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Record Grünerløkka candidate coordinate intake"
+          git push origin HEAD:${{ github.head_ref }}
