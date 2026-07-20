@@ -1,0 +1,81 @@
+{
+  "version": "2026-07-20",
+  "placeId": "christian_radich",
+  "model": "historic_mobile_vessel_with_documented_home_berth",
+  "addressQuery": "Akershusstranda 9 Oslo",
+  "finderStatus": "verified_candidate",
+  "ok": true,
+  "sourceProvider": "official_address",
+  "sourceObjectId": "geonorge-adresser-v1:0301:10077:9",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Akershusstranda%209%20Oslo",
+  "coordinate": {
+    "lat": 59.90805979135746,
+    "lon": 10.733834060566368,
+    "r": 80,
+    "locatorType": "home_berth",
+    "sourceProvider": "official_address_plus_official_harbour_identity",
+    "sourceObjectId": "geonorge-adresser-v1:0301:10077:9",
+    "address": {
+      "street": "Akershusstranda",
+      "number": "9",
+      "postcode": "0150",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "home_base_unlock_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1_plus_oslo_havn_home_berth_identity",
+    "coordType": "home_berth_anchor",
+    "coordNote": "Punktet er det entydige Geonorge-adressepunktet for Skur 32, Akershusstranda 9, på Christian Radichs dokumenterte hjemmebase ved Akershusutstikkeren. Oslo Havn identifiserer Akershusutstikkeren som skipets hjemmehavn, og VisitOSLO opplyser at skipet ligger der når det ikke er på oppdrag. Markøren representerer den stabile Oslo-basen og normalfortøyningen, ikke skipets live-posisjon; Christian Radich kan være ute på tokt, charter, vedlikehold eller verftsopphold."
+  },
+  "documentedHomeBerth": {
+    "name": "Akershusutstikkeren",
+    "officialHarbourMap": "https://www.oslohavn.no/globalassets/oslo-havn/dokumenter/oslo-havn-publikasjoner-2026/oslo-havn-omradekart-2026.pdf",
+    "officialHarbourMapRole": "The 2026 Oslo Havn area map identifies Akershusutstikkeren and the Skur 32 quay area as a distinct part of Byhavna.",
+    "broaderCanonicalPlaceId": "akershus_kaier",
+    "broaderCanonicalAnchor": {
+      "lat": 59.906783,
+      "lon": 10.7352565,
+      "coordType": "quay_semantic_anchor",
+      "sourceObjectId": "osm-way:4252516"
+    },
+    "distanceFromSkur32AddressPointToBroadAkershusKaierAnchorM": 162.6,
+    "interpretation": "The distance is expected because the existing `akershus_kaier` marker is a semantic line anchor for the long quay system, while Skur 32 is a specific documented base point on Akershusutstikkeren. The two records represent different identities and scales."
+  },
+  "productionGate": "coordinate_ready_taxonomy_pending",
+  "proposedPrimaryCategory": "historie",
+  "representationDecision": "Create Christian Radich as one historic-vessel place anchored to its documented Oslo home berth at Akershusutstikkeren. Use the verified Skur 32 address point as the stable home-base/unlock marker because official harbour and operator sources tie the ship's permanent Oslo base to this quay. Never present the coordinate as live tracking or a guarantee that the vessel is physically present at every moment.",
+  "overlapGate": {
+    "canonicalNameMatches": [],
+    "broaderQuayPlaceId": "akershus_kaier",
+    "conclusion": "No canonical Christian Radich identity match exists. `akershus_kaier` represents the broad harbour infrastructure; `christian_radich` represents the distinct historic vessel and its documented home berth. Physical proximity is intentional and not a duplicate condition."
+  },
+  "sourceBasis": [
+    {
+      "source": "VisitOSLO",
+      "finding": "Christian Radich lies at Akershusutstikkeren when it is not away on assignment."
+    },
+    {
+      "source": "Oslo Havn — Christian Radich er endelig hjemme",
+      "finding": "Oslo Havn states that Christian Radich has had its permanent place at Akershusutstikkeren since 1994 and describes the quay as its home harbour."
+    },
+    {
+      "source": "Oslo Havn — Akershusutstikkeren klar for nye 100 år",
+      "finding": "Oslo Havn explicitly calls Akershusutstikkeren Christian Radich's home harbour."
+    },
+    {
+      "source": "Oslo Havn area map 2026",
+      "finding": "The official harbour map identifies Akershusutstikkeren and the Skur 32 quay area within Byhavna."
+    },
+    {
+      "source": "Stiftelsen Christian Radich",
+      "finding": "The foundation identifies its quay office at Akershuskaia as the place where the ship stays when it is in Oslo."
+    }
+  ],
+  "mobilityGuard": {
+    "isLivePosition": false,
+    "presenceGuaranteed": false,
+    "meaning": "documented permanent Oslo home base and normal berth when the vessel is in Oslo"
+  }
+}
