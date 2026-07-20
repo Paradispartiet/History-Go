@@ -34,18 +34,25 @@ jobs:
           python -m py_compile scripts/_tmp_alnsjoen_materializer.py
           python scripts/_tmp_alnsjoen_materializer.py
 
-      - name: Validate Alnsjoen batch
-        run: |
-          node tests/alnsjoen-nature-rounds-batch1.test.js
-          node tests/oslo-nature-rounds-batch5-alna.test.js
-          bash scripts/check-places.sh
-          bash scripts/check-people.sh
-          git diff --check
+      - name: Run targeted Alnsjoen test
+        run: node tests/alnsjoen-nature-rounds-batch1.test.js
+
+      - name: Run existing Alna route test
+        run: node tests/oslo-nature-rounds-batch5-alna.test.js
+
+      - name: Run places check
+        run: bash scripts/check-places.sh
+
+      - name: Run people check
+        run: bash scripts/check-people.sh
+
+      - name: Check whitespace
+        run: git diff --check
 
       - name: Commit clean materialized branch
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "4189828+github-actions[bot]@users.noreply.github.com"
           rm -f scripts/_tmp_alnsjoen_materializer_*.b64
           rm -f scripts/_tmp_alnsjoen_materializer.py
           rm -f .github/workflows/temporary-alnsjoen-nature-rounds.yml
