@@ -8,6 +8,7 @@ from sqlalchemy import text
 
 from app.core.database import Database
 from app.domains.social_meet.abuse_models import (
+    BLOCK_COOLDOWN,
     CANCELLATION_LOOKBACK,
     DAY_LOOKBACK,
     DECLINE_COOLDOWN,
@@ -61,6 +62,7 @@ class PostgresSocialMeetAbuseRepository:
             "day_start": now - DAY_LOOKBACK,
             "decline_start": now - DECLINE_COOLDOWN,
             "report_start": now - REPORT_COOLDOWN,
+            "block_start": now - BLOCK_COOLDOWN,
             "cancellation_start": now - CANCELLATION_LOOKBACK,
         }
 
@@ -136,6 +138,21 @@ class PostgresSocialMeetAbuseRepository:
                               and r.created_at >= :report_start
                           ) as last_recipient_report_at,
                           (
+                            select max(coalesce(b.removed_at, b.updated_at, b.created_at))
+                            from public.hg_social_meet_blocks b
+                            where (
+                              (
+                                b.blocker_profile_id = :sender_profile_id
+                                and b.blocked_profile_id = :recipient_profile_id
+                              )
+                              or (
+                                b.blocker_profile_id = :recipient_profile_id
+                                and b.blocked_profile_id = :sender_profile_id
+                              )
+                            )
+                              and coalesce(b.removed_at, b.updated_at, b.created_at) >= :block_start
+                          ) as last_pair_block_at,
+                          (
                             select count(*)
                             from public.hg_social_meet_reports r
                             where r.reported_profile_id = :sender_profile_id
@@ -167,5 +184,6 @@ class PostgresSocialMeetAbuseRepository:
             duplicate_active_invite=bool(row["duplicate_active_invite"]),
             last_declined_at=cast(datetime | None, row["last_declined_at"]),
             last_recipient_report_at=cast(datetime | None, row["last_recipient_report_at"]),
+            last_pair_block_at=cast(datetime | None, row["last_pair_block_at"]),
             unresolved_reports_against_sender=int(row["unresolved_reports_against_sender"]),
         )
