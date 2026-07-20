@@ -1,0 +1,36 @@
+name: Temporary map-controls bundle builder
+
+on:
+  push:
+    branches:
+      - fix/map-controls-multiselect-badge-logos
+
+permissions:
+  contents: write
+
+jobs:
+  build-map-controls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck:web
+      - run: npm run build:web
+      - name: Commit generated map-controls bundle
+        shell: bash
+        run: |
+          if git diff --quiet -- dist/web/map-controls-runtime.js; then
+            echo "map-controls bundle already in sync"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/web/map-controls-runtime.js
+          git commit -m "build: sync map controls bundle"
+          git push origin HEAD:fix/map-controls-multiselect-badge-logos
