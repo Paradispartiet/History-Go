@@ -121,6 +121,90 @@ comment on column public.hg_spotmeeting_invites.sync_version is
 comment on column public.hg_spotmeeting_invites.idempotency_key is
   'Opaque client-generated retry key scoped to the creator. Never contains user content.';
 
+-- Accept/complete must fail closed against a safety change that races the API
+-- pre-check. Lock both profile rows in stable profile-id order, then re-read the
+-- canonical profile/block/restriction state inside the invite update transaction.
+create or replace function public.enforce_hg_spotmeeting_safe_transition()
+returns trigger
+language plpgsql
+as $$
+declare
+  sender_profile_id uuid;
+  recipient_profile_id uuid;
+  eligible_profile_count integer;
+begin
+  if new.status not in ('accepted', 'completed') or new.status = old.status then
+    return new;
+  end if;
+
+  perform 1
+  from public.hg_profiles
+  where user_id in (old.created_by, old.target_user_id)
+  order by profile_id nulls last
+  for update;
+
+  select
+    sender.profile_id,
+    recipient.profile_id,
+    (
+      case when
+        sender.profile_id is not null
+        and recipient.profile_id is not null
+        and sender.deleted_at is null
+        and recipient.deleted_at is null
+        and sender.profile_visibility = 'discoverable'
+        and recipient.profile_visibility = 'discoverable'
+        and sender.consent_version = 'social_meet_identity_v1'
+        and recipient.consent_version = 'social_meet_identity_v1'
+      then 2 else 0 end
+    )
+  into sender_profile_id, recipient_profile_id, eligible_profile_count
+  from public.hg_profiles sender
+  join public.hg_profiles recipient
+    on recipient.user_id = old.target_user_id
+  where sender.user_id = old.created_by;
+
+  if coalesce(eligible_profile_count, 0) <> 2 then
+    return null;
+  end if;
+
+  if exists (
+    select 1
+    from public.hg_social_meet_blocks b
+    where b.status = 'active'
+      and (
+        (
+          b.blocker_profile_id = sender_profile_id
+          and b.blocked_profile_id = recipient_profile_id
+        )
+        or (
+          b.blocker_profile_id = recipient_profile_id
+          and b.blocked_profile_id = sender_profile_id
+        )
+      )
+  ) then
+    return null;
+  end if;
+
+  if exists (
+    select 1
+    from public.hg_social_meet_profile_restrictions r
+    where r.profile_id in (sender_profile_id, recipient_profile_id)
+      and r.status = 'active'
+  ) then
+    return null;
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists enforce_hg_spotmeeting_safe_transition
+  on public.hg_spotmeeting_invites;
+create trigger enforce_hg_spotmeeting_safe_transition
+  before update of status on public.hg_spotmeeting_invites
+  for each row execute function public.enforce_hg_spotmeeting_safe_transition();
+
 create or replace function public.bump_hg_spotmeeting_invite_versions()
 returns trigger
 language plpgsql
