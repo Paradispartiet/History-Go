@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "valerenga_kirke",
+  "placeFile": "data/places/historie/oslo/places_historie/valerenga_kirke.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.906858612988856,
+    "lon": 10.788310607669317,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Hjaltlandsgata 3, OSLO, source object geonorge-adresser-v1:0301:12974:3. Punktet brukes som display- og unlock-anker for Vålerenga kirke. Det representerer ikke Vålerenga som nabolag eller Vålerenga park som område."
+  },
+  "identity": {
+    "currentName": "Vålerenga kirke",
+    "resolvedIdentity": "Vålerenga kirke, aktiv sognekirke i Hjaltlandsgata 3",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "dokumentert aktiv kirkeidentitet og besøksadresse",
+    "duplikat- og fysisk overlap-kontroll mot bredere Vålerenga-steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hjaltlandsgata%203%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12974:3",
+      "sourceQuality": "official_address_plus_current_church_identity",
+      "finding": "Geonorge returnerer ett tydelig adressetreff for Hjaltlandsgata 3. Kandidatauditten skiller den konkrete kirkebygningen fra det bredere canonical Vålerenga-stedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Det offisielle adressepunktet er et stabilt bygningsanker for den aktive kirken og brukes ikke som proxy for park eller nabolag."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Hjaltlandsgata 3 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12974:3",
+      "lat": 59.906858612988856,
+      "lon": 10.788310607669317,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12974:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.906858612988856,
+      "lon": 10.788310607669317,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, kirkeidentitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Kandidatauditten godkjenner Vålerenga kirke som egen fysisk identitet, separat fra `vaalerenga` og omkringliggende parkrom.",
+    "Primær runtime-kategori settes til religion gjennom den eksisterende category override-modellen."
+  ]
+}

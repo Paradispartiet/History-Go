@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 225 verifiserte eller kildekontrollerte canonical steder. Batch 78 legger til The Oslo Gallery med den entydige offisielle Geonorge-adressekoordinaten for Josefines gate 2A, kryssjekket mot galleriets egen aktive nettside og VisitOSLO. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 226 verifiserte eller kildekontrollerte canonical steder. Batch 79 legger til Vålerenga kirke med den entydige offisielle Geonorge-adressekoordinaten for Hjaltlandsgata 3, etter eksplisitt identitets- og overlap-audit mot det bredere Vålerenga-stedet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -246,6 +246,7 @@ Oslo-tabellen inneholder nå 225 verifiserte eller kildekontrollerte canonical s
 | 76 | `vi_vii_gallery` | VI, VII | verified | `geonorge-adresser-v1:0301:15006:8` |
 | 77 | `ekeberg_helleristninger` | Helleristningene på Ekeberg | verified_geometry | `kulturminnesok:41907` |
 | 78 | `the_oslo_gallery` | The Oslo Gallery | verified | `geonorge-adresser-v1:0301:13536:2A` |
+| 79 | `valerenga_kirke` | Vålerenga kirke | verified | `geonorge-adresser-v1:0301:12974:3` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
