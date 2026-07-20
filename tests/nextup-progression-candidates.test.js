@@ -95,9 +95,10 @@ function createStorage(seed = {}) {
   assert.equal(quiz.score, 100, "complete mode should strongly boost actionable quiz progress");
 
   const badge = tri.suggestions.find(item => item.type === "badge");
-  assert.ok(badge, "nearby action toward next badge tier should be suggested");
+  assert.ok(badge, "an incomplete quiz that advances the next badge tier should be suggested");
   assert.equal(badge.meta.points_remaining, 1);
-  assert.equal(badge.meta.place_id, "b");
+  assert.equal(badge.meta.place_id, "a");
+  assert.equal(badge.meta.quiz_target_id, "a");
 
   console.log("nextup-progression-candidates.test.js: ok");
 })();
