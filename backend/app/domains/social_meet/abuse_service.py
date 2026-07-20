@@ -10,6 +10,7 @@ from app.domains.social_meet.abuse_models import (
     RESTRICTED_INVITE_POLICY,
     STANDARD_INVITE_POLICY,
     InviteAbusePolicyTier,
+    InviteAbuseSnapshot,
     InviteCreationAllowance,
     InviteRatePolicy,
 )
@@ -137,10 +138,10 @@ def _is_invite_eligible_profile(record: SocialMeetProfileRecord | None) -> bool:
     )
 
 
-def _policy_for_snapshot(snapshot: object, checked_at: datetime) -> tuple[InviteAbusePolicyTier, InviteRatePolicy]:
-    from app.domains.social_meet.abuse_models import InviteAbuseSnapshot
-
-    assert isinstance(snapshot, InviteAbuseSnapshot)
+def _policy_for_snapshot(
+    snapshot: InviteAbuseSnapshot,
+    checked_at: datetime,
+) -> tuple[InviteAbusePolicyTier, InviteRatePolicy]:
     is_new_profile = checked_at - snapshot.sender_profile_created_at < NEW_PROFILE_WINDOW
     is_under_review = snapshot.unresolved_reports_against_sender > 0
     if is_new_profile or is_under_review:
@@ -148,10 +149,7 @@ def _policy_for_snapshot(snapshot: object, checked_at: datetime) -> tuple[Invite
     return InviteAbusePolicyTier.STANDARD, STANDARD_INVITE_POLICY
 
 
-def _exceeds_policy(snapshot: object, policy: InviteRatePolicy) -> bool:
-    from app.domains.social_meet.abuse_models import InviteAbuseSnapshot
-
-    assert isinstance(snapshot, InviteAbuseSnapshot)
+def _exceeds_policy(snapshot: InviteAbuseSnapshot, policy: InviteRatePolicy) -> bool:
     return any(
         (
             snapshot.sender_minute_count >= policy.sender_per_minute,
