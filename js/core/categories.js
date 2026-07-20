@@ -76,96 +76,9 @@
     }
     return null;
   }
-  function normalizeReligiousText(value) {
-    return String(value != null ? value : "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\xE6/g, "ae")
-      .replace(/\xF8/g, "o")
-      .replace(/\xE5/g, "a")
-      .replace(/[^a-z0-9]+/g, " ")
-      .trim();
-  }
-  var RELIGIOUS_PLACE_RE = /(?:^|\s)(?:kirke|kirken|kyrkje|kyrkja|kyrkjestad|domkirke|domkyrkje|katedral|cathedral|church|chapel|kapell|basilika|basilica|moske|mosque|masjid|synagoge|synagogue|tempel|temple|kloster|monastery|abbey|convent|mosteiro|igreja|catedral|capela|mesquita|sinagoga|santuario|helligdom|shrine|gravlund|kirkegard|kyrkjegard|churchyard|cemetery|graveyard|prestegard|prestebustad|steinkross)(?:\s|$)/;
-  function isReligiousPlace(place) {
-    if (!place || typeof place !== "object" || Array.isArray(place)) return false;
-    if (norm(place.category) === "religion") return true;
-    const identity = [
-      place.id,
-      place.name,
-      place.placeType,
-      place.place_type,
-      place.subtype,
-      place.assetType,
-      place.type
-    ].map(normalizeReligiousText).filter(Boolean).join(" ");
-    return RELIGIOUS_PLACE_RE.test(identity);
-  }
-  function normalizeReligiousPlace(place) {
-    if (!isReligiousPlace(place)) return place;
-    if (place.category === "religion" && !Object.prototype.hasOwnProperty.call(place, "secondaryBadgeIds")) return place;
-    const normalized = { ...place, category: "religion" };
-    delete normalized.secondaryBadgeIds;
-    return normalized;
-  }
-  function normalizeReligiousPayload(payload) {
-    if (Array.isArray(payload)) return payload.map(normalizeReligiousPlace);
-    if (!payload || typeof payload !== "object") return payload;
-    if (Array.isArray(payload.places)) {
-      return { ...payload, places: payload.places.map(normalizeReligiousPlace) };
-    }
-    if (typeof payload.id === "string" && (Object.prototype.hasOwnProperty.call(payload, "category") || Object.prototype.hasOwnProperty.call(payload, "lat"))) {
-      return normalizeReligiousPlace(payload);
-    }
-    return payload;
-  }
-  function installDataHubCategoryPolicy(dataHub) {
-    if (!dataHub || dataHub.__hgReligionCategoryPolicyInstalled) return;
-    const loaderNames = ["loadPlacesBase", "loadPlaces", "loadFullPlace", "getPlaceEnriched", "loadEnrichedAll"];
-    for (const loaderName of loaderNames) {
-      const original = dataHub[loaderName];
-      if (typeof original !== "function") continue;
-      dataHub[loaderName] = async (...args) => {
-        const result = await Reflect.apply(original, dataHub, args);
-        return normalizeReligiousPayload(result);
-      };
-    }
-    dataHub.__hgReligionCategoryPolicyInstalled = true;
-  }
-  function installDataHubWatcher() {
-    if (win.DataHub) {
-      installDataHubCategoryPolicy(win.DataHub);
-      return;
-    }
-    const descriptor = Object.getOwnPropertyDescriptor(win, "DataHub");
-    if (descriptor && descriptor.configurable === false) return;
-    Object.defineProperty(win, "DataHub", {
-      configurable: true,
-      enumerable: true,
-      get() {
-        return void 0;
-      },
-      set(value) {
-        Object.defineProperty(win, "DataHub", {
-          configurable: true,
-          enumerable: true,
-          writable: true,
-          value
-        });
-        installDataHubCategoryPolicy(value);
-      }
-    });
-  }
   win.CATEGORY_LIST = CATEGORY_LIST;
   win.catColor = catColor;
   win.catClass = catClass;
   win.tagToCat = tagToCat;
   win.catIdFromDisplay = catIdFromDisplay;
-  win.HGPlaceCategoryPolicy = {
-    isReligiousPlace,
-    normalizePlace: normalizeReligiousPlace,
-    normalizePlaces: normalizeReligiousPayload
-  };
-  installDataHubWatcher();
 })();
