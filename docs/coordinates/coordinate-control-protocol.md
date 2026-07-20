@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 235 verifiserte eller kildekontrollerte canonical steder. Batch 88 legger til Jordal ungdomshall med bygningssenter fra det separate navngitte OSM-objektet way 33263069 etter at delt adresse med Jordal-komplekset gjorde address-first-punktet ikke-spesifikt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 236 verifiserte eller kildekontrollerte canonical steder. Batch 89 legger til Gamlebyen kirke med eget navngitt OSM-bygningsanker, eksplisitt skilt fra Oslo Hospital-kompleksets separate historiske områdeanker. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -256,6 +256,7 @@ Oslo-tabellen inneholder nå 235 verifiserte eller kildekontrollerte canonical s
 | 86 | `galleri_mini_oslo` | Galleri Mini | verified | `geonorge-adresser-v1:0301:14861:1` |
 | 87 | `van_etten` | Van Etten | verified | `geonorge-adresser-v1:0301:16675:3` |
 | 88 | `jordal_ungdomshall` | Jordal ungdomshall | verified_geometry | `osm:way:33263069` |
+| 89 | `gamlebyen_kirke` | Gamlebyen kirke | verified_geometry | `osm-way:557799193` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 

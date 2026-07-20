@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "gamlebyen_kirke",
+  "placeFile": "data/places/historie/oslo/places_historie/gamlebyen_kirke.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9031277,
+    "lon": 10.7685824,
+    "r": 60,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 557799193 – Gamlebyen kirke",
+    "coordType": "building_center",
+    "coordNote": "Geometrisk representasjonspunkt for det navngitte OpenStreetMap-way 557799193, «Gamlebyen kirke». Objektet representerer selve Gamlebyen kirke / Oslo Hospitals kirke innenfor det bredere Oslo Hospital-komplekset, ikke hospitalanlegget som helhet."
+  },
+  "identity": {
+    "currentName": "Gamlebyen kirke",
+    "resolvedIdentity": "Gamlebyen kirke / Oslo Hospitals kirke represented by OSM way 557799193 inside the broader Oslo Hospital complex",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "completed but non-applicable address-first audit for Ekebergveien 1",
+    "separate named church building object",
+    "explicit scope distinction from oslo_hospital complex anchor",
+    "current active church identity"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap named church building geometry",
+      "sourceUrl": "https://www.openstreetmap.org/way/557799193",
+      "sourceObjectId": "osm-way:557799193",
+      "sourceQuality": "named_building_geometry_cross_checked_with_current_church_identity",
+      "finding": "OSM way 557799193 is explicitly named Gamlebyen kirke and resolves the church building separately from the nearby Oslo Hospital complex anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometrisk representasjonspunkt for det navngitte OpenStreetMap-way 557799193, «Gamlebyen kirke». Objektet representerer selve Gamlebyen kirke / Oslo Hospitals kirke innenfor det bredere Oslo Hospital-komplekset, ikke hospitalanlegget som helhet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ekebergveien 1 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557799193",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557799193",
+      "geometryType": "Polygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9031277,
+      "lon": 10.7685824,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the geometric center of the separate named church building after the shared address proved non-specific."
+  },
+  "notes": [
+    "Geometrisk representasjonspunkt for det navngitte OpenStreetMap-way 557799193, «Gamlebyen kirke». Objektet representerer selve Gamlebyen kirke / Oslo Hospitals kirke innenfor det bredere Oslo Hospital-komplekset, ikke hospitalanlegget som helhet."
+  ]
+}
