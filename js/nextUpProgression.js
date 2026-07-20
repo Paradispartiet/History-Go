@@ -240,7 +240,7 @@
     return places;
   }
 
-  async function buildBadgeCandidates(currentPlace, tri) {
+  async function buildBadgeCandidates(currentPlace, tri, quizCandidates = []) {
     const badges = await getBadges();
     if (!badges.length) return [];
 
@@ -258,6 +258,7 @@
     };
 
     pushCategory(currentCategory);
+    arr(quizCandidates).forEach(candidate => pushCategory(candidate?.meta?.category_id));
     actionPlaces.forEach(place => pushCategory(categoryOf(place)));
 
     return categories.slice(0, 8).map(category => {
@@ -268,10 +269,11 @@
       const tier = nextTierForBadge(badge, points);
       if (!tier) return null;
 
-      const actionPlace = actionPlaces.find(place => categoryOf(place) === category && placeId(place) !== placeId(currentPlace))
-        || actionPlaces.find(place => categoryOf(place) === category)
-        || null;
-      if (!actionPlace) return null;
+      const actionQuiz = arr(quizCandidates).find(candidate =>
+        runtimeCategoryId(candidate?.meta?.category_id) === category
+      );
+      const actionPlace = findPlace(actionQuiz?.meta?.place_id || actionQuiz?.target_id);
+      if (!actionQuiz || !actionPlace) return null;
 
       const remaining = Math.max(1, Number(tier.threshold) - points);
       let score = 64;
@@ -288,9 +290,9 @@
         type: "badge",
         target_id: `${category}:${placeId(actionPlace)}`,
         label: `${badgeName}: ${remaining} poeng til ${tierLabel} · ${actionName}`,
-        reason: `Dette stedet er et konkret neste steg mot ${tierLabel} i ${badgeName}.`,
-        deep_reason: `Du har ${points} poeng i ${badgeName}. Neste nivå krever ${tier.threshold}, altså ${remaining} poeng til.`,
-        evidence: ["merits_by_category", "BADGES.tiers", "place.category"],
+        reason: `Denne ufullførte quizen er et konkret neste steg mot ${tierLabel} i ${badgeName}.`,
+        deep_reason: `Du har ${points} poeng i ${badgeName}. Neste nivå krever ${tier.threshold}, altså ${remaining} poeng til. En førstegangsfullføring av neste quizsett gir videre progresjon.`,
+        evidence: ["merits_by_category", "BADGES.tiers", "QuizEngine.getTargetSummary"],
         score,
         source: "badge-progress",
         meta: {
@@ -301,6 +303,7 @@
           next_threshold: Number(tier.threshold),
           points_remaining: remaining,
           place_id: placeId(actionPlace),
+          quiz_target_id: s(actionQuiz?.meta?.quiz_target_id || actionQuiz?.target_id),
           category_id: category,
           incomplete: true
         }
@@ -330,10 +333,8 @@
   }
 
   async function buildProgressionCandidates(currentPlace, tri) {
-    const [quiz, badge] = await Promise.all([
-      buildQuizCandidates(currentPlace, tri),
-      buildBadgeCandidates(currentPlace, tri)
-    ]);
+    const quiz = await buildQuizCandidates(currentPlace, tri);
+    const badge = await buildBadgeCandidates(currentPlace, tri, quiz);
     return { quiz, badge, all: [...quiz, ...badge] };
   }
 
@@ -417,6 +418,13 @@
     }
 
     if (type === "badge") {
+      const quizTargetId = s(suggestion?.meta?.quiz_target_id);
+      if (quizTargetId && window.HGMapView?.openQuiz?.(quizTargetId)) return true;
+      if (quizTargetId && typeof window.QuizEngine?.start === "function") {
+        void window.QuizEngine.start(quizTargetId);
+        return true;
+      }
+
       const targetId = s(suggestion?.meta?.place_id);
       if (!targetId) return false;
       if (window.HGMapView?.openPlace?.(targetId)) return true;
