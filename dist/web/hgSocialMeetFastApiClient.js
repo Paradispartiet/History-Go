@@ -1,5 +1,5 @@
 (() => {
-  // HGSocialMeetFastApiClient.ts
+  // js/social/HGSocialMeetFastApiClient.ts
   var win = window;
   var API_PREFIX = "/api/v1";
   function trim(value) {
