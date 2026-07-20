@@ -160,7 +160,6 @@ let tableEnd = headerIndex + 2;
 while (tableEnd < lines.length && lines[tableEnd].startsWith('| ')) tableEnd += 1;
 
 for (const change of changes) {
-  const idPattern = new RegExp(`\\| \\`91 \\| \\`${change.id}\\``);
   if (protocol.includes(`\`${change.id}\``)) {
     const existingVerified = lines.slice(headerIndex + 2, tableEnd).some((line) => line.includes(`\`${change.id}\``));
     if (existingVerified) throw new Error(`${change.id}: already present in verified protocol table`);
