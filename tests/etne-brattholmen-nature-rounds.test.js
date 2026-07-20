@@ -19,6 +19,10 @@ const selectedFauna = audit.matched.filter(item => item.kind === 'fauna').map(it
 assert.deepStrictEqual([...map.places.brattholmen_naturreservat_etne.flora].sort(), selectedFlora);
 assert.deepStrictEqual([...map.places.brattholmen_naturreservat_etne.fauna].sort(), selectedFauna);
 assert.strictEqual(map.places.brattholmen_naturreservat_etne.species_audit, 'reports/etne-natur-batch-4-brattholmen-artskart.json');
+assert(map.places.brattholmen_naturreservat_etne.fauna.includes('emne_fauna_svartbak'));
+assert(map.places.brattholmen_naturreservat_etne.fauna.includes('emne_fauna_makrellterne'));
+assert.strictEqual(audit.unmatched.length, 1);
+assert.strictEqual(audit.unmatched[0].displayName, 'Charadriiformes');
 
 const evidence = readJson('data/coordinate-evidence/vestland/natur/brattholmen_naturreservat_etne.json');
 assert.strictEqual(evidence.placeId, 'brattholmen_naturreservat_etne');

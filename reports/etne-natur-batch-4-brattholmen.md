@@ -20,7 +20,12 @@ Ilandstigning og ferdsel er forbudt fra 15. april til 31. juli på holmen og i s
 - Gråhegre – *Ardea cinerea* (`emne_fauna_graahegre`, 1 funn, siste 2023)
 - Gråmåke – *Larus argentatus* (`emne_fauna_graamaake`, 1 funn, siste 2015)
 
-## Observerte taxa uten kanonisk kort
+## Nye artskort opprettet
+
+- Svartbak – *Larus marinus* (`emne_fauna_svartbak`)
+- Makrellterne – *Sterna hirundo* (`emne_fauna_makrellterne`)
+
+## Gjenværende takson uten artskort
 
 - Larus marinus (6 funn, siste 2025)
 - Sterna hirundo (2 funn, siste 2024)
