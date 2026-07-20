@@ -16,6 +16,7 @@ MAX_DISCOVERY_TAG_LENGTH = 64
 
 
 class DiscoveryMatchReason(StrEnum):
+    CONTEXT_INTEREST_PLACE = "context_interest_place"
     CONTEXT_THEME = "context_theme"
     CONTEXT_ERA = "context_era"
     CONTEXT_TOPIC = "context_topic"
@@ -108,6 +109,7 @@ class ContextCandidateResponse(ApiModel):
     context_type: SpotmeetingContextType
     context_id: str
     generated_at: datetime
+    stale_after_seconds: int
     candidates: list[DiscoveryCandidate]
 
 
@@ -119,15 +121,21 @@ class DiscoveryFeatureGate:
 
 
 @dataclass(frozen=True, slots=True)
-class DiscoveryCandidateRecord:
+class DiscoveryProfileRecord:
     profile_id: UUID
     display_name: str
     avatar_ref: str | None
     short_bio: str | None
     preferred_themes: tuple[str, ...]
     favorite_eras: tuple[str, ...]
+    interest_places: tuple[str, ...]
     learning_goals: tuple[str, ...]
     knowledge_fingerprint_summary: dict[str, object]
     updated_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
+class RankedDiscoveryCandidate:
+    profile: DiscoveryProfileRecord
     match_reasons: tuple[DiscoveryMatchReason, ...]
     score: int
