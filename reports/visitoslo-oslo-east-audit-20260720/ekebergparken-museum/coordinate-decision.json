@@ -1,0 +1,67 @@
+{
+  "version": "2026-07-20-address-first-clean",
+  "placeId": "ekebergparken_museum",
+  "candidateName": "Ekebergparken Museum",
+  "status": "verified_address_candidate",
+  "productionGate": "ready_for_canonical_production",
+  "primaryCategory": "historie",
+  "identity": {
+    "currentName": "Ekebergparken Museum",
+    "buildingName": "Lunds villa / Lunds hus",
+    "currentAddress": "Kongsveien 23, Oslo",
+    "distinctFrom": "Ekebergparken skulpturpark as a broad area marker",
+    "summary": "Eget fysisk museum, besøkssenter, butikk og administrasjonsbygg i den historiske Lunds villa, med utstillinger om Ekebergs kulturhistorie og natur."
+  },
+  "coordinate": {
+    "lat": 59.89854101481173,
+    "lon": 10.75966997323581,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13868:23",
+    "address": {
+      "street": "Kongsveien",
+      "number": "23",
+      "postcode": "0193",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongsveien 23, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "source": {
+    "sourceProvider": "official_address",
+    "sourceName": "Geonorge Adresser API v1",
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongsveien%2023%20Oslo",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13868:23"
+  },
+  "duplicateGate": {
+    "canonicalIdentityMatches": [],
+    "nearbyWithin350m": [
+      {
+        "id": "ekeberg_helleristninger",
+        "name": "Helleristningene på Ekeberg",
+        "category": "historie",
+        "distanceMeters": 109.5
+      },
+      {
+        "id": "gronlikaia",
+        "name": "Grønlikaia",
+        "category": "naeringsliv",
+        "distanceMeters": 199.5
+      }
+    ],
+    "conclusion": "No museum/Lunds villa identity match exists in the current canonical index."
+  },
+  "scopeDecision": "The museum is a separate addressable building and visitor institution. Existing `ekebergparken` remains the broad sculpture-park area anchor and must not move to the museum address.",
+  "categoryDecision": "Primary category `historie`: the museum exhibitions focus on Ekeberg area cultural history and nature. Art remains a secondary layer through its institutional relation to the sculpture park.",
+  "guardrails": [
+    "Do not move or replace the existing `ekebergparken` area anchor.",
+    "Do not merge the museum into `ekebergrestauranten` or another nearby Ekeberg building.",
+    "Do not describe the museum as the indoor home of the park sculpture collection; its documented exhibition focus is history and nature."
+  ]
+}
