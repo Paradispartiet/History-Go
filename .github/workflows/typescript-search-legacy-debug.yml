@@ -1,0 +1,33 @@
+name: TypeScript search legacy debug
+
+on:
+  pull_request:
+    paths:
+      - "js/ui/search.js"
+      - "js/ui/search.ts"
+      - ".github/workflows/typescript-search-legacy-debug.yml"
+
+jobs:
+  capture-legacy-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Capture root legacy diagnostics
+        shell: bash
+        run: |
+          set +e
+          npm run typecheck > typecheck-search-legacy.log 2>&1
+          status=$?
+          echo "exit_code=$status" >> typecheck-search-legacy.log
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: typecheck-search-legacy-diagnostics
+          path: typecheck-search-legacy.log
+          if-no-files-found: error
+          retention-days: 1
