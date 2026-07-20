@@ -207,6 +207,11 @@
         if (delta) meterDeltas[meterKey] = delta;
       }
       /** @type {any} */ (window).CivicationLifestoryShellBridge?.applyMeterDeltasToShell?.(meterDeltas);
+      // Livsstilsbro: valgets tags (pub => nightlife, eget prosjekt => craft, …)
+      // teller mot skallets HG_Lifestyle-stamp. Broen eier testmodus-gaten.
+      if (valg && Array.isArray(/** @type {any} */ (valg).livsstil)) {
+        /** @type {any} */ (window).CivicationLifestoryShellBridge?.applyLifestyleTagsToShell?.(/** @type {any} */ (valg).livsstil);
+      }
       window.dispatchEvent(new Event("civi:lifestoryChanged"));
     } catch (error) {
       console.error("[CivicationLifestoryUI] valg feilet", error);

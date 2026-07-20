@@ -37,6 +37,21 @@
   const CONDITION_KEYS = ["flagg", "meters", "relasjoner", "threads", "profil"];
 
   /**
+   * Gyldige livsstilstags på valg (valg.livsstil). Vokabularet er unionen av
+   * core/bonus/anti-tags i data/Civication/lifestyles.json — valg tagges med
+   * retningen de modellerer (pub => nightlife, eget prosjekt => craft, …),
+   * og skallets HG_Lifestyle teller dem opp mot de 13 livsstilene.
+   * Ukjent tag => FAIL FAST (ingen gjetting). Holdes i sync av
+   * civication-lifestory-lifestyle-bridge.test.js.
+   */
+  const LIVSSTIL_TAGS = [
+    "avoidance", "budget", "craft", "culture", "debt", "family", "fitness",
+    "heritage", "hipster", "legitimacy", "luxury", "maximalist", "minimalist",
+    "nightlife", "opportunism", "outdoor", "process", "risk", "security",
+    "shortcut", "status", "street", "technocrat", "visibility"
+  ];
+
+  /**
    * @typedef {Object} LifestoryChoice
    * @property {string} id
    * @property {string} tekst
@@ -44,6 +59,7 @@
    * @property {{ relasjoner?: Record<string, number>, meters?: Record<string, number>, flagg?: Record<string, boolean|number|string>, threads?: Record<string, { status?: string, stepDelta?: number }> }} effekter
    * @property {string} [konsekvensTekst]
    * @property {string[]} [laaserOpp]
+   * @property {string[]} [livsstil] Livsstilstags (se LIVSSTIL_TAGS) — mates til skallets HG_Lifestyle ved valg.
    *
    * @typedef {Object} LifestoryScene
    * @property {string} id
@@ -179,6 +195,17 @@
         errorsForEffects(scene, choice, startRelasjoner, threadIds, push);
         for (const target of choice.laaserOpp || []) {
           if (typeof target !== "string" || !target) push(`scene ${sid}/${cid}: ugyldig laaserOpp-referanse`);
+        }
+        if (choice.livsstil !== undefined) {
+          if (!Array.isArray(choice.livsstil) || !choice.livsstil.length) {
+            push(`scene ${sid}/${cid}: livsstil må være en ikke-tom liste med tags`);
+          } else {
+            for (const tag of choice.livsstil) {
+              if (LIVSSTIL_TAGS.indexOf(tag) === -1) {
+                push(`scene ${sid}/${cid}: ukjent livsstilstag "${tag}" (ikke i LIVSSTIL_TAGS)`);
+              }
+            }
+          }
         }
       }
     }
@@ -422,7 +449,7 @@
     return resolveRoleIdForRoleScope(manifest, scope);
   }
 
-  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, MANIFEST_PATH, buildContent, validateContent, loadContent, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
