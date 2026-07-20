@@ -46,9 +46,7 @@ class SocialMeetIdentityRepository(Protocol):
         consented_at: datetime | None,
     ) -> SocialMeetProfileRecord: ...
 
-    def get_discoverable_profile(
-        self, profile_id: UUID
-    ) -> SocialMeetProfileRecord | None: ...
+    def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None: ...
 
     def unpublish(self, auth_user_id: UUID) -> SocialMeetProfileRecord: ...
 
@@ -94,9 +92,7 @@ class PostgresSocialMeetIdentityRepository:
         *,
         consented_at: datetime | None,
     ) -> SocialMeetProfileRecord:
-        fingerprint_json = json.dumps(
-            profile.fingerprint_inputs.model_dump(mode="json")
-        )
+        fingerprint_json = json.dumps(profile.fingerprint_inputs.model_dump(mode="json"))
         params: dict[str, object] = {
             "user_id": auth_user_id,
             "display_name": profile.display_name,
@@ -152,9 +148,7 @@ class PostgresSocialMeetIdentityRepository:
             )
         return _map_record(row)
 
-    def get_discoverable_profile(
-        self, profile_id: UUID
-    ) -> SocialMeetProfileRecord | None:
+    def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None:
         with self._database.engine.connect() as connection:
             row = (
                 connection.execute(
