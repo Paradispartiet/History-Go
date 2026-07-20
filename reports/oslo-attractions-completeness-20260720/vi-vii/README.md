@@ -14,3 +14,14 @@
 - Historical-location handling: Operagata 75A should be retained only as a previous-location layer in the canonical place history, not as a second active VI, VII marker.
 
 Production is approved from this intake.
+
+## Production
+
+- Canonical place: `vi_vii_gallery`
+- Category: `kunst`
+- Active coordinate source: `geonorge-adresser-v1:0301:15006:8`
+- Active address: Nedre Slottsgate 8
+- Previous location: Operagata 75A
+- Coordinate status: `verified`
+- Coordinate batch: 76
+- Oslo verified/source-controlled total after production: 224

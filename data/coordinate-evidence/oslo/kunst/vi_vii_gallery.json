@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "vi_vii_gallery",
+  "placeFile": "data/places/kunst/oslo/places_kunst/vi_vii_gallery.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91215712574447,
+    "lon": 10.742755978420295,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Nedre Slottsgate 8, OSLO, source object geonorge-adresser-v1:0301:15006:8. Punktet brukes som dagens display- og unlock-anker for VI, VII, basert på galleriets aktuelle kontakt- og bookingkanaler i 2026. Den tidligere Bjørvika-adressen Operagata 75A beholdes som historisk lokasjonslag og brukes ikke som aktiv kartmarkør."
+  },
+  "identity": {
+    "currentName": "VI, VII",
+    "resolvedIdentity": "VI, VII, internasjonalt samtidskunstgalleri med aktiv Oslo-adresse i Nedre Slottsgate 8",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "aktuell galleridentitet og bookingadresse",
+    "avgrensning mot tidligere Operagata-lokasjon"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Nedre%20Slottsgate%208%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15006:8",
+      "sourceQuality": "official_address_plus_current_gallery_booking_identity",
+      "finding": "Geonorge gir ett entydig adressepunkt for Nedre Slottsgate 8. VI, VII sine aktuelle kontakt- og bookingkanaler bruker denne adressen i 2026, mens Operagata 75A behandles som tidligere lokasjon.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Nedre Slottsgate 8, OSLO, source object geonorge-adresser-v1:0301:15006:8. Punktet brukes som dagens display- og unlock-anker for VI, VII, basert på galleriets aktuelle kontakt- og bookingkanaler i 2026. Den tidligere Bjørvika-adressen Operagata 75A beholdes som historisk lokasjonslag og brukes ikke som aktiv kartmarkør."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Nedre Slottsgate 8 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15006:8",
+      "lat": 59.91215712574447,
+      "lon": 10.742755978420295,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15006:8",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91215712574447,
+      "lon": 10.742755978420295,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, aktuell institusjonsidentitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Nedre Slottsgate 8, OSLO, source object geonorge-adresser-v1:0301:15006:8. Punktet brukes som dagens display- og unlock-anker for VI, VII, basert på galleriets aktuelle kontakt- og bookingkanaler i 2026. Den tidligere Bjørvika-adressen Operagata 75A beholdes som historisk lokasjonslag og brukes ikke som aktiv kartmarkør."
+  ]
+}
