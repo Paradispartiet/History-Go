@@ -2,16 +2,16 @@
   "schemaVersion": "1.0",
   "placeId": "norli_universitetsgata",
   "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_address_source",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9181,
-    "lon": 10.7385,
+    "lat": 59.9152021,
+    "lon": 10.7371559,
     "r": 120,
-    "coordStatus": "needs_source",
-    "coordSource": "official_address_range_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Norli oppgir Universitetsgata 22–24 som offisiell adresse. Repoets Geonorge-finder gir separate entydige adressepunkter for 22 og 24, mens intervallsøket ikke gir ett treff. Ingen av endepunktene velges vilkårlig; eksisterende lat/lon beholdes kun som legacy inntil en kilde identifiserer butikkens konkrete inngang/hovedanker."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 1664967174 – Norli, branch Universitetsgata",
+    "coordType": "bookshop_poi",
+    "coordNote": "Norli oppgir Universitetsgata 22–24, og Geonorge-forsøkene for 22 og 24 ga to separate adressepunkter som derfor ikke kunne velges vilkårlig. Det eksakte navngitte OSM-bokhandelspunktet node 1664967174 er merket shop=books, branch=Universitetsgata og peker til Norlis nettsted. Det brukes som fysisk butikkanker etter den dokumenterte adressekonflikten, ikke som erstatning for adresse-first-regelen."
   },
   "identity": {
     "currentName": "Norli Universitetsgata",
@@ -55,6 +55,16 @@
       "finding": "Universitetsgata 24 gir ett annet entydig adressepunkt.",
       "canVerifyCoordinate": false,
       "reason": "Offisiell Norli-kilde oppgir 22–24; 24 kan ikke velges alene uten ytterligere inngangs-/hovedankerkilde."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1664967174 – Norli, branch Universitetsgata",
+      "sourceUrl": "https://www.openstreetmap.org/node/1664967174",
+      "sourceObjectId": "osm-node:1664967174",
+      "sourceQuality": "unique_exact_named_shop_object",
+      "finding": "Nominatim returned one exact shop=books object named Norli with branch=Universitetsgata and Norli website metadata.",
+      "canVerifyCoordinate": true,
+      "reason": "Norli oppgir Universitetsgata 22–24, og Geonorge-forsøkene for 22 og 24 ga to separate adressepunkter som derfor ikke kunne velges vilkårlig. Det eksakte navngitte OSM-bokhandelspunktet node 1664967174 er merket shop=books, branch=Universitetsgata og peker til Norlis nettsted. Det brukes som fysisk butikkanker etter den dokumenterte adressekonflikten, ikke som erstatning for adresse-first-regelen."
     }
   ],
   "addressCandidates": [
@@ -71,29 +81,32 @@
   ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "norli:universitetsgata:22-24",
-      "canApplyToPlace": false
-    },
-    {
-      "sourceProvider": "official_address",
-      "sourceObjectId": "geonorge-adresser-v1:0301:17999:22",
-      "canApplyToPlace": false
-    },
-    {
-      "sourceProvider": "official_address",
-      "sourceObjectId": "geonorge-adresser-v1:0301:17999:24",
-      "canApplyToPlace": false
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1664967174",
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1664967174",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9152021,
+      "lon": 10.7371559,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Norli oppgir Universitetsgata 22–24 som offisiell adresse. Repoets Geonorge-finder gir separate entydige adressepunkter for 22 og 24, mens intervallsøket ikke gir ett treff. Ingen av endepunktene velges vilkårlig; eksisterende lat/lon beholdes kun som legacy inntil en kilde identifiserer butikkens konkrete inngang/hovedanker.",
-    "nextAction": "Do not promote to verified until one exact canonical anchor is documented."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Eksakt navngitt fysisk objekt er anvendt på canonical place."
   },
   "notes": [
-    "Norli oppgir Universitetsgata 22–24 som offisiell adresse. Repoets Geonorge-finder gir separate entydige adressepunkter for 22 og 24, mens intervallsøket ikke gir ett treff. Ingen av endepunktene velges vilkårlig; eksisterende lat/lon beholdes kun som legacy inntil en kilde identifiserer butikkens konkrete inngang/hovedanker."
+    "Norli oppgir Universitetsgata 22–24, og Geonorge-forsøkene for 22 og 24 ga to separate adressepunkter som derfor ikke kunne velges vilkårlig. Det eksakte navngitte OSM-bokhandelspunktet node 1664967174 er merket shop=books, branch=Universitetsgata og peker til Norlis nettsted. Det brukes som fysisk butikkanker etter den dokumenterte adressekonflikten, ikke som erstatning for adresse-first-regelen."
   ]
 }

@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 168 verifiserte eller kildekontrollerte canonical steder. Batch 36 gjenåpner konkrete needs_review-saker med objekt-type-først-metoden og promoterer bare eksplisitt kildebelagte koordinater eller entydige fysiske objektankre. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 46.
+Oslo-tabellen inneholder nå 171 verifiserte eller kildekontrollerte canonical steder. Batch 37 løser to åpne objektankre og retter protokollen for ett allerede verifisert sted. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 43.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -190,6 +190,9 @@ Oslo-tabellen inneholder nå 168 verifiserte eller kildekontrollerte canonical s
 | 36 | `prinds_christian_augusts_minde` | Prinds Christian Augusts Minde | verified_historical_source | `prindsen:official-documentation` |
 | 36 | `hartvig_nissens_skole_skam` | Hartvig Nissens skole (SKAM) | verified_geometry | `osm-node:325636287` |
 | 36 | `inger_hagerups_plass` | Inger Hagerups plass | verified | `lokalhistoriewiki:inger-hagerups-plass` |
+| 37 | `norli_universitetsgata` | Norli Universitetsgata | verified_geometry | `osm-node:1664967174` |
+| 37 | `bankall_gard` | Bånkall gård | verified_geometry | `osm-relation:11788354` |
+| 37 | `frysja_33_brekke_kraftstasjon` | Frysja 33 – Brekke kraftstasjon | verified | `geonorge-adresser-v1:0301:13747:151C` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -203,9 +206,11 @@ Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` bruker nå d
 
 Batch 36 (2026-07-20) gjenåpner konkrete needs_review-saker med objekt-type-først-metoden. Tre steder er løst uten proxy-gjetting: Prindsen med dokumentert historisk kompleksidentitet og eksakt OSM-områdegeometri etter tvetydig Geonorge-oppslag, Hartvig Nissens skole med entydig navngitt OSM-skoleobjekt etter tvetydig adresseoppslag, og Inger Hagerups plass med eksplisitt kildekoordinat kryssjekket mot Oslo byleksikon og Oslo bykart. Sigrid Undset-statuen forblir needs_review fordi eksakt sokkelpunkt fortsatt mangler.
 
+Batch 37 (2026-07-20) løser `norli_universitetsgata` med et entydig navngitt OSM-bokhandelspunkt etter dokumentert 22/24-adressekonflikt, oppgraderer `bankall_gard` til eksakt navngitt gårdsrelasjon etter tvetydig Geonorge-oppslag, og synkroniserer protokollen med at `frysja_33_brekke_kraftstasjon` allerede er canonical verified på Geonorge 151C. `seilduksfabrikken_nydalen` forblir needs_review fordi objektoppslagene ikke ga et entydig navngitt Øvre Spinneri-objekt.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 168 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 171 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -224,11 +229,8 @@ Disse kontrollene er fullført, men teller ikke blant de 168 verifiserte eller k
 | `trosterud_friomrade` – Trosterud friområde | needs_review | Kontrollen fant ingen stabil offisiell eller eksakt OSM-entitet med recordens navn; kommunale planer dokumenterer bare bredere grønt- og byutviklingskontekst. | Identifiser konkret navngitt friområde eller erstatt recorden med dokumentert arealobjekt. |
 | `furuset_haugerud_skogbelte` – Furuset–Haugerud skogbelte | needs_review | Navnet beskriver et bredt grønt overgangsområde, men ingen eksplisitt avgrenset offisiell eller eksakt OSM-geometri ble dokumentert. | Finn plan-/naturgeometri med eksplisitt avgrensning eller erstatt med konkrete navngitte naturområder. |
 | `hellerud_gard` – Hellerud gård | needs_review | Hellerud-navnet dekker flere historiske gårdsbruk. Det entydige Haugerudtunet 1 gjelder separate Østre Haugerud gård og kan ikke brukes som automatisk erstatning for den uklare Hellerud-recorden. | Avklar hvilken Hellerud-gård recorden representerer og dokumenter fysisk hovedanker før koordinaten godkjennes. |
-| `norli_universitetsgata` – Norli Universitetsgata | needs_review | Norli oppgir Universitetsgata 22–24. Intervallsøket gir ikke ett Geonorge-treff, mens 22 og 24 gir hvert sitt separate entydige adressepunkt. | Krever dokumentert hovedinngang eller annen kilde som velger ett konkret adresseanker; ikke velg 22 eller 24 vilkårlig. |
 | `sigrid_undset_statue` – Sigrid Undset-skulpturen | needs_review | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
 | `alf_proysen_statue_nittedal` – Alf Prøysen-monumentet ved Kulturverket Flammen | needs_review; moved to Akershus/Nittedal | Recorden lå feilaktig i Oslo-kilden. Kulturverket Flammen er dokumentert på Borghild Ruds vei 3 og kommunens kunstdatabase plasserer monumentet utenfor nedre inngang, men Geonorge-adressepunktet er ikke selve sokkelen. | Finn eksakt monument-/sokkelpunkt; behold Flammen-adressen kun som foreløpig host/site-anchor. |
-| Frysja 33 / Brekke kraftstasjon | needs_review | Korrekt adresse er Kjelsåsveien 151, men Geonorge gir både 151B og 151C uten kilde som identifiserer hvilken bygning som er kraftstasjonen/hovedankeret. | Krever offisiell objektgeometri eller dokumentert kobling mellom bygning og husbokstav. |
-| Bånkall gård | needs_review | Trondheimsveien 640 ga flere ikke-entydige Geonorge-treff uten én eksakt fysisk match. | Krever mer presis offisiell adresse eller objektgeometri før canonical koordinat kan godkjennes. |
 | `ring_3` – Ring 3 | needs_review | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |
 | `trikk_17_18` – Trikkelinje 17/18 | needs_review | Ruter dokumenterer begge linjene, men den kombinerte recorden har bare ett lavpresisjonspunkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller eksplisitt modellert fellessegment før canonical koordinat kan godkjennes. |
 | `bislett` – Bislett strøk | needs_review | Område-recordens eksisterende punkt overlapper praktisk talt det separate canonical `bislett_stadion`-punktet. | Krever et eget dokumentert strøks-/knutepunktanker, for eksempel Bislett rundkjøring, uten å gjette koordinater. |
