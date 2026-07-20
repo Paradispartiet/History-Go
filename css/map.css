@@ -23,9 +23,9 @@
   --hg-map-control-width: min(228px, calc(100vw - 24px));
 
   position: fixed;
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
+  left: auto;
+  right: calc(12px + env(safe-area-inset-right, 0px));
+  transform: none;
   bottom: calc(var(--hg-bottom-nav-height, 72px) + 14px);
   z-index: 10050;
 
@@ -35,11 +35,11 @@
   display: flex !important;
   flex-direction: row;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 6px;
 
   width: auto;
-  max-width: calc(100vw - 24px);
+  max-width: calc(100vw - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
 
   pointer-events: none;
   touch-action: manipulation;
@@ -142,8 +142,9 @@ body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{
 
 .hg-map-category-filter{
   position: relative;
-  width: 88px;
-  flex: 0 0 88px;
+  width: 104px;
+  flex: 0 0 104px;
+  order: 999;
   pointer-events: auto;
 }
 
@@ -197,11 +198,12 @@ body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{
   bottom: calc(100% + 8px);
   z-index: 10080;
 
-  width: 88px;
+  width: 104px;
   max-height: min(52dvh, 430px);
   padding: 8px;
   box-sizing: border-box;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
 
   border: 1px solid rgba(255,255,255,.18);
@@ -212,13 +214,19 @@ body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{
   -webkit-backdrop-filter: blur(16px);
 }
 
+.hg-map-category-options:not([hidden]){
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .hg-map-category-options[hidden]{
   display: none !important;
 }
 
 .map-controls .hg-map-category-option{
   width: 100%;
-  min-height: 44px;
+  min-height: 58px;
   height: auto;
   padding: 8px 10px;
 
@@ -278,7 +286,7 @@ body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{
 
 .hg-map-utility-row{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 10px;
   width: auto;
@@ -319,7 +327,7 @@ body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{
 @media (max-width: 640px){
   .map-controls{
     --hg-map-control-width: min(208px, calc(100vw - 20px));
-    right: auto;
+    right: calc(6px + env(safe-area-inset-right, 0px));
     bottom: calc(var(--hg-bottom-nav-height, 72px) + 10px);
   }
 

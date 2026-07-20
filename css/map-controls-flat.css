@@ -1,17 +1,17 @@
 /* History Go map controls: compact, flat and transparent presentation. */
 
 body .map-controls {
-  left: 50% !important;
-  right: auto !important;
-  transform: translateX(-50%) !important;
+  left: auto !important;
+  right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+  transform: none !important;
   bottom: calc(var(--hg-bottom-nav-height, 72px) + 12px + env(safe-area-inset-bottom, 0px)) !important;
   display: flex !important;
   flex-direction: row !important;
   align-items: flex-end !important;
-  justify-content: center !important;
+  justify-content: flex-end !important;
   gap: 6px;
   width: auto !important;
-  max-width: calc(100vw - 24px) !important;
+  max-width: calc(100vw - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) !important;
   padding: 0 !important;
 }
 
@@ -48,14 +48,15 @@ body .map-controls .hg-map-style-toggle .hg-map-style-btn.is-active {
 
 /* Badge/category picker: narrower trigger with larger badge artwork and no visible names. */
 body .map-controls .hg-map-category-filter {
-  width: 88px !important;
-  flex: 0 0 88px;
+  width: 104px !important;
+  flex: 0 0 104px;
+  order: 999;
   align-self: flex-end;
 }
 
 body .map-controls .hg-map-category-trigger {
-  width: 88px !important;
-  height: 44px;
+  width: 104px !important;
+  height: 46px;
   padding: 0 10px;
   grid-template-columns: minmax(0, 1fr) 18px !important;
   gap: 6px;
@@ -82,15 +83,15 @@ body .map-controls .hg-map-category-option-label {
 body .map-controls .hg-map-category-trigger-logos {
   width: auto !important;
   min-width: 0;
-  height: 38px;
+  height: 42px;
   padding-left: 0;
   overflow: hidden;
 }
 
 body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo {
-  width: 38px !important;
-  height: 38px !important;
-  flex-basis: 38px !important;
+  width: 44px !important;
+  height: 44px !important;
+  flex-basis: 44px !important;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -100,7 +101,9 @@ body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo.is-stack
 }
 
 body .map-controls .hg-map-category-options:not([hidden]) {
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px;
 }
 
 body .map-controls .hg-map-category-options[hidden] {
@@ -108,10 +111,10 @@ body .map-controls .hg-map-category-options[hidden] {
 }
 
 body .map-controls .hg-map-category-options {
-  width: 88px !important;
+  width: 104px !important;
   padding: 8px;
   max-height: min(52dvh, 430px);
-  background: rgba(10, 18, 28, 0.38) !important;
+  background: rgba(10, 18, 28, 0.34) !important;
   border-color: rgba(255, 255, 255, 0.17) !important;
   border-radius: 16px;
   box-shadow: none !important;
@@ -123,7 +126,7 @@ body .map-controls .hg-map-category-option {
   position: relative;
   width: 100% !important;
   min-width: 0;
-  min-height: 48px !important;
+  min-height: 58px !important;
   aspect-ratio: auto;
   padding: 4px !important;
   display: grid !important;
@@ -148,15 +151,15 @@ body .map-controls .hg-map-category-option.is-active {
 
 body .map-controls .hg-map-category-option-logos {
   width: 100% !important;
-  height: 42px;
+  height: 54px;
   justify-content: center;
   overflow: visible;
 }
 
 body .map-controls .hg-map-category-option-logos .hg-map-category-logo {
-  width: 40px !important;
-  height: 40px !important;
-  flex-basis: 40px !important;
+  width: 52px !important;
+  height: 52px !important;
+  flex-basis: 52px !important;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -204,18 +207,18 @@ body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn {
   body .map-controls .hg-map-category-filter,
   body .map-controls .hg-map-category-trigger,
   body .map-controls .hg-map-category-options {
-    width: 74px !important;
+    width: 96px !important;
   }
 
   body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo {
-    width: 36px !important;
-    height: 36px !important;
-    flex-basis: 36px !important;
+    width: 42px !important;
+    height: 42px !important;
+    flex-basis: 42px !important;
   }
 
   body .map-controls .hg-map-category-option-logos .hg-map-category-logo {
-    width: 38px !important;
-    height: 38px !important;
-    flex-basis: 38px !important;
+    width: 48px !important;
+    height: 48px !important;
+    flex-basis: 48px !important;
   }
 }

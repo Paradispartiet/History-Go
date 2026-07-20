@@ -143,7 +143,7 @@
     if (document.getElementById("hgMapControlsRuntimeStyle")) return;
     const style = document.createElement("style");
     style.id = "hgMapControlsRuntimeStyle";
-    style.textContent = `.map-controls{--hg-map-control-width:min(100vw - 24px,640px);top:auto!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 12px + env(safe-area-inset-bottom,0px))!important;display:flex!important;flex-direction:row!important;align-items:flex-end!important;justify-content:center!important;gap:6px!important;width:auto!important;max-width:calc(100vw - 24px)!important;max-height:none!important;padding:0!important;pointer-events:none!important;}body.mode-map .map-controls,body.map-only .map-controls{top:auto!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 12px + env(safe-area-inset-bottom,0px))!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-style-toggle{display:inline-flex!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{display:flex!important;}.map-controls .hg-map-style-toggle{flex:0 0 auto;width:auto!important;min-width:154px;}.map-controls .hg-map-category-filter{flex:0 0 auto;width:88px!important;}.map-controls .hg-map-category-trigger{width:88px!important;grid-template-columns:minmax(0,1fr) 14px!important;}.hg-map-category-trigger-logos,.hg-map-category-option-logos{display:flex;align-items:center;justify-content:center;min-width:0;height:34px;}.hg-map-category-trigger-logos{width:auto!important;padding-left:0;overflow:hidden;}.hg-map-category-logo{display:block;width:34px;height:34px;flex:0 0 34px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,.06);box-shadow:0 0 0 1px rgba(255,255,255,.12);}.hg-map-category-logo.is-stacked{margin-left:-14px;}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(2){transform:scale(.92);}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(3){transform:scale(.84);}.hg-map-category-options{display:block!important;width:88px!important;max-height:min(52dvh,430px);overflow-y:auto;overflow-x:hidden;}.hg-map-category-options[hidden]{display:none!important;}.map-controls .hg-map-category-option{grid-template-columns:1fr!important;place-items:center;min-height:48px;width:100%!important;aspect-ratio:auto;}.hg-map-category-option-logos{width:100%!important;}.hg-map-category-option-logos .hg-map-category-logo{width:40px;height:40px;flex-basis:40px;}.hg-map-category-option-check{position:absolute;top:3px;right:3px;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.16);font-size:11px;font-weight:900;}.hg-map-category-option:not(.is-active) .hg-map-category-option-check{opacity:.2;color:transparent;}body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{display:none!important;}@media (max-width:420px){.map-controls{max-width:calc(100vw - 12px)!important;gap:4px!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 8px + env(safe-area-inset-bottom,0px))!important;}.map-controls .hg-map-style-toggle{min-width:128px;}.map-controls .hg-map-style-toggle .hg-map-style-btn{padding:0 6px;font-size:12px;}.map-controls .hg-map-category-filter,.map-controls .hg-map-category-trigger,.map-controls .hg-map-category-options{width:74px!important;}.map-controls .hg-map-utility-row{gap:4px!important;}.map-controls .hg-map-utility-btn{width:40px!important;height:40px!important;flex-basis:40px!important;}}`;
+    style.textContent = `.map-controls{top:auto!important;left:auto!important;right:calc(12px + env(safe-area-inset-right,0px))!important;transform:none!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 12px + env(safe-area-inset-bottom,0px))!important;display:flex!important;flex-direction:row!important;align-items:flex-end!important;justify-content:flex-end!important;gap:6px!important;width:auto!important;max-width:calc(100vw - 24px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))!important;max-height:none!important;padding:0!important;pointer-events:none!important;}body.mode-map .map-controls,body.map-only .map-controls{top:auto!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 12px + env(safe-area-inset-bottom,0px))!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-style-toggle{display:inline-flex!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{display:flex!important;}.map-controls .hg-map-style-toggle{flex:0 1 auto;width:auto!important;min-width:154px;}.map-controls .hg-map-category-filter{flex:0 0 auto;width:104px!important;order:999;}.map-controls .hg-map-category-trigger{width:104px!important;grid-template-columns:minmax(0,1fr) 14px!important;}.hg-map-category-trigger-logos,.hg-map-category-option-logos{display:flex;align-items:center;justify-content:center;min-width:0;}.hg-map-category-trigger-logos{width:auto!important;height:42px;padding-left:0;overflow:hidden;}.hg-map-category-logo{display:block;width:44px;height:44px;flex:0 0 44px;object-fit:contain;border-radius:0;background:transparent;box-shadow:none;}.hg-map-category-logo.is-stacked{margin-left:-18px;}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(2){transform:scale(.96);}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(3){transform:scale(.9);}.hg-map-category-options{display:flex!important;flex-direction:column!important;gap:4px!important;width:104px!important;max-height:min(52dvh,430px);overflow-y:auto;overflow-x:hidden;}.hg-map-category-options[hidden]{display:none!important;}.map-controls .hg-map-category-option{grid-template-columns:1fr!important;place-items:center;min-height:58px;width:100%!important;aspect-ratio:auto;}.hg-map-category-option-logos{width:100%!important;height:54px;}.hg-map-category-option-logos .hg-map-category-logo{width:52px;height:52px;flex-basis:52px;}.hg-map-category-option-check{position:absolute;top:3px;right:3px;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.16);font-size:11px;font-weight:900;}.hg-map-category-option:not(.is-active) .hg-map-category-option-check{opacity:.2;color:transparent;}body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn{display:none!important;}@media (max-width:420px){.map-controls{right:calc(6px + env(safe-area-inset-right,0px))!important;max-width:calc(100vw - 12px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))!important;gap:4px!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 8px + env(safe-area-inset-bottom,0px))!important;}.map-controls .hg-map-style-toggle{min-width:128px;}.map-controls .hg-map-style-toggle .hg-map-style-btn{padding:0 6px;font-size:12px;}.map-controls .hg-map-category-filter,.map-controls .hg-map-category-trigger,.map-controls .hg-map-category-options{width:96px!important;}.map-controls .hg-map-utility-row{gap:4px!important;}.map-controls .hg-map-utility-btn{width:40px!important;height:40px!important;flex-basis:40px!important;}}`;
     document.head.appendChild(style);
   }
   function createCategoryFilter() {
@@ -197,12 +197,16 @@
       controls.setAttribute("aria-label", "Kartkontroller");
       document.body.appendChild(controls);
     }
-    if (!controls.querySelector(".hg-map-category-filter")) {
-      controls.appendChild(createCategoryFilter());
+    let utilityRow = controls.querySelector(".hg-map-utility-row");
+    if (!utilityRow) {
+      utilityRow = createUtilityRow();
+      controls.appendChild(utilityRow);
     }
-    if (!controls.querySelector(".hg-map-utility-row")) {
-      controls.appendChild(createUtilityRow());
+    let categoryFilter = controls.querySelector(".hg-map-category-filter");
+    if (!categoryFilter) {
+      categoryFilter = createCategoryFilter();
     }
+    controls.appendChild(categoryFilter);
     return controls;
   }
   function escapeHtml(value) {
@@ -238,11 +242,11 @@
     }
     const allSelected = activeCategories.size === 0;
     const allLogos = logoStackMarkup(categories);
-    const allOption = `<button class="hg-map-category-option${allSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${allSelected}" data-map-category="${ALL}"><span class="hg-map-category-option-logos" aria-hidden="true">${allLogos}</span><span class="hg-map-category-option-label">Alle prikker</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
+    const allOption = `<button class="hg-map-category-option${allSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${allSelected}" data-map-category="${ALL}" aria-label="Alle prikker" title="Alle prikker"><span class="hg-map-category-option-logos" aria-hidden="true">${allLogos}</span><span class="hg-map-category-option-label">Alle prikker</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
     const categoryOptions = categories.map((category) => {
       const id = category.id;
       const isSelected = activeCategories.has(id);
-      return `<button class="hg-map-category-option${isSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${isSelected}" data-map-category="${escapeHtml(id)}"><span class="hg-map-category-option-logos" aria-hidden="true">${logoStackMarkup([category], 1)}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
+      return `<button class="hg-map-category-option${isSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${isSelected}" data-map-category="${escapeHtml(id)}" aria-label="${escapeHtml(category.name || id)}" title="${escapeHtml(category.name || id)}"><span class="hg-map-category-option-logos" aria-hidden="true">${logoStackMarkup([category], 1)}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
     }).join("");
     const wasOpen = trigger.getAttribute("aria-expanded") === "true" && !options.hidden;
     options.innerHTML = allOption + categoryOptions;
@@ -406,10 +410,11 @@
     }, 150);
     win.addEventListener("hg:appReady", refresh);
     document.addEventListener("click", (event) => {
-      const target = event.target;
-      if (!(target instanceof Element) || !target.closest(".hg-map-category-filter")) {
-        closeMenu();
+      const path = event.composedPath();
+      if (path.some((item) => item instanceof Element && item.classList.contains("hg-map-category-filter"))) {
+        return;
       }
+      closeMenu();
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeMenu();
