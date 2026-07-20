@@ -58,7 +58,10 @@ def test_create_block_uses_active_pair_upsert_and_sanitized_context() -> None:
 
 
 def test_remove_block_is_idempotent_for_already_removed_record() -> None:
-    row = _block_row(status="removed_by_blocker", removed_at=datetime(2026, 7, 20, 13, 0, tzinfo=UTC))
+    row = _block_row(
+        status="removed_by_blocker",
+        removed_at=datetime(2026, 7, 20, 13, 0, tzinfo=UTC),
+    )
     database, connection = _begin_database(rows=[row])
     repository = PostgresSocialMeetSafetyRepository(database)
 
@@ -147,7 +150,7 @@ def test_create_report_stores_only_structured_server_owned_codes() -> None:
     assert report.status is ReportStatus.SUBMITTED
     assert report.reason_code is ReportReasonCode.UNSAFE_BEHAVIOR
     assert report.structured_details == [ReportDetailCode.REPEATED_UNWANTED_INVITES]
-    assert list(params["structured_details"]) == [ReportDetailCode.REPEATED_UNWANTED_INVITES]
+    assert params["structured_details"] == ["repeated_unwanted_invites"]
 
 
 def test_submitted_report_queries_are_reporter_scoped() -> None:
