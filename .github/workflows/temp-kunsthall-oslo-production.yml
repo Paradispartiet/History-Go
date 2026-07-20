@@ -1,0 +1,343 @@
+name: Temporary Kunsthall Oslo production
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'agent/oslo-coordinate-kunsthall-oslo-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-kunsthall-oslo-production
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize Kunsthall Oslo
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const placeId = 'kunsthall_oslo';
+          const placeRel = 'places/kunst/oslo/places_kunst/kunsthall_oslo.json';
+          const placePath = path.join('data', placeRel);
+          const evidenceRel = 'oslo/kunst/kunsthall_oslo.json';
+          const evidencePath = path.join('data/coordinate-evidence', evidenceRel);
+          const lat = 59.91113787529822;
+          const lon = 10.778385870870046;
+          const sourceObjectId = 'geonorge-adresser-v1:0301:13764:21';
+          const sourceUrl = 'https://ws.geonorge.no/adresser/v1/sok?sok=Kj%C3%B8lberggata%2021%20Oslo';
+          const coordNote = 'Offisiell adressekoordinat fra Geonorge Adresser API for Kjølberggata 21, OSLO, source object geonorge-adresser-v1:0301:13764:21. Punktet brukes som display- og unlock-anker for Kunsthall Oslos nåværende gallerirom på Factory Tøyen. Det representerer ikke institusjonens tidligere lokaler i Bjørvika eller Tøyen som bydel.';
+
+          const readJson = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const writeJson = (p, value) => {
+            fs.mkdirSync(path.dirname(p), { recursive: true });
+            fs.writeFileSync(p, JSON.stringify(value, null, 2) + '\n');
+          };
+          const haversine = (aLat, aLon, bLat, bLon) => {
+            const R = 6371000;
+            const dLat = (bLat - aLat) * Math.PI / 180;
+            const dLon = (bLon - aLon) * Math.PI / 180;
+            const x = Math.sin(dLat / 2) ** 2 + Math.cos(aLat * Math.PI / 180) * Math.cos(bLat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(x));
+          };
+
+          const currentIndex = readJson('data/places/places_index.json');
+          if (currentIndex.some(p => p.id === placeId)) throw new Error(`${placeId} already exists in runtime index`);
+          const nearby = currentIndex
+            .filter(p => Number.isFinite(p.lat) && Number.isFinite(p.lon))
+            .map(p => ({ id: p.id, name: p.name, category: p.category, distanceMeters: Math.round(haversine(lat, lon, p.lat, p.lon) * 10) / 10 }))
+            .filter(p => p.distanceMeters <= 350)
+            .sort((a, b) => a.distanceMeters - b.distanceMeters);
+
+          const place = {
+            id: placeId,
+            name: 'Kunsthall Oslo',
+            lat,
+            lon,
+            r: 60,
+            category: 'kunst',
+            year: 2010,
+            desc: 'Ikke-kommersielt visningssted for internasjonal samtidskunst, etablert i 2010 og siden 2026 lokalisert i sitt femte gallerirom på Factory Tøyen i Kjølberggata 21. Programmet legger særlig vekt på nye produksjoner og kunstens sosiale og historiske sammenheng.',
+            popupDesc: 'Kunsthall Oslo åpnet i 2010 og har gjennom flere fysiske faser bygget en profil som et ikke-kommersielt rom for internasjonal samtidskunst. Institusjonen legger særlig vekt på nye produksjoner og på å undersøke den sosiale og historiske konteksten kunst blir produsert i.\n\nI 2026 forlot Kunsthall Oslo sin tidligere Bjørvika-fase og åpnet sitt femte gallerirom på Factory Tøyen i Kjølberggata 21. Flyttingen gjør institusjonen interessant også som byhistorie: et kunststed kan beholde sin institusjonelle identitet samtidig som den skifter nabolag, publikumskontekst og fysisk ramme. Den nye lokasjonen gir dessuten rom for et mer aktivt liveprogram.\n\nHistory Go behandler Kjølberggata 21 som det nåværende canonical besøksstedet. Tidligere adresser, blant annet i Bjørvika, er historiske lokasjonslag og skal ikke stå som parallelle aktive markører for samme institusjon.',
+            emne_ids: [
+              'em_kunst_institusjonskritikk_og_representasjon',
+              'em_kunst_kvalitet_kritikk_og_symbolsk_kapital',
+              'em_kunst_okonomi_og_finansiering'
+            ],
+            quiz_profile: {
+              place_type: 'kunstinstitusjon',
+              subtype: 'ikke_kommersiell_samtidskunsthall_med_flyttehistorie',
+              signature_features: [
+                'ikke-kommersielt visningssted etablert i 2010',
+                'internasjonal samtidskunst med vekt på nye produksjoner',
+                'kunstproduksjonens sosiale og historiske kontekst som tydelig programprofil',
+                'femte gallerirom åpnet på Factory Tøyen i 2026',
+                'institusjonell kontinuitet på tvers av flere Oslo-lokasjoner'
+              ],
+              primary_angles: [
+                'kunstinstitusjon',
+                'nye_produksjoner',
+                'ikke_kommersiell_kunstformidling',
+                'kunst_og_samfunn',
+                'institusjonell_flytting_og_bygeografi'
+              ],
+              question_families: [
+                'institusjonshistorie',
+                'utstillingspraksis',
+                'kunstfelt_og_offentlighet',
+                'historisk_endring',
+                'sted_og_flytting',
+                'kontrast'
+              ],
+              avoid_angles: [
+                'generisk_kunstgalleri',
+                'behandle_rostockgata_som_dagens_lokasjon',
+                'gjore_alle_tidligere_lokaler_til_parallelle_aktive_places',
+                'likestille_ikke_kommersiell_med_fravaer_av_okonomiske_eller_institusjonelle_strukturer'
+              ],
+              must_include: [
+                'dagens konkrete adresse Kjølberggata 21 på Factory Tøyen',
+                'den ikke-kommersielle institusjonsprofilen',
+                'vektleggingen av nye kunstproduksjoner og sosialhistorisk kontekst',
+                'skillet mellom institusjonens historie og dagens fysiske besøkssted'
+              ],
+              contrast_targets: [
+                'kunstnernes_hus',
+                'tbs_gallery',
+                'astrup_fearnley'
+              ],
+              notes: 'Spør Kunsthall Oslo som en konkret ikke-kommersiell samtidskunstinstitusjon i sitt nåværende Tøyen-lokale. Eksterne institusjons- og utstillingskilder skal dominere synlig quizinnhold.'
+            },
+            locatorType: 'building',
+            sourceProvider: 'official_address',
+            sourceObjectId,
+            address: {
+              street: 'Kjølberggata',
+              number: '21',
+              postcode: '0653',
+              city: 'Oslo',
+              country: 'NO'
+            },
+            geocodeAccuracy: 'rooftop',
+            coordRole: 'display_marker',
+            coordType: 'address_point',
+            coordStatus: 'verified',
+            coordSource: 'geonorge_adresser_v1',
+            coordSourceId: sourceObjectId,
+            coordSourceUrl: sourceUrl,
+            coordVerifiedAt: '2026-07-20',
+            coordNote,
+            externalLinks: [
+              {
+                type: 'official',
+                label: 'Kunsthall Oslo – om oss og dagens adresse',
+                url: 'https://kunsthalloslo.no/?lang=nb&p=3351',
+                lang: 'nb',
+                verifiedAt: '2026-07-20'
+              },
+              {
+                type: 'official',
+                label: 'Kunsthall Oslo – det nye galleriet på Factory Tøyen',
+                url: 'https://kunsthalloslo.no/?lang=nb&p=18523',
+                lang: 'nb',
+                verifiedAt: '2026-07-20'
+              }
+            ]
+          };
+          writeJson(placePath, place);
+
+          const evidence = {
+            schemaVersion: '1.0',
+            placeId,
+            placeFile: `data/${placeRel}`,
+            evidenceStatus: 'applied_to_place',
+            coordinateDecision: 'do_not_change_coordinates_yet',
+            currentCoordinate: {
+              lat,
+              lon,
+              r: 60,
+              coordStatus: 'verified',
+              coordSource: 'geonorge_adresser_v1',
+              coordType: 'address_point',
+              coordNote
+            },
+            identity: {
+              currentName: 'Kunsthall Oslo',
+              resolvedIdentity: 'Kunsthall Oslo, nåværende gallerirom på Factory Tøyen, Kjølberggata 21',
+              identityStatus: 'resolved',
+              identityProblem: '',
+              locatorTypeCandidate: 'building',
+              requiresSplit: false,
+              splitReason: ''
+            },
+            requiredEvidence: [
+              'entydig offisielt adressepunkt for dagens venue',
+              'institusjonens egen nåværende adresse og venue-identitet',
+              'eksplisitt skille mellom dagens Tøyen-lokale og tidligere Bjørvika-adresse',
+              'duplikat- og fysisk overlap-kontroll mot eksisterende Tøyen-places'
+            ],
+            evidence: [
+              {
+                sourceProvider: 'official_address',
+                sourceName: 'geonorge_adresser_v1',
+                sourceUrl,
+                sourceObjectId,
+                sourceQuality: 'official_address_plus_current_institution_identity',
+                finding: 'Geonorge returnerer ett entydig adressepunkt for Kjølberggata 21. Kunsthall Oslos egen nåværende side identifiserer samme adresse som dagens galleri på Factory Tøyen; den eldre Rostockgata-adressen behandles som tidligere lokasjon.',
+                canVerifyCoordinate: true,
+                reason: 'Det offisielle adressepunktet er et stabilt anker for institusjonens nåværende fysiske besøkssted.'
+              }
+            ],
+            addressCandidates: [
+              {
+                address: 'Kjølberggata 21 Oslo',
+                sourceProvider: 'official_address',
+                sourceObjectId,
+                lat,
+                lon,
+                canApplyToPlace: true
+              }
+            ],
+            sourceObjectCandidates: [
+              { sourceProvider: 'official_address', sourceObjectId, canApplyToPlace: true }
+            ],
+            geometryCandidates: [],
+            coordinateCandidates: [
+              { lat, lon, coordRole: 'display_marker', canApplyToPlace: true }
+            ],
+            decision: {
+              canBecomeVerified: true,
+              blockedReason: '',
+              nextAction: 'Kildekontrakt, dagens venue-identitet og representasjonsanker er anvendt på canonical place.'
+            },
+            notes: [
+              'Kunsthall Oslo er én institusjon med flere historiske lokasjoner; bare dagens venue på Factory Tøyen produseres som aktiv canonical marker.',
+              'Rostockgata 2–4 bevares som tidligere lokasjonslag og brukes ikke som aktiv koordinat.'
+            ]
+          };
+          writeJson(evidencePath, evidence);
+
+          const placeManifestPath = 'data/places/manifest.json';
+          const placeManifest = readJson(placeManifestPath);
+          if (!placeManifest.files.includes(placeRel)) placeManifest.files.push(placeRel);
+          writeJson(placeManifestPath, placeManifest);
+
+          const evidenceManifestPath = 'data/coordinate-evidence/manifest.json';
+          const evidenceManifest = readJson(evidenceManifestPath);
+          if (!evidenceManifest.files.includes(evidenceRel)) evidenceManifest.files.push(evidenceRel);
+          writeJson(evidenceManifestPath, evidenceManifest);
+
+          const protocolPath = 'docs/coordinates/coordinate-control-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          const osloStart = protocol.indexOf('## Oslo');
+          const noCoordStart = protocol.indexOf('### Dokumenterte Oslo-kontroller uten godkjent koordinat');
+          if (osloStart < 0 || noCoordStart < 0) throw new Error('Could not locate bounded Oslo protocol section');
+          const osloSection = protocol.slice(osloStart, noCoordStart);
+          const rows = [...osloSection.matchAll(/^\| (\d+) \| `([^`]+)` \|.*$/gm)];
+          if (!rows.length) throw new Error('No Oslo protocol rows found');
+          const lastRow = rows[rows.length - 1];
+          const maxBatch = Math.max(...rows.map(m => Number(m[1])));
+          const nextBatch = maxBatch + 1;
+          const newRow = `| ${nextBatch} | \`${placeId}\` | Kunsthall Oslo | verified | \`${sourceObjectId}\` |`;
+          const insertAt = osloStart + lastRow.index + lastRow[0].length;
+          protocol = protocol.slice(0, insertAt) + '\n' + newRow + protocol.slice(insertAt);
+
+          const summaryRe = /Oslo-tabellen inneholder nå (\d+) verifiserte eller kildekontrollerte canonical steder\. Batch \d+ legger til .*? Antallet fullførte kontroller uten godkjent Oslo-koordinat er (\d+)\./;
+          const summaryMatch = protocol.match(summaryRe);
+          if (!summaryMatch) throw new Error('Could not locate Oslo protocol summary');
+          const newTotal = Number(summaryMatch[1]) + 1;
+          const noCoordCount = Number(summaryMatch[2]);
+          protocol = protocol.replace(summaryRe, `Oslo-tabellen inneholder nå ${newTotal} verifiserte eller kildekontrollerte canonical steder. Batch ${nextBatch} legger til Kunsthall Oslo med den entydige offisielle Geonorge-adressekoordinaten for dagens gallerirom i Kjølberggata 21 / Factory Tøyen; tidligere Bjørvika-adresser beholdes kun som historiske lokasjonslag. Antallet fullførte kontroller uten godkjent Oslo-koordinat er ${noCoordCount}.`);
+          fs.writeFileSync(protocolPath, protocol);
+
+          const reportDir = 'reports/visitoslo-oslo-east-audit-20260720/kunsthall-oslo-coordinate-intake';
+          fs.mkdirSync(reportDir, { recursive: true });
+          writeJson(path.join(reportDir, 'production-decision.json'), {
+            placeId,
+            decision: 'produce_current_venue_as_single_active_canonical_place',
+            primaryCategory: 'kunst',
+            coordinate: { lat, lon, sourceObjectId },
+            nearbyWithin350m: nearby,
+            identityDecision: 'Kunsthall Oslo is one institution with multiple historical locations; Kjølberggata 21 is the current active venue and former Bjørvika addresses are historical layers only.',
+            protocolBatch: nextBatch
+          });
+
+          console.log(JSON.stringify({ placeId, nextBatch, nearby }, null, 2));
+          NODE
+
+      - name: Run and persist validation gates
+        shell: bash
+        run: |
+          set -u
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-kunsthall-oslo-production"
+          mkdir -p "$LOGDIR"
+          : > "$LOGDIR/gate-status.txt"
+          BLOCKING_FAIL=0
+
+          run_gate() {
+            name="$1"
+            shift
+            set +e
+            "$@" > >(tee "$LOGDIR/$name.log") 2>&1
+            code=$?
+            set -e
+            printf '%s\n' "$code" > "$LOGDIR/$name.exit-code.txt"
+            echo "$name=$code" >> "$LOGDIR/gate-status.txt"
+            if [ "$code" -ne 0 ]; then
+              BLOCKING_FAIL=1
+            fi
+            return 0
+          }
+
+          set -e
+          run_gate places-index-build npm run places:index:build
+          run_gate split-manifest-sync npm run audit:places-split-manifest-sync
+          run_gate places-index-check npm run places:index:check
+          run_gate coordinate-source-contract npm run test:coordinate-source-contract
+          run_gate coordinate-quality npm run places:coords:quality
+          run_gate coordinate-intake npm run places:coords:intake -- --strict-new
+          run_gate coordinate-evidence npm run places:coords:evidence:audit
+          run_gate git-diff-check git diff --check
+
+          set +e
+          npm run health:places 2>&1 | tee "$LOGDIR/health-places.log"
+          HEALTH_CODE=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$HEALTH_CODE" > "$LOGDIR/health-places.exit-code.txt"
+          echo "health-places=$HEALTH_CODE" >> "$LOGDIR/gate-status.txt"
+          printf '%s\n' "$BLOCKING_FAIL" > "$LOGDIR/blocking-fail.txt"
+
+      - name: Commit production result
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-kunsthall-oslo-production"
+          BLOCKING_FAIL=$(cat "$LOGDIR/blocking-fail.txt")
+          rm -f .github/workflows/temp-kunsthall-oslo-production.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Kunsthall Oslo at current Tøyen venue"
+          git push origin HEAD:agent/oslo-coordinate-kunsthall-oslo-production
+          if [ "$BLOCKING_FAIL" -ne 0 ]; then
+            exit 1
+          fi
