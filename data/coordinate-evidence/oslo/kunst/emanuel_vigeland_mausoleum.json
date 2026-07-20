@@ -1,74 +1,96 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "emanuel_vigeland_mausoleum",
   "placeFile": "data/places/kunst/oslo/places_kunst.json",
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.947028,
-    "lon": 10.692694,
+    "lat": 59.9471099,
+    "lon": 10.6926345,
     "r": 60,
-    "coordStatus": "verified",
-    "coordSource": "Wikidata Q17769549 coordinate cross-checked with the official Emanuel Vigeland Museum address and linked OSM node 974731248",
-    "coordType": "linked_object_coordinate",
-    "coordNote": "Grimelundsveien 8 ble kjørt gjennom den låste address-first-metoden, men Geonorge returnerte flere treff uten entydig match. Det eksisterende objektpunktet fra Wikidata Q17769549 beholdes derfor etter kryssjekk mot museets offisielle adresse og Wikidatas kobling til OSM-node 974731248. Punktet representerer Emanuel Vigelands mausoleum, ikke Slemdal som område."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 974731248 – Emanuel Vigeland Museum; official museum address cross-check",
+    "coordType": "poi_node",
+    "coordNote": "Grimelundsveien 8 ga tidligere flere Geonorge-treff uten én entydig kandidat. Canonical punkt flyttes derfor fra Wikidata til det eksakt navngitte OSM-objektet node 974731248, mens Emanuel Vigeland Museums egen nettside brukes som uavhengig identitets- og adressekryssjekk. Wikidata brukes ikke som koordinatkilde."
   },
   "identity": {
     "currentName": "Emanuel Vigelands mausoleum",
-    "resolvedIdentity": "Emanuel Vigelands mausoleum",
+    "resolvedIdentity": "Emanuel Vigelands mausoleum / Emanuel Vigeland Museum at Grimelundsveien 8",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "poi",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "stabil kildeidentitet for koordinatankeret",
-    "eksisterende canonical identitet i aggregate place-kilden",
-    "runtime-restaurering gjennom synkronisert split-manifest"
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "Wikidata Q17769549 coordinate cross-checked with the official Emanuel Vigeland Museum address and linked OSM node 974731248",
-      "sourceUrl": "https://www.wikidata.org/wiki/Q17769549",
-      "sourceObjectId": "wikidata:Q17769549",
-      "sourceQuality": "stable_source_identity_plus_existing_canonical_identity",
-      "finding": "Den normative Geonorge-kjøringen for Grimelundsveien 8 ga needs_review. Museets offisielle nettside bekrefter adressen, mens Wikidata Q17769549 gir objektkoordinaten og kobler identiteten til OSM-node 974731248. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten ny place-id.",
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 974731248 – Emanuel Vigeland Museum",
+      "sourceUrl": "https://www.openstreetmap.org/node/974731248",
+      "sourceObjectId": "osm-node:974731248",
+      "sourceQuality": "exact_named_poi_node",
+      "finding": "Live OSM API lookup resolved node 974731248 as Emanuel Vigelands museum at 59.9471099, 10.6926345.",
       "canVerifyCoordinate": true,
-      "reason": "Grimelundsveien 8 ble kjørt gjennom den låste address-first-metoden, men Geonorge returnerte flere treff uten entydig match. Det eksisterende objektpunktet fra Wikidata Q17769549 beholdes derfor etter kryssjekk mot museets offisielle adresse og Wikidatas kobling til OSM-node 974731248. Punktet representerer Emanuel Vigelands mausoleum, ikke Slemdal som område."
+      "reason": "Stable exact named physical POI node for the museum/mausoleum; no nearest-feature selection."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Emanuel Vigelands museum – offisiell informasjon",
+      "sourceUrl": "https://www.emanuelvigeland.museum.no/informasjon.htm",
+      "sourceObjectId": "emanuel-vigeland-museum:grimelundsveien-8",
+      "sourceQuality": "official_operator_identity_and_address_crosscheck",
+      "finding": "Museets egen nettside oppgir Emanuel Vigelands museum, Grimelundsveien 8, 0775 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter identitet og adresse; OSM node 974731248 er koordinatkilden."
     }
   ],
   "addressCandidates": [
     {
       "address": "Grimelundsveien 8 Oslo",
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "wikidata:Q17769549",
-      "canApplyToPlace": true
+      "sourceProvider": "official_operator",
+      "sourceObjectId": "emanuel-vigeland-museum:grimelundsveien-8",
+      "canApplyToPlace": false
     }
   ],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:974731248",
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "manual_research",
-      "sourceObjectId": "wikidata:Q17769549",
+      "sourceObjectId": "emanuel-vigeland-museum:grimelundsveien-8",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:974731248",
+      "lat": 59.9471099,
+      "lon": 10.6926345,
+      "coordRole": "display_marker",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "lat": 59.947028,
-      "lon": 10.692694,
+      "lat": 59.9471099,
+      "lon": 10.6926345,
       "coordRole": "display_marker",
+      "sourceObjectId": "osm-node:974731248",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source."
+    "nextAction": "Batch audit has applied the stable non-Wikidata coordinate source to the canonical place and synchronized all derived layers."
   },
   "notes": [
-    "This is a runtime restoration of an existing canonical place, not a new place creation.",
-    "Grimelundsveien 8 ble kjørt gjennom den låste address-first-metoden, men Geonorge returnerte flere treff uten entydig match. Det eksisterende objektpunktet fra Wikidata Q17769549 beholdes derfor etter kryssjekk mot museets offisielle adresse og Wikidatas kobling til OSM-node 974731248. Punktet representerer Emanuel Vigelands mausoleum, ikke Slemdal som område."
+    "Coordinate re-audited 2026-07-21 in top-level source queue order.",
+    "Grimelundsveien 8 ga tidligere flere Geonorge-treff uten én entydig kandidat. Canonical punkt flyttes derfor fra Wikidata til det eksakt navngitte OSM-objektet node 974731248, mens Emanuel Vigeland Museums egen nettside brukes som uavhengig identitets- og adressekryssjekk. Wikidata brukes ikke som koordinatkilde."
   ]
 }

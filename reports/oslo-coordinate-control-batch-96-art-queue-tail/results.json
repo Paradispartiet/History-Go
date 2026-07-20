@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-07-20T23:40:18.229Z",
+  "batch": 96,
+  "sourceQueue": "data/places/kunst/oslo/places_kunst.json",
+  "method": "top-level manifest order; exact named OSM object for Emanuel Vigeland; explicit published visitor coordinate for Future Library; no Wikidata coordinate source",
+  "placeIds": [
+    "emanuel_vigeland_mausoleum",
+    "framtidsbiblioteket_nordmarka"
+  ],
+  "before": {
+    "emanuel_vigeland_mausoleum": {
+      "lat": 59.947028,
+      "lon": 10.692694,
+      "coordStatus": "verified",
+      "coordSource": "Wikidata Q17769549 coordinate cross-checked with the official Emanuel Vigeland Museum address and linked OSM node 974731248",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q17769549",
+      "coordType": "linked_object_coordinate"
+    },
+    "framtidsbiblioteket_nordmarka": {
+      "lat": 59.98633333333333,
+      "lon": 10.69686111111111,
+      "coordStatus": "verified",
+      "coordSource": "Visit Norway published visitor coordinates for Framtidsbiblioteket i Nordmarka",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "visitnorway:future-library-forest-nordmarka",
+      "coordType": "published_visitor_coordinate"
+    }
+  },
+  "after": {
+    "emanuel_vigeland_mausoleum": {
+      "lat": 59.9471099,
+      "lon": 10.6926345,
+      "coordStatus": "verified_geometry",
+      "coordSource": "OpenStreetMap node 974731248 – Emanuel Vigeland Museum; official museum address cross-check",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:974731248",
+      "coordType": "poi_node"
+    },
+    "framtidsbiblioteket_nordmarka": {
+      "lat": 59.986333333333334,
+      "lon": 10.696861111111112,
+      "coordStatus": "verified",
+      "coordSource": "Visit Norway published visitor coordinates for the Future Library forest in Nordmarka",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "visitnorway:future-library-forest-nordmarka",
+      "coordType": "published_visitor_coordinate"
+    }
+  },
+  "queueDecision": "places_kunst.json is exhausted after this batch."
+}
