@@ -1,0 +1,100 @@
+{
+  "version": "knowledge-system-v1",
+  "schema": "history_go_knowledge_system_policy_v1",
+  "status": "canonical",
+  "purpose": "Gjør Knowledge til et presist personlig minnekammer som organiserer kanonisk fagkunnskap, begreper, terminologi, relasjoner og historier. Quiz er vurdering og evidens, ikke selve kunnskapslageret.",
+  "canonical_chain": [
+    "fagkart_og_pensum",
+    "emne",
+    "begrep_og_terminologi",
+    "knowledge_unit_og_historie",
+    "quiz_og_vurdering",
+    "learning_evidence_og_mastery",
+    "personal_knowledge_memory_chamber"
+  ],
+  "hard_rules": {
+    "quiz_is_evidence_not_canonical_knowledge": true,
+    "knowledge_page_is_not_quiz_archive": true,
+    "canonical_knowledge_unit_required_for_new_production": true,
+    "strict_ids_no_automatic_normalization": true,
+    "tags_are_not_concepts": true,
+    "places_and_people_are_context_not_knowledge": true,
+    "source_provenance_required": true,
+    "legacy_data_must_be_preserved": true,
+    "uncertain_links_must_remain_unresolved": true,
+    "same_knowledge_unit_reused_across_quizzes": true
+  },
+  "canonical_entities": {
+    "subject": "Faglig hovedområde og merke.",
+    "emne": "Faglig beholder for beslektede kunnskapsenheter, begreper, metoder og historier.",
+    "concept": "Faglig idé, fenomen, prosess, mønster eller relasjon med stabil ID.",
+    "term": "Foretrukket fagterm med stabil ID, definisjon og eksplisitte synonymer.",
+    "knowledge_unit": "Minste selvstendige faglige innhold som kan forstås, kobles, testes og repeteres.",
+    "story": "Sammenhengende narrativt forløp på tvers av hendelser, personer, steder og kunnskapsenheter.",
+    "quiz_item": "Vurderingsobjekt som tester én eller flere kanoniske kunnskapsenheter.",
+    "learning_evidence": "Registrering av brukerens vurderte møte med kunnskapen.",
+    "personal_memory_node": "Brukerens mestrings- og repetisjonstilstand for en kanonisk kunnskapsenhet."
+  },
+  "knowledge_unit_types": [
+    "definition",
+    "fact",
+    "process",
+    "cause_effect",
+    "relation",
+    "comparison",
+    "method",
+    "event",
+    "biography",
+    "place_reading",
+    "story_fragment",
+    "interpretation"
+  ],
+  "mastery_states": [
+    "encountered",
+    "recognized",
+    "understood",
+    "explained",
+    "applied",
+    "repeated"
+  ],
+  "required_new_quiz_links": [
+    "emne_id_or_emne_ids",
+    "primary_knowledge_unit_id",
+    "knowledge_unit_ids",
+    "concept_ids",
+    "term_ids",
+    "learning_objective_id",
+    "source_or_claim_basis"
+  ],
+  "optional_new_quiz_links_when_relevant": [
+    "story_ids",
+    "relation_ids",
+    "method_ids",
+    "chronology_ids"
+  ],
+  "knowledge_page_read_model": [
+    "subjects_and_emner",
+    "terminology_and_glossary",
+    "knowledge_units",
+    "stories_and_timelines",
+    "relations",
+    "sources_and_provenance",
+    "mastery_and_repetition"
+  ],
+  "legacy_compatibility": {
+    "history_go_knowledge_entry_v2": "preserve_as_evidence_and_migrate_when_links_are_certain",
+    "knowledge_universe": "preserve_as_legacy_text_archive",
+    "knowledge_field_in_quiz": "allowed_as_feedback_fallback_but_not_canonical_source_of_truth",
+    "core_concepts": "allowed_as_readable_legacy_labels_but_new_production_should_add_concept_ids",
+    "related_emner": "allowed_for_compatibility_but_new_production_should_add_explicit_emne_ids"
+  },
+  "audit_rules": [
+    "Avvis ny quizproduksjon som mangler gyldig emnekobling.",
+    "Avvis ny quizproduksjon der knowledge-tekst ikke kan spores til en kanonisk knowledge_unit_id.",
+    "Avvis concepts som bare består av tags, quiz-ID-er, target-ID-er eller generiske ord.",
+    "Flagg emner som mangler knowledge_unit_ids, concept_ids eller term_ids.",
+    "Flagg historier som bare er løse quiztekster uten eksplisitt narrativ sammenheng.",
+    "Kontroller at samme faglige påstand ikke er duplisert som flere kunnskapsenheter uten begrunnelse.",
+    "Kontroller at personlig Knowledge lagrer mestring og proveniens, ikke en ny kopi av hele quizen."
+  ]
+}
