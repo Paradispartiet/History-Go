@@ -39,10 +39,12 @@ const SOURCE_MAPPED_ENTRIES = [
   { in: "js/emneDekning.ts", out: "emneDekning" }
 ];
 
-// Liten startup-runtime som lastes direkte fra index. Den bygges separat slik at
-// den statiske deployen kun trenger én deploy-artefakt for denne modulen.
-const MAP_CONTROLS_ENTRY = [
-  { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" }
+// Startup-runtimes som lastes direkte fra index via loadScriptOnce/config-broen.
+// De bygges uten sourcemaps slik at den statiske deployen kun trenger én artefakt
+// per modul.
+const STARTUP_ENTRIES = [
+  { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
+  { in: "js/core/categories.ts", out: "categories" }
 ];
 
 const watch = process.argv.includes("--watch");
@@ -65,25 +67,25 @@ function buildOptions(entries, sourcemap) {
 
 async function run() {
   const mappedOptions = buildOptions(SOURCE_MAPPED_ENTRIES, true);
-  const mapControlOptions = buildOptions(MAP_CONTROLS_ENTRY, false);
+  const startupOptions = buildOptions(STARTUP_ENTRIES, false);
 
   if (watch) {
     const { context } = await import("esbuild");
-    const [mappedContext, mapControlContext] = await Promise.all([
+    const [mappedContext, startupContext] = await Promise.all([
       context(mappedOptions),
-      context(mapControlOptions)
+      context(startupOptions)
     ]);
     await Promise.all([
       mappedContext.watch(),
-      mapControlContext.watch()
+      startupContext.watch()
     ]);
-    console.log(`[build:web] watching ${SOURCE_MAPPED_ENTRIES.length + MAP_CONTROLS_ENTRY.length} entry/entries -> dist/web`);
+    console.log(`[build:web] watching ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length} entry/entries -> dist/web`);
     return;
   }
 
   await build(mappedOptions);
-  await build(mapControlOptions);
-  console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + MAP_CONTROLS_ENTRY.length} entry/entries -> dist/web`);
+  await build(startupOptions);
+  console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length} entry/entries -> dist/web`);
 }
 
 run().catch((err) => {
