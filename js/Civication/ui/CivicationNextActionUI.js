@@ -218,6 +218,21 @@
     return "<div class=\"civi-next-action-meta muted\">" + parts.map(escapeHtml).join(" · ") + "</div>";
   }
 
+  // Samlede History Go-personer i rollens kategori (satt av RoleModelRuntime
+  // som role_model_meta.history_people). Vises som faglige forbilder på mailen.
+  function historyPeopleLine(action) {
+    const ev = findInboxEventById(String(action?.id || "")) || {};
+    const people = ev?.role_model_meta?.history_people;
+    if (!Array.isArray(people) || !people.length) return "";
+    const names = people
+      .map(function (person) { return String(person?.name || "").trim(); })
+      .filter(Boolean)
+      .slice(0, 3);
+    if (!names.length) return "";
+    return "<div class=\"civi-next-action-meta muted\">🎓 Forbilder fra samlingen din: "
+      + names.map(escapeHtml).join(", ") + "</div>";
+  }
+
   function bodyLines(action) {
     const lines = Array.isArray(action.situation) && action.situation.length
       ? action.situation
@@ -446,6 +461,7 @@
       + "<article class=\"civi-next-action-card\" data-mail-id=\"" + escapeHtml(action.id) + "\">"
       + "<h3 class=\"civi-next-action-subject\">" + escapeHtml(action.subject) + "</h3>"
       + metaLine(action)
+      + historyPeopleLine(action)
       + (lines.length ? "<div class=\"civi-next-action-body\">" + lines.map(function (line) {
         return "<p>" + escapeHtml(line) + "</p>";
       }).join("") + "</div>" : "")
