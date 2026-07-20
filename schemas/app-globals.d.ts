@@ -65,6 +65,30 @@ declare global {
     HG_TodayHubPanel?: { render?: (options?: any) => any; refresh?: (options?: any) => any; remove?: () => any; [key: string]: any };
     HG_TodayActionRouter?: any;
     HGHeaderMenu?: { open: () => void; close: () => void; toggle: () => void; isOpen: () => boolean };
+    HGNearbyFilters?: {
+      initializeFromStorage?: () => any;
+      snapshot?: () => any;
+      normalizeSort?: (value: unknown) => "distance" | "oldest" | "newest";
+      getSort?: () => "distance" | "oldest" | "newest";
+      setSort?: (value: unknown) => "distance" | "oldest" | "newest";
+      cycleSort?: () => "distance" | "oldest" | "newest";
+      getPlaceFilter?: () => "unvisited" | "all" | "unlocked";
+      setPlaceFilter?: (value: unknown) => "unvisited" | "all" | "unlocked";
+      cyclePlaceFilter?: () => "unvisited" | "all" | "unlocked";
+      getNatureFilter?: () => "all" | "unlocked" | "flora" | "fauna";
+      setNatureFilter?: (value: unknown) => "all" | "unlocked" | "flora" | "fauna";
+      cycleNatureFilter?: () => "all" | "unlocked" | "flora" | "fauna";
+      getFavoritesOnly?: () => boolean;
+      setFavoritesOnly?: (value: unknown) => boolean;
+      toggleFavorites?: () => boolean;
+      getCategoryById?: (value: unknown) => any;
+      getBadgeOptions?: () => string[];
+      normalizeBadgeFilter?: (value: unknown) => string;
+      getActiveBadgeFilter?: () => string;
+      setActiveBadgeFilter?: (value: unknown) => string;
+      cycleBadgeFilter?: () => string;
+      isBadgeFilterActive?: () => boolean;
+    };
     HGLeftPanelMode?: {
       getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
       setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";

@@ -64,18 +64,14 @@
     }, 0);
   }
   function setMode(input) {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _i;
     const mode = normalizeMode(input);
     for (const [candidateMode, id] of Object.entries(LIST_IDS_BY_MODE)) {
       const list = document.getElementById(id);
       if (list) list.hidden = candidateMode !== mode;
     }
     if (mode === "nature") {
-      win.HG_NEARBY_BADGE_FILTER = "all";
-      try {
-        localStorage.setItem("hg_nearby_badge_filter_v1", "all");
-      } catch {
-      }
+      (_b = (_a = win.HGNearbyFilters) == null ? void 0 : _a.setActiveBadgeFilter) == null ? void 0 : _b.call(_a, "all");
     }
     try {
       localStorage.setItem("hg_leftpanel_mode_v1", mode);
@@ -86,13 +82,13 @@
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-selected", active ? "true" : "false");
     });
-    (_a = win.updateNearbyFilterButton) == null ? void 0 : _a.call(win);
-    (_b = win.updateNearbyBadgeFilterButton) == null ? void 0 : _b.call(win);
-    (_c = win.updateNearbySortButton) == null ? void 0 : _c.call(win);
+    (_c = win.updateNearbyFilterButton) == null ? void 0 : _c.call(win);
+    (_d = win.updateNearbyBadgeFilterButton) == null ? void 0 : _d.call(win);
+    (_e = win.updateNearbySortButton) == null ? void 0 : _e.call(win);
     updateControlVisibility();
     rerender();
-    (_e = (_d = win.HGMap) == null ? void 0 : _d.resize) == null ? void 0 : _e.call(_d);
-    (_g = (_f = win.MAP) == null ? void 0 : _f.resize) == null ? void 0 : _g.call(_f);
+    (_g = (_f = win.HGMap) == null ? void 0 : _f.resize) == null ? void 0 : _g.call(_f);
+    (_i = (_h = win.MAP) == null ? void 0 : _h.resize) == null ? void 0 : _i.call(_h);
     return mode;
   }
   win.HGLeftPanelMode = {
