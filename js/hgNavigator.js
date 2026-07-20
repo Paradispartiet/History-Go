@@ -1,19 +1,32 @@
 // ============================================================
-// HISTORY GO – HGNavigator v2
-// Bygger kontekstuell NextUp for sist åpne placeCard.
+// HISTORY GO – HGNavigator v4
+// Candidate engine for contextual Next Up recommendations.
 //
-// Ny kontrakt:
+// Contract:
 // window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere })
 // -> {
+//      schema: "hg_nextup_v4",
 //      current_place_id,
 //      generated_at,
 //      suggestions: [{ type, target_id, label, reason, score, source, href, meta }],
-//      spatial, wk, narrative, concept // bakoverkompatibilitet
+//      candidate_counts,
+//      spatial, wk, narrative, concept // legacy compatibility
 //    }
 // ============================================================
 
 (function () {
   "use strict";
+
+  const MODE_KEY = "hg_nextup_mode_v1";
+  const MAX_SUGGESTIONS = 12;
+  const MAX_PER_TYPE = 3;
+  const MODES = {
+    nearest: { mode: "nearest", label: "Nærmest" },
+    learn: { mode: "learn", label: "Lær mest" },
+    story: { mode: "story", label: "Fortsett historien" },
+    wonder: { mode: "wonder", label: "Oppdag noe rart" },
+    complete: { mode: "complete", label: "Fullfør merket" }
+  };
 
   function s(value) {
     return String(value ?? "").trim();
@@ -25,6 +38,15 @@
 
   function clamp(n, min, max) {
     return Math.max(min, Math.min(max, n));
+  }
+
+  function readJSON(key, fallback) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || "");
+      return value ?? fallback;
+    } catch {
+      return fallback;
+    }
   }
 
   function placeId(place) {
@@ -39,72 +61,44 @@
     return s(place?.categoryId || place?.category || place?.subject_id || "by");
   }
 
+  function emneIds(place) {
+    return arr(place?.emne_ids).map(s).filter(Boolean);
+  }
+
   function findPlace(id) {
     const key = s(id);
     if (!key) return null;
-    return arr(window.PLACES).find(p => placeId(p) === key) || null;
+    return arr(window.PLACES).find(place => placeId(place) === key) || null;
   }
 
   function getVisited() {
-    try {
-      const v = JSON.parse(localStorage.getItem("visited_places") || "{}");
-      return v && typeof v === "object" ? v : {};
-    } catch {
-      return {};
-    }
+    const value = readJSON("visited_places", {});
+    return value && typeof value === "object" ? value : {};
   }
 
   function getLearningLog() {
-    try {
-      const v = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
-      return Array.isArray(v) ? v : [];
-    } catch {
-      return [];
-    }
+    const value = readJSON("hg_learning_log_v1", []);
+    return Array.isArray(value) ? value : [];
   }
 
   function getInsightsEvents() {
-    try {
-      const v = JSON.parse(localStorage.getItem("hg_insights_events_v1") || "[]");
-      return Array.isArray(v) ? v : [];
-    } catch {
-      return [];
-    }
+    const value = readJSON("hg_insights_events_v1", []);
+    return Array.isArray(value) ? value : [];
   }
-
-  const MODE_KEY = "hg_nextup_mode_v1";
-  const MODES = {
-    nearest: { mode: "nearest", label: "Nærmest" },
-    learn: { mode: "learn", label: "Lær mest" },
-    story: { mode: "story", label: "Fortsett historien" },
-    wonder: { mode: "wonder", label: "Oppdag noe rart" },
-    complete: { mode: "complete", label: "Fullfør merket" }
-  };
 
   function getNextUpHistory() {
-    try {
-      const v = JSON.parse(localStorage.getItem("hg_nextup_history_v1") || "[]");
-      return Array.isArray(v) ? v : [];
-    } catch {
-      return [];
-    }
+    const value = readJSON("hg_nextup_history_v1", []);
+    return Array.isArray(value) ? value : [];
   }
+
   function getActivePathSummary() {
-    try {
-      const path = JSON.parse(localStorage.getItem("hg_active_path_v1") || "{}");
-      return path?.summary && typeof path.summary === "object" ? path.summary : {};
-    } catch {
-      return {};
-    }
+    const path = readJSON("hg_active_path_v1", {});
+    return path?.summary && typeof path.summary === "object" ? path.summary : {};
   }
 
   function getQuizSets() {
-    try {
-      const v = JSON.parse(localStorage.getItem("hg_quiz_sets_v1") || "{}");
-      return v && typeof v === "object" ? v : {};
-    } catch {
-      return {};
-    }
+    const value = readJSON("hg_quiz_sets_v1", {});
+    return value && typeof value === "object" ? value : {};
   }
 
   function hasAnyCompletedSetForPlace(place) {
@@ -128,58 +122,24 @@
     }
   }
 
-  function emneIds(place) {
-    return arr(place?.emne_ids).map(s).filter(Boolean);
-  }
-
   function sharedEmneCount(a, b) {
-    const aIds = new Set(emneIds(a));
-    if (!aIds.size) return 0;
-    return emneIds(b).filter(id => aIds.has(id)).length;
+    const ids = new Set(emneIds(a));
+    if (!ids.size) return 0;
+    return emneIds(b).filter(id => ids.has(id)).length;
   }
 
-  function getCandidatePlaces(currentPlace, nearbyPlaces = []) {
-    const currentId = placeId(currentPlace);
-    const seen = new Set();
-    const out = [];
-
-    const push = (place) => {
-      const id = placeId(place);
-      if (!id || id === currentId || seen.has(id)) return;
-      seen.add(id);
-      out.push(place);
-    };
-
-    arr(nearbyPlaces).forEach(push);
-    arr(window.NEARBY_PLACES).forEach(push);
-    arr(window.PLACES).forEach(push);
-
-    return out;
-  }
-
-  function scoreSpatialCandidate(currentPlace, candidate, visited) {
-    const d = distanceFromCurrent(candidate);
-    const sameCategory = categoryOf(candidate) === categoryOf(currentPlace);
-    const shared = sharedEmneCount(currentPlace, candidate);
-    const isVisited = !!visited[placeId(candidate)];
-    const completed = hasAnyCompletedSetForPlace(candidate);
-
-    let score = 30;
-
-    if (Number.isFinite(d)) {
-      score += clamp(35 - Math.round(d / 60), 0, 35);
-    }
-
-    if (sameCategory) score += 16;
-    if (shared) score += Math.min(24, shared * 12);
-    if (!isVisited) score += 14;
-    if (!completed) score += 8;
-    if (arr(window.WK_BY_PLACE?.[placeId(candidate)]).length) score += 4;
-
-    return clamp(score, 0, 100);
-  }
-
-  function makeSuggestion({ type, target_id, label, reason, deep_reason = "", evidence = [], score, source, href = "", meta = {} }) {
+  function makeSuggestion({
+    type,
+    target_id,
+    label,
+    reason,
+    deep_reason = "",
+    evidence = [],
+    score,
+    source,
+    href = "",
+    meta = {}
+  }) {
     const safeType = s(type);
     const safeTarget = s(target_id);
     const safeLabel = s(label);
@@ -199,6 +159,46 @@
     };
   }
 
+  function getCandidatePlaces(currentPlace, nearbyPlaces = []) {
+    const currentId = placeId(currentPlace);
+    const seen = new Set();
+    const out = [];
+
+    const push = (place) => {
+      const id = placeId(place);
+      if (!id || id === currentId || seen.has(id)) return;
+      seen.add(id);
+      out.push(place);
+    };
+
+    arr(nearbyPlaces).forEach(push);
+    arr(window.NEARBY_PLACES).forEach(push);
+    arr(window.PLACES).forEach(push);
+    return out;
+  }
+
+  function scoreSpatialCandidate(currentPlace, candidate, visited) {
+    const distance = distanceFromCurrent(candidate);
+    const sameCategory = categoryOf(candidate) === categoryOf(currentPlace);
+    const shared = sharedEmneCount(currentPlace, candidate);
+    const isVisited = !!visited[placeId(candidate)];
+    const completed = hasAnyCompletedSetForPlace(candidate);
+
+    let score = 24;
+
+    if (Number.isFinite(distance)) {
+      score += clamp(32 - Math.round(distance / 75), 0, 32);
+    }
+
+    if (sameCategory) score += 10;
+    if (shared) score += Math.min(24, shared * 12);
+    if (!isVisited) score += 12;
+    if (!completed) score += 7;
+    if (arr(window.WK_BY_PLACE?.[placeId(candidate)]).length) score += 3;
+
+    return clamp(score, 0, 100);
+  }
+
   function buildSpatialReason(currentPlace, candidatePlace, meta = {}) {
     const distance = Number.isFinite(meta.distance_m) ? `${Math.round(meta.distance_m)} m` : "";
     const shared = Number(meta.shared_emne_count || 0);
@@ -209,15 +209,17 @@
 
     const reason = shared
       ? `Deler ${shared} emne${shared === 1 ? "" : "r"} med dette stedet.`
-      : "Nærliggende sted som passer videre i løypa.";
+      : distance
+        ? `Et relevant stopp ${distance} unna.`
+        : "Et relevant sted som passer videre i utforskingen.";
 
     const parts = [];
     if (distance) parts.push(`${placeLabel(candidatePlace)} ligger ${distance} unna`);
-    else parts.push(`${placeLabel(candidatePlace)} ligger som et naturlig neste stopp`);
-    if (sameCategory) parts.push(`og deler kategori (${category})`);
-    if (shared > 0) parts.push(`med ${shared} felles emne${shared === 1 ? "" : "r"}`);
-    if (unvisited) parts.push("Stedet er ubesøkt");
-    if (quizIncomplete) parts.push("quizen der er ikke fullført");
+    else parts.push(`${placeLabel(candidatePlace)} er et mulig neste stopp`);
+    if (sameCategory) parts.push(`samme kategori (${category})`);
+    if (shared > 0) parts.push(`${shared} felles emne${shared === 1 ? "" : "r"}`);
+    if (unvisited) parts.push("ubesøkt");
+    if (quizIncomplete) parts.push("har ufullført quizprogresjon");
 
     return {
       reason,
@@ -232,123 +234,97 @@
     };
   }
 
+  function buildSpatialCandidates(currentPlace, nearbyPlaces = [], limit = 12) {
+    const visited = getVisited();
+
+    return getCandidatePlaces(currentPlace, nearbyPlaces)
+      .map(candidate => {
+        const distance = distanceFromCurrent(candidate);
+        const shared = sharedEmneCount(currentPlace, candidate);
+        const quizIncomplete = !hasAnyCompletedSetForPlace(candidate);
+        const meta = {
+          place_id: placeId(candidate),
+          distance_m: Number.isFinite(distance) ? Math.round(distance) : null,
+          shared_emne_count: shared,
+          category_id: categoryOf(candidate),
+          same_category: categoryOf(candidate) === categoryOf(currentPlace),
+          unvisited: !visited[placeId(candidate)],
+          quiz_incomplete: quizIncomplete,
+          incomplete: quizIncomplete
+        };
+        const reasonMeta = buildSpatialReason(currentPlace, candidate, meta);
+        const distanceText = Number.isFinite(distance) ? `${Math.round(distance)} m` : "";
+
+        return makeSuggestion({
+          type: "spatial",
+          target_id: placeId(candidate),
+          label: distanceText ? `${placeLabel(candidate)} · ${distanceText}` : placeLabel(candidate),
+          reason: reasonMeta.reason,
+          deep_reason: reasonMeta.deep_reason,
+          evidence: reasonMeta.evidence,
+          score: scoreSpatialCandidate(currentPlace, candidate, visited),
+          source: "places",
+          meta
+        });
+      })
+      .filter(Boolean)
+      .sort((a, b) =>
+        b.score - a.score ||
+        Number(a.meta?.distance_m ?? Infinity) - Number(b.meta?.distance_m ?? Infinity)
+      )
+      .slice(0, limit);
+  }
+
   function buildWonderkammerReason(place, entry, meta = {}) {
     const count = Number(meta.chamber_count || 0);
     const title = s(entry?.title || entry?.label || entry?.name || "objekt");
     const entryType = s(entry?.type);
-    const reason = "Dette stedet har Wonderkammer-innhold du kan åpne.";
-    const deep_reason = `${placeLabel(place)} har ${count || "flere"} Wonderkammer-oppføring${count === 1 ? "" : "er"}, blant annet “${title}”${entryType ? ` (${entryType})` : ""}, knyttet til place_id ${placeId(place)}.`;
+
     return {
-      reason,
-      deep_reason,
+      reason: "Et Wonderkammer-funn er knyttet direkte til dette stedet.",
+      deep_reason: `${placeLabel(place)} har ${count || "flere"} Wonderkammer-oppføring${count === 1 ? "" : "er"}, blant annet “${title}”${entryType ? ` (${entryType})` : ""}.`,
       evidence: ["WK_BY_PLACE", "wonderkammer.entry", "place.id"]
     };
   }
 
-  function buildNarrativeReason(story, nextPlace, direction, sourceType = "related_places", explicitReason = "") {
-    const title = storyTitle(story);
-    const summary = s(story?.summary);
-    const sceneReason = s(explicitReason);
-    const fallback = sourceType === "related_places"
-      ? "Tematisk kobling via related_places, ikke eksplisitt neste scene."
-      : direction === "reverse"
-        ? "Omvendt kobling via eksplisitt next_scenes fra en annen story."
-        : "Koblingen kommer via storyens stedsliste.";
-
-    return {
-      reason: sceneReason || (sourceType === "related_places"
-        ? "Tematisk kobling til et relatert sted."
-        : "Denne scenen følger en eksisterende fortelling."),
-      deep_reason: `Forslaget følger historien “${title}”${summary ? `: ${summary}` : ""}. Neste sted er ${placeLabel(nextPlace)}${sceneReason ? ` fordi ${sceneReason}` : ` (${fallback})`}.`,
-      evidence: ["story.next_scenes", "story.title", "story.place_id", "story.summary", "story.related_places"]
-    };
-  }
-
-  function buildConceptReason(place, emneId, meta = {}) {
-    const hits = Number(meta.hit_count || 0);
-    const lowCoverage = !!meta.low_coverage;
-    const angle = s(place?.quiz_profile?.primary_angles?.[0]);
-    const reason = "Stedet er koblet til dette emnet.";
-    const deep_reason = hits
-      ? `Emnet ${emneId} går igjen på ${placeLabel(place)}${angle ? ` med vinkel “${angle}”` : ""}. Du har ${hits} treff i learning-log/insights${lowCoverage ? ", men dekningen er fortsatt lav" : ""}, så dette er et godt fordypningspunkt.`
-      : `Emnet ${emneId} er koblet til ${placeLabel(place)}${angle ? ` og quiz-vinkelen “${angle}”` : ""}, men mangler treff i learning-log/insights. Derfor foreslås det for å bygge dekning tidlig.`;
-    return {
-      reason,
-      deep_reason,
-      evidence: ["place.emne_ids", "quiz_profile.primary_angles", "hg_learning_log_v1", "hg_insights_events_v1", "emne_coverage"]
-    };
-  }
-
-  function buildSpatialSuggestion(currentPlace, nearbyPlaces = []) {
-    const visited = getVisited();
-    const candidates = getCandidatePlaces(currentPlace, nearbyPlaces)
-      .map(place => ({
-        place,
-        d: distanceFromCurrent(place),
-        score: scoreSpatialCandidate(currentPlace, place, visited)
-      }))
-      .sort((a, b) => b.score - a.score || a.d - b.d);
-
-    const preferred = candidates[0];
-    if (!preferred?.place) return null;
-
-    const dText = Number.isFinite(preferred.d) ? `${Math.round(preferred.d)} m` : "";
-    const shared = sharedEmneCount(currentPlace, preferred.place);
-
-    const reasonMeta = buildSpatialReason(currentPlace, preferred.place, {
-      distance_m: Number.isFinite(preferred.d) ? Math.round(preferred.d) : null,
-      shared_emne_count: shared,
-      same_category: categoryOf(preferred.place) === categoryOf(currentPlace),
-      unvisited: !visited[placeId(preferred.place)],
-      quiz_incomplete: !hasAnyCompletedSetForPlace(preferred.place)
-    });
-
-    return makeSuggestion({
-      type: "spatial",
-      target_id: placeId(preferred.place),
-      label: dText ? `${placeLabel(preferred.place)} · ${dText}` : placeLabel(preferred.place),
-      reason: reasonMeta.reason,
-      deep_reason: reasonMeta.deep_reason,
-      evidence: reasonMeta.evidence,
-      score: preferred.score,
-      source: "places",
-      meta: {
-        place_id: placeId(preferred.place),
-        distance_m: Number.isFinite(preferred.d) ? Math.round(preferred.d) : null,
-        shared_emne_count: shared,
-        category_id: categoryOf(preferred.place)
-      }
-    });
-  }
-
-  function buildWonderkammerSuggestion(place) {
+  function buildWonderkammerCandidates(place, limit = 8) {
     const id = placeId(place);
     const chambers = arr(window.WK_BY_PLACE?.[id]);
-    if (!chambers.length) return null;
+    const seen = new Set();
 
-    const first = chambers.find(c => s(c?.id || c?.entry_id || c?.title || c?.label || c?.name)) || chambers[0];
-    const entryId = s(first?.id || first?.entry_id || first?.slug || first?.title || first?.label || "");
-    const label = s(first?.title || first?.label || first?.name || entryId || "Wonderkammer");
+    return chambers
+      .map((entry, index) => {
+        const entryId = s(entry?.id || entry?.entry_id || entry?.slug || entry?.title || entry?.label || entry?.name);
+        const label = s(entry?.title || entry?.label || entry?.name || entryId || "Wonderkammer");
+        const key = entryId || label;
+        if (!key || seen.has(key)) return null;
+        seen.add(key);
 
-    if (!entryId && !label) return null;
+        const reasonMeta = buildWonderkammerReason(place, entry, {
+          chamber_count: chambers.length
+        });
 
-    const reasonMeta = buildWonderkammerReason(place, first, { chamber_count: chambers.length });
-
-    return makeSuggestion({
-      type: "wonderkammer",
-      target_id: entryId || label,
-      label,
-      reason: reasonMeta.reason,
-      deep_reason: reasonMeta.deep_reason,
-      evidence: reasonMeta.evidence,
-      score: clamp(68 + Math.min(20, chambers.length * 4), 0, 100),
-      source: "wonderkammer",
-      meta: {
-        entry_id: entryId,
-        place_id: id,
-        chamber_count: chambers.length
-      }
-    });
+        return makeSuggestion({
+          type: "wonderkammer",
+          target_id: key,
+          label,
+          reason: reasonMeta.reason,
+          deep_reason: reasonMeta.deep_reason,
+          evidence: reasonMeta.evidence,
+          score: clamp(70 + Math.min(12, chambers.length * 2) - Math.min(10, index * 2), 0, 100),
+          source: "wonderkammer",
+          meta: {
+            entry_id: entryId || key,
+            place_id: id,
+            chamber_count: chambers.length,
+            entry_index: index,
+            entry_type: s(entry?.type)
+          }
+        });
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit);
   }
 
   function storyTitle(story) {
@@ -357,11 +333,11 @@
 
   function storyNextScenes(story) {
     return arr(story?.next_scenes)
-      .map(sc => ({
-        place_id: s(sc?.place_id || sc?.target_id || sc?.id),
-        reason: s(sc?.reason)
+      .map(scene => ({
+        place_id: s(scene?.place_id || scene?.target_id || scene?.id),
+        reason: s(scene?.reason)
       }))
-      .filter(sc => sc.place_id);
+      .filter(scene => scene.place_id);
   }
 
   function storyNextPlaces(story) {
@@ -376,25 +352,40 @@
     ].map(s).filter(Boolean);
   }
 
-  function nextSceneReason(story, nextId, direction) {
-    const explicit = arr(story?.next_scenes)
-      .find(sc => s(sc?.place_id || sc?.target_id || sc?.id) === s(nextId));
+  function buildNarrativeReason(story, nextPlace, direction, sourceType = "related_places", explicitReason = "") {
+    const title = storyTitle(story);
+    const summary = s(story?.summary);
+    const sceneReason = s(explicitReason);
+    const fallback = sourceType === "related_places"
+      ? "tematisk kobling"
+      : direction === "reverse"
+        ? "omvendt kobling fra en eksplisitt neste scene"
+        : "kobling i storyens stedsliste";
 
-    if (explicit?.reason) return s(explicit.reason);
-
-    return direction === "reverse"
-      ? "En story et annet sted peker tilbake hit som relatert sted."
-      : "Stories-systemet peker videre til et relatert sted.";
+    return {
+      reason: sceneReason || (sourceType === "next_scenes"
+        ? "Denne scenen følger eksplisitt videre i fortellingen."
+        : sourceType === "next_places"
+          ? "Fortellingen peker videre til dette stedet."
+          : "Tematisk kobling til et relatert sted."),
+      deep_reason: `Forslaget følger historien “${title}”${summary ? `: ${summary}` : ""}. Neste sted er ${placeLabel(nextPlace)}${sceneReason ? ` fordi ${sceneReason}` : ` via ${fallback}`}.`,
+      evidence: ["story.next_scenes", "story.next_places", "story.related_places", "story.title", "story.place_id"]
+    };
   }
 
-  function makeNarrativeSuggestion(story, nextId, direction, source = "related_places", explicitReason = "") {
+  function makeNarrativeSuggestion(story, nextId, direction, sourceType = "related_places", explicitReason = "") {
     const nextPlace = findPlace(nextId);
     if (!nextId || !nextPlace) return null;
 
-    const base = source === "next_scenes" ? 90 : source === "next_places" ? 82 : source === "reverse_related" ? 66 : 70;
+    const base = sourceType === "next_scenes"
+      ? 90
+      : sourceType === "next_places"
+        ? 82
+        : sourceType === "reverse_related"
+          ? 64
+          : 70;
     const storyScore = Number(story?.score?.total || 0);
-
-    const reasonMeta = buildNarrativeReason(story, nextPlace, direction, source, explicitReason);
+    const reasonMeta = buildNarrativeReason(story, nextPlace, direction, sourceType, explicitReason);
 
     return makeSuggestion({
       type: "narrative",
@@ -403,134 +394,255 @@
       reason: reasonMeta.reason,
       deep_reason: reasonMeta.deep_reason,
       evidence: reasonMeta.evidence,
-      score: clamp(base + Math.min(18, Math.round(storyScore / 2)), 0, 100),
+      score: clamp(base + Math.min(10, Math.round(storyScore / 3)), 0, 100),
       source: "stories",
       meta: {
         next_place_id: nextId,
         story_id: s(story?.id),
-        source_type: source,
+        source_type: sourceType,
         direction,
-        story_type: s(story?.type)
+        story_type: s(story?.type),
+        place_id: nextId,
+        category_id: categoryOf(nextPlace)
       }
     });
   }
 
-  function buildNarrativeSuggestion(place) {
+  function buildNarrativeCandidates(place, limit = 10) {
     const currentId = placeId(place);
-    if (!currentId || !window.HGStories) return null;
+    if (!currentId || !window.HGStories) return [];
+
+    const candidates = [];
+    const pushStoryTargets = (story, direction = "direct") => {
+      storyNextScenes(story).forEach(scene => {
+        if (!scene.place_id || scene.place_id === currentId) return;
+        const suggestion = makeNarrativeSuggestion(story, scene.place_id, direction, "next_scenes", scene.reason);
+        if (suggestion) candidates.push(suggestion);
+      });
+
+      storyNextPlaces(story).forEach(nextId => {
+        if (!nextId || nextId === currentId) return;
+        const suggestion = makeNarrativeSuggestion(story, nextId, direction, "next_places");
+        if (suggestion) candidates.push(suggestion);
+      });
+
+      storyRelatedPlaces(story).forEach(nextId => {
+        if (!nextId || nextId === currentId) return;
+        const suggestion = makeNarrativeSuggestion(story, nextId, direction, "related_places");
+        if (suggestion) candidates.push(suggestion);
+      });
+    };
 
     try {
       if (typeof window.HGStories.getByPlace === "function") {
-        const storiesHere = arr(window.HGStories.getByPlace(currentId));
-
-        for (const story of storiesHere) {
-          const explicit = storyNextScenes(story).find(sc => sc.place_id && sc.place_id !== currentId && findPlace(sc.place_id));
-          if (explicit) {
-            const result = makeNarrativeSuggestion(story, explicit.place_id, "direct", "next_scenes", explicit.reason);
-            if (result) return result;
-            continue;
-          }
-          const nextPlaceId = storyNextPlaces(story).find(id => id && id !== currentId && findPlace(id));
-          if (nextPlaceId) {
-            const result = makeNarrativeSuggestion(story, nextPlaceId, "direct", "next_places");
-            if (result) return result;
-            continue;
-          }
-          const relatedPlaceId = storyRelatedPlaces(story).find(id => id && id !== currentId && findPlace(id));
-          const result = makeNarrativeSuggestion(story, relatedPlaceId, "direct", "related_places");
-          if (result) return result;
-        }
+        arr(window.HGStories.getByPlace(currentId)).forEach(story => pushStoryTargets(story, "direct"));
       }
 
-      const allStories = arr(window.HGStories.all);
-      for (const story of allStories) {
+      arr(window.HGStories.all).forEach(story => {
         const primaryPlaceId = s(story?.place_id);
-        if (!primaryPlaceId || primaryPlaceId === currentId || !findPlace(primaryPlaceId)) continue;
-        const backLink = storyNextScenes(story).find(sc => s(sc.place_id) === currentId);
-        if (!backLink) continue;
-        const result = makeNarrativeSuggestion(story, primaryPlaceId, "reverse", "reverse_related", backLink.reason);
-        if (result) return result;
-      }
-    } catch (e) {
-      if (window.DEBUG) console.warn("[HGNavigator] buildNarrativeSuggestion failed", e);
+        if (!primaryPlaceId || primaryPlaceId === currentId || !findPlace(primaryPlaceId)) return;
+
+        storyNextScenes(story)
+          .filter(scene => scene.place_id === currentId)
+          .forEach(scene => {
+            const suggestion = makeNarrativeSuggestion(story, primaryPlaceId, "reverse", "reverse_related", scene.reason);
+            if (suggestion) candidates.push(suggestion);
+          });
+      });
+    } catch (error) {
+      if (window.DEBUG) console.warn("[HGNavigator] buildNarrativeCandidates failed", error);
     }
 
-    return null;
+    return dedupeSuggestions(candidates)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit);
   }
 
   function countConceptHits(emneId) {
     const key = s(emneId);
     if (!key) return 0;
 
-    const insightsHits = getInsightsEvents().filter(evt =>
-      s(evt?.emne_id) === key ||
-      arr(evt?.related_emner).map(s).includes(key)
+    const insightsHits = getInsightsEvents().filter(event =>
+      s(event?.emne_id) === key ||
+      arr(event?.related_emner).map(s).includes(key)
     ).length;
 
-    const learningHits = getLearningLog().filter(evt =>
-      s(evt?.emne_id) === key ||
-      arr(evt?.related_emner).map(s).includes(key) ||
-      arr(evt?.correctAnswers).some(ans => s(ans?.emne_id) === key)
+    const learningHits = getLearningLog().filter(event =>
+      s(event?.emne_id) === key ||
+      arr(event?.related_emner).map(s).includes(key) ||
+      arr(event?.correctAnswers).some(answer => s(answer?.emne_id) === key)
     ).length;
 
     return insightsHits + learningHits;
   }
 
   function conceptLabel(place, emneId) {
-    const angle = s(place?.quiz_profile?.primary_angles?.[0]);
+    const primaryAngles = arr(place?.quiz_profile?.primary_angles).map(s).filter(Boolean);
     const subtype = s(place?.quiz_profile?.subtype);
-    return angle || subtype || emneId;
+    const index = Math.max(0, emneIds(place).indexOf(emneId));
+    return primaryAngles[index] || primaryAngles[0] || subtype || emneId;
+  }
+
+  function buildConceptReason(place, emneId, meta = {}) {
+    const hits = Number(meta.hit_count || 0);
+    const lowCoverage = !!meta.low_coverage;
+    const angle = s(place?.quiz_profile?.primary_angles?.[0]);
+
+    return {
+      reason: lowCoverage
+        ? "Et relevant kunnskapshull ved dette stedet."
+        : "Et sentralt emne ved stedet som kan utdypes.",
+      deep_reason: hits
+        ? `Emnet ${emneId} går igjen på ${placeLabel(place)}${angle ? ` med vinkelen “${angle}”` : ""}. Du har ${hits} registrerte treff${lowCoverage ? ", men dekningen er fortsatt lav" : ""}.`
+        : `Emnet ${emneId} er koblet til ${placeLabel(place)}${angle ? ` og quiz-vinkelen “${angle}”` : ""}, men mangler registrerte læringstreff.`,
+      evidence: ["place.emne_ids", "quiz_profile.primary_angles", "hg_learning_log_v1", "hg_insights_events_v1"]
+    };
+  }
+
+  function buildConceptCandidates(place, limit = 8) {
+    const subject = categoryOf(place);
+
+    return emneIds(place)
+      .map((emneId, index) => {
+        const hits = countConceptHits(emneId);
+        const score = clamp(90 - Math.min(36, hits * 6) - Math.min(6, index * 2), 48, 94);
+        const reasonMeta = buildConceptReason(place, emneId, {
+          hit_count: hits,
+          low_coverage: hits < 2
+        });
+
+        return makeSuggestion({
+          type: "concept",
+          target_id: emneId,
+          label: conceptLabel(place, emneId),
+          reason: reasonMeta.reason,
+          deep_reason: reasonMeta.deep_reason,
+          evidence: reasonMeta.evidence,
+          score,
+          source: "knowledge",
+          href: `knowledge/knowledge_${encodeURIComponent(subject)}.html#${encodeURIComponent(emneId)}`,
+          meta: {
+            emne_id: emneId,
+            subject_id: subject,
+            hit_count: hits,
+            low_coverage: hits < 2,
+            place_id: placeId(place),
+            emne_index: index
+          }
+        });
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit);
   }
 
   function readActiveMode() {
-    try {
-      const raw = JSON.parse(localStorage.getItem(MODE_KEY) || "{}");
-      const mode = s(raw?.mode || "nearest");
-      return MODES[mode] || MODES.nearest;
-    } catch {
-      return MODES.nearest;
-    }
+    const raw = readJSON(MODE_KEY, {});
+    const mode = s(raw?.mode || "nearest");
+    return MODES[mode] || MODES.nearest;
   }
 
-  function buildConceptSuggestion(place) {
-    const ids = emneIds(place);
-    if (!ids.length) return null;
+  function applyModeWeights(suggestion, mode, currentPlace) {
+    if (!suggestion) return null;
 
-    const scored = ids.map(id => {
-      const hits = countConceptHits(id);
-      // Lav dekning får høyere prioritet, men helt ukjente emner beholdes høyt.
-      const score = clamp(88 - Math.min(30, hits * 6), 45, 95);
-      return { id, hits, score };
-    }).sort((a, b) => b.score - a.score);
+    const clone = { ...suggestion, meta: { ...(suggestion.meta || {}) } };
+    const categoryMatch = clone.meta?.category_id && categoryOf(currentPlace) === clone.meta.category_id;
 
-    const picked = scored[0];
-    if (!picked) return null;
+    if (mode === "nearest" && clone.type === "spatial") {
+      clone.score += 16;
+      if (Number.isFinite(clone.meta?.distance_m)) {
+        clone.score += Math.max(0, 12 - Math.round(clone.meta.distance_m / 180));
+      }
+    }
 
-    const subject = categoryOf(place);
-    const href = `knowledge/knowledge_${encodeURIComponent(subject)}.html#${encodeURIComponent(picked.id)}`;
+    if (mode === "learn") {
+      if (clone.type === "concept") clone.score += 20;
+      if (clone.type === "narrative") clone.score += 4;
+      if (clone.type === "concept") {
+        clone.score += Math.max(0, 8 - Math.min(8, Number(clone.meta?.hit_count || 0) * 2));
+      }
+    }
 
-    const reasonMeta = buildConceptReason(place, picked.id, {
-      hit_count: picked.hits,
-      low_coverage: picked.hits < 2
-    });
+    if (mode === "story" && clone.type === "narrative") {
+      clone.score += clone.meta?.story_id ? 24 : 8;
+    }
 
-    return makeSuggestion({
-      type: "concept",
-      target_id: picked.id,
-      label: conceptLabel(place, picked.id),
-      reason: reasonMeta.reason,
-      deep_reason: reasonMeta.deep_reason,
-      evidence: reasonMeta.evidence,
-      score: picked.score,
-      source: "knowledge",
-      href,
-      meta: {
-        emne_id: picked.id,
-        subject_id: subject,
-        hit_count: picked.hits,
-        place_id: placeId(place)
+    if (mode === "wonder" && clone.type === "wonderkammer") {
+      clone.score += 24;
+    }
+
+    if (mode === "complete") {
+      if (clone.meta?.incomplete) clone.score += 16;
+      if (clone.type === "spatial" && categoryMatch) clone.score += 8;
+      if (clone.type === "concept" && Number(clone.meta?.hit_count || 0) <= 1) clone.score += 8;
+    }
+
+    clone.score = clamp(clone.score, 0, 100);
+    clone.meta.mode = mode;
+    return clone;
+  }
+
+  function applyRouteBoost(suggestion) {
+    if (!suggestion) return null;
+
+    const clone = { ...suggestion, meta: { ...(suggestion.meta || {}) } };
+    const summary = getActivePathSummary();
+    const emneSet = new Set(arr(summary?.emne_ids).map(s).filter(Boolean));
+    const dominantType = s(arr(summary?.dominant_types)[0]);
+    let boost = 0;
+
+    const targetPlace = findPlace(clone.meta?.place_id || clone.meta?.next_place_id || clone.target_id);
+    const targetEmner = new Set([
+      ...arr(targetPlace?.emne_ids),
+      s(clone.meta?.emne_id)
+    ].map(s).filter(Boolean));
+
+    if (emneSet.size && Array.from(targetEmner).some(id => emneSet.has(id))) boost += 8;
+    if (dominantType === "concept" && clone.type === "concept") boost += 6;
+    if (dominantType === "narrative" && clone.type === "narrative") boost += 8;
+    if (dominantType === "spatial" && clone.type === "spatial") boost += 5;
+
+    boost = clamp(boost, 0, 12);
+    clone.score = clamp(clone.score + boost, 0, 100);
+    clone.meta.route_boost = boost;
+    return clone;
+  }
+
+  function dedupeSuggestions(suggestions = []) {
+    const bestByKey = new Map();
+
+    arr(suggestions).filter(Boolean).forEach(suggestion => {
+      const key = `${s(suggestion.type)}::${s(suggestion.target_id)}`;
+      if (!s(suggestion.type) || !s(suggestion.target_id)) return;
+      const existing = bestByKey.get(key);
+      if (!existing || Number(suggestion.score || 0) > Number(existing.score || 0)) {
+        bestByKey.set(key, suggestion);
       }
     });
+
+    return Array.from(bestByKey.values());
+  }
+
+  function selectRankedSuggestions(suggestions = [], limit = MAX_SUGGESTIONS) {
+    const typeCounts = new Map();
+    const selected = [];
+
+    dedupeSuggestions(suggestions)
+      .sort((a, b) => b.score - a.score)
+      .forEach(suggestion => {
+        if (selected.length >= limit) return;
+        const type = s(suggestion.type);
+        const count = typeCounts.get(type) || 0;
+        if (count >= MAX_PER_TYPE) return;
+        typeCounts.set(type, count + 1);
+        selected.push(suggestion);
+      });
+
+    return selected;
+  }
+
+  function bestOfType(suggestions, type) {
+    return arr(suggestions).find(suggestion => suggestion?.type === type) || null;
   }
 
   function toLegacyShape(suggestion) {
@@ -538,7 +650,7 @@
 
     if (suggestion.type === "spatial") {
       return {
-        place_id: suggestion.meta.place_id || suggestion.target_id,
+        place_id: suggestion.meta?.place_id || suggestion.target_id,
         label: suggestion.label,
         because: suggestion.reason,
         deep_reason: suggestion.deep_reason,
@@ -550,7 +662,7 @@
 
     if (suggestion.type === "wonderkammer") {
       return {
-        entry_id: suggestion.meta.entry_id || suggestion.target_id,
+        entry_id: suggestion.meta?.entry_id || suggestion.target_id,
         label: suggestion.label,
         because: suggestion.reason,
         deep_reason: suggestion.deep_reason,
@@ -562,8 +674,8 @@
 
     if (suggestion.type === "narrative") {
       return {
-        next_place_id: suggestion.meta.next_place_id || suggestion.target_id,
-        story_id: suggestion.meta.story_id || "",
+        next_place_id: suggestion.meta?.next_place_id || suggestion.target_id,
+        story_id: suggestion.meta?.story_id || "",
         label: suggestion.label,
         because: suggestion.reason,
         deep_reason: suggestion.deep_reason,
@@ -575,8 +687,8 @@
 
     if (suggestion.type === "concept") {
       return {
-        emne_id: suggestion.meta.emne_id || suggestion.target_id,
-        subject_id: suggestion.meta.subject_id || "",
+        emne_id: suggestion.meta?.emne_id || suggestion.target_id,
+        subject_id: suggestion.meta?.subject_id || "",
         knowledge_href: suggestion.href,
         label: suggestion.label,
         because: suggestion.reason,
@@ -590,108 +702,64 @@
     return null;
   }
 
-  function applyModeWeights(suggestion, mode, currentPlace) {
-    if (!suggestion) return null;
-
-    const clone = { ...suggestion, meta: { ...(suggestion.meta || {}) } };
-    const categoryMatch = clone.meta?.category_id && categoryOf(currentPlace) === clone.meta.category_id;
-    const incompleteBoost = clone.meta?.incomplete ? 25 : 0;
-
-    if (mode === "nearest") {
-      if (clone.type === "spatial") clone.score += 25;
-      if (clone.type === "spatial" && Number.isFinite(clone.meta?.distance_m)) {
-        clone.score += Math.max(0, 20 - Math.round(clone.meta.distance_m / 120));
-      }
-    }
-
-    if (mode === "learn") {
-      if (clone.type === "concept") clone.score += 30;
-      if (clone.type === "concept") clone.score += Math.max(0, 15 - Math.min(15, Number(clone.meta?.hit_count || 0) * 3));
-    }
-
-    if (mode === "story") {
-      if (clone.type === "narrative" && clone.meta?.story_id) clone.score += 35;
-      if (clone.type === "narrative" && !clone.meta?.story_id) clone.score -= 30;
-    }
-
-    if (mode === "wonder") {
-      if (clone.type === "wonderkammer") clone.score += 35;
-    }
-
-    if (mode === "complete") {
-      if (clone.type === "quiz" || clone.type === "spatial") clone.score += incompleteBoost;
-      if (categoryMatch) clone.score += 10;
-      if (clone.type === "concept" && Number(clone.meta?.hit_count || 0) <= 1) clone.score += 6;
-    }
-
-    clone.score = clamp(clone.score, 0, 100);
-    clone.meta.mode = mode;
-    return clone;
-  }
-
-  function applyRouteBoost(suggestion) {
-    if (!suggestion) return null;
-    const clone = { ...suggestion, meta: { ...(suggestion.meta || {}) } };
-    const summary = getActivePathSummary();
-    const emneSet = new Set(arr(summary?.emne_ids).map(s).filter(Boolean));
-    const dominantType = s(arr(summary?.dominant_types)[0]);
-    let boost = 0;
-    const targetPlace = findPlace(clone.meta?.place_id || clone.meta?.next_place_id || clone.target_id);
-    const targetEmner = new Set([...(targetPlace?.emne_ids || []), s(clone.meta?.emne_id)].map(s).filter(Boolean));
-    if (emneSet.size && Array.from(targetEmner).some(id => emneSet.has(id))) boost += 8;
-    if (dominantType === "concept" && clone.type === "concept") boost += 6;
-    if (dominantType === "narrative" && clone.type === "narrative") boost += 8;
-    if (dominantType === "spatial" && clone.type === "spatial") boost += 5;
-    boost = clamp(boost, 0, 12);
-    clone.score = clamp(clone.score + boost, 0, 100);
-    clone.meta.route_boost = boost;
-    return clone;
-  }
-
   async function buildForPlace(place, context = {}) {
     if (!place) return {};
 
-    const nearbyPlaces = arr(context.nearbyPlaces);
-
-    const spatialSuggestion = buildSpatialSuggestion(place, nearbyPlaces);
-    const wkSuggestion = buildWonderkammerSuggestion(place);
-    const narrativeSuggestion = buildNarrativeSuggestion(place);
-    const conceptSuggestion = buildConceptSuggestion(place);
-
     const activeMode = readActiveMode();
+    const sourceCandidates = {
+      spatial: buildSpatialCandidates(place, arr(context.nearbyPlaces)),
+      wonderkammer: buildWonderkammerCandidates(place),
+      narrative: buildNarrativeCandidates(place),
+      concept: buildConceptCandidates(place)
+    };
 
-    const suggestions = [
-      spatialSuggestion,
-      wkSuggestion,
-      narrativeSuggestion,
-      conceptSuggestion
-    ].filter(Boolean)
-      .map(sug => applyModeWeights(sug, activeMode.mode, place))
-      .map(sug => applyRouteBoost(sug))
-      .sort((a, b) => b.score - a.score);
+    const allCandidates = Object.values(sourceCandidates)
+      .flat()
+      .map(suggestion => applyModeWeights(suggestion, activeMode.mode, place))
+      .map(applyRouteBoost)
+      .filter(Boolean);
+
+    const suggestions = selectRankedSuggestions(allCandidates);
+    const bestSpatial = bestOfType(suggestions, "spatial") || sourceCandidates.spatial[0] || null;
+    const bestWonder = bestOfType(suggestions, "wonderkammer") || sourceCandidates.wonderkammer[0] || null;
+    const bestNarrative = bestOfType(suggestions, "narrative") || sourceCandidates.narrative[0] || null;
+    const bestConcept = bestOfType(suggestions, "concept") || sourceCandidates.concept[0] || null;
 
     return {
-      schema: "hg_nextup_v3",
+      schema: "hg_nextup_v4",
       mode: activeMode,
       current_place_id: placeId(place),
       current_place_label: placeLabel(place),
       category_id: categoryOf(place),
       generated_at: new Date().toISOString(),
+      candidate_counts: Object.fromEntries(
+        Object.entries(sourceCandidates).map(([type, values]) => [type, values.length])
+      ),
       suggestions,
-      spatial: toLegacyShape(spatialSuggestion),
-      wk: toLegacyShape(wkSuggestion),
-      narrative: toLegacyShape(narrativeSuggestion),
-      concept: toLegacyShape(conceptSuggestion)
+      spatial: toLegacyShape(bestSpatial),
+      wk: toLegacyShape(bestWonder),
+      narrative: toLegacyShape(bestNarrative),
+      concept: toLegacyShape(bestConcept)
     };
+  }
+
+  function first(builder) {
+    return (...args) => builder(...args)[0] || null;
   }
 
   window.HGNavigator = {
     buildForPlace,
     _debug: {
-      buildSpatialSuggestion,
-      buildWonderkammerSuggestion,
-      buildNarrativeSuggestion,
-      buildConceptSuggestion,
+      buildSpatialSuggestion: first(buildSpatialCandidates),
+      buildWonderkammerSuggestion: first(buildWonderkammerCandidates),
+      buildNarrativeSuggestion: first(buildNarrativeCandidates),
+      buildConceptSuggestion: first(buildConceptCandidates),
+      buildSpatialCandidates,
+      buildWonderkammerCandidates,
+      buildNarrativeCandidates,
+      buildConceptCandidates,
+      dedupeSuggestions,
+      selectRankedSuggestions,
       getNextUpHistory
     }
   };
