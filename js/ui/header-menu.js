@@ -22,9 +22,38 @@
     if (label) label.textContent = "Lesespor";
   }
 
+  function ensureKnowledgeMenuEntry() {
+    const actions = document.querySelector("#headerMenuPanel .header-menu-actions");
+    if (!actions || document.getElementById("btnKnowledge")) return;
+
+    const link = document.createElement("a");
+    link.id = "btnKnowledge";
+    link.href = "knowledge.html";
+    link.className = "header-menu-action";
+    link.setAttribute("role", "menuitem");
+    link.setAttribute("aria-label", "Knowledge");
+    link.title = "Knowledge";
+
+    const icon = document.createElement("span");
+    icon.className = "header-menu-action-icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = "💡";
+
+    const label = document.createElement("span");
+    label.className = "header-menu-action-label";
+    label.textContent = "Knowledge";
+
+    link.append(icon, label);
+
+    const routesButton = document.getElementById("btnKaravane");
+    if (routesButton?.parentElement === actions) actions.insertBefore(link, routesButton);
+    else actions.appendChild(link);
+  }
+
   function initHeaderMenu() {
     promoteMinDayToHeader();
     setLesesporMenuLabel();
+    ensureKnowledgeMenuEntry();
 
     const root = document.getElementById("headerMenu");
     const button = document.getElementById("headerMenuButton");
