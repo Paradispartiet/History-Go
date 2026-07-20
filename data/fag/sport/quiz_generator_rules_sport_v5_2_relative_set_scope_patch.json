@@ -1,0 +1,115 @@
+{
+  "version": "v5.2-relative-set-scope-patch-sport",
+  "subject_id": "sport",
+  "subject_title": "Sport & lek",
+  "scope": "oslo_og_omegn",
+  "type": "quiz_generator_policy_patch",
+  "extends": "quiz_generator_rules_sport_v5_1_source_priority_patch.json",
+  "purpose": "Gjør antall quizsett relativt til objektets omfang, betydning, idrettslige bredde og dokumentasjonsgrunnlag. Åtte sett er sportpakkens fullmodell og øvre ramme, ikke et fast krav eller en standardverdi.",
+  "precedence": {
+    "overrides_set_count_assumptions_in_base_file": true,
+    "base_source_priority_rules_remain_active": true,
+    "base_set_guidance_remains_available_as_module_library": true
+  },
+  "hard_rules": {
+    "set_count_is_relative": true,
+    "eight_sets_are_ceiling_not_default": true,
+    "minimum_set_count": 1,
+    "maximum_set_count": 8,
+    "source_coverage_caps_set_count": true,
+    "filler_sets_forbidden": true,
+    "every_set_requires_distinct_learning_purpose": true,
+    "selected_set_count_requires_written_basis": true
+  },
+  "set_count_policy": {
+    "mode": "relative_to_object_scope_significance_and_sources",
+    "scope_tiers": {
+      "compact": {
+        "set_count_range": [
+          1,
+          2
+        ],
+        "use_when": "Objektet har en smal, tydelig idrettsfunksjon, begrenset historisk dybde eller få klart adskilte dokumenterte læringsspor."
+      },
+      "standard": {
+        "set_count_range": [
+          3,
+          4
+        ],
+        "use_when": "Objektet har flere dokumenterte funksjoner, perioder, aktører eller praksiser, men ikke bredde nok til full faglig dekning."
+      },
+      "substantial": {
+        "set_count_range": [
+          5,
+          6
+        ],
+        "use_when": "Objektet har betydelig historisk dybde, flere sportdomener, mange dokumenterte aktører eller hendelser og godt kildegrunnlag."
+      },
+      "major": {
+        "set_count_range": [
+          7,
+          8
+        ],
+        "use_when": "Objektet er svært betydningsfullt eller komplekst lokalt, nasjonalt eller internasjonalt og støtter mange klart adskilte, veldokumenterte læringsspor."
+      }
+    },
+    "assessment_dimensions": [
+      "historisk dybde og tidsmessig spenn",
+      "idrettslig bredde og antall relevante sportdomener",
+      "lokal, regional, nasjonal eller internasjonal betydning",
+      "dokumenterte klubber, personer, hendelser, rekorder, praksiser og konflikter",
+      "arenaendringer, anleggsutvikling, bruksendringer eller samfunnsrolle",
+      "mengde, kvalitet og uavhengighet i eksterne kilder"
+    ],
+    "editorial_rule": "Omfang og betydning skal vurderes faglig, ikke beregnes mekanisk. Kildedekningen setter alltid øvre grense for antall sett.",
+    "anti_inflation_rule": "Et kjent eller symboltungt sted skal ikke få flere sett enn det finnes klart adskilte og godt dokumenterte læringsspor til."
+  },
+  "set_guidance_usage": {
+    "guidance_1": "Grunnsett og utgangspunkt for alle quizzer.",
+    "guidance_2_to_7": "Modulbibliotek. Velg bare de fasene som faktisk passer objektet.",
+    "guidance_8": "Syntesemodul for objekter med tilstrekkelig bredde og dokumentasjon; aldri obligatorisk.",
+    "selected_guidance_ids_may_skip_numbers": true,
+    "production_set_numbers_are_compact_and_sequential": true,
+    "example": {
+      "selected_set_count": 3,
+      "selected_set_guidance_ids": [
+        "1",
+        "4",
+        "7"
+      ],
+      "production_set_numbers": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "required_quiz_root_metadata": [
+    "selected_set_count",
+    "scope_tier",
+    "set_count_basis",
+    "selected_set_guidance_ids",
+    "omitted_set_guidance_ids",
+    "source_coverage_note"
+  ],
+  "required_set_metadata": [
+    "set_number",
+    "set_guidance_id",
+    "set_title",
+    "learning_purpose"
+  ],
+  "validator_additions": [
+    "Avvis quiz som automatisk bruker åtte sett uten at objektets omfang, betydning og kildedekning begrunner det.",
+    "Avvis quiz der valgt settantall ikke er forklart i quizens rotmetadata.",
+    "Avvis sett som ikke har et eget dokumentert læringsformål, eller som hovedsakelig gjentar et annet sett.",
+    "Flagg quiz der betydning brukes til å øke settantallet uten tilsvarende ekstern kildedekning.",
+    "Tillat 1–2 sett for smale objekter og 7–8 sett bare for svært betydningsfulle eller komplekse objekter med bred dokumentasjon.",
+    "Kontroller at valgte set_guidance_id-er finnes i set_guidance i basisfilen.",
+    "Kontroller at produksjonssettene er nummerert fortløpende selv når veiledningsfasene ikke er sammenhengende."
+  ],
+  "migration_rule": {
+    "existing_two_set_quizzes_are_not_automatically_wrong": true,
+    "audit_required": "Eksisterende quizzer skal vurderes mot omfangsnivå og kildedekning. De skal bare utvides når stedet faktisk støtter flere selvstendige læringsspor.",
+    "do_not_expand_for_uniformity": true
+  }
+}
