@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-20T06:32:38.134Z
+Generert: 2026-07-20T06:43:14.735Z
 
 ## Hvorfor denne gaten finnes
 
@@ -15,10 +15,10 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Base for nye/endrede place-objekter: **origin/main**
 - Base method: **origin/${GITHUB_BASE_REF}**
 - Aktive manifest-filer lest: **519**
-- Place-objekter validert: **1217**
+- Place-objekter validert: **1216**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3437**
+- Backlog-funn: **3431**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -41,12 +41,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 
 | nivå | endret | place id | name | fil | felt | problem | forslag til fix |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
-| backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordNote | coordType=historical_site krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +535,12 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordNote | Stor radius r=420 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3437 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3431 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
