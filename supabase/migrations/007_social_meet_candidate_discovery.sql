@@ -19,6 +19,8 @@ create table if not exists public.hg_social_meet_feature_flags (
     check (char_length(feature_key) between 1 and 80)
 );
 
+drop trigger if exists set_hg_social_meet_feature_flags_updated_at
+  on public.hg_social_meet_feature_flags;
 create trigger set_hg_social_meet_feature_flags_updated_at
   before update on public.hg_social_meet_feature_flags
   for each row execute function public.set_updated_at();
@@ -53,8 +55,10 @@ create index if not exists hg_profiles_favorite_eras_gin_idx
   on public.hg_profiles using gin (favorite_eras);
 create index if not exists hg_profiles_learning_goals_gin_idx
   on public.hg_profiles using gin (learning_goals);
+-- Default jsonb_ops supports the key/array existence operators used by the
+-- discovery query. Do not use jsonb_path_ops here.
 create index if not exists hg_profiles_knowledge_fingerprint_gin_idx
-  on public.hg_profiles using gin (knowledge_fingerprint_summary jsonb_path_ops);
+  on public.hg_profiles using gin (knowledge_fingerprint_summary);
 
 -- Candidate suppression needs fast pair checks without exposing the private reason.
 create index if not exists hg_social_meet_reports_pair_status_created_idx
