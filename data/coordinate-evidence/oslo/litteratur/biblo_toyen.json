@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "biblo_toyen",
+  "placeFile": "data/places/litteratur/oslo/places_litteratur/biblo_toyen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.914420834487764,
+    "lon": 10.775438542801346,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Hagegata 22, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker for Biblo Tøyen, ikke som generelt områdeanker for Tøyen torg eller for den separate Deichman Tøyen-filialen i Hagegata 28."
+  },
+  "identity": {
+    "currentName": "Biblo Tøyen",
+    "resolvedIdentity": "Deichman Biblo Tøyen, dedicated library for ages 10–15 at Hagegata 22",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Hagegata 22",
+    "dokumentert egen Biblo-identitet og målgruppe",
+    "eksplisitt skille fra Deichman Tøyen i Hagegata 28 og Tøyen torg som område"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hagegata%2022%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12580:22",
+      "sourceQuality": "official_address_plus_current_library_identity",
+      "finding": "Geonorge returnerer ett entydig adressetreff for Hagegata 22. Kandidatauditten dokumenterer Biblo som en egen Deichman-filial for 10–15-åringer og skiller stedet fra den ordinære Tøyen-filialen i Hagegata 28.",
+      "canVerifyCoordinate": true,
+      "reason": "Det offisielle adressepunktet er et stabilt bygningsanker for Biblo Tøyens konkrete besøkssted."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Hagegata 22 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12580:22",
+      "lat": 59.914420834487764,
+      "lon": 10.775438542801346,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12580:22",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.914420834487764,
+      "lon": 10.775438542801346,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, egen bibliotekidentitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Hagegata 22, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker for Biblo Tøyen, ikke som generelt områdeanker for Tøyen torg eller for den separate Deichman Tøyen-filialen i Hagegata 28."
+  ]
+}
