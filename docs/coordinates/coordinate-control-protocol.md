@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 209 verifiserte eller kildekontrollerte canonical steder. Alias-recorden `loelva_historisk` er migrert til `alnaelva` uten å opprette eller verifisere et nytt fysisk sted. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 30.
+Oslo-tabellen inneholder nå 210 verifiserte eller kildekontrollerte canonical steder. Batch 63 legger til Vikaterrassen som et geometriavgrenset gate- og bygningskompleks i Ruseløkkveien 3–5. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 30.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -231,6 +231,7 @@ Oslo-tabellen inneholder nå 209 verifiserte eller kildekontrollerte canonical s
 | 60 | `vestre_gravlund` | Vestre gravlund | verified | `osm-way:4740772` |
 | 61 | `brannmuseet_oslo` | Brannmuseet i Oslo | verified | `geonorge-adresser-v1:0301:12450:32` |
 | 62 | `skoytemuseet` | Skøytemuseet | verified | `geonorge-adresser-v1:0301:14742:26` |
+| 63 | `vikaterrassen` | Vikaterrassen | verified | `osm-relation:14169568` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -292,6 +293,8 @@ Batch 61 (2026-07-20) legger til `brannmuseet_oslo` som ett fysisk historisk ste
 
 
 Batch 62 (2026-07-20) legger til `skoytemuseet` som en egen sportshistorisk museuminstitusjon ved Frogner stadion. Det normative Geonorge-punktet `geonorge-adresser-v1:0301:14742:26` for Middelthuns gate 26 ligger 70.5 meter fra canonical `frogner_stadion`-markøren på arenaområdet. Museet og stadion beholdes derfor som separate, relaterte steder: samlings- og minneinstitusjon versus aktiv idrettsarena.
+
+Batch 63 (2026-07-20) legger til `vikaterrassen` med et navngitt OSM-geometrianker kryssjekket mot de offisielle Geonorge-adressene Ruseløkkveien 3 og 5. Stedet behandles som ett gate- og bygningskompleks med historiske lag fra Ruseløkkbakken og Ruseløkkbasarene via 1960-tallets modernistiske utbygging til dagens gågate. `victoria_terrasse` er ikke en eksisterende canonical place og blandes ikke inn som identisk sted.
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -307,7 +310,7 @@ Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk p
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 209 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 210 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|

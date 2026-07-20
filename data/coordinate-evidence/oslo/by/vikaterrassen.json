@@ -1,0 +1,99 @@
+{
+  "placeId": "vikaterrassen",
+  "placeFile": "data/places/by/oslo/places/vikaterrassen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9138319,
+    "lon": 10.7285868,
+    "r": 118,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Vikaterrassen named OSM geometry + Geonorge addresses Ruseløkkveien 3 and 5",
+    "coordType": "pedestrian_complex_anchor",
+    "coordNote": "Representativt geometrianker for Vikaterrassen fra den entydige navngitte OpenStreetMap-relationen 14169568, kryssjekket mot de offisielle Geonorge-adressepunktene for Ruseløkkveien 3 og 5. OSM-punktet ligger 0.0 meter fra den navngitte geometrien; adressepunktene ligger henholdsvis 6.1 og 2.7 meter fra geometrien. Punktet brukes som display- og unlock-anker for det samlede Vikaterrassen-komplekset/gågaterommet, ikke som påstått inngang til én bestemt butikk."
+  },
+  "identity": {
+    "currentName": "Vikaterrassen",
+    "resolvedIdentity": "Vikaterrassen as the named relation geometry at Ruseløkkveien 3–5, distinct from the historic Victoria terrasse complex above it",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "Ruseløkkveien 3–5, the pedestrian street space and the low commercial complex function as one named Vikaterrassen place; Victoria terrasse is a historically related but distinct upper complex."
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "named non-point OSM geometry for Vikaterrassen",
+    "cross-check against both official Geonorge address points for Ruseløkkveien 3 and 5",
+    "external historical sources distinguishing Vikaterrassen from Victoria terrasse and the demolished Ruseløkkbasarene"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 14169568 + Geonorge address cross-check",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14169568",
+      "sourceObjectId": "osm-relation:14169568",
+      "sourceQuality": "named_geometry_plus_two_official_address_crosschecks_and_local_history_sources",
+      "finding": "Nominatim resolves exactly one named Vikaterrassen relation/relation geometry. Its representative point is 0.0 m from the geometry, and the official Ruseløkkveien 3 and 5 address points are 6.1 m and 2.7 m from it.",
+      "canVerifyCoordinate": true,
+      "reason": "Representativt geometrianker for Vikaterrassen fra den entydige navngitte OpenStreetMap-relationen 14169568, kryssjekket mot de offisielle Geonorge-adressepunktene for Ruseløkkveien 3 og 5. OSM-punktet ligger 0.0 meter fra den navngitte geometrien; adressepunktene ligger henholdsvis 6.1 og 2.7 meter fra geometrien. Punktet brukes som display- og unlock-anker for det samlede Vikaterrassen-komplekset/gågaterommet, ikke som påstått inngang til én bestemt butikk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ruseløkkveien 3 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:3",
+      "canApplyToPlace": false,
+      "note": "Used only to cross-check the extent of the named Vikaterrassen geometry, not as the canonical area anchor."
+    },
+    {
+      "address": "Ruseløkkveien 5 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:5",
+      "canApplyToPlace": false,
+      "note": "Used only to cross-check the extent of the named Vikaterrassen geometry, not as the canonical area anchor."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14169568",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:3",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:5",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14169568",
+      "geometryType": "Polygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9138319,
+      "lon": 10.7285868,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Use the verified named OSM geometry anchor for Vikaterrassen; retain the two Geonorge addresses as identity cross-checks and do not substitute either single address as the whole-place marker."
+  },
+  "notes": [
+    "Representativt geometrianker for Vikaterrassen fra den entydige navngitte OpenStreetMap-relationen 14169568, kryssjekket mot de offisielle Geonorge-adressepunktene for Ruseløkkveien 3 og 5. OSM-punktet ligger 0.0 meter fra den navngitte geometrien; adressepunktene ligger henholdsvis 6.1 og 2.7 meter fra geometrien. Punktet brukes som display- og unlock-anker for det samlede Vikaterrassen-komplekset/gågaterommet, ikke som påstått inngang til én bestemt butikk."
+  ]
+}

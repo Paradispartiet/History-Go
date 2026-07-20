@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T08:22:27.213Z
+Generert: 2026-07-20T08:30:34.159Z
 
 ## Oppsummering
-- Aktive filer validert: **531**
+- Aktive filer validert: **532**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **426**
@@ -549,6 +549,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/norway/oslo_sport/skimore_oslo.json
 - data/places/historie/oslo/places_historie/brannmuseet_oslo.json
 - data/places/sport/europa/norway/oslo_sport/skoytemuseet.json
+- data/places/by/oslo/places/vikaterrassen.json
 
 ## Harde feil
 - Ingen
