@@ -1,0 +1,327 @@
+name: Temporary Clemenskirken production
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'agent/oslo-coordinate-clemenskirken-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-clemenskirken-production
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize Clemenskirken ruin
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const placeId = 'clemenskirken_ruin_oslo';
+          const placeRel = 'places/historie/oslo/places_historie/clemenskirken_ruin_oslo.json';
+          const evidenceRel = 'oslo/historie/clemenskirken_ruin_oslo.json';
+          const lat = 59.90428439003058;
+          const lon = 10.765667038454175;
+          const sourceObjectId = 'kulturminnesok:51949';
+          const sourceUrl = 'https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/lokaliteter/items/51949?f=json';
+          const coordNote = 'Geometrisk representasjonspunkt beregnet fra Riksantikvarens offisielle MultiPolygon-geometri for Clemenskirken kirkested, Kulturminne-ID 51949. Punktet representerer den konkrete kirke-/ruinlokaliteten og ikke Middelalderparken som helhet.';
+
+          const readJson = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const writeJson = (p, value) => {
+            fs.mkdirSync(path.dirname(p), { recursive: true });
+            fs.writeFileSync(p, JSON.stringify(value, null, 2) + '\n');
+          };
+          const haversine = (aLat, aLon, bLat, bLon) => {
+            const R = 6371000;
+            const dLat = (bLat - aLat) * Math.PI / 180;
+            const dLon = (bLon - aLon) * Math.PI / 180;
+            const x = Math.sin(dLat / 2) ** 2 + Math.cos(aLat * Math.PI / 180) * Math.cos(bLat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(x));
+          };
+
+          const currentIndex = readJson('data/places/places_index.json');
+          if (currentIndex.some(p => p.id === placeId)) throw new Error(`${placeId} already exists in runtime index`);
+          const nearby = currentIndex
+            .filter(p => Number.isFinite(p.lat) && Number.isFinite(p.lon))
+            .map(p => ({ id: p.id, name: p.name, category: p.category, distanceMeters: Math.round(haversine(lat, lon, p.lat, p.lon) * 10) / 10 }))
+            .filter(p => p.distanceMeters <= 350)
+            .sort((a, b) => a.distanceMeters - b.distanceMeters);
+
+          const place = {
+            id: placeId,
+            name: 'Clemenskirkeruinen',
+            lat,
+            lon,
+            r: 70,
+            category: 'historie',
+            year: 1135,
+            period: 'Middelalder – steinkirken omtrentlig datert til 1130–40-årene',
+            emne_ids: [
+              'em_his_tid_periodisering_epoker',
+              'em_his_historiske_lag_i_byrom',
+              'em_his_spor_materialitet'
+            ],
+            desc: 'Ruinene etter Clemenskirken i den sørlige delen av middelalder-Oslo, en toskipet sognekirke viet til sjøfarernes helgen St. Clemens og et nøkkelsted for Oslos tidligste byhistorie.',
+            popupDesc: 'Clemenskirken var sognekirke for den sørlige delen av middelalderbyen og lå ved Clemensalmenningen, forbindelsen mellom byområdet og bryggene. Riksantikvaren registrerer den konkrete ruinlokaliteten som «Clemenskirken kirkested», Kulturminne-ID 51949. Den bevarte steinkirken var uvanlig toskipet og dateres i registergrunnlaget trolig til 1130–40-årene.\n\nUnder og rundt steinkirken er det funnet eldre gravnivåer. De eldste gravene er datert til omkring år 1000, og de ulike orienteringene viser at kirkegården hadde flere faser. Dette gir sterke holdepunkter for eldre kirkelig aktivitet på stedet, men History Go skiller mellom det som faktisk er funnet og det som er arkeologisk tolkning: eldre trekirker er sannsynlige, men ingen eldre kirkebygning er direkte påvist.\n\nRuinen ble gravd fram i 1920–21, og nye undersøkelser i 1970–71 avdekket de eldre gravnivåene. I flere tiår lå stedet vanskelig tilgjengelig under moderne infrastruktur, før området igjen ble åpnet og ruinen konservert og delvis rekonstruert i forbindelse med Middelalderparken og Oslos tusenårsmarkering rundt 2000. History Go modellerer Clemenskirken som en egen fysisk ruin, ikke som et synonym for hele `middelalder_oslo` og ikke som Mariakirken eller Hallvardskirken.',
+            quiz_profile: {
+              place_type: 'kirkeruin',
+              subtype: 'middelaldersk_toskipet_sognekirke_med_eldre_gravnivaer',
+              signature_features: [
+                'Riksantikvarens lokalitet 51949 Clemenskirken kirkested',
+                'toskipet steinkirke fra trolig 1130–40-årene',
+                'sognekirke for den sørlige delen av middelalderbyen',
+                'eldre gravnivåer datert tilbake mot omkring år 1000',
+                'ruin frilagt, konservert og formidlet i Middelalderparken'
+              ],
+              primary_angles: [
+                'middelalderhistorie',
+                'arkeologi_og_kildekritikk',
+                'sognekirke_og_byliv',
+                'bygningstype_og_materialitet',
+                'historiske_lag_i_byrom'
+              ],
+              question_families: [
+                'gjenkjenning',
+                'historisk_endring',
+                'arkeologiske_spor',
+                'byggefaser',
+                'institusjon_og_hverdagsliv',
+                'kontrast'
+              ],
+              avoid_angles: [
+                'presentere_1135_som_eksakt_byggeaar',
+                'presentere_eldre_trekirker_som_direkte_pavist',
+                'forveksle_med_mariakirken',
+                'forveksle_med_hallvardskirken',
+                'forveksle_ruinen_med_hele_middelalderparken'
+              ],
+              must_include: [
+                'rollen som sognekirke for den sørlige delen av byen',
+                'det toskipede steinkirkebygget',
+                'skillet mellom påviste gravnivåer og tolkede eldre kirkefaser',
+                'at ruinen er en egen fysisk identitet i Middelalderparken'
+              ],
+              contrast_targets: [
+                'mariakirken_ruin_oslo',
+                'hallvardskirken_oslo',
+                'middelalder_oslo'
+              ],
+              notes: 'Eksterne arkeologiske, lokalhistoriske og offisielle kulturminnekilder skal dominere synlig quizinnhold. År 1135 er et teknisk representasjonspunkt midt i den omtrentlige dateringen 1130–40-årene.'
+            },
+            locatorType: 'poi',
+            sourceProvider: 'manual_research',
+            sourceObjectId,
+            geocodeAccuracy: 'geometric_center',
+            coordRole: 'site_center',
+            coordStatus: 'verified_geometry',
+            coordSource: 'kulturminnesok_askeladden',
+            coordSourceId: sourceObjectId,
+            coordSourceUrl: sourceUrl,
+            coordType: 'heritage_site_centroid',
+            coordVerifiedAt: '2026-07-20',
+            coordNote,
+            externalLinks: [
+              {
+                type: 'official',
+                label: 'Riksantikvaren – Clemenskirken kirkested 51949',
+                url: sourceUrl,
+                lang: 'nb',
+                verifiedAt: '2026-07-20'
+              },
+              {
+                type: 'source',
+                label: 'Kulturminnesøk – lokalitet 51949',
+                url: 'https://kulturminnesok.no/ra/lokalitet/51949',
+                lang: 'nb',
+                verifiedAt: '2026-07-20'
+              },
+              {
+                type: 'official',
+                label: 'Oslo kommune – Middelalderparken',
+                url: 'https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/middelalderparken',
+                lang: 'nb',
+                verifiedAt: '2026-07-20'
+              }
+            ]
+          };
+          writeJson(path.join('data', placeRel), place);
+
+          const evidence = {
+            schemaVersion: '1.0',
+            placeId,
+            placeFile: `data/${placeRel}`,
+            evidenceStatus: 'applied_to_place',
+            coordinateDecision: 'do_not_change_coordinates_yet',
+            currentCoordinate: {
+              lat,
+              lon,
+              r: 70,
+              coordStatus: 'verified_geometry',
+              coordSource: 'kulturminnesok_askeladden',
+              coordType: 'heritage_site_centroid',
+              coordNote
+            },
+            identity: {
+              currentName: 'Clemenskirkeruinen',
+              resolvedIdentity: 'Riksantikvaren feature 51949, Clemenskirken kirkested in medieval Oslo, the concrete church-ruin locality itself',
+              identityStatus: 'resolved',
+              identityProblem: '',
+              locatorTypeCandidate: 'poi',
+              requiresSplit: false,
+              splitReason: ''
+            },
+            requiredEvidence: [
+              'direkte offisielt objektoppslag for Riksantikvaren feature 51949',
+              'Oslo kommune 0301 og Clemenskirken-identitet',
+              'eksplisitt skille fra middelalder_oslo, mariakirken_ruin_oslo og hallvardskirken_oslo'
+            ],
+            evidence: [
+              {
+                sourceProvider: 'official_heritage_registry',
+                sourceName: 'Riksantikvaren – Lokaliteter, Enkeltminner og Sikringssoner OGC API',
+                sourceUrl,
+                sourceObjectId,
+                sourceQuality: 'official_heritage_object_geometry',
+                finding: 'Direkte Riksantikvaren-oppslag gir feature 51949, Clemenskirken kirkested i Oslo kommune 0301, med offisiell MultiPolygon-geometri og Kulturminnesøk-lokalitet 51949.',
+                canVerifyCoordinate: true,
+                reason: coordNote
+              }
+            ],
+            addressCandidates: [],
+            sourceObjectCandidates: [
+              { sourceProvider: 'official_heritage_registry', sourceObjectId, canApplyToPlace: true }
+            ],
+            geometryCandidates: [
+              { sourceProvider: 'official_heritage_registry', sourceObjectId: 'riksantikvaren-feature:51949', geometryType: 'MultiPolygon', canApplyToPlace: true }
+            ],
+            coordinateCandidates: [
+              { lat, lon, coordRole: 'site_center', canApplyToPlace: true }
+            ],
+            decision: {
+              canBecomeVerified: true,
+              blockedReason: '',
+              nextAction: 'Applied the geometric center of official Riksantikvaren feature 51949 as the site representation point for Clemenskirken ruin.'
+            },
+            notes: [coordNote]
+          };
+          writeJson(path.join('data/coordinate-evidence', evidenceRel), evidence);
+
+          const placeManifestPath = 'data/places/manifest.json';
+          const placeManifest = readJson(placeManifestPath);
+          if (!placeManifest.files.includes(placeRel)) placeManifest.files.push(placeRel);
+          writeJson(placeManifestPath, placeManifest);
+
+          const evidenceManifestPath = 'data/coordinate-evidence/manifest.json';
+          const evidenceManifest = readJson(evidenceManifestPath);
+          if (!evidenceManifest.files.includes(evidenceRel)) evidenceManifest.files.push(evidenceRel);
+          writeJson(evidenceManifestPath, evidenceManifest);
+
+          const protocolPath = 'docs/coordinates/coordinate-control-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          const osloStart = protocol.indexOf('## Oslo');
+          const noCoordStart = protocol.indexOf('### Dokumenterte Oslo-kontroller uten godkjent koordinat');
+          if (osloStart < 0 || noCoordStart < 0) throw new Error('Could not locate bounded Oslo protocol section');
+          const osloSection = protocol.slice(osloStart, noCoordStart);
+          const rows = [...osloSection.matchAll(/^\| (\d+) \| `([^`]+)` \|.*$/gm)];
+          if (!rows.length) throw new Error('No Oslo protocol rows found');
+          const lastRow = rows[rows.length - 1];
+          const maxBatch = Math.max(...rows.map(m => Number(m[1])));
+          const nextBatch = maxBatch + 1;
+          const newRow = `| ${nextBatch} | \`${placeId}\` | Clemenskirkeruinen | verified_geometry | \`${sourceObjectId}\` |`;
+          const insertAt = osloStart + lastRow.index + lastRow[0].length;
+          protocol = protocol.slice(0, insertAt) + '\n' + newRow + protocol.slice(insertAt);
+
+          const summaryRe = /Oslo-tabellen inneholder nå (\d+) verifiserte eller kildekontrollerte canonical steder\. Batch \d+ legger til .*? Antallet fullførte kontroller uten godkjent Oslo-koordinat er (\d+)\./;
+          const summaryMatch = protocol.match(summaryRe);
+          if (!summaryMatch) throw new Error('Could not locate Oslo protocol summary');
+          const newTotal = Number(summaryMatch[1]) + 1;
+          const noCoordCount = Number(summaryMatch[2]);
+          protocol = protocol.replace(summaryRe, `Oslo-tabellen inneholder nå ${newTotal} verifiserte eller kildekontrollerte canonical steder. Batch ${nextBatch} legger til Clemenskirkeruinen med et geometrisk representasjonspunkt fra Riksantikvarens offisielle MultiPolygon for lokalitet 51949, eksplisitt skilt fra områdeankeret Middelalderparken, Mariakirken og Hallvardskirken. Antallet fullførte kontroller uten godkjent Oslo-koordinat er ${noCoordCount}.`);
+          fs.writeFileSync(protocolPath, protocol);
+
+          const reportDir = 'reports/visitoslo-oslo-east-audit-20260720/clemenskirken-ruin';
+          writeJson(path.join(reportDir, 'production-decision.json'), {
+            placeId,
+            decision: 'produce_distinct_canonical_heritage_site',
+            primaryCategory: 'historie',
+            coordinate: { lat, lon, sourceObjectId },
+            nearbyWithin350m: nearby,
+            identityDecision: 'Clemenskirken ruin is the specific Riksantikvaren locality 51949; the broad Middelalderparken anchor, Mariakirken and Hallvardskirken are separate physical identities.',
+            protocolBatch: nextBatch
+          });
+
+          console.log(JSON.stringify({ placeId, nextBatch, nearby }, null, 2));
+          NODE
+
+      - name: Run and persist validation gates
+        shell: bash
+        run: |
+          set -u
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-clemenskirken-production"
+          mkdir -p "$LOGDIR"
+          : > "$LOGDIR/gate-status.txt"
+          BLOCKING_FAIL=0
+
+          run_gate() {
+            name="$1"
+            shift
+            set +e
+            "$@" > >(tee "$LOGDIR/$name.log") 2>&1
+            code=$?
+            set -e
+            printf '%s\n' "$code" > "$LOGDIR/$name.exit-code.txt"
+            echo "$name=$code" >> "$LOGDIR/gate-status.txt"
+            if [ "$code" -ne 0 ]; then BLOCKING_FAIL=1; fi
+            return 0
+          }
+
+          set -e
+          run_gate places-index-build npm run places:index:build
+          run_gate split-manifest-sync npm run audit:places-split-manifest-sync
+          run_gate places-index-check npm run places:index:check
+          run_gate coordinate-source-contract npm run test:coordinate-source-contract
+          run_gate coordinate-quality npm run places:coords:quality
+          run_gate coordinate-intake npm run places:coords:intake -- --strict-new
+          run_gate coordinate-evidence npm run places:coords:evidence:audit
+          run_gate git-diff-check git diff --check
+
+          set +e
+          npm run health:places 2>&1 | tee "$LOGDIR/health-places.log"
+          HEALTH_CODE=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$HEALTH_CODE" > "$LOGDIR/health-places.exit-code.txt"
+          echo "health-places=$HEALTH_CODE" >> "$LOGDIR/gate-status.txt"
+          printf '%s\n' "$BLOCKING_FAIL" > "$LOGDIR/blocking-fail.txt"
+
+      - name: Commit production result
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-clemenskirken-production"
+          BLOCKING_FAIL=$(cat "$LOGDIR/blocking-fail.txt")
+          rm -f .github/workflows/temp-clemenskirken-production.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Clemenskirken ruin as canonical Oslo history place"
+          git push origin HEAD:agent/oslo-coordinate-clemenskirken-production
+          if [ "$BLOCKING_FAIL" -ne 0 ]; then exit 1; fi
