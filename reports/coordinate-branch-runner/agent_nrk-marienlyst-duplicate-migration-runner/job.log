@@ -1,0 +1,184 @@
+From https://github.com/Paradispartiet/History-Go
+ * branch                agent/nrk-marienlyst-duplicate-migration -> FETCH_HEAD
+{
+  "ok": true,
+  "verifiedCount": 195,
+  "unresolvedCount": 36,
+  "initialReferenceFiles": [
+    "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+    "data/coordinate-evidence/manifest.json",
+    "data/coordinate-evidence/oslo/naeringsliv/nrk_marienlyst.json",
+    "data/events/events_generation_manifest.json",
+    "data/i18n/content/places/en.json",
+    "data/i18n/content/places/es.json",
+    "data/i18n/content/places/pt.json",
+    "data/maler/relationMAL.json",
+    "data/maler/wk_placesMAL.json",
+    "data/maler/wonderkammer_enryMAL.json",
+    "data/places/media/oslo/places_oslo_media.json",
+    "data/places/media/oslo/places_oslo_media/nrk_huset_marienlyst.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv/nrk_marienlyst.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+    "data/places/places_index.json",
+    "data/quiz/naeringsliv/nrk_marienlyst_sets_merged.json",
+    "data/quiz/quiz_naeringsliv.json",
+    "data/stories/stories_good_game_redaksjon.json",
+    "data/stories/stories_manifest_naeringsliv_batch_01.json",
+    "data/stories/stories_nrk_huset_marienlyst.json",
+    "data/stories/stories_nrk_marienlyst.json",
+    "data/wonderkammer/base.json",
+    "data/wonderkammer/site_package_oslo_media_redaksjoner.json",
+    "data/wonderkammer/wonderkammer2.json"
+  ],
+  "rewrittenFiles": [
+    "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+    "data/events/events_generation_manifest.json",
+    "data/i18n/content/places/en.json",
+    "data/i18n/content/places/es.json",
+    "data/i18n/content/places/pt.json",
+    "data/maler/relationMAL.json",
+    "data/maler/wk_placesMAL.json",
+    "data/maler/wonderkammer_enryMAL.json",
+    "data/places/media/oslo/places_oslo_media/nrk_huset_marienlyst.json",
+    "data/places/media/oslo/places_oslo_media.json",
+    "data/places/places_index.json",
+    "data/quiz/quiz_naeringsliv.json",
+    "data/stories/stories_good_game_redaksjon.json",
+    "data/wonderkammer/base.json",
+    "data/wonderkammer/site_package_oslo_media_redaksjoner.json",
+    "data/wonderkammer/wonderkammer2.json"
+  ]
+}
+
+[NRK migration] npm run places:index:build
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1259 places -> data/places/places_index.json; skipped 9 disabled place(s)
+
+[NRK migration] npm run places:aliases:check
+
+> history-go@0.0.0 places:aliases:check
+> npm run build:tools && node dist/tools/check_place_id_aliases.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: no legacy place IDs found in checked JSON data.
+
+[NRK migration] npm run places:emner:check
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 518
+Canonical emne files scanned: 15
+Canonical emne ids loaded: 996
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0
+
+[NRK migration] npm run check:stories
+
+> history-go@0.0.0 check:stories
+> npm run build:tools && node dist/tools/check_stories_integrity.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Stories integrity summary
+- Story-filer: 147
+- Stories: 239
+- Place-koblede stories: 239
+- Person-koblede stories: 117
+- Next scenes: 253
+- Place-sourcefiler lest: 518
+
+Stories integrity FAILED
+- Ugyldig place_id: story=st_regjeringskvartalet_terror_2011 field=related_places[0] place_id=utoya file=data/stories/stories_regjeringskvartalet.json
+- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=related_places[1] place_id=operaen file=data/stories/stories_folketeateret.json
+- Ugyldig place_id: story=st_folketeateret_kino_teater_opera_musikal field=next_scenes[0].place_id place_id=operaen file=data/stories/stories_folketeateret.json
+- Ugyldig manifest category: category=naeringsliv path=data/stories/stories_etnesjoen_naeringsliv_rounds_batch1.json
+- Ugyldig person_id: story=st_bla_skilt_aud_schonemann_fra_hjem_til_minnested field=person_id person_id=aud_schonemann file=data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_aud_schonemann_fra_hjem_til_minnested finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Ugyldig person_id: story=st_bla_skilt_aud_schonemann_fra_hjem_til_minnested field=person_id person_id=aud_schonemann file=data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_stein_mehren_et_forfatterliv_i_ullevalsveien finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_hornsrud_fra_hjem_til_statsministerhistorie finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_helverschous_fra_lokke_til_minneskilt finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_enerhaugen_samfund_fra_bedehus_til_sanert_by finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_aud_schonemann_fra_hjem_til_minnested finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Ugyldig person_id: story=st_bla_skilt_aud_schonemann_fra_hjem_til_minnested field=person_id person_id=aud_schonemann file=data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_stein_mehren_et_forfatterliv_i_ullevalsveien finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_hornsrud_fra_hjem_til_statsministerhistorie finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_helverschous_fra_lokke_til_minneskilt finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_enerhaugen_samfund_fra_bedehus_til_sanert_by finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_aud_schonemann_fra_hjem_til_minnested finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Ugyldig person_id: story=st_bla_skilt_aud_schonemann_fra_hjem_til_minnested field=person_id person_id=aud_schonemann file=data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_stein_mehren_et_forfatterliv_i_ullevalsveien finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_hornsrud_fra_hjem_til_statsministerhistorie finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_helverschous_fra_lokke_til_minneskilt finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_enerhaugen_samfund_fra_bedehus_til_sanert_by finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_aud_schonemann_fra_hjem_til_minnested finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Ugyldig person_id: story=st_bla_skilt_aud_schonemann_fra_hjem_til_minnested field=person_id person_id=aud_schonemann file=data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_stein_mehren_et_forfatterliv_i_ullevalsveien finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_hornsrud_fra_hjem_til_statsministerhistorie finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_helverschous_fra_lokke_til_minneskilt finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Duplikat story.id: st_bla_skilt_enerhaugen_samfund_fra_bedehus_til_sanert_by finnes i både data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json og data/stories/stories_oslo_bla_skilt_2026_rounds_batch1.json
+- Ugyldig manifest category: category=psykologi path=data/stories/stories_etne_psykologi_rounds_batch1.json
+- Ugyldig place_id: story=st_etne_psykisk_helse_fra_direkte_kontakt_til_koordinert_oppfolging field=related_places[1] place_id=etne_senter file=data/stories/stories_etne_psykologi_rounds_batch1.json
+- Ugyldig place_id: story=st_etne_psykisk_helse_fra_direkte_kontakt_til_koordinert_oppfolging field=next_scenes[1].place_id place_id=etne_senter file=data/stories/stories_etne_psykologi_rounds_batch1.json
+
+[NRK migration] check:stories has pre-existing non-NRK failures; no NRK-specific regression detected.
+
+[NRK migration] npm run audit:quiz-manifest:v2
+
+> history-go@0.0.0 audit:quiz-manifest:v2
+> node scripts/audit-quiz-manifest-v2.mjs
+
+Wrote reports/quiz_manifest_v2_audit_report.json
+{
+  "status": "failed",
+  "failureCounts": 9,
+  "legacyQuizItemsCount": 1118,
+  "setManifestEntriesCount": 226,
+  "setQuestionsChecked": 1761
+}
+
+[NRK migration] audit:quiz-manifest:v2 has pre-existing non-NRK failures; no NRK-specific regression detected.
+
+[NRK migration] npm run audit:people-of-places
+
+> history-go@0.0.0 audit:people-of-places
+> npm run build:tools && node dist/tools/audit-people-of-places-status.mjs && node dist/tools/check-people-of-places-gate.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1214; flat files: 0; geographic files: 617; invalid refs: 0; duplicate IDs: 0
+People of Places audit gate passed
+
+bash: line 1: rg: command not found
+NRK Marienlyst duplicate migration and cross-domain checks passed.

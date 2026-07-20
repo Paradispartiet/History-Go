@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-20T04:36:24.769Z
+Generert: 2026-07-20T04:45:24.066Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **e25bb7d130729b9f44c097e25caac113bfe2eb47**
-- Base method: **git merge-base HEAD origin/main**
+- Base for nye/endrede place-objekter: **origin/main**
+- Base method: **origin/${GITHUB_BASE_REF}**
 - Aktive manifest-filer lest: **518**
-- Place-objekter validert: **1219**
+- Place-objekter validert: **1218**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3444**
+- Backlog-funn: **3441**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -543,4 +543,4 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3444 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3441 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
