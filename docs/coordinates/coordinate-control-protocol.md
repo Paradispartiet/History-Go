@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 202 verifiserte eller kildekontrollerte canonical steder. Siste kontroll avgrenset `oslo_kraftselskap` til Oslo Lysverkers hovedkontor i Sommerrogata 1 og verifiserte bygget med Geonorge-adressepunkt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
+Oslo-tabellen inneholder nå 202 verifiserte eller kildekontrollerte canonical steder. Alias-recorden `loelva_historisk` er migrert til `alnaelva` uten å opprette eller verifisere et nytt fysisk sted. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 30.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -285,6 +285,8 @@ Duplikatmigrering (2026-07-20): `good_game_redaksjon` er fjernet som separat fys
 Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fysisk place fordi recorden overlapper canonical og koordinatverifiserte `nydalen`. Industristedets dokumenterte works, før–nå, brands, Civication-objekter, kilder, underbadges og Akerselva-naturprofil er slått inn i canonical Nydalen. Quiz-, people-, story-, leksikon-, natur- og rutereferanser er retargetet til canonical place-ID, mens det verifiserte Nydalen-området beholder sitt eksisterende geometrianker.
 | 56 | `oslo_kraftselskap` | Oslo Lysverkers hovedkontor | verified | `geonorge-adresser-v1:0301:16854:1` |
 
+Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk place fordi Loelva er dokumentert som historisk/alternativt navn på `alnaelva`, ikke som et eget vassdrag. Navnehistorien er bevart som en eksplisitt `historical_alias`-relasjon på canonical Alnaelva, aktive referanser er retargetet og den separate Civication-markøren er fjernet. Alnaelvas koordinatstatus er fortsatt `needs_source`; migreringen verifiserer ikke den uavklarte elvegeometrien.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 202 verifiserte eller kildekontrollerte canonical Oslo-stedene.
@@ -301,7 +303,6 @@ Disse kontrollene er fullført, men teller ikke blant de 202 verifiserte eller k
 | `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
 | `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |
 | `alnaelvstien` – Alnaelvstien / Alnastien | needs_review | Oslo kommune dokumenterer turveien langs Alnaelva, men OSM har flere separate Alnastien-way-er og ingen samlet ruterelasjon i kontrollen. | Bygg routeSegments eller finn samlet offisiell rutetrase før canonical punkt godkjennes. |
-| `loelva_historisk` – Loelva, historisk navn på Alna | needs_review | Loelva er dokumentert som historisk/alternativt navn på Alna og er ikke et separat fysisk vassdrag. | Modeller som historisk alias/relation til `alnaelva`, eller dokumenter en eksplisitt historisk delstrekning. |
 | `trosterud_friomrade` – Trosterud friområde | needs_review | Kontrollen fant ingen stabil offisiell eller eksakt OSM-entitet med recordens navn; kommunale planer dokumenterer bare bredere grønt- og byutviklingskontekst. | Identifiser konkret navngitt friområde eller erstatt recorden med dokumentert arealobjekt. |
 | `furuset_haugerud_skogbelte` – Furuset–Haugerud skogbelte | needs_review | Navnet beskriver et bredt grønt overgangsområde, men ingen eksplisitt avgrenset offisiell eller eksakt OSM-geometri ble dokumentert. | Finn plan-/naturgeometri med eksplisitt avgrensning eller erstatt med konkrete navngitte naturområder. |
 | `hellerud_gard` – Hellerud gård | needs_review | Hellerud-navnet dekker flere historiske gårdsbruk. Det entydige Haugerudtunet 1 gjelder separate Østre Haugerud gård og kan ikke brukes som automatisk erstatning for den uklare Hellerud-recorden. | Avklar hvilken Hellerud-gård recorden representerer og dokumenter fysisk hovedanker før koordinaten godkjennes. |

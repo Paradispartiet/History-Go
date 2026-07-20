@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-20T07:19:14.984Z
+Generert: 2026-07-20T07:45:45.614Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-20T07:19:14.984Z |
-| peopleFilesRead | 620 |
-| totalPeople | 1220 |
-| uniquePeopleIds | 1220 |
+| generatedAt | 2026-07-20T07:45:45.614Z |
+| peopleFilesRead | 625 |
+| totalPeople | 1225 |
+| uniquePeopleIds | 1225 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 620 |
+| geographicPeopleFiles | 625 |
 | categoriesRepresented | 16 |
 
 ## People-filer
@@ -36,6 +36,8 @@ Generert: 2026-07-20T07:19:14.984Z
 | data/people/by/oslo/helsfyr/fredrik_a_s_torp.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/helsfyr/guttorm_bruskeland.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/vestland/etne/people_by_etne_rounds_batch1.json | by | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/filantroper/oslo/people_filantroper_oslo.json | filantroper | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 13 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -73,8 +75,11 @@ Generert: 2026-07-20T07:19:14.984Z
 | data/people/historie/oslo/akershus_festning/ulrik_frederik_gyldenlove.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/bla_skilt_2026/honoratus_halling.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/bla_skilt_2026/nils_helverschou.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/botsfengselet/paul_magnus_norum.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/botsfengselet/richard_petersen_fengselsdirektor.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/gamle_radhus/lauritz_hansen.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json | historie | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -647,10 +652,10 @@ Generert: 2026-07-20T07:19:14.984Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 43 | 0 | 15 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 45 | 0 | 17 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 23 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| historie | 192 | 0 | 46 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| historie | 195 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | kunst | 40 | 0 | 11 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 168 | 0 | 125 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 27 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -666,7 +671,7 @@ Generert: 2026-07-20T07:19:14.984Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 620
+- Allerede geografisk strukturert: 625
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -705,6 +710,8 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/helsfyr/fredrik_a_s_torp.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/helsfyr/guttorm_bruskeland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=25/25; source_place_id=0/25; placesArray=25/25; categories=by
+- data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/vestland/etne/people_by_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=by
 - data/people/filantroper/oslo/people_filantroper_oslo.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; collectionGroup=17/17; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=13/13; source_place_id=0/13; placesArray=13/13; categories=film_tv
@@ -742,8 +749,11 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/historie/oslo/akershus_festning/ulrik_frederik_gyldenlove.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/bla_skilt_2026/honoratus_halling.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/bla_skilt_2026/nils_helverschou.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/botsfengselet/paul_magnus_norum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/botsfengselet/richard_petersen_fengselsdirektor.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/gamle_radhus/lauritz_hansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=65/65; source_place_id=0/65; placesArray=65/65; categories=historie
+- data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=historie
