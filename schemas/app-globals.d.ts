@@ -125,6 +125,10 @@ declare global {
       };
       getPlaceDistanceMeters?: (place: any, position: unknown) => number | null;
     };
+    HGNearbyPlacesList?: {
+      render?: () => void;
+    };
+    renderNearbyPlaces?: () => void;
     HGLeftPanelMode?: {
       getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
       setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
