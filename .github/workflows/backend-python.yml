@@ -45,7 +45,20 @@ jobs:
         run: python -m ruff check backend
 
       - name: Ruff format check
-        run: python -m ruff format --check backend
+        id: ruff-format
+        run: |
+          mkdir -p reports/backend-ci
+          set -o pipefail
+          python -m ruff format --check --diff backend 2>&1 \
+            | tee reports/backend-ci/ruff-format.diff
+
+      - name: Upload Ruff format diff
+        if: failure() && steps.ruff-format.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-ruff-format-diff-${{ github.run_id }}
+          path: reports/backend-ci/ruff-format.diff
+          if-no-files-found: error
 
       - name: Mypy strict typecheck
         run: python -m mypy backend/app
