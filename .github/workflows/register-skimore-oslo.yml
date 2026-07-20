@@ -1,0 +1,101 @@
+name: Register Skimore Oslo quiz
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    if: github.event.issue.title == '[automation] Register Skimore Oslo quiz'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Register quiz set and validate data
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest_path = Path("data/quiz/manifest.json")
+          quiz_path = Path("data/quiz/sport/skimore_oslo_sets.json")
+          target_id = "skimore_oslo"
+          file_path = "data/quiz/sport/skimore_oslo_sets.json"
+
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          sets = manifest.get("sets")
+          if not isinstance(sets, list):
+              raise SystemExit("manifest sets is not a list")
+
+          matches = [item for item in sets if item.get("targetId") == target_id]
+          if len(matches) > 1:
+              raise SystemExit("duplicate Skimore Oslo manifest entries")
+          if matches:
+              if matches[0].get("file") != file_path:
+                  raise SystemExit("Skimore Oslo points to an unexpected file")
+          else:
+              entry = {"targetId": target_id, "file": file_path}
+              insert_at = next(
+                  (index + 1 for index, item in enumerate(sets)
+                   if item.get("targetId") == "korketrekkeren"),
+                  len(sets),
+              )
+              sets.insert(insert_at, entry)
+
+          quiz = json.loads(quiz_path.read_text(encoding="utf-8"))
+          blocks = quiz.get("sets", [])
+          questions = [q for block in blocks for q in block.get("questions", [])]
+
+          if quiz.get("targetId") != target_id or quiz.get("categoryId") != "sport":
+              raise SystemExit("quiz root identity mismatch")
+          if len(blocks) != 2 or len(questions) != 10:
+              raise SystemExit("expected 2 sets and 10 questions")
+          if len({block.get("set_id") for block in blocks}) != 2:
+              raise SystemExit("duplicate set ids")
+          if len({q.get("id") for q in questions}) != len(questions):
+              raise SystemExit("duplicate question ids")
+          if len({q.get("quiz_id") for q in questions}) != len(questions):
+              raise SystemExit("duplicate quiz ids")
+
+          for question in questions:
+              if question.get("targetId") != target_id or question.get("placeId") != target_id:
+                  raise SystemExit(f"target mismatch in {question.get('id')}")
+              options = question.get("options")
+              answer_index = question.get("answerIndex")
+              if not isinstance(options, list) or len(options) != 3:
+                  raise SystemExit(f"invalid options in {question.get('id')}")
+              if not isinstance(answer_index, int) or not 0 <= answer_index < len(options):
+                  raise SystemExit(f"invalid answerIndex in {question.get('id')}")
+              if options[answer_index] != question.get("answer"):
+                  raise SystemExit(f"answerIndex mismatch in {question.get('id')}")
+              if not question.get("emne_id"):
+                  raise SystemExit(f"missing emne_id in {question.get('id')}")
+
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Commit manifest and remove one-time workflow
+        run: |
+          rm .github/workflows/register-skimore-oslo.yml
+          git config user.name "History Go Data Production"
+          git config user.email "history-go-data@users.noreply.github.com"
+          git add data/quiz/manifest.json .github/workflows/register-skimore-oslo.yml
+          git commit -m "Register Skimore Oslo quiz set"
+
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
