@@ -16,7 +16,12 @@ if (!response.ok) {
   throw new Error(`Kunne ikke hente immutable Alna-runner: ${response.status} ${response.statusText}`);
 }
 
-fs.writeFileSync(tempPath, await response.text());
+let source = await response.text();
+source = source.replace('if (newBatch !== 91)', 'if (newBatch < 92)');
+source = source.replaceAll('Neste nye Oslo-kontroll er batch 92.', 'Neste nye Oslo-kontroll er batch ${newBatch + 1}.');
+source = source.replaceAll('Før batch 92 starter', 'Før batch ${newBatch + 1} starter');
+
+fs.writeFileSync(tempPath, source);
 try {
   await import(`${pathToFileURL(tempPath).href}?run=${Date.now()}`);
 } finally {
