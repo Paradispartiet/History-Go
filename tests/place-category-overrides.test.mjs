@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { applyCategoryOverride, readCategoryOverrides } from '../tools/lib/placeCategoryOverrides.mjs';
+import { applyCategoryOverride, readCategoryOverrides } from '../dist/tools/lib/placeCategoryOverrides.mjs';
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(), 'hg-category-overrides-'));
 const placesDir = path.join(root, 'data/places');
