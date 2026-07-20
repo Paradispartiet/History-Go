@@ -113,6 +113,23 @@ function escapeBadgeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function ensurePlaceCardRoundBorderStyle() {
+  if (document.getElementById("hgPlaceCardRoundBorderStyle")) return;
+
+  const style = document.createElement("style");
+  style.id = "hgPlaceCardRoundBorderStyle";
+  style.textContent = `
+    #placeCard .pc-round {
+      border-color: #000 !important;
+    }
+
+    #placeCard .pc-round:hover {
+      border-color: #000 !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function formatSubcategoryLabel(rawValue) {
   const raw = badgeText(rawValue);
   if (!raw) return "";
@@ -260,4 +277,5 @@ window.HGBadges = {
   applyPlaceCardBadgeRound
 };
 
+ensurePlaceCardRoundBorderStyle();
 patchPlaceCardBadgeRound();
