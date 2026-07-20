@@ -134,13 +134,13 @@
 
   function openRoutePanel(){
     root.setNearbyCollapsed?.(false);
-    const modeSelect=root.document?.getElementById?.('leftPanelMode');
+    const modeSelect=/** @type {HTMLSelectElement|null} */ (root.document?.getElementById?.('leftPanelMode'));
     if(modeSelect){
       modeSelect.value='routes';
       modeSelect.dispatchEvent?.(new Event('change',{bubbles:true}));
     }
     root.setLeftPanelMode?.('routes');
-    return root.renderLeftRoutesList?.();
+    return /** @type {any} */ (root).renderLeftRoutesList?.();
   }
 
   function openRouteViewer(action){
