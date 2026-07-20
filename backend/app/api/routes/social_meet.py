@@ -14,7 +14,10 @@ from app.domains.social_meet.models import (
     PublicSocialMeetProfile,
 )
 from app.domains.social_meet.privacy import find_forbidden_fields
-from app.domains.social_meet.service import SocialMeetDomainError, SocialMeetIdentityService
+from app.domains.social_meet.service import (
+    SocialMeetDomainError,
+    SocialMeetIdentityService,
+)
 
 router = APIRouter(prefix="/social-meet", tags=["Social Meet"])
 
@@ -49,7 +52,9 @@ def put_social_meet_profile(
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail={
                 "code": "forbidden_profile_field",
-                "fields": [{"field": item.field, "path": item.path} for item in forbidden],
+                "fields": [
+                    {"field": item.field, "path": item.path} for item in forbidden
+                ],
             },
         )
 
