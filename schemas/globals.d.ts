@@ -73,19 +73,110 @@ type DataHubApi = {
   [key: string]: unknown;
 };
 
+// MapLibre is loaded from a pinned CDN script in index.html rather than as an
+// npm dependency. Keep a small, explicit structural contract for the browser
+// surface History Go actually uses instead of treating the whole map runtime as
+// untyped global state.
+type MapLibreEvent = {
+  features?: MapLibreFeature[];
+  point?: MapLibrePoint;
+  originalEvent?: any;
+  preventDefault?: () => void;
+  [key: string]: unknown;
+};
+
+type MapLibrePoint = { x: number; y: number };
+
+type MapLibreFeature = {
+  layer?: { id?: string };
+  properties?: Record<string, any>;
+  [key: string]: unknown;
+};
+
+type MapLibreGeoJSONSource = {
+  setData: (data: unknown) => void;
+};
+
+type MapLibreMap = {
+  __hgPlaceHandlers?: any;
+  addControl: (control: unknown, position?: string) => MapLibreMap;
+  on: {
+    (event: string, handler: (event: MapLibreEvent) => void): MapLibreMap;
+    (event: string, layerId: string, handler: (event: MapLibreEvent) => void): MapLibreMap;
+  };
+  once: {
+    (event: string, handler: () => void): MapLibreMap;
+    (event: string, layerId: string, handler: (event: MapLibreEvent) => void): MapLibreMap;
+  };
+  off: {
+    (event: string, handler: (...args: any[]) => void): MapLibreMap;
+    (event: string, layerId: string, handler: (...args: any[]) => void): MapLibreMap;
+  };
+  resize: () => void;
+  isStyleLoaded: () => boolean;
+  setStyle: (style: string) => void;
+  getSource: (id: string) => MapLibreGeoJSONSource | undefined;
+  getLayer: (id: string) => unknown;
+  removeLayer: (id: string) => void;
+  removeSource: (id: string) => void;
+  addSource: (id: string, source: unknown) => void;
+  addLayer: (layer: unknown) => void;
+  moveLayer: (id: string) => void;
+  setPaintProperty: (layerId: string, property: string, value: unknown) => void;
+  getStyle: () => { layers?: any[] };
+  getCanvas: () => HTMLCanvasElement;
+  queryRenderedFeatures: (geometry?: unknown, options?: { layers?: string[] }) => MapLibreFeature[];
+  flyTo: (options: Record<string, unknown>) => void;
+  getZoom: () => number;
+  getPitch: () => number;
+};
+
+type MapLibreMarker = {
+  setLngLat: (lngLat: [number, number]) => MapLibreMarker;
+  addTo: (map: MapLibreMap) => MapLibreMarker;
+};
+
+type MapLibreRuntime = {
+  Map: new (options: Record<string, unknown>) => MapLibreMap;
+  NavigationControl: new (options?: Record<string, unknown>) => unknown;
+  Marker: new (options?: Record<string, unknown>) => MapLibreMarker;
+};
+
 declare global {
+  const maplibregl: MapLibreRuntime;
+
   interface Window {
     PLACES?: Place[];
     visited: VisitedPlaces;
     merits?: MeritsByCategory;
     DataHub?: DataHubApi;
+    maplibregl?: MapLibreRuntime;
+    HG_MAPTILER_KEY?: string;
+    MAPTILER_KEY?: string;
+    HG_NATURTRO_STYLE_URL?: string;
+    HG_NATURTRO_STYLE_ID?: string;
+    HG_I18N?: {
+      localizePlaces?: (places: any[]) => any[];
+    };
+    HGCoordinateTrust?: {
+      getCoordinateTrust: (place: unknown) => "verified" | "review" | "unknown" | "invalid";
+    };
     HGMap?: {
-      setVisited?: (visited: VisitedPlaces) => void;
-      refreshMarkers?: () => void;
       initMap?: (options?: {
         containerId?: string;
         start?: unknown;
       }) => unknown;
+      getMap?: () => MapLibreMap | null;
+      resize?: () => void;
+      setDataReady?: (ready?: unknown) => void;
+      setPlaces?: (places: Place[]) => void;
+      setVisited?: (visited: VisitedPlaces) => void;
+      setCatColor?: (resolver: (categoryId: unknown) => string) => void;
+      setOnPlaceClick?: (handler: (placeId: string) => void) => void;
+      setUser?: (lat: unknown, lon: unknown, options?: { fly?: boolean }) => void;
+      getCoordinateTrust?: (place: unknown) => "verified" | "review" | "unknown" | "invalid";
+      maybeDrawMarkers?: () => void;
+      refreshMarkers?: () => void;
       [key: string]: unknown;
     };
     renderNearbyPlaces?: () => void;
