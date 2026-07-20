@@ -133,8 +133,31 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Apply bounded Nearby selector migration
         run: python .github/scripts/finalize-nearby-place-selector-v4.py
-      - name: Typecheck migrated browser TypeScript
-        run: npm run typecheck:web
+      - name: Capture migrated browser TypeScript diagnostics
+        shell: bash
+        run: |
+          set +e
+          npm run typecheck:web > nearby-selector-typecheck.log 2>&1
+          status=$?
+          echo "$status" > nearby-selector-typecheck.status
+          exit 0
+      - name: Upload selector TypeScript diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: nearby-selector-typecheck-diagnostics
+          path: |
+            nearby-selector-typecheck.log
+            nearby-selector-typecheck.status
+          if-no-files-found: error
+          retention-days: 1
+      - name: Require clean migrated browser TypeScript
+        shell: bash
+        run: |
+          status="$(cat nearby-selector-typecheck.status)"
+          if [[ "$status" != "0" ]]; then
+            cat nearby-selector-typecheck.log
+            exit "$status"
+          fi
       - name: Build migrated browser runtime
         run: npm run build:web
       - name: Typecheck remaining legacy JavaScript
