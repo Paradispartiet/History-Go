@@ -3,27 +3,38 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-const original = execFileSync(
+const commits = execFileSync(
   'git',
-  ['show', 'HEAD^^:scripts/coordinate-branch-job.mjs'],
+  ['log', '--format=%H', '--', 'scripts/coordinate-branch-job.mjs'],
   { encoding: 'utf8' }
-);
+).trim().split(/\s+/);
 
 const oldLookup = `const birdSources = [
   ...readJson('data/natur/fauna/fugler_by.json'),
   ...readJson('data/natur/fauna/fugler_vatmark_og_skog.json')
 ];`;
-const fixedLookup = `const birdSources = fs
-  .readdirSync(path.join(root, 'data/natur/fauna'))
-  .filter(name => name.endsWith('.json'))
-  .flatMap(name => {
-    const value = readJson(path.join('data/natur/fauna', name));
-    return Array.isArray(value) ? value : [];
-  });`;
-
-if (!original.includes(oldLookup)) {
-  throw new Error('Fant ikke forventet fuglekortoppslag i originalmaterialiseringen');
+let original = '';
+for (const commit of commits) {
+  const candidate = execFileSync(
+    'git',
+    ['show', `${commit}:scripts/coordinate-branch-job.mjs`],
+    { encoding: 'utf8' }
+  );
+  if (candidate.includes(oldLookup)) {
+    original = candidate;
+    break;
+  }
 }
+if (!original) {
+  throw new Error('Fant ikke originalmaterialiseringen i Git-historikken');
+}
+
+const fixedLookup = `const birdSources = [
+  ...readJson('data/natur/fauna/fugler_by.json'),
+  ...readJson('data/natur/fauna/fugler_vatmark_og_skog.json'),
+  ...readJson('data/natur/fauna/fugler_etne_stordalen.json'),
+  ...readJson('data/natur/fauna/artsdatabanken_oslo_fauna.json')
+];`;
 
 const patched = original.replace(oldLookup, fixedLookup);
 const tempPath = path.resolve('scripts/.kvaernerbyen-materializer-fixed.mjs');
