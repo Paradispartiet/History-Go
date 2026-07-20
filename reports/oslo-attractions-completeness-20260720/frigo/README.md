@@ -13,3 +13,12 @@
 - Address guard: FRIGO's own current site says Ensjøveien 20. VisitOSLO's Ensjøveien 7 listing is not used as the current canonical address.
 
 Production is approved from this intake.
+
+## Production
+
+- Canonical place: `frigo_friluftssenteret`
+- Category: `sport`
+- Coordinate source: `geonorge-adresser-v1:0301:11589:20`
+- Coordinate status: `verified`
+- Coordinate batch: 74
+- Oslo verified/source-controlled total after production: 221
