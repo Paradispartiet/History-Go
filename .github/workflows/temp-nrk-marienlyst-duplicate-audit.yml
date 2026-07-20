@@ -1,0 +1,48 @@
+name: Temp NRK Marienlyst duplicate audit
+
+on:
+  push:
+    branches:
+      - 'agent/nrk-marienlyst-duplicate-audit'
+    paths:
+      - '.github/workflows/temp-nrk-marienlyst-duplicate-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/nrk-marienlyst-duplicate-audit
+          fetch-depth: 0
+
+      - name: Inventory exact active data references
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/nrk-marienlyst-duplicate-audit
+          {
+            echo '# Exact nrk_marienlyst references under data/'
+            echo
+            rg -n --glob '!**/*.md' --glob '!**/reports/**' 'nrk_marienlyst' data || true
+          } | tee reports/nrk-marienlyst-duplicate-audit/data-references.txt
+
+          {
+            echo '# Canonical nrk_huset_marienlyst references under data/'
+            echo
+            rg -n --glob '!**/*.md' --glob '!**/reports/**' 'nrk_huset_marienlyst' data || true
+          } | tee reports/nrk-marienlyst-duplicate-audit/canonical-references.txt
+
+      - name: Commit audit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/nrk-marienlyst-duplicate-audit/
+          git diff --cached --check
+          git commit -m "Audit nrk_marienlyst duplicate references"
+          git push origin HEAD:agent/nrk-marienlyst-duplicate-audit
