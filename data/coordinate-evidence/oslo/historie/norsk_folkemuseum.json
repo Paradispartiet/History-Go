@@ -1,0 +1,74 @@
+{
+  "placeId": "norsk_folkemuseum",
+  "placeFile": "data/places/historie/oslo/places_historie/norsk_folkemuseum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90748291814004,
+    "lon": 10.686716088479649,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Museumsveien 10, OSLO. Punktet er representasjonspunktet for museets offisielle besøksadresse og brukes som display-marker for Norsk Folkemuseum, ikke som koordinat for Gol stavkirke eller hvert enkelt objekt i friluftsmuseet."
+  },
+  "identity": {
+    "currentName": "Norsk Folkemuseum",
+    "resolvedIdentity": "Norsk Folkemuseum, museumsinstitusjonen og besøksstedet i Museumsveien 10 på Bygdøy",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell institusjonsidentitet",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Museumsveien%2010%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14899:10",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Museumsveien 10 Oslo. Egen museumsmarkør er fysisk og semantisk separat fra `gol_stavkirke_bygdoy`, som representerer ett konkret bygg inne i museumsområdet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Museumsveien 10, OSLO. Punktet er representasjonspunktet for museets offisielle besøksadresse og brukes som display-marker for Norsk Folkemuseum, ikke som koordinat for Gol stavkirke eller hvert enkelt objekt i friluftsmuseet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Museumsveien 10 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14899:10",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14899:10",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90748291814004,
+      "lon": 10.686716088479649,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Museumsveien 10, OSLO. Punktet er representasjonspunktet for museets offisielle besøksadresse og brukes som display-marker for Norsk Folkemuseum, ikke som koordinat for Gol stavkirke eller hvert enkelt objekt i friluftsmuseet.",
+    "Egen museumsmarkør er fysisk og semantisk separat fra `gol_stavkirke_bygdoy`, som representerer ett konkret bygg inne i museumsområdet."
+  ]
+}

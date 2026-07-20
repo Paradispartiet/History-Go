@@ -1,0 +1,74 @@
+{
+  "placeId": "historisk_museum",
+  "placeFile": "data/places/historie/oslo/places_historie/historisk_museum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.916807785575195,
+    "lon": 10.735397626110528,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Frederiks gate 2, OSLO. Punktet er representasjonspunktet for Historisk museums offisielle adresse og brukes som display-marker for museumsbygningen, ikke for hele Tullinløkka-området."
+  },
+  "identity": {
+    "currentName": "Historisk museum",
+    "resolvedIdentity": "Historisk museum, museumsbygningen og institusjonen i Frederiks gate 2 ved Tullinløkka",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell institusjonsidentitet",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Frederiks%20gate%202%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11941:2",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Frederiks gate 2 Oslo. `tullin` er et bredt områdeanker; denne recorden representerer den konkrete museumsbygningen og er derfor ikke et duplikat.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Frederiks gate 2, OSLO. Punktet er representasjonspunktet for Historisk museums offisielle adresse og brukes som display-marker for museumsbygningen, ikke for hele Tullinløkka-området."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Frederiks gate 2 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11941:2",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11941:2",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.916807785575195,
+      "lon": 10.735397626110528,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Frederiks gate 2, OSLO. Punktet er representasjonspunktet for Historisk museums offisielle adresse og brukes som display-marker for museumsbygningen, ikke for hele Tullinløkka-området.",
+    "`tullin` er et bredt områdeanker; denne recorden representerer den konkrete museumsbygningen og er derfor ikke et duplikat."
+  ]
+}
