@@ -1,0 +1,119 @@
+{
+  "schema": "history_go_quiz_knowledge_delivery_contract_v1",
+  "version": 1,
+  "status": "canonical",
+  "purpose": "Definerer quiz som både kunnskapsflate og vurdering. Quiz skal samle og formidle relevant fagkunnskap, samtidig som den dokumenterer hva brukeren har møtt, lest og mestret.",
+  "quiz_roles": [
+    "knowledge_collection_surface",
+    "knowledge_delivery_surface",
+    "assessment_surface",
+    "learning_evidence_source",
+    "provenance_source"
+  ],
+  "knowledge_sources": [
+    "canonical_knowledge_units",
+    "emne_content",
+    "place_content",
+    "person_content",
+    "story_content",
+    "wonderkammer_content",
+    "curated_external_sources",
+    "quiz_specific_explanations"
+  ],
+  "hard_rules": {
+    "quiz_may_embed_full_knowledge_content": true,
+    "embedded_content_requires_stable_knowledge_links": true,
+    "question_alone_does_not_prove_reading": true,
+    "knowledge_feedback_must_be_presented_before_read_evidence": true,
+    "active_continue_after_feedback_confirms_read_evidence": true,
+    "wrong_answer_can_still_create_encountered_and_read_evidence": true,
+    "wrong_answer_does_not_create_mastery_evidence": true,
+    "correct_answer_creates_assessment_evidence": true,
+    "mastery_level_follows_evidence_type": true,
+    "strict_ids_no_automatic_normalization": true
+  },
+  "required_question_fields": [
+    "primary_knowledge_unit_id",
+    "knowledge_unit_ids",
+    "emne_id_or_emne_ids",
+    "concept_ids",
+    "term_ids",
+    "learning_objective_id",
+    "evidence_type",
+    "knowledge_or_knowledge_payload",
+    "feedback_basis"
+  ],
+  "knowledge_payload_contract": {
+    "allowed_fields": [
+      "summary",
+      "explanation",
+      "why_it_matters",
+      "term_definitions",
+      "story_fragment",
+      "relations",
+      "source_note"
+    ],
+    "rule": "Payloadet skal kunne leses som selvstendig kunnskapsinnhold etter at brukeren har svart. Det skal være avledet fra de refererte knowledge units og kildene."
+  },
+  "evidence_events": {
+    "knowledge_presented": {
+      "when": "Spørsmål og tilhørende kunnskapsforklaring er vist.",
+      "proves": [
+        "encountered"
+      ]
+    },
+    "knowledge_read": {
+      "when": "Brukeren går aktivt videre etter at kunnskapsforklaringen er vist.",
+      "proves": [
+        "read"
+      ]
+    },
+    "answer_submitted": {
+      "when": "Brukeren har avgitt svar.",
+      "proves": [
+        "attempted"
+      ]
+    },
+    "answer_correct": {
+      "when": "Svaret er riktig.",
+      "proves": [
+        "assessment_success"
+      ]
+    },
+    "answer_incorrect": {
+      "when": "Svaret er feil.",
+      "proves": [
+        "needs_review"
+      ]
+    }
+  },
+  "evidence_type_to_mastery": {
+    "recognize": "recognized",
+    "recall": "recognized",
+    "explain": "understood",
+    "compare": "understood",
+    "connect": "understood",
+    "apply": "applied"
+  },
+  "personal_memory_effects": {
+    "on_feedback_presented": "Create or update memory node with encountered evidence.",
+    "on_continue_after_feedback": "Add read evidence.",
+    "on_wrong_answer": "Keep encountered/read evidence and mark for review without claiming mastery.",
+    "on_correct_answer": "Add assessment evidence and raise mastery according to evidence_type.",
+    "on_repeat": "Increase times_seen, preserve prior evidence and update repetition state."
+  },
+  "ui_requirements": [
+    "Etter hvert svar skal quiz vise den relevante kunnskapsforklaringen, ikke bare Riktig eller Feil.",
+    "Brukeren skal aktivt kunne gå videre etter å ha fått forklaringen.",
+    "Begreper og terminologi kan vises i forklaringen når de er relevante.",
+    "Historiefragmenter skal vises som del av et større historiespor når story_ids finnes.",
+    "Quizoppsummeringen skal skille mellom lest stoff, riktige svar og kunnskap som bør repeteres."
+  ],
+  "audit_rules": [
+    "Flagg spørsmål som bare viser Riktig eller Feil uten kunnskapsforklaring.",
+    "Flagg read evidence dersom forklaringen aldri ble presentert eller brukeren ikke gikk videre.",
+    "Avvis mastery evidence fra feil svar.",
+    "Avvis kunnskapspayload som mangler kobling til knowledge_unit_ids.",
+    "Kontroller at embedded quiz content og canonical knowledge unit ikke motsier hverandre."
+  ]
+}
