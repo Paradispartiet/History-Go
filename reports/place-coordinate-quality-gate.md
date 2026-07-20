@@ -1,11 +1,11 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T17:42:58.481Z
+Generert: 2026-07-20T20:21:48.895Z
 
 ## Oppsummering
 - Aktive filer validert: **546**
 - Antall steder validert: **1213**
-- Harde feil: **0**
+- Harde feil: **1**
 - Varsler: **429**
 - Coordinate review candidates: **707** signaler fordelt på **566** steder
 
@@ -566,7 +566,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/the_oslo_gallery.json
 
 ## Harde feil
-- Ingen
+- data/places/historie/oslo/places_historie/valerenga_kirke.json: mangler fil referert i manifest
 
 ## Varsler
 - data/places/by/oslo/places_by.json#gronland_basarene: coordStatus=verified uten coordPrecisionM
