@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 196 verifiserte eller kildekontrollerte canonical steder. Batch 50 legger til IBSEN Museum & Teater med den offisielle publikumsinngangen i Henrik Ibsens gate 26 som verifisert display-anker, mens Arbins gate 1 bevares som det historiske leilighetslaget. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 37.
+Oslo-tabellen inneholder nå 196 verifiserte eller kildekontrollerte canonical steder. Duplikatet `nrk_marienlyst` er migrert til `nrk_huset_marienlyst` uten å opprette et nytt fysisk sted. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 36.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -259,6 +259,8 @@ Batch 49 (2026-07-20) fullfører de to status-sensitive standardkandidatene fra 
 
 Batch 50 (2026-07-20) fullfører den siste spesialkoordinatsaken fra museumsauditen. `ibsen_museum_teater` bruker det eksakte Geonorge-punktet for dagens offisielle publikumsinngang i Henrik Ibsens gate 26 som display- og unlock-anker. Museets historiske kjerne er Henrik og Suzannah Ibsens leilighet i Arbins gate 1, der de bodde fra 1895 til 1906; denne adressen bevares eksplisitt som historisk lag og skal ikke erstattes av den moderne besøksadressen i litteraturhistorisk innhold.
 
+Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 196 verifiserte eller kildekontrollerte canonical Oslo-stedene.
@@ -289,7 +291,6 @@ Disse kontrollene er fullført, men teller ikke blant de 196 verifiserte eller k
 | `good_game_redaksjon` – Good Game-redaksjonen (NRK) | needs_review | Redaksjonelt delmiljø inne i allerede canonical NRK Marienlyst; ingen separat fysisk lokasjon er dokumentert. | Modeller som subplace/relation til `nrk_huset_marienlyst`, eller dokumenter eget studio-/romanker. |
 | `aftenposten_akersgata` – Aftenposten i Akersgata | needs_review | Dagens Akersgata 55 overlapper canonical `vg_huset`, mens den historiske recorden også omfatter 51/53. | Avklar om stedet skal være historisk flerankret Akersgata-record eller institusjonsrelation til A55. |
 | `dagbladet_akersgata` – Dagbladet i Akersgata | needs_review | Historisk redaksjonsforankring omfatter både Akersgata 36 og 47/49, men recorden har bare ett punkt. | Krever flerankre eller et eksplisitt tidsavgrenset hovedanker. |
-| `nrk_marienlyst` – NRK Marienlyst | needs_review | Repoets place-audit dokumenterer at recorden dupliserer canonical `nrk_huset_marienlyst` for det samme fysiske NRK-anlegget. | Migrer gamle næringsliv-referanser til `nrk_huset_marienlyst`; ikke godkjenn et separat fysisk punkt. |
 | `fornebu_teknologipark` – Fornebu Teknologipark | needs_review | Recorden ligger i Oslo-kilden, men Fornebu ligger i Bærum; navnet beskriver dessuten et bredt nærings-/utviklingsområde uten ett dokumentert fysisk hovedanker. | Flytt/erstatt i Bærum-kontekst etter at fysisk scope eller områdegeometri er eksplisitt definert. |
 | `ulven_handelspark` – Ulven handelspark | needs_review | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
 | `akershus_energi` – Akershus Energi Varme | needs_review | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
