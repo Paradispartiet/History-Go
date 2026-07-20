@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 212 verifiserte eller kildekontrollerte canonical steder. Batch 65 legger til Klimahuset som et eget klimavitenskapelig utstillings- og kunnskapsbygg på Monrads gate 12. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 30.
+Oslo-tabellen inneholder nå 213 verifiserte eller kildekontrollerte canonical steder. Batch 66 løser Øvre spinneri med Riksantikvarens offisielle enkeltminnegeometri for Spinneri (bygn 108), kulturminne 165570-6. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -234,6 +234,7 @@ Oslo-tabellen inneholder nå 212 verifiserte eller kildekontrollerte canonical s
 | 63 | `vikaterrassen` | Vikaterrassen | verified | `osm-relation:14169568` |
 | 64 | `kampen_okologiske_barnebondegard` | Kampen Økologiske Barnebondegård | verified | `geonorge-adresser-v1:0301:16443:23` |
 | 65 | `klimahuset` | Klimahuset | verified | `geonorge-adresser-v1:0301:14797:12` |
+| 66 | `seilduksfabrikken_nydalen` | Øvre spinneri | verified_geometry | `kulturminnesok:165570-6` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -301,6 +302,8 @@ Batch 63 (2026-07-20) legger til `vikaterrassen` med et navngitt OSM-geometriank
 Batch 64 (2026-07-20) legger til `kampen_okologiske_barnebondegard` etter separat adresse- og taxonomy-gate. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:16443:23` for Skedsmogata 23 brukes som display- og unlock-anker for det integrerte gårdsstedet med gårdstun, skolehage, fjøs og stall. Canonical primærkategori er `by` fordi stedet ble skapt som et barnedrevet nærmiljøinitiativ og i dag fungerer som lavterskel møteplass, pedagogisk tilbud og sosial infrastruktur; `natur` beholdes som sekundært faglag for dokumentert dyrking, matproduksjon, dyrestell og naturens kretsløp. Husdyrene skal ikke behandles som vill fauna, og stedet skal ikke splittes i overlappende markører.
 
 Batch 65 (2026-07-20) legger til `klimahuset` etter separat overlap-, adresse- og taxonomy-gate. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:14797:12` for Monrads gate 12 brukes som display- og unlock-anker. Punktet ligger om lag 13,2 meter fra den separat navngitte Klimahuset-geometrien `osm-way:762832690`, som brukes som identitets- og visuell QA, ikke som erstatning for den normative adressekilden. Klimahuset beholdes som et fysisk eget `vitenskap`-sted med `natur` som sekundært faglag; `naturhistorisk_museum` representerer fortsatt den bredere institusjonen og `botanisk_hage` den større hage- og campusarenaen.
+
+Batch 66 (2026-07-20) løser `seilduksfabrikken_nydalen` etter at tidligere legacy-punkt, adressebokstav-korrelasjon og feilplasserte bygningskandidater ble forkastet. Riksantikvarens offentlige enkeltminne `165570-6` er registrert av Byantikvaren i Oslo som «Nydalen Compagnie Bomullsspinneri – Gjerdrums vei 12» og eksplisitt som «Spinneri (bygn 108)». Den separate enkeltminnegeometrien `165570-5` er «Veveri (bygn 113)», slik at spinneriet og veveriet kan skilles fysisk uten proxy-gjetting. Geometrisk senter for 165570-6 brukes som canonical `building_center`; stedet fjernes samtidig fra needs_review-tabellen. Aggregate, split-record og per-source legacy-index holdes eksplisitt synkronisert i denne batchen fordi Akerselva-kilden fortsatt er manifest-lastet gjennom aggregate-filen.
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -316,7 +319,7 @@ Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk p
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 212 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 213 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -326,7 +329,6 @@ Disse kontrollene er fullført, men teller ikke blant de 212 verifiserte eller k
 | `nybrua_vaterlandsparken` – Nybrua / Vaterlandsparken | needs_review | Recorden kombinerer Nybrua og Vaterlandsparken, to separate fysiske objekter, mens dagens punkt ligger på et tredje objekt. | Splitt recorden eller velg én canonical fysisk identitet før koordinat godkjennes. |
 | `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
 | `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
-| `seilduksfabrikken_nydalen` – Øvre spinneri | needs_review | Gjerdrums vei 12 er dokumentert, men Geonorge gir flere ikke-entydige treff. | Finn eksakt bygningsgeometri eller dokumenter ett konkret adressepunkt. |
 | `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
 | `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |
 | `alnaelvstien` – Alnaelvstien / Alnastien | needs_review | Oslo kommune dokumenterer turveien langs Alnaelva, men OSM har flere separate Alnastien-way-er og ingen samlet ruterelasjon i kontrollen. | Bygg routeSegments eller finn samlet offisiell rutetrase før canonical punkt godkjennes. |
