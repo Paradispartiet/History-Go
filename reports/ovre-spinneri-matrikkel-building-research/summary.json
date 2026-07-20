@@ -1,0 +1,428 @@
+{
+  "date": "2026-07-20",
+  "source": "Kartverket / Geonorge Matrikkelen Bygningspunkt WFS",
+  "sourceUrl": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-bygningspunkt",
+  "capabilities": {
+    "status": 200,
+    "ok": true,
+    "contentType": "text/xml;charset=UTF-8",
+    "prefix": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<WFS_Capabilities xmlns=\"http://www.opengis.net/wfs/2.0\" xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:fes=\"http://www.opengis.net/fes/2.0\" xmlns:gml=\"http://www.opengis.net/gml\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"2.0.0\" xsi:schemaLocation=\"http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd\">\r\n  <ows:ServiceIdentification>\r\n    <ows:Title>WFS for Matrikkelen-Bygningspunkt</ows:Title>\r\n    <ows:Abstract>Nedlastingstjeneste (WFS) for bygningspunkt fra Matrikkelen (distribusjonsdatabasen). Matrikkelen er Norges offisielle register over fast eiendom, herunder bygninger, boliger og adresser.</ows:Abstract>\r\n    <ows:ServiceType codeSpace=\"http://www.opengeospatial.org/\">WFS</ows:ServiceType>\r\n    <ows:ServiceTypeVersion>2.0.0</ows:ServiceTypeVersion>\r\n    <ows:ServiceTypeVersion>1.1.0</ows:ServiceTypeVersion>\r\n  </ows:ServiceIdentification>\r\n  <ows:ServiceProvider>\r\n    <ows:ProviderName>Kartverket</ows:ProviderName>\r\n    <ows:ProviderSite xlink:href=\"http://www.kartverket.no\" />\r\n    <ows:ServiceContact>\r\n      <ows:ContactInfo>\r\n        <ows:Phone>\r\n          <ows:Voice />\r\n          <ows:Facsimile />\r\n        </ows:Phone>\r\n        <ows:Address>\r\n          <ows:DeliveryPoint>Kartverksveien 21</ows:DeliveryPoint>\r\n          <ows:City>Hønefoss</ows:City>\r\n          "
+  },
+  "discoveredFeatureTypes": [
+    "app:Bygning"
+  ],
+  "typeCandidates": [
+    "app:Bygning",
+    "app:Bygningspunkt",
+    "matrikkel:Bygningspunkt",
+    "MatrikkelenBygningspunkt:Bygningspunkt",
+    "Bygningspunkt",
+    "app:bygning"
+  ],
+  "candidateBuildingNumbers": [
+    "81764387",
+    "300171619"
+  ],
+  "successfulAttemptCount": 0,
+  "parsedFeatureCount": 0,
+  "rawCandidateAttempts": [],
+  "candidateMatches": [],
+  "attempts": [
+    {
+      "typeName": "app:Bygning",
+      "variant": "lat_lon_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "app:Bygning",
+      "variant": "lat_lon_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:Bygning",
+      "variant": "lat_lon_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:Bygning",
+      "variant": "lon_lat_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "app:Bygning",
+      "variant": "lon_lat_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:Bygning",
+      "variant": "lon_lat_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "app:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "app:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "matrikkel:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "matrikkel:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "matrikkel:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "matrikkel:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "matrikkel:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "matrikkel:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "MatrikkelenBygningspunkt:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "MatrikkelenBygningspunkt:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "MatrikkelenBygningspunkt:Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "MatrikkelenBygningspunkt:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "MatrikkelenBygningspunkt:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "MatrikkelenBygningspunkt:Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "Bygningspunkt",
+      "variant": "lat_lon_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "Bygningspunkt",
+      "variant": "lon_lat_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:bygning",
+      "variant": "lat_lon_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "app:bygning",
+      "variant": "lat_lon_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:bygning",
+      "variant": "lat_lon_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:bygning",
+      "variant": "lon_lat_axis",
+      "outputFormat": "application/json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exce"
+    },
+    {
+      "typeName": "app:bygning",
+      "variant": "lon_lat_axis",
+      "outputFormat": "json",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'json'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    },
+    {
+      "typeName": "app:bygning",
+      "variant": "lon_lat_axis",
+      "outputFormat": "GML3",
+      "status": 400,
+      "ok": false,
+      "contentType": "application/xml;charset=UTF-8",
+      "parsedFeatureCount": null,
+      "candidateNumbersFoundInRawText": [],
+      "responsePrefix": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'GML3'</ows:ExceptionText>\n  </ows:Exception>\n</ows"
+    }
+  ]
+}
