@@ -28,9 +28,10 @@ def test_staff_roles_are_read_only_from_app_metadata_values() -> None:
     assert roles == frozenset({HISTORY_GO_MODERATOR_ROLE, HISTORY_GO_ADMIN_ROLE})
 
 
-def test_missing_or_invalid_app_metadata_has_no_staff_roles() -> None:
+def test_missing_invalid_or_generic_app_metadata_has_no_staff_roles() -> None:
     assert _extract_app_roles(None) == frozenset()
     assert _extract_app_roles({"history_go_roles": 42}) == frozenset()
+    assert _extract_app_roles({"roles": [HISTORY_GO_ADMIN_ROLE]}) == frozenset()
 
 
 def test_verified_claims_expose_server_controlled_app_roles() -> None:
