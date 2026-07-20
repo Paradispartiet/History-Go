@@ -225,6 +225,110 @@
     return patched;
   }
 
+  function normalizeRuntimeCategory(category) {
+    const raw = String(category || "").trim();
+    if (!raw) return "";
+    const normalizer = window.DomainRegistry?.toRuntimeCategoryId;
+    if (typeof normalizer !== "function") return raw;
+    try {
+      return String(normalizer(raw) || "").trim();
+    } catch {
+      return "";
+    }
+  }
+
+  function currentPlaceCategory(targetId) {
+    const id = String(targetId || "").trim();
+    if (!id) return "";
+    const places = Array.isArray(window.PLACES)
+      ? window.PLACES
+      : (Array.isArray(window.HGPlaces) ? window.HGPlaces : []);
+    const place = places.find((item) => String(item?.id || "").trim() === id);
+    return normalizeRuntimeCategory(place?.category);
+  }
+
+  function rewritePlaceQuizCategories(payload, inheritedCategory = "") {
+    if (Array.isArray(payload)) {
+      let changed = false;
+      const next = payload.map((item) => {
+        const rewritten = rewritePlaceQuizCategories(item, inheritedCategory);
+        if (rewritten !== item) changed = true;
+        return rewritten;
+      });
+      return changed ? next : payload;
+    }
+
+    if (!payload || typeof payload !== "object") return payload;
+
+    const targetId = String(payload.targetId || payload.placeId || "").trim();
+    const placeCategory = currentPlaceCategory(targetId) || inheritedCategory;
+    let changed = false;
+    let next = payload;
+
+    if (placeCategory && Object.prototype.hasOwnProperty.call(payload, "categoryId") && payload.categoryId !== placeCategory) {
+      next = { ...next, categoryId: placeCategory };
+      changed = true;
+    }
+    if (placeCategory && Object.prototype.hasOwnProperty.call(payload, "category_id") && payload.category_id !== placeCategory) {
+      if (!changed) next = { ...next };
+      next.category_id = placeCategory;
+      changed = true;
+    }
+
+    for (const key of ["sets", "questions"]) {
+      if (!Array.isArray(payload[key])) continue;
+      const rewritten = rewritePlaceQuizCategories(payload[key], placeCategory);
+      if (rewritten === payload[key]) continue;
+      if (!changed) next = { ...next };
+      next[key] = rewritten;
+      changed = true;
+    }
+
+    return changed ? next : payload;
+  }
+
+  function installQuizPlaceCategoryBridge() {
+    if (window.__HG_QUIZ_PLACE_CATEGORY_FETCH_PATCHED__) return;
+    if (typeof window.fetch !== "function" || typeof window.Response !== "function") return;
+    window.__HG_QUIZ_PLACE_CATEGORY_FETCH_PATCHED__ = true;
+
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = async function historyGoCategoryAwareFetch(input, init) {
+      const response = await originalFetch(input, init);
+      if (!response?.ok) return response;
+
+      let url = "";
+      try {
+        url = typeof input === "string"
+          ? new URL(input, document.baseURI).toString()
+          : String(input?.url || "");
+      } catch {
+        return response;
+      }
+
+      if (!/\/data\/quiz\/.+\.json(?:$|[?#])/i.test(url)) return response;
+
+      try {
+        const data = await response.clone().json();
+        const rewritten = rewritePlaceQuizCategories(data);
+        if (rewritten === data) return response;
+
+        const headers = new Headers(response.headers);
+        headers.delete("content-length");
+        headers.delete("content-encoding");
+
+        return new Response(JSON.stringify(rewritten), {
+          status: response.status,
+          statusText: response.statusText,
+          headers
+        });
+      } catch (err) {
+        if (window.DEBUG) console.warn("[place-overrides] quiz category bridge failed", err);
+        return response;
+      }
+    };
+  }
+
   const originalLoadPlacesBase = DataHub.loadPlacesBase.bind(DataHub);
   DataHub.loadPlacesBase = async function loadPlacesBaseWithOverrides(opts = {}) {
     opts = asOptions(opts);
@@ -255,6 +359,9 @@
     };
   }
 
+  installQuizPlaceCategoryBridge();
+
   window.HGApplyCoordinateOverrides = applyCoordinateOverrides;
   window.HGApplyCategoryOverrides = applyCategoryOverrides;
+  window.HGRewritePlaceQuizCategories = rewritePlaceQuizCategories;
 })();
