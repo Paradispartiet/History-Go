@@ -1,0 +1,66 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Monrads gate 12 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Monrads gate 12 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Monrads%20gate%2012%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:14797:12",
+  "coordinate": {
+    "lat": 59.919394833984754,
+    "lon": 10.772833068414897,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14797:12",
+    "address": {
+      "street": "Monrads gate",
+      "number": "12",
+      "postcode": "0562",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Monrads gate 12, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Monrads gate",
+    "adressetekst": "Monrads gate 12",
+    "adressetilleggsnavn": null,
+    "adressekode": 14797,
+    "nummer": 12,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 229,
+    "bruksnummer": 165,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0562",
+    "adressetekstutenadressetilleggsnavn": "Monrads gate 12",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.919394833984754,
+      "lon": 10.772833068414897
+    },
+    "oppdateringsdato": "2020-06-15T18:35:35"
+  }
+}
+Saved Klimahuset address intake evidence to reports/oslo-attractions-completeness-20260720/klimahuset
