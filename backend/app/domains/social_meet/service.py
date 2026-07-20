@@ -70,7 +70,19 @@ class SocialMeetIdentityService:
         )
         return _safe_profile(saved)
 
-    def get_public_profile(self, profile_id: UUID) -> PublicSocialMeetProfile:
+    def get_public_profile(
+        self,
+        requester_auth_user_id: UUID,
+        profile_id: UUID,
+    ) -> PublicSocialMeetProfile:
+        requester = self._repository.get_or_create_for_user(requester_auth_user_id)
+        if requester.consent_version != SUPPORTED_CONSENT_VERSION:
+            raise SocialMeetDomainError(
+                code="social_meet_opt_in_required",
+                detail="Current Social Meet consent is required to view public profiles",
+            )
+        _ensure_profile_is_user_manageable(requester)
+
         record = self._repository.get_discoverable_profile(profile_id)
         if record is None:
             raise SocialMeetDomainError(
