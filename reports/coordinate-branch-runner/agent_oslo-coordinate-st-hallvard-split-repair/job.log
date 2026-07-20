@@ -1,0 +1,123 @@
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Tuengen allé 10C Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Tuengen%20all%C3%A9%2010C%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:17802:10C",
+  "coordinate": {
+    "lat": 59.939226276070805,
+    "lon": 10.698765324399833,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:17802:10C",
+    "address": {
+      "street": "Tuengen allé",
+      "number": "10C",
+      "postcode": "0374",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tuengen allé 10C, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Tuengen allé",
+    "adressetekst": "Tuengen allé 10C",
+    "adressetilleggsnavn": null,
+    "adressekode": 17802,
+    "nummer": 10,
+    "bokstav": "C",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 36,
+    "bruksnummer": 173,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0374",
+    "adressetekstutenadressetilleggsnavn": "Tuengen allé 10C",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.939226276070805,
+      "lon": 10.698765324399833
+    },
+    "oppdateringsdato": "2020-06-15T18:05:05"
+  }
+}
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Enerhauggata 4 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Enerhauggata%204%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+  "coordinate": {
+    "lat": 59.91294052851478,
+    "lon": 10.769571694450226,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+    "address": {
+      "street": "Enerhauggata",
+      "number": "4",
+      "postcode": "0651",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Enerhauggata 4, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Enerhauggata",
+    "adressetekst": "Enerhauggata 4",
+    "adressetilleggsnavn": null,
+    "adressekode": 11553,
+    "nummer": 4,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 230,
+    "bruksnummer": 35,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [
+      "H0201",
+      "H0301"
+    ],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0651",
+    "adressetekstutenadressetilleggsnavn": "Enerhauggata 4",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91294052851478,
+      "lon": 10.769571694450226
+    },
+    "oppdateringsdato": "2020-06-15T18:02:02"
+  }
+}
+Restored peststotten_krist_kirkegard, kjaerlighetskarusellen, villa_stenersen, st_hallvard_kirke_kloster to split/runtime materialization.
+Reverse aggregate-to-split gaps before: 6; after: 2.

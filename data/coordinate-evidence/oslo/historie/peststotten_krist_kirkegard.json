@@ -1,0 +1,67 @@
+{
+  "placeId": "peststotten_krist_kirkegard",
+  "placeFile": "data/places/historie/oslo/places_historie_added_batch_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.917469,
+    "lon": 10.746586,
+    "r": 70,
+    "coordStatus": "verified",
+    "coordSource": "Atlas Obscura coordinate cross-checked with Oslo kommune and Oslo byleksikon",
+    "coordType": "monument_point",
+    "coordNote": "Punktkoordinat for selve Peststøtten ved inngangen til Krist kirkegård. Atlas Obscura-punktet er kryssjekket mot Oslo kommunes gravplassinformasjon og Oslo byleksikons plassering av monumentet ved kirkegårdsinngangen. Punktet representerer monumentet, ikke hele Krist kirkegård."
+  },
+  "identity": {
+    "currentName": "Peststøtten – Krist kirkegård",
+    "resolvedIdentity": "Peststøtten – Krist kirkegård",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet for koordinatankeret",
+    "eksisterende canonical identitet i aggregate place-kilden",
+    "runtime-restaurering gjennom synkronisert split-manifest"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Atlas Obscura coordinate cross-checked with Oslo kommune and Oslo byleksikon",
+      "sourceUrl": "https://www.atlasobscura.com/places/black-death-monument-peststotten",
+      "sourceObjectId": "atlasobscura:black-death-monument-peststotten",
+      "sourceQuality": "stable_source_identity_plus_existing_canonical_identity",
+      "finding": "Atlas Obscura publiserer punktkoordinaten for Peststøtten; monumentidentitet og plassering ved inngangen til Krist kirkegård er kryssjekket mot Oslo kommune og Oslo byleksikon. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten å opprette ny place-id.",
+      "canVerifyCoordinate": true,
+      "reason": "Punktkoordinat for selve Peststøtten ved inngangen til Krist kirkegård. Atlas Obscura-punktet er kryssjekket mot Oslo kommunes gravplassinformasjon og Oslo byleksikons plassering av monumentet ved kirkegårdsinngangen. Punktet representerer monumentet, ikke hele Krist kirkegård."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "atlasobscura:black-death-monument-peststotten",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.917469,
+      "lon": 10.746586,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source."
+  },
+  "notes": [
+    "This is a runtime restoration of an existing canonical place, not a new place creation.",
+    "Punktkoordinat for selve Peststøtten ved inngangen til Krist kirkegård. Atlas Obscura-punktet er kryssjekket mot Oslo kommunes gravplassinformasjon og Oslo byleksikons plassering av monumentet ved kirkegårdsinngangen. Punktet representerer monumentet, ikke hele Krist kirkegård."
+  ]
+}
