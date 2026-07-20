@@ -1,0 +1,75 @@
+{
+  "placeId": "museumsleiligheten_grabein",
+  "placeFile": "data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9149775365696,
+    "lon": 10.769036218785557,
+    "r": 55,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 38B, OSLO. Punktet brukes som display- og unlock-marker for Museumsleiligheten Gråbein, den bevarte museumsleiligheten inne i Gråbein-gården. Punktet representerer ikke hele Gråbein-komplekset eller Tøyen som byområde."
+  },
+  "identity": {
+    "currentName": "Museumsleiligheten Gråbein",
+    "resolvedIdentity": "Den bevarte museumsleiligheten og sosialhistoriske besøksarenaen i Tøyengata 38B, inne i Gråbein-komplekset",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "presis offisiell adresse for Tøyengata 38B etter tvetydig 38-oppslag",
+    "offisiell museumsidentitet",
+    "historisk identitet som bevart leilighet inne i et større boligkompleks",
+    "canonical identitets- og nærhetskontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=T%C3%B8yengata%2038B%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:38B",
+      "sourceQuality": "official_address_plus_official_museum_identity_plus_reference_history",
+      "finding": "Det brede oppslaget Tøyengata 38 ga needs_review. Oslo Museum og Oslo byleksikon identifiserer museumsleiligheten spesifikt i Tøyengata 38B, og den presise Geonorge-kjøringen gir ett tydelig offisielt adressepunkt. Ingen canonical identitetsduplikat finnes.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 38B, OSLO. Punktet brukes som display- og unlock-marker for Museumsleiligheten Gråbein, den bevarte museumsleiligheten inne i Gråbein-gården. Punktet representerer ikke hele Gråbein-komplekset eller Tøyen som byområde."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Tøyengata 38B Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:38B",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:38B",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9149775365696,
+      "lon": 10.769036218785557,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the exact Tøyengata 38B Geonorge point as the building/display marker for the preserved Museumsleiligheten Gråbein identity."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 38B, OSLO. Punktet brukes som display- og unlock-marker for Museumsleiligheten Gråbein, den bevarte museumsleiligheten inne i Gråbein-gården. Punktet representerer ikke hele Gråbein-komplekset eller Tøyen som byområde.",
+    "Stedsidentiteten er den bevarte museumsleiligheten, selv om koordinatankeret er bygningens offisielle adressepunkt."
+  ]
+}
