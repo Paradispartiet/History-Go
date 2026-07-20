@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-20T23:24:14.686Z",
+    "source": "Artskart public API",
+    "status": "candidate_only",
+    "filters": {
+      "minYear": 2000,
+      "maxPrecisionM": 250,
+      "defaultRadiusM": 180
+    },
+    "counts": {
+      "placesTotal": 1217,
+      "placesChecked": 1,
+      "floraInRepo": 215,
+      "faunaInRepo": 221
+    }
+  },
+  "places": {
+    "jettegrytene_rullestad": {
+      "name": "Jettegrytene på Rullestad",
+      "lat": 59.87541,
+      "lon": 6.44963,
+      "radiusM": 240,
+      "category": "natur",
+      "status": "candidate_from_artskart",
+      "diagnostic": {
+        "requestUrl": "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28717729.5273050789+8371811.382068809%2C718209.5273050789+8371811.382068809%2C718209.5273050789+8372291.382068809%2C717729.5273050789+8372291.382068809%2C717729.5273050789+8371811.382068809%29%29",
+        "payloadShape": {
+          "type": "object",
+          "keys": [
+            "Observations",
+            "PageIndex",
+            "PageSize",
+            "TotalCount",
+            "TotalPages"
+          ],
+          "arrayKeys": [
+            {
+              "key": "Observations",
+              "length": 6
+            }
+          ],
+          "objectKeys": []
+        },
+        "extractedObservationCount": 6,
+        "firstObservationKeys": [
+          "species",
+          "Id",
+          "Institution",
+          "InstitutionCode",
+          "InstitutionUrl",
+          "InstitutionLogoUrl",
+          "Collection",
+          "CollectionCode",
+          "CatalogNumber",
+          "DetailUrl",
+          "Collector",
+          "CollectedDate",
+          "IdentifiedBy",
+          "DatetimeIdentified",
+          "BasisOfRecord",
+          "TaxonId",
+          "Habitat",
+          "DatasetId",
+          "DatasetName",
+          "ObsUrl",
+          "Name",
+          "ScientificName",
+          "Author",
+          "kingdom",
+          "phylum",
+          "klass",
+          "order",
+          "family",
+          "genus",
+          "subspecies",
+          "specificEpithet",
+          "infraspecificEpithet",
+          "Status",
+          "TypeObj",
+          "Sex",
+          "Count",
+          "Notes",
+          "Country",
+          "County",
+          "CountyId",
+          "Municipality",
+          "MunicipalityId",
+          "Locality",
+          "Longitude",
+          "Latitude",
+          "Precision",
+          "FootprintWKT",
+          "East",
+          "North",
+          "Projection"
+        ],
+        "usefulObservationCount": 6,
+        "matchedObservationCount": 4,
+        "unmatchedNameSamples": [
+          "Trichophorum cespitosum",
+          "bjørneskjegg",
+          "cespitosum",
+          "Acronicta cinerea",
+          "blågrått kveldfly",
+          "cinerea"
+        ]
+      },
+      "flora": [
+        {
+          "id": "emne_ved_einer",
+          "kind": "flora",
+          "title": "Einer",
+          "latin": "Juniperus communis",
+          "count": 1,
+          "latestYear": 2013,
+          "precisionMin": 1,
+          "examples": [
+            {
+              "year": 2013,
+              "precision": 1,
+              "locality": "Rullestad, Etne, Ve",
+              "source": "Norsk botanisk forening"
+            }
+          ],
+          "confidence": "low"
+        },
+        {
+          "id": "emne_ved_furu",
+          "kind": "flora",
+          "title": "Furu",
+          "latin": "Pinus sylvestris",
+          "count": 1,
+          "latestYear": 2013,
+          "precisionMin": 1,
+          "examples": [
+            {
+              "year": 2013,
+              "precision": 1,
+              "locality": "Rullestad, Etne, Ve",
+              "source": "Norsk botanisk forening"
+            }
+          ],
+          "confidence": "low"
+        },
+        {
+          "id": "emne_urt_rome",
+          "kind": "flora",
+          "title": "Rome",
+          "latin": "Narthecium ossifragum",
+          "count": 1,
+          "latestYear": 2013,
+          "precisionMin": 1,
+          "examples": [
+            {
+              "year": 2013,
+              "precision": 1,
+              "locality": "Rullestad, Etne, Ve",
+              "source": "Norsk botanisk forening"
+            }
+          ],
+          "confidence": "low"
+        },
+        {
+          "id": "emne_flora_rosslyng",
+          "kind": "flora",
+          "title": "Røsslyng",
+          "latin": "Calluna vulgaris",
+          "count": 1,
+          "latestYear": 2013,
+          "precisionMin": 1,
+          "examples": [
+            {
+              "year": 2013,
+              "precision": 1,
+              "locality": "Rullestad, Etne, Ve",
+              "source": "Norsk botanisk forening"
+            }
+          ],
+          "confidence": "low"
+        }
+      ],
+      "fauna": []
+    }
+  }
+}
