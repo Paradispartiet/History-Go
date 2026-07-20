@@ -1,0 +1,73 @@
+{
+  "placeId": "ekeberg_helleristninger",
+  "placeFile": "data/places/historie/oslo/places_historie/ekeberg_helleristninger.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.8975599746796,
+    "lon": 10.759838207896665,
+    "r": 65,
+    "coordStatus": "verified_geometry",
+    "coordSource": "kulturminnesok_askeladden",
+    "coordType": "heritage_site_centroid",
+    "coordNote": "Representasjonspunkt fra Riksantikvarens offisielle MultiPolygon-geometri for Kulturminne-ID 41907, objekt 41907-1. Punktet representerer helleristningsfeltet ved Sjømannsskolen på Ekeberg, ikke Karlsborgveien, Kongsveien eller Ekebergparken som helhet."
+  },
+  "identity": {
+    "currentName": "Helleristningene på Ekeberg",
+    "resolvedIdentity": "Riksantikvaren feature 41907-1, Ekeberg 2 (Sjømannsskolen) / Familiedalen, the registered rock-carving field itself",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "direkte offisielt objektoppslag for feature 41907-1",
+    "offisiell Kulturminne-ID 41907",
+    "skille fra Ekebergparken og brede områdeankre"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceName": "Riksantikvaren – Lokaliteter, Enkeltminner og Sikringssoner OGC API",
+      "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/lokaliteter/items/41907-1?f=json",
+      "sourceObjectId": "kulturminnesok:41907",
+      "sourceQuality": "official_heritage_object_geometry",
+      "finding": "Direkte Riksantikvaren-oppslag gir feature 41907-1, Ekeberg 2 (Sjømannsskolen) / Familiedalen, med offisiell MultiPolygon-geometri.",
+      "canVerifyCoordinate": true,
+      "reason": "Representasjonspunkt fra Riksantikvarens offisielle MultiPolygon-geometri for Kulturminne-ID 41907, objekt 41907-1. Punktet representerer helleristningsfeltet ved Sjømannsskolen på Ekeberg, ikke Karlsborgveien, Kongsveien eller Ekebergparken som helhet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceObjectId": "kulturminnesok:41907",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceObjectId": "riksantikvaren-feature:41907-1",
+      "geometryType": "MultiPolygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.8975599746796,
+      "lon": 10.759838207896665,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the geometric center of official Riksantikvaren feature 41907-1 as the site representation point."
+  },
+  "notes": [
+    "Representasjonspunkt fra Riksantikvarens offisielle MultiPolygon-geometri for Kulturminne-ID 41907, objekt 41907-1. Punktet representerer helleristningsfeltet ved Sjømannsskolen på Ekeberg, ikke Karlsborgveien, Kongsveien eller Ekebergparken som helhet."
+  ]
+}
