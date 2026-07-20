@@ -102,7 +102,34 @@ jobs:
         run: npm run typecheck:web
 
       - name: Verify browser build is in sync
-        run: npm run build:web:check
+        id: build-web-check
+        shell: bash
+        run: |
+          mkdir -p reports/typescript-ci
+          set -o pipefail
+          set +e
+          npm run build:web:check 2>&1 \
+            | tee reports/typescript-ci/build-web-check.log
+          BUILD_STATUS=${PIPESTATUS[0]}
+          set -e
+
+          git status --porcelain dist/web \
+            | tee reports/typescript-ci/dist-web-status.log
+          git diff -- dist/web \
+            > reports/typescript-ci/dist-web.diff
+
+          exit "$BUILD_STATUS"
+
+      - name: Upload browser build diagnostics
+        if: failure() && steps.build-web-check.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: typescript-browser-build-diagnostics-${{ github.run_id }}
+          path: |
+            reports/typescript-ci/build-web-check.log
+            reports/typescript-ci/dist-web-status.log
+            reports/typescript-ci/dist-web.diff
+          if-no-files-found: error
 
       - name: Typecheck scripts
         run: npm run typecheck:scripts
