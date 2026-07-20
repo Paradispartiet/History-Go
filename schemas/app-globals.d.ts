@@ -65,6 +65,13 @@ declare global {
     HG_TodayHubPanel?: { render?: (options?: any) => any; refresh?: (options?: any) => any; remove?: () => any; [key: string]: any };
     HG_TodayActionRouter?: any;
     HGHeaderMenu?: { open: () => void; close: () => void; toggle: () => void; isOpen: () => boolean };
+    HGNearbyFilterControls?: {
+      init?: () => void;
+      updateFilterButton?: () => void;
+      updateBadgeFilterButton?: () => void;
+      updateFavoritesFilterButton?: () => void;
+      updateSortButton?: () => void;
+    };
     HGNearbyFilters?: {
       initializeFromStorage?: () => any;
       snapshot?: () => any;
