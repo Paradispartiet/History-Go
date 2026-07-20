@@ -43,6 +43,7 @@ jobs:
           git config user.name "actions"
           git config user.email "actions@github.com"
           rm -f scripts/_tmp_akerselva_outlet_*.b64
+          rm -f reports/_tmp_outlet_trigger.txt
           rm -f .github/workflows/agent-fill-akerselva-outlet-rounds.yml
           git add -A
           git commit -m "Fill Akerselva outlet nature rounds"
