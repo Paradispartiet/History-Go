@@ -82,7 +82,9 @@ def test_social_meet_me_returns_private_current_user_state() -> None:
     assert "authSubject" not in payload
 
 
-def test_profile_update_rejects_forbidden_nested_privacy_fields_before_service() -> None:
+def test_profile_update_rejects_forbidden_nested_privacy_fields_before_service() -> (
+    None
+):
     client, service = _client()
 
     response = client.put(
