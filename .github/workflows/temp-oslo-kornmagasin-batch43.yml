@@ -1,0 +1,105 @@
+name: Temp Oslo Kornmagasinet batch 43
+
+on:
+  push:
+    branches:
+      - 'agent/oslo-coordinate-control-batch-43-clean'
+    paths:
+      - 'scripts/oslo-kornmagasin-batch43-job.mjs'
+      - '.github/workflows/temp-oslo-kornmagasin-batch43.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-control-batch-43-clean
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          npm ci
+
+      - name: Apply targeted batch 43 patch
+        run: |
+          set -euo pipefail
+          node scripts/oslo-kornmagasin-batch43-job.mjs
+
+      - name: Rebuild runtime place index
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+
+      - name: Validate split manifest sync
+        run: |
+          set -euo pipefail
+          npm run audit:places-split-manifest-sync
+
+      - name: Validate place index sync
+        run: |
+          set -euo pipefail
+          npm run places:index:check
+
+      - name: Validate coordinate source contract
+        run: |
+          set -euo pipefail
+          npm run test:coordinate-source-contract
+
+      - name: Validate coordinate quality
+        run: |
+          set -euo pipefail
+          npm run places:coords:quality
+
+      - name: Validate coordinate intake
+        run: |
+          set -euo pipefail
+          npm run places:coords:intake
+
+      - name: Validate coordinate evidence
+        run: |
+          set -euo pipefail
+          npm run places:coords:evidence:audit
+
+      - name: Capture place health
+        run: |
+          set +e
+          npm run health:places
+          echo "health:places exit code: $?"
+          exit 0
+
+      - name: Validate whitespace
+        run: |
+          set -euo pipefail
+          git diff --check
+
+      - name: Commit selected canonical changes only
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/places/naeringsliv/oslo/places_naeringsliv.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/oslo_kornmagasin.json \
+            data/places/naeringsliv/oslo/places_naeringsliv_index.json \
+            data/places/naeringsliv/oslo/places_naeringsliv_manifest.json \
+            data/places/places_index.json \
+            data/coordinate-evidence/oslo/naeringsliv/oslo_kornmagasin.json \
+            data/quiz/naeringsliv/oslo_kornmagasin_sets_merged.json \
+            docs/coordinates/coordinate-control-protocol.md \
+            reports/oslo-coordinate-control-batch-43/README.md \
+            reports/oslo-coordinate-control-batch-43/application-summary.json
+          git diff --cached --check
+          git commit -m "Apply Oslo coordinate control batch 43"
+          git push origin HEAD:agent/oslo-coordinate-control-batch-43-clean
