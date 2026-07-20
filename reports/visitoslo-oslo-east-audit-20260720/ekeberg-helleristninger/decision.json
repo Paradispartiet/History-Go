@@ -1,0 +1,46 @@
+{
+  "version": "2026-07-20-v5-direct-object-clean",
+  "placeId": "ekeberg_helleristninger",
+  "candidateName": "Helleristningene på Ekeberg",
+  "status": "verified_geometry_candidate",
+  "productionGate": "ready_for_canonical_production",
+  "primaryCategory": "historie",
+  "source": {
+    "sourceProvider": "official_heritage_registry",
+    "sourceName": "Riksantikvaren – Lokaliteter, Enkeltminner og Sikringssoner OGC API",
+    "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/lokaliteter/items/41907-1?f=json",
+    "sourceObjectId": "kulturminnesok:41907",
+    "collection": "lokaliteter",
+    "featureId": "41907-1"
+  },
+  "identity": {
+    "officialName": "Ekeberg 2 (Sjømannsskolen) / Familiedalen",
+    "officialKulturminneId": "41907-1",
+    "linkKulturminnesok": "https://kulturminnesok.no/ra/lokalitet/41907",
+    "geometryType": "MultiPolygon",
+    "officialDescription": "Ristningen omfatter i alt 13 figurer, blant annet firbente dyr, en fugl, en mannsfigur og en spissoval figur, samt skålgroper."
+  },
+  "coordinate": {
+    "lat": 59.8975599746796,
+    "lon": 10.759838207896665,
+    "r": 65,
+    "locatorType": "poi",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "kulturminnesok:41907",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "site_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "kulturminnesok_askeladden",
+    "coordType": "heritage_site_centroid",
+    "coordNote": "Representasjonspunkt fra Riksantikvarens offisielle MultiPolygon-geometri for Kulturminne-ID 41907, objekt 41907-1. Punktet representerer helleristningsfeltet ved Sjømannsskolen på Ekeberg, ikke Karlsborgveien, Kongsveien eller Ekebergparken som helhet."
+  },
+  "duplicateGate": {
+    "canonicalIdentityMatches": [],
+    "conclusion": "No canonical Ekeberg rock-carving-field identity exists. Existing nearby Ekeberg places represent other physical identities and scales."
+  },
+  "methodAudit": {
+    "failedAttempt": "The first OGC search inspected only the first 1000 features and therefore missed object 41907-1.",
+    "paginationDiagnostic": "A later paginated diagnostic found the official feature but also showed that the bbox query did not meaningfully constrain numberMatched in this API response.",
+    "finalMethod": "Direct lookup of the exact official feature 41907-1, with identity assertions and coordinate derivation from that feature's official MultiPolygon geometry. No address or broad-area proxy is used."
+  }
+}
