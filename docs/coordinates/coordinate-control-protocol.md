@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 229 verifiserte eller kildekontrollerte canonical steder. Batch 82 legger til Clemenskirkeruinen med et geometrisk representasjonspunkt fra Riksantikvarens offisielle MultiPolygon for lokalitet 51949, eksplisitt skilt fra områdeankeret Middelalderparken, Mariakirken og Hallvardskirken. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 230 verifiserte eller kildekontrollerte canonical steder. Batch 83 legger til Biblo Tøyen med den entydige offisielle Geonorge-adressekoordinaten for Hagegata 22, eksplisitt skilt fra Tøyen torg og den ordinære Deichman Tøyen-filialen i Hagegata 28. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -250,6 +250,7 @@ Oslo-tabellen inneholder nå 229 verifiserte eller kildekontrollerte canonical s
 | 80 | `kunsthall_oslo` | Kunsthall Oslo | verified | `geonorge-adresser-v1:0301:13764:21` |
 | 81 | `mariakirken_ruin_oslo` | Mariakirken-ruinen | verified_geometry | `kulturminnesok:42178` |
 | 82 | `clemenskirken_ruin_oslo` | Clemenskirkeruinen | verified_geometry | `kulturminnesok:51949` |
+| 83 | `biblo_toyen` | Biblo Tøyen | verified | `geonorge-adresser-v1:0301:12580:22` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
