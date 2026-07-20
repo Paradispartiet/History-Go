@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
@@ -14,6 +15,7 @@ writeJson(peopleManifestPath, mainPeopleManifest);
 const invalidEmne = 'em_by_byrom_og_bevegelse';
 const splitPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/nybrua_vaterlandsparken.json';
 const aggregatePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute.json';
+const routeManifestPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json';
 const nybrua = readJson(splitPath);
 nybrua.emne_ids = (nybrua.emne_ids || []).filter(id => id !== invalidEmne);
 writeJson(splitPath, nybrua);
@@ -24,8 +26,14 @@ if (!aggregateNybrua) throw new Error('Nybrua missing from Akerselva aggregate')
 aggregateNybrua.emne_ids = (aggregateNybrua.emne_ids || []).filter(id => id !== invalidEmne);
 writeJson(aggregatePath, aggregate);
 
+const routeManifest = readJson(routeManifestPath);
+const routeRow = routeManifest.places.find(place => place?.id === 'nybrua_vaterlandsparken');
+if (!routeRow) throw new Error('Nybrua missing from split manifest');
+routeRow.sha256 = crypto.createHash('sha256').update(fs.readFileSync(splitPath)).digest('hex');
+writeJson(routeManifestPath, routeManifest);
+
 run('node', ['tests/nybrua-vaterlandsparken-split-rounds-batch1.test.js'], { stdio: 'inherit' });
 run('bash', ['scripts/check-people.sh'], { stdio: 'inherit' });
 run('bash', ['scripts/check-places.sh'], { stdio: 'inherit' });
 run('git', ['diff', '--check'], { stdio: 'inherit' });
-console.log('Nybrua People order and emne contract fixed.');
+console.log('Nybrua People order, emne contract and manifest hash fixed.');
