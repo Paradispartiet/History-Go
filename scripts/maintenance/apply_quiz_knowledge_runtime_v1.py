@@ -1,0 +1,318 @@
+from pathlib import Path
+import re
+
+path = Path("js/quizzes.js")
+text = path.read_text(encoding="utf-8")
+
+text = text.replace(
+    "// - KUN riktige svar trigger: knowledge + trivia + concepts/meta",
+    "// - Alle svar viser kunnskap; riktig svar gir mestring, Fortsett registrerer lest",
+)
+
+new_function = r'''function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true }) {
+  ensureQuizUI();
+
+  const modal = document.getElementById("quizModal");
+  const sheetBody = modal?.querySelector(".sheet-body");
+
+  let knowledgePanel = document.getElementById("quizKnowledgePanel");
+  if (!knowledgePanel && sheetBody) {
+    knowledgePanel = document.createElement("section");
+    knowledgePanel.id = "quizKnowledgePanel";
+    knowledgePanel.hidden = true;
+    knowledgePanel.setAttribute("aria-live", "polite");
+    knowledgePanel.style.cssText = "margin-top:14px;padding:14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(255,255,255,.04);";
+    sheetBody.appendChild(knowledgePanel);
+  }
+
+  let continueBtn = document.getElementById("quizKnowledgeContinue");
+  if (!continueBtn && sheetBody) {
+    continueBtn = document.createElement("button");
+    continueBtn.id = "quizKnowledgeContinue";
+    continueBtn.type = "button";
+    continueBtn.hidden = true;
+    continueBtn.textContent = tt("ui.quiz.continue", "Fortsett");
+    continueBtn.style.cssText = "display:block;width:100%;margin-top:12px;";
+    sheetBody.appendChild(continueBtn);
+  }
+
+  const qs = {
+    title: document.getElementById("quizTitle"),
+    q: document.getElementById("quizQuestion"),
+    choices: document.getElementById("quizChoices"),
+    progress: document.getElementById("quizProgress"),
+    feedback: document.getElementById("quizFeedback")
+  };
+  qs.title.textContent = [title || tt("ui.quiz.title", "Quiz"), titleSuffix].filter(Boolean).join(" — ");
+
+  let i = 0;
+  let correct = 0;
+
+  const correctAnswers = [];
+  const conceptsCorrect = [];
+  const emnerTouched = [];
+  const categoryId = getQuizCategoryId(questions);
+
+  const masteryByEvidenceType = Object.freeze({
+    recognize: "recognized",
+    recall: "recognized",
+    explain: "understood",
+    compare: "understood",
+    connect: "understood",
+    apply: "applied"
+  });
+
+  function strictList(...values) {
+    return Array.from(new Set(values.flatMap((value) => Array.isArray(value) ? value : [value]).map(s).filter(Boolean)));
+  }
+
+  function knowledgeModel(q) {
+    const payload = q?.knowledge_payload && typeof q.knowledge_payload === "object" ? q.knowledge_payload : {};
+    return {
+      summary: s(payload.summary || q?.knowledge),
+      explanation: s(payload.explanation),
+      whyItMatters: s(payload.why_it_matters),
+      storyFragment: s(payload.story_fragment),
+      sourceNote: s(payload.source_note),
+      terms: arr(payload.term_definitions).filter((row) => row && typeof row === "object"),
+      knowledgeUnitIds: strictList(q?.primary_knowledge_unit_id, q?.knowledge_unit_ids),
+      conceptIds: strictList(q?.concept_ids),
+      termIds: strictList(q?.term_ids),
+      storyIds: strictList(q?.story_ids),
+      emneIds: strictList(q?.emne_id, q?.emne_ids, q?.related_emner, q?.related_emners)
+    };
+  }
+
+  function renderKnowledge(q, correctAnswer) {
+    const model = knowledgeModel(q);
+    const termsHtml = model.terms.length
+      ? `<div style="margin-top:10px"><strong>${esc(tt("ui.quiz.terms", "Begreper og terminologi"))}</strong>${model.terms.map((term) => `<div style="margin-top:6px"><b>${esc(term.label || term.term_id || "")}</b>${term.definition ? ` — ${esc(term.definition)}` : ""}</div>`).join("")}</div>`
+      : "";
+    const summary = model.summary || tfUI("ui.quiz.correctAnswerWas", "Riktig svar: {answer}", { answer: correctAnswer });
+
+    return {
+      model,
+      html: [
+        `<strong style="display:block;margin-bottom:7px">${esc(tt("ui.quiz.whatYouLearned", "Dette lærte du"))}</strong>`,
+        summary ? `<p style="margin:0 0 8px">${esc(summary)}</p>` : "",
+        model.explanation ? `<p style="margin:0 0 8px">${esc(model.explanation)}</p>` : "",
+        model.whyItMatters ? `<p style="margin:0 0 8px"><strong>${esc(tt("ui.quiz.whyItMatters", "Hvorfor det betyr noe"))}:</strong> ${esc(model.whyItMatters)}</p>` : "",
+        termsHtml,
+        model.storyFragment ? `<p style="margin:10px 0 0"><strong>${esc(tt("ui.quiz.story", "Historien"))}:</strong> ${esc(model.storyFragment)}</p>` : "",
+        model.sourceNote ? `<small class="muted" style="display:block;margin-top:10px">${esc(model.sourceNote)}</small>` : ""
+      ].join("")
+    };
+  }
+
+  function appendQuestionEvidence(type, q, ok, chosenAnswer, correctAnswer, model) {
+    if (!categoryId) return false;
+    const tid = s(targetId);
+    const quizId = s(q?.quiz_id || q?.quizId || q?.id || tid);
+    const evidenceType = s(q?.evidence_type || "recognize");
+    const masteryState = ok ? (masteryByEvidenceType[evidenceType] || "recognized") : null;
+    const event = {
+      schema: HG_LEARNING_SCHEMA,
+      type,
+      ts: Date.now(),
+      date: new Date().toISOString(),
+      id: `${quizId}::${type}::${Date.now()}`,
+      targetId: tid,
+      quizId,
+      questionId: s(q?.id),
+      categoryId,
+      correct: typeof ok === "boolean" ? ok : null,
+      chosenAnswer: s(chosenAnswer),
+      correctAnswer: s(correctAnswer),
+      evidence_type: evidenceType,
+      mastery_state: masteryState,
+      primary_knowledge_unit_id: s(q?.primary_knowledge_unit_id),
+      knowledge_unit_ids: model.knowledgeUnitIds,
+      concept_ids: model.conceptIds,
+      term_ids: model.termIds,
+      story_ids: model.storyIds,
+      knowledge_emne_ids: model.emneIds,
+      learning_objective_id: s(q?.learning_objective_id),
+      needs_review: ok === false
+    };
+    const saved = appendLearningEvent(event);
+    try {
+      window.dispatchEvent(new CustomEvent("hg:quizKnowledgeEvidence", { detail: event }));
+    } catch {}
+    return saved;
+  }
+
+  if (!categoryId && window.DEBUG) {
+    console.warn("[quiz] missing categoryId on quiz questions", { title, targetId: s(targetId), q0: questions?.[0] });
+  }
+
+  function advanceAfterReading(q, ok, chosenAnswer, correctAnswer, model) {
+    appendQuestionEvidence("quiz_knowledge_read", q, ok, chosenAnswer, correctAnswer, model);
+    i++;
+    if (i < questions.length) {
+      step();
+      return;
+    }
+    if (autoClose) closeQuiz();
+    const meta = { correctAnswers, conceptsCorrect, emnerTouched };
+    try { onEnd(correct, questions.length, meta); }
+    catch (e) { dwarn("onEnd crashed", e); }
+  }
+
+  function step() {
+    const q = questions[i];
+    const options = arr(q.options || q.choices);
+    const answerIndex = typeof q.answerIndex === "number" ? q.answerIndex : options.findIndex((option) => option === q.answer);
+
+    qs.q.textContent = q.question || q.text || "";
+    qs.choices.innerHTML = options.map((option, idx) => `<button data-idx="${idx}">${esc(option)}</button>`).join("");
+    qs.progress.textContent = progressPrefix ? `${progressPrefix} • ${i + 1}/${questions.length}` : `${i + 1}/${questions.length}`;
+    qs.feedback.textContent = "";
+    if (knowledgePanel) {
+      knowledgePanel.hidden = true;
+      knowledgePanel.innerHTML = "";
+    }
+    if (continueBtn) {
+      continueBtn.hidden = true;
+      continueBtn.onclick = null;
+    }
+
+    const bar = document.querySelector(".quiz-progress .bar");
+    if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
+
+    let answered = false;
+    qs.choices.querySelectorAll("button").forEach((btn) => {
+      btn.onclick = () => {
+        if (answered) return;
+        answered = true;
+
+        const chosenIdx = Number(btn.dataset.idx);
+        const ok = chosenIdx === answerIndex;
+        const tid = s(targetId);
+        const qText = q.question || q.text || "";
+        const chosenAnswer = options[chosenIdx] ?? "";
+        const correctAnswer = options[answerIndex] ?? (q.answer ?? "");
+        const quizId = s(q.quiz_id || q.quizId || tid);
+        const rendered = renderKnowledge(q, correctAnswer);
+
+        btn.classList.add(ok ? "correct" : "wrong");
+        qs.feedback.textContent = ok ? tt("ui.quiz.correct", "Riktig ✅") : tt("ui.quiz.wrong", "Feil ❌");
+        qs.choices.querySelectorAll("button").forEach((button) => { button.disabled = true; });
+
+        if (knowledgePanel) {
+          knowledgePanel.innerHTML = rendered.html;
+          knowledgePanel.hidden = false;
+        }
+        if (continueBtn) continueBtn.hidden = false;
+
+        appendQuestionEvidence("quiz_question_answered", q, ok, chosenAnswer, correctAnswer, rendered.model);
+        appendQuestionEvidence("quiz_knowledge_presented", q, ok, chosenAnswer, correctAnswer, rendered.model);
+
+        if (ok) {
+          correct++;
+          correctAnswers.push({ question: qText, answer: correctAnswer, chosenAnswer });
+
+          arr(q.core_concepts).forEach((concept) => {
+            const id = s(concept);
+            if (id) conceptsCorrect.push(id);
+          });
+          rendered.model.emneIds.forEach((emneId) => emnerTouched.push(emneId));
+
+          if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
+            try { window.HGUnlocks.recordFromQuiz({ quizId, categoryId, item: q, targetId: tid }); }
+            catch (e) { dwarn("HGUnlocks.recordFromQuiz failed", e); }
+          }
+
+          if (window.HGNatureUnlocks && typeof window.HGNatureUnlocks.recordFromQuiz === "function") {
+            try { window.HGNatureUnlocks.recordFromQuiz({ quizId, placeId: tid }); }
+            catch (e) { console.error("[HGNatureUnlocks] recordFromQuiz failed", e); }
+          }
+
+          if (categoryId) {
+            const logInsight = typeof API?.logCorrectQuizAnswer === "function"
+              ? API.logCorrectQuizAnswer
+              : (typeof window.HGInsights?.logCorrectQuizAnswer === "function" ? window.HGInsights.logCorrectQuizAnswer.bind(window.HGInsights) : null);
+
+            if (logInsight) {
+              try {
+                logInsight(null, {
+                  id: quizId,
+                  categoryId,
+                  personId: q.personId || null,
+                  placeId: q.placeId || tid,
+                  topic: q.topic || null,
+                  core_concepts: arr(q.core_concepts),
+                  concept_ids: rendered.model.conceptIds,
+                  term_ids: rendered.model.termIds,
+                  knowledge_unit_ids: rendered.model.knowledgeUnitIds
+                });
+              } catch (e) { dwarn("logCorrectQuizAnswer failed", e); }
+            }
+
+            const saveKnowledge = typeof API?.saveKnowledgeFromQuiz === "function"
+              ? API.saveKnowledgeFromQuiz
+              : (typeof window.saveKnowledgeFromQuiz === "function" ? window.saveKnowledgeFromQuiz : null);
+
+            if (saveKnowledge && (q.knowledge || q.knowledge_payload)) {
+              try {
+                saveKnowledge({
+                  ...q,
+                  id: q.id || `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
+                  categoryId,
+                  targetId: tid,
+                  chosenAnswer,
+                  correct: true,
+                  emne_ids: rendered.model.emneIds,
+                  knowledge_unit_ids: rendered.model.knowledgeUnitIds,
+                  concept_ids: rendered.model.conceptIds,
+                  term_ids: rendered.model.termIds,
+                  story_ids: rendered.model.storyIds
+                }, { categoryId, targetId: tid });
+              } catch (e) { dwarn("saveKnowledgeFromQuiz failed", e); }
+            }
+
+            const saveTrivia = typeof API?.saveTriviaPoint === "function"
+              ? API.saveTriviaPoint
+              : (typeof window.saveTriviaPoint === "function" ? window.saveTriviaPoint : null);
+            if (saveTrivia && q.trivia) {
+              try { saveTrivia({ id: tid, category: categoryId, trivia: q.trivia, question: q.question }); }
+              catch (e) { dwarn("saveTriviaPoint failed", e); }
+            }
+          }
+        }
+
+        const continueAction = () => advanceAfterReading(q, ok, chosenAnswer, correctAnswer, rendered.model);
+        if (continueBtn) continueBtn.onclick = continueAction;
+        else continueAction();
+      };
+    });
+  }
+
+  step();
+}'''
+
+marker = "  // ============================================================\n  // PUBLIC: start(targetId)"
+pattern = re.compile(
+    r'function runQuizFlow\(\{ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true \}\) \{.*?\n\}\n\n'
+    + re.escape(marker),
+    re.S,
+)
+replacement = new_function + "\n\n" + marker
+next_text, count = pattern.subn(replacement, text, count=1)
+if count != 1:
+    raise SystemExit(f"Expected to replace one runQuizFlow, replaced {count}")
+
+path.write_text(next_text, encoding="utf-8")
+
+required = [
+    "quizKnowledgePanel",
+    "quizKnowledgeContinue",
+    "quiz_knowledge_presented",
+    "quiz_knowledge_read",
+    "quiz_question_answered",
+    "knowledge_payload",
+    "primary_knowledge_unit_id",
+    "needs_review: ok === false",
+]
+missing = [value for value in required if value not in next_text]
+if missing:
+    raise SystemExit(f"Missing runtime markers: {missing}")
