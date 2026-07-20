@@ -23,6 +23,9 @@ class SocialMeetDomainError(Exception):
     code: str
     detail: str
 
+    def __str__(self) -> str:
+        return self.detail
+
 
 class SocialMeetIdentityService:
     def __init__(self, repository: SocialMeetIdentityRepository) -> None:
