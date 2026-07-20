@@ -1,3 +1,4 @@
+// Typed boundary for the external MapLibre runtime and legacy map DOM interop.
 interface Window {
   maplibregl?: MapLibreGlobal;
   HG_MAPTILER_KEY?: string;
