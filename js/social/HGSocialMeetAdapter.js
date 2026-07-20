@@ -24,6 +24,7 @@
     sharedEra:'Dere deler epoke-interesser',
     sharedLearningGoal:'Dere deler læringsmål'
   });
+  let fastApiLoadPromise = null;
 
   function clone(v){ return JSON.parse(JSON.stringify(v)); }
   function list(v){ return Array.isArray(v) ? v : []; }
@@ -96,11 +97,32 @@
     return str(root.HG_SOCIAL_MEET_BACKEND || root.HG_SOCIAL_MEET_API?.backend || root.HG_SOCIAL_MEET_SUPABASE?.backend || root.HG_SOCIAL_MEET_SUPABASE?.mode).toLowerCase();
   }
 
+  function wantsFastApi(){
+    const config = root.HG_SOCIAL_MEET_API || root.HG_BACKEND_CONFIG || {};
+    return configuredBackend() === 'fastapi' || config.enabled === true || Boolean(str(config.baseUrl || config.apiBaseUrl || config.url));
+  }
+
   function backendMode(){
-    const configured = configuredBackend();
-    const apiHealth = root.HG_SocialMeetFastApiClient?.health?.();
-    if (configured === 'fastapi' || apiHealth?.enabled) return 'fastapi';
-    return 'local';
+    return wantsFastApi() ? 'fastapi' : 'local';
+  }
+
+  function ensureFastApiClient(){
+    if (root.HG_SocialMeetFastApiClient) return Promise.resolve(root.HG_SocialMeetFastApiClient);
+    if (!wantsFastApi()) return Promise.resolve(null);
+    if (fastApiLoadPromise) return fastApiLoadPromise;
+    if (!root.document?.createElement) return Promise.resolve(null);
+
+    fastApiLoadPromise = new Promise(resolve => {
+      const script = root.document.createElement('script');
+      script.src = 'dist/web/hgSocialMeetFastApiClient.js';
+      script.async = true;
+      script.dataset.hgSocialMeetFastapiClient = '1';
+      const finish = () => resolve(root.HG_SocialMeetFastApiClient || null);
+      script.addEventListener('load', finish, { once:true });
+      script.addEventListener('error', finish, { once:true });
+      (root.document.head || root.document.documentElement)?.appendChild(script);
+    });
+    return fastApiLoadPromise;
   }
 
   function fastApi(){
@@ -110,6 +132,11 @@
       return { ok:false, reason:health.reason || 'backend_not_enabled', health };
     }
     return { ok:true, client, health };
+  }
+
+  async function resolveFastApi(){
+    await ensureFastApiClient();
+    return fastApi();
   }
 
   function sb(){
@@ -130,7 +157,7 @@
 
   async function getMyProfile(){
     if (backendMode() === 'fastapi') {
-      const resolved = fastApi();
+      const resolved = await resolveFastApi();
       if (!resolved.ok) return resolved;
       return apiResult(await resolved.client.getMe(), 'profile');
     }
@@ -143,7 +170,7 @@
   async function upsertMyProfile(profile){
     const privacy = scanForbiddenFields(profile); if (!privacy.ok) return { ok:false, reason:'forbidden_privacy_field', privacy };
     if (backendMode() === 'fastapi') {
-      const resolved = fastApi();
+      const resolved = await resolveFastApi();
       if (!resolved.ok) return resolved;
       const displayName = str(profile?.displayName || profile?.display_name);
       if (!displayName) return { ok:false, reason:'missing_display_name' };
@@ -176,7 +203,7 @@
 
   async function discoverCandidates(context, options = {}){
     const normalized = normalizeContext(context); if (!normalized.ok) return { ...normalized, suggestions:[] };
-    const resolved = fastApi(); if (!resolved.ok) return { ...resolved, suggestions:[] };
+    const resolved = await resolveFastApi(); if (!resolved.ok) return { ...resolved, suggestions:[] };
     const signals = options?.signals || context?.discoverySignals || {};
     const payload = {
       context: {
@@ -228,7 +255,7 @@
     const normalized = normalizeContext(context); if (!normalized.ok) return normalized;
     if (!PRESETS.some(p => p.presetMessageId === presetMessageId)) return { ok:false, reason:'invalid_preset_message' };
     const target = str(targetUserId); if (!target) return { ok:false, reason:'missing_target_user' };
-    const resolved = fastApi(); if (!resolved.ok) return resolved;
+    const resolved = await resolveFastApi(); if (!resolved.ok) return resolved;
     const result = await resolved.client.createInvite({
       recipientProfileId:target,
       context:normalized.context,
@@ -239,7 +266,7 @@
   }
 
   async function listInvites(options = {}){
-    const resolved = fastApi(); if (!resolved.ok) return { ...resolved, invites:[] };
+    const resolved = await resolveFastApi(); if (!resolved.ok) return { ...resolved, invites:[] };
     const query = { cursor:options.cursor || 0, limit:options.limit || 100 };
     if (options.state) query.state = options.state;
     const result = await resolved.client.listInbox(query);
@@ -255,7 +282,7 @@
     if (!STATUSES.includes(nextStatus)) return { ok:false, reason:'invalid_status' };
     const action = nextStatus === 'accepted' ? 'accept' : nextStatus === 'declined' ? 'decline' : nextStatus === 'cancelled' ? 'cancel' : nextStatus === 'completed' ? 'complete' : '';
     if (!action) return { ok:false, reason:'invalid_status' };
-    const resolved = fastApi(); if (!resolved.ok) return resolved;
+    const resolved = await resolveFastApi(); if (!resolved.ok) return resolved;
     const result = await resolved.client.transitionInvite(id, action, expectedVersion);
     return apiResult(result, 'invite', mapInvite);
   }
@@ -272,7 +299,7 @@
 
   function health(){
     const mode = backendMode();
-    const apiHealth = root.HG_SocialMeetFastApiClient?.health?.() || { ok:false, enabled:false, reason:'fastapi_client_missing' };
+    const apiHealth = root.HG_SocialMeetFastApiClient?.health?.() || { ok:false, enabled:wantsFastApi(), reason:'fastapi_client_loading' };
     const supabaseHealth = root.HG_SocialMeetSupabaseClient?.health?.() || { ok:false, reason:'supabase_client_missing' };
     return {
       ok: mode === 'local' || apiHealth.ok,
@@ -289,4 +316,5 @@
   const api = { backendMode, scanForbiddenFields, normalizeContext, mapInvite, presetMessages:clone(PRESETS), getMyProfile, upsertMyProfile, discoverCandidates, createInvite, listInvites, acceptInvite, declineInvite, cancelInvite, completeInvite, listCircles, joinCircle, leaveCircle, listActivity, health };
   root.HG_SocialMeetAdapter = api;
   root.HG_SocialMeetBackend = api;
+  if (wantsFastApi()) void ensureFastApiClient();
 }());
