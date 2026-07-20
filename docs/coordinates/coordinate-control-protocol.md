@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 219 verifiserte eller kildekontrollerte canonical steder. Batch 72 legger til Akrobaten gangbro med geometrisenteret for den navngitte OSM-way 468892289, kryssjekket mot L2 Arkitekter, VisitOSLO og Oslo byleksikon. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 220 verifiserte eller kildekontrollerte canonical steder. Batch 72 legger til Akrobaten gangbro med geometrisenteret for den navngitte OSM-way 468892289, kryssjekket mot L2 Arkitekter, VisitOSLO og Oslo byleksikon. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -400,6 +400,7 @@ Alle de 35 innsendte radene er kontrollert. Trettitre er verifiserte Etne-steder
 | 5 | `hoyland_gravhaug_etne` | Gravhaugen på Høyland | verified_geometry | `kulturminnesok:90156-1` |
 | 5 | `skanevik_kyrkjestad` | Skånevik kyrkjestad | verified_historical_source | `kulturminnesok:85489-4` |
 | 5 | `stampehaug_meland` | Stampehaug på Meland | verified_geometry | `kulturminnesok:90135-1` |
+| 73 | `ekeberg_helleristninger` | Helleristningene på Ekeberg | verified_geometry | `kulturminnesok:41907` |
 
 Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / PR #2309, `c1f8f9041` / PR #2314 og `3fd6d69ac` / PR #2318.
 
@@ -420,3 +421,5 @@ Batch 69 (2026-07-20) produserer `central_jam_e_mosque` som eget historisk relig
 Batch 70 (2026-07-20) produserer `toyen_hovedgard` som eget historisk hovedgårdsanlegg. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Trondheimsveien 23B. Hovedgården ligger fysisk inne i Botanisk hage, men er et eldre selvstendig bygg- og gårdsanlegg; `botanisk_hage`, `naturhistorisk_museum` og `klimahuset` beholdes som separate parent-/nabosteder med andre fysiske og institusjonelle skalaer.
 
 Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhistorisk museumssted. Den generelle adressen Tøyengata 38 ga flere uentydige Geonorge-treff, mens Oslo Museum og Oslo byleksikon identifiserer leiligheten i Tøyengata 38B; den presise address-first-kjøringen ga ett tydelig offisielt punkt. Recorden representerer den bevarte museumsleiligheten inne i Gråbein-komplekset, ikke hele leiegårdskomplekset eller Tøyen som område.
+
+Batch 73 (2026-07-20) produserer `ekeberg_helleristninger` som selve det registrerte helleristningsfeltet ved Sjømannsskolen på Ekeberg. Koordinaten er geometrisenteret for Riksantikvarens offisielle MultiPolygon-feature `41907-1`, koblet direkte til Kulturminne-ID 41907. Feltet holdes separat fra `ekebergparken`, Kongsveien og brede Ekeberg-områdeankre. Dateringen til omtrent 4 000–5 000 år er bred; år -2500 i place-recorden er et teknisk representasjonspunkt og ikke en eksakt arkeologisk datering.
