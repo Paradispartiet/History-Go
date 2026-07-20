@@ -3,16 +3,35 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-const original = execFileSync(
+const commits = execFileSync(
   'git',
-  ['show', 'HEAD^:scripts/coordinate-branch-job.mjs'],
+  ['log', '--format=%H', '--', 'scripts/coordinate-branch-job.mjs'],
   { encoding: 'utf8' }
-);
+).trim().split(/\s+/);
 
-const patched = original.replaceAll('`needs_detail_check`', "'needs_detail_check'");
-if (patched === original) {
-  throw new Error('Fant ikke statusmarkøren som skulle rettes');
+let original = '';
+for (const commit of commits) {
+  const candidate = execFileSync(
+    'git',
+    ['show', `${commit}:scripts/coordinate-branch-job.mjs`],
+    { encoding: 'utf8' }
+  );
+  const isMaterializer =
+    !candidate.includes("from 'node:url'") &&
+    candidate.includes("const placeId = 'alna_utlop_bjorvika';") &&
+    candidate.includes("console.log('Alna historical outlet materialized and validated')");
+  if (isMaterializer) {
+    original = candidate;
+    break;
+  }
 }
+if (!original) {
+  throw new Error('Fant ikke originalmaterialiseringen i Git-historikken');
+}
+
+const patched = original
+  .replaceAll('`needs_detail_check`', 'needs_detail_check')
+  .replaceAll("'needs_detail_check'", 'needs_detail_check');
 
 const tempPath = path.resolve('scripts/.alna-utlop-materializer-fixed.mjs');
 fs.writeFileSync(tempPath, patched);
