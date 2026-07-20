@@ -61,7 +61,20 @@ jobs:
           if-no-files-found: error
 
       - name: Mypy strict typecheck
-        run: python -m mypy backend/app
+        id: mypy
+        run: |
+          mkdir -p reports/backend-ci
+          set -o pipefail
+          python -m mypy backend/app 2>&1 \
+            | tee reports/backend-ci/mypy.log
+
+      - name: Upload mypy diagnostics
+        if: failure() && steps.mypy.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-mypy-diagnostics-${{ github.run_id }}
+          path: reports/backend-ci/mypy.log
+          if-no-files-found: error
 
   tests:
     name: Python ${{ matrix.python-version }} tests
