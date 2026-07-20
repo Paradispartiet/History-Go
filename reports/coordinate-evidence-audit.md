@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T04:46:03.702Z
+Generert: 2026-07-20T04:58:37.896Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -136,7 +136,6 @@ Generert: 2026-07-20T04:46:03.702Z
 | lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | myrens_verksted | data/coordinate-evidence/oslo/naeringsliv/myrens_verksted.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | norges_varemesse | data/coordinate-evidence/oslo/naeringsliv/norges_varemesse.json | needs_research | needs_identity_split | OK |
-| nrk_marienlyst | data/coordinate-evidence/oslo/naeringsliv/nrk_marienlyst.json | rejected | needs_identity_split | OK |
 | oslo_gassverk | data/coordinate-evidence/oslo/naeringsliv/oslo_gassverk.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_kornmagasin | data/coordinate-evidence/oslo/naeringsliv/oslo_kornmagasin.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_kraftselskap | data/coordinate-evidence/oslo/naeringsliv/oslo_kraftselskap.json | needs_research | needs_identity_split | OK |
