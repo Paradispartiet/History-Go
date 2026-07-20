@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T03:56:42.725Z
+Generert: 2026-07-20T04:11:08.062Z
 
 ## Oppsummering
 - Aktive filer validert: **510**
-- Antall steder validert: **1218**
+- Antall steder validert: **1219**
 - Harde feil: **0**
-- Varsler: **428**
-- Coordinate review candidates: **710** signaler fordelt på **567** steder
+- Varsler: **427**
+- Coordinate review candidates: **709** signaler fordelt på **566** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -770,7 +770,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv.json#akershus_energi: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#schous_bryggeri: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#ringnes_bryggeri: coordStatus=verified uten coordPrecisionM
-- data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kornmagasin: lineært sted uten anchors
 - data/places/naeringsliv/oslo/places_naeringsliv.json#jernbanetorget_trafikknutepunkt: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#frysja_industriomrade: coordStatus=verified uten coordPrecisionM
@@ -964,14 +963,14 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 710 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 709 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
 | coordStatus=verified uten coordPrecisionM | 110 |
-| lineært sted uten anchors | 81 |
+| lineært sted uten anchors | 80 |
 | lav koordinatpresisjon (<4 desimaler) | 98 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 90 |
 | park/stort område uten anchors eller coordNote | 132 |
@@ -1095,7 +1094,7 @@ Totalt 710 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandi
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bla_skilt_enerhaugen_samfund_smedgata_34 | Blått skilt: Enerhaugens Samfund | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.91369333254918 | 10.77036298230481 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (81)
+### lineært sted uten anchors (80)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1141,7 +1140,6 @@ Totalt 710 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandi
 | baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | natur | data/places/natur/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | stiklestad | Stiklestad | historie | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | 63.7956 | 11.559 | 220 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | vagar_lofoten_storvagan | Vågar i Storvågan/Kabelvåg | by | data/places/by/nordland/vagar_lofoten_storvagan.json | 68.2145 | 14.4759 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| oslo_kornmagasin | Christiania kornmagasin | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9119 | 10.7428 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | christiania_seildugsfabrik | Christiania Seildugsfabrik | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9253444010033 | 10.75475549771365 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | alnaelvstien | Alnaelvstien | natur | data/places/natur/oslo/places_oslo_alna.json | 59.931 | 10.83 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
