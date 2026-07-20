@@ -2,20 +2,27 @@ type CategoryMeta = {
   id: string;
   name?: string;
   icon?: string;
+  image?: string;
   color?: string;
+  scope?: string;
   aliases?: string[];
 };
-
+type BadgeMeta = {
+  id?: unknown;
+  name?: unknown;
+  title?: unknown;
+  icon?: unknown;
+  image?: unknown;
+  color?: unknown;
+};
 type MapPlace = {
   category?: unknown;
   [key: string]: unknown;
 };
-
 type PositionSnapshot = {
   lat?: unknown;
   lon?: unknown;
 };
-
 type MapInstance = {
   flyTo: (options: {
     center: [number, number];
@@ -27,23 +34,28 @@ type MapInstance = {
   getZoom?: () => number;
   getPitch?: () => number;
 };
-
 type MapApi = {
   setPlaces?: (places: MapPlace[]) => unknown;
   getMap?: () => MapInstance | null;
   __hgCategoryFilterPatched?: boolean;
 };
-
 type MapCategoryFilterApi = {
-  get: () => string;
-  set: (categoryId: string) => void;
+  get: () => string[];
+  set: (categoryIds: string | string[]) => void;
+  toggle: (categoryId: string) => void;
   showAll: () => void;
   refresh: () => void;
 };
-
 type RuntimeWindow = Window & typeof globalThis & {
   CATEGORY_LIST?: CategoryMeta[];
+  BADGES?: BadgeMeta[];
   PLACES?: MapPlace[];
+  DataHub?: {
+    loadBadges?: (options?: { cache?: RequestCache; bust?: boolean }) => Promise<BadgeMeta[]>;
+  };
+  DomainRegistry?: {
+    toRuntimeCategoryId?: (value: unknown) => unknown;
+  };
   HGMap?: MapApi;
   HGPos?: { request?: () => Promise<unknown> | unknown };
   getPos?: () => PositionSnapshot | null;
@@ -52,63 +64,170 @@ type RuntimeWindow = Window & typeof globalThis & {
   exitMapMode?: () => unknown;
   HGMapCategoryFilter?: MapCategoryFilterApi;
 };
-
 const win = window as RuntimeWindow;
-const FILTER_KEY = "hg_map_category_filter_v1";
+const FILTER_KEY = "hg_map_category_filters_v2";
+const LEGACY_FILTER_KEY = "hg_map_category_filter_v1";
 const ALL = "all";
-
-let activeCategory = readSavedCategory();
+let activeCategories = readSavedCategories();
 let sourcePlaces: MapPlace[] = [];
 let originalSetPlaces: ((places: MapPlace[]) => unknown) | null = null;
-
-function readSavedCategory(): string {
-  try {
-    return localStorage.getItem(FILTER_KEY) || ALL;
-  } catch {
-    return ALL;
-  }
-}
-
-function categories(): CategoryMeta[] {
+let badgeCatalog: CategoryMeta[] = [];
+let badgeCatalogLoaded = false;
+let badgeLoadPromise: Promise<void> | null = null;
+function runtimeCategories(): CategoryMeta[] {
   return Array.isArray(win.CATEGORY_LIST) ? win.CATEGORY_LIST : [];
 }
-
-function normalizeCategory(value: unknown): string {
-  const id = String(value || ALL).trim() || ALL;
-  if (id === ALL) return ALL;
-  return categories().some((category) => String(category.id || "") === id) ? id : ALL;
-}
-
-function placeCategory(place: MapPlace): string {
-  const raw = String(place?.category || "").trim();
-  const match = categories().find((category) =>
+function runtimeCategoryId(value: unknown): string {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const bridge = win.DomainRegistry?.toRuntimeCategoryId;
+  if (typeof bridge === "function") {
+    try {
+      const resolved = String(bridge(raw) || "").trim();
+      if (resolved) return resolved;
+    } catch {
+    }
+  }
+  const match = runtimeCategories().find((category) =>
     String(category.id || "") === raw ||
     (Array.isArray(category.aliases) && category.aliases.some((alias) => String(alias) === raw))
   );
   return String(match?.id || raw);
 }
-
+function normalizeSelection(values: unknown): Set<string> {
+  const list = Array.isArray(values) ? values : [values];
+  const next = new Set<string>();
+  for (const value of list) {
+    const id = runtimeCategoryId(value);
+    if (id && id !== ALL) next.add(id);
+  }
+  return next;
+}
+function readSavedCategories(): Set<string> {
+  try {
+    const raw = localStorage.getItem(FILTER_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return normalizeSelection(parsed);
+    }
+    const legacy = localStorage.getItem(LEGACY_FILTER_KEY);
+    if (legacy && legacy !== ALL) return normalizeSelection([legacy]);
+  } catch {
+  }
+  return new Set<string>();
+}
+function saveActiveCategories(): void {
+  try {
+    localStorage.setItem(FILTER_KEY, JSON.stringify([...activeCategories]));
+    localStorage.removeItem(LEGACY_FILTER_KEY);
+  } catch {
+  }
+}
+function badgeImagePath(value: unknown): string {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  if (/^(https?:)?\/\//.test(raw)) return raw;
+  if (raw.includes("/") || /\.(png|jpe?g|webp|gif|svg)$/i.test(raw)) return raw;
+  return "";
+}
+function buildBadgeCatalog(badges: BadgeMeta[]): CategoryMeta[] {
+  const byId = new Map<string, CategoryMeta>();
+  for (const badge of Array.isArray(badges) ? badges : []) {
+    const id = runtimeCategoryId(badge?.id);
+    if (!id || byId.has(id)) continue;
+    const runtime = runtimeCategories().find((category) => String(category.id || "") === id);
+    byId.set(id, {
+      id,
+      name: String(badge?.name || badge?.title || runtime?.name || id),
+      image: badgeImagePath(badge?.image || badge?.icon),
+      color: String(badge?.color || runtime?.color || "#60758a"),
+      scope: runtime?.scope,
+      aliases: runtime?.aliases
+    });
+  }
+  return [...byId.values()];
+}
+async function ensureBadgeCatalog(): Promise<void> {
+  if (badgeCatalogLoaded) return;
+  if (Array.isArray(win.BADGES) && win.BADGES.length) {
+    badgeCatalog = buildBadgeCatalog(win.BADGES);
+    badgeCatalogLoaded = true;
+    return;
+  }
+  if (badgeLoadPromise) return badgeLoadPromise;
+  const loader = win.DataHub?.loadBadges;
+  if (typeof loader !== "function") return;
+  badgeLoadPromise = Promise.resolve(loader({ cache: "no-store" }))
+    .then((badges) => {
+      badgeCatalog = buildBadgeCatalog(Array.isArray(badges) ? badges : []);
+      badgeCatalogLoaded = true;
+    })
+    .catch((error) => {
+      console.warn("[HGMapCategoryFilter] badge-load failed", error);
+      badgeCatalog = [];
+      badgeCatalogLoaded = true;
+    })
+    .finally(() => {
+      badgeLoadPromise = null;
+    });
+  return badgeLoadPromise;
+}
+function placeCategory(place: MapPlace): string {
+  return runtimeCategoryId(place?.category);
+}
+function mapApplicableCategories(): CategoryMeta[] {
+  const places = sourcePlaces.length
+    ? sourcePlaces
+    : (Array.isArray(win.PLACES) ? win.PLACES : []);
+  const placeCategoryIds = new Set(places.map(placeCategory).filter(Boolean));
+  if (badgeCatalog.length) {
+    return badgeCatalog.filter((category) => {
+      const runtime = runtimeCategories().find((item) => String(item.id || "") === category.id);
+      const runtimeDomain = runtime?.scope === "runtime_domain" || runtime?.scope === "runtime_domain_alias";
+      return runtimeDomain || placeCategoryIds.has(category.id);
+    });
+  }
+  return runtimeCategories()
+    .filter((category) => category.scope !== "subfield_display")
+    .map((category) => ({
+      ...category,
+      image: `bilder/merker/${category.id}.PNG`
+    }));
+}
+function sanitizeActiveCategories(): void {
+  const validIds = new Set(mapApplicableCategories().map((category) => category.id));
+  if (!validIds.size) return;
+  const next = new Set([...activeCategories].filter((id) => validIds.has(id)));
+  if (next.size !== activeCategories.size) {
+    activeCategories = next;
+    saveActiveCategories();
+  }
+}
 function filteredPlaces(places: MapPlace[]): MapPlace[] {
   const list = Array.isArray(places) ? places : [];
-  activeCategory = normalizeCategory(activeCategory);
-  return activeCategory === ALL
-    ? list
-    : list.filter((place) => placeCategory(place) === activeCategory);
+  sanitizeActiveCategories();
+  if (!activeCategories.size) return list;
+  return list.filter((place) => activeCategories.has(placeCategory(place)));
 }
-
+function ensureControlStyles(): void {
+  if (document.getElementById("hgMapControlsRuntimeStyle")) return;
+  const style = document.createElement("style");
+  style.id = "hgMapControlsRuntimeStyle";
+  style.textContent = `.map-controls{--hg-map-control-width:min(268px,calc(100vw - 24px));top:auto!important;left:auto!important;right:calc(12px + env(safe-area-inset-right,0px))!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 14px)!important;width:var(--hg-map-control-width)!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - var(--hg-visual-header-height,74px) - var(--hg-bottom-nav-height,72px) - 24px);}body.mode-map .map-controls,body.map-only .map-controls{top:auto!important;bottom:calc(96px + var(--hg-safe-area-bottom,env(safe-area-inset-bottom,0px)))!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-style-toggle{display:inline-flex!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{display:flex!important;}.map-controls .hg-map-category-trigger{grid-template-columns:44px minmax(0,1fr) 18px;}.hg-map-category-trigger-logos,.hg-map-category-option-logos{display:flex;align-items:center;min-width:0;height:32px;}.hg-map-category-trigger-logos{width:44px;padding-left:2px;}.hg-map-category-logo{display:block;width:30px;height:30px;flex:0 0 30px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,.06);box-shadow:0 0 0 1px rgba(255,255,255,.12);}.hg-map-category-logo.is-stacked{margin-left:-13px;}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(2){transform:scale(.92);}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(3){transform:scale(.84);}.map-controls .hg-map-category-option{grid-template-columns:38px minmax(0,1fr) 24px;min-height:48px;}.hg-map-category-option-logos{width:38px;}.hg-map-category-option-logos .hg-map-category-logo{width:32px;height:32px;flex-basis:32px;}.hg-map-category-option-logos .hg-map-category-logo.is-stacked{width:25px;height:25px;flex-basis:25px;margin-left:-15px;}.hg-map-category-option-check{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.14);font-size:12px;font-weight:900;}.hg-map-category-option:not(.is-active) .hg-map-category-option-check{opacity:.18;color:transparent;}.hg-map-category-options{max-height:min(58dvh,560px);}@media (max-width:640px){.map-controls{--hg-map-control-width:min(248px,calc(100vw - 20px));right:calc(10px + env(safe-area-inset-right,0px))!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 10px)!important;}body.mode-map .map-controls,body.map-only .map-controls{bottom:calc(90px + var(--hg-safe-area-bottom,env(safe-area-inset-bottom,0px)))!important;}}`;
+  document.head.appendChild(style);
+}
 function createCategoryFilter(): HTMLDivElement {
   const filter = document.createElement("div");
   filter.className = "hg-map-category-filter";
   filter.innerHTML = `
     <button class="hg-map-category-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="hgMapCategoryOptions">
-      <span class="hg-map-category-trigger-icon" aria-hidden="true">🌍</span>
+      <span class="hg-map-category-trigger-logos" aria-hidden="true"></span>
       <span class="hg-map-category-trigger-label">Alle prikker</span>
       <span class="hg-map-category-trigger-caret" aria-hidden="true">⌄</span>
     </button>
-    <div id="hgMapCategoryOptions" class="hg-map-category-options" role="menu" aria-label="Filtrer kartprikker etter kategori" hidden></div>`;
+    <div id="hgMapCategoryOptions" class="hg-map-category-options" role="menu" aria-label="Velg én eller flere kategorier som skal vises på kartet" hidden></div>`;
   return filter;
 }
-
 function createIconButton(
   id: string,
   className: string,
@@ -125,11 +244,9 @@ function createIconButton(
   button.innerHTML = iconMarkup;
   return button;
 }
-
 function createUtilityRow(): HTMLDivElement {
   const row = document.createElement("div");
   row.className = "hg-map-utility-row";
-
   const center = createIconButton(
     "btnCenter",
     "hg-map-utility-btn hg-map-center-btn",
@@ -137,7 +254,6 @@ function createUtilityRow(): HTMLDivElement {
     "Sentrer",
     `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5.2"></circle><path d="M12 2.6v3M12 18.4v3M2.6 12h3M18.4 12h3"></path></svg>`
   );
-
   const exit = createIconButton(
     "btnExitMap",
     "hg-map-utility-btn hg-map-exit-btn",
@@ -145,14 +261,11 @@ function createUtilityRow(): HTMLDivElement {
     "Lukk kartmodus",
     `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5 17.5 17.5M17.5 6.5 6.5 17.5"></path></svg>`
   );
-
   row.append(center, exit);
   return row;
 }
-
 function ensureControls(): HTMLElement | null {
   if (!document.getElementById("mapLayer")) return null;
-
   let controls = document.querySelector<HTMLElement>(".map-controls");
   if (!controls) {
     controls = document.createElement("div");
@@ -160,18 +273,14 @@ function ensureControls(): HTMLElement | null {
     controls.setAttribute("aria-label", "Kartkontroller");
     document.body.appendChild(controls);
   }
-
   if (!controls.querySelector(".hg-map-category-filter")) {
     controls.appendChild(createCategoryFilter());
   }
-
   if (!controls.querySelector(".hg-map-utility-row")) {
     controls.appendChild(createUtilityRow());
   }
-
   return controls;
 }
-
 function escapeHtml(value: unknown): string {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -180,83 +289,110 @@ function escapeHtml(value: unknown): string {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
-
+function logoStackMarkup(categories: CategoryMeta[], limit = 3): string {
+  const images = categories
+    .map((category) => badgeImagePath(category.image))
+    .filter(Boolean)
+    .slice(0, limit);
+  return images.map((image, index) =>
+    `<img class="hg-map-category-logo${index ? " is-stacked" : ""}" src="${escapeHtml(image)}" alt="">`
+  ).join("");
+}
 function categoryMeta(categoryId: string): CategoryMeta {
-  if (categoryId === ALL) {
-    return { id: ALL, name: "Alle prikker", icon: "🌍", color: "#60758a" };
-  }
-
-  return categories().find((category) => String(category.id || "") === categoryId) || {
+  return mapApplicableCategories().find((category) => category.id === categoryId) || {
     id: categoryId,
     name: categoryId,
-    icon: "•",
+    image: "",
     color: "#60758a"
   };
 }
-
 function renderCategoryUi(): void {
-  if (!categories().length) return;
-
-  activeCategory = normalizeCategory(activeCategory);
+  const categories = mapApplicableCategories();
+  if (!categories.length) return;
+  sanitizeActiveCategories();
   const trigger = document.querySelector<HTMLButtonElement>(".hg-map-category-trigger");
-  const icon = trigger?.querySelector<HTMLElement>(".hg-map-category-trigger-icon");
+  const logos = trigger?.querySelector<HTMLElement>(".hg-map-category-trigger-logos");
   const label = trigger?.querySelector<HTMLElement>(".hg-map-category-trigger-label");
   const options = document.getElementById("hgMapCategoryOptions");
-  if (!trigger || !icon || !label || !options) return;
-
-  const active = categoryMeta(activeCategory);
-  icon.textContent = active.icon || "•";
-  label.textContent = active.name || active.id;
-  trigger.title = activeCategory === ALL
-    ? "Viser alle kategorier"
-    : `Viser bare ${active.name || active.id}`;
-
-  options.innerHTML = [categoryMeta(ALL), ...categories()].map((category) => {
-    const id = String(category.id || ALL);
-    const selected = id === activeCategory;
-    return `<button class="hg-map-category-option${selected ? " is-active" : ""}" type="button" role="menuitemradio" aria-checked="${selected}" data-map-category="${escapeHtml(id)}" style="--hg-cat-color:${escapeHtml(category.color || "#60758a")}"><span class="hg-map-category-option-icon" aria-hidden="true">${escapeHtml(category.icon || "•")}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">✓</span></button>`;
+  if (!trigger || !logos || !label || !options) return;
+  const selected = categories.filter((category) => activeCategories.has(category.id));
+  const visibleForLogos = selected.length ? selected : categories;
+  logos.innerHTML = logoStackMarkup(visibleForLogos);
+  if (!selected.length) {
+    label.textContent = "Alle prikker";
+    trigger.title = "Viser alle kategorier";
+  } else if (selected.length === 1) {
+    label.textContent = selected[0].name || selected[0].id;
+    trigger.title = `Viser ${selected[0].name || selected[0].id}`;
+  } else {
+    label.textContent = `${selected.length} kategorier`;
+    trigger.title = `Viser ${selected.map((category) => category.name || category.id).join(", ")}`;
+  }
+  const allSelected = activeCategories.size === 0;
+  const allLogos = logoStackMarkup(categories);
+  const allOption = `<button class="hg-map-category-option${allSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${allSelected}" data-map-category="${ALL}"><span class="hg-map-category-option-logos" aria-hidden="true">${allLogos}</span><span class="hg-map-category-option-label">Alle prikker</span><span class="hg-map-category-option-check" aria-hidden="true">✓</span></button>`;
+  const categoryOptions = categories.map((category) => {
+    const id = category.id;
+    const isSelected = activeCategories.has(id);
+    return `<button class="hg-map-category-option${isSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${isSelected}" data-map-category="${escapeHtml(id)}"><span class="hg-map-category-option-logos" aria-hidden="true">${logoStackMarkup([category], 1)}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">✓</span></button>`;
   }).join("");
+  options.innerHTML = allOption + categoryOptions;
 }
-
 function installFilterHook(): boolean {
   const api = win.HGMap;
   if (!api || typeof api.setPlaces !== "function") return false;
   if (api.__hgCategoryFilterPatched) return true;
-
   originalSetPlaces = api.setPlaces.bind(api);
   api.setPlaces = (places: MapPlace[]) => {
     sourcePlaces = Array.isArray(places) ? places : [];
+    renderCategoryUi();
     return originalSetPlaces?.(filteredPlaces(sourcePlaces));
   };
   api.__hgCategoryFilterPatched = true;
-
   if (Array.isArray(win.PLACES) && win.PLACES.length) {
     sourcePlaces = win.PLACES;
     originalSetPlaces(filteredPlaces(sourcePlaces));
   }
-
   return true;
 }
-
-function applyFilter(categoryId: string): void {
-  activeCategory = normalizeCategory(categoryId);
-  try {
-    localStorage.setItem(FILTER_KEY, activeCategory);
-  } catch {
-    // Storage is optional; the in-memory filter still works.
-  }
-
+function applyCurrentFilter(): void {
   if (!sourcePlaces.length && Array.isArray(win.PLACES)) {
     sourcePlaces = win.PLACES;
   }
-
+  saveActiveCategories();
   originalSetPlaces?.(filteredPlaces(sourcePlaces));
   renderCategoryUi();
+  const categories = [...activeCategories];
   win.dispatchEvent(new CustomEvent("hg:map-category-filter", {
-    detail: { category: activeCategory }
+    detail: {
+      categories,
+      category: categories.length === 1 ? categories[0] : (categories.length ? "multiple" : ALL)
+    }
   }));
 }
-
+function setFilter(categoryIds: string | string[]): void {
+  if (categoryIds === ALL || (Array.isArray(categoryIds) && categoryIds.includes(ALL))) {
+    activeCategories = new Set<string>();
+  } else {
+    activeCategories = normalizeSelection(categoryIds);
+  }
+  applyCurrentFilter();
+}
+function toggleFilter(categoryId: string): void {
+  const id = runtimeCategoryId(categoryId);
+  if (!id || id === ALL) {
+    activeCategories = new Set<string>();
+    applyCurrentFilter();
+    return;
+  }
+  if (activeCategories.has(id)) activeCategories.delete(id);
+  else activeCategories.add(id);
+  applyCurrentFilter();
+}
+function showAll(): void {
+  activeCategories = new Set<string>();
+  applyCurrentFilter();
+}
 function closeMenu(): void {
   const trigger = document.querySelector<HTMLButtonElement>(".hg-map-category-trigger");
   const options = document.getElementById("hgMapCategoryOptions");
@@ -264,25 +400,20 @@ function closeMenu(): void {
   trigger.setAttribute("aria-expanded", "false");
   options.hidden = true;
 }
-
 async function centerMap(): Promise<void> {
   const button = document.getElementById("btnCenter") as HTMLButtonElement | null;
   if (button) button.disabled = true;
-
   try {
     let pos = win.getPos?.() || null;
     const hasCoordinates = () =>
       Number.isFinite(Number(pos?.lat)) && Number.isFinite(Number(pos?.lon));
-
     if (!hasCoordinates() && win.HGPos?.request) {
       try {
         await win.HGPos.request();
       } catch {
-        // Position feedback is handled below if no usable position is available.
       }
       pos = win.getPos?.() || null;
     }
-
     const lat = Number(pos?.lat);
     const lon = Number(pos?.lon);
     const map = win.HGMap?.getMap?.() || null;
@@ -290,7 +421,6 @@ async function centerMap(): Promise<void> {
       win.showToast?.("Fant ikke posisjonen din");
       return;
     }
-
     map.flyTo({
       center: [lon, lat],
       zoom: Math.max(Number(map.getZoom?.()) || 13, 15),
@@ -302,13 +432,11 @@ async function centerMap(): Promise<void> {
     if (button) button.disabled = false;
   }
 }
-
 function bindUi(): void {
   const trigger = document.querySelector<HTMLButtonElement>(".hg-map-category-trigger");
   const options = document.getElementById("hgMapCategoryOptions");
   const center = document.getElementById("btnCenter") as HTMLButtonElement | null;
   const exit = document.getElementById("btnExitMap") as HTMLButtonElement | null;
-
   if (trigger && trigger.dataset.hgBound !== "1") {
     trigger.dataset.hgBound = "1";
     trigger.addEventListener("click", (event) => {
@@ -319,7 +447,6 @@ function bindUi(): void {
       if (open) renderCategoryUi();
     });
   }
-
   if (options && options.dataset.hgBound !== "1") {
     options.dataset.hgBound = "1";
     options.addEventListener("click", (event) => {
@@ -328,18 +455,17 @@ function bindUi(): void {
         ? target.closest<HTMLElement>("[data-map-category]")
         : null;
       if (!option) return;
-      applyFilter(option.dataset.mapCategory || ALL);
-      closeMenu();
+      const categoryId = option.dataset.mapCategory || ALL;
+      if (categoryId === ALL) showAll();
+      else toggleFilter(categoryId);
     });
   }
-
   if (center && center.dataset.hgBound !== "1") {
     center.dataset.hgBound = "1";
     center.addEventListener("click", () => {
       void centerMap();
     });
   }
-
   if (exit && exit.dataset.hgRuntimeBound !== "1") {
     exit.dataset.hgRuntimeBound = "1";
     exit.addEventListener("click", () => {
@@ -348,26 +474,24 @@ function bindUi(): void {
     });
   }
 }
-
 function refresh(): void {
+  ensureControlStyles();
   ensureControls();
   bindUi();
   installFilterHook();
   renderCategoryUi();
+  void ensureBadgeCatalog().then(() => renderCategoryUi());
 }
-
 function init(): void {
   refresh();
-
   let attempts = 0;
   const timer = window.setInterval(() => {
     refresh();
     attempts += 1;
-    if ((win.HGMap?.__hgCategoryFilterPatched && categories().length) || attempts > 80) {
+    if ((win.HGMap?.__hgCategoryFilterPatched && runtimeCategories().length && badgeCatalogLoaded) || attempts > 160) {
       window.clearInterval(timer);
     }
   }, 150);
-
   win.addEventListener("hg:appReady", refresh);
   document.addEventListener("click", (event) => {
     const target = event.target;
@@ -379,18 +503,16 @@ function init(): void {
     if (event.key === "Escape") closeMenu();
   });
 }
-
 win.HGMapCategoryFilter = {
-  get: () => activeCategory,
-  set: applyFilter,
-  showAll: () => applyFilter(ALL),
+  get: () => [...activeCategories],
+  set: setFilter,
+  toggle: toggleFilter,
+  showAll,
   refresh
 };
-
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init, { once: true });
 } else {
   init();
 }
-
 export {};
