@@ -37,6 +37,15 @@
     return `${base}/places/${filename}`;
   }
 
+  function categoryOverrideBatchUrl(entry) {
+    const raw = String(entry || "").trim().replace(/^\.\//, "");
+    if (!raw) return "";
+    const withoutData = raw.replace(/^data\/places\/category_overrides\//, "");
+    const withoutPlaces = withoutData.replace(/^places\/category_overrides\//, "");
+    const withoutFolder = withoutPlaces.replace(/^category_overrides\//, "");
+    return dataUrl(`category_overrides/${withoutFolder}`);
+  }
+
   async function loadCoordinateOverrides(opts = {}) {
     opts = asOptions(opts);
     if (coordinateOverridesPromise && !opts.bust) return coordinateOverridesPromise;
@@ -55,12 +64,37 @@
     opts = asOptions(opts);
     if (categoryOverridesPromise && !opts.bust) return categoryOverridesPromise;
 
-    categoryOverridesPromise = DataHub.fetchJSON(dataUrl("category_overrides.json"), {
+    const fetchOpts = {
       ...opts,
       cache: opts.cache || "no-store"
-    })
-      .then((data) => Array.isArray(data) ? data : [])
-      .catch(() => []);
+    };
+
+    categoryOverridesPromise = Promise.all([
+      DataHub.fetchJSON(dataUrl("category_overrides.json"), fetchOpts)
+        .then((data) => Array.isArray(data) ? data : [])
+        .catch(() => []),
+      DataHub.fetchJSON(dataUrl("category_overrides/index.json"), fetchOpts)
+        .catch(() => null)
+    ]).then(async ([baseOverrides, manifest]) => {
+      const files = Array.isArray(manifest?.files)
+        ? manifest.files.map((file) => String(file || "").trim()).filter(Boolean)
+        : [];
+
+      if (!files.length) return baseOverrides;
+
+      const batches = await Promise.all(files.map(async (file) => {
+        const url = categoryOverrideBatchUrl(file);
+        if (!url) return [];
+        return DataHub.fetchJSON(url, fetchOpts)
+          .then((data) => Array.isArray(data) ? data : [])
+          .catch((err) => {
+            console.warn(`[place-overrides] kunne ikke laste kategori-batch ${file}`, err);
+            return [];
+          });
+      }));
+
+      return [...baseOverrides, ...batches.flat()];
+    });
 
     return categoryOverridesPromise;
   }
