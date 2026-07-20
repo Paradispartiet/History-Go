@@ -3,7 +3,11 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from uuid import UUID
 
-from app.domains.social_meet.models import KnowledgeFingerprint, SocialMeetProfileRecord
+from app.domains.social_meet.models import (
+    KnowledgeFingerprint,
+    ProfileVisibility,
+    SocialMeetProfileRecord,
+)
 from app.domains.social_meet.repository import SocialMeetIdentityRepository
 from app.domains.social_meet.safety_models import (
     BlockView,
@@ -53,6 +57,22 @@ class SocialMeetSafetyService:
         return self._safety_repository.interaction_is_blocked(first_profile_id, second_profile_id)
 
     def ensure_interaction_allowed(self, first_profile_id: UUID, second_profile_id: UUID) -> None:
+        first = self._identity_repository.get_profile_by_public_id(first_profile_id)
+        second = self._identity_repository.get_profile_by_public_id(second_profile_id)
+        restricted_states = {
+            ProfileVisibility.BLOCKED_OR_SUSPENDED,
+            ProfileVisibility.DELETED,
+        }
+        if (
+            first is None
+            or second is None
+            or first.profile_visibility in restricted_states
+            or second.profile_visibility in restricted_states
+        ):
+            raise SocialMeetDomainError(
+                code="moderation_restricted",
+                detail="The requested Social Meet interaction is unavailable",
+            )
         if self.interaction_is_blocked(first_profile_id, second_profile_id):
             raise SocialMeetDomainError(
                 code="interaction_blocked",
