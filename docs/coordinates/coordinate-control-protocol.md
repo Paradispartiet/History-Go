@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 206 verifiserte eller kildekontrollerte canonical steder. Batch 60 legger til Vestre gravlund med et verifisert områdeanker i selve gravlundsgeometrien, ikke et adressepunkt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
+Oslo-tabellen inneholder nå 207 verifiserte eller kildekontrollerte canonical steder. Batch 56 legger til Brannmuseet i Oslo i den tidligere Grønland brannstasjon på det verifiserte Grønlandsleiret 32-punktet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -222,8 +222,8 @@ Oslo-tabellen inneholder nå 206 verifiserte eller kildekontrollerte canonical s
 | 52 | `toyenbadet` | Tøyenbadet | verified | `geonorge-adresser-v1:0301:12860:90` |
 | 53 | `ekt_rideskole_husdyrpark` | EKT Rideskole og Husdyrpark | verified | `geonorge-adresser-v1:0301:11462:99` |
 | 54 | `dronning_sonja_kunststall` | Dronning Sonja KunstStall | verified | `geonorge-adresser-v1:0301:15614:50` |
-
 | 55 | `holmlia_bad` | Holmlia bad | verified | `geonorge-adresser-v1:0301:13084:34` |
+| 56 | `brannmuseet_oslo` | Brannmuseet i Oslo | verified | `geonorge-adresser-v1:0301:12450:32` |
 | 57 | `fagerborg_kirke` | Fagerborg kirke | verified | `geonorge-adresser-v1:0301:15670:74` |
 | 58 | `uranienborg_kirke` | Uranienborg kirke | verified | `geonorge-adresser-v1:0301:13110:15` |
 | 59 | `frogner_kirke` | Frogner kirke | verified | `geonorge-adresser-v1:0301:10967:36` |
@@ -280,6 +280,8 @@ Batch 54 (2026-07-20) legger til `dronning_sonja_kunststall` med det entydige Ge
 
 Batch 55 (2026-07-20) legger til `holmlia_bad` som et eget kommunalt svømme- og idrettsanlegg. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:13084:34` for Holmlia Senter vei 34 brukes som dagens bygnings-, display- og unlock-anker. Holmlia bad stod klart i 1983 som del av et fjellanlegg der idrettshall, svømmehall og tilfluktsrom ble kombinert. Den bredere underjordiske infrastrukturen er fysisk og historisk kontekst, ikke en ekstra overlappende markør. Midlertidige sommerstenginger gjelder drift og endrer ikke canonical stedsstatus.
 
+Batch 56 (2026-07-20) legger til `brannmuseet_oslo` som ett samlet historisk bygg- og museumssted. Det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:12450:32` for Grønlandsleiret 32 brukes som bygnings-, display- og unlock-anker. Bygningen er den tidligere Grønland brannstasjon fra 1861 og var i ordinær brannstasjonsbruk fram til 1978; dagens Brannmuseet bevarer denne historien i samme fysiske bygg. Den brede canonical gaten `gronlandsleiret` beholdes separat og brukes ikke som proxy for museet.
+
 Oslo West-kirkepakken (2026-07-20) legger til `fagerborg_kirke`, `uranienborg_kirke` og `frogner_kirke` som tre separate canonical `by`-steder etter aktiv duplikatkontroll og normative adresse-først-oppslag. De bruker eksisterende kirkemodell og ekskluderer `nature` for å beholde de åtte prioriterte PlaceCard-rundingene.
 
 Batch 60 (2026-07-20) legger til `vestre_gravlund` som et dokumentert `cemetery_area_anchor`. Oslo kommune identifiserer det 243 dekar store gravplassområdet, mens OpenStreetMap way 4740772 gir den konkrete, navngitte gravlundsgeometrien. Det representative punktet er kontrollert inne i polygonet. Besøksadressen Sørkedalsveien 66 brukes bevisst ikke som snarvei for hele gravlunden.
@@ -296,7 +298,7 @@ Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fy
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 206 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 207 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|

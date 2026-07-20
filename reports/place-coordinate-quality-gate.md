@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T07:55:52.449Z
+Generert: 2026-07-20T08:08:17.229Z
 
 ## Oppsummering
-- Aktive filer validert: **528**
+- Aktive filer validert: **529**
 - Antall steder validert: **1214**
 - Harde feil: **0**
 - Varsler: **428**
@@ -546,6 +546,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places/uranienborg_kirke.json
 - data/places/by/oslo/places/frogner_kirke.json
 - data/places/historie/oslo/places_historie/vestre_gravlund.json
+- data/places/historie/oslo/places_historie/brannmuseet_oslo.json
 
 ## Harde feil
 - Ingen
