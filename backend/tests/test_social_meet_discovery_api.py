@@ -12,8 +12,8 @@ from app.api.dependencies import (
 from app.auth.supabase import AuthPrincipal
 from app.core.config import Settings
 from app.domains.social_meet.discovery_models import (
-    CandidateDiscoveryResponse,
     ContextCandidateRequest,
+    ContextCandidateResponse,
     DiscoveryCandidate,
     DiscoveryCandidateProfile,
     DiscoveryMatchReason,
@@ -36,12 +36,12 @@ class StubDiscoveryService:
         self,
         auth_user_id: UUID,
         request: ContextCandidateRequest,
-    ) -> CandidateDiscoveryResponse:
+    ) -> ContextCandidateResponse:
         assert auth_user_id == self.user_id
         self.calls += 1
         if self.error is not None:
             raise self.error
-        return CandidateDiscoveryResponse(
+        return ContextCandidateResponse(
             context_type=request.context.context_type,
             context_id=request.context.context_id,
             generated_at=NOW,
