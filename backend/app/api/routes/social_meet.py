@@ -52,9 +52,7 @@ def put_social_meet_profile(
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail={
                 "code": "forbidden_profile_field",
-                "fields": [
-                    {"field": item.field, "path": item.path} for item in forbidden
-                ],
+                "fields": [{"field": item.field, "path": item.path} for item in forbidden],
             },
         )
 
