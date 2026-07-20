@@ -143,6 +143,9 @@ jobs:
       - name: Build tools
         run: npm run build:tools
 
+      - name: Social Meet Spotmeeting browser smoke
+        run: npm run test:social-meet-spotmeeting-smoke
+
       # For pull requests, root checkJs is a regression gate rather than a zero-debt gate.
       # Line/column positions are normalized so unrelated line shifts do not create false positives.
       - name: Guard against new legacy TypeScript regressions
