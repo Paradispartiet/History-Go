@@ -1,0 +1,216 @@
+{
+  "date": "2026-07-20",
+  "placeId": "seilduksfabrikken_nydalen",
+  "currentCanonicalIdentity": "Øvre spinneri (Nydalens Compagnie)",
+  "historicalAddressKey": {
+    "source": "Oslo byleksikon – Gjerdrums vei",
+    "number12": "Øvre Spinderi, oppført 1856",
+    "number12A": "Væveri A, oppført 1864"
+  },
+  "buildings": [
+    {
+      "key": "candidate_east",
+      "bygningsnummer": "81764387",
+      "osmWay": 102598861,
+      "lat": 59.946972,
+      "lon": 10.767518
+    },
+    {
+      "key": "candidate_west",
+      "bygningsnummer": "300171619",
+      "osmWay": 188134011,
+      "lat": 59.946963,
+      "lon": 10.766603
+    }
+  ],
+  "results": [
+    {
+      "query": "Gjerdrums vei 12 Oslo",
+      "expected": "Gjerdrums vei 12",
+      "historicalIdentity": "Øvre Spinderi",
+      "osloHitCount": 11,
+      "exactHitCount": 0,
+      "exactHits": []
+    },
+    {
+      "query": "Gjerdrums vei 12A Oslo",
+      "expected": "Gjerdrums vei 12A",
+      "historicalIdentity": "Væveri A",
+      "osloHitCount": 1,
+      "exactHitCount": 1,
+      "exactHits": [
+        {
+          "adressetekst": "Gjerdrums vei 12A",
+          "adressekode": 12232,
+          "nummer": 12,
+          "bokstav": "A",
+          "postnummer": "0484",
+          "kommunenummer": "0301",
+          "lat": 59.95461123124331,
+          "lon": 10.765131446496696,
+          "sourceObjectId": "geonorge-adresser-v1:0301:12232:12A",
+          "distances": [
+            {
+              "key": "candidate_west",
+              "bygningsnummer": "300171619",
+              "osmWay": 188134011,
+              "distanceMeters": 854.38
+            },
+            {
+              "key": "candidate_east",
+              "bygningsnummer": "81764387",
+              "osmWay": 102598861,
+              "distanceMeters": 859.77
+            }
+          ],
+          "nearestBuilding": {
+            "key": "candidate_west",
+            "bygningsnummer": "300171619",
+            "osmWay": 188134011,
+            "distanceMeters": 854.38
+          },
+          "secondNearestBuilding": {
+            "key": "candidate_east",
+            "bygningsnummer": "81764387",
+            "osmWay": 102598861,
+            "distanceMeters": 859.77
+          },
+          "distanceMarginMeters": 5.39
+        }
+      ]
+    },
+    {
+      "query": "Gjerdrums vei 12B Oslo",
+      "expected": "Gjerdrums vei 12B",
+      "historicalIdentity": "adjacent/current-address control",
+      "osloHitCount": 1,
+      "exactHitCount": 1,
+      "exactHits": [
+        {
+          "adressetekst": "Gjerdrums vei 12B",
+          "adressekode": 12232,
+          "nummer": 12,
+          "bokstav": "B",
+          "postnummer": "0484",
+          "kommunenummer": "0301",
+          "lat": 59.954657422718775,
+          "lon": 10.765169719518106,
+          "sourceObjectId": "geonorge-adresser-v1:0301:12232:12B",
+          "distances": [
+            {
+              "key": "candidate_west",
+              "bygningsnummer": "300171619",
+              "osmWay": 188134011,
+              "distanceMeters": 859.29
+            },
+            {
+              "key": "candidate_east",
+              "bygningsnummer": "81764387",
+              "osmWay": 102598861,
+              "distanceMeters": 864.52
+            }
+          ],
+          "nearestBuilding": {
+            "key": "candidate_west",
+            "bygningsnummer": "300171619",
+            "osmWay": 188134011,
+            "distanceMeters": 859.29
+          },
+          "secondNearestBuilding": {
+            "key": "candidate_east",
+            "bygningsnummer": "81764387",
+            "osmWay": 102598861,
+            "distanceMeters": 864.52
+          },
+          "distanceMarginMeters": 5.23
+        }
+      ]
+    }
+  ],
+  "osmLookup": [],
+  "conclusion": {
+    "canResolveByAddressCorrelation": false,
+    "reason": "The exact Geonorge address hits do not yet separate no. 12 and 12A cleanly across the two candidate buildings. Keep needs_review.",
+    "exact12": [],
+    "exact12A": [
+      {
+        "adressetekst": "Gjerdrums vei 12A",
+        "adressekode": 12232,
+        "nummer": 12,
+        "bokstav": "A",
+        "postnummer": "0484",
+        "kommunenummer": "0301",
+        "lat": 59.95461123124331,
+        "lon": 10.765131446496696,
+        "sourceObjectId": "geonorge-adresser-v1:0301:12232:12A",
+        "distances": [
+          {
+            "key": "candidate_west",
+            "bygningsnummer": "300171619",
+            "osmWay": 188134011,
+            "distanceMeters": 854.38
+          },
+          {
+            "key": "candidate_east",
+            "bygningsnummer": "81764387",
+            "osmWay": 102598861,
+            "distanceMeters": 859.77
+          }
+        ],
+        "nearestBuilding": {
+          "key": "candidate_west",
+          "bygningsnummer": "300171619",
+          "osmWay": 188134011,
+          "distanceMeters": 854.38
+        },
+        "secondNearestBuilding": {
+          "key": "candidate_east",
+          "bygningsnummer": "81764387",
+          "osmWay": 102598861,
+          "distanceMeters": 859.77
+        },
+        "distanceMarginMeters": 5.39
+      }
+    ],
+    "exact12B": [
+      {
+        "adressetekst": "Gjerdrums vei 12B",
+        "adressekode": 12232,
+        "nummer": 12,
+        "bokstav": "B",
+        "postnummer": "0484",
+        "kommunenummer": "0301",
+        "lat": 59.954657422718775,
+        "lon": 10.765169719518106,
+        "sourceObjectId": "geonorge-adresser-v1:0301:12232:12B",
+        "distances": [
+          {
+            "key": "candidate_west",
+            "bygningsnummer": "300171619",
+            "osmWay": 188134011,
+            "distanceMeters": 859.29
+          },
+          {
+            "key": "candidate_east",
+            "bygningsnummer": "81764387",
+            "osmWay": 102598861,
+            "distanceMeters": 864.52
+          }
+        ],
+        "nearestBuilding": {
+          "key": "candidate_west",
+          "bygningsnummer": "300171619",
+          "osmWay": 188134011,
+          "distanceMeters": 859.29
+        },
+        "secondNearestBuilding": {
+          "key": "candidate_east",
+          "bygningsnummer": "81764387",
+          "osmWay": 102598861,
+          "distanceMeters": 864.52
+        },
+        "distanceMarginMeters": 5.23
+      }
+    ]
+  }
+}
