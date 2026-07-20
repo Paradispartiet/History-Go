@@ -84,7 +84,7 @@
     "test:historical-routes:audit": "npm run build:tools && node dist/tools/audit-historical-routes.mjs",
     "test:social-review": "node tests/social-review-fixes.test.js",
     "test:social-demo-visible": "node tests/hg-social-demo-visible.test.js",
-    "test:social-meet-spotmeeting-smoke": "node tests/social-meet-spotmeeting-browser-smoke.test.js",
+    "test:social-meet-spotmeeting-smoke": "node tests/social-meet-spotmeeting-browser-smoke.test.js && node tests/social-meet-fastapi-adapter.test.js",
     "audit:civication:role-packs": "node scripts/audit-civication-role-packs.mjs",
     "audit:civication:fwg-governance": "node scripts/audit-civication-fwg-governance.mjs",
     "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",

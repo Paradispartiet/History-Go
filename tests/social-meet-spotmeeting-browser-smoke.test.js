@@ -159,7 +159,7 @@ runScript(prodWindow, 'js/social/HGSpotmeetingPlaceCardDemo.js');
 prodWindow.PLACES = [{ id: 'factory_memory', name: 'Factory Memory' }];
 prodWindow.HG_SpotmeetingUI.open({ contextType: 'place', contextId: 'factory_memory', title: 'Factory Memory', reason: 'Kunnskapsmøte rundt dette stedet', sourceSurface: 'placeCardOnSite' });
 const prodSheet = prodWindow.document.getElementById('hgSpotmeetingSheet');
-assert(prodSheet.textContent.includes('Ekte Spotmeeting krever trygg backend'), 'production without backend renders backend-disabled state inside sheet');
+assert(prodSheet.textContent.includes('Ekte Spotmeeting er ikke aktivert for denne klienten ennå.'), 'production without configured FastAPI renders backend-disabled state inside sheet');
 assertNoForbiddenUi(prodSheet, 'production backend-disabled Spotmeeting sheet');
 
 const emptyProfileWindow = makeDom(`<!doctype html><body><section id="profileSocialLayer"><div id="spotmeeting-inbox" aria-live="polite"></div></section></body>`, 'http://localhost/profile.html');

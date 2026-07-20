@@ -44,6 +44,7 @@
 
   const ACTIONS = Object.freeze(['match', 'quiz', 'observation', 'route']);
   let currentState = null;
+  let renderSequence = 0;
 
   function isTestMode(){
     try { return root.localStorage?.getItem('HG_TEST_MODE') === '1'; }
@@ -202,19 +203,26 @@
       contextType: String(context?.contextType || '').trim(),
       contextId: String(context?.contextId || '').trim(),
       title: String(context?.title || '').trim(),
+      reason: String(context?.reason || 'Kunnskapsmøte rundt dette stedet').trim(),
       sourceSurface: String(context?.sourceSurface || '').trim()
     };
   }
 
-  function canTryBackendInvite(){
+  function backendMode(){
     const backend = root.HG_SocialMeetBackend;
-    if (typeof backend?.createInvite !== 'function') return false;
-    const mode = typeof backend.backendMode === 'function' ? String(backend.backendMode() || '').toLowerCase() : '';
-    return mode !== 'local';
+    return typeof backend?.backendMode === 'function' ? String(backend.backendMode() || '').toLowerCase() : 'local';
+  }
+
+  function canTryBackendInvite(){
+    return backendMode() === 'fastapi' && typeof root.HG_SocialMeetBackend?.createInvite === 'function';
+  }
+
+  function canTryBackendDiscovery(){
+    return backendMode() === 'fastapi' && typeof root.HG_SocialMeetBackend?.discoverCandidates === 'function';
   }
 
   function shouldFallbackToLocal(result){
-    if (!result || result.ok) return false;
+    if (!isTestMode() || !result || result.ok) return false;
     return !['invalid_preset_message', 'forbidden_privacy_field', 'missing_target_user', 'invalid_context_type', 'missing_context_id'].includes(String(result.reason || ''));
   }
 
@@ -229,15 +237,54 @@
       try {
         return Promise.resolve(root.HG_SocialMeetBackend.createInvite(safeContext, targetUserId, presetMessageId))
           .then(backendResult => (backendResult?.ok || !shouldFallbackToLocal(backendResult)) ? backendResult : createLocalInvite(targetUserId, context, presetMessageId))
-          .catch(() => createLocalInvite(targetUserId, context, presetMessageId));
+          .catch(() => isTestMode() ? createLocalInvite(targetUserId, context, presetMessageId) : ({ ok:false, reason:'backend_unavailable' }));
       } catch (error) {
-        // Fall through to local/demo mode without exposing backend details to the user.
+        if (isTestMode()) return createLocalInvite(targetUserId, context, presetMessageId);
+        return { ok:false, reason:'backend_unavailable' };
       }
     }
-    return createLocalInvite(targetUserId, context, presetMessageId);
+    return isTestMode()
+      ? createLocalInvite(targetUserId, context, presetMessageId)
+      : { ok:false, reason:'backend_not_enabled' };
   }
 
-  function renderCandidates(context, action){
+  function uniqueStrings(values){
+    return [...new Set((Array.isArray(values) ? values : []).map(value => String(value || '').trim().toLowerCase()).filter(Boolean))];
+  }
+
+  function buildDiscoverySignals(context){
+    const place = getPlaceById(context?.contextId) || {};
+    const quizProfile = place?.quiz_profile || place?.quizProfile || {};
+    const topicTags = []
+      .concat(Array.isArray(place?.emne_ids) ? place.emne_ids : [])
+      .concat(Array.isArray(place?.emneIds) ? place.emneIds : [])
+      .concat(Array.isArray(place?.tags) ? place.tags : []);
+    const learningGoals = []
+      .concat(Array.isArray(quizProfile?.primary_angles) ? quizProfile.primary_angles : [])
+      .concat(Array.isArray(quizProfile?.primaryAngles) ? quizProfile.primaryAngles : []);
+    return {
+      themeTags: uniqueStrings([place?.category, ...(Array.isArray(place?.categories) ? place.categories : [])]),
+      eraTags: uniqueStrings([place?.epokeLabel, place?.era, place?.epoch]),
+      topicTags: uniqueStrings(topicTags),
+      routeCategoryTags: uniqueStrings(context?.contextType === 'route' ? [place?.category] : []),
+      quizTopicTags: uniqueStrings([].concat(Array.isArray(quizProfile?.question_families) ? quizProfile.question_families : []).concat(Array.isArray(quizProfile?.questionFamilies) ? quizProfile.questionFamilies : [])),
+      learningGoalTags: uniqueStrings(learningGoals)
+    };
+  }
+
+  function renderSuggestionCards(suggestions, contextForAction, presetMessageId, label, { demoOnly = false } = {}){
+    const note = demoOnly
+      ? 'TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.'
+      : 'Forslagene er kun kunnskapsmatcher. Tilgjengelighet og sikkerhet revalideres når du sender.';
+    return `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="ready">${escapeHTML(label)}</p><div class="hg-spotmeeting-candidates">${suggestions.slice(0, 4).map(candidate => {
+      const duplicate = demoOnly ? getDuplicateInvite(candidate.targetUserId, contextForAction, presetMessageId) : null;
+      const disabled = duplicate ? ' disabled' : '';
+      const status = duplicate ? 'Allerede sendt' : 'Send forslag';
+      return `<article class="hg-spotmeeting-candidate"><div><strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Kandidat')}</strong><p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p></div><button type="button" data-hg-spotmeeting-send="1" data-hg-spotmeeting-target="${escapeHTML(candidate.targetUserId)}" data-hg-spotmeeting-preset="${escapeHTML(presetMessageId)}"${disabled}>${status}</button></article>`;
+    }).join('')}</div><p class="hg-spotmeeting-status">${escapeHTML(note)}</p>${socialMeetFollowUpButton(contextForAction, 'Åpne Social Meet')}`;
+  }
+
+  async function renderCandidates(context, action){
     const sheet = ensureSheet();
     const target = sheet.querySelector('[data-hg-spotmeeting-candidates]');
     if (!target) return;
@@ -247,39 +294,63 @@
       return;
     }
 
-    if (!isTestMode()) {
-      target.innerHTML = `${renderStatus('Ekte Spotmeeting krever trygg backend. Demo kan testes i TEST_MODE.', 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
-      return;
-    }
-
     const contextForAction = Object.assign({}, context, { contextType: CONTEXT_TYPE_BY_ACTION[action] || context.contextType || 'place' });
-    const result = root.HG_Spotmeeting.getSpotmeetingSuggestions(contextForAction);
-    const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
     const presetMessageId = PRESET_BY_ACTION[action] || PRESET_BY_ACTION.match;
     const label = presetLabel(presetMessageId);
 
+    if (isTestMode()) {
+      const result = root.HG_Spotmeeting.getSpotmeetingSuggestions(contextForAction);
+      const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
+      if (!result?.ok) {
+        target.innerHTML = renderStatus(`Kunne ikke hente forslag: ${result?.reason || 'ukjent feil'}`, 'error');
+        return;
+      }
+      if (!suggestions.length) {
+        target.innerHTML = `${renderStatus('Ingen demo-kandidater akkurat nå. Seed HG Social demo først.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+        return;
+      }
+      target.innerHTML = renderSuggestionCards(suggestions, contextForAction, presetMessageId, label, { demoOnly:true });
+      return;
+    }
+
+    if (!canTryBackendDiscovery()) {
+      target.innerHTML = `${renderStatus('Ekte Spotmeeting er ikke aktivert for denne klienten ennå.', 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      return;
+    }
+
+    const sequence = ++renderSequence;
+    target.innerHTML = renderStatus('Henter trygge kunnskapsmatcher …', 'loading');
+    let result;
+    try {
+      result = await root.HG_SocialMeetBackend.discoverCandidates(contextForAction, {
+        signals: buildDiscoverySignals(contextForAction),
+        limit: 8
+      });
+    } catch {
+      result = { ok:false, reason:'backend_unavailable', suggestions:[] };
+    }
+    if (sequence !== renderSequence || !target.isConnected) return;
+
+    const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
     if (!result?.ok) {
-      target.innerHTML = renderStatus(`Kunne ikke hente forslag: ${result?.reason || 'ukjent feil'}`, 'error');
+      const disabled = ['backend_not_enabled', 'profile_not_published', 'not_authenticated'].includes(String(result?.reason || ''));
+      const message = disabled
+        ? 'Kunnskapsmatcher er ikke tilgjengelige for profilen din ennå.'
+        : 'Kunne ikke hente kunnskapsmatcher akkurat nå.';
+      target.innerHTML = `${renderStatus(message, disabled ? 'backendDisabled' : 'error')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
-
     if (!suggestions.length) {
-      target.innerHTML = `${renderStatus('Ingen demo-kandidater akkurat nå. Seed HG Social demo først.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      target.innerHTML = `${renderStatus('Ingen trygge kunnskapsmatcher akkurat nå.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
       return;
     }
-
-    target.innerHTML = `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="ready">${escapeHTML(label)}</p><div class="hg-spotmeeting-candidates">${suggestions.slice(0, 4).map(candidate => {
-      const duplicate = getDuplicateInvite(candidate.targetUserId, contextForAction, presetMessageId);
-      const disabled = duplicate ? ' disabled' : '';
-      const status = duplicate ? 'Allerede sendt' : 'Send forslag';
-      return `<article class="hg-spotmeeting-candidate"><div><strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Demo-kandidat')}</strong><p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p></div><button type="button" data-hg-spotmeeting-send="1" data-hg-spotmeeting-target="${escapeHTML(candidate.targetUserId)}" data-hg-spotmeeting-preset="${escapeHTML(presetMessageId)}"${disabled}>${status}</button></article>`;
-    }).join('')}</div><p class="hg-spotmeeting-status">TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.</p>${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+    target.innerHTML = renderSuggestionCards(suggestions, contextForAction, presetMessageId, label);
   }
 
   function render(context, selectedAction = 'match'){
     const sheet = ensureSheet();
     sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>Kunnskapsmøte</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">Basert på tema og kunnskap, ikke live-posisjon. Kun forhåndsvalg.</p><div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${ACTIONS.map(action => actionButton(action, selectedAction)).join('')}</div><div data-hg-spotmeeting-candidates>${renderStatus('Velg hvordan du vil starte.', 'ready')}</div></div></section>`;
-    renderCandidates(context, selectedAction);
+    void renderCandidates(context, selectedAction);
   }
 
   function open(contextOrOptions = {}){
@@ -295,6 +366,7 @@
   }
 
   function close(){
+    renderSequence += 1;
     const sheet = root.document?.getElementById?.(SHEET_ID);
     if (sheet) sheet.hidden = true;
   }
@@ -323,7 +395,7 @@
     const presetMessageId = String(button.getAttribute('data-hg-spotmeeting-preset') || PRESET_BY_ACTION[currentState.action] || PRESET_BY_ACTION.match);
     const targetUserId = String(button.getAttribute('data-hg-spotmeeting-target') || '').trim();
     const context = Object.assign({}, currentState.context, { contextType: CONTEXT_TYPE_BY_ACTION[currentState.action] || currentState.context.contextType || 'place' });
-    const duplicate = getDuplicateInvite(targetUserId, context, presetMessageId);
+    const duplicate = isTestMode() ? getDuplicateInvite(targetUserId, context, presetMessageId) : null;
     if (duplicate) {
       root.showToast?.('Kunnskapsmøte er allerede foreslått.');
       button.textContent = 'Allerede sendt';
@@ -412,7 +484,7 @@
   }
 
   function health(){
-    return { ok: true, ui: 'canonical', sheetMounted: Boolean(root.document?.getElementById?.(SHEET_ID)), onSitePanels: 0, testMode: isTestMode(), hasRuntime: Boolean(root.HG_Spotmeeting) };
+    return { ok: true, ui: 'canonical', sheetMounted: Boolean(root.document?.getElementById?.(SHEET_ID)), onSitePanels: 0, testMode: isTestMode(), backendMode: backendMode(), hasRuntime: Boolean(root.HG_Spotmeeting) };
   }
 
   root.HG_SpotmeetingUI = { open, close, buildContext, buildPlaceContext, render, renderCandidates, sendInvite, canonicalizePlaceCardSections, bind, health };
