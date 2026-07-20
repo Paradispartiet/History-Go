@@ -2,14 +2,23 @@
 // preserving the original DOM ids/event hooks for search, map mode and panels.
 (function () {
   function ensureLesesporStyles() {
-    if (document.querySelector('link[data-hg-lesespor-styles="1"]')) return;
+    const existing = document.querySelector('link[data-hg-lesespor-styles="1"], link[href*="css/lesespor.css"]');
+    if (existing) return existing;
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/lesespor.css";
+    link.href = new URL("css/lesespor.css?v=20260721-2", document.baseURI).href;
     link.dataset.hgLesesporStyles = "1";
+    link.addEventListener("error", () => {
+      console.warn("[Lesespor] Kunne ikke laste css/lesespor.css");
+    }, { once: true });
     document.head.appendChild(link);
+    return link;
   }
+
+  // Start CSS-innlastingen med en gang scriptet evalueres. Tidligere ble den først
+  // startet ved DOMContentLoaded, som gjorde Lesespor avhengig av lastrekkefølge/cache.
+  ensureLesesporStyles();
 
   function promoteMinDayToHeader() {
     const minDayButton = document.getElementById("btnMinDag");
