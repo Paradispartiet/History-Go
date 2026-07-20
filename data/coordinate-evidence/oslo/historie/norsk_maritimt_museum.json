@@ -1,0 +1,74 @@
+{
+  "placeId": "norsk_maritimt_museum",
+  "placeFile": "data/places/historie/oslo/places_historie/norsk_maritimt_museum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90287004478952,
+    "lon": 10.698052152795242,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Bygdøynesveien 37, OSLO. Punktet er representasjonspunktet for Norsk Maritimt Museums offisielle besøksadresse og brukes som display-marker for det selvstendige museumsanlegget."
+  },
+  "identity": {
+    "currentName": "Norsk Maritimt Museum",
+    "resolvedIdentity": "Norsk Maritimt Museum, det selvstendige museumsanlegget i Bygdøynesveien 37",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell institusjonsidentitet",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Bygd%C3%B8ynesveien%2037%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10977:37",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Bygdøynesveien 37 Oslo. Museet er fysisk og institusjonelt separat fra `frammuseet` og `kon_tiki_museet`, selv om de ligger i samme museumsklynge på Bygdøynes.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Bygdøynesveien 37, OSLO. Punktet er representasjonspunktet for Norsk Maritimt Museums offisielle besøksadresse og brukes som display-marker for det selvstendige museumsanlegget."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Bygdøynesveien 37 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10977:37",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10977:37",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90287004478952,
+      "lon": 10.698052152795242,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Bygdøynesveien 37, OSLO. Punktet er representasjonspunktet for Norsk Maritimt Museums offisielle besøksadresse og brukes som display-marker for det selvstendige museumsanlegget.",
+    "Museet er fysisk og institusjonelt separat fra `frammuseet` og `kon_tiki_museet`, selv om de ligger i samme museumsklynge på Bygdøynes."
+  ]
+}

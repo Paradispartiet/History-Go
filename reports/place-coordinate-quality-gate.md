@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T04:02:42.126Z
+Generert: 2026-07-20T03:56:42.725Z
 
 ## Oppsummering
-- Aktive filer validert: **504**
-- Antall steder validert: **1219**
+- Aktive filer validert: **510**
+- Antall steder validert: **1218**
 - Harde feil: **0**
 - Varsler: **428**
 - Coordinate review candidates: **710** signaler fordelt på **567** steder
@@ -522,6 +522,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json
 - data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json
 - data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json
+- data/places/historie/oslo/places_historie/norsk_folkemuseum.json
+- data/places/historie/oslo/places_historie/norsk_maritimt_museum.json
+- data/places/historie/oslo/places_historie/historisk_museum.json
+- data/places/historie/oslo/places_historie/frogner_hovedgard.json
+- data/places/historie/oslo/places_historie/arbeidermuseet.json
+- data/places/historie/oslo/places_historie/nobels_fredssenter.json
 
 ## Harde feil
 - Ingen

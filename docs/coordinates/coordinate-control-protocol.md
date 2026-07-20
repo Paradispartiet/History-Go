@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 178 verifiserte eller kildekontrollerte canonical steder. Batch 41 etterfører tre museums- og kultursteder som allerede er produsert og runtime-synkronisert med kildebelagte geometriankre: Norges Hjemmefrontmuseum, Forsvarsmuseet og Roseslottet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 40.
+Oslo-tabellen inneholder nå 184 verifiserte eller kildekontrollerte canonical steder. Batch 43 legger til Frogner hovedgård, Arbeidermuseet og Nobels Fredssenter med entydige offisielle Geonorge-adressepunkter og eksplisitt fysisk avgrensning mot eksisterende parent- og nabosteder. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 40.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -200,6 +200,12 @@ Oslo-tabellen inneholder nå 178 verifiserte eller kildekontrollerte canonical s
 | 41 | `norges_hjemmefrontmuseum` | Norges Hjemmefrontmuseum | verified_geometry | `osm-way:111833902` |
 | 41 | `forsvarsmuseet` | Forsvarsmuseet | verified_geometry | `osm-way:54830211` |
 | 41 | `roseslottet` | Roseslottet | verified_geometry | `osm-way:1004591108` |
+| 42 | `norsk_folkemuseum` | Norsk Folkemuseum | verified | `geonorge-adresser-v1:0301:14899:10` |
+| 42 | `norsk_maritimt_museum` | Norsk Maritimt Museum | verified | `geonorge-adresser-v1:0301:10977:37` |
+| 42 | `historisk_museum` | Historisk museum | verified | `geonorge-adresser-v1:0301:11941:2` |
+| 43 | `frogner_hovedgard` | Frogner hovedgård | verified | `geonorge-adresser-v1:0301:12613:58` |
+| 43 | `arbeidermuseet` | Arbeidermuseet | verified | `geonorge-adresser-v1:0301:16135:28` |
+| 43 | `nobels_fredssenter` | Nobels Fredssenter | verified | `geonorge-adresser-v1:0301:18199:1` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -223,9 +229,13 @@ Batch 40 (2026-07-20) modellerer `trikk_17_18` som et forgrenet rutepar i stedet
 
 Batch 41 (2026-07-20) etterfører de tre geometri-verifiserte stedene fra PR #2594 etter at batch 40 samtidig synkroniserte runtime-indeks og evidence-snapshotene. `norges_hjemmefrontmuseum` bruker Det dobbelte batteri / bygning 21 (`osm-way:111833902`) som eget bygningsanker, og `forsvarsmuseet` bruker Hovedarsenalet / bygning 62 (`osm-way:54830211`); begge er fysisk separate understeder inne på Akershus festning. `roseslottet` bruker den navngitte installasjonsgeometrien `osm-way:1004591108` som `site_center`, og aktiv status skal revurderes etter 2026-12-31.
 
+Batch 42 (2026-07-20) produserer tre nye, fysisk selvstendige museumssteder fra den lukkede Oslo-museumsauditen. `norsk_folkemuseum` bruker det entydige Geonorge-punktet for Museumsveien 10 og modelleres separat fra `gol_stavkirke_bygdoy`, som er ett konkret objekt inne i det større museumsområdet. `norsk_maritimt_museum` bruker Bygdøynesveien 37 og er separat fra de nærliggende `frammuseet` og `kon_tiki_museet`. `historisk_museum` bruker Frederiks gate 2 og representerer selve museumsbygningen, mens `tullin` fortsatt er det bredere områdeankeret for Tullinløkka.
+
+Batch 43 (2026-07-20) produserer tre videre museumssteder fra samme lukkede audit. `frogner_hovedgard` bruker Halvdan Svartes gate 58 og modellerer selve hovedgårdsanlegget, med Bymuseet og Teatermuseet som nåværende institusjonslag i stedet for separate markører. `arbeidermuseet` bruker Sagveien 28 og holdes fysisk separat fra brede industriområde-records langs Akerselva. `nobels_fredssenter` bruker Brynjulf Bulls plass 1 i den tidligere Vestbanestasjonen og skilles fra både områdeankeret `radhusplassen` og institusjonsstedet `nobelinstituttet`.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 178 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 184 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
