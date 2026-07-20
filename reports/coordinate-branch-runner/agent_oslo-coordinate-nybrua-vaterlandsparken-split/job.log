@@ -1,0 +1,112 @@
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1252 places -> data/places/places_index.json; skipped 9 disabled place(s)
+Nybrua/Vaterlandsparken split rounds batch 1 OK
+
+> history-go@0.0.0 audit:places-split-manifest-sync
+> npm run build:tools && node dist/tools/audit-places-split-manifest-sync.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "status": "passed",
+  "counts": {
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "movedPlacesStillActiveInOldCategory": 0
+  },
+  "auditReport": "reports/place-split-manifest-category-move-audit.json"
+}
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+
+> history-go@0.0.0 audit:people-of-places
+> npm run build:tools && node dist/tools/audit-people-of-places-status.mjs && node dist/tools/check-people-of-places-gate.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1211; flat files: 0; geographic files: 614; invalid refs: 0; duplicate IDs: 0
+People of Places audit gate passed
+
+> history-go@0.0.0 leksikon:ids:check
+> npm run build:tools && node dist/tools/check_leksikon_duplicate_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: no duplicate leksikon article IDs.
+
+> history-go@0.0.0 test:coordinate-source-contract
+> npm run build:tools && node tests/coordinate-source-contract-anchor-trust.test.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+coordinate-source-contract anchor trust: PASS
+
+> history-go@0.0.0 places:coords:quality
+> npm run places:coords:gate
+
+
+> history-go@0.0.0 places:coords:gate
+> npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Quality gate ok: 510 filer, 1219 steder, 428 varsel, 710 review-kandidatsignal(er) på 567 steder (se reports/place-coordinate-quality-gate.md).
+
+> history-go@0.0.0 places:coords:intake
+> npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Place coordinate intake gate: 0 blocking, 3453 backlog, 0 warnings. Rapport: reports/place-coordinate-intake-gate.md
+
+> history-go@0.0.0 places:coords:evidence:audit
+> npm run build:tools && node dist/tools/audit-coordinate-evidence.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Coordinate evidence audit: 171 files, 0 problems. Rapport: reports/coordinate-evidence-audit.md
+
+> history-go@0.0.0 typecheck:tools
+> tsc -p tsconfig.tools.json
+
+
+> history-go@0.0.0 typecheck:web
+> tsc -p tsconfig.web.json
+
+Nybrua/Vaterlandsparken clean finalizer completed on latest main.
