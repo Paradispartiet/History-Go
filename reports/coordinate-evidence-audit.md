@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T04:25:55.821Z
+Generert: 2026-07-20T04:09:59.119Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -128,7 +128,7 @@ Generert: 2026-07-20T04:25:55.821Z
 | grunnlovsbygget_bankplassen | data/coordinate-evidence/oslo/naeringsliv/grunnlovsbygget_bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jernbanetorget_trafikknutepunkt | data/coordinate-evidence/oslo/naeringsliv/jernbanetorget_trafikknutepunkt.json | needs_research | needs_identity_split | OK |
 | jernbaneverkstedet_lodalen | data/coordinate-evidence/oslo/naeringsliv/jernbaneverkstedet_lodalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | needs_research | needs_identity_split | OK |
 | myrens_verksted | data/coordinate-evidence/oslo/naeringsliv/myrens_verksted.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | norges_varemesse | data/coordinate-evidence/oslo/naeringsliv/norges_varemesse.json | needs_research | needs_identity_split | OK |
 | nrk_marienlyst | data/coordinate-evidence/oslo/naeringsliv/nrk_marienlyst.json | rejected | needs_identity_split | OK |
@@ -144,7 +144,7 @@ Generert: 2026-07-20T04:25:55.821Z
 | telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | needs_research | needs_identity_split | OK |
 | vinmonopolet_lager | data/coordinate-evidence/oslo/naeringsliv/vinmonopolet_lager.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| vippetangen_fisketorg | data/coordinate-evidence/oslo/naeringsliv/vippetangen_fisketorg.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vippetangen_fisketorg | data/coordinate-evidence/oslo/naeringsliv/vippetangen_fisketorg.json | needs_research | needs_identity_split | OK |
 | akerselva_utlop_bjorvika | data/coordinate-evidence/oslo/natur/akerselva_utlop_bjorvika.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnabru_jernbane_og_logistikk | data/coordinate-evidence/oslo/natur/alnabru_jernbane_og_logistikk.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnaelva | data/coordinate-evidence/oslo/natur/alnaelva.json | needs_research | needs_geometry | OK |
@@ -165,7 +165,7 @@ Generert: 2026-07-20T04:25:55.821Z
 | loelva_historisk | data/coordinate-evidence/oslo/natur/loelva_historisk.json | needs_research | needs_identity_split | OK |
 | myralokka | data/coordinate-evidence/oslo/natur/myralokka.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nedre_foss | data/coordinate-evidence/oslo/natur/nedre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | needs_research | needs_identity_split | OK |
 | nydalen_industristed | data/coordinate-evidence/oslo/natur/nydalen_industristed.json | needs_research | needs_identity_split | OK |
 | nydalsdammen | data/coordinate-evidence/oslo/natur/nydalsdammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | needs_research | needs_address_source | OK |
@@ -177,4 +177,3 @@ Generert: 2026-07-20T04:25:55.821Z
 | vulkan_industriomrade | data/coordinate-evidence/oslo/natur/vulkan_industriomrade.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| vaterlandsparken | data/coordinate-evidence/oslo/natur/vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
