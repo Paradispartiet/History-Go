@@ -1,40 +1,58 @@
 {
-  "version": "knowledge-system-v1",
+  "version": "knowledge-system-v1.1",
   "schema": "history_go_knowledge_system_policy_v1",
   "status": "canonical",
-  "purpose": "Gjør Knowledge til et presist personlig minnekammer som organiserer kanonisk fagkunnskap, begreper, terminologi, relasjoner og historier. Quiz er vurdering og evidens, ikke selve kunnskapslageret.",
+  "purpose": "Gjør Knowledge til et presist personlig minnekammer som organiserer fagkunnskap, begreper, terminologi, relasjoner og historier. Kunnskapen kan formidles fra mange flater. Quiz er både kunnskapsflate, prøve og evidenskilde.",
+  "quiz_knowledge_contract": "../quiz/quiz_knowledge_delivery_contract_v1.json",
   "canonical_chain": [
     "fagkart_og_pensum",
     "emne",
     "begrep_og_terminologi",
     "knowledge_unit_og_historie",
-    "quiz_og_vurdering",
+    "delivery_surfaces_including_quiz",
+    "quiz_reading_and_assessment",
     "learning_evidence_og_mastery",
     "personal_knowledge_memory_chamber"
   ],
   "hard_rules": {
-    "quiz_is_evidence_not_canonical_knowledge": true,
-    "knowledge_page_is_not_quiz_archive": true,
+    "quiz_is_knowledge_delivery_and_assessment_surface": true,
+    "quiz_may_embed_and_collect_knowledge_content": true,
+    "embedded_quiz_knowledge_requires_stable_knowledge_links": true,
+    "knowledge_page_is_not_flat_quiz_archive": true,
     "canonical_knowledge_unit_required_for_new_production": true,
+    "reading_and_mastery_are_distinct": true,
+    "wrong_answer_may_confirm_encountered_and_read_but_not_mastery": true,
+    "correct_answer_creates_assessment_evidence": true,
     "strict_ids_no_automatic_normalization": true,
     "tags_are_not_concepts": true,
-    "places_and_people_are_context_not_knowledge": true,
+    "places_and_people_are_context_and_delivery_surfaces_not_automatic_claims": true,
     "source_provenance_required": true,
     "legacy_data_must_be_preserved": true,
     "uncertain_links_must_remain_unresolved": true,
-    "same_knowledge_unit_reused_across_quizzes": true
+    "same_knowledge_unit_reused_across_quizzes_and_surfaces": true
   },
   "canonical_entities": {
     "subject": "Faglig hovedområde og merke.",
     "emne": "Faglig beholder for beslektede kunnskapsenheter, begreper, metoder og historier.",
     "concept": "Faglig idé, fenomen, prosess, mønster eller relasjon med stabil ID.",
     "term": "Foretrukket fagterm med stabil ID, definisjon og eksplisitte synonymer.",
-    "knowledge_unit": "Minste selvstendige faglige innhold som kan forstås, kobles, testes og repeteres.",
+    "knowledge_unit": "Minste selvstendige faglige innhold som kan formidles, forstås, kobles, testes og repeteres.",
     "story": "Sammenhengende narrativt forløp på tvers av hendelser, personer, steder og kunnskapsenheter.",
-    "quiz_item": "Vurderingsobjekt som tester én eller flere kanoniske kunnskapsenheter.",
-    "learning_evidence": "Registrering av brukerens vurderte møte med kunnskapen.",
-    "personal_memory_node": "Brukerens mestrings- og repetisjonstilstand for en kanonisk kunnskapsenhet."
+    "delivery_surface": "Flate som formidler kunnskapen, som quiz, sted, person, emne, historie, Wonderkammer eller Knowledge-side.",
+    "quiz_item": "Lærings- og vurderingsobjekt som kan presentere kunnskap og teste én eller flere kanoniske kunnskapsenheter.",
+    "learning_evidence": "Registrering av at brukeren har møtt, lest eller blitt vurdert i kunnskapen.",
+    "personal_memory_node": "Brukerens lese-, mestrings- og repetisjonstilstand for en kanonisk kunnskapsenhet."
   },
+  "knowledge_sources_and_delivery_surfaces": [
+    "place_page",
+    "person_page",
+    "emne_page",
+    "story_page",
+    "wonderkammer",
+    "quiz",
+    "knowledge_page",
+    "curated_external_source"
+  ],
   "knowledge_unit_types": [
     "definition",
     "fact",
@@ -49,8 +67,11 @@
     "story_fragment",
     "interpretation"
   ],
-  "mastery_states": [
+  "reading_states": [
     "encountered",
+    "read"
+  ],
+  "mastery_states": [
     "recognized",
     "understood",
     "explained",
@@ -64,6 +85,9 @@
     "concept_ids",
     "term_ids",
     "learning_objective_id",
+    "evidence_type",
+    "knowledge_or_knowledge_payload",
+    "feedback_basis",
     "source_or_claim_basis"
   ],
   "optional_new_quiz_links_when_relevant": [
@@ -72,29 +96,39 @@
     "method_ids",
     "chronology_ids"
   ],
+  "quiz_evidence_rules": {
+    "knowledge_presented": "Registrerer encountered når kunnskapsforklaringen er vist.",
+    "active_continue_after_feedback": "Registrerer read når brukeren går videre etter forklaringen.",
+    "wrong_answer": "Kan registrere encountered og read, men ikke mestring. Kunnskapen markeres for repetisjon.",
+    "correct_answer": "Registrerer vurderingsevidens og mestring i henhold til evidence_type."
+  },
   "knowledge_page_read_model": [
     "subjects_and_emner",
     "terminology_and_glossary",
     "knowledge_units",
     "stories_and_timelines",
     "relations",
-    "sources_and_provenance",
-    "mastery_and_repetition"
+    "sources_and_where_it_was_read",
+    "reading_mastery_and_repetition",
+    "quiz_learning_paths"
   ],
   "legacy_compatibility": {
-    "history_go_knowledge_entry_v2": "preserve_as_evidence_and_migrate_when_links_are_certain",
-    "knowledge_universe": "preserve_as_legacy_text_archive",
-    "knowledge_field_in_quiz": "allowed_as_feedback_fallback_but_not_canonical_source_of_truth",
+    "history_go_knowledge_entry_v2": "preserve_as_quiz_learning_content_and_evidence_then_migrate_when_links_are_certain",
+    "knowledge_universe": "preserve_as_legacy_quiz_knowledge_archive",
+    "knowledge_field_in_quiz": "preserve_as_valuable_learning_and_feedback_content_and connect_to_canonical_knowledge_unit",
     "core_concepts": "allowed_as_readable_legacy_labels_but_new_production_should_add_concept_ids",
     "related_emner": "allowed_for_compatibility_but_new_production_should_add_explicit_emne_ids"
   },
   "audit_rules": [
     "Avvis ny quizproduksjon som mangler gyldig emnekobling.",
-    "Avvis ny quizproduksjon der knowledge-tekst ikke kan spores til en kanonisk knowledge_unit_id.",
+    "Avvis ny quizproduksjon der knowledge eller knowledge_payload ikke kan spores til en kanonisk knowledge_unit_id.",
+    "Flagg quiz som bare viser Riktig eller Feil uten å formidle kunnskapsforklaringen.",
+    "Avvis mastery evidence fra feil svar.",
+    "Kontroller at read evidence bare registreres etter at kunnskapsforklaringen er vist og brukeren aktivt har gått videre.",
     "Avvis concepts som bare består av tags, quiz-ID-er, target-ID-er eller generiske ord.",
     "Flagg emner som mangler knowledge_unit_ids, concept_ids eller term_ids.",
     "Flagg historier som bare er løse quiztekster uten eksplisitt narrativ sammenheng.",
-    "Kontroller at samme faglige påstand ikke er duplisert som flere kunnskapsenheter uten begrunnelse.",
-    "Kontroller at personlig Knowledge lagrer mestring og proveniens, ikke en ny kopi av hele quizen."
+    "Kontroller at samme faglige påstand gjenbruker samme kunnskapsenhet på tvers av quiz og andre flater.",
+    "Kontroller at personlig Knowledge skiller mellom lest stoff, vurdering og mestring."
   ]
 }
