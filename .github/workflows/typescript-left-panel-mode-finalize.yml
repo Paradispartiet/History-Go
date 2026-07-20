@@ -2,7 +2,9 @@
 name: TypeScript left panel mode finalize
 
 on:
-  pull_request:
+  push:
+    branches:
+      - agent/typescript-left-panel-mode
     paths:
       - "js/ui/leftPanelMode.ts"
       - "js/ui/left-panel.js"
@@ -16,11 +18,12 @@ permissions:
 
 jobs:
   finalize-left-panel-mode:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: agent/typescript-left-panel-mode
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -209,4 +212,4 @@ function rerenderActiveLeftPanelMode() {
             exit 0
           fi
           git commit -m "Wire TypeScript left panel mode controller"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          git push origin HEAD:agent/typescript-left-panel-mode
