@@ -29,9 +29,15 @@
           const name = String(person?.name || "Person");
           const desc = String(person?.description || "");
           const score = Number(person?.score || 0);
+          const hgPerson = person?.hg_person || null;
+          const archetypeName = String(person?.archetype_name || "");
+          const collectedLine = hgPerson
+            ? `<div style="font-size:0.85rem;margin-top:4px;color:#ffd479;">✨ Fra History Go-samlingen din${archetypeName ? ` · Rolle i byen: ${archetypeName}` : ""}</div>`
+            : "";
           return `
             <div style="padding:12px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.04);">
               <div style="font-weight:700;">${name}</div>
+              ${collectedLine}
               <div style="font-size:0.92rem;opacity:0.85;margin-top:4px;">Type: ${type} · Stil: ${style} · Nærhet: ${score}</div>
               <div style="margin-top:8px;line-height:1.45;">${desc}</div>
             </div>

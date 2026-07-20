@@ -1,113 +1,114 @@
 # People-place coverage audit
 
-Generert: 2026-07-17T20:51:00.125Z
+Generert: 2026-07-20T06:57:10.791Z
 
 ## Sammendrag
 
-- People totalt: **860**
-- Places totalt: **1092**
-- Places med people: **233**
-- Places uten people: **859**
-- People-place-lenker: **1055**
-- People koblet til flere gyldige steder: **204**
-- People uten gyldig sted: **80**
-- Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **780**
-- People uten image: **519**
-- People uten cardImage: **520**
-- People uten popupDesc: **104**
+- People totalt: **1222**
+- Places totalt: **1215**
+- Places med people: **305**
+- Places uten people: **910**
+- People-place-lenker: **1407**
+- People koblet til flere gyldige steder: **234**
+- People uten gyldig sted: **122**
+- Ugyldige place-referanser: **47**
+- Duplikate place-referanser inne på people: **1141**
+- People uten image: **881**
+- People uten cardImage: **882**
+- People uten popupDesc: **105**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 202 | 34 | 168 | 135 | 106 |
+| by | 214 | 53 | 161 | 172 | 142 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 412 | 48 | 364 | 161 | 91 |
-| kunst | 24 | 9 | 15 | 21 | 19 |
-| litteratur | 38 | 21 | 17 | 171 | 166 |
-| media | 11 | 8 | 3 | 27 | 26 |
-| musikk | 17 | 14 | 3 | 85 | 77 |
-| naeringsliv | 126 | 27 | 99 | 55 | 53 |
-| natur | 70 | 5 | 65 | 13 | 13 |
-| politikk | 26 | 11 | 15 | 96 | 80 |
-| populaerkultur | 20 | 2 | 18 | 32 | 28 |
-| psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 67 | 15 | 52 | 130 | 116 |
-| subkultur | 35 | 20 | 15 | 31 | 28 |
-| vitenskap | 35 | 11 | 24 | 53 | 43 |
+| historie | 450 | 61 | 389 | 216 | 143 |
+| kunst | 38 | 17 | 21 | 47 | 44 |
+| litteratur | 41 | 24 | 17 | 179 | 174 |
+| media | 11 | 8 | 3 | 28 | 27 |
+| musikk | 17 | 14 | 3 | 110 | 102 |
+| naeringsliv | 148 | 32 | 116 | 65 | 60 |
+| natur | 80 | 8 | 72 | 18 | 18 |
+| politikk | 28 | 13 | 15 | 137 | 120 |
+| populaerkultur | 21 | 3 | 18 | 35 | 31 |
+| psykologi | 3 | 2 | 1 | 2 | 1 |
+| sport | 84 | 30 | 54 | 260 | 245 |
+| subkultur | 35 | 20 | 15 | 38 | 35 |
+| vitenskap | 37 | 12 | 25 | 55 | 45 |
 
 ## People tags
 
-- teater: 181
-- scenekunst: 174
-- litteratur: 166
-- skuespiller: 130
-- historie: 122
-- sport: 117
-- musikk: 88
-- politikk: 54
-- subkultur: 53
-- regissor: 52
+- sport: 245
+- historie: 234
+- teater: 202
+- scenekunst: 193
+- litteratur: 177
+- skuespiller: 147
+- musikk: 121
+- politikk: 106
+- holmenkollen: 105
+- holmenkollrennet: 80
+- subkultur: 64
+- regissor: 56
+- kunst: 54
+- langrenn: 49
+- fotball: 47
+- naeringsliv: 47
 - teatersjef: 47
+- arkitektur: 46
+- by: 45
+- ensemble: 45
 - bislett: 44
-- fotball: 43
+- film: 44
 - ibsen: 43
 - valerenga: 43
-- ensemble: 40
-- naeringsliv: 40
 - norge_for_1500: 40
-- film: 39
-- vitenskap: 34
+- 1814: 38
+- kollektivt_miljoanker: 38
+- riksforsamlingen: 38
+- vitenskap: 36
+- etne: 34
+- revy: 30
+- holmenkollmedaljen: 29
 - friidrett: 28
-- revy: 28
+- media: 28
+- skihopping: 28
 - bislett_games: 27
-- kunst: 27
-- media: 27
-- by: 26
+- akershus_festning: 25
+- natur: 25
 - popkultur: 25
-- arkitektur: 23
+- sanger: 24
+- skanevik: 24
+- skihopp: 24
 - film_tv: 23
 - seriemester: 23
-- natur: 22
-- sanger: 21
 - torshovteatret: 20
+- verdenscup: 19
+- etterkrigstid: 18
+- middelalder: 18
 - filantrop: 17
-- tv: 17
-- klassikerrepertoar: 16
-- verdensrekord: 16
-- etterkrigstid: 15
-- filmhistorie: 15
-- institusjonsledelse: 15
-- moderne_ensemble: 15
-- filmkanon: 14
-- journalistikk: 14
-- middelalder: 14
-- humor: 13
-- landslaget: 13
-- modernisme: 13
-- nynorsk: 13
-- skoyter: 13
-- heddaprisen: 12
+- krig: 17
 
 ## Steder med flest people
 
 - nationaltheatret (Nationaltheatret) – 123
+- holmenkollen_nasjonalanlegg (Holmenkollen nasjonalanlegg) – 109
 - bislett_stadion (Bislett Stadion) – 82
-- det_norske_teatret (Det Norske Teatret) – 55
-- stortinget (Stortinget) – 29
+- det_norske_teatret (Det Norske Teatret) – 80
+- akershus_festning (Akershus festning) – 45
+- eidsvollsbygningen (Eidsvollsbygningen) – 42
+- stortinget (Stortinget) – 30
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
 - edderkoppen_scene (Edderkoppen Scene) – 21
-- akerhus_slott (Akerhus Slott) – 20
+- youngstorget (Youngstorget) – 21
 - universitetsplassen (Universitetsplassen) – 19
-- youngstorget (Youngstorget) – 17
+- karl_johan (Karl Johans gate) – 16
+- oslo_radhus (Oslo rådhus) – 16
 - oslo_domkirke (Oslo domkirke) – 15
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 15
-- eidsvollsbygningen (Eidsvollsbygningen) – 14
-- oslo_radhus (Oslo rådhus) – 14
 - gamle_deichman (Gamle Deichman) – 13
-- karl_johan (Karl Johans gate) – 13
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 13
 - nidaros_erkebispegarden (Erkebispegården i Nidaros) – 13
 - torggata (Torggata) – 12
@@ -116,11 +117,56 @@ Generert: 2026-07-17T20:51:00.125Z
 - jordal_amfi (Jordal Amfi) – 11
 - cinemateket_oslo (Cinemateket i Oslo) – 10
 - kristkirken_bergenhus (Kristkirken på Bergenhus) – 10
-- lisbon_museu_do_fado (Museu do Fado) – 9
 
 ## Ugyldige place-referanser
 
-- Ingen ugyldige place-referanser funnet.
+- erling_skakke (Erling Skakke) -> stodle_kyrkje
+- viggo_hansteen (Viggo Hansteen) -> grini_fangeleir
+- rolf_wickstrom (Rolf Wickstrøm) -> grini_fangeleir
+- trygve_bratteli (Trygve Bratteli) -> grini_fangeleir
+- arnulf_overland (Arnulf Øverland) -> grini_fangeleir
+- alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal
+- helgaberget_ristningsskaparane (Ristningsskaparane på Helgaberget) -> helgaberget_etne
+- borgasen_borgbyggjarane (Borgbyggjarane på Borgåsen) -> borgasen_etne
+- saebotunet_gardsfolket (Gardsfolket på Sæbø) -> saebotunet_etne
+- gjerde_kyrkjelyden (Kyrkjelyden på Gjerde) -> gjerde_kyrkje_etne
+- grindheim_kyrkjelyden (Kyrkjelyden på Grindheim) -> grindheim_kyrkje_etne
+- bruteigsteinen_ristningsskaparane (Ristningsskaparane på Bruteigsteinen) -> bruteigsteinen_etne
+- duesteinen_ristningsskaparane (Ristningsskaparane på Duesteinen) -> duesteinen_etne
+- steine_heio_borgbyggjarane (Borgbyggjarane på Steine-Heio) -> steine_heio_bygdeborg
+- tormod_grindheim_runereisar (Tormod på Grindheim) -> grindheim_runestein
+- tormod_svidande (Tormod Svidande) -> grindheim_runestein
+- grindheim_kross_samlingsmiljoet (Samlingsmiljøet ved Grindheim-krossen) -> grindheim_steinkross
+- grindheim_gravfolket (Gravfolket på Grindheim og Rygg) -> grindheimsveien_nord_gravfelt
+- grindheim_jernvinnemiljoet (Jernvinnemiljøet på Grindheim) -> grindheim_jernvinne
+- sorheimsmoen_gravfolket (Gravfolket på Sørheimsmoen) -> sorheimsmoen_gravfelt
+- tesdal_gravfolket (Gravfolket på Tesdal) -> tesdal_gravfelt
+- etnesjoen_landsbyfolket (Landsbyfolket ved Etnesjøen) -> etnesjoen_forromersk_landsby
+- varhaug_nervik_gravmiljoet (Gravmiljøet ved Varhaug) -> varhaug_nervik
+- nesjarhaugen_steinringmiljoet (Miljøet kring Nesjarhaugen) -> nesjarhaugen_byrkjenes
+- keisarhaugen_gravmiljoet (Gravmiljøet ved Keisarhaugen) -> keisarhaugen_frette
+- dysjanes_gravmiljoet (Gravmiljøet på Dysjanes) -> dysjanes_rivaisen_gravroys
+- hidlesnes_gravmiljoet (Gravmiljøet på Hidlesnes) -> hidlesnes_nernes_gravroys
+- vardahaugen_gravmiljoet (Gravmiljøet på Vardahaugen) -> vardahaugen_lauareid
+- stampehaug_gravmiljoet (Gravmiljøet ved Stampehaug) -> stampehaug_meland
+- hoyland_gravmiljoet (Gravmiljøet på Høyland) -> hoyland_gravhaug_etne
+- etne_prestegard_tunmiljoet (Tunmiljøet ved Etne prestegard) -> etne_prestebustad
+- ivar_aasen (Ivar Aasen) -> skanevik_gjestgjevargarden
+- skanevik_kyrkjelyden (Skånevik kyrkjelyd) -> skanevik_kyrkjestad
+- fjaera_kyrkjelyden (Fjæra kyrkjelyd) -> fjaera_kapell
+- akrafjordvegen_arbeidslaget (Arbeidslaget på Åkrafjordvegen) -> gamle_akrafjordvegen
+- rullestad_postferdselsmiljoet (Postferdselsmiljøet i Rullestadjuvet) -> postvegen_rullestadjuvet
+- skanevik_gjestgjevarmiljoet (Gjestgjevarmiljøet i Skånevik) -> skanevik_gjestgjevargarden
+- stordalen_drifteferdselsmiljoet (Drifte- og ferdselsmiljøet i Stordalen) -> driftevegen_stordalen_roldal
+- folgefonden_minnemiljoet (Minnemiljøet etter Folgefonden) -> folgefonden_minnesmerke_skanevik
+- hans_reichwald (Hans Reichwald) -> reichwald_snublesteiner_skanevik
+- edith_reichwald (Edith Reichwald) -> reichwald_snublesteiner_skanevik
+- harry_reichwald (Harry Reichwald) -> reichwald_snublesteiner_skanevik
+- gjerdesvagen_jernvinnemiljoet (Jernvinnemiljøet i Gjerdesvågen) -> gjerdesvagen_jernvinne
+- etne_skanevik_postferdselsmiljoet (Postferdselsmiljøet mellom Etne og Skånevik) -> postvegen_etne_skanevik
+- anna_molden (Anna Molden) -> etne_tinghus
+- inge_seim (Inge Seim) -> etne_brannstasjon
+- inge_seim (Inge Seim) -> skanevik_brannstasjon
 
 ## Duplikate place-referanser inne på people
 
@@ -208,9 +254,9 @@ Generert: 2026-07-17T20:51:00.125Z
 - eirik_magnusson (Eirik Magnusson) -> bergenhus_haakonshallen
 - audun_hugleiksson (Audun Hugleiksson) -> audunborg_hegrenes
 - magnus_eriksson (Magnus Eriksson) -> middelalder_oslo
-- haakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott
-- margrete_1 (Margrete 1.) -> akerhus_slott
-- erik_av_pommern (Erik av Pommern) -> akerhus_slott
+- haakon_vi_magnusson (Håkon VI Magnusson) -> akershus_festning
+- margrete_1 (Margrete 1.) -> akershus_festning
+- erik_av_pommern (Erik av Pommern) -> akershus_festning
 - aslak_bolt (Aslak Bolt) -> nidarosdomen
 - olav_nilsson (Olav Nilsson) -> munkeliv_kloster
 - kong_sverre (Kong Sverre Sigurdsson) -> nidarosdomen
@@ -221,63 +267,63 @@ Generert: 2026-07-17T20:51:00.125Z
 - christian_frederik (Christian Frederik) -> stortinget
 - roald_amundsen (Roald Amundsen) -> nobelinstituttet
 - fridtjof_nansen (Fridtjof Nansen) -> nobelinstituttet
-- haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott
+- haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 680 flere
+- ... 1041 flere
 
 ## Anbefalt første people-batch
 
 Første 50 steder uten people, sortert etter worklist-prioritet og videre innholdsklarhet.
 
-- ankerbrua | Ankerbrua | by | high
 - beierbrua | Beierbrua | by | high
-- gamle_radhus | Gamle rådhus | by | high
-- hausmannsbrua | Hausmannsbrua | by | high
 - hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | high
-- helsfyr | Helsfyr | by | high
 - lisbon_ajuda | Ajuda | by | high
 - lisbon_alcantara | Alcântara | by | high
 - lisbon_alfama | Alfama | by | high
-- lisbon_aqueduto_das_aguas_livres | Aqueduto das Águas Livres | by | high
 - lisbon_avenida_da_liberdade | Avenida da Liberdade | by | high
 - lisbon_baixa_pombalina | Baixa Pombalina | by | high
 - lisbon_belem_bydel | Belém | by | high
-- lisbon_bica | Bica | by | high
 - lisbon_cais_do_sodre | Cais do Sodré | by | high
 - lisbon_campo_de_ourique | Campo de Ourique | by | high
-- lisbon_campo_pequeno | Campo Pequeno | by | high
 - lisbon_chiado | Chiado | by | high
 - lisbon_city | Lisboa | by | high
-- lisbon_elevador_de_santa_justa | Elevador de Santa Justa | by | high
 - lisbon_entrecampos | Entrecampos | by | high
-- lisbon_estacao_do_rossio | Estação do Rossio | by | high
 - lisbon_estrela | Estrela | by | high
-- lisbon_gare_do_cais_do_sodre | Gare do Cais do Sodré | by | high
 - lisbon_graca | Graça | by | high
 - lisbon_intendente | Intendente | by | high
 - lisbon_lapa | Lapa | by | high
 - lisbon_martim_moniz_mouraria_axis | Martim Moniz–Mouraria-aksen | by | high
-- lisbon_oriente_station | Estação do Oriente | by | high
 - lisbon_parque_eduardo_vii | Parque Eduardo VII | by | high
-- lisbon_ponte_25_de_abril | Ponte 25 de Abril | by | high
 - lisbon_praca_do_comercio | Praça do Comércio | by | high
 - lisbon_principe_real | Príncipe Real | by | high
 - lisbon_rossio | Rossio (Praça Dom Pedro IV) | by | high
 - majorstuen_tbanestasjon | Majorstuen T-banestasjon | by | high
-- nybrua_vaterlandsparken | Nybrua / Vaterlandsparken | by | high
 - nydalen | Nydalen | by | high
 - oslo_bussterminal | Oslo bussterminal | by | high
 - romsaås | Romsås | by | high
 - storgata | Storgata | by | high
 - ullern | Ullern | by | high
 - vinderen | Vinderen | by | high
-- bjoelsenfossen | Bjølsenfossen | historie | high
-- botsfengselet | Botsfengselet | historie | high
-- frysjadammen | Frysjadammen | historie | high
 - galgeberg | Galgeberg | historie | high
-- gamle_aker_kirke | Gamle Aker kirke | historie | high
-- glads_molle | Glads mølle | historie | high
 - hovedoya_kloster | Hovedøya kloster | historie | high
 - lisbon_castelo_de_sao_jorge | Castelo de São Jorge | historie | high
+- lisbon_convento_do_carmo | Convento do Carmo | historie | high
+- lisbon_igreja_de_santo_antonio | Igreja de Santo António | historie | high
+- lisbon_igreja_de_sao_domingos | Igreja de São Domingos | historie | high
+- lisbon_igreja_de_sao_roque | Igreja de São Roque | historie | high
+- lisbon_mosteiro_dos_jeronimos | Mosteiro dos Jerónimos | historie | high
+- lisbon_museu_de_lisboa | Museu de Lisboa (Palácio Pimenta) | historie | high
+- lisbon_museu_de_marinha | Museu de Marinha | historie | high
+- lisbon_museu_nacional_dos_coches | Museu Nacional dos Coches | historie | high
+- lisbon_padrao_dos_descobrimentos | Padrão dos Descobrimentos | historie | high
+- lisbon_palacio_fronteira | Palácio dos Marqueses de Fronteira | historie | high
+- lisbon_panteao_nacional | Panteão Nacional (Igreja de Santa Engrácia) | historie | high
+- lisbon_sao_vicente_de_fora | Igreja e Mosteiro de São Vicente de Fora | historie | high
+- lisbon_se_de_lisboa | Sé de Lisboa | historie | high
+- lisbon_teatro_romano | Ruínas do Teatro Romano | historie | high
+- lisbon_torre_de_belem | Torre de Belém | historie | high
+- nonneseter_kloster | Nonneseter kloster | historie | high
+- oslo_hospital | Oslo hospital | historie | high
+- oslo_ladegard | Oslo ladegård | historie | high
 

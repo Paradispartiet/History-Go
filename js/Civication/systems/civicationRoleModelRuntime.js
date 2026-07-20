@@ -175,7 +175,24 @@
     };
   }
 
-  function buildRoleModelMeta(roleModel, refs) {
+  // Samlede History Go-personer i rollemodellens kategori — vises som faglige
+  // forbilder på mailene. Tom liste når broen mangler eller ingenting er samlet.
+  async function loadHistoryPeople(roleModel) {
+    const bridge = window.CivicationHistoryPeopleBridge;
+    const category = norm(roleModel?.category);
+    if (!bridge?.load || !category) return [];
+    try {
+      await bridge.load();
+      return (bridge.getCollectedByCategory(category) || [])
+        .slice(0, 3)
+        .map(person => ({ id: norm(person?.id), name: norm(person?.name) }))
+        .filter(person => person.id && person.name);
+    } catch {
+      return [];
+    }
+  }
+
+  function buildRoleModelMeta(roleModel, refs, historyPeople) {
     if (!roleModel) return null;
 
     const normalizedRefs = normalizeRoleModelRefs(refs);
@@ -194,6 +211,8 @@
         : [],
       selected_competence_axes: pickByIds(roleModel.competence_axes, normalizedRefs.competence_axes),
       selected_ideal_type_problems: pickByIds(roleModel.ideal_type_problems, normalizedRefs.ideal_type_problems),
+      people_connections: uniqueStrings(roleModel.required_knowledge?.people_connections),
+      history_people: Array.isArray(historyPeople) ? historyPeople : [],
       refs: normalizedRefs
     };
   }
@@ -205,7 +224,8 @@
     if (!model) return mail;
 
     const refs = normalizeRoleModelRefs(mail.role_model_refs);
-    const roleModelMeta = buildRoleModelMeta(model, refs);
+    const historyPeople = await loadHistoryPeople(model);
+    const roleModelMeta = buildRoleModelMeta(model, refs, historyPeople);
 
     return {
       ...mail,

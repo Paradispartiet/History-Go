@@ -122,6 +122,7 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 | IncomingFlow | `CivicationIncomingFlow` | Binder mailbatcher til dagfaser/kanaler; styrer hvilke innkommende saker som leveres når. |
 | LifeMailRuntime | `CivicationLifeMailRuntime` | **Livshendelser utenfor jobbspor** (arbeidsledig, økonomi, kveld, risiko, sosialt). Brukes når spilleren mangler aktiv jobb eller har eksplisitte life-/identity-tags. Holdes adskilt fra rollebaserte jobbmailer. |
 | RoleModelRuntime | `CivicationRoleModelRuntime` | Dekorerer valgte mailer med roleModel-metadata; endrer ikke mailflyten. |
+| HistoryPeopleBridge | `CivicationHistoryPeopleBridge` | **History Go-samlingen → ekte personer (hybridmodellen).** Leser `people_collected` + den genererte indeksen `data/Civication/historyPeople_index.json` og lar samlede History Go-personer legemliggjøre arketypene fra `people_access_map.json` (identitetsbytte via `decorateAvailablePeople`; mekanikk, access og scoring urørt). Deterministisk valg per arketype; to arketyper viser aldri samme person; uten samlet person i kategorien beholdes arketypen. RoleModelRuntime bruker `getCollectedByCategory` til `history_people`-forbilder på `role_model_meta`. Hverdags-NPC-ene i mailflyten (`data/Civication/npcs/**`) forblir fiktive. Leser kun; skriver aldri. Regenerer indeksen med `npm run civication:history-people:build`. |
 | ProfileSignalBridge | `CivicationProfileSignalBridge` | **History Go → private fase-mailer.** Normaliserer spillerens History Go-profil (HG_IdentityCore, `hg_capital_v1`, CivicationPsyche inkl. `psyche.energy`, `visited_places`, `merits_by_category`, `people_collected`, `hg_learning_log_v1`) til `{ identity, capital, psyche, historyGoCollection, profileTags, privatePhaseWeights }`. Offentlig API: `getSignals`, `getProfileTags`, `getPrivatePhaseWeights`, `inspect`. `getSignals()` returnerer alltid et stabilt objekt, også når alle kilder mangler (`identity.focus` har 7 dimensjoner, `psyche.energy` er `null` når ukjent). Leser kun; skriver aldri. Brukes av PrivatePhaseMailBuilder — aldri av jobbmail-sporet. |
 
 Arbeidsdeling i én setning: **MailRuntime velger hvilken mail som skal komme, DailyMailBuilder
@@ -299,6 +300,14 @@ viser om rollen bak tilbudet har full, delvis eller generisk rollepakke, målt m
 runtime-resolveren faktisk vil spille. Regenerer indeksen når rollepakker endres.
 
 Referanserolle (komplett FWG-styrt): **Arealplanlegger** (`by/by_radgiver_plan`).
+
+`historyPeople_index.json` genereres av `npm run civication:history-people:build` fra
+`data/people/manifest.json` (aldri redigeres for hånd; synk-sjekkes av
+`npm run civication:history-people:check`, som også kjøres i `tools:check`). Den er en lett,
+kategorigruppert indeks over History Go-personene som `systems/civicationHistoryPeopleBridge.js`
+laster i én fetch. `people_access_map.json`-arketypene peker på personkategorier via
+`hg_categories` (eksplisitte rå category-verdier, valideres av check-skriptet — ingen
+normalisering/gjetting).
 
 ## Validering
 

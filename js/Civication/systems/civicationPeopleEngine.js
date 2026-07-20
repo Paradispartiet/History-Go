@@ -306,6 +306,7 @@
       required_people_access: entry.required_people_access,
       required_place_access: entry.required_place_access,
       role_scopes: entry.role_scopes,
+      hg_categories: entry.hg_categories,
       badge_scope: entry.badge_scope,
       knowledge_tags: entry.knowledge_tags,
       teaches: entry.teaches,
@@ -368,10 +369,20 @@
         score: scoreEntry(entry, active, identity, peopleAccess, leisureAccess, workAccess)
       }));
 
-    const scored = [...scoredCategoryEntries, ...scoredRoleEntries, ...scoredMapEntries]
+    let scored = [...scoredCategoryEntries, ...scoredRoleEntries, ...scoredMapEntries]
       .sort((a, b) => Number(b.score || 0) - Number(a.score || 0))
       .slice(0, 8)
       .map(({ entry, source, score }) => shapeEntry(entry, score, source));
+
+    // Hybrid: samlede History Go-personer legemliggjør access_map-arketypene
+    // (identitetsbytte, samme mekanikk). Mangler broen eller feiler den,
+    // beholdes de konstruerte arketypene uendret.
+    const historyBridge = window.CivicationHistoryPeopleBridge;
+    if (historyBridge?.decorateAvailablePeople) {
+      try {
+        scored = await historyBridge.decorateAvailablePeople(scored);
+      } catch {}
+    }
 
     return writeState({
       updated_at: new Date().toISOString(),
