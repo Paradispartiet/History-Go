@@ -16,8 +16,15 @@
     geoStatus.insertAdjacentElement("afterend", minDayButton);
   }
 
+  function setLesesporMenuLabel() {
+    const button = document.getElementById("btnLesespor");
+    const label = button?.querySelector?.(".header-menu-action-label");
+    if (label) label.textContent = "Lesespor";
+  }
+
   function initHeaderMenu() {
     promoteMinDayToHeader();
+    setLesesporMenuLabel();
 
     const root = document.getElementById("headerMenu");
     const button = document.getElementById("headerMenuButton");
