@@ -40,14 +40,15 @@ const SOURCE_MAPPED_ENTRIES = [
   { in: "js/emneDekning.ts", out: "emneDekning" }
 ];
 
-// Startup-runtimes that are still loaded from legacy script paths. They are
+// Browser-runtimes that are still loaded from legacy script paths. They are
 // authored in TypeScript and built to dist/web; compatibility outputs keep the
-// old URLs valid until app.js itself becomes a TypeScript entrypoint.
+// old URLs valid while the surrounding loader remains legacy JavaScript.
 const STARTUP_ENTRIES = [
   { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
   { in: "js/core/categories.ts", out: "categories" },
   { in: "js/core/layerManager.ts", out: "layerManager" },
-  { in: "js/map.ts", out: "map" }
+  { in: "js/map.ts", out: "map" },
+  { in: "js/ui/search.ts", out: "search" }
 ];
 
 // The position runtime bundles several focused modules behind one legacy global
@@ -59,7 +60,8 @@ const COMPACT_STARTUP_ENTRIES = [
 const STARTUP_COMPATIBILITY_OUTPUTS = [
   { out: "categories", target: "js/core/categories.js" },
   { out: "layerManager", target: "js/core/layerManager.js" },
-  { out: "map", target: "js/map.js" }
+  { out: "map", target: "js/map.js" },
+  { out: "search", target: "js/ui/search.js" }
 ];
 
 const COMPACT_COMPATIBILITY_OUTPUTS = [
