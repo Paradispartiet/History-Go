@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 193 verifiserte eller kildekontrollerte canonical steder. Batch 48 legger til TBS Gallery, The Viking Planet Oslo og The Salmon kunnskapssenter med entydige offisielle Geonorge-adressepunkter og eksplisitt avgrensede institusjonsidentiteter. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 37.
+Oslo-tabellen inneholder nå 195 verifiserte eller kildekontrollerte canonical steder. Batch 49 legger til Jødisk Museum i Oslo og Det internasjonale Barnekunstmuseet med entydige offisielle Geonorge-adressepunkter, samtidig som protokollen skiller fysisk koordinatverifikasjon fra midlertidig stengt publikumsdrift. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 37.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -215,6 +215,8 @@ Oslo-tabellen inneholder nå 193 verifiserte eller kildekontrollerte canonical s
 | 48 | `tbs_gallery` | TBS Gallery | verified | `geonorge-adresser-v1:0301:15439:23` |
 | 48 | `viking_planet_oslo` | The Viking Planet Oslo | verified | `geonorge-adresser-v1:0301:11993:4` |
 | 48 | `the_salmon_vitensenter` | The Salmon – kunnskapssenter | verified | `geonorge-adresser-v1:0301:21458:11` |
+| 49 | `jodisk_museum_oslo` | Jødisk Museum i Oslo | verified | `geonorge-adresser-v1:0301:11019:15B` |
+| 49 | `det_internasjonale_barnekunstmuseet` | Det internasjonale Barnekunstmuseet | verified | `geonorge-adresser-v1:0301:14283:4` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -252,9 +254,11 @@ Batch 47 (2026-07-20) løser `lilleborg_fabrikker` ved å skille selskaps- og pr
 
 Batch 48 (2026-07-20) produserer tre stabile besøkssteder fra museumsauditens grensesone. `tbs_gallery` bruker Oscars gate 23 og modelleres som permanent kunstnersenter i et historisk villa- og stallanlegg, ikke som et tilfeldig kommersielt salgsgalleri. `viking_planet_oslo` bruker Fridtjof Nansens plass 4 og holdes fysisk separat fra Rådhusplassen og institusjonelt separat fra Vikingtidsmuseet på Bygdøy; den digitale formidlingen skal behandles kildekritisk. `the_salmon_vitensenter` bruker Strandpromenaden 11 og representerer det gratis kunnskapssenteret om havbruk, ikke restaurantdelen eller hele Tjuvholmen.
 
+Batch 49 (2026-07-20) fullfører de to status-sensitive standardkandidatene fra museumsauditen. `jodisk_museum_oslo` bruker Calmeyers gate 15B som fysisk museums- og kulturminneanker; museumsbygget er stengt for renovering fra 1. mai 2026 med estimert gjenåpning høsten 2028, men undervisning og byvandringer fortsetter utenfor bygget. `det_internasjonale_barnekunstmuseet` bruker Lille Frøens vei 4 som fysisk museumsanker; ordinære åpningstider har vært innstilt siden 8. desember 2025 og det finnes per 20. juli 2026 ingen fast gjenåpningsdato. `verified` i denne tabellen gjelder koordinat og fysisk identitet, ikke aktuell publikumsåpning.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 193 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 195 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|

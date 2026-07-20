@@ -1,0 +1,74 @@
+{
+  "placeId": "jodisk_museum_oslo",
+  "placeFile": "data/places/historie/oslo/places_historie/jodisk_museum_oslo.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.916392056400085,
+    "lon": 10.755266642495423,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Calmeyers gate 15B, OSLO. Punktet brukes som display-marker for Jødisk Museum i Oslo i den tidligere synagogebygningen. Koordinatverifikasjonen gjelder det fysiske stedet og innebærer ikke at museumsbygget er åpent under renoveringen 2026–2028."
+  },
+  "identity": {
+    "currentName": "Jødisk Museum i Oslo",
+    "resolvedIdentity": "Jødisk Museum i Oslo, museums- og kulturminnestedet i den tidligere synagogen i Calmeyers gate 15B",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell museumsidentitet",
+    "eksplisitt skille mellom fysisk koordinatstatus og aktuell besøksstatus"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Calmeyers%20gate%2015B%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11019:15B",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Calmeyers gate 15B Oslo. Stedet er et selvstendig museums- og kulturminnebygg. Koordinatverifikasjonen gjelder den fysiske adressen selv om museets lokaler er stengt for renovering fra 1. mai 2026 med estimert gjenåpning høsten 2028.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Calmeyers gate 15B, OSLO. Punktet brukes som display-marker for Jødisk Museum i Oslo i den tidligere synagogebygningen. Koordinatverifikasjonen gjelder det fysiske stedet og innebærer ikke at museumsbygget er åpent under renoveringen 2026–2028."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Calmeyers gate 15B Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11019:15B",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11019:15B",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.916392056400085,
+      "lon": 10.755266642495423,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Fysisk koordinat og identitet er anvendt på canonical place; besøksstatus må vedlikeholdes separat i stedsinnholdet."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Calmeyers gate 15B, OSLO. Punktet brukes som display-marker for Jødisk Museum i Oslo i den tidligere synagogebygningen. Koordinatverifikasjonen gjelder det fysiske stedet og innebærer ikke at museumsbygget er åpent under renoveringen 2026–2028.",
+    "Stedet er et selvstendig museums- og kulturminnebygg. Koordinatverifikasjonen gjelder den fysiske adressen selv om museets lokaler er stengt for renovering fra 1. mai 2026 med estimert gjenåpning høsten 2028."
+  ]
+}

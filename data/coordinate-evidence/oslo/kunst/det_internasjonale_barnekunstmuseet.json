@@ -1,0 +1,74 @@
+{
+  "placeId": "det_internasjonale_barnekunstmuseet",
+  "placeFile": "data/places/kunst/oslo/places_kunst/det_internasjonale_barnekunstmuseet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.93569216008246,
+    "lon": 10.71161396805781,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Lille Frøens vei 4, OSLO. Punktet brukes som display-marker for Det internasjonale Barnekunstmuseets fysiske museumssted. Koordinatverifikasjonen innebærer ikke at ordinær publikumsdrift er gjenopptatt."
+  },
+  "identity": {
+    "currentName": "Det internasjonale Barnekunstmuseet",
+    "resolvedIdentity": "Det internasjonale barnekunstmuseet, museumsinstitusjonen og samlingen i villaen i Lille Frøens vei 4",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell museumsidentitet",
+    "eksplisitt skille mellom fysisk koordinatstatus og aktuell besøksstatus"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Lille%20Fr%C3%B8ens%20vei%204%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14283:4",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Lille Frøens vei 4 Oslo. Stedet er en selvstendig museumsinstitusjon og fysisk villa. Koordinatverifikasjonen gjelder stedet selv om ordinær publikumsdrift har vært innstilt siden 8. desember 2025 uten fast gjenåpningsdato.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Lille Frøens vei 4, OSLO. Punktet brukes som display-marker for Det internasjonale Barnekunstmuseets fysiske museumssted. Koordinatverifikasjonen innebærer ikke at ordinær publikumsdrift er gjenopptatt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Lille Frøens vei 4 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14283:4",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14283:4",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.93569216008246,
+      "lon": 10.71161396805781,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Fysisk koordinat og identitet er anvendt på canonical place; besøksstatus må vedlikeholdes separat i stedsinnholdet."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Lille Frøens vei 4, OSLO. Punktet brukes som display-marker for Det internasjonale Barnekunstmuseets fysiske museumssted. Koordinatverifikasjonen innebærer ikke at ordinær publikumsdrift er gjenopptatt.",
+    "Stedet er en selvstendig museumsinstitusjon og fysisk villa. Koordinatverifikasjonen gjelder stedet selv om ordinær publikumsdrift har vært innstilt siden 8. desember 2025 uten fast gjenåpningsdato."
+  ]
+}
