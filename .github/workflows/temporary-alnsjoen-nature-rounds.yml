@@ -48,6 +48,14 @@ jobs:
           fi
           tail -n 20 /tmp/check-places.log
 
+      - name: Upload places-check log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alnsjoen-check-places-log
+          path: /tmp/check-places.log
+          if-no-files-found: error
+
       - name: Run people check
         run: bash scripts/check-people.sh
 
