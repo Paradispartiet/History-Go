@@ -8,6 +8,17 @@ on:
     paths:
       - 'scripts/coordinate-branch-job.mjs'
       - 'scripts/.coordinate-branch-job-complete'
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    paths:
+      - 'scripts/coordinate-branch-job.mjs'
+      - 'scripts/.coordinate-branch-job-complete'
   workflow_dispatch:
 
 concurrency:
