@@ -29,9 +29,7 @@ if (!original) {
   throw new Error('Fant ikke originalmaterialiseringen i Git-historikken');
 }
 
-const patched = original
-  .replaceAll('`needs_detail_check`', 'needs_detail_check')
-  .replaceAll("'needs_detail_check'", 'needs_detail_check');
+const patched = original.replaceAll('`needs_detail_check`', 'needs_detail_check');
 
 const tempPath = path.resolve('scripts/.alna-utlop-materializer-fixed.mjs');
 fs.writeFileSync(tempPath, patched);
