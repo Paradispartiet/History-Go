@@ -76,15 +76,19 @@ if (!unresolvedMatch) throw new Error('Could not parse Oslo unresolved count');
 const unresolvedCount = Number(unresolvedMatch[1]);
 
 const lines = protocol.split('\n');
+const correctionHeading = 'Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).';
 const headerIndex = lines.findIndex((line) => line === '| batch | placeId | navn | godkjent status | kildeobjekt |');
 if (headerIndex < 0) throw new Error('Could not find Oslo coordinate table header');
-if (lines.some((line) => line.startsWith(`| ${BATCH_NO} |`))) {
+const tableEndIndex = lines.findIndex((line, index) => index > headerIndex && line === correctionHeading);
+if (tableEndIndex < 0) throw new Error('Could not find the end of the Oslo coordinate table');
+const osloTableLines = lines.slice(headerIndex + 2, tableEndIndex);
+if (osloTableLines.some((line) => line.startsWith(`| ${BATCH_NO} |`))) {
   throw new Error(`Batch ${BATCH_NO} is already present in the Oslo coordinate table`);
 }
-const row55Index = lines.findIndex((line, index) => index > headerIndex && line.startsWith('| 55 | `holmlia_bad` |'));
+const row55Index = lines.findIndex((line, index) => index > headerIndex && index < tableEndIndex && line.startsWith('| 55 | `holmlia_bad` |'));
 if (row55Index < 0) throw new Error('Could not find Holmlia batch 55 row');
 let nextBatchRowIndex = -1;
-for (let i = row55Index + 1; i < lines.length; i += 1) {
+for (let i = row55Index + 1; i < tableEndIndex; i += 1) {
   const match = lines[i].match(/^\| (\d+) \|/);
   if (!match) continue;
   if (Number(match[1]) > BATCH_NO) {
@@ -119,12 +123,14 @@ protocol = protocol.replace(
 );
 
 const finalLines = protocol.split('\n');
-const row56Index = finalLines.findIndex((line) => line === skimoreRow);
-const row57Index = finalLines.findIndex((line) => line.startsWith('| 57 |'));
+const finalHeaderIndex = finalLines.findIndex((line) => line === '| batch | placeId | navn | godkjent status | kildeobjekt |');
+const finalTableEndIndex = finalLines.findIndex((line, index) => index > finalHeaderIndex && line === correctionHeading);
+const row56Index = finalLines.findIndex((line, index) => index > finalHeaderIndex && index < finalTableEndIndex && line === skimoreRow);
+const row57Index = finalLines.findIndex((line, index) => index > finalHeaderIndex && index < finalTableEndIndex && line.startsWith('| 57 |'));
 if (row56Index < 0 || row57Index < 0 || row56Index >= row57Index) {
-  throw new Error('Batch 56 was not placed before batch 57');
+  throw new Error('Batch 56 was not placed before batch 57 inside the Oslo coordinate table');
 }
-if (!finalLines.some((line) => line === 'Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).')) {
+if (!finalLines.some((line) => line === correctionHeading)) {
   throw new Error('The Oslo protocol correction heading was corrupted during batch insertion');
 }
 
