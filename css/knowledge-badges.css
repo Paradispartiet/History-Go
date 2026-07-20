@@ -1,0 +1,96 @@
+/* Badge-logo presentation for Knowledge V2.
+   The image source comes from data/badges through DataHub, never from CSS. */
+
+.kv2-subject-row-title > span:first-child {
+  font-size: 0;
+}
+
+.kv2-subject-row-title .kv2-subject-badge-slot {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: grid;
+  place-items: center;
+}
+
+.kv2-subject-badge-image,
+.kv2-subject-pill-badge,
+.kv2-subject-hero-badge {
+  display: block;
+  object-fit: contain;
+}
+
+.kv2-subject-badge-image {
+  width: 34px;
+  height: 34px;
+}
+
+.kv2-subject-row p {
+  padding-left: 45px;
+}
+
+.kv2-subject-row .kv2-progress {
+  margin-left: 45px;
+}
+
+.kv2-subject-pill-badge {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+.kv2-subject-hero > .kv2-eyebrow {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0;
+}
+
+.kv2-subject-hero > .kv2-eyebrow > span {
+  font-size: .72rem;
+}
+
+.kv2-subject-hero-badge {
+  width: 30px;
+  height: 30px;
+}
+
+.kv2-legacy-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 18px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(255,255,255,.42);
+  color: var(--kv2-text);
+  text-decoration: none;
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.kv2-legacy-link:hover,
+.kv2-legacy-link:focus-visible {
+  border-bottom-color: var(--kv2-text);
+  outline: none;
+}
+
+@media (max-width: 620px) {
+  .kv2-subject-row-title .kv2-subject-badge-slot {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .kv2-subject-badge-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .kv2-subject-row p {
+    padding-left: 41px;
+  }
+
+  .kv2-subject-row .kv2-progress {
+    margin-left: 41px;
+  }
+}
