@@ -1,5 +1,6 @@
 {
-  "ok": true,
+  "date": "2026-07-20",
+  "method": "Object-type-first application. Exact named OSM objects only after documented address/identity conflict; no nearest-result guessing.",
   "applied": [
     {
       "id": "norli_universitetsgata",
@@ -49,5 +50,18 @@
       "sourceObjectId": "osm-relation:11788354",
       "sourceFile": "data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json"
     }
-  ]
+  ],
+  "unchanged": [
+    {
+      "id": "seilduksfabrikken_nydalen",
+      "result": "unchanged_needs_review",
+      "reason": "Nominatim research returned no exact named object for Øvre Spinneri / Seilduksfabrikken."
+    }
+  ],
+  "protocolReconciliation": {
+    "id": "frysja_33_brekke_kraftstasjon",
+    "canonicalStatus": "verified",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13747:151C",
+    "result": "removed_stale_unresolved_row_and_added_verified_protocol_row"
+  }
 }
