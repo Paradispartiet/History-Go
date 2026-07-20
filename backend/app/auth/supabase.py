@@ -35,6 +35,7 @@ class AuthPrincipal(BaseModel):
     user_id: UUID
     role: str = "authenticated"
     email: str | None = None
+    app_roles: frozenset[str] = frozenset()
 
 
 @dataclass(frozen=True, slots=True)
@@ -50,6 +51,10 @@ class SupabaseTokenVerifier:
     Asymmetric RS256/ES256 tokens are verified locally against the project's JWKS.
     Legacy HS256 tokens are verified through the Supabase Auth `/user` endpoint so
     the backend never needs to possess or trust the legacy JWT signing secret.
+
+    History GO staff authorization is sourced only from server-controlled Supabase
+    ``app_metadata``. User-editable metadata and email addresses are never treated
+    as authorization inputs.
     """
 
     def __init__(self, settings: Settings, http_client: httpx.Client | None = None) -> None:
@@ -144,6 +149,7 @@ class SupabaseTokenVerifier:
                 user_id=UUID(str(payload["id"])),
                 role=str(payload.get("role") or "authenticated"),
                 email=_optional_string(payload.get("email")),
+                app_roles=_extract_app_roles(payload.get("app_metadata")),
             )
         except (KeyError, TypeError, ValueError) as exc:
             raise AuthTokenError("Supabase Auth returned an invalid user payload") from exc
@@ -155,9 +161,33 @@ class SupabaseTokenVerifier:
                 user_id=UUID(str(claims["sub"])),
                 role=str(claims.get("role") or "authenticated"),
                 email=_optional_string(claims.get("email")),
+                app_roles=_extract_app_roles(claims.get("app_metadata")),
             )
         except (KeyError, TypeError, ValueError) as exc:
             raise AuthTokenError("Supabase access token has invalid identity claims") from exc
+
+
+def _extract_app_roles(value: object) -> frozenset[str]:
+    if not isinstance(value, dict):
+        return frozenset()
+
+    raw_roles = value.get("history_go_roles")
+    if raw_roles is None:
+        raw_roles = value.get("roles")
+
+    if isinstance(raw_roles, str):
+        candidates: list[object] = [raw_roles]
+    elif isinstance(raw_roles, list | tuple | set | frozenset):
+        candidates = list(raw_roles)
+    else:
+        return frozenset()
+
+    normalized = {
+        role
+        for raw_role in candidates
+        if isinstance(raw_role, str) and (role := raw_role.strip().lower())
+    }
+    return frozenset(normalized)
 
 
 def _optional_string(value: object) -> str | None:
