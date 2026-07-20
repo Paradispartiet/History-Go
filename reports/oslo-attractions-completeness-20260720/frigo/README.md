@@ -20,6 +20,6 @@ Production is approved from this intake.
 - Category: `sport`
 - Coordinate source: `geonorge-adresser-v1:0301:11589:20`
 - Coordinate status: `verified`
-- Coordinate batch: 73
+- Coordinate batch: 74
 - Oslo verified/source-controlled total after production: 222
 - Oslo protocol batch rows normalized into the canonical Oslo table.
