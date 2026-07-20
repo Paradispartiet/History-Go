@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T23:24:22.108Z
+Generert: 2026-07-20T23:27:38.946Z
 
 ## Oppsummering
-- Aktive filer validert: **562**
+- Aktive filer validert: **566**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **427**
@@ -580,6 +580,10 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/saevareidberget_landskapsvernomrade.json
 - data/places/natur/vestland/brattholmen_naturreservat_etne.json
 - data/places/natur/vestland/skano_naturreservat_etne.json
+- data/places/historie/oslo/places_historie/paulus_kirke.json
+- data/places/kunst/oslo/places_kunst/purenkel_galleri.json
+- data/places/by/oslo/places/torshovparken.json
+- data/places/kunst/oslo/places_kunst/hodet_nn_torshovdalen.json
 
 ## Harde feil
 - Ingen
