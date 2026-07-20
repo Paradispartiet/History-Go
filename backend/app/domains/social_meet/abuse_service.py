@@ -102,9 +102,9 @@ class SocialMeetInviteAbuseService:
                 detail="An active Spotmeeting invite already exists for this context",
             )
 
-        # Reports are intentionally non-enumerating: the sender must not learn that
-        # the recipient submitted a report against them.
-        if snapshot.last_recipient_report_at is not None:
+        # Reports and prior blocks are intentionally non-enumerating: the sender
+        # must not learn which private safety action caused contact suppression.
+        if snapshot.last_recipient_report_at is not None or snapshot.last_pair_block_at is not None:
             raise _recipient_unavailable()
 
         if (
