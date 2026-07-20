@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { applyCategoryOverride, readCategoryOverrides } from './lib/placeCategoryOverrides.mjs';
 
 type JsonObject = Record<string, unknown>;
 type PlaceManifest = JsonObject & {
@@ -120,7 +121,6 @@ function isPlaceRow(value: unknown): value is PlaceRow {
   return isJsonObject(value);
 }
 
-
 function isNum(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value);
 }
@@ -174,7 +174,6 @@ async function readJson(filePath: string): Promise<unknown> {
   const raw = await fs.readFile(filePath, 'utf8');
   return JSON.parse(raw) as unknown;
 }
-
 
 type PlaceEntry = {
   place: PlaceRow;
@@ -337,6 +336,7 @@ async function buildExpectedIndex(): Promise<LightPlace[]> {
   const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
   const disabledPlaceIds = await readDisabledPlaceIds();
   const coordinateOverrides = await readCoordinateOverrides();
+  const categoryOverrides = await readCategoryOverrides(ROOT);
   const out: LightPlace[] = [];
 
   for (const rel of files) {
@@ -346,7 +346,8 @@ async function buildExpectedIndex(): Promise<LightPlace[]> {
 
     for (const { place, sourceFile: actualSourceFile } of entries) {
       assertNoLegacyLng(place, actualSourceFile);
-      const indexedPlace = applyCoordinateOverride(place, coordinateOverrides);
+      const placeWithCoordinates = applyCoordinateOverride(place, coordinateOverrides);
+      const indexedPlace = applyCategoryOverride(placeWithCoordinates, categoryOverrides) as PlaceRow;
       const id = typeof indexedPlace.id === 'string' ? indexedPlace.id : '';
       if (id && disabledPlaceIds.has(id)) continue;
       out.push(pickLight(indexedPlace, actualSourceFile));
@@ -408,7 +409,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  console.log('places_index.json is in sync with source place files after disabled-place filtering.');
+  console.log('places_index.json is in sync with source place files after disabled-place filtering and place overrides.');
   process.exit(0);
 }
 
