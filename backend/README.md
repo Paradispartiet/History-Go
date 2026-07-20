@@ -1,6 +1,6 @@
 # History GO backend
 
-Status: **Phase 1 foundation implemented. No production game domain has been migrated yet.**
+Status: **Phase 1 foundation is implemented. Social Meet Identity & Public Profile is the first migrated server-owned domain slice.**
 
 The canonical technical architecture is defined in:
 
@@ -24,27 +24,9 @@ The backend standard is:
 
 The TypeScript client and Node repository tooling remain separate concerns. New production backend domains must not be implemented as ad-hoc Node services without an explicit architecture decision.
 
-## What Phase 1 contains
+## Implemented server foundation
 
-```text
-backend/
-  app/
-    api/
-      dependencies.py
-      routes/
-        health.py
-    auth/
-      supabase.py
-    core/
-      config.py
-      database.py
-    main.py
-  tests/
-  .env.example
-  pyproject.toml
-```
-
-Implemented foundation:
+The shared backend foundation includes:
 
 1. FastAPI application factory and production-safe OpenAPI behavior.
 2. Validated `HG_BACKEND_*` environment configuration.
@@ -53,34 +35,105 @@ Implemented foundation:
 5. Lazy PostgreSQL/SQLAlchemy connection boundary using psycopg 3.
 6. Supabase Auth token verification boundary.
 7. Request IDs on HTTP responses.
-8. pytest coverage for health, database and auth foundation behavior.
-9. Required Ruff, mypy and pytest GitHub Actions gates.
-10. Python 3.12 and 3.14 test coverage in CI.
+8. Required Ruff, mypy and pytest CI gates.
+9. Python 3.12 and 3.14 test coverage in CI.
 
-This phase deliberately adds **no new game tables, no duplicate Social Meet schema, no user/progression model and no production writes**.
+## First server-owned domain: Social Meet Identity & Public Profile
 
-## Existing backend work that must be reused
+The first migrated domain slice reuses and extends the existing `public.hg_profiles` table. It does **not** introduce a second Social Meet profile model.
 
-The repository already contains real backend-oriented work for Social Meet:
-
-- `supabase/migrations/001_social_meet.sql` — PostgreSQL schema + RLS,
-- `docs/social-meet-backend.md` and the Social Meet backend contracts,
-- `js/social/HGSocialMeetSupabaseClient.js`,
-- `js/social/HGSocialMeetAdapter.js`.
-
-That work is not replaced by this foundation. The intended migration is:
+Implemented API:
 
 ```text
-existing TypeScript Social Meet UI
-              ↓
-       typed client adapter
-              ↓
-         FastAPI domain API
-              ↓
+GET  /api/v1/social-meet/me
+PUT  /api/v1/social-meet/profile
+GET  /api/v1/social-meet/profiles/{profileId}
+POST /api/v1/social-meet/profile/unpublish
+```
+
+The identity model deliberately separates three identifiers:
+
+```text
+Supabase auth.users.id
+        ↓ private auth binding
+hg_profiles.user_id
+        ↓
+hg_profiles.social_user_id
+        ↓ private/service identity
+hg_profiles.profile_id
+        ↓ only stable public Social Meet identity
+public profile / discovery / invite APIs
+```
+
+Rules enforced by the backend:
+
+- `auth.users.id` is never returned by public profile APIs.
+- `profile_id` is generated separately from the auth account and is the only stable public user identifier.
+- a profile cannot become `discoverable` without the current Social Meet consent version;
+- publication additionally requires explicit confirmation that the user reviewed the public profile preview;
+- public profile reads require an authenticated requester with active Social Meet opt-in;
+- `draft`, `private`, `paused`, `blocked_or_suspended` and `deleted` profiles are not returned by the public profile endpoint;
+- blocked/suspended/deleted profile states cannot be overwritten through normal user profile writes;
+- GPS, live location, nearby state, distance, last-seen/presence, followers/feed, chat/free text, public visit history and other forbidden privacy fields are rejected recursively;
+- public profile responses never include account IDs, auth subjects, email, phone, device IDs, IP addresses or moderation notes.
+
+The profile migration is:
+
+- `supabase/migrations/002_social_meet_identity_profiles.sql`
+
+It extends `hg_profiles` with opaque Social Meet IDs, visibility, consent and public learning-profile fields while preserving the existing basic History GO profile fields.
+
+### Transitional direct Supabase access
+
+The existing browser adapter remains transitional infrastructure:
+
+- `js/social/HGSocialMeetSupabaseClient.js`
+- `js/social/HGSocialMeetAdapter.js`
+
+The migration restricts the authenticated browser role so it may continue writing the legacy basic profile fields required by the current client, but it cannot directly self-authorize Social Meet publication or write the new server-owned consent/fingerprint/visibility fields.
+
+The intended migration remains:
+
+```text
+existing History GO / Social Meet UI
+                ↓
+         typed client adapter
+                ↓
+           FastAPI domain API
+                ↓
  reuse/evolve existing PostgreSQL schema + RLS
 ```
 
-The current direct client → Supabase adapter remains transitional infrastructure until the matching server domain is migrated. Do not create a second set of Social Meet tables or a parallel invite model.
+Do not create a second set of Social Meet tables or a parallel invite model.
+
+## Production Social Meet remains gated
+
+The Identity & Public Profile slice is a prerequisite, not permission to enable production discovery.
+
+The following must still move server-side before production Spotmeeting discovery is enabled:
+
+1. block/report/moderation enforcement;
+2. export and deletion workflows;
+3. durable Spotmeeting invite lifecycle and rate limiting;
+4. candidate discovery using only explicit, coarse knowledge-profile inputs;
+5. cross-device sync;
+6. frontend migration away from direct client writes for migrated server-owned operations.
+
+Until these prerequisites are complete, local/demo discovery behavior and the existing production safety gates must remain in place.
+
+## Existing Social Meet work that must be reused
+
+The repository already contains:
+
+- `supabase/migrations/001_social_meet.sql` — original PostgreSQL schema + RLS,
+- `supabase/migrations/002_social_meet_identity_profiles.sql` — server-owned identity/profile evolution,
+- `docs/social-meet-backend.md`,
+- `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`,
+- `docs/HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`,
+- `docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`,
+- the existing Social Meet browser adapters.
+
+Backend work must evolve these contracts and schemas rather than replacing them.
 
 ## AHA is a separate backend concern
 
@@ -125,8 +178,6 @@ The backend does not connect to PostgreSQL at import time. Connections are creat
 - If a database is configured, readiness pings it and fails on connection errors.
 - If `HG_BACKEND_READINESS_REQUIRE_DATABASE=true`, missing configuration fails readiness.
 
-This allows the foundation to run before the first server-owned domain is enabled without pretending that a production database is healthy.
-
 ### Supabase Auth verification
 
 The auth boundary does not store the Supabase legacy JWT secret.
@@ -135,19 +186,6 @@ The auth boundary does not store the Supabase legacy JWT secret.
 - Legacy `HS256` tokens are verified through the Supabase Auth `/user` endpoint and require the public/publishable project key.
 - Unsupported JWT algorithms fail closed.
 - Domain code receives only a verified minimal `AuthPrincipal`, not raw auth infrastructure.
-
-## Health endpoints
-
-```text
-GET /api/v1/health/live
-GET /api/v1/health/ready
-```
-
-`live` answers only whether the API process is alive.
-
-`ready` reports database/auth dependency state and returns HTTP `503` when a configured dependency is unhealthy or a required dependency is missing.
-
-Health responses must never expose credentials, connection strings, bearer tokens or private Supabase configuration.
 
 ## Validation
 
@@ -160,7 +198,7 @@ python -m mypy backend/app
 cd backend && python -m pytest --cov=app --cov-report=term-missing --cov-fail-under=80
 ```
 
-The same checks are enforced by `.github/workflows/backend-python.yml`.
+The same checks are enforced by `.github/workflows/backend-python.yml` on Python 3.12 and 3.14.
 
 ## Ownership rules
 
@@ -177,10 +215,10 @@ Backend code owns:
 
 The backend does **not** automatically own the editorial datasets under `data/`. Places, people, quiz, curriculum and other established canonical content remain JSON/manifest-driven unless a separate data architecture decision changes that.
 
-## Next backend phase
+## Next backend slice
 
-The next phase must migrate **one real server-owned vertical slice** rather than expanding infrastructure horizontally.
+The next server-owned slice should be **Social Meet block/report safety enforcement and export/delete support**, because the identity contract requires those protections before production candidate discovery or durable Spotmeeting delivery can be enabled.
 
-The strongest candidate is authentication + one minimal account/profile read/write flow, followed by carefully moving an existing Social Meet operation behind FastAPI while reusing the existing PostgreSQL schema and privacy contracts.
+After that, move the existing Spotmeeting invite state machine behind FastAPI while reusing `hg_spotmeeting_invites` rather than creating a new invite model.
 
 Do not attempt a whole-app backend rewrite.
