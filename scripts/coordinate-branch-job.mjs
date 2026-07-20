@@ -7,3 +7,4 @@ const target = '/tmp/vaterland-historisk-elvelop-production.mjs';
 fs.writeFileSync(target, zlib.gunzipSync(Buffer.from(fs.readFileSync(payloadPath, 'utf8'), 'base64')));
 await import(`file://${target}`);
 console.log('Vaterland historical river course coordinate-runner job completed.');
+// explicit production trigger
