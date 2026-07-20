@@ -7,10 +7,10 @@
     "lat": 59.9608,
     "lon": 10.7726,
     "r": 260,
-    "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordType": "area_center",
-    "coordNote": ""
+    "coordStatus": "needs_source",
+    "coordSource": "legacy_manual_map_check",
+    "coordType": "unverified_area_anchor",
+    "coordNote": "Dagens lat/lon beholdes kun som foreløpig displayanker for det brede Frysja industriområdet. Punktet bygger på legacy manual_map_check og er ikke kildebelagt områdegeometri; canonical koordinatstatus er derfor needs_source inntil offisiell plan-/områdegeometri eller flere dokumenterte area-ankre er på plass."
   },
   "identity": {
     "currentName": "Frysja industriområde",
@@ -47,5 +47,8 @@
     "blockedReason": "Bredt område mangler kildebelagt geometri/anchors; dagens manual_map_check er ikke nok.",
     "nextAction": "Hent offisiell plan-/områdegeometri eller legg inn dokumenterte area-ankre før canonical koordinatstatus kan verifiseres."
   },
-  "notes": ["Ingen koordinatendring i batch 25."]
+  "notes": [
+    "Ingen koordinatendring i batch 25.",
+    "Koordinatkorreksjon 2026-07-21: legacy verified-status fra manual_map_check er fjernet. Eksisterende punkt beholdes kun som foreløpig displayanker mens områdegeometri fortsatt mangler."
+  ]
 }

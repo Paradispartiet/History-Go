@@ -342,6 +342,8 @@ Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk p
 
 Protokollsynk (2026-07-21): stale needs_review-rader ble fjernet bare når både dagens canonical runtime-index og koordinat-evidensen dokumenterer en godkjent koordinatstatus. Fjernet: `nybrua_vaterlandsparken`, `grensen_kjopesenter`. Synken endrer ingen koordinater.
 
+Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra legacy `verified` til `needs_source`. Det tidligere punktet bygger bare på `manual_map_check` og beholdes foreløpig som displayanker; ingen kildebelagt områdegeometri eller area-ankre er lagt til.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 237 verifiserte eller kildekontrollerte canonical Oslo-stedene.
