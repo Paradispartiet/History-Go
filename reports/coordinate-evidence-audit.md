@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T07:50:23.921Z
+Generert: 2026-07-20T07:55:59.539Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -98,6 +98,7 @@ Generert: 2026-07-20T07:50:23.921Z
 | prinds_christian_augusts_minde | data/coordinate-evidence/oslo/historie/prinds_christian_augusts_minde.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sagene_skole | data/coordinate-evidence/oslo/historie/sagene_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vestre_gravlund | data/coordinate-evidence/oslo/historie/vestre_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | viking_planet_oslo | data/coordinate-evidence/oslo/historie/viking_planet_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | det_internasjonale_barnekunstmuseet | data/coordinate-evidence/oslo/kunst/det_internasjonale_barnekunstmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | dronning_sonja_kunststall | data/coordinate-evidence/oslo/kunst/dronning_sonja_kunststall.json | applied_to_place | do_not_change_coordinates_yet | OK |
