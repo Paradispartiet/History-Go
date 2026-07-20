@@ -3,9 +3,66 @@ import path from 'node:path';
 
 const ROOT = process.cwd();
 const PROTOCOL = 'docs/coordinates/coordinate-control-protocol.md';
+const PLACE_MANIFEST = 'data/places/manifest.json';
+const EVIDENCE_FIXES = [
+  'data/coordinate-evidence/oslo/historie/norges_hjemmefrontmuseum.json',
+  'data/coordinate-evidence/oslo/historie/forsvarsmuseet.json',
+  'data/coordinate-evidence/oslo/kunst/roseslottet.json'
+];
 
 function abs(rel) {
   return path.join(ROOT, rel);
+}
+
+function readJson(rel) {
+  return JSON.parse(fs.readFileSync(abs(rel), 'utf8'));
+}
+
+function writeJson(rel, data) {
+  fs.writeFileSync(abs(rel), JSON.stringify(data, null, 2) + '\n');
+}
+
+function rowsFrom(data) {
+  if (Array.isArray(data)) return data;
+  if (data && Array.isArray(data.places)) return data.places;
+  if (data && Array.isArray(data.items)) return data.items;
+  if (data && typeof data.id === 'string') return [data];
+  return [];
+}
+
+function findActivePlace(placeId) {
+  const hits = [];
+  for (const entry of readJson(PLACE_MANIFEST).files || []) {
+    const rel = `data/${entry}`;
+    if (!fs.existsSync(abs(rel))) continue;
+    for (const place of rowsFrom(readJson(rel))) {
+      if (place?.id === placeId) hits.push({ place, rel });
+    }
+  }
+  if (hits.length !== 1) throw new Error(`${placeId}: expected one active place, found ${hits.length}`);
+  return hits[0];
+}
+
+function snapshot(place) {
+  return {
+    lat: place?.lat ?? null,
+    lon: place?.lon ?? null,
+    r: place?.r ?? null,
+    coordStatus: place?.coordStatus ?? '',
+    coordSource: place?.coordSource ?? '',
+    coordType: place?.coordType ?? '',
+    coordNote: place?.coordNote ?? ''
+  };
+}
+
+for (const evidenceRel of EVIDENCE_FIXES) {
+  const evidence = readJson(evidenceRel);
+  const active = findActivePlace(evidence.placeId);
+  evidence.placeFile = active.rel;
+  evidence.evidenceStatus = 'applied_to_place';
+  evidence.coordinateDecision = 'do_not_change_coordinates_yet';
+  evidence.currentCoordinate = snapshot(active.place);
+  writeJson(evidenceRel, evidence);
 }
 
 function replaceOnce(text, before, after, label) {
@@ -49,8 +106,7 @@ text = replaceOnce(
 
 fs.writeFileSync(abs(PROTOCOL), text);
 
-// Leave the branch clean after the runner has executed; the workflow itself writes
-// scripts/.coordinate-branch-job-complete as its execution marker.
+// The workflow writes scripts/.coordinate-branch-job-complete after all validations pass.
 fs.unlinkSync(abs('scripts/coordinate-branch-job.mjs'));
 
-console.log('Updated Oslo coordinate protocol with batch 40 museum/place after-registration.');
+console.log('Fixed three museum evidence snapshots and updated Oslo coordinate protocol batch 40.');
