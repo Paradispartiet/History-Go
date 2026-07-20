@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T00:36:35.847Z
+Generert: 2026-07-20T01:47:08.845Z
 
 ## Oppsummering
 - Aktive filer validert: **504**
-- Antall steder validert: **1215**
+- Antall steder validert: **1218**
 - Harde feil: **0**
-- Varsler: **429**
-- Coordinate review candidates: **712** signaler fordelt på **569** steder
+- Varsler: **428**
+- Coordinate review candidates: **710** signaler fordelt på **567** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -530,7 +530,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by.json#gronland_basarene: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
-- data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
@@ -959,7 +958,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 710 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -967,12 +966,12 @@ Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandi
 | --- | --- |
 | coordStatus=verified uten coordPrecisionM | 110 |
 | lineært sted uten anchors | 81 |
-| lav koordinatpresisjon (<4 desimaler) | 99 |
+| lav koordinatpresisjon (<4 desimaler) | 98 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 90 |
 | park/stort område uten anchors eller coordNote | 132 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
-| identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
+| identisk/nesten identisk lat/lon som annet sted uten forklaring | 14 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
 ### coordStatus=verified uten coordPrecisionM (110)
@@ -1176,12 +1175,11 @@ Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (99)
+### lav koordinatpresisjon (<4 desimaler) (98)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| trikk_17_18 | Trikkelinje 17/18 | by | data/places/by/oslo/places_by.json | 59.92 | 10.76 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | oscarsborg_festning | Oscarsborg festning | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.676 | 10.606 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | nannestad_bygdemuseum | Nannestad bygdemuseum | historie | data/places/historie/akershus/places_historie_akershus_batch5.json | 60.217 | 11.012 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | fiskum_gamle_kirke | Fiskum gamle kirke | historie | data/places/historie/buskerud/places_historie_buskerud_batch4.json | 59.7069 | 9.805 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1590,11 +1588,10 @@ Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandi
 | norges_bank_bankplassen_4 | Norges Bank – Bankplassen 4 | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json | 59.90866481462448 | 10.741285328997623 | 55 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 
-### identisk/nesten identisk lat/lon som annet sted uten forklaring (15)
+### identisk/nesten identisk lat/lon som annet sted uten forklaring (14)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| bislett_stadion | Bislett Stadion | sport | data/places/sport/europa/norway/oslo_sport.json | 59.924722 | 10.733333 | 180 | Deler punkt med: bislett. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | good_game_redaksjon | Good Game-redaksjonen (NRK) | media | data/places/media/oslo/places_oslo_media.json | 59.9323 | 10.7182 | 80 | Deler punkt med: nrk_marienlyst. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | nrk_marienlyst | NRK Marienlyst | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9323 | 10.7182 | 200 | Deler punkt med: good_game_redaksjon. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lekeplass_kampen_park | Kampen park lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9148 | 10.779 | 140 | Deler punkt med: treningssted_kampen_park. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |

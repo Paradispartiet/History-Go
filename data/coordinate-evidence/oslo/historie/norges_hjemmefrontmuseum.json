@@ -1,0 +1,85 @@
+{
+  "placeId": "norges_hjemmefrontmuseum",
+  "placeFile": "data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90773,
+    "lon": 10.73563,
+    "r": 55,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "building_center",
+    "coordNote": "Geometrisk senter for OSM-way 111833902, Det dobbelte batteri. Bygningsidentiteten er kryssjekket mot Norges Hjemmefrontmuseums offisielle besøksadresse Akershus festning, bygning 21 og museets egen dokumentasjon av Det dobbelte batteri som museumslokale."
+  },
+  "identity": {
+    "currentName": "Norges Hjemmefrontmuseum",
+    "resolvedIdentity": "Norges Hjemmefrontmuseum i Det dobbelte batteri, bygning 21 på Akershus festning",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil bygningsidentitet",
+    "eksakt fysisk anker inne på Akershus festning",
+    "avgrensning mot parent place akershus_festning"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 111833902",
+      "sourceUrl": "https://www.openstreetmap.org/way/111833902",
+      "sourceObjectId": "osm-way:111833902",
+      "sourceQuality": "exact_named_building_geometry",
+      "finding": "OSM-wayen representerer Det dobbelte batteri og gir et eget bygningsanker for museet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bygningsgeometrien er kryssjekket mot museets offisielle identitet som bygning 21 og Det dobbelte batteri."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Forsvarshistorisk museum – Norges Hjemmefrontmuseum",
+      "sourceUrl": "https://www.forsvarshistoriskmuseum.no/norges-hjemmefrontmuseum",
+      "sourceObjectId": "forsvarshistoriskmuseum:norges-hjemmefrontmuseum",
+      "sourceQuality": "official_building_identity",
+      "finding": "Offisiell kilde identifiserer museet som et selvstendig besøkssted i bygning 21 og dokumenterer Det dobbelte batteri som museumslokale.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell identitetskryssjekk; OSM-wayen er geometrikilden."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111833902",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111833902",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90773,
+      "lon": 10.73563,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "rejectedAlternatives": [
+    {
+      "candidate": "akershus_festning parent marker",
+      "reason": "Parent-markøren representerer hele festningskomplekset og er ikke presis nok for det selvstendige museet i bygning 21."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Behold OSM way 111833902 som building_center for den canonical museum-recorden."
+  },
+  "verifiedAt": "2026-07-20"
+}

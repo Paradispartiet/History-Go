@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 171 verifiserte eller kildekontrollerte canonical steder. Batch 37 løser to åpne objektankre og retter protokollen for ett allerede verifisert sted. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 43.
+Oslo-tabellen inneholder nå 175 verifiserte eller kildekontrollerte canonical steder. Batch 40 løser trikk 17/18 som et forgrenet rutepar med fem offisielle stoppankre. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 40.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -193,6 +193,10 @@ Oslo-tabellen inneholder nå 171 verifiserte eller kildekontrollerte canonical s
 | 37 | `norli_universitetsgata` | Norli Universitetsgata | verified_geometry | `osm-node:1664967174` |
 | 37 | `bankall_gard` | Bånkall gård | verified_geometry | `osm-relation:11788354` |
 | 37 | `frysja_33_brekke_kraftstasjon` | Frysja 33 – Brekke kraftstasjon | verified | `geonorge-adresser-v1:0301:13747:151C` |
+| 38 | `bislett` | Bislett | verified_geometry | `osm-node:1126526860` |
+| 38 | `st_halvard_bryggeri` | St. Halvard bryggeri | verified_historical_source | `oslobyleksikon:st-halvards-bryggeri` |
+| 39 | `grensen_kjopesenter` | Grensen – handelsgate | verified_geometry | `oslobyleksikon:grensen` |
+| 40 | `trikk_17_18` | Trikkelinje 17/18 | verified_geometry | `ruter:tram-lines:17+18:2026-04-20` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -208,9 +212,15 @@ Batch 36 (2026-07-20) gjenåpner konkrete needs_review-saker med objekt-type-fø
 
 Batch 37 (2026-07-20) løser `norli_universitetsgata` med et entydig navngitt OSM-bokhandelspunkt etter dokumentert 22/24-adressekonflikt, oppgraderer `bankall_gard` til eksakt navngitt gårdsrelasjon etter tvetydig Geonorge-oppslag, og synkroniserer protokollen med at `frysja_33_brekke_kraftstasjon` allerede er canonical verified på Geonorge 151C. `seilduksfabrikken_nydalen` forblir needs_review fordi objektoppslagene ikke ga et entydig navngitt Øvre Spinneri-objekt.
 
+Batch 38 (2026-07-20) skiller `bislett` fysisk fra `bislett_stadion` ved å bruke det entydige navngitte OSM-strøksobjektet som områdeanker, og retter `st_halvard_bryggeri` til det dokumenterte historiske bryggeristedet i Pilestredet 75C før det tidligere lagrede entydige Geonorge-punktet tas i bruk som historisk adresseanker. `sigrid_undset_statue` forblir needs_review uten sokkelpunkt, og `grensen_kjopesenter` holdes tilbake til en egen lineær gate-modell med flere segmenter/ankre.
+
+Batch 39 (2026-07-20) normaliserer `grensen_kjopesenter` til den faktiske lineære gaten Grensen. Oslo byleksikon avgrenser gaten fra Møllergata ved Stortorvet til Professor Aschehougs plass; tre eksakte navngitte OSM-way-segmenter dokumenterer gateløpet, men parallelle kjørebaner modelleres ikke som én falskt sammenhengende polyline. To kildebelagte endeankre og et representativt linjeanker brukes. `ring_3` forblir needs_review fordi research ikke ga en entydig komplett ruteankerkjede.
+
+Batch 40 (2026-07-20) modellerer `trikk_17_18` som et forgrenet rutepar i stedet for ett symbolsk midtpunkt. Ruters gjeldende rutetabell definerer de to grenene, og fem entydige parent-stopp fra Enturs nasjonale stoppregister brukes som felles vestende, felles sentrums-/linjeanker ved Nybrua, grenankre ved Sinsenkrysset og Storo og felles ende ved Grefsen stasjon.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 171 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 175 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -232,8 +242,6 @@ Disse kontrollene er fullført, men teller ikke blant de 171 verifiserte eller k
 | `sigrid_undset_statue` – Sigrid Undset-skulpturen | needs_review | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
 | `alf_proysen_statue_nittedal` – Alf Prøysen-monumentet ved Kulturverket Flammen | needs_review; moved to Akershus/Nittedal | Recorden lå feilaktig i Oslo-kilden. Kulturverket Flammen er dokumentert på Borghild Ruds vei 3 og kommunens kunstdatabase plasserer monumentet utenfor nedre inngang, men Geonorge-adressepunktet er ikke selve sokkelen. | Finn eksakt monument-/sokkelpunkt; behold Flammen-adressen kun som foreløpig host/site-anchor. |
 | `ring_3` – Ring 3 | needs_review | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |
-| `trikk_17_18` – Trikkelinje 17/18 | needs_review | Ruter dokumenterer begge linjene, men den kombinerte recorden har bare ett lavpresisjonspunkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller eksplisitt modellert fellessegment før canonical koordinat kan godkjennes. |
-| `bislett` – Bislett strøk | needs_review | Område-recordens eksisterende punkt overlapper praktisk talt det separate canonical `bislett_stadion`-punktet. | Krever et eget dokumentert strøks-/knutepunktanker, for eksempel Bislett rundkjøring, uten å gjette koordinater. |
 | `akerhus_slott` – Akerhus Slott | needs_review | Dokumentert legacy-typofeil/duplikat av canonical `akershus_festning`; begge representerer samme fysiske anlegg. | Migrer gamle quiz/story-referanser til `akershus_festning`; ikke godkjenn et separat fysisk anker. |
 | `grini_fangeleir` – Grini fangeleir | needs_review; moved to Akershus/Bærum | Recorden lå feilaktig i Oslo-kilden. Bærum kommune dokumenterer leiren ved Ila, men dagens punkt mangler kildebelagt leirgeometri. | Finn offisiell/historisk leirgeometri; Grinimuseets adresse skal ikke brukes som sentrum for hele leiren. |
 | `ibsen_quotes` – Ibsen sitater / Sitatgaten | needs_review | Den fysiske installasjonen består av 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men recorden har bare ett punkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes. |
@@ -245,7 +253,6 @@ Disse kontrollene er fullført, men teller ikke blant de 171 verifiserte eller k
 | `ulven_handelspark` – Ulven handelspark | needs_review | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
 | `akershus_energi` – Akershus Energi Varme | needs_review | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
 | `sagene_kvernhus` – Sagene mølle og kvernhus | needs_review | Recorden kombinerer flere mølle-, sagbruks- og industriidentiteter langs Akerselva uten ett entydig fysisk anlegg; Hjula er allerede representert av `ovre_foss`. | Avgrens til ett dokumentert fysisk anlegg eller modeller industrimiljøet som område/relasjon med flere ankere. |
-| `st_halvard_bryggeri` – St. Halvard bryggeri | needs_review | Aktiv record oppgir feil år/geografi i forhold til det dokumenterte St. Halvards/Nora-anlegget i Pilestredet 75C. Det entydige Geonorge-punktet kan ikke anvendes før place-identiteten og historikken er korrigert. | Rett recordens historiske fakta og avklar bygningskontinuitet før Pilestredet 75C eventuelt godkjennes. |
 | `oslo_kornmagasin` – Christiania kornmagasin | needs_review | Aktiv 1785-record matcher ikke sikkert det dokumenterte Kornmagasinet på Akershus, inventar 0008 fra 1788, selv om et eksakt navngitt bygningsobjekt finnes. | Avklar historisk identitet og korriger/erstatt recorden før et Akershus-anker eventuelt brukes. |
 | `jernbanetorget_trafikknutepunkt` – Jernbanetorget – handelsknutepunktet | needs_review | Fysisk duplikat av allerede canonical og koordinatkontrollerte `jernbanetorget`; næringslivsvinkelen skaper ikke et nytt fysisk sted. | Migrer innhold/referanser til `jernbanetorget`, eller dokumenter en faktisk separat delentitet. |
 | `oslo_kraftselskap` – Oslo Lysverker | needs_review | Recorden beskriver en institusjon og et distribusjonssystem med flere historiske anlegg; Sommerrogata 1 er et senere hovedkontor, ikke en entydig representasjon av hele 1892-recorden. | Definer ett konkret bygg/anlegg som place eller flytt institusjonshistorien ut av place-modellen. |

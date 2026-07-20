@@ -1,0 +1,90 @@
+{
+  "placeId": "roseslottet",
+  "placeFile": "data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.97969,
+    "lon": 10.67616,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "site_center",
+    "coordNote": "Geometrisk senter for den navngitte OSM-geometrien til Roseslottet, way 1004591108. Punktet representerer installasjonsområdet og er ikke Frognerseteren stasjon eller en påstått eksakt inngangskoordinat."
+  },
+  "identity": {
+    "currentName": "Roseslottet",
+    "resolvedIdentity": "Den navngitte utendørs kunstinstallasjonen Roseslottet ved Frognerseteren",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "navngitt installasjonsgeometri",
+    "fysisk avgrensning mot Frognerseteren stasjon",
+    "eksplisitt tidsbegrenset status"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 1004591108",
+      "sourceUrl": "https://www.openstreetmap.org/way/1004591108",
+      "sourceObjectId": "osm-way:1004591108",
+      "sourceQuality": "named_installation_geometry",
+      "finding": "OSM-wayen avgrenser den navngitte Roseslottet-installasjonen og gir et eget site_center uavhengig av T-banestasjonen.",
+      "canVerifyCoordinate": true,
+      "reason": "Den fysiske installasjonsgeometrien er kryssjekket mot Roseslottets offisielle lokasjonsbeskrivelse."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Roseslottet – offisiell nettside",
+      "sourceUrl": "https://roseslottet.no/",
+      "sourceObjectId": "roseslottet:official-site",
+      "sourceQuality": "official_site_identity_and_status",
+      "finding": "Offisiell kilde identifiserer installasjonen ved Frognerseteren og opplyser at den etter dagens plan skal stå ut 2026.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell identitets- og statuskryssjekk; OSM-wayen er geometrikilden."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1004591108",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1004591108",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.97969,
+      "lon": 10.67616,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "rejectedAlternatives": [
+    {
+      "candidate": "Frognerseteren station coordinate",
+      "reason": "Stasjonen ligger nær installasjonen, men er et annet fysisk sted og skal ikke brukes som erstatningspunkt."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Behold OSM way 1004591108 som site_center og revurder aktiv status etter 2026-12-31."
+  },
+  "statusReview": {
+    "status": "time_limited_active",
+    "validThrough": "2026-12-31",
+    "reviewRequiredAfter": "2026-12-31"
+  },
+  "verifiedAt": "2026-07-20"
+}

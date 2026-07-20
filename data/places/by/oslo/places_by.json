@@ -783,12 +783,12 @@
   {
     "id": "trikk_17_18",
     "name": "Trikkelinje 17/18",
-    "lat": 59.92,
-    "lon": 10.76,
+    "lat": 59.917044,
+    "lon": 10.758279,
     "r": 300,
-    "coordType": "route_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordNote": "Tverrgående trikkelinjer. Ett punkt dekker ikke linjene; punktet er et bevisst symbolsk anker midt i indre by. Lav presisjon beholdt bevisst; bør få ruteankre ved senere manuell kartrunde.",
+    "coordType": "branched_route_anchor",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon.",
     "category": "by",
     "year": 1924,
     "emne_ids": [
@@ -832,7 +832,86 @@
         "majorstuen_tbanestasjon"
       ],
       "notes": "Skal spørres som levende rute gjennom byen, ikke bare som transportmiddel."
-    }
+    },
+    "locatorType": "route",
+    "sourceProvider": "official_map",
+    "sourceObjectId": "ruter:tram-lines:17+18:2026-04-20",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Ruter trikkelinjer/rutetabell gyldig fra 20. april 2026; Entur NSR parent-stoppankre",
+    "coordSourceId": "ruter:tram-lines:17+18:2026-04-20",
+    "coordSourceUrl": "https://ruter.no/planlegg-reise/rutetabeller-og-linjekart/trikk",
+    "coordVerifiedAt": "2026-07-20",
+    "anchors": [
+      {
+        "id": "trikk_17_18_gaustadalleen",
+        "name": "Gaustadalléen",
+        "type": "route_point",
+        "lat": 59.945686,
+        "lon": 10.717591,
+        "r": 80,
+        "sourceObjectId": "NSR:StopPlace:6261",
+        "routeRole": "shared_west_terminus",
+        "lines": [
+          "17",
+          "18"
+        ]
+      },
+      {
+        "id": "trikk_17_18_nybrua",
+        "name": "Nybrua",
+        "type": "route_point",
+        "lat": 59.917044,
+        "lon": 10.758279,
+        "r": 80,
+        "sourceObjectId": "NSR:StopPlace:61989",
+        "routeRole": "shared_central_branch_anchor",
+        "lines": [
+          "17",
+          "18"
+        ]
+      },
+      {
+        "id": "trikk_17_18_sinsenkrysset",
+        "name": "Sinsenkrysset",
+        "type": "route_point",
+        "lat": 59.938133,
+        "lon": 10.784755,
+        "r": 80,
+        "sourceObjectId": "NSR:StopPlace:58406",
+        "routeRole": "line_17_branch_anchor",
+        "lines": [
+          "17"
+        ]
+      },
+      {
+        "id": "trikk_17_18_storo",
+        "name": "Storo",
+        "type": "route_point",
+        "lat": 59.94527,
+        "lon": 10.778637,
+        "r": 80,
+        "sourceObjectId": "NSR:StopPlace:58195",
+        "routeRole": "line_18_branch_anchor",
+        "lines": [
+          "18"
+        ]
+      },
+      {
+        "id": "trikk_17_18_grefsen_stasjon",
+        "name": "Grefsen stasjon",
+        "type": "route_point",
+        "lat": 59.94168,
+        "lon": 10.78079,
+        "r": 80,
+        "sourceObjectId": "NSR:StopPlace:59643",
+        "routeRole": "shared_east_terminus",
+        "lines": [
+          "17",
+          "18"
+        ]
+      }
+    ]
   },
   {
     "id": "grunerlokka_helgesens_tm",
@@ -3879,17 +3958,17 @@
       "designCode": "stadium_miniature"
     },
     "name": "Bislett",
-    "lat": 59.9247,
-    "lon": 10.7333,
+    "lat": 59.9255533,
+    "lon": 10.7318943,
     "r": 200,
-    "coordType": "sports_area_anchor",
-    "coordStatus": "verified",
+    "coordType": "neighbourhood_place_anchor",
+    "coordStatus": "verified_geometry",
     "coordPrecisionM": 80,
-    "coordNote": "Bislett stadion. Anleggskoordinat kontrollert mot Wikidata.",
-    "coordSource": "Wikidata (Q866409)",
-    "coordSourceId": "Q866409",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q866409",
-    "coordVerifiedAt": "2026-06-15",
+    "coordNote": "Bislett-recorden representerer strøket og det urbane knutepunktet, ikke Bislett stadion. Det eksakte navngitte OSM place=suburb-punktet for Bislett brukes som semantisk områdeanker og ligger separat fra canonical `bislett_stadion`. Oslo byleksikon dokumenterer Bislett som boligstrøk med idrettsplassen som midtpunkt, mens Oslo kommune behandler Bislettrundkjøringen og gatene rundt som et eget byrom/knutepunkt.",
+    "coordSource": "OpenStreetMap node 1126526860 – Bislett; identity cross-checked with Oslo byleksikon and Oslo kommune",
+    "coordSourceId": "osm-node:1126526860",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/1126526860",
+    "coordVerifiedAt": "2026-07-20",
     "category": "by",
     "year": 1922,
     "emne_ids": [
@@ -3967,7 +4046,12 @@
     ],
     "connected_sport_place_ids": [
       "bislett_stadion"
-    ]
+    ],
+    "locatorType": "current_place",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:1126526860",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor"
   },
   {
     "id": "olaf_ryes_plass",

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T00:36:42.975Z
+Generert: 2026-07-20T01:47:14.804Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -12,7 +12,7 @@ Generert: 2026-07-20T00:36:42.975Z
 | bankplassen | data/coordinate-evidence/oslo/by/bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | barcode | data/coordinate-evidence/oslo/by/barcode.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | birkelunden | data/coordinate-evidence/oslo/by/birkelunden.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| bislett | data/coordinate-evidence/oslo/by/bislett.json | needs_research | needs_geometry | OK |
+| bislett | data/coordinate-evidence/oslo/by/bislett.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bispelokket | data/coordinate-evidence/oslo/by/bispelokket.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bjorvika | data/coordinate-evidence/oslo/by/bjorvika.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bogstadveien | data/coordinate-evidence/oslo/by/bogstadveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -53,7 +53,7 @@ Generert: 2026-07-20T00:36:42.975Z
 | torshov | data/coordinate-evidence/oslo/by/torshov.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyen_torg | data/coordinate-evidence/oslo/by/toyen_torg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | trefoldighetskirken | data/coordinate-evidence/oslo/by/trefoldighetskirken.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| trikk_17_18 | data/coordinate-evidence/oslo/by/trikk_17_18.json | needs_research | needs_geometry | OK |
+| trikk_17_18 | data/coordinate-evidence/oslo/by/trikk_17_18.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tullin | data/coordinate-evidence/oslo/by/tullin.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ullern | data/coordinate-evidence/oslo/by/ullern.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ullevål_hageby | data/coordinate-evidence/oslo/by/ullevål_hageby.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -76,17 +76,20 @@ Generert: 2026-07-20T00:36:42.975Z
 | akershus_festning | data/coordinate-evidence/oslo/historie/akershus_festning.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankall_gard | data/coordinate-evidence/oslo/historie/bankall_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | botsfengselet | data/coordinate-evidence/oslo/historie/botsfengselet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| forsvarsmuseet | data/coordinate-evidence/oslo/historie/forsvarsmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galgeberg | data/coordinate-evidence/oslo/historie/galgeberg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamlebyen_gravlund | data/coordinate-evidence/oslo/historie/gamlebyen_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hovedoya_kloster | data/coordinate-evidence/oslo/historie/hovedoya_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | middelalder_oslo | data/coordinate-evidence/oslo/historie/middelalder_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nonneseter_kloster | data/coordinate-evidence/oslo/historie/nonneseter_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| norges_hjemmefrontmuseum | data/coordinate-evidence/oslo/historie/norges_hjemmefrontmuseum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_hospital | data/coordinate-evidence/oslo/historie/oslo_hospital.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_ladegard | data/coordinate-evidence/oslo/historie/oslo_ladegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | prinds_christian_augusts_minde | data/coordinate-evidence/oslo/historie/prinds_christian_augusts_minde.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sagene_skole | data/coordinate-evidence/oslo/historie/sagene_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| roseslottet | data/coordinate-evidence/oslo/kunst/roseslottet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alexander_kiellands_plass | data/coordinate-evidence/oslo/litteratur/alexander_kiellands_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | camilla_collett_statue | data/coordinate-evidence/oslo/litteratur/camilla_collett_statue.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | eldorado_bokhandel | data/coordinate-evidence/oslo/litteratur/eldorado_bokhandel.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -111,7 +114,7 @@ Generert: 2026-07-20T00:36:42.975Z
 | christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fornebu_teknologipark | data/coordinate-evidence/oslo/naeringsliv/fornebu_teknologipark.json | needs_research | needs_identity_split | OK |
 | frysja_industriomrade | data/coordinate-evidence/oslo/naeringsliv/frysja_industriomrade.json | needs_research | needs_geometry | OK |
-| grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | needs_research | needs_identity_split | OK |
+| grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | needs_research | needs_geometry | OK |
 | grunnlovsbygget_bankplassen | data/coordinate-evidence/oslo/naeringsliv/grunnlovsbygget_bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jernbanetorget_trafikknutepunkt | data/coordinate-evidence/oslo/naeringsliv/jernbanetorget_trafikknutepunkt.json | needs_research | needs_identity_split | OK |
@@ -128,7 +131,7 @@ Generert: 2026-07-20T00:36:42.975Z
 | ringnes_bryggeri | data/coordinate-evidence/oslo/naeringsliv/ringnes_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sagene_kvernhus | data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json | needs_research | needs_identity_split | OK |
 | schous_bryggeri | data/coordinate-evidence/oslo/naeringsliv/schous_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | needs_research | needs_identity_split | OK |
+| st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | needs_research | needs_identity_split | OK |
 | vinmonopolet_lager | data/coordinate-evidence/oslo/naeringsliv/vinmonopolet_lager.json | applied_to_place | do_not_change_coordinates_yet | OK |

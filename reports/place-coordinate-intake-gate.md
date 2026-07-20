@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-20T00:36:40.161Z
+Generert: 2026-07-20T01:47:12.430Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **0e9f6f1a39810d49d535dcacd73f810ec0b6cd3b**
-- Base method: **git merge-base HEAD origin/main**
+- Base for nye/endrede place-objekter: **origin/main**
+- Base method: **origin/${GITHUB_BASE_REF}**
 - Aktive manifest-filer lest: **504**
-- Place-objekter validert: **1215**
-- Nye/endrede koordinatobjekter mot base: **2**
+- Place-objekter validert: **1218**
+- Nye/endrede koordinatobjekter mot base: **1**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3464**
+- Backlog-funn: **3453**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -41,11 +41,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 
 | nivå | endret | place id | name | fil | felt | problem | forslag til fix |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
-| backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
-| backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
-| backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
-| backlog | nei | bislett | Bislett | data/places/by/oslo/places_by.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | locatorType | Coordinate source contract v1: Mangler locatorType i coordinate source contract v1. | upgrade_to_address_source |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | sourceProvider | Coordinate source contract v1: Mangler sourceProvider i coordinate source contract v1. | upgrade_to_osm_or_place_id |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | sourceObjectId | Coordinate source contract v1: Verified krever sourceObjectId eller strukturert address. | upgrade_to_osm_or_place_id |
@@ -541,6 +536,11 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | lier_sykehus_historisk_omrade | Lier sykehus / historisk område | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | lier_sykehus_historisk_omrade | Lier sykehus / historisk område | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | riddergarden_honefoss | Riddergården Hønefoss | data/places/by/buskerud/riddergarden_honefoss.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | riddergarden_honefoss | Riddergården Hønefoss | data/places/by/buskerud/riddergarden_honefoss.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | riddergarden_honefoss | Riddergården Hønefoss | data/places/by/buskerud/riddergarden_honefoss.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | nore_i_kraftverk | Nore I kraftverk | data/places/naeringsliv/buskerud/nore_i_kraftverk.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3464 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3453 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

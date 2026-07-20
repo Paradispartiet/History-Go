@@ -1,0 +1,211 @@
+{
+  "date": "2026-07-20",
+  "method": "Research only. Object type first; no result is applied automatically.",
+  "sourceNotes": {
+    "bislett": "Oslo byleksikon defines Bislett as a strøk with Bislett idrettsplass as midpoint; Oslo kommune separately treats Bislettrundkjøringen and surrounding streets as a current urban node.",
+    "sigrid_undset_statue": "Oslo kommune explicitly documents Sigrid Undsets skulptur in Stensparken, but an exact pedestal coordinate is still required.",
+    "st_halvard_bryggeri": "Oslo byleksikon documents the brewery history at Pilestredet 75C: Nora Bryggeri from 1877, renamed/reorganized before St. Halvards Bryggeri in 1905, closed 1918. Existing active record year/geography are wrong and must be corrected before applying the saved Geonorge 75C point.",
+    "grensen_kjopesenter": "Oslo byleksikon defines Grensen as the street from Møllergata at Stortorvet to Professor Aschehougs plass. The active record should be normalized as a linear street, not a shopping-centre/node object."
+  },
+  "candidates": [
+    {
+      "id": "bislett",
+      "activeSources": [
+        {
+          "sourceFile": "data/places/by/oslo/places_by.json",
+          "name": "Bislett",
+          "lat": 59.9247,
+          "lon": 10.7333,
+          "r": 200,
+          "coordStatus": "verified",
+          "coordSource": "Wikidata (Q866409)",
+          "sourceObjectId": "",
+          "locatorType": "",
+          "coordType": "sports_area_anchor"
+        }
+      ],
+      "candidates": [
+        {
+          "query": "Bislett Oslo",
+          "name": "Bislett",
+          "osm_type": "node",
+          "osm_id": 1126526860,
+          "lat": "59.9255533",
+          "lon": "10.7318943",
+          "category": "place",
+          "type": "suburb",
+          "display_name": "Bislett, St. Hanshaugen, Oslo, 0168, Norge",
+          "address": {
+            "suburb": "Bislett",
+            "municipality": "Oslo",
+            "city": "Oslo",
+            "ISO3166-2-lvl4": "NO-03",
+            "postcode": "0168",
+            "country": "Norge",
+            "country_code": "no"
+          },
+          "extratags": {
+            "wikidata": "Q4918267"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sigrid_undset_statue",
+      "activeSources": [
+        {
+          "sourceFile": "data/places/litteratur/oslo/places_litteratur.json",
+          "name": "Sigrid Undset-statuen",
+          "lat": 59.9242,
+          "lon": 10.7297,
+          "r": 120,
+          "coordStatus": "needs_source",
+          "coordSource": "manual_research",
+          "sourceObjectId": "oslo-kommune:stensparken:sigrid-undset-skulptur",
+          "locatorType": "poi",
+          "coordType": "unverified_monument_point"
+        }
+      ],
+      "candidates": []
+    },
+    {
+      "id": "st_halvard_bryggeri",
+      "activeSources": [
+        {
+          "sourceFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+          "name": "St. Halvard bryggeri",
+          "lat": 59.9109,
+          "lon": 10.7833,
+          "r": 140,
+          "coordStatus": "",
+          "coordSource": "",
+          "sourceObjectId": "",
+          "locatorType": "",
+          "coordType": ""
+        }
+      ],
+      "candidates": []
+    },
+    {
+      "id": "grensen_kjopesenter",
+      "activeSources": [
+        {
+          "sourceFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+          "name": "Grensen – handelens sentrum",
+          "lat": 59.9138,
+          "lon": 10.7441,
+          "r": 120,
+          "coordStatus": "",
+          "coordSource": "",
+          "sourceObjectId": "",
+          "locatorType": "",
+          "coordType": ""
+        }
+      ],
+      "candidates": [
+        {
+          "query": "Grensen Oslo",
+          "name": "Grensen",
+          "osm_type": "way",
+          "osm_id": 67882889,
+          "lat": "59.9137324",
+          "lon": "10.7435193",
+          "category": "highway",
+          "type": "unclassified",
+          "display_name": "Grensen, Regjeringskvartalet, Hammersborg, St. Hanshaugen, Oslo, 0159, Norge",
+          "address": {
+            "road": "Grensen",
+            "neighbourhood": "Regjeringskvartalet",
+            "quarter": "Hammersborg",
+            "suburb": "St. Hanshaugen",
+            "municipality": "Oslo",
+            "city": "Oslo",
+            "ISO3166-2-lvl4": "NO-03",
+            "postcode": "0159",
+            "country": "Norge",
+            "country_code": "no"
+          },
+          "extratags": {
+            "lit": "yes",
+            "psv": "yes",
+            "taxi": "yes",
+            "lanes": "2",
+            "surface": "asphalt",
+            "abutters": "retail",
+            "maxspeed": "30",
+            "sidewalk": "separate",
+            "wikidata": "Q11972571",
+            "wikipedia": "no:Grensen (Oslo)",
+            "motor_vehicle": "destination"
+          }
+        },
+        {
+          "query": "Grensen Oslo",
+          "name": "Grensen",
+          "osm_type": "way",
+          "osm_id": 179095459,
+          "lat": "59.9129351",
+          "lon": "10.7455317",
+          "category": "highway",
+          "type": "unclassified",
+          "display_name": "Grensen, Sjøtomta, Kvadraturen, Sentrum, Oslo, 0154, Norge",
+          "address": {
+            "road": "Grensen",
+            "neighbourhood": "Sjøtomta",
+            "suburb": "Kvadraturen",
+            "municipality": "Oslo",
+            "city": "Oslo",
+            "ISO3166-2-lvl4": "NO-03",
+            "postcode": "0154",
+            "country": "Norge",
+            "country_code": "no"
+          },
+          "extratags": {
+            "psv": "yes",
+            "taxi": "yes",
+            "lanes": "2",
+            "surface": "asphalt",
+            "abutters": "retail",
+            "wikidata": "Q11972571",
+            "psv:backward": "yes",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "no",
+            "motor_vehicle:backward": "no"
+          }
+        },
+        {
+          "query": "Grensen Oslo",
+          "name": "Grensen",
+          "osm_type": "way",
+          "osm_id": 696754516,
+          "lat": "59.9129933",
+          "lon": "10.7455599",
+          "category": "highway",
+          "type": "unclassified",
+          "display_name": "Grensen, Regjeringskvartalet, Hammersborg, St. Hanshaugen, Oslo, 0154, Norge",
+          "address": {
+            "road": "Grensen",
+            "neighbourhood": "Regjeringskvartalet",
+            "quarter": "Hammersborg",
+            "suburb": "St. Hanshaugen",
+            "municipality": "Oslo",
+            "city": "Oslo",
+            "ISO3166-2-lvl4": "NO-03",
+            "postcode": "0154",
+            "country": "Norge",
+            "country_code": "no"
+          },
+          "extratags": {
+            "bus": "designated",
+            "lanes": "1",
+            "oneway": "yes",
+            "surface": "asphalt",
+            "vehicle": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate"
+          }
+        }
+      ]
+    }
+  ]
+}

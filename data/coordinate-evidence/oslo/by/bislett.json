@@ -1,16 +1,16 @@
 {
   "placeId": "bislett",
   "placeFile": "data/places/by/oslo/places_by.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9247,
-    "lon": 10.7333,
+    "lat": 59.9255533,
+    "lon": 10.7318943,
     "r": 200,
-    "coordStatus": "verified",
-    "coordSource": "Wikidata (Q866409)",
-    "coordType": "sports_area_anchor",
-    "coordNote": "Bislett stadion. Anleggskoordinat kontrollert mot Wikidata."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 1126526860 – Bislett; identity cross-checked with Oslo byleksikon and Oslo kommune",
+    "coordType": "neighbourhood_place_anchor",
+    "coordNote": "Bislett-recorden representerer strøket og det urbane knutepunktet, ikke Bislett stadion. Det eksakte navngitte OSM place=suburb-punktet for Bislett brukes som semantisk områdeanker og ligger separat fra canonical `bislett_stadion`. Oslo byleksikon dokumenterer Bislett som boligstrøk med idrettsplassen som midtpunkt, mens Oslo kommune behandler Bislettrundkjøringen og gatene rundt som et eget byrom/knutepunkt."
   },
   "identity": {
     "currentName": "Bislett",
@@ -32,28 +32,61 @@
       "sourceName": "Oslo byleksikon – Bislett (strøk)",
       "sourceUrl": "https://oslobyleksikon.no/side/Bislett_%28str%C3%B8k%29",
       "sourceObjectId": "oslobyleksikon:bislett-strok",
-      "sourceQuality": "documented_district_identity",
-      "finding": "Oslo byleksikon dokumenterer Bislett som et større bolig- og næringsstrøk med idrettsplassen som midtpunkt og rundkjøringen som trafikknutepunkt.",
+      "sourceQuality": "documented_neighbourhood_identity",
+      "finding": "Bislett dokumenteres som eget strøk og trafikknutepunkt, med idrettsplassen som midtpunkt.",
       "canVerifyCoordinate": false,
-      "reason": "Det eksisterende by-stedets koordinat overlapper det separate canonical Bislett Stadion-objektet; et selvstendig strøksanker må dokumenteres før godkjenning."
+      "reason": "Identitets- og scope-kryssjekk."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Konseptvalgutredning for Bislett",
+      "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/konseptvalgutredning-for-bislett/",
+      "sourceObjectId": "oslo-kommune:kvu:bislettrundkjoringen",
+      "sourceQuality": "official_current_area_definition",
+      "finding": "Kommunen behandler Bislettrundkjøringen og gatene rundt som et eget urbant område/knutepunkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker separat fysisk scope fra stadion."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1126526860 – Bislett",
+      "sourceUrl": "https://www.openstreetmap.org/node/1126526860",
+      "sourceObjectId": "osm-node:1126526860",
+      "sourceQuality": "unique_exact_named_place_object",
+      "finding": "Ett eksakt navngitt place=suburb-objekt for Bislett.",
+      "canVerifyCoordinate": true,
+      "reason": "Bislett-recorden representerer strøket og det urbane knutepunktet, ikke Bislett stadion. Det eksakte navngitte OSM place=suburb-punktet for Bislett brukes som semantisk områdeanker og ligger separat fra canonical `bislett_stadion`. Oslo byleksikon dokumenterer Bislett som boligstrøk med idrettsplassen som midtpunkt, mens Oslo kommune behandler Bislettrundkjøringen og gatene rundt som et eget byrom/knutepunkt."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:bislett-strok",
-      "canApplyToPlace": false
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1126526860",
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1126526860",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9255533,
+      "lon": 10.7318943,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Fysisk overlap med `bislett_stadion`: dagens `bislett`-punkt er i praksis stadionpunktet.",
-    "nextAction": "Finn og dokumenter et representativt Bislett-strøksanker, for eksempel rundkjøringen/knutepunktet, uten å gjette koordinater."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildebelagt anker er anvendt på canonical place."
   },
   "notes": [
-    "Ikke godkjenn område-recorden på stadionets canonical punkt."
+    "Bislett-recorden representerer strøket og det urbane knutepunktet, ikke Bislett stadion. Det eksakte navngitte OSM place=suburb-punktet for Bislett brukes som semantisk områdeanker og ligger separat fra canonical `bislett_stadion`. Oslo byleksikon dokumenterer Bislett som boligstrøk med idrettsplassen som midtpunkt, mens Oslo kommune behandler Bislettrundkjøringen og gatene rundt som et eget byrom/knutepunkt."
   ]
 }
