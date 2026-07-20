@@ -17,38 +17,38 @@
   ],
   "routeId": "alnaelva_grontdrag",
   "sourceHint": "Koordinat lagt ved Alnas utløpsområde i Bjørvika, nær fjordkant og delta-/utløpssone. Beholdt som rute-/områdepunk inntil egen utløpsrevisjon gjøres mot detaljkart.",
-  "coordType": "route_midpoint",
-  "coordStatus": "needs_detail_check",
-  "coordSource": "manual_map_check",
+  "coordType": "legacy_historical_area_anchor",
+  "coordStatus": "needs_source",
+  "coordSource": "alna_historical_outlet_multilayer_unresolved",
   "coordPrecisionM": 120,
-  "coordVerifiedAt": "2026-05-03",
+  "coordVerifiedAt": "2026-07-21",
   "anchors": [
     {
       "id": "alna_utlop_innlop",
-      "name": "Alna utløp – indre løp",
+      "name": "Alna historisk utløpslandskap – indre markør",
       "lat": 59.9047,
       "lon": 10.7651,
       "r": 100,
       "type": "route_point",
-      "note": "Siste åpne del av Alna før utløpet."
+      "note": "Foreløpig landskapsanker for historisk trase; ikke dokumentert som dagens åpne Alna-løp."
     },
     {
       "id": "alna_utlop_munning",
-      "name": "Alna utløp – munningspunkt",
+      "name": "Alna historisk munningslandskap – representasjonsanker",
       "lat": 59.9041,
       "lon": 10.7638,
       "r": 100,
       "type": "unlock_anchor",
-      "note": "Selve utløpspunktet der Alna møter fjorden."
+      "note": "Foreløpig markør for historisk munning/vannspeil; ikke dagens tunnelutløp ved Kongshavn."
     },
     {
       "id": "alna_utlop_fjord",
-      "name": "Alna utløp – fjordkant",
+      "name": "Alna historisk utløpslandskap – fjordkantmarkør",
       "lat": 59.9036,
       "lon": 10.7628,
       "r": 100,
       "type": "route_point",
-      "note": "Ytre fjordkant i Bjørvika med blanding av elv/fjord."
+      "note": "Foreløpig historisk landskapsanker; synlig fjordvann er ikke i seg selv dokumentasjon på dagens Alna-vannføring."
     }
   ],
   "popupDesc": "Punktet representerer Alnas historiske utløpslandskap ved Sørenga, Loenga og Middelalderparken. Den naturlige munningen lå her da Oslo vokste fram omkring år 1000, men nedre Alna ble i 1922 lagt i tunnel fra Kværner til Kongshavn omtrent 900 meter sør for det gamle utløpet. Vannspeilet i Middelalderparken ble gjenskapt i 2000 som markering av den eldre munningen. Det er derfor feil å omtale punktet som dagens åpne Alna-utløp. History Gos aktive naturkart knytter 28 fuglearter til Bjørvika-sonen og ingen floraarter. Koordinaten beholdes med status needs_detail_check fordi munningslandskapet dekker flere historiske og moderne vannpunkter.",
@@ -694,5 +694,6 @@
       "data/natur/fauna/fugler_vatmark_og_skog.json",
       "data/natur/fauna/artsdatabanken_oslo_fauna.json"
     ]
-  }
+  },
+  "coordNote": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
 }
