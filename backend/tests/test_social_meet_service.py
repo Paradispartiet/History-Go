@@ -56,7 +56,9 @@ class FakeSocialMeetRepository:
         )
         return self.record
 
-    def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None:
+    def get_discoverable_profile(
+        self, profile_id: UUID
+    ) -> SocialMeetProfileRecord | None:
         if self.public_record is None or self.public_record.profile_id != profile_id:
             return None
         if self.public_record.profile_visibility is not ProfileVisibility.DISCOVERABLE:
@@ -145,7 +147,9 @@ def test_publish_records_consent_and_returns_public_safe_profile() -> None:
     assert public_profile.profile_id is not None
     assert public_profile.display_name == "Ada"
     assert public_profile.profile_visibility is ProfileVisibility.DISCOVERABLE
-    assert public_profile.knowledge_fingerprint_summary.theme_tags == ["industrial_history"]
+    assert public_profile.knowledge_fingerprint_summary.theme_tags == [
+        "industrial_history"
+    ]
     assert not hasattr(public_profile, "auth_user_id")
 
 
@@ -188,7 +192,9 @@ def test_opted_in_requester_can_read_discoverable_profile() -> None:
     repository.public_record = target
     service = SocialMeetIdentityService(repository)
 
-    profile = service.get_public_profile(requester.auth_user_id, target.profile_id or uuid4())
+    profile = service.get_public_profile(
+        requester.auth_user_id, target.profile_id or uuid4()
+    )
 
     assert profile.profile_id == target.profile_id
     assert profile.display_name == "Ada"
