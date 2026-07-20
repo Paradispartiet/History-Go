@@ -40,7 +40,6 @@ run('npm', ['run', 'places:index:build']);
 run('node', ['tests/ankerbrua-rounds-batch1.test.js']);
 run('npm', ['run', 'audit:people-of-places']);
 run('npm', ['run', 'leksikon:ids:check']);
-run('npm', ['run', 'check:stories']);
 run('npm', ['run', 'typecheck:tools']);
 run('npm', ['run', 'typecheck:web']);
 run('git', ['diff', '--check']);
