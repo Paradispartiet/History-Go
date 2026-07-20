@@ -436,6 +436,36 @@ flate) vises ingenting; vi gjetter aldri en livsstil. UI-et re-rendrer på
 dukker opp når taggene er telt. Testfestet i
 `civication-v2-min-dag-ui.test.js` med mocket `HG_Lifestyle`.
 
+**Handlinger (batch 10): valg som UTFØRER noe i spillet.** Et valg kan ha
+`handling: { type }` — da er valget ikke bare tekst, det utfører en ekte
+spillhandling når det tas:
+
+- `velg_bosted` → åpner Personlig-panelet der nabolagsvalget bor
+  (`CivicationHome`)
+- `aapne_butikk` → åpner Kommers-panelet (butikken)
+- `aapne_karriere` → åpner Karriere-panelet (jobbtilbudene)
+- `gaa_til_quiz` → navigerer til History GO (`index.html#/map`) — byen er
+  spillbrettet, quizzene tas på stedene
+
+Typene eies av `HANDLING_TYPES` i `lifestoryContent.js` (ukjent type =>
+FAIL FAST). Utføreren er `js/Civication/ui/CivicationLifestoryActions.js`
+(UI-laget — fanebytte skjer ved å klikke footer-fanen, samme vei som
+spilleren selv). UI-et viser et handlingshint på valgknappen («→ åpner
+butikken») og utfører handlingen ETTER at Player State er lagret, så
+navigasjon aldri mister progresjon. Uten skall-DOM er fanebytte stille
+no-op.
+
+**Shell-conditions: scener gatet på sann spilltilstand.** `conditions.shell`
+(nøkler i `SHELL_CONDITION_KEYS`: `harBosted`, `harJobb`) leser det synkrone
+snapshotet `CivicationLifestoryShellState`, som `lifestoryShellBridge.
+refreshShellStateSnapshot()` holder ved like fra `CivicationHome`/
+`CivicationState` (på `civi:booted`/`updateProfile`/`civi:homeChanged`).
+Uten snapshot fyrer shell-gatede scener ALDRI — samme fail-safe som profil.
+Første bruk: «Du må velge et sted å bo» (dag 1) og «Fortsatt uten fast
+adresse» (dag 2) fyrer kun når skallet faktisk mangler bosted, og
+handlingsvalget åpner nabolagsvalget. Kontrakten eies av
+`civication-lifestory-actions.test.js`.
+
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene

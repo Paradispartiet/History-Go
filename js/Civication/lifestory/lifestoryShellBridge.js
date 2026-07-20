@@ -144,14 +144,40 @@
     return null;
   }
 
-  const api = { METER_TO_PSYCHE, isTestOrDebugSession, applyMeterDeltasToShell, applyLifestyleTagsToShell, refreshProfileSnapshot };
+  /**
+   * Skalltilstands-snapshot: runnerens conditions er synkrone, så sann
+   * spilltilstand (bosted valgt? jobb aktiv?) speiles inn i den synkrone
+   * globalen CivicationLifestoryShellState. Uten skallet (ren Min dag-flate/
+   * Node) settes ingen snapshot, og shell-gatede scener fyrer aldri.
+   * @returns {{ harBosted: boolean, harJobb: boolean }|null}
+   */
+  function refreshShellStateSnapshot() {
+    const g = /** @type {any} */ (globalScope);
+    const home = g.CivicationHome;
+    if (!home || typeof home.getCurrentDistrict !== "function") return null;
+    try {
+      const snap = {
+        harBosted: !!home.getCurrentDistrict(),
+        harJobb: !!g.CivicationState?.getActivePosition?.()
+      };
+      g.CivicationLifestoryShellState = snap;
+      return snap;
+    } catch (error) {
+      console.warn("[CivicationLifestoryShellBridge] skalltilstands-snapshot feilet", error);
+      return null;
+    }
+  }
+
+  const api = { METER_TO_PSYCHE, isTestOrDebugSession, applyMeterDeltasToShell, applyLifestyleTagsToShell, refreshProfileSnapshot, refreshShellStateSnapshot };
   /** @type {any} */ (globalScope).CivicationLifestoryShellBridge = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 
   if (typeof window !== "undefined") {
-    // Skallet booter etter Min dag; History GO-profilen endres via updateProfile.
+    // Skallet booter etter Min dag; History GO-profilen endres via
+    // updateProfile, og bosted via civi:homeChanged.
     for (const eventName of ["civi:booted", "updateProfile"]) {
-      window.addEventListener(eventName, () => { refreshProfileSnapshot(); });
+      window.addEventListener(eventName, () => { refreshProfileSnapshot(); refreshShellStateSnapshot(); });
     }
+    window.addEventListener("civi:homeChanged", () => { refreshShellStateSnapshot(); });
   }
 })(typeof window !== "undefined" ? window : globalThis);

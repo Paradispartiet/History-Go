@@ -216,6 +216,12 @@
         /** @type {any} */ (window).CivicationLifestoryShellBridge?.applyLifestyleTagsToShell?.(/** @type {any} */ (valg).livsstil);
       }
       window.dispatchEvent(new Event("civi:lifestoryChanged"));
+      // Handling: utfør den EKTE spillhandlingen valget lover (fanebytte/
+      // History GO-navigasjon). Player State er allerede lagret over, så en
+      // navigasjon bort fra siden mister aldri progresjon.
+      if (valg && /** @type {any} */ (valg).handling) {
+        /** @type {any} */ (window).CivicationLifestoryActions?.perform?.(/** @type {any} */ (valg).handling);
+      }
     } catch (error) {
       console.error("[CivicationLifestoryUI] valg feilet", error);
     }
@@ -287,6 +293,9 @@
       + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\">"
       + "<span>" + escapeHtml(valg.tekst) + "</span>"
       + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
+      + (/** @type {any} */ (valg).handling ? "<small class=\"civi-lifestory-action-hint\">→ "
+        + escapeHtml(/** @type {any} */ (window).CivicationLifestoryActions?.HANDLING_LABELS?.[/** @type {any} */ (valg).handling.type] || "utfører handlingen")
+        + "</small>" : "")
       + "</button>"
     ).join("");
     return ""

@@ -34,7 +34,24 @@
   const THREAD_STATUSES = ["active", "completed", "dormant", "escalated"];
 
   /** Gyldige toppnøkler i scene.conditions. */
-  const CONDITION_KEYS = ["flagg", "meters", "relasjoner", "threads", "profil"];
+  const CONDITION_KEYS = ["flagg", "meters", "relasjoner", "threads", "profil", "shell"];
+
+  /**
+   * Gyldige nøkler i conditions.shell (sann spilltilstand fra skallet, lest
+   * via det synkrone snapshotet CivicationLifestoryShellState — samme mønster
+   * som profil). Uten snapshot (ren Min dag-flate) fyrer shell-gatede scener
+   * ALDRI — vi gjetter ikke spilltilstand.
+   */
+  const SHELL_CONDITION_KEYS = ["harBosted", "harJobb"];
+
+  /**
+   * Gyldige handlingstyper på valg (valg.handling.type). En handling utfører
+   * noe EKTE i spillet når valget tas — åpner nabolagsvalget, butikken eller
+   * karrierepanelet i skallet, eller navigerer til History GO der quizzene
+   * bor. Utføres av CivicationLifestoryActions (UI-laget). Ukjent type =>
+   * FAIL FAST.
+   */
+  const HANDLING_TYPES = ["velg_bosted", "aapne_butikk", "gaa_til_quiz", "aapne_karriere"];
 
   /**
    * Gyldige livsstilstags på valg (valg.livsstil). Vokabularet er unionen av
@@ -195,6 +212,13 @@
         errorsForEffects(scene, choice, startRelasjoner, threadIds, push);
         for (const target of choice.laaserOpp || []) {
           if (typeof target !== "string" || !target) push(`scene ${sid}/${cid}: ugyldig laaserOpp-referanse`);
+        }
+        if (choice.handling !== undefined) {
+          if (!choice.handling || typeof choice.handling !== "object" || Array.isArray(choice.handling)) {
+            push(`scene ${sid}/${cid}: handling må være et objekt { type }`);
+          } else if (HANDLING_TYPES.indexOf(choice.handling.type) === -1) {
+            push(`scene ${sid}/${cid}: ukjent handlingstype "${choice.handling.type}" (ikke i HANDLING_TYPES)`);
+          }
         }
         if (choice.livsstil !== undefined) {
           if (!Array.isArray(choice.livsstil) || !choice.livsstil.length) {
@@ -368,6 +392,20 @@
         }
       }
     }
+    if (cond.shell !== undefined) {
+      // shell: sann spilltilstand fra skallet, f.eks. { harBosted: false }.
+      // Kun kjente nøkler og boolske forventninger — ingen gjetting.
+      const shell = cond.shell;
+      if (!shell || typeof shell !== "object" || Array.isArray(shell)) {
+        push(`${where}.shell må være et objekt med boolske forventninger`);
+      } else {
+        if (!Object.keys(shell).length) push(`${where}.shell er tomt`);
+        for (const [key, expected] of Object.entries(shell)) {
+          if (SHELL_CONDITION_KEYS.indexOf(key) === -1) push(`${where}.shell: ukjent nøkkel "${key}"`);
+          if (typeof expected !== "boolean") push(`${where}.shell.${key}: må være true/false`);
+        }
+      }
+    }
   }
 
   /**
@@ -449,7 +487,7 @@
     return resolveRoleIdForRoleScope(manifest, scope);
   }
 
-  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

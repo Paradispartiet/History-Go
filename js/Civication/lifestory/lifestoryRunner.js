@@ -85,6 +85,16 @@
       if (!Array.isArray(tags) || !tags.length) return false;
       if (!cond.profil.tags.some((t) => tags.indexOf(t) !== -1)) return false;
     }
+    if (cond.shell) {
+      // Shell-gatet innhold leser SANN spilltilstand (bosted, jobb) via det
+      // synkrone snapshotet fra lifestoryShellBridge. Uten snapshot (ren
+      // Min dag-flate, Node) fyrer scenen ikke — vi gjetter aldri.
+      const snap = /** @type {any} */ (globalScope).CivicationLifestoryShellState;
+      if (!snap || typeof snap !== "object") return false;
+      for (const [key, expected] of Object.entries(cond.shell)) {
+        if (snap[key] !== expected) return false;
+      }
+    }
     return true;
   }
 

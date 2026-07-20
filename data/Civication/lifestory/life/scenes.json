@@ -852,7 +852,10 @@
           "livsstil": [
             "shortcut",
             "luxury"
-          ]
+          ],
+          "handling": {
+            "type": "aapne_butikk"
+          }
         },
         {
           "id": "spis_rester",
@@ -2473,7 +2476,10 @@
           "konsekvensTekst": "Raskt og godt, og kontoen merket det. Noen dager er det verdt det.",
           "livsstil": [
             "shortcut"
-          ]
+          ],
+          "handling": {
+            "type": "aapne_butikk"
+          }
         },
         {
           "id": "hoppe_over",
@@ -3026,6 +3032,140 @@
             }
           },
           "konsekvensTekst": "Ingen konklusjon i kveld. Det er også et svar — uka får vise hva den blir."
+        }
+      ]
+    },
+    {
+      "id": "bosted_01_hvor_vil_du_bo",
+      "threadId": "byen_og_deg",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "conditions": {
+        "shell": {
+          "harBosted": false
+        }
+      },
+      "tittel": "Du må velge et sted å bo",
+      "tekst": "Du bor fortsatt midlertidig — en bag med klær og en madrass som ikke er din. Byen har nabolag å velge i, med ulik husleie og ulike naboer. Det er på tide å skaffe seg en fast adresse.",
+      "valg": [
+        {
+          "id": "se_nabolagene",
+          "tekst": "Se på nabolagene og velge hvor du vil bo",
+          "tone": "besluttsom",
+          "handling": {
+            "type": "velg_bosted"
+          },
+          "livsstil": [
+            "security"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "saa_paa_nabolagene": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du åpner oversikten over nabolagene: husleie, naboer, hva som er i gangavstand. Valget er ditt — og det former hverdagen din."
+        },
+        {
+          "id": "utsett_bosted",
+          "tekst": "Utsette det — det ordner seg vel litt til",
+          "tone": "utsettende",
+          "livsstil": [
+            "avoidance"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": -2
+            },
+            "flagg": {
+              "utsatte_bosted": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Enda en natt uten egen adresse. Bagen står fortsatt pakket — det er både praktisk og litt trist."
+        }
+      ]
+    },
+    {
+      "id": "bosted_02_fortsatt_uten_adresse",
+      "threadId": "byen_og_deg",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "conditions": {
+        "shell": {
+          "harBosted": false
+        }
+      },
+      "tittel": "Fortsatt uten fast adresse",
+      "tekst": "Enda en dag uten et sted som er ditt. Alt er litt vanskeligere uten en base — posten, søvnen, følelsen av å høre til. Nabolagene ligger der og venter.",
+      "valg": [
+        {
+          "id": "velg_naa",
+          "tekst": "Gjøre det nå: se nabolagene og flytte inn",
+          "tone": "besluttsom",
+          "handling": {
+            "type": "velg_bosted"
+          },
+          "livsstil": [
+            "security"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "tok_tak_i_bosted": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Nok utsettelse. Du åpner nabolagsoversikten og begynner å se på hva du har råd til."
+        },
+        {
+          "id": "en_natt_til",
+          "tekst": "En natt til på lånt sofa",
+          "tone": "utsettende",
+          "livsstil": [
+            "avoidance"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": -3
+            },
+            "flagg": {
+              "enda_en_natt_uten_adresse": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Sofaen er lånt, og du merker at velkomsten slites. Dette må løses snart."
         }
       ]
     }
