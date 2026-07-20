@@ -5,10 +5,13 @@ on:
     paths:
       - "js/map.ts"
       - "schemas/globals.d.ts"
+      - "schemas/map-dom-runtime.d.ts"
+      - "tsconfig.web.json"
+      - "build/build-web.mjs"
       - ".github/workflows/typescript-map-debug.yml"
 
 jobs:
-  capture-typecheck:
+  capture-map-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,8 +28,13 @@ jobs:
           status=$?
           echo "exit_code=$status" >> typecheck-map.log
           exit 0
+      - name: Build browser runtime
+        run: npm run build:web
       - uses: actions/upload-artifact@v4
         with:
-          name: typecheck-map-diagnostics
-          path: typecheck-map.log
+          name: typescript-map-build
+          path: |
+            typecheck-map.log
+            dist/web/map.js
+            js/map.js
           if-no-files-found: error
