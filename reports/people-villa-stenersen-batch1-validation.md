@@ -4,12 +4,14 @@ Dato: 2026-07-20
 
 ## Eksisterende dekning før batchen
 
-- Ingen eksisterende people-ankere funnet ved materialisering.
+- Ingen eksisterende people-ankere for `villa_stenersen` ble funnet ved materialisering.
 
-## Canonical audit og handlinger
+## Canonical audit og faktiske handlinger
 
 - `arne_korsmo` — **updated_existing** — `data/people/by/oslo/people_by_oslo.json`
 - `rolf_stenersen` — **updated_existing** — `data/people/filantroper/oslo/people_filantroper_oslo.json`
+
+Ingen nye personfiler eller manifestendringer var nødvendige. Arne Korsmo beholder `vigelandsparken` som primæranker. Rolf Stenersen beholder `tjuvholmen` som primæranker. `villa_stenersen` er lagt til som dokumentert sekundærrelasjon hos begge.
 
 ## Streng stedsgate
 
@@ -23,6 +25,17 @@ Begge koblingene gjelder selve huset. Odvar Nordlis korte botid er bevisst ikke 
 - Riksantikvaren: fredningen av Villa Stenersen.
 - Nasjonalmuseet: Villa Stenersen-tegninger med Arne Korsmo som arkitekt og Rolf Stenersen som oppdragsgiver.
 
-## Runtime-gater
+## Materialisering og validering
 
-Materializeren stopper ved tvetydig canonical match. Nye personer opprettes bare når ingen canonical match finnes; ellers oppdateres eksisterende person. Etter materialisering regenereres Civication history people index og repoets ordinære People- og Places-gater skal passere.
+Materializeren:
+
+- fant ingen eksisterende people-ankere for stedet
+- fant entydig canonical gjenbruk for Korsmo og Stenersen
+- opprettet ingen duplikatpersoner
+- krevde ingen manifestendring
+- regenererte Civication history people index uten nødvendig slutt-diff
+- kjørte `bash scripts/check-people.sh` med success
+- kjørte `git diff --check`
+- fjernet one-shot-scriptet og gjenopprettet ordinær `data-checks.yml` før publisering
+
+Den publiserte data-headen skal i tillegg passere ordinær GitHub Actions `People data` og `Places data` før merge.
