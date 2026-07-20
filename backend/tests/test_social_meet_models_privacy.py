@@ -1,5 +1,5 @@
-from pydantic import ValidationError
 import pytest
+from pydantic import ValidationError
 
 from app.domains.social_meet.models import ProfileUpsertRequest
 from app.domains.social_meet.privacy import find_forbidden_fields
