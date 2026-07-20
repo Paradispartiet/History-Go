@@ -60,6 +60,6 @@ The completed correction set passed:
 - place health capture
 - diff whitespace check
 
-The full gate set passed in Coordinate branch runner run `29708713608`. The later commits only finalized documentation and removed the temporary runner script and completion marker; they did not alter coordinate data.
+After the current `main` branch was merged into the audit branch, the complete post-sync gate set passed again in Coordinate branch runner run `29708953938`. The final validation job applied **zero canonical coordinate changes**; it only rebuilt runtime data and re-ran the hard gates on the combined state. Temporary runner files were removed afterwards.
 
-Runner logs are persisted under `reports/coordinate-branch-runner/agent_audit-oslo-coordinates-from-batch-6/`.
+Runner logs are persisted under `reports/coordinate-branch-runner/agent_audit-oslo-coordinates-from-batch-6/`, and the post-sync validation input is recorded in `final-post-main-sync-validation.json`.
