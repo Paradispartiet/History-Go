@@ -2,40 +2,100 @@
   "schemaVersion": "1.0",
   "placeId": "seilduksfabrikken_nydalen",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_address_source",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9469,
-    "lon": 10.7671,
+    "lat": 59.95542713436375,
+    "lon": 10.765409433626766,
     "r": 150,
-    "coordStatus": "needs_source",
-    "coordSource": "official_address_ambiguous",
-    "coordType": "legacy_unverified",
-    "coordNote": "Øvre Spinderi er dokumentert som Gjerdrums vei 12, men repoets normative Geonorge-finner returnerer flere treff uten én entydig kandidat. Eksisterende lat/lon beholdes kun som legacy."
+    "coordStatus": "verified_geometry",
+    "coordSource": "kulturminnesok_askeladden",
+    "coordType": "building_center",
+    "coordNote": "Geometrisk senter for Riksantikvarens offisielle enkeltminne 165570-6, registrert av Byantikvaren i Oslo som «Nydalen Compagnie Bomullsspinneri – Gjerdrums vei 12» og eksplisitt beskrevet som «Spinneri (bygn 108)». Identiteten er kryssjekket mot Oslo byleksikons historiske Øvre Spinderi i Gjerdrums vei 12 og skilles fysisk fra enkeltminne 165570-5, som er registrert som Veveri (bygn 113). Punktet representerer Øvre Spinneri-bygningen, ikke hele Campus G12 eller Nydalens Compagnie-anlegget."
   },
   "identity": {
     "currentName": "Seilduksfabrikken (Nydalen)",
-    "resolvedIdentity": "Seilduksfabrikken (Nydalen)",
-    "identityStatus": "resolved_but_coordinate_ambiguous",
-    "identityProblem": "Øvre Spinderi er dokumentert som Gjerdrums vei 12, men repoets normative Geonorge-finner returnerer flere treff uten én entydig kandidat. Eksisterende lat/lon beholdes kun som legacy.",
+    "resolvedIdentity": "Øvre spinneri / Riksantikvaren enkeltminne 165570-6, Spinneri (bygn 108), Gjerdrums vei 12",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
     "splitReason": ""
   },
   "requiredEvidence": [
-    "exact canonical anchor or resolved identity"
+    "offisiell fysisk bygningsgeometri for spinneriet i Gjerdrums vei 12",
+    "eksplisitt skille mellom spinneribygningen og Veveri A / øvrige fabrikkfløyer",
+    "historisk identitetskryssjekk mot Øvre Spinderi i Gjerdrums vei 12"
   ],
-  "evidence": [],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "evidence": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceName": "Riksantikvaren – Lokaliteter, Enkeltminner og Sikringssoner",
+      "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/enkeltminner/items/165570-6?f=json",
+      "sourceObjectId": "kulturminnesok:165570-6",
+      "sourceQuality": "official_individual_heritage_object_geometry",
+      "finding": "Riksantikvarens enkeltminne 165570-6 er navngitt «Nydalen Compagnie Bomullsspinneri – Gjerdrums vei 12» og beskrevet av Byantikvaren som «Spinneri (bygn 108)». Det har egen MultiPolygon-geometri med senter 59.95542713436375, 10.765409433626766.",
+      "canVerifyCoordinate": true,
+      "reason": "Enkeltminnet representerer selve fysiske spinneribygningen og gir et offisielt geometrisk hovedanker."
+    },
+    {
+      "sourceProvider": "official_local_history_reference",
+      "sourceName": "Oslo byleksikon – Gjerdrums vei",
+      "sourceUrl": "https://oslobyleksikon.no/side/Gjerdrums_vei",
+      "sourceObjectId": "oslobyleksikon:gjerdrums-vei-12:ovre-spinderi",
+      "sourceQuality": "authoritative_historical_identity_crosscheck",
+      "finding": "Oslo byleksikon identifiserer Øvre Spinderi med Gjerdrums vei 12 og skiller det fra Væveri A. Riksantikvarens separate enkeltminne 165570-5 er registrert som Veveri (bygn 113), mens 165570-6 er Spinneri (bygn 108).",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden brukes til identitetskryssjekk; selve koordinaten kommer fra Riksantikvarens bygningsgeometri."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Gjerdrums vei 12 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "canApplyToPlace": false,
+      "note": "Dagens Geonorge-register har bokstavadressene 12A–12L, men ingen entydig bare 12. Adresseklyngen brukes derfor ikke som canonical punkt."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceObjectId": "kulturminnesok:165570-6",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceObjectId": "kulturminnesok:165570-5",
+      "canApplyToPlace": false,
+      "note": "Separat Veveri (bygn 113), ikke Øvre Spinneri."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceObjectId": "kulturminnesok:165570-6",
+      "lat": 59.95542713436375,
+      "lon": 10.765409433626766,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.95542713436375,
+      "lon": 10.765409433626766,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Øvre Spinderi er dokumentert som Gjerdrums vei 12, men repoets normative Geonorge-finner returnerer flere treff uten én entydig kandidat. Eksisterende lat/lon beholdes kun som legacy.",
-    "nextAction": "Do not promote until the blocking issue is resolved."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the official Riksantikvaren individual-object geometry for Spinneri (bygn 108), 165570-6, as the canonical building center for Øvre spinneri."
   },
   "notes": [
-    "Øvre Spinderi er dokumentert som Gjerdrums vei 12, men repoets normative Geonorge-finner returnerer flere treff uten én entydig kandidat. Eksisterende lat/lon beholdes kun som legacy."
+    "Geometrisk senter for Riksantikvarens offisielle enkeltminne 165570-6, registrert av Byantikvaren i Oslo som «Nydalen Compagnie Bomullsspinneri – Gjerdrums vei 12» og eksplisitt beskrevet som «Spinneri (bygn 108)». Identiteten er kryssjekket mot Oslo byleksikons historiske Øvre Spinderi i Gjerdrums vei 12 og skilles fysisk fra enkeltminne 165570-5, som er registrert som Veveri (bygn 113). Punktet representerer Øvre Spinneri-bygningen, ikke hele Campus G12 eller Nydalens Compagnie-anlegget.",
+    "Tidligere legacy-punkt og eldre researchkandidater er forkastet. De lå i feil del av Nydalen og skal ikke gjenbrukes."
   ]
 }

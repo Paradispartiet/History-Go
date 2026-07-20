@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T12:33:55.015Z
+Generert: 2026-07-20T13:21:51.079Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -175,7 +175,7 @@ Generert: 2026-07-20T12:33:55.015Z
 | nedre_foss | data/coordinate-evidence/oslo/natur/nedre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nydalsdammen | data/coordinate-evidence/oslo/natur/nydalsdammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | needs_research | needs_address_source | OK |
+| seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | needs_research | needs_geometry | OK |
 | trosterud_friomrade | data/coordinate-evidence/oslo/natur/trosterud_friomrade.json | needs_research | needs_geometry | OK |
 | vaterland_historisk_elvelop | data/coordinate-evidence/oslo/natur/vaterland_historisk_elvelop.json | applied_to_place | do_not_change_coordinates_yet | OK |
