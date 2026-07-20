@@ -473,8 +473,22 @@ livsstilsvalg: eget prosjekt (skrive/male/lage) og en øl på puben (som
 bygger relasjonen til bekjenten — nettverket som kjenner folk). Batch 7
 koblet valgene tilbake til livsstilssystemet: 41 valg tagget med
 `livsstil`-tags (18 retninger i bruk), broet til skallets `HG_Lifestyle`
-ved valg — se «Livsstilsbroen» i forrige seksjon. Gjenstår: dag 3+
-(lengre trådbuer).
+ved valg — se «Livsstilsbroen» i forrige seksjon. Batch 9 åpnet **dag 3**:
+ny delt tråd «Uka videre» med `startDag: 3` og ubetingede morgen-/kvelds-
+scener — garantien for at dag 3 aldri er en tom dag, uansett gren (motoren
+avslutter en tom dag stille, så uten denne ville dag 3 «blinket forbi»).
+Dag 3 leser dagene før: økonomi-purringen fyrer kun på den eskalerte
+grenen (regningen som ble skjøvet unna — trådstatus er betingelsen, ingen
+flagg trengs), Jonas ringer og foreslår fast torsdag, kroppen vil ut etter
+tre dager, og kvelden spør hva tre dager sier om uka. Arbeidsledig får
+payoff-buen: avslag på søknaden («mer dokumentert kompetanse») →
+«Det du kan»-lista → merkene/kunnskapen som veien til jobb. Hver jobbrolle
+har dagsplan 3 og et rolleanker på en levende rolletråd (Sindre og rom 204,
+stamkundens prismatch, utbyggeren som vil ha muntlig ja). Kontrakten
+(«dag 3 er aldri tom, for noen rolle, på noen gren») eies av
+`civication-lifestory-day3.test.js`. Gjenstår: dag 4+ etter samme mønster,
+og `endings`-feltet i rollepakkene er fortsatt ubrukt av motoren — en
+naturlig kandidat når en uke er spillbar.
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp

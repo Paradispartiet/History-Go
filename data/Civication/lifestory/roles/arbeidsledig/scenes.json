@@ -557,6 +557,153 @@
           ]
         }
       ]
+    },
+    {
+      "id": "d3_soknad_svar",
+      "threadId": "soknaden_og_hullet",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Svar på søknaden",
+      "tekst": "Mailen ligger øverst i innboksen: «Takk for søknaden. Vi har gått videre med en kandidat med mer dokumentert kompetanse på området.» Du leser den to ganger.",
+      "valg": [
+        {
+          "id": "les_hva_de_saa_etter",
+          "tekst": "Lese nøye hva de så etter — og legge en plan for å lære det",
+          "tone": "byggende",
+          "livsstil": [
+            "legitimacy",
+            "craft"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": -1,
+              "handlingsrom": 3
+            },
+            "flagg": {
+              "la_laeringsplan": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Dokumentert kompetanse.» Det er akkurat det merkene i denne byen er — dokumentasjon. Du vet hvor kunnskapen finnes, og nå vet du hvilken du mangler."
+        },
+        {
+          "id": "soek_tre_nye",
+          "tekst": "Søke tre nye stillinger i dag, mens du er i gang",
+          "tone": "standhaftig",
+          "livsstil": [
+            "process"
+          ],
+          "effekter": {
+            "meters": {
+              "energi": -3,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sokte_tre_nye": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tre søknader ute før lunsj. Kvantitet er ikke kvalitet, men det er bevegelse — og bevegelse er bedre enn stillstand."
+        },
+        {
+          "id": "lukk_lokket",
+          "tekst": "Lukke lokket på PC-en og ta det i morgen",
+          "tone": "unnvikende",
+          "livsstil": [
+            "avoidance"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": -2,
+              "energi": 1
+            },
+            "flagg": {
+              "utsatte_avslaget": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lokket klikker igjen. Avslaget ligger der fortsatt i morgen — men det gjør søknadsfristene også."
+        }
+      ]
+    },
+    {
+      "id": "d3_det_du_kan",
+      "threadId": "soknaden_og_hullet",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Det du kan — svart på hvitt",
+      "tekst": "Du setter deg med et ark og skriver lista: det du faktisk kan, det du nesten kan, og det stillingene stadig spør etter som du mangler. Byen er full av steder å lære — og merkene derfra er dokumentasjon.",
+      "valg": [
+        {
+          "id": "velg_ett_hull",
+          "tekst": "Velge ett hull i lista og begynne å tette det med kunnskap",
+          "tone": "målrettet",
+          "livsstil": [
+            "craft",
+            "legitimacy"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "handlingsrom": 3
+            },
+            "flagg": {
+              "begynte_aa_tette_hullet": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Ett hull, én plan. Neste gang noen spør om dokumentert kompetanse, er svaret et merke du faktisk har."
+        },
+        {
+          "id": "vis_lista_til_bekjenten",
+          "tekst": "Sende lista til bekjenten — han kjenner folk som ansetter",
+          "tone": "nettverkende",
+          "livsstil": [
+            "opportunism"
+          ],
+          "effekter": {
+            "meters": {
+              "synlighet": 2
+            },
+            "relasjoner": {
+              "bekjent": 3
+            },
+            "flagg": {
+              "delte_lista_med_bekjenten": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "«Dette var nyttig. Skal høre rundt,» svarer han. Det er sånn halvparten av byens jobber besettes — før de lyses ut."
+        }
+      ]
     }
   ]
 }

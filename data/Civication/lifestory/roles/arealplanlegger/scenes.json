@@ -1071,6 +1071,95 @@
           "konsekvensTekst": "Klokka blir mye. Du legger deg med utvalgslederens stemme i hodet."
         }
       ]
+    },
+    {
+      "id": "d3_utbygger_purrer",
+      "threadId": "utbygger_tidspress",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "telefon",
+      "avsender": "utbygger",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Vi må ha en avklaring i dag»",
+      "tekst": "Utbyggeren ringer før du har fått satt deg: «Styret mitt møtes i morgen. Vi må ha en avklaring i dag — muntlig holder.» Du vet at et muntlig ja er umulig å trekke tilbake.",
+      "valg": [
+        {
+          "id": "faglig_svar_med_forbehold",
+          "tekst": "Gi et faglig svar med tydelige forbehold — skriftlig",
+          "tone": "faglig",
+          "livsstil": [
+            "legitimacy"
+          ],
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "synlighet": 1
+            },
+            "relasjoner": {
+              "utbygger": -1
+            },
+            "flagg": {
+              "ga_skriftlig_svar": true
+            },
+            "threads": {
+              "utbygger_tidspress": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sender tre avsnitt med forbehold som holder vann. Han er misfornøyd med formen, men han kan ikke sitere deg på noe du ikke har dekning for."
+        },
+        {
+          "id": "be_om_frist_formelt",
+          "tekst": "Be om utsatt frist gjennom riktig kanal",
+          "tone": "formell",
+          "livsstil": [
+            "process"
+          ],
+          "effekter": {
+            "meters": {
+              "integritet": 1,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "ba_om_frist": true
+            },
+            "threads": {
+              "utbygger_tidspress": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Fristen flyttes en uke. Det koster deg et surt styremøte hos ham — og kjøper deg tiden saken faktisk trenger."
+        },
+        {
+          "id": "muntlig_ja_naa",
+          "tekst": "Gi et muntlig «det ser greit ut» for å få ham av telefonen",
+          "tone": "ettergivende",
+          "livsstil": [
+            "shortcut",
+            "risk"
+          ],
+          "effekter": {
+            "meters": {
+              "integritet": -4
+            },
+            "relasjoner": {
+              "utbygger": 3
+            },
+            "flagg": {
+              "ga_muntlig_ja": true
+            },
+            "threads": {
+              "utbygger_tidspress": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "«Supert, da siterer jeg deg på det i styret.» Du hører setningen bli til referat mens han sier den."
+        }
+      ]
     }
   ]
 }

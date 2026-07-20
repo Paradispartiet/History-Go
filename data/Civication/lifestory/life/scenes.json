@@ -2619,6 +2619,415 @@
           "konsekvensTekst": "Boka blir liggende til i kveld. Den går ingen steder."
         }
       ]
+    },
+    {
+      "id": "d3_morgen_tredje_dagen",
+      "threadId": "uka_videre",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Tredje dagen på rad",
+      "tekst": "Alarmen ringer til samme tid som i går. To dager er blitt tre, og morgenen begynner å ligne en vane. Spørsmålet er om det er en god en.",
+      "valg": [
+        {
+          "id": "samme_tid_opp",
+          "tekst": "Stå opp med en gang — rytmen er verdt å holde på",
+          "tone": "strukturert",
+          "livsstil": [
+            "process"
+          ],
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "holdt_morgenrytmen": true
+            },
+            "threads": {
+              "uka_videre": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Opp, dusj, mat. Kroppen begynner å kjenne igjen rekkefølgen, og det gjør morgenen billigere."
+        },
+        {
+          "id": "tur_foer_alt",
+          "tekst": "Komme deg ut en tur før du gjør noe annet",
+          "tone": "frisk",
+          "livsstil": [
+            "outdoor",
+            "fitness"
+          ],
+          "effekter": {
+            "meters": {
+              "energi": 3,
+              "psyke": 2
+            },
+            "flagg": {
+              "morgentur": true
+            },
+            "threads": {
+              "uka_videre": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tjue minutter ute før dagen har begynt å mase. Du kommer hjem våken på ordentlig."
+        },
+        {
+          "id": "sove_litt_til",
+          "tekst": "Snooze — en halvtime til gjør ingen forskjell",
+          "tone": "utsettende",
+          "livsstil": [
+            "avoidance"
+          ],
+          "effekter": {
+            "meters": {
+              "energi": 1,
+              "psyke": -1
+            },
+            "flagg": {
+              "snoozet": true
+            },
+            "threads": {
+              "uka_videre": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Halvtimen ble tre kvarter. Resten av morgenen blir et innhentingsløp."
+        }
+      ]
+    },
+    {
+      "id": "d3_morgen_purringen",
+      "threadId": "stram_oekonomi",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Purring med gebyr",
+      "tekst": "Regningen du skjøv unna har fått en oppfølger: purring, med gebyr på toppen. Den forsvinner ikke — den vokser.",
+      "valg": [
+        {
+          "id": "betal_naa",
+          "tekst": "Betale den nå og bli ferdig med det",
+          "tone": "ryddig",
+          "livsstil": [
+            "budget"
+          ],
+          "effekter": {
+            "meters": {
+              "penger": -120,
+              "psyke": 3
+            },
+            "flagg": {
+              "betalte_purringen": true
+            },
+            "threads": {
+              "stram_oekonomi": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Det sved, men den er ute av verden. Du merker at du har gruet deg mer enn det kostet."
+        },
+        {
+          "id": "ring_og_avtal",
+          "tekst": "Ringe og avtale en betalingsutsettelse",
+          "tone": "ansvarlig",
+          "livsstil": [
+            "legitimacy",
+            "process"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "avtalte_utsettelse": true
+            },
+            "threads": {
+              "stram_oekonomi": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Fem minutter på telefonen, ny frist neste uke. Det er fortsatt en regning, men nå er det en plan."
+        },
+        {
+          "id": "la_den_ligge_igjen",
+          "tekst": "La den ligge — du orker ikke tall i dag heller",
+          "tone": "unnvikende",
+          "livsstil": [
+            "debt",
+            "avoidance"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": -3
+            },
+            "flagg": {
+              "lot_purringen_ligge": true
+            },
+            "threads": {
+              "stram_oekonomi": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Konvolutten ligger i skuffen. Du vet godt at neste versjon av den heter inkassovarsel."
+        }
+      ]
+    },
+    {
+      "id": "d3_ettermiddag_kroppen_vil_ut",
+      "threadId": "kroppen_og_kreftene",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Kroppen vil ut",
+      "tekst": "Tre dager med mye sitting og korte netter. Kroppen har begynt å mase om bevegelse — en tur, en økt, hva som helst.",
+      "valg": [
+        {
+          "id": "gaa_en_tur",
+          "tekst": "Gå en rask tur ut",
+          "tone": "frisk",
+          "livsstil": [
+            "outdoor"
+          ],
+          "effekter": {
+            "meters": {
+              "energi": 3,
+              "psyke": 2
+            },
+            "flagg": {
+              "gikk_tur_dag3": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "En halvtime i frisk luft. Beina takker, og hodet fikk ryddet litt samtidig."
+        },
+        {
+          "id": "ta_en_oekt",
+          "tekst": "Ta en ordentlig treningsøkt",
+          "tone": "energisk",
+          "livsstil": [
+            "fitness"
+          ],
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "psyke": 4
+            },
+            "flagg": {
+              "trente_dag3": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Svett og sliten på den gode måten. Du angrer aldri på økten — bare på dagene uten."
+        },
+        {
+          "id": "ikke_i_dag",
+          "tekst": "Ikke i dag — sofaen vinner",
+          "tone": "ettergivende",
+          "livsstil": [
+            "avoidance"
+          ],
+          "effekter": {
+            "meters": {
+              "energi": 1,
+              "psyke": -1
+            },
+            "flagg": {
+              "droppet_bevegelse_dag3": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Sofaen vant i dag også. Kroppen noterer, og den er tålmodig — til den ikke er det."
+        }
+      ]
+    },
+    {
+      "id": "d3_kveld_jonas_fast_greie",
+      "threadId": "folk_rundt_deg",
+      "fase": "kveld",
+      "dag": 3,
+      "visningstype": "telefon",
+      "avsender": "venn",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Jonas ringer: fast greie?",
+      "tekst": "Jonas ringer. «Du — det var bra sist. Skal vi bare si torsdager? Fast, uten å måtte avtale hver gang?»",
+      "valg": [
+        {
+          "id": "si_ja_fast",
+          "tekst": "Si ja — torsdager er deres",
+          "tone": "forpliktende",
+          "livsstil": [
+            "nightlife"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 2
+            },
+            "relasjoner": {
+              "venn": 6
+            },
+            "flagg": {
+              "fast_torsdag_med_jonas": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Torsdager!» Han høres oppriktig glad ut. Én fast kveld i uka som ikke må forhandles frem — det er mer verdt enn det høres ut som."
+        },
+        {
+          "id": "ta_det_som_det_kommer",
+          "tekst": "Foreslå å ta det som det passer — ikke låse det",
+          "tone": "løs",
+          "effekter": {
+            "meters": {
+              "psyke": 1
+            },
+            "relasjoner": {
+              "venn": 1
+            },
+            "flagg": {
+              "loes_avtale_med_jonas": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Ja ja, vi tar det som det kommer.» Dere vet begge hva det pleier å bety — men døra er i hvert fall åpen."
+        },
+        {
+          "id": "ikke_ta_telefonen",
+          "tekst": "La telefonen ringe ut",
+          "tone": "unnvikende",
+          "livsstil": [
+            "avoidance"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": -2
+            },
+            "relasjoner": {
+              "venn": -4
+            },
+            "flagg": {
+              "svarte_ikke_jonas": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Telefonen slutter å ringe. Jonas legger ikke igjen beskjed denne gangen."
+        }
+      ]
+    },
+    {
+      "id": "d3_kveld_uka_saa_langt",
+      "threadId": "uka_videre",
+      "fase": "kveld",
+      "dag": 3,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 2,
+      "tittel": "Tre dager — hva sier de om uka?",
+      "tekst": "Tre dager er nok til å se et mønster: når du legger deg, hva du spiser, hvem du snakker med, hva du får gjort. Kvelden er et greit sted å se på det.",
+      "valg": [
+        {
+          "id": "dette_funker",
+          "tekst": "Dette funker — fortsette uka slik",
+          "tone": "fornøyd",
+          "effekter": {
+            "meters": {
+              "psyke": 3
+            },
+            "flagg": {
+              "fornoyd_med_uka": true
+            },
+            "threads": {
+              "uka_videre": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Rytmen sitter. Ikke perfekt, men din — og den bærer deg gjennom dagene."
+        },
+        {
+          "id": "endre_en_ting",
+          "tekst": "Velge én konkret ting å endre i morgen",
+          "tone": "besluttsom",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "valgte_en_endring": true
+            },
+            "threads": {
+              "uka_videre": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Én ting, ikke ti. Du skriver den på en lapp og legger den på kjøkkenbordet der du ser den i morgen tidlig."
+        },
+        {
+          "id": "sove_paa_det",
+          "tekst": "Sove på det — uka er ikke ferdig",
+          "tone": "avventende",
+          "effekter": {
+            "meters": {
+              "energi": 2
+            },
+            "flagg": {
+              "sov_paa_det": true
+            },
+            "threads": {
+              "uka_videre": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Ingen konklusjon i kveld. Det er også et svar — uka får vise hva den blir."
+        }
+      ]
     }
   ]
 }
