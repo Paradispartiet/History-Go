@@ -1,0 +1,15 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Platous gate 10 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": false,
+  "status": "not_found",
+  "reason": "Geonorge returnerte ingen adressetreff.",
+  "query": "Platous gate 10 Oslo",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Platous%20gate%2010%20Oslo"
+}
