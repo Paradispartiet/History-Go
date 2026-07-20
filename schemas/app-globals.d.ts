@@ -108,6 +108,23 @@ declare global {
       cycleBadgeFilter?: () => string;
       isBadgeFilterActive?: () => boolean;
     };
+    HGNearbyPlaceSelector?: {
+      select?: () => {
+        items: Array<any & {
+          _d: number | null;
+          _timeSortKey: number | null;
+          _timeLabel: string;
+          _epokeLabel: string;
+          _isZeitgeist: boolean;
+        }>;
+        filterMode: "unvisited" | "all" | "unlocked";
+        sortMode: "distance" | "oldest" | "newest";
+        badgeFilter: string;
+        favoritesOnly: boolean;
+        freshPlaceId: string;
+      };
+      getPlaceDistanceMeters?: (place: any, position: unknown) => number | null;
+    };
     HGLeftPanelMode?: {
       getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
       setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
