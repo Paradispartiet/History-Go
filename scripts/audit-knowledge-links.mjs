@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const REPORT_PATH = path.join(ROOT, "reports", "knowledge-link-audit.json");
-const SUBJECT_IDS = new Set([
+const SUBJECT_IDS = [
   "historie",
   "vitenskap",
   "kunst",
@@ -18,8 +18,8 @@ const SUBJECT_IDS = new Set([
   "naeringsliv",
   "litteratur",
   "psykologi"
-]);
-
+];
+const SUBJECT_SET = new Set(SUBJECT_IDS);
 const SCAN_EXTENSIONS = new Set([".html", ".htm", ".js", ".mjs", ".ts"]);
 const SKIP_DIRS = new Set([".git", "node_modules", "dist", "reports"]);
 
@@ -38,7 +38,7 @@ function repoRelative(abs) {
   return path.relative(ROOT, abs).split(path.sep).join("/");
 }
 
-function normalizeRoute(raw, sourceFile) {
+function normalizeRoute(raw, sourceFile, sourceIsHtml) {
   const clean = String(raw || "")
     .trim()
     .replace(/^https?:\/\/[^/]+\//i, "/")
@@ -47,9 +47,18 @@ function normalizeRoute(raw, sourceFile) {
   const [pathname, query = ""] = clean.split("?");
   let targetPath = pathname;
 
-  if (targetPath.startsWith("/History-Go/")) targetPath = targetPath.slice("/History-Go/".length);
-  else if (targetPath.startsWith("/")) targetPath = targetPath.slice(1);
-  else targetPath = path.relative(ROOT, path.resolve(path.dirname(sourceFile), targetPath));
+  if (targetPath.startsWith("/History-Go/")) {
+    targetPath = targetPath.slice("/History-Go/".length);
+  } else if (targetPath.startsWith("/")) {
+    targetPath = targetPath.slice(1);
+  } else if (sourceIsHtml) {
+    targetPath = path.relative(ROOT, path.resolve(path.dirname(sourceFile), targetPath));
+  } else {
+    // URL-er i JS/TS løses av dokumentets URL, ikke av scriptfilens mappe.
+    // Knowledge-ruter i runtime-kode behandles derfor som repo-root-ruter.
+    const knowledgeIndex = targetPath.indexOf("knowledge");
+    if (knowledgeIndex >= 0) targetPath = targetPath.slice(knowledgeIndex);
+  }
 
   return {
     raw: clean,
@@ -76,13 +85,20 @@ function extractKnowledgePageHrefs(content) {
   return matches;
 }
 
+function dynamicLegacyKnowledgeTemplates(content) {
+  return /knowledge\/knowledge_\$\{[^}]+\}\.html/i.test(content);
+}
+
 const files = walk(ROOT);
 const references = [];
 const broken = [];
 const invalidSubjects = [];
+const dynamicTemplates = [];
 
 for (const abs of files) {
   const rel = repoRelative(abs);
+  const ext = path.extname(rel).toLowerCase();
+  const sourceIsHtml = ext === ".html" || ext === ".htm";
   const content = fs.readFileSync(abs, "utf8");
   const routes = extractKnowledgeRouteStrings(content);
 
@@ -98,7 +114,7 @@ for (const abs of files) {
   }
 
   for (const rawRoute of routes) {
-    const route = normalizeRoute(rawRoute, abs);
+    const route = normalizeRoute(rawRoute, abs, sourceIsHtml);
     const targetAbs = path.join(ROOT, route.targetPath);
     const exists = fs.existsSync(targetAbs) && fs.statSync(targetAbs).isFile();
     const item = { source: rel, route: route.raw, target: route.targetPath, exists };
@@ -108,18 +124,28 @@ for (const abs of files) {
     if (route.targetPath === "knowledge.html" && route.query) {
       const params = new URLSearchParams(route.query);
       const subject = params.get("subject");
-      if (subject && !SUBJECT_IDS.has(subject)) {
-        invalidSubjects.push({ ...item, subject });
-      }
+      if (subject && !SUBJECT_SET.has(subject)) invalidSubjects.push({ ...item, subject });
+    }
+  }
+
+  if (dynamicLegacyKnowledgeTemplates(content)) {
+    const missingTargets = SUBJECT_IDS
+      .map((subject) => `knowledge/knowledge_${subject}.html`)
+      .filter((target) => !fs.existsSync(path.join(ROOT, target)));
+    const item = { source: rel, pattern: "knowledge/knowledge_${subject}.html", missing_targets: missingTargets };
+    dynamicTemplates.push(item);
+    for (const target of missingTargets) {
+      broken.push({ source: rel, route: item.pattern, target, exists: false });
     }
   }
 }
 
-const unique = (rows) => Array.from(new Map(rows.map((row) => [`${row.source}|${row.route}`, row])).values());
+const unique = (rows) => Array.from(new Map(rows.map((row) => [`${row.source}|${row.route || row.pattern}|${row.target || ""}`, row])).values());
 const report = {
   generated_at: new Date().toISOString(),
   scanned_files: files.length,
   references: unique(references),
+  dynamic_templates: unique(dynamicTemplates),
   broken: unique(broken),
   invalid_subjects: unique(invalidSubjects),
   ok: broken.length === 0 && invalidSubjects.length === 0
@@ -128,7 +154,8 @@ const report = {
 fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
 fs.writeFileSync(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`);
 
-console.log(`Knowledge link audit: ${report.references.length} ruter kontrollert i ${report.scanned_files} runtime-filer.`);
+console.log(`Knowledge link audit: ${report.references.length} statiske ruter kontrollert i ${report.scanned_files} runtime-filer.`);
+if (report.dynamic_templates.length) console.log(`Kontrollerte ${report.dynamic_templates.length} dynamiske legacy-rutegeneratorer.`);
 if (report.broken.length) {
   console.error(`Fant ${report.broken.length} døde Knowledge-ruter:`);
   for (const row of report.broken) console.error(`- ${row.source}: ${row.route} -> ${row.target}`);
