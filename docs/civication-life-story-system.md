@@ -399,6 +399,20 @@ Rollefarget tekst hører hjemme i rollens egne scener.
   privatmail-systemet): ro-/hvilescener gates på `meters.psyke.max`, slik at
   de tilbys når spilleren trenger dem (se `kveld_01_lande_dagen`).
 
+**Skrivestil: konkret hverdagsspråk, ikke kvasifilosofi** (produkteierens
+regel, batch 6): scener og valg skal beskrive gjenkjennelige, konkrete
+handlinger — sove lenger, trene, skrive eller male på et eget prosjekt, ta
+en øl på puben, lage middag av det du har, ringe søsteren din. Ikke
+metaforer («sette gjerde rundt en time», «natten er det siste valget du
+tar»). Valgretningene skal være realistiske modeller av ulike livsstiler,
+med `data/Civication/lifestyles.json` (13 livsstiler: hipster, teknokrat,
+hippie, familiemenneske, hustler, prosess-menneske, yuppie, bohem,
+friluftstype, konkurransemenneske, håndverker, gjeldsspiral, nøktern
+overlever) som referansekatalog: en scene med flere valg bør spenne over
+flere av disse retningene (skapende, sosial/uteliv, trening/friluft,
+nøktern/sparsom, ambisiøs, familie). Ting som koster penger i teksten
+(pub, kjøpelunsj, bestilt middag) skal også koste `penger` i effektene.
+
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
@@ -428,7 +442,13 @@ morgenscenen «Ti minutter med noe du samler på»
 (vitenskap/historie/litteratur-taggene) på tråden «Lysten til å lære».
 Grenkontrakten (ett flagg per valg, én lukkende gren-scene per flagg) eies
 av arbeidsledig-testen. **Alle de 45 gamle private mailene er nå dekket av
-livsscener.** Gjenstår: dag 3+ (lengre trådbuer).
+livsscener.** Batch 6 var en språkvask etter produkteierens tilbakemelding:
+delte scener og arbeidsledig-dagen skrevet om fra abstrakt/kvasifilosofisk
+til konkret hverdagsspråk (se skrivestil-regelen i §-en over), venne-kvelden
+ble en pubkveld som koster penger, og arbeidsledig-ettermiddagen fikk to nye
+livsstilsvalg: eget prosjekt (skrive/male/lage) og en øl på puben (som
+bygger relasjonen til bekjenten — nettverket som kjenner folk). Gjenstår:
+dag 3+ (lengre trådbuer).
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp

@@ -18,20 +18,39 @@
           "tekst": "Send meldekortet nå, før dagen får bestemme noe annet",
           "tone": "ryddig",
           "effekter": {
-            "meters": { "integritet": 2, "energi": -2, "psyke": 2 },
-            "flagg": { "sendte_meldekortet": true },
-            "threads": { "nav_og_meldekortet": { "stepDelta": 1 } }
+            "meters": {
+              "integritet": 2,
+              "energi": -2,
+              "psyke": 2
+            },
+            "flagg": {
+              "sendte_meldekortet": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "Ti minutter. Ferdig. Resten av dagen slipper å ha den hengende over seg."
         },
         {
           "id": "utsett",
-          "tekst": "Utsett til i kveld — du har jo tid",
+          "tekst": "Bli liggende en stund til — meldekortet kan tas i kveld",
           "tone": "utsettende",
           "effekter": {
-            "meters": { "psyke": -2, "energi": 1 },
-            "flagg": { "utsatte_meldekortet": true },
-            "threads": { "nav_og_meldekortet": { "stepDelta": 1 } }
+            "meters": {
+              "psyke": -2,
+              "energi": 1
+            },
+            "flagg": {
+              "utsatte_meldekortet": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "Du har tid. Det er nettopp det som er problemet: alt kan gjøres senere, og senere har ingen frist før den plutselig har det."
         },
@@ -40,10 +59,22 @@
           "tekst": "Ring veilederen og rydd opp i hele dokumentasjonskravet",
           "tone": "grundig",
           "effekter": {
-            "relasjoner": { "nav_veileder": 6 },
-            "meters": { "energi": -4, "handlingsrom": 2 },
-            "flagg": { "sendte_meldekortet": true, "ryddet_dokumentasjon": true },
-            "threads": { "nav_og_meldekortet": { "stepDelta": 1 } }
+            "relasjoner": {
+              "nav_veileder": 6
+            },
+            "meters": {
+              "energi": -4,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "sendte_meldekortet": true,
+              "ryddet_dokumentasjon": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "Veilederen tar telefonen på andre forsøk. Tjue minutter senere er både meldekortet og dokumentasjonen ute av verden. «Skulle ønske flere ringte,» sier hun."
         }
@@ -66,9 +97,18 @@
           "tekst": "Skriv det som det er — arbeidsledig, søker aktivt, bruker tiden på å lære",
           "tone": "ærlig",
           "effekter": {
-            "meters": { "integritet": 5, "psyke": -2 },
-            "flagg": { "aerlig_om_hullet": true },
-            "threads": { "soknaden_og_hullet": { "stepDelta": 1 } }
+            "meters": {
+              "integritet": 5,
+              "psyke": -2
+            },
+            "flagg": {
+              "aerlig_om_hullet": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "Det tok tre setninger og kostet mer enn det så ut som. Men det er tre setninger du kan stå for i et intervju."
         },
@@ -77,9 +117,18 @@
           "tekst": "Pynt på det — kall det «frilansperiode med selvstendige prosjekter»",
           "tone": "unnvikende",
           "effekter": {
-            "meters": { "integritet": -5, "psyke": -1 },
-            "flagg": { "pyntet_paa_cv": true },
-            "threads": { "soknaden_og_hullet": { "status": "escalated" } }
+            "meters": {
+              "integritet": -5,
+              "psyke": -1
+            },
+            "flagg": {
+              "pyntet_paa_cv": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "status": "escalated"
+              }
+            }
           },
           "konsekvensTekst": "Det leser bedre. Helt til noen i et intervju spør hvilke prosjekter — og du må pynte videre på pynten."
         },
@@ -88,10 +137,21 @@
           "tekst": "Be bekjenten om å stå som referanse før du svarer",
           "tone": "nettverk",
           "effekter": {
-            "relasjoner": { "bekjent": 5 },
-            "meters": { "handlingsrom": 2, "energi": -2 },
-            "flagg": { "ba_om_referanse": true },
-            "threads": { "soknaden_og_hullet": { "stepDelta": 1 } }
+            "relasjoner": {
+              "bekjent": 5
+            },
+            "meters": {
+              "handlingsrom": 2,
+              "energi": -2
+            },
+            "flagg": {
+              "ba_om_referanse": true
+            },
+            "threads": {
+              "soknaden_og_hullet": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "«Selvfølgelig,» svarer bekjenten på sekunder. «Og si fra hvis du vil at jeg skal høre rundt.» Nettverket er større enn det føles på de stille dagene."
         }
@@ -114,9 +174,19 @@
           "tekst": "Sett opp en enkel plan for resten av dagen og i morgen",
           "tone": "strukturert",
           "effekter": {
-            "meters": { "psyke": 3, "handlingsrom": 2, "energi": -1 },
-            "flagg": { "bygget_ramme": true },
-            "threads": { "dagen_uten_ramme": { "stepDelta": 1 } }
+            "meters": {
+              "psyke": 3,
+              "handlingsrom": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "bygget_ramme": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "Tre punkter på en lapp. Det er ikke en jobb, men det er en ramme — og i morgen starter ikke på null."
         },
@@ -125,20 +195,84 @@
           "tekst": "Bruk resten av dagen på å lære noe — kunnskap er det som åpner dører",
           "tone": "byggende",
           "effekter": {
-            "meters": { "psyke": 2, "handlingsrom": 3, "energi": -3 },
-            "flagg": { "brukte_tiden_paa_kunnskap": true },
-            "threads": { "dagen_uten_ramme": { "stepDelta": 1 } }
+            "meters": {
+              "psyke": 2,
+              "handlingsrom": 3,
+              "energi": -3
+            },
+            "flagg": {
+              "brukte_tiden_paa_kunnskap": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "Et par timer med hodet i noe du faktisk vil kunne. Merker og kunnskap er det arbeidsgivere i denne byen ser etter — det er sånn jobbtilbudene kommer."
+        },
+        {
+          "id": "eget_prosjekt",
+          "tekst": "Bruke ettermiddagen på et eget prosjekt — skrive, male, lage noe",
+          "tone": "skapende",
+          "effekter": {
+            "meters": {
+              "psyke": 4,
+              "integritet": 2,
+              "energi": -2
+            },
+            "flagg": {
+              "jobbet_med_eget_prosjekt": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tre timer forsvant inn i prosjektet uten at du merket det. Ingen betaler deg for det — ennå — men du har laget noe i dag."
+        },
+        {
+          "id": "ta_en_oel_paa_puben",
+          "tekst": "Gå ned på puben og ta en øl — du trenger å se folk",
+          "tone": "sosial",
+          "effekter": {
+            "meters": {
+              "penger": -90,
+              "psyke": 3,
+              "energi": -2
+            },
+            "relasjoner": {
+              "bekjent": 4
+            },
+            "flagg": {
+              "tok_en_oel_paa_puben": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Bekjenten din sitter der som vanlig og kjenner som alltid noen som «kanskje trenger folk». Det ble to øl, hundre kroner og en lettere kveld."
         },
         {
           "id": "la_skli",
           "tekst": "La dagen skli — du orker ikke mer i dag",
           "tone": "resignert",
           "effekter": {
-            "meters": { "psyke": -4, "energi": 2 },
-            "flagg": { "lot_dagen_skli": true },
-            "threads": { "dagen_uten_ramme": { "status": "escalated" } }
+            "meters": {
+              "psyke": -4,
+              "energi": 2
+            },
+            "flagg": {
+              "lot_dagen_skli": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "status": "escalated"
+              }
+            }
           },
           "konsekvensTekst": "Skjermen lyser til det blir mørkt ute. Ingen merket det. Det er det verste med det."
         }
@@ -153,7 +287,11 @@
       "avsender": "nav_veileder",
       "tilgjengelighet": "start",
       "prioritet": 9,
-      "conditions": { "flagg": { "utsatte_meldekortet": true } },
+      "conditions": {
+        "flagg": {
+          "utsatte_meldekortet": true
+        }
+      },
       "tittel": "Fristen er i dag kl 12",
       "tekst": "Du våkner med den lille støkken: meldekortet. Fristen er i dag kl 12, og «i kveld» i går ble aldri noe av.",
       "valg": [
@@ -162,9 +300,18 @@
           "tekst": "Send det nå, før frokost, før alt annet",
           "tone": "ryddig",
           "effekter": {
-            "meters": { "psyke": 3, "integritet": 2 },
-            "flagg": { "sendte_meldekortet": true },
-            "threads": { "nav_og_meldekortet": { "status": "completed" } }
+            "meters": {
+              "psyke": 3,
+              "integritet": 2
+            },
+            "flagg": {
+              "sendte_meldekortet": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "completed"
+              }
+            }
           },
           "konsekvensTekst": "Sendt 08:12. Du lover deg selv at neste meldekort ikke skal få lov til å bli en støkk."
         },
@@ -173,9 +320,18 @@
           "tekst": "Du rekker det — etter frokost, etter en ting til",
           "tone": "utsettende",
           "effekter": {
-            "meters": { "psyke": -5, "integritet": -3 },
-            "flagg": { "utsatte_igjen": true },
-            "threads": { "nav_og_meldekortet": { "status": "escalated" } }
+            "meters": {
+              "psyke": -5,
+              "integritet": -3
+            },
+            "flagg": {
+              "utsatte_igjen": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "escalated"
+              }
+            }
           },
           "konsekvensTekst": "11:58. Du rakk det — så vidt. Hendene dine skalv da du trykket send, og det var ikke koffeinet."
         }
@@ -190,7 +346,13 @@
       "avsender": "nav_veileder",
       "tilgjengelighet": "start",
       "prioritet": 9,
-      "conditions": { "flagg": { "utsatte_meldekortet": { "finnes": false } } },
+      "conditions": {
+        "flagg": {
+          "utsatte_meldekortet": {
+            "finnes": false
+          }
+        }
+      },
       "tittel": "«Alt er i orden hos oss»",
       "tekst": "Kort melding fra veilederen: «Meldekort og dokumentasjon mottatt — alt er i orden hos oss. Lykke til med søknadene denne uka.» En liten ting. Den bærer likevel.",
       "valg": [
@@ -199,10 +361,20 @@
           "tekst": "Svar kort og takk — og spør om tips til uka",
           "tone": "åpen",
           "effekter": {
-            "relasjoner": { "nav_veileder": 4 },
-            "meters": { "psyke": 2 },
-            "flagg": { "spurte_om_tips": true },
-            "threads": { "nav_og_meldekortet": { "status": "completed" } }
+            "relasjoner": {
+              "nav_veileder": 4
+            },
+            "meters": {
+              "psyke": 2
+            },
+            "flagg": {
+              "spurte_om_tips": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "completed"
+              }
+            }
           },
           "konsekvensTekst": "«Vis frem det du KAN, ikke bare det du har vært,» svarer hun. «Kompetanse teller mer enn hull.»"
         },
@@ -211,9 +383,17 @@
           "tekst": "Les den, pust ut, og gå videre med dagen",
           "tone": "nøktern",
           "effekter": {
-            "meters": { "psyke": 3 },
-            "flagg": { "pustet_ut": true },
-            "threads": { "nav_og_meldekortet": { "status": "completed" } }
+            "meters": {
+              "psyke": 3
+            },
+            "flagg": {
+              "pustet_ut": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "completed"
+              }
+            }
           },
           "konsekvensTekst": "Én bekymring mindre. Dagen har plass til noe som faktisk bygger."
         }
@@ -236,10 +416,21 @@
           "tekst": "Bygg på det du kan — og lær mer av byen rundt deg",
           "tone": "byggende",
           "effekter": {
-            "relasjoner": { "nav_veileder": 3 },
-            "meters": { "psyke": 3, "handlingsrom": 3 },
-            "flagg": { "satser_paa_kunnskap": true },
-            "threads": { "dagen_uten_ramme": { "status": "completed" } }
+            "relasjoner": {
+              "nav_veileder": 3
+            },
+            "meters": {
+              "psyke": 3,
+              "handlingsrom": 3
+            },
+            "flagg": {
+              "satser_paa_kunnskap": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "status": "completed"
+              }
+            }
           },
           "konsekvensTekst": "Du går ut med en annen holdning enn du kom inn med: kunnskapen og merkene du samler der ute i byen ER kompetansen som åpner jobbtilbudene."
         },
@@ -248,9 +439,19 @@
           "tekst": "Søk bredt på alt — noe må jo treffe",
           "tone": "desperat",
           "effekter": {
-            "meters": { "energi": -4, "psyke": -1, "synlighet": 2 },
-            "flagg": { "soekte_bredt": true },
-            "threads": { "dagen_uten_ramme": { "stepDelta": 1 } }
+            "meters": {
+              "energi": -4,
+              "psyke": -1,
+              "synlighet": 2
+            },
+            "flagg": {
+              "soekte_bredt": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "stepDelta": 1
+              }
+            }
           },
           "konsekvensTekst": "Elleve søknader på en formiddag. De ni av dem vet du selv at du ikke ville fått — og de leser det like fort som du skrev det."
         }
@@ -265,7 +466,11 @@
       "avsender": null,
       "tilgjengelighet": "start",
       "prioritet": 7,
-      "conditions": { "threads": { "dagen_uten_ramme": "escalated" } },
+      "conditions": {
+        "threads": {
+          "dagen_uten_ramme": "escalated"
+        }
+      },
       "tittel": "Enda en kveld som ligner på dagen",
       "tekst": "Kvelden skiller seg ikke fra dagen lenger — alt flyter i ett. Du vet at det er rammen som mangler, ikke viljen.",
       "valg": [
@@ -274,9 +479,18 @@
           "tekst": "Legg en konkret plan for i morgen før du legger deg",
           "tone": "besluttsom",
           "effekter": {
-            "meters": { "psyke": 3, "handlingsrom": 2 },
-            "flagg": { "la_plan_for_morgendagen": true },
-            "threads": { "dagen_uten_ramme": { "status": "completed" } }
+            "meters": {
+              "psyke": 3,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "la_plan_for_morgendagen": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "status": "completed"
+              }
+            }
           },
           "konsekvensTekst": "Tre punkter, ett klokkeslett. Morgendagen har fått en kant å starte fra."
         },
@@ -285,9 +499,17 @@
           "tekst": "I morgen. Du tar det i morgen.",
           "tone": "resignert",
           "effekter": {
-            "meters": { "psyke": -3 },
-            "flagg": { "utsatte_rammen": true },
-            "threads": { "dagen_uten_ramme": { "status": "dormant" } }
+            "meters": {
+              "psyke": -3
+            },
+            "flagg": {
+              "utsatte_rammen": true
+            },
+            "threads": {
+              "dagen_uten_ramme": {
+                "status": "dormant"
+              }
+            }
           },
           "konsekvensTekst": "«I morgen» er det ordet som har båret flest tomme dager. Du vet det. Du sier det likevel."
         }
