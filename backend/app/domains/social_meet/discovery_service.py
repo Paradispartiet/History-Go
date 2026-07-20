@@ -14,7 +14,11 @@ from app.domains.social_meet.discovery_models import (
     RankedDiscoveryCandidate,
 )
 from app.domains.social_meet.discovery_repository import PostgresSocialMeetDiscoveryRepository
-from app.domains.social_meet.models import KnowledgeFingerprint, ProfileVisibility, SocialMeetProfileRecord
+from app.domains.social_meet.models import (
+    KnowledgeFingerprint,
+    ProfileVisibility,
+    SocialMeetProfileRecord,
+)
 from app.domains.social_meet.repository import SocialMeetIdentityRepository
 from app.domains.social_meet.service import SUPPORTED_CONSENT_VERSION, SocialMeetDomainError
 
