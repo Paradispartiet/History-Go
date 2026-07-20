@@ -13,3 +13,13 @@
 - Production decision: approved for canonical production with the named site/POI anchor rather than the postal address point.
 
 The address-first requirement has therefore been satisfied and documented. This is an explicit application of the repository rule: use official address first, then geometry/POI when the address does not physically represent the place being mapped.
+
+## Production
+
+- Canonical place: `sorenga_sjobad`
+- Primary category: `sport`
+- Secondary category: `by`
+- Coordinate source: `osm-node:5295458069`
+- Coordinate status: `verified_geometry`
+- Coordinate batch: 73
+- Oslo verified/source-controlled total after production: 220
