@@ -457,3 +457,7 @@ Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`
 | 3 | `brattholmen_naturreservat_etne` | Brattholmen naturreservat | verified_geometry | `miljodirektoratet-naturvern:VV00001741` |
 
 Etne batch 3 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Artskart-revisjonen bruker det samme polygonet og er dokumentert i `reports/etne-natur-batch-4-brattholmen-artskart.json`.
+
+| 4 | `skano_naturreservat_etne` | Skåno naturreservat | verified_geometry | `miljodirektoratet-naturvern:VV00001719` |
+
+Etne batch 4 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Artskart-revisjonen er avgrenset til den samme polygonen og dokumentert i `reports/etne-natur-batch-5-skano-artskart.json`.
