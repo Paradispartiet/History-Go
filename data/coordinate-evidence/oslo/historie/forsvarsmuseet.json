@@ -1,0 +1,85 @@
+{
+  "placeId": "forsvarsmuseet",
+  "placeFile": "data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_exact_building_geometry",
+  "currentCoordinate": {
+    "lat": 59.90451,
+    "lon": 10.74089,
+    "r": 60,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 54830211; identity cross-checked with Forsvarshistorisk museum",
+    "coordType": "building_center",
+    "coordNote": "Det eksakte OSM-bygningsobjektet for Forsvarsmuseet/Hovedarsenalet brukes som museumsanker. Offisiell museumsinformasjon identifiserer besøksstedet som bygning 62 og det gamle arsenalbygget."
+  },
+  "identity": {
+    "currentName": "Forsvarsmuseet",
+    "resolvedIdentity": "Forsvarsmuseet i Hovedarsenalet, bygning 62 på Akershus festning",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil bygningsidentitet",
+    "eksakt fysisk anker inne på Akershus festning",
+    "avgrensning mot parent place akershus_festning"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 54830211",
+      "sourceUrl": "https://www.openstreetmap.org/way/54830211",
+      "sourceObjectId": "osm-way:54830211",
+      "sourceQuality": "exact_museum_building_geometry",
+      "finding": "OSM-wayen representerer Forsvarsmuseets bygg og gir et eget bygningsanker inne på festningen.",
+      "canVerifyCoordinate": true,
+      "reason": "Bygningsgeometrien er kryssjekket mot museets offisielle plassering i bygning 62 og beskrivelse av det gamle arsenalbygget."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Forsvarshistorisk museum – Forsvarsmuseet",
+      "sourceUrl": "https://www.forsvarshistoriskmuseum.no/forsvarsmuseet",
+      "sourceObjectId": "forsvarshistoriskmuseum:forsvarsmuseet",
+      "sourceQuality": "official_building_identity",
+      "finding": "Offisiell kilde identifiserer museet som et selvstendig besøkssted i bygning 62 og det gamle arsenalbygget.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell identitetskryssjekk; OSM-wayen er geometrikilden."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:54830211",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:54830211",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90451,
+      "lon": 10.74089,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "rejectedAlternatives": [
+    {
+      "candidate": "akershus_festning parent marker",
+      "reason": "Parent-markøren representerer hele festningskomplekset og er ikke presis nok for det selvstendige museet i bygning 62."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Behold OSM way 54830211 som building_center for den canonical museum-recorden."
+  },
+  "verifiedAt": "2026-07-20"
+}
