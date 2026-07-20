@@ -382,11 +382,7 @@ def _queue_item(
     assigned: bool = False,
     resolution_code: ModerationResolutionCode | None = None,
 ) -> ModerationQueueItem:
-    closed_at = (
-        NOW
-        if state in {ModerationQueueState.ACTIONED, ModerationQueueState.NO_ACTION}
-        else None
-    )
+    closed_at = NOW if state in {ModerationQueueState.ACTIONED, ModerationQueueState.NO_ACTION} else None
     return ModerationQueueItem(
         queue_item_id=queue_item_id or uuid4(),
         report_id=report_id or uuid4(),
@@ -433,11 +429,7 @@ def _appeal(
     status: AppealStatus = AppealStatus.SUBMITTED,
     decision_reason_code: AppealDecisionReasonCode | None = None,
 ) -> AppealView:
-    decided_at = (
-        NOW
-        if status in {AppealStatus.UPHELD, AppealStatus.MODIFIED, AppealStatus.REVERSED}
-        else None
-    )
+    decided_at = NOW if status in {AppealStatus.UPHELD, AppealStatus.MODIFIED, AppealStatus.REVERSED} else None
     return AppealView(
         appeal_id=appeal_id or uuid4(),
         restriction_id=restriction_id,
