@@ -1,5 +1,7 @@
 export {};
 
+// Transitional DOM bridge for the map strangler migration. Keep this file small
+// and delete individual augmentations as map.ts replaces legacy query patterns.
 declare global {
   /** Internal resize-listener guard used by the MapLibre host element. */
   interface HTMLElement {
