@@ -1,0 +1,73 @@
+{
+  "placeId": "uranienborg_kirke",
+  "placeFile": "data/places/by/oslo/places/uranienborg_kirke.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.92124432218085,
+    "lon": 10.719653654620455,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Holtegata 15, OSLO. Punktet brukes som display- og unlock-marker for Uranienborg kirke-bygningen."
+  },
+  "identity": {
+    "currentName": "Uranienborg kirke",
+    "resolvedIdentity": "Uranienborg kirke at Holtegata 15, Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "normative Geonorge address-first result for Holtegata 15 Oslo",
+    "external institution and local-history sources"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Holtegata%2015%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13110:15",
+      "sourceQuality": "official_address_plus_institution_and_local_history_sources",
+      "finding": "Address-first lookup resolves the documented current church address for Uranienborg kirke.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Holtegata 15, OSLO. Punktet brukes som display- og unlock-marker for Uranienborg kirke-bygningen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Holtegata 15 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13110:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13110:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.92124432218085,
+      "lon": 10.719653654620455,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keep the verified building-address marker and treat the church as one distinct canonical by place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Holtegata 15, OSLO. Punktet brukes som display- og unlock-marker for Uranienborg kirke-bygningen."
+  ]
+}
