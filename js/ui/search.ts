@@ -18,7 +18,6 @@ type SearchableItem = {
   year?: string | number;
   tags?: unknown[];
   emne_ids?: unknown[];
-  [key: string]: unknown;
 };
 
 type SearchPerson = SearchableItem & {
