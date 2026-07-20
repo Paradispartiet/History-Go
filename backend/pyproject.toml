@@ -51,10 +51,19 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 
 [tool.ruff.lint.per-file-ignores]
 "app/api/**/*.py" = ["B008"]
+# The moderation repository contains long SQL predicates inside Python strings.
+# The two test helpers below contain compact formatter-owned conditional expressions.
+# Keep these line-length exceptions narrow; all other Ruff rules remain active.
+"app/domains/social_meet/moderation_repository.py" = ["E501"]
+"tests/test_social_meet_moderation_api.py" = ["E501"]
+"tests/test_social_meet_moderation_service.py" = ["E501"]
 
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+# SQL-heavy repository formatting is kept manual so Ruff does not churn embedded
+# SQL layout while lint/type checks remain active for the file.
+exclude = ["app/domains/social_meet/moderation_repository.py"]
 
 [tool.mypy]
 python_version = "3.12"

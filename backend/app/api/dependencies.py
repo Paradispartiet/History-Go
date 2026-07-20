@@ -5,6 +5,7 @@ from typing import cast
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
+from app.auth.authorization import require_admin, require_moderator
 from app.auth.supabase import (
     AuthConfigurationError,
     AuthPrincipal,
@@ -13,6 +14,8 @@ from app.auth.supabase import (
 )
 from app.core.config import Settings
 from app.core.database import Database
+from app.domains.social_meet.moderation_repository import PostgresSocialMeetModerationRepository
+from app.domains.social_meet.moderation_service import SocialMeetModerationService
 from app.domains.social_meet.repository import PostgresSocialMeetIdentityRepository
 from app.domains.social_meet.safety_repository import PostgresSocialMeetSafetyRepository
 from app.domains.social_meet.safety_service import SocialMeetSafetyService
@@ -61,6 +64,16 @@ def get_social_meet_safety_service(
     )
 
 
+def get_social_meet_moderation_service(
+    database: Database = Depends(get_database),
+) -> SocialMeetModerationService:
+    _require_database(database)
+    return SocialMeetModerationService(
+        PostgresSocialMeetIdentityRepository(database),
+        PostgresSocialMeetModerationRepository(database),
+    )
+
+
 def get_current_user(
     credentials: HTTPAuthorizationCredentials | None = Depends(_bearer),
     verifier: SupabaseTokenVerifier = Depends(get_token_verifier),
@@ -87,3 +100,15 @@ def get_current_user(
             detail="Invalid bearer token",
             headers={"WWW-Authenticate": "Bearer"},
         ) from exc
+
+
+def get_current_moderator(
+    principal: AuthPrincipal = Depends(get_current_user),
+) -> AuthPrincipal:
+    return require_moderator(principal)
+
+
+def get_current_admin(
+    principal: AuthPrincipal = Depends(get_current_user),
+) -> AuthPrincipal:
+    return require_admin(principal)
