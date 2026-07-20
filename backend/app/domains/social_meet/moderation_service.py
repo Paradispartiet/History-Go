@@ -83,6 +83,15 @@ class SocialMeetModerationService:
         resolution_code: ModerationResolutionCode,
         reason_code: RestrictionReasonCode | None,
     ) -> ModerationQueueItem:
+        if (
+            resolution_code is ModerationResolutionCode.PROFILE_SUSPENDED
+            and reason_code is None
+        ):
+            raise SocialMeetDomainError(
+                code="moderation_reason_required",
+                detail="A suspension resolution requires a structured reason code",
+            )
+
         item = self._moderation_repository.resolve_report(
             report_id,
             resolution_code=resolution_code,
@@ -93,11 +102,7 @@ class SocialMeetModerationService:
 
         restriction: RestrictionView | None = None
         if resolution_code is ModerationResolutionCode.PROFILE_SUSPENDED:
-            if reason_code is None:
-                raise SocialMeetDomainError(
-                    code="moderation_reason_required",
-                    detail="A suspension resolution requires a structured reason code",
-                )
+            assert reason_code is not None
             restriction = self._moderation_repository.suspend_profile(
                 item.subject_profile_id,
                 reason_code=reason_code,
