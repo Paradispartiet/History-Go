@@ -72,6 +72,20 @@ declare global {
       close?: () => void;
       toggle?: () => void;
     };
+    HGNearbyFilters?: {
+      initializeFromStorage?: () => void;
+      normalizeSort?: (value: unknown) => "distance" | "oldest" | "newest";
+      normalizeBadgeFilter?: (value: unknown) => string;
+      getCategoryById?: (value: unknown) => any;
+      getBadgeOptions?: () => string[];
+      getActiveBadgeFilter?: () => string;
+      setActiveBadgeFilter?: (value: unknown) => string;
+      isBadgeFilterActive?: () => boolean;
+      cyclePlaceFilter?: () => "unvisited" | "all" | "unlocked";
+      cycleNatureFilter?: () => "all" | "unlocked" | "flora" | "fauna";
+      toggleFavorites?: () => boolean;
+      cycleSort?: () => "distance" | "oldest" | "newest";
+    };
     HG_SocialSignalBridge?: any;
     HG_PublicProfileReadModel?: any;
     HG_PublicProfilePreviewPanel?: any;
@@ -248,6 +262,7 @@ declare global {
     HG_NATURTRO_STYLE_URL?: any;
     HG_NEARBY_BADGE_FILTER?: any;
     HG_NEARBY_FILTER?: any;
+    HG_NEARBY_FAVORITES_ONLY?: boolean;
     HG_NEARBY_SORT?: any;
     HG_ORS?: any;
     HG_POS?: any;

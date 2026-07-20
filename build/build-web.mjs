@@ -49,7 +49,8 @@ const STARTUP_ENTRIES = [
   { in: "js/core/layerManager.ts", out: "layerManager" },
   { in: "js/map.ts", out: "map" },
   { in: "js/ui/search.ts", out: "search" },
-  { in: "js/ui/nearbyDrawer.ts", out: "nearbyDrawer" }
+  { in: "js/ui/nearbyDrawer.ts", out: "nearbyDrawer" },
+  { in: "js/ui/nearbyFilters.ts", out: "nearbyFilters" }
 ];
 
 // The position runtime bundles several focused modules behind one legacy global
@@ -63,7 +64,8 @@ const STARTUP_COMPATIBILITY_OUTPUTS = [
   { out: "layerManager", target: "js/core/layerManager.js" },
   { out: "map", target: "js/map.js" },
   { out: "search", target: "js/ui/search.js" },
-  { out: "nearbyDrawer", target: "js/ui/nearby-drawer.js" }
+  { out: "nearbyDrawer", target: "js/ui/nearby-drawer.js" },
+  { out: "nearbyFilters", target: "js/ui/nearby-filters.js" }
 ];
 
 const COMPACT_COMPATIBILITY_OUTPUTS = [
