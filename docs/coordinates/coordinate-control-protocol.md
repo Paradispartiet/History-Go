@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 251 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 96 lukker de to siste ukontrollerte recordene i `places_kunst.json`: Emanuel Vigelands mausoleum flyttes fra Wikidata til et eksakt navngitt OSM-objekt, mens Framtidsbibliotekets publiserte besøkskoordinat beholdes etter direkte DMS-til-desimal-konvertering. Ingen nearest/first-hit-logikk eller Wikidata-koordinat brukes.
+Oslo-tabellen inneholder nå 255 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 97–100 legger til Paulus kirke, Purenkel galleri, Torshovparken og HODET N.N. med verifiserte adresse- eller objektankre. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -289,6 +289,10 @@ Batch 95 (2026-07-21) reviderer `korketrekkeren` som lineær akebakke/rute, ikke
 
 Batch 96 (2026-07-21) avslutter `places_kunst.json` i kildefilens rekkefølge etter at de fire første recordene allerede var dokumentert i tidligere batcher. `emanuel_vigeland_mausoleum` bruker nå det eksakt navngitte OSM-punktet node 974731248, kontrollert direkte mot OSM API og kryssjekket mot museets offisielle adresse; Wikidata er fjernet som koordinatkilde. `framtidsbiblioteket_nordmarka` beholder Visit Norways eksplisitt publiserte besøkskoordinater for kunstskogen, matematisk omregnet direkte fra DMS uten kartgjetting.
 
+| 97 | `paulus_kirke` | Paulus kirke | verified | `geonorge-adresser-v1:0301:17489:31` |
+| 98 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
+| 99 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
+| 100 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.

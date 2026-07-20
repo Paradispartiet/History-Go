@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T23:40:42.101Z
+Generert: 2026-07-20T23:47:33.422Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -231,3 +231,7 @@ Generert: 2026-07-20T23:40:42.101Z
 | alna_smalvoll | data/coordinate-evidence/oslo/natur/alna_smalvoll.json | needs_research | needs_geometry | OK |
 | alna_bryn | data/coordinate-evidence/oslo/natur/alna_bryn.json | needs_research | needs_geometry | OK |
 | alna_utlop_bjorvika | data/coordinate-evidence/oslo/natur/alna_utlop_bjorvika.json | needs_research | needs_geometry | OK |
+| paulus_kirke | data/coordinate-evidence/oslo/historie/paulus_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| purenkel_galleri | data/coordinate-evidence/oslo/kunst/purenkel_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| torshovparken | data/coordinate-evidence/oslo/by/torshovparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| hodet_nn_torshovdalen | data/coordinate-evidence/oslo/kunst/hodet_nn_torshovdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
