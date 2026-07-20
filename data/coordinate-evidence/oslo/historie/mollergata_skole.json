@@ -1,0 +1,74 @@
+{
+  "placeId": "mollergata_skole",
+  "placeFile": "data/places/historie/oslo/places_historie/mollergata_skole.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.918190097882,
+    "lon": 10.750406532588284,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 49, OSLO. Punktet brukes som display-marker for det historiske skolekomplekset; Oslo Skolemuseum modelleres som et institusjonslag i samme anlegg."
+  },
+  "identity": {
+    "currentName": "Møllergata skole",
+    "resolvedIdentity": "Møllergata skole, det historiske kommunale skolekomplekset i Møllergata 49 med Oslo Skolemuseum som institusjonslag i bygg D",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell stedsidentitet",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=M%C3%B8llergata%2049%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:49",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Møllergata 49 Oslo. Oslo Skolemuseum holder til i en del av Møllergata skole. Det opprettes derfor én canonical markør for skolekomplekset, ikke en overlappende separat museumspinne.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 49, OSLO. Punktet brukes som display-marker for det historiske skolekomplekset; Oslo Skolemuseum modelleres som et institusjonslag i samme anlegg."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Møllergata 49 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:49",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:49",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.918190097882,
+      "lon": 10.750406532588284,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 49, OSLO. Punktet brukes som display-marker for det historiske skolekomplekset; Oslo Skolemuseum modelleres som et institusjonslag i samme anlegg.",
+    "Oslo Skolemuseum holder til i en del av Møllergata skole. Det opprettes derfor én canonical markør for skolekomplekset, ikke en overlappende separat museumspinne."
+  ]
+}

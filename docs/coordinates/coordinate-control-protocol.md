@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 185 verifiserte eller kildekontrollerte canonical steder. Batch 44 korrigerer og koordinatfester Kornmagasinet på Akershus festning som dokumentert 1788-bygg. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 39.
+Oslo-tabellen inneholder nå 189 verifiserte eller kildekontrollerte canonical steder. Batch 46 løser Fiskehallen på Vippetangen med entydig Geonorge-adresse og korrigert place-scope. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 38.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -207,6 +207,10 @@ Oslo-tabellen inneholder nå 185 verifiserte eller kildekontrollerte canonical s
 | 43 | `arbeidermuseet` | Arbeidermuseet | verified | `geonorge-adresser-v1:0301:16135:28` |
 | 43 | `nobels_fredssenter` | Nobels Fredssenter | verified | `geonorge-adresser-v1:0301:18199:1` |
 | 44 | `oslo_kornmagasin` | Kornmagasinet på Akershus festning | verified_geometry | `osm-way:669390505` |
+| 45 | `kunstnernes_hus` | Kunstnernes Hus | verified | `geonorge-adresser-v1:0301:18496:17` |
+| 45 | `vigelandmuseet` | Vigelandmuseet | verified | `geonorge-adresser-v1:0301:15080:32` |
+| 45 | `mollergata_skole` | Møllergata skole | verified | `geonorge-adresser-v1:0301:14943:49` |
+| 46 | `vippetangen_fisketorg` | Fiskehallen på Vippetangen | verified | `geonorge-adresser-v1:0301:10077:23` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -236,9 +240,13 @@ Batch 43 (2026-07-20) produserer tre videre museumssteder fra samme lukkede audi
 
 Batch 44 (2026-07-20) løser `oslo_kornmagasin` som et identitetsproblem før koordinatproblemet. Den tidligere aktive «Christiania kornmagasin»-recorden fra 1785 manglet eksternt verifisert identitet, noe også eksisterende quiz-QC dokumenterte. Recorden er korrigert til Kornmagasinet, inventar 0008 på Akershus festning, offisielt datert 1788. Eksakt navngitt OSM-way 669390505 brukes som bygningsgeometri, kryssjekket mot fredningsforskriften. Fysisk overlap mot det separate Bakeriet er kontrollert mot dets eget OSM-bygningsobjekt 669390521. Den eksisterende quizfilen er samtidig korrigert slik at den ikke lenger lærer bort den udokumenterte 1785-identiteten eller bruker place-filen som faktakilde.
 
+Batch 45 (2026-07-20) legger til tre fysisk avklarte institusjonssteder fra den lukkede museumsauditen. `kunstnernes_hus` bruker Wergelandsveien 17 som eget kunstinstitusjonsbygg. `vigelandmuseet` bruker Nobels gate 32 som atelier-, bolig- og museumsbygning og holdes separat fra det større parkankeret `vigelandsparken`. `mollergata_skole` bruker Møllergata 49 som canonical skolekompleks, mens Oslo Skolemuseum modelleres som institusjonslag i bygg D i stedet for en separat overlappende markør.
+
+Batch 46 (2026-07-20) løser `vippetangen_fisketorg` ved å avgrense den tidligere blandede fisketorg/fiskehavn/Fiskehallen-recorden til dagens konkrete Fiskehallen på Akershusstranda 23. Fisketorget ble flyttet til Vippetangen i 1905; dagens større hall ble oppført 1932–33 og åpnet i 1933. Det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:10077:23` brukes som canonical bygningsanker. Punktet representerer ikke hele Vippetangen eller den historiske fiskehavna.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 185 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 189 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -274,7 +282,6 @@ Disse kontrollene er fullført, men teller ikke blant de 185 verifiserte eller k
 | `jernbanetorget_trafikknutepunkt` – Jernbanetorget – handelsknutepunktet | needs_review | Fysisk duplikat av allerede canonical og koordinatkontrollerte `jernbanetorget`; næringslivsvinkelen skaper ikke et nytt fysisk sted. | Migrer innhold/referanser til `jernbanetorget`, eller dokumenter en faktisk separat delentitet. |
 | `oslo_kraftselskap` – Oslo Lysverker | needs_review | Recorden beskriver en institusjon og et distribusjonssystem med flere historiske anlegg; Sommerrogata 1 er et senere hovedkontor, ikke en entydig representasjon av hele 1892-recorden. | Definer ett konkret bygg/anlegg som place eller flytt institusjonshistorien ut av place-modellen. |
 | `grensen_kjopesenter` – Grensen – handelens sentrum | needs_review | ID/type antyder kjøpesenter/knutepunkt, mens navn, tekst og kilder beskriver den lineære gaten Grensen. Ett punkt uten traségeometri/ankre kan ikke verifisere hele gata. | Normaliser til gate og legg inn kildebelagte endepunkter/traségeometri før koordinaten godkjennes. |
-| `vippetangen_fisketorg` – Vippetangen fisketorg | needs_review | Aktiv record oppgir 1890, men fisketorget/fiskehavna ble flyttet til Vippetangen i 1905 og recorden blander marked, havn og senere Fiskehallen. | Rett tidslinje og velg eksplisitt mellom historisk fiskehavn/område og konkret Fiskehallen-bygg. |
 | `frysja_industriomrade` – Frysja industriområde | needs_review | Området er reelt, men dagens legacy `verified`-punkt bygger på `manual_map_check` og mangler kildebelagt områdegeometri eller flere area-ankre. | Hent offisiell plan-/områdegeometri eller dokumenterte area-ankre før verified-status kan forsvares. |
 | `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
 | `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
