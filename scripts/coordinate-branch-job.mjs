@@ -1,18 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const ROOT = process.cwd();
-const REPORT_DIR = 'reports/oslo-coordinate-control-batch-39';
+const VERIFIED_AT = '2026-07-20';
 const PLACE_MANIFEST = 'data/places/manifest.json';
-const GRENSEN_WAYS = [67882889, 179095459, 696754516];
-const RING3_QUERIES = [
-  'Granfosstunnelen Oslo',
-  'Smestadkrysset Oslo',
-  'Ullevålskrysset Oslo',
-  'Storokrysset Oslo',
-  'Sinsenkrysset Oslo',
-  'Ryen Ring 3 Oslo'
-];
+const EVIDENCE_MANIFEST = 'data/coordinate-evidence/manifest.json';
+const REPORT_DIR = 'reports/oslo-coordinate-control-batch-39';
+const PLACE_ID = 'grensen_kjopesenter';
+const OSM_SEGMENTS = ['osm-way:67882889', 'osm-way:179095459', 'osm-way:696754516'];
 
 function abs(rel) { return path.join(ROOT, rel); }
 function readJson(rel) { return JSON.parse(fs.readFileSync(abs(rel), 'utf8')); }
@@ -20,6 +16,7 @@ function writeJson(rel, data) {
   fs.mkdirSync(path.dirname(abs(rel)), { recursive: true });
   fs.writeFileSync(abs(rel), JSON.stringify(data, null, 2) + '\n');
 }
+function sha256File(rel) { return crypto.createHash('sha256').update(fs.readFileSync(abs(rel))).digest('hex'); }
 function rowsFrom(data) {
   if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.places)) return data.places;
@@ -27,186 +24,225 @@ function rowsFrom(data) {
   if (data && typeof data.id === 'string') return [data];
   return [];
 }
-function activeSource(placeId) {
+function snapshot(place) {
+  return {
+    lat: place.lat ?? null,
+    lon: place.lon ?? null,
+    r: place.r ?? null,
+    coordStatus: place.coordStatus ?? '',
+    coordSource: place.coordSource ?? '',
+    coordType: place.coordType ?? '',
+    coordNote: place.coordNote ?? ''
+  };
+}
+function splitManifestRel(sourceRel) {
+  const p = path.parse(sourceRel);
+  return path.join(p.dir, `${p.name}_manifest${p.ext || '.json'}`).replace(/\\/g, '/');
+}
+function splitIndexRel(sourceRel) {
+  const p = path.parse(sourceRel);
+  return path.join(p.dir, `${p.name}_index${p.ext || '.json'}`).replace(/\\/g, '/');
+}
+
+function findActiveSource(placeId) {
   const hits = [];
   for (const entry of readJson(PLACE_MANIFEST).files || []) {
     const rel = `data/${entry}`;
     if (!fs.existsSync(abs(rel))) continue;
-    for (const place of rowsFrom(readJson(rel))) {
-      if (place?.id === placeId) hits.push({
-        sourceFile: rel, name: place.name, lat: place.lat, lon: place.lon, r: place.r,
-        coordStatus: place.coordStatus || '', coordType: place.coordType || '', coordSource: place.coordSource || '',
-        sourceObjectId: place.sourceObjectId || '', locatorType: place.locatorType || '', anchors: place.anchors || [], geometry: place.geometry || null
-      });
-    }
+    const data = readJson(rel);
+    const rows = rowsFrom(data);
+    const index = rows.findIndex((row) => row?.id === placeId);
+    if (index >= 0) hits.push({ sourceRel: rel, data, rows, index });
   }
-  return hits;
-}
-function delay(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
-function normalize(value) {
-  return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
-}
-function resultName(result) {
-  return result?.namedetails?.name || result?.name || String(result?.display_name || '').split(',')[0].trim();
+  if (hits.length !== 1) throw new Error(`${placeId}: expected one active source, found ${hits.length}`);
+  return hits[0];
 }
 
-async function fetchJson(url, headers = {}) {
-  const response = await fetch(url, { headers: { 'User-Agent': 'History-Go-coordinate-control/1.0 (repository audit)', ...headers } });
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
-  return await response.json();
+function writePlaceCopies(hit, place) {
+  if (Array.isArray(hit.data)) hit.data[hit.index] = place;
+  else if (Array.isArray(hit.data.places)) hit.data.places[hit.index] = place;
+  else if (Array.isArray(hit.data.items)) hit.data.items[hit.index] = place;
+  else Object.assign(hit.data, place);
+  writeJson(hit.sourceRel, hit.data);
+
+  const manifestRel = splitManifestRel(hit.sourceRel);
+  if (!fs.existsSync(abs(manifestRel))) return;
+  const splitManifest = readJson(manifestRel);
+  const manifestRow = (splitManifest.places || []).find((row) => row?.id === place.id);
+  if (!manifestRow?.file) throw new Error(`${place.id}: split child missing from ${manifestRel}`);
+  const childRel = path.join(path.dirname(manifestRel), manifestRow.file).replace(/\\/g, '/');
+  writeJson(childRel, place);
+  manifestRow.sha256 = sha256File(childRel);
+  if (splitManifest.source_sha256 !== undefined) splitManifest.source_sha256 = sha256File(hit.sourceRel);
+  if (splitManifest.generated_at !== undefined) splitManifest.generated_at = new Date().toISOString();
+  writeJson(manifestRel, splitManifest);
+
+  const indexRel = splitIndexRel(hit.sourceRel);
+  if (!fs.existsSync(abs(indexRel))) return;
+  const indexData = readJson(indexRel);
+  const indexRow = rowsFrom(indexData).find((row) => row?.id === place.id);
+  if (!indexRow) return;
+  const fields = [
+    'lat','lon','r','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole',
+    'coordType','coordStatus','coordSource','coordSourceId','coordSourceUrl','coordPrecisionM','coordVerifiedAt',
+    'coordNote','geometry','anchors'
+  ];
+  for (const field of fields) {
+    if (Object.prototype.hasOwnProperty.call(place, field)) indexRow[field] = place[field];
+    else if (Object.prototype.hasOwnProperty.call(indexRow, field)) delete indexRow[field];
+  }
+  writeJson(indexRel, indexData);
 }
 
-async function fetchOsmWayFull(id) {
-  return await fetchJson(`https://api.openstreetmap.org/api/0.6/way/${id}/full.json`);
+function findEvidence(placeId) {
+  const manifest = readJson(EVIDENCE_MANIFEST);
+  const hits = [];
+  for (const entry of manifest.files || []) {
+    const rel = `data/coordinate-evidence/${entry}`;
+    if (!fs.existsSync(abs(rel))) continue;
+    const data = readJson(rel);
+    if (data?.placeId === placeId) hits.push({ rel, data });
+  }
+  if (hits.length !== 1) throw new Error(`${placeId}: expected one evidence file, found ${hits.length}`);
+  return hits[0];
 }
 
-function extractWayGeometry(payload, wayId) {
-  const nodes = new Map(payload.elements.filter((e) => e.type === 'node').map((e) => [e.id, { id: e.id, lat: e.lat, lon: e.lon }]));
-  const way = payload.elements.find((e) => e.type === 'way' && e.id === wayId);
-  if (!way) throw new Error(`OSM way ${wayId} missing from full response`);
-  return {
-    id: wayId,
-    tags: way.tags || {},
-    nodeIds: way.nodes,
-    coordinates: way.nodes.map((id) => nodes.get(id)).filter(Boolean)
+function updateEvidence(place, sourceRel) {
+  const hit = findEvidence(PLACE_ID);
+  const e = hit.data;
+  e.placeFile = sourceRel;
+  e.evidenceStatus = 'applied_to_place';
+  e.coordinateDecision = 'do_not_change_coordinates_yet';
+  e.currentCoordinate = snapshot(place);
+  e.identity = {
+    currentName: place.name,
+    resolvedIdentity: 'gaten Grensen fra Møllergata ved Stortorvet til Professor Aschehougs plass',
+    identityStatus: 'resolved',
+    identityProblem: '',
+    locatorTypeCandidate: 'street',
+    requiresSplit: false,
+    splitReason: ''
   };
-}
-
-function reverseSegment(segment) {
-  return { ...segment, nodeIds: [...segment.nodeIds].reverse(), coordinates: [...segment.coordinates].reverse() };
-}
-
-function stitchSegments(input) {
-  const segments = input.map((s) => ({ ...s, nodeIds: [...s.nodeIds], coordinates: [...s.coordinates] }));
-  if (!segments.length) return { orderedSegments: [], coordinates: [], fullyConnected: false };
-  const ordered = [segments.shift()];
-  while (segments.length) {
-    const first = ordered[0];
-    const last = ordered[ordered.length - 1];
-    const firstStart = first.nodeIds[0];
-    const firstEnd = first.nodeIds[first.nodeIds.length - 1];
-    const lastStart = last.nodeIds[0];
-    const lastEnd = last.nodeIds[last.nodeIds.length - 1];
-    let matched = false;
-    for (let i = 0; i < segments.length; i += 1) {
-      const seg = segments[i];
-      const start = seg.nodeIds[0];
-      const end = seg.nodeIds[seg.nodeIds.length - 1];
-      if (start === lastEnd) { ordered.push(seg); segments.splice(i, 1); matched = true; break; }
-      if (end === lastEnd) { ordered.push(reverseSegment(seg)); segments.splice(i, 1); matched = true; break; }
-      if (end === firstStart) { ordered.unshift(seg); segments.splice(i, 1); matched = true; break; }
-      if (start === firstStart) { ordered.unshift(reverseSegment(seg)); segments.splice(i, 1); matched = true; break; }
-      if (start === firstEnd && ordered.length === 1) { ordered.push(seg); segments.splice(i, 1); matched = true; break; }
-      if (end === lastStart && ordered.length === 1) { ordered.unshift(seg); segments.splice(i, 1); matched = true; break; }
-    }
-    if (!matched) break;
-  }
-  const coordinates = [];
-  for (const segment of ordered) {
-    for (const point of segment.coordinates) {
-      const prev = coordinates[coordinates.length - 1];
-      if (!prev || prev.id !== point.id) coordinates.push(point);
-    }
-  }
-  return { orderedSegments: ordered.map((s) => s.id), coordinates, fullyConnected: segments.length === 0, unstitchedSegments: segments.map((s) => s.id) };
-}
-
-function haversine(a, b) {
-  const R = 6371000;
-  const toRad = (v) => v * Math.PI / 180;
-  const dLat = toRad(b.lat - a.lat);
-  const dLon = toRad(b.lon - a.lon);
-  const lat1 = toRad(a.lat);
-  const lat2 = toRad(b.lat);
-  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(h));
-}
-
-function pathMidpoint(points) {
-  if (!points.length) return null;
-  if (points.length === 1) return { lat: points[0].lat, lon: points[0].lon };
-  const lengths = [];
-  let total = 0;
-  for (let i = 1; i < points.length; i += 1) {
-    const d = haversine(points[i - 1], points[i]);
-    lengths.push(d); total += d;
-  }
-  let target = total / 2;
-  for (let i = 1; i < points.length; i += 1) {
-    const d = lengths[i - 1];
-    if (target <= d) {
-      const t = d ? target / d : 0;
-      return { lat: points[i - 1].lat + (points[i].lat - points[i - 1].lat) * t, lon: points[i - 1].lon + (points[i].lon - points[i - 1].lon) * t };
-    }
-    target -= d;
-  }
-  const last = points[points.length - 1];
-  return { lat: last.lat, lon: last.lon };
-}
-
-async function nominatim(query) {
-  const url = new URL('https://nominatim.openstreetmap.org/search');
-  url.searchParams.set('q', query);
-  url.searchParams.set('format', 'jsonv2');
-  url.searchParams.set('limit', '12');
-  url.searchParams.set('countrycodes', 'no');
-  url.searchParams.set('addressdetails', '1');
-  url.searchParams.set('namedetails', '1');
-  url.searchParams.set('extratags', '1');
-  return await fetchJson(url.toString(), { 'Accept-Language': 'nb,en;q=0.8' });
-}
-
-async function main() {
-  const grensenSegments = [];
-  for (const id of GRENSEN_WAYS) {
-    const payload = await fetchOsmWayFull(id);
-    writeJson(`${REPORT_DIR}/osm-raw/grensen-way-${id}-full.json`, payload);
-    grensenSegments.push(extractWayGeometry(payload, id));
-    await delay(500);
-  }
-  const stitched = stitchSegments(grensenSegments);
-  const grensen = {
-    wayIds: GRENSEN_WAYS,
-    segments: grensenSegments,
-    stitched,
-    midpoint: pathMidpoint(stitched.coordinates),
-    endpoints: stitched.coordinates.length ? [stitched.coordinates[0], stitched.coordinates[stitched.coordinates.length - 1]] : []
-  };
-
-  const ring3 = [];
-  for (const query of RING3_QUERIES) {
-    const results = await nominatim(query);
-    writeJson(`${REPORT_DIR}/nominatim-results/ring3-${normalize(query).replace(/ /g, '-')}.json`, { query, results });
-    ring3.push({
-      query,
-      candidates: results.map((result) => ({
-        name: resultName(result), osm_type: result.osm_type, osm_id: result.osm_id,
-        lat: result.lat, lon: result.lon, category: result.category, type: result.type,
-        display_name: result.display_name, address: result.address, extratags: result.extratags || {}
-      }))
-    });
-    await delay(1100);
-  }
-
-  writeJson(`${REPORT_DIR}/research-summary.json`, {
-    date: '2026-07-20',
-    method: 'Research only. Grensen way geometry is fetched and stitched deterministically; Ring 3 anchor candidates are collected without applying first/nearest results.',
-    activeSources: {
-      grensen_kjopesenter: activeSource('grensen_kjopesenter'),
-      ring_3: activeSource('ring_3')
+  e.requiredEvidence = [];
+  e.evidence = [
+    {
+      sourceProvider: 'manual_research',
+      sourceName: 'Oslo byleksikon – Grensen',
+      sourceUrl: 'https://oslobyleksikon.no/side/Grensen',
+      sourceObjectId: 'oslobyleksikon:grensen',
+      sourceQuality: 'documented_linear_identity',
+      finding: 'Kilden avgrenser Grensen som gate fra Møllergata ved Stortorvet til Professor Aschehougs plass og dokumenterer den som historisk handelsgate.',
+      canVerifyCoordinate: true,
+      reason: place.coordNote
     },
-    grensen,
-    ring3,
-    sourceNotes: {
-      grensen: 'Oslo byleksikon defines Grensen from Møllergata at Stortorvet to Professor Aschehougs plass. The three exact named OSM street ways are evaluated as one linear object.',
-      ring3: 'Statens vegvesen documents Ring 3 as rv. 150 on multiple Oslo sections and explicitly refers to the Ryen–Granfosstunnelen corridor. Multiple route anchors are required; one midpoint is insufficient.'
-    }
-  });
-
-  fs.mkdirSync(abs(REPORT_DIR), { recursive: true });
-  fs.writeFileSync(abs(`${REPORT_DIR}/README.md`), `# Oslo koordinatkontroll – batch 39 research\n\nDato: 2026-07-20\n\nResearch-passet bygger lineært grunnlag for \`grensen_kjopesenter\` og \`ring_3\`.\n\n- Grensen: de tre eksakte navngitte OSM-way-segmentene hentes med full nodegeometri og forsøkes sydd sammen deterministisk.\n- Ring 3: flere navngitte kryss/tunnelankre langs rv. 150 samles; ingen første-/nærmeste-treff brukes automatisk.\n\nIngen canonical koordinater endres i research-passet.\n`);
-  console.log(JSON.stringify({ ok: true, grensen: { fullyConnected: stitched.fullyConnected, midpoint: grensen.midpoint, endpoints: grensen.endpoints }, ring3Queries: ring3.length }, null, 2));
+    ...OSM_SEGMENTS.map((sourceObjectId) => ({
+      sourceProvider: 'osm',
+      sourceName: `OpenStreetMap ${sourceObjectId} – Grensen`,
+      sourceUrl: `https://www.openstreetmap.org/way/${sourceObjectId.split(':')[1]}`,
+      sourceObjectId,
+      sourceQuality: 'exact_named_street_segment_geometry',
+      finding: 'Segmentet er eksplisitt navngitt Grensen. Segmentene omfatter fysisk oppdelte/parallelle kjørebaner og brukes derfor som segmentdokumentasjon sammen med to lineære endeankre, ikke som én falskt sammenhengende polyline.',
+      canVerifyCoordinate: true,
+      reason: place.coordNote
+    }))
+  ];
+  e.addressCandidates = [];
+  e.sourceObjectCandidates = OSM_SEGMENTS.map((sourceObjectId) => ({ sourceProvider: 'osm', sourceObjectId, canApplyToPlace: true }));
+  e.geometryCandidates = OSM_SEGMENTS.map((sourceObjectId) => ({ sourceProvider: 'osm', sourceObjectId, canApplyToPlace: true }));
+  e.coordinateCandidates = [{ lat: place.lat, lon: place.lon, coordRole: 'line_anchor', canApplyToPlace: true }];
+  e.decision = { canBecomeVerified: true, blockedReason: '', nextAction: 'Gateidentitet er normalisert og kildebelagte endepunkter/segmenter er anvendt.' };
+  e.notes = [place.coordNote];
+  writeJson(hit.rel, e);
 }
 
-main().catch((error) => { console.error(error); process.exit(1); });
+function updateProtocol(place) {
+  const rel = 'docs/coordinates/coordinate-control-protocol.md';
+  let text = fs.readFileSync(abs(rel), 'utf8');
+  text = text.replace(/^Sist oppdatert: .*$/m, `Sist oppdatert: ${VERIFIED_AT}`);
+
+  if (!text.includes(`| 39 | \`${PLACE_ID}\` |`)) {
+    const row = `| 39 | \`${PLACE_ID}\` | ${place.name} | ${place.coordStatus} | \`${place.sourceObjectId}\` |`;
+    const anchor = '| 38 | `st_halvard_bryggeri` | St. Halvard bryggeri | verified_historical_source | `oslobyleksikon:st-halvards-bryggeri` |';
+    text = text.includes(anchor)
+      ? text.replace(anchor, `${anchor}\n${row}`)
+      : text.replace('### Dokumenterte Oslo-kontroller uten godkjent koordinat', `${row}\n\n### Dokumenterte Oslo-kontroller uten godkjent koordinat`);
+  }
+
+  text = text.split('\n').filter((line) => !line.includes('| Grensen – historisk handelsgate | needs_review')).join('\n');
+  const note = 'Batch 39 (2026-07-20) normaliserer `grensen_kjopesenter` til den faktiske lineære gaten Grensen. Oslo byleksikon avgrenser gaten fra Møllergata ved Stortorvet til Professor Aschehougs plass; tre eksakte navngitte OSM-way-segmenter dokumenterer gateløpet, men parallelle kjørebaner modelleres ikke som én falskt sammenhengende polyline. To kildebelagte endeankre og et representativt line_anchor brukes. `ring_3` forblir needs_review: research fant flere likeverdige komponentobjekter ved flere kryss og manglet et entydig Ullevål-anker, så ingen vilkårlig ankerkjede er godkjent.';
+  if (!text.includes(note)) text = text.replace('### Dokumenterte Oslo-kontroller uten godkjent koordinat', `${note}\n\n### Dokumenterte Oslo-kontroller uten godkjent koordinat`);
+
+  const osloStart = text.indexOf('## Oslo');
+  const unresolvedStart = text.indexOf('### Dokumenterte Oslo-kontroller uten godkjent koordinat');
+  const etneStart = text.indexOf('## Etne');
+  const verifiedCount = (text.slice(osloStart, unresolvedStart).match(/^\| \d+ \|/gm) || []).length;
+  const unresolvedSection = text.slice(unresolvedStart, etneStart > unresolvedStart ? etneStart : text.length);
+  const unresolvedCount = unresolvedSection.split('\n').filter((line) => line.startsWith('| ') && !line.startsWith('|---') && !line.startsWith('| kandidat')).length;
+  text = text.replace(/^Oslo-tabellen inneholder nå .*$/m, `Oslo-tabellen inneholder nå ${verifiedCount} verifiserte eller kildekontrollerte canonical steder. Batch 39 normaliserer Grensen som lineær handelsgate med kildebelagte endeankre, mens Ring 3 holdes tilbake til en entydig ruteankermodell. Antallet fullførte kontroller uten godkjent Oslo-koordinat er ${unresolvedCount}.`);
+  text = text.replace(/^Disse kontrollene er fullført, men teller ikke blant de \d+ verifiserte eller kildekontrollerte canonical Oslo-stedene\.$/m, `Disse kontrollene er fullført, men teller ikke blant de ${verifiedCount} verifiserte eller kildekontrollerte canonical Oslo-stedene.`);
+  fs.writeFileSync(abs(rel), text);
+}
+
+const hit = findActiveSource(PLACE_ID);
+const before = structuredClone(hit.rows[hit.index]);
+const place = {
+  ...before,
+  name: 'Grensen – handelsgate',
+  lat: 59.91337935,
+  lon: 10.74439645,
+  r: 170,
+  locatorType: 'street',
+  sourceProvider: 'manual_research',
+  sourceObjectId: 'oslobyleksikon:grensen',
+  geocodeAccuracy: 'semantic_anchor',
+  coordRole: 'line_anchor',
+  coordType: 'street_midpoint',
+  coordStatus: 'verified_geometry',
+  coordSource: 'Oslo byleksikon – Grensen; OpenStreetMap ways 67882889, 179095459 og 696754516',
+  coordSourceId: 'oslobyleksikon:grensen',
+  coordSourceUrl: 'https://oslobyleksikon.no/side/Grensen',
+  coordVerifiedAt: VERIFIED_AT,
+  coordNote: 'Recorden representerer gaten Grensen, ikke et kjøpesenter eller ett knutepunkt. Oslo byleksikon avgrenser gaten fra Møllergata ved Stortorvet til Professor Aschehougs plass. History Go bruker et representativt line_anchor mellom de to dokumenterte gateendene. Tre eksakte OSM-way-segmenter med navnet Grensen dokumenterer den fysiske gaten; fordi østlige deler er modellert som parallelle kjørebaner og ikke deler alle noder med vestsegmentet, behandles de som segmentgeometri og ikke som én kunstig sammenhengende polyline.',
+  anchors: [
+    {
+      id: 'grensen_nordvest_professor_aschehougs_plass',
+      name: 'Grensen nordvest – Professor Aschehougs plass',
+      type: 'route_point',
+      lat: 59.9140357,
+      lon: 10.7426391,
+      r: 55,
+      sourceObjectId: 'osm-node:1180721060'
+    },
+    {
+      id: 'grensen_sorost_stortorvet_mollergata',
+      name: 'Grensen sørøst – Møllergata ved Stortorvet',
+      type: 'route_point',
+      lat: 59.912723,
+      lon: 10.7461538,
+      r: 55,
+      sourceObjectId: 'osm-node:1894342703'
+    }
+  ]
+};
+if (place.quiz_profile) {
+  place.quiz_profile = structuredClone(place.quiz_profile);
+  place.quiz_profile.place_type = 'gate';
+  place.quiz_profile.subtype = 'historisk_handelsgate';
+  place.quiz_profile.signature_features = [
+    'historisk handelsgate mellom Stortorvet og Professor Aschehougs plass',
+    'tett sentrumshandel og vareflyt langs et kort lineært gateløp',
+    'fysisk gatestruktur dokumentert med flere OSM-segmenter og to endeankre'
+  ];
+  place.quiz_profile.notes = 'Spør Grensen som historisk handelsgate og lineært byrom, ikke som kjøpesenter eller generisk knutepunkt.';
+}
+
+writePlaceCopies(hit, place);
+updateEvidence(place, hit.sourceRel);
+updateProtocol(place);
+writeJson(`${REPORT_DIR}/application-results.json`, {
+  date: VERIFIED_AT,
+  applied: [{ id: PLACE_ID, before: snapshot(before), after: snapshot(place), sourceObjectId: place.sourceObjectId, segmentObjectIds: OSM_SEGMENTS, anchors: place.anchors }],
+  unchanged: [{ id: 'ring_3', result: 'unchanged_needs_review', reason: 'Anchor research returned multiple equivalent road components at several named junctions, no Ullevål result, and no unambiguous complete route-anchor chain.' }]
+});
+fs.writeFileSync(abs(`${REPORT_DIR}/README.md`), `# Oslo koordinatkontroll – batch 39\n\nDato: ${VERIFIED_AT}\n\n- \`grensen_kjopesenter\` er normalisert til **Grensen – handelsgate** og får \`verified_geometry\` som lineært gateobjekt. Oslo byleksikon avgrenser gateløpet; tre eksakte OSM-way-segmenter dokumenterer fysisk gategeometri, mens to endeankre brukes fordi parallelle kjørebaner ikke skal tvinges inn i én falsk polyline.\n- \`ring_3\` forblir **needs_review**. Researchen fant flere likeverdige trafikkobjekter ved Smestad, Storo og Sinsen, to Granfosstunnel-way-er og intet entydig Ullevål-treff. Ingen vilkårlig ruteankerkjede godkjennes.\n\nAlle canonical kopier, split-manifest, runtime index, evidens og protokoll synkroniseres i samme runner-pass.\n`);
+console.log(JSON.stringify({ ok: true, applied: PLACE_ID, unchanged: 'ring_3' }, null, 2));
