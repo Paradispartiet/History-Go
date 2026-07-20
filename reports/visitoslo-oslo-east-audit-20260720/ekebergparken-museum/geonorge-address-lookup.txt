@@ -1,0 +1,70 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Kongsveien 23 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Kongsveien 23 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongsveien%2023%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:13868:23",
+  "coordinate": {
+    "lat": 59.89854101481173,
+    "lon": 10.75966997323581,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13868:23",
+    "address": {
+      "street": "Kongsveien",
+      "number": "23",
+      "postcode": "0193",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongsveien 23, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Kongsveien",
+    "adressetekst": "Kongsveien 23",
+    "adressetilleggsnavn": null,
+    "adressekode": 13868,
+    "nummer": 23,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 235,
+    "bruksnummer": 18,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [
+      "H0101",
+      "H0102",
+      "H0201",
+      "H0202"
+    ],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0193",
+    "adressetekstutenadressetilleggsnavn": "Kongsveien 23",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.89854101481173,
+      "lon": 10.75966997323581
+    },
+    "oppdateringsdato": "2020-06-15T18:03:03"
+  }
+}
