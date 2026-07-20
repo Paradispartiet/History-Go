@@ -46,12 +46,14 @@ const SOURCE_MAPPED_ENTRIES = [
 const STARTUP_ENTRIES = [
   { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
   { in: "js/core/categories.ts", out: "categories" },
-  { in: "js/core/layerManager.ts", out: "layerManager" }
+  { in: "js/core/layerManager.ts", out: "layerManager" },
+  { in: "js/map.ts", out: "map" }
 ];
 
 const RUNTIME_COMPATIBILITY_OUTPUTS = [
   { out: "categories", target: "js/core/categories.js" },
-  { out: "layerManager", target: "js/core/layerManager.js" }
+  { out: "layerManager", target: "js/core/layerManager.js" },
+  { out: "map", target: "js/map.js" }
 ];
 
 const compatibilityOutputPlugin = {
