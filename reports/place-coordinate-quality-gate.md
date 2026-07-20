@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T17:36:07.745Z
+Generert: 2026-07-20T17:43:52.442Z
 
 ## Oppsummering
-- Aktive filer validert: **545**
+- Aktive filer validert: **546**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **429**
@@ -563,6 +563,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/norway/oslo_sport/frigo_friluftssenteret.json
 - data/places/kunst/oslo/places_kunst/galleri_map.json
 - data/places/kunst/oslo/places_kunst/vi_vii_gallery.json
+- data/places/historie/oslo/places_historie/mariakirken_ruin_oslo.json
 
 ## Harde feil
 - Ingen

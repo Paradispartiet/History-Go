@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 224 verifiserte eller kildekontrollerte canonical steder. Batch 77 flytter Helleristningene på Ekeberg fra den feilplasserte opprinnelige raden i Etne-tabellen til riktig Oslo-tabell. Totalantallet endres ikke fordi stedet allerede var canonical og medregnet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 225 verifiserte eller kildekontrollerte canonical steder. Batch 78 produserer Mariakirken-ruinen som egen fysisk middelalderlokalitet med Riksantikvarens offisielle geometri, separat fra det brede `middelalder_oslo`-ankeret og den separate `hallvardskirken_oslo`-ruinen. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -245,6 +245,7 @@ Oslo-tabellen inneholder nå 224 verifiserte eller kildekontrollerte canonical s
 | 75 | `galleri_map` | Galleri MAP | verified | `geonorge-adresser-v1:0301:17875:32` |
 | 76 | `vi_vii_gallery` | VI, VII | verified | `geonorge-adresser-v1:0301:15006:8` |
 | 77 | `ekeberg_helleristninger` | Helleristningene på Ekeberg | verified_geometry | `kulturminnesok:41907` |
+| 78 | `mariakirken_ruin_oslo` | Mariakirken-ruinen | verified_geometry | `kulturminnesok:42178` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -425,3 +426,5 @@ Batch 70 (2026-07-20) produserer `toyen_hovedgard` som eget historisk hovedgård
 Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhistorisk museumssted. Den generelle adressen Tøyengata 38 ga flere uentydige Geonorge-treff, mens Oslo Museum og Oslo byleksikon identifiserer leiligheten i Tøyengata 38B; den presise address-first-kjøringen ga ett tydelig offisielt punkt. Recorden representerer den bevarte museumsleiligheten inne i Gråbein-komplekset, ikke hele leiegårdskomplekset eller Tøyen som område.
 
 Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`. Den opprinnelige produksjonsmergen plasserte Ekeberg-raden nederst i Etne-tabellen, mens senere Oslo-batcher fortsatte å bruke den ordinære Oslo-tabellen. Denne reparasjonen fjerner den feilplasserte raden og den gamle produksjonsteksten og registrerer Ekeberg i riktig Oslo-tabell på neste ledige batch etter siste synkroniserte `main`. Canonical place, runtime-identitet, coordinate evidence og den Riksantikvaren-verifiserte geometrien `kulturminnesok:41907` endres ikke, og Oslo-totalen forblir 224.
+
+Batch 78 (2026-07-20) produserer `mariakirken_ruin_oslo` som den konkrete Mariakirken-ruinen ved middelalderens kongsgård i Oslo. Koordinaten er geometrisenteret for Riksantikvarens offisielle MultiPolygon-feature `42178`, kryssjekket mot feature-feltets eget senterpunkt med avrundet 0 meters avvik. Stedet holdes separat fra `middelalder_oslo`, som representerer det bredere historiske området, og fra `hallvardskirken_oslo`, som er en annen kirkeruin. År 1050 brukes som omtrentlig representasjon for den første kirkefasen, ikke som en eksakt innvielsesdato.
