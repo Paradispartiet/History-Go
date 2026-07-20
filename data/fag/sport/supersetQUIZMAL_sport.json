@@ -7,6 +7,9 @@
   "natureId": "",
   "targetId": "bislett_stadion",
   "question_scope": "place",
+  "set_number": 1,
+  "set_guidance_id": "1",
+  "set_guidance_name": "grunnfakta_arena_klubb_sted",
   "question": "Hva gjør Bislett Stadion særlig relevant som sport- og Groundhopper-sted?",
   "options": [
     "Det er en dokumentert idrettsarena knyttet til stadionminne, konkurranser, rekorder, publikum og stedlig idrettshistorie",
@@ -92,7 +95,8 @@
       "methods_sport_canonical_v4_5.json",
       "emner_sport_canonical_v4_5.json",
       "emnemapping_sport_canonical_v4_5.json",
-      "sportpensum_canonical_v4_5.json"
+      "sportpensum_canonical_v4_5.json",
+      "quiz_generator_rules_sport_v5_2_relative_set_scope_patch.json"
     ]
   },
   "method_id": "met_sport_arenaanalyse",
@@ -138,19 +142,26 @@
     "avoid_generic_sport_questions": true,
     "avoid_pure_result_trivia": true,
     "avoid_personal_supporter_preference": true,
-    "avoid_vague_sport_angle_without_arena_club_rule_performance_play_or_source": true
+    "avoid_vague_sport_angle_without_arena_club_rule_performance_play_or_source": true,
+    "set_count_is_relative_to_scope_significance_and_sources": true,
+    "eight_sets_are_ceiling_not_default": true,
+    "filler_sets_forbidden": true
   },
   "validation": {
     "emne_id_exists_in_emner_sport": true,
     "method_id_exists_in_methods_sport": true,
     "mapping_exists_in_emnemapping_sport": true,
     "category_matches_badge": true,
-    "schema_extends_generic_supersetQUIZMAL": true
+    "schema_extends_generic_supersetQUIZMAL": true,
+    "set_guidance_id_exists_in_generator_rules": true,
+    "set_count_matches_scope_assessment": true,
+    "eight_sets_treated_as_ceiling_not_default": true
   },
   "template_notes": {
     "template_role": "sport_superset_quiz_object",
     "generic_template_source": "supersetQUIZMAL (10).json",
     "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
-    "next_use": "Bruk som grunnmal for sportquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+    "set_scope_policy": "Quizroten skal oppgi selected_set_count, scope_tier, set_count_basis, selected_set_guidance_ids, omitted_set_guidance_ids og source_coverage_note. Antall sett skal følge objektets omfang, betydning og kildedekning; åtte sett er fullmodell, ikke standardkrav.",
+    "next_use": "Bruk som grunnmal for sportquiz-spørsmål. Les først hele sportfagpakken, velg riktig omfangsnivå og bestem antall sett før spørsmålene produseres."
   }
 }
