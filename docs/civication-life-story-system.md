@@ -427,6 +427,15 @@ psyke-broen: énveis, testmodus skriver aldri, mangler motoren => stille
 no-op. Kontrakten eies av `civication-lifestory-lifestyle-bridge.test.js`
 (vokabular-sync, fail-fast, testmodus-gate, scoring-retninger).
 
+**Visningen (batch 8):** Min dag viser stampen to steder — en «Livsstil»-chip
+i statuslinjen og linjen «Valgene dine drar mot: …» i dagsoppsummeringen.
+Begge leser `HG_Lifestyle.getStamp()` og vises KUN når `score > 0` — før
+valgene har bygget en tydelig retning (eller uten motoren, ren Min dag-
+flate) vises ingenting; vi gjetter aldri en livsstil. UI-et re-rendrer på
+`updateProfile` (ren lesing — kan ikke starte event-løkke), så chipen
+dukker opp når taggene er telt. Testfestet i
+`civication-v2-min-dag-ui.test.js` med mocket `HG_Lifestyle`.
+
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
