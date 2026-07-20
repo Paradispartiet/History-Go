@@ -74,11 +74,16 @@
         .then((data) => Array.isArray(data) ? data : [])
         .catch(() => []),
       DataHub.fetchJSON(dataUrl("category_overrides/index.json"), fetchOpts)
+        .catch(() => null),
+      DataHub.fetchJSON(dataUrl("category_overrides/index-extra.json"), fetchOpts)
         .catch(() => null)
-    ]).then(async ([baseOverrides, manifest]) => {
-      const files = Array.isArray(manifest?.files)
-        ? manifest.files.map((file) => String(file || "").trim()).filter(Boolean)
-        : [];
+    ]).then(async ([baseOverrides, primaryManifest, extraManifest]) => {
+      const files = Array.from(new Set(
+        [primaryManifest, extraManifest]
+          .flatMap((manifest) => Array.isArray(manifest?.files) ? manifest.files : [])
+          .map((file) => String(file || "").trim())
+          .filter(Boolean)
+      ));
 
       if (!files.length) return baseOverrides;
 
