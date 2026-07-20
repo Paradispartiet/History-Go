@@ -1,34 +1,34 @@
 # People-place coverage audit
 
-Generert: 2026-07-20T06:47:51.675Z
+Generert: 2026-07-20T06:57:10.791Z
 
 ## Sammendrag
 
-- People totalt: **1219**
-- Places totalt: **1218**
-- Places med people: **304**
-- Places uten people: **914**
-- People-place-lenker: **1404**
-- People koblet til flere gyldige steder: **235**
+- People totalt: **1222**
+- Places totalt: **1215**
+- Places med people: **305**
+- Places uten people: **910**
+- People-place-lenker: **1407**
+- People koblet til flere gyldige steder: **234**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **47**
-- Duplikate place-referanser inne på people: **1138**
-- People uten image: **878**
-- People uten cardImage: **879**
+- Duplikate place-referanser inne på people: **1141**
+- People uten image: **881**
+- People uten cardImage: **882**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 214 | 51 | 163 | 170 | 140 |
+| by | 214 | 53 | 161 | 172 | 142 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 451 | 61 | 390 | 215 | 140 |
+| historie | 450 | 61 | 389 | 216 | 143 |
 | kunst | 38 | 17 | 21 | 47 | 44 |
 | litteratur | 41 | 24 | 17 | 179 | 174 |
-| media | 12 | 9 | 3 | 28 | 27 |
+| media | 11 | 8 | 3 | 28 | 27 |
 | musikk | 17 | 14 | 3 | 110 | 102 |
-| naeringsliv | 149 | 32 | 117 | 65 | 60 |
+| naeringsliv | 148 | 32 | 116 | 65 | 60 |
 | natur | 80 | 8 | 72 | 18 | 18 |
 | politikk | 28 | 13 | 15 | 137 | 120 |
 | populaerkultur | 21 | 3 | 18 | 35 | 31 |
@@ -51,18 +51,18 @@ Generert: 2026-07-20T06:47:51.675Z
 - holmenkollrennet: 80
 - subkultur: 64
 - regissor: 56
-- kunst: 53
+- kunst: 54
 - langrenn: 49
 - fotball: 47
 - naeringsliv: 47
 - teatersjef: 47
+- arkitektur: 46
+- by: 45
 - ensemble: 45
-- arkitektur: 44
 - bislett: 44
 - film: 44
 - ibsen: 43
 - valerenga: 43
-- by: 42
 - norge_for_1500: 40
 - 1814: 38
 - kollektivt_miljoanker: 38
@@ -85,8 +85,8 @@ Generert: 2026-07-20T06:47:51.675Z
 - seriemester: 23
 - torshovteatret: 20
 - verdenscup: 19
+- etterkrigstid: 18
 - middelalder: 18
-- etterkrigstid: 17
 - filantrop: 17
 - krig: 17
 
@@ -96,12 +96,11 @@ Generert: 2026-07-20T06:47:51.675Z
 - holmenkollen_nasjonalanlegg (Holmenkollen nasjonalanlegg) – 109
 - bislett_stadion (Bislett Stadion) – 82
 - det_norske_teatret (Det Norske Teatret) – 80
+- akershus_festning (Akershus festning) – 45
 - eidsvollsbygningen (Eidsvollsbygningen) – 42
 - stortinget (Stortinget) – 30
-- akershus_festning (Akershus festning) – 25
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
-- akerhus_slott (Akerhus Slott) – 22
 - edderkoppen_scene (Edderkoppen Scene) – 21
 - youngstorget (Youngstorget) – 21
 - universitetsplassen (Universitetsplassen) – 19
@@ -117,6 +116,7 @@ Generert: 2026-07-20T06:47:51.675Z
 - chat_noir (Chat Noir) – 11
 - jordal_amfi (Jordal Amfi) – 11
 - cinemateket_oslo (Cinemateket i Oslo) – 10
+- kristkirken_bergenhus (Kristkirken på Bergenhus) – 10
 
 ## Ugyldige place-referanser
 
@@ -254,9 +254,9 @@ Generert: 2026-07-20T06:47:51.675Z
 - eirik_magnusson (Eirik Magnusson) -> bergenhus_haakonshallen
 - audun_hugleiksson (Audun Hugleiksson) -> audunborg_hegrenes
 - magnus_eriksson (Magnus Eriksson) -> middelalder_oslo
-- haakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott
-- margrete_1 (Margrete 1.) -> akerhus_slott
-- erik_av_pommern (Erik av Pommern) -> akerhus_slott
+- haakon_vi_magnusson (Håkon VI Magnusson) -> akershus_festning
+- margrete_1 (Margrete 1.) -> akershus_festning
+- erik_av_pommern (Erik av Pommern) -> akershus_festning
 - aslak_bolt (Aslak Bolt) -> nidarosdomen
 - olav_nilsson (Olav Nilsson) -> munkeliv_kloster
 - kong_sverre (Kong Sverre Sigurdsson) -> nidarosdomen
@@ -267,10 +267,10 @@ Generert: 2026-07-20T06:47:51.675Z
 - christian_frederik (Christian Frederik) -> stortinget
 - roald_amundsen (Roald Amundsen) -> nobelinstituttet
 - fridtjof_nansen (Fridtjof Nansen) -> nobelinstituttet
-- haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott
+- haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1038 flere
+- ... 1041 flere
 
 ## Anbefalt første people-batch
 
@@ -286,7 +286,6 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_belem_bydel | Belém | by | high
 - lisbon_cais_do_sodre | Cais do Sodré | by | high
 - lisbon_campo_de_ourique | Campo de Ourique | by | high
-- lisbon_campo_pequeno | Campo Pequeno | by | high
 - lisbon_chiado | Chiado | by | high
 - lisbon_city | Lisboa | by | high
 - lisbon_entrecampos | Entrecampos | by | high
@@ -296,7 +295,6 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_lapa | Lapa | by | high
 - lisbon_martim_moniz_mouraria_axis | Martim Moniz–Mouraria-aksen | by | high
 - lisbon_parque_eduardo_vii | Parque Eduardo VII | by | high
-- lisbon_ponte_25_de_abril | Ponte 25 de Abril | by | high
 - lisbon_praca_do_comercio | Praça do Comércio | by | high
 - lisbon_principe_real | Príncipe Real | by | high
 - lisbon_rossio | Rossio (Praça Dom Pedro IV) | by | high
@@ -308,7 +306,6 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - ullern | Ullern | by | high
 - vinderen | Vinderen | by | high
 - galgeberg | Galgeberg | historie | high
-- gamle_aker_kirke | Gamle Aker kirke | historie | high
 - hovedoya_kloster | Hovedøya kloster | historie | high
 - lisbon_castelo_de_sao_jorge | Castelo de São Jorge | historie | high
 - lisbon_convento_do_carmo | Convento do Carmo | historie | high
@@ -326,4 +323,7 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_se_de_lisboa | Sé de Lisboa | historie | high
 - lisbon_teatro_romano | Ruínas do Teatro Romano | historie | high
 - lisbon_torre_de_belem | Torre de Belém | historie | high
+- nonneseter_kloster | Nonneseter kloster | historie | high
+- oslo_hospital | Oslo hospital | historie | high
+- oslo_ladegard | Oslo ladegård | historie | high
 

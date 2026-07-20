@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T04:59:08.413Z
+Generert: 2026-07-20T06:50:16.376Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -72,7 +72,6 @@ Generert: 2026-07-20T04:59:08.413Z
 | oslo_mek | data/coordinate-evidence/oslo/havnefront/oslo_mek.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | salt | data/coordinate-evidence/oslo/havnefront/salt.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tollbukaia | data/coordinate-evidence/oslo/havnefront/tollbukaia.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| akerhus_slott | data/coordinate-evidence/oslo/historie/akerhus_slott.json | needs_research | needs_identity_split | OK |
 | akershus_festning | data/coordinate-evidence/oslo/historie/akershus_festning.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | arbeidermuseet | data/coordinate-evidence/oslo/historie/arbeidermuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankall_gard | data/coordinate-evidence/oslo/historie/bankall_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -119,7 +118,6 @@ Generert: 2026-07-20T04:59:08.413Z
 | sigrid_undset_statue | data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json | needs_research | needs_geometry | OK |
 | aftenposten_akersgata | data/coordinate-evidence/oslo/media/aftenposten_akersgata.json | needs_research | needs_identity_split | OK |
 | dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | needs_research | needs_identity_split | OK |
-| good_game_redaksjon | data/coordinate-evidence/oslo/media/good_game_redaksjon.json | needs_research | needs_identity_split | OK |
 | klassekampen_redaksjon | data/coordinate-evidence/oslo/media/klassekampen_redaksjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva_industri | data/coordinate-evidence/oslo/naeringsliv/akerselva_industri.json | needs_research | needs_geometry | OK |
 | akershus_energi | data/coordinate-evidence/oslo/naeringsliv/akershus_energi.json | needs_research | needs_identity_split | OK |
@@ -131,7 +129,6 @@ Generert: 2026-07-20T04:59:08.413Z
 | grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | needs_research | needs_geometry | OK |
 | grunnlovsbygget_bankplassen | data/coordinate-evidence/oslo/naeringsliv/grunnlovsbygget_bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| jernbanetorget_trafikknutepunkt | data/coordinate-evidence/oslo/naeringsliv/jernbanetorget_trafikknutepunkt.json | needs_research | needs_identity_split | OK |
 | jernbaneverkstedet_lodalen | data/coordinate-evidence/oslo/naeringsliv/jernbaneverkstedet_lodalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | myrens_verksted | data/coordinate-evidence/oslo/naeringsliv/myrens_verksted.json | applied_to_place | do_not_change_coordinates_yet | OK |

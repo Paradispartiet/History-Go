@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-20T06:47:51.412Z
+Generated: 2026-07-20T06:57:10.462Z
 
 ## Sammendrag
-- People-filer lest: **617**
-- People lest: **1217**
+- People-filer lest: **620**
+- People lest: **1220**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1217**
+- Duplikate interne place-referanser: **1220**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -102,9 +102,9 @@ Generated: 2026-07-20T06:47:51.412Z
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: eirik_magnusson (Eirik Magnusson) -> bergenhus_haakonshallen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: audun_hugleiksson (Audun Hugleiksson) -> audunborg_hegrenes x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: magnus_eriksson (Magnus Eriksson) -> middelalder_oslo x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: margrete_1 (Margrete 1.) -> akerhus_slott x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: erik_av_pommern (Erik av Pommern) -> akerhus_slott x2
+- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_vi_magnusson (Håkon VI Magnusson) -> akershus_festning x2
+- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: margrete_1 (Margrete 1.) -> akershus_festning x2
+- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: erik_av_pommern (Erik av Pommern) -> akershus_festning x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: aslak_bolt (Aslak Bolt) -> nidarosdomen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: olav_nilsson (Olav Nilsson) -> munkeliv_kloster x2
 - data/people/historie/oslo/people_historie_oslo.json :: kong_sverre (Kong Sverre Sigurdsson) -> nidarosdomen x2
@@ -115,16 +115,16 @@ Generated: 2026-07-20T06:47:51.412Z
 - data/people/historie/oslo/people_historie_oslo.json :: christian_frederik (Christian Frederik) -> stortinget x2
 - data/people/historie/oslo/people_historie_oslo.json :: roald_amundsen (Roald Amundsen) -> nobelinstituttet x2
 - data/people/historie/oslo/people_historie_oslo.json :: fridtjof_nansen (Fridtjof Nansen) -> nobelinstituttet x2
-- data/people/historie/oslo/people_historie_oslo.json :: haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott x2
+- data/people/historie/oslo/people_historie_oslo.json :: haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning x2
 - data/people/historie/oslo/people_historie_oslo.json :: st_hallvard (St. Hallvard) -> middelalder_oslo x2
 - data/people/historie/oslo/people_historie_oslo.json :: harald_hardrade (Harald Hardråde) -> middelalder_oslo x2
 - data/people/historie/oslo/people_historie_oslo.json :: christian_iv (Christian IV) -> christiania_torv x2
 - data/people/historie/oslo/people_historie_oslo.json :: christopher_hansteen (Christopher Hansteen) -> observatoriet x2
 - data/people/historie/oslo/people_historie_oslo.json :: kong_karl_johan (Karl Johan) -> slottet x2
 - data/people/historie/oslo/people_historie_oslo.json :: oscar_i (Oscar I) -> slottet x2
-- data/people/historie/oslo/people_historie_oslo.json :: vidkun_quisling (Vidkun Quisling) -> akerhus_slott x2
-- data/people/historie/oslo/people_historie_oslo.json :: gunnar_sonsteby (Gunnar Sønsteby) -> akerhus_slott x2
-- data/people/historie/oslo/people_historie_oslo.json :: gregers_gram (Gregers Gram) -> akerhus_slott x2
+- data/people/historie/oslo/people_historie_oslo.json :: vidkun_quisling (Vidkun Quisling) -> akershus_festning x2
+- data/people/historie/oslo/people_historie_oslo.json :: gunnar_sonsteby (Gunnar Sønsteby) -> akershus_festning x2
+- data/people/historie/oslo/people_historie_oslo.json :: gregers_gram (Gregers Gram) -> akershus_festning x2
 - data/people/historie/oslo/people_historie_oslo.json :: henrik_ibsen (Henrik Ibsen) -> karl_johan x2
 - data/people/historie/oslo/people_historie_oslo.json :: edvard_munch (Edvard Munch) -> karl_johan x2
 - data/people/historie/oslo/people_historie_oslo.json :: oda_krohg (Oda Krohg) -> karl_johan x2
@@ -157,19 +157,19 @@ Generated: 2026-07-20T06:47:51.412Z
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman x2
 - data/people/historie/oslo/people_historie_oslo.json :: petter_moen (Petter Moen) -> mollergata_19 x2
 - data/people/historie/oslo/people_historie_oslo.json :: biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke x2
-- data/people/historie/oslo/people_historie_oslo.json :: eufemia_av_rugen (Eufemia av Rügen) -> akerhus_slott x2
-- data/people/historie/oslo/people_historie_oslo.json :: hakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott x2
-- data/people/historie/oslo/people_historie_oslo.json :: margrete_valdemarsdatter (Margrete Valdemarsdatter) -> akerhus_slott x2
+- data/people/historie/oslo/people_historie_oslo.json :: eufemia_av_rugen (Eufemia av Rügen) -> akershus_festning x2
+- data/people/historie/oslo/people_historie_oslo.json :: hakon_vi_magnusson (Håkon VI Magnusson) -> akershus_festning x2
+- data/people/historie/oslo/people_historie_oslo.json :: margrete_valdemarsdatter (Margrete Valdemarsdatter) -> akershus_festning x2
 - data/people/historie/oslo/people_historie_oslo.json :: sigurd_jorsalfare (Sigurd Jorsalfare) -> middelalder_oslo x2
 - data/people/historie/oslo/people_historie_oslo.json :: kong_olav_kyrre (Olav Kyrre) -> middelalder_oslo x2
 - data/people/historie/oslo/people_historie_oslo.json :: peder_clausson_friis (Peder Claussøn Friis) -> oslo_domkirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo x2
 - data/people/historie/oslo/people_historie_oslo.json :: magnus_den_gode (Magnus den gode) -> middelalder_oslo x2
 - data/people/historie/oslo/people_historie_oslo.json :: magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo x2
-- data/people/historie/oslo/people_historie_oslo.json :: gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott x2
+- data/people/historie/oslo/people_historie_oslo.json :: gunnhild_kongsmor (Gunnhild kongsmor) -> akershus_festning x2
 - data/people/historie/oslo/people_historie_oslo.json :: sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke x2
-- data/people/historie/oslo/people_historie_oslo.json :: alv_erlingsson (Alv Erlingsson) -> akerhus_slott x2
-- data/people/historie/oslo/people_historie_oslo.json :: ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akerhus_slott x2
+- data/people/historie/oslo/people_historie_oslo.json :: alv_erlingsson (Alv Erlingsson) -> akershus_festning x2
+- data/people/historie/oslo/people_historie_oslo.json :: ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akershus_festning x2
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: skule_baardsson (Skule Bårdsson) -> middelalder_oslo x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: munch (Edvard Munch) -> munch_museet x2
@@ -892,7 +892,7 @@ Generated: 2026-07-20T06:47:51.412Z
 - data/people/media/oslo/people_media_oslo.json :: frode_hansen (Frode Hansen) -> dagbladet_akersgata x2
 - data/people/media/oslo/people_media_oslo.json :: bjorgulv_braanen (Bjørgulv Braanen) -> klassekampen_redaksjon x2
 - data/people/media/oslo/people_media_oslo.json :: mari_skurdal (Mari Skurdal) -> klassekampen_redaksjon x2
-- data/people/media/oslo/people_media_oslo.json :: rune_fjeld_olsen (Rune Fjeld Olsen) -> good_game_redaksjon x2
+- data/people/media/oslo/people_media_oslo.json :: rune_fjeld_olsen (Rune Fjeld Olsen) -> nrk_huset_marienlyst x2
 - data/people/media/oslo/people_media_oslo.json :: anne_cath_vestly (Anne-Cath. Vestly) -> nrk_huset_marienlyst x2
 - data/people/media/oslo/people_media_oslo.json :: totto_osvold (Totto Osvold) -> nrk_huset_marienlyst x2
 - data/people/media/oslo/people_media_oslo.json :: sissel_benneche_osvold (Sissel Benneche Osvold) -> dagbladet_akersgata x2
@@ -1068,7 +1068,7 @@ Generated: 2026-07-20T06:47:51.412Z
 - data/people/politikk/akershus/eidsvollsbygningen/gregers_winther_wulfsberg.json :: gregers_winther_wulfsberg (Gregers Winther Wulfsberg) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/tallev_olsen_huvestad.json :: tallev_olsen_huvestad (Tallev Olsen Huvestad) -> eidsvollsbygningen x2
 - data/people/politikk/akershus/eidsvollsbygningen/ole_olsen_evenstad.json :: ole_olsen_evenstad (Ole Olsen Evenstad) -> eidsvollsbygningen x2
-- data/people/historie/oslo/akershus_festning/hannibal_sehested.json :: hannibal_sehested (Hannibal Sehested) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/hannibal_sehested.json :: hannibal_sehested (Hannibal Sehested) -> akershus_festning x3
 - data/people/historie/oslo/akershus_festning/ulrik_frederik_gyldenlove.json :: ulrik_frederik_gyldenlove (Ulrik Frederik Gyldenløve) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/karl_xii.json :: karl_xii (Karl XII) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/jorgen_christopher_von_klenow.json :: jorgen_christopher_von_klenow (Jørgen Christopher von Klenow) -> akershus_festning x2
@@ -1077,7 +1077,7 @@ Generated: 2026-07-20T06:47:51.412Z
 - data/people/historie/oslo/akershus_festning/ole_hoiland.json :: ole_hoiland (Ole Høiland) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/gjest_baardsen.json :: gjest_baardsen (Gjest Baardsen) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/lars_haetta.json :: lars_haetta (Lars Hætta) -> akershus_festning x2
-- data/people/historie/oslo/akershus_festning/peder_hansson_litle.json :: peder_hansson_litle (Peder Hanssøn Litle) -> akershus_festning x2
+- data/people/historie/oslo/akershus_festning/peder_hansson_litle.json :: peder_hansson_litle (Peder Hanssøn Litle) -> akershus_festning x3
 - data/people/historie/oslo/akershus_festning/hans_van_paeschen.json :: hans_van_paeschen (Hans van Paeschen) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/hans_van_steenwinckel_den_eldre.json :: hans_van_steenwinckel_den_eldre (Hans van Steenwinckel den eldre) -> akershus_festning x2
 - data/people/historie/oslo/akershus_festning/isaac_van_geelkerck.json :: isaac_van_geelkerck (Isaac van Geelkerck) -> akershus_festning x2
@@ -1235,5 +1235,8 @@ Generated: 2026-07-20T06:47:51.412Z
 - data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json :: nils_trolle (Nils Trolle) -> vaterland_historisk_elvelop x2
 - data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json :: peter_andreas_blix (Peter Andreas Blix) -> vaterland_historisk_elvelop x2
 - data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json :: ruth_raabe (Ruth Raabe) -> vaterland_historisk_elvelop x2
+- data/people/by/europe/portugal/lisbon/campo_pequeno/antonio_jose_dias_da_silva.json :: antonio_jose_dias_da_silva (António José Dias da Silva) -> lisbon_campo_pequeno x2
+- data/people/by/oslo/gamle_aker_kirke/heinrich_ernst_schirmer.json :: heinrich_ernst_schirmer (Heinrich Ernst Schirmer) -> gamle_aker_kirke x2
+- data/people/kunst/oslo/gamle_aker_kirke/torvald_moseid.json :: torvald_moseid (Torvald Moseid) -> gamle_aker_kirke x2
 
 ## Anbefalt neste ryddebatch
