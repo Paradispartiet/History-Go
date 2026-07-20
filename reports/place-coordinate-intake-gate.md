@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-20T00:06:13.316Z
+Generert: 2026-07-20T00:15:20.246Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **origin/main**
-- Base method: **origin/${GITHUB_BASE_REF}**
+- Base for nye/endrede place-objekter: **a72942d7857a88832992e9864dc90efe87bd9f70**
+- Base method: **git merge-base HEAD origin/main**
 - Aktive manifest-filer lest: **504**
 - Place-objekter validert: **1215**
-- Nye/endrede koordinatobjekter mot base: **13**
+- Nye/endrede koordinatobjekter mot base: **1**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **3468**
+- Backlog-funn: **3467**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -55,7 +55,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | geocodeAccuracy | Coordinate source contract v1: Mangler geocodeAccuracy. | downgrade_to_needs_manual_visual_qa |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordRole | Coordinate source contract v1: Mangler coordRole. | downgrade_to_needs_source |
 | backlog | nei | akerhus_slott | Akerhus Slott | data/places/historie/oslo/places_historie.json | coordNote | coordType=historical_site krever tydelig ankerforklaring. | Forklar om punktet er byggpunkt, inngang, semantisk midtpunkt, historisk anker, kaianker eller rute-/linjeanker. |
-| backlog | nei | prinds_christian_augusts_minde | Prinds Christian Augusts Minde | data/places/historie/oslo/places_historie_added_batch_01.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +540,7 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | modum_bad_st_olafs_kilde | Modum Bad / St. Olafs kilde | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | modum_bad_st_olafs_kilde | Modum Bad / St. Olafs kilde | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | lier_sykehus_historisk_omrade | Lier sykehus / historisk område | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | lier_sykehus_historisk_omrade | Lier sykehus / historisk område | data/places/historie/buskerud/places_historie_buskerud_batch6.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 3468 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 3467 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
