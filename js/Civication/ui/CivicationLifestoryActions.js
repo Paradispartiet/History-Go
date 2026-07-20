@@ -29,7 +29,9 @@
     velg_bosted: "åpner nabolagsvalget",
     aapne_butikk: "åpner butikken",
     aapne_karriere: "åpner karrierepanelet",
-    gaa_til_quiz: "går til History GO"
+    gaa_til_quiz: "går til History GO",
+    gaa_til_byen: "går ut i byen (History GO)",
+    gaa_til_debatt: "går til debatten i History GO"
   };
 
   /** Handling -> skallkategori (footer-fanene i Civication.html). */
@@ -57,7 +59,7 @@
 
   /**
    * Utfør en handling fra et Min dag-valg.
-   * @param {{ type?: string }|null|undefined} handling
+   * @param {{ type?: string, id?: string }|null|undefined} handling
    * @returns {{ utfoert: boolean, type: string|null }}
    */
   function perform(handling) {
@@ -68,11 +70,18 @@
       return { utfoert: openCategory(HANDLING_TO_CATEGORY[type]), type };
     }
 
-    if (type === "gaa_til_quiz") {
+    // Navigasjoner til History GO — byen er spillbrettet.
+    if (type === "gaa_til_quiz" || type === "gaa_til_byen" || type === "gaa_til_debatt") {
       const g = /** @type {any} */ (globalScope);
+      let href = "index.html#/map";
+      if (type === "gaa_til_debatt") {
+        const id = typeof handling.id === "string" ? handling.id.trim() : "";
+        if (!id) return { utfoert: false, type }; // validatoren skal ha stoppet dette
+        href = "index.html#/debate/" + encodeURIComponent(id);
+      }
       try {
         if (g.location) {
-          g.location.href = "index.html#/map";
+          g.location.href = href;
           return { utfoert: true, type };
         }
       } catch { /* uten navigerbar kontekst (Node) */ }

@@ -42,7 +42,7 @@
    * som profil). Uten snapshot (ren Min dag-flate) fyrer shell-gatede scener
    * ALDRI — vi gjetter ikke spilltilstand.
    */
-  const SHELL_CONDITION_KEYS = ["harBosted", "harJobb"];
+  const SHELL_CONDITION_KEYS = ["harBosted", "harJobb", "harHusleiepress"];
 
   /**
    * Gyldige handlingstyper på valg (valg.handling.type). En handling utfører
@@ -51,7 +51,7 @@
    * bor. Utføres av CivicationLifestoryActions (UI-laget). Ukjent type =>
    * FAIL FAST.
    */
-  const HANDLING_TYPES = ["velg_bosted", "aapne_butikk", "gaa_til_quiz", "aapne_karriere"];
+  const HANDLING_TYPES = ["velg_bosted", "aapne_butikk", "gaa_til_quiz", "aapne_karriere", "gaa_til_byen", "gaa_til_debatt"];
 
   /**
    * Gyldige livsstilstags på valg (valg.livsstil). Vokabularet er unionen av
@@ -216,8 +216,18 @@
         if (choice.handling !== undefined) {
           if (!choice.handling || typeof choice.handling !== "object" || Array.isArray(choice.handling)) {
             push(`scene ${sid}/${cid}: handling må være et objekt { type }`);
-          } else if (HANDLING_TYPES.indexOf(choice.handling.type) === -1) {
-            push(`scene ${sid}/${cid}: ukjent handlingstype "${choice.handling.type}" (ikke i HANDLING_TYPES)`);
+          } else {
+            if (HANDLING_TYPES.indexOf(choice.handling.type) === -1) {
+              push(`scene ${sid}/${cid}: ukjent handlingstype "${choice.handling.type}" (ikke i HANDLING_TYPES)`);
+            }
+            for (const key of Object.keys(choice.handling)) {
+              if (key !== "type" && key !== "id") push(`scene ${sid}/${cid}: handling har ukjent nøkkel "${key}"`);
+            }
+            // Måltypede handlinger krever id (f.eks. hvilken debatt).
+            if (choice.handling.type === "gaa_til_debatt" &&
+                (typeof choice.handling.id !== "string" || !choice.handling.id.trim())) {
+              push(`scene ${sid}/${cid}: handlingen gaa_til_debatt krever en ikke-tom id`);
+            }
           }
         }
         if (choice.livsstil !== undefined) {

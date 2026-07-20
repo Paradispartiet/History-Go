@@ -156,9 +156,13 @@
     const home = g.CivicationHome;
     if (!home || typeof home.getCurrentDistrict !== "function") return null;
     try {
+      // Husleiepress: skallets egen terskel (score >= 50 = «Høyt»/«Kritisk»).
+      let harHusleiepress = false;
+      try { harHusleiepress = Number(home.getRentPressure?.()?.score || 0) >= 50; } catch { /* uten økonomi-motor: ikke press */ }
       const snap = {
         harBosted: !!home.getCurrentDistrict(),
-        harJobb: !!g.CivicationState?.getActivePosition?.()
+        harJobb: !!g.CivicationState?.getActivePosition?.(),
+        harHusleiepress
       };
       g.CivicationLifestoryShellState = snap;
       return snap;
