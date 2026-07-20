@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 241 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 97 retter `universitetets_gamle_kjemi` fra et udokumentert `manual_map_check`-punkt til det entydige Geonorge-adressepunktet for Frederiks gate 3, etter at Oslo byleksikon og regjeringens museumsmelding identifiserer samme adresse som Universitetets gamle kjemibygning. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
+Oslo-tabellen inneholder nå 245 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 98–101 legger til Paulus kirke, Purenkel galleri, Torshovparken og HODET N.N. med verifiserte adresse- eller objektankre. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -292,6 +292,10 @@ Batch 96 (2026-07-21) avslutter `places_kunst.json` i kildefilens rekkefølge et
 
 
 Batch 97 (2026-07-21) retter `universitetets_gamle_kjemi` etter objekt-type-først og adresse-first-metoden. Stedet er en konkret historisk universitetsbygning, og både Oslo byleksikon og regjeringens museumsmelding identifiserer bygningen som Frederiks gate 3. Geonorge-oppslaget må gi ett entydig `verified_candidate` for nøyaktig Frederiks gate 3 i Oslo før koordinaten brukes. Det tidligere `manual_map_check`-punktet lå 353 meter unna og var derfor både kildekontraktsmessig og geografisk feil.
+| 98 | `paulus_kirke` | Paulus kirke | verified | `geonorge-adresser-v1:0301:17489:31` |
+| 99 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
+| 100 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
+| 101 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.

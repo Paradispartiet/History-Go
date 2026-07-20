@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "purenkel_galleri",
+  "placeFile": "data/places/kunst/oslo/places_kunst/purenkel_galleri.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.92336853758384,
+    "lon": 10.75610033410851,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Grüners gate 3, OSLO. Purenkels egen aktuelle nettside dokumenterer det besøksbare gallerirommet på samme adresse."
+  },
+  "identity": {
+    "currentName": "Purenkel galleri",
+    "resolvedIdentity": "Purenkel galleri, besøkbart fysisk galleri i Grüners gate 3",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "aktuell fysisk galleriadresse"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Gr%C3%BCners%20gate%203%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12432:3",
+      "sourceQuality": "exact_official_address",
+      "finding": "Geonorge returnerer ett tydelig treff for Grüners gate 3, Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Purenkels egen aktuelle nettside oppgir det fysiske galleriet på samme adresse."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Grüners gate 3 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12432:3",
+      "lat": 59.92336853758384,
+      "lon": 10.75610033410851,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12432:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.92336853758384,
+      "lon": 10.75610033410851,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact official address point applied to the canonical gallery place."
+  },
+  "notes": [
+    "Generated from the accepted current canonical place coordinate fields."
+  ]
+}

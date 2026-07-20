@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "torshovparken",
+  "placeFile": "data/places/by/oslo/places/torshovparken.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9354405,
+    "lon": 10.7709791,
+    "r": 190,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 252260743 – Torshovparken; cross-checked with Oslo kommune",
+    "coordType": "park_center",
+    "coordNote": "Geometrisk sentrum av det eksakt navngitte OSM-polygonet for Torshovparken. Oslo kommune dokumenterer samme park og dens fysiske avgrensning. Buss-stoppene med samme navn er eksplisitt avvist som koordinatanker."
+  },
+  "identity": {
+    "currentName": "Torshovparken",
+    "resolvedIdentity": "Torshovparken, avgrenset kommunal bypark på Torshov",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt parkgeometri",
+    "uavhengig kommunal parkidentitet og avgrensning"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 252260743",
+      "sourceUrl": "https://www.openstreetmap.org/way/252260743",
+      "sourceObjectId": "osm-way:252260743",
+      "sourceQuality": "exact_named_park_polygon",
+      "finding": "Eksakt Polygon med name=Torshovparken og leisure=park.",
+      "canVerifyCoordinate": true,
+      "reason": "Navn og fysisk parkidentitet kryssjekkes mot Oslo kommunes offisielle parkbeskrivelse."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:252260743",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:252260743",
+      "lat": 59.9354405,
+      "lon": 10.7709791,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9354405,
+      "lon": 10.7709791,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Named park geometry applied as canonical area anchor."
+  },
+  "notes": [
+    "Generated from the accepted current canonical place coordinate fields."
+  ]
+}
