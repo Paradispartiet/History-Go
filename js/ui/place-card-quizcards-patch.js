@@ -6,7 +6,6 @@
 
   const FALLBACK_COLLECTIONS = Object.freeze(["litteratur/topp10_lit_kort.json"]);
   let collectionsPromise = null;
-  const prewarmedQuizTargets = new Set();
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -120,16 +119,9 @@
     return null;
   }
 
-  function prewarmQuizForPlace(place) {
-    const targetId = String(place?.id || "").trim();
-    if (!targetId || prewarmedQuizTargets.has(targetId)) return;
-    if (typeof window.QuizEngine?.getTargetSummary !== "function") return;
-
-    prewarmedQuizTargets.add(targetId);
-    void Promise.resolve(window.QuizEngine.getTargetSummary(targetId)).catch((err) => {
-      prewarmedQuizTargets.delete(targetId);
-      if (window.DEBUG) console.warn("[place-card-quizcards-patch] quiz prewarm failed", err);
-    });
+  function prewarmQuizData() {
+    if (typeof window.HGQuizLoadAccelerator?.prewarm !== "function") return;
+    window.HGQuizLoadAccelerator.prewarm();
   }
 
   function renderQuizCard(cardData) {
@@ -192,10 +184,9 @@
   window.openPlaceCard = async function patchedOpenPlaceCard(place) {
     const result = await originalOpenPlaceCard.apply(this, arguments);
 
-    // Start quizdata-lastingen mens brukeren leser PlaceCard. QuizEngine deler den
-    // samme loading-promisen med start(), så et senere trykk på «Ta quiz» slipper
-    // normalt å begynne den tunge førstegangsinnlastingen fra null.
-    prewarmQuizForPlace(place);
+    // Start alle quizpayloads parallelt mens brukeren leser PlaceCard. Selve
+    // QuizEngine og progresjonskontrakten forblir uendret.
+    prewarmQuizData();
 
     try {
       const cardData = await resolveQuizCard(place);
