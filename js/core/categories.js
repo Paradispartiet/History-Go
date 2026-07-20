@@ -1,110 +1,83 @@
-// js/core/categories.js
-// ------------------------------------------------------
-// KATEGORIER (GLOBAL, IKKE MODULE)
-// ------------------------------------------------------
-// Dette er UI/runtime-lista for place.category, farger, chips og badge/merit-visning.
-// Den er ikke fag/editorial-normalisering. Bruk window.DomainRegistry for fag-id-er.
-//
-// scope:
-// - runtime_domain: aktiv toppkategori som kan matche badge/merit/category direkte
-// - runtime_domain_alias: aktiv runtime-id med kort/fag-alias; samme badge, ikke nytt spor
-// - subfield_display: visnings-/subfelt-id; ikke nytt toppdomene uten DOMAIN_CONTRACT-endring
-//
-// Se også: docs/DOMAIN_CONTRACT.md
-// ------------------------------------------------------
-
-(function () {
-  const CATEGORY_LIST = [
-    // Aktive toppdomener / runtime badges
-    { id: "historie",       name: "Historie",               icon: "🏛️", color: "#f6c800", scope: "runtime_domain" },
-    { id: "vitenskap",      name: "Vitenskap & filosofi",   icon: "🧪", color: "#6ee7ff", scope: "runtime_domain" },
-    { id: "kunst",          name: "Kunst & kultur",         icon: "🎨", color: "#ff5aa5", scope: "runtime_domain" },
-    { id: "musikk",         name: "Musikk & scenekunst",    icon: "🎭", color: "#b48cff", scope: "runtime_domain" },
-    { id: "natur",          name: "Natur & miljø",          icon: "🌿", color: "#59d36a", scope: "runtime_domain" },
-    { id: "sport",          name: "Sport & lek",            icon: "⚽", color: "#ff8a3d", scope: "runtime_domain" },
-    { id: "by",             name: "By & arkitektur",        icon: "🏙️", color: "#7fb3ff", scope: "runtime_domain" },
-    { id: "politikk",       name: "Politikk & samfunn",     icon: "🏛️", color: "#ffd27a", scope: "runtime_domain" },
-    { id: "subkultur",      name: "Subkultur",              icon: "🧷", color: "#9b7bff", scope: "runtime_domain" },
-    { id: "litteratur",     name: "Litteratur",             icon: "📚", color: "#ffcc66", scope: "runtime_domain" },
-    { id: "naeringsliv",    name: "Næringsliv",             icon: "🏭", color: "#9ad0c2", scope: "runtime_domain" },
-    { id: "psykologi",      name: "Psykologi",              icon: "🧠", color: "#ff9aa2", scope: "runtime_domain" },
-    { id: "film_tv",        name: "Film & TV",              icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
-    { id: "media",          name: "Medier",                 icon: "🗞️", color: "#c0c0c0", scope: "runtime_domain" },
-
-    // Aktiv runtime-id med kort/fag-alias. popkultur er samme badge, ikke et nytt spor.
-    { id: "populaerkultur", name: "Populærkultur",          icon: "📺", color: "#a0a0a0", scope: "runtime_domain_alias", canonicalFagId: "popkultur", aliases: ["popkultur"] },
-
-    // Subfelt/visning. Beholdes for UI/datafunn, men er ikke toppdomene nå.
-    { id: "scenekunst",     name: "Scenekunst",             icon: "🎭", color: "#c59cff", scope: "subfield_display", parentId: "kunst", canonicalFagId: "kunst" }
+(() => {
+  // js/core/categories.ts
+  var win = window;
+  var CATEGORY_LIST = [
+    { id: "historie", name: "Historie", icon: "\u{1F3DB}\uFE0F", color: "#f6c800", scope: "runtime_domain" },
+    { id: "vitenskap", name: "Vitenskap & filosofi", icon: "\u{1F9EA}", color: "#6ee7ff", scope: "runtime_domain" },
+    { id: "kunst", name: "Kunst & kultur", icon: "\u{1F3A8}", color: "#ff5aa5", scope: "runtime_domain" },
+    { id: "musikk", name: "Musikk & scenekunst", icon: "\u{1F3AD}", color: "#b48cff", scope: "runtime_domain" },
+    { id: "natur", name: "Natur & milj\xF8", icon: "\u{1F33F}", color: "#59d36a", scope: "runtime_domain" },
+    { id: "sport", name: "Sport & lek", icon: "\u26BD", color: "#ff8a3d", scope: "runtime_domain" },
+    { id: "by", name: "By & arkitektur", icon: "\u{1F3D9}\uFE0F", color: "#7fb3ff", scope: "runtime_domain" },
+    { id: "politikk", name: "Politikk & samfunn", icon: "\u{1F3DB}\uFE0F", color: "#ffd27a", scope: "runtime_domain" },
+    { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#9b7bff", scope: "runtime_domain" },
+    { id: "litteratur", name: "Litteratur", icon: "\u{1F4DA}", color: "#ffcc66", scope: "runtime_domain" },
+    { id: "naeringsliv", name: "N\xE6ringsliv", icon: "\u{1F3ED}", color: "#9ad0c2", scope: "runtime_domain" },
+    { id: "psykologi", name: "Psykologi", icon: "\u{1F9E0}", color: "#ff9aa2", scope: "runtime_domain" },
+    { id: "film_tv", name: "Film & TV", icon: "\u{1F39E}\uFE0F", color: "#6c757d", scope: "runtime_domain" },
+    { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#c0c0c0", scope: "runtime_domain" },
+    {
+      id: "populaerkultur",
+      name: "Popul\xE6rkultur",
+      icon: "\u{1F4FA}",
+      color: "#a0a0a0",
+      scope: "runtime_domain_alias",
+      canonicalFagId: "popkultur",
+      aliases: ["popkultur"]
+    },
+    {
+      id: "scenekunst",
+      name: "Scenekunst",
+      icon: "\u{1F3AD}",
+      color: "#c59cff",
+      scope: "subfield_display",
+      parentId: "kunst",
+      canonicalFagId: "kunst"
+    }
   ];
-
-  const CAT_BY_ID = Object.create(null);
-  const CAT_BY_NAME = Object.create(null);
-
-  for (const c of CATEGORY_LIST) {
-    CAT_BY_ID[c.id] = c;
-    CAT_BY_NAME[String(c.name || "").trim().toLowerCase()] = c;
+  var CAT_BY_ID = /* @__PURE__ */ Object.create(null);
+  var CAT_BY_NAME = /* @__PURE__ */ Object.create(null);
+  for (const category of CATEGORY_LIST) {
+    CAT_BY_ID[category.id] = category;
+    CAT_BY_NAME[category.name.trim().toLowerCase()] = category;
   }
-
-  function norm(s) {
-    return String(s ?? "").trim();
+  function norm(value) {
+    return String(value != null ? value : "").trim();
   }
-
-  function catColor(catId) {
-    const id = norm(catId);
-    return (CAT_BY_ID[id] && CAT_BY_ID[id].color) ? CAT_BY_ID[id].color : "#6c757d";
+  function catColor(categoryId) {
+    const category = CAT_BY_ID[norm(categoryId)];
+    return (category == null ? void 0 : category.color) || "#6c757d";
   }
-
-  function catClass(catId) {
-    const id = norm(catId).toLowerCase().replace(/[^a-z0-9_]+/g, "-");
+  function catClass(categoryId) {
+    const id = norm(categoryId).toLowerCase().replace(/[^a-z0-9_]+/g, "-");
     return id ? `cat-${id}` : "cat-unknown";
   }
-
-  // Robust: forsøker å mappe vilkårlig "tag" til en runtime-kategori-id.
-  // Denne funksjonen bruker CATEGORY_LIST, ikke DomainRegistry, fordi den skal returnere
-  // en id som finnes i UI/runtime-kategoriene her.
-  // Støtter:
-  //  - tag === kategori-id
-  //  - TAGS_REGISTRY[tag] = { cat:"historie" } eller { category:"historie" } eller { categoryId:"historie" }
   function tagToCat(tag) {
-    const t = norm(tag);
-    if (!t) return null;
-
-    if (CAT_BY_ID[t]) return t;
-
-    const reg = (window.TAGS_REGISTRY && typeof window.TAGS_REGISTRY === "object")
-      ? window.TAGS_REGISTRY
-      : null;
-
-    const entry = reg ? reg[t] : null;
+    var _a, _b, _c;
+    const normalizedTag = norm(tag);
+    if (!normalizedTag) return null;
+    if (CAT_BY_ID[normalizedTag]) return normalizedTag;
+    const registry = win.TAGS_REGISTRY;
+    const entry = registry && typeof registry === "object" ? registry[normalizedTag] : null;
     if (entry && typeof entry === "object") {
-      const cid = norm(entry.cat || entry.category || entry.categoryId || entry.category_id);
-      if (cid && CAT_BY_ID[cid]) return cid;
+      const categoryId = norm((_c = (_b = (_a = entry.cat) != null ? _a : entry.category) != null ? _b : entry.categoryId) != null ? _c : entry.category_id);
+      if (categoryId && CAT_BY_ID[categoryId]) return categoryId;
     }
-
     return null;
   }
-
-  // “Display” kan være navn eller id (case-insensitiv).
-  // Returnerer alltid id fra CATEGORY_LIST, ikke canonical fag-id.
   function catIdFromDisplay(display) {
-    const s = norm(display).toLowerCase();
-    if (!s) return null;
-
-    if (CAT_BY_ID[s]) return s;
-    if (CAT_BY_NAME[s]) return CAT_BY_NAME[s].id;
-
-    // fallback: match på startsWith
-    for (const c of CATEGORY_LIST) {
-      if (String(c.name || "").toLowerCase() === s) return c.id;
+    const normalizedDisplay = norm(display).toLowerCase();
+    if (!normalizedDisplay) return null;
+    if (CAT_BY_ID[normalizedDisplay]) return normalizedDisplay;
+    if (CAT_BY_NAME[normalizedDisplay]) return CAT_BY_NAME[normalizedDisplay].id;
+    for (const category of CATEGORY_LIST) {
+      if (category.name.toLowerCase() === normalizedDisplay) return category.id;
     }
     return null;
   }
-
-  // eksponer globalt (samme mønster som resten av appen)
-  window.CATEGORY_LIST = CATEGORY_LIST;
-  window.catColor = catColor;
-  window.catClass = catClass;
-  window.tagToCat = tagToCat;
-  window.catIdFromDisplay = catIdFromDisplay;
+  win.CATEGORY_LIST = CATEGORY_LIST;
+  win.catColor = catColor;
+  win.catClass = catClass;
+  win.tagToCat = tagToCat;
+  win.catIdFromDisplay = catIdFromDisplay;
 })();
