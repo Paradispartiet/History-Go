@@ -46,7 +46,9 @@ class SocialMeetIdentityRepository(Protocol):
         consented_at: datetime | None,
     ) -> SocialMeetProfileRecord: ...
 
-    def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None: ...
+    def get_discoverable_profile(
+        self, profile_id: UUID
+    ) -> SocialMeetProfileRecord | None: ...
 
     def unpublish(self, auth_user_id: UUID) -> SocialMeetProfileRecord: ...
 
@@ -69,16 +71,20 @@ class PostgresSocialMeetIdentityRepository:
                 ),
                 {"user_id": auth_user_id},
             )
-            row = connection.execute(
-                text(
-                    f"""
+            row = (
+                connection.execute(
+                    text(
+                        f"""
                     select {_PROFILE_COLUMNS}
                     from public.hg_profiles
                     where user_id = :user_id
                     """
-                ),
-                {"user_id": auth_user_id},
-            ).mappings().one()
+                    ),
+                    {"user_id": auth_user_id},
+                )
+                .mappings()
+                .one()
+            )
         return _map_record(row)
 
     def save_profile(
@@ -88,7 +94,9 @@ class PostgresSocialMeetIdentityRepository:
         *,
         consented_at: datetime | None,
     ) -> SocialMeetProfileRecord:
-        fingerprint_json = json.dumps(profile.fingerprint_inputs.model_dump(mode="json"))
+        fingerprint_json = json.dumps(
+            profile.fingerprint_inputs.model_dump(mode="json")
+        )
         params: dict[str, object] = {
             "user_id": auth_user_id,
             "display_name": profile.display_name,
@@ -115,9 +123,10 @@ class PostgresSocialMeetIdentityRepository:
                 ),
                 {"user_id": auth_user_id},
             )
-            row = connection.execute(
-                text(
-                    f"""
+            row = (
+                connection.execute(
+                    text(
+                        f"""
                     update public.hg_profiles
                     set
                       profile_id = coalesce(profile_id, gen_random_uuid()),
@@ -135,40 +144,53 @@ class PostgresSocialMeetIdentityRepository:
                     where user_id = :user_id
                     returning {_PROFILE_COLUMNS}
                     """
-                ),
-                params,
-            ).mappings().one()
+                    ),
+                    params,
+                )
+                .mappings()
+                .one()
+            )
         return _map_record(row)
 
-    def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None:
+    def get_discoverable_profile(
+        self, profile_id: UUID
+    ) -> SocialMeetProfileRecord | None:
         with self._database.engine.connect() as connection:
-            row = connection.execute(
-                text(
-                    f"""
+            row = (
+                connection.execute(
+                    text(
+                        f"""
                     select {_PROFILE_COLUMNS}
                     from public.hg_profiles
                     where profile_id = :profile_id
                       and profile_visibility = 'discoverable'
                     """
-                ),
-                {"profile_id": profile_id},
-            ).mappings().one_or_none()
+                    ),
+                    {"profile_id": profile_id},
+                )
+                .mappings()
+                .one_or_none()
+            )
         return _map_record(row) if row is not None else None
 
     def unpublish(self, auth_user_id: UUID) -> SocialMeetProfileRecord:
         self.get_or_create_for_user(auth_user_id)
         with self._database.engine.begin() as connection:
-            row = connection.execute(
-                text(
-                    f"""
+            row = (
+                connection.execute(
+                    text(
+                        f"""
                     update public.hg_profiles
                     set profile_visibility = 'private'
                     where user_id = :user_id
                     returning {_PROFILE_COLUMNS}
                     """
-                ),
-                {"user_id": auth_user_id},
-            ).mappings().one()
+                    ),
+                    {"user_id": auth_user_id},
+                )
+                .mappings()
+                .one()
+            )
         return _map_record(row)
 
 
