@@ -1,0 +1,58 @@
+.kv2-subject-badge-slot,
+.kv2-subject-row-title > span:first-child {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: inline-grid;
+  place-items: center;
+}
+
+.kv2-subject-badge-img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.kv2-subject-pill .kv2-subject-badge-img {
+  width: 22px;
+  height: 22px;
+  margin-right: 1px;
+}
+
+.kv2-subject-hero .kv2-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kv2-subject-hero .kv2-eyebrow .kv2-subject-badge-img {
+  width: 26px;
+  height: 26px;
+}
+
+.kv2-subject-row p,
+.kv2-progress {
+  margin-left: 39px;
+  padding-left: 0;
+}
+
+@media (max-width: 640px) {
+  .kv2-subject-badge-slot,
+  .kv2-subject-row-title > span:first-child {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+  }
+
+  .kv2-subject-badge-img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .kv2-subject-row p,
+  .kv2-progress {
+    margin-left: 37px;
+  }
+}
