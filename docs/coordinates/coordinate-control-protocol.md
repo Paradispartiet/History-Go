@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 219 verifiserte eller kildekontrollerte canonical steder. Batch 72 legger til Akrobaten gangbro med geometrisenteret for den navngitte OSM-way 468892289, kryssjekket mot L2 Arkitekter, VisitOSLO og Oslo byleksikon. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 220 verifiserte eller kildekontrollerte canonical steder. Batch 73 legger til Sørenga sjøbad med det navngitte OSM-POI-et node 5295458069 etter at det offisielle Geonorge-adressepunktet for Sørengkaia 69 ble kontrollert og avvist som fysisk misvisende displayanker for selve sjøbadet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -400,6 +400,7 @@ Alle de 35 innsendte radene er kontrollert. Trettitre er verifiserte Etne-steder
 | 5 | `hoyland_gravhaug_etne` | Gravhaugen på Høyland | verified_geometry | `kulturminnesok:90156-1` |
 | 5 | `skanevik_kyrkjestad` | Skånevik kyrkjestad | verified_historical_source | `kulturminnesok:85489-4` |
 | 5 | `stampehaug_meland` | Stampehaug på Meland | verified_geometry | `kulturminnesok:90135-1` |
+| 73 | `sorenga_sjobad` | Sørenga sjøbad | verified_geometry | `osm-node:5295458069` |
 
 Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / PR #2309, `c1f8f9041` / PR #2314 og `3fd6d69ac` / PR #2318.
 
