@@ -27,6 +27,46 @@ const cleanedAggregate = aggregate.filter(
 cleanedAggregate.splice(legacyIndex, 0, nybrua, vaterlandsparken);
 writeJson(aggregatePath, cleanedAggregate);
 
+const coordinateSnapshot = place => ({
+  lat: place.lat ?? null,
+  lon: place.lon ?? null,
+  r: place.r ?? null,
+  coordStatus: place.coordStatus ?? '',
+  coordSource: place.coordSource ?? '',
+  coordType: place.coordType ?? '',
+  coordNote: place.coordNote ?? '',
+});
+const normalizeEvidence = (file, place) => {
+  const current = fs.existsSync(file) ? readJson(file) : {};
+  writeJson(file, {
+    ...current,
+    schemaVersion: '1.0',
+    placeId: place.id,
+    placeFile: aggregatePath,
+    evidenceStatus: 'applied_to_place',
+    coordinateDecision: 'do_not_change_coordinates_yet',
+    currentCoordinate: coordinateSnapshot(place),
+    identity: {
+      ...(current.identity || {}),
+      currentName: place.name,
+      resolvedIdentity: place.name,
+      identityStatus: 'resolved',
+      identityProblem: '',
+      locatorTypeCandidate: place.locatorType,
+      requiresSplit: false,
+      splitReason: '',
+    },
+    decision: {
+      ...(current.decision || {}),
+      canBecomeVerified: true,
+      blockedReason: '',
+      nextAction: 'Applied to canonical split place.',
+    },
+  });
+};
+normalizeEvidence('data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json', nybrua);
+normalizeEvidence('data/coordinate-evidence/oslo/natur/vaterlandsparken.json', vaterlandsparken);
+
 const run = (command, args) => execFileSync(command, args, { stdio: 'inherit' });
 run('node', ['tests/nybrua-vaterlandsparken-split-rounds-batch1.test.js']);
 run('npm', ['run', 'audit:people-of-places']);
