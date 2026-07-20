@@ -2,18 +2,13 @@
 <html lang="nb">
 <head>
   <meta charset="utf-8">
-  <title>History Go – Kunnskap by</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <script>
-    const hash = window.location.hash || "";
-    window.location.replace("knowledge/knowledge_by.html" + hash);
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>By & arkitektur – Knowledge</title>
+  <meta http-equiv="refresh" content="0; url=knowledge.html?subject=by">
+  <link rel="canonical" href="knowledge.html?subject=by">
 </head>
 <body>
-  <p>Åpner kunnskapssiden for By & arkitektur…</p>
-  <p><a id="fallbackLink" href="knowledge/knowledge_by.html">Gå videre</a></p>
-  <script>
-    document.getElementById("fallbackLink").href = "knowledge/knowledge_by.html" + (window.location.hash || "");
-  </script>
+  <p>Åpner <a href="knowledge.html?subject=by">Knowledge for By & arkitektur</a> …</p>
+  <script>location.replace("knowledge.html?subject=by");</script>
 </body>
 </html>
