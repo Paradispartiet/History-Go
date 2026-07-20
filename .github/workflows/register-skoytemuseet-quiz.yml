@@ -1,0 +1,83 @@
+name: Register Skoytemuseet sport quiz
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    if: github.event.issue.title == '[automation] Register Skoytemuseet quiz'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Create, validate and register quiz
+        env:
+          QUIZ_GZ_B64: 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
+        run: |
+          python - <<'PY'
+          import base64, gzip, json, os
+          from pathlib import Path
+
+          quiz_path = Path('data/quiz/sport/skoytemuseet_sets.json')
+          quiz_path.parent.mkdir(parents=True, exist_ok=True)
+          quiz_path.write_bytes(gzip.decompress(base64.b64decode(os.environ['QUIZ_GZ_B64'])))
+
+          quiz = json.loads(quiz_path.read_text(encoding='utf-8'))
+          pensum = json.loads(Path('data/fag/sport/sportpensum_canonical_v4_5.json').read_text(encoding='utf-8'))
+          methods = json.loads(Path('data/fag/sport/methods_sport_canonical_v4_5.json').read_text(encoding='utf-8'))
+          valid_emner = {e for domain in pensum['domains'] for e in domain['emne_ids']}
+          valid_methods = {m['method_id'] for m in methods['methods']}
+          blocks = quiz.get('sets', [])
+          questions = [q for block in blocks for q in block.get('questions', [])]
+
+          assert quiz.get('targetId') == 'skoytemuseet'
+          assert quiz.get('categoryId') == 'sport'
+          assert len(blocks) == 2 and len(questions) == 10
+          assert len({b['set_id'] for b in blocks}) == 2
+          assert len({q['id'] for q in questions}) == 10
+          assert len({q['quiz_id'] for q in questions}) == 10
+          required = {'source_origin','claim_basis','guidance_basis','method_id','emne_id','sport_anchor_type','source_note'}
+          for q in questions:
+              assert q['targetId'] == q['placeId'] == 'skoytemuseet'
+              assert len(q['options']) == 3 and q['options'][q['answerIndex']] == q['answer']
+              assert q['emne_id'] in valid_emner
+              assert q['method_id'] in valid_methods
+              assert required <= q.keys()
+              assert q['source_origin'] == 'external'
+              assert q['source'] and all(s.get('url') for s in q['source'])
+              assert q['external_source_ratio_target'] >= 0.85
+
+          manifest_path = Path('data/quiz/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          entries = manifest['sets']
+          expected = {'targetId':'skoytemuseet','file':str(quiz_path)}
+          matches = [e for e in entries if e.get('targetId') == 'skoytemuseet']
+          assert len(matches) <= 1
+          if matches:
+              assert matches[0] == expected
+          else:
+              after = next((i + 1 for i, e in enumerate(entries) if e.get('targetId') == 'holmlia_bad'), len(entries))
+              entries.insert(after, expected)
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit data and remove one-time workflow
+        run: |
+          rm .github/workflows/register-skoytemuseet-quiz.yml
+          git config user.name "History Go Data Production"
+          git config user.email "history-go-data@users.noreply.github.com"
+          git add data/quiz/sport/skoytemuseet_sets.json data/quiz/manifest.json .github/workflows/register-skoytemuseet-quiz.yml
+          git commit -m "Add and register Skoytemuseet sport quiz"
+          for attempt in 1 2 3; do
+            git push origin HEAD:main && exit 0
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
