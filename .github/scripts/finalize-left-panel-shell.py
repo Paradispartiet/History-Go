@@ -1,4 +1,5 @@
 from pathlib import Path
+import subprocess
 
 
 def replace_once(path_str: str, old: str, new: str) -> None:
@@ -71,3 +72,16 @@ replace_once(
 legacy_shell = Path("js/ui/left-panel.js")
 if legacy_shell.exists():
     legacy_shell.unlink()
+
+# The existing finalize workflow stages the canonical/build files itself. Stage the
+# runtime-path, cache and regression-test changes here so the bot commit is atomic.
+subprocess.run(
+    [
+        "git", "add", "-A", "--",
+        "js/app.js",
+        "sw.js",
+        "tests/nearby-card-favorite-control.test.js",
+        "js/ui/left-panel.js",
+    ],
+    check=True,
+)
