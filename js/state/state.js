@@ -63,12 +63,41 @@ const peopleCollected = JSON.parse(
   localStorage.getItem("people_collected") || "{}"
 );
 
-/** @type {StateMeritsByCategory} */
-const merits = JSON.parse(
-  localStorage.getItem("merits_by_category") || "{}"
-);
+/**
+ * Keep legacy merit rows self-describing for consumers such as mini-profile,
+ * where the category id historically lived inside each merit value even though
+ * the canonical storage shape uses the category id as the object key.
+ * @returns {StateMeritsByCategory}
+ */
+function normalizeMeritEntryIds() {
+  /** @type {StateMeritsByCategory} */
+  const stored = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  if (!stored || typeof stored !== "object" || Array.isArray(stored)) return {};
 
+  let changed = false;
+  for (const [categoryId, value] of Object.entries(stored)) {
+    if (!value || typeof value !== "object" || Array.isArray(value)) continue;
+    /** @type {Record<string, unknown>} */
+    const merit = value;
+    if (String(merit.id || "").trim()) continue;
+    merit.id = categoryId;
+    changed = true;
+  }
+
+  if (changed) {
+    try { localStorage.setItem("merits_by_category", JSON.stringify(stored)); } catch {}
+  }
+  return stored;
+}
+
+/** @type {StateMeritsByCategory} */
+const merits = normalizeMeritEntryIds();
 window.merits = merits;
+
+// Normalize again before later profile listeners render newly created merit rows.
+window.addEventListener("updateProfile", () => {
+  window.merits = normalizeMeritEntryIds();
+});
 
 // ==============================
 // DIALOGER / NOTATER
