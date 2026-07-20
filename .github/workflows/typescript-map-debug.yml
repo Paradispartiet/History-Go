@@ -10,32 +10,35 @@ on:
       - "build/build-web.mjs"
       - ".github/workflows/typescript-map-debug.yml"
 
+permissions:
+  contents: write
+
 jobs:
   capture-map-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Capture browser TypeScript diagnostics
-        shell: bash
-        run: |
-          set +e
-          npm run typecheck:web > typecheck-map.log 2>&1
-          status=$?
-          echo "exit_code=$status" >> typecheck-map.log
-          exit 0
+      - name: Typecheck browser runtime
+        run: npm run typecheck:web
       - name: Build browser runtime
         run: npm run build:web
-      - uses: actions/upload-artifact@v4
-        with:
-          name: typescript-map-build
-          path: |
-            typecheck-map.log
-            dist/web/map.js
-            js/map.js
-          if-no-files-found: error
-          retention-days: 1
+      - name: Commit generated map runtime if needed
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/web/map.js js/map.js
+          if git diff --cached --quiet; then
+            echo "Generated map runtime already in sync."
+            exit 0
+          fi
+          git commit -m "Build TypeScript map runtime"
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
