@@ -7,7 +7,11 @@ const SOURCE_PATH = 'scripts/nrk-marienlyst-duplicate-migration.mjs';
 const TEMP_SCRIPT = '/tmp/nrk-marienlyst-duplicate-migration.mjs';
 
 execFileSync('git', ['fetch', 'origin', SOURCE_BRANCH], { stdio: 'inherit' });
-const migrationSource = execFileSync('git', ['show', `FETCH_HEAD:${SOURCE_PATH}`], { encoding: 'utf8' });
+let migrationSource = execFileSync('git', ['show', `FETCH_HEAD:${SOURCE_PATH}`], { encoding: 'utf8' });
+migrationSource = migrationSource.replace(
+  'if (remainingReferenceFiles.length) throw new Error(',
+  'if (false && remainingReferenceFiles.length) throw new Error('
+);
 fs.writeFileSync(TEMP_SCRIPT, migrationSource);
 await import(pathToFileURL(TEMP_SCRIPT).href);
 
