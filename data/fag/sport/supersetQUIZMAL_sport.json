@@ -2,6 +2,7 @@
   "id": "bislett_stadion_quiz_1",
   "quiz_id": "sport_bislett_stadion_set_1_q1",
   "categoryId": "sport",
+  "subject_id": "sport",
   "placeId": "bislett_stadion",
   "personId": "",
   "natureId": "",
@@ -21,6 +22,30 @@
   "dimension": "sport",
   "topic": "Arena, stadionminne og Groundhopper",
   "knowledge": "Bislett Stadion brukes her som eksempel på sportens stedlige og historiske form i byen: et sted der arena, konkurranse, rekorder, publikum, kroppslig praksis og idrettshukommelse kan undersøkes gjennom dokumenterte kilder.",
+  "knowledge_payload": {
+    "summary": "Bislett er både konkurransearena og et sted der idrettshistorie, rekorder, publikum og stadionminne møtes.",
+    "explanation": "Arenaen kan leses gjennom det som har skjedd der, hvordan den brukes, hvilke prestasjoner som er knyttet til den, og hvordan disse hendelsene huskes.",
+    "why_it_matters": "Dette viser hvordan en idrettsarena også kan fungere som et historisk minnested og som del av brukerens Groundhopper-samling.",
+    "term_definitions": [
+      {
+        "term_id": "term_sport_stadionminne",
+        "label": "stadionminne",
+        "definition": "Kollektiv eller dokumentert hukommelse knyttet til hendelser, prestasjoner, personer og publikum ved en idrettsarena."
+      },
+      {
+        "term_id": "term_sport_groundhopper",
+        "label": "Groundhopper",
+        "definition": "En person som oppsøker og samler besøk ved idrettsarenaer som en egen praksis."
+      }
+    ],
+    "story_fragment": "Bislett inngår i historien om hvordan moderne idrettsarenaer har blitt steder for både konkurranse, folkeliv og kollektiv hukommelse.",
+    "relations": [
+      "arena_til_konkurranse",
+      "prestasjon_til_rekord",
+      "hendelse_til_stadionminne"
+    ],
+    "source_note": "Kunnskapsinnholdet skal verifiseres med konkrete arena-, kommune-, arkiv-, idrettshistoriske eller statistiske kilder."
+  },
   "trivia": [],
   "difficulty": 1,
   "question_type": "fact",
@@ -29,11 +54,57 @@
   "epoke_id": "moderne_idrettsarena_og_stadionminne",
   "epoke_domain": "sport",
   "emne_id": "em_sport_stadion_minne",
+  "emne_ids": [
+    "em_sport_stadion_minne",
+    "em_sport_idrettsarena_sted",
+    "em_sport_groundhopper_stedsbesok",
+    "em_sport_stedlig_idrettshukommelse"
+  ],
   "related_emner": [
     "em_sport_idrettsarena_sted",
     "em_sport_groundhopper_stedsbesok",
     "em_sport_stedlig_idrettshukommelse"
   ],
+  "primary_knowledge_unit_id": "ku_sport_bislett_stadionminne",
+  "knowledge_unit_ids": [
+    "ku_sport_bislett_stadionminne",
+    "ku_sport_bislett_groundhopper_arena"
+  ],
+  "concept_ids": [
+    "concept_sport_idrettsarena",
+    "concept_sport_stadionminne",
+    "concept_sport_groundhopper",
+    "concept_sport_stedlig_idrettshukommelse"
+  ],
+  "term_ids": [
+    "term_sport_stadionminne",
+    "term_sport_groundhopper",
+    "term_sport_idrettsarena"
+  ],
+  "story_ids": [
+    "story_sport_oslo_idrettsarenaer_og_minner"
+  ],
+  "learning_objective_id": "lo_sport_forklare_stadion_som_arena_og_minnested",
+  "evidence_type": "explain",
+  "feedback_basis": {
+    "knowledge_unit_id": "ku_sport_bislett_stadionminne",
+    "claim_field": "canonical_claim",
+    "rule": "Kunnskapsforklaringen som vises etter svaret skal være en presis avledning av den kanoniske kunnskapsenheten."
+  },
+  "delivery_surfaces": [
+    "quiz",
+    "place_page",
+    "emne_page",
+    "story_page",
+    "knowledge_page"
+  ],
+  "quiz_evidence_policy": {
+    "knowledge_presented_creates": "encountered",
+    "continue_after_feedback_creates": "read",
+    "wrong_answer_creates_mastery": false,
+    "correct_answer_mastery_from_evidence_type": true,
+    "mark_wrong_answer_for_review": true
+  },
   "core_concepts": [
     "stadion",
     "arena",
@@ -96,12 +167,14 @@
       "emner_sport_canonical_v4_5.json",
       "emnemapping_sport_canonical_v4_5.json",
       "sportpensum_canonical_v4_5.json",
-      "quiz_generator_rules_sport_v5_2_relative_set_scope_patch.json"
+      "quiz_generator_rules_sport_v5_3_knowledge_coherence_patch.json",
+      "../../knowledge/knowledge_system_policy_v1.json",
+      "../../quiz/quiz_knowledge_delivery_contract_v1.json"
     ]
   },
   "method_id": "met_sport_arenaanalyse",
   "sport_anchor_type": "stadium",
-  "source_note": "Spørsmålet skal bygges fra ekstern arena-, kommune-, arkiv-, idrettshistorisk, statistisk, arrangements-, avis- eller lokalhistorisk kilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "source_note": "Spørsmålet skal bygges fra ekstern arena-, kommune-, arkiv-, idrettshistorisk, statistisk, arrangements-, avis- eller lokalhistorisk kilde; fagfilene styrer metode, emne, kunnskapskobling og spørsmålsflate.",
   "external_source_ratio_target": 0.85,
   "internal_file_only_allowed": false,
   "requires_sport_anchor": true,
@@ -145,23 +218,34 @@
     "avoid_vague_sport_angle_without_arena_club_rule_performance_play_or_source": true,
     "set_count_is_relative_to_scope_significance_and_sources": true,
     "eight_sets_are_ceiling_not_default": true,
-    "filler_sets_forbidden": true
+    "filler_sets_forbidden": true,
+    "quiz_is_knowledge_delivery_and_assessment_surface": true,
+    "knowledge_feedback_required_after_answer": true,
+    "reading_and_mastery_are_separate": true,
+    "tags_are_not_concept_ids": true,
+    "strict_knowledge_unit_ids_required": true
   },
   "validation": {
-    "emne_id_exists_in_emner_sport": true,
+    "emne_id_exists_in_sport_structure": true,
     "method_id_exists_in_methods_sport": true,
     "mapping_exists_in_emnemapping_sport": true,
     "category_matches_badge": true,
     "schema_extends_generic_supersetQUIZMAL": true,
     "set_guidance_id_exists_in_generator_rules": true,
     "set_count_matches_scope_assessment": true,
-    "eight_sets_treated_as_ceiling_not_default": true
+    "eight_sets_treated_as_ceiling_not_default": true,
+    "primary_knowledge_unit_id_exists": true,
+    "concept_ids_exist": true,
+    "term_ids_exist": true,
+    "knowledge_payload_matches_feedback_basis": true,
+    "wrong_answer_does_not_create_mastery": true
   },
   "template_notes": {
-    "template_role": "sport_superset_quiz_object",
+    "template_role": "sport_superset_quiz_learning_and_assessment_object",
     "generic_template_source": "supersetQUIZMAL (10).json",
-    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizzer skal fylle kilder med konkrete kilder og bruke quizen som et reelt læringsrom med kunnskapsforklaring, samtidig som alt kobles til stabile kunnskapsenheter.",
     "set_scope_policy": "Quizroten skal oppgi selected_set_count, scope_tier, set_count_basis, selected_set_guidance_ids, omitted_set_guidance_ids og source_coverage_note. Antall sett skal følge objektets omfang, betydning og kildedekning; åtte sett er fullmodell, ikke standardkrav.",
-    "next_use": "Bruk som grunnmal for sportquiz-spørsmål. Les først hele sportfagpakken, velg riktig omfangsnivå og bestem antall sett før spørsmålene produseres."
+    "knowledge_policy": "Quiz samler, formidler og prøver kunnskapen. Når forklaringen vises og brukeren går videre, kan stoffet registreres som lest. Riktig svar registrerer mestring i henhold til evidence_type.",
+    "next_use": "Bruk som grunnmal for sportquiz-spørsmål. Les først hele sportfagpakken, velg riktig omfangsnivå, definer kunnskapsenheter, begreper, termer og historier, og bestem deretter sett og spørsmål."
   }
 }
