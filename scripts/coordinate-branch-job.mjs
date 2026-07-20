@@ -45,15 +45,14 @@ const batches = [...osloBlock.matchAll(/^\|\s*(\d+)\s*\|/gm)].map((m) => Number(
 const firstBatch = Math.max(...batches) + 1;
 const lastBatch = firstBatch + 3;
 
-const summaryRe = /Oslo-tabellen inneholder nå (\d+) verifiserte eller kildekontrollerte canonical steder\. .*? Antallet fullførte kontroller uten godkjent Oslo-koordinat er (\d+)\./s;
+const summaryRe = /^Oslo-tabellen inneholder nå (\d+) dokumenterte verifiserte eller kildekontrollerte canonical steder\..*$/m;
 const match = protocol.match(summaryRe);
 if (!match) throw new Error('Oslo summary not found');
 const oldCount = Number(match[1]);
-const needsReview = Number(match[2]);
 const newCount = oldCount + 4;
 protocol = protocol.replace(
   summaryRe,
-  `Oslo-tabellen inneholder nå ${newCount} verifiserte eller kildekontrollerte canonical steder. Batch ${firstBatch}–${lastBatch} legger til Paulus kirke, Purenkel galleri, Torshovparken og HODET N.N. med verifiserte adresse- eller objektankre. Antallet fullførte kontroller uten godkjent Oslo-koordinat er ${needsReview}.`,
+  `Oslo-tabellen inneholder nå ${newCount} dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch ${firstBatch}–${lastBatch} legger til Paulus kirke, Purenkel galleri, Torshovparken og HODET N.N. med verifiserte adresse- eller objektankre. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.`,
 );
 
 const rows = [
