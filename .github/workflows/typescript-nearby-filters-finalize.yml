@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/typescript-nearby-filters-finalize.yml"
       - ".github/scripts/finalize_nearby_filters.py"
+      - ".github/scripts/finalize_nearby_filters_v2.py"
       - "js/ui/left-panel.js"
       - "js/ui/nearbyFilters.ts"
       - "js/app.js"
@@ -32,7 +33,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python3 .github/scripts/finalize_nearby_filters.py > nearby-filters-finalize.log 2>&1
+          python3 .github/scripts/finalize_nearby_filters_v2.py > nearby-filters-finalize.log 2>&1
           status=$?
           cat nearby-filters-finalize.log
           echo "$status" > nearby-filters-finalize.status
