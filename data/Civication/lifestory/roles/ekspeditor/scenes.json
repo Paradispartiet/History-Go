@@ -907,6 +907,96 @@
           "konsekvensTekst": "Du legger telefonen med skjermen ned. Differanser går ikke over. De venter."
         }
       ]
+    },
+    {
+      "id": "d3_stamkunden_prismatch",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "stamkunde",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Du ga meg jo avslag sist»",
+      "tekst": "Stamkunden legger varene på båndet og smiler: «Du matcher prisen fra nettbutikken, sant? Du ga meg jo avslag sist.» Køen bak henne vokser, og alle hører på.",
+      "valg": [
+        {
+          "id": "hold_regelen_vennlig",
+          "tekst": "Holde regelen, vennlig: «Det har jeg dessverre ikke fullmakt til»",
+          "tone": "ryddig",
+          "livsstil": [
+            "legitimacy"
+          ],
+          "effekter": {
+            "meters": {
+              "integritet": 3
+            },
+            "relasjoner": {
+              "stamkunde": -1
+            },
+            "flagg": {
+              "holdt_regelen": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Hun himler med øynene, men betaler. Køen bak så en som kunne reglene sine — det er også kundeservice."
+        },
+        {
+          "id": "tilby_det_du_kan",
+          "tekst": "Tilby det du faktisk KAN: medlemsrabatten hun ikke bruker",
+          "tone": "løsningsorientert",
+          "livsstil": [
+            "craft"
+          ],
+          "effekter": {
+            "meters": {
+              "integritet": 2,
+              "synlighet": 1
+            },
+            "relasjoner": {
+              "stamkunde": 3
+            },
+            "flagg": {
+              "fant_lovlig_losning": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Oi, den visste jeg ikke om!» Hun sparer nesten det samme, og du ga ikke bort noe du ikke eier. Amir nikker fra nabokassa."
+        },
+        {
+          "id": "gi_etter_igjen",
+          "tekst": "Gi etter — det er raskest, og køen venter",
+          "tone": "ettergivende",
+          "livsstil": [
+            "shortcut"
+          ],
+          "effekter": {
+            "meters": {
+              "integritet": -3
+            },
+            "relasjoner": {
+              "stamkunde": 3
+            },
+            "flagg": {
+              "ga_etter_igjen": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Hun fikk avslaget. Nå VET hun at du bestemmer — og neste gang står hun der med noe dyrere."
+        }
+      ]
     }
   ]
 }
