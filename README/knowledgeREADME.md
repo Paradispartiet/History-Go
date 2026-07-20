@@ -1,91 +1,98 @@
 # Knowledge – personlig kunnskapsunivers i History GO
 
-## Hva er Knowledge?
+## Kanonisk definisjon
 
-**Knowledge** er brukerens personlige kunnskapsunivers i History GO.
+> **Knowledge er brukerens personlige kart over hva de faktisk har forstått, slik dette uttrykkes gjennom quiz eller quiz-lignende vurdering og kobles til fag, emner og begreper.**
 
-Det er:
-- ikke fagplan
-- ikke fagkart
-- ikke emner
-- ikke merker
-
-Knowledge er **sporene etter hva brukeren faktisk har lært, jobbet med og forstått**, slik dette uttrykkes gjennom quiz og aktive handlinger.
-
-Alt faglig innhold i systemet er alltid åpent.
-Knowledge handler ikke om tilgang – men om **relasjon**.
+Knowledge er ikke fagplan, fagkart, emner, merker, samling eller besøkslogg. Alt faglig innhold er åpent. Knowledge beskriver brukerens **relasjon til kunnskapen**, ikke tilgang til den.
 
 ---
 
-## Grunnprinsipp
+## 1. Hva skaper Knowledge?
 
-> **Quizer endrer ikke verden.  
-De endrer brukerens relasjon til verden.**
+### Quiz er kilden
 
-Fagplaner, fagkart, emner og merkesider er:
-- faste
-- delte
-- åpne
-- objektive strukturer
+En Knowledge-entry oppstår når brukeren svarer riktig i en quiz eller fullfører en annen vurdering som eksplisitt er definert som knowledge-skapende.
 
-Knowledge er:
-- personlig
-- akkumulativ
-- dynamisk
-- konseptuell
+Observasjon, besøk, innsjekk, samling av et sted eller en person og notater kan:
 
----
+- gi kontekst
+- gi progresjonssignal
+- dokumentere erfaring
+- hjelpe anbefalingsmotorer
 
-## Hva skaper Knowledge?
+Men de skaper **ikke** en Knowledge-entry alene.
 
-### 1. Quiz er eneste kilde til knowledge
+Dette skillet er låst:
 
-Knowledge oppstår **kun** gjennom quiz (og eventuelt quiz-lignende vurderinger).
+```text
+Handling / besøk / observasjon
+        ↓
+Learning log / progresjon / kontekst
 
-Observasjon alene:
-- kan gi samling
-- kan gi registrering
-- gir **ikke** knowledge
-
-Knowledge forutsetter:
-- refleksjon
-- vurdering
-- forståelse
+Riktig quiz-svar / vurdert forståelse
+        ↓
+Knowledge
+```
 
 ---
 
-### 2. En quiz skriver alltid til knowledge
+## 2. Canonical Knowledge-entry
 
-Når en quiz gjennomføres (og bestås), skrives én eller flere **knowledge entries**.
+Ny canonical runtime-modell er `history_go_knowledge_entry_v2`.
 
-En knowledge entry er **ikke bare et poeng**.
-Den er et **koblingspunkt** mellom bruker og kunnskapsstruktur.
+Lagringsnøkkel:
+
+```text
+hg_knowledge_entries_v2
+```
+
+Minimumsform:
+
+```json
+{
+  "schema": "history_go_knowledge_entry_v2",
+  "version": 2,
+  "id": "kv2_by_torggata_gentrifisering",
+  "subject_id": "by",
+  "fagkart_category_id": "by",
+  "emne_ids": ["em_by_gentrifisering_eiendom"],
+  "concepts": ["gentrifisering", "eiendomsverdi", "planmakt"],
+  "dimension": "konflikt_forandring",
+  "topic": "Gentrifisering i Torggata",
+  "text": "...",
+  "source": {
+    "type": "quiz",
+    "quiz_id": "...",
+    "target_id": "torggata",
+    "place_id": "torggata",
+    "person_id": null
+  },
+  "learned_at": "2026-07-20T00:00:00.000Z",
+  "last_seen_at": "2026-07-20T00:00:00.000Z",
+  "times_seen": 1,
+  "link_status": "linked"
+}
+```
+
+### Obligatoriske faglige koblinger
+
+En ferdig produsert Knowledge-entry skal kunne kobles til:
+
+- `subject_id` / `fagkart_category_id`
+- minst ett `emne_id` når fagstrukturen har relevante emner
+- konkrete `concepts`
+- en faktisk knowledge-tekst
+- en quiz-/vurderingskilde
+
+`emne_ids` er et array fordi én quiz kan treffe flere emner.
 
 ---
 
-## Hva kobles i en knowledge entry?
+## 3. Begreper er semantisk motor
 
-En quiz kan (og bør) koble til flere nivåer samtidig.
+`concepts` skal beskrive faktiske ideer brukeren har jobbet med:
 
-### Obligatoriske koblinger
-- `emne_id`  
-  → hvor i pensum dette hører hjemme
-
-- `fagkart_category_id`  
-  → hvilket faglig domene
-
-### Valgfrie, men sterke koblinger
-- `family_id`  
-  → overordnet vitenskapsfelt
-
-- `subfield_id`  
-  → presis faglig gren (universitetsnivå)
-
-### Konseptuelle koblinger (viktigst)
-- `tags` / `concepts` / `begreper`  
-  → de faktiske ideene brukeren har jobbet med
-
-Dette inkluderer:
 - fagbegreper
 - fenomen
 - prosesser
@@ -93,137 +100,212 @@ Dette inkluderer:
 - sammenhenger
 - motsetninger
 
-Disse konseptene er **motoren** i:
+Begrepene brukes til:
+
+- emnekobling
+- kunnskapsprofil
 - matching
 - anbefalinger
 - AHA / innsiktsmotor
 - videre læringsforslag
 
----
-
-## Hva Knowledge *ikke* gjør
-
-Knowledge:
-- låser ikke fagkart
-- låser ikke emner
-- endrer ikke fagplan
-- begrenser ikke hva brukeren kan lese
-
-Knowledge er **ikke en port**.
-Det er et **kart over erfaring**.
+Begreper skal ikke fylles med tilfeldige quiz-id-er, UI-tags eller generiske stemningsord.
 
 ---
 
-## Forholdet mellom Knowledge og fagstrukturer
+## 4. Proveniens: kunnskap skal kunne spores tilbake
 
-### Fagplan
-- grovt, observerbart
-- alltid åpen
-- brukes som inngang
+En Knowledge-entry skal bevare hvor forståelsen kom fra.
 
-### Fagkart
-- dypt, faglig
-- alltid åpent
-- viser sammenhenger i kunnskapen
+Minimum:
 
-### Emner
-- pensum / innhold
-- alltid åpne
-- strukturerer stoff
+```text
+Knowledge-entry
+→ quiz/vurdering
+→ target (sted/person når relevant)
+→ fag
+→ emne
+→ concepts
+```
 
-### Merker
-- visning og aggregering
-- alltid åpne
-- speiler knowledge, men eies ikke av den
+Stedet eller personen er **kilde og kontekst**, ikke Knowledge i seg selv.
 
-### Knowledge
-- personlig
-- dynamisk
-- bygges over tid
-- knytter bruker → fag → begreper
+Dette gjør det mulig å svare på:
+
+- Hva har brukeren lært?
+- Hvilket emne hører det til?
+- Hvilke begreper har de arbeidet med?
+- Hvilken quiz skapte kunnskapspunktet?
+- Hvilket sted eller hvilken person ga konteksten?
 
 ---
 
-## Samling vs Knowledge (kritisk skille)
+## 5. Runtime: én capture-modell og én read-model
 
-### Samling (flora, fauna, steder)
-- er stedlig
-- er kontekstuell
-- krever tilstedeværelse + handling
-- kan inkludere quiz
+### Capture
 
-Men:
+`js/knowledgeV2.js` eier den nye capture-kontrakten.
 
-> **Samling er ikke knowledge.**
+Den:
 
-En blomst, et dyr eller et sted er:
-- et objekt
-- et møte
-- en erfaring
+1. beholder eksisterende `saveKnowledgeFromQuiz()` for bakoverkompatibilitet
+2. skriver samtidig canonical entries til `hg_knowledge_entries_v2`
+3. dedupliserer samme kunnskapspunkt og øker `times_seen`
+4. forsøker å koble manglende `emne_ids` mot learning-loggen
+5. bevarer ufullstendige legacy-entries i stedet for å slette dem
 
-Knowledge er:
-- forståelsen som kan oppstå i møtet
+### Read-model
 
----
+All ny Knowledge-UI skal lese:
 
-## Eksempel (konseptuelt)
+```js
+await HGKnowledgeV2.buildProfile()
+```
 
-Bruker:
-- er i en park
-- observerer hvitveis
-- tar en observasjonsquiz
+Read-modellen organiserer Knowledge slik:
 
-Resultat:
-- hvitveis registreres som samlet
-- quiz gir knowledge
+```text
+Knowledge-profil
+├── fagfelt
+│   ├── emner
+│   │   └── knowledge entries
+│   ├── concepts
+│   └── kursstatus (separat progresjonslag)
+└── uløste legacy-koblinger
+```
 
-Knowledge kobles til:
-- `emne_id`: vårblomster og fenologi
-- `fagkart_category_id`: flora
-- `family_id`: biologi
-- `subfield_id`: botanikk
-- `concepts`: vårblomstring, livssyklus, pollinering, sesong
-
-Blomsten er samlet.
-Kunnskapen er internalisert.
-Strukturen er bevart.
+UI skal ikke selv bygge en alternativ sannhet direkte fra tre-fire localStorage-nøkler.
 
 ---
 
-## Hvorfor dette er viktig
+## 6. Forholdet til eksisterende lagring
 
-Denne modellen gjør at History GO:
+### `hg_knowledge_entries_v2`
 
-- ikke reduseres til samlespill
-- ikke blir låst progresjonsspill
-- ikke ødelegger faglig struktur
+Canonical Knowledge-storage for nye entries.
 
-Men i stedet:
-- bygger ekte kunnskapsprofiler
-- lar brukere ha ulike, unike spor
-- muliggjør innsikt, matching og refleksjon
-- tåler både lek, alvor og akademisk dybde
+### `knowledge_universe`
+
+Legacy tekstarkiv. Beholdes for bakoverkompatibilitet og migreres inn i V2-read-modellen uten datatap.
+
+Legacy-data som mangler emne eller concepts skal markeres som uløst, ikke gjøres om til falskt presise koblinger.
+
+### `hg_learning_log_v1`
+
+Append-only evidens- og progresjonslogg.
+
+Kan inneholde:
+
+- quiz-sett
+- emnetreff
+- concepts
+- observations
+
+Learning log kan hjelpe med å forklare eller koble Knowledge, men **loggen er ikke Knowledge**.
+
+### `hg_learning_v1`
+
+Avledet læringsstatus (`seen`, `understood`, `applied`). Dette er progresjonstilstand, ikke selve Knowledge-arkivet.
+
+### `hg_insights_events_v1`
+
+Legacy/sekundær begrepsstrøm. Ny Knowledge-UI skal ikke bruke den som eneste kilde til hva brukeren kan.
 
 ---
 
-## Kort definisjon (kanonisk)
+## 7. Knowledge-siden
 
-> **Knowledge er brukerens personlige kart over hva de faktisk har forstått,  
-slik dette uttrykkes gjennom quiz og kobles til emner, fag og begreper.**
+Canonical side:
 
-Alt annet er struktur.
-Knowledge er erfaring.
+```text
+knowledge.html
+knowledge.html?subject=by
+knowledge.html?subject=historie
+...
+```
+
+Siden viser:
+
+- samlet Knowledge
+- fagfelt
+- emner med faktisk Knowledge
+- begreper
+- konkrete kunnskapspunkter
+- proveniens
+- uløste eldre koblinger
+- kursprogresjon som et separat tolkningslag
+
+Separate `knowledge/knowledge_<subject>.html`-sider er legacy og skal ikke utvikles videre som egne implementasjoner.
 
 ---
 
-## Status
+## 8. Samling vs Knowledge
 
-Dette dokumentet definerer:
-- hvordan knowledge skal forstås
-- hvordan det skapes
-- hvordan det relaterer seg til resten av systemet
+Samling er stedlig og objektrettet.
 
-Neste steg (når ønskelig):
-- konkret knowledge-entry JSON-skjema
-- audit-regler (duplikater, styrke, progresjon)
-- visualisering på profil / innsiktssider
+Knowledge er forståelsen som oppstår gjennom vurdert læring.
+
+Eksempel:
+
+```text
+Besøk Torggata
+→ stedet registreres som erfaring/samling
+
+Svar riktig på quiz om gentrifisering
+→ Knowledge-entry opprettes
+→ kobles til By
+→ kobles til emne om gentrifisering og eiendom
+→ concepts registreres
+→ Torggata beholdes som kildekontekst
+```
+
+> **Samling er ikke Knowledge. Stedet er ikke Knowledge. Forståelsen er Knowledge.**
+
+---
+
+## 9. Audit-regler
+
+Knowledge-produksjonen skal kunne auditeres.
+
+For quizspørsmål som har `knowledge`, kontroller:
+
+1. kategori/fag finnes
+2. knowledge-tekst finnes
+3. `core_concepts`/concepts finnes
+4. `related_emner` eller annen gyldig emnekobling finnes
+5. refererte emner finnes i aktiv emnefil
+6. target kan spores når quizen er sted-/personbundet
+
+Audit skal skille mellom:
+
+- `error`: kunnskap kan ikke plasseres faglig
+- `warning`: kunnskap er bevart, men koblingen er svak eller legacy
+
+Ingen data skal slettes automatisk av audit.
+
+---
+
+## 10. Låste arkitekturregler
+
+- Én canonical Knowledge-entry-modell.
+- Én canonical Knowledge read-model.
+- Quiz/vurdering skaper Knowledge.
+- Observasjon og besøk skaper ikke Knowledge alene.
+- Alle nye Knowledge-entries skal ha faglig proveniens.
+- Legacy-data bevares og merkes når koblinger mangler.
+- UI skal vise hva som er kjent, og være ærlig om hva som ikke kan kobles sikkert.
+- Pensum/Courses tolker erfaring og Knowledge til progresjon, men eier ikke Knowledge.
+- Fagplan, fagkart og emner er åpne strukturer og endres ikke av brukerens Knowledge.
+
+---
+
+## Kortform
+
+```text
+Fagstruktur = hva som finnes å lære
+Quiz = vurdert møte med kunnskapen
+Knowledge = hva brukeren faktisk har forstått
+Learning log = evidens om hva brukeren har gjort
+Courses/pensum = tolkning til progresjon
+Knowledge UI = personlig kart over forståelsen
+```
