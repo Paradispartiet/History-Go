@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from typing import Any
 from uuid import UUID
 
@@ -170,7 +171,7 @@ def _validate_create_payload(payload: dict[str, Any]) -> CreateSpotmeetingInvite
         ) from exc
 
 
-def _run_transition(action: Any) -> SpotmeetingInviteView:
+def _run_transition(action: Callable[[], SpotmeetingInviteView]) -> SpotmeetingInviteView:
     try:
         return action()
     except SocialMeetDomainError as exc:
