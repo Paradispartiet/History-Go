@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 218 verifiserte eller kildekontrollerte canonical steder. Batch 71 legger til Museumsleiligheten Gråbein med det entydige Geonorge-adressepunktet for Tøyengata 38B, etter at den bredere adressen Tøyengata 38 korrekt ble avvist som tvetydig. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 219 verifiserte eller kildekontrollerte canonical steder. Batch 35 legger til Akrobaten gangbro med geometrisenteret for den navngitte OSM-way 468892289, kryssjekket mot L2 Arkitekter, VisitOSLO og Oslo byleksikon. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -184,6 +184,7 @@ Oslo-tabellen inneholder nå 218 verifiserte eller kildekontrollerte canonical s
 | 34 | `vulkan_industriomrade` | Vulkan industriområde | verified | `geonorge-adresser-v1:0301:14622:17` |
 | 34 | `hausmannsbrua` | Hausmannsbrua | verified_geometry | `osm-way:377766486` |
 | 34 | `ankerbrua` | Ankerbrua | verified_geometry | `osm-way:381749949` |
+| 35 | `akrobaten_gangbro` | Akrobaten gangbro | verified_geometry | `osm-way:468892289` |
 
 | 35 | `vaterland_historisk_elvelop` | Vaterland – historisk elveløp | verified_historical_source | `oslobyleksikon:akerselva:vaterlands-bru` |
 | 35 | `akerselva_utlop_bjorvika` | Akerselvas utløp mot fjorden (Bjørvika) | verified_geometry | `osm-way:246047712` |

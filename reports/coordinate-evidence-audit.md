@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T16:09:41.796Z
+Generert: 2026-07-20T16:25:06.522Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -9,6 +9,7 @@ Generert: 2026-07-20T16:09:41.796Z
 | proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | aker_brygge | data/coordinate-evidence/oslo/by/aker_brygge.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva | data/coordinate-evidence/oslo/by/akerselva.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akrobaten_gangbro | data/coordinate-evidence/oslo/by/akrobaten_gangbro.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankplassen | data/coordinate-evidence/oslo/by/bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | barcode | data/coordinate-evidence/oslo/by/barcode.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | birkelunden | data/coordinate-evidence/oslo/by/birkelunden.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -29,6 +30,7 @@ Generert: 2026-07-20T16:09:41.796Z
 | grunerlokka_helgesens_tm | data/coordinate-evidence/oslo/by/grunerlokka_helgesens_tm.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | helsfyr | data/coordinate-evidence/oslo/by/helsfyr.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jernbanetorget | data/coordinate-evidence/oslo/by/jernbanetorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kampen_okologiske_barnebondegard | data/coordinate-evidence/oslo/by/kampen_okologiske_barnebondegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | karl_johan | data/coordinate-evidence/oslo/by/karl_johan.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | majorstuen_krysset | data/coordinate-evidence/oslo/by/majorstuen_krysset.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | majorstuen_tbanestasjon | data/coordinate-evidence/oslo/by/majorstuen_tbanestasjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -81,6 +83,8 @@ Generert: 2026-07-20T16:09:41.796Z
 | bankall_gard | data/coordinate-evidence/oslo/historie/bankall_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | botsfengselet | data/coordinate-evidence/oslo/historie/botsfengselet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | brannmuseet_oslo | data/coordinate-evidence/oslo/historie/brannmuseet_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| central_jam_e_mosque | data/coordinate-evidence/oslo/historie/central_jam_e_mosque.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| christian_radich | data/coordinate-evidence/oslo/historie/christian_radich.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | forsvarsmuseet | data/coordinate-evidence/oslo/historie/forsvarsmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frogner_hovedgard | data/coordinate-evidence/oslo/historie/frogner_hovedgard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galgeberg | data/coordinate-evidence/oslo/historie/galgeberg.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -88,8 +92,10 @@ Generert: 2026-07-20T16:09:41.796Z
 | historisk_museum | data/coordinate-evidence/oslo/historie/historisk_museum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hovedoya_kloster | data/coordinate-evidence/oslo/historie/hovedoya_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jodisk_museum_oslo | data/coordinate-evidence/oslo/historie/jodisk_museum_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kjaerlighetskarusellen | data/coordinate-evidence/oslo/historie/kjaerlighetskarusellen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | middelalder_oslo | data/coordinate-evidence/oslo/historie/middelalder_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | mollergata_skole | data/coordinate-evidence/oslo/historie/mollergata_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| museumsleiligheten_grabein | data/coordinate-evidence/oslo/historie/museumsleiligheten_grabein.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nobels_fredssenter | data/coordinate-evidence/oslo/historie/nobels_fredssenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nonneseter_kloster | data/coordinate-evidence/oslo/historie/nonneseter_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | norges_hjemmefrontmuseum | data/coordinate-evidence/oslo/historie/norges_hjemmefrontmuseum.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -97,14 +103,21 @@ Generert: 2026-07-20T16:09:41.796Z
 | norsk_maritimt_museum | data/coordinate-evidence/oslo/historie/norsk_maritimt_museum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_hospital | data/coordinate-evidence/oslo/historie/oslo_hospital.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_ladegard | data/coordinate-evidence/oslo/historie/oslo_ladegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| peststotten_krist_kirkegard | data/coordinate-evidence/oslo/historie/peststotten_krist_kirkegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | prinds_christian_augusts_minde | data/coordinate-evidence/oslo/historie/prinds_christian_augusts_minde.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sagene_skole | data/coordinate-evidence/oslo/historie/sagene_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| st_hallvard_kirke_kloster | data/coordinate-evidence/oslo/historie/st_hallvard_kirke_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| toyen_hovedgard | data/coordinate-evidence/oslo/historie/toyen_hovedgard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vestre_gravlund | data/coordinate-evidence/oslo/historie/vestre_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | viking_planet_oslo | data/coordinate-evidence/oslo/historie/viking_planet_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| villa_stenersen | data/coordinate-evidence/oslo/historie/villa_stenersen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | det_internasjonale_barnekunstmuseet | data/coordinate-evidence/oslo/kunst/det_internasjonale_barnekunstmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | dronning_sonja_kunststall | data/coordinate-evidence/oslo/kunst/dronning_sonja_kunststall.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| emanuel_vigeland_mausoleum | data/coordinate-evidence/oslo/kunst/emanuel_vigeland_mausoleum.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| framtidsbiblioteket_nordmarka | data/coordinate-evidence/oslo/kunst/framtidsbiblioteket_nordmarka.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunstnernes_hus | data/coordinate-evidence/oslo/kunst/kunstnernes_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | roseslottet | data/coordinate-evidence/oslo/kunst/roseslottet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tbs_gallery | data/coordinate-evidence/oslo/kunst/tbs_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -188,19 +201,7 @@ Generert: 2026-07-20T16:09:41.796Z
 | skimore_oslo | data/coordinate-evidence/oslo/sport/skimore_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skoytemuseet | data/coordinate-evidence/oslo/sport/skoytemuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyenbadet | data/coordinate-evidence/oslo/sport/toyenbadet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| klimahuset | data/coordinate-evidence/oslo/vitenskap/klimahuset.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_reptilpark | data/coordinate-evidence/oslo/vitenskap/oslo_reptilpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| kampen_okologiske_barnebondegard | data/coordinate-evidence/oslo/by/kampen_okologiske_barnebondegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| klimahuset | data/coordinate-evidence/oslo/vitenskap/klimahuset.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| christian_radich | data/coordinate-evidence/oslo/historie/christian_radich.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| central_jam_e_mosque | data/coordinate-evidence/oslo/historie/central_jam_e_mosque.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| peststotten_krist_kirkegard | data/coordinate-evidence/oslo/historie/peststotten_krist_kirkegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| kjaerlighetskarusellen | data/coordinate-evidence/oslo/historie/kjaerlighetskarusellen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| villa_stenersen | data/coordinate-evidence/oslo/historie/villa_stenersen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| st_hallvard_kirke_kloster | data/coordinate-evidence/oslo/historie/st_hallvard_kirke_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| toyen_hovedgard | data/coordinate-evidence/oslo/historie/toyen_hovedgard.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| emanuel_vigeland_mausoleum | data/coordinate-evidence/oslo/kunst/emanuel_vigeland_mausoleum.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| framtidsbiblioteket_nordmarka | data/coordinate-evidence/oslo/kunst/framtidsbiblioteket_nordmarka.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| museumsleiligheten_grabein | data/coordinate-evidence/oslo/historie/museumsleiligheten_grabein.json | applied_to_place | do_not_change_coordinates_yet | OK |
