@@ -1,0 +1,53 @@
+{
+  "ok": true,
+  "applied": [
+    {
+      "id": "norli_universitetsgata",
+      "result": "applied",
+      "before": {
+        "lat": 59.9181,
+        "lon": 10.7385,
+        "r": 120,
+        "coordStatus": "needs_source",
+        "coordSource": "official_address_range_unresolved",
+        "coordType": "legacy_unverified",
+        "coordNote": "Norli oppgir Universitetsgata 22–24 som offisiell adresse. Repoets Geonorge-finder gir separate entydige adressepunkter for 22 og 24, mens intervallsøket ikke gir ett treff. Ingen av endepunktene velges vilkårlig; eksisterende lat/lon beholdes kun som legacy inntil en kilde identifiserer butikkens konkrete inngang/hovedanker."
+      },
+      "after": {
+        "lat": 59.9152021,
+        "lon": 10.7371559,
+        "r": 120,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap node 1664967174 – Norli, branch Universitetsgata",
+        "coordType": "bookshop_poi",
+        "coordNote": "Norli oppgir Universitetsgata 22–24, og Geonorge-forsøkene for 22 og 24 ga to separate adressepunkter som derfor ikke kunne velges vilkårlig. Det eksakte navngitte OSM-bokhandelspunktet node 1664967174 er merket shop=books, branch=Universitetsgata og peker til Norlis nettsted. Det brukes som fysisk butikkanker etter den dokumenterte adressekonflikten, ikke som erstatning for adresse-first-regelen."
+      },
+      "sourceObjectId": "osm-node:1664967174",
+      "sourceFile": "data/places/litteratur/oslo/places_litteratur.json"
+    },
+    {
+      "id": "bankall_gard",
+      "result": "applied",
+      "before": {
+        "lat": 59.975215,
+        "lon": 10.921884,
+        "r": 130,
+        "coordStatus": "verified_historical_source",
+        "coordSource": "Lokalhistoriewiki gårdssted gnr. 98/1, kryssjekket mot Oslo kommune",
+        "coordType": "estate_center",
+        "coordNote": "Den normative adressefinneren for Trondheimsveien 640 ga tidligere flere mulige bokstavdelte adressepunkter og ble derfor ikke brukt som vilkårlig sentrum for gården. Ankeret er den eksplisitte stedkoordinaten for Bånkall gård, gnr. 98/1, i Lokalhistoriewiki, kryssjekket mot Oslo kommunes offisielle beskrivelse av et åtte mål stort gårdsanlegg på samme besøksadresse."
+      },
+      "after": {
+        "lat": 59.975059,
+        "lon": 10.9218833,
+        "r": 130,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap relation 11788354 – Bånkall gård",
+        "coordType": "historic_farm_complex_area",
+        "coordNote": "Geonorge-forsøket for Trondheimsveien 640 ga tidligere flere bokstavdelte adressepunkter og ingen vilkårlig bygning ble valgt. Den eksakte navngitte OSM-relasjonen 11788354 representerer Bånkall gård som historic=farm og landuse=farmyard, med Oslo kommune som operator. Relasjonens representasjonspunkt brukes som områdeanker for hele det kommunalt dokumenterte gårdsanlegget."
+      },
+      "sourceObjectId": "osm-relation:11788354",
+      "sourceFile": "data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json"
+    }
+  ]
+}

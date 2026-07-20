@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bankall_gard",
+  "placeFile": "data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.975059,
+    "lon": 10.9218833,
+    "r": 130,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 11788354 – Bånkall gård",
+    "coordType": "historic_farm_complex_area",
+    "coordNote": "Geonorge-forsøket for Trondheimsveien 640 ga tidligere flere bokstavdelte adressepunkter og ingen vilkårlig bygning ble valgt. Den eksakte navngitte OSM-relasjonen 11788354 representerer Bånkall gård som historic=farm og landuse=farmyard, med Oslo kommune som operator. Relasjonens representasjonspunkt brukes som områdeanker for hele det kommunalt dokumenterte gårdsanlegget."
+  },
+  "identity": {
+    "currentName": "Bånkall gård",
+    "resolvedIdentity": "Bånkall gård, det bevarte gårdsanlegget på Trondheimsveien 640",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Bånkall gård",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/bankall-gard",
+      "sourceObjectId": "oslo-kommune:kultureiendom:bankall-gard",
+      "sourceQuality": "official_site_identity",
+      "finding": "Oslo kommune dokumenterer det åtte mål store gårdsanlegget og besøksadressen Trondheimsveien 640.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som identitets- og scope-kryssjekk; OSM-relasjonen er geometrikilden."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 11788354 – Bånkall gård",
+      "sourceUrl": "https://www.openstreetmap.org/relation/11788354",
+      "sourceObjectId": "osm-relation:11788354",
+      "sourceQuality": "unique_exact_named_farm_complex_geometry",
+      "finding": "Den navngitte relasjonen representerer Bånkall gård som historic=farm og landuse=farmyard og har Oslo kommune som operator.",
+      "canVerifyCoordinate": true,
+      "reason": "Geonorge-forsøket for Trondheimsveien 640 ga tidligere flere bokstavdelte adressepunkter og ingen vilkårlig bygning ble valgt. Den eksakte navngitte OSM-relasjonen 11788354 representerer Bånkall gård som historic=farm og landuse=farmyard, med Oslo kommune som operator. Relasjonens representasjonspunkt brukes som områdeanker for hele det kommunalt dokumenterte gårdsanlegget."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11788354",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11788354",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.975059,
+      "lon": 10.9218833,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Eksakt navngitt fysisk objekt er anvendt på canonical place."
+  },
+  "notes": [
+    "Geonorge-forsøket for Trondheimsveien 640 ga tidligere flere bokstavdelte adressepunkter og ingen vilkårlig bygning ble valgt. Den eksakte navngitte OSM-relasjonen 11788354 representerer Bånkall gård som historic=farm og landuse=farmyard, med Oslo kommune som operator. Relasjonens representasjonspunkt brukes som områdeanker for hele det kommunalt dokumenterte gårdsanlegget."
+  ]
+}
