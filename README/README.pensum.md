@@ -1,216 +1,292 @@
-README PENSUM (UPDATED 2025-12-28)
-==================================
+# History GO – kunnskaps- og pensumarkitektur
 
-NOTE
-----
-Denne fila er oppdatert uten å slette noe av originalteksten.
-Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
+Dette dokumentet beskriver forholdet mellom fagstruktur, Knowledge, læringsevidens og kursprogresjon.
 
-# History GO – Kunnskaps- og pensumarkitektur
-
-Dette dokumentet beskriver **hvordan innhold, læring og progresjon er strukturert i History GO**, og hva de ulike filene og nivåene faktisk betyr.  
-Formålet er å unngå overlapp, dobbel logikk og “systemer oppå systemer”.
+For den kanoniske definisjonen av brukerens personlige Knowledge gjelder også `README/knowledgeREADME.md`.
 
 ---
 
 ## Grunnprinsipp
 
-> **Knowledge samler erfaring.  
-> Pensum tolker erfaring til progresjon.**
-
-Pensum er **ikke innhold** og **ikke historikk**.  
-Pensum er **kurssammensetning og regler**.
-
----
-
-## Oversikt over nivåene
-
-```
-Merke (badge)
-→ Structure (gren / type / area)
-→ Emner (mikro-pensum)
-→ Quiz (evaluering i verden)
-→ Knowledge (brukerens erfaring)
-→ Pensum (kursplan som tolker erfaring)
+```text
+Fagstruktur beskriver hva som finnes å lære.
+Quiz og vurderinger produserer Knowledge.
+Learning log beskriver hva brukeren har gjort.
+Pensum/Courses tolker evidens til progresjon.
 ```
 
----
-
-## 1) Merker (Badges)
-**Rolle:** Inngang, kategori, identitet, progresjonsramme
-
-- Eksempel: `sport`, `by`, `historie`
-- Brukes i UI, belønning og som toppnivå
-- Inneholder **ikke** faglig struktur
-
-📁 `data/badges.json`  
-📄 `merke_<id>.html`
+Knowledge og progresjon er derfor ikke det samme.
 
 ---
 
-## 2) Structure (`structure_<id>.json`)
-**Rolle:** Navigasjon og oversikt (“bibliotekets hyller”)
+## Canonical flyt
 
-- Definerer:
-  - **grener / typer**
-  - **area_id** (temaområder)
-- Brukes av **Knowledge-visning**
-- Definerer **ikke** læringsrekkefølge eller krav
-
-📁 `data/pensum/structure_<subject>.json`
-
-Eksempel:
-```json
-branch → area_id → (emner vises her)
+```text
+Merke
+  ↓
+Fagkart / fagplan
+  ↓
+Emner
+  ↓
+Quiz og quiz-lignende vurdering
+  ├──→ Knowledge-entry
+  └──→ Learning log / progresjonsevidens
+             ↓
+       Courses / pensum
+             ↓
+      Beregnet kursstatus
 ```
 
----
-
-## 3) Emner (`emner_<id>.json`)
-**Rolle:** Mikro-pensum (innhold + motor)
-
-- Ett emne = én konkret problemstilling
-- Inneholder:
-  - `core_concepts` (motoren)
-  - `dimensions`
-  - tekstlig forklaring
-- Gjenbrukbart på tvers av kurs
-
-📁 `data/emner/emner_<subject>.json`
-
-> Emner er **innhold**, ikke kurs.
+Steder, personer og observasjoner kan være kontekst og læringsevidens, men de blir ikke automatisk Knowledge.
 
 ---
 
-## 4) Quiz
-**Rolle:** Evaluering i kontekst (kartet)
+## 1. Merker
 
-- Tester **emner**, ikke merker eller structure
-- Kobles til:
-  - `emne_id`
-  - ofte `place_id` og/eller `person_id`
-- Gir erfaring → knowledge
+**Rolle:** inngang, kategori, identitet og aggregering.
 
-📁 `data/quiz/quiz_<subject>.json`
+Eksempler:
 
----
+- `historie`
+- `by`
+- `sport`
+- `vitenskap`
 
-## 5) Knowledge (brukerens erfaring)
-**Rolle:** Logg over hva brukeren har vært borti
-
-- Samler:
-  - begreper
-  - emner
-  - steder
-  - personer
-- Akkumulativ og åpen
-- **Ingen krav eller rekkefølge**
-
-📁 `knowledge.js`, `knowledge_component.js`
-
-> Knowledge er **erfaring**, ikke progresjon.
+Merker inneholder ikke den detaljerte faglige strukturen.
 
 ---
 
-## 6) Pensum (`pensum_<id>.json`)
-**Rolle:** Kurssammensetning og progresjonslogikk
+## 2. Fagkart / fagplan
 
-Pensum beskriver:
-- hvilke **emner** som inngår i et kurs
-- i hvilken **rekkefølge**
-- hvilke **krav** som må oppfylles
-- hvordan erfaring tolkes til “fullført”
+**Rolle:** beskriver fagets struktur og sammenhenger.
 
-Pensum:
-- inneholder **ingen emnetekster**
-- skrives **aldri til**
-- brukes kun til **beregning**
+Fagkart er:
 
-📁 `data/pensum_<subject>.json`
+- delt
+- åpent
+- ikke personlig
+- ikke progresjonstilstand
 
-Eksempel:
-```json
-module → emne_ids → regler → status (beregnet)
+Aktive fagfiler skal finnes gjennom:
+
+```text
+data/fag/fag_manifest.json
 ```
 
+Manifestet peker per `subjectId` til aktive filer for blant annet:
+
+- `pensum`
+- `emner`
+- `fagkart`
+- `methods`
+- `supersetQuizMal`
+
+Runtime skal bruke manifestet først og kan beholde fallback-paths der det er nødvendig for bakoverkompatibilitet.
+
 ---
 
-## Viktig skille (kritisk)
+## 3. Emner
+
+**Rolle:** faglig mikrostruktur.
+
+Ett emne beskriver en konkret problemstilling eller kunnskapsenhet.
+
+Typiske felt:
+
+- `emne_id`
+- `subject_id`
+- `title`
+- `description`
+- `core_concepts`
+- `dimensions`
+- `keywords`
+
+Emner er innhold og struktur, ikke brukerens historikk.
+
+> Emner finnes uavhengig av om brukeren har Knowledge i dem.
+
+---
+
+## 4. Quiz og vurdering
+
+**Rolle:** vurdert møte mellom bruker og kunnskap.
+
+Når brukeren svarer riktig på et knowledge-skapende quizspørsmål, skal runtime produsere en canonical Knowledge-entry.
+
+Quizdata bør derfor koble til:
+
+- fag / kategori
+- ett eller flere `emne_id`
+- konkrete `core_concepts` / concepts
+- knowledge-tekst
+- target når quizen er sted- eller personbundet
+
+Quiz kan samtidig produsere learning-log-events som brukes av progresjonsmotoren.
+
+---
+
+## 5. Knowledge
+
+**Rolle:** brukerens personlige kart over vurdert forståelse.
+
+Canonical storage for nye entries:
+
+```text
+hg_knowledge_entries_v2
+```
+
+Canonical runtime/read-model:
+
+```js
+HGKnowledgeV2
+await HGKnowledgeV2.buildProfile()
+```
+
+Knowledge samler:
+
+- konkrete kunnskapspunkter
+- fagkobling
+- emnekobling
+- concepts
+- proveniens tilbake til quiz og kontekst
+
+Knowledge er:
+
+- personlig
+- akkumulativ
+- dynamisk
+- etterprøvbar mot kilden som skapte entry-en
+
+Knowledge er ikke:
+
+- besøkslogg
+- samling
+- observasjonslogg
+- kursstatus
+- fagkart
+
+`knowledge_universe` er legacy tekstarkiv og bevares/migreres inn i V2-read-modellen uten å bli slettet.
+
+---
+
+## 6. Learning log og annen evidens
+
+**Rolle:** append-only spor etter aktivitet og læring.
+
+Primær logg:
+
+```text
+hg_learning_log_v1
+```
+
+Den kan inneholde blant annet:
+
+- quiz-events
+- emnetreff
+- concepts
+- observations
+
+Besøkte steder, samlede personer og andre runtime-states kan også brukes som kontekst eller progresjonssignal.
+
+Men:
+
+> Evidens om erfaring er ikke automatisk Knowledge.
+
+Learning log kan hjelpe med å koble eller forklare en Knowledge-entry, for eksempel når eldre quizdata mangler eksplisitt `emne_id`.
+
+---
+
+## 7. Pensum / Courses
+
+**Rolle:** tolker fagstruktur og læringsevidens til progresjon.
+
+Pensum beskriver typisk:
+
+- moduler
+- hvilke emner som inngår
+- rekkefølge
+- krav
+- diplomregler
+
+Pensum skal ikke kopiere emnetekster og skal ikke brukes som brukerhistorikk.
+
+Status beregnes av runtime, blant annet gjennom:
+
+```js
+HGCourses.compute({ subjectId, emnerAll })
+```
+
+Pensumfila endres ikke når brukeren lærer noe.
+
+---
+
+## 8. Kritisk skille
 
 | Del | Hva den er | Hva den ikke er |
 |---|---|---|
-| Structure | Navigasjon | Pensum |
-| Emner | Innhold | Kurs |
-| Quiz | Evaluering | Pensum |
-| Knowledge | Erfaring | Progresjon |
-| Pensum | Kursplan | Logg |
+| Merke | Inngang og aggregering | Detaljert fagstruktur |
+| Fagkart | Faglig struktur | Brukerprogresjon |
+| Emne | Mikro-kunnskapsstruktur | Brukerhistorikk |
+| Quiz | Vurdert læringssituasjon | Pensum |
+| Knowledge | Personlig vurdert forståelse | Besøks-/observasjonslogg |
+| Learning log | Evidens og historikk | Knowledge-arkiv |
+| Pensum/Courses | Progresjonsregler og tolkning | Innhold eller logg |
 
 ---
 
-## Flyt ved fullført quiz
+## 9. Flyt ved quiz
 
-1. Quiz fullføres  
-2. → Knowledge oppdateres (begreper / emne)  
-3. → Pensum **tolker** knowledge:
-   - hvilke emner er dekket?
-   - hvilke moduler er fullført?
-4. → Kursstatus vises i UI  
+Ved riktig svar på et knowledge-skapende spørsmål:
 
-> Pensumfila endres **aldri**.  
-> Status er alltid **beregnet**, ikke lagret.
-
----
-
-## Designmål (låst)
-
-- Én sannhet per nivå
-- Ingen duplisering av innhold
-- Pensum = regler, ikke data
-- Knowledge = erfaring, ikke fasit
-- Structure = oversikt, ikke didaktikk
+1. Quiz registrerer riktig svar.
+2. Knowledge-entry opprettes eller oppdateres.
+3. Entry kobles til fag, emner, concepts og kilde.
+4. Quiz-/sett-event kan skrives til learning log.
+5. Courses/Pensum tolker tilgjengelig evidens til beregnet progresjon.
+6. UI viser Knowledge og progresjon som to relaterte, men separate lag.
 
 ---
 
-## Status
-Denne arkitekturen er:
-- konsistent
-- skalerbar
-- egnet for by, sport, historie, vitenskap
-- kompatibel med eksisterende kodebase
+## 10. Structure-filer
+
+`structure_*.json` er deprecated som runtime-lag.
+
+Eldre dokumentasjon som beskriver følgende runtime-flyt:
+
+```text
+Merke → Structure → Emner
+```
+
+skal forstås som historisk.
+
+Aktiv modell er:
+
+```text
+Merke → Fagkart/fagplan → Emner → Quiz/vurdering → Knowledge + Learning log → Courses/Pensum → UI
+```
 
 ---
 
-**Dette dokumentet er normativt.**  
-Hvis noe bryter med dette, er det en feil i implementasjon – ikke i modellen.
+## 11. Designmål
 
-UPPDATERINGER / KLARGJØRINGER (2025-12)
--------------------------------------
-Hva som er nytt siden eldre versjoner
-- Emnefilene er styrket som "én sannhet".
-- Progresjon skal forstås faglig: emnedekning + begrepsdekning + quiz-kvalitet, ikke bare poeng.
-- Courses/pensum-filer brukes til å definere *moduler* og *krav* for diplom.
+- Én sannhet per nivå.
+- Ingen duplisering av faginnhold.
+- Én canonical Knowledge-entry-modell.
+- Én canonical Knowledge read-model.
+- Ingen automatisk likestilling mellom «opplevd» og «forstått».
+- Legacy-data skal bevares, ikke oppfinnes om.
+- Usikre koblinger skal markeres som usikre.
+- Progresjon skal beregnes, ikke skrives inn i pensumfilene.
 
+---
 
-- `structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til "structure", regnes det nå som DEPRECATED/historisk.
-- Ontologi som *modell* er fortsatt relevant, men implementasjonen i runtime skjer via: Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI.
-- `Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur; den bruker emner + learning log + pensum-filer for å beregne modulstatus/diplom.
-- Knowledge-visningen er nå flat (ingen structure) og kan i tillegg vise kursprogresjon via `HGCourseUI`/`HGCourses.compute`.
+## Kortform
 
-
-Hvordan du kobler alt sammen
-- Emner peker "nedover" til quiz via `related_emner`/`core_concepts`-logikk.
-- Courses peker "oppover" ved å oppsummere (modul/diplom) per merke og (eventuelt) per fagkart-node.
-
-Manifest-kontrakt for aktive fagfiler (2026-05)
-------------------------------------------------
-- Aktiv fagfilkontrakt er nå `data/fag/fag_manifest.json`.
-- Manifestet peker til aktive filer per `subjectId` for:
-  - `pensum`
-  - `emner`
-  - `fagkart`
-  - `methods`
-  - `supersetQuizMal`
-- Canonical/versjonerte filnavn kan beholdes uendret.
-- Runtime skal laste fagfiler via manifestet først, med eksisterende fallback-paths intakt.
-- Store fagfiler skal ikke renames for å bytte aktiv versjon.
-- Bytte av aktiv fagversjon gjøres ved å oppdatere manifestet.
+```text
+Fagkart = hvor kunnskapen finnes
+Emner = hva kunnskapen handler om
+Quiz = vurdering
+Knowledge = hva brukeren faktisk har forstått
+Learning log = hva brukeren har gjort
+Pensum/Courses = hvordan erfaring tolkes til progresjon
+```
