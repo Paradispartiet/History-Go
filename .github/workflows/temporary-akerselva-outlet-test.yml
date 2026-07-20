@@ -1,0 +1,35 @@
+name: Temporary Akerselva outlet test
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/natur/oslo/places_oslo_natur_akerselvarute/akerselva_utlop_bjorvika.json'
+      - 'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json'
+      - 'data/quiz/natur/akerselva_utlop_bjorvika_sets.json'
+      - 'data/stories/stories_akerselva_utlop_bjorvika.json'
+      - 'data/leksikon/manifest.json'
+      - 'data/leksikon/places/oslo/natur/leksikon_akerselva_utlop_bjorvika.json'
+      - 'tests/akerselva-outlet-nature-rounds-batch1.test.js'
+      - '.github/workflows/temporary-akerselva-outlet-test.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  targeted-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run Akerselva outlet test
+        run: node tests/akerselva-outlet-nature-rounds-batch1.test.js
+      - name: Check JSON and whitespace
+        run: |
+          node -e "for (const f of process.argv.slice(1)) JSON.parse(require('fs').readFileSync(f,'utf8'))" \
+            data/places/natur/oslo/places_oslo_natur_akerselvarute/akerselva_utlop_bjorvika.json \
+            data/quiz/natur/akerselva_utlop_bjorvika_sets.json \
+            data/stories/stories_akerselva_utlop_bjorvika.json \
+            data/leksikon/places/oslo/natur/leksikon_akerselva_utlop_bjorvika.json
+          git diff --check origin/main...HEAD
