@@ -1,0 +1,69 @@
+name: Temporary Helsfyr people finalizer
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Helsfyr people branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/people-helsfyr-batch1
+          fetch-depth: 0
+
+      - name: Detect pending one-shot job
+        id: pending
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f scripts/helsfyr-people-finalizer.mjs ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Node
+        if: steps.pending.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        if: steps.pending.outputs.run == 'true'
+        run: npm install --no-audit --no-fund
+
+      - name: Materialize Helsfyr people batch
+        if: steps.pending.outputs.run == 'true'
+        run: node scripts/helsfyr-people-finalizer.mjs
+
+      - name: Validate People of Places
+        if: steps.pending.outputs.run == 'true'
+        run: bash scripts/check-people.sh
+
+      - name: Publish clean materialized branch
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout origin/main -- \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Helsfyr people batch 1"
+          git pull --rebase origin agent/people-helsfyr-batch1
+          git push origin HEAD:agent/people-helsfyr-batch1
