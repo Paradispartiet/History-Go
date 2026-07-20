@@ -60,7 +60,14 @@ class SafetyContextReference(ApiModel):
     reason: str | None = Field(default=None, max_length=240)
     source_surface: str | None = Field(default=None, max_length=80)
 
-    @field_validator("context_type", "context_id", "title", "reason", "source_surface", mode="before")
+    @field_validator(
+        "context_type",
+        "context_id",
+        "title",
+        "reason",
+        "source_surface",
+        mode="before",
+    )
     @classmethod
     def normalize_strings(cls, value: object) -> object:
         if value is None:
