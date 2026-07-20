@@ -41,6 +41,7 @@ DAY_LOOKBACK = timedelta(hours=24)
 NEW_PROFILE_WINDOW = timedelta(days=7)
 DECLINE_COOLDOWN = timedelta(hours=24)
 REPORT_COOLDOWN = timedelta(days=7)
+BLOCK_COOLDOWN = timedelta(days=7)
 CANCELLATION_LOOKBACK = timedelta(hours=24)
 REPEATED_CANCELLATION_THRESHOLD = 3
 
@@ -57,6 +58,7 @@ class InviteAbuseSnapshot:
     duplicate_active_invite: bool
     last_declined_at: datetime | None
     last_recipient_report_at: datetime | None
+    last_pair_block_at: datetime | None
     unresolved_reports_against_sender: int
 
 
