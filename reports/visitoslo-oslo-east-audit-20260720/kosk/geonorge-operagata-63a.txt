@@ -1,0 +1,88 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Operagata 63A Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Operagata 63A Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Operagata%2063A%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:21508:63A",
+  "coordinate": {
+    "lat": 59.906685874683745,
+    "lon": 10.758291323082018,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:21508:63A",
+    "address": {
+      "street": "Operagata",
+      "number": "63A",
+      "postcode": "0194",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Operagata 63A, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Operagata",
+    "adressetekst": "Operagata 63A",
+    "adressetilleggsnavn": null,
+    "adressekode": 21508,
+    "nummer": 63,
+    "bokstav": "A",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 234,
+    "bruksnummer": 123,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [
+      "H0201",
+      "H0202",
+      "H0203",
+      "H0204",
+      "H0205",
+      "H0301",
+      "H0302",
+      "H0303",
+      "H0304",
+      "H0401",
+      "H0402",
+      "H0403",
+      "H0404",
+      "H0501",
+      "H0502",
+      "H0503",
+      "H0504",
+      "H0601",
+      "H0602",
+      "H0603",
+      "H0604",
+      "H0701"
+    ],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0194",
+    "adressetekstutenadressetilleggsnavn": "Operagata 63A",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.906685874683745,
+      "lon": 10.758291323082018
+    },
+    "oppdateringsdato": "2020-06-15T18:32:32"
+  }
+}
