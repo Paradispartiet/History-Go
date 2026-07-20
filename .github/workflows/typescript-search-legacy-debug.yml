@@ -7,27 +7,53 @@ on:
       - "js/ui/search.ts"
       - ".github/workflows/typescript-search-legacy-debug.yml"
 
+permissions:
+  contents: write
+
 jobs:
-  capture-legacy-typecheck:
+  finalize-legacy-compatible-search:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Capture root legacy diagnostics
+      - name: Preserve DOM narrowing in generated JavaScript
         shell: bash
         run: |
-          set +e
-          npm run typecheck > typecheck-search-legacy.log 2>&1
-          status=$?
-          echo "exit_code=$status" >> typecheck-search-legacy.log
-          exit 0
-      - uses: actions/upload-artifact@v4
-        with:
-          name: typecheck-search-legacy-diagnostics
-          path: typecheck-search-legacy.log
-          if-no-files-found: error
-          retention-days: 1
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("js/ui/search.ts")
+          source = path.read_text()
+          replacements = {
+              'const input = document.getElementById("globalSearch") as HTMLInputElement | null;\n  if (input) {': 'const input = document.getElementById("globalSearch");\n  if (input instanceof HTMLInputElement) {',
+              'const input = document.getElementById("globalSearch") as HTMLInputElement | null;\n  input?.blur();': 'const input = document.getElementById("globalSearch");\n  if (input instanceof HTMLInputElement) input.blur();',
+              'const input = document.getElementById("globalSearch") as HTMLInputElement | null;\n    input?.blur();': 'const input = document.getElementById("globalSearch");\n    if (input instanceof HTMLInputElement) input.blur();',
+              'const input = document.getElementById("globalSearch") as HTMLInputElement | null;\n    if (input) input.value = categoryId;': 'const input = document.getElementById("globalSearch");\n    if (input instanceof HTMLInputElement) input.value = categoryId;',
+              'const input = document.getElementById("globalSearch") as HTMLInputElement | null;\n  const box = document.getElementById("searchResults");\n  if (!input || !box || input.dataset.hgSearchBound === "1") return;': 'const input = document.getElementById("globalSearch");\n  const box = document.getElementById("searchResults");\n  if (!(input instanceof HTMLInputElement) || !box || input.dataset.hgSearchBound === "1") return;'
+          }
+          for old, new in replacements.items():
+              if old in source:
+                  source = source.replace(old, new, 1)
+          path.write_text(source)
+          PY
+      - name: Verify modern and legacy TypeScript surfaces
+        run: |
+          npm run typecheck:web
+          npm run build:web
+          npm run typecheck
+      - name: Commit source and generated compatibility outputs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/ui/search.ts dist/web/search.js js/ui/search.js
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Preserve search DOM narrowing in legacy output"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
