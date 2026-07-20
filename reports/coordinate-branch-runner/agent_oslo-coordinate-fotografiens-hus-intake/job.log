@@ -1,0 +1,63 @@
+Running normative address-first intake for fotografiens_hus: Rådhusgata 20 Oslo
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Rådhusgata 20 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=R%C3%A5dhusgata%2020%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+  "coordinate": {
+    "lat": 59.90951628354778,
+    "lon": 10.74209892031479,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+    "address": {
+      "street": "Rådhusgata",
+      "number": "20",
+      "postcode": "0151",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 20, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Rådhusgata",
+    "adressetekst": "Rådhusgata 20",
+    "adressetilleggsnavn": null,
+    "adressekode": 16115,
+    "nummer": 20,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 207,
+    "bruksnummer": 227,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0151",
+    "adressetekstutenadressetilleggsnavn": "Rådhusgata 20",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90951628354778,
+      "lon": 10.74209892031479
+    },
+    "oppdateringsdato": "2020-06-15T18:06:06"
+  }
+}
+Saved Fotografiens Hus address intake evidence to reports/oslo-attractions-completeness-20260720/fotografiens-hus (verified_candidate)
