@@ -1,0 +1,329 @@
+name: Temporary Jordal ungdomshall production
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'agent/oslo-coordinate-jordal-ungdomshall-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-jordal-ungdomshall-production
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize Jordal ungdomshall
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const placeId = 'jordal_ungdomshall';
+          const placeRel = 'places/sport/oslo/places_sport/jordal_ungdomshall.json';
+          const evidenceRel = 'oslo/sport/jordal_ungdomshall.json';
+          const lat = 59.91027218303978;
+          const lon = 10.78314155270237;
+          const sourceObjectId = 'osm:way:33263069';
+          const sourceUrl = 'https://www.openstreetmap.org/way/33263069';
+          const coordNote = 'Geometrisk senter av OSM way 33263069, eksplisitt navngitt «Jordal ungdomshallen» og tagget som egen ishall med Oslobygg KF som eier, anleggsreferanse 31177 og bygningsnummer 81040303. Punktet brukes som building-specific anker og skiller ungdomshallen fra Jordal Amfi til tross for delt besøksadresse.';
+
+          const readJson = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const writeJson = (p, value) => {
+            fs.mkdirSync(path.dirname(p), { recursive: true });
+            fs.writeFileSync(p, JSON.stringify(value, null, 2) + '\n');
+          };
+          const haversine = (aLat, aLon, bLat, bLon) => {
+            const R = 6371000;
+            const dLat = (bLat - aLat) * Math.PI / 180;
+            const dLon = (bLon - aLon) * Math.PI / 180;
+            const x = Math.sin(dLat / 2) ** 2 + Math.cos(aLat * Math.PI / 180) * Math.cos(bLat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(x));
+          };
+
+          const currentIndex = readJson('data/places/places_index.json');
+          if (currentIndex.some(p => p.id === placeId)) throw new Error(`${placeId} already exists in runtime index`);
+
+          // Reuse canonical sport-emne mapping from the existing Jordal Amfi place.
+          const placeManifest = readJson('data/places/manifest.json');
+          let jordalAmfiSource = null;
+          for (const rel of placeManifest.files) {
+            const full = path.join('data', rel);
+            if (!fs.existsSync(full)) continue;
+            let json;
+            try { json = readJson(full); } catch { continue; }
+            const rows = Array.isArray(json) ? json : [json];
+            const hit = rows.find(row => row && row.id === 'jordal_amfi');
+            if (hit) { jordalAmfiSource = hit; break; }
+          }
+          const emneIds = jordalAmfiSource?.emne_ids;
+          if (!Array.isArray(emneIds) || emneIds.length === 0) {
+            throw new Error('Could not resolve canonical Jordal Amfi emne_ids from manifest-backed place data');
+          }
+
+          const nearby = currentIndex
+            .filter(p => Number.isFinite(p.lat) && Number.isFinite(p.lon))
+            .map(p => ({ id: p.id, name: p.name, category: p.category, distanceMeters: Math.round(haversine(lat, lon, p.lat, p.lon) * 10) / 10 }))
+            .filter(p => p.distanceMeters <= 350)
+            .sort((a, b) => a.distanceMeters - b.distanceMeters);
+
+          const place = {
+            id: placeId,
+            name: 'Jordal ungdomshall',
+            lat,
+            lon,
+            r: 60,
+            category: 'sport',
+            year: 1989,
+            period: 'Oppført 1988–89; 1989 brukes som teknisk åpnings-/bruksepokeanker',
+            emne_ids: emneIds,
+            desc: 'Separat innendørs ishall i Jordal idrettspark, oppført rundt 1988–89 og brukt til blant annet ishockey, kunstløp, trening og publikumsskøyting. Hallen er fysisk og funksjonelt adskilt fra Jordal Amfi.',
+            popupDesc: 'Jordal ungdomshall er den andre ishallen i Jordal idrettspark, ved siden av Jordal Amfi. Oslo kommune skiller uttrykkelig mellom de to ishallene, og publikumsskøytingen som VisitOSLO omtaler som «Jordal skøytebane» foregår i ungdomshallen – ikke i Amfi.\n\nKildene varierer mellom 1988 og 1989 for oppføringen. History Go behandler derfor 1988–89 som bygge-/etableringsperioden og bruker 1989 bare som et teknisk enkeltårsanker. Hallen ble bygget i forbindelse med ishockeyaktiviteten på Jordal og har siden fungert som trenings- og aktivitetshall for flere isidretter.\n\nUngdomshallen deler offentlig besøksadresse Jordalgata 12 med deler av Jordal-komplekset, så et vanlig adressepunkt er ikke presist nok. Canonical koordinat bruker derfor senteret av det separate kartobjektet OSM way 33263069, navngitt «Jordal ungdomshallen», med eget Oslobygg-eierskap, anleggsreferanse og bygningsnummer. Dette stedet skal ikke slås sammen med `jordal_amfi`.',
+            quiz_profile: {
+              place_type: 'ishall',
+              subtype: 'sekundaer_trenings_og_publikumshall_i_idrettskompleks',
+              signature_features: [
+                'egen ishall i Jordal idrettspark',
+                'oppført rundt 1988–89',
+                'brukes til ishockey, kunstløp, trening og publikumsskøyting',
+                'fysisk adskilt fra Jordal Amfi',
+                'VisitOSLOs Jordal skøytebane viser til publikumsskøyting i ungdomshallen'
+              ],
+              primary_angles: [
+                'idrettsanlegg_og_hverdagsbruk',
+                'isidrett_og_trening',
+                'publikumsskoyting',
+                'anleggsutvikling_pa_jordal',
+                'forholdet_mellom_hovedarena_og_treningshall'
+              ],
+              question_families: [
+                'institusjonshistorie',
+                'anlegg_og_bruk',
+                'idrettshistorie',
+                'fysisk_gjenkjenning',
+                'kontrast'
+              ],
+              avoid_angles: [
+                'forveksle_med_jordal_amfi',
+                'presentere_1989_som_sikkert_eksakt_byggeaar',
+                'lage_egen_tredje_place_for_jordal_skoytebane',
+                'generisk_ishallquiz_uten_jordalforankring'
+              ],
+              must_include: [
+                'skillet fra Jordal Amfi',
+                'rollen som trenings- og publikumshall',
+                'byggeperioden 1988–89',
+                'at publikumsskøytingen er en bruk av denne hallen'
+              ],
+              contrast_targets: [
+                'jordal_amfi',
+                'toyenbadet'
+              ],
+              notes: 'Spør ungdomshallen som en egen fysisk isidrettsarena innenfor Jordal-komplekset. Eksterne kommune-, idretts- og lokalhistoriske kilder skal dominere synlig quizinnhold.'
+            },
+            locatorType: 'building',
+            sourceProvider: 'openstreetmap',
+            sourceObjectId,
+            address: {
+              street: 'Jordalgata',
+              number: '12',
+              postcode: '0657',
+              city: 'Oslo',
+              country: 'NO'
+            },
+            geocodeAccuracy: 'building_polygon_centroid',
+            coordRole: 'display_marker',
+            coordStatus: 'verified_geometry',
+            coordSource: 'openstreetmap_named_building_geometry',
+            coordSourceId: sourceObjectId,
+            coordSourceUrl: sourceUrl,
+            coordType: 'building_centroid',
+            coordVerifiedAt: '2026-07-20',
+            coordNote
+          };
+          writeJson(path.join('data', placeRel), place);
+
+          const evidence = {
+            schemaVersion: '1.0',
+            placeId,
+            placeFile: `data/${placeRel}`,
+            evidenceStatus: 'applied_to_place',
+            coordinateDecision: 'do_not_change_coordinates_yet',
+            currentCoordinate: {
+              lat,
+              lon,
+              r: 60,
+              coordStatus: 'verified_geometry',
+              coordSource: 'openstreetmap_named_building_geometry',
+              coordType: 'building_centroid',
+              coordNote
+            },
+            identity: {
+              currentName: 'Jordal ungdomshall',
+              resolvedIdentity: 'Separate Jordal youth ice hall represented by OSM way 33263069, named Jordal ungdomshallen',
+              identityStatus: 'resolved',
+              identityProblem: '',
+              locatorTypeCandidate: 'building',
+              requiresSplit: false,
+              splitReason: ''
+            },
+            requiredEvidence: [
+              'completed but non-applicable address-first audit for shared Jordalgata 12',
+              'separate named building object for Jordal ungdomshallen',
+              'distinct facility identity from Jordal Amfi and Jordal idrettshall',
+              'building-specific geometry rather than shared-address proxy'
+            ],
+            evidence: [
+              {
+                sourceProvider: 'openstreetmap',
+                sourceName: 'OpenStreetMap named building geometry',
+                sourceUrl,
+                sourceObjectId,
+                sourceQuality: 'named_building_polygon_cross_checked_with_official_facility_identity',
+                finding: 'OSM way 33263069 is explicitly named Jordal ungdomshallen, tagged as an ice rink, owned by Oslobygg KF, and carries its own facility reference 31177 and building number 81040303. This provides a building-specific geometry distinct from Jordal Amfi.',
+                canVerifyCoordinate: true,
+                reason: coordNote
+              }
+            ],
+            addressCandidates: [
+              {
+                address: 'Jordalgata 12 Oslo',
+                sourceProvider: 'official_address',
+                sourceObjectId: null,
+                canApplyToPlace: false
+              }
+            ],
+            sourceObjectCandidates: [
+              { sourceProvider: 'openstreetmap', sourceObjectId, canApplyToPlace: true }
+            ],
+            geometryCandidates: [
+              { sourceProvider: 'openstreetmap', sourceObjectId, geometryType: 'Polygon', canApplyToPlace: true }
+            ],
+            coordinateCandidates: [
+              { lat, lon, coordRole: 'display_marker', canApplyToPlace: true }
+            ],
+            decision: {
+              canBecomeVerified: true,
+              blockedReason: '',
+              nextAction: 'Applied the centroid of the separate named youth-hall building polygon after the shared-address gate was found non-specific.'
+            },
+            notes: [coordNote]
+          };
+          writeJson(path.join('data/coordinate-evidence', evidenceRel), evidence);
+
+          if (!placeManifest.files.includes(placeRel)) placeManifest.files.push(placeRel);
+          writeJson('data/places/manifest.json', placeManifest);
+
+          const evidenceManifestPath = 'data/coordinate-evidence/manifest.json';
+          const evidenceManifest = readJson(evidenceManifestPath);
+          if (!evidenceManifest.files.includes(evidenceRel)) evidenceManifest.files.push(evidenceRel);
+          writeJson(evidenceManifestPath, evidenceManifest);
+
+          const protocolPath = 'docs/coordinates/coordinate-control-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          const osloStart = protocol.indexOf('## Oslo');
+          const noCoordStart = protocol.indexOf('### Dokumenterte Oslo-kontroller uten godkjent koordinat');
+          if (osloStart < 0 || noCoordStart < 0) throw new Error('Could not locate bounded Oslo protocol section');
+          const osloSection = protocol.slice(osloStart, noCoordStart);
+          const rows = [...osloSection.matchAll(/^\| (\d+) \| `([^`]+)` \|.*$/gm)];
+          if (!rows.length) throw new Error('No Oslo protocol rows found');
+          const lastRow = rows[rows.length - 1];
+          const maxBatch = Math.max(...rows.map(m => Number(m[1])));
+          const nextBatch = maxBatch + 1;
+          const newRow = `| ${nextBatch} | \`${placeId}\` | Jordal ungdomshall | verified_geometry | \`${sourceObjectId}\` |`;
+          const insertAt = osloStart + lastRow.index + lastRow[0].length;
+          protocol = protocol.slice(0, insertAt) + '\n' + newRow + protocol.slice(insertAt);
+
+          const summaryRe = /Oslo-tabellen inneholder nå (\d+) verifiserte eller kildekontrollerte canonical steder\. Batch \d+ legger til .*? Antallet fullførte kontroller uten godkjent Oslo-koordinat er (\d+)\./;
+          const summaryMatch = protocol.match(summaryRe);
+          if (!summaryMatch) throw new Error('Could not locate Oslo protocol summary');
+          const newTotal = Number(summaryMatch[1]) + 1;
+          const noCoordCount = Number(summaryMatch[2]);
+          protocol = protocol.replace(summaryRe, `Oslo-tabellen inneholder nå ${newTotal} verifiserte eller kildekontrollerte canonical steder. Batch ${nextBatch} legger til Jordal ungdomshall med bygningssenter fra det separate navngitte OSM-objektet way 33263069 etter at delt adresse med Jordal-komplekset gjorde address-first-punktet ikke-spesifikt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er ${noCoordCount}.`);
+          fs.writeFileSync(protocolPath, protocol);
+
+          const reportDir = 'reports/geonorge-address-jordal-ungdomshall-20260720';
+          writeJson(path.join(reportDir, 'production-decision.json'), {
+            placeId,
+            decision: 'produce_distinct_named_youth_ice_hall',
+            primaryCategory: 'sport',
+            coordinate: { lat, lon, sourceObjectId },
+            reusedEmneIds: emneIds,
+            nearbyWithin350m: nearby,
+            identityDecision: 'Jordal ungdomshall is a separate ice-hall building represented by OSM way 33263069; Jordal Amfi remains a distinct canonical place.',
+            protocolBatch: nextBatch
+          });
+
+          console.log(JSON.stringify({ placeId, nextBatch, emneIds, nearby }, null, 2));
+          NODE
+
+      - name: Run and persist validation gates
+        shell: bash
+        run: |
+          set -u
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-jordal-ungdomshall-production"
+          mkdir -p "$LOGDIR"
+          : > "$LOGDIR/gate-status.txt"
+          BLOCKING_FAIL=0
+
+          run_gate() {
+            name="$1"
+            shift
+            set +e
+            "$@" > >(tee "$LOGDIR/$name.log") 2>&1
+            code=$?
+            set -e
+            printf '%s\n' "$code" > "$LOGDIR/$name.exit-code.txt"
+            echo "$name=$code" >> "$LOGDIR/gate-status.txt"
+            if [ "$code" -ne 0 ]; then BLOCKING_FAIL=1; fi
+            return 0
+          }
+
+          set -e
+          run_gate places-index-build npm run places:index:build
+          run_gate split-manifest-sync npm run audit:places-split-manifest-sync
+          run_gate places-index-check npm run places:index:check
+          run_gate coordinate-source-contract npm run test:coordinate-source-contract
+          run_gate coordinate-quality npm run places:coords:quality
+          run_gate coordinate-intake npm run places:coords:intake -- --strict-new
+          run_gate coordinate-evidence npm run places:coords:evidence:audit
+          run_gate git-diff-check git diff --check
+
+          set +e
+          npm run health:places 2>&1 | tee "$LOGDIR/health-places.log"
+          HEALTH_CODE=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$HEALTH_CODE" > "$LOGDIR/health-places.exit-code.txt"
+          echo "health-places=$HEALTH_CODE" >> "$LOGDIR/gate-status.txt"
+          printf '%s\n' "$BLOCKING_FAIL" > "$LOGDIR/blocking-fail.txt"
+
+      - name: Commit production result
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-jordal-ungdomshall-production"
+          BLOCKING_FAIL=$(cat "$LOGDIR/blocking-fail.txt")
+          rm -f .github/workflows/temp-jordal-ungdomshall-production.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Jordal ungdomshall as canonical Oslo sport place"
+          git push origin HEAD:agent/oslo-coordinate-jordal-ungdomshall-production
+          if [ "$BLOCKING_FAIL" -ne 0 ]; then exit 1; fi
