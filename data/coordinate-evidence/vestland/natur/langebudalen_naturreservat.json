@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "langebudalen_naturreservat",
+  "placeFile": "data/places/natur/vestland/langebudalen_naturreservat.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.8997478,
+    "lon": 6.4692146,
+    "r": 160,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Miljødirektoratet Naturvernområder – offisiell polygon for Langebudalen naturreservat",
+    "coordType": "area_center",
+    "coordNote": "Representativt områdeanker beregnet inne i den offisielle vernepolygonen. Ikke et tilgangs-, parkerings- eller stipunkt."
+  },
+  "identity": {
+    "currentName": "Langebudalen naturreservat",
+    "resolvedIdentity": "Langebudalen naturreservat",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell navngitt vernepolygon",
+    "stabilt verneområde-ID",
+    "representativt punkt inne i polygonet",
+    "kildebelagt verneformål for barlind"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Miljødirektoratet Naturvernområder",
+      "sourceUrl": "https://faktaark.naturbase.no/?id=VV00001065",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001065",
+      "sourceQuality": "official_protected_area_polygon",
+      "finding": "Miljødirektoratets åpne karttjeneste returnerer ett navngitt polygon for Langebudalen naturreservat. Representasjonspunktet er beregnet inne i polygonet og brukes som områdeanker.",
+      "canVerifyCoordinate": true,
+      "reason": "Naturreservatet er et arealobjekt, og offisiell polygon med stabil identitet tilfredsstiller geometri- og kildekravet for verified_geometry."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001065",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "geometryType": "polygon",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001065",
+      "sourceUrl": "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/FeatureServer/0/query?where=navn+LIKE+%27%25Langebudalen%25%27&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.8997478,
+      "lon": 6.4692146,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisiell vernepolygon og representativt områdeanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Punktet er ikke en inngang eller parkeringsplass.",
+    "Kildeegenskaper: {\"naturvernId\":\"VV00001065\",\"cddaId\":\"182963\",\"navn\":\"Langebudalen\",\"offisieltNavn\":\"Langebudalen naturreservat\",\"faktaark\":\"https://faktaark.naturbase.no/?id=VV00001065\",\"verneform\":\"Naturreservat\",\"verneforskrift\":\"https://lovdata.no/forskrift/2000-10-13-1022\",\"vernedato\":971395200000,\"foerstegangVernet\":null,\"verneplan\":\"AnnetVern\",\"kommune\":\"Etne (4611)\",\"forvaltningsmyndighet\":\"Folgefonna nasjonalparkstyre\",\"forvaltningsmyndighetType\":\"Nasjonalparkstyre\",\"iucn\":\"IUCN_IA\",\"revisjon\":\"IkkeRevidert\",\"truetVurdering\":\"IkkeTruet\",\"majorEcosystemType\":\"Terrestrisk\",\"GlobalID\":\"{F0540D92-D716-4CC0-AA19-E69740EB3DAC}\",\"verneformAggregert\":\"naturreservat\",\"OBJECTID\":27836,\"NaturvernFKID\":\"{84684BAA-4E61-437C-96A4-0E388FAB5864}\"}"
+  ]
+}

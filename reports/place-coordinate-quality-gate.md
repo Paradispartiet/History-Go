@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T21:34:12.031Z
+Generert: 2026-07-20T22:01:17.532Z
 
 ## Oppsummering
-- Aktive filer validert: **555**
-- Antall steder validert: **1213**
+- Aktive filer validert: **556**
+- Antall steder validert: **1214**
 - Harde feil: **0**
 - Varsler: **429**
 - Coordinate review candidates: **707** signaler fordelt på **566** steder
@@ -573,6 +573,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/kosk_oslo.json
 - data/places/kunst/oslo/places_kunst/galleri_mini_oslo.json
 - data/places/kunst/oslo/places_kunst/van_etten.json
+- data/places/natur/vestland/langebudalen_naturreservat.json
 
 ## Harde feil
 - Ingen
