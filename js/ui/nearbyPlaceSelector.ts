@@ -171,13 +171,14 @@ function select(): NearbyPlaceSelection {
     const resolved = resolveTime ? (resolveTime(place) || null) : null;
     const sortYear = readSortYear(place, resolved);
     const hasTime = typeof sortYear === "number" && Number.isFinite(sortYear);
+    const legacyEpokeLabel = (place as NearbySourcePlace).epokeLabel;
 
     return {
       ...place,
       _d: getPlaceDistanceMeters(place, position),
       _timeSortKey: hasTime ? sortYear : null,
       _timeLabel: hasTime ? String(sortYear) : "",
-      _epokeLabel: String(resolved?.epokeLabel ?? place.epokeLabel ?? "").trim(),
+      _epokeLabel: String(resolved?.epokeLabel ?? legacyEpokeLabel ?? "").trim(),
       _isZeitgeist: Boolean(resolved?.isZeitgeist)
     };
   });
