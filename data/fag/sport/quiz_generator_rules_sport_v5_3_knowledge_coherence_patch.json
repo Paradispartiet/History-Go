@@ -1,0 +1,124 @@
+{
+  "version": "v5.3-knowledge-coherence-patch-sport",
+  "subject_id": "sport",
+  "subject_title": "Sport & lek",
+  "type": "quiz_generator_policy_patch",
+  "extends": "quiz_generator_rules_sport_v5_2_relative_set_scope_patch.json",
+  "global_knowledge_policy": "../../knowledge/knowledge_system_policy_v1.json",
+  "knowledge_unit_schema": "../../knowledge/knowledge_unit_schema_v1.json",
+  "purpose": "Sikrer at sportens emner, begreper, terminologi, kunnskapsenheter, historier og quizzer danner én faglig kjede. Quiz skal teste og dokumentere læring, mens Knowledge-minnekammeret organiserer den kanoniske kunnskapen.",
+  "precedence": {
+    "relative_set_scope_rules_remain_active": true,
+    "source_priority_rules_remain_active": true,
+    "knowledge_coherence_rules_are_required_for_new_production": true
+  },
+  "hard_rules": {
+    "quiz_is_not_canonical_knowledge_storage": true,
+    "every_new_question_requires_primary_knowledge_unit_id": true,
+    "every_new_question_requires_explicit_emne_link": true,
+    "every_new_question_requires_concept_ids": true,
+    "every_new_question_requires_term_ids": true,
+    "knowledge_feedback_must_be_derived_from_knowledge_unit": true,
+    "tags_must_not_be_promoted_to_concepts": true,
+    "quiz_ids_and_target_ids_must_not_be_promoted_to_concepts": true,
+    "same_claim_reuses_same_knowledge_unit_id": true,
+    "stories_require_explicit_story_ids": true,
+    "strict_ids_no_automatic_normalization": true,
+    "source_and_claim_basis_remain_required": true
+  },
+  "canonical_chain": [
+    "sportpensum_og_fagkart",
+    "em_sport_emne",
+    "sport_concept_ids_og_term_ids",
+    "sport_knowledge_unit_ids_og_story_ids",
+    "quiz_learning_objective",
+    "quiz_evidence",
+    "personal_knowledge_memory_node"
+  ],
+  "required_quiz_root_metadata_additions": [
+    "knowledge_system_version",
+    "knowledge_unit_ids",
+    "concept_ids",
+    "term_ids",
+    "story_ids",
+    "emne_coverage",
+    "knowledge_coverage_note"
+  ],
+  "required_per_set_metadata_additions": [
+    "knowledge_unit_ids",
+    "concept_ids",
+    "term_ids",
+    "story_ids",
+    "learning_progression_note"
+  ],
+  "required_per_question_fields_additions": [
+    "primary_knowledge_unit_id",
+    "knowledge_unit_ids",
+    "concept_ids",
+    "term_ids",
+    "story_ids",
+    "learning_objective_id",
+    "evidence_type",
+    "feedback_basis"
+  ],
+  "field_definitions": {
+    "primary_knowledge_unit_id": "Den ene kanoniske kunnskapsenheten spørsmålet primært tester.",
+    "knowledge_unit_ids": "Alle kanoniske kunnskapsenheter spørsmålet eller settet faktisk berører.",
+    "concept_ids": "Stabile faglige idé- og prosess-ID-er. Skal ikke fylles fra tags.",
+    "term_ids": "Stabile terminologi-ID-er med foretrukket term og definisjon.",
+    "story_ids": "Eksplisitte narrative spor spørsmålet bidrar til. Tomt array er tillatt når spørsmålet ikke inngår i en historie.",
+    "learning_objective_id": "Stabil ID for hva brukeren skal kunne gjenkjenne, forklare, sammenligne eller anvende.",
+    "evidence_type": "Hva et riktig svar dokumenterer: recognize, recall, explain, compare, connect eller apply.",
+    "feedback_basis": "Hvilken canonical_claim eller forklaring i kunnskapsenheten som brukes i feedback.",
+    "knowledge_coverage_note": "Kort forklaring på hvordan quizens sett samlet dekker emner, begreper, terminologi, kunnskapsenheter og historier uten fyll eller gjentakelse."
+  },
+  "allowed_evidence_types": [
+    "recognize",
+    "recall",
+    "explain",
+    "compare",
+    "connect",
+    "apply"
+  ],
+  "knowledge_feedback_rules": [
+    "Legacy-feltet knowledge kan brukes som kort feedbacktekst.",
+    "Feedbackteksten skal være en presis avledning av primary_knowledge_unit_id og ikke introdusere en ny udokumentert påstand.",
+    "Samme kunnskapsenhet kan testes på flere måter uten at teksten dupliseres som nye kunnskapsobjekter.",
+    "Et spørsmål kan koble flere kunnskapsenheter, men én skal være markert som primær."
+  ],
+  "emne_rules": [
+    "Hvert spørsmål skal ha emne_id eller emne_ids som finnes i aktiv sportfagstruktur.",
+    "Hvert emne som brukes i produksjon skal etter hvert ha knowledge_unit_ids, concept_ids og term_ids.",
+    "Emneetiketten alene er ikke innhold; spørsmålet skal kunne spores til en konkret kunnskapsenhet.",
+    "Den tomme emner_sport_canonical_v4_5.json er ikke tilstrekkelig som ferdig emneregister. Inntil den repareres, skal IDs kontrolleres mot sportpensum og emnemapping uten å late som emneobjektene er komplette."
+  ],
+  "story_rules": [
+    "Historier skal ha stabil story_id og definert faglig eller kronologisk sammenheng.",
+    "En serie quizspørsmål om samme sted er ikke automatisk en historie.",
+    "Et story_fragment skal angi hvilken del av historien kunnskapsenheten representerer.",
+    "Knowledge-siden skal kunne samle fragmenter fra flere steder og quizzer i riktig narrativ sammenheng."
+  ],
+  "validator_additions": [
+    "Avvis ny sportquiz dersom et spørsmål mangler primary_knowledge_unit_id.",
+    "Avvis ny sportquiz dersom concept_ids eller term_ids mangler eller bare kopierer tags.",
+    "Avvis spørsmål der knowledge-feltet er eneste lagringssted for den faglige påstanden.",
+    "Avvis story_ids som ikke finnes i et registrert historiespor.",
+    "Flagg gjentatte canonical claims som bruker forskjellige knowledge_unit_ids uten faglig begrunnelse.",
+    "Flagg quizsett som hovedsakelig gjentar de samme kunnskapsenhetene uten ny læringsoperasjon.",
+    "Kontroller at quizrotens emne_coverage samsvarer med emne-ID-ene i settene og spørsmålene.",
+    "Kontroller at alle lenker kan spores fra quiz til kunnskapsenhet, emne og kilde."
+  ],
+  "migration_rule": {
+    "existing_sport_quizzes_remain_valid_legacy": true,
+    "future_audit_required": true,
+    "migration_order": [
+      "identify_distinct_claims_and_stories",
+      "create_or_reuse_knowledge_unit_ids",
+      "assign_concept_ids_and_term_ids",
+      "verify_emne_links",
+      "attach_quiz_questions_as_evidence",
+      "preserve_original_quiz_text_as_provenance"
+    ],
+    "do_not_generate_fake_precision": true
+  }
+}
