@@ -2,6 +2,7 @@
 
 export const OFFICIAL_HISTORY_GO_CATEGORIES = [
   "historie",
+  "religion",
   "vitenskap",
   "kunst",
   "musikk",
