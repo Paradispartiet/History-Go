@@ -314,9 +314,7 @@ def _export() -> SocialMeetExport:
             interest_places=[],
             learning_goals=[],
             knowledge_badges=[],
-            knowledge_fingerprint_summary=KnowledgeFingerprint(
-                theme_tags=["industrial_history"]
-            ),
+            knowledge_fingerprint_summary=KnowledgeFingerprint(theme_tags=["industrial_history"]),
             profile_visibility=ProfileVisibility.DISCOVERABLE,
             consent_version="social_meet_identity_v1",
             consented_at=timestamp,
@@ -324,9 +322,7 @@ def _export() -> SocialMeetExport:
             deleted_at=None,
         ),
         blocks=[_block().model_copy(update={"blocked_profile_id": target_profile_id})],
-        reports_submitted=[
-            _report().model_copy(update={"reported_profile_id": target_profile_id})
-        ],
+        reports_submitted=[_report().model_copy(update={"reported_profile_id": target_profile_id})],
         participant_invites=[
             ExportedInvite(
                 invite_id=uuid4(),
