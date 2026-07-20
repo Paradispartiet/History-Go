@@ -155,6 +155,9 @@ npm run places:index:build
 echo "== Place category override contract =="
 node tests/place-category-overrides.test.mjs
 
+echo "== Religion candidate audit =="
+node dist/tools/audit-religion-place-candidates.mjs | tee /tmp/religion-place-candidate-audit.log
+
 echo "== Build tools =="
 npm run build:tools
 
