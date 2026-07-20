@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 184 verifiserte eller kildekontrollerte canonical steder. Batch 43 legger til Frogner hovedgård, Arbeidermuseet og Nobels Fredssenter med entydige offisielle Geonorge-adressepunkter og eksplisitt fysisk avgrensning mot eksisterende parent- og nabosteder. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 40.
+Oslo-tabellen inneholder nå 187 verifiserte eller kildekontrollerte canonical steder. Batch 44 legger til Kunstnernes Hus, Vigelandmuseet og Møllergata skole med entydige offisielle Geonorge-adressepunkter og parent-modeller som hindrer duplikatmarkører for Vigelandsparken og Oslo Skolemuseum. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 40.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -206,6 +206,9 @@ Oslo-tabellen inneholder nå 184 verifiserte eller kildekontrollerte canonical s
 | 43 | `frogner_hovedgard` | Frogner hovedgård | verified | `geonorge-adresser-v1:0301:12613:58` |
 | 43 | `arbeidermuseet` | Arbeidermuseet | verified | `geonorge-adresser-v1:0301:16135:28` |
 | 43 | `nobels_fredssenter` | Nobels Fredssenter | verified | `geonorge-adresser-v1:0301:18199:1` |
+| 44 | `kunstnernes_hus` | Kunstnernes Hus | verified | `geonorge-adresser-v1:0301:18496:17` |
+| 44 | `vigelandmuseet` | Vigelandmuseet | verified | `geonorge-adresser-v1:0301:15080:32` |
+| 44 | `mollergata_skole` | Møllergata skole | verified | `geonorge-adresser-v1:0301:14943:49` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -233,9 +236,11 @@ Batch 42 (2026-07-20) produserer tre nye, fysisk selvstendige museumssteder fra 
 
 Batch 43 (2026-07-20) produserer tre videre museumssteder fra samme lukkede audit. `frogner_hovedgard` bruker Halvdan Svartes gate 58 og modellerer selve hovedgårdsanlegget, med Bymuseet og Teatermuseet som nåværende institusjonslag i stedet for separate markører. `arbeidermuseet` bruker Sagveien 28 og holdes fysisk separat fra brede industriområde-records langs Akerselva. `nobels_fredssenter` bruker Brynjulf Bulls plass 1 i den tidligere Vestbanestasjonen og skilles fra både områdeankeret `radhusplassen` og institusjonsstedet `nobelinstituttet`.
 
+Batch 44 (2026-07-20) legger til tre fysisk avklarte institusjonssteder. `kunstnernes_hus` bruker Wergelandsveien 17 som eget kunstinstitusjonsbygg. `vigelandmuseet` bruker Nobels gate 32 som atelier-, bolig- og museumsbygning og holdes separat fra det større parkankeret `vigelandsparken`. `mollergata_skole` bruker Møllergata 49 som canonical skolekompleks, mens Oslo Skolemuseum modelleres som institusjonslag i bygg D i stedet for en separat overlappende markør.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 184 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 187 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|

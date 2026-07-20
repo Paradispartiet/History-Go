@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T03:56:42.725Z
+Generert: 2026-07-20T04:05:06.961Z
 
 ## Oppsummering
-- Aktive filer validert: **510**
+- Aktive filer validert: **513**
 - Antall steder validert: **1218**
 - Harde feil: **0**
 - Varsler: **428**
@@ -528,6 +528,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/frogner_hovedgard.json
 - data/places/historie/oslo/places_historie/arbeidermuseet.json
 - data/places/historie/oslo/places_historie/nobels_fredssenter.json
+- data/places/kunst/oslo/places_kunst/kunstnernes_hus.json
+- data/places/kunst/oslo/places_kunst/vigelandmuseet.json
+- data/places/historie/oslo/places_historie/mollergata_skole.json
 
 ## Harde feil
 - Ingen

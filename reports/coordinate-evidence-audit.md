@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T03:56:50.003Z
+Generert: 2026-07-20T04:05:12.383Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -84,6 +84,7 @@ Generert: 2026-07-20T03:56:50.003Z
 | historisk_museum | data/coordinate-evidence/oslo/historie/historisk_museum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hovedoya_kloster | data/coordinate-evidence/oslo/historie/hovedoya_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | middelalder_oslo | data/coordinate-evidence/oslo/historie/middelalder_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| mollergata_skole | data/coordinate-evidence/oslo/historie/mollergata_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nobels_fredssenter | data/coordinate-evidence/oslo/historie/nobels_fredssenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nonneseter_kloster | data/coordinate-evidence/oslo/historie/nonneseter_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | norges_hjemmefrontmuseum | data/coordinate-evidence/oslo/historie/norges_hjemmefrontmuseum.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -95,7 +96,9 @@ Generert: 2026-07-20T03:56:50.003Z
 | sagene_skole | data/coordinate-evidence/oslo/historie/sagene_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kunstnernes_hus | data/coordinate-evidence/oslo/kunst/kunstnernes_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | roseslottet | data/coordinate-evidence/oslo/kunst/roseslottet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vigelandmuseet | data/coordinate-evidence/oslo/kunst/vigelandmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alexander_kiellands_plass | data/coordinate-evidence/oslo/litteratur/alexander_kiellands_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | camilla_collett_statue | data/coordinate-evidence/oslo/litteratur/camilla_collett_statue.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | eldorado_bokhandel | data/coordinate-evidence/oslo/litteratur/eldorado_bokhandel.json | applied_to_place | do_not_change_coordinates_yet | OK |
