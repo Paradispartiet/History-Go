@@ -52,7 +52,7 @@ interface MapLibreMapRuntime {
 }
 
 interface MapLibreMarkerRuntime {
-  setLngLat(coordinates: [number, number]): MapLibreMarkerRuntime;
+  setLngLat(coordinates: number[]): MapLibreMarkerRuntime;
   addTo(map: MapLibreMapRuntime): MapLibreMarkerRuntime;
   remove(): void;
   getElement?(): HTMLElement;
