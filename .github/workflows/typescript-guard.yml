@@ -160,3 +160,41 @@ jobs:
         if: github.event_name != 'pull_request'
         continue-on-error: true
         run: npm run typecheck
+
+  finalize-nearby-drawer-interactions:
+    if: github.event_name == 'pull_request' && github.head_ref == 'agent/typescript-nearby-drawer-interactions' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Apply bounded Nearby drawer interaction migration
+        run: python .github/scripts/finalize-nearby-drawer-interactions.py
+      - name: Verify modern and legacy TypeScript surfaces
+        run: |
+          npm run typecheck:web
+          npm run build:web
+          npm run typecheck
+      - name: Commit source integration and generated runtime
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            js/ui/left-panel.js \
+            js/ui/nearbyDrawer.ts \
+            js/ui/nearby-drawer.js \
+            dist/web/nearbyDrawer.js \
+            schemas/app-globals.d.ts
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Move Nearby drawer interactions to TypeScript"
+          git push origin HEAD:${{ github.head_ref }}
