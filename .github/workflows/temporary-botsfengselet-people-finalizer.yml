@@ -1,0 +1,76 @@
+name: Temporary Botsfengselet people finalizer
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  finalize:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'agent/people-botsfengselet-batch1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Botsfengselet people branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/people-botsfengselet-batch1
+          fetch-depth: 0
+
+      - name: Rebase onto fresh main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase origin/main
+
+      - name: Detect pending one-shot job
+        id: pending
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f scripts/botsfengselet-people-finalizer.mjs ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Node
+        if: steps.pending.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        if: steps.pending.outputs.run == 'true'
+        run: npm install --no-audit --no-fund
+
+      - name: Materialize Botsfengselet people batch
+        if: steps.pending.outputs.run == 'true'
+        run: node scripts/botsfengselet-people-finalizer.mjs
+
+      - name: Validate People of Places
+        if: steps.pending.outputs.run == 'true'
+        run: bash scripts/check-people.sh
+
+      - name: Publish clean materialized branch
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout origin/main -- \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
+          git diff --check
+          git add -A
+          git commit -m "Add Botsfengselet people batch 1"
+          git push --force-with-lease origin HEAD:agent/people-botsfengselet-batch1
