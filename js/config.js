@@ -17,8 +17,8 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     ensureMapControlsHost();
     if (document.querySelector('script[data-hg-map-controls-runtime="1"]')) return;
     const script = document.createElement("script");
-    script.src = "js/map-controls-runtime.js";
-    script.async = false;
+    script.src = "js/map-controls-runtime.mjs";
+    script.type = "module";
     script.dataset.hgMapControlsRuntime = "1";
     document.head.appendChild(script);
   }
