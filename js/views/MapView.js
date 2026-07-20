@@ -11,6 +11,8 @@
   const nativeFetch = window.fetch.bind(window);
   const quizPayloadPromises = new Map();
   let quizManifestPayloadPromise = null;
+  let quizColdStartComplete = false;
+  let activeQuizStartPromise = null;
 
   function getPlaceCard() {
     return document.getElementById("placeCard");
@@ -43,7 +45,7 @@
       body: await response.text(),
       status: response.status,
       statusText: response.statusText,
-      headers: Array.from(response.headers.entries())
+      contentType: response.headers.get("content-type") || "application/json"
     };
   }
 
@@ -51,7 +53,7 @@
     return new Response(payload.body, {
       status: payload.status,
       statusText: payload.statusText,
-      headers: payload.headers
+      headers: { "content-type": payload.contentType }
     });
   }
 
@@ -93,13 +95,18 @@
   }
 
   function prewarmQuizData() {
+    if (quizColdStartComplete) return;
     void ensureQuizManifestPayload().catch((err) => {
       if (window.DEBUG) console.warn("[quiz-warmup] kunne ikke starte preload", err);
     });
   }
 
-  async function startQuizWithParallelWarmup(targetId) {
-    if (typeof window.QuizEngine?.start !== "function") return false;
+  function runQuizWithParallelWarmup(targetId) {
+    if (typeof window.QuizEngine?.start !== "function") return Promise.resolve(false);
+
+    if (quizColdStartComplete) {
+      return Promise.resolve(window.QuizEngine.start(targetId)).then(() => true);
+    }
 
     const previousFetch = window.fetch.bind(window);
     const manifestUrl = quizAbsoluteUrl(QUIZ_MANIFEST_PATH);
@@ -135,17 +142,30 @@
 
     window.fetch = bridgeFetch;
 
-    try {
-      await window.QuizEngine.start(targetId);
-      return true;
-    } finally {
-      if (window.fetch === bridgeFetch) window.fetch = previousFetch;
+    return Promise.resolve(window.QuizEngine.start(targetId))
+      .then(() => {
+        quizColdStartComplete = true;
+        return true;
+      })
+      .finally(() => {
+        if (window.fetch === bridgeFetch) window.fetch = previousFetch;
 
-      // QuizEngine har nå sin egen ferdige indeks og set-filcache. Frigjør de
-      // midlertidige rå payloadkopiene så warmup-laget ikke dobler minnebruken.
-      quizPayloadPromises.clear();
-      quizManifestPayloadPromise = null;
-    }
+        // QuizEngine har nå sin egen ferdige indeks og set-filcache. Frigjør de
+        // midlertidige rå payloadkopiene så warmup-laget ikke dobler minnebruken.
+        quizPayloadPromises.clear();
+        quizManifestPayloadPromise = null;
+      });
+  }
+
+  function startQuizWithParallelWarmup(targetId) {
+    if (activeQuizStartPromise) return activeQuizStartPromise;
+
+    activeQuizStartPromise = runQuizWithParallelWarmup(targetId)
+      .finally(() => {
+        activeQuizStartPromise = null;
+      });
+
+    return activeQuizStartPromise;
   }
 
   window.HGQuizLoadAccelerator = {
