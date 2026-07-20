@@ -6,9 +6,8 @@ from uuid import UUID
 
 from app.core.config import Settings
 from app.domains.social_meet.discovery_models import (
-    CandidateDiscoveryResponse,
-    CandidateMatchReason,
     ContextCandidateRequest,
+    ContextCandidateResponse,
     DiscoveryCandidate,
     DiscoveryCandidateProfile,
     DiscoveryFeatureGate,
@@ -41,7 +40,7 @@ class SocialMeetCandidateDiscoveryService:
         request: ContextCandidateRequest,
         *,
         now: datetime | None = None,
-    ) -> CandidateDiscoveryResponse:
+    ) -> ContextCandidateResponse:
         generated_at = now or datetime.now(UTC)
         requester = self._identity_repository.get_or_create_for_user(auth_user_id)
         requester_profile_id = _require_discoverable_requester(requester)
@@ -64,7 +63,7 @@ class SocialMeetCandidateDiscoveryService:
         )
         ranked = _rank_candidates(requester, pool, request)
         limit = min(request.limit, self._settings.spotmeeting_discovery_max_candidates)
-        return CandidateDiscoveryResponse(
+        return ContextCandidateResponse(
             context_type=request.context.context_type,
             context_id=request.context.context_id,
             generated_at=generated_at,
