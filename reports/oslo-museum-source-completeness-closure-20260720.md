@@ -6,20 +6,20 @@ Date: 2026-07-20
 
 **Research/source classification: CLOSED for the current VisitOSLO museum/visitor-list pass.**
 
-**Production: NOT CLOSED.**
+**Coordinate intake and canonical production: CLOSED for all 18 approved candidates.**
 
-This report closes the systematic classification pass that followed the completed Atlas Obscura, Kultureiendommer and Oppdag Kvadraturen audits. It does not claim that every museum-like institution in Oslo has been discovered from every possible source. It records that the current VisitOSLO museum/visitor source set and the additional high-value municipal/institutional museum clusters surfaced during the pass have been classified against current History Go canonical places.
+This report closes the systematic museum/visitor-source pass that followed the completed Atlas Obscura, Kultureiendommer and Oppdag Kvadraturen audits. It does not claim that every museum-like institution in Oslo has been discovered from every possible source. It records that the current VisitOSLO museum/visitor source set and the additional high-value museum clusters surfaced during the pass have been classified against current History Go canonical places, and that every approved new candidate from this pass has now been processed through the repository's coordinate and canonical-production gates.
 
-The main current source used for the final source pass was:
+The main source family used for the final source pass was:
 
 - https://www.visitoslo.com/en/activities-and-attractions/attractions/museum/
 - https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/attraksjoner/museer/
 
-Current institution status was checked against official museum/institution sources before classification where status could have changed.
+Current institution status was checked against official museum/institution sources where opening status, relocation or future plans could have changed.
 
-## Result summary
+## Final production result
 
-### New canonical candidates approved for coordinate intake: 18
+### Approved new canonical candidates: 18 / 18 produced
 
 1. `norsk_folkemuseum`
 2. `norsk_maritimt_museum`
@@ -40,21 +40,43 @@ Current institution status was checked against official museum/institution sourc
 17. `viking_planet_oslo`
 18. `the_salmon_vitensenter`
 
-None of these 18 should be counted as completed canonical production merely because the research gate passed. Each still requires the correct coordinate method, evidence capture, source-record creation, manifest/index regeneration where relevant, and validation.
+All 18 now have a canonical place representation and a repository-approved coordinate model.
 
-## Existing canonical places retained instead of duplicate markers
+### Coordinate methods used
+
+- **14 standard address-first candidates** were run through the repository's normative Geonorge address finder. All 14 returned `verified_candidate` results and were subsequently identity-checked before production.
+- **Norges Hjemmefrontmuseum** uses exact internal Akershus building geometry for building 21 / Det dobbelte batteri.
+- **Forsvarsmuseet** uses exact internal Akershus building geometry for building 62 / Hovedarsenalet.
+- **Roseslottet** uses a verified site geometry rather than the nearby Frognerseteren station as a proxy.
+- **IBSEN Museum & Teater** uses the official public visitor entrance at Henrik Ibsens gate 26 as display/unlock anchor while preserving Arbins gate 1 as the historical Ibsen apartment layer.
+
+The Oslo coordinate-control protocol contains these production decisions through **batch 50**. After batch 50, the protocol reports **196 verified or source-controlled canonical Oslo places**.
+
+## Representation decisions that prevented duplicate markers
 
 ### Interkulturelt Museum
 
 Physical building already represented as `gronland_politistasjon` at Tøyenbekken 5.
 
-Decision: no new marker. The existing place was enriched in batch 2 with the current Interkulturelt Museum use and official museum source.
+Decision: no new marker. The existing place now explicitly records the current Interkulturelt Museum use and official museum source.
+
+### Bymuseet and Teatermuseet
+
+Both institutions use the same physical Frogner hovedgård complex.
+
+Decision: one canonical place, `frogner_hovedgard`, with Bymuseet and Teatermuseet as institutional/use layers rather than two overlapping museum markers.
+
+### Oslo Skolemuseum
+
+The museum occupies part of Møllergata school.
+
+Decision: one canonical place, `mollergata_skole`, with Oslo Skolemuseum modeled as the current institutional layer in building D.
 
 ### Popsenteret
 
 The former museum occupied the already canonical Schous complex and is permanently closed.
 
-Decision: no new active marker. The former Popsenteret use was added as a historical layer on `schous_bryggeri` in batch 3.
+Decision: no new active marker. The former Popsenteret use is recorded as a historical cultural layer on `schous_bryggeri`.
 
 ### Sporveismuseet
 
@@ -66,11 +88,11 @@ Decision: retain existing place.
 
 Already canonical as `naturhistorisk_museum`, with `botanisk_hage` separately represented.
 
-Decision: retain existing place. Coordinate-quality debt remains a separate coordinate-control issue.
+Decision: retain existing place. Any remaining coordinate-quality debt belongs to the independent coordinate-control backlog, not the museum completeness pass.
 
 ### Skimuseet i Holmenkollen
 
-Already physically represented through `holmenkollen_nasjonalanlegg`, whose canonical record explicitly includes the museum and tower as parts of the same visitor complex.
+Already physically represented through `holmenkollen_nasjonalanlegg`, whose canonical record includes the museum and tower as parts of the same visitor complex.
 
 Decision: no duplicate museum marker.
 
@@ -84,13 +106,13 @@ Decision: no duplicate museum marker.
 
 The future museum building is already canonical as `gamle_deichman`.
 
-Decision: no new active museum marker before opening. Batch 9 corrects the Hammersborg building chronology to the 1933–2019 main-library period and records the planned 2028 photo-house reuse explicitly as a future layer.
+Decision: no new active museum marker before opening. The Hammersborg chronology is corrected to the 1933–2019 main-library period, and the planned 2028 photo-house reuse is recorded as a future layer.
 
 ### Akershus slott
 
-Already represented through the existing legacy/canonical compatibility structure around `akerhus_slott` and `akershus_festning`.
+Already represented through the existing compatibility/canonical structure around `akerhus_slott` and `akershus_festning`.
 
-Decision: no additional place from this source pass. The ID compatibility state is a separate cleanup concern.
+Decision: no additional place from this source pass. ID compatibility remains a separate cleanup concern.
 
 ## Important already-covered VisitOSLO entries
 
@@ -109,48 +131,18 @@ The final source pass also confirmed or relied on prior completed coverage for m
 
 These were not recreated simply because they appeared on a museum visitor list.
 
-## Deferred or intentionally excluded from this source pass
+## Status-sensitive canonical places
 
-### Fineart Oslo
+Coordinate verification describes the physical place and source identity. It does not automatically mean that a venue is currently open to the public.
 
-Deferred to a future systematic commercial-gallery / art-sales venue policy. It should not be selected arbitrarily as a canonical place merely because VisitOSLO includes one large commercial gallery in its museum list.
+- `jodisk_museum_oslo` — physical place verified at Calmeyers gate 15B; museum building closed for renovation from 1 May 2026 with estimated reopening autumn 2028. Education and city walks continue outside the building.
+- `det_internasjonale_barnekunstmuseet` — physical place verified at Lille Frøens vei 4; ordinary opening suspended since 8 December 2025 with no fixed reopening date as of 20 July 2026.
+- `roseslottet` — verified as a time-limited installation; the current official plan runs through the end of 2026 and permanence must not be assumed.
+- `ibsen_museum_teater` — current public visitor address is Henrik Ibsens gate 26; Arbins gate 1 remains the historical apartment layer and must be used in historical questions about Ibsen's home.
 
-### Paradox Museum Oslo
+## Existing-place corrections completed during the pass
 
-Deferred outside the core museum pass. The current venue is a franchise-based interactive attraction without a strong Oslo-specific collection or site identity. It can be reconsidered under a dedicated interactive-science/perception attraction policy.
-
-### The Mini Bottle Gallery
-
-Already explicitly deferred in the completed Atlas Obscura audit. No new evidence in this pass justified reopening that decision.
-
-## Status-sensitive candidates
-
-Several approved candidates require explicit current-status metadata if they proceed to canonical production:
-
-- `jodisk_museum_oslo` — temporarily closed for renovation from 1 May 2026; estimated completion autumn 2028.
-- `det_internasjonale_barnekunstmuseet` — ordinary opening suspended since 8 December 2025; reopening remains funding-dependent and uncertain.
-- `roseslottet` — current official plan says the installation is to remain through the end of 2026; it must not be modeled as automatically permanent.
-- `ibsen_museum_teater` — current visitor entrance and the historic Ibsen apartment use different address descriptions and require coordinate-role review.
-- `norges_hjemmefrontmuseum` — internal Akershus building 21; must use a verified internal-building anchor, not the general fortress marker.
-- `forsvarsmuseet` — internal Akershus building 62; must use a verified internal-building anchor, not the general fortress marker.
-
-## Batch PRs
-
-All nine production-research PRs are currently open drafts at the time of this report:
-
-- #2566 — batch 1: Norsk Folkemuseum, Norsk Maritimt Museum, Historisk museum
-- #2571 — batch 2: Frogner hovedgård, Arbeidermuseet, Interkulturelt Museum parent enrichment
-- #2573 — batch 3: Nobels Fredssenter, Kunstnernes Hus, Popsenteret/Schous enrichment
-- #2575 — batch 4: Vigelandmuseet, IBSEN Museum & Teater, Møllergata skole/Oslo Skolemuseum
-- #2576 — batch 5: Jødisk Museum, Norges Hjemmefrontmuseum, Sporveismuseet control
-- #2577 — batch 6: Forsvarsmuseet, Naturhistorisk museum, Holmenkollen Skimuseum control
-- #2579 — batch 7: Roseslottet, Det Internasjonale Barnekunstmuseet, Nasjonalmuseet – Arkitektur control
-- #2581 — batch 8: TBS Gallery, The Viking Planet, Fineart and Paradox boundary classification
-- #2583 — batch 9: The Salmon, future Fotohuset Deich/Fotografiska, Akershus slott control
-
-## Data changes already made in draft branches
-
-The source pass did not wait for coordinates where a safe existing-place correction could be made:
+The source pass also produced three safe enrichments without creating duplicate markers:
 
 1. `gronland_politistasjon`
    - current Interkulturelt Museum use made explicit;
@@ -162,26 +154,44 @@ The source pass did not wait for coordinates where a safe existing-place correct
    - permanent museum closure recorded so it is not presented as active.
 
 3. `gamle_deichman`
-   - Hammersborg chronology corrected from the misleading 1890 framing to the building's 1933–2019 main-library period;
+   - Hammersborg chronology corrected to the 1933–2019 main-library period;
    - planned Fotohuset Deich / Fotografiska reuse recorded as a future 2028 layer rather than an active museum.
 
-These changes remain in draft PRs until merged.
+These changes were rebuilt from current `main` and merged through PR #2602.
 
-## Required next production phase
+## Production audit trail
 
-The correct next step is **not another random museum-name search**. It is to process the 18 approved candidates through the coordinate and canonical-production gate in controlled batches.
+The final production work was merged through the following main PR sequence:
 
-Recommended order:
+- **#2594** — special geometry production: Norges Hjemmefrontmuseum, Forsvarsmuseet and Roseslottet.
+- **#2602** — existing-place museum-use enrichments: Grønland politistasjon / Interkulturelt Museum, Schous bryggeri / Popsenteret, Gamle Deichman / future Fotohuset Deich.
+- **#2605** — normative Geonorge intake for all 14 standard address-first candidates; 14/14 returned verified candidates.
+- **#2612** — coordinate batch 42: Norsk Folkemuseum, Norsk Maritimt Museum and Historisk museum.
+- **#2622** — coordinate batch 43: Frogner hovedgård, Arbeidermuseet and Nobels Fredssenter.
+- **#2631** — coordinate batch 45: Kunstnernes Hus, Vigelandmuseet and Møllergata skole.
+- **#2640** — coordinate batch 48: TBS Gallery, The Viking Planet Oslo and The Salmon knowledge centre.
+- **#2642** — coordinate batch 49: Jødisk Museum i Oslo and Det internasjonale Barnekunstmuseet.
+- **#2644** — normative Geonorge intake for the remaining special Ibsen visitor-address case.
+- **#2646** — coordinate batch 50: IBSEN Museum & Teater.
 
-1. Standard Geonorge address-first candidates.
-2. Special internal-building and entrance/site candidates.
-3. Status-sensitive candidates.
-4. Canonical source creation and category assignment.
-5. Manifest/index regeneration and full validation.
-6. Merge the draft stack in a clean, non-conflicting order or rebuild batches on updated `main` if the branches become stale.
+Several earlier research/draft PRs became stale while parallel coordinate-control work advanced `main`. Their approved content was rebuilt from current `main` rather than merged stale.
+
+## Deferred or intentionally excluded from this source pass
+
+### Fineart Oslo
+
+Deferred to a future systematic commercial-gallery / art-sales venue policy. It should not be selected arbitrarily as a canonical place merely because a visitor list includes one large commercial gallery.
+
+### Paradox Museum Oslo
+
+Deferred outside the core museum pass. The venue is a franchise-based interactive attraction without a strong Oslo-specific collection or site identity. It can be reconsidered under a dedicated interactive-science/perception attraction policy.
+
+### The Mini Bottle Gallery
+
+Already explicitly deferred in the completed Atlas Obscura audit. No new evidence in this pass justified reopening that decision.
 
 ## Closure statement
 
-The current VisitOSLO/visitor-museum source pass is classified as complete as of 2026-07-20. There is no known unclassified item remaining from the source set reviewed in this pass.
+The current VisitOSLO/visitor-museum source pass is **research-complete and production-complete as of 2026-07-20**. There is no known unclassified or unproduced approved candidate remaining from the source set reviewed in this pass.
 
 This does **not** close independent Oslo place completeness. Future completeness work should move to a different source family rather than repeatedly re-auditing the same museum list.
