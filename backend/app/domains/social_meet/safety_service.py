@@ -57,6 +57,12 @@ class SocialMeetSafetyService:
         return self._safety_repository.interaction_is_blocked(first_profile_id, second_profile_id)
 
     def ensure_interaction_allowed(self, first_profile_id: UUID, second_profile_id: UUID) -> None:
+        if self.interaction_is_blocked(first_profile_id, second_profile_id):
+            raise SocialMeetDomainError(
+                code="interaction_blocked",
+                detail="The requested Social Meet interaction is unavailable",
+            )
+
         first = self._identity_repository.get_profile_by_public_id(first_profile_id)
         second = self._identity_repository.get_profile_by_public_id(second_profile_id)
         restricted_states = {
@@ -71,11 +77,6 @@ class SocialMeetSafetyService:
         ):
             raise SocialMeetDomainError(
                 code="moderation_restricted",
-                detail="The requested Social Meet interaction is unavailable",
-            )
-        if self.interaction_is_blocked(first_profile_id, second_profile_id):
-            raise SocialMeetDomainError(
-                code="interaction_blocked",
                 detail="The requested Social Meet interaction is unavailable",
             )
 
