@@ -1,19 +1,63 @@
 {
   "id": "alnaparken",
-  "visual": {
-    "designCode": "park_miniature"
-  },
   "name": "Alnaparken",
   "lat": 59.94261,
   "lon": 10.87749,
   "r": 140,
   "category": "natur",
-  "desc": "Bynært park- og grøntdrag langs åpnet del av Alnaelva.",
+  "desc": "Elvepark og grønn korridor ved Nedre Furuset, der Alnaelva, turveier og eldre beitelandskap møtes.",
+  "popupDesc": "Alnaparken, også kalt Nylandsparken, ligger langs Alnaelva sør for Østre Aker vei. Her kan elveløpet leses som både naturkorridor, parkrom og historisk kulturlandskap. Nedre Furuset hadde jordvei ned mot elva, og kuer beitet her frem til 1958. I dag følger turveier elva gjennom broer, løvskog, åpne flater og oppholdsrom. En amfibiedam som ble rustet opp i 2001 inngår i parkens naturstruktur.\n\nNatur-rundingen viser kanadagullris, den eneste aktive artskoblingen i repoets fem naturkart. Arten er fremmed og vurdert til svært høy risiko. Artskortet er derfor et observasjons- og forvaltningsspor, ikke en garanti for funn og ikke en oppfordring til å spre, flytte eller samle planten.",
+  "nature_profile": {
+    "type": "elvepark / grønn korridor / kulturlandskap / restaurert byvassdrag",
+    "title": "Alnaelva som nærnatur, parkdrag og forvaltningsrom",
+    "summary": "Alnaparken ligger langs den åpne Alnaelva ved Nedre Furuset og Alfaset. Parken gjør et byvassdrag lesbart i terrenget: vannløpet, broene, stiene, løvskogen og de åpne flatene danner et sammenhengende blågrønt rom mellom bebyggelse, vei og næringsområder. Elva er ikke bare et landskapselement. Den fører vann, sedimenter og organismer gjennom Groruddalen, mens kantvegetasjonen gir skygge, røtter, skjul og forbindelser mellom leveområder.\n\nStedet har et tydelig kulturlandskap. Oslo byleksikon beskriver Alnaparken som Nylandsparken og forteller at Nedre Furuset tidligere hadde jordvei ned mot Alna, med kuer på beite frem til 1958. Dagens turvei og parkrom ligger derfor oppå et eldre jordbruks- og beitelag. Dette kan leses i forskjellen mellom åpne grasflater, skogholt, elvekant og ferdselslinjer. Parken viser hvordan natur og menneskelig bruk ikke er to separate historier, men lag som former hverandre over tid.\n\nOslo Elveforum beskriver Alnaparken som en opprustet del av elvekorridoren med broer og stier langs vannet. En amfibiedam ble rustet opp i 2001 og ble ivaretatt i den videre oppgraderingen av parken. Slike små, roligere vannmiljøer har en annen funksjon enn selve elvas strøm: de kan gi skjermede soner for arter som er avhengige av grunt eller stillestående vann. Dammen skal observeres på avstand fra etablerte stier uten tråkk i våte kanter, fangst eller håndtering av dyr.\n\nRepoets fem aktive naturkart knytter én art til place-id-en: kanadagullris (Solidago canadensis). Artsdatabanken beskriver den som en nordamerikansk, flerårig plante som sprer seg både med frø og krypende jordstengler. I Fremmedartslista 2023 er arten vurdert til svært høy risiko. Den kan danne tette bestander på blant annet vegkanter, jernbanearealer, skrotemark og grasmark. I Alnaparken brukes kortet til å trene kildekritisk artsobservasjon: et kartlagt spor betyr ikke at planten står på samme sted ved hvert besøk. Et funn skal bare registreres når kjennetegnene faktisk kan observeres, og planten skal ikke plukkes, flyttes eller spres.\n\nAlnaparken er samtidig et forvaltningsrom. Turvei, broer og oppholdsflater gjør elva tilgjengelig, men høy bruk kan gi tråkk, erosjon, søppel og forstyrrelse. God stedlesning innebærer derfor å se både gevinsten ved tilgang og belastningen som ferdsel kan skape. Kommunedelplanen for Alna miljøpark setter elvekorridoren inn i en større sammenheng: vassdrag, naturmangfold, rekreasjon og byutvikling må håndteres sammen. Fra dette stedet kan spilleren følge vannets vei videre mot Smalvoll, Bryn, Svartdalen og den nedre, rørlagte delen av Alna.",
+    "themes": [
+      "åpen Alnaelv gjennom parkrommet",
+      "kantvegetasjon og skygge langs vannet",
+      "broer og turvei som tilgjengelighet",
+      "Nedre Furusets jordvei og beite frem til 1958",
+      "kulturlandskap under dagens park",
+      "amfibiedam rustet opp i 2001",
+      "blågrønn korridor gjennom by- og næringslandskap",
+      "kanadagullris som eneste aktive artskobling",
+      "fremmed art med svært høy risiko",
+      "kartlagt artsmulighet mot faktisk feltfunn",
+      "slitasje, forsøpling og ferdselsstyring",
+      "Alna miljøpark som forvaltningsramme"
+    ],
+    "species_inventory": {
+      "source_maps": [
+        "data/natur/nature_place_map.json",
+        "data/natur/nature_bird_place_map.json",
+        "data/natur/nature_oslo_expansion_place_map.json",
+        "data/natur/nature_routes_place_map.json",
+        "data/natur/nature_etne_place_map.json"
+      ],
+      "flora": [
+        {
+          "id": "emne_flora_kanadagullris",
+          "name": "kanadagullris",
+          "latin": "Solidago canadensis",
+          "status": "fremmed_art_svaert_hoy_risiko",
+          "map": "nature_routes_place_map.json"
+        }
+      ],
+      "fauna": [],
+      "total_species": 1,
+      "rule": "all_active_mapped_species_for_place"
+    },
+    "nearby_place_ids": [
+      "alnsjoen_alna_kilde",
+      "groruddammen",
+      "alna_smalvoll"
+    ]
+  },
   "tags": [
     "elv",
     "park",
     "byokologi",
-    "restaurering"
+    "restaurering",
+    "kulturlandskap"
   ],
   "routeId": "alnaelva_grontdrag",
   "sourceHint": "Koordinat justert til kartfestet Alnaparken ved Nyland/Furuset. Tidligere punkt lå for langt vest/sørvest.",
@@ -22,29 +66,354 @@
   "coordSource": "Mapcarta/OpenStreetMap/Wikimedia Commons",
   "coordPrecisionM": 60,
   "coordVerifiedAt": "2026-05-03",
-  "popupDesc": "Alnaparken er et konkret parkrom der Alnaelva inngår i et sammenhengende grøntdrag gjennom bebyggelsen. Her følger stier elveløpet og gjør overgangen mellom by, vann og vegetasjon lett å lese i terrenget. Området brukes til opphold og hverdagsferdsel, samtidig som det viser hvordan en byelv kan være en del av nærmiljøet. Stedet er interessant fordi det samler rekreasjon, bynatur og elveforløp i samme landskapsrom.",
-  "nature_profile": {
-    "type": "elvepark / grønn korridor / restaurert byvassdrag",
-    "title": "Parklandskap langs den åpne Alnaelva",
-    "summary": "Alnaparken er et grønt parkrom der den åpne Alnaelva, kantvegetasjonen og stiene danner en tydelig naturkorridor gjennom bebyggelsen. Vannløpet skaper fuktige kantsoner, mens grasflater, trær og busker gir variasjon mellom åpne og skjermede områder. Natur-rundingen viser både det levende elvemiljøet og hvordan restaurering og tilgjengelighet kan gjøre en tidligere hardt påvirket byelv til nærnatur for mennesker, planter og dyr.",
-    "themes": [
-      "åpen byelv",
-      "kantvegetasjon langs vannet",
-      "parktrær og grasflater",
-      "grønn korridor gjennom bebyggelsen",
-      "naturrestaurering",
-      "samspill mellom ferdsel og elvemiljø"
-    ],
-    "nearby_place_ids": [
-      "alnsjoen_alna_kilde",
-      "groruddammen",
-      "alna_smalvoll"
-    ]
-  },
   "underbadge_ids": [
     "elv",
     "park_og_hage",
     "gronn_korridor",
-    "naturrestaurering"
-  ]
+    "naturrestaurering",
+    "vann_og_vassdrag",
+    "kantvegetasjon",
+    "planter_og_blomster",
+    "fremmede_arter",
+    "okosystem",
+    "habitat",
+    "blagronn_struktur",
+    "naturvern",
+    "artsregistrering",
+    "friluftsforvaltning",
+    "tursti",
+    "stille_omrade"
+  ],
+  "visual": {
+    "designCode": "park_miniature"
+  },
+  "emne_ids": [
+    "em_natur_arter_habitat_mangfold"
+  ],
+  "quiz_profile": {
+    "place_type": "elvepark, grønn korridor og kulturlandskap",
+    "subtype": "alnaparken_nylandsparken",
+    "signature_features": [
+      "Alnaelva går åpent gjennom parken",
+      "broer og turvei følger elvekorridoren",
+      "jordvei og beite ved Nedre Furuset frem til 1958",
+      "amfibiedam rustet opp i 2001",
+      "én aktiv artskobling: kanadagullris"
+    ],
+    "primary_angles": [
+      "elvekorridor_og_kantvegetasjon",
+      "kulturlandskap",
+      "naturrestaurering",
+      "fremmedartsforvaltning",
+      "ferdsel_og_slitasje",
+      "nabolagsnatur"
+    ],
+    "question_families": [
+      "stedsspesifikk_naturfunksjon",
+      "historisk_landskapsendring",
+      "artsidentifikasjon",
+      "fremmedartsrisiko",
+      "forvaltningsvalg",
+      "observasjon_fra_sti",
+      "kildekritikk"
+    ],
+    "avoid_angles": [
+      "artsfunn_som_garanti",
+      "plukking_eller_spredning_av_kanadagullris",
+      "fangst_i_amfibiedammen",
+      "vading_i_elva",
+      "udokumenterte_vannkvalitetstall"
+    ],
+    "must_include": [
+      "at Alnaparken også kalles Nylandsparken",
+      "at beite foregikk frem til 1958",
+      "at kanadagullris er fremmed art med svært høy risiko og ikke et garantert funn"
+    ],
+    "contrast_targets": [
+      "alnsjoen_alna_kilde",
+      "groruddammen",
+      "alna_smalvoll",
+      "svartdalen"
+    ],
+    "notes": "Start i synlig elv, broer, stier og vegetasjon. Bruk kanadagullris-kortet til observasjon og forvaltningsforståelse, ikke til innsamling."
+  },
+  "externalLinks": [
+    {
+      "type": "reference",
+      "label": "Oslo byleksikon: Alnaparken",
+      "url": "https://oslobyleksikon.no/side/Alnaparken",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo byleksikon: Alnaelva",
+      "url": "https://oslobyleksikon.no/side/Alnaelva",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo Elveforum: Om Alnaelva",
+      "url": "https://www.osloelveforum.org/om-alnaelva/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo kommune: Kommunedelplaner",
+      "url": "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo kommune: Planinnsyn – Alna miljøpark",
+      "url": "https://od2.pbe.oslo.kommune.no/kart/?mode=kommuneplan",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Artsdatabanken: kanadagullris",
+      "url": "https://artsdatabanken.no/arter/takson/60776",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Fremmedartslista 2023: kanadagullris",
+      "url": "https://lister.artsdatabanken.no/fremmedartslista/2023/214",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "repository",
+      "label": "History Go: aktive naturrutekoblinger",
+      "url": "data/natur/nature_routes_place_map.json",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "repository",
+      "label": "History Go: fremmedarter",
+      "url": "data/natur/flora/fremmedarter.json",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    }
+  ],
+  "tasks_profile": {
+    "title": "Les elveparken fra stien",
+    "summary": "Fire oppgaver kobler vannløp, kulturlandskap, amfibiedam og fremmedartsforvaltning.",
+    "tasks": [
+      {
+        "id": "alnaparken_oppgave_elvekorridor",
+        "title": "Følg den blågrønne linjen",
+        "instruction": "Gå på etablert turvei og noter i hvilken rekkefølge du møter elv, bro, kantvegetasjon, åpen flate og bebyggelse.",
+        "why": "Rekkefølgen viser hvordan elva binder sammen ulike deler av park- og bylandskapet."
+      },
+      {
+        "id": "alnaparken_oppgave_kulturlandskap",
+        "title": "Finn spor etter eldre bruk",
+        "instruction": "Sammenlign åpne grasflater, skogholt og stier. Beskriv hvilke trekk som kan passe med tidligere jordvei og beite, uten å presentere antakelsen som et sikkert funn.",
+        "why": "Oppgaven trener skillet mellom dokumentert historie og det som bare tolkes i terrenget."
+      },
+      {
+        "id": "alnaparken_oppgave_amfibiedam",
+        "title": "Les dammen på avstand",
+        "instruction": "Observer amfibiedammen fra etablert sti. Se etter vannflate, vegetert kant, skygge og mulige skjulesteder uten å gå ned i våtmarken eller håndtere dyr.",
+        "why": "Dammen viser hvordan et lite, rolig vannmiljø kan utfylle den strømmende elva."
+      },
+      {
+        "id": "alnaparken_oppgave_kanadagullris",
+        "title": "Bruk fremmedartskortet kildekritisk",
+        "instruction": "Se etter høy vekst, smale sagtannede blader og brede gule blomsterstander fra stien. Registrer bare et faktisk funn, og ikke plukk, flytt eller spre planten.",
+        "why": "Kartkoblingen blir først til feltdata når kjennetegnene faktisk er observert."
+      }
+    ]
+  },
+  "training_profile": {
+    "title": "Rolig elveparkøkt på etablerte flater",
+    "summary": "Tre enkle øvelser bruker turvei og åpne parkflater uten vading, kantslitasje eller konflikt med andre brukere.",
+    "safety": "Hold deg på turvei, broer og faste parkflater. Ikke gå ned i elva, inn i våte kanter eller bort til amfibiedammen. Vis hensyn til gående, syklister, ryttere og hunder. Ikke tren på glatt brodekke, is, flomutsatte partier eller gjørmete skråninger. Ikke plukk eller håndter kanadagullris.",
+    "exercises": [
+      {
+        "id": "alnaparken_trening_elverunde",
+        "title": "Rolig tur langs elvelinjen",
+        "instruction": "Gå i 15 minutter på etablert turvei og bruk broer som vendepunkter.",
+        "duration_minutes": 15,
+        "intensity": "rolig",
+        "why": "Økten gjør parkens sammenhengende ferdselslinje og elvekorridor fysisk lesbar."
+      },
+      {
+        "id": "alnaparken_trening_brodrag",
+        "title": "Fire kontrollerte gangdrag",
+        "instruction": "Velg en bred, oversiktlig strekning. Gå raskt i 60 sekunder og rolig i 90 sekunder, fire ganger.",
+        "duration_minutes": 10,
+        "intensity": "moderat",
+        "why": "Intervallene bruker eksisterende turvei uten å belaste kantvegetasjonen."
+      },
+      {
+        "id": "alnaparken_trening_bevegelighet",
+        "title": "Bevegelighet på åpen parkflate",
+        "instruction": "Avslutt med rolige ankel-, hofte- og skulderbevegelser på tørt, flatt underlag utenfor ferdselsstrømmen.",
+        "duration_minutes": 5,
+        "intensity": "lett",
+        "why": "Avslutningen holder aktiviteten på robust underlag og gir plass til andre brukere."
+      }
+    ]
+  },
+  "civication_store": [
+    {
+      "id": "alnaparken_elvekorridor_relief",
+      "title": "Relieff av Alnaparkens elvekorridor",
+      "type": "relieffmodell",
+      "kind": "physical_object",
+      "desc": "En fysisk modell med Alnaelva, broer, turvei, kantvegetasjon og åpne parkflater.",
+      "placeSpecificReason": "Modellen viser den konkrete romlige sammenhengen som gjør Alnaparken til elvepark.",
+      "historicalFunction": "Kobler tidligere jordvei og beite til dagens park- og ferdselsstruktur.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 46,
+      "currency": "PC",
+      "collection": "alnaparken",
+      "collectable": true
+    },
+    {
+      "id": "alnaparken_amfibiedam_modell",
+      "title": "Amfibiedammens kantmodell",
+      "type": "habitatmodell",
+      "kind": "physical_object",
+      "desc": "En liten modell av vannflate, vegetert kant og skjermede soner rundt dammen.",
+      "placeSpecificReason": "Amfibiedammen er et dokumentert naturinnslag som ble rustet opp i 2001.",
+      "historicalFunction": "Viser hvordan et lite vannmiljø ble ivaretatt i parkopprustingen.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 38,
+      "currency": "PC",
+      "collection": "alnaparken",
+      "collectable": true
+    },
+    {
+      "id": "alnaparken_kulturlandskap_kart",
+      "title": "Kart over jordvei, beite og parkdrag",
+      "type": "historisk_landskapskart",
+      "kind": "physical_object",
+      "desc": "Et fysisk lagkart som sammenstiller Nedre Furusets eldre bruk med dagens turvei og park.",
+      "placeSpecificReason": "Alnaparken dokumenterer overgangen fra jordbruksrand til bynær rekreasjon.",
+      "historicalFunction": "Gjør 1958 til et konkret skille mellom aktivt beite og senere parkbruk.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 42,
+      "currency": "PC",
+      "collection": "alnaparken",
+      "collectable": true
+    },
+    {
+      "id": "alnaparken_kanadagullris_feltkort",
+      "title": "Kanadagullris – felt- og risikokort",
+      "type": "artskort",
+      "kind": "physical_object",
+      "desc": "Et sammenleggbart kort med kjennetegn, risikokategori og regel mot plukking og spredning.",
+      "placeSpecificReason": "Kanadagullris er stedets eneste aktive artskobling i repoets naturkart.",
+      "historicalFunction": "Viser hvordan fremmedartsdata brukes i moderne naturforvaltning.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 24,
+      "currency": "PC",
+      "collection": "alnaparken",
+      "collectable": true
+    }
+  ],
+  "brands": [
+    {
+      "id": "alnaparken_actor",
+      "name": "Alnaparken / Nylandsparken",
+      "brand_kind": "urban_river_park",
+      "brand_type": "primary_place"
+    },
+    {
+      "id": "alnaelva_actor_alnaparken",
+      "name": "Alnaelva",
+      "brand_kind": "urban_river",
+      "brand_type": "natural_system"
+    },
+    {
+      "id": "oslo_kommune_alnaparken",
+      "name": "Oslo kommune",
+      "brand_kind": "municipality",
+      "brand_type": "planning_and_management_authority"
+    },
+    {
+      "id": "bymiljoetaten_alnaparken",
+      "name": "Bymiljøetaten",
+      "brand_kind": "municipal_agency",
+      "brand_type": "park_and_path_manager"
+    },
+    {
+      "id": "pbe_alnaparken",
+      "name": "Plan- og bygningsetaten",
+      "brand_kind": "municipal_agency",
+      "brand_type": "planning_authority"
+    },
+    {
+      "id": "bydel_alna_alnaparken",
+      "name": "Bydel Alna",
+      "brand_kind": "city_district",
+      "brand_type": "local_public_actor"
+    },
+    {
+      "id": "oslo_elveforum_alnaparken",
+      "name": "Oslo Elveforum",
+      "brand_kind": "river_forum",
+      "brand_type": "knowledge_and_advocacy_actor"
+    },
+    {
+      "id": "alnaelvas_venner_alnaparken",
+      "name": "Alnaelvas Venner",
+      "brand_kind": "local_association",
+      "brand_type": "river_care_actor"
+    },
+    {
+      "id": "artsdatabanken_alnaparken",
+      "name": "Artsdatabanken",
+      "brand_kind": "national_knowledge_infrastructure",
+      "brand_type": "species_and_risk_source"
+    },
+    {
+      "id": "alna_ridesenter_alnaparken",
+      "name": "Alna ridesenter",
+      "brand_kind": "recreation_actor",
+      "brand_type": "neighboring_user"
+    }
+  ],
+  "for_na": {
+    "title": "Fra jordvei og beite til elvepark og miljøpark",
+    "before": "Nedre Furuset hadde jordvei ned mot Alna, og kuer gikk på beite i området frem til 1958. Elvelandskapet var del av en jordbruksrand og ble samtidig påvirket av senere vei-, jernbane-, industri- og byutvikling i Groruddalen.",
+    "now": "Alnaparken er et tilgjengelig parkdrag med turvei, broer, løvskog, åpne flater og en amfibiedam som ble rustet opp i 2001. Ridesenter åpnet i Alnaparkveien i 2005. Parken inngår i den større plan- og forvaltningsrammen for Alna miljøpark.",
+    "change": "Stedet har gått fra aktivt beite- og jordbrukslandskap til nærnatur, ferdselsåre og blågrønn infrastruktur. Samtidig er eldre bruk fortsatt lesbar under dagens parkform, mens fremmedarter, slitasje og vannmiljø krever aktiv forvaltning.",
+    "look_for": [
+      "Alnaelvas åpne løp gjennom parken",
+      "broer som binder sammen turveiene",
+      "kantvegetasjonens skygge og røtter",
+      "åpne grasflater som kontrast til skogholt",
+      "mulige spor etter eldre jordvei og beite",
+      "amfibiedammen fra etablert ferdselslinje",
+      "overgangen mellom park og omkringliggende infrastruktur",
+      "kanadagullris-kjennetegn uten plukking eller spredning",
+      "tråkk, erosjon eller søppel som tegn på brukspress",
+      "retningen videre mot Alfaset og Smalvoll"
+    ],
+    "sources": [
+      "https://oslobyleksikon.no/side/Alnaparken",
+      "https://oslobyleksikon.no/side/Alnaelva",
+      "https://www.osloelveforum.org/om-alnaelva/",
+      "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/",
+      "https://od2.pbe.oslo.kommune.no/kart/?mode=kommuneplan",
+      "https://artsdatabanken.no/arter/takson/60776",
+      "https://lister.artsdatabanken.no/fremmedartslista/2023/214",
+      "data/natur/nature_routes_place_map.json",
+      "data/natur/flora/fremmedarter.json"
+    ]
+  }
 }
