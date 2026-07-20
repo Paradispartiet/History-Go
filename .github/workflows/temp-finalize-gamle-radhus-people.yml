@@ -1,4 +1,4 @@
-# One-shot touch: trigger the pending Gamle rådhus people materialization.
+# One-shot cleanup pass: rebase the manifest and restore generated global reports.
 name: Temporary Gamle rådhus people finalizer
 
 on:
@@ -48,15 +48,23 @@ jobs:
         if: steps.pending.outputs.run == 'true'
         run: bash scripts/check-people.sh
 
-      - name: Publish materialized branch
+      - name: Publish clean materialized branch
         if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
+          git fetch origin main
+          git checkout origin/main -- \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
           git diff --check
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Add Gamle rådhus people batch 1"
+          git commit -m "Clean Gamle rådhus people batch 1"
           git pull --rebase origin agent/people-gamle-radhus-batch1
           git push origin HEAD:agent/people-gamle-radhus-batch1
