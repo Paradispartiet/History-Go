@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T07:13:38.048Z
+Generert: 2026-07-20T07:27:50.558Z
 
 ## Oppsummering
-- Aktive filer validert: **522**
+- Aktive filer validert: **523**
 - Antall steder validert: **1215**
 - Harde feil: **0**
 - Varsler: **428**
@@ -540,6 +540,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/oslo/places_vitenskap/oslo_reptilpark.json
 - data/places/sport/europa/norway/oslo_sport/toyenbadet.json
 - data/places/sport/europa/norway/oslo_sport/ekt_rideskole_husdyrpark.json
+- data/places/sport/europa/norway/oslo_sport/holmlia_bad.json
 
 ## Harde feil
 - Ingen

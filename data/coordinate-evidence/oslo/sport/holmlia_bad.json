@@ -1,0 +1,73 @@
+{
+  "placeId": "holmlia_bad",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport/holmlia_bad.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.83446506552478,
+    "lon": 10.792402928876081,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Holmlia Senter vei 34, OSLO. Punktet representerer dagens offentlige svømmehall og brukes som display- og unlock-marker. Fjell- og tilfluktsromshistorien er et fysisk og historisk lag ved samme sted, ikke en separat markør."
+  },
+  "identity": {
+    "currentName": "Holmlia bad",
+    "resolvedIdentity": "The municipal public swimming pool at Holmlia Senter vei 34, physically integrated into the Holmlia rock/civil-defence complex but represented as the public bath rather than the whole underground facility",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for dagens svømmehall",
+    "kommunal dokumentasjon av besøksadressen og aktiv badfunksjon",
+    "historisk kilde for 1983 og fjellanleggets kombinerte funksjon"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Holmlia%20senter%20vei%2034%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13084:34",
+      "sourceQuality": "official_address_plus_municipal_visitor_identity",
+      "finding": "Geonorge gir et eksakt adressetreff for Holmlia Senter vei 34. Oslo kommune oppgir samme adresse for Holmlia bad; historisk kilde dokumenterer at svømmehallen stod klar i 1983 som del av et fjellanlegg med idretts- og tilfluktsromsfunksjon.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Holmlia Senter vei 34, OSLO. Punktet representerer dagens offentlige svømmehall og brukes som display- og unlock-marker. Fjell- og tilfluktsromshistorien er et fysisk og historisk lag ved samme sted, ikke en separat markør."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Holmlia senter vei 34 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13084:34",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13084:34",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.83446506552478,
+      "lon": 10.792402928876081,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Use the exact Holmlia Senter vei 34 address point as the canonical display marker; keep the wider underground complex as contextual history."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Holmlia Senter vei 34, OSLO. Punktet representerer dagens offentlige svømmehall og brukes som display- og unlock-marker. Fjell- og tilfluktsromshistorien er et fysisk og historisk lag ved samme sted, ikke en separat markør."
+  ]
+}
