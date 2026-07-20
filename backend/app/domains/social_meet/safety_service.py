@@ -154,7 +154,13 @@ class SocialMeetSafetyService:
     def _actor(self, auth_user_id: UUID) -> SocialMeetProfileRecord:
         return self._identity_repository.get_or_create_for_user(auth_user_id)
 
-    def _validate_target(self, actor_profile_id: UUID, target_profile_id: UUID, *, action: str) -> None:
+    def _validate_target(
+        self,
+        actor_profile_id: UUID,
+        target_profile_id: UUID,
+        *,
+        action: str,
+    ) -> None:
         if actor_profile_id == target_profile_id:
             raise SocialMeetDomainError(
                 code=f"invalid_{action}_target",
