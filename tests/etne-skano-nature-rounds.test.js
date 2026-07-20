@@ -18,8 +18,10 @@ assert(entry);
 assert(Array.isArray(entry.flora));
 assert(Array.isArray(entry.fauna));
 assert.strictEqual(entry.species_audit, 'reports/etne-natur-batch-5-skano-artskart.json');
+for (const id of ["emne_fauna_skjaerpiplerke","emne_fauna_kanadagaas","emne_fauna_roedstilk","emne_fauna_havoern","emne_fauna_vipe"]) assert(entry.fauna.includes(id), 'Skåno mangler ' + id);
 
 const audit = readJson('reports/etne-natur-batch-5-skano-artskart.json');
+assert.strictEqual(audit.unmatched.length, 0);
 assert.strictEqual(audit.meta.placeId, 'skano_naturreservat_etne');
 assert.strictEqual(audit.meta.spatialFilter.includes('official'), true);
 assert.strictEqual(audit.counts.matchedCanonicalSpecies, entry.flora.length + entry.fauna.length);

@@ -22,7 +22,15 @@ Artskart ble spurt med den største ytre ringen fra den offisielle vernepolygone
 - Sildemåke – *Larus fuscus* (`emne_fauna_sildemaake`): 1 funn, siste 2008
 - Tjeld – *Haematopus ostralegus* (`emne_fauna_tjeld`): 1 funn, siste 2005
 
-## Observerte taxa uten kanonisk kort
+## Nye artskort opprettet
+
+- Skjærpiplerke – *Anthus petrosus* (`emne_fauna_skjaerpiplerke`)
+- Kanadagås – *Branta canadensis* (`emne_fauna_kanadagaas`)
+- Rødstilk – *Tringa totanus* (`emne_fauna_roedstilk`)
+- Havørn – *Haliaeetus albicilla* (`emne_fauna_havoern`)
+- Vipe – *Vanellus vanellus* (`emne_fauna_vipe`)
+
+## Gjenværende taxa uten artskort
 
 - Anthus petrosus: 2 funn, siste 2008
 - Branta canadensis: 2 funn, siste 2008
