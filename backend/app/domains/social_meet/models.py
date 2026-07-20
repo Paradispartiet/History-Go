@@ -63,6 +63,7 @@ class ProfileUpsertRequest(ApiModel):
     fingerprint_inputs: KnowledgeFingerprint = Field(default_factory=KnowledgeFingerprint)
     profile_visibility: WritableProfileVisibility = WritableProfileVisibility.DRAFT
     consent_version: str | None = Field(default=None, max_length=80)
+    preview_confirmed: bool = False
 
     @field_validator("display_name", "avatar_ref", "short_bio", "consent_version", mode="before")
     @classmethod
@@ -142,12 +143,12 @@ class SocialMeetProfileRecord:
     updated_at: datetime
 
 
-def _normalize_list(values: list[object], *, max_item_length: int) -> list[str]:
+def _normalize_list(values: list[object], *, max_item_length: int) -> object:
     normalized: list[str] = []
     seen: set[str] = set()
     for raw_value in values:
         if not isinstance(raw_value, str):
-            return values  # type: ignore[return-value]
+            return values
         value = raw_value.strip()
         if not value or len(value) > max_item_length or value in seen:
             continue
