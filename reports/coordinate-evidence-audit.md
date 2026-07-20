@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T21:48:49.199Z
+Generert: 2026-07-20T21:51:57.890Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -220,4 +220,4 @@ Generert: 2026-07-20T21:48:49.199Z
 | kosk_oslo | data/coordinate-evidence/oslo/kunst/kosk_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galleri_mini_oslo | data/coordinate-evidence/oslo/kunst/galleri_mini_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | van_etten | data/coordinate-evidence/oslo/kunst/van_etten.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| jordal_ungdomshall | data/coordinate-evidence/oslo/sport/jordal_ungdomshall.json | applied_to_place | do_not_change_coordinates_yet | applied_to_place er ikke lov når place fortsatt mangler verified v1 contract |
+| jordal_ungdomshall | data/coordinate-evidence/oslo/sport/jordal_ungdomshall.json | applied_to_place | do_not_change_coordinates_yet | OK |
