@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T22:33:41.321Z
+Generert: 2026-07-20T22:48:18.459Z
 
 ## Oppsummering
 - Aktive filer validert: **560**
 - Antall steder validert: **1215**
 - Harde feil: **0**
 - Varsler: **429**
-- Coordinate review candidates: **707** signaler fordelt på **566** steder
+- Coordinate review candidates: **707** signaler fordelt på **567** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -825,8 +825,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv.json#ringnes_bryggeri: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#vippetangen_fisketorg: coordStatus=verified uten coordPrecisionM
-- data/places/naeringsliv/oslo/places_naeringsliv.json#frysja_industriomrade: coordStatus=verified uten coordPrecisionM
-- data/places/naeringsliv/oslo/places_naeringsliv.json#frysja_industriomrade: coordStatus=verified uten coordNote for område/gate/rute
 - data/places/naeringsliv/oslo/places_naeringsliv.json#norges_varemesse: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#bryn_industriomrade: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/oslo/places_naeringsliv.json#christiania_seildugsfabrik: lineært sted uten anchors
@@ -954,6 +952,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/media/vestland/etne/grannar_redaksjon_etne.json#grannar_redaksjon_etne: coordStatus=verified uten coordPrecisionM
 - data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json#psykisk_helse_rus_etne: coordStatus=verified uten coordPrecisionM
 - data/places/psykologi/vestland/etne/psykisk_helse_rus_skanevik.json#psykisk_helse_rus_skanevik: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json#frammuseet: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json#kon_tiki_museet: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json#nordisk_bibelmuseum: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07.json#flop_museum: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json#folkeobservatoriet_holmenkollen: coordStatus=verified uten coordPrecisionM
@@ -1015,23 +1015,23 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 707 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 116 |
+| coordStatus=verified uten coordPrecisionM | 117 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 95 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 88 |
-| park/stort område uten anchors eller coordNote | 132 |
+| park/stort område uten anchors eller coordNote | 131 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (116)
+### coordStatus=verified uten coordPrecisionM (117)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1084,7 +1084,6 @@ Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandi
 | ringnes_bryggeri | Ringnes bryggeri | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.930179384813485 | 10.759251969442406 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | oslo_kraftselskap | Oslo Lysverkers hovedkontor | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.915245305085435 | 10.719611579321567 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vippetangen_fisketorg | Fiskehallen på Vippetangen | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.90297426597389 | 10.740325792625368 | 100 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | christiania_seildugsfabrik | Christiania Seildugsfabrik | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9253444010033 | 10.75475549771365 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | lilleborg_fabrikker | Lilleborg Fabrikker | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.93729471693473 | 10.765821835434187 | 140 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | glads_molle | Glads mølle | historie | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.931850362845985 | 10.757873019733754 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1097,6 +1096,8 @@ Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandi
 | grannar_redaksjon_etne | Grannar-redaksjonen i Etne | media | data/places/media/vestland/etne/grannar_redaksjon_etne.json | 59.66414439895677 | 5.940649457868514 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_etne | Psykisk helse og rus – Etne | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json | 59.66534125070043 | 5.943034081601908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_skanevik | Psykisk helse og rus – Skånevik | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_skanevik.json | 59.73234389428389 | 5.935277893100119 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| frammuseet | Frammuseet | historie | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json | 59.90320332524704 | 10.699091907892317 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| kon_tiki_museet | Kon-Tiki Museet | historie | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json | 59.90342401326082 | 10.698275332643746 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nordisk_bibelmuseum | Nordisk Bibelmuseum | historie | data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json | 59.910279645957665 | 10.740947844594505 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | flop_museum | FLOP Museum | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07.json | 59.908255036287656 | 10.761378655427743 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | folkeobservatoriet_holmenkollen | Folkeobservatoriet | vitenskap | data/places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json | 59.9605731651147 | 10.666638892994078 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1429,7 +1430,7 @@ Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandi
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
-### park/stort område uten anchors eller coordNote (132)
+### park/stort område uten anchors eller coordNote (131)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1556,7 +1557,6 @@ Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandi
 | laudal_kraftverk_lindesnes | Laudal kraftverk Lindesnes | naeringsliv | data/places/naeringsliv/agder/laudal_kraftverk_lindesnes.json | 58.2695 | 7.5093 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | by | data/places/by/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
-| frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | bryn_industriomrade | Bryn industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9129 | 10.8251 | 250 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | hovedoya | Hovedøya | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.89512 | 10.7379 | 450 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
