@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T17:20:47.849Z
+Generert: 2026-07-20T17:30:47.431Z
 
 ## Oppsummering
-- Aktive filer validert: **544**
+- Aktive filer validert: **545**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **429**
@@ -562,6 +562,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/ekeberg_helleristninger.json
 - data/places/sport/europa/norway/oslo_sport/frigo_friluftssenteret.json
 - data/places/kunst/oslo/places_kunst/galleri_map.json
+- data/places/kunst/oslo/places_kunst/vi_vii_gallery.json
 
 ## Harde feil
 - Ingen
