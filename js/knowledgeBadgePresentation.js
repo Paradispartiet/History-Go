@@ -66,7 +66,8 @@
       }
 
       const label = row.querySelector(".kv2-subject-row-title > strong");
-      if (label && badge.name) label.textContent = s(badge.name);
+      const badgeName = s(badge.name);
+      if (label && badgeName && label.textContent !== badgeName) label.textContent = badgeName;
     });
   }
 
@@ -90,7 +91,8 @@
       }
 
       const label = pill.querySelector("span");
-      if (label && badge.name) label.textContent = s(badge.name);
+      const badgeName = s(badge.name);
+      if (label && badgeName && label.textContent !== badgeName) label.textContent = badgeName;
     });
   }
 
@@ -102,12 +104,15 @@
     if (!badge || !eyebrow) return;
 
     const image = imageMarkup(badge, "kv2-subject-hero-badge");
-    if (!image) return;
-    eyebrow.innerHTML = `${image}<span>Fag</span>`;
-    eyebrow.setAttribute("data-hg-badge-id", s(badge.id));
+    const badgeId = s(badge.id);
+    if (image && eyebrow.getAttribute("data-hg-badge-id") !== badgeId) {
+      eyebrow.innerHTML = `${image}<span>Fag</span>`;
+      eyebrow.setAttribute("data-hg-badge-id", badgeId);
+    }
 
     const title = document.querySelector(".kv2-subject-hero > h2");
-    if (title && badge.name) title.textContent = s(badge.name);
+    const badgeName = s(badge.name);
+    if (title && badgeName && title.textContent !== badgeName) title.textContent = badgeName;
   }
 
   function applyBadges() {
