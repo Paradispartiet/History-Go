@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T06:32:40.193Z
+Generert: 2026-07-20T06:43:16.794Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -72,7 +72,6 @@ Generert: 2026-07-20T06:32:40.193Z
 | oslo_mek | data/coordinate-evidence/oslo/havnefront/oslo_mek.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | salt | data/coordinate-evidence/oslo/havnefront/salt.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tollbukaia | data/coordinate-evidence/oslo/havnefront/tollbukaia.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| akerhus_slott | data/coordinate-evidence/oslo/historie/akerhus_slott.json | needs_research | needs_identity_split | OK |
 | akershus_festning | data/coordinate-evidence/oslo/historie/akershus_festning.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | arbeidermuseet | data/coordinate-evidence/oslo/historie/arbeidermuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankall_gard | data/coordinate-evidence/oslo/historie/bankall_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
