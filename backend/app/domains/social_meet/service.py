@@ -128,7 +128,9 @@ def _safe_profile(record: SocialMeetProfileRecord) -> PublicSocialMeetProfile:
             detail="The Social Meet profile does not have a publishable public identity",
         )
 
-    fingerprint = KnowledgeFingerprint.model_validate(record.knowledge_fingerprint_summary)
+    fingerprint = KnowledgeFingerprint.model_validate(
+        record.knowledge_fingerprint_summary
+    )
     return PublicSocialMeetProfile(
         profile_id=record.profile_id,
         display_name=record.display_name,
