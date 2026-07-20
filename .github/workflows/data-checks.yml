@@ -27,7 +27,7 @@ jobs:
             >/dev/null 2>&1
 
       - name: Run canonical materializer gate
-        run: node scripts/botsfengselet-people-finalizer.mjs
+        run: node scripts/botsfengselet-people-finalizer.mjs > /tmp/botsfengselet-materializer.json
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -45,10 +45,10 @@ jobs:
           status=$?
           if [ "$status" -ne 0 ]; then
             echo "--- people check failure tail ---"
-            tail -120 /tmp/botsfengselet-people-check.log
+            tail -60 /tmp/botsfengselet-people-check.log
             exit "$status"
           fi
-          tail -40 /tmp/botsfengselet-people-check.log
+          tail -30 /tmp/botsfengselet-people-check.log
 
       - name: Publish clean data branch
         shell: bash
