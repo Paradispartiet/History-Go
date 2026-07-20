@@ -21,6 +21,7 @@ for (const commit of commits) {
     { encoding: 'utf8' }
   );
   const isMaterializer =
+    !candidate.includes("from 'node:url'") &&
     candidate.includes("const placeId = 'kvaernerbyen_alna';") &&
     candidate.includes('const setSpecs = [') &&
     candidate.includes("console.log('Kvaernerbyen Alna materialized and validated')");
