@@ -1,0 +1,75 @@
+{
+  "placeId": "ekt_rideskole_husdyrpark",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport/ekt_rideskole_husdyrpark.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.89214335591169,
+    "lon": 10.774614195820838,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Ekebergveien 99, OSLO. Punktet representerer dagens EKT-anlegg med ridehus, staller og husdyrpark. Rideskolen ble etablert i Jomfrubråtveien 40 i 1954; dagens anlegg ble utviklet etter festeavtalen med Oslo kommune i 1964. Punktet er derfor et nåværende bygnings-/displayanker, ikke 1954-lokasjonen og ikke et generelt anker for hele Ekebergsletta."
+  },
+  "identity": {
+    "currentName": "EKT Rideskole og Husdyrpark",
+    "resolvedIdentity": "The combined EKT riding-school and visitor-farm complex at the current public address Ekebergveien 99, distinct from the broader Ekebergsletta football and tournament landscape",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for dagens besøksadresse",
+    "offisiell EKT-dokumentasjon av dagens adresse og 1964-anlegget",
+    "eksplisitt skille mellom oppstarten i Jomfrubråtveien 40 i 1954 og dagens anlegg",
+    "fysisk og funksjonell avgrensning mot canonical `ekebergsletta`"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ekebergveien%2099%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11462:99",
+      "sourceQuality": "official_address_plus_documented_visitor_identity",
+      "finding": "Geonorge gir et eksakt adressetreff for Ekebergveien 99. EKT oppgir samme adresse som dagens besøksadresse og dokumenterer at rideskolen startet i Jomfrubråtveien 40 i 1954, mens ridehus, staller og husdyrpark ble etablert på dagens område etter festeavtalen med Oslo kommune i 1964.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Ekebergveien 99, OSLO. Punktet representerer dagens EKT-anlegg med ridehus, staller og husdyrpark. Rideskolen ble etablert i Jomfrubråtveien 40 i 1954; dagens anlegg ble utviklet etter festeavtalen med Oslo kommune i 1964. Punktet er derfor et nåværende bygnings-/displayanker, ikke 1954-lokasjonen og ikke et generelt anker for hele Ekebergsletta."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ekebergveien 99 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11462:99",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11462:99",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.89214335591169,
+      "lon": 10.774614195820838,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Apply Ekebergveien 99 as the canonical display marker for EKT. Keep the 1954 Jomfrubråtveien origin as institutional history and keep Ekebergsletta as a separate broader football/tournament place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Ekebergveien 99, OSLO. Punktet representerer dagens EKT-anlegg med ridehus, staller og husdyrpark. Rideskolen ble etablert i Jomfrubråtveien 40 i 1954; dagens anlegg ble utviklet etter festeavtalen med Oslo kommune i 1964. Punktet er derfor et nåværende bygnings-/displayanker, ikke 1954-lokasjonen og ikke et generelt anker for hele Ekebergsletta.",
+    "EKT-markerens sentrum ligger omtrent 317 meter fra dagens Ekebergsletta-anker. De to representerer ulike fysiske og funksjonelle objekter: EKT-anlegget versus det brede Norway Cup-/fotballandskapet."
+  ]
+}
