@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, TypeVar
 from uuid import UUID
 
 from fastapi import APIRouter, Body, Depends, HTTPException, status
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
 
 from app.api.dependencies import get_current_user, get_social_meet_safety_service
 from app.auth.supabase import AuthPrincipal
@@ -22,6 +22,8 @@ from app.domains.social_meet.safety_service import SocialMeetSafetyService
 from app.domains.social_meet.service import SocialMeetDomainError
 
 router = APIRouter(prefix="/social-meet", tags=["Social Meet Safety"])
+
+RequestModel = TypeVar("RequestModel", bound=BaseModel)
 
 _ERROR_STATUS = {
     "block_not_found": status.HTTP_404_NOT_FOUND,
@@ -116,7 +118,7 @@ def delete_social_meet_account(
     return service.delete_social_meet_account(current_user.user_id)
 
 
-def _validate_payload[RequestModel](
+def _validate_payload(
     payload: dict[str, Any],
     model: type[RequestModel],
     error_code: str,
@@ -132,7 +134,7 @@ def _validate_payload[RequestModel](
         )
 
     try:
-        return model.model_validate(payload)  # type: ignore[attr-defined, no-any-return]
+        return model.model_validate(payload)
     except ValidationError as exc:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
