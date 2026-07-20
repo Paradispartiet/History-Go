@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 224 verifiserte eller kildekontrollerte canonical steder. Batch 76 legger til VI, VII med den entydige Geonorge-adressekoordinaten for den aktuelle kontakt- og bookingadressen Nedre Slottsgate 8; Operagata 75A beholdes som tidligere lokasjon. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 224 verifiserte eller kildekontrollerte canonical steder. Batch 77 flytter Helleristningene på Ekeberg fra den feilplasserte opprinnelige raden i Etne-tabellen til riktig Oslo-tabell. Totalantallet endres ikke fordi stedet allerede var canonical og medregnet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -244,6 +244,7 @@ Oslo-tabellen inneholder nå 224 verifiserte eller kildekontrollerte canonical s
 | 74 | `frigo_friluftssenteret` | FRIGO – Friluftssenteret i Gamle Oslo | verified | `geonorge-adresser-v1:0301:11589:20` |
 | 75 | `galleri_map` | Galleri MAP | verified | `geonorge-adresser-v1:0301:17875:32` |
 | 76 | `vi_vii_gallery` | VI, VII | verified | `geonorge-adresser-v1:0301:15006:8` |
+| 77 | `ekeberg_helleristninger` | Helleristningene på Ekeberg | verified_geometry | `kulturminnesok:41907` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -402,7 +403,6 @@ Alle de 35 innsendte radene er kontrollert. Trettitre er verifiserte Etne-steder
 | 5 | `hoyland_gravhaug_etne` | Gravhaugen på Høyland | verified_geometry | `kulturminnesok:90156-1` |
 | 5 | `skanevik_kyrkjestad` | Skånevik kyrkjestad | verified_historical_source | `kulturminnesok:85489-4` |
 | 5 | `stampehaug_meland` | Stampehaug på Meland | verified_geometry | `kulturminnesok:90135-1` |
-| 74 | `ekeberg_helleristninger` | Helleristningene på Ekeberg | verified_geometry | `kulturminnesok:41907` |
 
 Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / PR #2309, `c1f8f9041` / PR #2314 og `3fd6d69ac` / PR #2318.
 
@@ -424,4 +424,4 @@ Batch 70 (2026-07-20) produserer `toyen_hovedgard` som eget historisk hovedgård
 
 Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhistorisk museumssted. Den generelle adressen Tøyengata 38 ga flere uentydige Geonorge-treff, mens Oslo Museum og Oslo byleksikon identifiserer leiligheten i Tøyengata 38B; den presise address-first-kjøringen ga ett tydelig offisielt punkt. Recorden representerer den bevarte museumsleiligheten inne i Gråbein-komplekset, ikke hele leiegårdskomplekset eller Tøyen som område.
 
-Batch 74 (2026-07-20) produserer `ekeberg_helleristninger` som selve det registrerte helleristningsfeltet ved Sjømannsskolen på Ekeberg. Koordinaten er geometrisenteret for Riksantikvarens offisielle MultiPolygon-feature `41907-1`, koblet direkte til Kulturminne-ID 41907. Feltet holdes separat fra `ekebergparken`, Kongsveien og brede Ekeberg-områdeankre. Dateringen til omtrent 4 000–5 000 år er bred; år -2500 i place-recorden er et teknisk representasjonspunkt og ikke en eksakt arkeologisk datering.
+Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`. Den opprinnelige produksjonsmergen plasserte Ekeberg-raden nederst i Etne-tabellen, mens senere Oslo-batcher fortsatte å bruke den ordinære Oslo-tabellen. Denne reparasjonen fjerner den feilplasserte raden og den gamle produksjonsteksten og registrerer Ekeberg i riktig Oslo-tabell på neste ledige batch etter siste synkroniserte `main`. Canonical place, runtime-identitet, coordinate evidence og den Riksantikvaren-verifiserte geometrien `kulturminnesok:41907` endres ikke, og Oslo-totalen forblir 224.
