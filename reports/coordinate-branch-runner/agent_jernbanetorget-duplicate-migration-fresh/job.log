@@ -1,0 +1,61 @@
+From https://github.com/Paradispartiet/History-Go
+ * branch                agent/jernbanetorget-duplicate-migration-final -> FETCH_HEAD
+{
+  "ok": true,
+  "verifiedCount": 196,
+  "unresolvedCount": 35,
+  "initialReferences": [
+    "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+    "data/coordinate-evidence/manifest.json",
+    "data/coordinate-evidence/oslo/naeringsliv/jernbanetorget_trafikknutepunkt.json",
+    "data/i18n/content/places/en.json",
+    "data/i18n/content/places/es.json",
+    "data/i18n/content/places/pt.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv/jernbanetorget_trafikknutepunkt.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+    "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+    "data/places/places_index.json"
+  ],
+  "removedCivicationMappings": [
+    "map_jernbanetorget_trafikknutepunkt"
+  ],
+  "i18nActions": [
+    {
+      "file": "data/i18n/content/places/en.json",
+      "action": "removed_duplicate_key"
+    },
+    {
+      "file": "data/i18n/content/places/es.json",
+      "action": "removed_duplicate_key"
+    },
+    {
+      "file": "data/i18n/content/places/pt.json",
+      "action": "removed_duplicate_key"
+    }
+  ]
+}
+
+[Jernbanetorget migration] npm run places:index:build
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1259 places -> data/places/places_index.json; skipped 9 disabled place(s)
+
+[Jernbanetorget migration] npm run places:aliases:check
+
+> history-go@0.0.0 places:aliases:check
+> npm run build:tools && node dist/tools/check_place_id_aliases.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: no legacy place IDs found in checked JSON data.
+bash: line 1: rg: command not found
+Jernbanetorget duplicate migration passed target-specific checks.
