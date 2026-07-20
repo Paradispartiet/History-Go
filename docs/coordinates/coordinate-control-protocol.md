@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 222 verifiserte eller kildekontrollerte canonical steder. Batch 74 legger til FRIGO – Friluftssenteret i Gamle Oslo med offisiell Geonorge-adressekoordinat for dagens besøksadresse Ensjøveien 20. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 223 verifiserte eller kildekontrollerte canonical steder. Batch 75 legger til Galleri MAP med den entydige offisielle Geonorge-adressekoordinaten for Tøyengata 32, kryssjekket mot galleriets egen aktuelle besøksadresse. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -242,6 +242,7 @@ Oslo-tabellen inneholder nå 222 verifiserte eller kildekontrollerte canonical s
 | 72 | `akrobaten_gangbro` | Akrobaten gangbro | verified_geometry | `osm-way:468892289` |
 | 73 | `sorenga_sjobad` | Sørenga sjøbad | verified_geometry | `osm-node:5295458069` |
 | 74 | `frigo_friluftssenteret` | FRIGO – Friluftssenteret i Gamle Oslo | verified | `geonorge-adresser-v1:0301:11589:20` |
+| 75 | `galleri_map` | Galleri MAP | verified | `geonorge-adresser-v1:0301:17875:32` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 

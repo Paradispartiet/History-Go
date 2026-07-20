@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T17:05:59.104Z
+Generert: 2026-07-20T17:20:54.970Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -119,6 +119,7 @@ Generert: 2026-07-20T17:05:59.104Z
 | emanuel_vigeland_mausoleum | data/coordinate-evidence/oslo/kunst/emanuel_vigeland_mausoleum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | framtidsbiblioteket_nordmarka | data/coordinate-evidence/oslo/kunst/framtidsbiblioteket_nordmarka.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| galleri_map | data/coordinate-evidence/oslo/kunst/galleri_map.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunstnernes_hus | data/coordinate-evidence/oslo/kunst/kunstnernes_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | roseslottet | data/coordinate-evidence/oslo/kunst/roseslottet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tbs_gallery | data/coordinate-evidence/oslo/kunst/tbs_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |

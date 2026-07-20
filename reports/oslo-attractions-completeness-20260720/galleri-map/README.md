@@ -12,3 +12,13 @@
 - Independent spatial cross-check: Lokalhistoriewiki places Galleri MAP at approximately the same coordinate.
 
 Production is approved from this intake.
+
+## Production
+
+- Canonical place: `galleri_map`
+- Category: `kunst`
+- Coordinate source: `geonorge-adresser-v1:0301:17875:32`
+- Coordinate status: `verified`
+- Coordinate batch: 75
+- Oslo verified/source-controlled total after production: 223
+- Year field: 2007, used as the documented start of the current gallery operation rather than an asserted legal founding date.
