@@ -40,19 +40,67 @@
   "endings": [
     {
       "id": "kom_i_jobb",
-      "navn": "Kom i jobb"
+      "navn": "Kom i jobb",
+      "tekst": "Du sto på — søkte bredt, brukte nettverket, holdt selvpresentasjonen oppe. Det er sånn jobber kommer: ikke av å vente, men av å være i bevegelse når sjansen dukker opp.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "min": 24
+          }
+        },
+        "flagg": {
+          "sokte_tre_nye": true,
+          "delte_lista_med_bekjenten": true,
+          "ba_om_referanse": true
+        }
+      }
     },
     {
       "id": "bygget_kompetanse",
-      "navn": "Bygget kompetanse"
+      "navn": "Bygget kompetanse",
+      "tekst": "Du kom ikke i jobb på tre dager, men du gjorde det som faktisk teller: bygde kompetanse. Merkene og kunnskapen du samlet er dokumentasjon arbeidsgivere ser etter — og de blir liggende, klare til neste sjanse.",
+      "kriterier": {
+        "meters": {
+          "handlingsrom": {
+            "min": 42
+          }
+        },
+        "flagg": {
+          "begynte_aa_tette_hullet": true,
+          "la_laeringsplan": true,
+          "satser_paa_kunnskap": true
+        }
+      }
     },
     {
       "id": "mistet_rytmen",
-      "navn": "Mistet rytmen"
+      "navn": "Mistet rytmen",
+      "tekst": "Dagene fløt i hverandre og rammen forsvant. Uten et sted å møte opp ble det lett å skyve alt til «i morgen» — og i morgen ble til flere dager som lignet på hverandre.",
+      "kriterier": {
+        "meters": {
+          "psyke": {
+            "max": 46
+          }
+        },
+        "flagg": {
+          "lot_dagen_skli": true,
+          "utsatte_igjen": true,
+          "utsatte_avslaget": true
+        }
+      }
     },
     {
       "id": "sto_i_det",
-      "navn": "Sto i det"
+      "navn": "Sto i det",
+      "tekst": "Ingen jobb ennå, men du sto i det. Meldekort levert, søknader ute, verdigheten i behold. Noen uker handler om å holde stand — og det gjorde du.",
+      "kriterier": {
+        "flagg": {
+          "sendte_meldekortet": true,
+          "aerlig_om_hullet": true,
+          "pustet_ut": true
+        }
+      },
+      "standard": true
     }
   ],
   "startState": {

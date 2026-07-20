@@ -379,6 +379,28 @@
       ? "<p class=\"civi-lifestory-stamp\">Valgene dine drar mot: <strong>"
         + escapeHtml((stamp.icon ? stamp.icon + " " : "") + stamp.name) + "</strong></p>"
       : "";
+    // Uka kåres en slutt på den siste dagen med innhold: da tolkes hele
+    // spillet til en ending, og «Start neste dag» erstattes av å begynne på
+    // nytt. Uten endings-modulen (ren Min dag-flate) faller vi tilbake til
+    // den vanlige dagsoppsummeringen.
+    const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
+    const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
+    const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
+    const endingHtml = ending
+      ? "<section class=\"civi-lifestory-ending\" aria-label=\"Ukas slutt\">"
+        + "<div class=\"civi-lifestory-section-label\">Slutten på uka</div>"
+        + "<h3>" + escapeHtml(ending.navn) + "</h3>"
+        + (ending.tekst ? "<p>" + escapeHtml(ending.tekst) + "</p>" : "")
+        + "</section>"
+      : "";
+    const handlingsHtml = sisteDag
+      ? "<div class=\"civi-lifestory-actions\">"
+        + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-restart>Start et nytt liv</button>"
+        + "</div>"
+      : "<div class=\"civi-lifestory-actions\">"
+        + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
+        + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
+        + "</div>";
     return ""
       + "<section class=\"civi-lifestory-summary\" aria-label=\"Dagsoppsummering\">"
       + "<div class=\"civi-lifestory-section-label\">Dagsoppsummering</div>"
@@ -388,10 +410,8 @@
       + "<h4>Meter-endringer siden morgenen</h4><div class=\"civi-lifestory-deltas\">" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
       + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul>"
-      + "<div class=\"civi-lifestory-actions\">"
-      + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
-      + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
-      + "</div>"
+      + endingHtml
+      + handlingsHtml
       + "</section>";
   }
 

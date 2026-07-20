@@ -263,9 +263,64 @@
       }
     }
 
+    // Endings: hver rolle kårer en slutt fra sluttilstanden. Kriteriene må
+    // peke på ekte signaler (kjente målere/relasjoner/tråder), og nøyaktig
+    // én ending må være merket standard (fallback når ingenting scorer).
+    errorsForEndings(role, startRelasjoner, threadIds, push);
+
     if (errors.length) {
       throw new Error("[LifestoryContent] innholdspakken er ugyldig:\n  - " + errors.join("\n  - "));
     }
+  }
+
+  /**
+   * Endings-validering: kriterier peker på ekte signaler, og nøyaktig én
+   * ending er standard. Endings uten kriterier er lov (kun nåbar som
+   * standard/fallback), men et kriterium som peker på en ukjent måler,
+   * relasjon eller tråd er en feil (ingen gjetting).
+   * @param {any} role
+   * @param {Record<string, number>} startRelasjoner
+   * @param {Set<string>} threadIds
+   * @param {(msg: string) => void} push
+   */
+  function errorsForEndings(role, startRelasjoner, threadIds, push) {
+    const endings = Array.isArray(role?.endings) ? role.endings : [];
+    if (!endings.length) return; // endings er valgfritt
+    const ids = new Set();
+    let standardCount = 0;
+    for (const ending of endings) {
+      const eid = ending?.id;
+      if (!eid || typeof eid !== "string") { push("ending uten id"); continue; }
+      if (ids.has(eid)) push(`duplikat ending-id: ${eid}`);
+      ids.add(eid);
+      if (!ending.navn) push(`ending ${eid}: mangler navn`);
+      if (ending.standard === true) standardCount++;
+      if (ending.kriterier === undefined) continue;
+      const k = ending.kriterier;
+      if (!k || typeof k !== "object" || Array.isArray(k)) { push(`ending ${eid}: kriterier må være et objekt`); continue; }
+      for (const key of Object.keys(k)) {
+        if (["meters", "flagg", "relasjoner", "traader"].indexOf(key) === -1) push(`ending ${eid}: ukjent kriteriegruppe "${key}"`);
+      }
+      for (const [group, known, label] of [
+        [k.meters || {}, (kk) => METERS.indexOf(kk) !== -1, "meters"],
+        [k.relasjoner || {}, (kk) => kk in startRelasjoner, "relasjoner"]
+      ]) {
+        for (const [key, range] of Object.entries(group)) {
+          if (!known(key)) push(`ending ${eid}: kriterier.${label} ukjent nøkkel "${key}"`);
+          if (!range || typeof range !== "object" || Array.isArray(range) || (range.min === undefined && range.max === undefined)) {
+            push(`ending ${eid}: kriterier.${label}.${key} må være { min?, max? }`);
+          }
+        }
+      }
+      for (const flag of Object.keys(k.flagg || {})) {
+        if (k.flagg[flag] !== true) push(`ending ${eid}: kriterier.flagg.${flag} må være true`);
+      }
+      for (const [tid, status] of Object.entries(k.traader || {})) {
+        if (!threadIds.has(tid)) push(`ending ${eid}: kriterier.traader ukjent tråd "${tid}"`);
+        if (THREAD_STATUSES.indexOf(status) === -1) push(`ending ${eid}: kriterier.traader.${tid} ugyldig status "${status}"`);
+      }
+    }
+    if (standardCount !== 1) push(`rolle ${role?.id}: forventet nøyaktig én standard-ending, fant ${standardCount}`);
   }
 
   /**

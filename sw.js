@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-07-20-v1.3.132";
+const SW_VERSION = "hg-sw-2026-07-20-v1.3.133";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -146,6 +146,7 @@ const PRECACHE_URLS = [
   "js/Civication/lifestory/lifestoryContent.js",
   "js/Civication/lifestory/lifestoryState.js",
   "js/Civication/lifestory/lifestoryRunner.js",
+  "js/Civication/lifestory/lifestoryEndings.js",
   "js/Civication/lifestory/lifestoryShellBridge.js",
   "js/Civication/ui/CivicationLifestoryActions.js",
   "js/Civication/ui/CivicationLifestoryUI.js",

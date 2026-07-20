@@ -52,23 +52,93 @@
   "endings": [
     {
       "id": "fagstolt",
-      "navn": "Fagstolt renholder"
+      "navn": "Fagstolt renholder",
+      "tekst": "Du gjorde usynlig fagarbeid synlig: dokumenterte runden, meldte avvik, prioriterte soner som en proff. Ingen så alt du gjorde — men arbeidet holdt, og du vet det selv.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 70
+          }
+        },
+        "flagg": {
+          "dokumenterte_runden": true,
+          "laerte_soneprioritering": true,
+          "forklarte_hygienisk": true
+        }
+      },
+      "standard": true
     },
     {
       "id": "sliten_kropp",
-      "navn": "Sliten kropp"
+      "navn": "Sliten kropp",
+      "tekst": "Du presset kroppen dag etter dag, lovte å være raskere enn den orket. Bygget ble rent — men det gikk på helsa løs, og kroppen fører regnskap.",
+      "kriterier": {
+        "meters": {
+          "energi": {
+            "max": 50
+          },
+          "psyke": {
+            "max": 52
+          }
+        },
+        "flagg": {
+          "presset_kroppen": true,
+          "lovte_aa_vaere_raskere": true
+        }
+      }
     },
     {
       "id": "usynlig_forbigaatt",
-      "navn": "Usynlig og forbigått"
+      "navn": "Usynlig og forbigått",
+      "tekst": "Du tonet ned, holdt avstand, lot klagene passere. Arbeidet ble gjort, men ingen så det — og den som ikke gjør seg synlig, blir lett forbigått når det teller.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "max": 43
+          }
+        },
+        "flagg": {
+          "holdt_avstand": true,
+          "lot_klagen_passere": true,
+          "tonet_ned_soelet": true
+        }
+      }
     },
     {
       "id": "sier_fra",
-      "navn": "Den som sier fra"
+      "navn": "Den som sier fra",
+      "tekst": "Du lot ikke urett stå uimotsagt: viste loggen, meldte avvik, sa fra om standarden. Det koster å være den som sier fra — men fagarbeid blir bare synlig når noen tør.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 60
+          }
+        },
+        "flagg": {
+          "meldte_klagen": true,
+          "viste_loggen": true,
+          "sa_fra_om_standard": true
+        }
+      }
     },
     {
       "id": "teamleder_emne",
-      "navn": "Teamleder-emne"
+      "navn": "Teamleder-emne",
+      "tekst": "Du så mer enn ditt eget rom: foreslo sjekklister, hjalp Amina, gjorde teamet bedre. Sånt legges merke til — det er slik en teamleder blir til.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "min": 50
+          },
+          "integritet": {
+            "min": 65
+          }
+        },
+        "flagg": {
+          "foreslo_sjekkliste": true,
+          "hjalp_amina": true
+        }
+      }
     }
   ],
   "startState": {

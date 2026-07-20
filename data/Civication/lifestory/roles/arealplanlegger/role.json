@@ -67,23 +67,95 @@
   "endings": [
     {
       "id": "faglig_sterk",
-      "navn": "Faglig sterk planlegger"
+      "navn": "Faglig sterk planlegger",
+      "tekst": "Du sto på faget når presset kom: skrev notatet, trakk faggrensen, ga skriftlige svar med forbehold som holdt vann. Utbyggere og politikere likte det ikke alltid — men de kunne ikke sitere deg på noe du ikke hadde dekning for.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 70
+          }
+        },
+        "flagg": {
+          "skrev_skoleveinotat": true,
+          "trakk_faggrense": true,
+          "ga_skriftlig_svar": true,
+          "sto_faglig_dag2": true
+        }
+      },
+      "standard": true
     },
     {
       "id": "politisk_lydig",
-      "navn": "Politisk lydig saksbehandler"
+      "navn": "Politisk lydig saksbehandler",
+      "tekst": "Du ga etter der det var enklest: muntlig ja på telefonen, saker som gled unna, faggrenser som ble utydelige under press. Det holdt freden — men noen andre eier nå referatet av det du sa.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "max": 50
+          }
+        },
+        "flagg": {
+          "ga_muntlig_ja": true,
+          "ga_etter_dag2": true,
+          "minimerte_skolevei_dag2": true
+        }
+      }
     },
     {
       "id": "utbrent",
-      "navn": "Utbrent kommunearbeider"
+      "navn": "Utbrent kommunearbeider",
+      "tekst": "Du presset deg gjennom møter du var for sliten til, la jobben aldri helt fra deg. Sakene ble ferdige — men det gikk på bekostning av deg, og det tar en kommune lang tid å oppdage.",
+      "kriterier": {
+        "meters": {
+          "psyke": {
+            "max": 55
+          },
+          "energi": {
+            "max": 55
+          }
+        },
+        "flagg": {
+          "presset_seg_gjennom_moetet": true,
+          "innroemmet_sliten": true,
+          "grublet_over_saken": true
+        }
+      }
     },
     {
       "id": "varsler",
-      "navn": "Varsler"
+      "navn": "Varsler",
+      "tekst": "Du nektet å la faglige forbehold forsvinne i tidspress: sendte saken til politisk behandling framfor å gi et muntlig ja. Det gjør deg ubekvem for noen — og helt nødvendig for byen.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 65
+          }
+        },
+        "flagg": {
+          "sendte_sak_til_politisk_behandling": true,
+          "eskalerte_frist": true,
+          "loeftet_skolevei_til_plansjef": true
+        }
+      }
     },
     {
       "id": "ledertalent",
-      "navn": "Ledertalent"
+      "navn": "Ledertalent",
+      "tekst": "Du løftet blikket over din egen sak: eskalerte riktig, foreslo kompromisser, gjorde plansjefen tryggere. Faglig sterk OG samlende — det er ledertalent.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "min": 55
+          },
+          "integritet": {
+            "min": 60
+          }
+        },
+        "flagg": {
+          "loeftet_skolevei_til_plansjef": true,
+          "foreslo_kompromiss": true
+        }
+      }
     }
   ],
   "startState": {

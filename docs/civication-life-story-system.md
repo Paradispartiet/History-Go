@@ -487,6 +487,22 @@ anerkjenner øyeblikket «du har en jobb å gå til nå» — med et valg som å
 karrierepanelet (neste steg). Den fyrer aldri for arbeidsledig (`harJobb` er
 per definisjon `false` der) eller uten snapshot.
 
+**Endings (batch 13): uka kåres en slutt.** På den siste dagen med innhold
+(`CivicationLifestoryEndings.isFinalDay` — ingen scene finnes for en senere
+dag) tolkes hele spillet til en av rollens `endings` — akkurat som progresjon
+ellers i History GO tolkes fra evidens, aldri skrives direkte. Hver ending har
+`kriterier` (målere, flagg, relasjoner, trådstatuser) med faste vekter (flagg
+veier mest); høyest total vinner, og **en ending må ha minst ett flagg-treff
+(et ekte valg) for å kåres** — start-målere alene skal aldri kåre en slutt.
+Scorer ingen ending, brukes den ene `standard`-endingen (validatoren krever
+nøyaktig én per rolle, og at kriterier peker på kjente signaler — ellers FAIL
+FAST). `resolveEnding` er ren, deterministisk lesing. Forsiktig/ærlig spill
+kårer en «god» slutt (Fagstolt, Faglig sterk, …), hensynsløst en hard (Usynlig
+og forbigått, Politisk lydig, Mistet tilliten). UI-et viser slutten i
+dagsoppsummeringen på siste dag og erstatter «Start neste dag» med «Start et
+nytt liv». Modulen er ny i lastekjeden (`lifestoryEndings.js`). Kontrakten eies
+av `civication-lifestory-endings.test.js`.
+
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
