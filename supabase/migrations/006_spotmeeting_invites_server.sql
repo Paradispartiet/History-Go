@@ -14,6 +14,24 @@ alter table public.hg_spotmeeting_invites
   add column if not exists sync_version bigint,
   add column if not exists idempotency_key text;
 
+-- Legacy client-created rows predate the server contract and may have nullable or
+-- blank presentation fields. Backfill deterministic product-owned values so every
+-- retained row can be represented by the typed API without inventing private data.
+update public.hg_spotmeeting_invites
+set
+  context_title = coalesce(nullif(btrim(context_title), ''), context_id),
+  context_reason = coalesce(
+    nullif(btrim(context_reason), ''),
+    'Felles History GO-kontekst'
+  ),
+  source_surface = coalesce(nullif(btrim(source_surface), ''), 'legacy')
+where context_title is null
+   or btrim(context_title) = ''
+   or context_reason is null
+   or btrim(context_reason) = ''
+   or source_surface is null
+   or btrim(source_surface) = '';
+
 update public.hg_spotmeeting_invites
 set expires_at = created_at + interval '14 days'
 where expires_at is null;
@@ -23,6 +41,9 @@ set sync_version = nextval('public.hg_spotmeeting_invite_sync_seq')
 where sync_version is null;
 
 alter table public.hg_spotmeeting_invites
+  alter column context_title set not null,
+  alter column context_reason set not null,
+  alter column source_surface set not null,
   alter column expires_at set default (now() + interval '14 days'),
   alter column expires_at set not null,
   alter column sync_version set default nextval('public.hg_spotmeeting_invite_sync_seq'),
@@ -47,7 +68,7 @@ alter table public.hg_spotmeeting_invites
 alter table public.hg_spotmeeting_invites
   drop constraint if exists hg_spotmeeting_invites_context_reason_length_check,
   add constraint hg_spotmeeting_invites_context_reason_length_check
-    check (context_reason is null or char_length(context_reason) <= 240),
+    check (char_length(context_reason) between 1 and 240),
   drop constraint if exists hg_spotmeeting_invites_idempotency_key_length_check,
   add constraint hg_spotmeeting_invites_idempotency_key_length_check
     check (
@@ -64,8 +85,8 @@ alter table public.hg_spotmeeting_invites
   add constraint hg_spotmeeting_invites_server_text_length_check
     check (
       char_length(context_id) between 1 and 180
-      and (context_title is null or char_length(context_title) <= 240)
-      and (source_surface is null or char_length(source_surface) <= 80)
+      and char_length(context_title) between 1 and 240
+      and char_length(source_surface) between 1 and 80
     );
 
 do $$
@@ -111,6 +132,8 @@ begin
 end;
 $$;
 
+drop trigger if exists bump_hg_spotmeeting_invite_versions
+  on public.hg_spotmeeting_invites;
 create trigger bump_hg_spotmeeting_invite_versions
   before update on public.hg_spotmeeting_invites
   for each row execute function public.bump_hg_spotmeeting_invite_versions();
