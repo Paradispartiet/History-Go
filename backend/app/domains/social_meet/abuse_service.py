@@ -5,14 +5,8 @@ from typing import Protocol
 from uuid import UUID
 
 from app.domains.social_meet.abuse_models import (
-    NEW_PROFILE_WINDOW,
-    REPEATED_CANCELLATION_THRESHOLD,
-    RESTRICTED_INVITE_POLICY,
-    STANDARD_INVITE_POLICY,
-    InviteAbusePolicyTier,
-    InviteAbuseSnapshot,
     InviteCreationAllowance,
-    InviteRatePolicy,
+    evaluate_invite_abuse_snapshot,
 )
 from app.domains.social_meet.abuse_repository import SocialMeetAbuseRepository
 from app.domains.social_meet.models import ProfileVisibility, SocialMeetProfileRecord
@@ -31,12 +25,7 @@ class SocialMeetInteractionGuard(Protocol):
 
 
 class SocialMeetInviteAbuseService:
-    """Preflight abuse policy for future server-owned Spotmeeting invite creation.
-
-    The next invite persistence slice must call this guard immediately before its
-    authoritative insert and re-check inside the same creation transaction. Until
-    that integration exists, production invite delivery remains disabled.
-    """
+    """Preflight abuse policy for server-owned Spotmeeting invite creation."""
 
     def __init__(
         self,
@@ -100,28 +89,21 @@ class SocialMeetInviteAbuseService:
                 detail="A published Social Meet profile is required to create invitations",
             )
 
-        if snapshot.duplicate_active_invite:
+        evaluation = evaluate_invite_abuse_snapshot(snapshot, checked_at)
+        if evaluation.failure_code == "duplicate_active_invite":
             raise SocialMeetDomainError(
                 code="duplicate_active_invite",
                 detail="An active Spotmeeting invite already exists for this context",
             )
-
-        # Reports and prior blocks are intentionally non-enumerating: the sender
-        # must not learn which private safety action caused contact suppression.
-        if snapshot.last_recipient_report_at is not None or snapshot.last_pair_block_at is not None:
+        if evaluation.failure_code == "recipient_unavailable":
             raise _recipient_unavailable()
-
-        if (
-            snapshot.last_declined_at is not None
-            or snapshot.cancellation_day_count >= REPEATED_CANCELLATION_THRESHOLD
-        ):
+        if evaluation.failure_code == "rate_limited":
             raise _rate_limited()
 
-        policy_tier, policy = _policy_for_snapshot(snapshot, checked_at)
-        if _exceeds_policy(snapshot, policy):
-            raise _rate_limited()
-
-        return InviteCreationAllowance(policy_tier=policy_tier, checked_at=checked_at)
+        return InviteCreationAllowance(
+            policy_tier=evaluation.policy_tier,
+            checked_at=checked_at,
+        )
 
 
 def _require_published_sender(record: SocialMeetProfileRecord) -> UUID:
@@ -139,29 +121,6 @@ def _is_invite_eligible_profile(record: SocialMeetProfileRecord | None) -> bool:
         and record.profile_id is not None
         and record.profile_visibility is ProfileVisibility.DISCOVERABLE
         and record.consent_version == SUPPORTED_CONSENT_VERSION
-    )
-
-
-def _policy_for_snapshot(
-    snapshot: InviteAbuseSnapshot,
-    checked_at: datetime,
-) -> tuple[InviteAbusePolicyTier, InviteRatePolicy]:
-    is_new_profile = checked_at - snapshot.sender_social_meet_started_at < NEW_PROFILE_WINDOW
-    is_under_review = snapshot.unresolved_reports_against_sender > 0
-    if is_new_profile or is_under_review:
-        return InviteAbusePolicyTier.RESTRICTED, RESTRICTED_INVITE_POLICY
-    return InviteAbusePolicyTier.STANDARD, STANDARD_INVITE_POLICY
-
-
-def _exceeds_policy(snapshot: InviteAbuseSnapshot, policy: InviteRatePolicy) -> bool:
-    return any(
-        (
-            snapshot.sender_minute_count >= policy.sender_per_minute,
-            snapshot.sender_hour_count >= policy.sender_per_hour,
-            snapshot.sender_day_count >= policy.sender_per_day,
-            snapshot.pair_day_count >= policy.pair_per_day,
-            snapshot.recipient_day_count >= policy.recipient_per_day,
-        )
     )
 
 
