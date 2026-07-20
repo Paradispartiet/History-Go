@@ -1,0 +1,64 @@
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Skedsmogata 23 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Skedsmogata 23 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Skedsmogata%2023%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:16443:23",
+  "coordinate": {
+    "lat": 59.91319830613384,
+    "lon": 10.785092383475156,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16443:23",
+    "address": {
+      "street": "Skedsmogata",
+      "number": "23",
+      "postcode": "0655",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Skedsmogata 23, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Skedsmogata",
+    "adressetekst": "Skedsmogata 23",
+    "adressetilleggsnavn": null,
+    "adressekode": 16443,
+    "nummer": 23,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 232,
+    "bruksnummer": 2,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0655",
+    "adressetekstutenadressetilleggsnavn": "Skedsmogata 23",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91319830613384,
+      "lon": 10.785092383475156
+    },
+    "oppdateringsdato": "2020-06-15T18:04:04"
+  }
+}
