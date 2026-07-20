@@ -201,11 +201,11 @@ Retrokontroll fra batch 6 (2026-07-20), pass 2: `torggata` og `storgata` er tilb
 
 Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` bruker nå det dokumenterte OSM-bygningsobjektet som primær geometrikilde etter tvetydig Geonorge-oppslag; `ovre_foss` dokumenterer at Geonorge faktisk ble forsøkt først og bruker Kulturminnesøk 164747 som semantisk historisk områdeanker; `henrik_wergeland_statue` bruker Oslo Museums stabile aksesjonsnummer OB.A17403 som primær kildeidentitet i stedet for Commons-siden.
 
-Batch 36 (2026-07-20) gjenåpner konkrete needs_review-saker med objekt-type-først-metoden. Bare kandidater med ett entydig navngitt OSM-objekt etter dokumentert adresse-/identitetskontroll promoteres; øvrige kandidater forblir uendret.
+Batch 36 (2026-07-20) gjenåpner konkrete needs_review-saker med objekt-type-først-metoden. Tre steder er løst uten proxy-gjetting: Prindsen med dokumentert historisk kompleksidentitet og eksakt OSM-områdegeometri etter tvetydig Geonorge-oppslag, Hartvig Nissens skole med entydig navngitt OSM-skoleobjekt etter tvetydig adresseoppslag, og Inger Hagerups plass med eksplisitt kildekoordinat kryssjekket mot Oslo byleksikon og Oslo bykart. Sigrid Undset-statuen forblir needs_review fordi eksakt sokkelpunkt fortsatt mangler.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 165 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 168 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
