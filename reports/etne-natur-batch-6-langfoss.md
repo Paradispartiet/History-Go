@@ -33,3 +33,10 @@ Navnene må grupperes til faktiske taxa før publisering. Høyere taksoner, dubl
 
 - https://www.nve.no/vann-og-vassdrag/vassdragsforvaltning/verneplan-for-vassdrag/vestland/042-1-vaulaelva-m-langfossen/
 - https://www.ietne.no/aktuelt/langfoss---fra-vill-natur-til-verdskjent-turmal
+
+## Kuratert resultat
+
+- Småtorvlibelle – *Leucorrhinia dubia* (`emne_fauna_smaatorvlibelle`)
+- Tettegras – *Pinguicula vulgaris* (`emne_urt_tettegras`)
+
+Navnene `dubia` og `vulgaris` er artsnavneledd fra de samme to observasjonene, ikke egne taxa. Alle aksepterte observasjoner har dermed kanoniske artskort.

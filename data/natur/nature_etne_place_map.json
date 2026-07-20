@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "0.8.0",
+    "version": "0.9.0",
     "purpose": "Kildekontrollert artskobling for Etne-steder. Kartet viser bare arter som er eksplisitt dokumentert for stedet eller vassdraget; Artskart-utvidelser skal kurateres separat.",
     "updatedAt": "2026-07-21",
     "sources": [
@@ -18,7 +18,9 @@
       "https://lovdata.no/dokument/LF/forskrift/1984-11-23-1913",
       "https://lovdata.no/dokument/LF/forskrift/1987-04-03-246",
       "https://artskart.artsdatabanken.no/publicapi/api/observations/list/",
-      "https://lovdata.no/dokument/LF/forskrift/1987-04-03-245"
+      "https://lovdata.no/dokument/LF/forskrift/1987-04-03-245",
+      "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28705433.3263871255+8364787.747050965%2C706073.3263871255+8364787.747050965%2C706073.3263871255+8365427.747050965%2C705433.3263871255+8365427.747050965%2C705433.3263871255+8364787.747050965%29%29",
+      "https://www.nve.no/vann-og-vassdrag/vassdragsforvaltning/verneplan-for-vassdrag/vestland/042-1-vaulaelva-m-langfossen/"
     ]
   },
   "places": {
@@ -131,6 +133,18 @@
       "flora": [],
       "documentation": "Lovdata dokumenterer Skåno naturreservat, arealet på 81 dekar, verneformålet og ferdselsreglene. Artslisten er generert fra Artskart-observasjoner innenfor den offisielle vernepolygonen, filtrert til år 2000 eller nyere og oppgitt presisjon på høyst 250 meter.",
       "species_audit": "reports/etne-natur-batch-5-skano-artskart.json",
+      "unmatched_taxa_count": 0
+    },
+    "langfoss_etne": {
+      "fauna": [
+        "emne_fauna_smaatorvlibelle"
+      ],
+      "flora": [
+        "emne_urt_tettegras"
+      ],
+      "documentation": "Artskart-revisjonen fant tre observasjoner i den lokale 320-meters analyseflaten. To besto år- og presisjonsfiltrene: småtorvlibelle og tettegras. Analyseflaten er History GO-stedets lokale spillområde og ikke en offisiell naturgrense.",
+      "species_audit": "reports/etne-natur-batch-6-langfoss-artskart-candidates.json",
+      "analysis_scope": "square_320m_from_canonical_place_anchor",
       "unmatched_taxa_count": 0
     }
   }
