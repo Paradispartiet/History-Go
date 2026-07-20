@@ -1,0 +1,66 @@
+{
+  "version": "2026-07-20-direct-object-clean",
+  "placeId": "mariakirken_ruin_oslo",
+  "candidateName": "Mariakirken-ruinen i middelalder-Oslo",
+  "status": "verified_geometry_candidate",
+  "productionGate": "ready_for_canonical_production",
+  "primaryCategory": "historie",
+  "source": {
+    "sourceProvider": "official_heritage_registry",
+    "sourceName": "Riksantikvaren – Lokaliteter, Enkeltminner og Sikringssoner OGC API",
+    "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/lokaliteter/items/42178?f=json",
+    "sourceObjectId": "kulturminnesok:42178",
+    "collection": "lokaliteter",
+    "featureId": "42178"
+  },
+  "identity": {
+    "officialName": "Mariakirken kirkested",
+    "officialKulturminneId": "42178",
+    "municipality": "0301",
+    "origin": "Byantikvaren i Oslo",
+    "linkKulturminnesok": "https://kulturminnesok.no/ra/lokalitet/42178",
+    "geometryType": "MultiPolygon",
+    "summary": "Ruin of Mariakirken, Oslo royal church from the mid-1000s; later royal chapel and burial church."
+  },
+  "coordinate": {
+    "lat": 59.90346746534793,
+    "lon": 10.762065934518056,
+    "r": 75,
+    "locatorType": "poi",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "kulturminnesok:42178",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "site_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "kulturminnesok_askeladden",
+    "coordType": "heritage_site_centroid",
+    "coordNote": "Geometrisk representasjonspunkt beregnet fra Riksantikvarens offisielle MultiPolygon-geometri for Mariakirken kirkested, Kulturminne-ID 42178. Punktet representerer den konkrete kirke-/ruinlokaliteten og ikke Middelalderparken som helhet."
+  },
+  "geometryAudit": {
+    "officialCenterpoint": {
+      "lat": 59.903467092353594,
+      "lon": 10.762065867078627
+    },
+    "derivedGeometryCenter": {
+      "lat": 59.90346746534793,
+      "lon": 10.762065934518056
+    },
+    "distanceBetweenCentersM": 0
+  },
+  "duplicateGate": {
+    "canonicalIdentityMatches": [],
+    "reviewedFalsePositive": {
+      "id": "granavollen_sosterkirkene",
+      "reason": "Text match only: this canonical place is the Søsterkirkene site in Gran, Innlandet, where one of the two churches is named Mariakirken. It is physically and semantically distinct from Mariakirken in medieval Oslo."
+    },
+    "distinctNearbyCanonicalPlaces": [
+      "middelalder_oslo",
+      "hallvardskirken_oslo"
+    ],
+    "conclusion": "No canonical Mariakirken ruin identity exists in Oslo. The broad Middelalderparken anchor and Hallvardskirken ruin are separate physical identities."
+  },
+  "methodAudit": {
+    "discovery": "CQL2 name filtering identified Riksantikvaren locality 42178 as the Oslo Mariakirken object.",
+    "finalMethod": "Direct lookup of exact official feature 42178, with Oslo municipality and Mariakirken/kongsgårdkirke identity assertions. Coordinate derived from the official MultiPolygon geometry and cross-checked against the feature's own centerpoint."
+  }
+}
