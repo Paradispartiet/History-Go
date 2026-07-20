@@ -1,0 +1,221 @@
+{
+  "version": "2026-07-20-scope-address-and-named-object-final",
+  "placeId": "gamlebyen_kirke",
+  "candidateName": "Gamlebyen kirke",
+  "status": "verified_geometry_candidate",
+  "productionGate": "ready_for_canonical_production",
+  "primaryCategory": "religion",
+  "identity": {
+    "currentName": "Gamlebyen kirke",
+    "alternateName": "Oslo Hospitals kirke",
+    "currentAddress": "Ekebergveien 1, Oslo",
+    "consecrated": "May 1796",
+    "currentFunction": "Active church used for worship and cultural events",
+    "physicalContext": "Distinct church building within the historic Oslo Hospital complex"
+  },
+  "addressFirst": {
+    "result": {
+      "ok": false,
+      "status": "needs_review",
+      "reason": "Geonorge returnerte flere treff uten entydig match; må avklares manuelt.",
+      "query": "Ekebergveien 1 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ekebergveien%201%20Oslo"
+    },
+    "exitCode": 1
+  },
+  "resolvedObject": {
+    "source": "nominatim",
+    "osmType": "way",
+    "osmId": 557799193,
+    "name": "Gamlebyen kirke",
+    "score": 100,
+    "center": {
+      "lat": 59.9031277,
+      "lon": 10.7685824
+    },
+    "displayName": "Gamlebyen kirke, Ekebergveien, Baglerbyen, Gamlebyen, Gamle Oslo, Oslo, 0192, Norge",
+    "geojsonType": "Polygon",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:557799193"
+  },
+  "coordinate": {
+    "lat": 59.9031277,
+    "lon": 10.7685824,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:557799193",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "display_marker",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 557799193 – Gamlebyen kirke",
+    "coordType": "building_center",
+    "coordNote": "Geometrisk representasjonspunkt for det navngitte kartobjektet way 557799193, «Gamlebyen kirke». Objektet representerer selve Gamlebyen kirke / Oslo Hospitals kirke innenfor det bredere Oslo Hospital-komplekset."
+  },
+  "existingHospitalScope": {
+    "file": "data/places/historie/oslo/places_historie_added_batch_01.json",
+    "record": {
+      "id": "oslo_hospital",
+      "name": "Oslo hospital",
+      "lat": 59.903189,
+      "lon": 10.767664,
+      "r": 130,
+      "category": "historie",
+      "year": 1538,
+      "desc": "Historisk hospital i Gamlebyen, med røtter i kloster- og omsorgshistorie etter reformasjonen.",
+      "image": "",
+      "cardImage": "",
+      "popupDesc": "Oslo hospital viser en lang linje fra middelalderens religiøse omsorg til tidlig moderne institusjons- og helsehistorie. Stedet ligger i Gamlebyen, tett på middelalderens kirkelige landskap, og gjør det mulig å forklare hvordan omsorg, fattigvesen, sykdom og sosial kontroll ble organisert før den moderne velferdsstaten. Hospitalet er derfor et viktig historisk punkt: ikke bare medisinsk, men sosialt, religiøst og institusjonelt.",
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_stat_institusjoner",
+        "em_his_historiske_lag_i_byrom"
+      ],
+      "quiz_profile": {
+        "place_type": "historisk_institusjon",
+        "subtype": "hospital_og_omsorgsinstitusjon",
+        "signature_features": [
+          "historisk hospital i Gamlebyen",
+          "kobler klosterlandskap, omsorg og institusjonshistorie",
+          "viser eldre former for fattig- og helseomsorg"
+        ],
+        "primary_angles": [
+          "historie",
+          "omsorg",
+          "institusjon",
+          "sosialhistorie"
+        ],
+        "question_families": [
+          "institusjonell_funksjon",
+          "historisk_endring",
+          "sosialhistorie",
+          "tidslag"
+        ],
+        "avoid_angles": [
+          "generisk_sykehus",
+          "moderne_helsevesen"
+        ],
+        "must_include": [
+          "hospitalet som eldre omsorgsinstitusjon",
+          "koblingen mellom reformasjon, fattigomsorg og institusjonshistorie"
+        ],
+        "contrast_targets": [
+          "oslo_ladegard",
+          "middelalder_oslo",
+          "mollergata_19"
+        ],
+        "notes": "Skal brukes som sosial- og omsorgshistorie, ikke som moderne sykehushistorie."
+      },
+      "coordType": "historic_hospital_complex_anchor",
+      "coordStatus": "verified_geometry",
+      "coordSource": "OpenStreetMap way 111555053 – Oslo Hospital; kryssjekket mot Oslo Hospital/Ekebergveien 1",
+      "coordSourceUrl": "https://www.openstreetmap.org/way/111555053",
+      "coordVerifiedAt": "2026-07-19",
+      "underbadge_ids": [
+        "middelalder",
+        "sosialhistorie"
+      ],
+      "locatorType": "linear_area",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111555053",
+      "geocodeAccuracy": "semantic_anchor",
+      "coordRole": "area_anchor",
+      "coordSourceId": "osm-way:111555053",
+      "coordNote": "Geonorge-adressen Ekebergveien 1 ga flere ikke-entydige treff fordi Oslo Hospital er et historisk bygningskompleks. Det eksisterende hovedpunktet beholdes på det sentrale historiske hospitalbygget modellert som OSM way 111555053. Den offisielle Oslo Hospital-kilden dokumenterer at tomten avgrenses av Ekebergveien, Oslo gate og Konows gate. Punktet er derfor et representativt kompleksanker, ikke et påstått sentrum for hele eiendommen."
+    },
+    "distanceFromChurchMarkerMeters": 51.7,
+    "conclusion": "oslo_hospital represents the broader hospital/institutional complex; the active church building is a distinct physical and functional place."
+  },
+  "duplicateGate": {
+    "canonicalIdentityMatches": [],
+    "osloHospitalTextMatch": null,
+    "nearbyWithin350m": [
+      {
+        "id": "oslo_hospital",
+        "name": "Oslo hospital",
+        "category": "historie",
+        "distanceMeters": 51.7
+      },
+      {
+        "id": "gamlebyen_skole",
+        "name": "Gamlebyen skole",
+        "category": "vitenskap",
+        "distanceMeters": 97.9
+      },
+      {
+        "id": "clemenskirken_ruin_oslo",
+        "name": "Clemenskirkeruinen",
+        "category": "historie",
+        "distanceMeters": 207.3
+      },
+      {
+        "id": "saxegarden",
+        "name": "Saxegården",
+        "category": "historie",
+        "distanceMeters": 210.2
+      },
+      {
+        "id": "gamlebyen_sport_og_fritid",
+        "name": "Gamlebyen Sport og Fritid",
+        "category": "subkultur",
+        "distanceMeters": 230.3
+      },
+      {
+        "id": "lekeplass_botsparken",
+        "name": "Botsparken lekeplass",
+        "category": "sport",
+        "distanceMeters": 242.7
+      },
+      {
+        "id": "gamlebyen_gravlund",
+        "name": "Gamlebyen gravlund",
+        "category": "historie",
+        "distanceMeters": 278.3
+      },
+      {
+        "id": "alna_utlop_bjorvika",
+        "name": "Alna utløp i Bjørvika",
+        "category": "natur",
+        "distanceMeters": 287.7
+      },
+      {
+        "id": "middelalder_oslo",
+        "name": "Middelalderparken",
+        "category": "historie",
+        "distanceMeters": 298.4
+      },
+      {
+        "id": "lokomotivverkstedet",
+        "name": "Lokomotivverkstedet",
+        "category": "historie",
+        "distanceMeters": 312
+      },
+      {
+        "id": "minneparken_gamlebyen",
+        "name": "Minneparken",
+        "category": "historie",
+        "distanceMeters": 337.5
+      },
+      {
+        "id": "oslo_ladegard",
+        "name": "Oslo ladegård",
+        "category": "historie",
+        "distanceMeters": 342.7
+      },
+      {
+        "id": "jernbaneverkstedet_lodalen",
+        "name": "Lodalen jernbaneverksted",
+        "category": "naeringsliv",
+        "distanceMeters": 349
+      }
+    ],
+    "conclusion": "No dedicated Gamlebyen kirke canonical identity exists. Text overlap with oslo_hospital reflects shared site history, not identical place scope."
+  },
+  "guardrails": [
+    "Do not replace or move oslo_hospital.",
+    "Do not model the church as a mere alias of the hospital complex.",
+    "Keep 1796 tied to the present church building/consecration, not to the older Franciscan and hospital history of the site.",
+    "Use religion as runtime primary category under the current primary-function rule."
+  ]
+}
