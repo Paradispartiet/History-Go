@@ -28,7 +28,9 @@ The migration adds:
 - server lifecycle states `expired`, `reported` and `blocked` in addition to the existing states;
 - unique active-invite protection for sender/recipient/context;
 - unique creator/idempotency-key protection;
-- sync and expiry indexes.
+- sync and expiry indexes;
+- deterministic backfills for legacy invite context presentation fields so old rows remain representable by the typed API;
+- retry-safe trigger installation for lifecycle versioning and transition safety.
 
 Direct authenticated browser insert/update/delete privileges are revoked for `hg_spotmeeting_invites`. Participant reads remain temporarily available during frontend migration, but FastAPI is the authoritative mutation boundary.
 
@@ -118,9 +120,17 @@ Rules:
 - `accepted -> completed`: either participant;
 - repeated completion is idempotent;
 - expired invites reject ordinary lifecycle transitions;
-- accept and complete re-run the shared interaction safety gate;
 - invalid transitions return `invalid_invite_transition`;
 - stale version/concurrent updates return `conflict`.
+
+### Atomic safety revalidation for accept and complete
+
+Accept and complete use two safety layers:
+
+1. the service re-runs the shared interaction safety gate before requesting the state transition, which normally returns the stable participant-safe `interaction_blocked` error when contact has become unavailable;
+2. the database transition trigger locks both participant profile rows in deterministic profile-ID order and re-reads publication, consent, deletion, active block and active moderation-restriction state immediately before committing `accepted` or `completed`.
+
+If safety state changes concurrently after the service pre-check, the database cancels the unsafe row update. The repository compare-and-swap then fails closed as a `conflict`; an unsafe accept/complete transition is never committed.
 
 Each authoritative update increments both:
 
