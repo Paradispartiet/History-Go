@@ -8,6 +8,7 @@ from fastapi import FastAPI, Request, Response
 
 from app.api.routes.health import router as health_router
 from app.api.routes.social_meet import router as social_meet_router
+from app.api.routes.social_meet_discovery import router as social_meet_discovery_router
 from app.api.routes.social_meet_moderation import router as social_meet_moderation_router
 from app.api.routes.social_meet_safety import router as social_meet_safety_router
 from app.api.routes.social_meet_spotmeeting import router as social_meet_spotmeeting_router
@@ -57,6 +58,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(social_meet_safety_router, prefix=runtime_settings.api_prefix)
     app.include_router(social_meet_moderation_router, prefix=runtime_settings.api_prefix)
     app.include_router(social_meet_spotmeeting_router, prefix=runtime_settings.api_prefix)
+    app.include_router(social_meet_discovery_router, prefix=runtime_settings.api_prefix)
     return app
 
 

@@ -34,6 +34,14 @@ class Settings(BaseSettings):
     supabase_jwt_audience: str = "authenticated"
     readiness_require_auth: bool = False
 
+    # Deployment-level kill switches. Production invite mutations and candidate
+    # discovery fail closed until explicitly enabled. Discovery additionally requires
+    # the private PostgreSQL rollout flag introduced by migration 007.
+    spotmeeting_invite_writes_enabled: bool = False
+    spotmeeting_discovery_enabled: bool = False
+    spotmeeting_discovery_max_candidates: int = Field(default=20, ge=1, le=50)
+    spotmeeting_discovery_stale_after_seconds: int = Field(default=300, ge=30, le=3600)
+
     request_timeout_seconds: float = Field(default=10.0, gt=0.0, le=60.0)
 
     @property
@@ -63,9 +71,11 @@ class Settings(BaseSettings):
         issuer = self.supabase_issuer
         return f"{issuer}/.well-known/jwks.json" if issuer else None
 
+    def spotmeeting_invite_writes_allowed(self) -> bool:
+        return not self.is_production or self.spotmeeting_invite_writes_enabled
+
 
 @lru_cache
 def get_settings() -> Settings:
     """Load and cache process configuration once per interpreter."""
-
     return Settings()
