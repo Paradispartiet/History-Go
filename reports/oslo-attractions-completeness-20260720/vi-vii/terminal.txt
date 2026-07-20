@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Nedre Slottsgate 8 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Nedre Slottsgate 8 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Nedre%20Slottsgate%208%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:15006:8",
+  "coordinate": {
+    "lat": 59.91215712574447,
+    "lon": 10.742755978420295,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:15006:8",
+    "address": {
+      "street": "Nedre Slottsgate",
+      "number": "8",
+      "postcode": "0157",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Nedre Slottsgate 8, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Nedre Slottsgate",
+    "adressetekst": "Nedre Slottsgate 8",
+    "adressetilleggsnavn": null,
+    "adressekode": 15006,
+    "nummer": 8,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 207,
+    "bruksnummer": 296,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0157",
+    "adressetekstutenadressetilleggsnavn": "Nedre Slottsgate 8",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91215712574447,
+      "lon": 10.742755978420295
+    },
+    "oppdateringsdato": "2020-06-15T18:03:03"
+  }
+}
