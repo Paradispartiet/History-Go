@@ -11,6 +11,7 @@ const paths = [
   'scripts/.vaterland-historisk-elvelop-payload-03',
 ];
 const target = '/tmp/vaterland-historisk-elvelop-production.mjs';
-fs.writeFileSync(target, zlib.gunzipSync(Buffer.from(paths.map(file => fs.readFileSync(file, 'utf8')).join(''), 'base64')));
+const source = zlib.gunzipSync(Buffer.from(paths.map(file => fs.readFileSync(file, 'utf8')).join(''), 'base64')).toString('utf8');
+fs.writeFileSync(target, source.replaceAll('LEKSIKON_ENTRY', 'LEXIKON_ENTRY'));
 await import(`file://${target}`);
 console.log('Vaterland historical river course coordinate-runner job completed.');
