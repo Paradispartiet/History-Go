@@ -16,6 +16,9 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.tools*.json'
+      - 'js/knowledgeV2.js'
+      - 'js/knowledgePage.js'
+      - 'tests/knowledge-v2-model.test.js'
       - '.github/workflows/data-checks.yml'
   workflow_dispatch:
 
@@ -104,3 +107,24 @@ jobs:
           name: religion-place-candidate-audit
           path: /tmp/religion-place-candidate-audit.log
           if-no-files-found: ignore
+
+  knowledge:
+    name: Knowledge V2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Syntax check Knowledge runtimes
+        run: |
+          node --check js/knowledgeV2.js
+          node --check js/knowledgePage.js
+          node --check scripts/audit-knowledge-contract.mjs
+
+      - name: Run Knowledge V2 model tests
+        run: npm run test:knowledge-v2
