@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Protocol, cast
 from uuid import UUID
 
@@ -53,9 +53,9 @@ class PostgresSocialMeetAbuseRepository:
             "recipient_profile_id": recipient_profile_id,
             "context_type": context_type,
             "context_id": context_id,
-            "minute_start": now.replace(second=0, microsecond=0),
-            "hour_start": now.replace(minute=0, second=0, microsecond=0),
-            "day_start": now.replace(hour=0, minute=0, second=0, microsecond=0),
+            "minute_start": now - timedelta(minutes=1),
+            "hour_start": now - timedelta(hours=1),
+            "day_start": now - timedelta(days=1),
             "decline_start": now - DECLINE_COOLDOWN,
             "report_start": now - REPORT_COOLDOWN,
             "cancellation_start": now - CANCELLATION_LOOKBACK,
