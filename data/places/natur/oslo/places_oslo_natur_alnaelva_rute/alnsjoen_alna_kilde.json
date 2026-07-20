@@ -5,20 +5,47 @@
   "lon": 10.84704,
   "r": 140,
   "category": "natur",
-  "desc": "Kildesone ved Alnsjøen og startpunkt for Alnaelvas grøntdrag.",
-  "popupDesc": "Ved Alnsjøen ligger et kildeområde som markerer starten på Alna-systemet. Her blir sammenhengen mellom skoglandskap i marka og byens senere elveløp konkret og lett å forstå. Vannet som samles i denne sonen inngår i et større forløp gjennom parker, bebyggelse og infrastruktur lenger ned i dalen. Stedet er interessant som startpunkt for å lese Alnaelva som et sammenhengende byøkologisk system.",
+  "desc": "Kildesone og regulert drikkevann ved Alnsjøen, der Alna-vassdragets vei mot byen begynner.",
+  "popupDesc": "Alnsjøen ligger i Lillomarka og har utløp til Alna. Her kan hele vassdraget leses fra skogsvann og nedbørfelt til byelv og fjord. Vannet inngår i Oslos drikkevannssystem og ligger i et restriksjonsområde. Oppgaver og trening skal derfor bare foregå på lovlig, offentlig ferdselslinje utenfor gjerder og sperringer. Det er ikke lov å bade, fiske, bruke båt, slå leir eller raste nærmere enn 50 meter fra vann, bekker og elver innenfor restriksjonsområdet.\n\nNatur-rundingen viser mahonia, den eneste aktive artskoblingen som repoets fem naturkart knytter til place-id-en. Artskortet er et dokumentert observasjonsspor, ikke en garanti for funn. Registrer bare planten dersom den faktisk kan observeres fra lovlig ferdselsareal, uten å gå nærmere vannet eller krysse sperringer.",
   "nature_profile": {
-    "type": "kildesone / skogsvann / øvre vassdrag",
-    "title": "Der Alna-systemet begynner",
-    "summary": "Alnsjøen og kildesonen rundt vannet viser den øvre delen av Alna-vassdraget før elva fortsetter inn i den utbygde Groruddalen. Skog, vannflate, fuktige kanter og små tilløp danner et sammenhengende naturmiljø der nedbør og avrenning samles. Natur-rundingen forklarer hvordan denne rolige skogssonen er starten på det samme vannsystemet som senere går gjennom parker, industriområder og tett by før det når fjorden.",
+    "type": "kildesone / skogsvann / regulert drikkevann / geologisk felt",
+    "title": "Der Alna begynner som vannsystem",
+    "summary": "Alnsjøen ligger i Lillomarka og har utløp til Alna. Innsjøen er derfor et konkret startpunkt for å forstå vannveien som fortsetter omtrent 15 kilometer gjennom Groruddalen og byen før den når fjorden. Kildesonen består ikke bare av selve vannflaten. Åser, søkk, bekker, skogbunn og vegeterte kanter samler nedbør og leder vann videre. Det som skjer i denne øvre delen av nedbørfeltet kan påvirke strøm, partikler og vannkvalitet nedstrøms.\n\nAlnsjøen har vært drikkevannskilde siden 1930 og omfattes av kommunens restriksjonsregler. Det er ikke lov å bade, fiske, pilke, krepse, bruke båt eller på annen måte forurense vannet. Innenfor restriksjonsområdet er det heller ikke lov å raste nærmere enn 50 meter fra vann, bekker og elver eller slå leir i åssidene ned mot dem. Natur-rundingen må derfor brukes fra lovlig offentlig ferdselslinje, uten kontakt med vannet og uten å krysse gjerder eller sperringer.\n\nLandskapet rommer også lang geologisk tid. Alnsjøfeltet er del av Nittedalkalderaen, dannet ved vulkansk aktivitet og senere kollaps i permtiden for omkring 250 millioner år siden. Listebasalt og kollapsbreksje gjør området geologisk verneverdig, og kobberdrift på 1700-tallet og i perioden 1880–1898 viser hvordan berggrunnen også har vært lest som ressurs.\n\nDe fem aktive naturkartene i repoet knytter bare én art til place-id-en: mahonia (Mahonia aquifolium). Arten ligger i repoets fremmedartfil og kjennes blant annet på gule blomsterklaser, stive piggete blader og mørkeblå bær. Ett kartlagt artskort betyr ikke at området har lavt mangfold, og det betyr heller ikke at mahonia kan finnes ved hvert besøk. Kortet er en konkret observasjonsinngang som bare skal bekreftes ved et faktisk, lovlig og trygt funn.",
     "themes": [
-      "kildesonen til Alna-vassdraget",
-      "skogsvann og tilløp",
-      "fuktige strand- og kantsoner",
-      "overgangen fra marka til byen",
-      "vannets vei gjennom Groruddalen",
-      "sammenhengende blågrønn korridor"
+      "Alnsjøen som utløpspunkt til Alna",
+      "nedbørfelt og vannets vei gjennom Groruddalen",
+      "skogbunn, tilløp og vegeterte kanter",
+      "drikkevannskilde siden 1930",
+      "restriksjoner som del av naturforvaltningen",
+      "Nittedalkalderaen og permtidens vulkanisme",
+      "listebasalt og kollapsbreksje",
+      "kobberdrift på 1700-tallet og 1880–1898",
+      "mahonia som eneste aktive artskobling",
+      "fremmed art som observasjonsemne",
+      "kartlagt mulighet mot faktisk feltfunn",
+      "sammenheng mellom marka, byelva og fjorden"
     ],
+    "species_inventory": {
+      "source_maps": [
+        "data/natur/nature_place_map.json",
+        "data/natur/nature_bird_place_map.json",
+        "data/natur/nature_oslo_expansion_place_map.json",
+        "data/natur/nature_routes_place_map.json",
+        "data/natur/nature_etne_place_map.json"
+      ],
+      "flora": [
+        {
+          "id": "emne_flora_mahonia",
+          "name": "mahonia",
+          "latin": "Mahonia aquifolium",
+          "status": "fremmed_art",
+          "map": "nature_routes_place_map.json"
+        }
+      ],
+      "fauna": [],
+      "total_species": 1,
+      "rule": "all_active_mapped_species_for_place"
+    },
     "nearby_place_ids": [
       "groruddammen",
       "alnaparken",
@@ -39,11 +66,338 @@
   "coordPrecisionM": 60,
   "coordVerifiedAt": "2026-05-03",
   "underbadge_ids": [
-    "innsjo",
+    "skog",
     "vann_og_vassdrag",
-    "skog"
+    "innsjo",
+    "vannkvalitet",
+    "kantvegetasjon",
+    "planter_og_blomster",
+    "fremmede_arter",
+    "okosystem",
+    "habitat",
+    "blagronn_struktur",
+    "naturvern",
+    "artsregistrering",
+    "friluftsforvaltning",
+    "stille_omrade",
+    "tursti",
+    "geologi",
+    "berggrunn"
   ],
   "visual": {
     "designCode": "waterfront_miniature"
+  },
+  "emne_ids": [
+    "em_natur_arter_habitat_mangfold"
+  ],
+  "quiz_profile": {
+    "place_type": "kildesone, skogsvann og regulert drikkevann",
+    "subtype": "alna_kilde_lillomarka",
+    "signature_features": [
+      "Alnsjøen har utløp til Alna",
+      "Alna er 15 kilometer fra Alnsjøen til fjorden",
+      "drikkevannskilde siden 1930",
+      "restriksjonsområde med tydelige ferdselsregler",
+      "del av det geologisk verneverdige Alnsjøfeltet",
+      "én aktiv artskobling: mahonia"
+    ],
+    "primary_angles": [
+      "kildesone_og_nedborfelt",
+      "vann_og_vassdrag",
+      "drikkevannsforvaltning",
+      "geologi_og_bergverk",
+      "artsobservasjon",
+      "vern_og_bruk"
+    ],
+    "question_families": [
+      "stedsspesifikk_naturfunksjon",
+      "vassdragssammenheng",
+      "artsidentifikasjon",
+      "geologisk_tid",
+      "historisk_endring",
+      "sikker_ferdsel",
+      "kildekritikk"
+    ],
+    "avoid_angles": [
+      "bading_eller_fiske",
+      "vannprover",
+      "ferdsel_innenfor_sperringer",
+      "artsfunn_som_garanti",
+      "generisk_markatur",
+      "udokumenterte_vannkvalitetstall"
+    ],
+    "must_include": [
+      "at Alnsjøen har utløp til Alna",
+      "at drikkevannsreglene styrer all aktivitet",
+      "at mahonia er eneste aktive artskobling og ikke et garantert funn"
+    ],
+    "contrast_targets": [
+      "groruddammen",
+      "alnaparken",
+      "alna_utlop_bjorvika"
+    ],
+    "notes": "Start i det synlige vann- og skoglandskapet, men la sikker ferdsel og drikkevannsvern være styrende. Skill kartlagt artskobling fra faktisk observasjon."
+  },
+  "externalLinks": [
+    {
+      "type": "reference",
+      "label": "Store norske leksikon: Alungsjøen",
+      "url": "https://snl.no/Alungsj%C3%B8en",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Store norske leksikon: Alnsjøfeltet",
+      "url": "https://snl.no/Alnsj%C3%B8feltet",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Store norske leksikon: Alna",
+      "url": "https://snl.no/Alna_-_elv_i_Oslo",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo byleksikon: Alnaelva",
+      "url": "https://oslobyleksikon.no/side/Alnaelva",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "official",
+      "label": "Oslo kommune: Regler ved drikkevannskilder",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/marka/ferdsel-ved-maridalsvannet-og-andre-drikkevannskilder/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "official",
+      "label": "Oslo kommune: Lakes and rivers",
+      "url": "https://www.oslo.kommune.no/english/welcome-to-oslo/life-in-oslo/enjoy-the-outdoors/lakes-and-rivers/",
+      "lang": "en",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "repository",
+      "label": "History Go: aktive naturrutekoblinger",
+      "url": "data/natur/nature_routes_place_map.json",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    },
+    {
+      "type": "repository",
+      "label": "History Go: Mahonia-artskort",
+      "url": "data/natur/flora/fremmedarter.json",
+      "lang": "nb",
+      "verifiedAt": "2026-07-20"
+    }
+  ],
+  "tasks_profile": {
+    "title": "Les kildesonen uten å gå inn i restriksjonsområdet",
+    "summary": "Fire oppgaver gjør vannsystem, terreng, geologi og det ene artskortet lesbart fra lovlig ferdselsareal.",
+    "tasks": [
+      {
+        "id": "alnsjoen_oppgave_vannvei",
+        "title": "Finn retningen mot Alna",
+        "instruction": "Bruk kart, skilt og terrengform fra offentlig ferdselslinje til å peke ut hvor vannet fortsetter fra innsjøen mot Alna. Ikke gå mot bredden eller gjennom sperringer.",
+        "why": "Utløpsretningen kobler skogsvannet til hele Alna-korridoren."
+      },
+      {
+        "id": "alnsjoen_oppgave_nedborfelt",
+        "title": "Les terrenget som samler vann",
+        "instruction": "Se på åsene, søkkene og vegetasjonen rundt ferdselslinjen. Noter hvor nedbør sannsynligvis vil renne, uten å gå utenfor lovlig sti.",
+        "why": "Kildesonen begynner i terrenget som samler og leder vann mot innsjøen."
+      },
+      {
+        "id": "alnsjoen_oppgave_geologi",
+        "title": "Se etter geologiske spor",
+        "instruction": "Studer synlige bergflater eller løse steiner fra stien. Beskriv farge, korn og bruddform uten å hakke, samle eller flytte materiale.",
+        "why": "Alnsjøfeltet dokumenterer gammel vulkansk aktivitet og kollaps i Nittedalkalderaen."
+      },
+      {
+        "id": "alnsjoen_oppgave_mahonia",
+        "title": "Bruk mahonia-kortet kildekritisk",
+        "instruction": "Åpne artskortet og se etter gule blomsterklaser, stive piggete blader eller mørkeblå bær på lovlig ferdselsareal. Registrer bare et faktisk funn; ikke gå nærmere vannet eller inn bak gjerder.",
+        "why": "Oppgaven viser forskjellen mellom en aktiv kartkobling og en observasjon her og nå."
+      }
+    ]
+  },
+  "training_profile": {
+    "title": "Skånsom kildevandring utenfor restriksjonsområdet",
+    "summary": "En kort gåøkt som bruker lovlig offentlig ferdselslinje og aldri vannkant, gjerder eller sperrede soner.",
+    "safety": "Følg skilt, gjerder og kommunens drikkevannsregler. Bruk bare offentlig ferdselslinje utenfor restriksjonene. Ikke bad, fisk, bruk båt, ta vannprøver, kryss sperringer, gå ned mot bredden, slå leir eller raste nærmere enn 50 meter fra vann, bekker og elver der restriksjonen gjelder. Hold hund i bånd og ikke mat fugler. Avbryt ved is, vindfall, dårlig sikt eller uklare grenser.",
+    "exercises": [
+      {
+        "id": "alnsjoen_trening_kilderunde",
+        "title": "Rolig kildevandring",
+        "instruction": "Gå rolig i 12 minutter på lovlig offentlig sti og legg merke til terreng som leder vann mot innsjøen.",
+        "duration_minutes": 12,
+        "intensity": "rolig",
+        "why": "Økten kobler bevegelse til nedbørfelt uten å bruke vannkanten."
+      },
+      {
+        "id": "alnsjoen_trening_stigning",
+        "title": "Fire kontrollerte motbakkedrag",
+        "instruction": "Velg en bred, lovlig stistrekning utenfor restriksjonsområdet. Gå raskt opp i 60 sekunder og rolig tilbake i 90 sekunder, fire ganger.",
+        "duration_minutes": 10,
+        "intensity": "moderat",
+        "why": "Terrengdragene gjør vannskillet fysisk merkbart uten å belaste sårbar kantsone."
+      },
+      {
+        "id": "alnsjoen_trening_bevegelighet",
+        "title": "Bevegelighet på fast underlag",
+        "instruction": "Avslutt med rolige ankel-, hofte- og skulderbevegelser på et tørt, romslig punkt langt fra vann og sperringer.",
+        "duration_minutes": 5,
+        "intensity": "lett",
+        "why": "Avslutningen holder trening og drikkevannsvern tydelig adskilt."
+      }
+    ]
+  },
+  "civication_store": [
+    {
+      "id": "alnsjoen_nedborfelt_relief",
+      "title": "Relieff av Alnas øvre nedbørfelt",
+      "type": "relieffmodell",
+      "kind": "physical_object",
+      "desc": "En fysisk modell av åser, søkk, tilløp, Alnsjøen og vannveien videre mot Alna.",
+      "placeSpecificReason": "Modellen viser hvordan terrenget rundt Alnsjøen samler vann til samme vassdrag.",
+      "historicalFunction": "Gjør kildesonen lesbar før elva møter byens parker, industri og tunneler.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 46,
+      "currency": "PC",
+      "collection": "alnsjoen_alna_kilde",
+      "collectable": true
+    },
+    {
+      "id": "alnsjoen_drikkevannsskilt",
+      "title": "Drikkevannsgrensens feltmerke",
+      "type": "regelmarkor",
+      "kind": "physical_object",
+      "desc": "Et fysisk feltmerke med de viktigste ferdselsreglene for Alnsjøens restriksjonsområde.",
+      "placeSpecificReason": "Reglene er en avgjørende del av hvordan stedet kan brukes og observeres.",
+      "historicalFunction": "Knytter reguleringen fra 1930 til dagens vern mot lokal forurensning.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 28,
+      "currency": "PC",
+      "collection": "alnsjoen_alna_kilde",
+      "collectable": true
+    },
+    {
+      "id": "alnsjoen_kaldera_snitt",
+      "title": "Snitt gjennom Nittedalkalderaen",
+      "type": "geologimodell",
+      "kind": "physical_object",
+      "desc": "En fysisk snittmodell med listebasalt, kollapsbreksje og Alnsjøfeltets plass i kalderaen.",
+      "placeSpecificReason": "Alnsjøfeltets geologi er en av stedets best dokumenterte særverdier.",
+      "historicalFunction": "Kobler permtidens vulkanisme til senere gruvedrift og dagens geologiske vern.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 52,
+      "currency": "PC",
+      "collection": "alnsjoen_alna_kilde",
+      "collectable": true
+    },
+    {
+      "id": "alnsjoen_mahonia_feltkort",
+      "title": "Mahonia-feltkort",
+      "type": "artskort",
+      "kind": "physical_object",
+      "desc": "Et sammenleggbart feltkort med gule blomsterklaser, piggete blader, mørkeblå bær og kildekritisk registreringsregel.",
+      "placeSpecificReason": "Mahonia er den eneste aktive artskoblingen for place-id-en.",
+      "historicalFunction": "Viser hvordan én kartkobling kan brukes som observasjonsspor uten å bli presentert som sikkert funn.",
+      "physicalObject": true,
+      "placeSpecific": true,
+      "storePrice": 24,
+      "currency": "PC",
+      "collection": "alnsjoen_alna_kilde",
+      "collectable": true
+    }
+  ],
+  "brands": [
+    {
+      "id": "alnsjoen_actor",
+      "name": "Alnsjøen / Alungsjøen",
+      "brand_kind": "drinking_water_lake",
+      "brand_type": "primary_natural_system"
+    },
+    {
+      "id": "alna_actor_alnsjoen",
+      "name": "Alnaelva",
+      "brand_kind": "urban_river",
+      "brand_type": "downstream_water_system"
+    },
+    {
+      "id": "lillomarka_actor_alnsjoen",
+      "name": "Lillomarka",
+      "brand_kind": "forest_area",
+      "brand_type": "landscape_context"
+    },
+    {
+      "id": "oslo_kommune_alnsjoen",
+      "name": "Oslo kommune",
+      "brand_kind": "municipality",
+      "brand_type": "landowner_and_rule_authority"
+    },
+    {
+      "id": "vann_avlop_alnsjoen",
+      "name": "Vann- og avløpsetaten",
+      "brand_kind": "municipal_agency",
+      "brand_type": "drinking_water_manager"
+    },
+    {
+      "id": "bymiljoetaten_alnsjoen",
+      "name": "Bymiljøetaten",
+      "brand_kind": "municipal_agency",
+      "brand_type": "marka_and_public_path_actor"
+    },
+    {
+      "id": "artsdatabanken_alnsjoen",
+      "name": "Artsdatabanken",
+      "brand_kind": "national_knowledge_infrastructure",
+      "brand_type": "species_data_context"
+    },
+    {
+      "id": "snl_alnsjoen",
+      "name": "Store norske leksikon",
+      "brand_kind": "knowledge_institution",
+      "brand_type": "geology_and_place_source"
+    },
+    {
+      "id": "oslo_byleksikon_alnsjoen",
+      "name": "Oslo byleksikon",
+      "brand_kind": "knowledge_institution",
+      "brand_type": "river_and_water_history_source"
+    }
+  ],
+  "for_na": {
+    "title": "Fra geologisk og bergverksmessig landskap til regulert drikkevannskilde",
+    "before": "Alnsjøfeltet ble formet av vulkansk aktivitet og kollaps i permtiden. Berggrunnen ble senere undersøkt og utnyttet gjennom Gothalfske Kobberverk i første halvdel av 1700-tallet og ny gruvedrift i perioden 1880–1898. Innsjøen var samtidig den øvre delen av et naturlig vassdrag som førte vann mot Groruddalen.",
+    "now": "Siden 1930 har Alnsjøen vært del av Oslos drikkevannsforsyning. Vannet og tilgrensende restriksjonsområde forvaltes med forbud mot blant annet bading, fiske, båtbruk, nær rasting og leir. Offentlig ferdsel og naturundervisning må skje på lovlige traseer uten kontakt med vannet.",
+    "change": "Stedet er fortsatt skogsvann, geologisk felt og kilde til Alna, men bruken er flyttet fra ressursuttak og fri lokal ferdsel til strengere drikkevannsvern. Naturverdien leses nå sammen med hydrologi, geologi, infrastruktur og forvaltningsregler.",
+    "look_for": [
+      "terreng som leder nedbør mot innsjøen",
+      "retningen fra innsjøens utløp mot Alna",
+      "gjerder, skilt og andre markører for restriksjonsområdet",
+      "forskjellen mellom lovlig offentlig sti og sperret sone",
+      "synlige bergflater som kan leses uten prøvetaking",
+      "skog, fuktige søkk og vegeterte kanter",
+      "mahonia-kortets kjennetegn på lovlig ferdselsareal",
+      "fraværet av bade-, fiske- og leirbruk som forvaltningsspor",
+      "sammenhengen mellom stille skogsvann og den lange byelva nedstrøms"
+    ],
+    "sources": [
+      "https://snl.no/Alungsj%C3%B8en",
+      "https://snl.no/Alnsj%C3%B8feltet",
+      "https://snl.no/Alna_-_elv_i_Oslo",
+      "https://oslobyleksikon.no/side/Alnaelva",
+      "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/marka/ferdsel-ved-maridalsvannet-og-andre-drikkevannskilder/",
+      "https://www.oslo.kommune.no/english/welcome-to-oslo/life-in-oslo/enjoy-the-outdoors/lakes-and-rivers/"
+    ]
   }
 }
