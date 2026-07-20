@@ -1,0 +1,79 @@
+{
+  "placeId": "vestre_gravlund",
+  "placeFile": "data/places/historie/oslo/places_historie/vestre_gravlund.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9319399,
+    "lon": 10.6970644,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Oslo kommune – Vestre gravlund + OpenStreetMap way 4740772",
+    "coordType": "cemetery_area_anchor",
+    "coordNote": "Representativt områdeanker inne i Vestre gravlund, hentet fra den navngitte OpenStreetMap-geometrien way 4740772 og kryssjekket mot Oslo kommunes dokumentasjon av gravlunden. Besøksadressen Sørkedalsveien 66 brukes ikke som snarvei for det 243 dekar store gravplassområdet. Punktet brukes som display- og unlock-anker for hele gravlunden, ikke som koordinat for et bestemt kapell eller gravfelt."
+  },
+  "identity": {
+    "currentName": "Vestre gravlund",
+    "resolvedIdentity": "Vestre gravlund as the full municipal cemetery area represented by OSM way 4740772",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "The chapels, urn fields and war-grave fields are meaningful subplaces inside one coherent cemetery area, not separate overlapping canonical main places."
+  },
+  "requiredEvidence": [
+    "stable municipal identity for Vestre gravlund",
+    "verified OSM geometry for the named cemetery area",
+    "representative point inside the cemetery polygon",
+    "explicit rejection of the postal address as a shortcut for the whole area"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Vestre gravlund + OSM way 4740772",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/vestre-gravlund/",
+      "sourceObjectId": "oslo-kommune:gravplass:vestre",
+      "sourceQuality": "official_area_identity_plus_verified_osm_geometry",
+      "finding": "Oslo kommune identifies Vestre gravlund as the 243-decare municipal cemetery. OSM way 4740772 is the named landuse=cemetery geometry for the same physical area, and its representative point is verified inside the polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Representativt områdeanker inne i Vestre gravlund, hentet fra den navngitte OpenStreetMap-geometrien way 4740772 og kryssjekket mot Oslo kommunes dokumentasjon av gravlunden. Besøksadressen Sørkedalsveien 66 brukes ikke som snarvei for det 243 dekar store gravplassområdet. Punktet brukes som display- og unlock-anker for hele gravlunden, ikke som koordinat for et bestemt kapell eller gravfelt."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:gravplass:vestre",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4740772",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4740772",
+      "geometryType": "Polygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9319399,
+      "lon": 10.6970644,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Use the verified representative point inside OSM way 4740772 as the cemetery area anchor; do not substitute Sørkedalsveien 66 as a building-style address marker."
+  },
+  "notes": [
+    "Representativt områdeanker inne i Vestre gravlund, hentet fra den navngitte OpenStreetMap-geometrien way 4740772 og kryssjekket mot Oslo kommunes dokumentasjon av gravlunden. Besøksadressen Sørkedalsveien 66 brukes ikke som snarvei for det 243 dekar store gravplassområdet. Punktet brukes som display- og unlock-anker for hele gravlunden, ikke som koordinat for et bestemt kapell eller gravfelt."
+  ]
+}
