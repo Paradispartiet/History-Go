@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T21:31:15.257Z
+Generert: 2026-07-20T21:34:12.031Z
 
 ## Oppsummering
-- Aktive filer validert: **554**
+- Aktive filer validert: **555**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **429**
@@ -572,6 +572,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/ekebergparken_museum.json
 - data/places/kunst/oslo/places_kunst/kosk_oslo.json
 - data/places/kunst/oslo/places_kunst/galleri_mini_oslo.json
+- data/places/kunst/oslo/places_kunst/van_etten.json
 
 ## Harde feil
 - Ingen
