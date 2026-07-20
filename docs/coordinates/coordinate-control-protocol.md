@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 239 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 92 erstatter Wikidata som primær koordinatkilde for `gol_stavkirke_bygdoy` med den eksakte navngitte kirkebygningen i OSM, kryssjekket mot Norsk Folkemuseums offisielle identitetsside. Museumsveien 10 beholdes som Norsk Folkemuseums besøksadresse, men brukes ikke som proxy for stavkirken. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
+Oslo-tabellen inneholder nå 243 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 93–96 legger til Paulus kirke, Purenkel galleri, Torshovparken og HODET N.N. med verifiserte adresse- eller objektankre. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -267,6 +267,10 @@ Oslo-tabellen inneholder nå 239 dokumenterte verifiserte eller kildekontrollert
 Batch 91 (2026-07-21) retter to legacy `verified_source_coordinate`-poster på Bygdøynes. `frammuseet` bruker nå det entydige Geonorge-punktet for Bygdøynesveien 39, og `kon_tiki_museet` bruker det entydige Geonorge-punktet for Bygdøynesveien 36. Begge adressene er samtidig bekreftet av museenes egne nettsider. De to offisielle adresseobjektene er fysisk separate (51.7 meter mellom representasjonspunktene), og Wikidata er fjernet som primær koordinatkilde. `gol_stavkirke_bygdoy` inngår ikke i batchen fordi Museumsveien 10 er museumsområdets besøksadresse og ikke uten videre et presist bygningsanker for stavkirken.
 
 Batch 92 (2026-07-21) retter `gol_stavkirke_bygdoy` fra legacy `verified_source_coordinate` med Wikidata som primærkilde til eksakt bygningsgeometri. OSM-way 161661199 må i selve API-responsen være en lukket polygon, være tagget `building=church` og ha et eksplisitt navn som identifiserer Gol stavkirke før koordinaten godkjennes. Geometrisk sentrum brukes som displayanker og kryssjekkes mot Norsk Folkemuseums offisielle Gol-stavkirke-side. Punktet ligger 196.8 meter fra museets separate Geonorge-adresseanker; Museumsveien 10 er derfor fjernet fra subplace-recorden og brukes ikke som kirkekoordinat.
+| 93 | `paulus_kirke` | Paulus kirke | verified | `geonorge-adresser-v1:0301:17489:31` |
+| 94 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
+| 95 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
+| 96 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
