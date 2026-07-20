@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T03:47:55.007Z
+Generert: 2026-07-20T03:56:42.725Z
 
 ## Oppsummering
-- Aktive filer validert: **507**
+- Aktive filer validert: **510**
 - Antall steder validert: **1218**
 - Harde feil: **0**
 - Varsler: **428**
@@ -525,6 +525,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/norsk_folkemuseum.json
 - data/places/historie/oslo/places_historie/norsk_maritimt_museum.json
 - data/places/historie/oslo/places_historie/historisk_museum.json
+- data/places/historie/oslo/places_historie/frogner_hovedgard.json
+- data/places/historie/oslo/places_historie/arbeidermuseet.json
+- data/places/historie/oslo/places_historie/nobels_fredssenter.json
 
 ## Harde feil
 - Ingen
