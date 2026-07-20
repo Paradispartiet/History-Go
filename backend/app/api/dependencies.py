@@ -16,6 +16,8 @@ from app.core.config import Settings
 from app.core.database import Database
 from app.domains.social_meet.abuse_repository import PostgresSocialMeetAbuseRepository
 from app.domains.social_meet.abuse_service import SocialMeetInviteAbuseService
+from app.domains.social_meet.discovery_repository import PostgresSocialMeetDiscoveryRepository
+from app.domains.social_meet.discovery_service import SocialMeetCandidateDiscoveryService
 from app.domains.social_meet.moderation_repository import PostgresSocialMeetModerationRepository
 from app.domains.social_meet.moderation_service import SocialMeetModerationService
 from app.domains.social_meet.repository import PostgresSocialMeetIdentityRepository
@@ -47,6 +49,19 @@ def _require_database(database: Database) -> None:
             detail={
                 "code": "backend_not_enabled",
                 "message": "Database is not configured",
+            },
+        )
+
+
+def require_spotmeeting_invite_writes(
+    settings: Settings = Depends(get_settings),
+) -> None:
+    if not settings.spotmeeting_invite_writes_allowed():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail={
+                "code": "backend_not_enabled",
+                "message": "Spotmeeting invite writes are disabled",
             },
         )
 
@@ -97,6 +112,18 @@ def get_spotmeeting_invite_service(
         PostgresSpotmeetingInviteRepository(database),
         abuse_service,
         safety_service,
+    )
+
+
+def get_social_meet_candidate_discovery_service(
+    settings: Settings = Depends(get_settings),
+    database: Database = Depends(get_database),
+) -> SocialMeetCandidateDiscoveryService:
+    _require_database(database)
+    return SocialMeetCandidateDiscoveryService(
+        settings,
+        PostgresSocialMeetIdentityRepository(database),
+        PostgresSocialMeetDiscoveryRepository(database),
     )
 
 
