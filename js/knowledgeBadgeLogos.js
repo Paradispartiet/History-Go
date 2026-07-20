@@ -2,6 +2,7 @@
 (function () {
   "use strict";
 
+  /** @type {Map<string, any>} */
   let badgesById = new Map();
   let observer = null;
 
@@ -31,8 +32,9 @@
     return img;
   }
 
+  /** @param {Document|Element} root */
   function enhanceSubjectRows(root) {
-    root.querySelectorAll?.(".kv2-subject-row").forEach((row) => {
+    root.querySelectorAll(".kv2-subject-row").forEach((row) => {
       const subjectId = subjectIdFromHref(row.getAttribute("href"));
       if (!subjectId) return;
 
@@ -49,8 +51,9 @@
     });
   }
 
+  /** @param {Document|Element} root */
   function enhanceSubjectNav(root) {
-    root.querySelectorAll?.(".kv2-subject-pill[href*='subject=']").forEach((pill) => {
+    root.querySelectorAll(".kv2-subject-pill[href*='subject=']").forEach((pill) => {
       if (pill.querySelector(".kv2-subject-badge-img")) return;
       const subjectId = subjectIdFromHref(pill.getAttribute("href"));
       if (!subjectId) return;
@@ -62,8 +65,9 @@
     });
   }
 
+  /** @param {Document|Element} root */
   function enhanceSubjectHero(root) {
-    const hero = root.querySelector?.(".kv2-subject-hero");
+    const hero = root.querySelector(".kv2-subject-hero");
     if (!hero) return;
 
     const subjectId = s(new URLSearchParams(location.search).get("subject"));
@@ -80,6 +84,7 @@
     eyebrow.append(img, document.createTextNode("Fag"));
   }
 
+  /** @param {Document|Element} [root] */
   function enhance(root = document) {
     if (!badgesById.size) return;
     enhanceSubjectRows(root);
@@ -92,7 +97,8 @@
       const badges = typeof window.DataHub?.loadBadges === "function"
         ? await window.DataHub.loadBadges()
         : [];
-      badgesById = new Map((Array.isArray(badges) ? badges : []).map((badge) => [s(badge?.id), badge]));
+      const badgeRows = /** @type {any[]} */ (Array.isArray(badges) ? badges : []);
+      badgesById = new Map(badgeRows.map((badge) => [s(badge?.id), badge]));
     } catch (error) {
       console.warn("[KnowledgeBadgeLogos] could not load badges", error);
       return;
@@ -103,7 +109,7 @@
     observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
-          if (node.nodeType === Node.ELEMENT_NODE) enhance(node);
+          if (node instanceof Element) enhance(node);
         }
       }
       enhance(document);
