@@ -58,4 +58,6 @@ The completed correction set passed:
 - place health capture
 - diff whitespace check
 
+The full gate set passed in Coordinate branch runner run `29708713608`. The later commits only finalized documentation and removed the temporary runner script and completion marker; they did not alter coordinate data.
+
 Runner logs are persisted under `reports/coordinate-branch-runner/agent_audit-oslo-coordinates-from-batch-6/`.
