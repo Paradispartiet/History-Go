@@ -448,3 +448,7 @@ Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`
 | 1 | `langebudalen_naturreservat` | Langebudalen naturreservat | verified_geometry | `miljodirektoratet-naturvern:VV00001065` |
 
 Etne batch 1 (2026-07-20) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Representasjonspunktet ligger inne i polygonet og er ikke et tilgangs- eller parkeringspunkt.
+
+| 2 | `saevareidberget_landskapsvernomrade` | Sævareidberget landskapsvernområde | verified_geometry | `miljodirektoratet-naturvern:VV00001587` |
+
+Etne batch 2 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Punktet er et representativt arealanker og ikke en anbefalt inngang i det bratte styvingsfeltet.

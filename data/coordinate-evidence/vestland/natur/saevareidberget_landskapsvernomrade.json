@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "saevareidberget_landskapsvernomrade",
+  "placeFile": "data/places/natur/vestland/saevareidberget_landskapsvernomrade.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.7661598,
+    "lon": 6.1309265,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Miljødirektoratet Naturvernområder – offisiell polygon for Sævareidberget landskapsvernområde",
+    "coordType": "area_center",
+    "coordNote": "Representativt områdeanker beregnet inne i den offisielle vernepolygonen. Ikke et tilgangs-, parkerings- eller stipunkt."
+  },
+  "identity": {
+    "currentName": "Sævareidberget landskapsvernområde",
+    "resolvedIdentity": "Sævareidberget landskapsvernområde",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell navngitt vernepolygon",
+    "stabilt verneområde-ID",
+    "representativt punkt inne i polygonet",
+    "kildebelagt verneformål og treslag"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Miljødirektoratet Naturvernområder",
+      "sourceUrl": "https://faktaark.naturbase.no/?id=VV00001587",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001587",
+      "sourceQuality": "official_protected_area_polygon",
+      "finding": "Miljødirektoratets åpne karttjeneste returnerer ett navngitt polygon for Sævareidberget landskapsvernområde. Kringom og Lovdata dokumenterer styvingslandskapet, verneformålet og treslagene ask, alm og lind.",
+      "canVerifyCoordinate": true,
+      "reason": "Landskapsvernområdet er et arealobjekt, og offisiell polygon med stabil identitet tilfredsstiller geometri- og kildekravet for verified_geometry."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001587",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "geometryType": "polygon",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001587",
+      "sourceUrl": "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/FeatureServer/0/query?where=navn+LIKE+%27%25S%C3%A6vareidberget%25%27&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.7661598,
+      "lon": 6.1309265,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisiell vernepolygon og representativt områdeanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Punktet er ikke en inngang eller parkeringsplass.",
+    "Kildeegenskaper: {\"naturvernId\":\"VV00001587\",\"cddaId\":\"156025\",\"navn\":\"Sævareidberget\",\"offisieltNavn\":\"Sævareidberget landskapsvernområde\",\"faktaark\":\"https://faktaark.naturbase.no/?id=VV00001587\",\"verneform\":\"Landskapsvernomraade\",\"verneforskrift\":\"https://lovdata.no/forskrift/1984-11-23-1913\",\"vernedato\":470016000000,\"foerstegangVernet\":null,\"verneplan\":\"VerneplanLoevskog\",\"kommune\":\"Etne (4611)\",\"forvaltningsmyndighet\":\"Statsforvalteren i Vestland\",\"forvaltningsmyndighetType\":\"Statsforvalter\",\"iucn\":\"IUCN_V\",\"revisjon\":\"IkkeRevidert\",\"truetVurdering\":\"IkkeTruet\",\"majorEcosystemType\":\"Terrestrisk\",\"GlobalID\":\"{5B9C9860-5C04-4010-9BAE-0F1A450347C5}\",\"verneformAggregert\":\"landskapsvernområde\",\"OBJECTID\":27095,\"NaturvernFKID\":\"{FD06A9D7-FC4F-445D-A94F-EA40162000D8}\"}"
+  ]
+}

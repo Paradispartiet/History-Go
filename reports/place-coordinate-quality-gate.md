@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T22:30:07.726Z
+Generert: 2026-07-20T22:33:41.321Z
 
 ## Oppsummering
-- Aktive filer validert: **559**
-- Antall steder validert: **1214**
+- Aktive filer validert: **560**
+- Antall steder validert: **1215**
 - Harde feil: **0**
 - Varsler: **429**
 - Coordinate review candidates: **707** signaler fordelt på **566** steder
@@ -577,6 +577,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/gamlebyen_kirke.json
 - data/places/kunst/oslo/places_kunst/oslo_prosjektrom.json
 - data/places/natur/vestland/langebudalen_naturreservat.json
+- data/places/natur/vestland/saevareidberget_landskapsvernomrade.json
 
 ## Harde feil
 - Ingen
