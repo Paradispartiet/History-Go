@@ -1,6 +1,6 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T07:31:29.091Z
+Generert: 2026-07-20T07:39:54.819Z
 
 ## Oppsummering
 - Aktive filer validert: **524**
@@ -784,7 +784,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv.json#akershus_energi: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#schous_bryggeri: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#ringnes_bryggeri: coordStatus=verified uten coordPrecisionM
-- data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#vippetangen_fisketorg: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#frysja_industriomrade: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#frysja_industriomrade: coordStatus=verified uten coordNote for område/gate/rute
@@ -984,9 +984,9 @@ Totalt 706 signaler fordelt på 564 steder. Et sted kan ha flere signaler. Kandi
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 112 |
+| coordStatus=verified uten coordPrecisionM | 113 |
 | lineært sted uten anchors | 80 |
-| lav koordinatpresisjon (<4 desimaler) | 97 |
+| lav koordinatpresisjon (<4 desimaler) | 96 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 88 |
 | park/stort område uten anchors eller coordNote | 132 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -994,7 +994,7 @@ Totalt 706 signaler fordelt på 564 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (112)
+### coordStatus=verified uten coordPrecisionM (113)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1042,6 +1042,7 @@ Totalt 706 signaler fordelt på 564 steder. Et sted kan ha flere signaler. Kandi
 | grunnlovsbygget_bankplassen | Den gamle Norges Bank | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.908727042084166 | 10.74038191009086 | 25 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | schous_bryggeri | Schous bryggeri | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.91871322894722 | 10.761703929151963 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | ringnes_bryggeri | Ringnes bryggeri | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.930179384813485 | 10.759251969442406 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oslo_kraftselskap | Oslo Lysverkers hovedkontor | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.915245305085435 | 10.719611579321567 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vippetangen_fisketorg | Fiskehallen på Vippetangen | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.90297426597389 | 10.740325792625368 | 100 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | christiania_seildugsfabrik | Christiania Seildugsfabrik | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9253444010033 | 10.75475549771365 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1196,7 +1197,7 @@ Totalt 706 signaler fordelt på 564 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (97)
+### lav koordinatpresisjon (<4 desimaler) (96)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1228,7 +1229,6 @@ Totalt 706 signaler fordelt på 564 steder. Et sted kan ha flere signaler. Kandi
 | jelling_kongsgard | Jelling kongsgård og monumentområde | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 55.756 | 9.419 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | orkney_birsay | Brough of Birsay / Orknøyene | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.136 | -3.322 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akershus_energi | Akershus Energi Varme | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.947 | 10.8355 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| oslo_kraftselskap | Oslo Lysverker | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.919 | 10.7479 | 140 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | norges_varemesse | Norges Varemesse | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.953 | 10.7525 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelva | Alnaelva | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9325 | 10.833 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |

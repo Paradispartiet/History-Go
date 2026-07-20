@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 201 verifiserte eller kildekontrollerte canonical steder. Batch 55 legger til Holmlia bad som et eget kommunalt svømme- og idrettsanlegg på det verifiserte Holmlia Senter vei 34-punktet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 32.
+Oslo-tabellen inneholder nå 202 verifiserte eller kildekontrollerte canonical steder. Siste kontroll avgrenset `oslo_kraftselskap` til Oslo Lysverkers hovedkontor i Sommerrogata 1 og verifiserte bygget med Geonorge-adressepunkt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -283,10 +283,11 @@ Duplikatmigrering (2026-07-20): `akerhus_slott` er fjernet som separat fysisk pl
 Duplikatmigrering (2026-07-20): `good_game_redaksjon` er fjernet som separat fysisk place fordi Good Game er et redaksjonelt innholdsmiljø inne i canonical `nrk_huset_marienlyst`, ikke et eget dokumentert sted. Story-, people- og Wonderkammer-referanser er beholdt som Good Game-innhold, men eksakte fysiske place-ID-er peker nå på NRK-huset. Den separate Civication-mappingen er fjernet fordi canonical NRK allerede har egen mapping, og legacy-ID-en er lagt til alias-gaten.
 
 Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fysisk place fordi recorden overlapper canonical og koordinatverifiserte `nydalen`. Industristedets dokumenterte works, før–nå, brands, Civication-objekter, kilder, underbadges og Akerselva-naturprofil er slått inn i canonical Nydalen. Quiz-, people-, story-, leksikon-, natur- og rutereferanser er retargetet til canonical place-ID, mens det verifiserte Nydalen-området beholder sitt eksisterende geometrianker.
+| 56 | `oslo_kraftselskap` | Oslo Lysverkers hovedkontor | verified | `geonorge-adresser-v1:0301:16854:1` |
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 201 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 202 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -315,7 +316,6 @@ Disse kontrollene er fullført, men teller ikke blant de 201 verifiserte eller k
 | `ulven_handelspark` – Ulven handelspark | needs_review | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
 | `akershus_energi` – Akershus Energi Varme | needs_review | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
 | `sagene_kvernhus` – Sagene mølle og kvernhus | needs_review | Recorden kombinerer flere mølle-, sagbruks- og industriidentiteter langs Akerselva uten ett entydig fysisk anlegg; Hjula er allerede representert av `ovre_foss`. | Avgrens til ett dokumentert fysisk anlegg eller modeller industrimiljøet som område/relasjon med flere ankere. |
-| `oslo_kraftselskap` – Oslo Lysverker | needs_review | Recorden beskriver en institusjon og et distribusjonssystem med flere historiske anlegg; Sommerrogata 1 er et senere hovedkontor, ikke en entydig representasjon av hele 1892-recorden. | Definer ett konkret bygg/anlegg som place eller flytt institusjonshistorien ut av place-modellen. |
 | `grensen_kjopesenter` – Grensen – handelens sentrum | needs_review | ID/type antyder kjøpesenter/knutepunkt, mens navn, tekst og kilder beskriver den lineære gaten Grensen. Ett punkt uten traségeometri/ankre kan ikke verifisere hele gata. | Normaliser til gate og legg inn kildebelagte endepunkter/traségeometri før koordinaten godkjennes. |
 | `frysja_industriomrade` – Frysja industriområde | needs_review | Området er reelt, men dagens legacy `verified`-punkt bygger på `manual_map_check` og mangler kildebelagt områdegeometri eller flere area-ankre. | Hent offisiell plan-/områdegeometri eller dokumenterte area-ankre før verified-status kan forsvares. |
 | `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
