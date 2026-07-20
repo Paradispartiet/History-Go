@@ -14,9 +14,13 @@ on:
       - 'scripts/**'
       - 'tools/**'
       - 'types/**'
+      - 'schemas/**'
+      - 'build/**'
+      - 'dist/web/**'
       - 'tsconfig*.json'
       - 'package.json'
       - 'package-lock.json'
+      - '.github/workflows/typescript-guard.yml'
   push:
     branches:
       - main
@@ -32,19 +36,27 @@ on:
       - 'scripts/**'
       - 'tools/**'
       - 'types/**'
+      - 'schemas/**'
+      - 'build/**'
+      - 'dist/web/**'
       - 'tsconfig*.json'
       - 'package.json'
       - 'package-lock.json'
+      - '.github/workflows/typescript-guard.yml'
   workflow_dispatch:
 
 jobs:
   typecheck-build:
     name: TypeScript typecheck and build guard
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -52,11 +64,45 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      # Root tsconfig still checks the legacy JavaScript surface with allowJs/checkJs.
+      # Capture the PR base first so existing legacy debt is not treated as a new regression.
+      - name: Capture legacy TypeScript baseline from PR base
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
 
-      - name: Typecheck root baseline
-        run: npm run typecheck
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          TARGET_SHA="${{ github.sha }}"
+
+          git checkout --detach "$BASE_SHA"
+          npm ci --no-audit --no-fund
+
+          set +e
+          npm run typecheck > "$RUNNER_TEMP/typecheck-base.log" 2>&1
+          BASE_STATUS=$?
+          set -e
+
+          {
+            grep -E 'error TS[0-9]+:' "$RUNNER_TEMP/typecheck-base.log" || true
+          } | sed -E 's/\([0-9]+,[0-9]+\): error /: error /' \
+            | sort -u \
+            > "$RUNNER_TEMP/typecheck-base.normalized"
+
+          echo "Legacy base typecheck exit code: $BASE_STATUS"
+          echo "Legacy base diagnostics: $(wc -l < "$RUNNER_TEMP/typecheck-base.normalized")"
+
+          git checkout --detach "$TARGET_SHA"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # Modern TypeScript and generated browser artifacts are precise merge gates.
+      - name: Typecheck browser TypeScript
+        run: npm run typecheck:web
+
+      - name: Verify browser build is in sync
+        run: npm run build:web:check
 
       - name: Typecheck scripts
         run: npm run typecheck:scripts
@@ -69,3 +115,48 @@ jobs:
 
       - name: Build tools
         run: npm run build:tools
+
+      # For pull requests, root checkJs is a regression gate rather than a zero-debt gate.
+      # Line/column positions are normalized so unrelated line shifts do not create false positives.
+      - name: Guard against new legacy TypeScript regressions
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          set +e
+          npm run typecheck > "$RUNNER_TEMP/typecheck-target.log" 2>&1
+          TARGET_STATUS=$?
+          set -e
+
+          {
+            grep -E 'error TS[0-9]+:' "$RUNNER_TEMP/typecheck-target.log" || true
+          } | sed -E 's/\([0-9]+,[0-9]+\): error /: error /' \
+            | sort -u \
+            > "$RUNNER_TEMP/typecheck-target.normalized"
+
+          comm -13 \
+            "$RUNNER_TEMP/typecheck-base.normalized" \
+            "$RUNNER_TEMP/typecheck-target.normalized" \
+            > "$RUNNER_TEMP/typecheck-new.normalized"
+
+          if [[ -s "$RUNNER_TEMP/typecheck-new.normalized" ]]; then
+            echo 'New legacy TypeScript diagnostics introduced by this PR:'
+            cat "$RUNNER_TEMP/typecheck-new.normalized"
+            echo
+            echo 'Full target typecheck output:'
+            cat "$RUNNER_TEMP/typecheck-target.log"
+            exit 1
+          fi
+
+          if [[ "$TARGET_STATUS" -ne 0 ]]; then
+            echo 'Root legacy typecheck still contains baseline diagnostics, but this PR introduces no new normalized diagnostics.'
+          else
+            echo 'Root legacy typecheck is fully green.'
+          fi
+
+      # On main/manual runs this is observational. Modern TypeScript/build gates above remain mandatory.
+      - name: Observe root legacy TypeScript baseline
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        run: npm run typecheck
