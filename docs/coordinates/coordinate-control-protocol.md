@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 216 verifiserte eller kildekontrollerte canonical steder. Batch 69 legger til Central Jam-e-Mosque med det entydige Geonorge-adressepunktet for Åkebergveien 28B og dokumentert identitet som formålsbygd World Islamic Mission-moské. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 217 verifiserte eller kildekontrollerte canonical steder. Batch 70 legger til Tøyen hovedgård med det entydige Geonorge-adressepunktet for Trondheimsveien 23B og eksplisitt avgrensning mot Botanisk hage, Naturhistorisk museum og Klimahuset. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -238,6 +238,7 @@ Oslo-tabellen inneholder nå 216 verifiserte eller kildekontrollerte canonical s
 | 67 | `fotografiens_hus` | Fotografiens Hus | verified | `geonorge-adresser-v1:0301:16115:20` |
 | 68 | `christian_radich` | Christian Radich | verified | `geonorge-adresser-v1:0301:10077:9` |
 | 69 | `central_jam_e_mosque` | Central Jam-e-Mosque | verified | `geonorge-adresser-v1:0301:18780:28B` |
+| 70 | `toyen_hovedgard` | Tøyen hovedgård | verified | `geonorge-adresser-v1:0301:17749:23B` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -413,3 +414,5 @@ Batch 67 (2026-07-20) produserer `fotografiens_hus` som eget offentlig fotogalle
 Batch 68 (2026-07-20) produserer `christian_radich` som historisk fartøy med dokumentert Oslo-hjemmebase. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Skur 32, Akershusstranda 9. Oslo Havn dokumenterer Akershusutstikkeren som Christian Radichs hjemmehavn og fast plass siden 1994, mens VisitOSLO opplyser at skipet ligger der når det ikke er på oppdrag. Markøren bruker standard `official_address` / `address_point`-kontrakt, men place- og koordinatnotene presiserer at dette er et stabilt hjemmebaseanker og ikke live-sporing eller garanti for fysisk tilstedeværelse. `akershus_kaier` forblir det bredere lineære kaianlegget og er ikke en duplikatidentitet.
 
 Batch 69 (2026-07-20) produserer `central_jam_e_mosque` som eget historisk religions- og institusjonssted. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Åkebergveien 28B. World Islamic Mission dokumenterer samme adresse og den formålsbygde moskeens historie; canonical overlap-audit fant ingen identitetsduplikat, og nærmeste canonical sted er en annen bygning mer enn 100 meter unna.
+
+Batch 70 (2026-07-20) produserer `toyen_hovedgard` som eget historisk hovedgårdsanlegg. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Trondheimsveien 23B. Hovedgården ligger fysisk inne i Botanisk hage, men er et eldre selvstendig bygg- og gårdsanlegg; `botanisk_hage`, `naturhistorisk_museum` og `klimahuset` beholdes som separate parent-/nabosteder med andre fysiske og institusjonelle skalaer.
