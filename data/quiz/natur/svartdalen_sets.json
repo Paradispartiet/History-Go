@@ -1,18 +1,21 @@
 {
   "targetId": "svartdalen",
   "categoryId": "natur",
-  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generator_version": "history_go_nature_place_v2",
   "generated_from": [
+    "data/places/natur/oslo/places_oslo_natur_alnaelva_rute/svartdalen.json",
     "data/stories/stories_svartdalen.json",
+    "data/leksikon/places/oslo/natur/leksikon_svartdalen.json",
     "data/quiz/regler/SET_MAL_README_v3.md"
   ],
   "manual_production_notes": {
     "quality_direction": "sted → observasjon → emne → forståelse",
+    "species_rule": "all active mapped species; mapped does not guarantee current find",
     "hold_back": [
-      "Ingen detaljerte artsfunn uten kilde.",
-      "Ingen dagsaktuelle bru- eller vedlikeholdsstatus uten kilde.",
-      "Ingen presise geologiske tidsangivelser uten kilde.",
-      "Story-data brukes for ravinedal, stryk/fall, løvskog, turvei og tilgjengelig bynatur."
+      "ingen udokumenterte artsfunn",
+      "ingen ferdsel i skrent eller elvekant",
+      "ingen flytting av død ved",
+      "ingen kontakt med kjempebjørnekjeks"
     ]
   },
   "sets": [
@@ -21,11 +24,296 @@
       "level": 1,
       "order": 1,
       "xp": 50,
-      "mode": "place_intro_story",
+      "mode": "place_intro",
       "questions": [
-        {"id":"svartdalen_s1_q1","quiz_id":"natur_svartdalen_set_1_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva gjør Svartdalen til et spesielt Alna-sted?","options":["Den viser Alnaelva som stryk, fall, ravineterreng og løvskog tett ved byen","Den ligger uten kontakt med vann","Den er bare et flatt handlesenter"],"answer":"Den viser Alnaelva som stryk, fall, ravineterreng og løvskog tett ved byen","answerIndex":0,"knowledge":"Svartdalen gjør Alnaelva fysisk tydelig i terrenget, med bratte sider, vannlyd og bynær villmarkspreg.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["svartdalen","alnaelva","ravine"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s1_q2","quiz_id":"natur_svartdalen_set_1_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva bør spilleren se etter først i Svartdalen?","options":["Bratte sider, løvskog, fuktige kanter, stryk, fall og hvordan stien følger terrenget","Bare butikklogoer","Kun åpne asfaltflater"],"answer":"Bratte sider, løvskog, fuktige kanter, stryk, fall og hvordan stien følger terrenget","answerIndex":0,"knowledge":"Storyen ber spilleren se hvordan elva skjærer seg ned og hvordan grøntkorridoren følger dalformen.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","elvegjel"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s1_q3","quiz_id":"natur_svartdalen_set_1_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan former elva terrenget, og hvordan gjør turveien dalen tilgjengelig?","Hvorfor finnes det ingen elv her?","Hvilken kafé er nærmest akkurat nå?"],"answer":"Hvordan former elva terrenget, og hvordan gjør turveien dalen tilgjengelig?","answerIndex":0,"knowledge":"Spørsmålet kobler direkte observasjon til ravinedal, vassdrag og tilgjengelig bynatur.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "svartdalen_s1_q1",
+          "quiz_id": "natur_svartdalen_set_1_q1",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvilken elv renner gjennom Svartdalen?",
+          "options": [
+            "Alna",
+            "Akerselva",
+            "Lysakerelva"
+          ],
+          "answer": "Alna",
+          "answerIndex": 0,
+          "knowledge": "Svartdalen er en del av Alna-korridoren.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "intro"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s1_q2",
+          "quiz_id": "natur_svartdalen_set_1_q2",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva slags landskapsform er Svartdalen?",
+          "options": [
+            "En trang ravinedal",
+            "En flat strandeng",
+            "Et åpent høyfjell"
+          ],
+          "answer": "En trang ravinedal",
+          "answerIndex": 0,
+          "knowledge": "Bratte sider og elv i dalbunnen danner ravinepreget.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "intro"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s1_q3",
+          "quiz_id": "natur_svartdalen_set_1_q3",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvordan beveger vannet seg her?",
+          "options": [
+            "I stryk og fall",
+            "Som stillestående saltvann",
+            "Bare i underjordiske rør"
+          ],
+          "answer": "I stryk og fall",
+          "answerIndex": 0,
+          "knowledge": "Alna er synlig som energisk vannløp i dalen.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "intro"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s1_q4",
+          "quiz_id": "natur_svartdalen_set_1_q4",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva kjennetegner skogen?",
+          "options": [
+            "Rik gammel løvskog",
+            "Kun ung granplantasje",
+            "Ingen trær"
+          ],
+          "answer": "Rik gammel løvskog",
+          "answerIndex": 0,
+          "knowledge": "Løvskogen er en hoveddel av naturpreget.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "intro"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s1_q5",
+          "quiz_id": "natur_svartdalen_set_1_q5",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva bør observeres først?",
+          "options": [
+            "Dalbunn, skrenter, elv, skog og gangbane",
+            "Bare byggehøyder",
+            "Kun parkerte biler"
+          ],
+          "answer": "Dalbunn, skrenter, elv, skog og gangbane",
+          "answerIndex": 0,
+          "knowledge": "Disse elementene viser hvordan naturrommet er bygget opp.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "intro"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s1_q6",
+          "quiz_id": "natur_svartdalen_set_1_q6",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er riktig ferdselsregel?",
+          "options": [
+            "Hold deg på turvei og gangbane",
+            "Klatre i skrenten",
+            "Gå ut i stryket"
+          ],
+          "answer": "Hold deg på turvei og gangbane",
+          "answerIndex": 0,
+          "knowledge": "Tilretteleggingen gjør observasjon mulig uten terrengslitasje.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "intro"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://oslobyleksikon.no/side/Svartdalen"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s1_q7",
+          "quiz_id": "natur_svartdalen_set_1_q7",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvor mange aktive artskoblinger har stedet?",
+          "options": [
+            "Én",
+            "Sju",
+            "Ingen"
+          ],
+          "answer": "Én",
+          "answerIndex": 0,
+          "knowledge": "Den aktive unionen består av kjempebjørnekjeks.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "intro"
+          ],
+          "source": [
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -33,11 +321,297 @@
       "level": 2,
       "order": 2,
       "xp": 60,
-      "mode": "place_life_people_events",
+      "mode": "ravine_forest",
       "questions": [
-        {"id":"svartdalen_s2_q1","quiz_id":"natur_svartdalen_set_2_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva slags stedsliv peker Svartdalen mot?","options":["Turvei, hverdagsnatur, vannlyd, bratt terreng og grønn korridor mellom bydeler","Kun lukket industriområde","Bare biltrafikk"],"answer":"Turvei, hverdagsnatur, vannlyd, bratt terreng og grønn korridor mellom bydeler","answerIndex":0,"knowledge":"Svartdalen blir brukbar gjennom turvei og bru, men beholder preg av trang dal og bynær villmark.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["turvei","bynatur"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s2_q2","quiz_id":"natur_svartdalen_set_2_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva gjør turvei og hengebru viktige i storyen?","options":["De gjør et tidligere vanskelig elverom tilgjengelig uten å viske ut dalens preg","De fjerner all natur","De viser at elva ikke betyr noe"],"answer":"De gjør et tidligere vanskelig elverom tilgjengelig uten å viske ut dalens preg","answerIndex":0,"knowledge":"Storyen legger vekt på at tilrettelegging kan gjøre et dramatisk elverom brukbart, samtidig som egenarten beholdes.","difficulty":1,"question_type":"stedfunksjon","question_layer":"place_life","tags":["tilgjengelighet","hengebru"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s2_q3","quiz_id":"natur_svartdalen_set_2_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva bør holdes ute av trygg Svartdalen-quiz?","options":["Usikre artsfunn, dagsaktuell brustatus og presise geologiske tidsangivelser uten kilde","Begrepet ravinedal","Observasjon av stryk og løvskog"],"answer":"Usikre artsfunn, dagsaktuell brustatus og presise geologiske tidsangivelser uten kilde","answerIndex":0,"knowledge":"Trygg quizdata bruker varige trekk fra storyen: ravine, stryk/fall, løvskog, turvei og grønn korridor.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+        {
+          "id": "svartdalen_s2_q1",
+          "quiz_id": "natur_svartdalen_set_2_q1",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvor er det normalt fuktigst i ravinen?",
+          "options": [
+            "Nær dalbunnen og elva",
+            "På tørre hustak",
+            "Alltid ved øvre bykant"
+          ],
+          "answer": "Nær dalbunnen og elva",
+          "answerIndex": 0,
+          "knowledge": "Terreng og skygge holder mer fukt i bunnen.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "habitat"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s2_q2",
+          "quiz_id": "natur_svartdalen_set_2_q2",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvorfor er dalen ofte skyggefull?",
+          "options": [
+            "Bratte sider, bergvegger og trekroner skjermer lyset",
+            "Elva produserer mørke",
+            "Alle trær er svarte"
+          ],
+          "answer": "Bratte sider, bergvegger og trekroner skjermer lyset",
+          "answerIndex": 0,
+          "knowledge": "Ravineformen skaper et lukket lysmiljø.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "habitat"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s2_q3",
+          "quiz_id": "natur_svartdalen_set_2_q3",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva betyr en lys- og fuktgradient?",
+          "options": [
+            "Miljøet endrer seg fra dalbunn til kant",
+            "Alle steder er identiske",
+            "Bare årstallet endrer seg"
+          ],
+          "answer": "Miljøet endrer seg fra dalbunn til kant",
+          "answerIndex": 0,
+          "knowledge": "Korte avstander kan gi ulike mikrohabitater.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "habitat"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s2_q4",
+          "quiz_id": "natur_svartdalen_set_2_q4",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvorfor er gammel løvskog viktig?",
+          "options": [
+            "Den gir variert struktur, hulrom og nedbrytning",
+            "Den fjerner alle arter",
+            "Den stopper elva"
+          ],
+          "answer": "Den gir variert struktur, hulrom og nedbrytning",
+          "answerIndex": 0,
+          "knowledge": "Alder og variasjon skaper flere habitattyper.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "habitat"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s2_q5",
+          "quiz_id": "natur_svartdalen_set_2_q5",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva gir død ved?",
+          "options": [
+            "Mikrohabitater og langsom næringsfrigjøring",
+            "Bare søppel",
+            "Et sikkert tegn på dårlig forvaltning"
+          ],
+          "answer": "Mikrohabitater og langsom næringsfrigjøring",
+          "answerIndex": 0,
+          "knowledge": "Nedbrytende ved er en naturlig del av gammel skog.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "habitat"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s2_q6",
+          "quiz_id": "natur_svartdalen_set_2_q6",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva skal spilleren gjøre med liggende stokker?",
+          "options": [
+            "La dem ligge og observere fra stien",
+            "Flytte dem for bedre bilde",
+            "Ta med barkprøve"
+          ],
+          "answer": "La dem ligge og observere fra stien",
+          "answerIndex": 0,
+          "knowledge": "Død ved skal ikke forstyrres.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "habitat"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s2_q7",
+          "quiz_id": "natur_svartdalen_set_2_q7",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er en kildekritisk skogregel?",
+          "options": [
+            "Dokumentert skogtype er ikke det samme som aktivt artskort",
+            "Alle nevnte treslag er garantert synlige",
+            "Kartkoblinger kan ignoreres"
+          ],
+          "answer": "Dokumentert skogtype er ikke det samme som aktivt artskort",
+          "answerIndex": 0,
+          "knowledge": "Habitatkontekst og artsregistrering er ulike datanivåer.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "habitat"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -45,11 +619,300 @@
       "level": 3,
       "order": 3,
       "xp": 70,
-      "mode": "emne_based_foundation",
+      "mode": "river_history",
       "questions": [
-        {"id":"svartdalen_s3_q1","quiz_id":"natur_svartdalen_set_3_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva betyr ravinedal?","options":["En dalform der vann har skåret seg ned i terrenget","Et helt flatt torg","Et lukket kontorbygg"],"answer":"En dalform der vann har skåret seg ned i terrenget","answerIndex":0,"knowledge":"Svartdalen lar spilleren kjenne ravineformen gjennom bratte sider, trang dal og elv i stryk og fall.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["ravinedal"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
-        {"id":"svartdalen_s3_q2","quiz_id":"natur_svartdalen_set_3_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva betyr grønn korridor?","options":["Et sammenhengende grønt rom som binder natur, ferdsel og steder sammen","Et tilfeldig skilt","Et rom uten vegetasjon"],"answer":"Et sammenhengende grønt rom som binder natur, ferdsel og steder sammen","answerIndex":0,"knowledge":"Svartdalen binder Bryn, Kværner og videre elveløp sammen i Alna-fortellingen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["gronn_korridor"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
-        {"id":"svartdalen_s3_q3","quiz_id":"natur_svartdalen_set_3_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva betyr stedlesning?","options":["Å bruke observasjoner på stedet til å forstå større sammenhenger","Å svare uten å se seg rundt","Å pugge løsrevne navn"],"answer":"Å bruke observasjoner på stedet til å forstå større sammenhenger","answerIndex":0,"knowledge":"I Svartdalen betyr stedlesning å koble elv, ravine, løvskog, turvei og bynær villmark.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "svartdalen_s3_q1",
+          "quiz_id": "natur_svartdalen_set_3_q1",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva ble stryk og fall historisk brukt til?",
+          "options": [
+            "Mølle, sagbruk og industri",
+            "Flyplassdrift",
+            "Saltproduksjon"
+          ],
+          "answer": "Mølle, sagbruk og industri",
+          "answerIndex": 0,
+          "knowledge": "Vannkraften var en lokal energikilde.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "history",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "history"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s3_q2",
+          "quiz_id": "natur_svartdalen_set_3_q2",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvilken industri er særlig knyttet til nedre dal?",
+          "options": [
+            "Kværner-industrien",
+            "Hvalfangstflåten",
+            "Fjellgruvedrift"
+          ],
+          "answer": "Kværner-industrien",
+          "answerIndex": 0,
+          "knowledge": "Kværner bygde videre på Alnas vannkraftlandskap.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "history",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "history"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s3_q3",
+          "quiz_id": "natur_svartdalen_set_3_q3",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva skjedde med Kværnerfossene i 1948?",
+          "options": [
+            "De ble ført i rør",
+            "De ble flyttet til Marka",
+            "De ble saltvann"
+          ],
+          "answer": "De ble ført i rør",
+          "answerIndex": 0,
+          "knowledge": "Teknisk utbygging endret det synlige vannløpet.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "history",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "history"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s3_q4",
+          "quiz_id": "natur_svartdalen_set_3_q4",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva kan en mur eller kanal vise?",
+          "options": [
+            "At elverommet er teknisk omformet",
+            "En sikker datering uten kilde",
+            "At dalen er urørt"
+          ],
+          "answer": "At elverommet er teknisk omformet",
+          "answerIndex": 0,
+          "knowledge": "Synlige inngrep kan registreres, men funksjon må kildebelegges.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "history",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "history"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alna_%28elv%29",
+            "https://www.niva.no/nyheter/naturrestaurering-er-losningen-for-oslos-mest-forurensede-elv"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s3_q5",
+          "quiz_id": "natur_svartdalen_set_3_q5",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er feil å gjøre med et teknisk spor?",
+          "options": [
+            "Gi det sikker funksjon og alder uten kilde",
+            "Fotografere det fra stien",
+            "Beskrive plassering og materiale"
+          ],
+          "answer": "Gi det sikker funksjon og alder uten kilde",
+          "answerIndex": 0,
+          "knowledge": "Tolkning må skilles fra observasjon.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "history",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "history"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alna_%28elv%29",
+            "https://www.niva.no/nyheter/naturrestaurering-er-losningen-for-oslos-mest-forurensede-elv"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s3_q6",
+          "quiz_id": "natur_svartdalen_set_3_q6",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvordan former vannet fortsatt dalen?",
+          "options": [
+            "Gjennom strøm, erosjon og sedimenttransport",
+            "Gjennom biltrafikk",
+            "Gjennom kunstig lys alene"
+          ],
+          "answer": "Gjennom strøm, erosjon og sedimenttransport",
+          "answerIndex": 0,
+          "knowledge": "Elva er fortsatt en fysisk prosess.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "history",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "history"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alna_%28elv%29",
+            "https://www.niva.no/nyheter/naturrestaurering-er-losningen-for-oslos-mest-forurensede-elv"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s3_q7",
+          "quiz_id": "natur_svartdalen_set_3_q7",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er den beste samleforståelsen?",
+          "options": [
+            "Naturprosess og industrihistorie virker i samme elverom",
+            "Industrien fjernet all natur",
+            "Elva har aldri blitt endret"
+          ],
+          "answer": "Naturprosess og industrihistorie virker i samme elverom",
+          "answerIndex": 0,
+          "knowledge": "Svartdalen rommer både ravine og tekniske inngrep.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "history",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "history"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -57,11 +920,294 @@
       "level": 4,
       "order": 4,
       "xp": 80,
-      "mode": "place_concrete_advanced",
+      "mode": "plant_safety",
       "questions": [
-        {"id":"svartdalen_s4_q1","quiz_id":"natur_svartdalen_set_4_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva er en avansert observasjon i Svartdalen?","options":["Å se hvordan elva former dalen, mens sti og bru gjør terrenget tilgjengelig","Å bare telle trær","Å ignorere vannlyden"],"answer":"Å se hvordan elva former dalen, mens sti og bru gjør terrenget tilgjengelig","answerIndex":0,"knowledge":"Avansert stedlesning kobler naturprosess, terrengform og menneskelig tilrettelegging.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["terreng","tilgjengelighet"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s4_q2","quiz_id":"natur_svartdalen_set_4_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva kan Svartdalen lære om bynær villmark?","options":["At dramatisk terreng, løvskog og vannlyd kan finnes tett ved tett by","At villmark bare finnes langt fra byen","At bynær natur alltid er flat og enkel"],"answer":"At dramatisk terreng, løvskog og vannlyd kan finnes tett ved tett by","answerIndex":0,"knowledge":"Svartdalen er sterk fordi byen smalner, og elva kjennes fysisk i et trangt grønt rom.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["bynær_villmark","løvskog"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s4_q3","quiz_id":"natur_svartdalen_set_4_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva bør en god Svartdalen-quiz trene spilleren i?","options":["Å lese ravinedal, stryk/fall, løvskog, turvei og grønn korridor sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese ravinedal, stryk/fall, løvskog, turvei og grønn korridor sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå det dramatiske elverommet de står i.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "svartdalen_s4_q1",
+          "quiz_id": "natur_svartdalen_set_4_q1",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvilken art er aktivt koblet til Svartdalen?",
+          "options": [
+            "Kjempebjørnekjeks",
+            "Parkslirekne",
+            "Åkerkvein"
+          ],
+          "answer": "Kjempebjørnekjeks",
+          "answerIndex": 0,
+          "knowledge": "Kjempebjørnekjeks er den eneste aktive artskoblingen.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "flora",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "flora"
+          ],
+          "source": [
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s4_q2",
+          "quiz_id": "natur_svartdalen_set_4_q2",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er artens vitenskapelige navn?",
+          "options": [
+            "Heracleum mantegazzianum",
+            "Reynoutria japonica",
+            "Agrostis gigantea"
+          ],
+          "answer": "Heracleum mantegazzianum",
+          "answerIndex": 0,
+          "knowledge": "Artsnavnet er Heracleum mantegazzianum.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "flora",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "flora"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/flora/fremmedarter.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s4_q3",
+          "quiz_id": "natur_svartdalen_set_4_q3",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvordan vurderes arten?",
+          "options": [
+            "Svært høy økologisk risiko",
+            "Ingen kjent risiko",
+            "Hjemmehørende rødlisteart"
+          ],
+          "answer": "Svært høy økologisk risiko",
+          "answerIndex": 0,
+          "knowledge": "Artsdatabanken vurderer den til SE.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "flora",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "flora"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/flora/fremmedarter.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s4_q4",
+          "quiz_id": "natur_svartdalen_set_4_q4",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva kan plantesaften gjøre i sollys?",
+          "options": [
+            "Gi alvorlige hudskader",
+            "Gi bedre solbeskyttelse",
+            "Farge huden grønn"
+          ],
+          "answer": "Gi alvorlige hudskader",
+          "answerIndex": 0,
+          "knowledge": "Plantesaften er fototoksisk.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "flora",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "flora"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/flora/fremmedarter.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s4_q5",
+          "quiz_id": "natur_svartdalen_set_4_q5",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvilket kjennetegn passer?",
+          "options": [
+            "Svært høy skjermplante med store flikete blader",
+            "Liten brun spurv",
+            "Lav mosepute"
+          ],
+          "answer": "Svært høy skjermplante med store flikete blader",
+          "answerIndex": 0,
+          "knowledge": "Størrelse, skjermer og blader er sentrale trekk.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "flora",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "flora"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/flora/fremmedarter.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s4_q6",
+          "quiz_id": "natur_svartdalen_set_4_q6",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er riktig feltatferd?",
+          "options": [
+            "Hold avstand og fotografer uten berøring",
+            "Knekk stengelen",
+            "Grav opp roten"
+          ],
+          "answer": "Hold avstand og fotografer uten berøring",
+          "answerIndex": 0,
+          "knowledge": "Observasjon skal ikke gi eksponering eller spredning.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "flora",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "flora"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/flora/fremmedarter.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s4_q7",
+          "quiz_id": "natur_svartdalen_set_4_q7",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvorfor skal funnet merkes som usikkert ved tvil?",
+          "options": [
+            "Store skjermplanter kan forveksles",
+            "Planten har ingen kjennetegn",
+            "Alle skjermplanter er samme art"
+          ],
+          "answer": "Store skjermplanter kan forveksles",
+          "answerIndex": 0,
+          "knowledge": "Sikker artsbestemmelse krever flere trekk.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "flora",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "flora"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/flora/fremmedarter.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -69,11 +1215,297 @@
       "level": 5,
       "order": 5,
       "xp": 90,
-      "mode": "emne_based_advanced",
+      "mode": "trail_stewardship",
       "questions": [
-        {"id":"svartdalen_s5_q1","quiz_id":"natur_svartdalen_set_5_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva er den dypere læringen i Svartdalen?","options":["At byelva kan være en formende naturkraft, ikke bare en linje på kartet","At elver ikke former landskap","At turveier bare er transport"],"answer":"At byelva kan være en formende naturkraft, ikke bare en linje på kartet","answerIndex":0,"knowledge":"Svartdalen viser Alnaelva som fysisk kraft i terrenget gjennom stryk, fall og ravineform.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["byelv","landskapsform"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s5_q2","quiz_id":"natur_svartdalen_set_5_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva kan tilgjengeliggjøring skjule og vise samtidig?","options":["Den kan gjøre et vanskelig elverom brukbart, men også endre hvordan vi opplever villmarkspreget","Den fjerner automatisk all natur","Den gjør historien irrelevant"],"answer":"Den kan gjøre et vanskelig elverom brukbart, men også endre hvordan vi opplever villmarkspreget","answerIndex":0,"knowledge":"Turvei og bru er både adgang og inngrep, og derfor gode å diskutere i History Go.","difficulty":3,"question_type":"kritisk_analyse","question_layer":"advanced_emne","tags":["tilgjengelighet","bynatur"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
-        {"id":"svartdalen_s5_q3","quiz_id":"natur_svartdalen_set_5_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hvordan fungerer Svartdalen i en Alna-fortelling?","options":["Som dramatisk ravineparti som viser samme vassdrag mer fysisk enn Alnaparken","Som et sted uten vann","Som et isolert kjøpesenter"],"answer":"Som dramatisk ravineparti som viser samme vassdrag mer fysisk enn Alnaparken","answerIndex":0,"knowledge":"Svartdalen følger naturlig etter Alnaparken fordi den viser et mer dramatisk parti av Alnaelva.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["alnaparken","alnaelva"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"}
+        {
+          "id": "svartdalen_s5_q1",
+          "quiz_id": "natur_svartdalen_set_5_q1",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Når åpnet den sammenhengende turveien gjennom den trange dalen?",
+          "options": [
+            "2011",
+            "1948",
+            "1889"
+          ],
+          "answer": "2011",
+          "answerIndex": 0,
+          "knowledge": "Året markerer en viktig tilgjengeliggjøring.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "management"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://oslobyleksikon.no/side/Svartdalen"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s5_q2",
+          "quiz_id": "natur_svartdalen_set_5_q2",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er en fordel med gangbane?",
+          "options": [
+            "Den samler ferdselen og beskytter skogbunnen",
+            "Den fjerner behovet for naturvern",
+            "Den gjør skrenten trygg å klatre i"
+          ],
+          "answer": "Den samler ferdselen og beskytter skogbunnen",
+          "answerIndex": 0,
+          "knowledge": "Tilrettelegging kan redusere tilfeldig tråkk.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "management"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://oslobyleksikon.no/side/Svartdalen"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s5_q3",
+          "quiz_id": "natur_svartdalen_set_5_q3",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er samtidig sant om gangbanen?",
+          "options": [
+            "Den er også et inngrep i naturrommet",
+            "Den er en naturlig bergart",
+            "Den påvirker aldri opplevelsen"
+          ],
+          "answer": "Den er også et inngrep i naturrommet",
+          "answerIndex": 0,
+          "knowledge": "Tilgang og inngrep må vurderes sammen.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "management"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://oslobyleksikon.no/side/Svartdalen"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s5_q4",
+          "quiz_id": "natur_svartdalen_set_5_q4",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva bør gjøres på våte eller glatte partier?",
+          "options": [
+            "Reduser fart og bruk rekkverk der det finnes",
+            "Gå utenfor stien",
+            "Løp mot elvekanten"
+          ],
+          "answer": "Reduser fart og bruk rekkverk der det finnes",
+          "answerIndex": 0,
+          "knowledge": "Ravinemiljøet kan gi glatte flater.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "management"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://oslobyleksikon.no/side/Svartdalen"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s5_q5",
+          "quiz_id": "natur_svartdalen_set_5_q5",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva skal registreres ved død ved?",
+          "options": [
+            "Plassering, størrelse og nedbrytningsgrad uten flytting",
+            "Bare hvor mye som kan samles",
+            "Hvor lett barken løsner"
+          ],
+          "answer": "Plassering, størrelse og nedbrytningsgrad uten flytting",
+          "answerIndex": 0,
+          "knowledge": "Observasjon skal være ikke-inngripende.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "management"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s5_q6",
+          "quiz_id": "natur_svartdalen_set_5_q6",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva skal gjøres ved avsperring?",
+          "options": [
+            "Følge skilting og velge annen rute",
+            "Klatre rundt",
+            "Flytte sperringen"
+          ],
+          "answer": "Følge skilting og velge annen rute",
+          "answerIndex": 0,
+          "knowledge": "Dagsaktuelle sikkerhetstiltak skal respekteres.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "management"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://oslobyleksikon.no/side/Svartdalen"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s5_q7",
+          "quiz_id": "natur_svartdalen_set_5_q7",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er god samlet forvaltning?",
+          "options": [
+            "Tilgang på robuste flater og ro i skrent, skogbunn og elvekant",
+            "Fri ferdsel overalt",
+            "Permanent stenging av hele dalen"
+          ],
+          "answer": "Tilgang på robuste flater og ro i skrent, skogbunn og elvekant",
+          "answerIndex": 0,
+          "knowledge": "Ferdselsstyring balanserer bruk og vern.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "management"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -81,11 +1513,303 @@
       "level": 6,
       "order": 6,
       "xp": 100,
-      "mode": "concept_based",
+      "mode": "synthesis",
       "questions": [
-        {"id":"svartdalen_s6_q1","quiz_id":"natur_svartdalen_set_6_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"concept","question":"Hvilket begrep beskriver dalformen der vann har skåret seg ned i terrenget?","options":["Ravinedal","Sanering","Privat lager"],"answer":"Ravinedal","answerIndex":0,"knowledge":"Ravinedal er nøkkelbegrepet for Svartdalen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["ravinedal"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
-        {"id":"svartdalen_s6_q2","quiz_id":"natur_svartdalen_set_6_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"concept","question":"Hva betyr bynær villmark?","options":["Naturpreg som oppleves sterkt selv om stedet ligger tett på byen","Natur langt fra alle mennesker","Et sted uten vegetasjon"],"answer":"Naturpreg som oppleves sterkt selv om stedet ligger tett på byen","answerIndex":0,"knowledge":"Svartdalen har bynær villmarkspreg gjennom trang dal, løvskog, fuktige kanter og lyd av vann.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["bynær_villmark"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
-        {"id":"svartdalen_s6_q3","quiz_id":"natur_svartdalen_set_6_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"concept","question":"Hvilket begrepspar forklarer Svartdalen best?","options":["Ravinedal og grønn korridor","Sanering og knutepunkt","Flyplass og høyfjell"],"answer":"Ravinedal og grønn korridor","answerIndex":0,"knowledge":"Svartdalen blir tydeligst når terrengformen leses sammen med forbindelsen langs Alnaelva.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["ravinedal","gronn_korridor"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"}
+        {
+          "id": "svartdalen_s6_q1",
+          "quiz_id": "natur_svartdalen_set_6_q1",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva er den sterkeste samlebeskrivelsen av Svartdalen?",
+          "options": [
+            "Ravine, stryk, gammel løvskog og tilgjengelig bynatur",
+            "Flat handelspark",
+            "Saltvannshavn"
+          ],
+          "answer": "Ravine, stryk, gammel løvskog og tilgjengelig bynatur",
+          "answerIndex": 0,
+          "knowledge": "Stedets lag må forstås sammen.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "synthesis"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s6_q2",
+          "quiz_id": "natur_svartdalen_set_6_q2",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva skiller Svartdalen fra Bryn?",
+          "options": [
+            "Svartdalen har sterkere ravine- og gammelskogpreg",
+            "Svartdalen mangler Alna",
+            "Bryn er urørt skog"
+          ],
+          "answer": "Svartdalen har sterkere ravine- og gammelskogpreg",
+          "answerIndex": 0,
+          "knowledge": "Overgangen viser hvordan elvelandskapet skifter karakter.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "synthesis"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s6_q3",
+          "quiz_id": "natur_svartdalen_set_6_q3",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva skiller Svartdalen fra Kværnerbyen?",
+          "options": [
+            "Svartdalen har mer sammenhengende skog og brattere naturrom",
+            "Kværnerbyen ligger oppstrøms Alnsjøen",
+            "Svartdalen er bare boligblokker"
+          ],
+          "answer": "Svartdalen har mer sammenhengende skog og brattere naturrom",
+          "answerIndex": 0,
+          "knowledge": "Nedstrøms blir det ombygde bylandskapet sterkere.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "synthesis"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s6_q4",
+          "quiz_id": "natur_svartdalen_set_6_q4",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva viser død ved om skogen?",
+          "options": [
+            "At nedbrytning og habitatdannelse er aktive prosesser",
+            "At skogen alltid er dårlig vedlikeholdt",
+            "At ingen arter kan leve der"
+          ],
+          "answer": "At nedbrytning og habitatdannelse er aktive prosesser",
+          "answerIndex": 0,
+          "knowledge": "Gammel skog inneholder flere livsfaser.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "synthesis"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Svartdalsparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s6_q5",
+          "quiz_id": "natur_svartdalen_set_6_q5",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva viser kjempebjørnekjeks om bynatur?",
+          "options": [
+            "Grønt kan kreve artskunnskap, avstand og faglig forvaltning",
+            "Alt grønt er trygt å berøre",
+            "Fremmede arter er alltid ufarlige"
+          ],
+          "answer": "Grønt kan kreve artskunnskap, avstand og faglig forvaltning",
+          "answerIndex": 0,
+          "knowledge": "Naturkvalitet og sikkerhet må vurderes konkret.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "synthesis"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/flora/fremmedarter.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s6_q6",
+          "quiz_id": "natur_svartdalen_set_6_q6",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hva bør en god observasjon ende med?",
+          "options": [
+            "Etterprøvbar beskrivelse og tydelig usikkerhet",
+            "Sikker påstand uten funn",
+            "Innsamling av prøver"
+          ],
+          "answer": "Etterprøvbar beskrivelse og tydelig usikkerhet",
+          "answerIndex": 0,
+          "knowledge": "Presisjon og skånsomhet går foran raske konklusjoner.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "synthesis"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Svartdalen",
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/300",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "svartdalen_s6_q7",
+          "quiz_id": "natur_svartdalen_set_6_q7",
+          "categoryId": "natur",
+          "placeId": "svartdalen",
+          "targetId": "svartdalen",
+          "question_scope": "place",
+          "question": "Hvorfor er 2011 viktig?",
+          "options": [
+            "Turveien gjennom den trange dalen åpnet",
+            "Kværnerfossene ble ført i rør",
+            "Kjempebjørnekjeks kom til Norge"
+          ],
+          "answer": "Turveien gjennom den trange dalen åpnet",
+          "answerIndex": 0,
+          "knowledge": "Året knytter tilgjengelighet til dagens opplevelse av ravinen.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "svartdalen",
+            "alnaelva",
+            "synthesis"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnastien",
+            "https://oslobyleksikon.no/side/Svartdalen"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "ravine",
+            "vassdrag",
+            "skogstruktur",
+            "forvaltning"
+          ]
+        }
       ]
     }
   ]
