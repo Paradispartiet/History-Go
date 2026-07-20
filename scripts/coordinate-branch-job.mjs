@@ -12,3 +12,4 @@ function run(label, command, args) {
 const people = run('PEOPLE DATA CHECK', 'bash', ['scripts/check-people.sh']);
 const places = run('PLACES DATA CHECK', 'bash', ['scripts/check-places.sh']);
 if (people || places) process.exit(1);
+// explicit diagnostic trigger
