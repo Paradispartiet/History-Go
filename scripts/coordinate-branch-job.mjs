@@ -68,6 +68,13 @@ normalizeEvidence('data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.j
 normalizeEvidence('data/coordinate-evidence/oslo/natur/vaterlandsparken.json', vaterlandsparken);
 
 const run = (command, args) => execFileSync(command, args, { stdio: 'inherit' });
+try {
+  run('npm', ['run', 'places:coords:evidence:audit']);
+} catch (error) {
+  console.error('\n--- coordinate evidence report ---\n');
+  console.error(fs.readFileSync('reports/coordinate-evidence-audit.md', 'utf8'));
+  throw error;
+}
 run('node', ['tests/nybrua-vaterlandsparken-split-rounds-batch1.test.js']);
 run('npm', ['run', 'audit:people-of-places']);
 run('npm', ['run', 'leksikon:ids:check']);
