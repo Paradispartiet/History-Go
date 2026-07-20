@@ -93,15 +93,20 @@ Målbildet for CI er:
 
 En bred baseline-sjekk kan fortsatt kjøres som observasjon og rapportering. Den skal ikke forveksles med en presis kvalitetsgate.
 
-## Forholdet til dagens TypeScript guard
+## TypeScript guard — implementert modell
 
-Den eksisterende GitHub Actions-workflowen kan fortsatt være bredere enn denne policyen i overgangsperioden. Det er en implementasjonsdetalj som skal bringes i samsvar med policyen i en egen CI-endring.
+GitHub Actions-workflowen `.github/workflows/typescript-guard.yml` følger denne policyen:
 
-Inntil den endringen er gjennomført:
+- `npm run typecheck:web` er en hard gate for migrert browser-TypeScript.
+- `npm run build:web:check` er en hard gate og stopper når committed `dist/web` er ute av sync med TypeScript-kilden.
+- `npm run typecheck:scripts` og `npm run build:scripts` er harde gates for Node-scripts.
+- `npm run typecheck:tools` og `npm run build:tools` er harde gates for verktøy.
+- Root-`npm run typecheck` brukes fortsatt til å overvåke legacy-JavaScript med `allowJs`/`checkJs`.
+- På pull requests sammenlignes den normaliserte root-diagnostikken med PR-ens base. Bare nye diagnostikkfeil som PR-en introduserer stopper gaten; eksisterende baseline-gjeld gjør det ikke.
+- Linje- og kolonneposisjoner normaliseres i sammenligningen, slik at rene linjeforskyvninger ikke feilaktig registreres som nye typefeil.
+- På `main` og manuelle kjøringer kjøres den brede root-sjekken observasjonelt, mens de moderne TypeScript- og build-gatene fortsatt er obligatoriske.
 
-- ikke tolk dagens brede `npm run typecheck` som den ønskede langsiktige arkitekturen,
-- ikke senk kvaliteten ved å skru av TypeScript-kontroll generelt,
-- skill mellom en faktisk ny regresjon og en eksisterende legacy-baseline når en PR stopper.
+Dette er den operative merge-modellen. Den brede legacy-sjekken er fortsatt verdifull som migreringssignal, men er ikke lenger en generell null-gjeld-portvakt for alle PR-er.
 
 ## Prioritet ved konflikt mellom dokumenter
 
