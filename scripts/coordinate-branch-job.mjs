@@ -20,7 +20,11 @@ for (const commit of commits) {
     ['show', `${commit}:scripts/coordinate-branch-job.mjs`],
     { encoding: 'utf8' }
   );
-  if (candidate.includes(oldLookup)) {
+  const isMaterializer =
+    candidate.includes("const placeId = 'kvaernerbyen_alna';") &&
+    candidate.includes('const setSpecs = [') &&
+    candidate.includes("console.log('Kvaernerbyen Alna materialized and validated')");
+  if (isMaterializer && candidate.includes(oldLookup)) {
     original = candidate;
     break;
   }
