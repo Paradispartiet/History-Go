@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Protocol, cast
 from uuid import UUID
 
@@ -9,7 +9,10 @@ from sqlalchemy import text
 from app.core.database import Database
 from app.domains.social_meet.abuse_models import (
     CANCELLATION_LOOKBACK,
+    DAY_LOOKBACK,
     DECLINE_COOLDOWN,
+    HOUR_LOOKBACK,
+    MINUTE_LOOKBACK,
     REPORT_COOLDOWN,
     InviteAbuseSnapshot,
 )
@@ -53,9 +56,9 @@ class PostgresSocialMeetAbuseRepository:
             "recipient_profile_id": recipient_profile_id,
             "context_type": context_type,
             "context_id": context_id,
-            "minute_start": now - timedelta(minutes=1),
-            "hour_start": now - timedelta(hours=1),
-            "day_start": now - timedelta(days=1),
+            "minute_start": now - MINUTE_LOOKBACK,
+            "hour_start": now - HOUR_LOOKBACK,
+            "day_start": now - DAY_LOOKBACK,
             "decline_start": now - DECLINE_COOLDOWN,
             "report_start": now - REPORT_COOLDOWN,
             "cancellation_start": now - CANCELLATION_LOOKBACK,
@@ -67,7 +70,8 @@ class PostgresSocialMeetAbuseRepository:
                     text(
                         """
                         select
-                          sender.created_at as sender_profile_created_at,
+                          coalesce(sender.consented_at, sender.created_at)
+                            as sender_social_meet_started_at,
                           (
                             select count(*)
                             from public.hg_spotmeeting_invites i
@@ -153,7 +157,7 @@ class PostgresSocialMeetAbuseRepository:
             return None
 
         return InviteAbuseSnapshot(
-            sender_profile_created_at=cast(datetime, row["sender_profile_created_at"]),
+            sender_social_meet_started_at=cast(datetime, row["sender_social_meet_started_at"]),
             sender_minute_count=int(row["sender_minute_count"]),
             sender_hour_count=int(row["sender_hour_count"]),
             sender_day_count=int(row["sender_day_count"]),
