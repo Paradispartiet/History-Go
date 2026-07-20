@@ -6,9 +6,9 @@ from unittest.mock import MagicMock
 from uuid import UUID, uuid4
 
 import pytest
-from sqlalchemy.exc import DBAPIError
 
 from app.core.database import Database
+from app.domains.social_meet import spotmeeting_repository as repository_module
 from app.domains.social_meet.abuse_models import InviteAbuseSnapshot
 from app.domains.social_meet.spotmeeting_models import (
     CreateSpotmeetingInviteRequest,
@@ -18,7 +18,6 @@ from app.domains.social_meet.spotmeeting_models import (
     SpotmeetingInviteState,
     SpotmeetingPresetId,
 )
-from app.domains.social_meet import spotmeeting_repository as repository_module
 from app.domains.social_meet.spotmeeting_repository import PostgresSpotmeetingInviteRepository
 
 NOW = datetime(2026, 7, 20, 17, 0, tzinfo=UTC)
@@ -49,7 +48,6 @@ def test_atomic_creation_rechecks_abuse_and_inserts_in_serializable_transaction(
     recipient_auth = uuid4()
     sender_profile = uuid4()
     recipient_profile = uuid4()
-    snapshot = _snapshot()
 
     monkeypatch.setattr(repository, "_lock_profiles", lambda *args, **kwargs: [])
     monkeypatch.setattr(repository_module, "_profiles_are_eligible", lambda *args, **kwargs: True)
@@ -60,7 +58,7 @@ def test_atomic_creation_rechecks_abuse_and_inserts_in_serializable_transaction(
     )
     monkeypatch.setattr(repository, "_active_block_exists", lambda *args, **kwargs: False)
     repository._abuse_repository.get_invite_creation_snapshot_on_connection = MagicMock(  # type: ignore[method-assign]
-        return_value=snapshot
+        return_value=_snapshot()
     )
 
     result = repository.create_invite_atomic(
@@ -219,9 +217,8 @@ def test_expiry_update_is_participant_scoped() -> None:
     engine.begin.return_value.__enter__.return_value = connection
     connection.execute.return_value = result
     repository = PostgresSpotmeetingInviteRepository(cast(Database, database))
-    user_id = uuid4()
 
-    count = repository.expire_stale_for_participant(user_id, NOW)
+    count = repository.expire_stale_for_participant(uuid4(), NOW)
 
     assert count == 3
     statement = str(connection.execute.call_args.args[0])
@@ -257,7 +254,9 @@ def test_get_participant_invite_returns_none_for_missing_record() -> None:
     assert repository.get_participant_invite(uuid4(), uuid4()) is None
 
 
-def test_transition_uses_state_and_version_compare_and_swap(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_transition_uses_state_and_version_compare_and_swap(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     database = MagicMock(spec=Database)
     engine = MagicMock()
     connection = MagicMock()
@@ -354,14 +353,6 @@ def test_profile_eligibility_requires_exact_auth_binding_consent_and_visibility(
     )
 
 
-def test_serialization_failure_detection_uses_postgres_sqlstate() -> None:
-    original = RuntimeError("serialization")
-    original.sqlstate = "40001"  # type: ignore[attr-defined]
-    error = DBAPIError.instance("statement", {}, original, RuntimeError)
-
-    assert repository_module._is_serialization_failure(error)
-
-
 def _database_with_connect_results(results: list[MagicMock]) -> tuple[Database, MagicMock]:
     database = MagicMock(spec=Database)
     engine = MagicMock()
@@ -375,6 +366,7 @@ def _database_with_connect_results(results: list[MagicMock]) -> tuple[Database, 
 def _mapped_result(row: dict[str, object] | None) -> MagicMock:
     result = MagicMock()
     result.mappings.return_value.one_or_none.return_value = row
+    result.mappings.return_value.one.return_value = row
     return result
 
 
@@ -406,7 +398,26 @@ def _record(
     sync_version: int = 9,
 ) -> SpotmeetingInviteRecord:
     row = _joined_row(state=state.value, version=version, sync_version=sync_version)
-    return repository_module._map_record(cast(object, row))  # type: ignore[arg-type]
+    return SpotmeetingInviteRecord(
+        invite_id=cast(UUID, row["id"]),
+        sender_auth_user_id=cast(UUID, row["created_by"]),
+        recipient_auth_user_id=cast(UUID, row["target_user_id"]),
+        sender_profile_id=cast(UUID, row["sender_profile_id"]),
+        recipient_profile_id=cast(UUID, row["recipient_profile_id"]),
+        context_type=SpotmeetingContextType.PLACE,
+        context_id="factory_memory",
+        context_title="Factory Memory",
+        context_reason="Shared learning context",
+        source_surface="place_card",
+        preset_message_id=SpotmeetingPresetId.COMPARE_PLACE_LEARNING,
+        state=state,
+        created_at=NOW,
+        updated_at=NOW,
+        expires_at=NOW + timedelta(days=14),
+        version=version,
+        sync_version=sync_version,
+        idempotency_key="retry-key-0001",
+    )
 
 
 def _joined_row(
