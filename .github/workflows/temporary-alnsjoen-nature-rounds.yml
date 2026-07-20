@@ -41,7 +41,12 @@ jobs:
         run: node tests/oslo-nature-rounds-batch5-alna.test.js
 
       - name: Run places check
-        run: bash scripts/check-places.sh
+        run: |
+          if ! bash scripts/check-places.sh > /tmp/check-places.log 2>&1; then
+            tail -n 160 /tmp/check-places.log
+            exit 1
+          fi
+          tail -n 20 /tmp/check-places.log
 
       - name: Run people check
         run: bash scripts/check-people.sh
@@ -52,7 +57,7 @@ jobs:
       - name: Commit clean materialized branch
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "4189828+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rm -f scripts/_tmp_alnsjoen_materializer_*.b64
           rm -f scripts/_tmp_alnsjoen_materializer.py
           rm -f .github/workflows/temporary-alnsjoen-nature-rounds.yml
