@@ -12,3 +12,14 @@
 - Duplicate audit: no existing canonical Oslo Prosjektrom record was found.
 
 Production is approved using the exact official address point for Platous gate 18.
+
+## Production
+
+- Canonical place: `oslo_prosjektrom`
+- Category: `kunst`
+- Active address: Platous gate 18
+- Rejected address claim: Platous gate 10
+- Coordinate source: `geonorge-adresser-v1:0301:15684:18`
+- Coordinate status: `verified`
+- Coordinate batch: 79
+- Oslo verified/source-controlled total after production: 226
