@@ -154,6 +154,18 @@ function showToast(msg, ms = null, options = null) {
   showToastNow(msg, normalized.ms, normalized.options);
 }
 
+const earlyToastQueue = Array.isArray(window.__HG_EARLY_TOAST_QUEUE__)
+  ? window.__HG_EARLY_TOAST_QUEUE__.splice(0)
+  : [];
+
+// config.js installerer en tidlig bridge før app.js starter. Når den gamle
+// app-køen senere gjenoppretter bridgen, skal den fortsatt delegere hit i stedet
+// for å gjøre den virkelige toast-runtime utilgjengelig igjen.
+window.__HG_REAL_SHOW_TOAST__ = showToast;
 window.showToast = showToast;
 window.API = window.API || {};
 window.API.showToast = showToast;
+
+earlyToastQueue.forEach((args) => {
+  if (Array.isArray(args)) showToast(...args);
+});
