@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T22:19:55.871Z
+Generert: 2026-07-20T22:30:07.726Z
 
 ## Oppsummering
-- Aktive filer validert: **558**
-- Antall steder validert: **1213**
+- Aktive filer validert: **559**
+- Antall steder validert: **1214**
 - Harde feil: **0**
 - Varsler: **429**
 - Coordinate review candidates: **707** signaler fordelt på **566** steder
@@ -576,6 +576,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/oslo/places_sport/jordal_ungdomshall.json
 - data/places/historie/oslo/places_historie/gamlebyen_kirke.json
 - data/places/kunst/oslo/places_kunst/oslo_prosjektrom.json
+- data/places/natur/vestland/langebudalen_naturreservat.json
 
 ## Harde feil
 - Ingen
