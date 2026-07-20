@@ -1,0 +1,32 @@
+name: TypeScript map migration debug
+
+on:
+  pull_request:
+    paths:
+      - "js/map.ts"
+      - "schemas/globals.d.ts"
+      - ".github/workflows/typescript-map-debug.yml"
+
+jobs:
+  capture-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Capture browser TypeScript diagnostics
+        shell: bash
+        run: |
+          set +e
+          npm run typecheck:web > typecheck-map.log 2>&1
+          status=$?
+          echo "exit_code=$status" >> typecheck-map.log
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: typecheck-map-diagnostics
+          path: typecheck-map.log
+          if-no-files-found: error
