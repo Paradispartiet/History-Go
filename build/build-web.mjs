@@ -17,6 +17,7 @@
 //   dist/web/<out>.js
 //   Deploy-kritiske bundles committes når de lastes direkte av den statiske appen.
 
+import { copyFile } from "node:fs/promises";
 import { build } from "esbuild";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -39,15 +40,37 @@ const SOURCE_MAPPED_ENTRIES = [
   { in: "js/emneDekning.ts", out: "emneDekning" }
 ];
 
-// Liten startup-runtime som lastes direkte fra index. Den bygges separat slik at
-// den statiske deployen kun trenger én deploy-artefakt for denne modulen.
-const MAP_CONTROLS_ENTRY = [
-  { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" }
+// Startup-runtimes that are still loaded from legacy script paths. They are
+// authored in TypeScript and built to dist/web; the compatibility plugin copies
+// the exact generated bundle to the old URL until app.js itself is migrated.
+const STARTUP_ENTRIES = [
+  { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
+  { in: "js/core/categories.ts", out: "categories" },
+  { in: "js/core/layerManager.ts", out: "layerManager" }
 ];
+
+const RUNTIME_COMPATIBILITY_OUTPUTS = [
+  { out: "categories", target: "js/core/categories.js" },
+  { out: "layerManager", target: "js/core/layerManager.js" }
+];
+
+const compatibilityOutputPlugin = {
+  name: "history-go-runtime-compatibility-outputs",
+  setup(esbuild) {
+    esbuild.onEnd(async (result) => {
+      if (result.errors.length) return;
+      await Promise.all(
+        RUNTIME_COMPATIBILITY_OUTPUTS.map(({ out, target }) =>
+          copyFile(path.join(OUT_DIR, `${out}.js`), path.join(ROOT, target))
+        )
+      );
+    });
+  }
+};
 
 const watch = process.argv.includes("--watch");
 
-function buildOptions(entries, sourcemap) {
+function buildOptions(entries, sourcemap, plugins = []) {
   return {
     entryPoints: entries.map((entry) => ({
       in: path.join(ROOT, entry.in),
@@ -59,31 +82,32 @@ function buildOptions(entries, sourcemap) {
     target: ["es2019"],
     platform: "browser",
     sourcemap,
+    plugins,
     logLevel: "info"
   };
 }
 
 async function run() {
   const mappedOptions = buildOptions(SOURCE_MAPPED_ENTRIES, true);
-  const mapControlOptions = buildOptions(MAP_CONTROLS_ENTRY, false);
+  const startupOptions = buildOptions(STARTUP_ENTRIES, false, [compatibilityOutputPlugin]);
 
   if (watch) {
     const { context } = await import("esbuild");
-    const [mappedContext, mapControlContext] = await Promise.all([
+    const [mappedContext, startupContext] = await Promise.all([
       context(mappedOptions),
-      context(mapControlOptions)
+      context(startupOptions)
     ]);
     await Promise.all([
       mappedContext.watch(),
-      mapControlContext.watch()
+      startupContext.watch()
     ]);
-    console.log(`[build:web] watching ${SOURCE_MAPPED_ENTRIES.length + MAP_CONTROLS_ENTRY.length} entry/entries -> dist/web`);
+    console.log(`[build:web] watching ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length} entry/entries -> dist/web`);
     return;
   }
 
   await build(mappedOptions);
-  await build(mapControlOptions);
-  console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + MAP_CONTROLS_ENTRY.length} entry/entries -> dist/web`);
+  await build(startupOptions);
+  console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length} entry/entries -> dist/web`);
 }
 
 run().catch((err) => {
