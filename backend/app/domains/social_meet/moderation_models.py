@@ -30,7 +30,6 @@ class ModerationQueueState(StrEnum):
 class ModerationResolutionCode(StrEnum):
     NO_POLICY_VIOLATION = "no_policy_violation"
     WARNING_OR_GUIDANCE = "warning_or_guidance"
-    INTERACTION_RESTRICTED = "interaction_restricted"
     PROFILE_SUSPENDED = "profile_suspended"
     RETAINED_FOR_SAFETY = "retained_for_safety"
 
