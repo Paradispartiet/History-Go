@@ -78,6 +78,7 @@ declare global {
       open?: () => void;
       close?: () => void;
       toggle?: () => void;
+      bindInteractions?: () => void;
     };
     HG_SocialSignalBridge?: any;
     HG_PublicProfileReadModel?: any;
