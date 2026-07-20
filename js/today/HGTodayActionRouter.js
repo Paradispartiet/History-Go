@@ -213,7 +213,7 @@
 
   function openCivication(action){
     closeTodayHub();
-    const link=root.document?.querySelector?.('.civication-nav-link');
+    const link=/** @type {HTMLAnchorElement|null} */ (root.document?.querySelector?.('.civication-nav-link'));
     if(typeof link?.click==='function'){
       link.click();
       return {ok:true,value:'civication-link'};
