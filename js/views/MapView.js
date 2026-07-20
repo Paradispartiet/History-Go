@@ -155,19 +155,22 @@
 
     openQuiz(targetId) {
       showExploreBase();
+      cancelPendingPlaceNavigation();
 
       const id = String(targetId || "").trim();
       if (!id) return false;
 
-      const place = findPlace(id);
-      if (place) {
-        navigateToPlace(place);
-      }
-
+      // Quiz er en overlay på stedet brukeren allerede ser på. Ikke naviger til
+      // stedet på nytt her: navigateToPlace() skjuler PlaceCard, flyr kartet og
+      // åpner kortet igjen, som ga et synlig lukke/åpne-flimmer ved hvert quiztrykk.
       document.body?.classList.add("hg-view-quiz");
+      window.showToast?.("Laster quiz …", 1400);
 
       if (typeof window.QuizEngine?.start === "function") {
-        window.QuizEngine.start(id);
+        void Promise.resolve(window.QuizEngine.start(id)).catch((err) => {
+          console.warn("[MapView.openQuiz] quiz start failed", err);
+          window.showToast?.("Kunne ikke åpne quizen");
+        });
         return true;
       }
 
@@ -175,7 +178,6 @@
         window.QuizEngine?.start?.(id);
       }, { once: true });
 
-      window.showToast?.("Quiz lastes inn …");
       return true;
     },
 
