@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "history-go://schemas/knowledge-unit-v1",
-  "title": "History Go canonical knowledge unit v1",
+  "title": "History Go canonical knowledge unit v1.1",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -16,6 +16,7 @@
     "canonical_claim",
     "concept_ids",
     "term_ids",
+    "delivery_surfaces",
     "sources"
   ],
   "properties": {
@@ -132,6 +133,29 @@
         }
       }
     },
+    "delivery_surfaces": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "place_page",
+          "person_page",
+          "emne_page",
+          "story_page",
+          "wonderkammer",
+          "quiz",
+          "knowledge_page",
+          "curated_external_source"
+        ]
+      }
+    },
+    "delivery_notes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
     "story_ids": {
       "type": "array",
       "uniqueItems": true,
@@ -229,6 +253,44 @@
         "minLength": 1
       }
     },
+    "quiz_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "quiz_delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "may_embed_full_explanation": {
+          "type": "boolean"
+        },
+        "required_feedback_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "summary",
+              "explanation",
+              "why_it_matters",
+              "term_definitions",
+              "story_fragment",
+              "relations",
+              "source_note"
+            ]
+          }
+        },
+        "reading_evidence_enabled": {
+          "type": "boolean"
+        },
+        "mastery_requires_correct_answer": {
+          "type": "boolean"
+        }
+      }
+    },
     "sources": {
       "type": "array",
       "minItems": 1,
@@ -262,14 +324,6 @@
             "minLength": 1
           }
         }
-      }
-    },
-    "quiz_refs": {
-      "type": "array",
-      "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "minLength": 1
       }
     },
     "status": {
