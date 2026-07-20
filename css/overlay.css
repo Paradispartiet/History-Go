@@ -10,3 +10,180 @@
   pointer-events: auto;
   z-index: 10000;
 }
+
+/* =====================================================
+   MIN DAG / TODAY HUB
+   Holder panelet i samme mørke, rene designspråk som
+   resten av History Go og overstyrer runtime-stilene som
+   HGTodayHubPanel injiserer etter at siden er lastet.
+   ===================================================== */
+body.hg-app #hgTodayHubPanel{
+  width: min(600px, calc(100vw - 28px)) !important;
+  right: 14px !important;
+  top: 14px !important;
+  max-height: calc(100vh - 86px) !important;
+  max-height: calc(100dvh - 86px) !important;
+  padding: 18px 20px 22px !important;
+  gap: 12px !important;
+  background: rgba(5,5,6,.97) !important;
+  color: #f5f5f5 !important;
+  border: 1px solid rgba(255,255,255,.34) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.58) !important;
+  scrollbar-color: rgba(255,255,255,.28) transparent;
+}
+
+body.hg-app #hgTodayHubPanel header.hg-today-hub-header{
+  min-height: 34px !important;
+  padding-right: 44px !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+body.hg-app #hgTodayHubPanel .hg-today-hub-title-icon{
+  width: 30px !important;
+  height: 30px !important;
+  flex-basis: 30px !important;
+  color: #fff !important;
+  background: #111 !important;
+  border: 1px solid rgba(255,255,255,.24) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+
+body.hg-app #hgTodayHubPanel .hg-today-hub-header .muted{
+  color: rgba(255,255,255,.68) !important;
+}
+
+body.hg-app #hgTodayHubPanel h3{
+  margin: 14px 0 6px !important;
+  color: #fff !important;
+  font-size: .98rem !important;
+  font-weight: 760 !important;
+  letter-spacing: .01em;
+}
+
+body.hg-app #hgTodayHubPanel .strip{
+  gap: 7px !important;
+}
+
+body.hg-app #hgTodayHubPanel .pill,
+body.hg-app #hgTodayHubPanel .card,
+body.hg-app #hgTodayHubPanel .priority .card{
+  background: rgba(255,255,255,.045) !important;
+  border: 1px solid rgba(255,255,255,.17) !important;
+  box-shadow: none !important;
+}
+
+body.hg-app #hgTodayHubPanel .pill{
+  min-height: 46px !important;
+  padding: 8px 10px !important;
+  border-radius: 11px !important;
+  color: rgba(255,255,255,.78) !important;
+}
+
+body.hg-app #hgTodayHubPanel .pill b{
+  color: #fff !important;
+}
+
+body.hg-app #hgTodayHubPanel .priority{
+  align-items: flex-start !important;
+  gap: 7px !important;
+}
+
+body.hg-app #hgTodayHubPanel .priority .card{
+  width: min(100%, 520px) !important;
+  padding: 11px 13px !important;
+  border-radius: 13px !important;
+}
+
+body.hg-app #hgTodayHubPanel .priority .card > strong{
+  color: #fff !important;
+}
+
+body.hg-app #hgTodayHubPanel .muted{
+  color: rgba(255,255,255,.58) !important;
+  opacity: 1 !important;
+}
+
+body.hg-app #hgTodayHubPanel .context,
+body.hg-app #hgTodayHubPanel .badge,
+body.hg-app #hgTodayHubPanel [class*="badge"]{
+  color: rgba(255,255,255,.72) !important;
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(255,255,255,.09) !important;
+}
+
+body.hg-app #hgTodayHubPanel button{
+  min-height: 32px !important;
+  padding: 6px 10px !important;
+  color: #f5f5f5 !important;
+  background: #111 !important;
+  border: 1px solid rgba(255,255,255,.24) !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+}
+
+body.hg-app #hgTodayHubPanel button:hover,
+body.hg-app #hgTodayHubPanel button:focus-visible{
+  background: #1b1b1c !important;
+  border-color: rgba(255,255,255,.48) !important;
+}
+
+body.hg-app #hgTodayHubPanel button[disabled]{
+  color: rgba(255,255,255,.48) !important;
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(255,255,255,.11) !important;
+}
+
+/* Den eksisterende «Skjul»-handlingen blir et fast lukkekryss. */
+body.hg-app #hgTodayHubPanel button[data-hg-today-hide]{
+  position: fixed !important;
+  top: 23px !important;
+  right: 23px !important;
+  z-index: 2147483647 !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  border-radius: 50% !important;
+  background: rgba(15,15,16,.96) !important;
+  border: 1px solid rgba(255,255,255,.30) !important;
+}
+
+body.hg-app #hgTodayHubPanel button[data-hg-today-hide]::before{
+  content: "×";
+  display: block;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 30px;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+body.hg-app #hgTodayHubPanel footer{
+  padding-right: 42px !important;
+}
+
+@media (max-width: 760px){
+  body.hg-app #hgTodayHubPanel{
+    width: calc(100vw - 20px) !important;
+    right: 10px !important;
+    top: 10px !important;
+    padding: 14px 14px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  body.hg-app #hgTodayHubPanel .priority .card{
+    width: 100% !important;
+  }
+
+  body.hg-app #hgTodayHubPanel button[data-hg-today-hide]{
+    top: 18px !important;
+    right: 18px !important;
+  }
+}
