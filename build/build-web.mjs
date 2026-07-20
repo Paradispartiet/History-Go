@@ -14,8 +14,8 @@
 //   `iife` (kjøres ved last, ingen import nødvendig i HTML).
 //
 // Output:
-//   dist/web/<out>.js  (gitignored generert build-output; ikke commit)
-//   HTML-sider som er migrert peker på dist/web/... og krever `npm run build:web`.
+//   dist/web/<out>.js
+//   Deploy-kritiske bundles committes når de lastes direkte av den statiske appen.
 
 import { build } from "esbuild";
 import path from "node:path";
@@ -24,14 +24,8 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_DIR = path.join(ROOT, "dist/web");
 
-/**
- * Migrerte browser-entrypoints. Legg til en linje per fil som konverteres
- * fra klassisk js/<navn>.js til js/<navn>.ts. `out` er filnavnet (uten .js)
- * som havner i dist/web/ og som tilhørende HTML-side skal peke på.
- *
- * @type {{ in: string; out: string }[]}
- */
-const ENTRIES = [
+/** @type {{ in: string; out: string }[]} */
+const SOURCE_MAPPED_ENTRIES = [
   { in: "js/fagkartLoader.ts", out: "fagkartLoader" },
   { in: "js/fagHealthReport.ts", out: "fagHealthReport" },
   { in: "js/hgKnowledgeEngine.ts", out: "hgKnowledgeEngine" },
@@ -42,34 +36,54 @@ const ENTRIES = [
   { in: "js/knowledge.ts", out: "knowledge" },
   { in: "js/trivia.ts", out: "trivia" },
   { in: "js/courses.ts", out: "courses" },
-  { in: "js/emneDekning.ts", out: "emneDekning" },
+  { in: "js/emneDekning.ts", out: "emneDekning" }
+];
+
+// Liten startup-runtime som lastes direkte fra index. Den bygges separat slik at
+// den statiske deployen kun trenger én deploy-artefakt for denne modulen.
+const MAP_CONTROLS_ENTRY = [
   { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" }
 ];
 
 const watch = process.argv.includes("--watch");
 
-async function run() {
-  const ctxOptions = {
-    entryPoints: ENTRIES.map((e) => ({ in: path.join(ROOT, e.in), out: e.out })),
+function buildOptions(entries, sourcemap) {
+  return {
+    entryPoints: entries.map((entry) => ({
+      in: path.join(ROOT, entry.in),
+      out: entry.out
+    })),
     outdir: OUT_DIR,
     bundle: true,
     format: "iife",
     target: ["es2019"],
     platform: "browser",
-    sourcemap: true,
+    sourcemap,
     logLevel: "info"
   };
+}
+
+async function run() {
+  const mappedOptions = buildOptions(SOURCE_MAPPED_ENTRIES, true);
+  const mapControlOptions = buildOptions(MAP_CONTROLS_ENTRY, false);
 
   if (watch) {
     const { context } = await import("esbuild");
-    const ctx = await context(ctxOptions);
-    await ctx.watch();
-    console.log(`[build:web] watching ${ENTRIES.length} entry/entries -> dist/web`);
+    const [mappedContext, mapControlContext] = await Promise.all([
+      context(mappedOptions),
+      context(mapControlOptions)
+    ]);
+    await Promise.all([
+      mappedContext.watch(),
+      mapControlContext.watch()
+    ]);
+    console.log(`[build:web] watching ${SOURCE_MAPPED_ENTRIES.length + MAP_CONTROLS_ENTRY.length} entry/entries -> dist/web`);
     return;
   }
 
-  await build(ctxOptions);
-  console.log(`[build:web] built ${ENTRIES.length} entry/entries -> dist/web`);
+  await build(mappedOptions);
+  await build(mapControlOptions);
+  console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + MAP_CONTROLS_ENTRY.length} entry/entries -> dist/web`);
 }
 
 run().catch((err) => {
