@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "skano_naturreservat_etne",
+  "placeFile": "data/places/natur/vestland/skano_naturreservat_etne.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.7382506,
+    "lon": 5.9273691,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Miljødirektoratet Naturvernområder – offisiell polygon for Skåno naturreservat i Etne",
+    "coordType": "area_center",
+    "coordNote": "Representativt områdeanker inne i offisiell vernepolygon. Ikke et besøks- eller ilandstigningspunkt."
+  },
+  "identity": {
+    "currentName": "Skåno naturreservat",
+    "resolvedIdentity": "Skåno naturreservat, Etne",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell navngitt vernepolygon",
+    "stabilt verneområde-ID",
+    "representativt punkt inne i polygonet",
+    "forskriftskilde for identitet og areal"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Miljødirektoratet Naturvernområder",
+      "sourceUrl": "https://faktaark.naturbase.no/?id=VV00001719",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001719",
+      "sourceQuality": "official_protected_area_polygon",
+      "finding": "Offisiell karttjeneste returnerer ett navngitt polygon for Skåno naturreservat i Etne. Lovdata dokumenterer identitet, areal, verneformål og ferdselsregler.",
+      "canVerifyCoordinate": true,
+      "reason": "Naturreservatet er et arealobjekt og bruker polygonets representative områdeanker."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001719",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "geometryType": "polygon",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001719",
+      "sourceUrl": "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/FeatureServer/0/query?where=navn+LIKE+%27%25Sk%C3%A5no%25%27&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.7382506,
+      "lon": 5.9273691,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisiell vernepolygon og representativt områdeanker er anvendt."
+  },
+  "notes": [
+    "Punktet er ikke en inngang eller parkeringsplass.",
+    "Artskart polygon query: https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28660259.2202783566+8341568.804418867%2C660179.2970378253+8341790.3159168875%2C660080.564345662+8341948.6754989615%2C659928.3332587862+8342004.93333574%2C659799.9230460359+8341932.460608583%2C659632.0024791319+8341956.3441517735%2C659530.5546146512+8341848.290871119%2C659517.9971046384+8341682.962966332%2C659454.9898656697+8341554.3771853065%2C659525.8437176856+8341372.681051984%2C660259.2202783566+8341568.804418867%29%29",
+    "Kildeegenskaper: {\"naturvernId\":\"VV00001719\",\"cddaId\":\"156296\",\"navn\":\"Skåno\",\"offisieltNavn\":\"Skåno naturreservat\",\"faktaark\":\"https://faktaark.naturbase.no/?id=VV00001719\",\"verneform\":\"Naturreservat\",\"verneforskrift\":\"https://lovdata.no/forskrift/1987-04-03-245\",\"vernedato\":544406400000,\"foerstegangVernet\":null,\"verneplan\":\"VerneplanSjoefugl\",\"kommune\":\"Etne (4611)\",\"forvaltningsmyndighet\":\"Statsforvalteren i Vestland\",\"forvaltningsmyndighetType\":\"Statsforvalter\",\"iucn\":\"IUCN_IA\",\"revisjon\":\"IkkeRevidert\",\"truetVurdering\":\"IkkeTruet\",\"majorEcosystemType\":\"MarinOgTerrestrisk\",\"GlobalID\":\"{6B58909E-EAF9-4287-8B8C-A259F9D9D087}\",\"verneformAggregert\":\"naturreservat\",\"OBJECTID\":29296,\"NaturvernFKID\":\"{60A4696E-877C-4E87-8F20-A2A640F423ED}\"}"
+  ]
+}
