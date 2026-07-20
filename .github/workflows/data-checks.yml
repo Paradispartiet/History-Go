@@ -96,3 +96,11 @@ jobs:
             npm run places:emner:check
             npm run places:coords:check
           fi
+
+      - name: Upload Religion candidate audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: religion-place-candidate-audit
+          path: /tmp/religion-place-candidate-audit.log
+          if-no-files-found: ignore
