@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T03:34:08.440Z
+Generert: 2026-07-20T03:42:18.617Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -124,7 +124,7 @@ Generert: 2026-07-20T03:34:08.440Z
 | norges_varemesse | data/coordinate-evidence/oslo/naeringsliv/norges_varemesse.json | needs_research | needs_identity_split | OK |
 | nrk_marienlyst | data/coordinate-evidence/oslo/naeringsliv/nrk_marienlyst.json | rejected | needs_identity_split | OK |
 | oslo_gassverk | data/coordinate-evidence/oslo/naeringsliv/oslo_gassverk.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| oslo_kornmagasin | data/coordinate-evidence/oslo/naeringsliv/oslo_kornmagasin.json | needs_research | needs_identity_split | OK |
+| oslo_kornmagasin | data/coordinate-evidence/oslo/naeringsliv/oslo_kornmagasin.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_kraftselskap | data/coordinate-evidence/oslo/naeringsliv/oslo_kraftselskap.json | needs_research | needs_identity_split | OK |
 | oslo_posthus | data/coordinate-evidence/oslo/naeringsliv/oslo_posthus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ovre_foss | data/coordinate-evidence/oslo/naeringsliv/ovre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
