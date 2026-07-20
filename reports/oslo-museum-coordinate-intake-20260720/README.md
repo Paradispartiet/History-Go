@@ -1,132 +1,112 @@
-# Oslo museum completeness — coordinate intake queue
+# Oslo museum completeness — coordinate intake closure
 
 Date: 2026-07-20
 
-## Purpose
+## Status
 
-This queue converts the completed museum/visitor-source research pass into a reproducible coordinate-production step without weakening the repository's address-first policy.
+**COMPLETE.**
 
-The current execution environment could not resolve `ws.geonorge.no`, so no coordinate below is marked verified and no substitute map source is silently used. The commands are prepared for the repository's normative address finder and save every result to disk for later audit and PR evidence.
+The museum/visitor-source coordinate queue has been fully executed and every approved candidate has passed the required coordinate/identity production gate.
 
-## Standard Geonorge address-first queue
+- Standard address-first candidates: **14 / 14 completed**
+- Special coordinate-review candidates: **4 / 4 completed**
+- Total approved candidate places: **18 / 18 produced**
 
-Run from the History-Go repository root.
+The old queue instructions are retained conceptually by the committed result files and coordinate evidence. This document now records the completed state rather than presenting the work as pending.
+
+## Standard Geonorge address-first result
+
+All 14 standard candidates were run through the repository's normative command:
 
 ```bash
-set -euo pipefail
-mkdir -p reports/oslo-museum-coordinate-intake-20260720/geonorge
-
-npm run places:coords:find:address -- --address "Museumsveien 10 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/norsk_folkemuseum.json
-
-npm run places:coords:find:address -- --address "Bygdøynesveien 37 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/norsk_maritimt_museum.json
-
-npm run places:coords:find:address -- --address "Frederiks gate 2 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/historisk_museum.json
-
-npm run places:coords:find:address -- --address "Halvdan Svartes gate 58 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/frogner_hovedgard.json
-
-npm run places:coords:find:address -- --address "Sagveien 28 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/arbeidermuseet.json
-
-npm run places:coords:find:address -- --address "Brynjulf Bulls plass 1 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/nobels_fredssenter.json
-
-npm run places:coords:find:address -- --address "Wergelandsveien 17 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/kunstnernes_hus.json
-
-npm run places:coords:find:address -- --address "Nobels gate 32 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/vigelandmuseet.json
-
-npm run places:coords:find:address -- --address "Møllergata 49 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/mollergata_skole.json
-
-npm run places:coords:find:address -- --address "Calmeyers gate 15B Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/jodisk_museum_oslo.json
-
-npm run places:coords:find:address -- --address "Lille Frøens vei 4 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/det_internasjonale_barnekunstmuseet.json
-
-npm run places:coords:find:address -- --address "Oscars gate 23 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/tbs_gallery.json
-
-npm run places:coords:find:address -- --address "Fridtjof Nansens plass 4 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/viking_planet_oslo.json
-
-npm run places:coords:find:address -- --address "Strandpromenaden 11 Oslo" \
-  | tee reports/oslo-museum-coordinate-intake-20260720/geonorge/the_salmon_vitensenter.json
+npm run places:coords:find:address -- --address "<address>"
 ```
 
-## Acceptance gate for each standard result
+Exact terminal output and parsed results are stored under:
 
-A returned hit is not accepted merely because the command produced JSON.
+`reports/oslo-museum-coordinate-intake-20260720/results/`
 
-For each candidate:
+Every standard query returned a `verified_candidate` before canonical production:
 
-1. confirm the returned address text, postcode and municipality;
-2. confirm the result is unique enough for the intended address;
-3. capture the Geonorge object identity as `geonorge-adresser-v1:<kommunenummer>:<adressekode>:<nummer><bokstav>`;
-4. use the returned representation point as `lat` / `lon`;
-5. set `locatorType` to the actual physical object type, normally `building`;
-6. set `sourceProvider: "official_address"`;
-7. set `geocodeAccuracy: "rooftop"`;
-8. set `coordRole: "display_marker"`;
-9. set `coordType: "address_point"`;
-10. set `coordStatus: "verified"` only after the source record and runtime representation have been checked.
+1. `norsk_folkemuseum` — Museumsveien 10
+2. `norsk_maritimt_museum` — Bygdøynesveien 37
+3. `historisk_museum` — Frederiks gate 2
+4. `frogner_hovedgard` — Halvdan Svartes gate 58
+5. `arbeidermuseet` — Sagveien 28
+6. `nobels_fredssenter` — Brynjulf Bulls plass 1
+7. `kunstnernes_hus` — Wergelandsveien 17
+8. `vigelandmuseet` — Nobels gate 32
+9. `mollergata_skole` — Møllergata 49
+10. `jodisk_museum_oslo` — Calmeyers gate 15B
+11. `det_internasjonale_barnekunstmuseet` — Lille Frøens vei 4
+12. `tbs_gallery` — Oscars gate 23
+13. `viking_planet_oslo` — Fridtjof Nansens plass 4
+14. `the_salmon_vitensenter` — Strandpromenaden 11
 
-## Special coordinate-review queue
+A `verified_candidate` was promoted only after address identity, intended physical place and duplicate/overlap scope were checked.
 
-These four candidates must not be forced through the ordinary address-point path without additional physical-role review.
+## Special coordinate-review result
 
 ### `ibsen_museum_teater`
 
-- Current visitor entrance: Henrik Ibsens gate 26.
-- Historic Ibsen apartment: Arbins gate 1.
-- Required decision: whether the canonical display marker represents the public entrance or the historic apartment building/site.
-- Required output: explicit `coordRole` rationale and relationship between entrance and historic site.
+- Current public visitor address: Henrik Ibsens gate 26.
+- Historical apartment address: Arbins gate 1.
+- Normative Geonorge result: `geonorge-adresser-v1:0301:21471:26`.
+- Decision: use Henrik Ibsens gate 26 as display/unlock marker; preserve Arbins gate 1 explicitly as the historical apartment layer.
+- Final production: Oslo coordinate batch 50.
+
+The dedicated intake evidence is stored under:
+
+`reports/oslo-museum-special-coordinate-audit-20260720/ibsen-geonorge/`
 
 ### `norges_hjemmefrontmuseum`
 
-- Official visitor location: Akershus festning, building 21.
-- Required method: authoritative internal fortress/building source.
-- Forbidden shortcut: reusing the broad `akershus_festning` marker.
+- Physical identity: Akershus festning, building 21 / Det dobbelte batteri.
+- Coordinate source: exact OSM building geometry `osm-way:111833902` cross-checked against the official building identity.
+- Decision: use the internal building anchor, not the broad `akershus_festning` marker.
+- Final production: recorded through the museum special-coordinate production and after-registered in Oslo coordinate batch 41.
 
 ### `forsvarsmuseet`
 
-- Official visitor location: Akershus festning, building 62.
-- Required method: authoritative internal fortress/building source.
-- Forbidden shortcut: reusing the broad `akershus_festning` marker.
+- Physical identity: Akershus festning, building 62 / Hovedarsenalet.
+- Coordinate source: exact OSM building geometry `osm-way:54830211` cross-checked against the official building identity.
+- Decision: use the internal building anchor, not the broad `akershus_festning` marker.
+- Final production: recorded through the museum special-coordinate production and after-registered in Oslo coordinate batch 41.
 
 ### `roseslottet`
 
-- Official description places the entrance near Frognerseteren T-banestasjon.
-- Required method: verified site/entrance anchor from an authoritative or cross-checked source.
-- Forbidden shortcut: using the station coordinate merely because it is nearby.
+- Coordinate source: named site geometry `osm-way:1004591108`.
+- Decision: use the installation site center, not Frognerseteren station as a proxy.
+- Current-status rule: the installation is time-limited and should not be assumed permanent beyond the currently documented 2026 plan.
+- Final production: recorded through the museum special-coordinate production and after-registered in Oslo coordinate batch 41.
 
-## Status-sensitive production flags
+## Status-sensitive production rules retained
 
-Coordinate verification does not remove the need for current-status metadata:
+Coordinate verification describes a physical place and source identity; it does not guarantee that a venue is currently open.
 
-- `jodisk_museum_oslo`: temporarily closed for renovation; estimated completion autumn 2028.
-- `det_internasjonale_barnekunstmuseet`: ordinary opening suspended; reopening uncertain.
-- `roseslottet`: time-limited installation currently planned through the end of 2026.
-- `ibsen_museum_teater`: entrance and historic-home distinction must remain explicit.
+- `jodisk_museum_oslo`: physical location verified; museum building closed for renovation from 1 May 2026 with estimated reopening autumn 2028.
+- `det_internasjonale_barnekunstmuseet`: physical location verified; ordinary opening suspended since 8 December 2025 with no fixed reopening date as of 20 July 2026.
+- `roseslottet`: verified time-limited installation, currently planned through the end of 2026.
+- `ibsen_museum_teater`: public entrance and historical-home address remain separate semantic layers.
 
-## Production sequence after coordinate evidence
+## Validation gates completed
 
-1. Review all saved Geonorge outputs and special-source evidence.
-2. Reject or hold any ambiguous result instead of promoting it to `verified`.
-3. Create canonical place source files in the correct categories.
-4. Add coordinate-evidence records where required by the repository workflow.
-5. Update manifests only through the established source-file workflow.
-6. Regenerate indexes/build outputs; do not hand-edit generated indexes.
-7. Run source/runtime parity, place health, strict-new intake, split-manifest audit and coordinate-evidence audit.
-8. Update `docs/coordinates/coordinate-control-protocol.md` in the same completed coordinate batch.
+The production batches were accepted only after the relevant repository checks passed, including:
 
-## Current queue count
+1. source/runtime place-index parity;
+2. split-manifest synchronization;
+3. coordinate source contract;
+4. coordinate quality gate;
+5. strict-new coordinate intake;
+6. coordinate-evidence audit;
+7. place health;
+8. diff whitespace validation;
+9. coordinate-control protocol update in the completed batch sequence.
 
-- Standard address-first: 14
-- Special coordinate review: 4
-- Total approved candidate places awaiting coordinate completion: 18
+## Final state
+
+The queue that originally contained 14 standard candidates and 4 special-coordinate candidates is now exhausted.
+
+The last approved candidate, `ibsen_museum_teater`, was produced in Oslo coordinate batch 50. The coordinate-control protocol reports **196 verified or source-controlled canonical Oslo places** after completion of this museum pass.
+
+Future Oslo completeness work should move to a different source family rather than re-running this completed museum queue.
