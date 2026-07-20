@@ -73,7 +73,7 @@ function isExternalOrNonFile(href) {
 
 function extractKnowledgeRouteStrings(content) {
   const matches = [];
-  const routeRe = /["'`](?<route>(?:\/History-Go\/|\/|\.\.\/|\.\/)?(?:knowledge(?:\/knowledge)?_[a-z0-9_-]+\.(?:html?|htm)|knowledge\.html(?:\?subject=[a-z0-9_-]+)?))["'`]/gi;
+  const routeRe = /["'`](?<route>(?:\/History-Go\/|\/|\.\.\/|\.\/)?(?:knowledge(?:\/knowledge)?_[a-z0-9_-]+\.(?:html?|htm)|knowledge(?:-[a-z0-9_-]+)?\.html(?:\?subject=[a-z0-9_-]+|\?view=[a-z0-9_-]+)?))["'`]/gi;
   for (const match of content.matchAll(routeRe)) matches.push(match.groups.route);
   return matches;
 }
@@ -103,6 +103,7 @@ for (const abs of files) {
   const routes = extractKnowledgeRouteStrings(content);
 
   const isKnowledgeHtml = rel === "knowledge.html" ||
+    /^knowledge-[^/]+\.html?$/i.test(rel) ||
     /^knowledge\/knowledge_[^/]+\.html?$/i.test(rel) ||
     /^knowledge_[^/]+\.html?$/i.test(rel);
 
