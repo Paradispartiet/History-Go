@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 const ROOT = process.cwd();
 const REPORT_DIR = 'reports/oslo-coordinate-control-batch-40';
@@ -95,4 +96,20 @@ writeJson(`${REPORT_DIR}/research-summary.json`, {
 fs.mkdirSync(abs(REPORT_DIR), { recursive: true });
 fs.writeFileSync(abs(`${REPORT_DIR}/README.md`), `# Oslo koordinatkontroll – batch 40 research\n\nDato: 2026-07-20\n\nRuters gjeldende rutetabell fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Combined-recorden vurderes derfor som et forgrenet rutepar med flere ankere, ikke ett symbolsk midtpunkt.\n\nResearch-passet samler eksakte navngitte objektkandidater for Gaustadalléen, Nybrua, Sinsenkrysset, Storo og Grefsen stasjon. Ingen canonical koordinater endres i dette passet.\n`);
 
-console.log(JSON.stringify({ ok: true, anchorQueries: results.length }, null, 2));
+const diagnostic = spawnSync('npm', ['run', 'places:coords:evidence:audit'], { cwd: ROOT, encoding: 'utf8' });
+const auditReport = fs.existsSync(abs('reports/coordinate-evidence-audit.md'))
+  ? fs.readFileSync(abs('reports/coordinate-evidence-audit.md'), 'utf8')
+  : '';
+const evidenceProblems = auditReport.split('\n').filter((line) =>
+  line.startsWith('| ') &&
+  !line.startsWith('|---') &&
+  !line.includes('| placeId |') &&
+  !line.endsWith('| OK |')
+);
+
+console.log(JSON.stringify({
+  ok: true,
+  anchorQueries: results.length,
+  evidenceDiagnosticExit: diagnostic.status,
+  evidenceProblems
+}, null, 2));
