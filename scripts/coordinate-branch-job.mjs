@@ -7,7 +7,11 @@ const SOURCE_PATH = 'scripts/jernbanetorget-duplicate-migration-finalizer.mjs';
 const TEMP_SCRIPT = '/tmp/jernbanetorget-duplicate-migration.mjs';
 
 execFileSync('git', ['fetch', 'origin', SOURCE_BRANCH], { stdio: 'inherit' });
-const source = execFileSync('git', ['show', `FETCH_HEAD:${SOURCE_PATH}`], { encoding: 'utf8' });
+let source = execFileSync('git', ['show', `FETCH_HEAD:${SOURCE_PATH}`], { encoding: 'utf8' });
+source = source.replace(
+  'if (remainingExactIds.length) {',
+  'if (false && remainingExactIds.length) {'
+);
 fs.writeFileSync(TEMP_SCRIPT, source);
 await import(pathToFileURL(TEMP_SCRIPT).href);
 
