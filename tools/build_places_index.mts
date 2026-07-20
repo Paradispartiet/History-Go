@@ -7,6 +7,7 @@ const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
 const OUTPUT_PATH = path.join(ROOT, 'data/places/places_index.json');
 const EXCLUSIONS_PATH = path.join(ROOT, 'data/places/place_exclusions.json');
 const COORDINATE_OVERRIDES_PATH = path.join(ROOT, 'data/places/coordinate_overrides.json');
+const CATEGORY_OVERRIDES_PATH = path.join(ROOT, 'data/places/category_overrides.json');
 
 type JsonObject = Record<string, unknown>;
 type PlaceManifest = JsonObject & {
@@ -53,6 +54,11 @@ type CoordinateOverride = JsonObject & {
   lon: number;
 };
 
+type CategoryOverride = JsonObject & {
+  id: string;
+  category: string;
+};
+
 const LIGHT_FIELDS: LightField[] = [
   'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
 ];
@@ -85,6 +91,14 @@ function isCoordinateOverride(value: unknown): value is CoordinateOverride {
   return hasObjectType(value) && typeof value.id === 'string' && value.id.trim().length > 0 && isNum(value.lat) && isNum(value.lon);
 }
 
+function isCategoryOverride(value: unknown): value is CategoryOverride {
+  return hasObjectType(value)
+    && typeof value.id === 'string'
+    && value.id.trim().length > 0
+    && typeof value.category === 'string'
+    && value.category.trim().length > 0;
+}
+
 function placeIdForError(place: PlaceRow): string {
   return typeof place.id === 'string' && place.id.trim() ? place.id.trim() : '(mangler-id)';
 }
@@ -108,7 +122,6 @@ async function readJson(p: string): Promise<unknown> {
   const raw = await fs.readFile(p, 'utf8');
   return JSON.parse(raw) as unknown;
 }
-
 
 function splitManifestPathFor(sourcePath: string): string {
   const parsed = path.parse(sourcePath);
@@ -192,6 +205,18 @@ async function readCoordinateOverrides(): Promise<Map<string, CoordinateOverride
   }
 }
 
+async function readCategoryOverrides(): Promise<Map<string, CategoryOverride>> {
+  try {
+    const data = await readJson(CATEGORY_OVERRIDES_PATH);
+    const list = Array.isArray(data) ? data.filter(isCategoryOverride) : [];
+    return new Map(list.map((override) => [override.id.trim(), { ...override, id: override.id.trim(), category: override.category.trim() }]));
+  } catch (error: unknown) {
+    const code = hasObjectType(error) ? error.code : undefined;
+    if (code === 'ENOENT') return new Map();
+    throw error;
+  }
+}
+
 function applyCoordinateOverride(place: PlaceRow, overrides: Map<string, CoordinateOverride>): PlaceRow {
   const id = typeof place.id === 'string' ? place.id.trim() : '';
   const override = id ? overrides.get(id) : null;
@@ -205,11 +230,19 @@ function applyCoordinateOverride(place: PlaceRow, overrides: Map<string, Coordin
   return out;
 }
 
+function applyCategoryOverride(place: PlaceRow, overrides: Map<string, CategoryOverride>): PlaceRow {
+  const id = typeof place.id === 'string' ? place.id.trim() : '';
+  const override = id ? overrides.get(id) : null;
+  if (!override) return place;
+  return { ...place, category: override.category };
+}
+
 async function main(): Promise<void> {
   const manifest = await readJson(MANIFEST_PATH);
   const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
   const disabledPlaceIds = await readDisabledPlaceIds();
   const coordinateOverrides = await readCoordinateOverrides();
+  const categoryOverrides = await readCategoryOverrides();
   const out: LightPlace[] = [];
   let skipped = 0;
 
@@ -219,7 +252,8 @@ async function main(): Promise<void> {
     const entries = await loadPlaceEntriesFromManifestEntry(sourceFile);
     for (const { place: rawPlace, sourceFile: actualSourceFile } of entries) {
       assertNoLegacyLng(rawPlace, actualSourceFile);
-      const place = applyCoordinateOverride(rawPlace, coordinateOverrides);
+      const placeWithCoordinates = applyCoordinateOverride(rawPlace, coordinateOverrides);
+      const place = applyCategoryOverride(placeWithCoordinates, categoryOverrides);
       const id = typeof place.id === 'string' ? place.id : '';
       if (id && disabledPlaceIds.has(id)) {
         skipped += 1;
@@ -231,8 +265,9 @@ async function main(): Promise<void> {
 
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8');
   const skippedText = skipped ? `; skipped ${skipped} disabled place(s)` : '';
-  const overrideText = coordinateOverrides.size ? `; applied ${coordinateOverrides.size} coordinate override(s)` : '';
-  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}${skippedText}${overrideText}`);
+  const coordinateOverrideText = coordinateOverrides.size ? `; applied ${coordinateOverrides.size} coordinate override(s)` : '';
+  const categoryOverrideText = categoryOverrides.size ? `; applied ${categoryOverrides.size} category override(s)` : '';
+  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}${skippedText}${coordinateOverrideText}${categoryOverrideText}`);
 }
 
 main().catch((err: unknown) => {
