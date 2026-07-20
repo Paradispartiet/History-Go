@@ -66,7 +66,11 @@ class FakeModerationRepository:
     def get_queue_item(self, queue_item_id: UUID) -> ModerationQueueItem | None:
         return self.queue_item if queue_item_id == self.queue_item.queue_item_id else None
 
-    def claim_queue_item(self, queue_item_id: UUID, staff_user_id: UUID) -> ModerationQueueItem | None:
+    def claim_queue_item(
+        self,
+        queue_item_id: UUID,
+        staff_user_id: UUID,
+    ) -> ModerationQueueItem | None:
         if self.queue_action_returns_none:
             return None
         self.queue_item = _queue_item(
@@ -378,6 +382,11 @@ def _queue_item(
     assigned: bool = False,
     resolution_code: ModerationResolutionCode | None = None,
 ) -> ModerationQueueItem:
+    closed_at = (
+        NOW
+        if state in {ModerationQueueState.ACTIONED, ModerationQueueState.NO_ACTION}
+        else None
+    )
     return ModerationQueueItem(
         queue_item_id=queue_item_id or uuid4(),
         report_id=report_id or uuid4(),
@@ -391,7 +400,7 @@ def _queue_item(
         resolution_code=resolution_code,
         created_at=NOW,
         updated_at=NOW,
-        closed_at=NOW if state in {ModerationQueueState.ACTIONED, ModerationQueueState.NO_ACTION} else None,
+        closed_at=closed_at,
     )
 
 
@@ -424,6 +433,11 @@ def _appeal(
     status: AppealStatus = AppealStatus.SUBMITTED,
     decision_reason_code: AppealDecisionReasonCode | None = None,
 ) -> AppealView:
+    decided_at = (
+        NOW
+        if status in {AppealStatus.UPHELD, AppealStatus.MODIFIED, AppealStatus.REVERSED}
+        else None
+    )
     return AppealView(
         appeal_id=appeal_id or uuid4(),
         restriction_id=restriction_id,
@@ -432,5 +446,5 @@ def _appeal(
         decision_reason_code=decision_reason_code,
         created_at=NOW,
         updated_at=NOW,
-        decided_at=NOW if status in {AppealStatus.UPHELD, AppealStatus.MODIFIED, AppealStatus.REVERSED} else None,
+        decided_at=decided_at,
     )
