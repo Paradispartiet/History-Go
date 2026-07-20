@@ -15,35 +15,34 @@
     "https://lokalhistoriewiki.no/wiki/Akershus_landsfengsel",
     "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
     "https://oslobyleksikon.no/side/Kristiania_Br%C3%B8dfabrik",
-    "https://snl.no/Christiania_-_Oslo"
+    "https://snl.no/Christiania_-_Oslo",
+    "https://lovdata.no/dokument/LF/forskrift/2014-12-17-1696/%C2%A73"
   ],
   "merge_notes": {
-    "existing_quiz_status": "Expected set-file data/quiz/naeringsliv/oslo_kornmagasin_sets_merged.json returned 404. GitHub search found no flatquiz hit.",
-    "kept": "Kept place-file core: Christiania kornmagasin, year 1785, public grain/food-supply storage for crisis preparedness, food trade, public control and storage infrastructure.",
-    "corrected": "Source coverage for the exact Christiania kornmagasin claim is thin. No good standalone external article for the place-file's 'Christiania kornmagasin, 1785' claim was found. The set therefore flags 1785 as place-file sourced, not externally verified, and uses externally verified support from Akershus Kornmagasinet (1788), Lille provianthus (1751/Østre kornmagasin), Akershus landsfengsel and Kristiania Brødfabrik to build the broader food-supply/logistics layer.",
-    "not_continued": "No invented building details, no unsupported exact address, no tourist questions, no meta/category phrasing.",
-    "added": "Added 5 sets x 6 questions: target identity, food supply, 1785 source-limited claim, storage infrastructure, Christiania/Oslo naming, Akershus Kornmagasinet 1788, Lille provianthus/Østre kornmagasin, slaveri/landsfengsel reuse, comparison to modern brødfabrikk and advanced supply-chain analysis."
+    "existing_quiz_status": "Existing 5×6 set retained and corrected in batch 41.",
+    "kept": "Kept the broader grain-storage, provisioning and institutional-history learning arc.",
+    "corrected": "The unsupported active identity «Christiania kornmagasin, 1785» was replaced by the documented Kornmagasinet, inventory 0008 at Akershus festning, built in 1788. Meta-questions about what the place file claimed were replaced with externally grounded questions.",
+    "not_continued": "No unsupported 1785 identity, no invented address, and no place-file-as-source quiz questions.",
+    "added": "Official heritage identity from Lovdata, exact OSM building geometry, and documented reuse as slaveri and later prison context."
   },
   "profile_snapshot": {
-    "place_type": "grain_storage_public_supply_and_food_security",
-    "subtype": "christiania_kornmagasin_matberedskap_lager",
+    "place_type": "historical_grain_magazine_and_reused_institutional_building",
+    "subtype": "akershus_kornmagasinet_1788",
     "signature_features": [
-      "Christiania kornmagasin in place file",
-      "year 1785 in place file, source-limited",
-      "public storage for grain and food security",
-      "linked to food trade, public control and storage infrastructure",
-      "supported by Akershus proviant/kornmagasin sources and later bread-factory comparison"
+      "Kornmagasinet, inventory 0008 at Akershus festning",
+      "built in 1788 as a grain/provision magazine",
+      "later reused as slaveri and in prison history"
     ],
     "primary_angles": [
       "matforsyning",
       "lager",
       "beredskap",
-      "offentlig_kontroll"
+      "institusjonell_ombruk"
     ],
     "must_include": [
-      "mark source limitation for exact 1785 Christiania kornmagasin claim",
-      "avoid inventing address/building details",
-      "connect to broader grain/provisioning/food-supply infrastructure"
+      "use the documented 1788 Akershus building identity",
+      "connect original storage function to later institutional reuse",
+      "avoid the unsupported former 1785 identity"
     ]
   },
   "sets": [
@@ -63,41 +62,41 @@
           "natureId": "",
           "targetId": "oslo_kornmagasin",
           "question_scope": "place",
-          "question": "Hvilket sted er `oslo_kornmagasin` i place-filen?",
+          "question": "Hvor ligger det dokumenterte Kornmagasinet fra 1788 som dette stedet representerer?",
           "options": [
-            "Christiania kornmagasin",
-            "Kornmagasinet på Akershus festning",
-            "Kristiania Brødfabrik"
+            "På Akershus festning",
+            "Ved Jernbanetorget",
+            "På Grünerløkka"
           ],
-          "answer": "Christiania kornmagasin",
+          "answer": "På Akershus festning",
           "answerIndex": 0,
-          "dimension": "targetavklaring",
-          "topic": "Christiania kornmagasin",
-          "knowledge": "Place-filen identifiserer targetet som Christiania kornmagasin.",
+          "dimension": "sted_identitet",
+          "topic": "Kornmagasinet på Akershus festning",
+          "knowledge": "Fredningsforskriften for Akershus festning identifiserer inventar 0008 som Kornmagasinet, datert 1788.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
           "question_layer": "history_intro_story",
-          "year": 1785,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "year": 1788,
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_teknologi_infrastruktur",
           "method_id": "met_naering_infrastrukturanalyse",
           "related_emner": [],
           "core_concepts": [
-            "Christiania kornmagasin",
-            "target",
-            "place-fil"
+            "Kornmagasinet",
+            "Akershus festning",
+            "1788"
           ],
           "concept_focus": [
-            "Christiania kornmagasin",
-            "target"
+            "Kornmagasinet",
+            "Akershus festning"
           ],
           "learning_paths": [],
           "tags": [
-            "christiania",
+            "akershus",
             "kornmagasin",
-            "target"
+            "1788"
           ],
           "required_tags": [
             "external_source",
@@ -105,10 +104,11 @@
             "em_naering"
           ],
           "source": [
-            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+            "https://lovdata.no/dokument/LF/forskrift/2014-12-17-1696/%C2%A73",
+            "https://lokalhistoriewiki.no/wiki/Kornmagasinet_(Akershus_festning)"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "official_heritage_identity",
           "business_anchor_type": "grain_storage_public_supply_and_food_security",
           "external_source_ratio_target": 0.85,
           "requires_business_anchor": true,
@@ -134,41 +134,41 @@
           "natureId": "",
           "targetId": "oslo_kornmagasin",
           "question_scope": "place",
-          "question": "Hva var hovedfunksjonen til Christiania kornmagasin i place-filen?",
+          "question": "Hva var Kornmagasinets opprinnelige funksjon på Akershus festning?",
           "options": [
-            "Å lagre korn og sikre matforsyning i krisetider",
-            "Å bygge skip og offshorekonstruksjoner",
-            "Å drive T-banelinjer gjennom sentrum"
+            "Å lagre korn og proviant",
+            "Å være telegrafstasjon",
+            "Å reparere lokomotiver"
           ],
-          "answer": "Å lagre korn og sikre matforsyning i krisetider",
+          "answer": "Å lagre korn og proviant",
           "answerIndex": 0,
           "dimension": "forsyning",
-          "topic": "matberedskap",
-          "knowledge": "Place-filen beskriver Christiania kornmagasin som et lager for korn og beredskap i byens forsyningssystem.",
+          "topic": "korn- og proviantlager",
+          "knowledge": "Bygningen ble oppført som Kornmagasinet og inngikk i festningens forsynings- og lagerinfrastruktur.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
           "question_layer": "history_intro_story",
-          "year": 1785,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "year": 1788,
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "method_id": "met_naering_verdiskapingsanalyse",
           "related_emner": [],
           "core_concepts": [
             "kornlager",
-            "matforsyning",
-            "beredskap"
+            "proviant",
+            "forsyning"
           ],
           "concept_focus": [
             "kornlager",
-            "matforsyning"
+            "proviant"
           ],
           "learning_paths": [],
           "tags": [
             "korn",
-            "matforsyning",
-            "beredskap"
+            "proviant",
+            "forsyning"
           ],
           "required_tags": [
             "external_source",
@@ -176,10 +176,11 @@
             "em_naering"
           ],
           "source": [
-            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+            "https://lovdata.no/dokument/LF/forskrift/2014-12-17-1696/%C2%A73",
+            "https://lokalhistoriewiki.no/wiki/Kornmagasinet_(Akershus_festning)"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "documented_building_function",
           "business_anchor_type": "grain_storage_public_supply_and_food_security",
           "external_source_ratio_target": 0.85,
           "requires_business_anchor": true,
@@ -205,41 +206,41 @@
           "natureId": "",
           "targetId": "oslo_kornmagasin",
           "question_scope": "place",
-          "question": "Hvilket år oppgir place-filen for Christiania kornmagasin?",
+          "question": "Hvilket år er Kornmagasinet på Akershus festning dokumentert som oppført?",
           "options": [
-            "1785",
-            "1854",
-            "1966"
+            "1788",
+            "1820",
+            "1854"
           ],
-          "answer": "1785",
+          "answer": "1788",
           "answerIndex": 0,
           "dimension": "tidsfesting",
-          "topic": "placefil-år 1785",
-          "knowledge": "Place-filen oppgir 1785 som targetets år, men QC markerer at dette ikke ble eksternt bekreftet gjennom en egen kornmagasin-artikkel.",
+          "topic": "Kornmagasinet 1788",
+          "knowledge": "Fredningsforskriften daterer Kornmagasinet, inventar 0008, til 1788.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
           "question_layer": "history_intro_story",
-          "year": 1785,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "year": 1788,
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "method_id": "met_naering_omstillingsanalyse",
           "related_emner": [],
           "core_concepts": [
-            "1785",
-            "source-limited",
-            "Christiania kornmagasin"
+            "1788",
+            "Kornmagasinet",
+            "Akershus festning"
           ],
           "concept_focus": [
-            "1785",
-            "source-limited"
+            "1788",
+            "Kornmagasinet"
           ],
           "learning_paths": [],
           "tags": [
-            "1785",
+            "1788",
             "kornmagasin",
-            "source_limited"
+            "akershus"
           ],
           "required_tags": [
             "external_source",
@@ -247,10 +248,11 @@
             "em_naering"
           ],
           "source": [
-            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+            "https://lovdata.no/dokument/LF/forskrift/2014-12-17-1696/%C2%A73",
+            "https://lokalhistoriewiki.no/wiki/Kornmagasinet_(Akershus_festning)"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "external_or_repo_verified_claim",
+          "source_origin": "external",
+          "claim_basis": "official_heritage_year",
           "business_anchor_type": "grain_storage_public_supply_and_food_security",
           "external_source_ratio_target": 0.85,
           "requires_business_anchor": true,
@@ -291,8 +293,8 @@
           "difficulty": 1,
           "question_type": "fact",
           "question_layer": "history_intro_story",
-          "year": 1785,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "year": 1788,
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "method_id": "met_naering_verdiskapingsanalyse",
@@ -517,7 +519,7 @@
           "question_type": "fact",
           "question_layer": "local_history_buildings_events",
           "year": 1788,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "method_id": "met_naering_infrastrukturanalyse",
@@ -588,7 +590,7 @@
           "question_type": "fact",
           "question_layer": "local_history_buildings_events",
           "year": 1788,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_teknologi_infrastruktur",
           "method_id": "met_naering_infrastrukturanalyse",
@@ -659,7 +661,7 @@
           "question_type": "fact",
           "question_layer": "local_history_buildings_events",
           "year": 1751,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "method_id": "met_naering_arbeidsprosessanalyse",
@@ -730,7 +732,7 @@
           "question_type": "fact",
           "question_layer": "local_history_buildings_events",
           "year": 1751,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "method_id": "met_naering_infrastrukturanalyse",
@@ -801,7 +803,7 @@
           "question_type": "fact",
           "question_layer": "local_history_buildings_events",
           "year": 1690,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "method_id": "met_naering_infrastrukturanalyse",
@@ -1028,7 +1030,7 @@
           "question_type": "fact",
           "question_layer": "humor_curiosities_life",
           "year": 1739,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_arbeid_verdiskaping",
           "method_id": "met_naering_arbeidslivsanalyse",
@@ -1099,7 +1101,7 @@
           "question_type": "fact",
           "question_layer": "humor_curiosities_life",
           "year": 1739,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_arbeid_verdiskaping",
           "method_id": "met_naering_arbeidslivsanalyse",
@@ -1754,8 +1756,8 @@
           "difficulty": 1,
           "question_type": "fact",
           "question_layer": "place_facts_architecture",
-          "year": 1785,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "year": 1788,
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "method_id": "met_naering_omstillingsanalyse",
@@ -1829,13 +1831,13 @@
           "answerIndex": 0,
           "dimension": "begrep",
           "topic": "lagringsinfrastruktur",
-          "knowledge": "Place-filen beskriver Christiania kornmagasin som lagringsinfrastruktur i matvareforsyningen.",
+          "knowledge": "Place-filen beskriver Kornmagasinet på Akershus festning som lagringsinfrastruktur i matvareforsyningen.",
           "trivia": [],
           "difficulty": 1,
           "question_type": "fact",
           "question_layer": "place_concrete_advanced",
-          "year": 1785,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "year": 1788,
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_teknologi_infrastruktur",
           "method_id": "met_naering_infrastrukturanalyse",
@@ -1905,8 +1907,8 @@
           "difficulty": 1,
           "question_type": "fact",
           "question_layer": "place_concrete_advanced",
-          "year": 1785,
-          "epoke_id": "christiania_kornmagasin_matberedskap_og_proviant",
+          "year": 1788,
+          "epoke_id": "akershus_kornmagasin_1788",
           "epoke_domain": "naeringsliv",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "method_id": "met_naering_verdiskapingsanalyse",
