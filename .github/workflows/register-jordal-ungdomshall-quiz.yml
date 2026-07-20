@@ -1,0 +1,83 @@
+name: Register Jordal ungdomshall sport quiz
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    if: github.event.issue.title == '[automation] Register Jordal ungdomshall quiz'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Create, validate and register quiz
+        env:
+          QUIZ_GZ_B64: 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
+        run: |
+          python - <<'PY'
+          import base64, gzip, json, os
+          from pathlib import Path
+
+          quiz_path = Path('data/quiz/sport/jordal_ungdomshall_sets.json')
+          quiz_path.parent.mkdir(parents=True, exist_ok=True)
+          quiz_path.write_bytes(gzip.decompress(base64.b64decode(os.environ['QUIZ_GZ_B64'])))
+
+          quiz = json.loads(quiz_path.read_text(encoding='utf-8'))
+          pensum = json.loads(Path('data/fag/sport/sportpensum_canonical_v4_5.json').read_text(encoding='utf-8'))
+          methods = json.loads(Path('data/fag/sport/methods_sport_canonical_v4_5.json').read_text(encoding='utf-8'))
+          valid_emner = {e for domain in pensum['domains'] for e in domain['emne_ids']}
+          valid_methods = {m['method_id'] for m in methods['methods']}
+          blocks = quiz.get('sets', [])
+          questions = [q for block in blocks for q in block.get('questions', [])]
+
+          assert quiz.get('targetId') == 'jordal_ungdomshall'
+          assert quiz.get('categoryId') == 'sport'
+          assert len(blocks) == 2 and len(questions) == 10
+          assert len({b['set_id'] for b in blocks}) == 2
+          assert len({q['id'] for q in questions}) == 10
+          assert len({q['quiz_id'] for q in questions}) == 10
+          required = {'source_origin','claim_basis','guidance_basis','method_id','emne_id','sport_anchor_type','source_note'}
+          for q in questions:
+              assert q['targetId'] == q['placeId'] == 'jordal_ungdomshall'
+              assert len(q['options']) == 3 and q['options'][q['answerIndex']] == q['answer']
+              assert q['emne_id'] in valid_emner
+              assert q['method_id'] in valid_methods
+              assert required <= q.keys()
+              assert q['source_origin'] == 'external'
+              assert q['source'] and all(s.get('url') for s in q['source'])
+              assert q['external_source_ratio_target'] >= 0.85
+
+          manifest_path = Path('data/quiz/manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          entries = manifest['sets']
+          expected = {'targetId':'jordal_ungdomshall','file':str(quiz_path)}
+          matches = [e for e in entries if e.get('targetId') == 'jordal_ungdomshall']
+          assert len(matches) <= 1
+          if matches:
+              assert matches[0] == expected
+          else:
+              after = next((i + 1 for i, e in enumerate(entries) if e.get('targetId') == 'skoytemuseet'), len(entries))
+              entries.insert(after, expected)
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit data and remove one-time workflow
+        run: |
+          rm .github/workflows/register-jordal-ungdomshall-quiz.yml
+          git config user.name "History Go Data Production"
+          git config user.email "history-go-data@users.noreply.github.com"
+          git add data/quiz/sport/jordal_ungdomshall_sets.json data/quiz/manifest.json .github/workflows/register-jordal-ungdomshall-quiz.yml
+          git commit -m "Add and register Jordal ungdomshall sport quiz"
+          for attempt in 1 2 3; do
+            git push origin HEAD:main && exit 0
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
