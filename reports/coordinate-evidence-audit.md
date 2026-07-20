@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T04:52:50.707Z
+Generert: 2026-07-20T04:46:03.702Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -109,6 +109,7 @@ Generert: 2026-07-20T04:52:50.707Z
 | gamle_deichman | data/coordinate-evidence/oslo/litteratur/gamle_deichman.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grotta | data/coordinate-evidence/oslo/litteratur/grotta.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | henrik_wergeland_statue | data/coordinate-evidence/oslo/litteratur/henrik_wergeland_statue.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ibsen_museum_teater | data/coordinate-evidence/oslo/litteratur/ibsen_museum_teater.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ibsen_quotes | data/coordinate-evidence/oslo/litteratur/ibsen_quotes.json | needs_research | needs_geometry | OK |
 | inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kulturkirken_jakob_litteratur | data/coordinate-evidence/oslo/litteratur/kulturkirken_jakob_litteratur.json | applied_to_place | do_not_change_coordinates_yet | OK |

@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T04:52:43.284Z
+Generert: 2026-07-20T04:45:55.948Z
 
 ## Oppsummering
-- Aktive filer validert: **518**
+- Aktive filer validert: **519**
 - Antall steder validert: **1219**
 - Harde feil: **0**
 - Varsler: **429**
@@ -536,6 +536,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv/the_salmon_vitensenter.json
 - data/places/historie/oslo/places_historie/jodisk_museum_oslo.json
 - data/places/kunst/oslo/places_kunst/det_internasjonale_barnekunstmuseet.json
+- data/places/litteratur/oslo/places_litteratur/ibsen_museum_teater.json
 
 ## Harde feil
 - Ingen

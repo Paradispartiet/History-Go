@@ -1,17 +1,10 @@
-import fs from 'node:fs';
-import zlib from 'node:zlib';
-
-const paths = [
-  'scripts/.vaterland-historisk-elvelop-payload-00',
-  'scripts/.vaterland-historisk-elvelop-payload-01a',
-  'scripts/.vaterland-historisk-elvelop-payload-01b',
-  'scripts/.vaterland-historisk-elvelop-payload-01c',
-  'scripts/.vaterland-historisk-elvelop-payload-01d',
-  'scripts/.vaterland-historisk-elvelop-payload-02',
-  'scripts/.vaterland-historisk-elvelop-payload-03',
-];
-const target = '/tmp/vaterland-historisk-elvelop-production.mjs';
-const source = zlib.gunzipSync(Buffer.from(paths.map(file => fs.readFileSync(file, 'utf8')).join(''), 'base64')).toString('utf8');
-fs.writeFileSync(target, source.replaceAll('LEKSIKON_ENTRY', 'LEXIKON_ENTRY'));
-await import(`file://${target}`);
-console.log('Vaterland historical river course coordinate-runner job completed.');
+import { execFileSync } from 'node:child_process';
+const run=(command,args)=>execFileSync(command,args,{stdio:'inherit'});
+run('node',['tests/vaterland-historisk-elvelop-rounds-batch1.test.js']);
+run('bash',['scripts/check-people.sh']);
+run('bash',['scripts/check-places.sh']);
+run('npm',['run','leksikon:ids:check']);
+run('npm',['run','typecheck:tools']);
+run('npm',['run','typecheck:web']);
+run('git',['diff','--check']);
+console.log('Vaterland clean validation completed on latest main.');
