@@ -50,6 +50,7 @@ const STARTUP_ENTRIES = [
   { in: "js/map.ts", out: "map" },
   { in: "js/ui/search.ts", out: "search" },
   { in: "js/ui/nearbyDrawer.ts", out: "nearbyDrawer" },
+  { in: "js/ui/nearbyFilters.ts", out: "nearbyFilters" },
   { in: "js/ui/leftPanelMode.ts", out: "leftPanelMode" }
 ];
 
