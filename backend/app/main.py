@@ -10,6 +10,7 @@ from app.api.routes.health import router as health_router
 from app.api.routes.social_meet import router as social_meet_router
 from app.api.routes.social_meet_moderation import router as social_meet_moderation_router
 from app.api.routes.social_meet_safety import router as social_meet_safety_router
+from app.api.routes.social_meet_spotmeeting import router as social_meet_spotmeeting_router
 from app.auth.supabase import SupabaseTokenVerifier
 from app.core.config import Settings, get_settings
 from app.core.database import Database
@@ -55,6 +56,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(social_meet_router, prefix=runtime_settings.api_prefix)
     app.include_router(social_meet_safety_router, prefix=runtime_settings.api_prefix)
     app.include_router(social_meet_moderation_router, prefix=runtime_settings.api_prefix)
+    app.include_router(social_meet_spotmeeting_router, prefix=runtime_settings.api_prefix)
     return app
 
 
