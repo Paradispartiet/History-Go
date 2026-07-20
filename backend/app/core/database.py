@@ -43,9 +43,7 @@ class Database:
             raise RuntimeError("Database is not configured")
         if self._engine is None:
             assert self._settings.database_url is not None
-            database_url = normalize_database_url(
-                self._settings.database_url.get_secret_value()
-            )
+            database_url = normalize_database_url(self._settings.database_url.get_secret_value())
             self._engine = create_engine(
                 database_url,
                 pool_pre_ping=True,
