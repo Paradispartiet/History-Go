@@ -38,7 +38,6 @@ create table if not exists public.hg_social_meet_moderation_queue (
       or resolution_code in (
         'no_policy_violation',
         'warning_or_guidance',
-        'interaction_restricted',
         'profile_suspended',
         'retained_for_safety'
       )
