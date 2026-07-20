@@ -1,0 +1,54 @@
+{
+  "date": "2026-07-20",
+  "method": "Research only. Current Ruter route identity is authoritative; exact named stop/station objects are collected as potential branch anchors without first/nearest-result selection.",
+  "activeSource": [
+    {
+      "sourceFile": "data/places/by/oslo/places_by.json",
+      "name": "Trikkelinje 17/18",
+      "lat": 59.92,
+      "lon": 10.76,
+      "r": 300,
+      "coordStatus": "semantic_anchor",
+      "coordType": "route_midpoint",
+      "coordSource": "",
+      "sourceObjectId": "",
+      "anchors": []
+    }
+  ],
+  "officialRouteDefinition": {
+    "sourceProvider": "official_map",
+    "sourceName": "Ruter tram timetable effective 20 April 2026",
+    "sourceUrl": "https://ruter.no/planlegg-reise/rutetabeller-og-linjekart/trikk",
+    "sourceObjectId": "ruter:tram-lines:17+18:2026-04-20",
+    "line17": "Gaustadalléen – Sinsen – Grefsen stasjon",
+    "line18": "Gaustadalléen – Storo – Grefsen stasjon",
+    "modellingNote": "The combined History Go record should be a branched route pair. Suggested anchors: shared west terminus, shared central/divergence corridor, one line-17 branch anchor, one line-18 branch anchor, shared Grefsen terminus."
+  },
+  "anchorResearch": [
+    {
+      "key": "gaustadalleen",
+      "query": "Gaustadalléen holdeplass Oslo",
+      "candidates": []
+    },
+    {
+      "key": "nybrua",
+      "query": "Nybrua holdeplass Oslo",
+      "candidates": []
+    },
+    {
+      "key": "sinsenkrysset",
+      "query": "Sinsenkrysset holdeplass Oslo",
+      "candidates": []
+    },
+    {
+      "key": "storo",
+      "query": "Storo holdeplass trikk Oslo",
+      "candidates": []
+    },
+    {
+      "key": "grefsen_stasjon",
+      "query": "Grefsen stasjon trikk Oslo",
+      "candidates": []
+    }
+  ]
+}
