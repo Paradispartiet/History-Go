@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical steder. Batch 90 legger til Oslo Prosjektrom med eksakt Geonorge-adressepunkt for Platous gate 18, etter separat avklaring av den isolerte Platous gate 10-feiloppføringen. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical steder. Batch 90 legger til Oslo Prosjektrom med eksakt Geonorge-adressepunkt for Platous gate 18, etter separat avklaring av den isolerte Platous gate 10-feiloppføringen. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 27.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -340,16 +340,17 @@ Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fy
 
 Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk place fordi Loelva er dokumentert som historisk/alternativt navn på `alnaelva`, ikke som et eget vassdrag. Navnehistorien er bevart som en eksplisitt `historical_alias`-relasjon på canonical Alnaelva, aktive referanser er retargetet og den separate Civication-markøren er fjernet. Alnaelvas koordinatstatus er fortsatt `needs_source`; migreringen verifiserer ikke den uavklarte elvegeometrien.
 
+Protokollsynk (2026-07-21): stale needs_review-rader ble fjernet bare når både dagens canonical runtime-index og koordinat-evidensen dokumenterer en godkjent koordinatstatus. Fjernet: `nybrua_vaterlandsparken`, `grensen_kjopesenter`. Synken endrer ingen koordinater.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 213 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 237 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
 | `elvestrekning_bla_brenneriveien` – Elvestrekning ved Blå (Brenneriveien) | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
 | `fossveien_elvestrekning` – Fossveien – elvestrekning | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
 | `hausmannsomradet_elvelop` – Hausmannsområdet (elveløp) | needs_review | Bredt elveløp uten stabil fysisk avgrensning i recorden; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
-| `nybrua_vaterlandsparken` – Nybrua / Vaterlandsparken | needs_review | Recorden kombinerer Nybrua og Vaterlandsparken, to separate fysiske objekter, mens dagens punkt ligger på et tredje objekt. | Splitt recorden eller velg én canonical fysisk identitet før koordinat godkjennes. |
 | `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
 | `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
 | `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
@@ -369,7 +370,6 @@ Disse kontrollene er fullført, men teller ikke blant de 213 verifiserte eller k
 | `ulven_handelspark` – Ulven handelspark | needs_review | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
 | `akershus_energi` – Akershus Energi Varme | needs_review | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
 | `sagene_kvernhus` – Sagene mølle og kvernhus | needs_review | Recorden kombinerer flere mølle-, sagbruks- og industriidentiteter langs Akerselva uten ett entydig fysisk anlegg; Hjula er allerede representert av `ovre_foss`. | Avgrens til ett dokumentert fysisk anlegg eller modeller industrimiljøet som område/relasjon med flere ankere. |
-| `grensen_kjopesenter` – Grensen – handelens sentrum | needs_review | ID/type antyder kjøpesenter/knutepunkt, mens navn, tekst og kilder beskriver den lineære gaten Grensen. Ett punkt uten traségeometri/ankre kan ikke verifisere hele gata. | Normaliser til gate og legg inn kildebelagte endepunkter/traségeometri før koordinaten godkjennes. |
 | `frysja_industriomrade` – Frysja industriområde | needs_review | Området er reelt, men dagens legacy `verified`-punkt bygger på `manual_map_check` og mangler kildebelagt områdegeometri eller flere area-ankre. | Hent offisiell plan-/områdegeometri eller dokumenterte area-ankre før verified-status kan forsvares. |
 | `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
 | `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
@@ -439,16 +439,3 @@ Batch 70 (2026-07-20) produserer `toyen_hovedgard` som eget historisk hovedgård
 Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhistorisk museumssted. Den generelle adressen Tøyengata 38 ga flere uentydige Geonorge-treff, mens Oslo Museum og Oslo byleksikon identifiserer leiligheten i Tøyengata 38B; den presise address-first-kjøringen ga ett tydelig offisielt punkt. Recorden representerer den bevarte museumsleiligheten inne i Gråbein-komplekset, ikke hele leiegårdskomplekset eller Tøyen som område.
 
 Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`. Den opprinnelige produksjonsmergen plasserte Ekeberg-raden nederst i Etne-tabellen, mens senere Oslo-batcher fortsatte å bruke den ordinære Oslo-tabellen. Denne reparasjonen fjerner den feilplasserte raden og den gamle produksjonsteksten og registrerer Ekeberg i riktig Oslo-tabell på neste ledige batch etter siste synkroniserte `main`. Canonical place, runtime-identitet, coordinate evidence og den Riksantikvaren-verifiserte geometrien `kulturminnesok:41907` endres ikke, og Oslo-totalen forblir 224.
-
-
-## Vestland – Etne
-
-| batch | placeId | navn | godkjent status | kildeobjekt |
-|---:|---|---|---|---|
-| 1 | `langebudalen_naturreservat` | Langebudalen naturreservat | verified_geometry | `miljodirektoratet-naturvern:VV00001065` |
-
-Etne batch 1 (2026-07-20) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Representasjonspunktet ligger inne i polygonet og er ikke et tilgangs- eller parkeringspunkt.
-
-| 2 | `saevareidberget_landskapsvernomrade` | Sævareidberget landskapsvernområde | verified_geometry | `miljodirektoratet-naturvern:VV00001587` |
-
-Etne batch 2 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Punktet er et representativt arealanker og ikke en anbefalt inngang i det bratte styvingsfeltet.
