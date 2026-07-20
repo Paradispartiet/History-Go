@@ -82,9 +82,7 @@ def test_social_meet_me_returns_private_current_user_state() -> None:
     assert "authSubject" not in payload
 
 
-def test_profile_update_rejects_forbidden_nested_privacy_fields_before_service() -> (
-    None
-):
+def test_profile_update_rejects_forbidden_nested_privacy_fields_before_service() -> None:
     client, service = _client()
 
     response = client.put(
@@ -199,9 +197,7 @@ def _public_profile(profile_id: UUID) -> PublicSocialMeetProfile:
         interest_places=[],
         learning_goals=[],
         knowledge_badges=[],
-        knowledge_fingerprint_summary=KnowledgeFingerprint(
-            theme_tags=["industrial_history"]
-        ),
+        knowledge_fingerprint_summary=KnowledgeFingerprint(theme_tags=["industrial_history"]),
         profile_visibility=ProfileVisibility.DISCOVERABLE,
         profile_updated_at=datetime(2026, 7, 20, 12, 0, tzinfo=UTC),
     )
