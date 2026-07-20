@@ -1,0 +1,112 @@
+{
+  "version": "2026-07-20",
+  "source_pass": "oslo_museum_visitor_completeness",
+  "status": "coordinate_intake_pending",
+  "counts": {
+    "standard_address_first": 14,
+    "special_review": 4,
+    "total": 18
+  },
+  "standard_address_first": [
+    {
+      "placeId": "norsk_folkemuseum",
+      "addressQuery": "Museumsveien 10 Oslo",
+      "expectedAddress": {"street": "Museumsveien", "number": "10", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "norsk_maritimt_museum",
+      "addressQuery": "Bygdøynesveien 37 Oslo",
+      "expectedAddress": {"street": "Bygdøynesveien", "number": "37", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "historisk_museum",
+      "addressQuery": "Frederiks gate 2 Oslo",
+      "expectedAddress": {"street": "Frederiks gate", "number": "2", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "frogner_hovedgard",
+      "addressQuery": "Halvdan Svartes gate 58 Oslo",
+      "expectedAddress": {"street": "Halvdan Svartes gate", "number": "58", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "arbeidermuseet",
+      "addressQuery": "Sagveien 28 Oslo",
+      "expectedAddress": {"street": "Sagveien", "number": "28", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "nobels_fredssenter",
+      "addressQuery": "Brynjulf Bulls plass 1 Oslo",
+      "expectedAddress": {"street": "Brynjulf Bulls plass", "number": "1", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "kunstnernes_hus",
+      "addressQuery": "Wergelandsveien 17 Oslo",
+      "expectedAddress": {"street": "Wergelandsveien", "number": "17", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "vigelandmuseet",
+      "addressQuery": "Nobels gate 32 Oslo",
+      "expectedAddress": {"street": "Nobels gate", "number": "32", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "mollergata_skole",
+      "addressQuery": "Møllergata 49 Oslo",
+      "expectedAddress": {"street": "Møllergata", "number": "49", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "jodisk_museum_oslo",
+      "addressQuery": "Calmeyers gate 15B Oslo",
+      "expectedAddress": {"street": "Calmeyers gate", "number": "15", "letter": "B", "city": "Oslo", "country": "NO"},
+      "statusFlags": ["temporarily_closed", "renovation", "estimated_reopening_autumn_2028"]
+    },
+    {
+      "placeId": "det_internasjonale_barnekunstmuseet",
+      "addressQuery": "Lille Frøens vei 4 Oslo",
+      "expectedAddress": {"street": "Lille Frøens vei", "number": "4", "city": "Oslo", "country": "NO"},
+      "statusFlags": ["ordinary_opening_suspended", "reopening_uncertain"]
+    },
+    {
+      "placeId": "tbs_gallery",
+      "addressQuery": "Oscars gate 23 Oslo",
+      "expectedAddress": {"street": "Oscars gate", "number": "23", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "viking_planet_oslo",
+      "addressQuery": "Fridtjof Nansens plass 4 Oslo",
+      "expectedAddress": {"street": "Fridtjof Nansens plass", "number": "4", "city": "Oslo", "country": "NO"}
+    },
+    {
+      "placeId": "the_salmon_vitensenter",
+      "addressQuery": "Strandpromenaden 11 Oslo",
+      "expectedAddress": {"street": "Strandpromenaden", "number": "11", "city": "Oslo", "country": "NO"}
+    }
+  ],
+  "special_review": [
+    {
+      "placeId": "ibsen_museum_teater",
+      "reviewType": "entrance_vs_historic_site",
+      "currentVisitorAddress": "Henrik Ibsens gate 26 Oslo",
+      "historicSiteAddress": "Arbins gate 1 Oslo",
+      "forbiddenShortcut": "Do not choose a display marker until the entrance/historic-site relationship is documented."
+    },
+    {
+      "placeId": "norges_hjemmefrontmuseum",
+      "reviewType": "internal_fortress_building",
+      "officialLocation": "Akershus festning, building 21",
+      "forbiddenShortcut": "Do not reuse the broad akershus_festning marker."
+    },
+    {
+      "placeId": "forsvarsmuseet",
+      "reviewType": "internal_fortress_building",
+      "officialLocation": "Akershus festning, building 62",
+      "forbiddenShortcut": "Do not reuse the broad akershus_festning marker."
+    },
+    {
+      "placeId": "roseslottet",
+      "reviewType": "site_or_entrance_anchor",
+      "officialLocationDescription": "Entrance near Frognerseteren T-banestasjon",
+      "statusFlags": ["time_limited", "current_plan_through_end_2026"],
+      "forbiddenShortcut": "Do not reuse the Frognerseteren station coordinate merely because it is nearby."
+    }
+  ]
+}
