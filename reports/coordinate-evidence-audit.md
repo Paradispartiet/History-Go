@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T20:28:33.242Z
+Generert: 2026-07-20T20:32:55.572Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -212,3 +212,4 @@ Generert: 2026-07-20T20:28:33.242Z
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | valerenga_kirke | data/coordinate-evidence/oslo/historie/valerenga_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kunsthall_oslo | data/coordinate-evidence/oslo/kunst/kunsthall_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
