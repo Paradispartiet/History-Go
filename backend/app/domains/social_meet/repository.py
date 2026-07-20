@@ -46,6 +46,8 @@ class SocialMeetIdentityRepository(Protocol):
         consented_at: datetime | None,
     ) -> SocialMeetProfileRecord: ...
 
+    def get_profile_by_public_id(self, profile_id: UUID) -> SocialMeetProfileRecord | None: ...
+
     def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None: ...
 
     def unpublish(self, auth_user_id: UUID) -> SocialMeetProfileRecord: ...
@@ -147,6 +149,24 @@ class PostgresSocialMeetIdentityRepository:
                 .one()
             )
         return _map_record(row)
+
+    def get_profile_by_public_id(self, profile_id: UUID) -> SocialMeetProfileRecord | None:
+        with self._database.engine.connect() as connection:
+            row = (
+                connection.execute(
+                    text(
+                        f"""
+                    select {_PROFILE_COLUMNS}
+                    from public.hg_profiles
+                    where profile_id = :profile_id
+                    """
+                    ),
+                    {"profile_id": profile_id},
+                )
+                .mappings()
+                .one_or_none()
+            )
+        return _map_record(row) if row is not None else None
 
     def get_discoverable_profile(self, profile_id: UUID) -> SocialMeetProfileRecord | None:
         with self._database.engine.connect() as connection:
