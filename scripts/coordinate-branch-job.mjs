@@ -18,12 +18,12 @@ const replacements = [
     'Oslo-tabellen inneholder nå 203 verifiserte eller kildekontrollerte canonical steder. Batch 56 legger til Brannmuseet i Oslo i den tidligere Grønland brannstasjon på det verifiserte Grønlandsleiret 32-punktet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.'
   ],
   [
-    'Disse kontrollene er fullført, men teller ikke blant de 201 verifiserte eller kildekontrollerte canonical Oslo-stedene.',
-    'Disse kontrollene er fullført, men teller ikke blant de 202 verifiserte eller kildekontrollerte canonical Oslo-stedene.'
-  ],
-  [
     'Disse kontrollene er fullført, men teller ikke blant de 202 verifiserte eller kildekontrollerte canonical Oslo-stedene.',
     'Disse kontrollene er fullført, men teller ikke blant de 203 verifiserte eller kildekontrollerte canonical Oslo-stedene.'
+  ],
+  [
+    'Disse kontrollene er fullført, men teller ikke blant de 201 verifiserte eller kildekontrollerte canonical Oslo-stedene.',
+    'Disse kontrollene er fullført, men teller ikke blant de 202 verifiserte eller kildekontrollerte canonical Oslo-stedene.'
   ]
 ];
 
