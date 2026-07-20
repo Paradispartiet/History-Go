@@ -41,36 +41,48 @@ const SOURCE_MAPPED_ENTRIES = [
 ];
 
 // Startup-runtimes that are still loaded from legacy script paths. They are
-// authored in TypeScript and built to dist/web; the compatibility plugin copies
-// the exact generated bundle to the old URL until app.js itself is migrated.
+// authored in TypeScript and built to dist/web; compatibility outputs keep the
+// old URLs valid until app.js itself becomes a TypeScript entrypoint.
 const STARTUP_ENTRIES = [
   { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
   { in: "js/core/categories.ts", out: "categories" },
   { in: "js/core/layerManager.ts", out: "layerManager" }
 ];
 
-const RUNTIME_COMPATIBILITY_OUTPUTS = [
+// The position runtime bundles several focused modules behind one legacy global
+// API. Minifying this compatibility bundle keeps the static startup payload small.
+const COMPACT_STARTUP_ENTRIES = [
+  { in: "js/core/pos.ts", out: "pos" }
+];
+
+const STARTUP_COMPATIBILITY_OUTPUTS = [
   { out: "categories", target: "js/core/categories.js" },
   { out: "layerManager", target: "js/core/layerManager.js" }
 ];
 
-const compatibilityOutputPlugin = {
-  name: "history-go-runtime-compatibility-outputs",
-  setup(esbuild) {
-    esbuild.onEnd(async (result) => {
-      if (result.errors.length) return;
-      await Promise.all(
-        RUNTIME_COMPATIBILITY_OUTPUTS.map(({ out, target }) =>
-          copyFile(path.join(OUT_DIR, `${out}.js`), path.join(ROOT, target))
-        )
-      );
-    });
-  }
-};
+const COMPACT_COMPATIBILITY_OUTPUTS = [
+  { out: "pos", target: "js/core/pos.js" }
+];
+
+function compatibilityOutputPlugin(name, outputs) {
+  return {
+    name,
+    setup(esbuild) {
+      esbuild.onEnd(async (result) => {
+        if (result.errors.length) return;
+        await Promise.all(
+          outputs.map(({ out, target }) =>
+            copyFile(path.join(OUT_DIR, `${out}.js`), path.join(ROOT, target))
+          )
+        );
+      });
+    }
+  };
+}
 
 const watch = process.argv.includes("--watch");
 
-function buildOptions(entries, sourcemap, plugins = []) {
+function buildOptions(entries, { sourcemap = false, minify = false, plugins = [] } = {}) {
   return {
     entryPoints: entries.map((entry) => ({
       in: path.join(ROOT, entry.in),
@@ -82,32 +94,48 @@ function buildOptions(entries, sourcemap, plugins = []) {
     target: ["es2019"],
     platform: "browser",
     sourcemap,
+    minify,
     plugins,
     logLevel: "info"
   };
 }
 
 async function run() {
-  const mappedOptions = buildOptions(SOURCE_MAPPED_ENTRIES, true);
-  const startupOptions = buildOptions(STARTUP_ENTRIES, false, [compatibilityOutputPlugin]);
+  const mappedOptions = buildOptions(SOURCE_MAPPED_ENTRIES, { sourcemap: true });
+  const startupOptions = buildOptions(STARTUP_ENTRIES, {
+    plugins: [compatibilityOutputPlugin(
+      "history-go-startup-compatibility-outputs",
+      STARTUP_COMPATIBILITY_OUTPUTS
+    )]
+  });
+  const compactStartupOptions = buildOptions(COMPACT_STARTUP_ENTRIES, {
+    minify: true,
+    plugins: [compatibilityOutputPlugin(
+      "history-go-compact-startup-compatibility-outputs",
+      COMPACT_COMPATIBILITY_OUTPUTS
+    )]
+  });
 
   if (watch) {
     const { context } = await import("esbuild");
-    const [mappedContext, startupContext] = await Promise.all([
+    const [mappedContext, startupContext, compactStartupContext] = await Promise.all([
       context(mappedOptions),
-      context(startupOptions)
+      context(startupOptions),
+      context(compactStartupOptions)
     ]);
     await Promise.all([
       mappedContext.watch(),
-      startupContext.watch()
+      startupContext.watch(),
+      compactStartupContext.watch()
     ]);
-    console.log(`[build:web] watching ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length} entry/entries -> dist/web`);
+    console.log(`[build:web] watching ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length + COMPACT_STARTUP_ENTRIES.length} entry/entries -> dist/web`);
     return;
   }
 
   await build(mappedOptions);
   await build(startupOptions);
-  console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length} entry/entries -> dist/web`);
+  await build(compactStartupOptions);
+  console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length + COMPACT_STARTUP_ENTRIES.length} entry/entries -> dist/web`);
 }
 
 run().catch((err) => {
