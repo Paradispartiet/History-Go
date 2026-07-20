@@ -4,19 +4,20 @@
 -- This migration adds server-owned safety persistence around the existing
 -- hg_profiles and hg_spotmeeting_invites models. It deliberately introduces no
 -- location, presence, nearby, follower/feed or free-chat data.
-
--- Foreign keys to the nullable public profile id require a non-partial unique
--- index. PostgreSQL unique indexes still permit multiple NULL values.
-create unique index if not exists hg_profiles_profile_id_full_uidx
-  on public.hg_profiles (profile_id);
+--
+-- Safety records intentionally retain opaque profile UUIDs without foreign keys
+-- to hg_profiles. hg_profiles is tied to auth.users with ON DELETE CASCADE, while
+-- blocks/reports/audit may need safety or legal retention after profile deletion.
+-- The retained UUIDs are identifiers only and must resolve to safe tombstones in
+-- future participant/export APIs when the original public profile no longer exists.
 
 -- ---------------------------------------------------------------------------
 -- Private user-created blocks
 -- ---------------------------------------------------------------------------
 create table if not exists public.hg_social_meet_blocks (
   id                   uuid primary key default gen_random_uuid(),
-  blocker_profile_id   uuid not null references public.hg_profiles (profile_id) on delete cascade,
-  blocked_profile_id   uuid not null references public.hg_profiles (profile_id) on delete cascade,
+  blocker_profile_id   uuid not null,
+  blocked_profile_id   uuid not null,
   scope                text not null default 'social_meet',
   related_invite_id    uuid references public.hg_spotmeeting_invites (id) on delete set null,
   related_context      jsonb,
@@ -58,6 +59,10 @@ create index if not exists hg_social_meet_blocks_blocker_created_idx
 
 comment on table public.hg_social_meet_blocks is
   'Private Social Meet safety blocks. Never expose a block as a public profile field or notify the blocked profile with blocker identity.';
+comment on column public.hg_social_meet_blocks.blocker_profile_id is
+  'Opaque retained public-profile id. No FK by design because safety retention may outlive hg_profiles deletion.';
+comment on column public.hg_social_meet_blocks.blocked_profile_id is
+  'Opaque retained public-profile id. No FK by design because safety retention may outlive hg_profiles deletion.';
 comment on column public.hg_social_meet_blocks.related_context is
   'Optional backend-sanitized History Go context. Must never contain GPS, live location, nearby, presence, visit history or free-chat content.';
 
@@ -66,8 +71,8 @@ comment on column public.hg_social_meet_blocks.related_context is
 -- ---------------------------------------------------------------------------
 create table if not exists public.hg_social_meet_reports (
   id                    uuid primary key default gen_random_uuid(),
-  reporter_profile_id   uuid not null references public.hg_profiles (profile_id) on delete restrict,
-  reported_profile_id   uuid not null references public.hg_profiles (profile_id) on delete restrict,
+  reporter_profile_id   uuid not null,
+  reported_profile_id   uuid not null,
   related_invite_id     uuid references public.hg_spotmeeting_invites (id) on delete set null,
   related_context       jsonb,
   reason_code           text not null,
@@ -114,6 +119,10 @@ create index if not exists hg_social_meet_reports_reported_status_idx
 
 comment on table public.hg_social_meet_reports is
   'Confidential Social Meet safety reports. Reporter identity and moderation details must never be returned to the reported profile.';
+comment on column public.hg_social_meet_reports.reporter_profile_id is
+  'Opaque retained profile id. Kept without hg_profiles FK so safety retention does not block account deletion.';
+comment on column public.hg_social_meet_reports.reported_profile_id is
+  'Opaque retained profile id. Kept without hg_profiles FK so safety retention does not block account deletion.';
 comment on column public.hg_social_meet_reports.related_context is
   'Optional backend-sanitized History Go context. No location telemetry, presence, visit history or free-chat content.';
 
@@ -124,8 +133,8 @@ comment on column public.hg_social_meet_reports.related_context is
 create table if not exists public.hg_social_meet_moderation_queue (
   id                    uuid primary key default gen_random_uuid(),
   report_id             uuid unique references public.hg_social_meet_reports (id) on delete cascade,
-  subject_profile_id    uuid not null references public.hg_profiles (profile_id) on delete restrict,
-  reporter_profile_id   uuid references public.hg_profiles (profile_id) on delete restrict,
+  subject_profile_id    uuid not null,
+  reporter_profile_id   uuid,
   related_invite_id     uuid references public.hg_spotmeeting_invites (id) on delete set null,
   related_context       jsonb,
   priority              text not null default 'normal',
@@ -171,8 +180,8 @@ comment on table public.hg_social_meet_moderation_queue is
 create table if not exists public.hg_social_meet_safety_audit (
   id                   uuid primary key default gen_random_uuid(),
   actor_type           text not null,
-  actor_profile_id     uuid references public.hg_profiles (profile_id) on delete set null,
-  target_profile_id    uuid references public.hg_profiles (profile_id) on delete set null,
+  actor_profile_id     uuid,
+  target_profile_id    uuid,
   action_type          text not null,
   related_block_id     uuid references public.hg_social_meet_blocks (id) on delete set null,
   related_report_id    uuid references public.hg_social_meet_reports (id) on delete set null,
