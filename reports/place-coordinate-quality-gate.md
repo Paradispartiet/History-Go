@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T14:30:28.937Z
+Generert: 2026-07-20T14:49:22.982Z
 
 ## Oppsummering
-- Aktive filer validert: **536**
+- Aktive filer validert: **537**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **426**
@@ -554,6 +554,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/oslo/places_vitenskap/klimahuset.json
 - data/places/kunst/oslo/places_kunst/fotografiens_hus.json
 - data/places/historie/oslo/places_historie/christian_radich.json
+- data/places/historie/oslo/places_historie/central_jam_e_mosque.json
 
 ## Harde feil
 - Ingen
