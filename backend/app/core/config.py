@@ -42,6 +42,20 @@ class Settings(BaseSettings):
     spotmeeting_discovery_max_candidates: int = Field(default=20, ge=1, le=50)
     spotmeeting_discovery_stale_after_seconds: int = Field(default=300, ge=30, le=3600)
 
+    # Social Meet retention defaults are operational policy inputs, not a legal
+    # determination. Production apply remains fail-closed until explicitly enabled.
+    social_meet_retention_apply_enabled: bool = False
+    social_meet_retention_terminal_invite_days: int = Field(default=180, ge=30, le=3650)
+    social_meet_retention_removed_block_days: int = Field(default=180, ge=30, le=3650)
+    social_meet_retention_closed_report_days: int = Field(default=730, ge=90, le=3650)
+    social_meet_retention_closed_moderation_days: int = Field(default=730, ge=90, le=3650)
+    social_meet_retention_inactive_restriction_days: int = Field(
+        default=730, ge=90, le=3650
+    )
+    social_meet_retention_closed_appeal_days: int = Field(default=365, ge=90, le=3650)
+    social_meet_retention_safety_audit_days: int = Field(default=1095, ge=180, le=3650)
+    social_meet_retention_released_hold_days: int = Field(default=365, ge=30, le=3650)
+
     request_timeout_seconds: float = Field(default=10.0, gt=0.0, le=60.0)
 
     @property
@@ -74,8 +88,12 @@ class Settings(BaseSettings):
     def spotmeeting_invite_writes_allowed(self) -> bool:
         return not self.is_production or self.spotmeeting_invite_writes_enabled
 
+    def social_meet_retention_apply_allowed(self) -> bool:
+        return not self.is_production or self.social_meet_retention_apply_enabled
+
 
 @lru_cache
 def get_settings() -> Settings:
     """Load and cache process configuration once per interpreter."""
+
     return Settings()
