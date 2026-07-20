@@ -56,22 +56,6 @@ function categoryNameForBadgeFilter() {
   return c?.name || id;
 }
 
-function personMatchesActiveBadge(person, placesById) {
-  if (!isLeftBadgeFilterActive()) return true;
-  if (!person) return false;
-
-  if (String(person.category || "").trim() === String(getActiveLeftBadgeFilter()).trim()) return true;
-
-  const ids = new Set();
-  if (person.placeId) ids.add(String(person.placeId).trim());
-  if (Array.isArray(person.places)) person.places.forEach(id => ids.add(String(id || "").trim()));
-
-  for (const id of ids) {
-    if (placeMatchesActiveBadge(placesById.get(id))) return true;
-  }
-
-  return false;
-}
 
 function renderBadgeFilterEmpty(listEl, noun) {
   const label = categoryNameForBadgeFilter();
@@ -82,106 +66,6 @@ function renderBadgeFilterEmpty(listEl, noun) {
       <div class="hg-empty-guide-text">${escapeHTML(tfUI("ui.filter.noMatchesForBadge", "Ingen {noun} passer med badgefilteret {label}. Trykk badgeknappen for å velge et annet badge eller alle.", { noun, label }))}</div>
     </div>
   `;
-}
-
-function renderNearbyPeople() {
-  const listEl = document.getElementById("leftPeopleList");
-  if (!listEl) return;
-
-  const PEOPLE = window.PEOPLE || [];
-  const PLACES = window.PLACES || [];
-  const visited = window.visited || {};
-  const REL = window.REL_BY_PLACE || {};
-
-  listEl.innerHTML = "";
-
-  if (!PEOPLE.length) {
-    listEl.innerHTML = `
-      <div class="hg-empty-guide">
-        <div class="hg-empty-guide-icon">👤</div>
-        <div class="hg-empty-guide-title">${tUI("ui.people.loading", "Folk lastes inn")}</div>
-        <div class="hg-empty-guide-text">${tUI("ui.people.loadingText", "Personene som hører til Oslo lastes nå.")}</div>
-      </div>
-    `;
-    return;
-  }
-
-  const visitedPlaceIds = Object.keys(visited).filter(id => visited[id]);
-  const visitedRelatedIds = new Set();
-  visitedPlaceIds.forEach(pid => {
-    (REL[pid] || []).forEach(r => { if (r.person) visitedRelatedIds.add(r.person); });
-  });
-
-  const pos = window.getPos?.();
-  const placesById = new Map(PLACES.map(p => [String(p.id || "").trim(), p]));
-
-  function distanceForPerson(person) {
-    const placeIds = new Set();
-    if (person.placeId) placeIds.add(person.placeId);
-    (person.places || []).forEach(p => placeIds.add(p));
-    if (!placeIds.size || !pos || !window.distMeters) return Infinity;
-    let min = Infinity;
-    for (const pid of placeIds) {
-      const p = placesById.get(pid);
-      if (!p || !Number.isFinite(p.lat) || !Number.isFinite(p.lon)) continue;
-      const d = window.distMeters(pos, { lat: p.lat, lon: p.lon });
-      if (Number.isFinite(d) && d < min) min = d;
-    }
-    return min;
-  }
-
-  let decorated = PEOPLE.map(person => ({
-    person,
-    isVisited: visitedRelatedIds.has(person.id),
-    dist: distanceForPerson(person)
-  }));
-
-  if (isLeftBadgeFilterActive()) {
-    decorated = decorated.filter(({ person }) => personMatchesActiveBadge(person, placesById));
-  }
-
-  if (!decorated.length) {
-    renderBadgeFilterEmpty(listEl, tUI("ui.noun.people", "personer"));
-    return;
-  }
-
-  decorated.sort((a, b) => {
-    if (a.isVisited !== b.isVisited) return a.isVisited ? -1 : 1;
-    if (a.dist !== b.dist) return a.dist - b.dist;
-    return String(a.person.name || "").localeCompare(String(b.person.name || ""), "nb");
-  });
-
-  decorated.forEach(({ person, isVisited, dist }) => {
-    const img = person.cardImage || person.image || "";
-    const distText = Number.isFinite(dist) ? `${Math.round(dist)} m` : "";
-
-    const item = document.createElement("div");
-    item.className = "nearby-item" + (isVisited ? " is-visited" : "");
-    item.dataset.personId = String(person.id || "").trim();
-
-    const thumb = img
-      ? `<img class="nearby-thumb" src="${img}" alt="${person.name || ""}"
-              onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'nearby-thumb nearby-thumb-icon',textContent:'👤'}))">`
-      : `<div class="nearby-thumb nearby-thumb-icon">👤</div>`;
-
-    item.innerHTML = `
-      <div class="nearby-thumbWrap">${thumb}</div>
-      <div class="nearby-content">
-        <div class="nearby-title">${person.name || ""}</div>
-        ${distText || isVisited ? `<div class="nearby-meta">${distText}${isVisited ? " · ✔" : ""}</div>` : ""}
-      </div>
-    `;
-
-    item.addEventListener("click", () => {
-      if (typeof window.showPersonPopup === "function") {
-        window.showPersonPopup(person);
-      } else if (typeof window.openPersonCard === "function") {
-        window.openPersonCard(person);
-      }
-    });
-
-    listEl.appendChild(item);
-  });
 }
 
 // ============================================================
@@ -496,7 +380,6 @@ function renderCollection() {
   });
 }
 
-window.renderNearbyPeople = renderNearbyPeople;
 window.renderNearbyNature = renderNearbyNature;
 window.renderCollection = renderCollection;
 

@@ -129,6 +129,10 @@ declare global {
       render?: () => void;
     };
     renderNearbyPlaces?: () => void;
+    HGNearbyPeopleList?: {
+      render?: () => void;
+    };
+    renderNearbyPeople?: () => void;
     HGLeftPanelMode?: {
       getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
       setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
