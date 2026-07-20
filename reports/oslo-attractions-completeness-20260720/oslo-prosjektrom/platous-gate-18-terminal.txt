@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Platous gate 18 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Platous gate 18 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Platous%20gate%2018%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+  "coordinate": {
+    "lat": 59.91112080426534,
+    "lon": 10.76528983153175,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+    "address": {
+      "street": "Platous gate",
+      "number": "18",
+      "postcode": "0190",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Platous gate 18, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Platous gate",
+    "adressetekst": "Platous gate 18",
+    "adressetilleggsnavn": null,
+    "adressekode": 15684,
+    "nummer": 18,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 230,
+    "bruksnummer": 264,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0190",
+    "adressetekstutenadressetilleggsnavn": "Platous gate 18",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91112080426534,
+      "lon": 10.76528983153175
+    },
+    "oppdateringsdato": "2020-06-15T18:03:03"
+  }
+}
