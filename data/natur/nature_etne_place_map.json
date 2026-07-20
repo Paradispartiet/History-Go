@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "0.6.0",
+    "version": "0.7.0",
     "purpose": "Kildekontrollert artskobling for Etne-steder. Kartet viser bare arter som er eksplisitt dokumentert for stedet eller vassdraget; Artskart-utvidelser skal kurateres separat.",
     "updatedAt": "2026-07-21",
     "sources": [
@@ -15,7 +15,9 @@
       "https://lovdata.no/forskrift/2000-10-13-1022",
       "https://www.etne.kommune.no/naring-natur-og-miljo/natur-og-miljovern/naturforvaltning/",
       "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/FeatureServer/0",
-      "https://lovdata.no/dokument/LF/forskrift/1984-11-23-1913"
+      "https://lovdata.no/dokument/LF/forskrift/1984-11-23-1913",
+      "https://lovdata.no/dokument/LF/forskrift/1987-04-03-246",
+      "https://artskart.artsdatabanken.no/publicapi/api/observations/list/"
     ]
   },
   "places": {
@@ -96,6 +98,20 @@
         "emne_ved_lind"
       ],
       "documentation": "Kringom beskriver mange hundre gamle, mosegrodde og forvridde styvingstrær av ask, alm og lind ved Sævareidberget. Lovdata dokumenterer et kulturpåvirket edellauvskogområde på om lag 250 dekar, vernet som referanseområde for tradisjonelle driftsformer."
+    },
+    "brattholmen_naturreservat_etne": {
+      "fauna": [
+        "emne_fauna_tjeld",
+        "emne_fauna_graagas",
+        "emne_fauna_graahegre",
+        "emne_fauna_graamaake",
+        "emne_fauna_svartbak",
+        "emne_fauna_makrellterne"
+      ],
+      "flora": [],
+      "documentation": "Lovdata dokumenterer Brattholmen som en viktig hekkelokalitet for sjøfugl med ferdselsforbud 15. april–31. juli. Artslistene er automatisk avgrenset til presise Artskart-observasjoner fra år 2000 eller senere innenfor Miljødirektoratets offisielle reservatpolygon, og bare arter med eksisterende kanoniske History GO-kort publiseres direkte.",
+      "species_audit": "reports/etne-natur-batch-4-brattholmen-artskart.json",
+      "unmatched_taxa_count": 1
     }
   }
 }
