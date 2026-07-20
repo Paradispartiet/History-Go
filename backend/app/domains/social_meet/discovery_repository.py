@@ -289,7 +289,9 @@ def _map_ranked_candidate(row: RowMapping) -> RankedDiscoveryCandidate:
             reasons.append(reason)
 
     raw_fingerprint = row.get("knowledge_fingerprint_summary") or {}
-    fingerprint = json.loads(raw_fingerprint) if isinstance(raw_fingerprint, str) else raw_fingerprint
+    fingerprint = (
+        json.loads(raw_fingerprint) if isinstance(raw_fingerprint, str) else raw_fingerprint
+    )
     return RankedDiscoveryCandidate(
         profile=DiscoveryProfileRecord(
             profile_id=cast(UUID, row["profile_id"]),
