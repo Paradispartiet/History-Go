@@ -1,23 +1,38 @@
 # History GO — TypeScript-first policy
 
-Dette dokumentet er den overordnede kodepolicyen for nye og vesentlig endrede programmoduler i History GO.
+Status: **Normativ språk- og CI-policy for klientkode og Node-verktøy.**
 
-Den eksisterende migreringshistorikken i `TYPESCRIPT_MIGRATION.md` og den operative strangler-planen i `docs/typescript-migration-plan.md` beskriver **hvordan** kode flyttes stegvis. Dette dokumentet beskriver **hvilken retning som gjelder nå**.
+Den overordnede tekniske målarkitekturen ligger i `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md` og har høyere prioritet ved konflikt.
+
+Denne policyen beskriver hvordan History GO sin **browser/app-klient**, eksisterende JavaScript og repoets Node-baserte scripts/tools skal utvikles. Den gjelder ikke som språkvalg for produksjonsbackenden.
+
+---
 
 ## Beslutning
 
-History GO er et **TypeScript-first prosjekt**.
+History GO er **TypeScript-first på klienten og i Node-tooling**.
 
-Det betyr:
+Produksjonsbackenden skal følge den separate canonical beslutningen:
 
-- Ny programlogikk skal som hovedregel skrives i TypeScript.
-- Nye browsermoduler skal opprettes som `.ts` og bygges gjennom den etablerte esbuild-pipelinen.
-- Nye Node-verktøy og scripts skal skrives i `.ts` eller `.mts`.
+- **Klient/browser/app:** TypeScript.
+- **Produksjonsbackend/server/API:** Python + FastAPI.
+- **Node scripts/tools:** TypeScript (`.ts`/`.mts`).
+- **Database:** PostgreSQL.
+- **Redaksjonelt canonical innhold:** eksisterende JSON/dataformater.
+- **HTML/CSS:** beholdes som presentasjonsformater der de eier ansvaret.
+
+Det betyr for denne policyens kodeflate:
+
+- Ny browser-/app-logikk skal som hovedregel skrives i TypeScript.
+- Nye browsermoduler skal opprettes som `.ts` og bygges gjennom den etablerte esbuild-pipelinen så lenge strangler-migreringen pågår.
+- Nye Node-verktøy og automatiseringsscripts skal skrives i `.ts` eller `.mts`.
 - Eksisterende JavaScript er legacy-kode som kan leve videre mens den gradvis migreres.
-- JSON for places, people, quiz, pensum og annet innhold forblir datafiler og skal ikke gjøres om til TypeScript bare for språkets skyld.
-- HTML og CSS forblir HTML og CSS.
+- JSON for places, people, quiz, pensum og annet innhold skal ikke gjøres om til TypeScript bare for språkets skyld.
+- Ny server-/API-logikk skal ikke legges i Node/TypeScript uten en eksplisitt arkitekturendring; målarkitekturen for backend er Python/FastAPI.
 
-TypeScript er det profesjonelle standardspråket for programkoden i repoet. Målet er ikke å bytte til et annet språk, men å få en tydeligere, mer typesikker og mer vedlikeholdbar kodebase.
+TypeScript er dermed det profesjonelle standardspråket for klientprogramkode og repoets Node-tooling, ikke for absolutt all kode i hele plattformen.
+
+---
 
 ## Viktig skille: moderne kode og legacy-baseline
 
@@ -27,25 +42,30 @@ Derfor gjelder følgende prinsipp:
 
 > En ny eller endret modul skal holdes til den kvalitetsstandarden den selv tilhører. Historisk typegjeld i urelatert legacy-JavaScript skal ikke være en permanent, generell portvakt for alle fremtidige PR-er.
 
-Dette betyr ikke at kvalitetssjekker skal fjernes. Det betyr at CI skal skille mellom:
+CI skal skille mellom:
 
-1. **Moderne TypeScript-kode som må være grønn.**
-2. **Bygg og genererte artefakter som må være i sync.**
-3. **Målrettede data- og domenekontroller som må være grønne når de berørte områdene endres.**
-4. **Legacy-baseline som skal overvåkes og forbedres, men ikke automatisk blokkere enhver urelatert endring på grunn av eksisterende gjeld.**
+1. Moderne TypeScript-kode som må være grønn.
+2. Bygg og genererte artefakter som må være i sync.
+3. Målrettede data- og domenekontroller som må være grønne når de berørte områdene endres.
+4. Legacy-baseline som skal overvåkes og forbedres, men ikke automatisk blokkere enhver urelatert endring på grunn av eksisterende gjeld.
+5. Framtidig Python-backend, som skal få egne Python-kvalitetsporter når `backend/` etableres.
 
-## Regler for ny kode
+---
 
-### Browserkode
+## Regler for ny klientkode
+
+### Browser/app-kode
 
 Ny browserlogikk skal som hovedregel:
 
 - skrives i TypeScript,
-- registreres i `build/build-web.mjs` når den er et eget migrert entrypoint,
+- registreres i `build/build-web.mjs` når den er et eget migrert entrypoint i dagens strangler-arkitektur,
 - bygges med `npm run build:web`,
 - valideres med `npm run typecheck:web`,
 - beholde nødvendige `window.X`-interop-kontrakter så lenge legacy-konsumenter fortsatt finnes,
-- committe oppdatert `dist/web/` når den etablerte buildmodellen krever det.
+- committe oppdatert `dist/web/` når den etablerte buildmodellen krever det,
+- bevege seg mot eksplisitte imports/exports og bort fra nye globale avhengigheter,
+- bruke en sentral API-/servicegrense når den kommuniserer med framtidig FastAPI-backend.
 
 Se `docs/typescript-migration-plan.md` for den detaljerte strangler-prosessen.
 
@@ -53,9 +73,25 @@ Se `docs/typescript-migration-plan.md` for den detaljerte strangler-prosessen.
 
 Nye verktøy og automatiseringsscripts skal skrives i TypeScript (`.ts`/`.mts`) og bruke de etablerte `typecheck:*`- og `build:*`-løpene.
 
+Node-tooling er et repo-/buildvalg og betyr ikke at produksjonsbackenden skal være Node-basert.
+
+### Produksjonsbackend
+
+Ny autoritativ serverlogikk, HTTP-API-er og backenddomener skal følge `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md`:
+
+- Python,
+- FastAPI,
+- Pydantic-kontrakter,
+- PostgreSQL,
+- Supabase som avgrenset plattform/infrastruktur der relevant.
+
+Backend får egne lint-, test- og typecheck-gates når den kodeflaten etableres.
+
 ### Data og innhold
 
-Data skal fortsatt bo i de canonical formatene repoet allerede bruker. TypeScript skal brukes til å validere og behandle data, ikke til å erstatte JSON som innholdsformat.
+Data skal fortsatt bo i de canonical formatene repoet allerede bruker. TypeScript og Python skal brukes til å validere og behandle data, ikke til å erstatte JSON som innholdsformat uten et reelt produktbehov.
+
+---
 
 ## Regler når legacy-JavaScript endres
 
@@ -66,15 +102,28 @@ Når en legacy-modul derimot får en vesentlig ombygging, ny arkitektur eller st
 Tommelregel:
 
 - liten og trygg patch → behold filformatet hvis migrering ville øke risikoen vesentlig,
-- ny modul → TypeScript,
-- større omskriving av eksisterende modul → migrer til TypeScript når det er praktisk og trygt,
-- delt kjernefil med mange globale konsumenter → følg strangler-planen og migrer kontrollert.
+- ny klientmodul → TypeScript,
+- større omskriving av eksisterende klientmodul → migrer til TypeScript når det er praktisk og trygt,
+- delt kjernefil med mange globale konsumenter → følg strangler-planen og migrer kontrollert,
+- ny backendmodul → Python/FastAPI, ikke ny browser-/Node-JavaScript.
 
-Det skal ikke opprettes ny løs, utypet JavaScript som et permanent mønster når samme funksjon naturlig kan implementeres i TypeScript.
+Det skal ikke opprettes ny løs, utypet JavaScript som et permanent mønster når samme klientfunksjon naturlig kan implementeres i TypeScript.
+
+---
+
+## `strict` TypeScript
+
+Målretningen er strengere TypeScript, men ikke en risikofylt global bryter som stopper all utvikling på grunn av legacy-gjeld.
+
+- Ny, avgrenset TypeScript-kode bør være strict som standard.
+- Nye delte kontrakter skal være eksplisitt typet.
+- `any` og `@ts-nocheck` skal behandles som overgangsgjeld når de brukes.
+- Eksisterende migrerte moduler strammes gradvis når kodeflaten er stabil.
+- Strengere compiler-regler innføres per avgrenset kodeflate før de gjøres globale.
+
+---
 
 ## CI- og merge-policy
-
-Målbildet for CI er:
 
 ### Skal kunne blokkere merge
 
@@ -83,19 +132,22 @@ Målbildet for CI er:
 - `dist/web` ute av sync med TypeScript-kilden,
 - målrettede tester som dekker endret funksjonalitet,
 - relevante datakontrakter, indekskontroller og domenegates,
-- nye typefeil som faktisk introduseres i den berørte kodeflaten.
+- nye typefeil som faktisk introduseres i den berørte legacy-kodeflaten,
+- framtidige Python-backend-feil i lint/typecheck/tests når backendsporet etableres.
 
 ### Skal ikke være en generell merge-blokkering
 
 - eksisterende typegjeld i urelaterte legacy-filer,
 - historiske baseline-feil som PR-en ikke har introdusert,
-- brede repo-sjekker som feiler på et helt annet subsystem enn det PR-en endrer, med mindre feilen viser en reell kontraktsbrudd eller integrasjonsregresjon.
+- brede repo-sjekker som feiler på et helt annet subsystem enn det PR-en endrer, med mindre feilen viser et reelt kontraktsbrudd eller en integrasjonsregresjon.
 
 En bred baseline-sjekk kan fortsatt kjøres som observasjon og rapportering. Den skal ikke forveksles med en presis kvalitetsgate.
 
+---
+
 ## TypeScript guard — implementert modell
 
-GitHub Actions-workflowen `.github/workflows/typescript-guard.yml` følger denne policyen:
+GitHub Actions-workflowen `.github/workflows/typescript-guard.yml` følger denne policyen for dagens TypeScript-/JavaScript-kodeflate:
 
 - `npm run typecheck:web` er en hard gate for migrert browser-TypeScript.
 - `npm run build:web:check` er en hard gate og stopper når committed `dist/web` er ute av sync med TypeScript-kilden.
@@ -106,21 +158,30 @@ GitHub Actions-workflowen `.github/workflows/typescript-guard.yml` følger denne
 - Linje- og kolonneposisjoner normaliseres i sammenligningen, slik at rene linjeforskyvninger ikke feilaktig registreres som nye typefeil.
 - På `main` og manuelle kjøringer kjøres den brede root-sjekken observasjonelt, mens de moderne TypeScript- og build-gatene fortsatt er obligatoriske.
 
-Dette er den operative merge-modellen. Den brede legacy-sjekken er fortsatt verdifull som migreringssignal, men er ikke lenger en generell null-gjeld-portvakt for alle PR-er.
+Når Python-backenden etableres, skal den få en separat CI-workflow eller tydelig separat jobb. Python-kvalitet skal ikke presses inn i TypeScript-guarden.
+
+---
 
 ## Prioritet ved konflikt mellom dokumenter
 
-For språkvalg og TypeScript-retning gjelder denne prioriteten:
+For teknisk språk- og plattformvalg gjelder:
 
-1. `docs/TYPESCRIPT_FIRST_POLICY.md` — overordnet beslutning og kvalitetsprinsipp.
-2. `docs/typescript-migration-plan.md` — operativ migreringsmetode for browser-runtime.
-3. `TYPESCRIPT_MIGRATION.md` — historikk og fasejournal for migreringsarbeidet.
+1. `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md` — overordnet teknisk målarkitektur.
+2. `docs/TYPESCRIPT_FIRST_POLICY.md` — klient-/Node-TypeScript og dagens TypeScript-CI.
+3. `docs/typescript-migration-plan.md` — operativ migreringsmetode for browser-runtime.
+4. `TYPESCRIPT_MIGRATION.md` — historikk og fasejournal for migreringsarbeidet.
 
-Eldre formuleringer om at TypeScript bare er en utviklingssjekk over JavaScript skal forstås som historisk kontekst, ikke som dagens målarkitektur.
+Eldre formuleringer om at TypeScript skal være standardspråk for all programkode skal forstås som for brede. TypeScript gjelder klient og Node-tooling; Python/FastAPI gjelder produksjonsbackenden.
+
+---
 
 ## Kortversjon
 
-**Ny programkode: TypeScript.**
+**Klientprogramkode: TypeScript.**
+
+**Produksjonsbackend: Python + FastAPI.**
+
+**Node tooling: TypeScript.**
 
 **Legacy-JavaScript: migreres gradvis og kontrollert.**
 
