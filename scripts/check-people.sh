@@ -101,6 +101,11 @@ node dist/tools/audit-people-of-places-status.mjs
 echo "== People place coverage =="
 node dist/tools/audit-people-place-coverage.mjs
 
+# Civication leser personene via en generert kategoriindeks. Nye/endrede
+# personer krever regenerering: npm run civication:history-people:build
+echo "== Civication history people index sync =="
+npm run civication:history-people:check
+
 echo "== Etne people manifest integration =="
 node tests/etne-people-manifest-integration.test.js
 
