@@ -4,12 +4,21 @@
   "status": "canonical",
   "policy": "knowledge_system_policy_v1.json",
   "knowledgeUnitSchema": "knowledge_unit_schema_v1.json",
+  "quizKnowledgeContract": "../quiz/quiz_knowledge_delivery_contract_v1.json",
   "architectureReadme": "../../README/KNOWLEDGE_MEMORY_CHAMBER.md",
   "runtime": {
     "currentCaptureModel": "../../js/knowledgeV2.js",
     "currentPageModel": "../../js/knowledgePage.js",
-    "migrationStatus": "v2_runtime_active_v3_semantic_model_introduced",
-    "nextRuntimeRequirement": "Personal Knowledge entries should reference canonical knowledge_unit_id, concept_id, term_id and story_id rather than treating each quiz text as the final knowledge object."
+    "migrationStatus": "v2_runtime_active_v3_semantic_and_reading_model_introduced",
+    "knownGap": "Dagens quizmotor lagrer hovedsakelig Knowledge ved riktig svar og viser bare kort riktig/feil-feedback. Ny runtime skal vise kunnskapsinnholdet og skille mellom møtt, lest og mestret.",
+    "nextRuntimeRequirements": [
+      "Show knowledge or knowledge_payload after every answer.",
+      "Record encountered when the knowledge explanation is presented.",
+      "Record read when the user actively continues after feedback.",
+      "Record assessment mastery separately from reading evidence.",
+      "Reference canonical knowledge_unit_id, concept_id, term_id and story_id.",
+      "Group multiple quiz and surface evidence events under the same personal memory node."
+    ]
   },
-  "canonicalPrinciple": "Emner organiserer faget, begreper gir presist språk, knowledge units bærer innholdet, historier binder innholdet sammen, quiz tester, og Knowledge husker og systematiserer brukerens mestring."
+  "canonicalPrinciple": "Emner organiserer faget, begreper gir presist språk, knowledge units bærer innholdet, historier binder innholdet sammen, steder og personer gir kontekst, quiz samler og formidler kunnskap samtidig som den prøver brukeren, og Knowledge husker hva som er lest og mestret."
 }
