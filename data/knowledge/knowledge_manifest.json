@@ -1,0 +1,15 @@
+{
+  "schema": "history_go_knowledge_manifest_v1",
+  "version": 1,
+  "status": "canonical",
+  "policy": "knowledge_system_policy_v1.json",
+  "knowledgeUnitSchema": "knowledge_unit_schema_v1.json",
+  "architectureReadme": "../../README/KNOWLEDGE_MEMORY_CHAMBER.md",
+  "runtime": {
+    "currentCaptureModel": "../../js/knowledgeV2.js",
+    "currentPageModel": "../../js/knowledgePage.js",
+    "migrationStatus": "v2_runtime_active_v3_semantic_model_introduced",
+    "nextRuntimeRequirement": "Personal Knowledge entries should reference canonical knowledge_unit_id, concept_id, term_id and story_id rather than treating each quiz text as the final knowledge object."
+  },
+  "canonicalPrinciple": "Emner organiserer faget, begreper gir presist språk, knowledge units bærer innholdet, historier binder innholdet sammen, quiz tester, og Knowledge husker og systematiserer brukerens mestring."
+}
