@@ -111,92 +111,29 @@ function renderNearbyPlaces() {
   const listEl = document.getElementById("nearbyList");
   if (!listEl) return;
 
-  const PLACES = window.PLACES || [];
   const visited = window.visited || {};
-  const pos = window.getPos?.();
+  const selection = window.HGNearbyPlaceSelector?.select?.();
 
-  const filterMode = window.HG_NEARBY_FILTER || "unvisited";
-  const freshPlaceId = String(window.HG_LAST_DISCOVERED_PLACE_ID || "").trim();
-
-  const sortModeRaw = String(window.HG_NEARBY_SORT || "distance").trim().toLowerCase();
-  const sortMode = (sortModeRaw === "oldest" || sortModeRaw === "newest") ? sortModeRaw : "distance";
-  const resolveTime = (typeof window.HGTimeResolver?.resolvePlaceTime === "function")
-    ? window.HGTimeResolver.resolvePlaceTime.bind(window.HGTimeResolver)
-    : null;
-
-  const readSortYear = (place, resolved) => {
-    const candidates = [resolved?.year, resolved?.startYear, place?.year, place?.start_year, place?.startYear];
-    for (const candidate of candidates) {
-      if (candidate == null) continue;
-      if (typeof candidate === "string" && candidate.trim() === "") continue;
-      const n = Number(candidate);
-      if (Number.isFinite(n)) return n;
-    }
-    return null;
-  };
-
-  let items = PLACES.map(p => {
-    const resolved = resolveTime ? (resolveTime(p) || null) : null;
-    const sortYear = readSortYear(p, resolved);
-    const hasTime = Number.isFinite(sortYear);
-    return {
-      ...p,
-      _d: getPlaceDistanceMeters(p, pos),
-      _timeSortKey: hasTime ? sortYear : null,
-      _timeLabel: hasTime ? String(sortYear) : "",
-      _epokeLabel: String(resolved?.epokeLabel ?? p?.epokeLabel ?? "").trim(),
-      _isZeitgeist: !!resolved?.isZeitgeist
-    };
-  });
-
-  // 🔹 FILTER: besøksstatus
-  if (filterMode === "unvisited") {
-    items = items.filter(p => !visited[p.id]);
+  if (!selection) {
+    console.warn("[Nearby] HGNearbyPlaceSelector is not available");
+    return;
   }
 
-  if (filterMode === "unlocked") {
-   items = items.filter(p => visited[p.id]);
-  }
-
-  if (window.HG_NEARBY_FAVORITES_ONLY) {
-    items = items.filter(p => window.HGFavoritePlaces?.has?.(p.id));
-  }
-
-  // 🔹 FILTER: badge/kategori
-  if (isLeftBadgeFilterActive()) {
-    items = items.filter(placeMatchesActiveBadge);
-  }
-
-  // 🔹 SORT
-  items.sort((a, b) => {
-    const aName = String(a.name || "");
-    const bName = String(b.name || "");
-    const distanceTieBreak = () => {
-      const d = (a._d ?? 1e12) - (b._d ?? 1e12);
-      if (d !== 0) return d;
-      return aName.localeCompare(bName, "nb");
-    };
-
-    if (sortMode === "distance") return distanceTieBreak();
-
-    const aHasTime = Number.isFinite(a._timeSortKey);
-    const bHasTime = Number.isFinite(b._timeSortKey);
-    if (aHasTime !== bHasTime) return aHasTime ? -1 : 1;
-    if (!aHasTime && !bHasTime) return distanceTieBreak();
-
-    const delta = sortMode === "oldest"
-      ? a._timeSortKey - b._timeSortKey
-      : b._timeSortKey - a._timeSortKey;
-    if (delta !== 0) return delta;
-    return distanceTieBreak();
-  });
+  const {
+    items,
+    filterMode,
+    sortMode,
+    badgeFilter,
+    favoritesOnly,
+    freshPlaceId
+  } = selection;
 
   const renderSignature = JSON.stringify({
     ids: items.map(p => String(p.id || "").trim()),
     filterMode,
     sortMode,
-    badge: window.HG_NEARBY_BADGE_FILTER || "all",
-    favoritesOnly: !!window.HG_NEARBY_FAVORITES_ONLY,
+    badge: badgeFilter,
+    favoritesOnly,
     freshPlaceId,
     distances: items.map(p => p._d ?? null)
   });
@@ -207,7 +144,7 @@ function renderNearbyPlaces() {
   listEl.innerHTML = "";
 
   if (!items.length) {
-    if (window.HG_NEARBY_FAVORITES_ONLY) {
+    if (favoritesOnly) {
       listEl.innerHTML = `
         <div class="hg-empty-guide">
           <div class="hg-empty-guide-icon">☆</div>
