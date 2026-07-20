@@ -21,6 +21,8 @@ from app.domains.social_meet.safety_models import (
 from app.domains.social_meet.safety_service import SocialMeetSafetyService
 from app.domains.social_meet.service import SocialMeetDomainError
 
+_PROFILE_ID_UNSET = object()
+
 
 class FakeIdentityRepository:
     def __init__(
@@ -280,8 +282,14 @@ def test_social_meet_delete_creates_tombstone_without_deleting_auth_account() ->
     assert safety.deleted_at == deleted_at
 
 
-def _record(profile_id: UUID | None = None) -> SocialMeetProfileRecord:
-    resolved_profile_id = uuid4() if profile_id is None else profile_id
+def _record(profile_id: UUID | None | object = _PROFILE_ID_UNSET) -> SocialMeetProfileRecord:
+    if profile_id is _PROFILE_ID_UNSET:
+        resolved_profile_id: UUID | None = uuid4()
+    elif profile_id is None or isinstance(profile_id, UUID):
+        resolved_profile_id = profile_id
+    else:
+        raise AssertionError("Invalid profile id fixture value")
+
     return SocialMeetProfileRecord(
         auth_user_id=uuid4(),
         social_user_id=uuid4(),
