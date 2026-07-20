@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
+// Synchronize trigger for the fresh-main validation run.
 const SOURCE_COMMIT = '45eb27a822a12969bae5a7bc0426a2cdfd1893fb';
 const SOURCE_PATH = 'scripts/coordinate-branch-job.mjs';
 const TEMP_SCRIPT = '/tmp/nydalen-industristed-duplicate-migration-final.mjs';
