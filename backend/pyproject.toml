@@ -55,6 +55,9 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 # The two test helpers below contain compact formatter-owned conditional expressions.
 # Keep these line-length exceptions narrow; all other Ruff rules remain active.
 "app/domains/social_meet/moderation_repository.py" = ["E501"]
+# Spotmeeting creation intentionally keeps connection lifetime and transaction scope
+# as two explicit contexts because serialization errors are classified at that boundary.
+"app/domains/social_meet/spotmeeting_repository.py" = ["SIM117"]
 "tests/test_social_meet_moderation_api.py" = ["E501"]
 "tests/test_social_meet_moderation_service.py" = ["E501"]
 
