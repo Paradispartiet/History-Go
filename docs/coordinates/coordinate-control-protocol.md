@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 195 verifiserte eller kildekontrollerte canonical steder. Batch 49 legger til Jødisk Museum i Oslo og Det internasjonale Barnekunstmuseet med entydige offisielle Geonorge-adressepunkter, samtidig som protokollen skiller fysisk koordinatverifikasjon fra midlertidig stengt publikumsdrift. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 37.
+Oslo-tabellen inneholder nå 196 verifiserte eller kildekontrollerte canonical steder. Batch 50 legger til IBSEN Museum & Teater med den offisielle publikumsinngangen i Henrik Ibsens gate 26 som verifisert display-anker, mens Arbins gate 1 bevares som det historiske leilighetslaget. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 37.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -217,6 +217,7 @@ Oslo-tabellen inneholder nå 195 verifiserte eller kildekontrollerte canonical s
 | 48 | `the_salmon_vitensenter` | The Salmon – kunnskapssenter | verified | `geonorge-adresser-v1:0301:21458:11` |
 | 49 | `jodisk_museum_oslo` | Jødisk Museum i Oslo | verified | `geonorge-adresser-v1:0301:11019:15B` |
 | 49 | `det_internasjonale_barnekunstmuseet` | Det internasjonale Barnekunstmuseet | verified | `geonorge-adresser-v1:0301:14283:4` |
+| 50 | `ibsen_museum_teater` | IBSEN Museum & Teater | verified | `geonorge-adresser-v1:0301:21471:26` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -256,9 +257,11 @@ Batch 48 (2026-07-20) produserer tre stabile besøkssteder fra museumsauditens g
 
 Batch 49 (2026-07-20) fullfører de to status-sensitive standardkandidatene fra museumsauditen. `jodisk_museum_oslo` bruker Calmeyers gate 15B som fysisk museums- og kulturminneanker; museumsbygget er stengt for renovering fra 1. mai 2026 med estimert gjenåpning høsten 2028, men undervisning og byvandringer fortsetter utenfor bygget. `det_internasjonale_barnekunstmuseet` bruker Lille Frøens vei 4 som fysisk museumsanker; ordinære åpningstider har vært innstilt siden 8. desember 2025 og det finnes per 20. juli 2026 ingen fast gjenåpningsdato. `verified` i denne tabellen gjelder koordinat og fysisk identitet, ikke aktuell publikumsåpning.
 
+Batch 50 (2026-07-20) fullfører den siste spesialkoordinatsaken fra museumsauditen. `ibsen_museum_teater` bruker det eksakte Geonorge-punktet for dagens offisielle publikumsinngang i Henrik Ibsens gate 26 som display- og unlock-anker. Museets historiske kjerne er Henrik og Suzannah Ibsens leilighet i Arbins gate 1, der de bodde fra 1895 til 1906; denne adressen bevares eksplisitt som historisk lag og skal ikke erstattes av den moderne besøksadressen i litteraturhistorisk innhold.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 195 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 196 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
