@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-20T07:19:14.984Z
+Generert: 2026-07-20T07:34:30.251Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-20T07:19:14.984Z |
-| peopleFilesRead | 620 |
-| totalPeople | 1220 |
-| uniquePeopleIds | 1220 |
+| generatedAt | 2026-07-20T07:34:30.251Z |
+| peopleFilesRead | 622 |
+| totalPeople | 1222 |
+| uniquePeopleIds | 1222 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 620 |
+| geographicPeopleFiles | 622 |
 | categoriesRepresented | 16 |
 
 ## People-filer
@@ -73,6 +73,8 @@ Generert: 2026-07-20T07:19:14.984Z
 | data/people/historie/oslo/akershus_festning/ulrik_frederik_gyldenlove.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/bla_skilt_2026/honoratus_halling.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/bla_skilt_2026/nils_helverschou.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/botsfengselet/paul_magnus_norum.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/botsfengselet/richard_petersen_fengselsdirektor.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/gamle_radhus/lauritz_hansen.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -650,7 +652,7 @@ Generert: 2026-07-20T07:19:14.984Z
 | by | 43 | 0 | 15 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 23 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| historie | 192 | 0 | 46 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| historie | 194 | 0 | 48 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | kunst | 40 | 0 | 11 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 168 | 0 | 125 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 27 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -666,7 +668,7 @@ Generert: 2026-07-20T07:19:14.984Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 620
+- Allerede geografisk strukturert: 622
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -742,6 +744,8 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/historie/oslo/akershus_festning/ulrik_frederik_gyldenlove.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/bla_skilt_2026/honoratus_halling.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/bla_skilt_2026/nils_helverschou.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/botsfengselet/paul_magnus_norum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/botsfengselet/richard_petersen_fengselsdirektor.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/gamle_radhus/lauritz_hansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=65/65; source_place_id=0/65; placesArray=65/65; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
