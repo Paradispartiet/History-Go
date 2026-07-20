@@ -56,7 +56,8 @@ const STARTUP_ENTRIES = [
   { in: "js/ui/nearbyBadgesPanel.ts", out: "nearbyBadgesPanel" },
   { in: "js/ui/left-panel.ts", out: "left-panel" },
   { in: "js/ui/nearbyPlaceSelector.ts", out: "nearbyPlaceSelector" },
-  { in: "js/ui/nearbyPlacesList.ts", out: "nearbyPlacesList" }
+  { in: "js/ui/nearbyPlacesList.ts", out: "nearbyPlacesList" },
+  { in: "js/ui/nearbyPeopleList.ts", out: "nearbyPeopleList" }
 ];
 
 // The position runtime bundles several focused modules behind one legacy global
