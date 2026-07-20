@@ -35,6 +35,9 @@ RESTRICTED_INVITE_POLICY = InviteRatePolicy(
     recipient_per_day=50,
 )
 
+MINUTE_LOOKBACK = timedelta(minutes=1)
+HOUR_LOOKBACK = timedelta(hours=1)
+DAY_LOOKBACK = timedelta(hours=24)
 NEW_PROFILE_WINDOW = timedelta(days=7)
 DECLINE_COOLDOWN = timedelta(hours=24)
 REPORT_COOLDOWN = timedelta(days=7)
@@ -44,7 +47,7 @@ REPEATED_CANCELLATION_THRESHOLD = 3
 
 @dataclass(frozen=True, slots=True)
 class InviteAbuseSnapshot:
-    sender_profile_created_at: datetime
+    sender_social_meet_started_at: datetime
     sender_minute_count: int
     sender_hour_count: int
     sender_day_count: int
