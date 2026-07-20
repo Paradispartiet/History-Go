@@ -1,6 +1,6 @@
 # History GO backend
 
-Status: **The shared FastAPI foundation and five server-owned Social Meet backend slices are implemented: Identity & Public Profile, participant safety/export/deletion, moderation/appeals, invite abuse controls, and the durable Spotmeeting invite lifecycle. Production candidate discovery remains disabled.**
+Status: **The shared FastAPI foundation and six server-owned Social Meet backend slices are implemented: Identity & Public Profile, participant safety/export/deletion, moderation/appeals, invite abuse controls, the durable Spotmeeting invite lifecycle, and privacy-safe candidate discovery. The production Spotmeeting browser path is also migrated to the typed FastAPI client boundary. Production discovery and invite writes remain fail-closed until their rollout gates are explicitly enabled.**
 
 The canonical technical architecture is defined in:
 
@@ -217,43 +217,100 @@ Migration and implementation documentation:
 - `supabase/migrations/006_spotmeeting_invites_server.sql`
 - `docs/HG_SPOTMEETING_INVITE_BACKEND.md`
 
-Direct authenticated browser insert/update/delete access to `hg_spotmeeting_invites` is revoked by migration 006. Participant reads remain temporarily available while the existing frontend is migrated to the FastAPI adapter.
+Direct authenticated browser insert/update/delete access to `hg_spotmeeting_invites` is revoked by migration 006. The production Spotmeeting adapter now uses the FastAPI lifecycle API. Transitional participant read access remains only for older browser surfaces that have not yet been retired or migrated.
 
-## Transitional client boundary
+## Server-owned slice 6: Privacy-safe candidate discovery
 
-The existing browser adapters remain transitional infrastructure:
+Candidate discovery is implemented behind fail-closed rollout controls and reuses the existing Social Meet profile and safety state rather than creating a second discovery graph.
 
-- `js/social/HGSocialMeetSupabaseClient.js`
-- `js/social/HGSocialMeetAdapter.js`
+Implemented API:
 
-The intended architecture is:
+```text
+POST /api/v1/social-meet/spotmeeting/discovery/context-candidates
+```
+
+The discovery boundary:
+
+- requires a currently discoverable requester with the current consent version;
+- filters candidates for current publication, consent, deletion and moderation state;
+- suppresses active/recent block relationships;
+- suppresses recent or unresolved confidential report relationships;
+- suppresses active invites and decline cooldowns;
+- ranks only after suppression;
+- returns opaque public `profile_id` values, never auth IDs;
+- exposes safe match-reason categories but never internal compatibility scores.
+
+Ranking uses only explicit, coarse compatibility inputs such as current History GO context, preferred themes, eras and learning goals. It permanently excludes GPS, nearby/proximity, distance, presence, last-seen, followers, popularity, feeds, public visit history, passive behavior and free chat.
+
+Discovery requires both:
+
+1. deployment kill switch `HG_BACKEND_SPOTMEETING_DISCOVERY_ENABLED=true`;
+2. the private PostgreSQL `spotmeeting_discovery` rollout flag introduced by migration 007.
+
+The private database gate supports explicit public-profile cohorts and deterministic percentage rollout. Missing or disabled rollout state fails closed.
+
+Discovery results are advisory snapshots only. `generatedAt` and `staleAfterSeconds` tell the client when to refresh; they are not presence or availability signals. The durable invite creation path independently revalidates current profile eligibility, blocks, moderation, abuse/cooldowns, rate limits and duplicate state before any invite insert.
+
+Migration and implementation documentation:
+
+- `supabase/migrations/007_social_meet_candidate_discovery.sql`
+- `docs/HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`
+
+## Production client boundary
+
+The production Spotmeeting browser path now follows:
 
 ```text
 existing History GO / Social Meet UI
                 ↓
-         typed client adapter
+       HGSocialMeetAdapter.js
                 ↓
-           FastAPI domain API
+ HGSocialMeetFastApiClient.ts
+                ↓
+            FastAPI domain API
                 ↓
  reuse/evolve existing PostgreSQL schema + RLS
 ```
 
-Do not create duplicate Social Meet profile, safety, moderation, abuse or invite models.
+Relevant client files:
+
+- `js/social/HGSocialMeetAdapter.js`
+- `js/social/HGSocialMeetFastApiClient.ts`
+- `dist/web/hgSocialMeetFastApiClient.js`
+- `docs/HG_SOCIAL_MEET_FASTAPI_CLIENT.md`
+
+The typed client uses the existing Supabase browser session only as an authentication-token bridge. Migrated Spotmeeting discovery, invite creation, inbox and lifecycle mutations are routed through FastAPI, and production server failures do not fall back to local fake invites.
+
+`HG_TEST_MODE=1` intentionally retains the local/demo Spotmeeting flow for product testing. Learning circles and the legacy social-activity list remain transitional direct-Supabase areas until they receive a separate server-authoritative domain decision.
+
+Do not create duplicate Social Meet profile, safety, moderation, abuse, discovery or invite models.
 
 ## Production Social Meet remains gated
 
-The implemented backend slices are prerequisites, not permission to enable production candidate discovery.
+The core backend and client migration are implemented, but this is not automatic permission to expose Social Meet broadly in production.
 
-The major remaining gates are:
+Already implemented technical gates include:
 
-1. candidate discovery using explicit, coarse knowledge-profile inputs only;
-2. stale-result revalidation against current identity, publication, block, moderation and abuse policy at invite creation time;
-3. frontend migration away from direct writes for migrated server-owned operations;
-4. production-scale expiry/retention jobs and safe retained-record tombstones;
-5. participant-safe notification delivery, if introduced;
-6. rollout controls, observability and kill switches for production Social Meet.
+- authenticated public profile identity and explicit opt-in;
+- recursive forbidden-field validation;
+- durable server-authoritative invite persistence and lifecycle;
+- participant blocks, structured reports, moderation and appeals;
+- invite abuse controls and rate/cooldown enforcement;
+- privacy-safe candidate discovery;
+- stale-result revalidation through the authoritative invite creation transaction;
+- production frontend routing through the typed FastAPI boundary;
+- deployment kill switches for production invite writes and discovery;
+- private database discovery cohorts/percentage rollout.
 
-Until these gates are complete, local/demo candidate discovery and existing production safety gates must remain in place.
+The major remaining production gates are:
+
+1. production-scale retention/cleanup jobs and safe retained-record tombstone policy for closed invites, deleted Social Meet state, reports, moderation records and legal/safety holds;
+2. privacy-safe operational observability that measures service health without reconstructing presence, movement, social graphs or popularity;
+3. an explicit production rollout/rollback procedure, including environment configuration, cohort review, moderation capacity, kill-switch rehearsal and staged expansion;
+4. participant-safe notification delivery if notifications are introduced;
+5. an explicit server-authoritative decision for remaining transitional Social Meet areas such as learning circles and legacy social activity.
+
+Until an explicit production rollout decision enables the corresponding gates, production discovery and invite writes remain fail-closed by configuration. Local/demo behavior remains separate under TEST_MODE.
 
 ## Existing Social Meet work that must be reused
 
@@ -265,6 +322,7 @@ Canonical schema evolution:
 - `supabase/migrations/004_social_meet_moderation.sql`
 - `supabase/migrations/005_social_meet_abuse_indexes.sql`
 - `supabase/migrations/006_spotmeeting_invites_server.sql`
+- `supabase/migrations/007_social_meet_candidate_discovery.sql`
 
 Key contracts/implementation docs:
 
@@ -275,6 +333,8 @@ Key contracts/implementation docs:
 - `docs/HG_SOCIAL_MEET_MODERATION_BACKEND.md`
 - `docs/HG_SOCIAL_MEET_ABUSE_CONTROLS.md`
 - `docs/HG_SPOTMEETING_INVITE_BACKEND.md`
+- `docs/HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`
+- `docs/HG_SOCIAL_MEET_FASTAPI_CLIENT.md`
 
 Backend work must evolve these contracts and schemas rather than replace them.
 
@@ -310,6 +370,12 @@ Core settings:
 - `HG_BACKEND_SUPABASE_JWT_AUDIENCE`
 - `HG_BACKEND_READINESS_REQUIRE_DATABASE`
 - `HG_BACKEND_READINESS_REQUIRE_AUTH`
+- `HG_BACKEND_SPOTMEETING_INVITE_WRITES_ENABLED`
+- `HG_BACKEND_SPOTMEETING_DISCOVERY_ENABLED`
+- `HG_BACKEND_SPOTMEETING_DISCOVERY_MAX_CANDIDATES`
+- `HG_BACKEND_SPOTMEETING_DISCOVERY_STALE_AFTER_SECONDS`
+
+Production invite mutations fail closed unless `HG_BACKEND_SPOTMEETING_INVITE_WRITES_ENABLED=true`. Discovery fails closed unless both the deployment kill switch and the private database rollout flag allow the requester.
 
 Never commit real database credentials, service-role keys, JWT signing secrets or private integration keys.
 
@@ -344,6 +410,8 @@ cd backend && python -m pytest --cov=app --cov-report=term-missing --cov-fail-un
 
 The same checks run in `.github/workflows/backend-python.yml` on Python 3.12 and 3.14. Failed Ruff, mypy and pytest gates persist their diagnostic output as workflow artifacts for exact repair work.
 
+The browser-side FastAPI migration is additionally protected by the TypeScript web typecheck, committed `dist/web` build-sync gate and the combined Social Meet/Spotmeeting browser smoke in `.github/workflows/typescript-guard.yml`.
+
 ## Ownership rules
 
 Backend code owns:
@@ -361,6 +429,4 @@ The backend does **not** automatically own editorial datasets under `data/`. Pla
 
 ## Next backend slice
 
-The next server-owned slice should implement **candidate discovery with stale-result revalidation** using only explicit, coarse knowledge-profile inputs. It must revalidate identity, publication, blocks, moderation and abuse policy before any candidate becomes actionable and must not introduce GPS, nearby-user discovery, presence, public visit history or social-graph ranking.
-
-Frontend migration to the FastAPI Social Meet/Spotmeeting adapter should proceed in parallel with that backend slice, without re-enabling direct writes to server-owned tables.
+The next server-owned backend work should implement **production retention/cleanup and privacy-safe operational observability** before broad Social Meet rollout. The work must define retention windows and safe tombstone/legal-hold behavior for closed invites and safety/moderation state, add idempotent scheduled cleanup paths, and expose only aggregate service-health metrics that cannot reconstruct participant presence, movement, popularity or social graphs.
