@@ -1,0 +1,50 @@
+name: Build Nearby places list TypeScript batch
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/typescript-nearby-places-list-build.yml"
+      - ".github/scripts/apply_nearby_places_list.py"
+      - "js/ui/nearbyPlacesList.ts"
+
+permissions:
+  contents: write
+
+jobs:
+  build-nearby-places-list:
+    if: github.event.pull_request.head.ref == 'agent/typescript-nearby-places-list'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Apply Nearby places renderer extraction
+        run: python3 .github/scripts/apply_nearby_places_list.py
+      - name: Verify browser TypeScript and generate bundle
+        run: |
+          npm run typecheck:web
+          npm run build:web
+          git diff --check
+      - name: Commit integration and generated browser runtime
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            build/build-web.mjs \
+            js/app.js \
+            js/ui/lists.js \
+            schemas/app-globals.d.ts \
+            dist/web/nearbyPlacesList.js
+          if git diff --cached --quiet; then
+            echo "No integration changes to commit"
+            exit 0
+          fi
+          git commit -m "Extract Nearby places renderer to TypeScript"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
