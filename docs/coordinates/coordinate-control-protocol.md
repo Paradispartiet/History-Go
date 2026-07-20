@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 240 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 95 erstatter Trailforks som primær koordinatkilde for `korketrekkeren` med den eksplisitte OSM-ruterelasjonen `osm-relation:1459739` og et eksakt Frognerseteren-side endepunkt, kontrollert mot Oslo kommunes dokumentasjon av traseen Frognerseteren–Midtstuen. Relasjonens 31,8 m kartgap er eksplisitt dokumentert og skjules ikke som en falskt ubrutt polyline. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
+Oslo-tabellen inneholder nå 251 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 96 lukker de to siste ukontrollerte recordene i `places_kunst.json`: Emanuel Vigelands mausoleum flyttes fra Wikidata til et eksakt navngitt OSM-objekt, mens Framtidsbibliotekets publiserte besøkskoordinat beholdes etter direkte DMS-til-desimal-konvertering. Ingen nearest/first-hit-logikk eller Wikidata-koordinat brukes.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -284,6 +284,11 @@ Batch 94 (2026-07-21) følger top-level manifestrekkefølgen videre inn i `place
 
 
 Batch 95 (2026-07-21) reviderer `korketrekkeren` som lineær akebakke/rute, ikke som adressepunkt. Oslo kommune dokumenterer Korketrekkeren fra Frognerseteren til Midtstuen og oppgir ca. 2700 meter. OSM-ruterelasjon 1459739 er eksplisitt navngitt Korketrekkeren og tagget `type=route`, `route=sled` og `piste:type=sled`. De 16 ordnede medlems-way-ene danner to internt sammenhengende rutedeler med samlet geometri 2436 meter og et 31.8 meter kartgap mellom delene; gap inkludert blir den dokumenterte ruterekken 2467 meter. Startankeret er det eksakte øvre relasjonsendepunktet 25 meter fra Frognerseteren stasjon, mens nedre ende er 41 meter fra Midtstuen stasjon. Relasjonen brukes som semantisk ruteobjekt og startpunktet som `route_start`; batchen påstår ikke at traseen er én topologisk ubrutt polyline. Trailforks er fjernet som primær koordinatkilde.
+| 96 | `emanuel_vigeland_mausoleum` | Emanuel Vigelands mausoleum | verified_geometry | `osm-node:974731248` |
+| 96 | `framtidsbiblioteket_nordmarka` | Framtidsbiblioteket – Nordmarka | verified | `visitnorway:future-library-forest-nordmarka` |
+
+Batch 96 (2026-07-21) avslutter `places_kunst.json` i kildefilens rekkefølge etter at de fire første recordene allerede var dokumentert i tidligere batcher. `emanuel_vigeland_mausoleum` bruker nå det eksakt navngitte OSM-punktet node 974731248, kontrollert direkte mot OSM API og kryssjekket mot museets offisielle adresse; Wikidata er fjernet som koordinatkilde. `framtidsbiblioteket_nordmarka` beholder Visit Norways eksplisitt publiserte besøkskoordinater for kunstskogen, matematisk omregnet direkte fra DMS uten kartgjetting.
+
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -452,8 +457,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 95.
-- `places_historie_added_batch_01.json` er nå uttømt i kildefilens rekkefølge. Før batch 95 starter skal neste aktive Oslo-kilde etter denne fila auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
+- Neste nye Oslo-kontroll er batch 97.
+- `places_kunst.json` er nå uttømt i kildefilens rekkefølge. Før batch 97 starter skal `data/places/litteratur/oslo/places_litteratur.json` auditeres mot protokollen, og tidligere kontrollerte placeId-er skal hoppes over eksplisitt.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 
