@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-07-20T15:21:47.433Z",
+  "targetManifestEntry": "places/kunst/oslo/places_kunst.json",
+  "restoredPlaceIds": [
+    "emanuel_vigeland_mausoleum",
+    "framtidsbiblioteket_nordmarka"
+  ],
+  "gapsBefore": [
+    {
+      "manifestEntry": "places/kunst/oslo/places_kunst.json",
+      "splitManifest": "data/places/kunst/oslo/places_kunst_manifest.json",
+      "aggregateCount": 6,
+      "splitCount": 4,
+      "missing": [
+        {
+          "id": "emanuel_vigeland_mausoleum",
+          "name": "Emanuel Vigelands mausoleum",
+          "category": "kunst"
+        },
+        {
+          "id": "framtidsbiblioteket_nordmarka",
+          "name": "Framtidsbiblioteket – Nordmarka",
+          "category": "kunst"
+        }
+      ]
+    }
+  ],
+  "gapsAfter": [],
+  "beforeCount": 2,
+  "afterCount": 0,
+  "emanuelAddressAttempt": {
+    "ok": false,
+    "status": "needs_review",
+    "reason": "Geonorge returnerte flere treff uten entydig match; må avklares manuelt.",
+    "query": "Grimelundsveien 8 Oslo",
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Grimelundsveien%208%20Oslo"
+  },
+  "coordinateSources": {
+    "emanuel_vigeland_mausoleum": {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q17769549",
+      "lat": 59.947028,
+      "lon": 10.692694
+    },
+    "framtidsbiblioteket_nordmarka": {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "visitnorway:future-library-forest-nordmarka",
+      "lat": 59.98633333333333,
+      "lon": 10.69686111111111
+    }
+  }
+}

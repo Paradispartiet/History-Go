@@ -91,7 +91,7 @@
     "museum",
     "arkitektur"
   ],
-  "locatorType": "building",
+  "locatorType": "poi",
   "address": {
     "street": "Grimelundsveien",
     "number": "8",
@@ -99,12 +99,16 @@
     "city": "Oslo",
     "country": "NO"
   },
-  "coordType": "building_center",
-  "coordSource": "wikidata_coordinate_crosschecked_with_official_museum_address",
-  "coordSourceId": "Q17769549",
+  "coordType": "linked_object_coordinate",
+  "coordSource": "Wikidata Q17769549 coordinate cross-checked with the official Emanuel Vigeland Museum address and linked OSM node 974731248",
+  "coordSourceId": "wikidata:Q17769549",
   "coordSourceUrl": "https://www.wikidata.org/wiki/Q17769549",
   "coordStatus": "verified",
   "coordPrecisionM": 20,
-  "coordVerifiedAt": "2026-07-18",
-  "coordNote": "Bygningspunkt fra Wikidata for Emanuel Vigelands museum, kryssjekket mot museets offisielle adresse Grimelundsveien 8."
+  "coordVerifiedAt": "2026-07-20",
+  "coordNote": "Grimelundsveien 8 ble kjørt gjennom den låste address-first-metoden, men Geonorge returnerte flere treff uten entydig match. Det eksisterende objektpunktet fra Wikidata Q17769549 beholdes derfor etter kryssjekk mot museets offisielle adresse og Wikidatas kobling til OSM-node 974731248. Punktet representerer Emanuel Vigelands mausoleum, ikke Slemdal som område.",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "wikidata:Q17769549",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "display_marker"
 }

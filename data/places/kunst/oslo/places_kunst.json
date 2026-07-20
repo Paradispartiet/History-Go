@@ -611,7 +611,7 @@
       "museum",
       "arkitektur"
     ],
-    "locatorType": "building",
+    "locatorType": "poi",
     "address": {
       "street": "Grimelundsveien",
       "number": "8",
@@ -619,14 +619,18 @@
       "city": "Oslo",
       "country": "NO"
     },
-    "coordType": "building_center",
-    "coordSource": "wikidata_coordinate_crosschecked_with_official_museum_address",
-    "coordSourceId": "Q17769549",
+    "coordType": "linked_object_coordinate",
+    "coordSource": "Wikidata Q17769549 coordinate cross-checked with the official Emanuel Vigeland Museum address and linked OSM node 974731248",
+    "coordSourceId": "wikidata:Q17769549",
     "coordSourceUrl": "https://www.wikidata.org/wiki/Q17769549",
     "coordStatus": "verified",
     "coordPrecisionM": 20,
-    "coordVerifiedAt": "2026-07-18",
-    "coordNote": "Bygningspunkt fra Wikidata for Emanuel Vigelands museum, kryssjekket mot museets offisielle adresse Grimelundsveien 8."
+    "coordVerifiedAt": "2026-07-20",
+    "coordNote": "Grimelundsveien 8 ble kjørt gjennom den låste address-first-metoden, men Geonorge returnerte flere treff uten entydig match. Det eksisterende objektpunktet fra Wikidata Q17769549 beholdes derfor etter kryssjekk mot museets offisielle adresse og Wikidatas kobling til OSM-node 974731248. Punktet representerer Emanuel Vigelands mausoleum, ikke Slemdal som område.",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "wikidata:Q17769549",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "display_marker"
   },
   {
     "id": "framtidsbiblioteket_nordmarka",
@@ -634,8 +638,8 @@
     "visual": {
       "designCode": "park_miniature"
     },
-    "lat": 59.986333,
-    "lon": 10.696861,
+    "lat": 59.98633333333333,
+    "lon": 10.69686111111111,
     "r": 120,
     "category": "kunst",
     "kindLabel": "Langtidskunst / litterært skogverk",
@@ -722,13 +726,18 @@
       "landskap",
       "hverdagsestetikk"
     ],
-    "coordType": "forest_site",
-    "coordSource": "visitnorway_coordinate_crosschecked_with_atlas_obscura",
-    "coordSourceId": "future_library_forest_nordmarka",
+    "coordType": "published_visitor_coordinate",
+    "coordSource": "Visit Norway published visitor coordinates for Framtidsbiblioteket i Nordmarka",
+    "coordSourceId": "visitnorway:future-library-forest-nordmarka",
     "coordSourceUrl": "https://www.visitnorway.no/aktiviteter-og-attraksjoner/kunst-kultur/litteratur/framtidsbiblioteket-i-nordmarka/",
     "coordStatus": "verified",
     "coordPrecisionM": 30,
-    "coordVerifiedAt": "2026-07-18",
-    "coordNote": "Besøkspunktet i Future Library-skogen er satt fra publiserte besøkskoordinater hos Visit Norway og kryssjekket mot Atlas Obscura. Punktet representerer selve kunstskogen, ikke Frognerseteren eller Deichman Bjørvika."
+    "coordVerifiedAt": "2026-07-20",
+    "coordNote": "Publiserte besøkskoordinater fra Visit Norway for Framtidsbibliotekets kunstskog i Nordmarka, 59°59′10,8″N 10°41′48,7″E, omregnet direkte til desimalgrader. Punktet representerer besøksstedet i Future Library-skogen, ikke Nordmarka som helhet eller Silent Room i Deichman Bjørvika.",
+    "locatorType": "poi",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "visitnorway:future-library-forest-nordmarka",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "display_marker"
   }
 ]
