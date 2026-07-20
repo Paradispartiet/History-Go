@@ -1,0 +1,206 @@
+/* History Go map controls: compact, flat and transparent presentation. */
+
+body .map-controls {
+  gap: 6px;
+}
+
+/* Keep the map style switch visually flat instead of a raised dark pill. */
+body .map-controls .hg-map-style-toggle {
+  height: 40px;
+  padding: 0;
+  gap: 2px;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body .map-controls .hg-map-style-toggle .hg-map-style-btn {
+  height: 38px;
+  background: rgba(10, 18, 28, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+body .map-controls .hg-map-style-toggle .hg-map-style-btn.is-active {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
+
+/* Badge/category picker: narrower trigger with larger badge artwork and no visible names. */
+body .map-controls .hg-map-category-filter {
+  width: 170px !important;
+  align-self: flex-end;
+}
+
+body .map-controls .hg-map-category-trigger {
+  width: 170px !important;
+  height: 44px;
+  padding: 0 10px;
+  grid-template-columns: minmax(0, 1fr) 18px !important;
+  gap: 6px;
+  background: rgba(10, 18, 28, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+body .map-controls .hg-map-category-trigger-label,
+body .map-controls .hg-map-category-option-label {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body .map-controls .hg-map-category-trigger-logos {
+  width: auto !important;
+  min-width: 0;
+  height: 38px;
+  padding-left: 0;
+  overflow: hidden;
+}
+
+body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo {
+  width: 38px !important;
+  height: 38px !important;
+  flex-basis: 38px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo.is-stacked {
+  margin-left: -10px !important;
+}
+
+body .map-controls .hg-map-category-options:not([hidden]) {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+body .map-controls .hg-map-category-options[hidden] {
+  display: none !important;
+}
+
+body .map-controls .hg-map-category-options {
+  width: 170px !important;
+  padding: 8px;
+  max-height: min(52dvh, 430px);
+  background: rgba(10, 18, 28, 0.38) !important;
+  border-color: rgba(255, 255, 255, 0.17) !important;
+  border-radius: 16px;
+  box-shadow: none !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body .map-controls .hg-map-category-option {
+  position: relative;
+  width: 100% !important;
+  min-width: 0;
+  min-height: 48px !important;
+  aspect-ratio: 1;
+  padding: 4px !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025) !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+body .map-controls .hg-map-category-option + .hg-map-category-option {
+  margin-top: 0;
+}
+
+body .map-controls .hg-map-category-option:hover,
+body .map-controls .hg-map-category-option:focus-visible,
+body .map-controls .hg-map-category-option.is-active {
+  background: rgba(255, 255, 255, 0.11) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+body .map-controls .hg-map-category-option-logos {
+  width: 100% !important;
+  height: 42px;
+  justify-content: center;
+  overflow: visible;
+}
+
+body .map-controls .hg-map-category-option-logos .hg-map-category-logo {
+  width: 40px !important;
+  height: 40px !important;
+  flex-basis: 40px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .map-controls .hg-map-category-option[data-map-category="all"] .hg-map-category-logo {
+  width: 22px !important;
+  height: 22px !important;
+  flex-basis: 22px !important;
+}
+
+body .map-controls .hg-map-category-option[data-map-category="all"] .hg-map-category-logo.is-stacked {
+  margin-left: -10px !important;
+}
+
+body .map-controls .hg-map-category-option-check {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 17px;
+  height: 17px;
+  font-size: 10px;
+  background: rgba(12, 22, 34, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Utility buttons stay available, but flat and translucent. */
+body .map-controls .hg-map-utility-btn {
+  background: rgba(10, 18, 28, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+body .map-controls .hg-map-utility-btn:active {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* The close X only has meaning while the dedicated map mode is active. */
+body:not(.mode-map):not(.map-only) .map-controls .hg-map-exit-btn {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  body .map-controls .hg-map-category-filter,
+  body .map-controls .hg-map-category-trigger,
+  body .map-controls .hg-map-category-options {
+    width: 158px !important;
+  }
+
+  body .map-controls .hg-map-category-trigger-logos .hg-map-category-logo {
+    width: 36px !important;
+    height: 36px !important;
+    flex-basis: 36px !important;
+  }
+
+  body .map-controls .hg-map-category-option-logos .hg-map-category-logo {
+    width: 38px !important;
+    height: 38px !important;
+    flex-basis: 38px !important;
+  }
+}
