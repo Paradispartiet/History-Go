@@ -1,0 +1,33 @@
+name: TypeScript search migration debug
+
+on:
+  pull_request:
+    paths:
+      - "js/ui/search.ts"
+      - "build/build-web.mjs"
+      - ".github/workflows/typescript-search-debug.yml"
+
+jobs:
+  capture-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Capture browser TypeScript diagnostics
+        shell: bash
+        run: |
+          set +e
+          npm run typecheck:web > typecheck-search.log 2>&1
+          status=$?
+          echo "exit_code=$status" >> typecheck-search.log
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: typecheck-search-diagnostics
+          path: typecheck-search.log
+          if-no-files-found: error
+          retention-days: 1
