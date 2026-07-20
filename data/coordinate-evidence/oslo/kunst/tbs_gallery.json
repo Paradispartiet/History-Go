@@ -1,0 +1,74 @@
+{
+  "placeId": "tbs_gallery",
+  "placeFile": "data/places/kunst/oslo/places_kunst/tbs_gallery.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.922142741324926,
+    "lon": 10.725818640861803,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Oscars gate 23, OSLO. Punktet brukes som display-marker for TBS Gallerys villa- og galleriområde."
+  },
+  "identity": {
+    "currentName": "TBS Gallery",
+    "resolvedIdentity": "TBS Gallery, det permanente kunstsenteret for Tore Bjørn Skjølsviks verk i villa- og stallanlegget i Oscars gate 23",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell stedsidentitet",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Oscars%20gate%2023%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15439:23",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Oscars gate 23 Oslo. Stedet er et selvstendig kunstsenter med permanent samling, atelier, historisk villa og skulpturhage; det overlapper ikke en eksisterende canonical place-record på adressen.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Oscars gate 23, OSLO. Punktet brukes som display-marker for TBS Gallerys villa- og galleriområde."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Oscars gate 23 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15439:23",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15439:23",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.922142741324926,
+      "lon": 10.725818640861803,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Oscars gate 23, OSLO. Punktet brukes som display-marker for TBS Gallerys villa- og galleriområde.",
+    "Stedet er et selvstendig kunstsenter med permanent samling, atelier, historisk villa og skulpturhage; det overlapper ikke en eksisterende canonical place-record på adressen."
+  ]
+}
