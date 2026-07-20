@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 200 verifiserte eller kildekontrollerte canonical steder. Batch 54 legger til Dronning Sonja KunstStall som egen offentlig kunstinstitusjon i de historiske kongelige stallene, med verifisert publikumsadresse i Parkveien 50. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 32.
+Oslo-tabellen inneholder nå 201 verifiserte eller kildekontrollerte canonical steder. Batch 55 legger til Holmlia bad som et eget kommunalt svømme- og idrettsanlegg på det verifiserte Holmlia Senter vei 34-punktet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 32.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -223,7 +223,8 @@ Oslo-tabellen inneholder nå 200 verifiserte eller kildekontrollerte canonical s
 | 53 | `ekt_rideskole_husdyrpark` | EKT Rideskole og Husdyrpark | verified | `geonorge-adresser-v1:0301:11462:99` |
 | 54 | `dronning_sonja_kunststall` | Dronning Sonja KunstStall | verified | `geonorge-adresser-v1:0301:15614:50` |
 
-Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
+Relevante korrigerende merger for d
+| 55 | `holmlia_bad` | Holmlia bad | verified | `geonorge-adresser-v1:0301:13084:34` |e første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
 
@@ -271,6 +272,8 @@ Batch 52 (2026-07-20) fortsetter den avgrensede completeness-passeringen for Vis
 Batch 53 (2026-07-20) produserer `ekt_rideskole_husdyrpark` etter separat koordinat- og taxonomy-gate. Det normative adresse-først-intaket ga det eksakte Geonorge-punktet `geonorge-adresser-v1:0301:11462:99` for Ekebergveien 99. EKT ble etablert som rideskole i 1954 ved Jomfrubråtveien 40, mens dagens ridehus-, stall- og husdyrparkkompleks ble utviklet etter festeavtalen med Oslo kommune i 1964. Canonical primærkategori er sport fordi organisert rideundervisning og hestesport er den kontinuerlige institusjonskjernen; husdyrparken beholdes som et integrert formidlings- og besøkslag på samme fysiske sted, ikke som en overlappende markør.
 
 Batch 54 (2026-07-20) legger til `dronning_sonja_kunststall` med det entydige Geonorge-punktet `geonorge-adresser-v1:0301:15614:50` for Parkveien 50. De kongelige stallene dateres til 1848, mens KunstStallen åpnet som offentlig kunst- og kulturarena 4. juli 2017. Stedet er en egen kunstinstitusjon og ikke en duplikat av `slottet` eller `slottsparken`.
+
+Batch 55 (2026-07-20) legger til `holmlia_bad` som et eget kommunalt svømme- og idrettsanlegg. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:13084:34` for Holmlia Senter vei 34 brukes som dagens bygnings-, display- og unlock-anker. Holmlia bad stod klart i 1983 som del av et fjellanlegg der idrettshall, svømmehall og tilfluktsrom ble kombinert. Den bredere underjordiske infrastrukturen er fysisk og historisk kontekst, ikke en ekstra overlappende markør. Midlertidige sommerstenginger gjelder drift og endrer ikke canonical stedsstatus.
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -283,7 +286,7 @@ Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fy
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 200 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 201 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
