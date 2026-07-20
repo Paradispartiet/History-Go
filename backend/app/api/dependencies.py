@@ -14,12 +14,16 @@ from app.auth.supabase import (
 )
 from app.core.config import Settings
 from app.core.database import Database
+from app.domains.social_meet.abuse_repository import PostgresSocialMeetAbuseRepository
+from app.domains.social_meet.abuse_service import SocialMeetInviteAbuseService
 from app.domains.social_meet.moderation_repository import PostgresSocialMeetModerationRepository
 from app.domains.social_meet.moderation_service import SocialMeetModerationService
 from app.domains.social_meet.repository import PostgresSocialMeetIdentityRepository
 from app.domains.social_meet.safety_repository import PostgresSocialMeetSafetyRepository
 from app.domains.social_meet.safety_service import SocialMeetSafetyService
 from app.domains.social_meet.service import SocialMeetIdentityService
+from app.domains.social_meet.spotmeeting_repository import PostgresSpotmeetingInviteRepository
+from app.domains.social_meet.spotmeeting_service import SpotmeetingInviteService
 
 _bearer = HTTPBearer(auto_error=False)
 
@@ -71,6 +75,28 @@ def get_social_meet_moderation_service(
     return SocialMeetModerationService(
         PostgresSocialMeetIdentityRepository(database),
         PostgresSocialMeetModerationRepository(database),
+    )
+
+
+def get_spotmeeting_invite_service(
+    database: Database = Depends(get_database),
+) -> SpotmeetingInviteService:
+    _require_database(database)
+    identity_repository = PostgresSocialMeetIdentityRepository(database)
+    safety_service = SocialMeetSafetyService(
+        identity_repository,
+        PostgresSocialMeetSafetyRepository(database),
+    )
+    abuse_service = SocialMeetInviteAbuseService(
+        identity_repository,
+        PostgresSocialMeetAbuseRepository(database),
+        safety_service,
+    )
+    return SpotmeetingInviteService(
+        identity_repository,
+        PostgresSpotmeetingInviteRepository(database),
+        abuse_service,
+        safety_service,
     )
 
 
