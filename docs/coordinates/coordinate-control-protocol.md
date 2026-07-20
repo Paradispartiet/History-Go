@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 207 verifiserte eller kildekontrollerte canonical steder. Batch 56 legger til Skimore Oslo som ett helårs aktivitetsanlegg på Tryvann, med det verifiserte publikumsankeret i Tryvannsveien 64. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
+Oslo-tabellen inneholder nå 208 verifiserte eller kildekontrollerte canonical steder. Batch 61 legger til Brannmuseet i Oslo som et eget historisk bygg- og museumssted i den tidligere Grønland brannstasjon, med det verifiserte adressepunktet Grønlandsleiret 32. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -229,6 +229,7 @@ Oslo-tabellen inneholder nå 207 verifiserte eller kildekontrollerte canonical s
 | 58 | `uranienborg_kirke` | Uranienborg kirke | verified | `geonorge-adresser-v1:0301:13110:15` |
 | 59 | `frogner_kirke` | Frogner kirke | verified | `geonorge-adresser-v1:0301:10967:36` |
 | 60 | `vestre_gravlund` | Vestre gravlund | verified | `osm-way:4740772` |
+| 61 | `brannmuseet_oslo` | Brannmuseet i Oslo | verified | `geonorge-adresser-v1:0301:12450:32` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -286,6 +287,8 @@ Oslo West-kirkepakken (2026-07-20) legger til `fagerborg_kirke`, `uranienborg_ki
 Batch 60 (2026-07-20) legger til `vestre_gravlund` som et dokumentert `cemetery_area_anchor`. Oslo kommune identifiserer det 243 dekar store gravplassområdet, mens OpenStreetMap way 4740772 gir den konkrete, navngitte gravlundsgeometrien. Det representative punktet er kontrollert inne i polygonet. Besøksadressen Sørkedalsveien 66 brukes bevisst ikke som snarvei for hele gravlunden.
 Batch 56 (2026-07-20) legger til `skimore_oslo` som én canonical helårsrepresentasjon av Skimore-anlegget på Tryvann. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:17787:64` for Tryvannsveien 64 brukes som publikums-, display- og unlock-anker. Skimore dokumenterer både vinterens alpin-/snowboardanlegg og sommerens klatrepark ved samme anlegg; klatreparken ble bygget i 2012. VisitOSLOs separate sommer- og vinteroppføringer skal derfor ikke bli overlappende place-markører. Adressepunktet representerer hovedankeret og skal ikke leses som full geometri for alle bakker, heiser og klatreparkløyper.
 
+Batch 61 (2026-07-20) legger til `brannmuseet_oslo` som ett fysisk historisk sted for den tidligere Grønland brannstasjon og dagens Brannmuseet i Oslo. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:12450:32` for Grønlandsleiret 32 brukes som bygnings-, display- og unlock-anker. Den brede canonical gate-recorden `gronlandsleiret` er ikke et duplikat og skal ikke brukes som proxy for museumsbygningen. Stasjonen dateres til 1861, var i ordinær brannstasjonsbruk fram til 1978 og formidler i dag Oslos brann- og beredskapshistorie gjennom bevart materiell, kjøretøy og museumssamlinger.
+
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -299,7 +302,7 @@ Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fy
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 207 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 208 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
