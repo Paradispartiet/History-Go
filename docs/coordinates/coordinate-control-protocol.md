@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical steder. Batch 90 legger til Oslo Prosjektrom med eksakt Geonorge-adressepunkt for Platous gate 18, etter separat avklaring av den isolerte Platous gate 10-feiloppføringen. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 241 verifiserte eller kildekontrollerte canonical steder. Batch 91–94 legger til Paulus kirke og Purenkel med entydige Geonorge-adressepunkter, Torshovparken med eksakt navngitt parkpolygon og HODET N.N. med eksakt navngitt kunstobjekt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -260,6 +260,10 @@ Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical s
 
 | 90 | `oslo_prosjektrom` | Oslo Prosjektrom | verified | `geonorge-adresser-v1:0301:15684:18` |
 
+| 91 | `paulus_kirke` | Paulus kirke | verified | `geonorge-adresser-v1:0301:17489:31` |
+| 92 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
+| 93 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
+| 94 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T22:30:15.057Z
+Generert: 2026-07-20T22:45:07.811Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -223,3 +223,7 @@ Generert: 2026-07-20T22:30:15.057Z
 | jordal_ungdomshall | data/coordinate-evidence/oslo/sport/jordal_ungdomshall.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamlebyen_kirke | data/coordinate-evidence/oslo/historie/gamlebyen_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_prosjektrom | data/coordinate-evidence/oslo/kunst/oslo_prosjektrom.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| paulus_kirke | data/coordinate-evidence/oslo/historie/paulus_kirke.json | applied_to_place | do_not_change_coordinates_yet | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
+| purenkel_galleri | data/coordinate-evidence/oslo/kunst/purenkel_galleri.json | applied_to_place | do_not_change_coordinates_yet | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
+| torshovparken | data/coordinate-evidence/oslo/by/torshovparken.json | applied_to_place | do_not_change_coordinates_yet | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
+| hodet_nn_torshovdalen | data/coordinate-evidence/oslo/kunst/hodet_nn_torshovdalen.json | applied_to_place | do_not_change_coordinates_yet | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |

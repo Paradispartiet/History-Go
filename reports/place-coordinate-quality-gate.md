@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T22:30:07.726Z
+Generert: 2026-07-20T22:44:59.682Z
 
 ## Oppsummering
-- Aktive filer validert: **559**
+- Aktive filer validert: **563**
 - Antall steder validert: **1214**
 - Harde feil: **0**
 - Varsler: **429**
@@ -577,6 +577,10 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/gamlebyen_kirke.json
 - data/places/kunst/oslo/places_kunst/oslo_prosjektrom.json
 - data/places/natur/vestland/langebudalen_naturreservat.json
+- data/places/historie/oslo/places_historie/paulus_kirke.json
+- data/places/kunst/oslo/places_kunst/purenkel_galleri.json
+- data/places/by/oslo/places/torshovparken.json
+- data/places/kunst/oslo/places_kunst/hodet_nn_torshovdalen.json
 
 ## Harde feil
 - Ingen
