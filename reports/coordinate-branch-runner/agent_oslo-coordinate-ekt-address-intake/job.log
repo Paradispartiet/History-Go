@@ -1,0 +1,66 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Ekebergveien 99 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+  "query": "Ekebergveien 99 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ekebergveien%2099%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:11462:99",
+  "coordinate": {
+    "lat": 59.89214335591169,
+    "lon": 10.774614195820838,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11462:99",
+    "address": {
+      "street": "Ekebergveien",
+      "number": "99",
+      "postcode": "1178",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Ekebergveien 99, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Ekebergveien",
+    "adressetekst": "Ekebergveien 99",
+    "adressetilleggsnavn": null,
+    "adressekode": 11462,
+    "nummer": 99,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 151,
+    "bruksnummer": 178,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "1178",
+    "adressetekstutenadressetilleggsnavn": "Ekebergveien 99",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.89214335591169,
+      "lon": 10.774614195820838
+    },
+    "oppdateringsdato": "2023-11-09T11:09:09"
+  }
+}
+Saved EKT address intake evidence to reports/oslo-attractions-completeness-20260720/ekt-rideskole-husdyrpark
