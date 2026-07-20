@@ -68,3 +68,5 @@ Den målrettede testen kontrollerer:
 - route-index og split-manifest-hash
 - canonical år og motivnavn
 - at Tyrihans-avviket ikke er tatt inn i canonical data
+
+I tillegg kjøres People-of-Places, leksikon-ID-er, TypeScript, split-manifest, place-index, koordinatkildekontrakt, koordinatkvalitet og coordinate-evidence som harde porter. Den globale story-integritetskontrollen og strict-new-koordinatinntaket har eksisterende, urelaterte feil andre steder i datasettet og brukes derfor ikke som Ankerbrua-port; Ankerbruas egne story- og koordinatkrav er dekket av måltesten og de øvrige koordinatportene.
