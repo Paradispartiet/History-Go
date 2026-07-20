@@ -12,6 +12,7 @@ from app.domains.social_meet.discovery_models import (
     DiscoveryFeatureGate,
     DiscoveryMatchReason,
     DiscoveryProfileRecord,
+    RankedDiscoveryCandidate,
 )
 from app.domains.social_meet.discovery_service import (
     SocialMeetCandidateDiscoveryService,
@@ -37,25 +38,26 @@ class FakeDiscoveryRepository:
     def __init__(
         self,
         gate: DiscoveryFeatureGate,
-        candidates: list[DiscoveryProfileRecord],
+        candidates: list[RankedDiscoveryCandidate],
     ) -> None:
         self.gate = gate
         self.candidates = candidates
-        self.pool_limit: int | None = None
+        self.limit: int | None = None
 
     def get_feature_gate(self) -> DiscoveryFeatureGate:
         return self.gate
 
-    def list_candidate_profiles(
+    def rank_context_candidates(
         self,
         *,
         requester_profile_id: UUID,
+        context: DiscoveryContextSignals,
         supported_consent_version: str,
         now: datetime,
-        pool_limit: int,
-    ) -> list[DiscoveryProfileRecord]:
-        self.pool_limit = pool_limit
-        return self.candidates
+        limit: int,
+    ) -> list[RankedDiscoveryCandidate]:
+        self.limit = limit
+        return self.candidates[:limit]
 
 
 def test_discovery_is_fail_closed_when_deployment_kill_switch_is_off() -> None:
@@ -90,7 +92,14 @@ def test_discovery_is_fail_closed_when_database_flag_is_missing_or_disabled() ->
 def test_explicit_profile_cohort_bypasses_zero_percent_rollout() -> None:
     requester = _requester()
     gate = DiscoveryFeatureGate(True, 0, frozenset({_profile_id(requester)}))
-    service = _service(requester, gate, [_context_candidate(), _shared_candidate()])
+    service = _service(
+        requester,
+        gate,
+        [
+            _ranked_candidate("Context match", DiscoveryMatchReason.CONTEXT_THEME, score=12),
+            _ranked_candidate("Shared match", DiscoveryMatchReason.SHARED_THEME, score=3),
+        ],
+    )
 
     response = service.find_context_candidates(requester.auth_user_id, _request(), now=NOW)
 
@@ -132,48 +141,42 @@ def test_requester_must_remain_discoverable_with_current_consent() -> None:
         assert error.value.code == "profile_not_published"
 
 
-def test_candidates_rank_only_by_explicit_context_and_profile_overlap() -> None:
+def test_service_serializes_ranked_candidates_without_exposing_internal_score() -> None:
     requester = _requester()
-    context_candidate = _context_candidate()
-    shared_candidate = _shared_candidate()
-    unrelated_candidate = _candidate(
-        display_name="Unrelated",
-        preferred_themes=("botany",),
-        fingerprint={"topicTags": ["plants"]},
-    )
     service = _service(
         requester,
         DiscoveryFeatureGate(True, 100, frozenset()),
-        [shared_candidate, unrelated_candidate, context_candidate],
+        [
+            _ranked_candidate(
+                "Context match",
+                DiscoveryMatchReason.CONTEXT_INTEREST_PLACE,
+                DiscoveryMatchReason.CONTEXT_THEME,
+                score=99,
+            )
+        ],
     )
 
     response = service.find_context_candidates(requester.auth_user_id, _request(), now=NOW)
 
-    assert [candidate.profile.display_name for candidate in response.candidates] == [
-        "Context match",
-        "Shared match",
+    assert response.candidates[0].profile.display_name == "Context match"
+    assert response.candidates[0].match_reasons == [
+        DiscoveryMatchReason.CONTEXT_INTEREST_PLACE,
+        DiscoveryMatchReason.CONTEXT_THEME,
     ]
-    assert DiscoveryMatchReason.CONTEXT_INTEREST_PLACE in response.candidates[0].match_reasons
-    assert DiscoveryMatchReason.CONTEXT_THEME in response.candidates[0].match_reasons
-    assert DiscoveryMatchReason.SHARED_THEME in response.candidates[1].match_reasons
     serialized = response.model_dump(mode="json", by_alias=True)
     assert "score" not in str(serialized).lower()
     assert "lastSeen" not in str(serialized)
     assert "online" not in str(serialized).lower()
 
 
-def test_candidate_limit_is_capped_by_server_configuration() -> None:
+def test_candidate_limit_is_capped_before_repository_query() -> None:
     requester = _requester()
-    candidates = [
-        _candidate(
-            display_name=f"Candidate {index}",
-            preferred_themes=("history",),
-        )
-        for index in range(5)
-    ]
     repository = FakeDiscoveryRepository(
         DiscoveryFeatureGate(True, 100, frozenset()),
-        candidates,
+        [
+            _ranked_candidate(f"Candidate {index}", DiscoveryMatchReason.SHARED_THEME, score=10)
+            for index in range(5)
+        ],
     )
     service = SocialMeetCandidateDiscoveryService(
         Settings(
@@ -193,13 +196,13 @@ def test_candidate_limit_is_capped_by_server_configuration() -> None:
     )
 
     assert len(response.candidates) == 2
-    assert repository.pool_limit == 50
+    assert repository.limit == 2
 
 
 def _service(
     requester: SocialMeetProfileRecord,
     gate: DiscoveryFeatureGate,
-    candidates: list[DiscoveryProfileRecord],
+    candidates: list[RankedDiscoveryCandidate],
     *,
     settings: Settings | None = None,
 ) -> SocialMeetCandidateDiscoveryService:
@@ -253,51 +256,26 @@ def _requester(
     )
 
 
-def _context_candidate() -> DiscoveryProfileRecord:
-    return _candidate(
-        display_name="Context match",
-        preferred_themes=("history",),
-        favorite_eras=("medieval",),
-        interest_places=("akershus_festning",),
-        learning_goals=("architecture",),
-        fingerprint={
-            "themeTags": ["history"],
-            "eraTags": ["medieval"],
-            "topicTags": ["fortifications"],
-            "learningGoalTags": ["architecture"],
-        },
-    )
-
-
-def _shared_candidate() -> DiscoveryProfileRecord:
-    return _candidate(
-        display_name="Shared match",
-        preferred_themes=("history",),
-        favorite_eras=("medieval",),
-        learning_goals=("architecture",),
-    )
-
-
-def _candidate(
-    *,
+def _ranked_candidate(
     display_name: str,
-    preferred_themes: tuple[str, ...] = (),
-    favorite_eras: tuple[str, ...] = (),
-    interest_places: tuple[str, ...] = (),
-    learning_goals: tuple[str, ...] = (),
-    fingerprint: dict[str, object] | None = None,
-) -> DiscoveryProfileRecord:
-    return DiscoveryProfileRecord(
-        profile_id=uuid4(),
-        display_name=display_name,
-        avatar_ref=None,
-        short_bio=None,
-        preferred_themes=preferred_themes,
-        favorite_eras=favorite_eras,
-        interest_places=interest_places,
-        learning_goals=learning_goals,
-        knowledge_fingerprint_summary=fingerprint or {},
-        updated_at=NOW,
+    *reasons: DiscoveryMatchReason,
+    score: int,
+) -> RankedDiscoveryCandidate:
+    return RankedDiscoveryCandidate(
+        profile=DiscoveryProfileRecord(
+            profile_id=uuid4(),
+            display_name=display_name,
+            avatar_ref=None,
+            short_bio=None,
+            preferred_themes=("history",),
+            favorite_eras=("medieval",),
+            interest_places=("akershus_festning",),
+            learning_goals=("architecture",),
+            knowledge_fingerprint_summary={"themeTags": ["history"]},
+            updated_at=NOW,
+        ),
+        match_reasons=reasons,
+        score=score,
     )
 
 
