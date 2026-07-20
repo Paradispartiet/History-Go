@@ -1,51 +1,62 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "oslo_kornmagasin",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_identity_split",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9119,
-    "lon": 10.7428,
+    "lat": 59.9071958,
+    "lon": 10.7379439,
     "r": 120,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 669390505; identity and year cross-checked against Lovdata fredningsforskrift for Akershus festning, inventar 0008",
+    "coordType": "building_center",
+    "coordNote": "Den tidligere aktive 1785-recorden «Christiania kornmagasin» manglet eksternt verifisert identitet. Offisiell fredningsforskrift identifiserer i stedet inventar 0008 som Kornmagasinet fra 1788 på Akershus festning. Det eksakte navngitte OSM-bygningsobjektet way 669390505 brukes som geometrikilde for selve bygningen. Fysisk overlap er kontrollert mot det separate Bakeriet, som har eget bygningsobjekt osm-way:669390521."
   },
   "identity": {
-    "currentName": "Christiania kornmagasin",
-    "resolvedIdentity": "mulig sammenblanding med Kornmagasinet, inventar 0008 på Akershus festning",
-    "identityStatus": "conflict",
-    "identityProblem": "Aktiv record heter «Christiania kornmagasin» og oppgir 1785, mens det konkrete stående Kornmagasinet på Akershus er dokumentert som inventar 0008 fra 1788. Et eksakt OSM-bygningsobjekt finnes, men recorden kan ikke retargetes til dette bygget uten eksplisitt identitets- og innholdsavgjørelse.",
-    "locatorTypeCandidate": "historic_site",
+    "currentName": "Kornmagasinet på Akershus festning",
+    "resolvedIdentity": "Kornmagasinet, inventar 0008 på Akershus festning, oppført 1788",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
     "requiresSplit": false,
-    "splitReason": "Aktiv record heter «Christiania kornmagasin» og oppgir 1785, mens det konkrete stående Kornmagasinet på Akershus er dokumentert som inventar 0008 fra 1788. Et eksakt OSM-bygningsobjekt finnes, men recorden kan ikke retargetes til dette bygget uten eksplisitt identitets- og innholdsavgjørelse."
+    "splitReason": ""
   },
   "requiredEvidence": [
-    "avklaring av hvilken historisk institusjon recorden beskriver",
-    "korrigert navn/år/faktagrunnlag dersom Akershus-bygget er ment",
-    "overlap-audit mot eksisterende Akershus-records"
+    "offisiell historisk identitet og år",
+    "eksakt fysisk bygningsgeometri",
+    "fysisk avgrensning mot andre Akershus-bygninger"
   ],
   "evidence": [
-    {
-      "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap",
-      "sourceUrl": "https://www.openstreetmap.org/way/669390505",
-      "sourceObjectId": "osm-way:669390505",
-      "sourceQuality": "named_building_candidate",
-      "finding": "Objektsøket finner et navngitt Kornmagasinet-bygg inne på Akershus festning.",
-      "canVerifyCoordinate": false,
-      "reason": "Den aktive History Go-recordens navn og år matcher ikke sikkert det dokumenterte 1788-bygget."
-    },
     {
       "sourceProvider": "official_heritage",
       "sourceName": "Lovdata – fredningsforskrift for Akershus festning",
       "sourceUrl": "https://lovdata.no/dokument/LF/forskrift/2014-12-17-1696/%C2%A73",
       "sourceObjectId": "akershus-inventar:0008",
       "sourceQuality": "official_heritage_identity",
-      "finding": "Fredningsforskriften identifiserer inventar 8 som Kornmagasinet, datert 1788.",
+      "finding": "Fredningsforskriften identifiserer inventar 0008 som Kornmagasinet og daterer bygningen til 1788.",
       "canVerifyCoordinate": false,
-      "reason": "Kilden styrker kandidatobjektet, men løser ikke om aktiv 1785-record faktisk skal representere dette bygget."
+      "reason": "Kilden verifiserer identitet og år; det eksakte OSM-bygningsobjektet er geometrikilden."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 669390505 – Kornmagasinet",
+      "sourceUrl": "https://www.openstreetmap.org/way/669390505",
+      "sourceObjectId": "osm-way:669390505",
+      "sourceQuality": "exact_named_building_geometry",
+      "finding": "Det navngitte OSM-way-objektet representerer Kornmagasinet på Akershus festning.",
+      "canVerifyCoordinate": true,
+      "reason": "Den tidligere aktive 1785-recorden «Christiania kornmagasin» manglet eksternt verifisert identitet. Offisiell fredningsforskrift identifiserer i stedet inventar 0008 som Kornmagasinet fra 1788 på Akershus festning. Det eksakte navngitte OSM-bygningsobjektet way 669390505 brukes som geometrikilde for selve bygningen. Fysisk overlap er kontrollert mot det separate Bakeriet, som har eget bygningsobjekt osm-way:669390521."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 669390521 – Bakeriet",
+      "sourceUrl": "https://www.openstreetmap.org/way/669390521",
+      "sourceObjectId": "osm-way:669390521",
+      "sourceQuality": "physical_overlap_cross_check",
+      "finding": "Det separate canonical Bakeriet har et eget fysisk bygningsobjekt og overlapper ikke Kornmagasinets objektidentitet.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som fysisk overlap-audit, ikke som koordinatkilde for Kornmagasinet."
     }
   ],
   "addressCandidates": [],
@@ -53,24 +64,30 @@
     {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:669390505",
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:669390505",
+      "canApplyToPlace": true
+    }
+  ],
   "coordinateCandidates": [
     {
       "lat": 59.9071958,
       "lon": 10.7379439,
-      "coordRole": "display_marker",
-      "canApplyToPlace": false
+      "coordRole": "building_center",
+      "canApplyToPlace": true
     }
   ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Aktiv record heter «Christiania kornmagasin» og oppgir 1785, mens det konkrete stående Kornmagasinet på Akershus er dokumentert som inventar 0008 fra 1788. Et eksakt OSM-bygningsobjekt finnes, men recorden kan ikke retargetes til dette bygget uten eksplisitt identitets- og innholdsavgjørelse.",
-    "nextAction": "Auditér historisk kildegrunnlag og bestem om recorden skal korrigeres til Akershus Kornmagasinet eller erstattes/fjernes som feilkonstruert place."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Identiteten er korrigert til det offisielt dokumenterte Kornmagasinet fra 1788, og eksakt navngitt bygningsgeometri er anvendt."
   },
   "notes": [
-    "Ingen koordinatendring i batch 24."
+    "Den tidligere aktive 1785-recorden «Christiania kornmagasin» manglet eksternt verifisert identitet. Offisiell fredningsforskrift identifiserer i stedet inventar 0008 som Kornmagasinet fra 1788 på Akershus festning. Det eksakte navngitte OSM-bygningsobjektet way 669390505 brukes som geometrikilde for selve bygningen. Fysisk overlap er kontrollert mot det separate Bakeriet, som har eget bygningsobjekt osm-way:669390521."
   ]
 }
