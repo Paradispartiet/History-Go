@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 240 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 95 erstatter Trailforks som primær koordinatkilde for `korketrekkeren` med den eksplisitte OSM-ruterelasjonen `osm-relation:1459739` og et eksakt Frognerseteren-side endepunkt, kontrollert mot Oslo kommunes dokumentasjon av traseen Frognerseteren–Midtstuen. Relasjonens 31,8 m kartgap er eksplisitt dokumentert og skjules ikke som en falskt ubrutt polyline. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
+Oslo-tabellen inneholder nå 244 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 96–99 legger til Paulus kirke, Purenkel galleri, Torshovparken og HODET N.N. med verifiserte adresse- eller objektankre. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -284,6 +284,10 @@ Batch 94 (2026-07-21) følger top-level manifestrekkefølgen videre inn i `place
 
 
 Batch 95 (2026-07-21) reviderer `korketrekkeren` som lineær akebakke/rute, ikke som adressepunkt. Oslo kommune dokumenterer Korketrekkeren fra Frognerseteren til Midtstuen og oppgir ca. 2700 meter. OSM-ruterelasjon 1459739 er eksplisitt navngitt Korketrekkeren og tagget `type=route`, `route=sled` og `piste:type=sled`. De 16 ordnede medlems-way-ene danner to internt sammenhengende rutedeler med samlet geometri 2436 meter og et 31.8 meter kartgap mellom delene; gap inkludert blir den dokumenterte ruterekken 2467 meter. Startankeret er det eksakte øvre relasjonsendepunktet 25 meter fra Frognerseteren stasjon, mens nedre ende er 41 meter fra Midtstuen stasjon. Relasjonen brukes som semantisk ruteobjekt og startpunktet som `route_start`; batchen påstår ikke at traseen er én topologisk ubrutt polyline. Trailforks er fjernet som primær koordinatkilde.
+| 96 | `paulus_kirke` | Paulus kirke | verified | `geonorge-adresser-v1:0301:17489:31` |
+| 97 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
+| 98 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
+| 99 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
