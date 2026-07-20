@@ -1,6 +1,10 @@
 name: Update sport relative set policy
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-sport-relative-set-policy.yml'
   issues:
     types: [opened, reopened]
 
@@ -9,7 +13,7 @@ permissions:
 
 jobs:
   update:
-    if: github.event.issue.title == '[HG] Oppdater sportfag: relativt antall sett'
+    if: github.event_name == 'push' || github.event.issue.title == '[HG] Oppdater sportfag: relativt antall sett'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
