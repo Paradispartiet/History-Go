@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-20T23:17:10.559Z",
+    "source": "Artskart public API",
+    "status": "candidate_only",
+    "filters": {
+      "minYear": 2000,
+      "maxPrecisionM": 250,
+      "defaultRadiusM": 180
+    },
+    "counts": {
+      "placesTotal": 1217,
+      "placesChecked": 1,
+      "floraInRepo": 214,
+      "faunaInRepo": 220
+    }
+  },
+  "places": {
+    "langfoss_etne": {
+      "name": "Langfoss",
+      "lat": 59.84409,
+      "lon": 6.33989,
+      "radiusM": 320,
+      "category": "natur",
+      "status": "candidate_from_artskart",
+      "diagnostic": {
+        "requestUrl": "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28705433.3263871255+8364787.747050965%2C706073.3263871255+8364787.747050965%2C706073.3263871255+8365427.747050965%2C705433.3263871255+8365427.747050965%2C705433.3263871255+8364787.747050965%29%29",
+        "payloadShape": {
+          "type": "object",
+          "keys": [
+            "Observations",
+            "PageIndex",
+            "PageSize",
+            "TotalCount",
+            "TotalPages"
+          ],
+          "arrayKeys": [
+            {
+              "key": "Observations",
+              "length": 3
+            }
+          ],
+          "objectKeys": []
+        },
+        "extractedObservationCount": 3,
+        "firstObservationKeys": [
+          "species",
+          "Id",
+          "Institution",
+          "InstitutionCode",
+          "InstitutionUrl",
+          "InstitutionLogoUrl",
+          "Collection",
+          "CollectionCode",
+          "CatalogNumber",
+          "DetailUrl",
+          "Collector",
+          "CollectedDate",
+          "IdentifiedBy",
+          "DatetimeIdentified",
+          "BasisOfRecord",
+          "TaxonId",
+          "Habitat",
+          "DatasetId",
+          "DatasetName",
+          "ObsUrl",
+          "Name",
+          "ScientificName",
+          "Author",
+          "kingdom",
+          "phylum",
+          "klass",
+          "order",
+          "family",
+          "genus",
+          "subspecies",
+          "specificEpithet",
+          "infraspecificEpithet",
+          "Status",
+          "TypeObj",
+          "Sex",
+          "Count",
+          "Notes",
+          "Country",
+          "County",
+          "CountyId",
+          "Municipality",
+          "MunicipalityId",
+          "Locality",
+          "Longitude",
+          "Latitude",
+          "Precision",
+          "FootprintWKT",
+          "East",
+          "North",
+          "Projection"
+        ],
+        "usefulObservationCount": 2,
+        "matchedObservationCount": 0,
+        "unmatchedNameSamples": [
+          "Leucorrhinia dubia",
+          "småtorvlibelle",
+          "dubia",
+          "Pinguicula vulgaris",
+          "tettegras",
+          "vulgaris"
+        ]
+      },
+      "flora": [],
+      "fauna": []
+    }
+  }
+}
