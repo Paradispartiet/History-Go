@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 221 verifiserte eller kildekontrollerte canonical steder. Batch 73 legger til Sørenga sjøbad med det navngitte OSM-POI-et node 5295458069 etter at det offisielle Geonorge-adressepunktet for Sørengkaia 69 ble kontrollert og avvist som fysisk misvisende displayanker for selve sjøbadet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 222 verifiserte eller kildekontrollerte canonical steder. Batch 73 legger til FRIGO – Friluftssenteret i Gamle Oslo med offisiell Geonorge-adressekoordinat for dagens besøksadresse Ensjøveien 20. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -184,8 +184,6 @@ Oslo-tabellen inneholder nå 221 verifiserte eller kildekontrollerte canonical s
 | 34 | `vulkan_industriomrade` | Vulkan industriområde | verified | `geonorge-adresser-v1:0301:14622:17` |
 | 34 | `hausmannsbrua` | Hausmannsbrua | verified_geometry | `osm-way:377766486` |
 | 34 | `ankerbrua` | Ankerbrua | verified_geometry | `osm-way:381749949` |
-| 72 | `akrobaten_gangbro` | Akrobaten gangbro | verified_geometry | `osm-way:468892289` |
-
 | 35 | `vaterland_historisk_elvelop` | Vaterland – historisk elveløp | verified_historical_source | `oslobyleksikon:akerselva:vaterlands-bru` |
 | 35 | `akerselva_utlop_bjorvika` | Akerselvas utløp mot fjorden (Bjørvika) | verified_geometry | `osm-way:246047712` |
 | 36 | `prinds_christian_augusts_minde` | Prinds Christian Augusts Minde | verified_historical_source | `prindsen:official-documentation` |
@@ -223,9 +221,9 @@ Oslo-tabellen inneholder nå 221 verifiserte eller kildekontrollerte canonical s
 | 52 | `toyenbadet` | Tøyenbadet | verified | `geonorge-adresser-v1:0301:12860:90` |
 | 53 | `ekt_rideskole_husdyrpark` | EKT Rideskole og Husdyrpark | verified | `geonorge-adresser-v1:0301:11462:99` |
 | 54 | `dronning_sonja_kunststall` | Dronning Sonja KunstStall | verified | `geonorge-adresser-v1:0301:15614:50` |
-
 | 55 | `holmlia_bad` | Holmlia bad | verified | `geonorge-adresser-v1:0301:13084:34` |
 | 56 | `skimore_oslo` | Skimore Oslo | verified | `geonorge-adresser-v1:0301:17787:64` |
+| 56 | `oslo_kraftselskap` | Oslo Lysverkers hovedkontor | verified | `geonorge-adresser-v1:0301:16854:1` |
 | 57 | `fagerborg_kirke` | Fagerborg kirke | verified | `geonorge-adresser-v1:0301:15670:74` |
 | 58 | `uranienborg_kirke` | Uranienborg kirke | verified | `geonorge-adresser-v1:0301:13110:15` |
 | 59 | `frogner_kirke` | Frogner kirke | verified | `geonorge-adresser-v1:0301:10967:36` |
@@ -241,6 +239,8 @@ Oslo-tabellen inneholder nå 221 verifiserte eller kildekontrollerte canonical s
 | 69 | `central_jam_e_mosque` | Central Jam-e-Mosque | verified | `geonorge-adresser-v1:0301:18780:28B` |
 | 70 | `toyen_hovedgard` | Tøyen hovedgård | verified | `geonorge-adresser-v1:0301:17749:23B` |
 | 71 | `museumsleiligheten_grabein` | Museumsleiligheten Gråbein | verified | `geonorge-adresser-v1:0301:17875:38B` |
+| 72 | `akrobaten_gangbro` | Akrobaten gangbro | verified_geometry | `osm-way:468892289` |
+| 73 | `frigo_friluftssenteret` | FRIGO – Friluftssenteret i Gamle Oslo | verified | `geonorge-adresser-v1:0301:11589:20` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -319,7 +319,6 @@ Duplikatmigrering (2026-07-20): `akerhus_slott` er fjernet som separat fysisk pl
 Duplikatmigrering (2026-07-20): `good_game_redaksjon` er fjernet som separat fysisk place fordi Good Game er et redaksjonelt innholdsmiljø inne i canonical `nrk_huset_marienlyst`, ikke et eget dokumentert sted. Story-, people- og Wonderkammer-referanser er beholdt som Good Game-innhold, men eksakte fysiske place-ID-er peker nå på NRK-huset. Den separate Civication-mappingen er fjernet fordi canonical NRK allerede har egen mapping, og legacy-ID-en er lagt til alias-gaten.
 
 Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fysisk place fordi recorden overlapper canonical og koordinatverifiserte `nydalen`. Industristedets dokumenterte works, før–nå, brands, Civication-objekter, kilder, underbadges og Akerselva-naturprofil er slått inn i canonical Nydalen. Quiz-, people-, story-, leksikon-, natur- og rutereferanser er retargetet til canonical place-ID, mens det verifiserte Nydalen-området beholder sitt eksisterende geometrianker.
-| 56 | `oslo_kraftselskap` | Oslo Lysverkers hovedkontor | verified | `geonorge-adresser-v1:0301:16854:1` |
 
 Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk place fordi Loelva er dokumentert som historisk/alternativt navn på `alnaelva`, ikke som et eget vassdrag. Navnehistorien er bevart som en eksplisitt `historical_alias`-relasjon på canonical Alnaelva, aktive referanser er retargetet og den separate Civication-markøren er fjernet. Alnaelvas koordinatstatus er fortsatt `needs_source`; migreringen verifiserer ikke den uavklarte elvegeometrien.
 
