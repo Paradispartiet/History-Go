@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T22:33:41.321Z
+Generert: 2026-07-20T22:43:18.725Z
 
 ## Oppsummering
 - Aktive filer validert: **560**
 - Antall steder validert: **1215**
 - Harde feil: **0**
-- Varsler: **429**
-- Coordinate review candidates: **707** signaler fordelt på **566** steder
+- Varsler: **431**
+- Coordinate review candidates: **709** signaler fordelt på **568** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -954,6 +954,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/media/vestland/etne/grannar_redaksjon_etne.json#grannar_redaksjon_etne: coordStatus=verified uten coordPrecisionM
 - data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json#psykisk_helse_rus_etne: coordStatus=verified uten coordPrecisionM
 - data/places/psykologi/vestland/etne/psykisk_helse_rus_skanevik.json#psykisk_helse_rus_skanevik: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json#frammuseet: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json#kon_tiki_museet: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json#nordisk_bibelmuseum: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07.json#flop_museum: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json#folkeobservatoriet_holmenkollen: coordStatus=verified uten coordPrecisionM
@@ -1015,13 +1017,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 709 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 116 |
+| coordStatus=verified uten coordPrecisionM | 118 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 95 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 88 |
@@ -1031,7 +1033,7 @@ Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (116)
+### coordStatus=verified uten coordPrecisionM (118)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1097,6 +1099,8 @@ Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandi
 | grannar_redaksjon_etne | Grannar-redaksjonen i Etne | media | data/places/media/vestland/etne/grannar_redaksjon_etne.json | 59.66414439895677 | 5.940649457868514 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_etne | Psykisk helse og rus – Etne | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json | 59.66534125070043 | 5.943034081601908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_skanevik | Psykisk helse og rus – Skånevik | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_skanevik.json | 59.73234389428389 | 5.935277893100119 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| frammuseet | Frammuseet | historie | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json | 59.90320332524704 | 10.699091907892317 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| kon_tiki_museet | Kon-Tiki Museet | historie | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json | 59.90342401326082 | 10.698275332643746 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nordisk_bibelmuseum | Nordisk Bibelmuseum | historie | data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json | 59.910279645957665 | 10.740947844594505 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | flop_museum | FLOP Museum | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07.json | 59.908255036287656 | 10.761378655427743 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | folkeobservatoriet_holmenkollen | Folkeobservatoriet | vitenskap | data/places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json | 59.9605731651147 | 10.666638892994078 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
