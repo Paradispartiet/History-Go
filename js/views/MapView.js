@@ -7,6 +7,11 @@
   /** @typedef {import("../../schemas/place").Place} Place */
   /** @typedef {{ showMap: () => void, show: () => void, cancelPendingPlaceNavigation: () => void, openPlace: (placeId?: unknown) => boolean, openQuiz: (targetId?: unknown) => boolean, openDebate: (debateId?: unknown) => boolean }} MapViewApi */
 
+  const QUIZ_MANIFEST_PATH = "data/quiz/manifest.json";
+  const nativeFetch = window.fetch.bind(window);
+  const quizPayloadPromises = new Map();
+  let quizManifestPayloadPromise = null;
+
   function getPlaceCard() {
     return document.getElementById("placeCard");
   }
@@ -18,6 +23,134 @@
     const summaryModal = document.getElementById("quizSummaryModal");
     if (summaryModal) summaryModal.remove();
   }
+
+  function quizAbsoluteUrl(path) {
+    return new URL(String(path || ""), document.baseURI).toString();
+  }
+
+  function requestUrl(input) {
+    if (typeof input === "string") return new URL(input, document.baseURI).toString();
+    if (input instanceof URL) return input.toString();
+    if (typeof Request !== "undefined" && input instanceof Request) return input.url;
+    return String(input || "");
+  }
+
+  async function fetchQuizPayload(url) {
+    const response = await nativeFetch(url, { cache: "no-store" });
+    if (!response.ok) throw new Error(`${response.status} ${url}`);
+
+    return {
+      body: await response.text(),
+      status: response.status,
+      statusText: response.statusText,
+      headers: Array.from(response.headers.entries())
+    };
+  }
+
+  function responseFromQuizPayload(payload) {
+    return new Response(payload.body, {
+      status: payload.status,
+      statusText: payload.statusText,
+      headers: payload.headers
+    });
+  }
+
+  function primeQuizPayloads(manifest) {
+    const paths = [
+      ...(Array.isArray(manifest?.files) ? manifest.files : []),
+      ...(Array.isArray(manifest?.sets) ? manifest.sets.map((entry) => entry?.file) : [])
+    ]
+      .map((path) => String(path || "").trim())
+      .filter(Boolean);
+
+    for (const path of new Set(paths)) {
+      const url = quizAbsoluteUrl(path);
+      if (quizPayloadPromises.has(url)) continue;
+
+      // Start alle unike quizpayloads med en gang. QuizEngine sin eksisterende
+      // ensureLoaded() kan fortsatt gå sekvensielt, men leser da fra disse allerede
+      // pågående/minnebufrede promisene i stedet for å starte én nettverksrunde av gangen.
+      quizPayloadPromises.set(url, fetchQuizPayload(url));
+    }
+  }
+
+  function ensureQuizManifestPayload() {
+    if (quizManifestPayloadPromise) return quizManifestPayloadPromise;
+
+    const manifestUrl = quizAbsoluteUrl(QUIZ_MANIFEST_PATH);
+    quizManifestPayloadPromise = fetchQuizPayload(manifestUrl)
+      .then((payload) => {
+        const manifest = JSON.parse(payload.body);
+        primeQuizPayloads(manifest);
+        return { payload, manifest };
+      })
+      .catch((err) => {
+        quizManifestPayloadPromise = null;
+        throw err;
+      });
+
+    return quizManifestPayloadPromise;
+  }
+
+  function prewarmQuizData() {
+    void ensureQuizManifestPayload().catch((err) => {
+      if (window.DEBUG) console.warn("[quiz-warmup] kunne ikke starte preload", err);
+    });
+  }
+
+  async function startQuizWithParallelWarmup(targetId) {
+    if (typeof window.QuizEngine?.start !== "function") return false;
+
+    const previousFetch = window.fetch.bind(window);
+    const manifestUrl = quizAbsoluteUrl(QUIZ_MANIFEST_PATH);
+
+    // Start manifest + alle unike payloads parallelt før QuizEngine begynner sin
+    // eksisterende manifestgjennomgang. Vi endrer ikke QuizEngine-kontrakten eller
+    // progresjonslogikken; vi akselererer bare datatilgangen under kaldstart.
+    prewarmQuizData();
+
+    const bridgeFetch = async (input, init) => {
+      const url = requestUrl(input);
+
+      if (url === manifestUrl) {
+        try {
+          const { payload } = await ensureQuizManifestPayload();
+          return responseFromQuizPayload(payload);
+        } catch {
+          return previousFetch(input, init);
+        }
+      }
+
+      const payloadPromise = quizPayloadPromises.get(url);
+      if (payloadPromise) {
+        try {
+          return responseFromQuizPayload(await payloadPromise);
+        } catch {
+          return previousFetch(input, init);
+        }
+      }
+
+      return previousFetch(input, init);
+    };
+
+    window.fetch = bridgeFetch;
+
+    try {
+      await window.QuizEngine.start(targetId);
+      return true;
+    } finally {
+      if (window.fetch === bridgeFetch) window.fetch = previousFetch;
+
+      // QuizEngine har nå sin egen ferdige indeks og set-filcache. Frigjør de
+      // midlertidige rå payloadkopiene så warmup-laget ikke dobler minnebruken.
+      quizPayloadPromises.clear();
+      quizManifestPayloadPromise = null;
+    }
+  }
+
+  window.HGQuizLoadAccelerator = {
+    prewarm: prewarmQuizData
+  };
 
   function hidePlaceCardForMap() {
     const card = getPlaceCard();
@@ -167,7 +300,7 @@
       window.showToast?.("Laster quiz …", 1400);
 
       if (typeof window.QuizEngine?.start === "function") {
-        void Promise.resolve(window.QuizEngine.start(id)).catch((err) => {
+        void startQuizWithParallelWarmup(id).catch((err) => {
           console.warn("[MapView.openQuiz] quiz start failed", err);
           window.showToast?.("Kunne ikke åpne quizen");
         });
@@ -175,7 +308,10 @@
       }
 
       window.addEventListener("hg:backgroundReady", () => {
-        window.QuizEngine?.start?.(id);
+        void startQuizWithParallelWarmup(id).catch((err) => {
+          console.warn("[MapView.openQuiz] delayed quiz start failed", err);
+          window.showToast?.("Kunne ikke åpne quizen");
+        });
       }, { once: true });
 
       return true;
