@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ -f scripts/coordinate-branch-job.mjs ]]; then
+          if [[ -f scripts/ankerbrua-finalizer-job.mjs ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -47,7 +47,7 @@ jobs:
 
       - name: Materialize and validate Ankerbrua
         if: steps.pending.outputs.run == 'true'
-        run: node scripts/coordinate-branch-job.mjs
+        run: node scripts/ankerbrua-finalizer-job.mjs
 
       - name: Validate generated indexes
         if: steps.pending.outputs.run == 'true'
@@ -86,6 +86,7 @@ jobs:
             reports/coordinate-evidence-audit.md \
             reports/people-of-places-status.json \
             reports/people-of-places-status.md \
+            reports/place-coordinate-intake-gate.md \
             reports/place-coordinate-quality-gate.md
           git diff --check
           git config user.name "github-actions[bot]"
