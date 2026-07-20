@@ -1,0 +1,102 @@
+{
+  "date": "2026-07-20",
+  "applied": [
+    {
+      "id": "trikk_17_18",
+      "before": {
+        "lat": 59.92,
+        "lon": 10.76,
+        "r": 300,
+        "coordStatus": "semantic_anchor",
+        "coordSource": "",
+        "coordType": "route_midpoint",
+        "coordNote": "Tverrgående trikkelinjer. Ett punkt dekker ikke linjene; punktet er et bevisst symbolsk anker midt i indre by. Lav presisjon beholdt bevisst; bør få ruteankre ved senere manuell kartrunde."
+      },
+      "after": {
+        "lat": 59.917044,
+        "lon": 10.758279,
+        "r": 300,
+        "coordStatus": "verified_geometry",
+        "coordSource": "Ruter trikkelinjer/rutetabell gyldig fra 20. april 2026; Entur NSR parent-stoppankre",
+        "coordType": "branched_route_anchor",
+        "coordNote": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
+      },
+      "sourceObjectId": "ruter:tram-lines:17+18:2026-04-20",
+      "anchors": [
+        {
+          "id": "trikk_17_18_gaustadalleen",
+          "name": "Gaustadalléen",
+          "type": "route_point",
+          "lat": 59.945686,
+          "lon": 10.717591,
+          "r": 80,
+          "sourceObjectId": "NSR:StopPlace:6261",
+          "routeRole": "shared_west_terminus",
+          "lines": [
+            "17",
+            "18"
+          ]
+        },
+        {
+          "id": "trikk_17_18_nybrua",
+          "name": "Nybrua",
+          "type": "route_point",
+          "lat": 59.917044,
+          "lon": 10.758279,
+          "r": 80,
+          "sourceObjectId": "NSR:StopPlace:61989",
+          "routeRole": "shared_central_branch_anchor",
+          "lines": [
+            "17",
+            "18"
+          ]
+        },
+        {
+          "id": "trikk_17_18_sinsenkrysset",
+          "name": "Sinsenkrysset",
+          "type": "route_point",
+          "lat": 59.938133,
+          "lon": 10.784755,
+          "r": 80,
+          "sourceObjectId": "NSR:StopPlace:58406",
+          "routeRole": "line_17_branch_anchor",
+          "lines": [
+            "17"
+          ]
+        },
+        {
+          "id": "trikk_17_18_storo",
+          "name": "Storo",
+          "type": "route_point",
+          "lat": 59.94527,
+          "lon": 10.778637,
+          "r": 80,
+          "sourceObjectId": "NSR:StopPlace:58195",
+          "routeRole": "line_18_branch_anchor",
+          "lines": [
+            "18"
+          ]
+        },
+        {
+          "id": "trikk_17_18_grefsen_stasjon",
+          "name": "Grefsen stasjon",
+          "type": "route_point",
+          "lat": 59.94168,
+          "lon": 10.78079,
+          "r": 80,
+          "sourceObjectId": "NSR:StopPlace:59643",
+          "routeRole": "shared_east_terminus",
+          "lines": [
+            "17",
+            "18"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidenceMaintenance": [
+    "forsvarsmuseet: stale currentCoordinate/coordinateDecision synchronized to canonical place",
+    "norges_hjemmefrontmuseum: stale currentCoordinate/coordinateDecision synchronized to canonical place",
+    "roseslottet: stale currentCoordinate/coordinateDecision synchronized to canonical place"
+  ]
+}

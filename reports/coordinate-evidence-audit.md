@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T01:40:35.901Z
+Generert: 2026-07-20T01:44:31.508Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -53,7 +53,7 @@ Generert: 2026-07-20T01:40:35.901Z
 | torshov | data/coordinate-evidence/oslo/by/torshov.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyen_torg | data/coordinate-evidence/oslo/by/toyen_torg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | trefoldighetskirken | data/coordinate-evidence/oslo/by/trefoldighetskirken.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| trikk_17_18 | data/coordinate-evidence/oslo/by/trikk_17_18.json | needs_research | needs_geometry | OK |
+| trikk_17_18 | data/coordinate-evidence/oslo/by/trikk_17_18.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tullin | data/coordinate-evidence/oslo/by/tullin.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ullern | data/coordinate-evidence/oslo/by/ullern.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ullevål_hageby | data/coordinate-evidence/oslo/by/ullevål_hageby.json | applied_to_place | do_not_change_coordinates_yet | OK |
