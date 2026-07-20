@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T03:39:57.608Z
+Generert: 2026-07-20T03:48:02.548Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -79,10 +79,13 @@ Generert: 2026-07-20T03:39:57.608Z
 | forsvarsmuseet | data/coordinate-evidence/oslo/historie/forsvarsmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galgeberg | data/coordinate-evidence/oslo/historie/galgeberg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamlebyen_gravlund | data/coordinate-evidence/oslo/historie/gamlebyen_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| historisk_museum | data/coordinate-evidence/oslo/historie/historisk_museum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hovedoya_kloster | data/coordinate-evidence/oslo/historie/hovedoya_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | middelalder_oslo | data/coordinate-evidence/oslo/historie/middelalder_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nonneseter_kloster | data/coordinate-evidence/oslo/historie/nonneseter_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | norges_hjemmefrontmuseum | data/coordinate-evidence/oslo/historie/norges_hjemmefrontmuseum.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| norsk_folkemuseum | data/coordinate-evidence/oslo/historie/norsk_folkemuseum.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| norsk_maritimt_museum | data/coordinate-evidence/oslo/historie/norsk_maritimt_museum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_hospital | data/coordinate-evidence/oslo/historie/oslo_hospital.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_ladegard | data/coordinate-evidence/oslo/historie/oslo_ladegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | prinds_christian_augusts_minde | data/coordinate-evidence/oslo/historie/prinds_christian_augusts_minde.json | applied_to_place | do_not_change_coordinates_yet | OK |

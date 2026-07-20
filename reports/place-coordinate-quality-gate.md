@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T03:39:50.366Z
+Generert: 2026-07-20T03:47:55.007Z
 
 ## Oppsummering
-- Aktive filer validert: **504**
+- Aktive filer validert: **507**
 - Antall steder validert: **1218**
 - Harde feil: **0**
 - Varsler: **428**
@@ -522,6 +522,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json
 - data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json
 - data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json
+- data/places/historie/oslo/places_historie/norsk_folkemuseum.json
+- data/places/historie/oslo/places_historie/norsk_maritimt_museum.json
+- data/places/historie/oslo/places_historie/historisk_museum.json
 
 ## Harde feil
 - Ingen
