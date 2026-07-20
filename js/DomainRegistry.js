@@ -21,6 +21,7 @@
     "politikk",
     "popkultur",
     "psykologi",
+    "religion",
     "sport",
     "subkultur",
     "vitenskap"
@@ -39,6 +40,7 @@
     "politikk",
     "populaerkultur",
     "psykologi",
+    "religion",
     "sport",
     "subkultur",
     "vitenskap",
