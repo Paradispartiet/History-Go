@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T15:20:03.690Z
+Generert: 2026-07-20T15:25:53.728Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -201,3 +201,5 @@ Generert: 2026-07-20T15:20:03.690Z
 | villa_stenersen | data/coordinate-evidence/oslo/historie/villa_stenersen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | st_hallvard_kirke_kloster | data/coordinate-evidence/oslo/historie/st_hallvard_kirke_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyen_hovedgard | data/coordinate-evidence/oslo/historie/toyen_hovedgard.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| emanuel_vigeland_mausoleum | data/coordinate-evidence/oslo/kunst/emanuel_vigeland_mausoleum.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| framtidsbiblioteket_nordmarka | data/coordinate-evidence/oslo/kunst/framtidsbiblioteket_nordmarka.json | applied_to_place | do_not_change_coordinates_yet | OK |
