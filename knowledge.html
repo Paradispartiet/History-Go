@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Min kunnskap | History Go</title>
   <meta name="description" content="Ditt personlige kunnskapskart i History Go, bygget av det du faktisk har lært gjennom quiz.">
+  <script>
+    // Profilens historiske Knowledge-inngang skal fortsatt åpne den detaljerte
+    // kunnskapsprofilen. Hurtigmenyen/kartet åpner denne nye V2-oversikten.
+    try {
+      const referrer = document.referrer ? new URL(document.referrer) : null;
+      const params = new URLSearchParams(location.search);
+      const fromProfile = referrer && referrer.origin === location.origin && /\/profile\.html$/.test(referrer.pathname);
+      if (fromProfile && !params.has("subject") && params.get("view") !== "overview") {
+        location.replace("knowledge-profile.html");
+      }
+    } catch {}
+  </script>
 
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
