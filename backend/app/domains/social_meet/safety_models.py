@@ -30,6 +30,18 @@ class ReportReasonCode(StrEnum):
     OTHER_POLICY_VIOLATION = "other_policy_violation"
 
 
+class ReportDetailCode(StrEnum):
+    REPEATED_UNWANTED_INVITES = "repeated_unwanted_invites"
+    HARASSMENT_OR_PRESSURE = "harassment_or_pressure"
+    THREATENING_BEHAVIOR = "threatening_behavior"
+    SEXUAL_OR_INAPPROPRIATE_CONTENT = "sexual_or_inappropriate_content"
+    HATE_OR_DISCRIMINATION = "hate_or_discrimination"
+    IMPERSONATION_SIGNALS = "impersonation_signals"
+    MINOR_SAFETY_CONCERN = "minor_safety_concern"
+    SPAM_PATTERN = "spam_pattern"
+    OTHER_POLICY_SIGNAL = "other_policy_signal"
+
+
 class ReportStatus(StrEnum):
     SUBMITTED = "submitted"
     QUEUED = "queued"
@@ -95,7 +107,7 @@ class CreateReportRequest(ApiModel):
     related_invite_id: UUID | None = None
     related_context: SafetyContextReference | None = None
     reason_code: ReportReasonCode
-    structured_details: list[str] = Field(default_factory=list, max_length=12)
+    structured_details: list[ReportDetailCode] = Field(default_factory=list, max_length=12)
     source_surface: str | None = Field(default=None, max_length=80)
 
     @field_validator("structured_details", mode="before")
@@ -111,10 +123,8 @@ class CreateReportRequest(ApiModel):
             if not isinstance(raw_value, str):
                 return value
             detail = raw_value.strip().lower()
-            if not detail or len(detail) > 64 or detail in seen:
+            if not detail or detail in seen:
                 continue
-            if not detail.replace("_", "").isalnum():
-                return value
             seen.add(detail)
             normalized.append(detail)
         return normalized
@@ -142,7 +152,7 @@ class SubmittedReportView(ApiModel):
     related_invite_id: UUID | None
     related_context: SafetyContextReference | None
     reason_code: ReportReasonCode
-    structured_details: list[str]
+    structured_details: list[ReportDetailCode]
     status: ReportStatus
     source_surface: str | None
     created_at: datetime
