@@ -452,3 +452,7 @@ Etne batch 1 (2026-07-20) bruker Miljødirektoratets offisielle vernepolygon som
 | 2 | `saevareidberget_landskapsvernomrade` | Sævareidberget landskapsvernområde | verified_geometry | `miljodirektoratet-naturvern:VV00001587` |
 
 Etne batch 2 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Punktet er et representativt arealanker og ikke en anbefalt inngang i det bratte styvingsfeltet.
+
+| 3 | `brattholmen_naturreservat_etne` | Brattholmen naturreservat | verified_geometry | `miljodirektoratet-naturvern:VV00001741` |
+
+Etne batch 3 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Artskart-revisjonen bruker det samme polygonet og er dokumentert i `reports/etne-natur-batch-4-brattholmen-artskart.json`.

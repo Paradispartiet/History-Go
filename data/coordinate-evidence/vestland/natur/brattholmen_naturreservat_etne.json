@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "brattholmen_naturreservat_etne",
+  "placeFile": "data/places/natur/vestland/brattholmen_naturreservat_etne.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.7259696,
+    "lon": 5.8480524,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Miljødirektoratet Naturvernområder – offisiell polygon for Brattholmen naturreservat i Etne",
+    "coordType": "area_center",
+    "coordNote": "Representativt områdeanker beregnet inne i reservatpolygonet. Ikke et tilgangs- eller ilandstigningspunkt."
+  },
+  "identity": {
+    "currentName": "Brattholmen naturreservat",
+    "resolvedIdentity": "Brattholmen naturreservat, Etne kommune, ved Taraldsøy",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell navngitt vernepolygon",
+    "Etne kommune i kildeegenskapene",
+    "stabilt verneområde-ID",
+    "representativt punkt inne i polygonet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Miljødirektoratet Naturvernområder",
+      "sourceUrl": "https://faktaark.naturbase.no/?id=VV00001741",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001741",
+      "sourceQuality": "official_protected_area_polygon",
+      "finding": "Miljødirektoratets karttjeneste returnerer Brattholmen naturreservat i Etne som eget vernepolygon. Lovdata avgrenser reservatet til holmen og omtrent 50 meter omkringliggende sjøareal.",
+      "canVerifyCoordinate": true,
+      "reason": "Reservatet er et arealobjekt med offisiell polygon og stabil verneidentitet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001741",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "geometryType": "polygon",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001741",
+      "sourceUrl": "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/FeatureServer/0/query?where=navn+LIKE+%27%25Brattholmen%25%27&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.7259696,
+      "lon": 5.8480524,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Offisiell vernepolygon og representativt områdeanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Punktet er ikke en inngang, brygge eller ankringsplass.",
+    "Kildeegenskaper: {\"naturvernId\":\"VV00001741\",\"cddaId\":\"156075\",\"navn\":\"Brattholmen\",\"offisieltNavn\":\"Brattholmen naturreservat\",\"faktaark\":\"https://faktaark.naturbase.no/?id=VV00001741\",\"verneform\":\"Naturreservat\",\"verneforskrift\":\"https://lovdata.no/forskrift/1987-04-03-246\",\"vernedato\":544406400000,\"foerstegangVernet\":null,\"verneplan\":\"VerneplanSjoefugl\",\"kommune\":\"Etne (4611)\",\"forvaltningsmyndighet\":\"Statsforvalteren i Vestland\",\"forvaltningsmyndighetType\":\"Statsforvalter\",\"iucn\":\"IUCN_IA\",\"revisjon\":\"IkkeRevidert\",\"truetVurdering\":\"IkkeTruet\",\"majorEcosystemType\":\"MarinOgTerrestrisk\",\"GlobalID\":\"{DFD72E12-C037-4454-80D2-E1B5276EF332}\",\"verneformAggregert\":\"naturreservat\",\"OBJECTID\":29854,\"NaturvernFKID\":\"{6E8A9E06-D0E0-43F3-BD33-7A54D2BA8F68}\"}"
+  ]
+}

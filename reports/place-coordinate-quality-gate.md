@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T22:33:41.321Z
+Generert: 2026-07-20T22:45:17.472Z
 
 ## Oppsummering
-- Aktive filer validert: **560**
-- Antall steder validert: **1215**
+- Aktive filer validert: **561**
+- Antall steder validert: **1216**
 - Harde feil: **0**
 - Varsler: **429**
 - Coordinate review candidates: **707** signaler fordelt på **566** steder
@@ -578,6 +578,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/oslo_prosjektrom.json
 - data/places/natur/vestland/langebudalen_naturreservat.json
 - data/places/natur/vestland/saevareidberget_landskapsvernomrade.json
+- data/places/natur/vestland/brattholmen_naturreservat_etne.json
 
 ## Harde feil
 - Ingen
