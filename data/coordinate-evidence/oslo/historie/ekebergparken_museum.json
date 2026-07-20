@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "ekebergparken_museum",
+  "placeFile": "data/places/historie/oslo/places_historie/ekebergparken_museum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.89854101481173,
+    "lon": 10.75966997323581,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongsveien 23, OSLO. Punktet brukes som display- og unlock-anker for Ekebergparken Museum i Lunds villa. Det representerer ikke hele Ekebergparken skulpturpark, som beholder sitt separate dokumenterte områdeanker."
+  },
+  "identity": {
+    "currentName": "Ekebergparken Museum",
+    "resolvedIdentity": "Ekebergparken Museum in Lunds villa / Lunds hus at Kongsveien 23",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Kongsveien 23",
+    "dokumentert museum- og besøksenteridentitet i Lunds villa",
+    "eksplisitt skille fra `ekebergparken` som utstrakt parkanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongsveien%2023%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13868:23",
+      "sourceQuality": "official_address_plus_current_museum_identity",
+      "finding": "Geonorge returnerer ett entydig adressetreff for Kongsveien 23. Offisielle Ekebergparken-kilder identifiserer museet, besøkssenteret og administrasjonen i Lunds villa som en egen fysisk bygning innenfor den større skulpturparken.",
+      "canVerifyCoordinate": true,
+      "reason": "Det offisielle adressepunktet er et stabilt bygningsanker for museumsbygningen og brukes ikke som proxy for hele parkområdet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kongsveien 23 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13868:23",
+      "lat": 59.89854101481173,
+      "lon": 10.75966997323581,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13868:23",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.89854101481173,
+      "lon": 10.75966997323581,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, egen museumsidentitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Kongsveien 23, OSLO. Punktet brukes som display- og unlock-anker for Ekebergparken Museum i Lunds villa. Det representerer ikke hele Ekebergparken skulpturpark, som beholder sitt separate dokumenterte områdeanker."
+  ]
+}
