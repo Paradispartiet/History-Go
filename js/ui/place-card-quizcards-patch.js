@@ -6,6 +6,7 @@
 
   const FALLBACK_COLLECTIONS = Object.freeze(["litteratur/topp10_lit_kort.json"]);
   let collectionsPromise = null;
+  const prewarmedQuizTargets = new Set();
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -119,6 +120,18 @@
     return null;
   }
 
+  function prewarmQuizForPlace(place) {
+    const targetId = String(place?.id || "").trim();
+    if (!targetId || prewarmedQuizTargets.has(targetId)) return;
+    if (typeof window.QuizEngine?.getTargetSummary !== "function") return;
+
+    prewarmedQuizTargets.add(targetId);
+    void Promise.resolve(window.QuizEngine.getTargetSummary(targetId)).catch((err) => {
+      prewarmedQuizTargets.delete(targetId);
+      if (window.DEBUG) console.warn("[place-card-quizcards-patch] quiz prewarm failed", err);
+    });
+  }
+
   function renderQuizCard(cardData) {
     const questions = Array.isArray(cardData?.questions) ? cardData.questions : [];
     const letters = ["A", "B", "C", "D", "E", "F"];
@@ -178,6 +191,12 @@
 
   window.openPlaceCard = async function patchedOpenPlaceCard(place) {
     const result = await originalOpenPlaceCard.apply(this, arguments);
+
+    // Start quizdata-lastingen mens brukeren leser PlaceCard. QuizEngine deler den
+    // samme loading-promisen med start(), så et senere trykk på «Ta quiz» slipper
+    // normalt å begynne den tunge førstegangsinnlastingen fra null.
+    prewarmQuizForPlace(place);
+
     try {
       const cardData = await resolveQuizCard(place);
       if (cardData) applyQuizCard(cardData);
