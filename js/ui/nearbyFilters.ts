@@ -1,5 +1,6 @@
 // Canonical state and persistence controller for Nearby/Utforsk filters.
 // Button rendering and event binding remain in left-panel.js during the strangler migration.
+// State transitions preserve the legacy window globals while persistence is centralized here.
 
 import type { CategoryDefinition } from "../core/categories";
 
