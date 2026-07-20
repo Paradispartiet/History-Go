@@ -21,7 +21,9 @@
     "tags": [
       "byelv",
       "vassdrag",
-      "miljøhistorie"
+      "miljøhistorie",
+      "historisk_landskap",
+      "naturtap"
     ],
     "knagger": [
       "natur_i_by",
@@ -80,7 +82,7 @@
         "note": "Øvre del ved kilde- og utløpssone."
       }
     ],
-    "popupDesc": "Alnaelva er Oslos lengste elv og går gjennom områder med tung industrihistorie, tett bebyggelse og nyere restaurering av blågrønne korridorer. Langs elva finner man både tekniske inngrep og partier der naturen er åpnet opp igjen for ferdsel og økologisk sammenheng.\n\nI History Go er Alnaelva viktig som eksempel på hvordan byutvikling, miljøforvaltning og lokalhistorie møtes i ett vassdrag. Spørsmål bør koble elvas rolle som naturkorridor på østkanten med historien om inngrep, lukking og gjenåpning.",
+    "popupDesc": "Alnaelva er Oslos lengste elv og går gjennom områder med tung industrihistorie, tett bebyggelse og nyere restaurering av blågrønne korridorer. Langs elva finner man både tekniske inngrep og partier der naturen er åpnet opp igjen for ferdsel og økologisk sammenheng.\n\nI History Go er Alnaelva viktig som eksempel på hvordan byutvikling, miljøforvaltning og lokalhistorie møtes i ett vassdrag. Spørsmål bør koble elvas rolle som naturkorridor på østkanten med historien om inngrep, lukking og gjenåpning.\n\nElva har også vært omtalt som Loelva; dette er et historisk/alternativt navn på Alna og ikke et eget separat vassdrag.",
     "emne_ids": [
       "em_by_klima_blagronn_klimatilpasning",
       "em_by_industri_havn_logistikk",
@@ -134,7 +136,19 @@
     "geocodeAccuracy": "unknown",
     "coordRole": "line_anchor",
     "coordSourceId": "snl:alna-elv-oslo",
-    "coordSourceUrl": "https://snl.no/Alna_(elv_i_Oslo)"
+    "coordSourceUrl": "https://snl.no/Alna_(elv_i_Oslo)",
+    "relations": [
+      {
+        "id": "relation_alnaelva_loelva_historical_alias",
+        "type": "historical_alias",
+        "label": "Loelva",
+        "target_id": "alnaelva",
+        "desc": "Loelva er dokumentert som et historisk/alternativt navn på Alna, ikke som et separat fysisk vassdrag.",
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "snl:alna:loelva-alias",
+        "sourceUrl": "https://snl.no/Alna_(elv_i_Oslo)"
+      }
+    ]
   },
   {
     "id": "alnaelvstien",
@@ -200,69 +214,6 @@
     "coordSourceUrl": "https://aktuelt.oslo.kommune.no/rehabilitering-av-hengebrua-i-svartdalsparken",
     "coordVerifiedAt": "2026-07-19",
     "coordNote": "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert."
-  },
-  {
-    "id": "loelva_historisk",
-    "name": "Loelva – historisk navn på Alna",
-    "lat": 59.928,
-    "lon": 10.82,
-    "r": 250,
-    "category": "natur",
-    "badge_refs": {
-      "primary": "natur",
-      "subs": [
-        "historisk_vassdrag",
-        "naturtap",
-        "byhistorie"
-      ],
-      "also": []
-    },
-    "year": null,
-    "desc": "Historisk navn på Alnaelva, ikke et eget separat vassdrag. Recorden beholdes som historisk navne- og landskapsreferanse til Alna.",
-    "tags": [
-      "naturtap",
-      "historisk_landskap"
-    ],
-    "knagger": [
-      "fravær"
-    ],
-    "images": {
-      "map": "bilder/places/loelva.JPG",
-      "card": "bilder/kort/places/loelva.PNG",
-      "popup": "bilder/places/loelva_popup.JPG"
-    },
-    "links": {
-      "website": "",
-      "wikipedia": "",
-      "map": ""
-    },
-    "connections_preview": [],
-    "meta": {
-      "status": "active",
-      "priority": 60,
-      "source_note": "",
-      "updated": "2026-01-09"
-    },
-    "popupDesc": "Loelva er et historisk navn som har vært brukt om Alna. Kildene identifiserer derfor ikke Loelva som et separat fysisk vassdrag som kan få sin egen selvstendige canonical koordinat. History Go-recorden beholdes foreløpig som historisk navne- og landskapsreferanse, men det gamle punktet er ikke godkjent som en egen elvelokasjon.",
-    "underbadge_ids": [
-      "bekk",
-      "vann_og_vassdrag"
-    ],
-    "visual": {
-      "designCode": "waterfront_miniature"
-    },
-    "locatorType": "historic_site",
-    "sourceProvider": "manual_research",
-    "sourceObjectId": "snl:alna:loelva-alias",
-    "geocodeAccuracy": "unknown",
-    "coordRole": "display_marker",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "historical_alias_no_separate_geometry",
-    "coordSourceId": "snl:alna:loelva-alias",
-    "coordSourceUrl": "https://snl.no/Alna_(elv_i_Oslo)",
-    "coordVerifiedAt": "2026-07-19",
-    "coordNote": "Store norske leksikon og OSM-data identifiserer Loelva som alternativt/historisk navn på Alna, ikke som et separat vassdrag. Eksisterende punkt kan derfor ikke godkjennes som egen fysisk Loelva-koordinat. Recorden bør senere modelleres som historisk alias/relation til `alnaelva` fremfor som et selvstendig fysisk sted."
   },
   {
     "id": "trosterud_friomrade",
