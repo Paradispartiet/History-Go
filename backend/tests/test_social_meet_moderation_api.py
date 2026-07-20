@@ -98,11 +98,7 @@ class StubModerationService:
         decision: AppealDecision,
         reason_code: AppealDecisionReasonCode,
     ) -> AppealView:
-        status = (
-            AppealStatus.REVERSED
-            if decision is AppealDecision.REVERSE
-            else AppealStatus.UPHELD
-        )
+        status = AppealStatus.REVERSED if decision is AppealDecision.REVERSE else AppealStatus.UPHELD
         return _appeal(
             self.restriction.restriction_id,
             appeal_id=appeal_id,
