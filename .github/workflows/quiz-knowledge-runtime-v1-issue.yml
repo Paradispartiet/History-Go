@@ -1,8 +1,11 @@
-name: Apply quiz knowledge runtime v1 from issue
+name: Apply quiz knowledge runtime v1
 
 on:
   issues:
     types: [opened]
+  push:
+    paths:
+      - 'docs/.quiz-knowledge-runtime-trigger.txt'
 
 permissions:
   contents: write
@@ -10,7 +13,7 @@ permissions:
 
 jobs:
   apply:
-    if: github.event.issue.title == '[RUN] Apply quiz knowledge runtime v1'
+    if: github.event_name == 'push' || github.event.issue.title == '[RUN] Apply quiz knowledge runtime v1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,9 +31,12 @@ jobs:
         run: |
           rm -f scripts/maintenance/apply_quiz_knowledge_runtime_v1.py
           rm -f .github/workflows/quiz-knowledge-runtime-v1-issue.yml
+          rm -f docs/.quiz-knowledge-runtime-trigger.txt
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add js/quizzes.js scripts/maintenance/apply_quiz_knowledge_runtime_v1.py .github/workflows/quiz-knowledge-runtime-v1-issue.yml
+          git add js/quizzes.js scripts/maintenance/apply_quiz_knowledge_runtime_v1.py .github/workflows/quiz-knowledge-runtime-v1-issue.yml docs/.quiz-knowledge-runtime-trigger.txt
           git commit -m 'Make quizzes deliver knowledge and record reading evidence'
           git push
-          gh issue close "${{ github.event.issue.number }}" --comment 'Quizmotoren er oppdatert: kunnskapsforklaring vises etter svar, Fortsett registrerer lest, og mestring registreres bare ved riktig svar.'
+          if [ "${{ github.event_name }}" = "issues" ]; then
+            gh issue close "${{ github.event.issue.number }}" --comment 'Quizmotoren er oppdatert: kunnskapsforklaring vises etter svar, Fortsett registrerer lest, og mestring registreres bare ved riktig svar.'
+          fi
