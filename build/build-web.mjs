@@ -46,7 +46,8 @@ const SOURCE_MAPPED_ENTRIES = [
 const STARTUP_ENTRIES = [
   { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
   { in: "js/core/categories.ts", out: "categories" },
-  { in: "js/core/layerManager.ts", out: "layerManager" }
+  { in: "js/core/layerManager.ts", out: "layerManager" },
+  { in: "js/map.ts", out: "map" }
 ];
 
 // The position runtime bundles several focused modules behind one legacy global
@@ -57,7 +58,8 @@ const COMPACT_STARTUP_ENTRIES = [
 
 const STARTUP_COMPATIBILITY_OUTPUTS = [
   { out: "categories", target: "js/core/categories.js" },
-  { out: "layerManager", target: "js/core/layerManager.js" }
+  { out: "layerManager", target: "js/core/layerManager.js" },
+  { out: "map", target: "js/map.js" }
 ];
 
 const COMPACT_COMPATIBILITY_OUTPUTS = [
