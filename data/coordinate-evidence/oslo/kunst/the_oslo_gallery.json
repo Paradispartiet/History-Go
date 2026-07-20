@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "the_oslo_gallery",
+  "placeFile": "data/places/kunst/oslo/places_kunst/the_oslo_gallery.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.924682238617315,
+    "lon": 10.730101423555459,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Josefines gate 2A, OSLO, source object geonorge-adresser-v1:0301:13536:2A. Punktet brukes som display- og unlock-anker for The Oslo Gallery / The Oslo Studio på Bislett. Galleriets egen aktive nettside og VisitOSLO bekrefter den samme fysiske adressen i 2026."
+  },
+  "identity": {
+    "currentName": "The Oslo Gallery",
+    "resolvedIdentity": "The Oslo Gallery / The Oslo Studio, fysisk galleri i Josefines gate 2A",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "aktuell galleridentitet og besøksadresse",
+    "duplikatkontroll mot canonical kunststeder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Josefines%20gate%202A%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13536:2A",
+      "sourceQuality": "official_address_plus_current_gallery_identity",
+      "finding": "Geonorge gir ett entydig adressepunkt for Josefines gate 2A. Galleriets egen nettside og VisitOSLO bekrefter samme fysiske Bislett-adresse i 2026.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Josefines gate 2A, OSLO, source object geonorge-adresser-v1:0301:13536:2A. Punktet brukes som display- og unlock-anker for The Oslo Gallery / The Oslo Studio på Bislett. Galleriets egen aktive nettside og VisitOSLO bekrefter den samme fysiske adressen i 2026."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Josefines gate 2A Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13536:2A",
+      "lat": 59.924682238617315,
+      "lon": 10.730101423555459,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13536:2A",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.924682238617315,
+      "lon": 10.730101423555459,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, institusjonsidentitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Josefines gate 2A, OSLO, source object geonorge-adresser-v1:0301:13536:2A. Punktet brukes som display- og unlock-anker for The Oslo Gallery / The Oslo Studio på Bislett. Galleriets egen aktive nettside og VisitOSLO bekrefter den samme fysiske adressen i 2026."
+  ]
+}
