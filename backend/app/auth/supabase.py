@@ -120,9 +120,7 @@ class SupabaseTokenVerifier:
                 "Legacy HS256 verification requires HG_BACKEND_SUPABASE_PUBLISHABLE_KEY"
             )
 
-        client = self._http_client or httpx.Client(
-            timeout=self._settings.request_timeout_seconds
-        )
+        client = self._http_client or httpx.Client(timeout=self._settings.request_timeout_seconds)
         owns_client = self._http_client is None
         try:
             response = client.get(
