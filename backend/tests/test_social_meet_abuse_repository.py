@@ -3,12 +3,16 @@ from __future__ import annotations
 from datetime import UTC, datetime, timedelta
 from typing import cast
 from unittest.mock import MagicMock
-from uuid import UUID, uuid4
+from uuid import uuid4
 
 from app.core.database import Database
 from app.domains.social_meet.abuse_models import (
+    BLOCK_COOLDOWN,
     CANCELLATION_LOOKBACK,
+    DAY_LOOKBACK,
     DECLINE_COOLDOWN,
+    HOUR_LOOKBACK,
+    MINUTE_LOOKBACK,
     REPORT_COOLDOWN,
 )
 from app.domains.social_meet.abuse_repository import PostgresSocialMeetAbuseRepository
@@ -36,7 +40,7 @@ def test_repository_maps_canonical_abuse_snapshot() -> None:
     )
 
     assert snapshot is not None
-    assert snapshot.sender_profile_created_at == row["sender_profile_created_at"]
+    assert snapshot.sender_social_meet_started_at == row["sender_social_meet_started_at"]
     assert snapshot.sender_minute_count == 2
     assert snapshot.sender_hour_count == 8
     assert snapshot.sender_day_count == 12
@@ -46,6 +50,7 @@ def test_repository_maps_canonical_abuse_snapshot() -> None:
     assert snapshot.duplicate_active_invite is True
     assert snapshot.last_declined_at == row["last_declined_at"]
     assert snapshot.last_recipient_report_at == row["last_recipient_report_at"]
+    assert snapshot.last_pair_block_at == row["last_pair_block_at"]
     assert snapshot.unresolved_reports_against_sender == 2
 
     params = connection.execute.call_args.args[1]
@@ -72,11 +77,12 @@ def test_repository_uses_rolling_rate_and_cooldown_windows() -> None:
     )
 
     params = connection.execute.call_args.args[1]
-    assert params["minute_start"] == NOW - timedelta(minutes=1)
-    assert params["hour_start"] == NOW - timedelta(hours=1)
-    assert params["day_start"] == NOW - timedelta(days=1)
+    assert params["minute_start"] == NOW - MINUTE_LOOKBACK
+    assert params["hour_start"] == NOW - HOUR_LOOKBACK
+    assert params["day_start"] == NOW - DAY_LOOKBACK
     assert params["decline_start"] == NOW - DECLINE_COOLDOWN
     assert params["report_start"] == NOW - REPORT_COOLDOWN
+    assert params["block_start"] == NOW - BLOCK_COOLDOWN
     assert params["cancellation_start"] == NOW - CANCELLATION_LOOKBACK
 
 
@@ -114,6 +120,7 @@ def test_repository_query_reads_only_existing_social_meet_sources() -> None:
     statement = str(connection.execute.call_args.args[0])
     assert "hg_spotmeeting_invites" in statement
     assert "hg_social_meet_reports" in statement
+    assert "hg_social_meet_blocks" in statement
     assert "hg_profiles" in statement
     assert "hg_social_meet_abuse" not in statement
 
@@ -132,7 +139,7 @@ def _database_with_row(row: dict[str, object] | None) -> tuple[Database, MagicMo
 
 def _row() -> dict[str, object]:
     return {
-        "sender_profile_created_at": NOW - timedelta(days=30),
+        "sender_social_meet_started_at": NOW - timedelta(days=30),
         "sender_minute_count": 2,
         "sender_hour_count": 8,
         "sender_day_count": 12,
@@ -142,5 +149,6 @@ def _row() -> dict[str, object]:
         "duplicate_active_invite": True,
         "last_declined_at": NOW - timedelta(hours=2),
         "last_recipient_report_at": NOW - timedelta(days=1),
+        "last_pair_block_at": NOW - timedelta(days=2),
         "unresolved_reports_against_sender": 2,
     }
