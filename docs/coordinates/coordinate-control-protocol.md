@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 232 verifiserte eller kildekontrollerte canonical steder. Batch 85 legger til KÖSK med den entydige offisielle Geonorge-adressekoordinaten for dagens offentlige galleriadresse i Operagata 63C; 63A beholdes kun som alternativ hentings-/eldre adresse. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 233 verifiserte eller kildekontrollerte canonical steder. Batch 86 legger til Galleri Mini med den entydige offisielle Geonorge-adressekoordinaten for Munkegata 1; kontrolloppslaget for Munkegata 10 ga ingen adresse og parsekonflikten er eksplisitt lukket. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -253,6 +253,7 @@ Oslo-tabellen inneholder nå 232 verifiserte eller kildekontrollerte canonical s
 | 83 | `biblo_toyen` | Biblo Tøyen | verified | `geonorge-adresser-v1:0301:12580:22` |
 | 84 | `ekebergparken_museum` | Ekebergparken Museum | verified | `geonorge-adresser-v1:0301:13868:23` |
 | 85 | `kosk_oslo` | KÖSK | verified | `geonorge-adresser-v1:0301:21508:63C` |
+| 86 | `galleri_mini_oslo` | Galleri Mini | verified | `geonorge-adresser-v1:0301:14861:1` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 

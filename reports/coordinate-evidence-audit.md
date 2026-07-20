@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T21:17:11.595Z
+Generert: 2026-07-20T21:31:23.163Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -218,3 +218,4 @@ Generert: 2026-07-20T21:17:11.595Z
 | biblo_toyen | data/coordinate-evidence/oslo/litteratur/biblo_toyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken_museum | data/coordinate-evidence/oslo/historie/ekebergparken_museum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kosk_oslo | data/coordinate-evidence/oslo/kunst/kosk_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| galleri_mini_oslo | data/coordinate-evidence/oslo/kunst/galleri_mini_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
