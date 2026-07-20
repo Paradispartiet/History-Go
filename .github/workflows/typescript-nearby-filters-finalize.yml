@@ -29,7 +29,28 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Apply Nearby filters extraction
-        run: python3 .github/scripts/finalize_nearby_filters.py
+        shell: bash
+        run: |
+          set +e
+          python3 .github/scripts/finalize_nearby_filters.py > nearby-filters-finalize.log 2>&1
+          status=$?
+          cat nearby-filters-finalize.log
+          echo "$status" > nearby-filters-finalize.status
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nearby-filters-finalize-diagnostics
+          path: |
+            nearby-filters-finalize.log
+            nearby-filters-finalize.status
+          retention-days: 1
+      - name: Stop on migration failure
+        shell: bash
+        run: |
+          status=$(cat nearby-filters-finalize.status)
+          if [ "$status" != "0" ]; then
+            exit "$status"
+          fi
       - name: Verify browser TypeScript and build
         run: |
           npm run typecheck:web
