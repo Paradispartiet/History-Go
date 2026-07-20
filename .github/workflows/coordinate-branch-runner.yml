@@ -146,12 +146,12 @@ jobs:
           path: ${{ env.RUNNER_REPORT_DIR }}
           if-no-files-found: warn
 
-      - name: Mark job complete and publish generated changes
+      - name: Publish generated changes and remove one-shot runner
         if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          printf '%s\n' "completed-by-coordinate-branch-runner" > scripts/.coordinate-branch-job-complete
+          rm -f scripts/coordinate-branch-job.mjs scripts/.coordinate-branch-job-complete
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
