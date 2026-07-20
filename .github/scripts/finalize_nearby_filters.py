@@ -1,0 +1,325 @@
+from pathlib import Path
+import re
+
+
+def replace_once(path: str, old: str, new: str) -> None:
+    p = Path(path)
+    text = p.read_text()
+    if new in text:
+        return
+    if old not in text:
+        raise SystemExit(f"Expected anchor not found in {path}: {old[:100]!r}")
+    p.write_text(text.replace(old, new, 1))
+
+
+def sub_once(path: str, pattern: str, replacement: str, marker: str, flags: int = 0) -> None:
+    p = Path(path)
+    text = p.read_text()
+    if marker in text:
+        return
+    updated, count = re.subn(pattern, replacement, text, count=1, flags=flags)
+    if count != 1:
+        raise SystemExit(f"Expected regex anchor not found in {path}: {pattern[:120]!r}")
+    p.write_text(updated)
+
+
+Path("js/ui/nearbyFilters.ts").write_text(r'''// Canonical state and persistence controller for Nearby/Utforsk filters.
+// Button rendering and event binding remain in left-panel.js during the strangler migration.
+
+import type { CategoryDefinition } from "../core/categories";
+
+export type NearbyPlaceFilter = "unvisited" | "all" | "unlocked";
+export type NearbyNatureFilter = "all" | "unlocked" | "flora" | "fauna";
+export type NearbySort = "distance" | "oldest" | "newest";
+
+export type NearbyFiltersApi = {
+  initializeFromStorage: () => void;
+  normalizeSort: (value: unknown) => NearbySort;
+  normalizeBadgeFilter: (value: unknown) => string;
+  getCategoryById: (value: unknown) => CategoryDefinition | null;
+  getBadgeOptions: () => string[];
+  getActiveBadgeFilter: () => string;
+  setActiveBadgeFilter: (value: unknown) => string;
+  isBadgeFilterActive: () => boolean;
+  cyclePlaceFilter: () => NearbyPlaceFilter;
+  cycleNatureFilter: () => NearbyNatureFilter;
+  toggleFavorites: () => boolean;
+  cycleSort: () => NearbySort;
+};
+
+type RuntimeWindow = Window & typeof globalThis & {
+  CATEGORY_LIST?: CategoryDefinition[];
+  HG_NEARBY_FILTER?: string;
+  HG_NEARBY_BADGE_FILTER?: string;
+  HG_NEARBY_SORT?: NearbySort;
+  HG_NEARBY_FAVORITES_ONLY?: boolean;
+  HG_NATURE_FILTER?: string;
+  HGNearbyFilters?: NearbyFiltersApi;
+  HG_getActiveBadgeFilter?: () => string;
+  HG_isBadgeFilterActive?: () => boolean;
+};
+
+const win = window as RuntimeWindow;
+
+const PLACE_FILTER_ORDER = ["unvisited", "all", "unlocked"] as const;
+const NATURE_FILTER_ORDER = ["all", "unlocked", "flora", "fauna"] as const;
+const SORT_ORDER = ["distance", "oldest", "newest"] as const;
+
+function readStorage(key: string): string | null {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value);
+  } catch {}
+}
+
+function normalizeSort(value: unknown): NearbySort {
+  const raw = String(value || "distance").trim().toLowerCase();
+  if (raw === "oldest" || raw === "newest") return raw;
+  return "distance";
+}
+
+function getCategoryById(value: unknown): CategoryDefinition | null {
+  const id = String(value || "").trim();
+  const categories = Array.isArray(win.CATEGORY_LIST) ? win.CATEGORY_LIST : [];
+  return categories.find((category) => category.id.trim() === id) ?? null;
+}
+
+function getBadgeOptions(): string[] {
+  const categories = Array.isArray(win.CATEGORY_LIST) ? win.CATEGORY_LIST : [];
+  return ["all", ...categories.map((category) => category.id.trim()).filter(Boolean)];
+}
+
+function normalizeBadgeFilter(value: unknown): string {
+  const raw = String(value || "all").trim() || "all";
+  if (raw === "all") return "all";
+  return getCategoryById(raw) ? raw : "all";
+}
+
+function getActiveBadgeFilter(): string {
+  return normalizeBadgeFilter(win.HG_NEARBY_BADGE_FILTER || "all");
+}
+
+function setActiveBadgeFilter(value: unknown): string {
+  const next = normalizeBadgeFilter(value);
+  win.HG_NEARBY_BADGE_FILTER = next;
+  writeStorage("hg_nearby_badge_filter_v1", next);
+  return next;
+}
+
+function isBadgeFilterActive(): boolean {
+  return getActiveBadgeFilter() !== "all";
+}
+
+function cyclePlaceFilter(): NearbyPlaceFilter {
+  const current = String(win.HG_NEARBY_FILTER || "unvisited");
+  const index = PLACE_FILTER_ORDER.indexOf(current as NearbyPlaceFilter);
+  const next = PLACE_FILTER_ORDER[(index + 1) % PLACE_FILTER_ORDER.length];
+  win.HG_NEARBY_FILTER = next;
+  writeStorage("hg_nearby_filter_v1", next);
+  return next;
+}
+
+function cycleNatureFilter(): NearbyNatureFilter {
+  const current = String(win.HG_NATURE_FILTER || "all");
+  const index = NATURE_FILTER_ORDER.indexOf(current as NearbyNatureFilter);
+  const next = NATURE_FILTER_ORDER[(index + 1) % NATURE_FILTER_ORDER.length];
+  win.HG_NATURE_FILTER = next;
+  writeStorage("hg_nature_filter_v1", next);
+  return next;
+}
+
+function toggleFavorites(): boolean {
+  const next = !Boolean(win.HG_NEARBY_FAVORITES_ONLY);
+  win.HG_NEARBY_FAVORITES_ONLY = next;
+  writeStorage("hg_nearby_favorites_filter_v1", next ? "1" : "0");
+  return next;
+}
+
+function cycleSort(): NearbySort {
+  const current = normalizeSort(win.HG_NEARBY_SORT);
+  const index = SORT_ORDER.indexOf(current);
+  const next = SORT_ORDER[(index + 1) % SORT_ORDER.length];
+  win.HG_NEARBY_SORT = next;
+  writeStorage("hg_nearby_sort_v1", next);
+  return next;
+}
+
+function initializeFromStorage(): void {
+  win.HG_NEARBY_FILTER = readStorage("hg_nearby_filter_v1") || "unvisited";
+  win.HG_NEARBY_BADGE_FILTER = normalizeBadgeFilter(readStorage("hg_nearby_badge_filter_v1") || "all");
+  win.HG_NEARBY_SORT = normalizeSort(readStorage("hg_nearby_sort_v1") || "distance");
+  win.HG_NEARBY_FAVORITES_ONLY = readStorage("hg_nearby_favorites_filter_v1") === "1";
+  win.HG_NATURE_FILTER = readStorage("hg_nature_filter_v1") || "all";
+}
+
+const api: NearbyFiltersApi = {
+  initializeFromStorage,
+  normalizeSort,
+  normalizeBadgeFilter,
+  getCategoryById,
+  getBadgeOptions,
+  getActiveBadgeFilter,
+  setActiveBadgeFilter,
+  isBadgeFilterActive,
+  cyclePlaceFilter,
+  cycleNatureFilter,
+  toggleFavorites,
+  cycleSort
+};
+
+win.HGNearbyFilters = api;
+win.HG_getActiveBadgeFilter = getActiveBadgeFilter;
+win.HG_isBadgeFilterActive = isBadgeFilterActive;
+initializeFromStorage();
+''')
+
+replace_once(
+    "build/build-web.mjs",
+    '  { in: "js/ui/search.ts", out: "search" },\n  { in: "js/ui/nearbyDrawer.ts", out: "nearbyDrawer" }',
+    '  { in: "js/ui/search.ts", out: "search" },\n  { in: "js/ui/nearbyDrawer.ts", out: "nearbyDrawer" },\n  { in: "js/ui/nearbyFilters.ts", out: "nearbyFilters" }'
+)
+replace_once(
+    "build/build-web.mjs",
+    '  { out: "search", target: "js/ui/search.js" },\n  { out: "nearbyDrawer", target: "js/ui/nearby-drawer.js" }',
+    '  { out: "search", target: "js/ui/search.js" },\n  { out: "nearbyDrawer", target: "js/ui/nearby-drawer.js" },\n  { out: "nearbyFilters", target: "js/ui/nearby-filters.js" }'
+)
+replace_once(
+    "js/app.js",
+    '    await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));\n    await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));',
+    '    await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));\n    await safeRun("loadNearbyFilters", () => loadScriptOnce("js/ui/nearby-filters.js"));\n    await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));'
+)
+
+globals_path = Path("schemas/app-globals.d.ts")
+globals_text = globals_path.read_text()
+if "HGNearbyFilters?:" not in globals_text:
+    drawer_end = '''    HGNearbyDrawer?: {
+      isOpen?: () => boolean;
+      setOpen?: (open: boolean) => void;
+      open?: () => void;
+      close?: () => void;
+      toggle?: () => void;
+    };
+'''
+    filters_decl = '''    HGNearbyFilters?: {
+      initializeFromStorage?: () => void;
+      normalizeSort?: (value: unknown) => "distance" | "oldest" | "newest";
+      normalizeBadgeFilter?: (value: unknown) => string;
+      getCategoryById?: (value: unknown) => any;
+      getBadgeOptions?: () => string[];
+      getActiveBadgeFilter?: () => string;
+      setActiveBadgeFilter?: (value: unknown) => string;
+      isBadgeFilterActive?: () => boolean;
+      cyclePlaceFilter?: () => "unvisited" | "all" | "unlocked";
+      cycleNatureFilter?: () => "all" | "unlocked" | "flora" | "fauna";
+      toggleFavorites?: () => boolean;
+      cycleSort?: () => "distance" | "oldest" | "newest";
+    };
+'''
+    if drawer_end not in globals_text:
+        raise SystemExit("HGNearbyDrawer declaration anchor missing")
+    globals_text = globals_text.replace(drawer_end, drawer_end + filters_decl, 1)
+if "HG_NEARBY_FAVORITES_ONLY?:" not in globals_text:
+    globals_text = globals_text.replace(
+        "    HG_NEARBY_FILTER?: any;\n",
+        "    HG_NEARBY_FILTER?: any;\n    HG_NEARBY_FAVORITES_ONLY?: boolean;\n",
+        1
+    )
+globals_path.write_text(globals_text)
+
+sub_once(
+    "js/ui/left-panel.js",
+    r'function normalizeNearbySort\(mode\) \{.*?\n\}',
+    'function normalizeNearbySort(mode) {\n  return window.HGNearbyFilters?.normalizeSort?.(mode) || "distance";\n}',
+    'window.HGNearbyFilters?.normalizeSort?.(mode)',
+    re.S
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'  if \(mode === "nature"\) \{\n    window\.HG_NEARBY_BADGE_FILTER = "all";\n    try \{\n      localStorage\.setItem\("hg_nearby_badge_filter_v1", "all"\);\n    \} catch \{\}\n  \}',
+    '  if (mode === "nature") {\n    window.HGNearbyFilters?.setActiveBadgeFilter?.("all");\n  }',
+    'window.HGNearbyFilters?.setActiveBadgeFilter?.("all")'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'function getCategoryById\(id\) \{.*?\n\}',
+    'function getCategoryById(id) {\n  return window.HGNearbyFilters?.getCategoryById?.(id) || null;\n}',
+    'window.HGNearbyFilters?.getCategoryById?.(id)',
+    re.S
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'function getNearbyBadgeOptions\(\) \{.*?\n\}',
+    'function getNearbyBadgeOptions() {\n  return window.HGNearbyFilters?.getBadgeOptions?.() || ["all"];\n}',
+    'window.HGNearbyFilters?.getBadgeOptions?.()'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'function normalizeBadgeFilter\(id\) \{.*?\n\}',
+    'function normalizeBadgeFilter(id) {\n  return window.HGNearbyFilters?.normalizeBadgeFilter?.(id) || "all";\n}',
+    'window.HGNearbyFilters?.normalizeBadgeFilter?.(id)',
+    re.S
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'function getActiveBadgeFilter\(\) \{.*?\n\}',
+    'function getActiveBadgeFilter() {\n  return window.HGNearbyFilters?.getActiveBadgeFilter?.() || "all";\n}',
+    'window.HGNearbyFilters?.getActiveBadgeFilter?.()'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'  window\.HG_NEARBY_BADGE_FILTER = next;\n  try \{ localStorage\.setItem\("hg_nearby_badge_filter_v1", next\); \} catch \{\}',
+    '  window.HGNearbyFilters?.setActiveBadgeFilter?.(next);',
+    'window.HGNearbyFilters?.setActiveBadgeFilter?.(next)'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'function isBadgeFilterActive\(\) \{.*?\n\}',
+    'function isBadgeFilterActive() {\n  return window.HGNearbyFilters?.isBadgeFilterActive?.() || false;\n}',
+    'window.HGNearbyFilters?.isBadgeFilterActive?.()'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'\n    window\.HG_NEARBY_FILTER =\n      localStorage\.getItem\("hg_nearby_filter_v1"\) \|\| "unvisited";.*?window\.HG_NATURE_FILTER =\n      localStorage\.getItem\("hg_nature_filter_v1"\) \|\| "all";\n',
+    '\n    window.HGNearbyFilters?.initializeFromStorage?.();\n',
+    'window.HGNearbyFilters?.initializeFromStorage?.()',
+    re.S
+)
+
+left_path = Path("js/ui/left-panel.js")
+left_text = left_path.read_text()
+left_text = left_text.replace('  const PLACES_ORDER = ["unvisited", "all", "unlocked"];\n\n', '')
+left_text = left_text.replace('  const NATURE_ORDER = ["all", "unlocked", "flora", "fauna"];\n', '')
+left_text = left_text.replace('  const SORT_ORDER = ["distance", "oldest", "newest"];\n', '')
+left_path.write_text(left_text)
+
+sub_once(
+    "js/ui/left-panel.js",
+    r'        const i = NATURE_ORDER\.indexOf\(window\.HG_NATURE_FILTER\);\n        window\.HG_NATURE_FILTER = NATURE_ORDER\[\(i \+ 1\) % NATURE_ORDER\.length\];\n        try \{ localStorage\.setItem\("hg_nature_filter_v1", window\.HG_NATURE_FILTER\); \} catch \{\}',
+    '        window.HG_NATURE_FILTER = window.HGNearbyFilters?.cycleNatureFilter?.() || "all";',
+    'window.HGNearbyFilters?.cycleNatureFilter?.()'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'        const i = PLACES_ORDER\.indexOf\(window\.HG_NEARBY_FILTER\);\n        window\.HG_NEARBY_FILTER = PLACES_ORDER\[\(i \+ 1\) % PLACES_ORDER\.length\];\n        try \{ localStorage\.setItem\("hg_nearby_filter_v1", window\.HG_NEARBY_FILTER\); \} catch \{\}',
+    '        window.HG_NEARBY_FILTER = window.HGNearbyFilters?.cyclePlaceFilter?.() || "unvisited";',
+    'window.HGNearbyFilters?.cyclePlaceFilter?.()'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'      window\.HG_NEARBY_FAVORITES_ONLY = !window\.HG_NEARBY_FAVORITES_ONLY;\n      try \{ localStorage\.setItem\("hg_nearby_favorites_filter_v1", window\.HG_NEARBY_FAVORITES_ONLY \? "1" : "0"\); \} catch \{\}',
+    '      window.HG_NEARBY_FAVORITES_ONLY = window.HGNearbyFilters?.toggleFavorites?.() || false;',
+    'window.HGNearbyFilters?.toggleFavorites?.()'
+)
+sub_once(
+    "js/ui/left-panel.js",
+    r'      const current = normalizeNearbySort\(window\.HG_NEARBY_SORT\);\n      const i = SORT_ORDER\.indexOf\(current\);\n      const next = SORT_ORDER\[\(i \+ 1\) % SORT_ORDER\.length\] \|\| "distance";\n      window\.HG_NEARBY_SORT = next;\n      try \{ localStorage\.setItem\("hg_nearby_sort_v1", next\); \} catch \{\}',
+    '      window.HG_NEARBY_SORT = window.HGNearbyFilters?.cycleSort?.() || "distance";',
+    'window.HGNearbyFilters?.cycleSort?.()'
+)
