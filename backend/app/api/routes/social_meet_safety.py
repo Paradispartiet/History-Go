@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, TypeVar
+from typing import Any
 from uuid import UUID
 
 from fastapi import APIRouter, Body, Depends, HTTPException, status
@@ -22,8 +22,6 @@ from app.domains.social_meet.safety_service import SocialMeetSafetyService
 from app.domains.social_meet.service import SocialMeetDomainError
 
 router = APIRouter(prefix="/social-meet", tags=["Social Meet Safety"])
-
-RequestModel = TypeVar("RequestModel", bound=BaseModel)
 
 _ERROR_STATUS = {
     "block_not_found": status.HTTP_404_NOT_FOUND,
@@ -118,7 +116,7 @@ def delete_social_meet_account(
     return service.delete_social_meet_account(current_user.user_id)
 
 
-def _validate_payload(
+def _validate_payload[RequestModel: BaseModel](
     payload: dict[str, Any],
     model: type[RequestModel],
     error_code: str,
