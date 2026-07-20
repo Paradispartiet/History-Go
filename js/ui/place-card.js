@@ -2867,7 +2867,7 @@ function setPlaceCardMiniVisible(on){
  * @returns {HTMLElement | null}
  */
 function getPlaceCardEl() {
-  return hg$("placeCard");
+  return document.getElementById("placeCard");
 }
 
 /**
