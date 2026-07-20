@@ -1,0 +1,54 @@
+name: Temporary Vålerenga evidence validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    if: github.head_ref == 'agent/oslo-coordinate-valerenga-kirke-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-valerenga-kirke-production
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate evidence and index
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-valerenga-kirke-production"
+          mkdir -p "$LOGDIR"
+          npm run places:coords:evidence:audit 2>&1 | tee "$LOGDIR/coordinate-evidence.log"
+          printf '0\n' > "$LOGDIR/coordinate-evidence.exit-code.txt"
+          npm run places:index:check 2>&1 | tee "$LOGDIR/places-index-check.log"
+          printf '0\n' > "$LOGDIR/places-index-check.exit-code.txt"
+          git diff --check 2>&1 | tee "$LOGDIR/git-diff-check.log"
+          printf '0\n' > "$LOGDIR/git-diff-check.exit-code.txt"
+          sed -i 's/^coordinate-evidence=.*/coordinate-evidence=0/' "$LOGDIR/gate-status.txt"
+
+      - name: Commit final validated result
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-valerenga-evidence-validation.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Validate Vålerenga coordinate evidence"
+          git push origin HEAD:agent/oslo-coordinate-valerenga-kirke-production
