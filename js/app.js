@@ -192,16 +192,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     // og finner ikke stedet ("Fant verken person eller sted").
     await safeRun("initQuizEngine", () => window.initQuizEngine?.());
 
-    await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
-
-    // NextUp-footer: HGNavigator (anbefalingsmotoren) før nextUpRuntime (footer-knapp
-    // #pcNextUpBtn + #footerNextUpPanel), samme rekkefølge som historisk events_loader.
-    // Footeren (.app-footer) finnes allerede i index; nextUpRuntime bygger selv knappen
-    // og panelet, så vi lager dem ikke manuelt i index.html.
-    runAfterReady("loadNextUpRuntime", async () => {
+    // NextUp må være klar før AppRouter åpner første sted. Hvis routeren starter først,
+    // kan PlaceCard bli åpnet mens HGNavigator fortsatt mangler; da blir tri aldri bygget
+    // for det første stedet, og den globale historiske ruten blir stående alene.
+    await safeRun("loadNextUpRuntime", async () => {
       await loadScriptOnce("js/hgNavigator.js");
       await loadScriptOnce("js/nextUpRuntime.js");
     });
+
+    await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
 
     // Ikke blokker app-ready på søk/tunge bakgrunnsdata. Ruteruntime må derimot
     // finnes før HGRoutes.init planlegges.
