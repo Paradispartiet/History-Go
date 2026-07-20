@@ -84,7 +84,7 @@ writeJson(EVIDENCE_FILE, {
   placeId: place.id,
   placeFile: PLACE_FILE,
   evidenceStatus: 'applied_to_place',
-  coordinateDecision: 'verified_current_building_address',
+  coordinateDecision: 'do_not_change_coordinates_yet',
   currentCoordinate: { lat: place.lat, lon: place.lon, r: place.r, coordStatus: place.coordStatus, coordSource: place.coordSource, coordType: place.coordType, coordNote: place.coordNote },
   identity: {
     currentName: place.name,
