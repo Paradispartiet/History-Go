@@ -149,11 +149,11 @@ if (offenders.length) {
 console.log('active subkultur place concreteness ok');
 NODE
 
-echo "== Place category override contract =="
-node tests/place-category-overrides.test.mjs
-
 echo "== Build places index =="
 npm run places:index:build
+
+echo "== Place category override contract =="
+node tests/place-category-overrides.test.mjs
 
 echo "== Build tools =="
 npm run build:tools
