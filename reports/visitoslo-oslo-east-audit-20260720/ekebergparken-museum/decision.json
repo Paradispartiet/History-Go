@@ -1,0 +1,53 @@
+{
+  "version": "2026-07-20-scope-audit",
+  "placeId": "ekebergparken_museum",
+  "candidateName": "Ekebergparken Museum",
+  "status": "approved_distinct_physical_place",
+  "productionGate": "ready_for_address_first_coordinate_intake",
+  "primaryCategory": "historie",
+  "identity": {
+    "currentName": "Ekebergparken Museum",
+    "buildingName": "Lunds villa / Lunds hus",
+    "currentAddress": "Kongsveien 23, 0193 Oslo",
+    "buildingDescription": "Historisk hvit sveitservilla fra slutten av 1800-tallet som huser museum, besøkssenter, butikk og Ekebergparkens administrasjon.",
+    "museumFunction": "Utstillinger om Ekebergområdets kulturhistorie og natur, med gratis inngang og egne åpningstider."
+  },
+  "existingPlaceGate": {
+    "existingCanonicalPlace": "ekebergparken",
+    "existingCanonicalScope": "Hele Ekebergparken skulpturpark som utstrakt kunst- og landskapsområde.",
+    "existingCoordinateRule": "Canonical `ekebergparken` bruker et dokumentert områdeanker og sier eksplisitt at museum-/besøksadressen ikke skal brukes som snarvei for hele parken.",
+    "decision": "Do not merge the museum into the area marker. The museum is a separate addressable building and visitor institution inside the larger park."
+  },
+  "categoryDecision": {
+    "primaryCategory": "historie",
+    "reason": "Museets primære utstillingsinnhold er Ekebergområdets kulturhistorie og naturhistorie. Kunstparken er den institusjonelle konteksten, men den eksisterende `ekebergparken`-markøren dekker skulpturparken som kunststed.",
+    "secondaryLayers": [
+      "kunst",
+      "natur"
+    ]
+  },
+  "sourceBasis": [
+    {
+      "source": "Ekebergparken – Museum & Gift Shop",
+      "url": "https://ekebergparken.com/en/visit-us/museum-and-shop",
+      "finding": "Museet ligger i Lunds hus/Lunds villa, har utstillinger om områdets kulturhistorie og natur, og fungerer også som besøkssenter og administrasjon."
+    },
+    {
+      "source": "Ekebergparken – Visit us",
+      "url": "https://ekebergparken.com/en/visit-us/bes%C3%B8k-oss",
+      "finding": "Museet og butikken har egne åpningstider, adskilt fra den døgnåpne skulpturparken."
+    },
+    {
+      "source": "VisitNorway / VisitOSLO listing",
+      "url": "https://www.visitnorway.com/listings//ekebergparken-museum/173210/",
+      "finding": "Ekebergparken Museum presenteres som en egen museumattraksjon i Lunds Hus på Kongsveien 23."
+    }
+  ],
+  "guardrails": [
+    "Do not replace or move the existing `ekebergparken` area anchor to Kongsveien 23.",
+    "Do not create a second active marker for Lunds villa under another name unless a later identity audit proves a separate independent place use.",
+    "Do not describe the museum as the main indoor home of the sculpture collection; its documented exhibition focus is the area's history and nature.",
+    "Keep the museum physically distinct from the sculpture park while preserving their institutional relationship in content and cross-links."
+  ],
+  "nextAction": "Run normative Geonorge address-first intake for Kongsveien 23, audit nearby physical overlap, then produce `ekebergparken_museum` only if the address point cleanly represents Lunds villa."
+}
