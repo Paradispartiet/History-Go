@@ -167,7 +167,7 @@
   }
   function clearSearch({ blur = false } = {}) {
     const input = document.getElementById("globalSearch");
-    if (input) {
+    if (input instanceof HTMLInputElement) {
       input.value = "";
       if (blur) input.blur();
     }
@@ -177,7 +177,7 @@
     var _a, _b, _c;
     if (!place) return;
     const input = document.getElementById("globalSearch");
-    input == null ? void 0 : input.blur();
+    if (input instanceof HTMLInputElement) input.blur();
     showSearchBox(false);
     (_b = (_a = win.HGHeaderMenu) == null ? void 0 : _a.close) == null ? void 0 : _b.call(_a);
     (_c = win.flyToPlace) == null ? void 0 : _c.call(win, place);
@@ -195,14 +195,14 @@
     if (personId) {
       const person = (win.PEOPLE || []).find((candidate) => String(candidate.id) === String(personId));
       const input = document.getElementById("globalSearch");
-      input == null ? void 0 : input.blur();
+      if (input instanceof HTMLInputElement) input.blur();
       showSearchBox(false);
       if (person) (_a = win.showPersonPopup) == null ? void 0 : _a.call(win, person);
       return;
     }
     if (categoryId) {
       const input = document.getElementById("globalSearch");
-      if (input) input.value = categoryId;
+      if (input instanceof HTMLInputElement) input.value = categoryId;
       const places = (win.PLACES || []).filter((place) => place.category === categoryId && !place.hidden);
       renderSearchResults({ people: [], places, categories: [] }, categoryId);
     }
@@ -215,7 +215,7 @@
   function bindGlobalSearch() {
     const input = document.getElementById("globalSearch");
     const box = document.getElementById("searchResults");
-    if (!input || !box || input.dataset.hgSearchBound === "1") return;
+    if (!(input instanceof HTMLInputElement) || !box || input.dataset.hgSearchBound === "1") return;
     input.dataset.hgSearchBound = "1";
     input.addEventListener("input", (event) => {
       const value = event.currentTarget instanceof HTMLInputElement ? event.currentTarget.value : "";

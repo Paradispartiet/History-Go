@@ -287,8 +287,8 @@ function renderSearchResults({ people, places, categories }: SearchResults, quer
 }
 
 function clearSearch({ blur = false }: { blur?: boolean } = {}): void {
-  const input = document.getElementById("globalSearch") as HTMLInputElement | null;
-  if (input) {
+  const input = document.getElementById("globalSearch");
+  if (input instanceof HTMLInputElement) {
     input.value = "";
     if (blur) input.blur();
   }
@@ -297,8 +297,8 @@ function clearSearch({ blur = false }: { blur?: boolean } = {}): void {
 
 function openPlaceFromSearch(place: SearchPlace | undefined): void {
   if (!place) return;
-  const input = document.getElementById("globalSearch") as HTMLInputElement | null;
-  input?.blur();
+  const input = document.getElementById("globalSearch");
+  if (input instanceof HTMLInputElement) input.blur();
   showSearchBox(false);
   win.HGHeaderMenu?.close?.();
   win.flyToPlace?.(place);
@@ -317,16 +317,16 @@ function activateSearchItem(item: HTMLElement): void {
 
   if (personId) {
     const person = (win.PEOPLE || []).find(candidate => String(candidate.id) === String(personId));
-    const input = document.getElementById("globalSearch") as HTMLInputElement | null;
-    input?.blur();
+    const input = document.getElementById("globalSearch");
+    if (input instanceof HTMLInputElement) input.blur();
     showSearchBox(false);
     if (person) win.showPersonPopup?.(person);
     return;
   }
 
   if (categoryId) {
-    const input = document.getElementById("globalSearch") as HTMLInputElement | null;
-    if (input) input.value = categoryId;
+    const input = document.getElementById("globalSearch");
+    if (input instanceof HTMLInputElement) input.value = categoryId;
     const places = (win.PLACES || []).filter(place => place.category === categoryId && !place.hidden);
     renderSearchResults({ people: [], places, categories: [] }, categoryId);
   }
@@ -339,9 +339,9 @@ function closestSearchItem(target: EventTarget | null): HTMLElement | null {
 }
 
 function bindGlobalSearch(): void {
-  const input = document.getElementById("globalSearch") as HTMLInputElement | null;
+  const input = document.getElementById("globalSearch");
   const box = document.getElementById("searchResults");
-  if (!input || !box || input.dataset.hgSearchBound === "1") return;
+  if (!(input instanceof HTMLInputElement) || !box || input.dataset.hgSearchBound === "1") return;
 
   input.dataset.hgSearchBound = "1";
 
