@@ -1,10 +1,6 @@
-# Oslo koordinatkontroll – batch 39 research
+# Oslo koordinatkontroll – batch 39
 
 Dato: 2026-07-20
 
-Research-passet bygger lineært grunnlag for `grensen_kjopesenter` og `ring_3`.
-
-- Grensen: de tre eksakte navngitte OSM-way-segmentene hentes med full nodegeometri og forsøkes sydd sammen deterministisk.
-- Ring 3: flere navngitte kryss/tunnelankre langs rv. 150 samles; ingen første-/nærmeste-treff brukes automatisk.
-
-Ingen canonical koordinater endres i research-passet.
+- `grensen_kjopesenter` er normalisert til **Grensen – handelsgate** og får `verified_geometry` som lineært gateobjekt med to kildebelagte endeankre og et eksplisitt linjeanker. Tre eksakte OSM-way-segmenter dokumenterer gategeometrien uten at parallelle kjørefelt tvinges inn i én falsk polyline.
+- `ring_3` forblir **needs_review** fordi researchen ikke ga en entydig komplett ruteankerkjede.
