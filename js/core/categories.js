@@ -2,18 +2,18 @@
   // js/core/categories.ts
   var win = window;
   var CATEGORY_LIST = [
-    { id: "historie", name: "Historie", icon: "\u{1F3DB}\uFE0F", color: "#603E1E", scope: "runtime_domain" },
-    { id: "religion", name: "Religion", icon: "\u{1F6D0}", color: "#d7b46a", scope: "runtime_domain" },
-    { id: "vitenskap", name: "Vitenskap & filosofi", icon: "\u{1F9EA}", color: "#332B51", scope: "runtime_domain" },
-    { id: "kunst", name: "Kunst & kultur", icon: "\u{1F3A8}", color: "#DFB020", scope: "runtime_domain" },
-    { id: "musikk", name: "Musikk & scenekunst", icon: "\u{1F3AD}", color: "#122033", scope: "runtime_domain" },
-    { id: "natur", name: "Natur & milj\xF8", icon: "\u{1F33F}", color: "#2E4F21", scope: "runtime_domain" },
-    { id: "sport", name: "Sport & lek", icon: "\u26BD", color: "#A01D13", scope: "runtime_domain" },
-    { id: "by", name: "By & arkitektur", icon: "\u{1F3D9}\uFE0F", color: "#A1917E", scope: "runtime_domain" },
-    { id: "politikk", name: "Politikk & samfunn", icon: "\u{1F3DB}\uFE0F", color: "#103E71", scope: "runtime_domain" },
-    { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#914E1E", scope: "runtime_domain" },
-    { id: "litteratur", name: "Litteratur", icon: "\u{1F4DA}", color: "#E1BE70", scope: "runtime_domain" },
-    { id: "naeringsliv", name: "N\xE6ringsliv", icon: "\u{1F3ED}", color: "#0F62BD", scope: "runtime_domain" },
+    { id: "historie", name: "Historie", icon: "\u{1F3DB}\uFE0F", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
+    { id: "religion", name: "Religion", icon: "\u{1F6D0}", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
+    { id: "vitenskap", name: "Vitenskap & filosofi", icon: "\u{1F9EA}", color: "#332B51", secondaryColor: "#413E17", scope: "runtime_domain" },
+    { id: "kunst", name: "Kunst & kultur", icon: "\u{1F3A8}", color: "#DFB020", secondaryColor: "#1D3E5F", scope: "runtime_domain" },
+    { id: "musikk", name: "Musikk & scenekunst", icon: "\u{1F3AD}", color: "#122033", secondaryColor: "#121E2B", scope: "runtime_domain" },
+    { id: "natur", name: "Natur & milj\xF8", icon: "\u{1F33F}", color: "#2E4F21", secondaryColor: "#DC7A04", scope: "runtime_domain" },
+    { id: "sport", name: "Sport & lek", icon: "\u26BD", color: "#A01D13", secondaryColor: "#A51E15", scope: "runtime_domain" },
+    { id: "by", name: "By & arkitektur", icon: "\u{1F3D9}\uFE0F", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
+    { id: "politikk", name: "Politikk & samfunn", icon: "\u{1F3DB}\uFE0F", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
+    { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#914E1E", secondaryColor: "#181615", scope: "runtime_domain" },
+    { id: "litteratur", name: "Litteratur", icon: "\u{1F4DA}", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
+    { id: "naeringsliv", name: "N\xE6ringsliv", icon: "\u{1F3ED}", color: "#0F62BD", secondaryColor: "#0754A9", scope: "runtime_domain" },
     { id: "psykologi", name: "Psykologi", icon: "\u{1F9E0}", color: "#06d6a0", scope: "runtime_domain" },
     { id: "film_tv", name: "Film & TV", icon: "\u{1F39E}\uFE0F", color: "#6c757d", scope: "runtime_domain" },
     { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#ff595e", scope: "runtime_domain" },
@@ -22,6 +22,7 @@
       name: "Popul\xE6rkultur",
       icon: "\u{1F4FA}",
       color: "#41206E",
+      secondaryColor: "#1C3463",
       scope: "runtime_domain_alias",
       canonicalFagId: "popkultur",
       aliases: ["popkultur"]
@@ -48,6 +49,10 @@
   function catColor(categoryId) {
     const category = CAT_BY_ID[norm(categoryId)];
     return (category == null ? void 0 : category.color) || "#6c757d";
+  }
+  function catSecondaryColor(categoryId) {
+    const category = CAT_BY_ID[norm(categoryId)];
+    return (category == null ? void 0 : category.secondaryColor) || (category == null ? void 0 : category.color) || "#6c757d";
   }
   function catClass(categoryId) {
     const id = norm(categoryId).toLowerCase().replace(/[^a-z0-9_]+/g, "-");
@@ -78,6 +83,7 @@
   }
   win.CATEGORY_LIST = CATEGORY_LIST;
   win.catColor = catColor;
+  win.catSecondaryColor = catSecondaryColor;
   win.catClass = catClass;
   win.tagToCat = tagToCat;
   win.catIdFromDisplay = catIdFromDisplay;

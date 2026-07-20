@@ -523,9 +523,13 @@
     function isStandardMapStyle() {
       return mapStyleMode === STYLE_MODE_STANDARD;
     }
-    function getPlaceMarkerBorder(isVisited) {
-      if (isStandardMapStyle()) return isVisited ? "#ffe45f" : "#f8fbff";
-      return isVisited ? "#ffd700" : "#111111";
+    function getPlaceMarkerBorder(categoryId, fallbackColor) {
+      const secondaryColorFn = window.catSecondaryColor;
+      if (typeof secondaryColorFn === "function") {
+        const secondaryColor = String(secondaryColorFn(categoryId) || "").trim();
+        if (secondaryColor) return secondaryColor;
+      }
+      return fallbackColor || "#6c757d";
     }
     function getPlaceMarkerStrokeWidth() {
       return isStandardMapStyle() ? 2.4 : 1.8;
@@ -610,7 +614,7 @@
         const isVisited = !!visited[p.id];
         const base = catColor(p.category);
         const fill = isVisited ? lighten(base, 0.25) : base;
-        const border = getPlaceMarkerBorder(isVisited);
+        const border = getPlaceMarkerBorder(p.category, base);
         features.push({
           type: "Feature",
           properties: {
