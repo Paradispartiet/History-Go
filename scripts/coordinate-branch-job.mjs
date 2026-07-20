@@ -18,6 +18,22 @@ const placeDir = 'data/places/natur/oslo/places_oslo_natur_akerselvarute';
 const aggregatePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute.json';
 const nybrua = readJson(`${placeDir}/nybrua_vaterlandsparken.json`);
 const vaterlandsparken = readJson(`${placeDir}/vaterlandsparken.json`);
+Object.assign(vaterlandsparken, {
+  locatorType: 'park',
+  sourceProvider: 'osm',
+  sourceObjectId: 'osm-way:4334996',
+  geocodeAccuracy: 'geometric_center',
+  coordRole: 'area_anchor',
+  coordStatus: 'verified_geometry',
+  coordType: 'park_area',
+  coordSource: 'OpenStreetMap way 4334996 – Vaterlandsparken',
+  coordSourceId: 'osm-way:4334996',
+  coordSourceUrl: 'https://www.openstreetmap.org/way/4334996',
+  coordVerifiedAt: '2026-07-20',
+  coordNote: 'Eksakt navngitt OSM-parkgeometri for Vaterlandsparken. Wayens representasjonspunkt brukes som area_anchor for parkarealet.',
+});
+writeJson(`${placeDir}/vaterlandsparken.json`, vaterlandsparken);
+
 const aggregate = readJson(aggregatePath);
 const legacyIndex = aggregate.findIndex(place => place?.id === nybrua.id);
 if (legacyIndex < 0) throw new Error('Nybrua legacy row missing from Akerselva aggregate');
@@ -68,13 +84,7 @@ normalizeEvidence('data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.j
 normalizeEvidence('data/coordinate-evidence/oslo/natur/vaterlandsparken.json', vaterlandsparken);
 
 const run = (command, args) => execFileSync(command, args, { stdio: 'inherit' });
-try {
-  run('npm', ['run', 'places:coords:evidence:audit']);
-} catch (error) {
-  console.error('\n--- coordinate evidence report ---\n');
-  console.error(fs.readFileSync('reports/coordinate-evidence-audit.md', 'utf8'));
-  throw error;
-}
+run('npm', ['run', 'places:coords:evidence:audit']);
 run('node', ['tests/nybrua-vaterlandsparken-split-rounds-batch1.test.js']);
 run('npm', ['run', 'audit:people-of-places']);
 run('npm', ['run', 'leksikon:ids:check']);
