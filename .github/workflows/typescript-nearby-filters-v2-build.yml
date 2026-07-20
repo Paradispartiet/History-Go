@@ -1,6 +1,11 @@
 name: Build Nearby filters v2 branch
 
 on:
+  pull_request:
+    paths:
+      - ".github/workflows/typescript-nearby-filters-v2-build.yml"
+      - ".github/scripts/apply_nearby_filters_v2.py"
+      - "js/ui/nearbyFilters.ts"
   push:
     branches:
       - agent/typescript-nearby-filters-v2
@@ -14,6 +19,7 @@ permissions:
 
 jobs:
   build-nearby-filters:
+    if: github.event_name == 'push' || github.event.pull_request.head.ref == 'agent/typescript-nearby-filters-v2'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
