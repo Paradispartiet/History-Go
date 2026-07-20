@@ -37,9 +37,7 @@ function hgActiveLeftPanelMode() {
 }
 
 function normalizeNearbySort(mode) {
-  const raw = String(mode || "distance").trim().toLowerCase();
-  if (raw === "oldest" || raw === "newest") return raw;
-  return "distance";
+  return window.HGNearbyFilters?.normalizeSort?.(mode) || "distance";
 }
 
 function getNearbyControlsContainer(placeFilterBtn) {
@@ -136,31 +134,24 @@ function badgeFilterTapIsLocked() {
 }
 
 function getCategoryById(id) {
-  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
-  return cats.find(c => String(c.id || "").trim() === String(id || "").trim()) || null;
+  return window.HGNearbyFilters?.getCategoryById?.(id) || null;
 }
 
 function getNearbyBadgeOptions() {
-  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
-  return ["all", ...cats.map(c => String(c.id || "").trim()).filter(Boolean)];
+  return window.HGNearbyFilters?.getBadgeOptions?.() || ["all"];
 }
 
 function normalizeBadgeFilter(id) {
-  const raw = String(id || "all").trim() || "all";
-  if (raw === "all") return "all";
-  return getCategoryById(raw) ? raw : "all";
+  return window.HGNearbyFilters?.normalizeBadgeFilter?.(id) || "all";
 }
 
 function getActiveBadgeFilter() {
-  return normalizeBadgeFilter(window.HG_NEARBY_BADGE_FILTER || "all");
+  return window.HGNearbyFilters?.getActiveBadgeFilter?.() || "all";
 }
 
 function setActiveBadgeFilter(nextFilter, options = {}) {
-  const next = normalizeBadgeFilter(nextFilter);
   const current = getActiveBadgeFilter();
-
-  window.HG_NEARBY_BADGE_FILTER = next;
-  try { localStorage.setItem("hg_nearby_badge_filter_v1", next); } catch {}
+  const next = window.HGNearbyFilters?.setActiveBadgeFilter?.(nextFilter) || "all";
 
   if (typeof window.updateNearbyBadgeFilterButton === "function") {
     window.updateNearbyBadgeFilterButton();
@@ -179,8 +170,7 @@ function setActiveBadgeFilter(nextFilter, options = {}) {
 }
 
 function isBadgeFilterActive() {
-  const f = getActiveBadgeFilter();
-  return !!f && f !== "all";
+  return window.HGNearbyFilters?.isBadgeFilterActive?.() || false;
 }
 
 window.HG_getActiveBadgeFilter = getActiveBadgeFilter;
@@ -333,18 +323,7 @@ function initLeftPanel() {
   // .nearby-tab[data-leftmode]. Index trenger ikke et skjult select for å virke.
   const sel = /** @type {HTMLSelectElement|null} */ (hg$("leftPanelMode"));
 
-    window.HG_NEARBY_FILTER =
-      localStorage.getItem("hg_nearby_filter_v1") || "unvisited";
-
-    window.HG_NEARBY_BADGE_FILTER =
-      normalizeBadgeFilter(localStorage.getItem("hg_nearby_badge_filter_v1") || "all");
-    window.HG_NEARBY_SORT =
-      normalizeNearbySort(localStorage.getItem("hg_nearby_sort_v1") || "distance");
-    window.HG_NEARBY_FAVORITES_ONLY =
-      localStorage.getItem("hg_nearby_favorites_filter_v1") === "1";
-
-    window.HG_NATURE_FILTER =
-      localStorage.getItem("hg_nature_filter_v1") || "all";
+  window.HGNearbyFilters?.initializeFromStorage?.();
 
   const mode = hgActiveLeftPanelMode() || "nearby";
   if (sel) sel.value = mode;
@@ -408,17 +387,14 @@ function initLeftPanel() {
   updateNearbyControlVisibility();
 
   const PLACES_ICONS = { unvisited: "🎯", unlocked: "🔓", all: "🌍" };
-  const PLACES_ORDER = ["unvisited", "all", "unlocked"];
 
   const NATURE_ICONS = { all: "🌍", unlocked: "🔓", flora: "🌿", fauna: "🐞" };
-  const NATURE_ORDER = ["all", "unlocked", "flora", "fauna"];
   const SORT_ICONS = { distance: "📍", oldest: "⏳", newest: "🕰️" };
   const SORT_TITLES = {
     distance: () => tUI("ui.sort.sortDistance", "Sortering: Avstand"),
     oldest: () => tUI("ui.sort.sortOldest", "Sortering: Eldst"),
     newest: () => tUI("ui.sort.sortNewest", "Sortering: Nyest")
   };
-  const SORT_ORDER = ["distance", "oldest", "newest"];
 
   function updateBadgeFilterButton() {
     if (!badgeBtn) return;
@@ -499,15 +475,11 @@ function initLeftPanel() {
     btn.addEventListener("click", () => {
       const mode = hgActiveLeftPanelMode();
       if (mode === "nature") {
-        const i = NATURE_ORDER.indexOf(window.HG_NATURE_FILTER);
-        window.HG_NATURE_FILTER = NATURE_ORDER[(i + 1) % NATURE_ORDER.length];
-        try { localStorage.setItem("hg_nature_filter_v1", window.HG_NATURE_FILTER); } catch {}
+        window.HGNearbyFilters?.cycleNatureFilter?.();
         updateFilterButton();
         if (typeof renderNearbyNature === "function") renderNearbyNature();
       } else if (mode === "nearby") {
-        const i = PLACES_ORDER.indexOf(window.HG_NEARBY_FILTER);
-        window.HG_NEARBY_FILTER = PLACES_ORDER[(i + 1) % PLACES_ORDER.length];
-        try { localStorage.setItem("hg_nearby_filter_v1", window.HG_NEARBY_FILTER); } catch {}
+        window.HGNearbyFilters?.cyclePlaceFilter?.();
         updateFilterButton();
         rerenderActiveLeftPanelMode();
       }
@@ -518,11 +490,7 @@ function initLeftPanel() {
     badgeBtn.addEventListener("click", () => {
       if (badgeFilterTapIsLocked()) return;
 
-      const order = getNearbyBadgeOptions();
-      const current = getActiveBadgeFilter();
-      const i = order.indexOf(current);
-      const next = order[(i + 1) % order.length] || "all";
-
+      const next = window.HGNearbyFilters?.cycleBadgeFilter?.() || "all";
       setActiveBadgeFilter(next, { forceRender: true });
     });
   }
@@ -530,8 +498,7 @@ function initLeftPanel() {
   if (favoritesBtn) {
     favoritesBtn.addEventListener("click", () => {
       if (hgActiveLeftPanelMode() !== "nearby") return;
-      window.HG_NEARBY_FAVORITES_ONLY = !window.HG_NEARBY_FAVORITES_ONLY;
-      try { localStorage.setItem("hg_nearby_favorites_filter_v1", window.HG_NEARBY_FAVORITES_ONLY ? "1" : "0"); } catch {}
+      window.HGNearbyFilters?.toggleFavorites?.();
       updateNearbyFavoritesFilterButton();
       rerenderActiveLeftPanelMode();
     });
@@ -542,11 +509,7 @@ function initLeftPanel() {
       const mode = hgActiveLeftPanelMode();
       if (mode !== "nearby") return;
 
-      const current = normalizeNearbySort(window.HG_NEARBY_SORT);
-      const i = SORT_ORDER.indexOf(current);
-      const next = SORT_ORDER[(i + 1) % SORT_ORDER.length] || "distance";
-      window.HG_NEARBY_SORT = next;
-      try { localStorage.setItem("hg_nearby_sort_v1", next); } catch {}
+      window.HGNearbyFilters?.cycleSort?.();
       updateNearbySortButton();
       rerenderActiveLeftPanelMode();
     });

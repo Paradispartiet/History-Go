@@ -2,6 +2,8 @@
 // The legacy left-panel shell still owns filter button setup and event binding;
 // this module owns mode selection, list visibility and render scheduling.
 
+import type { NearbyFiltersApi } from "./nearbyFilters";
+
 export type LeftPanelMode = "nearby" | "people" | "nature" | "routes" | "badges";
 
 export type LeftPanelModeApi = {
@@ -18,7 +20,7 @@ type ResizeApi = {
 
 type RuntimeWindow = Window & typeof globalThis & {
   HGLeftPanelMode?: LeftPanelModeApi;
-  HG_NEARBY_BADGE_FILTER?: string;
+  HGNearbyFilters?: Pick<NearbyFiltersApi, "setActiveBadgeFilter">;
   renderNearbyPlaces?: () => void;
   renderNearbyPeople?: () => void;
   renderNearbyNature?: () => void;
@@ -117,10 +119,7 @@ function setMode(input: unknown): LeftPanelMode {
   }
 
   if (mode === "nature") {
-    win.HG_NEARBY_BADGE_FILTER = "all";
-    try {
-      localStorage.setItem("hg_nearby_badge_filter_v1", "all");
-    } catch {}
+    win.HGNearbyFilters?.setActiveBadgeFilter?.("all");
   }
 
   try {

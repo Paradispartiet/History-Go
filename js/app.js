@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadFavorites", () => loadScriptOnce("js/state/favorites.js"));
 
     await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));
+    await safeRun("loadNearbyFilters", () => loadScriptOnce("dist/web/nearbyFilters.js"));
     await safeRun("loadLeftPanelMode", () => loadScriptOnce("dist/web/leftPanelMode.js"));
     await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));
 
