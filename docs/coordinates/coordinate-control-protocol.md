@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 197 verifiserte eller kildekontrollerte canonical steder. Batch 51 legger til Oslo Reptilpark med det entydige Geonorge-punktet for dagens besøksadresse i St. Olavs gate 2, samtidig som åpningen i Storgata i 2002 bevares som et separat historisk lokaliseringslag. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 33.
+Oslo-tabellen inneholder nå 200 verifiserte eller kildekontrollerte canonical steder. Batch 54 legger til Dronning Sonja KunstStall som egen offentlig kunstinstitusjon i de historiske kongelige stallene, med verifisert publikumsadresse i Parkveien 50. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 32.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -219,6 +219,9 @@ Oslo-tabellen inneholder nå 197 verifiserte eller kildekontrollerte canonical s
 | 49 | `det_internasjonale_barnekunstmuseet` | Det internasjonale Barnekunstmuseet | verified | `geonorge-adresser-v1:0301:14283:4` |
 | 50 | `ibsen_museum_teater` | IBSEN Museum & Teater | verified | `geonorge-adresser-v1:0301:21471:26` |
 | 51 | `oslo_reptilpark` | Oslo Reptilpark | verified | `geonorge-adresser-v1:0301:16935:2` |
+| 52 | `toyenbadet` | Tøyenbadet | verified | `geonorge-adresser-v1:0301:12860:90` |
+| 53 | `ekt_rideskole_husdyrpark` | EKT Rideskole og Husdyrpark | verified | `geonorge-adresser-v1:0301:11462:99` |
+| 54 | `dronning_sonja_kunststall` | Dronning Sonja KunstStall | verified | `geonorge-adresser-v1:0301:15614:50` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -262,6 +265,12 @@ Batch 50 (2026-07-20) fullfører den siste spesialkoordinatsaken fra museumsaudi
 
 Batch 51 (2026-07-20) starter den avgrensede completeness-passeringen for VisitOSLO-attraksjoner utenfor museumskategorien. `oslo_reptilpark` bruker det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:16935:2` for St. Olavs gate 2 som dagens bygnings- og displayanker. Oslo Reptilparks egen historikk dokumenterer at institusjonen åpnet i Storgata 10. januar 2002 og flyttet til større lokaler i St. Olavs gate 2 i september 2007. Dagens koordinat representerer derfor nåværende besøkssted, ikke den opprinnelige 2002-lokasjonen.
 
+
+Batch 52 (2026-07-20) fortsetter den avgrensede completeness-passeringen for VisitOSLO-attraksjoner utenfor museumskategorien. `toyenbadet` bruker det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:12860:90` for Helgesens gate 90 som dagens bygnings-, display- og unlock-anker. Oslo kommune dokumenterer at det nye hovedbadet åpnet 6. januar 2025 på samme tomt som det opprinnelige Tøyenbadet fra 1976. Stedet modelleres derfor som én fysisk canonical place med to bygningshistoriske lag, ikke som to overlappende markører.
+
+Batch 53 (2026-07-20) produserer `ekt_rideskole_husdyrpark` etter separat koordinat- og taxonomy-gate. Det normative adresse-først-intaket ga det eksakte Geonorge-punktet `geonorge-adresser-v1:0301:11462:99` for Ekebergveien 99. EKT ble etablert som rideskole i 1954 ved Jomfrubråtveien 40, mens dagens ridehus-, stall- og husdyrparkkompleks ble utviklet etter festeavtalen med Oslo kommune i 1964. Canonical primærkategori er sport fordi organisert rideundervisning og hestesport er den kontinuerlige institusjonskjernen; husdyrparken beholdes som et integrert formidlings- og besøkslag på samme fysiske sted, ikke som en overlappende markør.
+
+Batch 54 (2026-07-20) legger til `dronning_sonja_kunststall` med det entydige Geonorge-punktet `geonorge-adresser-v1:0301:15614:50` for Parkveien 50. De kongelige stallene dateres til 1848, mens KunstStallen åpnet som offentlig kunst- og kulturarena 4. juli 2017. Stedet er en egen kunstinstitusjon og ikke en duplikat av `slottet` eller `slottsparken`.
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -270,9 +279,11 @@ Duplikatmigrering (2026-07-20): `akerhus_slott` er fjernet som separat fysisk pl
 
 Duplikatmigrering (2026-07-20): `good_game_redaksjon` er fjernet som separat fysisk place fordi Good Game er et redaksjonelt innholdsmiljø inne i canonical `nrk_huset_marienlyst`, ikke et eget dokumentert sted. Story-, people- og Wonderkammer-referanser er beholdt som Good Game-innhold, men eksakte fysiske place-ID-er peker nå på NRK-huset. Den separate Civication-mappingen er fjernet fordi canonical NRK allerede har egen mapping, og legacy-ID-en er lagt til alias-gaten.
 
+Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fysisk place fordi recorden overlapper canonical og koordinatverifiserte `nydalen`. Industristedets dokumenterte works, før–nå, brands, Civication-objekter, kilder, underbadges og Akerselva-naturprofil er slått inn i canonical Nydalen. Quiz-, people-, story-, leksikon-, natur- og rutereferanser er retargetet til canonical place-ID, mens det verifiserte Nydalen-området beholder sitt eksisterende geometrianker.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 197 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 200 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -282,7 +293,6 @@ Disse kontrollene er fullført, men teller ikke blant de 197 verifiserte eller k
 | `nybrua_vaterlandsparken` – Nybrua / Vaterlandsparken | needs_review | Recorden kombinerer Nybrua og Vaterlandsparken, to separate fysiske objekter, mens dagens punkt ligger på et tredje objekt. | Splitt recorden eller velg én canonical fysisk identitet før koordinat godkjennes. |
 | `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
 | `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
-| `nydalen_industristed` – Nydalen industristed | needs_review | Fysisk overlapp med canonical `nydalen`. | Modeller som delprofil/relation eller avgrens et separat fysisk objekt. |
 | `seilduksfabrikken_nydalen` – Øvre spinneri | needs_review | Gjerdrums vei 12 er dokumentert, men Geonorge gir flere ikke-entydige treff. | Finn eksakt bygningsgeometri eller dokumenter ett konkret adressepunkt. |
 | `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
 | `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |

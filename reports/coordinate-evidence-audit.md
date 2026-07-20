@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T06:56:26.422Z
+Generert: 2026-07-20T07:25:39.700Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -97,6 +97,7 @@ Generert: 2026-07-20T06:56:26.422Z
 | var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | viking_planet_oslo | data/coordinate-evidence/oslo/historie/viking_planet_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | det_internasjonale_barnekunstmuseet | data/coordinate-evidence/oslo/kunst/det_internasjonale_barnekunstmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| dronning_sonja_kunststall | data/coordinate-evidence/oslo/kunst/dronning_sonja_kunststall.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunstnernes_hus | data/coordinate-evidence/oslo/kunst/kunstnernes_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | roseslottet | data/coordinate-evidence/oslo/kunst/roseslottet.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -168,7 +169,6 @@ Generert: 2026-07-20T06:56:26.422Z
 | myralokka | data/coordinate-evidence/oslo/natur/myralokka.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nedre_foss | data/coordinate-evidence/oslo/natur/nedre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| nydalen_industristed | data/coordinate-evidence/oslo/natur/nydalen_industristed.json | needs_research | needs_identity_split | OK |
 | nydalsdammen | data/coordinate-evidence/oslo/natur/nydalsdammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | needs_research | needs_address_source | OK |
 | stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | needs_research | needs_geometry | OK |
@@ -178,6 +178,8 @@ Generert: 2026-07-20T06:56:26.422Z
 | voien_gard_voienvolden | data/coordinate-evidence/oslo/natur/voien_gard_voienvolden.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | voienfossen | data/coordinate-evidence/oslo/natur/voienfossen.json | needs_research | needs_geometry | OK |
 | vulkan_industriomrade | data/coordinate-evidence/oslo/natur/vulkan_industriomrade.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ekt_rideskole_husdyrpark | data/coordinate-evidence/oslo/sport/ekt_rideskole_husdyrpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| toyenbadet | data/coordinate-evidence/oslo/sport/toyenbadet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_reptilpark | data/coordinate-evidence/oslo/vitenskap/oslo_reptilpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |

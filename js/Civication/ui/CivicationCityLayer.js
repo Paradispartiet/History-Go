@@ -347,6 +347,7 @@
   // Render
   // ---------------------------------------------------------------------------
   let _model = null;
+  let _figures = [];
   let rendering = false;
   let _suppressNextAutoCaptureLocationId = null;
 
@@ -433,6 +434,28 @@
       });
     });
 
+    // 3) Byens skikkelser – samlede History Go-personer som kulturelt nærvær
+    //    på kultur-/parkstedene i fritids-/kveldsfasene (CivicationHistoryFigures,
+    //    hybridmodellen). Ikke venner; egen markørtype og eget detaljkort.
+    try {
+      _figures = await window.CivicationHistoryFigures?.getFiguresForRender?.(_model) || [];
+    } catch (_e) {
+      _figures = [];
+    }
+    (_figures || []).forEach((row, index) => {
+      const loc = eng.locationById(locations, row.presence.locationId) || {};
+      const marker = /** @type {HTMLButtonElement & { _civiLoc?: any, _civiOffset?: any }} */ (buildFigureMarker(row));
+      marker._civiLoc = loc;
+      marker._civiOffset = {
+        angle: Math.PI / 2 + (index * Math.PI) / 3,
+        ringPx: 24,
+        dyPx: -14,
+        ringNorm: 0.03,
+        dyNorm: -0.024
+      };
+      mh.appendChild(marker);
+    });
+
     // Forankre alle markører i kartets koordinatsystem og hold dem oppdatert.
     refreshMarkerPositions();
     bindMapTransformEvents();
@@ -457,6 +480,57 @@
       openFriendDetail(String(friend.id || ""));
     });
     return btn;
+  }
+
+  function buildFigureMarker(row) {
+    const figure = row.figure || {};
+    const initial = String(figure.name || "?").trim().charAt(0).toUpperCase();
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "civi-city-friend civi-city-figure is-" + esc(row.presence?.state || "in_event");
+    btn.setAttribute("data-figure-id", String(figure.id || ""));
+    btn.setAttribute("aria-label", String(figure.name || "Skikkelse") + " (byens skikkelse)");
+    btn.innerHTML =
+      '<span class="civi-city-friend-figure civi-city-figure-avatar" aria-hidden="true">' + esc(initial) + "</span>";
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openFigureDetail(String(figure.id || ""));
+    });
+    return btn;
+  }
+
+  function openFigureDetail(figureId) {
+    const row = (_figures || []).find((r) => String(r.figure && r.figure.id) === String(figureId));
+    if (!row || !_model) return;
+    markSelected('[data-figure-id="' + cssEscape(figureId) + '"]');
+    showDetail(buildFigureDetailHtml(row, _model));
+  }
+
+  // Ren funksjon: detaljkort for en av byens skikkelser. Testbar headless.
+  function buildFigureDetailHtml(row, model) {
+    const eng = engine();
+    const figure = (row && row.figure) || {};
+    const presence = (row && row.presence) || {};
+    const locations = (model && model.locations) || [];
+    const loc = eng ? eng.locationById(locations, presence.locationId) : null;
+
+    const yearText = figure.year ? String(figure.year) : "";
+    const factRows =
+      row2("Sted", loc ? loc.label : (presence.locationId || "—")) +
+      (presence.atHomePlace ? row2("Kobling", "Personens eget sted fra History Go") : "") +
+      row2("Nærvær", presence.activity || "—") +
+      (figure.category ? row2("Kategori", figure.category) : "") +
+      (yearText ? row2("År", yearText) : "");
+
+    return (
+      '<div class="civi-city-detail-kicker">✨ Byens skikkelse · Fra History Go-samlingen din</div>' +
+      "<h3>" + esc(figure.name || "Skikkelse") + "</h3>" +
+      (figure.desc ? '<p class="civi-city-detail-list">' + esc(figure.desc) + "</p>" : "") +
+      factRows +
+      '<p class="civi-city-detail-list muted">Skikkelsene er kulturelt nærvær fra kunnskapssamlingen din — de bor ikke i byen og svarer ikke på meldinger.</p>'
+    );
   }
 
   // ---------------------------------------------------------------------------

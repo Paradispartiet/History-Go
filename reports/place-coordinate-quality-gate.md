@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T06:56:21.627Z
+Generert: 2026-07-20T07:25:32.370Z
 
 ## Oppsummering
-- Aktive filer validert: **520**
-- Antall steder validert: **1215**
+- Aktive filer validert: **523**
+- Antall steder validert: **1214**
 - Harde feil: **0**
 - Varsler: **428**
 - Coordinate review candidates: **706** signaler fordelt på **564** steder
@@ -538,6 +538,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/det_internasjonale_barnekunstmuseet.json
 - data/places/litteratur/oslo/places_litteratur/ibsen_museum_teater.json
 - data/places/vitenskap/oslo/places_vitenskap/oslo_reptilpark.json
+- data/places/sport/europa/norway/oslo_sport/toyenbadet.json
+- data/places/sport/europa/norway/oslo_sport/ekt_rideskole_husdyrpark.json
+- data/places/kunst/oslo/places_kunst/dronning_sonja_kunststall.json
 
 ## Harde feil
 - Ingen
