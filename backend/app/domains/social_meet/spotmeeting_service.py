@@ -272,25 +272,28 @@ def _transition_allowed(
         if next_state is SpotmeetingInviteState.CANCELLED:
             return is_sender
         return False
-    if current_state is SpotmeetingInviteState.ACCEPTED:
-        if next_state in {SpotmeetingInviteState.CANCELLED, SpotmeetingInviteState.COMPLETED}:
-            return is_sender or is_recipient
+    if current_state is SpotmeetingInviteState.ACCEPTED and next_state in {
+        SpotmeetingInviteState.CANCELLED,
+        SpotmeetingInviteState.COMPLETED,
+    }:
+        return is_sender or is_recipient
     return False
 
 
 def _to_view(record: SpotmeetingInviteRecord, auth_user_id: UUID) -> SpotmeetingInviteView:
     is_sender = auth_user_id == record.sender_auth_user_id
     is_recipient = auth_user_id == record.recipient_auth_user_id
+    is_participant = is_sender or is_recipient
     actions = SpotmeetingActorActions(
         can_accept=is_recipient and record.state is SpotmeetingInviteState.PENDING,
         can_decline=is_recipient and record.state is SpotmeetingInviteState.PENDING,
         can_cancel=(
             (is_sender and record.state is SpotmeetingInviteState.PENDING)
-            or ((is_sender or is_recipient) and record.state is SpotmeetingInviteState.ACCEPTED)
+            or (is_participant and record.state is SpotmeetingInviteState.ACCEPTED)
         ),
-        can_complete=(is_sender or is_recipient) and record.state is SpotmeetingInviteState.ACCEPTED,
-        can_report=(is_sender or is_recipient) and record.state is not SpotmeetingInviteState.BLOCKED,
-        can_block=(is_sender or is_recipient) and record.state is not SpotmeetingInviteState.BLOCKED,
+        can_complete=is_participant and record.state is SpotmeetingInviteState.ACCEPTED,
+        can_report=is_participant and record.state is not SpotmeetingInviteState.BLOCKED,
+        can_block=is_participant and record.state is not SpotmeetingInviteState.BLOCKED,
     )
     return SpotmeetingInviteView(
         invite_id=record.invite_id,
@@ -334,7 +337,9 @@ def _creation_failure(code: str | None) -> SocialMeetDomainError:
         "conflict": "Concurrent Spotmeeting state changed; retry with fresh server state",
         "duplicate_active_invite": "An active Spotmeeting invite already exists for this context",
         "idempotency_conflict": "The idempotency key is already bound to another invite request",
-        "profile_not_published": "A published Social Meet profile is required to create invitations",
+        "profile_not_published": (
+            "A published Social Meet profile is required to create invitations"
+        ),
         "rate_limited": "The Spotmeeting invite cannot be created at this time",
         "recipient_unavailable": "The requested Social Meet recipient is unavailable",
     }
