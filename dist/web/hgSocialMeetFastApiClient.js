@@ -30,12 +30,19 @@
   async function getAccessToken() {
     var _a, _b, _c, _d, _e, _f;
     const resolved = (_b = (_a = win.HG_SocialMeetSupabaseClient) == null ? void 0 : _a.getClient) == null ? void 0 : _b.call(_a);
-    if (!(resolved == null ? void 0 : resolved.ok)) {
+    if (resolved == null) {
       return {
         ok: false,
         status: 401,
-        reason: (resolved == null ? void 0 : resolved.reason) || "supabase_auth_unavailable",
-        detail: resolved == null ? void 0 : resolved.config
+        reason: "supabase_auth_unavailable"
+      };
+    }
+    if (resolved.ok === false) {
+      return {
+        ok: false,
+        status: 401,
+        reason: resolved.reason || "supabase_auth_unavailable",
+        detail: resolved.config
       };
     }
     try {
@@ -77,7 +84,14 @@
       return { ok: false, status: 503, reason: "missing_backend_url" };
     }
     const tokenResult = await getAccessToken();
-    if (!tokenResult.ok) return tokenResult;
+    if (tokenResult.ok === false) {
+      return {
+        ok: false,
+        status: tokenResult.status,
+        reason: tokenResult.reason,
+        detail: tokenResult.detail
+      };
+    }
     const headers = new Headers(init.headers);
     headers.set("Authorization", `Bearer ${tokenResult.data}`);
     headers.set("Accept", "application/json");
