@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import zlib from 'node:zlib';
 import { execFileSync } from 'node:child_process';
@@ -16,6 +17,7 @@ const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const writeJson = (file, value) => fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`);
 const placeDir = 'data/places/natur/oslo/places_oslo_natur_akerselvarute';
 const aggregatePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute.json';
+const routeManifestPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_manifest.json';
 const nybrua = readJson(`${placeDir}/nybrua_vaterlandsparken.json`);
 const vaterlandsparken = readJson(`${placeDir}/vaterlandsparken.json`);
 Object.assign(vaterlandsparken, {
@@ -32,7 +34,16 @@ Object.assign(vaterlandsparken, {
   coordVerifiedAt: '2026-07-20',
   coordNote: 'Eksakt navngitt OSM-parkgeometri for Vaterlandsparken. Wayens representasjonspunkt brukes som area_anchor for parkarealet.',
 });
-writeJson(`${placeDir}/vaterlandsparken.json`, vaterlandsparken);
+const vaterlandsparkenPath = `${placeDir}/vaterlandsparken.json`;
+writeJson(vaterlandsparkenPath, vaterlandsparken);
+
+const routeManifest = readJson(routeManifestPath);
+const parkManifestRow = routeManifest.places.find(row => row?.id === vaterlandsparken.id);
+if (!parkManifestRow) throw new Error('Vaterlandsparken missing from Akerselva split manifest');
+parkManifestRow.name = vaterlandsparken.name;
+parkManifestRow.category = vaterlandsparken.category;
+parkManifestRow.sha256 = crypto.createHash('sha256').update(fs.readFileSync(vaterlandsparkenPath)).digest('hex');
+writeJson(routeManifestPath, routeManifest);
 
 const aggregate = readJson(aggregatePath);
 const legacyIndex = aggregate.findIndex(place => place?.id === nybrua.id);
