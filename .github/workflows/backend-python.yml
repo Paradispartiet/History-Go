@@ -114,5 +114,18 @@ jobs:
           python -m pip install -e './backend[dev]'
 
       - name: Pytest with coverage
+        id: pytest
         working-directory: backend
-        run: python -m pytest --cov=app --cov-report=term-missing --cov-fail-under=80
+        run: |
+          mkdir -p ../reports/backend-ci
+          set -o pipefail
+          python -m pytest --cov=app --cov-report=term-missing --cov-fail-under=80 2>&1 \
+            | tee ../reports/backend-ci/pytest-${{ matrix.python-version }}.log
+
+      - name: Upload pytest diagnostics
+        if: failure() && steps.pytest.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-pytest-diagnostics-${{ matrix.python-version }}-${{ github.run_id }}
+          path: reports/backend-ci/pytest-${{ matrix.python-version }}.log
+          if-no-files-found: error
