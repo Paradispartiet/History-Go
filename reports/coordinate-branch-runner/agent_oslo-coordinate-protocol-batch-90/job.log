@@ -1,0 +1,93 @@
+[Batch 90] Rebuilding canonical runtime place index before protocol reconciliation
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1300 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 201 category override(s)
+{
+  "ok": true,
+  "totalCanonicalOsloPlaces": 403,
+  "verifiedOrSourceControlled": 320,
+  "unresolved": 83,
+  "addedIds": [
+    "frammuseet",
+    "gol_stavkirke_bygdoy",
+    "kon_tiki_museet",
+    "havnelageret",
+    "alna_bryn",
+    "alna_smalvoll",
+    "alna_utlop_bjorvika",
+    "bygdoy_kongeskogen",
+    "alnaelva_hovedsteder",
+    "bygdoy_natur",
+    "gressholmen",
+    "hovedoya",
+    "ljanselva",
+    "maerradalen",
+    "maridalsvannet",
+    "noklevann",
+    "ostensjovannet",
+    "ljanselva_fiskevollen",
+    "ljanselva_hauketo",
+    "ljanselva_ljan",
+    "ljanselva_skullerud",
+    "bogerudmyra",
+    "ostensjovannet_sivbelte",
+    "bantjern_salamanderlokalitet",
+    "blindern_forskningsparken_salamanderdam",
+    "bygdoy_kongsgard_salamanderdam",
+    "eidsvolls_plass",
+    "hoyesteretts_hus",
+    "oslo_radhus",
+    "politihuset_gronland",
+    "regjeringskvartalet",
+    "chat_noir",
+    "cinemateket_oslo",
+    "colosseum_kino",
+    "edderkoppen_scene",
+    "frognerstranda",
+    "grand_hotel",
+    "house_of_nerds",
+    "latter",
+    "slottsplassen",
+    "psykologisk_institutt_uio",
+    "bla",
+    "nobelinstituttet",
+    "observatoriet",
+    "abelhaugen",
+    "arkitektur_og_designhogskolen",
+    "bi_nydalen",
+    "botanisk_hage",
+    "forskningsparken",
+    "gamlebyen_skole",
+    "meteorologisk_institutt",
+    "naturhistorisk_museum",
+    "oslo_met_pilestredet",
+    "radiumhospitalet",
+    "rikshospitalet",
+    "teknisk_museum",
+    "tvergastein",
+    "universitetet_i_oslo_blindern",
+    "universitetets_gamle_hovedbygning"
+  ],
+  "removedIds": [
+    "nybrua_vaterlandsparken",
+    "alf_proysen_statue_nittedal",
+    "grini_fangeleir",
+    "grensen_kjopesenter",
+    "frysja_industriomrade"
+  ],
+  "statusCounts": {
+    "semantic_anchor": 8,
+    "verified_source_coordinate": 3,
+    "needs_source": 14,
+    "unverified": 43,
+    "nearby_reference": 11,
+    "needs_detail_check": 2,
+    "manual_review": 2
+  }
+}
