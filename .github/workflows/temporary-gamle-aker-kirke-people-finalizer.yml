@@ -1,6 +1,8 @@
 name: Temporary Gamle Aker kirke people finalizer
 
 on:
+  push:
+    branches: [main]
   pull_request_target:
     types: [reopened, synchronize]
   workflow_dispatch:
@@ -11,7 +13,7 @@ permissions:
 
 jobs:
   finalize:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 2660
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 2660
     runs-on: ubuntu-latest
     steps:
       - name: Check out Gamle Aker people branch
