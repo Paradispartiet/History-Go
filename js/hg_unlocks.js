@@ -187,4 +187,17 @@
     };
     document.head.appendChild(script);
   }
+
+  // The v4 ranked list can omit one of the original four cards even though the
+  // legacy fields still contain it. This bridge merges those core cards back in.
+  if (!document.querySelector('script[data-hg-nextup-core-cards="1"]')) {
+    const script = document.createElement("script");
+    script.src = "js/nextUpCoreCards.js";
+    script.async = true;
+    script.dataset.hgNextupCoreCards = "1";
+    script.onerror = () => {
+      if (window.DEBUG) console.warn("[HGUnlocks] could not load NextUp core cards bridge");
+    };
+    document.head.appendChild(script);
+  }
 })();
