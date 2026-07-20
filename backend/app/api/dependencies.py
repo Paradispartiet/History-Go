@@ -20,6 +20,8 @@ from app.domains.social_meet.discovery_repository import PostgresSocialMeetDisco
 from app.domains.social_meet.discovery_service import SocialMeetCandidateDiscoveryService
 from app.domains.social_meet.moderation_repository import PostgresSocialMeetModerationRepository
 from app.domains.social_meet.moderation_service import SocialMeetModerationService
+from app.domains.social_meet.operations_repository import PostgresSocialMeetOperationsRepository
+from app.domains.social_meet.operations_service import SocialMeetOperationsService
 from app.domains.social_meet.repository import PostgresSocialMeetIdentityRepository
 from app.domains.social_meet.safety_repository import PostgresSocialMeetSafetyRepository
 from app.domains.social_meet.safety_service import SocialMeetSafetyService
@@ -124,6 +126,17 @@ def get_social_meet_candidate_discovery_service(
         settings,
         PostgresSocialMeetIdentityRepository(database),
         PostgresSocialMeetDiscoveryRepository(database),
+    )
+
+
+def get_social_meet_operations_service(
+    settings: Settings = Depends(get_settings),
+    database: Database = Depends(get_database),
+) -> SocialMeetOperationsService:
+    _require_database(database)
+    return SocialMeetOperationsService(
+        settings,
+        PostgresSocialMeetOperationsRepository(database),
     )
 
 
