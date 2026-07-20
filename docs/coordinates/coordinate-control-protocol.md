@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 215 verifiserte eller kildekontrollerte canonical steder. Batch 68 legger til Christian Radich med det entydige Geonorge-adressepunktet for Skur 32, Akershusstranda 9, brukt som dokumentert hjemmebase-markør ved Akershusutstikkeren med eksplisitt ikke-live fartøyssemantikk. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 216 verifiserte eller kildekontrollerte canonical steder. Batch 69 legger til Central Jam-e-Mosque med det entydige Geonorge-adressepunktet for Åkebergveien 28B og dokumentert identitet som formålsbygd World Islamic Mission-moské. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -237,6 +237,7 @@ Oslo-tabellen inneholder nå 215 verifiserte eller kildekontrollerte canonical s
 | 66 | `seilduksfabrikken_nydalen` | Øvre spinneri | verified_geometry | `kulturminnesok:165570-6` |
 | 67 | `fotografiens_hus` | Fotografiens Hus | verified | `geonorge-adresser-v1:0301:16115:20` |
 | 68 | `christian_radich` | Christian Radich | verified | `geonorge-adresser-v1:0301:10077:9` |
+| 69 | `central_jam_e_mosque` | Central Jam-e-Mosque | verified | `geonorge-adresser-v1:0301:18780:28B` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -410,3 +411,5 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 Batch 67 (2026-07-20) produserer `fotografiens_hus` som eget offentlig fotogalleri og fotografispesifikt kunststed. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Rådhusgata 20. Offisiell institusjonsinformasjon dokumenterer samme adresse og kontinuerlig bruk som visningssted siden 1999; canonical overlap-audit fant ingen identitetsduplikat. Midlertidige enkeltutstillinger forblir innholdslag og skal ikke splittes til egne overlappende place-markører.
 
 Batch 68 (2026-07-20) produserer `christian_radich` som historisk fartøy med dokumentert Oslo-hjemmebase. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Skur 32, Akershusstranda 9. Oslo Havn dokumenterer Akershusutstikkeren som Christian Radichs hjemmehavn og fast plass siden 1994, mens VisitOSLO opplyser at skipet ligger der når det ikke er på oppdrag. Markøren bruker standard `official_address` / `address_point`-kontrakt, men place- og koordinatnotene presiserer at dette er et stabilt hjemmebaseanker og ikke live-sporing eller garanti for fysisk tilstedeværelse. `akershus_kaier` forblir det bredere lineære kaianlegget og er ikke en duplikatidentitet.
+
+Batch 69 (2026-07-20) produserer `central_jam_e_mosque` som eget historisk religions- og institusjonssted. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Åkebergveien 28B. World Islamic Mission dokumenterer samme adresse og den formålsbygde moskeens historie; canonical overlap-audit fant ingen identitetsduplikat, og nærmeste canonical sted er en annen bygning mer enn 100 meter unna.

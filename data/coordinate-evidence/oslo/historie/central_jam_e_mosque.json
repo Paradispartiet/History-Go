@@ -1,0 +1,75 @@
+{
+  "placeId": "central_jam_e_mosque",
+  "placeFile": "data/places/historie/oslo/places_historie/central_jam_e_mosque.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91054574923662,
+    "lon": 10.77400472380195,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Åkebergveien 28B, OSLO. Punktet brukes som display- og unlock-marker for det formålsbygde moskébygget Central Jam-e-Mosque / World Islamic Mission. Det representerer ikke Åkebergveien som gate eller muslimsk trosliv i Oslo generelt."
+  },
+  "identity": {
+    "currentName": "Central Jam-e-Mosque",
+    "resolvedIdentity": "Det formålsbygde Central Jam-e-Mosque / World Islamic Mission-moskébygget og menighetshjemmet i Åkebergveien 28B",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Åkebergveien 28B",
+    "offisiell institusjonsidentitet og adresse",
+    "dokumentert formålsbygd moskéhistorie",
+    "canonical identitets- og nærhetskontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=%C3%85kebergveien%2028B%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18780:28B",
+      "sourceQuality": "official_address_plus_official_institution_identity_plus_reference_history",
+      "finding": "Geonorge gir ett tydelig offisielt adressepunkt for Åkebergveien 28B. World Islamic Mission dokumenterer samme adresse og den formålsbygde moskeens historie. Ingen eksisterende canonical place har samme identitet; nærmeste canonical sted er Botsfengselet 107,7 meter unna og representerer en annen bygning og institusjon.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Åkebergveien 28B, OSLO. Punktet brukes som display- og unlock-marker for det formålsbygde moskébygget Central Jam-e-Mosque / World Islamic Mission. Det representerer ikke Åkebergveien som gate eller muslimsk trosliv i Oslo generelt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Åkebergveien 28B Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18780:28B",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18780:28B",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91054574923662,
+      "lon": 10.77400472380195,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the exact Åkebergveien 28B Geonorge point to the canonical Central Jam-e-Mosque place after identity and overlap review."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Åkebergveien 28B, OSLO. Punktet brukes som display- og unlock-marker for det formålsbygde moskébygget Central Jam-e-Mosque / World Islamic Mission. Det representerer ikke Åkebergveien som gate eller muslimsk trosliv i Oslo generelt.",
+    "Ingen canonical identitetsduplikat ble funnet i dagens runtime-indeks."
+  ]
+}

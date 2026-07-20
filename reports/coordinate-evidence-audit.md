@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T14:30:36.128Z
+Generert: 2026-07-20T14:49:30.078Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -195,3 +195,4 @@ Generert: 2026-07-20T14:30:36.128Z
 | klimahuset | data/coordinate-evidence/oslo/vitenskap/klimahuset.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | christian_radich | data/coordinate-evidence/oslo/historie/christian_radich.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| central_jam_e_mosque | data/coordinate-evidence/oslo/historie/central_jam_e_mosque.json | applied_to_place | do_not_change_coordinates_yet | OK |
