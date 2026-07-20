@@ -168,8 +168,11 @@
   function renderKnowledgeList() {
     if (!activeProfile) return;
     const root = document.getElementById("knowledgeContainer");
-    const category = document.getElementById("filterCategory").value;
-    const dimension = document.getElementById("filterDimension").value;
+    const categoryFilter = document.getElementById("filterCategory");
+    const dimensionFilter = document.getElementById("filterDimension");
+    if (!(categoryFilter instanceof HTMLSelectElement) || !(dimensionFilter instanceof HTMLSelectElement)) return;
+    const category = categoryFilter.value;
+    const dimension = dimensionFilter.value;
     const entries = allEntries(activeProfile).filter((entry) => {
       if (category && entry._subject_id !== category) return false;
       if (dimension && s(entry.dimension || "generelt") !== dimension) return false;

@@ -5,6 +5,7 @@ on:
     paths:
       - 'knowledge.html'
       - 'knowledge_*.html'
+      - 'knowledge-*.html'
       - 'knowledge/**'
       - 'css/knowledge*.css'
       - 'js/knowledge*.js'
@@ -38,6 +39,8 @@ jobs:
         run: |
           node --check js/knowledgeV2.js
           node --check js/knowledgePage.js
+          node --check js/knowledgeBadgeLogos.js
+          node --check js/knowledgeProfileClassic.js
           node --check scripts/audit-knowledge-contract.mjs
           node --check scripts/audit-knowledge-links.mjs
           node --check build/smoke-web.mjs
@@ -50,7 +53,7 @@ jobs:
           npm run typecheck > "$RUNNER_TEMP/knowledge-root-typecheck.log" 2>&1
           set -e
 
-          grep -E '^(js/knowledgePage\.js|js/knowledgeV2\.js).*error TS[0-9]+:' \
+          grep -E '^(js/knowledgePage\.js|js/knowledgeV2\.js|js/knowledgeBadgeLogos\.js|js/knowledgeProfileClassic\.js).*error TS[0-9]+:' \
             "$RUNNER_TEMP/knowledge-root-typecheck.log" \
             | tee reports/knowledge-checkjs-diagnostics.txt \
             || true
@@ -61,8 +64,8 @@ jobs:
             exit 1
           fi
 
-      - name: Run Knowledge V2 model tests
-        run: node --test tests/knowledge-v2-model.test.js
+      - name: Run Knowledge tests
+        run: node --test tests/knowledge-v2-model.test.js tests/knowledge-profile-restore.test.js
 
       - name: Audit Knowledge links
         run: node scripts/audit-knowledge-links.mjs
