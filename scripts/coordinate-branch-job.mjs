@@ -18,10 +18,20 @@ const compressedHash = crypto.createHash('sha256').update(compressed).digest('he
 if (compressedHash !== '15a2d51b0946b860f0d3007135ec1b380f49f41388237c782c244f7772997c72') {
   throw new Error(`Skåno compressed payload integrity failure: sha256=${compressedHash}`);
 }
-const source = gunzipSync(compressed).toString('utf8');
+let source = gunzipSync(compressed).toString('utf8');
 const sourceHash = crypto.createHash('sha256').update(source).digest('hex');
 if (sourceHash !== 'd11d4b8481d8b2838c58640942f5a71a143a153d2b2ecbcd2b75f7611a7a1f62') {
   throw new Error(`Skåno source payload integrity failure: sha256=${sourceHash}`);
 }
+const buggy = "const flatten = items => items.flatMap(item => item && item.kind === 'emne_pack' ? flatten(item.items || []) : [item]);";
+const fixed = `const flatten = value => {
+  if (Array.isArray(value)) return value.flatMap(flatten);
+  if (!value || typeof value !== 'object') return [];
+  if (value.kind === 'emne_pack' && Array.isArray(value.items)) return value.items.flatMap(flatten);
+  if (value.id) return [value];
+  return Object.values(value).flatMap(child => Array.isArray(child) ? flatten(child) : []);
+};`;
+if (!source.includes(buggy)) throw new Error('Skåno test patch target missing');
+source = source.replace(buggy, fixed);
 for (const file of payloadPaths) fs.unlinkSync(file);
 await import('data:text/javascript;base64,' + Buffer.from(source, 'utf8').toString('base64'));
