@@ -1,0 +1,136 @@
+name: Oslo Prosjektrom current-main production
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    if: github.head_ref == 'agent/oslo-coordinate-oslo-prosjektrom-current-main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Register place, evidence and next Oslo batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main
+          python3 <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          place_manifest_path = Path('data/places/manifest.json')
+          place_manifest = json.loads(place_manifest_path.read_text())
+          place_entry = 'places/kunst/oslo/places_kunst/oslo_prosjektrom.json'
+          if place_entry not in place_manifest['files']:
+              place_manifest['files'].append(place_entry)
+          place_manifest_path.write_text(json.dumps(place_manifest, ensure_ascii=False, indent=2) + '\n')
+
+          evidence_manifest_path = Path('data/coordinate-evidence/manifest.json')
+          evidence_manifest = json.loads(evidence_manifest_path.read_text())
+          evidence_entry = 'oslo/kunst/oslo_prosjektrom.json'
+          if evidence_entry not in evidence_manifest['files']:
+              evidence_manifest['files'].append(evidence_entry)
+          evidence_manifest_path.write_text(json.dumps(evidence_manifest, ensure_ascii=False, indent=2) + '\n')
+
+          protocol_path = Path('docs/coordinates/coordinate-control-protocol.md')
+          protocol = protocol_path.read_text()
+          if '`oslo_prosjektrom`' in protocol:
+              raise SystemExit('oslo_prosjektrom already exists in coordinate protocol')
+
+          oslo_start = protocol.index('## Oslo')
+          next_heading = protocol.find('\n## ', oslo_start + len('## Oslo'))
+          oslo_block = protocol[oslo_start:] if next_heading == -1 else protocol[oslo_start:next_heading]
+          batches = [int(value) for value in re.findall(r'^\|\s*(\d+)\s*\|', oslo_block, re.M)]
+          if not batches:
+              raise SystemExit('Could not determine current Oslo batch maximum')
+          batch = max(batches) + 1
+
+          summary_re = re.compile(
+              r'Oslo-tabellen inneholder nå (\d+) verifiserte eller kildekontrollerte canonical steder\. '
+              r'.*? Antallet fullførte kontroller uten godkjent Oslo-koordinat er (\d+)\.'
+          )
+          match = summary_re.search(protocol)
+          if not match:
+              raise SystemExit('Could not locate Oslo protocol summary')
+          new_count = int(match.group(1)) + 1
+          needs_review = int(match.group(2))
+          new_summary = (
+              f'Oslo-tabellen inneholder nå {new_count} verifiserte eller kildekontrollerte canonical steder. '
+              f'Batch {batch} legger til Oslo Prosjektrom med eksakt Geonorge-adressepunkt for Platous gate 18, '
+              f'etter separat avklaring av den isolerte Platous gate 10-feiloppføringen. '
+              f'Antallet fullførte kontroller uten godkjent Oslo-koordinat er {needs_review}.'
+          )
+          protocol = summary_re.sub(new_summary, protocol, count=1)
+
+          row = (
+              f'| {batch} | `oslo_prosjektrom` | Oslo Prosjektrom | verified | '
+              f'`geonorge-adresser-v1:0301:15684:18` |\n'
+          )
+          marker = '\nRelevante korrigerende merger for de første Oslo-batchene:'
+          if marker not in protocol:
+              raise SystemExit('Could not locate Oslo table end marker')
+          protocol = protocol.replace(marker, '\n' + row + marker, 1)
+          protocol_path.write_text(protocol)
+
+          report = {
+              'placeId': 'oslo_prosjektrom',
+              'newBatch': batch,
+              'newOsloControlledCount': new_count,
+              'sourceObjectId': 'geonorge-adresser-v1:0301:15684:18'
+          }
+          Path('reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/job.json').write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + '\n'
+          )
+          PY
+
+      - name: Build runtime place index
+        run: npm run places:index:build 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/places-index-build.log
+
+      - name: Validate place data
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run audit:places-split-manifest-sync 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/split-manifest-sync.log
+          npm run places:index:check 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/places-index-check.log
+          npm run test:coordinate-source-contract 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/coordinate-source-contract.log
+          npm run places:coords:quality 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/coordinate-quality.log
+          npm run places:coords:intake -- --strict-new 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/coordinate-intake.log
+          npm run places:coords:evidence:audit 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/coordinate-evidence.log
+          set +e
+          npm run health:places 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/health-places.log
+          health_code=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$health_code" > reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/health-places.exit-code.txt
+          git diff --check 2>&1 | tee reports/coordinate-branch-runner/agent_oslo-coordinate-oslo-prosjektrom-current-main/git-diff-check.log
+
+      - name: Remove one-shot workflow and commit generated state
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/oslo-prosjektrom-current-main.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit"
+            exit 0
+          fi
+          git commit -m "Rebuild Oslo Prosjektrom on current coordinate baseline"
+          git push origin HEAD:${{ github.head_ref }}
