@@ -4,30 +4,6 @@
 // Init: initLeftPanel() kalles fra DOMContentLoaded
 // ============================================================
 
-function tUI(key, fallback = "") {
-  try {
-    return window.HG_I18N?.t?.(key, fallback) || fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-function tfUI(key, fallback = "", vars = {}) {
-  const template = tUI(key, fallback);
-  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
-    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
-  );
-}
-
-function escapeHTML(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
 function hg$(id) {
   return document.getElementById(id);
 }
@@ -109,121 +85,6 @@ function syncLeftPanelFrame() {
 }
 
 // ============================================================
-// BADGE FILTER HELPERS
-// ============================================================
-
-let _badgeFilterTapLockedUntil = 0;
-
-function badgeFilterTapIsLocked() {
-  const now = Date.now();
-  if (now < _badgeFilterTapLockedUntil) return true;
-  _badgeFilterTapLockedUntil = now + 120;
-  return false;
-}
-
-function getActiveBadgeFilter() {
-  return window.HGNearbyFilters?.getActiveBadgeFilter?.() || "all";
-}
-
-function setActiveBadgeFilter(nextFilter, options = {}) {
-  const current = getActiveBadgeFilter();
-  const next = window.HGNearbyFilters?.setActiveBadgeFilter?.(nextFilter) || "all";
-
-  if (typeof window.updateNearbyBadgeFilterButton === "function") {
-    window.updateNearbyBadgeFilterButton();
-  }
-
-  const activeMode = hgActiveLeftPanelMode();
-
-  if (activeMode === "badges" || options.renderBadgesList) {
-    renderLeftBadges();
-    return;
-  }
-
-  if (next !== current || options.forceRender) {
-    rerenderActiveLeftPanelMode();
-  }
-}
-
-function isBadgeFilterActive() {
-  return window.HGNearbyFilters?.isBadgeFilterActive?.() || false;
-}
-
-window.HG_getActiveBadgeFilter = getActiveBadgeFilter;
-window.HG_isBadgeFilterActive = isBadgeFilterActive;
-
-// ============================================================
-// BADGES I VENSTRE PANEL
-// ============================================================
-
-function getCollectedBadgeCount() {
-  try {
-    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-    if (!merits || typeof merits !== "object" || Array.isArray(merits)) return 0;
-    return Object.keys(merits).length;
-  } catch {
-    return 0;
-  }
-}
-
-function renderLeftBadges() {
-  const box = hg$("leftBadgesList");
-  if (!box) return;
-
-  if (box.dataset.hgBadgeDelegated !== "1") {
-    box.dataset.hgBadgeDelegated = "1";
-    box.addEventListener("click", (event) => {
-      const btn = /** @type {Element|null} */ (event.target)?.closest?.("[data-badge-id]");
-      if (!btn || !box.contains(btn)) return;
-      if (badgeFilterTapIsLocked()) return;
-
-      const next = btn.getAttribute("data-badge-id") || "all";
-      setActiveBadgeFilter(next, { renderBadgesList: true });
-    });
-  }
-
-  const collectedBadgeCount = getCollectedBadgeCount();
-  const collectedBadgeText = tfUI("ui.badges.collectedCount", "{count} merker samlet", { count: collectedBadgeCount });
-  const summaryHtml = `<div class="muted" style="font-size:13px;margin:0 0 8px;padding:0 2px;">${escapeHTML(collectedBadgeText)}</div>`;
-
-  if (!Array.isArray(window.CATEGORY_LIST) || !window.CATEGORY_LIST.length) {
-    box.innerHTML = `${summaryHtml}<div class="muted">${tUI("ui.badges.noCategoriesLoaded", "Ingen kategorier lastet.")}</div>`;
-    return;
-  }
-
-  const activeBadge = getActiveBadgeFilter();
-  let categories = window.CATEGORY_LIST;
-
-  if (activeBadge !== "all") {
-    categories = categories.filter(c => String(c.id || "").trim() === String(activeBadge).trim());
-  }
-
-  if (!categories.length) {
-    box.innerHTML = `
-      ${summaryHtml}
-      <div class="hg-empty-guide">
-        <div class="hg-empty-guide-icon">🏅</div>
-        <div class="hg-empty-guide-title">${tUI("ui.badges.none", "Ingen merker")}</div>
-        <div class="hg-empty-guide-text">${tUI("ui.badges.filterHidesAll", "Badgefilteret skjuler alle merker akkurat nå. Trykk badgeknappen for å vise alle.")}</div>
-      </div>
-    `;
-    return;
-  }
-
-  box.innerHTML = summaryHtml + categories.map(c => `
-    <button class="chip ghost" data-badge-id="${c.id}"
-      style="justify-content:flex-start;width:100%;">
-      <img src="bilder/merker/${c.id}.PNG"
-           alt=""
-           loading="lazy"
-           decoding="async"
-           style="width:18px;height:18px;margin-right:8px;border-radius:4px;">
-      ${c.name}
-    </button>
-  `).join("");
-}
-
-// ============================================================
 // INIT
 // ============================================================
 
@@ -263,7 +124,7 @@ function initLeftPanel() {
   // Drawer-state og interaksjoner eies av TypeScript-controlleren.
   window.HGNearbyDrawer?.bindInteractions?.();
 
-  renderLeftBadges();
+  window.HGNearbyBadgesPanel?.render?.();
 
   // Re-render natur når DataHub blir ferdig (hvis fanen allerede står åpen).
   window.addEventListener("hg:nature-loaded", () => {
