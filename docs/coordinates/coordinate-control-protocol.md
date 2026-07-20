@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 217 verifiserte eller kildekontrollerte canonical steder. Batch 70 legger til Tøyen hovedgård med det entydige Geonorge-adressepunktet for Trondheimsveien 23B og eksplisitt avgrensning mot Botanisk hage, Naturhistorisk museum og Klimahuset. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 218 verifiserte eller kildekontrollerte canonical steder. Batch 71 legger til Museumsleiligheten Gråbein med det entydige Geonorge-adressepunktet for Tøyengata 38B, etter at den bredere adressen Tøyengata 38 korrekt ble avvist som tvetydig. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -239,6 +239,7 @@ Oslo-tabellen inneholder nå 217 verifiserte eller kildekontrollerte canonical s
 | 68 | `christian_radich` | Christian Radich | verified | `geonorge-adresser-v1:0301:10077:9` |
 | 69 | `central_jam_e_mosque` | Central Jam-e-Mosque | verified | `geonorge-adresser-v1:0301:18780:28B` |
 | 70 | `toyen_hovedgard` | Tøyen hovedgård | verified | `geonorge-adresser-v1:0301:17749:23B` |
+| 71 | `museumsleiligheten_grabein` | Museumsleiligheten Gråbein | verified | `geonorge-adresser-v1:0301:17875:38B` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -416,3 +417,5 @@ Batch 68 (2026-07-20) produserer `christian_radich` som historisk fartøy med do
 Batch 69 (2026-07-20) produserer `central_jam_e_mosque` som eget historisk religions- og institusjonssted. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Åkebergveien 28B. World Islamic Mission dokumenterer samme adresse og den formålsbygde moskeens historie; canonical overlap-audit fant ingen identitetsduplikat, og nærmeste canonical sted er en annen bygning mer enn 100 meter unna.
 
 Batch 70 (2026-07-20) produserer `toyen_hovedgard` som eget historisk hovedgårdsanlegg. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Trondheimsveien 23B. Hovedgården ligger fysisk inne i Botanisk hage, men er et eldre selvstendig bygg- og gårdsanlegg; `botanisk_hage`, `naturhistorisk_museum` og `klimahuset` beholdes som separate parent-/nabosteder med andre fysiske og institusjonelle skalaer.
+
+Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhistorisk museumssted. Den generelle adressen Tøyengata 38 ga flere uentydige Geonorge-treff, mens Oslo Museum og Oslo byleksikon identifiserer leiligheten i Tøyengata 38B; den presise address-first-kjøringen ga ett tydelig offisielt punkt. Recorden representerer den bevarte museumsleiligheten inne i Gråbein-komplekset, ikke hele leiegårdskomplekset eller Tøyen som område.

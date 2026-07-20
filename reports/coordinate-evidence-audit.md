@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T15:25:53.728Z
+Generert: 2026-07-20T15:45:45.503Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -203,3 +203,4 @@ Generert: 2026-07-20T15:25:53.728Z
 | toyen_hovedgard | data/coordinate-evidence/oslo/historie/toyen_hovedgard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | emanuel_vigeland_mausoleum | data/coordinate-evidence/oslo/kunst/emanuel_vigeland_mausoleum.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | framtidsbiblioteket_nordmarka | data/coordinate-evidence/oslo/kunst/framtidsbiblioteket_nordmarka.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| museumsleiligheten_grabein | data/coordinate-evidence/oslo/historie/museumsleiligheten_grabein.json | applied_to_place | do_not_change_coordinates_yet | OK |

@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T15:25:46.541Z
+Generert: 2026-07-20T15:45:38.078Z
 
 ## Oppsummering
-- Aktive filer validert: **538**
+- Aktive filer validert: **539**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **429**
@@ -556,6 +556,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/christian_radich.json
 - data/places/historie/oslo/places_historie/central_jam_e_mosque.json
 - data/places/historie/oslo/places_historie/toyen_hovedgard.json
+- data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json
 
 ## Harde feil
 - Ingen
