@@ -6,39 +6,56 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 History GO is a location-based knowledge game where the city (Oslo) is the game board. Users check in at real-world places (GPS or QR), take short quizzes, and collect badges, diplomas and cards while a personal "knowledge diary" tracks progression (Amatør → Student → Doktor → Professor).
 
-It is a **framework-free browser app**. Historically it had no bundler and no build step — HTML loaded classic `<script src="...js">` tags directly, and TypeScript was only a static type-checker over JavaScript (`allowJs` + `checkJs`). The project has now **decided to adopt esbuild as a bundler** so browser files can become real TypeScript (`.ts`) ESM modules. This migration is a **strangler**: files are converted one at a time from classic global-scope `.js` to `.ts` ESM modules bundled by esbuild (`npm run build:web`), while not-yet-migrated files keep loading as classic `<script>` tags. The Node-only tracks (`scripts/`, `tools/`) are already fully TypeScript. See `docs/typescript-migration-plan.md`.
+The current main client is a **framework-free browser app in gradual TypeScript migration**. Historically it had no bundler and no build step — HTML loaded classic `<script src="...js">` tags directly, and TypeScript was only a static type-checker over JavaScript (`allowJs` + `checkJs`). The project now uses **esbuild as a strangler bundler** so browser files can become real TypeScript (`.ts`) modules one at a time while not-yet-migrated files keep loading as classic scripts. The Node-only tracks (`scripts/`, `tools/`) are TypeScript. See `docs/typescript-migration-plan.md`.
 
-**Interop contract (non-negotiable during migration):** any migrated module that previously exposed a global (`window.X`) MUST still publish that same global as a load-time side effect, so classic (non-migrated) consumers keep working unchanged. esbuild builds these as `iife` bundles. Migrated entrypoints are listed in `build/build-web.mjs` and output to `dist/web/`; the owning HTML page loads `dist/web/<name>.js`.
+**Canonical target architecture:** read `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md` before making technology, backend, API, database or language decisions. The target split is:
 
-**`dist/web/` is committed** (unlike the rest of `dist/`, which stays gitignored) so the app works when the repo is served as-is — no build step required before serving. The trade-off is committed generated code: after editing any migrated `js/**/*.ts`, run `npm run build:web` and commit the rebuilt bundles. `npm run build:web:check` rebuilds and fails if `dist/web` is out of sync with source (the esbuild output is deterministic); run it before committing browser changes.
+- client/browser/app logic → **TypeScript**;
+- production backend/server/API → **Python + FastAPI**;
+- mutable production state → **PostgreSQL**;
+- Supabase → managed PostgreSQL/Auth/Storage and explicitly bounded platform services;
+- canonical editorial game content → existing **JSON + manifest** pipelines;
+- Node repo tooling → **TypeScript**.
+
+Do not interpret the TypeScript migration as a decision to build the production backend in Node/TypeScript. `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md` has higher priority than older implementation-specific backend or migration notes when they conflict on target technology.
+
+**Interop contract (non-negotiable during the current browser migration):** any migrated module that previously exposed a global (`window.X`) MUST still publish that same global as a load-time side effect, so classic (non-migrated) consumers keep working unchanged. esbuild builds these as `iife` bundles. Migrated entrypoints are listed in `build/build-web.mjs` and output to `dist/web/`; the owning HTML page loads `dist/web/<name>.js`.
+
+**`dist/web/` is committed** (unlike the rest of `dist/`, which stays gitignored) so the app works when the repo is served as-is — no build step required before serving. After editing any migrated `js/**/*.ts`, run `npm run build:web` and commit the rebuilt bundles. `npm run build:web:check` rebuilds and fails if `dist/web` is out of sync with source.
 
 Most documentation is in Norwegian, and most code identifiers, data, and content are Norwegian. Match that language when editing docs and content.
 
 ## Repository layout
 
-Multiple distinct apps live in this single repo, each its own HTML entry point with its own boot assumptions — **do not merge them**:
+Multiple distinct apps live in this single repo, each its own HTML entry point with its own boot assumptions — **do not merge them casually**:
 
 - `index.html` + `js/app.js` — the main History GO app (map, nearby panel, place cards, quiz flow, miniProfile).
 - `profile.html` + `js/profile.js` — canonical full profile page.
-- `Civication.html` + `js/Civication/**` — a separate career/economy/identity simulation game ("Civication"). Large subsystem, kept out of the index app and out of the TypeScript migration.
-- `AHA/index.html` + `js/aha*.js` + `AHA/*.js` — "AHA" insight/echo layer; imports evidence exported by History GO. Has its own Node backend (`render.yaml`, `AHA/package.json`).
+- `Civication.html` + `js/Civication/**` — a separate career/economy/identity simulation game ("Civication"). It is currently kept out of the active browser TypeScript strangler scope; this is a migration-scope decision, not a permanent exemption from the target client architecture.
+- `AHA/index.html` + `js/aha*.js` + `AHA/*.js` — "AHA" insight/echo layer; imports evidence exported by History GO and has its own current runtime/deployment history. Do not fold it into the shared production backend without a separate documented integration decision.
 - Other pages: `knowledge.html`, `emner.html`, `notater.html`, `merker/merker.html`.
 - Per-domain knowledge pages live under `knowledge/` (e.g. `knowledge/knowledge_historie.html`); root files like `knowledge_by.html` are thin redirect shells into that folder.
 
-Key directories: `js/` (~234 browser JS files, layered — see architecture below), `data/` (manifest-driven JSON content, the source of truth), `tools/` and `scripts/` (Node-only CLI utilities, mostly `.mjs`/`.mts`), `tests/` (plain Node assert test files), `css/` (locked CSS list), `schemas/` (shared TypeScript `.ts`/`.d.ts` type and global declarations used by the typecheck), `reports/` (generated audit output, not runtime), `README/` and `docs/` (extensive normative documentation).
+Key directories: `js/` (browser/client code), `data/` (manifest-driven JSON content, the source of truth for editorial content), `tools/` and `scripts/` (Node-only CLI utilities), `tests/`, `css/`, `schemas/`, `reports/`, `README/`, and `docs/`.
+
+The target backend will live in a dedicated `backend/` code surface when implementation begins. Do not create parallel ad-hoc backend logic in browser or Node tooling just because that code already exists in the repo.
 
 ## Documentation is normative — read before editing
 
-This project treats its docs as the contract. The golden rule from `README/TEAM_WORKFLOW.md` is: **"IKKE GJET, SLÅ OPP"** (don't guess, look it up). Before changing structure or behavior, consult:
+This project treats its docs as the contract. The golden rule from `README/TEAM_WORKFLOW.md` is: **"IKKE GJET, SLÅ OPP"** (don't guess, look it up).
 
-- `README/SYSTEM_REGISTRY.md` — **where** things live, who owns what, allowed globals, hard rules. Binding.
-- `README/SYSTEM_MAP.md` — **what happens** when the user does X; the module chain. Normative.
-- `README/README_DEV.md` — operational dev notes, debugging, validation.
-- `docs/APP_STRUCTURE_INDEX.md` — index app shell / boot / router model.
+Read in this order when relevant:
 
-If a structural change doesn't fit the registry/map, update those docs **first**. Update docs only when a contract changes (a localStorage key, an event, a public API, an entry point, or a module's responsibility).
+1. `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md` — **target technology, language, client/server/data ownership and migration direction. Binding for new architecture.**
+2. `README/SYSTEM_REGISTRY.md` — **where the current runtime lives and who owns what. Binding for existing implementation.**
+3. `README/SYSTEM_MAP.md` — **what happens when the user does X; current module chain. Normative for runtime flow.**
+4. `docs/TYPESCRIPT_FIRST_POLICY.md` — client/Node TypeScript policy and TypeScript CI model.
+5. `README/README_DEV.md` — operational dev notes, debugging, validation.
+6. `docs/APP_STRUCTURE_INDEX.md` — index app shell / boot / router model.
 
-## Architecture (the big picture)
+If a structural change doesn't fit the registry/map, update those docs. If the target client/server/database ownership changes, update the canonical technical architecture first. Update docs when a contract changes (a storage key, event, public API, entry point, module responsibility, server boundary, auth model or data source of truth).
+
+## Architecture (the current runtime big picture)
 
 History GO is layered with strict ownership. The defining principle: **UI never owns truth; progression is always interpreted from evidence, never written directly.**
 
@@ -55,7 +72,7 @@ Merker (top-level domains) → Fagkart (structure) → Emner (curriculum) →
 Evidens (hg_learning_log_v1, append-only) → Courses (HGCourses, computes level/diploma) → UI (display only)
 ```
 
-Layers (`README/SYSTEM_MAP.md` is the full map):
+Layers (`README/SYSTEM_MAP.md` is the full current map):
 
 - **State** (`js/state/`) — persistence to localStorage, open/test mode. No DOM.
 - **Core** (`js/core/`) — constants, categories, geo/distance, viewport/layers/bottom-sheet. No DOM, no side effects.
@@ -66,10 +83,30 @@ Layers (`README/SYSTEM_MAP.md` is the full map):
 - **Observations** (`js/observations.js`), **Stories** (`js/stories/`), **Civication** (`js/Civication/`).
 - **Boot** — `js/boot.js` / `js/boot-fast.js`. **App shell** — `js/app.js`, `js/router/AppRouter.js`, `js/views/MapView.js`.
 
-### Non-negotiable rules (from SYSTEM_REGISTRY)
+### Target client/server boundary
+
+As the production backend is introduced:
+
+```text
+TypeScript UI/client
+  ↓
+central typed API/service client
+  ↓
+Python/FastAPI
+  ↓
+Python domain/service layer
+  ↓
+repository/database boundary
+  ↓
+PostgreSQL
+```
+
+The client may keep local/offline state, but security-critical and multi-user production writes become server-authoritative. Supabase may provide Auth/PostgreSQL/Storage, but sensitive business rules do not belong in scattered UI-to-database calls.
+
+### Non-negotiable current runtime rules (from SYSTEM_REGISTRY)
 
 1. Core files must never touch the DOM.
-2. UI files must never fetch data (go through DataHub).
+2. UI files must never fetch content data directly (go through DataHub).
 3. No `DOMContentLoaded` outside `js/app.js`. All system start goes through `boot()`.
 4. No duplicate function names across files.
 5. `safeRun()` is the only allowed init wrapper; a failing UI module must not stop boot.
@@ -77,7 +114,9 @@ Layers (`README/SYSTEM_MAP.md` is the full map):
 
 Canonical domains: `by, historie, kunst, litteratur, musikk, naeringsliv, natur, politikk, popkultur, psykologi, sport, subkultur, vitenskap`.
 
-Allowed globals (do not introduce others without a decision): `window.PLACES, PEOPLE, BADGES, RELATIONS, MAP, HGMap, HGPos, OPEN_MODE, API`.
+Allowed legacy globals (do not introduce others without a decision): `window.PLACES, PEOPLE, BADGES, RELATIONS, MAP, HGMap, HGPos, OPEN_MODE, API`.
+
+The target direction is fewer globals and more explicit TypeScript module boundaries. The allowed-global list is a compatibility contract, not permission to expand global architecture.
 
 ### Index app boot model
 
@@ -85,7 +124,9 @@ Allowed globals (do not introduce others without a decision): `window.PLACES, PE
 
 ## Data: source of truth vs. generated
 
-`data/` JSON is the source of truth, loaded via manifests (e.g. `data/places/manifest.json`, `data/people/manifest.json`, `data/quiz/manifest.json`, `data/fag/fag_manifest.json`). Active file versions are switched by editing the manifest, **not** by renaming large content files.
+`data/` JSON is the source of truth for canonical editorial content, loaded via manifests (e.g. `data/places/manifest.json`, `data/people/manifest.json`, `data/quiz/manifest.json`, `data/fag/fag_manifest.json`). Active file versions are switched by editing the manifest, **not** by renaming large content files.
+
+Introducing PostgreSQL does **not** automatically move these datasets into the database. PostgreSQL is the target source of truth for mutable production/user/server state. Editorial game content remains JSON + manifests unless a separate product decision says otherwise.
 
 **`data/places/places_index.json` is generated build output — never edit it by hand.** When changing places (coordinates, radius, name, images, light card fields):
 
@@ -98,88 +139,92 @@ Allowed globals (do not introduce others without a decision): `window.PLACES, PE
 
 ## Commands
 
-Requires Node (repo uses v22). `devDependencies` are TypeScript, `@types/node`, **esbuild** (the browser bundler adopted for the TS migration), and **jsdom** (headless smoke test). `dist/web/` bundles are committed, so serving the repo works without a build step; rebuild and commit them after editing any migrated `js/**/*.ts`.
+Requires Node (repo uses v22 for current client/tooling). `devDependencies` include TypeScript, `@types/node`, esbuild, jsdom, Playwright and other tooling. `dist/web/` bundles are committed, so serving the current repo works without a build step; rebuild and commit them after editing migrated `js/**/*.ts`.
 
 Browser bundle build:
 
 ```bash
-npm run typecheck:web      # tsc over migrated js/**/*.ts (DOM lib, noEmit)
+npm run typecheck:web      # tsc over migrated browser TypeScript
 npm run build:web          # esbuild -> dist/web/*.js (iife bundles, committed)
 npm run build:web:check    # rebuild + fail if committed dist/web is out of sync
 npm run build:web:watch    # rebuild on change during dev
-npm run smoke:web          # headless JSDOM smoke test: loads real pages, checks
-                           # dist/web bundles load + window.X globals publish
+npm run smoke:web          # headless smoke test for supported pages/bundles
 ```
 
-`smoke:web` (`build/smoke-web.mjs`) is the automated per-batch check when no real
-browser is available — it does not cover `index.html` (MapLibre/canvas) or layout;
-those still need a manual browser test. Add newly migrated pages/globals to its
-`TARGETS` list.
+`smoke:web` is an automated migration safety check. It does not replace real browser/layout testing, especially for MapLibre/canvas flows.
 
 ### Running locally
 
 Serve over a local web server (not `file://`) so the service worker and fetch work, then open `index.html` (main app), `profile.html`, `Civication.html`, or `AHA/index.html`.
 
-For the MapTiler "Naturtro" map, set `window.HG_MAPTILER_KEY` in `js/config.js` (copy from `js/config.example.js`). The committed `js/config.js` is a safe no-key default; if the key is missing the app keeps the default map and logs a `console.warn`. Never commit a private key.
+For the MapTiler "Naturtro" map, set `window.HG_MAPTILER_KEY` in `js/config.js` (copy from `js/config.example.js`). The committed `js/config.js` is a safe no-key default; if the key is missing the app keeps the default map and logs a warning. Never commit a private key.
 
 ### Type checking
 
 ```bash
-npm run typecheck          # tsc over js/, scripts/, root *.js (checkJs, noEmit)
-npm run typecheck:scripts  # Node-only converted scripts
-npm run typecheck:tools    # Node-only converted tools
-npm run build:tools        # emit converted tools to dist/tools (needed by *:check scripts)
+npm run typecheck          # legacy/root JS baseline (checkJs, noEmit)
+npm run typecheck:web      # migrated browser TypeScript
+npm run typecheck:scripts  # Node scripts
+npm run typecheck:tools    # Node tools
+npm run build:tools        # emit tools used by validation commands
 ```
 
-### Data / content validation (run before merging content changes)
+The TypeScript guard distinguishes new regressions from unrelated existing legacy diagnostics. See `docs/TYPESCRIPT_FIRST_POLICY.md`.
+
+When `backend/` is implemented, Python lint/typecheck/tests must be separate required CI gates; do not fold Python validation into the TypeScript guard.
+
+### Data / content validation
+
+Run the targeted validation for the data surface changed. Common commands include:
 
 ```bash
-npm run tools:check        # aggregate: typecheck+build tools, places index sync, place coordinate
-                           # audit+quality gate, emne ids, duplicate JSON keys, leksikon ids,
-                           # place aliases, stories integrity, place health
-npm run places:index:check # places_index.json is in sync with source
-npm run places:coords:check # place coordinate audit + quality gate
-npm run i18n:places:check  # places i18n audit, quality and worklist (Node-only scripts)
-npm run health             # data health report
-npm run health:places      # place health report
+npm run tools:check
+npm run places:index:check
+npm run places:coords:check
+npm run i18n:places:check
+npm run health
+npm run health:places
 ```
 
-In-browser validation (run in the console before merge, per `README_DEV.md` / `TEAM_WORKFLOW.md`):
+In-browser validation when relevant:
 
 ```js
 DomainHealthReport.run({ toast: true });
 QuizAudit.run();
 ```
 
-Minimum manual smoke test: start a quiz → answer correctly → knowledge/trivia saved → `updateProfile` fires.
+Minimum manual smoke test for quiz/progression changes: start a quiz → answer correctly → knowledge/trivia saved → `updateProfile` fires.
 
 ### Tests
 
-Tests are plain Node scripts using `node:assert` (no test framework). Run one directly:
+Current client/tool tests are primarily Node scripts and grouped npm commands. Run the relevant targeted suite from `package.json`.
+
+Examples:
 
 ```bash
-node tests/aha-music-bridge.test.js
-```
-
-Run grouped suites via npm (see `package.json` `scripts` for the full list):
-
-```bash
-npm run test:civication        # large Civication suite (dozens of tests)
+npm run test:civication
 npm run test:civication-map
 npm run test:aha-music
 npm run test:historical-routes
 ```
 
-There are also many `audit:*` scripts (e.g. `audit:aha-music`, `audit:job-learning-profiles`, `audit:civication-map`) used to validate Civication and integration data.
+The target Python backend uses `pytest` plus Python lint/typecheck and contract tests when that code surface is created.
 
 ## Conventions
 
-- **TypeScript migration is gradual and deliberate.** Node-only `scripts/` and `tools/` are fully `.ts`/`.mts`. Browser files (`js/**`) are being converted one at a time from classic global `.js` to `.ts` ESM modules bundled by esbuild — each migrated file is added to `build/build-web.mjs`, must keep publishing its `window.X` global (interop contract), and its owning HTML page is repointed to `dist/web/<name>.js`. Don't convert a browser file without registering it in `build/build-web.mjs` and verifying the bundle still publishes the expected global. Civication (`js/Civication/**`, loaded by `Civication.html`/`profile.html`) is explicitly **excluded** and stays `checkJs`/JSDoc-typed JavaScript. See `docs/typescript-migration-plan.md`.
-- **CSS file list is LOCKED.** Don't add a CSS file without updating the list and the per-entrypoint load order in `README/SYSTEM_REGISTRY.md` §7.
-- Don't bypass `QuizEngine` / `HGInsights` / the knowledge hooks — they are the only path binding quiz flow to rewards.
-- Test mode is fully isolated: it must never write unlocks, progression, or rewards.
-- Edit only the file that owns a responsibility; don't hop between modules or introduce cross-file duplicate functions.
+- **Target language ownership is fixed by `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md`.** Client → TypeScript. Production backend/API → Python/FastAPI. Node repo tooling → TypeScript. Editorial data → JSON/manifests.
+- **Browser TypeScript migration is gradual and deliberate.** Migrated files use the current esbuild strangler and preserve required `window.X` interop until consumers are migrated.
+- **Civication is currently excluded from the active browser migration batches.** Do not bulk-convert it accidentally. New long-term client architecture still follows the canonical TypeScript direction; changing Civication's migration scope requires a deliberate plan.
+- **Do not create ad-hoc Node backend services** for new production domains just because Node tooling already exists.
+- **Do not move canonical JSON content into PostgreSQL** without a documented product/data decision.
+- **CSS file list is LOCKED.** Don't add a CSS file without updating the list and per-entrypoint load order in `README/SYSTEM_REGISTRY.md` §7.
+- Don't bypass `QuizEngine` / `HGInsights` / knowledge hooks.
+- Test mode must never write real unlocks, progression or rewards.
+- Edit only the layer that owns a responsibility; do not introduce parallel truths.
 
 ## Git / CI
 
-`.gitignore` covers `node_modules/` and `dist/` (generated TS output — never commit it). GitHub Actions under `.github/workflows/` cover the TypeScript baseline (`typecheck-baseline.yml`) and place-image/nature-candidate generation pipelines.
+- `.gitignore` ignores generated output generally, with the intentional exception that `dist/web/` bundles are committed for the current browser migration/deployment model.
+- `.github/workflows/typescript-guard.yml` enforces modern TypeScript/build gates and regression-only legacy diagnostics.
+- Future `backend/` Python code must have its own required lint/typecheck/test CI gates.
+- Data and domain workflows under `.github/workflows/` continue to enforce their relevant contracts.
