@@ -1,0 +1,67 @@
+{
+  "placeId": "framtidsbiblioteket_nordmarka",
+  "placeFile": "data/places/kunst/oslo/places_kunst.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.98633333333333,
+    "lon": 10.69686111111111,
+    "r": 120,
+    "coordStatus": "verified",
+    "coordSource": "Visit Norway published visitor coordinates for Framtidsbiblioteket i Nordmarka",
+    "coordType": "published_visitor_coordinate",
+    "coordNote": "Publiserte besøkskoordinater fra Visit Norway for Framtidsbibliotekets kunstskog i Nordmarka, 59°59′10,8″N 10°41′48,7″E, omregnet direkte til desimalgrader. Punktet representerer besøksstedet i Future Library-skogen, ikke Nordmarka som helhet eller Silent Room i Deichman Bjørvika."
+  },
+  "identity": {
+    "currentName": "Framtidsbiblioteket – Nordmarka",
+    "resolvedIdentity": "Framtidsbiblioteket – Nordmarka",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet for koordinatankeret",
+    "eksisterende canonical identitet i aggregate place-kilden",
+    "runtime-restaurering gjennom synkronisert split-manifest"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Visit Norway published visitor coordinates for Framtidsbiblioteket i Nordmarka",
+      "sourceUrl": "https://www.visitnorway.no/aktiviteter-og-attraksjoner/kunst-kultur/litteratur/framtidsbiblioteket-i-nordmarka/",
+      "sourceObjectId": "visitnorway:future-library-forest-nordmarka",
+      "sourceQuality": "stable_source_identity_plus_existing_canonical_identity",
+      "finding": "Visit Norway publiserer besøkskoordinatene 59°59′10,8″N 10°41′48,7″E for Framtidsbiblioteket i Nordmarka; de er omregnet direkte til desimalgrader uten kartgjetting. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten ny place-id.",
+      "canVerifyCoordinate": true,
+      "reason": "Publiserte besøkskoordinater fra Visit Norway for Framtidsbibliotekets kunstskog i Nordmarka, 59°59′10,8″N 10°41′48,7″E, omregnet direkte til desimalgrader. Punktet representerer besøksstedet i Future Library-skogen, ikke Nordmarka som helhet eller Silent Room i Deichman Bjørvika."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "visitnorway:future-library-forest-nordmarka",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.98633333333333,
+      "lon": 10.69686111111111,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source."
+  },
+  "notes": [
+    "This is a runtime restoration of an existing canonical place, not a new place creation.",
+    "Publiserte besøkskoordinater fra Visit Norway for Framtidsbibliotekets kunstskog i Nordmarka, 59°59′10,8″N 10°41′48,7″E, omregnet direkte til desimalgrader. Punktet representerer besøksstedet i Future Library-skogen, ikke Nordmarka som helhet eller Silent Room i Deichman Bjørvika."
+  ]
+}
