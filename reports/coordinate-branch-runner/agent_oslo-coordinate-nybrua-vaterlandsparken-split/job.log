@@ -1,0 +1,124 @@
+Nybrua/Vaterlandsparken split rounds batch 1 OK
+== People JSON parse and duplicate ID check ==
+json ok (619 files)
+people ids ok (1214 entries, 1214 unique ids)
+== Build tools ==
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+== People invalid place refs ==
+Wrote reports/people-invalid-place-refs.json and reports/people-invalid-place-refs.md
+== People of places status ==
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1214; flat files: 0; geographic files: 617; invalid refs: 0; duplicate IDs: 0
+== People place coverage ==
+People-place audit complete: reports/people-place-coverage.json
+People-place report complete: reports/people-place-coverage.md
+== Etne people manifest integration ==
+Etne people manifest integration OK (17 recovered people, 1214 active people)
+== Etne People of Places batch 9 ==
+Etne People of Places batch 9 OK (3 literary people, 3 direct place links)
+== Etne People of Places batch 10 ==
+Etne People of Places batch 10 OK (3 people, 2 direct physical-place anchors)
+== Etne People of Places batch 11 ==
+Etne People of Places batch 11 OK (3 museum founders, 1 direct physical-place anchor)
+== Etne People of Places batch 12 ==
+Etne People of Places batch 12 OK (3 canonical people, 2 newly covered physical places, 0 new people IDs)
+== Etne People of Places batch 13 ==
+Etne People of Places batch 13 OK (1 founder/head coach, 1 newly covered physical dojo, 1 canonical identity)
+== Etne People of Places batch 14 ==
+Etne People of Places batch 14 OK (1 bounded collective, 1 newly covered physical pavilion, 1 canonical identity)
+== Etne People of Places batch 15 ==
+Etne People of Places batch 15 OK (1 named initiator, 1 newly covered physical disc-golf course, 1 canonical identity)
+== Etne People of Places batch 16 ==
+Etne People of Places batch 16 OK (2 named work leaders, 1 newly covered outdoor sports facility, 2 canonical identities)
+== Etne People of Places batch 17 ==
+Etne People of Places batch 17 OK (2 named physical construction leaders, 1 newly covered culture hall, 2 canonical identities)
+== Etne People of Places batch 18 ==
+Etne People of Places batch 18 OK (3 named physical project roles, 1 newly covered swimming facility, 3 canonical identities)
+== Etne People of Places batch 19 ==
+Etne People of Places batch 19 OK (1 documented construction leader, 1 newly covered power plant, 1 canonical identity)
+== Etne People of Places batch 20 ==
+Etne People of Places batch 20 OK (3 documented initiators/builders, 1 newly covered disc golf course, 3 canonical identities)
+== Etne People of Places batch 21 ==
+Etne People of Places batch 21 OK (1 documented builder identity, 2 documented pumptrack people links)
+== Etne People of Places batch 22 ==
+Etne People of Places batch 22 OK (2 rehabilitation initiators, 1 current tennis leader, 3 documented place links)
+== Etne People of Places batch 23 ==
+Etne People of Places batch 23 OK (1 documented architect, 1 newly covered municipal building, 1 canonical identity)
+== Etne People of Places batch 24 ==
+Etne People of Places batch 24 OK (1 documented Fikse winner, 1 newly covered shooting range, 1 canonical identity)
+== Etne People of Places batch 25 ==
+Etne People of Places batch 25 OK (1 documented Langfoss project leader, 1 newly covered nature place, 1 canonical identity)
+== Etne People of Places batch 26 ==
+Etne People of Places batch 26 OK (1 documented geologist, 1 newly covered lake, 1 canonical identity)
+== People check complete ==
+== Places JSON parse ==
+json ok (515 files)
+== Place primary/secondary badge audit ==
+place badge audit ok (1219 places, 8 secondary badge links)
+== Active subkultur place concreteness guard ==
+active subkultur place concreteness ok
+== Build places index ==
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1255 places -> data/places/places_index.json; skipped 9 disabled place(s)
+== Build tools ==
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+== Places index check ==
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+== Places emne check ==
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 513
+Canonical emne files scanned: 15
+Canonical emne ids loaded: 996
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0
+== Places coordinate check ==
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+== Places check complete ==
+Nybrua People order, emne contract and manifest hash fixed.
