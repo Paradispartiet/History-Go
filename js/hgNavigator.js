@@ -608,6 +608,74 @@
     return clone;
   }
 
+  function getHistorySignals(suggestion) {
+    const type = s(suggestion?.type);
+    const targetId = s(suggestion?.target_id);
+    const history = getNextUpHistory().slice(0, 120);
+    const clickEvents = history.filter(event => s(event?.event) === "click");
+    const showEvents = history.filter(event => s(event?.event) === "show");
+    const totalClicks = clickEvents.length;
+
+    const typeClicks = clickEvents.filter(event => s(event?.type) === type).length;
+    const exactClicks = clickEvents.filter(event =>
+      s(event?.type) === type && s(event?.target_id) === targetId
+    );
+    const lastExactClickTs = Math.max(0, ...exactClicks.map(event => Number(event?.ts || 0)));
+
+    let exactShowsAfterLastClick = 0;
+    let typeShows = 0;
+    let lastExactShowTs = 0;
+
+    showEvents.forEach(event => {
+      arr(event?.shown).forEach(shown => {
+        if (s(shown?.type) === type) typeShows += 1;
+        if (s(shown?.type) !== type || s(shown?.target_id) !== targetId) return;
+
+        const ts = Number(event?.ts || 0);
+        if (ts > lastExactClickTs) exactShowsAfterLastClick += 1;
+        if (ts > lastExactShowTs) lastExactShowTs = ts;
+      });
+    });
+
+    return {
+      total_clicks: totalClicks,
+      type_clicks: typeClicks,
+      type_shows: typeShows,
+      exact_clicks: exactClicks.length,
+      exact_shows_after_last_click: exactShowsAfterLastClick,
+      last_exact_click_ts: lastExactClickTs,
+      last_exact_show_ts: lastExactShowTs
+    };
+  }
+
+  function applyHistoryWeights(suggestion) {
+    if (!suggestion) return null;
+
+    const clone = { ...suggestion, meta: { ...(suggestion.meta || {}) } };
+    const signals = getHistorySignals(clone);
+
+    const repeatPenalty = Math.min(24, signals.exact_shows_after_last_click * 6);
+    const recentClickPenalty = signals.exact_clicks > 0 ? 12 : 0;
+
+    let affinityBoost = 0;
+    if (signals.total_clicks >= 3 && signals.type_clicks > 0) {
+      const share = signals.type_clicks / signals.total_clicks;
+      affinityBoost = Math.min(8, Math.round(share * 12));
+    }
+
+    const explorationBonus = signals.total_clicks >= 5 && signals.type_clicks === 0 ? 3 : 0;
+    const adjustment = affinityBoost + explorationBonus - repeatPenalty - recentClickPenalty;
+
+    clone.score = clamp(clone.score + adjustment, 0, 100);
+    clone.meta.history_adjustment = adjustment;
+    clone.meta.repeat_penalty = repeatPenalty;
+    clone.meta.recent_click_penalty = recentClickPenalty;
+    clone.meta.affinity_boost = affinityBoost;
+    clone.meta.exploration_bonus = explorationBonus;
+    clone.meta.history_signals = signals;
+    return clone;
+  }
+
   function dedupeSuggestions(suggestions = []) {
     const bestByKey = new Map();
 
@@ -717,6 +785,7 @@
       .flat()
       .map(suggestion => applyModeWeights(suggestion, activeMode.mode, place))
       .map(applyRouteBoost)
+      .map(applyHistoryWeights)
       .filter(Boolean);
 
     const suggestions = selectRankedSuggestions(allCandidates);
@@ -758,6 +827,8 @@
       buildWonderkammerCandidates,
       buildNarrativeCandidates,
       buildConceptCandidates,
+      getHistorySignals,
+      applyHistoryWeights,
       dedupeSuggestions,
       selectRankedSuggestions,
       getNextUpHistory
