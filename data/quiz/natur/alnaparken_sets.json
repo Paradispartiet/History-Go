@@ -1,18 +1,20 @@
 {
   "targetId": "alnaparken",
   "categoryId": "natur",
-  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generator_version": "history_go_nature_place_v2",
   "generated_from": [
+    "data/places/natur/oslo/places_oslo_natur_alnaelva_rute/alnaparken.json",
     "data/stories/stories_alnaparken.json",
+    "data/leksikon/places/oslo/natur/leksikon_alnaparken.json",
     "data/quiz/regler/SET_MAL_README_v3.md"
   ],
   "manual_production_notes": {
     "quality_direction": "sted → observasjon → emne → forståelse",
+    "species_rule": "all active mapped species; mapped does not guarantee current find",
     "hold_back": [
-      "Ingen detaljerte artsfunn uten kilde.",
-      "Ingen dagsaktuelle skjøtselstiltak eller byggearbeider.",
-      "Ingen presise tekniske elvetiltak uten kilde.",
-      "Story-data brukes for Alnaparken/Nylandsparken, jordvei, beite, Alnaelva, turvei og parkdrag."
+      "ingen vading",
+      "ingen fangst i amfibiedammen",
+      "ingen plukking eller spredning av kanadagullris"
     ]
   },
   "sets": [
@@ -21,11 +23,269 @@
       "level": 1,
       "order": 1,
       "xp": 50,
-      "mode": "place_intro_story",
+      "mode": "place_intro",
       "questions": [
-        {"id":"alnaparken_s1_q1","quiz_id":"natur_alnaparken_set_1_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva gjør Alnaparken til mer enn et vanlig grøntområde?","options":["Den viser overgangen fra jordvei og beite til parkdrag langs Alnaelva","Den ligger uten kontakt med Alnaelva","Den er bare et lukket industriområde"],"answer":"Den viser overgangen fra jordvei og beite til parkdrag langs Alnaelva","answerIndex":0,"knowledge":"Alnaparken gjør Alnaelva synlig som parkdrag og bærer spor av eldre landskapsbruk og bynær rekreasjon.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["alnaparken","alnaelva","parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s1_q2","quiz_id":"natur_alnaparken_set_1_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva bør spilleren se etter først i Alnaparken?","options":["Elva, turvei, broer, bjerkeskog, åpne flater og spor etter eldre bruk","Bare butikklogoer","Kun fjelltopper"],"answer":"Elva, turvei, broer, bjerkeskog, åpne flater og spor etter eldre bruk","answerIndex":0,"knowledge":"Storyen peker på at parken bør leses gjennom vannløp, stier, vegetasjon og tidligere bruksflater.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","turvei"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s1_q3","quiz_id":"natur_alnaparken_set_1_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan holder elva, vegetasjonen og den gamle bruksflaten sammen et nabolag?","Hvorfor finnes det ingen elv her?","Hvilket arrangement skjer i kveld?"],"answer":"Hvordan holder elva, vegetasjonen og den gamle bruksflaten sammen et nabolag?","answerIndex":0,"knowledge":"Spørsmålet kobler fysisk parkrom til natur, brukshistorie og nærmiljø.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "alnaparken_s1_q1",
+          "quiz_id": "natur_alnaparken_set_1_q1",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva heter parken også?",
+          "options": [
+            "Nylandsparken",
+            "Svartdalsparken",
+            "Hølaløkka"
+          ],
+          "answer": "Nylandsparken",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon oppgir Nylandsparken som alternativt navn.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s1_q2",
+          "quiz_id": "natur_alnaparken_set_1_q2",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvilken elv går gjennom Alnaparken?",
+          "options": [
+            "Alnaelva",
+            "Akerselva",
+            "Lysakerelva"
+          ],
+          "answer": "Alnaelva",
+          "answerIndex": 0,
+          "knowledge": "Parken ligger langs Alnaelva.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken",
+            "https://oslobyleksikon.no/side/Alnaelva"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s1_q3",
+          "quiz_id": "natur_alnaparken_set_1_q3",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva bør observeres først for å lese parkens blågrønne struktur?",
+          "options": [
+            "Elv, bro, sti og kantvegetasjon",
+            "Bare parkerte biler",
+            "Kun byggehøyder"
+          ],
+          "answer": "Elv, bro, sti og kantvegetasjon",
+          "answerIndex": 0,
+          "knowledge": "Disse elementene viser forbindelsen mellom vann, vegetasjon og ferdsel.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken",
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s1_q4",
+          "quiz_id": "natur_alnaparken_set_1_q4",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva gjorde Nedre Furuset til et kulturlandskap ved elva?",
+          "options": [
+            "Jordvei og beite",
+            "Flyplass og havn",
+            "Kun tett skog"
+          ],
+          "answer": "Jordvei og beite",
+          "answerIndex": 0,
+          "knowledge": "Dokumentert jordvei og beite viser langvarig menneskelig bruk.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s1_q5",
+          "quiz_id": "natur_alnaparken_set_1_q5",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Når opphørte det dokumenterte kubeitet?",
+          "options": [
+            "1958",
+            "1790",
+            "2011"
+          ],
+          "answer": "1958",
+          "answerIndex": 0,
+          "knowledge": "Kuer gikk på beite frem til 1958.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s1_q6",
+          "quiz_id": "natur_alnaparken_set_1_q6",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva binder parkens to sider sammen?",
+          "options": [
+            "Broer over Alnaelva",
+            "En fjellheis",
+            "En ferge"
+          ],
+          "answer": "Broer over Alnaelva",
+          "answerIndex": 0,
+          "knowledge": "Broene er synlige deler av parkens ferdselsnett.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s1_q7",
+          "quiz_id": "natur_alnaparken_set_1_q7",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva er en god feltregel i første runde?",
+          "options": [
+            "Hold deg på etablert turvei",
+            "Vad gjennom elva",
+            "Gå inn i våtmarken"
+          ],
+          "answer": "Hold deg på etablert turvei",
+          "answerIndex": 0,
+          "knowledge": "Robuste ferdselslinjer reduserer slitasje på elvekant og dam.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "intro",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -33,11 +293,269 @@
       "level": 2,
       "order": 2,
       "xp": 60,
-      "mode": "place_life_people_events",
+      "mode": "habitat",
       "questions": [
-        {"id":"alnaparken_s2_q1","quiz_id":"natur_alnaparken_set_2_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva slags stedsliv peker Alnaparken mot?","options":["Turvei, hverdagsnatur, rekreasjon og lesbar kontakt med Alnaelva","Kun lukket fabrikkdrift","Bare biltrafikk"],"answer":"Turvei, hverdagsnatur, rekreasjon og lesbar kontakt med Alnaelva","answerIndex":0,"knowledge":"Alnaparken gjør elva til et nærmiljørom der man kan gå, stoppe, lese landskapet og oppleve vannløpet.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["hverdagsnatur","rekreasjon"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s2_q2","quiz_id":"natur_alnaparken_set_2_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva forteller storyen om eldre bruk ved Nedre Furuset?","options":["Det var jordvei ned mot elva og beite før området ble parkdrag","At området alltid var motorvei","At stedet aldri hadde lokal bruk"],"answer":"Det var jordvei ned mot elva og beite før området ble parkdrag","answerIndex":0,"knowledge":"Story-dataen beskriver jordvei og beite som et eldre lag under dagens parkrom.","difficulty":1,"question_type":"historisk_lag","question_layer":"place_life","tags":["jordvei","beite","kulturlandskap"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s2_q3","quiz_id":"natur_alnaparken_set_2_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva bør holdes ute av trygg Alnaparken-quiz?","options":["Usikre artsfunn, dagsaktuelle skjøtselstiltak og tekniske elvedetaljer uten kilde","Begrepet parkdrag","Observasjon av turvei og elv"],"answer":"Usikre artsfunn, dagsaktuelle skjøtselstiltak og tekniske elvedetaljer uten kilde","answerIndex":0,"knowledge":"Trygg quizdata bruker varige trekk fra storyen: elv, parkdrag, turvei, eldre jordvei og bynær rekreasjon.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+        {
+          "id": "alnaparken_s2_q1",
+          "quiz_id": "natur_alnaparken_set_2_q1",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvilket lite vannmiljø ble rustet opp i 2001?",
+          "options": [
+            "En amfibiedam",
+            "En havn",
+            "Et saltvannsbasseng"
+          ],
+          "answer": "En amfibiedam",
+          "answerIndex": 0,
+          "knowledge": "Oslo Elveforum beskriver en amfibiedam som ble rustet opp i 2001.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s2_q2",
+          "quiz_id": "natur_alnaparken_set_2_q2",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvorfor skal amfibiedammen observeres på avstand?",
+          "options": [
+            "For å unngå tråkk og forstyrrelse i våte kanter",
+            "Fordi dammen er en fontene",
+            "Fordi vannet er salt"
+          ],
+          "answer": "For å unngå tråkk og forstyrrelse i våte kanter",
+          "answerIndex": 0,
+          "knowledge": "Små våtmarkskanter er sårbare for ferdsel og håndtering.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s2_q3",
+          "quiz_id": "natur_alnaparken_set_2_q3",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva skiller dammen fra hovedelva?",
+          "options": [
+            "Roligere vann og skjermede kanter",
+            "Høyere tidevann",
+            "Ingen vegetasjon"
+          ],
+          "answer": "Roligere vann og skjermede kanter",
+          "answerIndex": 0,
+          "knowledge": "En dam kan tilby andre mikrohabitater enn strømmende vann.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s2_q4",
+          "quiz_id": "natur_alnaparken_set_2_q4",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva betyr grønn korridor her?",
+          "options": [
+            "Et sammenhengende vegetert belte langs elva",
+            "En motorveitunnel",
+            "Et lukket kjøpesenter"
+          ],
+          "answer": "Et sammenhengende vegetert belte langs elva",
+          "answerIndex": 0,
+          "knowledge": "Vegetasjon og vann binder leveområder og ferdselsrom sammen.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaelva",
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s2_q5",
+          "quiz_id": "natur_alnaparken_set_2_q5",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva kan røtter i kantvegetasjonen bidra til?",
+          "options": [
+            "Å holde jord og elvekant sammen",
+            "Å øke asfaltarealet",
+            "Å stanse all vannføring"
+          ],
+          "answer": "Å holde jord og elvekant sammen",
+          "answerIndex": 0,
+          "knowledge": "Røtter stabiliserer jord og gir struktur langs vannet.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s2_q6",
+          "quiz_id": "natur_alnaparken_set_2_q6",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva må en observatør skille mellom?",
+          "options": [
+            "Dokumentert historie og egen tolkning",
+            "Elv og vann",
+            "Sti og bro"
+          ],
+          "answer": "Dokumentert historie og egen tolkning",
+          "answerIndex": 0,
+          "knowledge": "Synlige trekk kan tolkes, men bør ikke presenteres som dokumenterte fakta uten kilde.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s2_q7",
+          "quiz_id": "natur_alnaparken_set_2_q7",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva viser Alnaparken om restaurering?",
+          "options": [
+            "At naturfunksjon og tilgjengelighet kan utvikles sammen",
+            "At all ferdsel må fjernes",
+            "At bare pynt teller"
+          ],
+          "answer": "At naturfunksjon og tilgjengelighet kan utvikles sammen",
+          "answerIndex": 0,
+          "knowledge": "Stier, broer, elv og dam inngår i samme parkopprusting.",
+          "difficulty": 1,
+          "question_type": "sted_observasjon",
+          "question_layer": "habitat",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/",
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -45,11 +563,270 @@
       "level": 3,
       "order": 3,
       "xp": 70,
-      "mode": "emne_based_foundation",
+      "mode": "species",
       "questions": [
-        {"id":"alnaparken_s3_q1","quiz_id":"natur_alnaparken_set_3_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva betyr parkdrag?","options":["Et sammenhengende grønt rom for ferdsel, opphold og naturkontakt","Et lukket kontorbygg","En tilfeldig asfaltflate"],"answer":"Et sammenhengende grønt rom for ferdsel, opphold og naturkontakt","answerIndex":0,"knowledge":"Alnaparken er et parkdrag fordi turvei, elv, vegetasjon og åpne flater virker sammen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
-        {"id":"alnaparken_s3_q2","quiz_id":"natur_alnaparken_set_3_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva betyr kulturlandskap?","options":["Landskap formet av både natur og menneskelig bruk over tid","Urørt natur uten mennesker","Et sted uten historie"],"answer":"Landskap formet av både natur og menneskelig bruk over tid","answerIndex":0,"knowledge":"Jordvei, beite, turvei og parkdrag gjør Alnaparken til et kulturlandskap i byen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["kulturlandskap"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
-        {"id":"alnaparken_s3_q3","quiz_id":"natur_alnaparken_set_3_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva betyr stedlesning?","options":["Å bruke observasjoner på stedet til å forstå større sammenhenger","Å svare uten å se seg rundt","Å pugge løsrevne navn"],"answer":"Å bruke observasjoner på stedet til å forstå større sammenhenger","answerIndex":0,"knowledge":"I Alnaparken betyr stedlesning å koble elv, turvei, parkrom og tidligere landskapsbruk.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "alnaparken_s3_q1",
+          "quiz_id": "natur_alnaparken_set_3_q1",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvilken plante er eneste aktive artskobling?",
+          "options": [
+            "Kanadagullris",
+            "Hvitveis",
+            "Stokkand"
+          ],
+          "answer": "Kanadagullris",
+          "answerIndex": 0,
+          "knowledge": "Nature routes-kartet knytter kanadagullris til alnaparken.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "species",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s3_q2",
+          "quiz_id": "natur_alnaparken_set_3_q2",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva er plantens vitenskapelige navn?",
+          "options": [
+            "Solidago canadensis",
+            "Mahonia aquifolium",
+            "Alnus glutinosa"
+          ],
+          "answer": "Solidago canadensis",
+          "answerIndex": 0,
+          "knowledge": "Artsdatabanken oppgir Solidago canadensis.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "species",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://artsdatabanken.no/arter/takson/60776"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s3_q3",
+          "quiz_id": "natur_alnaparken_set_3_q3",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvordan er kanadagullris klassifisert i Fremmedartslista 2023?",
+          "options": [
+            "Svært høy risiko",
+            "Livskraftig rødlisteart",
+            "Utdødd"
+          ],
+          "answer": "Svært høy risiko",
+          "answerIndex": 0,
+          "knowledge": "Arten er vurdert til SE, svært høy risiko.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "species",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/214"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s3_q4",
+          "quiz_id": "natur_alnaparken_set_3_q4",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvor kommer kanadagullris opprinnelig fra?",
+          "options": [
+            "Nord-Amerika",
+            "Norge",
+            "Sør-Afrika"
+          ],
+          "answer": "Nord-Amerika",
+          "answerIndex": 0,
+          "knowledge": "Artsdatabanken beskriver arten som nordamerikansk.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "species",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://artsdatabanken.no/arter/takson/60776",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/214"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s3_q5",
+          "quiz_id": "natur_alnaparken_set_3_q5",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvordan kan arten spre seg?",
+          "options": [
+            "Med frø og krypende jordstengler",
+            "Bare med sjøvann",
+            "Kun ved poding"
+          ],
+          "answer": "Med frø og krypende jordstengler",
+          "answerIndex": 0,
+          "knowledge": "Både frøspredning og klonal vekst bidrar til spredningen.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "species",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://artsdatabanken.no/arter/takson/60776",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/214"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s3_q6",
+          "quiz_id": "natur_alnaparken_set_3_q6",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva er riktig handling ved mulig funn?",
+          "options": [
+            "Observer uten å plukke eller flytte planten",
+            "Ta med røtter hjem",
+            "Spre frø langs stien"
+          ],
+          "answer": "Observer uten å plukke eller flytte planten",
+          "answerIndex": 0,
+          "knowledge": "Feltarbeidet skal ikke bidra til spredning.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "species",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/214",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s3_q7",
+          "quiz_id": "natur_alnaparken_set_3_q7",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva betyr det at arten er kartkoblet?",
+          "options": [
+            "At den er et dokumentert observasjonsspor, ikke et garantert funn",
+            "At planten står ved hver bro",
+            "At alle gule blomster er arten"
+          ],
+          "answer": "At den er et dokumentert observasjonsspor, ikke et garantert funn",
+          "answerIndex": 0,
+          "knowledge": "Kartdata må bekreftes med faktiske kjennetegn i felt.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "species",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -57,11 +834,270 @@
       "level": 4,
       "order": 4,
       "xp": 80,
-      "mode": "place_concrete_advanced",
+      "mode": "management",
       "questions": [
-        {"id":"alnaparken_s4_q1","quiz_id":"natur_alnaparken_set_4_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva er en avansert observasjon i Alnaparken?","options":["Å se hvordan jordbruksrand, elverom, turvei og rekreasjon overlapper","Å bare telle trær","Å ignorere elva"],"answer":"Å se hvordan jordbruksrand, elverom, turvei og rekreasjon overlapper","answerIndex":0,"knowledge":"Avansert stedlesning handler om å se både eldre bruk og dagens parkfunksjon i samme rom.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["historiske_lag","parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s4_q2","quiz_id":"natur_alnaparken_set_4_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva kan Alnaparken lære om restaurering og tilgjengelighet?","options":["At bynær natur kan bli mer lesbar når elva, vegetasjonen og stiene henger sammen","At restaurering bare betyr villere natur","At parkdrag ikke påvirker nabolag"],"answer":"At bynær natur kan bli mer lesbar når elva, vegetasjonen og stiene henger sammen","answerIndex":0,"knowledge":"Storyen sier at tilgjengelighet ikke bare gjør naturen villere, men lar elv, vegetasjon og bruksflate holde sammen et nabolag.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["tilgjengelighet","restaurering"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s4_q3","quiz_id":"natur_alnaparken_set_4_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva bør en god Alnaparken-quiz trene spilleren i?","options":["Å lese elv, parkdrag, kulturlandskap og nærmiljø sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese elv, parkdrag, kulturlandskap og nærmiljø sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå parkrommet de står i.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "alnaparken_s4_q1",
+          "quiz_id": "natur_alnaparken_set_4_q1",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvilket kjennetegn passer best?",
+          "options": [
+            "Brede gule blomsterstander og smale sagtannede blader",
+            "Blå bær og piggete blader",
+            "Store hvite klokker"
+          ],
+          "answer": "Brede gule blomsterstander og smale sagtannede blader",
+          "answerIndex": 0,
+          "knowledge": "Artsbeskrivelsen fremhever gul blomsterstand og smale blader.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://artsdatabanken.no/arter/takson/60776"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s4_q2",
+          "quiz_id": "natur_alnaparken_set_4_q2",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvor finnes arten ofte i Norge?",
+          "options": [
+            "På vegkanter, jernbanearealer, skrotemark og grasmark",
+            "Kun på høyfjellet",
+            "Bare under vann"
+          ],
+          "answer": "På vegkanter, jernbanearealer, skrotemark og grasmark",
+          "answerIndex": 0,
+          "knowledge": "Arten er knyttet til mange sterkt endrede og åpne miljøer.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://artsdatabanken.no/arter/takson/60776",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/214"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s4_q3",
+          "quiz_id": "natur_alnaparken_set_4_q3",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvorfor kan tette bestander være et problem?",
+          "options": [
+            "De kan fortrenge annen vegetasjon",
+            "De bygger broer",
+            "De renser all jord"
+          ],
+          "answer": "De kan fortrenge annen vegetasjon",
+          "answerIndex": 0,
+          "knowledge": "Høy økologisk effekt er del av risikovurderingen.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/214"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s4_q4",
+          "quiz_id": "natur_alnaparken_set_4_q4",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva er Alna miljøpark?",
+          "options": [
+            "En plan- og forvaltningsramme for elvekorridoren",
+            "Et privat kjøpesenter",
+            "En fjellpark"
+          ],
+          "answer": "En plan- og forvaltningsramme for elvekorridoren",
+          "answerIndex": 0,
+          "knowledge": "Kommunedelplan 18 gjelder Alna miljøpark.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/",
+            "https://od2.pbe.oslo.kommune.no/kart/?mode=kommuneplan"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s4_q5",
+          "quiz_id": "natur_alnaparken_set_4_q5",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hvorfor er parkens plassering viktig?",
+          "options": [
+            "Den ligger mellom bolig, vei, jernbane og næringsarealer",
+            "Den ligger alene i høyfjellet",
+            "Den ligger på en øy"
+          ],
+          "answer": "Den ligger mellom bolig, vei, jernbane og næringsarealer",
+          "answerIndex": 0,
+          "knowledge": "Alna-korridoren fungerer i et sterkt urbanisert landskap.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaelva",
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s4_q6",
+          "quiz_id": "natur_alnaparken_set_4_q6",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva er et tegn på brukspress?",
+          "options": [
+            "Tråkk, erosjon eller søppel utenfor robuste flater",
+            "Skygge fra trær",
+            "En merket bro"
+          ],
+          "answer": "Tråkk, erosjon eller søppel utenfor robuste flater",
+          "answerIndex": 0,
+          "knowledge": "Slitasjespor viser hvor tilgjengelighet belaster naturkantene.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s4_q7",
+          "quiz_id": "natur_alnaparken_set_4_q7",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "place",
+          "question": "Hva bør gjøres ved glatt eller oversvømt sti?",
+          "options": [
+            "Velg en annen trygg ferdselslinje",
+            "Gå nærmere elvekanten",
+            "Hoppe over sperringer"
+          ],
+          "answer": "Velg en annen trygg ferdselslinje",
+          "answerIndex": 0,
+          "knowledge": "Sikkerhet og vern går foran gjennomføring av oppgaven.",
+          "difficulty": 2,
+          "question_type": "sted_observasjon",
+          "question_layer": "management",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -69,11 +1105,270 @@
       "level": 5,
       "order": 5,
       "xp": 90,
-      "mode": "emne_based_advanced",
+      "mode": "synthesis",
       "questions": [
-        {"id":"alnaparken_s5_q1","quiz_id":"natur_alnaparken_set_5_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva er den dypere læringen i Alnaparken?","options":["At et parkdrag kan bære både natur, brukshistorie og nabolagsfunksjon","At parker bare er pynt","At elver ikke former byrom"],"answer":"At et parkdrag kan bære både natur, brukshistorie og nabolagsfunksjon","answerIndex":0,"knowledge":"Alnaparken gjør Alnaelva synlig som natur, nærmiljø og historisk landskap.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["parkdrag","byokologi"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s5_q2","quiz_id":"natur_alnaparken_set_5_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva kan et tidligere beitelandskap lære oss i dagens by?","options":["At bynatur ofte rommer eldre bruksmåter under dagens rekreasjonsform","At eldre bruk alltid forsvinner helt","At beite og by aldri kan henge sammen"],"answer":"At bynatur ofte rommer eldre bruksmåter under dagens rekreasjonsform","answerIndex":0,"knowledge":"Storyen lar spilleren lese jordvei og beite som historiske lag i dagens park.","difficulty":3,"question_type":"kritisk_analyse","question_layer":"advanced_emne","tags":["kulturlandskap","historiske_lag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
-        {"id":"alnaparken_s5_q3","quiz_id":"natur_alnaparken_set_5_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hvordan fungerer Alnaparken i en Alna-fortelling?","options":["Som konkret parkrom der Alnaelvstien følger elva gjennom grøntdraget","Som et sted uten vann","Som et isolert fjellområde"],"answer":"Som konkret parkrom der Alnaelvstien følger elva gjennom grøntdraget","answerIndex":0,"knowledge":"Alnaparken følger naturlig etter Alnaelvstien fordi den viser stien og elva i et tydelig parkrom.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["alnaelvstien","alnaelva"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"}
+        {
+          "id": "alnaparken_s5_q1",
+          "quiz_id": "natur_alnaparken_set_5_q1",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "emne",
+          "question": "Hvem forvalter kommunale park- og turveimiljøer?",
+          "options": [
+            "Oslo kommune og relevante etater",
+            "En tilfeldig butikk",
+            "Kun nasjonalmuseet"
+          ],
+          "answer": "Oslo kommune og relevante etater",
+          "answerIndex": 0,
+          "knowledge": "Kommunale planer og etater inngår i forvaltningen.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/",
+            "https://od2.pbe.oslo.kommune.no/kart/?mode=kommuneplan"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s5_q2",
+          "quiz_id": "natur_alnaparken_set_5_q2",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "emne",
+          "question": "Hva er en fornuftig konflikt å analysere?",
+          "options": [
+            "Tilgang for mennesker mot vern av sårbare kanter",
+            "Fjell mot hav",
+            "Dag mot natt"
+          ],
+          "answer": "Tilgang for mennesker mot vern av sårbare kanter",
+          "answerIndex": 0,
+          "knowledge": "Elveparken må balansere bruk og økologisk funksjon.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/",
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s5_q3",
+          "quiz_id": "natur_alnaparken_set_5_q3",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "emne",
+          "question": "Hva kobler Alnaparken til resten av ruten?",
+          "options": [
+            "Elva og turveien videre opp- og nedstrøms",
+            "En taubane",
+            "En skipsrute"
+          ],
+          "answer": "Elva og turveien videre opp- og nedstrøms",
+          "answerIndex": 0,
+          "knowledge": "Alna-korridoren fortsetter mot Groruddammen, Smalvoll og Svartdalen.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaelva",
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s5_q4",
+          "quiz_id": "natur_alnaparken_set_5_q4",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "emne",
+          "question": "Hvilket sted ligger oppstrøms i den samme ruten?",
+          "options": [
+            "Alnsjøen",
+            "Bjørvika",
+            "Hovedøya"
+          ],
+          "answer": "Alnsjøen",
+          "answerIndex": 0,
+          "knowledge": "Alna har utløp fra Alnsjøen og renner videre gjennom Groruddalen.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaelva"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s5_q5",
+          "quiz_id": "natur_alnaparken_set_5_q5",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "emne",
+          "question": "Hvilket sted viser en roligere vannflate i nærheten?",
+          "options": [
+            "Groruddammen",
+            "Kværnerbyen",
+            "Slottsparken"
+          ],
+          "answer": "Groruddammen",
+          "answerIndex": 0,
+          "knowledge": "Groruddammen er et nærliggende vannpunkt i Alna-vassdraget.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s5_q6",
+          "quiz_id": "natur_alnaparken_set_5_q6",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "emne",
+          "question": "Hvor fortsetter elva etter Alnaparken?",
+          "options": [
+            "Mot Alfaset og Smalvoll",
+            "Mot Holmenkollen",
+            "Mot Sognsvann"
+          ],
+          "answer": "Mot Alfaset og Smalvoll",
+          "answerIndex": 0,
+          "knowledge": "Parken ligger i elvekorridoren fra nedre Furuset mot Alfaset.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s5_q7",
+          "quiz_id": "natur_alnaparken_set_5_q7",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "emne",
+          "question": "Hva viser navneparet Alnaparken/Nylandsparken?",
+          "options": [
+            "At steder kan ha flere historiske og lokale navn",
+            "At parken ligger i to land",
+            "At elva skifter retning daglig"
+          ],
+          "answer": "At steder kan ha flere historiske og lokale navn",
+          "answerIndex": 0,
+          "knowledge": "Alternativnavnet er dokumentert i Oslo byleksikon.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "synthesis",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        }
       ]
     },
     {
@@ -81,11 +1376,274 @@
       "level": 6,
       "order": 6,
       "xp": 100,
-      "mode": "concept_based",
+      "mode": "concept",
       "questions": [
-        {"id":"alnaparken_s6_q1","quiz_id":"natur_alnaparken_set_6_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"concept","question":"Hvilket begrep beskriver landskap formet av både natur og menneskelig bruk?","options":["Kulturlandskap","Flyplass","Privat lager"],"answer":"Kulturlandskap","answerIndex":0,"knowledge":"Alnaparken kan leses som kulturlandskap gjennom jordvei, beite, park og turvei.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["kulturlandskap"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
-        {"id":"alnaparken_s6_q2","quiz_id":"natur_alnaparken_set_6_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"concept","question":"Hva betyr byøkologi?","options":["Samspillet mellom natur, mennesker, infrastruktur og byrom","Natur uten mennesker","Et rent butikkbegrep"],"answer":"Samspillet mellom natur, mennesker, infrastruktur og byrom","answerIndex":0,"knowledge":"Alnaparken viser byøkologi fordi elv, vegetasjon, stier og nabolag virker sammen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["byokologi"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
-        {"id":"alnaparken_s6_q3","quiz_id":"natur_alnaparken_set_6_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"concept","question":"Hvilket begrepspar forklarer Alnaparken best?","options":["Kulturlandskap og parkdrag","Sanering og knutepunkt","Flyplass og høyfjell"],"answer":"Kulturlandskap og parkdrag","answerIndex":0,"knowledge":"Parken blir tydeligst når eldre landskapsbruk leses sammen med dagens parkdrag.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["kulturlandskap","parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"}
+        {
+          "id": "alnaparken_s6_q1",
+          "quiz_id": "natur_alnaparken_set_6_q1",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "concept",
+          "question": "Hva er den mest presise beskrivelsen av parkens natur?",
+          "options": [
+            "Et restaurert byvassdrag i et brukt kulturlandskap",
+            "Urørt villmark uten ferdsel",
+            "En ren idrettsarena"
+          ],
+          "answer": "Et restaurert byvassdrag i et brukt kulturlandskap",
+          "answerIndex": 0,
+          "knowledge": "Elv, park, eldre beite og moderne turvei virker sammen.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "concept",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken",
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s6_q2",
+          "quiz_id": "natur_alnaparken_set_6_q2",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "concept",
+          "question": "Hva lærer kanadagullris-kortet om naturdata?",
+          "options": [
+            "At artsdata må tolkes med sted, tid og kilde",
+            "At kart alltid er perfekte",
+            "At alle funn varer evig"
+          ],
+          "answer": "At artsdata må tolkes med sted, tid og kilde",
+          "answerIndex": 0,
+          "knowledge": "Et kartlagt funn eller kobling krever feltkontroll.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "concept",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://artsdatabanken.no/arter/takson/60776",
+            "data/natur/nature_routes_place_map.json"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s6_q3",
+          "quiz_id": "natur_alnaparken_set_6_q3",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "concept",
+          "question": "Hva er en god avsluttende observasjon?",
+          "options": [
+            "Sammenlign robust turvei med sårbar elve- og damkant",
+            "Tell bare lyktestolper",
+            "Ignorer vannet"
+          ],
+          "answer": "Sammenlign robust turvei med sårbar elve- og damkant",
+          "answerIndex": 0,
+          "knowledge": "Kontrasten viser hvorfor ferdselsstyring er del av naturforvaltningen.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "concept",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/",
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s6_q4",
+          "quiz_id": "natur_alnaparken_set_6_q4",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "concept",
+          "question": "Hva betyr blågrønn infrastruktur her?",
+          "options": [
+            "Vann og vegetasjon som løser økologiske og sosiale oppgaver",
+            "Kun blå og grønne skilt",
+            "Et lukket rørsystem uten park"
+          ],
+          "answer": "Vann og vegetasjon som løser økologiske og sosiale oppgaver",
+          "answerIndex": 0,
+          "knowledge": "Elva og parken gir sammenheng, rekreasjon og naturfunksjon.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "concept",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/",
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s6_q5",
+          "quiz_id": "natur_alnaparken_set_6_q5",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "concept",
+          "question": "Hva er den viktigste forskjellen mellom før og nå?",
+          "options": [
+            "Fra aktivt beite til offentlig elvepark",
+            "Fra havn til flyplass",
+            "Fra fjell til sjø"
+          ],
+          "answer": "Fra aktivt beite til offentlig elvepark",
+          "answerIndex": 0,
+          "knowledge": "1958 markerer slutten på dokumentert kubeite, mens dagens bruk er park og turvei.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "concept",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s6_q6",
+          "quiz_id": "natur_alnaparken_set_6_q6",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "concept",
+          "question": "Hvilket år ble amfibiedammen rustet opp?",
+          "options": [
+            "2001",
+            "1958",
+            "2023"
+          ],
+          "answer": "2001",
+          "answerIndex": 0,
+          "knowledge": "Oslo Elveforum oppgir 2001.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "concept",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://www.osloelveforum.org/om-alnaelva/"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        },
+        {
+          "id": "alnaparken_s6_q7",
+          "quiz_id": "natur_alnaparken_set_6_q7",
+          "categoryId": "natur",
+          "placeId": "alnaparken",
+          "targetId": "alnaparken",
+          "question_scope": "concept",
+          "question": "Hva bør spilleren forstå etter siste sett?",
+          "options": [
+            "At natur, historie, ferdsel og forvaltning er samme stedssystem",
+            "At parken bare er dekor",
+            "At artskort alene forklarer alt"
+          ],
+          "answer": "At natur, historie, ferdsel og forvaltning er samme stedssystem",
+          "answerIndex": 0,
+          "knowledge": "Alnaparken blir forståelig når alle lagene leses sammen.",
+          "difficulty": 3,
+          "question_type": "sted_observasjon",
+          "question_layer": "concept",
+          "tags": [
+            "alnaparken",
+            "alnaelva"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Alnaparken",
+            "https://www.osloelveforum.org/om-alnaelva/",
+            "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-normer-og-veiledere/kommunedelplaner/",
+            "https://lister.artsdatabanken.no/fremmedartslista/2023/214"
+          ],
+          "claim_basis": "documented",
+          "related_emners": [
+            "em_natur_arter_habitat_mangfold"
+          ],
+          "core_concepts": [
+            "arter",
+            "habitat",
+            "vassdrag",
+            "forvaltning"
+          ]
+        }
       ]
     }
   ]
