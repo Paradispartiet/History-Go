@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alna_smalvoll",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.92452,
+    "lon": 10.84269,
+    "r": 160,
+    "coordStatus": "needs_source",
+    "coordSource": "alna_smalvoll_segment_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+  },
+  "identity": {
+    "currentName": "Alna ved Smalvoll",
+    "resolvedIdentity": "Lokal Alna-strekning ved Smalvoll",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksplisitt avgrenset Alna-segment ved Smalvoll eller flere kildebelagte ruteankre"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Alnaelva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceQuality": "documented_local_river_identity",
+      "finding": "Kilden dokumenterer Alnas mange buktninger særlig i Smalvolldalen.",
+      "canVerifyCoordinate": false,
+      "reason": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – flere Alna-segmenter ved Smalvoll",
+      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Smalvoll%20Oslo",
+      "sourceObjectId": "osm:alna-smalvoll-multiple-waterway-ways",
+      "sourceQuality": "multiple_plausible_local_segments",
+      "finding": "Flere separate navngitte Alna-way-er passer kontrollområdet uten at recordens scope velger ett av dem.",
+      "canVerifyCoordinate": false,
+      "reason": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm:alna-smalvoll-multiple-waterway-ways",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre.",
+    "nextAction": "eksplisitt avgrenset Alna-segment ved Smalvoll eller flere kildebelagte ruteankre"
+  },
+  "notes": [
+    "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+  ]
+}

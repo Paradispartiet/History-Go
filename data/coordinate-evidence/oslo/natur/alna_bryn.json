@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alna_bryn",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.90931,
+    "lon": 10.81195,
+    "r": 160,
+    "coordStatus": "needs_source",
+    "coordSource": "alna_bryn_segment_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+  },
+  "identity": {
+    "currentName": "Alna ved Bryn",
+    "resolvedIdentity": "Lokal Alna-strekning ved Bryn",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "konkret avgrenset Alna-segment ved Bryn eller flere kildebelagte ruteankre"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Alnaelva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceQuality": "documented_local_river_identity",
+      "finding": "Kilden dokumenterer Alnas løp nedenfor Bryn og videre gjennom Svartdalen.",
+      "canVerifyCoordinate": false,
+      "reason": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – flere Alna-segmenter ved Bryn",
+      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Bryn%20Oslo",
+      "sourceObjectId": "osm:alna-bryn-multiple-waterway-ways",
+      "sourceQuality": "multiple_plausible_local_segments",
+      "finding": "Flere Alna-way-er og ett eksakt Bryn bru-objekt, men ingen entydig geometri for den brede place-identiteten.",
+      "canVerifyCoordinate": false,
+      "reason": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm:alna-bryn-multiple-waterway-ways",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere.",
+    "nextAction": "konkret avgrenset Alna-segment ved Bryn eller flere kildebelagte ruteankre"
+  },
+  "notes": [
+    "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+  ]
+}
