@@ -157,6 +157,10 @@ node tests/place-category-overrides.test.mjs
 
 echo "== Religion candidate audit =="
 node dist/tools/audit-religion-place-candidates.mjs | tee /tmp/religion-place-candidate-audit.log
+if grep -Eq '^Religion candidate audit: [1-9][0-9]* unreviewed candidate\(s\)' /tmp/religion-place-candidate-audit.log; then
+  echo "Unreviewed Religion place candidates found. Classify them as Religion or add an explicit reviewed non-Religion decision." >&2
+  exit 1
+fi
 
 echo "== Build tools =="
 npm run build:tools
