@@ -157,34 +157,23 @@ function setLeftPanelMode(mode) {
 // ============================================================
 
 function isNearbyDrawerOpen() {
-  const panel = hg$("nearbyListContainer");
-  return !!panel && panel.classList.contains("is-drawer-open");
+  return !!window.HGNearbyDrawer?.isOpen?.();
 }
 
 function setNearbyDrawerOpen(open) {
-  const panel = hg$("nearbyListContainer");
-  if (!panel) return;
-
-  panel.classList.toggle("is-drawer-open", !!open);
-  panel.classList.toggle("is-drawer-closed", !open);
-
-  const toggle = hg$("nearbyExploreToggle");
-  if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
-
-  // Listene kan ha endret seg (posisjon, unlocks) mens draweren var lukket.
-  if (open) rerenderActiveLeftPanelMode();
+  window.HGNearbyDrawer?.setOpen?.(!!open);
 }
 
 function openNearbyDrawer() {
-  setNearbyDrawerOpen(true);
+  window.HGNearbyDrawer?.open?.();
 }
 
 function closeNearbyDrawer() {
-  setNearbyDrawerOpen(false);
+  window.HGNearbyDrawer?.close?.();
 }
 
 function toggleNearbyDrawer() {
-  setNearbyDrawerOpen(!isNearbyDrawerOpen());
+  window.HGNearbyDrawer?.toggle?.();
 }
 
 // ============================================================

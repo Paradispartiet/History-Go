@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadPersistence", () => loadScriptOnce("js/state/persistence.js"));
     await safeRun("loadFavorites", () => loadScriptOnce("js/state/favorites.js"));
 
+    await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));
     await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));
 
     // PlaceCard-runtime: kjernen (LayerManager + bottomSheetController) før selve
