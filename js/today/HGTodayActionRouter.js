@@ -159,8 +159,9 @@
           return true;
         }
 
+        const standardRouteGlobals=/** @type {any} */ (root).ROUTES;
         const standard=list(standardRoutes).some(route=>String(route?.id||'')===targetId)
-          || list(root.ROUTES).some(route=>String(route?.id||'')===targetId);
+          || list(standardRouteGlobals).some(route=>String(route?.id||'')===targetId);
         if(standard&&typeof root.HGRoutes?.showThematic==='function'){
           root.HGRoutes.showThematic(targetId);
           return true;
