@@ -82,7 +82,21 @@ if (staleQuestionMarkers.length) throw new Error(`Quiz questions still contain s
 writeJson(QUIZ, sourceQuiz);
 
 let protocol = fs.readFileSync(path.join(ROOT, PROTOCOL), 'utf8');
-protocol = protocol.split('\n').filter((line) => !line.includes('| `oslo_kornmagasin` – Christiania kornmagasin | needs_review')).join('\n');
+const unresolvedHeader = '### Dokumenterte Oslo-kontroller uten godkjent koordinat';
+const unresolvedHeaderIndex = protocol.indexOf(unresolvedHeader);
+if (unresolvedHeaderIndex < 0) throw new Error('Oslo unresolved header missing');
+const etneMarker = '\n## Etne';
+const etneMarkerIndex = protocol.indexOf(etneMarker, unresolvedHeaderIndex);
+const unresolvedEndIndex = etneMarkerIndex >= 0 ? etneMarkerIndex : protocol.length;
+const protocolBeforeUnresolved = protocol.slice(0, unresolvedHeaderIndex);
+const unresolvedBlock = protocol
+  .slice(unresolvedHeaderIndex, unresolvedEndIndex)
+  .split('\n')
+  .filter((line) => !line.includes('`oslo_kornmagasin`'))
+  .join('\n');
+const protocolAfterUnresolved = protocol.slice(unresolvedEndIndex);
+protocol = `${protocolBeforeUnresolved}${unresolvedBlock}${protocolAfterUnresolved}`;
+
 const row43 = '| 43 | `oslo_kornmagasin` | Kornmagasinet på Akershus festning | verified_geometry | `osm-way:669390505` |';
 if (!protocol.includes(row43)) {
   const anchorRow = '| 42 | `historisk_museum` | Historisk museum | verified | `geonorge-adresser-v1:0301:11941:2` |';
@@ -91,15 +105,17 @@ if (!protocol.includes(row43)) {
 }
 const narrative43 = 'Batch 43 (2026-07-20) løser `oslo_kornmagasin` som et identitetsproblem før koordinatproblemet. Den tidligere aktive «Christiania kornmagasin»-recorden fra 1785 manglet eksternt verifisert identitet, noe også eksisterende quiz-QC dokumenterte. Recorden er korrigert til Kornmagasinet, inventar 0008 på Akershus festning, offisielt datert 1788. Eksakt navngitt OSM-way 669390505 brukes som bygningsgeometri, kryssjekket mot fredningsforskriften. Fysisk overlap mot det separate Bakeriet er kontrollert mot dets eget OSM-bygningsobjekt 669390521. Den eksisterende quizfilen er samtidig korrigert slik at den ikke lenger lærer bort den udokumenterte 1785-identiteten eller bruker place-filen som faktakilde.';
 if (!protocol.includes(narrative43)) {
-  const unresolvedHeader = '### Dokumenterte Oslo-kontroller uten godkjent koordinat';
-  if (!protocol.includes(unresolvedHeader)) throw new Error('Oslo unresolved header missing');
   protocol = protocol.replace(unresolvedHeader, `${narrative43}\n\n${unresolvedHeader}`);
 }
+
 const osloStart = protocol.indexOf('## Oslo');
-const unresolvedStart = protocol.indexOf('### Dokumenterte Oslo-kontroller uten godkjent koordinat');
+const unresolvedStart = protocol.indexOf(unresolvedHeader);
 const etneStart = protocol.indexOf('## Etne');
 const verifiedCount = (protocol.slice(osloStart, unresolvedStart).match(/^\| \d+ \|/gm) || []).length;
 const unresolvedSection = protocol.slice(unresolvedStart, etneStart > unresolvedStart ? etneStart : protocol.length);
+if (unresolvedSection.includes('`oslo_kornmagasin`')) {
+  throw new Error('Resolved oslo_kornmagasin is still present in the unresolved protocol section');
+}
 const unresolvedCount = unresolvedSection.split('\n').filter((line) => line.startsWith('| ') && !line.startsWith('|---') && !line.startsWith('| kandidat')).length;
 protocol = protocol.replace(/^Oslo-tabellen inneholder nå .*$/m, `Oslo-tabellen inneholder nå ${verifiedCount} verifiserte eller kildekontrollerte canonical steder. Batch 43 korrigerer og koordinatfester Kornmagasinet på Akershus festning som dokumentert 1788-bygg. Antallet fullførte kontroller uten godkjent Oslo-koordinat er ${unresolvedCount}.`);
 protocol = protocol.replace(/^Disse kontrollene er fullført, men teller ikke blant de \d+ verifiserte eller kildekontrollerte canonical Oslo-stedene\.$/m, `Disse kontrollene er fullført, men teller ikke blant de ${verifiedCount} verifiserte eller kildekontrollerte canonical Oslo-stedene.`);
