@@ -84,15 +84,17 @@ function normalizeSort(value: unknown): NearbySort {
 }
 
 function getPlaceDistanceMeters(place: NearbySourcePlace, position: unknown): number | null {
-  if (!place || !position || typeof win.distMeters !== "function") return null;
+  const distMeters = win.distMeters;
+  if (!place || !position || typeof distMeters !== "function") return null;
 
-  const targets = typeof win.getPlaceDistanceTargets === "function"
-    ? win.getPlaceDistanceTargets(place)
+  const getTargets = win.getPlaceDistanceTargets;
+  const targets = typeof getTargets === "function"
+    ? getTargets(place)
     : [{ lat: place.lat, lon: place.lon }];
 
   let best = Infinity;
   for (const target of targets || []) {
-    const distance = win.distMeters(position, { lat: target.lat, lon: target.lon });
+    const distance = distMeters(position, { lat: target.lat, lon: target.lon });
     if (Number.isFinite(distance) && distance < best) best = distance;
   }
 
@@ -127,15 +129,19 @@ function distanceAndNameCompare(a: NearbyListPlace, b: NearbyListPlace): number 
 function comparePlaces(sortMode: NearbySort, a: NearbyListPlace, b: NearbyListPlace): number {
   if (sortMode === "distance") return distanceAndNameCompare(a, b);
 
-  const aHasTime = typeof a._timeSortKey === "number" && Number.isFinite(a._timeSortKey);
-  const bHasTime = typeof b._timeSortKey === "number" && Number.isFinite(b._timeSortKey);
+  const aTime = a._timeSortKey;
+  const bTime = b._timeSortKey;
+  const aHasTime = typeof aTime === "number" && Number.isFinite(aTime);
+  const bHasTime = typeof bTime === "number" && Number.isFinite(bTime);
 
   if (aHasTime !== bHasTime) return aHasTime ? -1 : 1;
-  if (!aHasTime || !bHasTime) return distanceAndNameCompare(a, b);
+  if (!aHasTime || !bHasTime || aTime == null || bTime == null) {
+    return distanceAndNameCompare(a, b);
+  }
 
   const delta = sortMode === "oldest"
-    ? a._timeSortKey - b._timeSortKey
-    : b._timeSortKey - a._timeSortKey;
+    ? aTime - bTime
+    : bTime - aTime;
 
   if (delta !== 0) return delta;
   return distanceAndNameCompare(a, b);
@@ -155,8 +161,10 @@ function select(): NearbyPlaceSelection {
   const favoritesOnly = filters?.getFavoritesOnly?.() ?? Boolean(win.HG_NEARBY_FAVORITES_ONLY);
   const freshPlaceId = String(win.HG_LAST_DISCOVERED_PLACE_ID || "").trim();
 
-  const resolveTime = typeof win.HGTimeResolver?.resolvePlaceTime === "function"
-    ? win.HGTimeResolver.resolvePlaceTime.bind(win.HGTimeResolver)
+  const timeResolver = win.HGTimeResolver;
+  const resolvePlaceTime = timeResolver?.resolvePlaceTime;
+  const resolveTime = typeof resolvePlaceTime === "function"
+    ? (place: NearbySourcePlace) => resolvePlaceTime.call(timeResolver, place)
     : null;
 
   let items: NearbyListPlace[] = places.map((place) => {
