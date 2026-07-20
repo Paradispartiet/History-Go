@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 189 verifiserte eller kildekontrollerte canonical steder. Batch 46 løser Fiskehallen på Vippetangen med entydig Geonorge-adresse og korrigert place-scope. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 38.
+Oslo-tabellen inneholder nå 190 verifiserte eller kildekontrollerte canonical steder. Batch 47 løser Lilleborg Fabrikker med dokumentert fabrikkport som fysisk inngangsanker og korrigert tidslinje. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 37.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -211,6 +211,7 @@ Oslo-tabellen inneholder nå 189 verifiserte eller kildekontrollerte canonical s
 | 45 | `vigelandmuseet` | Vigelandmuseet | verified | `geonorge-adresser-v1:0301:15080:32` |
 | 45 | `mollergata_skole` | Møllergata skole | verified | `geonorge-adresser-v1:0301:14943:49` |
 | 46 | `vippetangen_fisketorg` | Fiskehallen på Vippetangen | verified | `geonorge-adresser-v1:0301:10077:23` |
+| 47 | `lilleborg_fabrikker` | Lilleborg Fabrikker | verified | `geonorge-adresser-v1:0301:16161:54` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -244,9 +245,11 @@ Batch 45 (2026-07-20) legger til tre fysisk avklarte institusjonssteder fra den 
 
 Batch 46 (2026-07-20) løser `vippetangen_fisketorg` ved å avgrense den tidligere blandede fisketorg/fiskehavn/Fiskehallen-recorden til dagens konkrete Fiskehallen på Akershusstranda 23. Fisketorget ble flyttet til Vippetangen i 1905; dagens større hall ble oppført 1932–33 og åpnet i 1933. Det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:10077:23` brukes som canonical bygningsanker. Punktet representerer ikke hele Vippetangen eller den historiske fiskehavna.
 
+Batch 47 (2026-07-20) løser `lilleborg_fabrikker` ved å skille selskaps- og produksjonstidslinjen og bruke den dokumenterte fabrikkporten i Sandakerveien 54 som eksplisitt inngangs-/displayanker for det historiske fabrikkomplekset. A/S Lilleborg Fabriker ble grunnlagt i 1897; 1833 gjelder oljemøllen og 1842 såpefabrikken i forhistorien. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:16161:54` representerer fabrikkporten, ikke det geometriske sentrum av det delvis revne og transformerte industriområdet.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 189 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 190 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -286,7 +289,6 @@ Disse kontrollene er fullført, men teller ikke blant de 189 verifiserte eller k
 | `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
 | `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
 | `gronlikaia` – Grønlikaia | needs_review | Grønlikaia er et bredt tidligere havne-/containerområde og dagens utviklingsområde; batchens OSM-treff er serviceveier, ikke arealgeometri for hele stedet. | Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre. |
-| `lilleborg_fabrikker` – Lilleborg Fabrikker | needs_review | Aktiv record bruker 1833, mens dette viser til oljemøllen; såpeproduksjon kom i 1842 og A/S Lilleborg Fabriker i 1897. Fabrikkomplekset har flere mulige fysiske ankere. | Rett historisk identitet/år og avgjør om fabrikkport, bevart bygg eller historisk områdegeometri skal være canonical anker. |
 | `akerselva_industri` – Akerselva industriområde | needs_review | Recorden beskriver en lang industrikorridor som overlapper canonical `akerselva` og flere separate industriplaces; ett punkt kan ikke representere hele systemet. | Legg inn lineær geometri/flere anchors eller modeller som tematisk relation til Akerselva og konkrete industristeder. |
 
 ## Etne – historiesett
