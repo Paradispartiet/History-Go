@@ -51,6 +51,9 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 
 [tool.ruff.lint.per-file-ignores]
 "app/api/**/*.py" = ["B008"]
+# SQL inside triple-quoted statements is not reformatted by Ruff. Keep the
+# exception scoped to this SQL-heavy repository; all other lint rules remain active.
+"app/domains/social_meet/safety_repository.py" = ["E501"]
 
 [tool.ruff.format]
 quote-style = "double"
