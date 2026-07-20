@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url';
 
 const SOURCE_COMMIT = '45eb27a822a12969bae5a7bc0426a2cdfd1893fb';
 const SOURCE_PATH = 'scripts/coordinate-branch-job.mjs';
-const TEMP_SCRIPT = '/tmp/nydalen-industristed-duplicate-migration-v3.mjs';
+const TEMP_SCRIPT = '/tmp/nydalen-industristed-duplicate-migration-v4.mjs';
 
 let source = execFileSync('git', ['show', `${SOURCE_COMMIT}:${SOURCE_PATH}`], { encoding: 'utf8' });
 const oldBlock = `if (canonicalMappingEntries.length < 1) {
@@ -33,5 +33,9 @@ if (!source.includes(oldBlock)) {
   throw new Error('Could not locate the Nydalen route-mapping guard in the validated v2 migration source');
 }
 source = source.replace(oldBlock, newBlock);
+source = source.replace(
+  "const article = articles.find((row) => row.place_id === 'nydalen' && JSON.stringify(row).includes('Nydalens Compagnie'));",
+  "const article = articles.find((row) => row.place_id === 'nydalen');"
+);
 fs.writeFileSync(TEMP_SCRIPT, source);
-await import(`${pathToFileURL(TEMP_SCRIPT).href}?v=3`);
+await import(`${pathToFileURL(TEMP_SCRIPT).href}?v=4`);
