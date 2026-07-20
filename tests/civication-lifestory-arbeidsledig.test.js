@@ -141,7 +141,89 @@ assert.ok(!kandidater.includes("d2_frist_stress"), "frist-stress skal ikke være
   }
 }
 
-// --- 7. Pakken peker mot den faktiske mekanikken: kunnskap/merker -> jobb ---
+// --- 6b. Søvn-arcen: kvelden avgjør natten, natten avgjør morgenen ---
+// Dag 1-nattscenen setter ALLTID enten la_deg_i_tide eller sen_kveld, og
+// dag 2-morgenen har én scene per gren. Ro-regelen gjelder også lav energi:
+// den energigatede kveldsscenen skal aldri gi mer press (ingen negative
+// energi/psyke-deltaer).
+{
+  const lifeScenes = readJson(manifest.life.scenes);
+  const byId = (id) => lifeScenes.scenes.find((s) => s.id === id);
+
+  const natt = byId("natt_01_paa_tide_aa_sove");
+  assert.ok(natt && natt.dag === 1 && natt.fase === "kveld", "dag 1 har en nattscene i kveldsfasen");
+  for (const v of natt.valg) {
+    const flagg = v.effekter?.flagg || {};
+    assert.ok(flagg.la_deg_i_tide === true || flagg.sen_kveld === true,
+      `nattvalget ${v.id} må sette la_deg_i_tide eller sen_kveld — dag 2-morgenen leser natten`);
+  }
+  const uthvilt = byId("d2_morgen_uthvilt");
+  const tung = byId("d2_morgen_tung_start");
+  assert.strictEqual(uthvilt?.conditions?.flagg?.la_deg_i_tide, true, "uthvilt-morgenen krever la_deg_i_tide");
+  assert.strictEqual(tung?.conditions?.flagg?.sen_kveld, true, "tung-morgenen krever sen_kveld");
+
+  const roScene = byId("d2_kveld_kroppen_sier_fra");
+  assert.ok(roScene?.conditions?.meters?.energi?.max <= 45, "kropps-scenen er gated på lav energi");
+  for (const v of roScene.valg) {
+    for (const [meter, delta] of Object.entries(v.effekter?.meters || {})) {
+      if (meter === "energi" || meter === "psyke") {
+        assert.ok(delta > 0, `lav energi gir ro, aldri mer press: ${v.id} har ${meter} ${delta}`);
+      }
+    }
+  }
+}
+
+// --- 6c. «Dine egne timer»: hvert dag 1-valg har en dag 2-gren som lukker ---
+// Kalender/rutine-arcen: dag 1-morgenscenen setter alltid nøyaktig ett av
+// grenflaggene, og hver gren har sin egen dag 2-scene som leser flagget og
+// lukker tråden. Ingen gren skal etterlate tråden åpen uten oppfølging.
+{
+  const lifeScenes = readJson(manifest.life.scenes);
+  const byId = (id) => lifeScenes.scenes.find((s) => s.id === id);
+
+  const plan = byId("morgen_01_din_egen_plan");
+  assert.ok(plan && plan.dag === 1 && plan.fase === "morgen", "dag 1 har kalender/rutine-scenen om morgenen");
+  const GREN_TIL_SCENE = {
+    egen_time_satt: "d2_ettermiddag_timen_din",
+    lot_dagen_bestemme: "d2_ettermiddag_rommet_som_forsvant",
+    fylte_lista: "d2_ettermiddag_lista_moeter_veggen"
+  };
+  const setteFlagg = plan.valg.map((v) => {
+    const flagg = Object.keys(v.effekter?.flagg || {}).filter((f) => GREN_TIL_SCENE[f]);
+    assert.strictEqual(flagg.length, 1, `planvalget ${v.id} må sette nøyaktig ett grenflagg`);
+    return flagg[0];
+  });
+  assert.strictEqual(new Set(setteFlagg).size, Object.keys(GREN_TIL_SCENE).length,
+    "dag 1-valgene dekker alle tre grenene");
+  for (const [flagg, sceneId] of Object.entries(GREN_TIL_SCENE)) {
+    const gren = byId(sceneId);
+    assert.ok(gren && gren.dag === 2, `grenscenen ${sceneId} finnes på dag 2`);
+    assert.strictEqual(gren.conditions?.flagg?.[flagg], true, `${sceneId} leser flagget ${flagg}`);
+    for (const v of gren.valg) {
+      assert.strictEqual(v.effekter?.threads?.dine_egne_timer?.status, "completed",
+        `${sceneId}/${v.id} skal lukke dine_egne_timer — hver gren får en slutt`);
+    }
+  }
+}
+
+// --- 7. Delt privat persongalleri: venn + familie i ALLE roller ---
+// De delte livsscenene refererer avsenderne «venn» (Jonas) og «familie»
+// (Søsteren din) og flytter relasjonene deres. Da må hver rolle — også
+// arbeidsledig — ha begge i personer og en tallverdi i startState.relasjoner,
+// ellers spilles scenene mot personer som ikke finnes.
+for (const [roleId, entry] of Object.entries(manifest.roles)) {
+  const role = readJson(entry.role);
+  for (const [personId, navn] of [["venn", "Jonas"], ["familie", "Søsteren din"]]) {
+    const person = (role.personer || []).find((p) => p.id === personId);
+    assert.ok(person, `rollen ${roleId} mangler den delte personen «${personId}»`);
+    assert.strictEqual(person.navn, navn,
+      `rollen ${roleId}: «${personId}» skal hete «${navn}» i alle roller (delt cast)`);
+    assert.strictEqual(typeof role.startState?.relasjoner?.[personId], "number",
+      `rollen ${roleId} mangler startrelasjon for «${personId}»`);
+  }
+}
+
+// --- 8. Pakken peker mot den faktiske mekanikken: kunnskap/merker -> jobb ---
 const scenesText = JSON.stringify(raw.roleScenes);
 assert.ok(/[Kk]unnskap/.test(scenesText) && /merke/i.test(scenesText),
   "arbeidsledig-dagene peker spilleren mot kunnskap/merker — veien til jobbtilbud");

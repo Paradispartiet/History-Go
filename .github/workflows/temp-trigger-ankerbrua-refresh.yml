@@ -1,0 +1,48 @@
+name: Temporary Ankerbrua refresh trigger
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  push:
+    branches: [main]
+  issue_comment:
+    types: [created]
+  pull_request_target:
+    types: [reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  refresh:
+    if: >-
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'push' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       github.event.issue.number == 2553 &&
+       github.event.comment.body == '/refresh-ankerbrua') ||
+      (github.event_name == 'pull_request_target' &&
+       github.event.pull_request.number == 2553)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Ankerbrua branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/fill-ankerbrua-rounds-batch1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh Ankerbrua branch on current main
+        run: node scripts/coordinate-branch-job.mjs

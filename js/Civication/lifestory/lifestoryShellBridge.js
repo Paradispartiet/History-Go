@@ -93,7 +93,37 @@
     return { applied, skipped: null };
   }
 
-  const api = { METER_TO_PSYCHE, isTestOrDebugSession, applyMeterDeltasToShell };
+  /**
+   * Profil-snapshot: ProfileSignalBridge er async, men runnerens conditions
+   * er synkrone. Broen holder derfor et synkront snapshot i
+   * globalScope.CivicationLifestoryProfileTags. Uten bridge (ren Min dag-
+   * flate/Node) forblir snapshotet borte, og profilgatede scener fyrer ikke.
+   * @returns {Promise<string[]|null>}
+   */
+  async function refreshProfileSnapshot() {
+    const g = /** @type {any} */ (globalScope);
+    const bridge = g.CivicationProfileSignalBridge;
+    if (!bridge || typeof bridge.getProfileTags !== "function") return null;
+    try {
+      const tags = await bridge.getProfileTags();
+      if (Array.isArray(tags)) {
+        g.CivicationLifestoryProfileTags = tags;
+        return tags;
+      }
+    } catch (error) {
+      console.warn("[CivicationLifestoryShellBridge] profil-snapshot feilet", error);
+    }
+    return null;
+  }
+
+  const api = { METER_TO_PSYCHE, isTestOrDebugSession, applyMeterDeltasToShell, refreshProfileSnapshot };
   /** @type {any} */ (globalScope).CivicationLifestoryShellBridge = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
+
+  if (typeof window !== "undefined") {
+    // Skallet booter etter Min dag; History GO-profilen endres via updateProfile.
+    for (const eventName of ["civi:booted", "updateProfile"]) {
+      window.addEventListener(eventName, () => { refreshProfileSnapshot(); });
+    }
+  }
 })(typeof window !== "undefined" ? window : globalThis);

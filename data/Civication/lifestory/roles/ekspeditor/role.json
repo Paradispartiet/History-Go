@@ -11,10 +11,36 @@
     "åpne og lukke slik at neste skift slipper å rydde"
   ],
   "personer": [
-    { "id": "butikksjef", "navn": "Lene, butikksjefen", "beskrivelse": "Vil ha flyt uten å miste nøyaktighet. Ser mer enn hun kommenterer." },
-    { "id": "erfaren_kollega", "navn": "Amir, erfaren kollega", "beskrivelse": "Kan kassa og kundene. «Det tar lengre tid å rette en feil du latet som du visste.»" },
-    { "id": "ny_kollega", "navn": "Vikaren", "beskrivelse": "Ny på gulvet. Spør deg — midt i køen." },
-    { "id": "stamkunde", "navn": "Stamkunden", "beskrivelse": "Kommer hver dag. Husker hvordan du behandlet henne sist." }
+    {
+      "id": "butikksjef",
+      "navn": "Lene, butikksjefen",
+      "beskrivelse": "Vil ha flyt uten å miste nøyaktighet. Ser mer enn hun kommenterer."
+    },
+    {
+      "id": "erfaren_kollega",
+      "navn": "Amir, erfaren kollega",
+      "beskrivelse": "Kan kassa og kundene. «Det tar lengre tid å rette en feil du latet som du visste.»"
+    },
+    {
+      "id": "ny_kollega",
+      "navn": "Vikaren",
+      "beskrivelse": "Ny på gulvet. Spør deg — midt i køen."
+    },
+    {
+      "id": "stamkunde",
+      "navn": "Stamkunden",
+      "beskrivelse": "Kommer hver dag. Husker hvordan du behandlet henne sist."
+    },
+    {
+      "id": "venn",
+      "navn": "Jonas",
+      "beskrivelse": "Vennen din. Har kjent deg lenge nok til å høre forskjell på «det går bra» og «det går bra»."
+    },
+    {
+      "id": "familie",
+      "navn": "Søsteren din",
+      "beskrivelse": "Ringer om hverdagslige ting som aldri bare er hverdagslige."
+    }
   ],
   "hovedkonflikter": [
     "tempo vs nøyaktighet",
@@ -24,11 +50,26 @@
     "bli fort ferdig vs standard for neste skift"
   ],
   "endings": [
-    { "id": "trygg_paa_gulvet", "navn": "Trygg på gulvet" },
-    { "id": "faar_ting_unna", "navn": "En som bare får ting unna" },
-    { "id": "nokkelbaerer", "navn": "Nøkkelbærer" },
-    { "id": "mistet_tilliten", "navn": "Mistet tilliten" },
-    { "id": "butikksjef_emne", "navn": "Butikksjef-emne" }
+    {
+      "id": "trygg_paa_gulvet",
+      "navn": "Trygg på gulvet"
+    },
+    {
+      "id": "faar_ting_unna",
+      "navn": "En som bare får ting unna"
+    },
+    {
+      "id": "nokkelbaerer",
+      "navn": "Nøkkelbærer"
+    },
+    {
+      "id": "mistet_tilliten",
+      "navn": "Mistet tilliten"
+    },
+    {
+      "id": "butikksjef_emne",
+      "navn": "Butikksjef-emne"
+    }
   ],
   "startState": {
     "meters": {
@@ -43,18 +84,35 @@
       "butikksjef": 50,
       "erfaren_kollega": 55,
       "ny_kollega": 45,
-      "stamkunde": 50
+      "stamkunde": 50,
+      "venn": 60,
+      "familie": 55
     }
   },
   "dagsplan": {
     "1": [
-      { "klokke": "08:00", "tekst": "Åpning" },
-      { "klokke": "10:00", "tekst": "Første kasseøkt" },
-      { "klokke": "20:45", "tekst": "Lukking" }
+      {
+        "klokke": "08:00",
+        "tekst": "Åpning"
+      },
+      {
+        "klokke": "10:00",
+        "tekst": "Første kasseøkt"
+      },
+      {
+        "klokke": "20:45",
+        "tekst": "Lukking"
+      }
     ],
     "2": [
-      { "klokke": "09:00", "tekst": "Morgenprat med Lene" },
-      { "klokke": "15:00", "tekst": "Nøkkelen til disken" }
+      {
+        "klokke": "09:00",
+        "tekst": "Morgenprat med Lene"
+      },
+      {
+        "klokke": "15:00",
+        "tekst": "Nøkkelen til disken"
+      }
     ]
   }
 }

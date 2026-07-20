@@ -106,6 +106,9 @@
               "venter_paa_svar": {
                 "status": "completed"
               }
+            },
+            "relasjoner": {
+              "venn": 6
             }
           },
           "konsekvensTekst": "Svaret koster deg mer enn du trodde å skrive — men når du trykker send, er skuldrene lavere."
@@ -126,6 +129,9 @@
               "venter_paa_svar": {
                 "status": "dormant"
               }
+            },
+            "relasjoner": {
+              "venn": -3
             }
           },
           "konsekvensTekst": "«Kan vi ta det i morgen?» Svaret kommer med tommel opp. Du vet begge at i morgen er et strikk."
@@ -147,6 +153,9 @@
               "venter_paa_svar": {
                 "status": "completed"
               }
+            },
+            "relasjoner": {
+              "venn": -4
             }
           },
           "konsekvensTekst": "Svaret er sendt og samvittigheten er halv. Noen ganger merker folk forskjellen. Denne personen gjør det."
@@ -628,6 +637,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 5
             }
           },
           "konsekvensTekst": "«ENDELIG,» svarer vennen med tre utropstegn. Du merker at du gleder deg — det er en stund siden sist."
@@ -648,6 +660,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 2
             }
           },
           "konsekvensTekst": "«Deal. Lørdag. Ingen unnskyldninger.» Et ærlig nei med en ny avtale i er bedre enn et halvt ja."
@@ -668,6 +683,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": -5
             }
           },
           "konsekvensTekst": "«Ok :)» Smilefjeset gjør ikke jobben sin. Du vet at det er tredje gangen du svarer sånn."
@@ -1019,6 +1037,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 6
             }
           },
           "konsekvensTekst": "På veien hjem merker du at du har ledd ordentlig for første gang på en stund. Det bærer lenger enn søvnen det kostet."
@@ -1039,6 +1060,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 1
             }
           },
           "konsekvensTekst": "«Godt du kom i det hele tatt,» sier vennen, og mener det. Dere er blitt gamle nok til at det er sant."
@@ -1079,6 +1103,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": 3
             }
           },
           "konsekvensTekst": "«Det holder jeg deg til!» kommer svaret på sekunder. Døra du lot stå på gløtt, står fortsatt åpen."
@@ -1099,6 +1126,9 @@
               "folk_rundt_deg": {
                 "stepDelta": 1
               }
+            },
+            "relasjoner": {
+              "venn": -2
             }
           },
           "konsekvensTekst": "Ikke alle kvelder skal deles. Denne var din, og den var god nok som den var."
@@ -1162,6 +1192,1338 @@
             }
           },
           "konsekvensTekst": "«Vent, er det SÅNN det henger sammen?» Å forklare det høyt lærte deg mer enn halvtimen i går."
+        }
+      ]
+    },
+    {
+      "id": "by_01_kulturell_omvei",
+      "threadId": "byen_og_deg",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "culture",
+            "kunst",
+            "musikk"
+          ]
+        }
+      },
+      "tittel": "En liten kulturell omvei",
+      "tekst": "Veien hjem kan legges forbi et sted du kjenner — et av de stedene som pleier å gi deg noe. Det koster et kvarter. Det pleier å gi mer tilbake.",
+      "valg": [
+        {
+          "id": "ta_omveien",
+          "tekst": "Ta omveien — kvarteret er verdt det",
+          "tone": "nysgjerrig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": -1
+            },
+            "flagg": {
+              "tok_kulturell_omvei": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Stedet gjør det stedet pleier å gjøre: gir deg noe du ikke visste at du manglet. Du går hjemover litt lettere."
+        },
+        {
+          "id": "rett_hjem",
+          "tekst": "Gå rett hjem — i dag er beina viktigere enn øynene",
+          "tone": "sliten",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": -1
+            },
+            "flagg": {
+              "droppet_omveien": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Sofaen vant. Den vinner ofte. Stedet står der i morgen også — det er både trøsten og problemet."
+        }
+      ]
+    },
+    {
+      "id": "by_01_groent_kveldslys",
+      "threadId": "byen_og_deg",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "nature",
+            "natur"
+          ]
+        }
+      },
+      "tittel": "Kveldslys over et grønt sted",
+      "tekst": "Lyset er i ferd med å bli gyllent, og et grønt sted du kjenner ligger ti minutter unna. En rolig kveldstur dit kan lande hele dagen.",
+      "valg": [
+        {
+          "id": "gaa_turen",
+          "tekst": "Gå turen mens lyset varer",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 4,
+              "energi": 2
+            },
+            "flagg": {
+              "tok_kveldsturen": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du rekker det gylne lyset. Ti minutter der ute rydder mer i hodet enn en time inne."
+        },
+        {
+          "id": "se_paa_lyset",
+          "tekst": "Se lyset fra vinduet — turen får vente",
+          "tone": "sliten",
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "energi": 1
+            },
+            "flagg": {
+              "saa_lyset_fra_vinduet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lyset er fint gjennom glasset også. Ikke like fint. Men fint."
+        }
+      ]
+    },
+    {
+      "id": "by_02_banen_frister",
+      "threadId": "byen_og_deg",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "sport"
+          ]
+        }
+      },
+      "tittel": "En bane du kjenner frister",
+      "tekst": "Kroppen har begynt å mase om bevegelse, og banen du kjenner dukker opp i tankene. Folkene der pleier å samles utover ettermiddagen.",
+      "valg": [
+        {
+          "id": "dra_til_banen",
+          "tekst": "Dra til banen — kroppen får det den maser om",
+          "tone": "energisk",
+          "effekter": {
+            "meters": {
+              "energi": 3,
+              "psyke": 3
+            },
+            "flagg": {
+              "dro_til_banen": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Svetten sitter løst og hodet blir stille. På vei hjem husker du hvorfor du alltid angrer på å IKKE dra — aldri på å dra."
+        },
+        {
+          "id": "kort_oekt_hjemme",
+          "tekst": "Ta en kort økt hjemme i stedet",
+          "tone": "praktisk",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "tok_hjemmeoekt": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tjue minutter på stuegulvet. Ikke banen, men kroppen sier takk likevel."
+        }
+      ]
+    },
+    {
+      "id": "by_02_lokalt_moete",
+      "threadId": "byen_og_deg",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "kalenderhendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "politics",
+            "politikk"
+          ]
+        }
+      },
+      "tittel": "Et lokalt møte i nærheten",
+      "tekst": "Det er et åpent lokalt møte i kveld, og du kjenner flere av temaene fra steder du har vært. Du kunne faktisk sagt noe der. Eller bare lyttet.",
+      "valg": [
+        {
+          "id": "gaa_paa_moetet",
+          "tekst": "Gå på møtet og hør hva byen din diskuterer",
+          "tone": "engasjert",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "synlighet": 3,
+              "energi": -2
+            },
+            "flagg": {
+              "gikk_paa_lokalmoetet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sa ikke noe høyt denne gangen. Men du forsto mer enn de fleste i salen — og noterte deg hvem som ikke gjorde det."
+        },
+        {
+          "id": "les_referatet",
+          "tekst": "Dropp møtet — les sakspapirene hjemme i ro",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "leste_sakspapirene": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du leser mer nøye enn de fleste som satt i salen. Neste gang vet du hva du går til."
+        }
+      ]
+    },
+    {
+      "id": "by_02_miljoeet_samles",
+      "threadId": "byen_og_deg",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "subculture",
+            "subkultur"
+          ]
+        }
+      },
+      "tittel": "Noe skjer under overflaten i kveld",
+      "tekst": "En kort melding fra miljøet ditt: det skjer noe i kveld, et sted de fleste ikke vet om. Du kjenner både adressen og folkene.",
+      "valg": [
+        {
+          "id": "stikk_innom",
+          "tekst": "Stikk innom — det er ditt miljø, tross alt",
+          "tone": "tilhørig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": -2,
+              "synlighet": -1
+            },
+            "flagg": {
+              "var_med_miljoeet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ingen spør hva du gjør eller hvor du står. Her er du bare deg. Det er derfor du kommer tilbake."
+        },
+        {
+          "id": "staa_over",
+          "tekst": "Stå over i kveld — du trenger kvelden selv",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": -1
+            },
+            "flagg": {
+              "sto_over_miljoeet": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du ser bildene dagen etter. Det gjorde ikke vondt å stå over. Bare litt."
+        }
+      ]
+    },
+    {
+      "id": "venn_01_invitasjon_fra_byen",
+      "threadId": "folk_rundt_deg",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "social",
+            "people"
+          ]
+        }
+      },
+      "tittel": "En invitasjon fra en du har møtt",
+      "tekst": "En du har møtt gjennom byen — ikke en gammel venn, men en du husker godt — spør om du blir med på noe i kveld. Nye folk koster krefter. De gir også noe gamle ikke kan.",
+      "valg": [
+        {
+          "id": "bli_med",
+          "tekst": "Bli med — nettverket ditt ble ikke bygget på sofaen",
+          "tone": "åpen",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "synlighet": 2,
+              "energi": -3
+            },
+            "flagg": {
+              "ble_med_ny_kontakt": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Kvelden ble annerledes enn du trodde, på den gode måten. Nye folk stiller nye spørsmål."
+        },
+        {
+          "id": "takk_nei_hoflig",
+          "tekst": "Takk høflig nei — men foreslå en kaffe snart",
+          "tone": "balansert",
+          "effekter": {
+            "meters": {
+              "energi": 1,
+              "psyke": 1
+            },
+            "flagg": {
+              "foreslo_kaffe_senere": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Kaffe funker! Si fra når.» Døra er ikke lukket — den er satt på gløtt, på dine premisser."
+        }
+      ]
+    },
+    {
+      "id": "familie_01_hilsen_hjemmefra",
+      "threadId": "folk_rundt_deg",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "telefon",
+      "avsender": "familie",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En hilsen hjemmefra",
+      "tekst": "Søsteren din ringer om noe helt hverdagslig — en oppskrift, en dato, en ting hun «bare lurte på». Dere vet begge at samtalen egentlig handler om å høre stemmen din.",
+      "valg": [
+        {
+          "id": "ta_praten",
+          "tekst": "Ta praten ordentlig — hverdagslige ting er aldri bare hverdagslige",
+          "tone": "nær",
+          "effekter": {
+            "relasjoner": {
+              "familie": 6
+            },
+            "meters": {
+              "psyke": 3,
+              "energi": -1
+            },
+            "flagg": {
+              "tok_familiepraten": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tjue minutter om ingenting og alt. «Snakkes snart,» sier hun, og denne gangen betyr det snart."
+        },
+        {
+          "id": "kort_svar",
+          "tekst": "Svar kort — du ringer skikkelig i helgen",
+          "tone": "praktisk",
+          "effekter": {
+            "relasjoner": {
+              "familie": 1
+            },
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "utsatte_familiepraten": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "«Helgen, ja. Du sa det forrige uke også.» Hun sier det mildt. Det treffer likevel."
+        },
+        {
+          "id": "la_ringe",
+          "tekst": "La den ringe ut — du orker ikke folk akkurat nå",
+          "tone": "sliten",
+          "effekter": {
+            "relasjoner": {
+              "familie": -4
+            },
+            "meters": {
+              "psyke": -2,
+              "energi": 1
+            },
+            "flagg": {
+              "lot_familien_ringe_ut": true
+            },
+            "threads": {
+              "folk_rundt_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Telefonen blir stille. Hun kommer til å si «det går fint» neste gang. Dere vet begge hva det betyr."
+        }
+      ]
+    },
+    {
+      "id": "natt_01_paa_tide_aa_sove",
+      "threadId": "natten_og_soevnen",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 2,
+      "tittel": "Dagen er over. På tide å sove?",
+      "tekst": "Klokka har blitt mer enn du hadde tenkt. Skjermen lyser fortsatt, og morgendagen kommer uansett. Natten er det siste valget du tar i dag — og det første morgendagen merker.",
+      "valg": [
+        {
+          "id": "legge_seg",
+          "tekst": "Runde av nå — skjermen bort, lyset ned",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "energi": 5,
+              "psyke": 2
+            },
+            "flagg": {
+              "la_deg_i_tide": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du gir natten ordentlige arbeidsforhold. Kroppen kvitterer i morgen tidlig."
+        },
+        {
+          "id": "en_time_til",
+          "tekst": "Ta en time til — det er nå det er stille",
+          "tone": "utsettende",
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "energi": -5
+            },
+            "flagg": {
+              "sen_kveld": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Timen er deilig og helt din. Regningen sendes til alarmen i morgen."
+        },
+        {
+          "id": "skrive_ned_dagen",
+          "tekst": "Skrive tre linjer om dagen før du legger deg",
+          "tone": "reflektert",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 1
+            },
+            "flagg": {
+              "skrev_ned_dagen": true,
+              "la_deg_i_tide": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Tre linjer, så ligger dagen på papiret i stedet for i hodet. Du sovner lettere enn du hadde trodd."
+        }
+      ]
+    },
+    {
+      "id": "d2_morgen_uthvilt",
+      "threadId": "natten_og_soevnen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 11,
+      "conditions": {
+        "flagg": {
+          "la_deg_i_tide": true
+        }
+      },
+      "tittel": "Du våkner før alarmen — uthvilt",
+      "tekst": "Natten holdt det kvelden lovet. Hodet er klart, kroppen er med, og dagen har ikke engang begynt å mase ennå.",
+      "valg": [
+        {
+          "id": "bruke_overskuddet",
+          "tekst": "Bruke overskuddet: ordentlig frokost og en plan for dagen",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "energi": 3,
+              "psyke": 2,
+              "penger": -30
+            },
+            "flagg": {
+              "god_morgenrytme": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Frokosten koster litt, men du starter dagen foran den — ikke bak den."
+        },
+        {
+          "id": "stille_morgen",
+          "tekst": "La morgenen være stille — ingen skjerm før du er ute av døra",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 1
+            },
+            "flagg": {
+              "stille_morgen": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Verden klarte seg fint uten deg i tjue minutter. Du klarte deg enda bedre uten den."
+        }
+      ]
+    },
+    {
+      "id": "d2_morgen_tung_start",
+      "threadId": "natten_og_soevnen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 11,
+      "conditions": {
+        "flagg": {
+          "sen_kveld": true
+        }
+      },
+      "tittel": "Alarmen river deg opp",
+      "tekst": "Timen i går kveld var verdt det, sa du til deg selv. Nå stemmer ikke regnestykket like godt. Hodet er tungt, og dagen står allerede og venter.",
+      "valg": [
+        {
+          "id": "kaffe_og_i_gang",
+          "tekst": "Kaffe, kaldt vann i ansiktet, og i gang",
+          "tone": "effektiv",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "synlighet": 1
+            },
+            "flagg": {
+              "presset_gjennom_morgenen": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du kommer deg i gang på viljestyrke. Den er ikke gratis, men den virker."
+        },
+        {
+          "id": "ti_minutter_til_kroppen",
+          "tekst": "Gi kroppen ti minutter: vann, mat, pust",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "tok_ti_minutter": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ti minutter forandrer ikke natten, men de forandrer starten. Det holder."
+        },
+        {
+          "id": "love_tidligere_kveld",
+          "tekst": "Love deg selv en tidligere kveld i dag",
+          "tone": "reflektert",
+          "effekter": {
+            "meters": {
+              "psyke": 2
+            },
+            "flagg": {
+              "vil_legge_seg_tidligere": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Løftet er lett å gi om morgenen. I kveld får du sjansen til å holde det."
+        }
+      ]
+    },
+    {
+      "id": "d2_kveld_kroppen_sier_fra",
+      "threadId": "kroppen_og_kreftene",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "meters": {
+          "energi": {
+            "max": 45
+          }
+        }
+      },
+      "tittel": "Kroppen sier fra",
+      "tekst": "Beina er tunge og hodet vil hjem, uansett hvor du er. Kroppen ber ikke om mye i kveld — bare om å bli hørt.",
+      "valg": [
+        {
+          "id": "legge_seg_med_en_gang",
+          "tekst": "Høre etter: legge deg med en gang",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "energi": 6,
+              "psyke": 2
+            },
+            "flagg": {
+              "hoerte_paa_kroppen": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ingen kamp, ingen forhandling. Kroppen fikk viljen sin, og den takker deg i morgen."
+        },
+        {
+          "id": "varme_og_ro",
+          "tekst": "Varm dusj, varm drikke, lyset ned",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "energi": 4,
+              "psyke": 2
+            },
+            "flagg": {
+              "tok_varme_og_ro": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Varmen løser opp det dagen strammet til. Kvelden ble kort, men den ble din."
+        },
+        {
+          "id": "sitte_stille",
+          "tekst": "Bare sitte stille litt, uten skjerm og uten plan",
+          "tone": "stille",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 2
+            },
+            "flagg": {
+              "satt_stille": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ingenting skjer, og det er akkurat poenget. Stillheten fyller mer enn du ventet."
+        }
+      ]
+    },
+    {
+      "id": "natt_02_legg_deg_tidligere",
+      "threadId": "natten_og_soevnen",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "low_energy",
+            "rest"
+          ]
+        }
+      },
+      "tittel": "Legg deg tidligere i natt",
+      "tekst": "Du har brukt av deg selv i det siste — det synes på alt du har samlet, og det kjennes i kroppen. I natt er det én ting som bygger deg opp igjen, og den koster ingenting.",
+      "valg": [
+        {
+          "id": "hoere_paa_raadet",
+          "tekst": "Høre på rådet: legge deg en time før vanlig",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "energi": 5,
+              "psyke": 2
+            },
+            "flagg": {
+              "la_seg_en_time_foer": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "En time høres lite ut. I morgen tidlig er den forskjellen på å våkne og å bli vekket."
+        },
+        {
+          "id": "myk_landing",
+          "tekst": "Lande mykt først: dempet lys og noe rolig å høre på",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 2
+            },
+            "flagg": {
+              "landet_mykt": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du senker tempoet før du senker hodet. Søvnen kommer og henter deg i stedet for omvendt."
+        }
+      ]
+    },
+    {
+      "id": "d2_natt_oeyeblikk_foer_soevnen",
+      "threadId": "natten_og_soevnen",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 2,
+      "tittel": "Ett øyeblikk før du sovner",
+      "tekst": "To dager er blitt til erfaring. Før søvnen tar over, stiller kvelden ett stille spørsmål: hvordan har dagene egentlig kjentes?",
+      "valg": [
+        {
+          "id": "vaere_aerlig",
+          "tekst": "Være ærlig — noe av det har vært tungt",
+          "tone": "ærlig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "integritet": 2
+            },
+            "flagg": {
+              "aerlig_med_seg_selv": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Å si det sant, om så bare til taket, gjør det lettere å bære. Du sovner med mindre å holde oppe."
+        },
+        {
+          "id": "tre_ting_som_gikk",
+          "tekst": "Finne tre ting som faktisk gikk",
+          "tone": "takknemlig",
+          "effekter": {
+            "meters": {
+              "psyke": 4
+            },
+            "flagg": {
+              "fant_tre_ting": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Tre små ting, men de er dine. Dagene ser annerledes ut når du teller det som bar."
+        },
+        {
+          "id": "la_dagen_ligge",
+          "tekst": "La dagene ligge — de er ferdige",
+          "tone": "avsluttende",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "la_dagen_ligge": true
+            },
+            "threads": {
+              "natten_og_soevnen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Ikke alt skal evalueres. Noen dager skal bare få lov til å bli i går."
+        }
+      ]
+    },
+    {
+      "id": "morgen_01_din_egen_plan",
+      "threadId": "dine_egne_timer",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Hva står på din egen plan i dag?",
+      "tekst": "Dagen har allerede sine krav. Men mellom dem finnes det timer ingen andre har gjort krav på — ennå. Spørsmålet er om du rekker å gjøre krav på dem selv.",
+      "valg": [
+        {
+          "id": "sette_av_en_time",
+          "tekst": "Sette av én time i dag som bare er din",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 2
+            },
+            "flagg": {
+              "egen_time_satt": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Én time med gjerde rundt. Dagen får resten — men ikke den."
+        },
+        {
+          "id": "la_dagen_bestemme",
+          "tekst": "La dagen bestemme — du tar det som kommer",
+          "tone": "flytende",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "lot_dagen_bestemme": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Fleksibelt, kaller du det. Dagen pleier å ha egne ideer for folk uten planer."
+        },
+        {
+          "id": "fylle_lista",
+          "tekst": "Fylle lista helt full, så du i hvert fall er i gang",
+          "tone": "ambisiøs",
+          "effekter": {
+            "meters": {
+              "synlighet": 1,
+              "psyke": -2
+            },
+            "flagg": {
+              "fylte_lista": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lista er imponerende. Den vet bare ikke at du også skal hvile i dag."
+        }
+      ]
+    },
+    {
+      "id": "d2_ettermiddag_timen_din",
+      "threadId": "dine_egne_timer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "flagg": {
+          "egen_time_satt": true
+        }
+      },
+      "tittel": "Timen du satte av er nå",
+      "tekst": "Du satte gjerde rundt en time i går. Nå står den her og ser på deg — og det gjør alt det andre også.",
+      "valg": [
+        {
+          "id": "bruke_timen",
+          "tekst": "Bruke den — timen er din, resten får vente",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 2
+            },
+            "flagg": {
+              "brukte_timen": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Verden sto ikke stille mens du var borte fra den. Den trengte deg bare mindre enn den påsto."
+        },
+        {
+          "id": "gi_den_bort",
+          "tekst": "Gi den bort — noe annet virker viktigere",
+          "tone": "ettergivende",
+          "effekter": {
+            "meters": {
+              "psyke": -2,
+              "synlighet": 1
+            },
+            "flagg": {
+              "ga_bort_timen": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Det andre ble gjort. Timen din står fortsatt ubetalt — og den fører regnskap."
+        }
+      ]
+    },
+    {
+      "id": "d2_ettermiddag_rommet_som_forsvant",
+      "threadId": "dine_egne_timer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "flagg": {
+          "lot_dagen_bestemme": true
+        }
+      },
+      "tittel": "Dagen bestemte — igjen",
+      "tekst": "I går lot du dagen bestemme, og den tok alt den fikk. Nå står du i en ny ettermiddag og kjenner at ingen av timene så langt har vært dine.",
+      "valg": [
+        {
+          "id": "sette_gjerde_naa",
+          "tekst": "Sette gjerde rundt resten av ettermiddagen",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "energi": 1
+            },
+            "flagg": {
+              "satte_gjerde": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Det er sent i dagen, men ikke for sent. Resten av den er din."
+        },
+        {
+          "id": "fortsette_aa_flyte",
+          "tekst": "Fortsette å flyte — det ordner seg vel",
+          "tone": "flytende",
+          "effekter": {
+            "meters": {
+              "energi": 1,
+              "psyke": -1
+            },
+            "flagg": {
+              "fortsatte_aa_flyte": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Dagene som ordner seg selv har en tendens til å ordne seg for alle andre først."
+        }
+      ]
+    },
+    {
+      "id": "d2_ettermiddag_lista_moeter_veggen",
+      "threadId": "dine_egne_timer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "flagg": {
+          "fylte_lista": true
+        }
+      },
+      "tittel": "Lista møter veggen",
+      "tekst": "Lista fra i går er fortsatt ikke ferdig, og den nye dagen har allerede lagt til sitt. Et sted mellom punktene forsvant timene som skulle vært dine.",
+      "valg": [
+        {
+          "id": "stryke_halvparten",
+          "tekst": "Stryke halvparten — det viktigste er ikke alt",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 3
+            },
+            "flagg": {
+              "stroek_halvparten": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Halvparten av lista forsvant, og ingenting raste. Det som ble igjen er faktisk viktig."
+        },
+        {
+          "id": "jobbe_seg_gjennom",
+          "tekst": "Presse deg gjennom alt sammen",
+          "tone": "ambisiøs",
+          "effekter": {
+            "meters": {
+              "synlighet": 2,
+              "energi": -4,
+              "psyke": -1
+            },
+            "flagg": {
+              "presset_gjennom_lista": true
+            },
+            "threads": {
+              "dine_egne_timer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Alt ble krysset av. Prisen står ikke på lista, men kroppen har notert den."
+        }
+      ]
+    },
+    {
+      "id": "d2_formiddag_maten",
+      "threadId": "kroppen_og_kreftene",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "tittel": "Lunsj: hva blir det til?",
+      "tekst": "Midt på dagen melder kroppen seg, uansett hva resten av dagen mener om saken. Spørsmålet er det samme som alltid: hva blir det til?",
+      "valg": [
+        {
+          "id": "lage_av_det_du_har",
+          "tekst": "Lage noe av det du har",
+          "tone": "sparsom",
+          "effekter": {
+            "meters": {
+              "energi": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "laget_mat_selv": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Det ble ikke fancy, men det ble mat — og pengene ble værende der de var."
+        },
+        {
+          "id": "kjoepe_raskt",
+          "tekst": "Kjøpe noe raskt",
+          "tone": "effektiv",
+          "effekter": {
+            "meters": {
+              "penger": -60,
+              "energi": 3
+            },
+            "flagg": {
+              "kjoepte_lunsj": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Raskt og godt, og kontoen merket det. Noen dager er det verdt det."
+        },
+        {
+          "id": "hoppe_over",
+          "tekst": "Hoppe over — du spiser senere",
+          "tone": "utsettende",
+          "effekter": {
+            "meters": {
+              "energi": -4,
+              "psyke": -1
+            },
+            "flagg": {
+              "hoppet_over_lunsj": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Senere har en tendens til å bli mye senere. Kroppen fører regnskap den også."
+        }
+      ]
+    },
+    {
+      "id": "d2_kveld_stille_middag",
+      "threadId": "kroppen_og_kreftene",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "conditions": {
+        "meters": {
+          "psyke": {
+            "max": 55
+          }
+        }
+      },
+      "tittel": "En stille middag hjemme",
+      "tekst": "Kvelden spør ikke om mye. Et måltid, litt varme, ingen som trenger noe av deg på en stund. Det er lov å la det være akkurat så enkelt.",
+      "valg": [
+        {
+          "id": "lage_noe_enkelt",
+          "tekst": "Lage noe enkelt og spise i fred",
+          "tone": "omsorg",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 2
+            },
+            "flagg": {
+              "stille_middag": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Enkel mat, dempet lys, ingen krav. Det var dette kvelden hadde å gi — og det holdt."
+        },
+        {
+          "id": "spise_med_noe_kjent",
+          "tekst": "Spise med noe kjent på — noe du kan utenat",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 1
+            },
+            "flagg": {
+              "spiste_med_noe_kjent": true
+            },
+            "threads": {
+              "kroppen_og_kreftene": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ingen overraskelser, bare selskap som ikke stiller spørsmål. Kjent er også en form for hvile."
+        }
+      ]
+    },
+    {
+      "id": "d2_morgen_ti_minutter_samling",
+      "threadId": "lysten_til_aa_laere",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "privat hendelse",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "conditions": {
+        "profil": {
+          "tags": [
+            "vitenskap",
+            "historie",
+            "litteratur"
+          ]
+        }
+      },
+      "tittel": "Ti minutter med noe du samler på",
+      "tekst": "Samlingen din ligger der fra i går — det du leser, det du kan, det du er i ferd med å forstå. Ti minutter nå, før dagen våkner, er nok til å legge én stein til.",
+      "valg": [
+        {
+          "id": "ta_ti_minuttene",
+          "tekst": "Ta de ti minuttene før dagen begynner",
+          "tone": "bevisst",
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "energi": 1
+            },
+            "flagg": {
+              "tok_ti_minutter_laering": true
+            },
+            "threads": {
+              "lysten_til_aa_laere": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ti minutter er ingenting, mener dagen. Men samlingen din vokste før dagen i det hele tatt våknet."
+        },
+        {
+          "id": "spare_dem",
+          "tekst": "Spare dem — dagen trenger deg først",
+          "tone": "pliktoppfyllende",
+          "effekter": {
+            "meters": {
+              "energi": 1
+            },
+            "flagg": {
+              "sparte_laeringen": true
+            },
+            "threads": {
+              "lysten_til_aa_laere": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Det du samler på ligger der fortsatt. Det venter bedre enn det meste annet gjør."
         }
       ]
     }

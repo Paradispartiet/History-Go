@@ -120,6 +120,15 @@ er bare kandidat hvis alle betingelsene er oppfylt. Toppnøklene er
   grense kreves, `min > max` avvises.
 - **threads**: krever nøyaktig oppgitt trådstatus. Tråd uten threadState
   regnes som `dormant` (ikke startet).
+- **profil**: `{ "tags": ["culture", "natur"] }` — kandidat hvis spilleren
+  har MINST ÉN av taggene fra History GO-profilen (ProfileSignalBridge:
+  engelske temategs som `culture`/`sport`/`nature`/`politics`/`social`/
+  `subculture` + norske domenetags fra samlingen). Broen er async, så
+  `lifestoryShellBridge.refreshProfileSnapshot()` holder et synkront
+  snapshot (`CivicationLifestoryProfileTags`) oppdatert ved `civi:booted`
+  og `updateProfile`. **Uten snapshot fyrer profilgatede scener aldri** —
+  profilinnhold er bonus, og to spillere med samme rolle men ulik History
+  GO-profil får ulikt privatliv.
 
 Validering skjer i `lifestoryContent.js` (kjente nøkler, kjente
 målere/relasjoner/tråder), evaluering i `lifestoryRunner.js`
@@ -393,9 +402,33 @@ Rollefarget tekst hører hjemme i rollens egne scener.
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
-og kveldsro. Gjenstår: flere av de 45 (natur/kultur/trening/politikk-
-temaene), og `profil`-conditions som kobler `ProfileSignalBridge` til
-scenevalg — da får spillere med ulik History GO-profil ulikt privatliv.
+og kveldsro. Batch 2 la til `profil`-conditions i motoren og seks
+profilgatede scener på tråden «Byen og deg» (kulturell omvei, grønt
+kveldslys, banen, lokalmøtet, miljøet, invitasjonen) — privatlivet speiler
+nå History GO-profilen. Batch 3 ga privatlivet et navngitt persongalleri:
+«venn» (Jonas) og «familie» (Søsteren din) finnes i ALLE rollers `personer`
+og `startState.relasjoner` (kontrakten eies av arbeidsledig-testen), de
+delte venne-scenene flytter `relasjoner.venn`, og en ny familiescene
+(«Hilsen hjemmefra», dag 2) flytter `relasjoner.familie` — relasjoner i
+privatlivet beveger seg nå over dager i stedet for å stå stille. Batch 4
+dekket søvn/helse/dagslutt-familien (den siste mailfamilien uten scener):
+ny tråd «Natten og søvnen» med en to-dagers arc — dag 1-nattscenen setter
+alltid `la_deg_i_tide` eller `sen_kveld`, dag 2-morgenen leser natten
+(uthvilt vs tung start), og dag 2-kvelden lukker tråden med refleksjonen
+«Ett øyeblikk før du sovner». I tillegg: energigated ro-scene («Kroppen
+sier fra», energi ≤ 45 — ro-regelen gjelder også lav energi: aldri mer
+press) og en profilgated hvile-scene på `low_energy`/`rest`-taggene.
+Søvn-arc-kontrakten eies av arbeidsledig-testen. Batch 5 fullførte
+mailmigreringen med de siste temaene: ny tråd «Dine egne timer»
+(kalender/rutine — dag 1-morgenscenen setter nøyaktig ett av tre grenflagg,
+og hver gren har sin egen dag 2-ettermiddagsscene som lukker tråden),
+mat-scenene «Lunsj: hva blir det til?» (dag 2, formiddag) og «En stille
+middag hjemme» (dag 2, kveld, psyke ≤ 55 — ro-regelen), og den profilgatede
+morgenscenen «Ti minutter med noe du samler på»
+(vitenskap/historie/litteratur-taggene) på tråden «Lysten til å lære».
+Grenkontrakten (ett flagg per valg, én lukkende gren-scene per flagg) eies
+av arbeidsledig-testen. **Alle de 45 gamle private mailene er nå dekket av
+livsscener.** Gjenstår: dag 3+ (lengre trådbuer).
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp
