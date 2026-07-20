@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T08:30:34.159Z
+Generert: 2026-07-20T12:12:17.365Z
 
 ## Oppsummering
-- Aktive filer validert: **532**
+- Aktive filer validert: **533**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **426**
@@ -550,6 +550,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/brannmuseet_oslo.json
 - data/places/sport/europa/norway/oslo_sport/skoytemuseet.json
 - data/places/by/oslo/places/vikaterrassen.json
+- data/places/by/oslo/places/kampen_okologiske_barnebondegard.json
 
 ## Harde feil
 - Ingen
