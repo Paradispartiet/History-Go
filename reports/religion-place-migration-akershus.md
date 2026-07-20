@@ -4,7 +4,7 @@ Dato: 2026-07-20
 
 ## Resultat
 
-12 kirker og kirkesteder flyttes til primærbadge `religion` gjennom `data/places/category_overrides/akershus.json`.
+13 kirker og kirkesteder flyttes til primærbadge `religion` gjennom `data/places/category_overrides/akershus.json`.
 
 Batchen omfatter:
 
@@ -20,6 +20,9 @@ Batchen omfatter:
 - Sørum kirke
 - Frogner gamle kirke
 - Ullensaker kirke/kirkested
+- Drøbak kirke
+
+Drøbak kirke ble fanget opp i en senere tverrkategori-audit fordi canonical place-data ligger under `by` i stedet for `historie`. Kirken flyttes til Religion, mens ladesteds-, handels- og trelasthistorien beholdes i innholdslagene.
 
 ## Beholdes under Historie
 
@@ -33,4 +36,4 @@ Bygdetun, hovedgårder, boplasser og andre place-records som bare omtaler kirker
 
 ## Prinsipp
 
-Eksisterende kirkebygg og tydelige kirkesteder får Religion. Ruiner og indirekte kirkehistoriske steder beholdes under Historie. Sammensatte steder vurderes etter hva place-objektet først og fremst representerer.
+Eksisterende kirkebygg og tydelige kirkesteder får Religion uansett hvilken eldre fagmappe canonical record ligger i. Ruiner og indirekte kirkehistoriske steder beholdes under Historie. Sammensatte steder vurderes etter hva place-objektet først og fremst representerer.
