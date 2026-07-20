@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 197 verifiserte eller kildekontrollerte canonical steder. Batch 51 legger til Oslo Reptilpark med det entydige Geonorge-punktet for dagens besøksadresse i St. Olavs gate 2, samtidig som åpningen i Storgata i 2002 bevares som et separat historisk lokaliseringslag. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 33.
+Oslo-tabellen inneholder nå 197 verifiserte eller kildekontrollerte canonical steder. Duplikatet `nydalen_industristed` er migrert til `nydalen` uten å opprette et nytt fysisk sted. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 32.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -270,6 +270,8 @@ Duplikatmigrering (2026-07-20): `akerhus_slott` er fjernet som separat fysisk pl
 
 Duplikatmigrering (2026-07-20): `good_game_redaksjon` er fjernet som separat fysisk place fordi Good Game er et redaksjonelt innholdsmiljø inne i canonical `nrk_huset_marienlyst`, ikke et eget dokumentert sted. Story-, people- og Wonderkammer-referanser er beholdt som Good Game-innhold, men eksakte fysiske place-ID-er peker nå på NRK-huset. Den separate Civication-mappingen er fjernet fordi canonical NRK allerede har egen mapping, og legacy-ID-en er lagt til alias-gaten.
 
+Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fysisk place fordi recorden overlapper canonical og koordinatverifiserte `nydalen`. Industristedets dokumenterte works, før–nå, brands, Civication-objekter, kilder, underbadges og Akerselva-naturprofil er slått inn i canonical Nydalen. Quiz-, people-, story-, leksikon-, natur- og rutereferanser er retargetet til canonical place-ID, mens det verifiserte Nydalen-området beholder sitt eksisterende geometrianker.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 197 verifiserte eller kildekontrollerte canonical Oslo-stedene.
@@ -282,7 +284,6 @@ Disse kontrollene er fullført, men teller ikke blant de 197 verifiserte eller k
 | `nybrua_vaterlandsparken` – Nybrua / Vaterlandsparken | needs_review | Recorden kombinerer Nybrua og Vaterlandsparken, to separate fysiske objekter, mens dagens punkt ligger på et tredje objekt. | Splitt recorden eller velg én canonical fysisk identitet før koordinat godkjennes. |
 | `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
 | `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
-| `nydalen_industristed` – Nydalen industristed | needs_review | Fysisk overlapp med canonical `nydalen`. | Modeller som delprofil/relation eller avgrens et separat fysisk objekt. |
 | `seilduksfabrikken_nydalen` – Øvre spinneri | needs_review | Gjerdrums vei 12 er dokumentert, men Geonorge gir flere ikke-entydige treff. | Finn eksakt bygningsgeometri eller dokumenter ett konkret adressepunkt. |
 | `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
 | `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |
