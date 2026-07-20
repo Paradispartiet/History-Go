@@ -106,13 +106,16 @@ const auditById = new Map<string, Obj>();
 const duplicateActivePlaceIds = [...generatorActive.entries()].filter(([, v]) => v.length > 1).length;
 let staleSplitManifestRows = 0;
 let splitRowsMissingFromAggregate = 0;
+let aggregateRowsMissingFromSplitManifest = 0;
 let movedPlacesStillActiveInOldCategory = 0;
 const touchedIds = new Set<string>();
 
 for (const rec of records) {
   if (!rec.splitManifestPath) continue;
   const aggregateIds = new Set(rec.aggregatePlaces.map((p) => p.id).filter(Boolean));
+  const splitIds = new Set(rec.splitRows.map((row) => String(row.id || '').trim()).filter(Boolean));
   const oldCategory = categoryFromDataRel(rec.manifestEntry);
+
   for (const row of rec.splitRows) {
     const id = String(row.id || '').trim();
     if (!id) continue;
@@ -138,10 +141,31 @@ for (const rec of records) {
       });
     }
   }
+
   for (const place of rec.aggregatePlaces) {
     const id = String(place.id || '').trim();
     if (!id) continue;
     const canonical = canonicalFor(id, rec.manifestEntry, oldCategory);
+    const missingFromSplit = !splitIds.has(id);
+
+    if (missingFromSplit) {
+      aggregateRowsMissingFromSplitManifest += 1;
+      if (!canonical) {
+        auditById.set(id, {
+          placeId: id,
+          oldAggregate: rec.manifestEntry,
+          oldSplitChild: null,
+          oldSplitManifestEntry: rel(rec.splitManifestPath),
+          newCanonicalFile: null,
+          oldCategory,
+          newCategory: null,
+          activeSourceInGenerator: (generatorActive.get(id) || []).map((s) => s.sourceFile),
+          activeSourceInHealthPlaces: (healthActive.get(id) || []).map((s) => s.sourceFile),
+          recommendedAction: 'add the active aggregate record to the sibling split manifest/index and create or restore its split child; do not delete the aggregate record'
+        });
+      }
+    }
+
     if (canonical) {
       movedPlacesStillActiveInOldCategory += 1;
       auditById.set(id, {
@@ -160,7 +184,13 @@ for (const rec of records) {
   }
 }
 
-const before = { duplicateActivePlaceIds, staleSplitManifestRows, splitRowsMissingFromAggregate, movedPlacesStillActiveInOldCategory };
+const before = {
+  duplicateActivePlaceIds,
+  staleSplitManifestRows,
+  splitRowsMissingFromAggregate,
+  aggregateRowsMissingFromSplitManifest,
+  movedPlacesStillActiveInOldCategory
+};
 fs.mkdirSync(path.dirname(AUDIT_PATH), { recursive: true });
 if (auditById.size > 0 || !exists(AUDIT_PATH)) {
   writeJson(AUDIT_PATH, { generatedAt: new Date().toISOString(), before, places: [...auditById.values()].sort((a,b)=>a.placeId.localeCompare(b.placeId)) });
@@ -236,6 +266,10 @@ if (WRITE) {
 }
 
 const counts = WRITE ? undefined : before;
-const out = { status: before.duplicateActivePlaceIds || before.staleSplitManifestRows || before.splitRowsMissingFromAggregate || before.movedPlacesStillActiveInOldCategory ? 'failed' : 'passed', counts: before, auditReport: rel(AUDIT_PATH) };
+const out = {
+  status: before.duplicateActivePlaceIds || before.staleSplitManifestRows || before.splitRowsMissingFromAggregate || before.aggregateRowsMissingFromSplitManifest || before.movedPlacesStillActiveInOldCategory ? 'failed' : 'passed',
+  counts: before,
+  auditReport: rel(AUDIT_PATH)
+};
 console.log(JSON.stringify(out, null, 2));
 if (!WRITE && out.status !== 'passed') process.exit(1);
