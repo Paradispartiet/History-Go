@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "clemenskirken_ruin_oslo",
+  "placeFile": "data/places/historie/oslo/places_historie/clemenskirken_ruin_oslo.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90428439003058,
+    "lon": 10.765667038454175,
+    "r": 70,
+    "coordStatus": "verified_geometry",
+    "coordSource": "kulturminnesok_askeladden",
+    "coordType": "heritage_site_centroid",
+    "coordNote": "Geometrisk representasjonspunkt beregnet fra Riksantikvarens offisielle MultiPolygon-geometri for Clemenskirken kirkested, Kulturminne-ID 51949. Punktet representerer den konkrete kirke-/ruinlokaliteten og ikke Middelalderparken som helhet."
+  },
+  "identity": {
+    "currentName": "Clemenskirkeruinen",
+    "resolvedIdentity": "Riksantikvaren feature 51949, Clemenskirken kirkested in medieval Oslo, the concrete church-ruin locality itself",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "direkte offisielt objektoppslag for Riksantikvaren feature 51949",
+    "Oslo kommune 0301 og Clemenskirken-identitet",
+    "eksplisitt skille fra middelalder_oslo, mariakirken_ruin_oslo og hallvardskirken_oslo"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceName": "Riksantikvaren – Lokaliteter, Enkeltminner og Sikringssoner OGC API",
+      "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/lokaliteter/items/51949?f=json",
+      "sourceObjectId": "kulturminnesok:51949",
+      "sourceQuality": "official_heritage_object_geometry",
+      "finding": "Direkte Riksantikvaren-oppslag gir feature 51949, Clemenskirken kirkested i Oslo kommune 0301, med offisiell MultiPolygon-geometri og Kulturminnesøk-lokalitet 51949.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometrisk representasjonspunkt beregnet fra Riksantikvarens offisielle MultiPolygon-geometri for Clemenskirken kirkested, Kulturminne-ID 51949. Punktet representerer den konkrete kirke-/ruinlokaliteten og ikke Middelalderparken som helhet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceObjectId": "kulturminnesok:51949",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "official_heritage_registry",
+      "sourceObjectId": "riksantikvaren-feature:51949",
+      "geometryType": "MultiPolygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90428439003058,
+      "lon": 10.765667038454175,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the geometric center of official Riksantikvaren feature 51949 as the site representation point for Clemenskirken ruin."
+  },
+  "notes": [
+    "Geometrisk representasjonspunkt beregnet fra Riksantikvarens offisielle MultiPolygon-geometri for Clemenskirken kirkested, Kulturminne-ID 51949. Punktet representerer den konkrete kirke-/ruinlokaliteten og ikke Middelalderparken som helhet."
+  ]
+}

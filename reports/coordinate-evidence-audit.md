@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T20:37:19.695Z
+Generert: 2026-07-20T20:44:40.700Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -214,3 +214,4 @@ Generert: 2026-07-20T20:37:19.695Z
 | valerenga_kirke | data/coordinate-evidence/oslo/historie/valerenga_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunsthall_oslo | data/coordinate-evidence/oslo/kunst/kunsthall_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | mariakirken_ruin_oslo | data/coordinate-evidence/oslo/historie/mariakirken_ruin_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| clemenskirken_ruin_oslo | data/coordinate-evidence/oslo/historie/clemenskirken_ruin_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
