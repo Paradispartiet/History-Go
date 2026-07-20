@@ -9,6 +9,18 @@ interface Window {
   };
 }
 
+// Legacy map runtime uses one bounded expando on its resize container. Keeping
+// that contract explicit is safer than falling back to an untyped cast in map.ts.
+interface HTMLElement {
+  __hgResizeBound?: boolean;
+}
+
+// Event delegation in the legacy runtime receives a generic Element from
+// closest(). In this UI all matching targets are HTML/SVG elements with dataset.
+interface Element {
+  readonly dataset: DOMStringMap;
+}
+
 interface MapLibreGlobal {
   Map: new (options: Record<string, unknown>) => MapLibreMapRuntime;
   NavigationControl: new (options?: Record<string, unknown>) => unknown;
