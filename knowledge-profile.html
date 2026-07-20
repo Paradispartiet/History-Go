@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="nb" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Detaljert kunnskapsprofil | History Go</title>
+
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/knowledge.css">
+  <style>
+    .knowledge-profile-switch { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:14px; }
+    .knowledge-profile-switch a { display:inline-flex; align-items:center; min-height:38px; padding:8px 12px; border:1px solid rgba(255,255,255,.28); border-radius:10px; color:inherit; text-decoration:none; }
+  </style>
+</head>
+<body class="knowledge-page">
+  <header class="knowledge-header">
+    <a class="back-link" href="profile.html">← Tilbake til profil</a>
+    <img src="bilder/logo_historygo.PNG" class="knowledge-logo" alt="History Go">
+    <h1>Din detaljerte kunnskapsprofil</h1>
+    <p>Den opprinnelige Knowledge-visningen fra profilen: begreper, kunnskapspunkter, dimensjoner, emnedekning og faglige styrker samlet på ett sted.</p>
+    <nav class="knowledge-profile-switch" aria-label="Kunnskapsvisninger">
+      <a href="knowledge.html">Ny kunnskapsoversikt</a>
+      <a href="profile.html">Profil</a>
+    </nav>
+  </header>
+
+  <section class="know-block">
+    <h2>Oversikt</h2>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Kunnskapspunkter</div><div class="stat-value" id="statTotalPoints">–</div><div class="stat-detail" id="statTotalPointsDetail"></div></div>
+      <div class="stat-card"><div class="stat-label">Felt (merker)</div><div class="stat-value" id="statCategories">–</div><div class="stat-detail">Aktive kunnskapsfelt du har vært innom.</div></div>
+      <div class="stat-card"><div class="stat-label">Dimensjoner</div><div class="stat-value" id="statDimensions">–</div><div class="stat-detail">Historiske, sosiale, materielle og andre faglige perspektiver.</div></div>
+      <div class="stat-card"><div class="stat-label">Sterkeste felt</div><div class="stat-value" id="statTopCategory">–</div><div class="stat-detail" id="statTopCategoryDetail"></div></div>
+      <div class="stat-card"><div class="stat-label">Sterkeste dimensjon</div><div class="stat-value" id="statTopDimension">–</div><div class="stat-detail" id="statTopDimensionDetail"></div></div>
+    </div>
+  </section>
+
+  <section class="know-block">
+    <h2>Dine begreper</h2>
+    <p class="muted">De mest brukte begrepene dine på tvers av alle merker viser hvilket faglig språk du faktisk bygger opp.</p>
+    <div id="conceptCloud"></div>
+  </section>
+
+  <section class="know-block">
+    <h2>Emne-dekning på tvers av felt</h2>
+    <p class="muted">Her ser du hvordan begrepene dine dekker de definerte emnene i History Go, og hvilke emner du er nær ved å dekke bedre.</p>
+    <div id="emneDekningSection" class="emne-dekning"></div>
+    <div id="emneSuggestions" class="emne-suggestions"></div>
+  </section>
+
+  <section class="knowledge-filters">
+    <h2>Utforsk kunnskapspunktene dine</h2>
+    <p class="muted">Filtrer etter felt/merke og faglig dimensjon for å se de konkrete kunnskapspunktene.</p>
+    <div class="knowledge-filters-row">
+      <label>Felt: <select id="filterCategory"><option value="">Alle felt</option></select></label>
+      <label>Dimensjon: <select id="filterDimension"><option value="">Alle dimensjoner</option></select></label>
+    </div>
+  </section>
+
+  <main id="knowledgeContainer"></main>
+
+  <script src="dist/web/knowledge.js"></script>
+  <script src="dist/web/hgInsights.js"></script>
+  <script src="js/dataHub.js"></script>
+  <script src="js/DomainRegistry.js"></script>
+  <script src="dist/web/emnerLoader.js"></script>
+  <script src="dist/web/emneDekning.js"></script>
+  <script src="js/knowledgeProfileLegacy.js"></script>
+</body>
+</html>
