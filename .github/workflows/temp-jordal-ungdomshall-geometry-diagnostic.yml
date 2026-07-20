@@ -1,0 +1,104 @@
+name: Temporary Jordal ungdomshall geometry diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.head_ref == 'data/oslo-jordal-ungdomshall-geometry-intake'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out intake branch
+        uses: actions/checkout@v4
+        with:
+          ref: data/oslo-jordal-ungdomshall-geometry-intake
+          fetch-depth: 0
+
+      - name: Query all nearby named buildings and ice facilities
+        shell: bash
+        run: |
+          set -euo pipefail
+          REPORTDIR="reports/geonorge-address-jordal-ungdomshall-20260720/geometry-resolution"
+          mkdir -p "$REPORTDIR"
+
+          cat > /tmp/jordal-candidates.ql <<'EOF'
+          [out:json][timeout:60];
+          (
+            nwr["name"](59.907,10.779,59.914,10.790);
+            nwr["leisure"="ice_rink"](59.907,10.779,59.914,10.790);
+            nwr["building"="sports_hall"](59.907,10.779,59.914,10.790);
+            nwr["sport"="ice_hockey"](59.907,10.779,59.914,10.790);
+            nwr["sport"="ice_skating"](59.907,10.779,59.914,10.790);
+          );
+          out center tags geom;
+          EOF
+
+          curl -fsSL \
+            -A "History-Go coordinate audit/1.0" \
+            --data-urlencode "data@/tmp/jordal-candidates.ql" \
+            "https://overpass-api.de/api/interpreter" \
+            | tee "$REPORTDIR/overpass-jordal-all-candidates.json"
+
+      - name: Build candidate inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+
+          reportdir = Path('reports/geonorge-address-jordal-ungdomshall-20260720/geometry-resolution')
+          over = json.loads((reportdir / 'overpass-jordal-all-candidates.json').read_text())
+
+          # Reference anchors are only for candidate ordering, not automatic identity approval.
+          ref_lat, ref_lon = 59.9106, 10.7838
+          def haversine(lat1, lon1, lat2, lon2):
+              R=6371000
+              p1,p2=math.radians(lat1),math.radians(lat2)
+              dp=math.radians(lat2-lat1); dl=math.radians(lon2-lon1)
+              a=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2*R*math.asin(math.sqrt(a))
+
+          rows=[]
+          for e in over.get('elements',[]):
+              tags=e.get('tags',{})
+              if 'center' in e:
+                  lat,lon=e['center']['lat'],e['center']['lon']
+              else:
+                  lat,lon=e.get('lat'),e.get('lon')
+              if lat is None or lon is None: continue
+              rows.append({
+                  'osmType':e.get('type'),
+                  'osmId':e.get('id'),
+                  'lat':lat,'lon':lon,
+                  'distanceFromJordalReferenceMeters':round(haversine(ref_lat,ref_lon,lat,lon),1),
+                  'geometryPointCount':len(e.get('geometry',[]) or []),
+                  'tags':tags
+              })
+          rows.sort(key=lambda x:x['distanceFromJordalReferenceMeters'])
+          inventory={
+              'purpose':'Manual building-identity resolution for Jordal ungdomshall after shared-address and exact-name lookup were inconclusive.',
+              'approvalRule':'Do not approve by proximity alone. Identify the youth hall by explicit object tags or by spatial relationship to independently identified Jordal Amfi and Jordal idrettshall plus authoritative facility documentation.',
+              'candidateCount':len(rows),
+              'candidates':rows
+          }
+          (reportdir/'candidate-inventory.json').write_text(json.dumps(inventory,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(inventory,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Persist diagnostic results
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-jordal-ungdomshall-geometry-intake.yml
+          rm -f .github/workflows/temp-jordal-ungdomshall-geometry-diagnostic.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Record Jordal sports-complex geometry candidates"
+          git push origin HEAD:data/oslo-jordal-ungdomshall-geometry-intake
