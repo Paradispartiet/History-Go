@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kunsthall_oslo",
+  "placeFile": "data/places/kunst/oslo/places_kunst/kunsthall_oslo.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91113787529822,
+    "lon": 10.778385870870046,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kjølberggata 21, OSLO, source object geonorge-adresser-v1:0301:13764:21. Punktet brukes som display- og unlock-anker for Kunsthall Oslos nåværende gallerirom på Factory Tøyen. Det representerer ikke institusjonens tidligere lokaler i Bjørvika eller Tøyen som bydel."
+  },
+  "identity": {
+    "currentName": "Kunsthall Oslo",
+    "resolvedIdentity": "Kunsthall Oslo, nåværende gallerirom på Factory Tøyen, Kjølberggata 21",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for dagens venue",
+    "institusjonens egen nåværende adresse og venue-identitet",
+    "eksplisitt skille mellom dagens Tøyen-lokale og tidligere Bjørvika-adresse",
+    "duplikat- og fysisk overlap-kontroll mot eksisterende Tøyen-places"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kj%C3%B8lberggata%2021%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13764:21",
+      "sourceQuality": "official_address_plus_current_institution_identity",
+      "finding": "Geonorge returnerer ett entydig adressepunkt for Kjølberggata 21. Kunsthall Oslos egen nåværende side identifiserer samme adresse som dagens galleri på Factory Tøyen; den eldre Rostockgata-adressen behandles som tidligere lokasjon.",
+      "canVerifyCoordinate": true,
+      "reason": "Det offisielle adressepunktet er et stabilt anker for institusjonens nåværende fysiske besøkssted."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kjølberggata 21 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13764:21",
+      "lat": 59.91113787529822,
+      "lon": 10.778385870870046,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13764:21",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91113787529822,
+      "lon": 10.778385870870046,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, dagens venue-identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Kunsthall Oslo er én institusjon med flere historiske lokasjoner; bare dagens venue på Factory Tøyen produseres som aktiv canonical marker.",
+    "Rostockgata 2–4 bevares som tidligere lokasjonslag og brukes ikke som aktiv koordinat."
+  ]
+}
