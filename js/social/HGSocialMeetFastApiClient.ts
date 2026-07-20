@@ -113,12 +113,19 @@ function readConfig(): FastApiConfig {
 
 async function getAccessToken(): Promise<ApiResult<string>> {
   const resolved = win.HG_SocialMeetSupabaseClient?.getClient?.();
-  if (!resolved?.ok) {
+  if (resolved == null) {
     return {
       ok: false,
       status: 401,
-      reason: resolved?.reason || "supabase_auth_unavailable",
-      detail: resolved?.config
+      reason: "supabase_auth_unavailable"
+    };
+  }
+  if (resolved.ok === false) {
+    return {
+      ok: false,
+      status: 401,
+      reason: resolved.reason || "supabase_auth_unavailable",
+      detail: resolved.config
     };
   }
 
@@ -164,7 +171,14 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<ApiResu
   }
 
   const tokenResult = await getAccessToken();
-  if (!tokenResult.ok) return tokenResult;
+  if (tokenResult.ok === false) {
+    return {
+      ok: false,
+      status: tokenResult.status,
+      reason: tokenResult.reason,
+      detail: tokenResult.detail
+    };
+  }
 
   const headers = new Headers(init.headers);
   headers.set("Authorization", `Bearer ${tokenResult.data}`);
