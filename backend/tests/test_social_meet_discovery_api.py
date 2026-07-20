@@ -56,9 +56,7 @@ class StubDiscoveryService:
                         preferred_themes=["history"],
                         favorite_eras=["medieval"],
                         learning_goals=["architecture"],
-                        knowledge_fingerprint_summary=KnowledgeFingerprint(
-                            theme_tags=["history"]
-                        ),
+                        knowledge_fingerprint_summary=KnowledgeFingerprint(theme_tags=["history"]),
                         profile_updated_at=NOW,
                     ),
                     match_reasons=[DiscoveryMatchReason.CONTEXT_THEME],
