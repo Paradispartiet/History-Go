@@ -185,16 +185,6 @@ jobs:
             echo 'Root legacy typecheck is fully green.'
           fi
 
-      - name: Upload legacy TypeScript diagnostics
-        if: failure() && github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: legacy-typescript-diagnostics-${{ github.run_id }}
-          path: |
-            ${{ runner.temp }}/typecheck-new.normalized
-            ${{ runner.temp }}/typecheck-target.log
-          if-no-files-found: warn
-
       # On main/manual runs this is observational. Modern TypeScript/build gates above remain mandatory.
       - name: Observe root legacy TypeScript baseline
         if: github.event_name != 'pull_request'
