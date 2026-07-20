@@ -3277,6 +3277,95 @@
           "konsekvensTekst": "Uka blir kjedeligere og billigere. Det holder unna presset — en stund."
         }
       ]
+    },
+    {
+      "id": "jobb_01_du_har_jobb_naa",
+      "threadId": "tviler_paa_jobben",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 3,
+      "conditions": {
+        "shell": {
+          "harJobb": true
+        }
+      },
+      "tittel": "Du har en jobb å gå til nå",
+      "tekst": "Det slår deg først i kveld: du har en jobb. Ikke søknader og venting, men et sted som forventer deg i morgen. Dagene har fått en fast form — og det gir både trygghet og noe å leve opp til.",
+      "valg": [
+        {
+          "id": "kjenne_paa_tryggheten",
+          "tekst": "Kjenne på tryggheten — du har landet noe",
+          "tone": "takknemlig",
+          "livsstil": [
+            "security"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 4,
+              "integritet": 1
+            },
+            "flagg": {
+              "kjente_paa_jobbtryggheten": true
+            },
+            "threads": {
+              "tviler_paa_jobben": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Etter en tid uten fast grunn under føttene er en jobb mer enn lønn — det er en rytme å høre til i. Du sovner lettere."
+        },
+        {
+          "id": "se_neste_steg",
+          "tekst": "Se på hva neste steg kan bli i karrieren",
+          "tone": "framoverlent",
+          "handling": {
+            "type": "aapne_karriere"
+          },
+          "livsstil": [
+            "status",
+            "process"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 2,
+              "synlighet": 2
+            },
+            "flagg": {
+              "saa_paa_karrierevei": true
+            },
+            "threads": {
+              "tviler_paa_jobben": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Karrierepanelet viser hvor dette kan føre — og hvilke merker som låser opp neste nivå. Du har allerede tatt det vanskeligste steget: det første."
+        },
+        {
+          "id": "bare_puste_ut",
+          "tekst": "Bare puste ut — i kveld holder det å ha jobb",
+          "tone": "rolig",
+          "effekter": {
+            "meters": {
+              "psyke": 3,
+              "energi": 2
+            },
+            "flagg": {
+              "pustet_ut_med_jobb": true
+            },
+            "threads": {
+              "tviler_paa_jobben": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Ingen planer, ingen neste steg i kveld. Bare en kveld der du faktisk har et sted å gå i morgen. Det er nok."
+        }
+      ]
     }
   ]
 }

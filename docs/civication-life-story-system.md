@@ -479,6 +479,14 @@ dag 3) fyrer kun når skallets `getRentPressure().score >= 50` — med handlings
 som åpner nabolagsvalget (flytte billigere) eller karrierepanelet (mer inntekt).
 Ny shell-nøkkel: `harHusleiepress`.
 
+Batch 12 tok i bruk den siste ubrukte shell-nøkkelen, `harJobb`, til å lukke
+den sentrale kontrakten (arbeidsledig → quiz → jobb): scenen
+`jobb_01_du_har_jobb_naa` (dag 1 kveld, på tråden «Hvor står du i
+arbeidslivet?») fyrer kun når skallet melder en aktiv stilling, og
+anerkjenner øyeblikket «du har en jobb å gå til nå» — med et valg som åpner
+karrierepanelet (neste steg). Den fyrer aldri for arbeidsledig (`harJobb` er
+per definisjon `false` der) eller uten snapshot.
+
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene

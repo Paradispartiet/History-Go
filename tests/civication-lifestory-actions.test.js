@@ -99,6 +99,36 @@ assert.throws(() => {
   delete globalThis.CivicationLifestoryShellState;
 }
 
+// --- 3c. harJobb-payoff: anerkjenner jobb KUN når skallet har aktiv stilling ---
+// Lukker den sentrale kontrakten (arbeidsledig -> quiz -> jobb). Fyrer for
+// en jobbrolle-spiller med aktiv stilling, aldri for arbeidsledig (harJobb
+// er per definisjon false) og aldri uten snapshot.
+{
+  // Bygg en jobbrolle (renholder) — arbeidsledig kan aldri ha harJobb=true.
+  const jobb = manifest.roles.renholder;
+  const jobbContent = Content.buildContent({
+    role: readJson(jobb.role),
+    phaseDefinitions: readJson(manifest.shared.phaseDefinitions),
+    roleThreads: readJson(jobb.threads),
+    roleScenes: readJson(jobb.scenes),
+    lifeThreads: readJson(manifest.life.threads),
+    lifeScenes: readJson(manifest.life.scenes)
+  });
+  const jobbState = State.createInitialState(jobbContent);
+  jobbState.fase = "kveld";
+
+  delete globalThis.CivicationLifestoryShellState;
+  assert.ok(!Runner.getCandidateScenes(jobbState, jobbContent).some((s) => s.id === "jobb_01_du_har_jobb_naa"),
+    "uten snapshot skal jobb-payoffen ALDRI fyre");
+  globalThis.CivicationLifestoryShellState = { harBosted: true, harJobb: true, harHusleiepress: false };
+  assert.ok(Runner.getCandidateScenes(jobbState, jobbContent).some((s) => s.id === "jobb_01_du_har_jobb_naa"),
+    "med aktiv stilling får jobbrollen payoff-øyeblikket");
+  globalThis.CivicationLifestoryShellState = { harBosted: true, harJobb: false, harHusleiepress: false };
+  assert.ok(!Runner.getCandidateScenes(jobbState, jobbContent).some((s) => s.id === "jobb_01_du_har_jobb_naa"),
+    "uten aktiv stilling skal payoffen ikke fyre");
+  delete globalThis.CivicationLifestoryShellState;
+}
+
 // --- 3. Bosted-scenen fyrer KUN når skallet sier at bosted mangler ---
 const g = globalThis;
 function bostedKandidater(state) {
