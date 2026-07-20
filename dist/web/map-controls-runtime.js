@@ -38,9 +38,9 @@
     filter.className = "hg-map-category-filter";
     filter.innerHTML = `
     <button class="hg-map-category-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="hgMapCategoryOptions">
-      <span class="hg-map-category-trigger-icon" aria-hidden="true">🌍</span>
+      <span class="hg-map-category-trigger-icon" aria-hidden="true">\u{1F30D}</span>
       <span class="hg-map-category-trigger-label">Alle prikker</span>
-      <span class="hg-map-category-trigger-caret" aria-hidden="true">⌄</span>
+      <span class="hg-map-category-trigger-caret" aria-hidden="true">\u2304</span>
     </button>
     <div id="hgMapCategoryOptions" class="hg-map-category-options" role="menu" aria-label="Filtrer kartprikker etter kategori" hidden></div>`;
     return filter;
@@ -61,7 +61,7 @@
     const center = createIconButton(
       "btnCenter",
       "hg-map-utility-btn hg-map-center-btn",
-      "Sentrer kartet på posisjonen din",
+      "Sentrer kartet p\xE5 posisjonen din",
       "Sentrer",
       `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5.2"></circle><path d="M12 2.6v3M12 18.4v3M2.6 12h3M18.4 12h3"></path></svg>`
     );
@@ -97,12 +97,12 @@
   }
   function categoryMeta(categoryId) {
     if (categoryId === ALL) {
-      return { id: ALL, name: "Alle prikker", icon: "🌍", color: "#60758a" };
+      return { id: ALL, name: "Alle prikker", icon: "\u{1F30D}", color: "#60758a" };
     }
     return categories().find((category) => String(category.id || "") === categoryId) || {
       id: categoryId,
       name: categoryId,
-      icon: "•",
+      icon: "\u2022",
       color: "#60758a"
     };
   }
@@ -115,13 +115,13 @@
     const options = document.getElementById("hgMapCategoryOptions");
     if (!trigger || !icon || !label || !options) return;
     const active = categoryMeta(activeCategory);
-    icon.textContent = active.icon || "•";
+    icon.textContent = active.icon || "\u2022";
     label.textContent = active.name || active.id;
     trigger.title = activeCategory === ALL ? "Viser alle kategorier" : `Viser bare ${active.name || active.id}`;
     options.innerHTML = [categoryMeta(ALL), ...categories()].map((category) => {
       const id = String(category.id || ALL);
       const selected = id === activeCategory;
-      return `<button class="hg-map-category-option${selected ? " is-active" : ""}" type="button" role="menuitemradio" aria-checked="${selected}" data-map-category="${escapeHtml(id)}" style="--hg-cat-color:${escapeHtml(category.color || "#60758a")}"><span class="hg-map-category-option-icon" aria-hidden="true">${escapeHtml(category.icon || "•")}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">✓</span></button>`;
+      return `<button class="hg-map-category-option${selected ? " is-active" : ""}" type="button" role="menuitemradio" aria-checked="${selected}" data-map-category="${escapeHtml(id)}" style="--hg-cat-color:${escapeHtml(category.color || "#60758a")}"><span class="hg-map-category-option-icon" aria-hidden="true">${escapeHtml(category.icon || "\u2022")}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
     }).join("");
   }
   function installFilterHook() {
