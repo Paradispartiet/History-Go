@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T00:15:15.786Z
+Generert: 2026-07-20T00:21:20.247Z
 
 ## Oppsummering
 - Aktive filer validert: **504**
 - Antall steder validert: **1215**
 - Harde feil: **0**
-- Varsler: **428**
-- Coordinate review candidates: **711** signaler fordelt på **568** steder
+- Varsler: **429**
+- Coordinate review candidates: **712** signaler fordelt på **569** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -748,6 +748,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/litteratur/oslo/places_litteratur.json#deichman_grunerlokka: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#kulturkirken_jakob_litteratur: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#ruth_maier_minne: coordStatus=verified uten coordPrecisionM
+- data/places/litteratur/oslo/places_litteratur.json#inger_hagerups_plass: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#vg_huset: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#nrk_huset_marienlyst: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#klassekampen_redaksjon: coordStatus=verified uten coordPrecisionM
@@ -958,13 +959,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 712 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 109 |
+| coordStatus=verified uten coordPrecisionM | 110 |
 | lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 99 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 90 |
@@ -974,7 +975,7 @@ Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 15 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (109)
+### coordStatus=verified uten coordPrecisionM (110)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1007,6 +1008,7 @@ Totalt 711 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | deichman_grunerlokka | Deichman Grünerløkka | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.920789784433865 | 10.760221823170998 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kulturkirken_jakob_litteratur | Kulturkirken Jakob | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9180329772343 | 10.754119014784367 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | ruth_maier_minne | Ruth Maier-minnesmerke | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.922730001268235 | 10.737930723902437 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| inger_hagerups_plass | Inger Hagerups plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9221744 | 10.853756 | 130 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vg_huset | VG-huset | media | data/places/media/oslo/places_oslo_media.json | 59.91512243824226 | 10.743666267309775 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nrk_huset_marienlyst | NRK-huset på Marienlyst | media | data/places/media/oslo/places_oslo_media.json | 59.934722555717045 | 10.719662425687908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | klassekampen_redaksjon | Klassekampen-redaksjonen | media | data/places/media/oslo/places_oslo_media.json | 59.91335273517942 | 10.759577592129606 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |

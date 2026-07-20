@@ -2,11 +2,11 @@
 
 Dato: 2026-07-20
 
-Batchen gjenåpner fire konkrete needs_review-saker. Adressepunkter brukes ikke som proxy når recorden representerer et monument, en plass, et skolebygg eller et sammensatt historisk anlegg.
+Batchen gjenåpner fire konkrete needs_review-saker med objekt-type-først-metoden. Konkrete adresser som tidligere ga tvetydige Geonorge-resultater får bare objektfallback når fysisk identitet er eksplisitt dokumentert.
 
 - `sigrid_undset_statue` → **needs_review beholdt** (no_exact_named_object); ingen koordinat er gjettet.
-- `inger_hagerups_plass` → **needs_review beholdt** (no_exact_named_object); ingen koordinat er gjettet.
-- `hartvig_nissens_skole_skam` → **needs_review beholdt** (no_unique_preferred_object); ingen koordinat er gjettet.
-- `prinds_christian_augusts_minde` → **applied** via osm-way:112236667; canonical kildekontrakt og evidens er oppdatert.
+- `inger_hagerups_plass` → **verified/appplied**; canonical place, split child, evidence and indexes are synchronized.
+- `hartvig_nissens_skole_skam` → **verified/appplied**; canonical place, split child, evidence and indexes are synchronized.
+- `prinds_christian_augusts_minde` → **verified/appplied**; canonical place, split child, evidence and indexes are synchronized.
 
-Alle Nominatim-svar er lagret i `nominatim-results/` i samme kjøring. Bare ett entydig navngitt fysisk objekt etter objekttypefiltrering kan bli anvendt.
+Rå Nominatim-resultater fra første pass er lagret i `nominatim-results/`. Andre pass bruker kun eksplisitte, allerede dokumenterte kildeobjekter: Lokalhistoriewikis kildekoordinat kryssjekket mot Oslo byleksikon/Oslo bykart for Inger Hagerups plass, og det eksakte navngitte OSM-skoleobjektet med Oslo kommune som operator for Hartvig Nissens skole.

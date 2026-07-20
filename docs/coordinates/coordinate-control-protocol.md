@@ -1,6 +1,6 @@
 # Protokoll for koordinatkontroll
 
-Sist oppdatert: 2026-07-19
+Sist oppdatert: 2026-07-20
 
 Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det viser hvilke steder som faktisk er kontrollert, hvilken status som er godtatt, og hvilket stabilt kildeobjekt som støtter avgjørelsen. Protokollen utfyller koordinatkontrakten og evidensfilene; den erstatter dem ikke.
 
@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical steder. Batch 35 fullfører Akerselva-ruten: Vaterland – historisk elveløp får et dokumentert historisk linjeanker ved Vaterlands bru, mens Akerselvas utløp i Bjørvika flyttes fra et feilplassert manuelt punkt ved Karl Johans gate til endepunktet på den navngitte nederste Akerselva-geometrien. Antallet fullførte kontroller uten godkjent Oslo-koordinat forblir 49.
+Oslo-tabellen inneholder nå 168 verifiserte eller kildekontrollerte canonical steder. Batch 36 gjenåpner konkrete needs_review-saker med objekt-type-først-metoden og promoterer bare eksplisitt kildebelagte koordinater eller entydige fysiske objektankre. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 46.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -188,6 +188,8 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 35 | `vaterland_historisk_elvelop` | Vaterland – historisk elveløp | verified_historical_source | `oslobyleksikon:akerselva:vaterlands-bru` |
 | 35 | `akerselva_utlop_bjorvika` | Akerselvas utløp mot fjorden (Bjørvika) | verified_geometry | `osm-way:246047712` |
 | 36 | `prinds_christian_augusts_minde` | Prinds Christian Augusts Minde | verified_historical_source | `prindsen:official-documentation` |
+| 36 | `hartvig_nissens_skole_skam` | Hartvig Nissens skole (SKAM) | verified_geometry | `osm-node:325636287` |
+| 36 | `inger_hagerups_plass` | Inger Hagerups plass | verified | `lokalhistoriewiki:inger-hagerups-plass` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -224,14 +226,12 @@ Disse kontrollene er fullført, men teller ikke blant de 165 verifiserte eller k
 | `hellerud_gard` – Hellerud gård | needs_review | Hellerud-navnet dekker flere historiske gårdsbruk. Det entydige Haugerudtunet 1 gjelder separate Østre Haugerud gård og kan ikke brukes som automatisk erstatning for den uklare Hellerud-recorden. | Avklar hvilken Hellerud-gård recorden representerer og dokumenter fysisk hovedanker før koordinaten godkjennes. |
 | `norli_universitetsgata` – Norli Universitetsgata | needs_review | Norli oppgir Universitetsgata 22–24. Intervallsøket gir ikke ett Geonorge-treff, mens 22 og 24 gir hvert sitt separate entydige adressepunkt. | Krever dokumentert hovedinngang eller annen kilde som velger ett konkret adresseanker; ikke velg 22 eller 24 vilkårlig. |
 | `sigrid_undset_statue` – Sigrid Undset-skulpturen | needs_review | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
-| `inger_hagerups_plass` – Inger Hagerups plass | needs_review | Oslo byleksikon identifiserer plassen som snuplassen i enden av Hagapynten og navn fra 1999, men gir ikke ett adressepunkt eller offisiell plassgeometri. | Hent offisiell plassgeometri eller et eksplisitt dokumentert representativt anker. |
 | `alf_proysen_statue_nittedal` – Alf Prøysen-monumentet ved Kulturverket Flammen | needs_review; moved to Akershus/Nittedal | Recorden lå feilaktig i Oslo-kilden. Kulturverket Flammen er dokumentert på Borghild Ruds vei 3 og kommunens kunstdatabase plasserer monumentet utenfor nedre inngang, men Geonorge-adressepunktet er ikke selve sokkelen. | Finn eksakt monument-/sokkelpunkt; behold Flammen-adressen kun som foreløpig host/site-anchor. |
 | Frysja 33 / Brekke kraftstasjon | needs_review | Korrekt adresse er Kjelsåsveien 151, men Geonorge gir både 151B og 151C uten kilde som identifiserer hvilken bygning som er kraftstasjonen/hovedankeret. | Krever offisiell objektgeometri eller dokumentert kobling mellom bygning og husbokstav. |
 | Bånkall gård | needs_review | Trondheimsveien 640 ga flere ikke-entydige Geonorge-treff uten én eksakt fysisk match. | Krever mer presis offisiell adresse eller objektgeometri før canonical koordinat kan godkjennes. |
 | `ring_3` – Ring 3 | needs_review | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |
 | `trikk_17_18` – Trikkelinje 17/18 | needs_review | Ruter dokumenterer begge linjene, men den kombinerte recorden har bare ett lavpresisjonspunkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller eksplisitt modellert fellessegment før canonical koordinat kan godkjennes. |
 | `bislett` – Bislett strøk | needs_review | Område-recordens eksisterende punkt overlapper praktisk talt det separate canonical `bislett_stadion`-punktet. | Krever et eget dokumentert strøks-/knutepunktanker, for eksempel Bislett rundkjøring, uten å gjette koordinater. |
-| `hartvig_nissens_skole_skam` – Hartvig Nissens skole (SKAM) | needs_review | Det historiske SKAM-skolebygget er identifisert, men Geonorge gir flere ikke-entydige treff for President Harbitz' gate 11. | Krever offisiell bygningsgeometri eller eksplisitt kobling mellom det historiske bygget og ett konkret adressepunkt. |
 | `akerhus_slott` – Akerhus Slott | needs_review | Dokumentert legacy-typofeil/duplikat av canonical `akershus_festning`; begge representerer samme fysiske anlegg. | Migrer gamle quiz/story-referanser til `akershus_festning`; ikke godkjenn et separat fysisk anker. |
 | `grini_fangeleir` – Grini fangeleir | needs_review; moved to Akershus/Bærum | Recorden lå feilaktig i Oslo-kilden. Bærum kommune dokumenterer leiren ved Ila, men dagens punkt mangler kildebelagt leirgeometri. | Finn offisiell/historisk leirgeometri; Grinimuseets adresse skal ikke brukes som sentrum for hele leiren. |
 | `ibsen_quotes` – Ibsen sitater / Sitatgaten | needs_review | Den fysiske installasjonen består av 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men recorden har bare ett punkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes. |

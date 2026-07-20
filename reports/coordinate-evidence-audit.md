@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T00:15:23.175Z
+Generert: 2026-07-20T00:21:27.351Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -57,7 +57,7 @@ Generert: 2026-07-20T00:15:23.175Z
 | klingenberg_kino | data/coordinate-evidence/oslo/film/klingenberg_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gimle_kino | data/coordinate-evidence/oslo/film/gimle_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vika_kino | data/coordinate-evidence/oslo/film/vika_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| hartvig_nissens_skole_skam | data/coordinate-evidence/oslo/film/hartvig_nissens_skole_skam.json | needs_research | needs_geometry | OK |
+| hartvig_nissens_skole_skam | data/coordinate-evidence/oslo/film/hartvig_nissens_skole_skam.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | middelalder_oslo | data/coordinate-evidence/oslo/historie/middelalder_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamlebyen_gravlund | data/coordinate-evidence/oslo/historie/gamlebyen_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_festning | data/coordinate-evidence/oslo/historie/akershus_festning.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -131,7 +131,7 @@ Generert: 2026-07-20T00:15:23.175Z
 | ruth_maier_minne | data/coordinate-evidence/oslo/litteratur/ruth_maier_minne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alf_proysen_statue_nittedal | data/coordinate-evidence/akershus/nittedal/alf_proysen_statue_nittedal.json | needs_research | needs_geometry | OK |
 | proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | needs_research | needs_geometry | OK |
+| inger_hagerups_plass | data/coordinate-evidence/oslo/litteratur/inger_hagerups_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oscar_braaten_statuen | data/coordinate-evidence/oslo/litteratur/oscar_braaten_statuen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alexander_kiellands_plass | data/coordinate-evidence/oslo/litteratur/alexander_kiellands_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnaelva | data/coordinate-evidence/oslo/natur/alnaelva.json | needs_research | needs_geometry | OK |

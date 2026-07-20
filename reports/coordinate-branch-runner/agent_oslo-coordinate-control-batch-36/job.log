@@ -1,57 +1,53 @@
 {
   "ok": true,
-  "outcomes": [
-    {
-      "id": "sigrid_undset_statue",
-      "result": "unchanged_needs_review",
-      "reason": "no_exact_named_object",
-      "exactCandidates": []
-    },
+  "applied": [
     {
       "id": "inger_hagerups_plass",
-      "result": "unchanged_needs_review",
-      "reason": "no_exact_named_object",
-      "exactCandidates": []
+      "result": "applied",
+      "before": {
+        "lat": 59.9427,
+        "lon": 10.8553,
+        "r": 130,
+        "coordStatus": "needs_source",
+        "coordSource": "manual_research",
+        "coordType": "legacy_unverified",
+        "coordNote": "Oslo byleksikon dokumenterer Inger Hagerups plass som snuplassen i enden av Hagapynten og at navnet ble gitt i 1999. Kilden gir ikke ett konkret adressepunkt eller en offisiell plassgeometri; eksisterende lat/lon beholdes kun som legacy og godkjennes ikke som verified."
+      },
+      "after": {
+        "lat": 59.9221744,
+        "lon": 10.853756,
+        "r": 130,
+        "coordStatus": "verified",
+        "coordSource": "Lokalhistoriewiki – Inger Hagerups plass; identity cross-checked with Oslo byleksikon and Oslo bykart point 2357",
+        "coordType": "documented_place_coordinate",
+        "coordNote": "Oslo byleksikon identifiserer Inger Hagerups plass som snuplassen i enden av Hagapynten og lenker stedet til Oslo bykart point 2357. Lokalhistoriewiki oppgir en eksplisitt kildekoordinat for den samme navngitte plassen. Dette dokumenterte plasspunktet erstatter legacy-koordinaten som lå over to kilometer nord for den faktiske plassen; ingen naboadresse er brukt som proxy."
+      },
+      "sourceObjectId": "lokalhistoriewiki:inger-hagerups-plass",
+      "sourceFile": "data/places/litteratur/oslo/places_litteratur.json"
     },
     {
       "id": "hartvig_nissens_skole_skam",
-      "result": "unchanged_needs_review",
-      "reason": "no_unique_preferred_object",
-      "exactCandidates": [
-        {
-          "name": "Hartvig Nissens skole",
-          "osm_type": "node",
-          "osm_id": 325636287,
-          "lat": "59.9185430",
-          "lon": "10.7167887",
-          "display_name": "Hartvig Nissens skole, Niels Juels gate, Uranienborg, Frogner, Oslo, 0257, Norge"
-        }
-      ]
-    },
-    {
-      "id": "prinds_christian_augusts_minde",
       "result": "applied",
       "before": {
-        "lat": 59.915289,
-        "lon": 10.75595,
-        "r": 120,
-        "coordStatus": "verified_source_coordinate",
-        "coordSource": "wikimedia_commons_coordinate_checked_against_prindsen_address",
-        "coordType": "building_complex",
+        "lat": 59.9254,
+        "lon": 10.7313,
+        "r": 130,
+        "coordStatus": "",
+        "coordSource": "",
+        "coordType": "",
         "coordNote": ""
       },
       "after": {
-        "lat": 59.9150905,
-        "lon": 10.7569061,
-        "r": 120,
-        "coordStatus": "verified_historical_source",
-        "coordSource": "Prindsen – dokumentasjon av Prinds Christian Augusts Minde; OpenStreetMap osm-way:112236667",
-        "coordType": "historic_complex_area",
-        "coordNote": "Storgata 36 ble tidligere kjørt adresse-first, men ga flere ikke-entydige Geonorge-treff for det sammensatte anlegget. Prindsens egen dokumentasjon avgrenser det fredede bygningskomplekset, og det entydige navngitte OSM-objektet osm-way:112236667 (Prinds Christian Augusts Minde) brukes som geometrisk områdeanker for anlegget, ikke som et vilkårlig husbokstavpunkt."
+        "lat": 59.918543,
+        "lon": 10.7167887,
+        "r": 130,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap node 325636287 – Hartvig Nissens skole",
+        "coordType": "school_site_point",
+        "coordNote": "President Harbitz' gate 11 ble tidligere kjørt adresse-first, men ga flere ikke-entydige Geonorge-treff. Oslo byleksikon dokumenterer den historiske skolen og lenker stedet til Oslo bykart point 7165. Det entydige navngitte OSM-skoleobjektet node 325636287 har Oslo kommune som operator og offisielle organisasjons-/skolereferanser, og brukes derfor som objektgeometri-fallback for skoleområdet der SKAM ble spilt inn."
       },
-      "sourceObjectId": "prindsen:official-documentation",
-      "geometryObjectId": "osm-way:112236667",
-      "sourceFile": "data/places/historie/oslo/places_historie_added_batch_01.json"
+      "sourceObjectId": "osm-node:325636287",
+      "sourceFile": "data/places/film/oslo/places_oslo_film.json"
     }
   ]
 }
