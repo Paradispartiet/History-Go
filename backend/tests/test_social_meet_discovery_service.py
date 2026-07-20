@@ -102,7 +102,6 @@ def test_explicit_profile_cohort_bypasses_zero_percent_rollout() -> None:
     )
 
     response = service.find_context_candidates(requester.auth_user_id, _request(), now=NOW)
-
     assert len(response.candidates) == 2
     assert response.stale_after_seconds == 300
 
@@ -183,7 +182,6 @@ def test_candidate_limit_is_capped_before_repository_query() -> None:
             environment="test",
             spotmeeting_discovery_enabled=True,
             spotmeeting_discovery_max_candidates=2,
-            spotmeeting_discovery_pool_limit=50,
         ),
         FakeIdentityRepository(requester),  # type: ignore[arg-type]
         repository,  # type: ignore[arg-type]
