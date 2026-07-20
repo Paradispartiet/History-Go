@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T14:49:22.982Z
+Generert: 2026-07-20T15:04:53.726Z
 
 ## Oppsummering
 - Aktive filer validert: **537**
 - Antall steder validert: **1213**
 - Harde feil: **0**
-- Varsler: **426**
-- Coordinate review candidates: **704** signaler fordelt på **563** steder
+- Varsler: **429**
+- Coordinate review candidates: **707** signaler fordelt på **566** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -581,6 +581,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie_added_batch_01.json#oslo_ladegard: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_added_batch_01.json#botsfengselet: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_added_batch_01.json#prinds_christian_augusts_minde: lineært sted uten anchors
+- data/places/historie/oslo/places_historie_added_batch_01.json#peststotten_krist_kirkegard: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/places_historie_added_batch_01.json#villa_stenersen: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/places_historie_added_batch_01.json#st_hallvard_kirke_kloster: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/gamle_radhus.json#gamle_radhus: coordStatus=verified uten coordPrecisionM
 - data/places/historie/akershus/places_historie_akershus_batch1.json#oscarsborg_festning: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/akershus/places_historie_akershus_batch1.json#trandumskogen: stort område uten coordNote/coordStatus
@@ -989,13 +992,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 704 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 707 signaler fordelt på 566 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 113 |
+| coordStatus=verified uten coordPrecisionM | 116 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 95 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 88 |
@@ -1005,7 +1008,7 @@ Totalt 704 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (113)
+### coordStatus=verified uten coordPrecisionM (116)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1026,6 +1029,9 @@ Totalt 704 signaler fordelt på 563 steder. Et sted kan ha flere signaler. Kandi
 | trefoldighetskirken | Trefoldighetskirken | by | data/places/by/oslo/trefoldighetskirken.json | 59.91672903151453 | 10.744766562559661 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | oslo_ladegard | Oslo ladegård | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.906175969346684 | 10.767673829543098 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | botsfengselet | Botsfengselet | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.90971506327703 | 10.774997663433767 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| peststotten_krist_kirkegard | Peststøtten – Krist kirkegård | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.917469 | 10.746586 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| villa_stenersen | Villa Stenersen | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.939226276070805 | 10.698765324399833 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| st_hallvard_kirke_kloster | St. Hallvard kirke og kloster | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.91294052851478 | 10.769571694450226 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_radhus | Gamle rådhus | by | data/places/by/oslo/gamle_radhus.json | 59.909847408217715 | 10.740149053425348 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nasjonalmuseet | Nasjonalmuseet | kunst | data/places/kunst/oslo/places_kunst.json | 59.91149437954434 | 10.729109219868187 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | astrup_fearnley | Astrup Fearnley Museet | kunst | data/places/kunst/oslo/places_kunst.json | 59.90679078788014 | 10.721563360663236 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |

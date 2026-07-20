@@ -1,0 +1,105 @@
+{
+  "generatedAt": "2026-07-20T15:04:35.374Z",
+  "targetManifestEntry": "places/historie/oslo/places_historie_added_batch_01.json",
+  "diagnosis": "The runtime index builder prefers valid sibling split manifests. This split manifest had six rows while the aggregate later grew with four additional canonical records, hiding them from runtime.",
+  "restoredPlaceIds": [
+    "peststotten_krist_kirkegard",
+    "kjaerlighetskarusellen",
+    "villa_stenersen",
+    "st_hallvard_kirke_kloster"
+  ],
+  "gapsBefore": [
+    {
+      "manifestEntry": "places/historie/oslo/places_historie_added_batch_01.json",
+      "splitManifest": "data/places/historie/oslo/places_historie_added_batch_01_manifest.json",
+      "aggregateCount": 10,
+      "splitCount": 6,
+      "missing": [
+        {
+          "id": "peststotten_krist_kirkegard",
+          "name": "Peststøtten – Krist kirkegård",
+          "category": "historie"
+        },
+        {
+          "id": "kjaerlighetskarusellen",
+          "name": "Kjærlighetskarusellen",
+          "category": "historie"
+        },
+        {
+          "id": "villa_stenersen",
+          "name": "Villa Stenersen",
+          "category": "historie"
+        },
+        {
+          "id": "st_hallvard_kirke_kloster",
+          "name": "St. Hallvard kirke og kloster",
+          "category": "historie"
+        }
+      ]
+    },
+    {
+      "manifestEntry": "places/kunst/oslo/places_kunst.json",
+      "splitManifest": "data/places/kunst/oslo/places_kunst_manifest.json",
+      "aggregateCount": 6,
+      "splitCount": 4,
+      "missing": [
+        {
+          "id": "emanuel_vigeland_mausoleum",
+          "name": "Emanuel Vigelands mausoleum",
+          "category": "kunst"
+        },
+        {
+          "id": "framtidsbiblioteket_nordmarka",
+          "name": "Framtidsbiblioteket – Nordmarka",
+          "category": "kunst"
+        }
+      ]
+    }
+  ],
+  "gapsAfter": [
+    {
+      "manifestEntry": "places/kunst/oslo/places_kunst.json",
+      "splitManifest": "data/places/kunst/oslo/places_kunst_manifest.json",
+      "aggregateCount": 6,
+      "splitCount": 4,
+      "missing": [
+        {
+          "id": "emanuel_vigeland_mausoleum",
+          "name": "Emanuel Vigelands mausoleum",
+          "category": "kunst"
+        },
+        {
+          "id": "framtidsbiblioteket_nordmarka",
+          "name": "Framtidsbiblioteket – Nordmarka",
+          "category": "kunst"
+        }
+      ]
+    }
+  ],
+  "coordinateSources": {
+    "peststotten_krist_kirkegard": {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "atlasobscura:black-death-monument-peststotten",
+      "lat": 59.917469,
+      "lon": 10.746586
+    },
+    "kjaerlighetskarusellen": {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1346356285",
+      "lat": 59.9267,
+      "lon": 10.7296528
+    },
+    "villa_stenersen": {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17802:10C",
+      "lat": 59.939226276070805,
+      "lon": 10.698765324399833
+    },
+    "st_hallvard_kirke_kloster": {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+      "lat": 59.91294052851478,
+      "lon": 10.769571694450226
+    }
+  }
+}

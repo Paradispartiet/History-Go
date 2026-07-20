@@ -494,15 +494,21 @@
       "notes": "Spør som konkret epidemihistorie og minnekultur, ikke som løs kuriositet."
     },
     "coordType": "monument_point",
-    "coordStatus": "verified_source_coordinate",
-    "coordSource": "atlas_obscura_coordinate_crosschecked_with_oslo_kommune_and_oslo_byleksikon",
+    "coordStatus": "verified",
+    "coordSource": "Atlas Obscura coordinate cross-checked with Oslo kommune and Oslo byleksikon",
     "coordSourceUrl": "https://www.atlasobscura.com/places/black-death-monument-peststotten",
-    "coordVerifiedAt": "2026-07-18",
-    "coordNote": "Punktkoordinat for selve Peststøtten ved Krist kirkegård, kontrollert mot Oslo kommunes gravplassinformasjon og Oslo byleksikons plassering.",
+    "coordVerifiedAt": "2026-07-20",
+    "coordNote": "Punktkoordinat for selve Peststøtten ved inngangen til Krist kirkegård. Atlas Obscura-punktet er kryssjekket mot Oslo kommunes gravplassinformasjon og Oslo byleksikons plassering av monumentet ved kirkegårdsinngangen. Punktet representerer monumentet, ikke hele Krist kirkegård.",
     "underbadge_ids": [
       "sosialhistorie",
       "kulturminner_og_bevaring"
-    ]
+    ],
+    "locatorType": "poi",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "atlasobscura:black-death-monument-peststotten",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "display_marker",
+    "coordSourceId": "atlasobscura:black-death-monument-peststotten"
   },
   {
     "id": "kjaerlighetskarusellen",
@@ -560,16 +566,22 @@
       ],
       "notes": "Spør respektfullt som skeiv kulturhistorie og fysisk kulturminne, ikke som kuriositet alene."
     },
-    "coordType": "structure_point",
-    "coordStatus": "verified_source_coordinate",
-    "coordSource": "wikidata_coordinate_crosschecked_with_atlas_obscura_and_lokalhistoriewiki",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q6419506",
-    "coordVerifiedAt": "2026-07-18",
-    "coordNote": "Punktkoordinat for selve den fredete pissoarstrukturen ved Stensparken; Wikidata-punkt kryssjekket mot Atlas Obscura og Lokalhistoriewiki.",
+    "coordType": "poi_node",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 1346356285; identity cross-checked with Wikidata Q6419506 and Oslo byleksikon",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/1346356285",
+    "coordVerifiedAt": "2026-07-20",
+    "coordNote": "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet.",
     "underbadge_ids": [
       "sosialhistorie",
       "kulturminner_og_bevaring"
-    ]
+    ],
+    "locatorType": "poi",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:1346356285",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "display_marker",
+    "coordSourceId": "osm-node:1346356285"
   },
   {
     "id": "villa_stenersen",
@@ -577,8 +589,8 @@
       "designCode": "museum_miniature"
     },
     "name": "Villa Stenersen",
-    "lat": 59.939269,
-    "lon": 10.698677,
+    "lat": 59.939226276070805,
+    "lon": 10.698765324399833,
     "r": 70,
     "category": "historie",
     "year": 1939,
@@ -641,16 +653,20 @@
       "city": "Oslo",
       "country": "NO"
     },
-    "coordType": "building_center",
-    "coordStatus": "verified_source_coordinate",
-    "coordSource": "wikimedia_coordinate_crosschecked_with_nasjonalmuseet_and_riksantikvaren",
-    "coordSourceId": "Q14375801",
-    "coordSourceUrl": "https://commons.wikimedia.org/wiki/Category:Villa_Stenersen",
-    "coordVerifiedAt": "2026-07-18",
-    "coordNote": "Bygningspunkt for Villa Stenersen, kryssjekket mot Nasjonalmuseets og Riksantikvarens identifikasjon av Tuengen allé 10C.",
+    "coordType": "address_point",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordSourceId": "geonorge-adresser-v1:0301:17802:10C",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Tuengen%20all%C3%A9%2010C%20Oslo",
+    "coordVerifiedAt": "2026-07-20",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tuengen allé 10C, OSLO. Punktet brukes som display-marker for Villa Stenersen og erstatter den eldre kildekoordinaten etter den låste address-first-metoden.",
     "underbadge_ids": [
       "kulturminner_og_bevaring"
-    ]
+    ],
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:17802:10C",
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker"
   },
   {
     "id": "st_hallvard_kirke_kloster",
@@ -658,8 +674,8 @@
       "designCode": "church_miniature"
     },
     "name": "St. Hallvard kirke og kloster",
-    "lat": 59.9128025,
-    "lon": 10.7692069,
+    "lat": 59.91294052851478,
+    "lon": 10.769571694450226,
     "r": 80,
     "category": "historie",
     "year": 1966,
@@ -714,7 +730,7 @@
       ],
       "notes": "Skal behandles både som moderne katolsk historie og arkitekturhistorie. Ikke forveksles med middelalderens Hallvardskatedral."
     },
-    "locatorType": "building_complex",
+    "locatorType": "building",
     "address": {
       "street": "Enerhauggata",
       "number": "4",
@@ -722,14 +738,19 @@
       "city": "Oslo",
       "country": "NO"
     },
-    "coordType": "building_center",
-    "coordStatus": "verified_source_coordinate",
-    "coordSource": "official_church_coordinate_crosschecked_with_riksantikvaren",
-    "coordSourceUrl": "https://www.katolsk.no/organisasjon/okb/Oslo/Hallvard/st-hallvard-kirke",
-    "coordVerifiedAt": "2026-07-18",
-    "coordNote": "Offisiell punktkoordinat publisert av Den katolske kirke for St. Hallvard kirke, Enerhauggata 4, kryssjekket mot Riksantikvarens fredningsomtale.",
+    "coordType": "address_point",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Enerhauggata%204%20Oslo",
+    "coordVerifiedAt": "2026-07-20",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Enerhauggata 4, OSLO. Punktet brukes som display-marker for St. Hallvard kirke og kloster og erstatter den eldre publiserte punktkoordinaten etter den låste address-first-metoden.",
     "underbadge_ids": [
       "kulturminner_og_bevaring"
-    ]
+    ],
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordSourceId": "geonorge-adresser-v1:0301:11553:4"
   }
 ]

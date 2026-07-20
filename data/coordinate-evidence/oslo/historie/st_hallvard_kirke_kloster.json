@@ -1,0 +1,74 @@
+{
+  "placeId": "st_hallvard_kirke_kloster",
+  "placeFile": "data/places/historie/oslo/places_historie_added_batch_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91294052851478,
+    "lon": 10.769571694450226,
+    "r": 80,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Enerhauggata 4, OSLO. Punktet brukes som display-marker for St. Hallvard kirke og kloster og erstatter den eldre publiserte punktkoordinaten etter den låste address-first-metoden."
+  },
+  "identity": {
+    "currentName": "St. Hallvard kirke og kloster",
+    "resolvedIdentity": "St. Hallvard kirke og kloster",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet for koordinatankeret",
+    "eksisterende canonical identitet i aggregate place-kilden",
+    "runtime-restaurering gjennom synkronisert split-manifest"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Enerhauggata%204%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+      "sourceQuality": "stable_source_identity_plus_existing_canonical_identity",
+      "finding": "Geonorge gir ett tydelig adressetreff for Enerhauggata 4 Oslo. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten å opprette ny place-id.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Enerhauggata 4, OSLO. Punktet brukes som display-marker for St. Hallvard kirke og kloster og erstatter den eldre publiserte punktkoordinaten etter den låste address-first-metoden."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Enerhauggata 4 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91294052851478,
+      "lon": 10.769571694450226,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source."
+  },
+  "notes": [
+    "This is a runtime restoration of an existing canonical place, not a new place creation.",
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Enerhauggata 4, OSLO. Punktet brukes som display-marker for St. Hallvard kirke og kloster og erstatter den eldre publiserte punktkoordinaten etter den låste address-first-metoden."
+  ]
+}

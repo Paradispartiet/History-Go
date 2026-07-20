@@ -1,0 +1,67 @@
+{
+  "placeId": "kjaerlighetskarusellen",
+  "placeFile": "data/places/historie/oslo/places_historie_added_batch_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9267,
+    "lon": 10.7296528,
+    "r": 45,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 1346356285; identity cross-checked with Wikidata Q6419506 and Oslo byleksikon",
+    "coordType": "poi_node",
+    "coordNote": "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet."
+  },
+  "identity": {
+    "currentName": "Kjærlighetskarusellen",
+    "resolvedIdentity": "Kjærlighetskarusellen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stabil kildeidentitet for koordinatankeret",
+    "eksisterende canonical identitet i aggregate place-kilden",
+    "runtime-restaurering gjennom synkronisert split-manifest"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1346356285; identity cross-checked with Wikidata Q6419506 and Oslo byleksikon",
+      "sourceUrl": "https://www.openstreetmap.org/node/1346356285",
+      "sourceObjectId": "osm-node:1346356285",
+      "sourceQuality": "stable_source_identity_plus_existing_canonical_identity",
+      "finding": "Kjærlighetskarusellen er knyttet til det navngitte OSM-objektet node 1346356285; identiteten er kryssjekket mot Wikidata Q6419506 og Oslo byleksikon. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten å opprette ny place-id.",
+      "canVerifyCoordinate": true,
+      "reason": "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1346356285",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9267,
+      "lon": 10.7296528,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source."
+  },
+  "notes": [
+    "This is a runtime restoration of an existing canonical place, not a new place creation.",
+    "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet."
+  ]
+}

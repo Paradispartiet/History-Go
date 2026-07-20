@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T14:49:30.078Z
+Generert: 2026-07-20T15:05:01.687Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -196,3 +196,7 @@ Generert: 2026-07-20T14:49:30.078Z
 | fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | christian_radich | data/coordinate-evidence/oslo/historie/christian_radich.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | central_jam_e_mosque | data/coordinate-evidence/oslo/historie/central_jam_e_mosque.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| peststotten_krist_kirkegard | data/coordinate-evidence/oslo/historie/peststotten_krist_kirkegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kjaerlighetskarusellen | data/coordinate-evidence/oslo/historie/kjaerlighetskarusellen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| villa_stenersen | data/coordinate-evidence/oslo/historie/villa_stenersen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| st_hallvard_kirke_kloster | data/coordinate-evidence/oslo/historie/st_hallvard_kirke_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
