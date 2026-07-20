@@ -1,0 +1,38 @@
+name: Temporary clean Alnsjoen generated reports
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temporary-clean-alnsjoen-generated-reports.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Restore unrelated generated reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout origin/main -- \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
+          rm -f .github/workflows/temporary-clean-alnsjoen-generated-reports.yml
+          git add -A
+          git diff --cached --check
+          git commit -m "Remove unrelated Alnsjoen validation artifacts"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
