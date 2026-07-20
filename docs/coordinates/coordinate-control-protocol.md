@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 174 verifiserte eller kildekontrollerte canonical steder. Batch 39 normaliserer Grensen som lineær handelsgate med kildebelagte endeankre, mens Ring 3 holdes tilbake til en entydig ruteankermodell. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 41.
+Oslo-tabellen inneholder nå 177 verifiserte eller kildekontrollerte canonical steder. Batch 40 etterfører tre museums- og kultursteder som allerede er produsert med kildebelagte geometriankre: Norges Hjemmefrontmuseum, Forsvarsmuseet og Roseslottet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 41.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -196,6 +196,9 @@ Oslo-tabellen inneholder nå 174 verifiserte eller kildekontrollerte canonical s
 | 38 | `bislett` | Bislett | verified_geometry | `osm-node:1126526860` |
 | 38 | `st_halvard_bryggeri` | St. Halvard bryggeri | verified_historical_source | `oslobyleksikon:st-halvards-bryggeri` |
 | 39 | `grensen_kjopesenter` | Grensen – handelsgate | verified_geometry | `oslobyleksikon:grensen` |
+| 40 | `norges_hjemmefrontmuseum` | Norges Hjemmefrontmuseum | verified_geometry | `osm-way:111833902` |
+| 40 | `forsvarsmuseet` | Forsvarsmuseet | verified_geometry | `osm-way:54830211` |
+| 40 | `roseslottet` | Roseslottet | verified_geometry | `osm-way:1004591108` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -215,9 +218,11 @@ Batch 38 (2026-07-20) skiller `bislett` fysisk fra `bislett_stadion` ved å bruk
 
 Batch 39 (2026-07-20) normaliserer `grensen_kjopesenter` til den faktiske lineære gaten Grensen. Oslo byleksikon avgrenser gaten fra Møllergata ved Stortorvet til Professor Aschehougs plass; tre eksakte navngitte OSM-way-segmenter dokumenterer gateløpet, men parallelle kjørebaner modelleres ikke som én falskt sammenhengende polyline. To kildebelagte endeankre og et representativt linjeanker brukes. `ring_3` forblir needs_review fordi research ikke ga en entydig komplett ruteankerkjede.
 
+Batch 40 (2026-07-20) etterfører koordinatkontrollen fra PR #2594. `norges_hjemmefrontmuseum` bruker eksakt bygningsgeometri for Det dobbelte batteri / bygning 21 (`osm-way:111833902`), og `forsvarsmuseet` bruker eksakt bygningsgeometri for Hovedarsenalet / bygning 62 (`osm-way:54830211`); begge identiteter er kryssjekket mot Forsvarshistorisk museums offisielle dokumentasjon og skal ikke bruke den brede `akershus_festning`-markøren. `roseslottet` bruker den navngitte installasjonsgeometrien `osm-way:1004591108` som `site_center`, ikke Frognerseteren stasjon, og aktiv status skal revurderes etter 2026-12-31.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 174 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 177 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
