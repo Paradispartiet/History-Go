@@ -88,7 +88,6 @@ Resolution codes:
 
 - `no_policy_violation`
 - `warning_or_guidance`
-- `interaction_restricted`
 - `profile_suspended`
 - `retained_for_safety`
 
