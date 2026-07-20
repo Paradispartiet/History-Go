@@ -182,6 +182,108 @@ async function run() {
     assert.deepStrictEqual(decorated.role_model_meta.people_connections, ["gustav_vigeland"]);
   }
 
+  // 9) NextActionUI viser forbilde-linjen når mailens event har
+  //    role_model_meta.history_people (satt av RoleModelRuntime).
+  //    Mini-DOM etter mønster fra civication-next-action-consolidation.test.js.
+  {
+    class FakeEl {
+      constructor(tag) {
+        this.tagName = String(tag || "div").toUpperCase();
+        this.children = [];
+        this.parentElement = null;
+        this._id = "";
+        this.className = "";
+        this._innerHTML = "";
+        this._attrs = {};
+        this._classes = new Set();
+      }
+      set id(v) { this._id = String(v || ""); }
+      get id() { return this._id; }
+      set innerHTML(v) { this._innerHTML = String(v || ""); this.children = []; }
+      get innerHTML() { return this._innerHTML; }
+      appendChild(child) { child.parentElement = this; this.children.push(child); return child; }
+      setAttribute(k, v) { this._attrs[k] = String(v); }
+      getAttribute(k) { return k in this._attrs ? this._attrs[k] : null; }
+      addEventListener() {}
+      querySelector() { return null; }
+      querySelectorAll() { return []; }
+      get classList() {
+        const set = this._classes;
+        return {
+          add: (c) => set.add(c),
+          remove: (c) => set.delete(c),
+          toggle: (c) => { set.has(c) ? set.delete(c) : set.add(c); },
+          contains: (c) => set.has(c)
+        };
+      }
+    }
+    function findById(root, id) {
+      if (!root) return null;
+      if (root.id === id) return root;
+      for (const c of root.children) {
+        const hit = findById(c, id);
+        if (hit) return hit;
+      }
+      return null;
+    }
+
+    global.window = global;
+    global.Event = function Event(type) { this.type = type; };
+    global.addEventListener = () => {};
+    global.dispatchEvent = () => {};
+    global.setTimeout = (fn) => { fn(); return 0; };
+    global.localStorage = createLocalStorage();
+    global.CivicationNextActionUI = undefined;
+    const body = new FakeEl("body");
+    global.document = {
+      body,
+      getElementById(id) { return findById(body, id); },
+      createElement(tag) { return new FakeEl(tag); },
+      addEventListener() {},
+      readyState: "complete"
+    };
+
+    const action = {
+      source: "day_phase", id: "mail-A", subject: "Fasesak A",
+      body: "Hva gjør du?", situation: [], summary: "",
+      phase: "morning", phaseLabel: "Morgen", mail_type: "job", slot: "morning", status: "delivered",
+      choices: [{ id: "A1", label: "Ja" }], isTaskGate: false, taskId: ""
+    };
+    global.CivicationNextActionSelector = { getCurrent: () => action };
+    global.CivicationMailEngine = {
+      getInbox: () => [{
+        id: "mail-A",
+        status: "open",
+        event: {
+          id: "mail-A",
+          subject: "Fasesak A",
+          choices: [{ id: "A1", label: "Ja" }],
+          role_model_meta: {
+            history_people: [
+              { id: "edvard_munch", name: "Edvard Munch" },
+              { id: "camilla_collett", name: "Camilla Collett" }
+            ]
+          }
+        }
+      }]
+    };
+
+    const uiPath = path.join(root, "js/Civication/ui/CivicationNextActionUI.js");
+    vm.runInThisContext(fs.readFileSync(uiPath, "utf8"), { filename: uiPath });
+    assert.strictEqual(global.CivicationNextActionUI.open(), true, "NextAction åpner");
+    const html = findById(body, "civiNextActionModalBody").innerHTML;
+    assert.ok(html.includes("Forbilder fra samlingen din"), "forbilde-linjen rendres");
+    assert.ok(html.includes("Edvard Munch, Camilla Collett"), "forbildene listes med navn");
+
+    // Uten history_people rendres ingen forbilde-linje.
+    global.CivicationMailEngine = {
+      getInbox: () => [{ id: "mail-A", status: "open", event: { id: "mail-A", subject: "Fasesak A", choices: [] } }]
+    };
+    global.CivicationNextActionUI.refresh?.();
+    const html2 = findById(body, "civiNextActionModalBody").innerHTML;
+    assert.ok(!html2.includes("Forbilder fra samlingen din"), "ingen forbilde-linje uten history_people");
+  }
+
   console.log("civication-history-people-bridge.test.js: alle tester OK");
 }
 
