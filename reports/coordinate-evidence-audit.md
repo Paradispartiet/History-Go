@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T00:36:42.975Z
+Generert: 2026-07-20T00:51:55.153Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -12,7 +12,7 @@ Generert: 2026-07-20T00:36:42.975Z
 | bankplassen | data/coordinate-evidence/oslo/by/bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | barcode | data/coordinate-evidence/oslo/by/barcode.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | birkelunden | data/coordinate-evidence/oslo/by/birkelunden.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| bislett | data/coordinate-evidence/oslo/by/bislett.json | needs_research | needs_geometry | OK |
+| bislett | data/coordinate-evidence/oslo/by/bislett.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bispelokket | data/coordinate-evidence/oslo/by/bispelokket.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bjorvika | data/coordinate-evidence/oslo/by/bjorvika.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bogstadveien | data/coordinate-evidence/oslo/by/bogstadveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -128,7 +128,7 @@ Generert: 2026-07-20T00:36:42.975Z
 | ringnes_bryggeri | data/coordinate-evidence/oslo/naeringsliv/ringnes_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sagene_kvernhus | data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json | needs_research | needs_identity_split | OK |
 | schous_bryggeri | data/coordinate-evidence/oslo/naeringsliv/schous_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | needs_research | needs_identity_split | OK |
+| st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | needs_research | needs_identity_split | OK |
 | vinmonopolet_lager | data/coordinate-evidence/oslo/naeringsliv/vinmonopolet_lager.json | applied_to_place | do_not_change_coordinates_yet | OK |
