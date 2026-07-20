@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Wergelandsveien 17 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Wergelandsveien 17 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Wergelandsveien%2017%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:18496:17",
+  "coordinate": {
+    "lat": 59.91943035555868,
+    "lon": 10.730615118964748,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:18496:17",
+    "address": {
+      "street": "Wergelandsveien",
+      "number": "17",
+      "postcode": "0167",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Wergelandsveien 17, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Wergelandsveien",
+    "adressetekst": "Wergelandsveien 17",
+    "adressetilleggsnavn": null,
+    "adressekode": 18496,
+    "nummer": 17,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 209,
+    "bruksnummer": 422,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0167",
+    "adressetekstutenadressetilleggsnavn": "Wergelandsveien 17",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91943035555868,
+      "lon": 10.730615118964748
+    },
+    "oppdateringsdato": "2020-06-15T18:04:04"
+  }
+}
