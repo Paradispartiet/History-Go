@@ -179,7 +179,10 @@
   // Skallet booter etter Min dag (shell-loaderen injiserer resolver +
   // CivicationState); jobbaksept dispatcher updateProfile.
   window.addEventListener("civi:booted", () => { maybeAdoptShellRole(); });
-  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); });
+  // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
+  // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
+  // lesing, så dette kan aldri starte en event-løkke.
+  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); render(); });
 
   /**
    * @param {string} sceneId
@@ -243,6 +246,19 @@
   }
 
   /**
+   * Dominant livsstil fra skallet (HG_Lifestyle-stamp). Null før valgene har
+   * bygget en tydelig retning (score <= 0) eller uten motoren (ren Min dag-
+   * flate) — da vises ingenting, vi gjetter aldri en livsstil.
+   * @returns {{ id: string, name: string, icon: string, score: number }|null}
+   */
+  function lifestyleStamp() {
+    try {
+      const stamp = /** @type {any} */ (window).HG_Lifestyle?.getStamp?.();
+      return stamp && Number(stamp.score) > 0 ? stamp : null;
+    } catch { return null; }
+  }
+
+  /**
    * @param {any} view
    * @returns {string}
    */
@@ -252,6 +268,8 @@
       ["Rolle", content.role.navn], ["Dag", state.dag], ["Fase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
       ["Psyke", m.psyke], ["Energi", m.energi], ["Penger", m.penger + " PC"]
     ];
+    const stamp = lifestyleStamp();
+    if (stamp) items.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
     return "<div class=\"civi-lifestory-status\" aria-label=\"Statuslinje\">" + items.map(([label, value]) =>
       "<span class=\"civi-lifestory-status-chip\"><small>" + escapeHtml(label) + "</small><strong>" + escapeHtml(value) + "</strong></span>"
     ).join("") + "</div>";
@@ -346,11 +364,18 @@
         "<li><strong>" + escapeHtml(label) + ":</strong> " + ids.map((id) => escapeHtml(traadTittel(id))).join(", ") + "</li>"
       ).join("");
     const narrative = summary.valg.filter((entry) => entry.konsekvensTekst).slice(-2).map((entry) => entry.konsekvensTekst).join(" ");
+    // Livsstilslinjen: dagens valg teller — vis hvem spilleren er i ferd med å bli.
+    const stamp = lifestyleStamp();
+    const stampHtml = stamp
+      ? "<p class=\"civi-lifestory-stamp\">Valgene dine drar mot: <strong>"
+        + escapeHtml((stamp.icon ? stamp.icon + " " : "") + stamp.name) + "</strong></p>"
+      : "";
     return ""
       + "<section class=\"civi-lifestory-summary\" aria-label=\"Dagsoppsummering\">"
       + "<div class=\"civi-lifestory-section-label\">Dagsoppsummering</div>"
       + "<h3>Dag " + escapeHtml(summary.dag) + " er over</h3>"
       + (narrative ? "<p>" + escapeHtml(narrative) + "</p>" : "<p class=\"muted\">Dagen er avsluttet og valgene dine er lagret i arkivet.</p>")
+      + stampHtml
       + "<h4>Meter-endringer siden morgenen</h4><div class=\"civi-lifestory-deltas\">" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
       + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul>"

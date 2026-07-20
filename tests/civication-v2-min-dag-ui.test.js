@@ -31,6 +31,16 @@ async function main() {
     return { ok: true, status: 200, json: async () => JSON.parse(text), text: async () => text };
   };
 
+  // Mock av skallets livsstilsmotor: broen skal sende valgets livsstilstags
+  // hit, og UI-et skal vise stampen når (og bare når) score > 0.
+  const addTagsCalls = [];
+  window.HG_Lifestyle = {
+    addTags: (tags, source) => { addTagsCalls.push({ tags, source }); },
+    getStamp: () => (addTagsCalls.length
+      ? { id: "craftsman", name: "Håndverker", icon: "🔨", score: addTagsCalls.length }
+      : null)
+  };
+
   // Samme kjede som Civication.html (hentet fra v2-allowlisten i main-flow-testen).
   const V2_CHAIN = [
     "js/Civication/civicationV2Config.js",
@@ -63,6 +73,9 @@ async function main() {
   assert.ok(panel.querySelector(".civi-lifestory-scene"), "Min dag skal vise nå-scenen");
   assert.ok(panel.querySelector("button.civi-lifestory-choice[data-lifestory-choice]"), "Min dag skal vise store klikkbare valg");
   assert.ok(panel.querySelector(".civi-lifestory-status-chip"), "Min dag skal vise statuslinje med statuschips");
+  // Ingen livsstilschip før noen valg har telt (stamp er null).
+  assert.ok(![...panel.querySelectorAll(".civi-lifestory-status-chip")].some((c) => c.textContent.includes("Livsstil")),
+    "livsstilschipen skal ikke vises før valgene har bygget en retning");
   assert.ok(panel.textContent.includes("Skoleveien bak parkeringskjelleren"), "trådtittel skal være menneskelig");
   assert.ok(panel.textContent.includes("Aktiv"), "trådstatus skal ha norsk label");
   assert.ok(!panel.textContent.includes("skolevei_parkeringskjeller"), "tekniske tråd-id-er skal ikke dominere UI");
@@ -86,6 +99,16 @@ async function main() {
   }
   assert.ok(panel.innerHTML.includes("Dag 1 er over"), "dagen skal ende i oppsummering");
   assert.ok(clicks >= 8, "hele dagen (morgen->kveld) skal spilles, fikk " + clicks + " scener");
+
+  // Livsstilsbroen fyrte for taggede valg (første valg i kalenderscenen er
+  // «sette av en time» => craft), og UI-et viser hvem spilleren drar mot.
+  assert.ok(addTagsCalls.length >= 1, "minst ett tagget valg skal ha nådd HG_Lifestyle.addTags");
+  assert.ok(addTagsCalls.every((c) => c.source === "lifestory"), "taggene sendes med kilde lifestory");
+  assert.ok(addTagsCalls.some((c) => c.tags.includes("craft")), "craft-retningen (egen time) skal være telt");
+  assert.ok([...panel.querySelectorAll(".civi-lifestory-status-chip")].some((c) => c.textContent.includes("Livsstil") && c.textContent.includes("Håndverker")),
+    "statuslinjen viser livsstilschipen når stampen finnes");
+  assert.ok(panel.textContent.includes("Valgene dine drar mot") && panel.textContent.includes("Håndverker"),
+    "dagsoppsummeringen viser livsstilslinjen");
   assert.ok(saaKonsekvens, "konsekvensTekst skal vises som feedback etter minst ett valg");
   assert.ok(window.document.getElementById("civiLifestoryHeaderStatus").textContent.includes("Dagen er over"));
 
