@@ -1,0 +1,3358 @@
+{
+  "date": "2026-07-20",
+  "method": "Ruter current timetable defines the route branches. Entur National Stop Register/Geocoder supplies official stop-place anchor candidates. Exact name is required; a unique tram-relevant stop is preferred, otherwise a unique NSR StopPlace. No nearest or first result is selected.",
+  "activeSource": [
+    {
+      "sourceFile": "data/places/by/oslo/places_by.json",
+      "name": "Trikkelinje 17/18",
+      "lat": 59.92,
+      "lon": 10.76,
+      "r": 300,
+      "coordStatus": "semantic_anchor",
+      "coordType": "route_midpoint",
+      "coordSource": "",
+      "sourceObjectId": "",
+      "anchors": []
+    }
+  ],
+  "officialRouteDefinition": {
+    "sourceProvider": "official_map",
+    "sourceName": "Ruter tram timetable effective 20 April 2026",
+    "sourceUrl": "https://ruter.no/planlegg-reise/rutetabeller-og-linjekart/trikk",
+    "sourceObjectId": "ruter:tram-lines:17+18:2026-04-20",
+    "line17": "Gaustadalléen – Sinsen – Grefsen stasjon",
+    "line18": "Gaustadalléen – Storo – Grefsen stasjon",
+    "modellingNote": "Combined record is a branched route pair. Required anchors: shared west terminus, shared central anchor, line-17 branch anchor, line-18 branch anchor, shared Grefsen terminus."
+  },
+  "stopRegistrySource": {
+    "sourceProvider": "official_map",
+    "sourceName": "Entur National Stop Register via Geocoder API",
+    "sourceUrl": "https://api.entur.io/geocoder/v1/autocomplete",
+    "sourceObjectId": "entur:nsr-geocoder",
+    "note": "NSR is the national master database for public transport stops; Geocoder venue results expose current stop place IDs and positions."
+  },
+  "anchorResearch": [
+    {
+      "key": "gaustadalleen",
+      "name": "Gaustadalléen",
+      "role": "shared_west_terminus",
+      "candidates": [
+        {
+          "name": "Gaustadalléen",
+          "id": "NSR:StopPlace:6261",
+          "coordinate": {
+            "lat": 59.945686,
+            "lon": 10.717591
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Gaustadalléen, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6261",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6261",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6261",
+            "name": "Gaustadalléen",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6261",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Gaustadalléen, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "exactName": [
+        {
+          "name": "Gaustadalléen",
+          "id": "NSR:StopPlace:6261",
+          "coordinate": {
+            "lat": 59.945686,
+            "lon": 10.717591
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Gaustadalléen, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6261",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6261",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6261",
+            "name": "Gaustadalléen",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6261",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Gaustadalléen, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "tramRelevant": [
+        {
+          "name": "Gaustadalléen",
+          "id": "NSR:StopPlace:6261",
+          "coordinate": {
+            "lat": 59.945686,
+            "lon": 10.717591
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Gaustadalléen, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6261",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6261",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6261",
+            "name": "Gaustadalléen",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6261",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Gaustadalléen, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "nsrCandidates": [
+        {
+          "name": "Gaustadalléen",
+          "id": "NSR:StopPlace:6261",
+          "coordinate": {
+            "lat": 59.945686,
+            "lon": 10.717591
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Gaustadalléen, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6261",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6261",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6261",
+            "name": "Gaustadalléen",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6261",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Gaustadalléen, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "preferredCandidates": [
+        {
+          "name": "Gaustadalléen",
+          "id": "NSR:StopPlace:6261",
+          "coordinate": {
+            "lat": 59.945686,
+            "lon": 10.717591
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Gaustadalléen, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6261",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6261",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6261",
+            "name": "Gaustadalléen",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6261",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Gaustadalléen, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "decisionHint": "unique_exact_tram_stop"
+    },
+    {
+      "key": "nybrua",
+      "name": "Nybrua",
+      "role": "shared_central_anchor",
+      "candidates": [
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61988",
+          "coordinate": {
+            "lat": 59.917013,
+            "lon": 10.758241
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61988",
+            "gid": "geonames:venue:NSR:StopPlace:61988",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61988",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61988",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61989",
+          "coordinate": {
+            "lat": 59.917044,
+            "lon": 10.758279
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61989",
+            "gid": "openstreetmap:venue:NSR:StopPlace:61989",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:61989",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61989",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "tram": null
+              },
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61249",
+          "coordinate": {
+            "lat": 59.917074,
+            "lon": 10.758314
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61249",
+            "gid": "geonames:venue:NSR:StopPlace:61249",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61249",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61249",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ],
+            "description": [
+              {
+                "nor": "i Storgata"
+              },
+              {
+                "eng": "in Storgata"
+              }
+            ]
+          }
+        }
+      ],
+      "exactName": [
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61988",
+          "coordinate": {
+            "lat": 59.917013,
+            "lon": 10.758241
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61988",
+            "gid": "geonames:venue:NSR:StopPlace:61988",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61988",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61988",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61989",
+          "coordinate": {
+            "lat": 59.917044,
+            "lon": 10.758279
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61989",
+            "gid": "openstreetmap:venue:NSR:StopPlace:61989",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:61989",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61989",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "tram": null
+              },
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61249",
+          "coordinate": {
+            "lat": 59.917074,
+            "lon": 10.758314
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61249",
+            "gid": "geonames:venue:NSR:StopPlace:61249",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61249",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61249",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ],
+            "description": [
+              {
+                "nor": "i Storgata"
+              },
+              {
+                "eng": "in Storgata"
+              }
+            ]
+          }
+        }
+      ],
+      "tramRelevant": [
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61989",
+          "coordinate": {
+            "lat": 59.917044,
+            "lon": 10.758279
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61989",
+            "gid": "openstreetmap:venue:NSR:StopPlace:61989",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:61989",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61989",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "tram": null
+              },
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61249",
+          "coordinate": {
+            "lat": 59.917074,
+            "lon": 10.758314
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61249",
+            "gid": "geonames:venue:NSR:StopPlace:61249",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61249",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61249",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ],
+            "description": [
+              {
+                "nor": "i Storgata"
+              },
+              {
+                "eng": "in Storgata"
+              }
+            ]
+          }
+        }
+      ],
+      "nsrCandidates": [
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61988",
+          "coordinate": {
+            "lat": 59.917013,
+            "lon": 10.758241
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61988",
+            "gid": "geonames:venue:NSR:StopPlace:61988",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61988",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61988",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61989",
+          "coordinate": {
+            "lat": 59.917044,
+            "lon": 10.758279
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61989",
+            "gid": "openstreetmap:venue:NSR:StopPlace:61989",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:61989",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61989",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "tram": null
+              },
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61249",
+          "coordinate": {
+            "lat": 59.917074,
+            "lon": 10.758314
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61249",
+            "gid": "geonames:venue:NSR:StopPlace:61249",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61249",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61249",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ],
+            "description": [
+              {
+                "nor": "i Storgata"
+              },
+              {
+                "eng": "in Storgata"
+              }
+            ]
+          }
+        }
+      ],
+      "preferredCandidates": [
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61989",
+          "coordinate": {
+            "lat": 59.917044,
+            "lon": 10.758279
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61989",
+            "gid": "openstreetmap:venue:NSR:StopPlace:61989",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:61989",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61989",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "tram": null
+              },
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61249",
+          "coordinate": {
+            "lat": 59.917074,
+            "lon": 10.758314
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61249",
+            "gid": "geonames:venue:NSR:StopPlace:61249",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61249",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61249",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ],
+            "description": [
+              {
+                "nor": "i Storgata"
+              },
+              {
+                "eng": "in Storgata"
+              }
+            ]
+          }
+        }
+      ],
+      "decisionHint": "multiple_exact_tram_stops"
+    },
+    {
+      "key": "sinsenkrysset",
+      "name": "Sinsenkrysset",
+      "role": "line_17_branch_anchor",
+      "candidates": [
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6045",
+          "coordinate": {
+            "lat": 59.939126,
+            "lon": 10.783368
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6045",
+            "gid": "geonames:venue:NSR:StopPlace:6045",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6045",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6045",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:58406",
+          "coordinate": {
+            "lat": 59.938133,
+            "lon": 10.784755
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58406",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58406",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58406",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58406",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6039",
+          "coordinate": {
+            "lat": 59.937534,
+            "lon": 10.785629
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6039",
+            "gid": "geonames:venue:NSR:StopPlace:6039",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6039",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6039",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "INN:TariffZone:3000",
+              "INN:FareZone:214",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "exactName": [
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6045",
+          "coordinate": {
+            "lat": 59.939126,
+            "lon": 10.783368
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6045",
+            "gid": "geonames:venue:NSR:StopPlace:6045",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6045",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6045",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:58406",
+          "coordinate": {
+            "lat": 59.938133,
+            "lon": 10.784755
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58406",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58406",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58406",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58406",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6039",
+          "coordinate": {
+            "lat": 59.937534,
+            "lon": 10.785629
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6039",
+            "gid": "geonames:venue:NSR:StopPlace:6039",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6039",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6039",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "INN:TariffZone:3000",
+              "INN:FareZone:214",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "tramRelevant": [
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6045",
+          "coordinate": {
+            "lat": 59.939126,
+            "lon": 10.783368
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6045",
+            "gid": "geonames:venue:NSR:StopPlace:6045",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6045",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6045",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:58406",
+          "coordinate": {
+            "lat": 59.938133,
+            "lon": 10.784755
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58406",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58406",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58406",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58406",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "nsrCandidates": [
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6045",
+          "coordinate": {
+            "lat": 59.939126,
+            "lon": 10.783368
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6045",
+            "gid": "geonames:venue:NSR:StopPlace:6045",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6045",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6045",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:58406",
+          "coordinate": {
+            "lat": 59.938133,
+            "lon": 10.784755
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58406",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58406",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58406",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58406",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6039",
+          "coordinate": {
+            "lat": 59.937534,
+            "lon": 10.785629
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6039",
+            "gid": "geonames:venue:NSR:StopPlace:6039",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6039",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6039",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "INN:TariffZone:3000",
+              "INN:FareZone:214",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "preferredCandidates": [
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6045",
+          "coordinate": {
+            "lat": 59.939126,
+            "lon": 10.783368
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6045",
+            "gid": "geonames:venue:NSR:StopPlace:6045",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6045",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6045",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:58406",
+          "coordinate": {
+            "lat": 59.938133,
+            "lon": 10.784755
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58406",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58406",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58406",
+            "name": "Sinsenkrysset",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58406",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "decisionHint": "multiple_exact_tram_stops"
+    },
+    {
+      "key": "storo",
+      "name": "Storo",
+      "role": "line_18_branch_anchor",
+      "candidates": [
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6057",
+          "coordinate": {
+            "lat": 59.944827,
+            "lon": 10.778419
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6057",
+            "gid": "geonames:venue:NSR:StopPlace:6057",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6057",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6057",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation"
+            ],
+            "mode": [
+              {
+                "metro": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:58195",
+          "coordinate": {
+            "lat": 59.94527,
+            "lon": 10.778637
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation",
+            "onstreetBus",
+            "onstreetTram",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58195",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58195",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58195",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58195",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation",
+              "onstreetBus",
+              "onstreetTram",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "metro": null
+              },
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6060",
+          "coordinate": {
+            "lat": 59.945261,
+            "lon": 10.778558
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6060",
+            "gid": "geonames:venue:NSR:StopPlace:6060",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6060",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6060",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6058",
+          "coordinate": {
+            "lat": 59.945275,
+            "lon": 10.77872
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6058",
+            "gid": "geonames:venue:NSR:StopPlace:6058",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6058",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6058",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6067",
+          "coordinate": {
+            "lat": 59.944896,
+            "lon": 10.779955
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6067",
+            "gid": "geonames:venue:NSR:StopPlace:6067",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6067",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6067",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo senter",
+          "id": "NSR:StopPlace:6421",
+          "coordinate": {
+            "lat": 59.946115,
+            "lon": 10.775563
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo senter, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6421",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6421",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6421",
+            "name": "Storo senter",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6421",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo senter, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "exactName": [
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6057",
+          "coordinate": {
+            "lat": 59.944827,
+            "lon": 10.778419
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6057",
+            "gid": "geonames:venue:NSR:StopPlace:6057",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6057",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6057",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation"
+            ],
+            "mode": [
+              {
+                "metro": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:58195",
+          "coordinate": {
+            "lat": 59.94527,
+            "lon": 10.778637
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation",
+            "onstreetBus",
+            "onstreetTram",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58195",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58195",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58195",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58195",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation",
+              "onstreetBus",
+              "onstreetTram",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "metro": null
+              },
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6060",
+          "coordinate": {
+            "lat": 59.945261,
+            "lon": 10.778558
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6060",
+            "gid": "geonames:venue:NSR:StopPlace:6060",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6060",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6060",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6058",
+          "coordinate": {
+            "lat": 59.945275,
+            "lon": 10.77872
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6058",
+            "gid": "geonames:venue:NSR:StopPlace:6058",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6058",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6058",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6067",
+          "coordinate": {
+            "lat": 59.944896,
+            "lon": 10.779955
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6067",
+            "gid": "geonames:venue:NSR:StopPlace:6067",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6067",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6067",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "tramRelevant": [
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:58195",
+          "coordinate": {
+            "lat": 59.94527,
+            "lon": 10.778637
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation",
+            "onstreetBus",
+            "onstreetTram",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58195",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58195",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58195",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58195",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation",
+              "onstreetBus",
+              "onstreetTram",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "metro": null
+              },
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6060",
+          "coordinate": {
+            "lat": 59.945261,
+            "lon": 10.778558
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6060",
+            "gid": "geonames:venue:NSR:StopPlace:6060",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6060",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6060",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6067",
+          "coordinate": {
+            "lat": 59.944896,
+            "lon": 10.779955
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6067",
+            "gid": "geonames:venue:NSR:StopPlace:6067",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6067",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6067",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "nsrCandidates": [
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6057",
+          "coordinate": {
+            "lat": 59.944827,
+            "lon": 10.778419
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6057",
+            "gid": "geonames:venue:NSR:StopPlace:6057",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6057",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6057",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation"
+            ],
+            "mode": [
+              {
+                "metro": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:58195",
+          "coordinate": {
+            "lat": 59.94527,
+            "lon": 10.778637
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation",
+            "onstreetBus",
+            "onstreetTram",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58195",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58195",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58195",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58195",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation",
+              "onstreetBus",
+              "onstreetTram",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "metro": null
+              },
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6060",
+          "coordinate": {
+            "lat": 59.945261,
+            "lon": 10.778558
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6060",
+            "gid": "geonames:venue:NSR:StopPlace:6060",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6060",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6060",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6058",
+          "coordinate": {
+            "lat": 59.945275,
+            "lon": 10.77872
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6058",
+            "gid": "geonames:venue:NSR:StopPlace:6058",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6058",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6058",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6067",
+          "coordinate": {
+            "lat": 59.944896,
+            "lon": 10.779955
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6067",
+            "gid": "geonames:venue:NSR:StopPlace:6067",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6067",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6067",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "preferredCandidates": [
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:58195",
+          "coordinate": {
+            "lat": 59.94527,
+            "lon": 10.778637
+          },
+          "layer": "venue",
+          "categories": [
+            "metroStation",
+            "onstreetBus",
+            "onstreetTram",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58195",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58195",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58195",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58195",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation",
+              "onstreetBus",
+              "onstreetTram",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "metro": null
+              },
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6060",
+          "coordinate": {
+            "lat": 59.945261,
+            "lon": 10.778558
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6060",
+            "gid": "geonames:venue:NSR:StopPlace:6060",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6060",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6060",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Storo",
+          "id": "NSR:StopPlace:6067",
+          "coordinate": {
+            "lat": 59.944896,
+            "lon": 10.779955
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6067",
+            "gid": "geonames:venue:NSR:StopPlace:6067",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6067",
+            "name": "Storo",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6067",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "decisionHint": "multiple_exact_tram_stops"
+    },
+    {
+      "key": "grefsen_stasjon",
+      "name": "Grefsen stasjon",
+      "role": "shared_east_terminus",
+      "candidates": [
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:59643",
+          "coordinate": {
+            "lat": 59.94168,
+            "lon": 10.78079
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation",
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:59643",
+            "gid": "openstreetmap:venue:NSR:StopPlace:59643",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:59643",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:59643",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation",
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "rail": null
+              },
+              {
+                "tram": null
+              },
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:343",
+          "coordinate": {
+            "lat": 59.941666,
+            "lon": 10.78064
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:343",
+            "gid": "geonames:venue:NSR:StopPlace:343",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:343",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:343",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation"
+            ],
+            "mode": [
+              {
+                "rail": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6052",
+          "coordinate": {
+            "lat": 59.94106,
+            "lon": 10.781493
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6052",
+            "gid": "geonames:venue:NSR:StopPlace:6052",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6052",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6052",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6050",
+          "coordinate": {
+            "lat": 59.942077,
+            "lon": 10.781356
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6050",
+            "gid": "geonames:venue:NSR:StopPlace:6050",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6050",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6050",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "exactName": [
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:59643",
+          "coordinate": {
+            "lat": 59.94168,
+            "lon": 10.78079
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation",
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:59643",
+            "gid": "openstreetmap:venue:NSR:StopPlace:59643",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:59643",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:59643",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation",
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "rail": null
+              },
+              {
+                "tram": null
+              },
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:343",
+          "coordinate": {
+            "lat": 59.941666,
+            "lon": 10.78064
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:343",
+            "gid": "geonames:venue:NSR:StopPlace:343",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:343",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:343",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation"
+            ],
+            "mode": [
+              {
+                "rail": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6052",
+          "coordinate": {
+            "lat": 59.94106,
+            "lon": 10.781493
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6052",
+            "gid": "geonames:venue:NSR:StopPlace:6052",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6052",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6052",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6050",
+          "coordinate": {
+            "lat": 59.942077,
+            "lon": 10.781356
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6050",
+            "gid": "geonames:venue:NSR:StopPlace:6050",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6050",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6050",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "tramRelevant": [
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:59643",
+          "coordinate": {
+            "lat": 59.94168,
+            "lon": 10.78079
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation",
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:59643",
+            "gid": "openstreetmap:venue:NSR:StopPlace:59643",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:59643",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:59643",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation",
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "rail": null
+              },
+              {
+                "tram": null
+              },
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6050",
+          "coordinate": {
+            "lat": 59.942077,
+            "lon": 10.781356
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6050",
+            "gid": "geonames:venue:NSR:StopPlace:6050",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6050",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6050",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "nsrCandidates": [
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:59643",
+          "coordinate": {
+            "lat": 59.94168,
+            "lon": 10.78079
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation",
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:59643",
+            "gid": "openstreetmap:venue:NSR:StopPlace:59643",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:59643",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:59643",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation",
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "rail": null
+              },
+              {
+                "tram": null
+              },
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:343",
+          "coordinate": {
+            "lat": 59.941666,
+            "lon": 10.78064
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:343",
+            "gid": "geonames:venue:NSR:StopPlace:343",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:343",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:343",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation"
+            ],
+            "mode": [
+              {
+                "rail": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6052",
+          "coordinate": {
+            "lat": 59.94106,
+            "lon": 10.781493
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6052",
+            "gid": "geonames:venue:NSR:StopPlace:6052",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6052",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6052",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6050",
+          "coordinate": {
+            "lat": 59.942077,
+            "lon": 10.781356
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6050",
+            "gid": "geonames:venue:NSR:StopPlace:6050",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6050",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6050",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "preferredCandidates": [
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:59643",
+          "coordinate": {
+            "lat": 59.94168,
+            "lon": 10.78079
+          },
+          "layer": "venue",
+          "categories": [
+            "railStation",
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:59643",
+            "gid": "openstreetmap:venue:NSR:StopPlace:59643",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:59643",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:59643",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation",
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "rail": null
+              },
+              {
+                "tram": null
+              },
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6050",
+          "coordinate": {
+            "lat": 59.942077,
+            "lon": 10.781356
+          },
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6050",
+            "gid": "geonames:venue:NSR:StopPlace:6050",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6050",
+            "name": "Grefsen stasjon",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6050",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        }
+      ],
+      "decisionHint": "multiple_exact_tram_stops"
+    }
+  ]
+}

@@ -1,0 +1,713 @@
+{
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "attempts": [
+    {
+      "endpoint": "https://overpass.kumi.systems/api/interpreter",
+      "status": 504
+    },
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": 200
+    }
+  ],
+  "query": "[out:json][timeout:90];\n(\n  rel[\"name\"~\"^(Gaustadalléen|Nybrua|Sinsenkrysset|Storo|Grefsen stasjon)$\"][\"type\"=\"public_transport\"][\"public_transport\"=\"stop_area\"](59.85,10.60,60.02,10.90);\n  nwr[\"name\"~\"^(Gaustadalléen|Nybrua|Sinsenkrysset|Storo|Grefsen stasjon)$\"][\"railway\"=\"tram_stop\"](59.85,10.60,60.02,10.90);\n  nwr[\"name\"~\"^(Gaustadalléen|Nybrua|Sinsenkrysset|Storo|Grefsen stasjon)$\"][\"public_transport\"=\"stop_position\"](59.85,10.60,60.02,10.90);\n  nwr[\"name\"~\"^(Gaustadalléen|Nybrua|Sinsenkrysset|Storo|Grefsen stasjon)$\"][\"public_transport\"=\"platform\"](59.85,10.60,60.02,10.90);\n);\nout center tags;",
+  "payload": {
+    "version": 0.6,
+    "generator": "Overpass API 0.7.62.11 87bfad18",
+    "osm3s": {
+      "timestamp_osm_base": "2026-07-20T01:31:30Z",
+      "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+    },
+    "elements": [
+      {
+        "type": "node",
+        "id": 25319431,
+        "lat": 59.9446397,
+        "lon": 10.7786176,
+        "tags": {
+          "name": "Storo",
+          "network": "Ruter",
+          "operator": "Sporveien T-banen",
+          "public_transport": "stop_position",
+          "railway": "stop",
+          "subway": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 25447876,
+        "lat": 59.9457796,
+        "lon": 10.7789326,
+        "tags": {
+          "bus": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 25447883,
+        "lat": 59.9458034,
+        "lon": 10.7792323,
+        "tags": {
+          "bus": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 619900090,
+        "lat": 59.9380386,
+        "lon": 10.7863102,
+        "tags": {
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 660867661,
+        "lat": 59.9446075,
+        "lon": 10.7784095,
+        "tags": {
+          "name": "Storo",
+          "network": "Ruter",
+          "operator": "Sporveien T-banen",
+          "public_transport": "stop_position",
+          "railway": "stop",
+          "subway": "yes",
+          "wheelchair": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 739929954,
+        "lat": 59.945666,
+        "lon": 10.7176202,
+        "tags": {
+          "name": "Gaustadalléen",
+          "network": "Ruter",
+          "network:wikidata": "Q750292",
+          "operator": "Sporveien Trikken",
+          "operator:wikidata": "Q287668",
+          "public_transport": "stop_position",
+          "railway": "tram_stop",
+          "tram": "yes",
+          "wheelchair": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 1124931192,
+        "lat": 59.9419867,
+        "lon": 10.7813708,
+        "tags": {
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "network:wikidata": "Q750292",
+          "operator": "Sporveien Trikken",
+          "operator:wikidata": "Q287668",
+          "public_transport": "stop_position",
+          "railway": "tram_stop",
+          "tram": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 1185120448,
+        "lat": 59.9422961,
+        "lon": 10.7812602,
+        "tags": {
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "network:wikidata": "Q750292",
+          "operator": "Sporveien Trikken",
+          "operator:wikidata": "Q287668",
+          "public_transport": "stop_position",
+          "railway": "tram_stop",
+          "tram": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 1334087987,
+        "lat": 59.9456811,
+        "lon": 10.7175624,
+        "tags": {
+          "name": "Gaustadalléen",
+          "network": "Ruter",
+          "network:wikidata": "Q750292",
+          "operator": "Sporveien Trikken",
+          "operator:wikidata": "Q287668",
+          "public_transport": "stop_position",
+          "railway": "tram_stop",
+          "tram": "yes",
+          "wheelchair": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 3172479682,
+        "lat": 59.9369382,
+        "lon": 10.7858915,
+        "tags": {
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 3172479683,
+        "lat": 59.9370834,
+        "lon": 10.7863529,
+        "tags": {
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 3173034919,
+        "lat": 59.9413167,
+        "lon": 10.7814792,
+        "tags": {
+          "bus": "yes",
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 3173034920,
+        "lat": 59.9409199,
+        "lon": 10.7814479,
+        "tags": {
+          "bus": "yes",
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 3214830382,
+        "lat": 59.9381853,
+        "lon": 10.7857801,
+        "tags": {
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 3682835401,
+        "lat": 59.945263,
+        "lon": 10.7785658,
+        "tags": {
+          "bus": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 3682835402,
+        "lat": 59.9454386,
+        "lon": 10.7772453,
+        "tags": {
+          "bus": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 8431942805,
+        "lat": 59.9170763,
+        "lon": 10.7583183,
+        "tags": {
+          "bus": "yes",
+          "name": "Nybrua",
+          "network": "Ruter",
+          "operator": "Unibuss;Nobina",
+          "public_transport": "stop_position"
+        }
+      },
+      {
+        "type": "node",
+        "id": 8431977218,
+        "lat": 59.9170687,
+        "lon": 10.7583409,
+        "tags": {
+          "name": "Nybrua",
+          "network": "Ruter",
+          "network:wikidata": "Q750292",
+          "operator": "Sporveien Trikken",
+          "operator:wikidata": "Q287668",
+          "public_transport": "stop_position",
+          "railway": "tram_stop",
+          "tactile_paving": "yes",
+          "tram": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 8431977219,
+        "lat": 59.9170848,
+        "lon": 10.7582931,
+        "tags": {
+          "name": "Nybrua",
+          "network": "Ruter",
+          "network:wikidata": "Q750292",
+          "operator": "Sporveien Trikken",
+          "operator:wikidata": "Q287668",
+          "public_transport": "stop_position",
+          "railway": "tram_stop",
+          "tactile_paving": "yes",
+          "tram": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 9653144851,
+        "lat": 59.917224,
+        "lon": 10.758601,
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "bus": "yes",
+          "highway": "bus_stop",
+          "lit": "yes",
+          "name": "Nybrua",
+          "public_transport": "platform",
+          "ref:nsrq": "106761",
+          "shelter": "yes",
+          "tactile_paving": "yes"
+        }
+      },
+      {
+        "type": "node",
+        "id": 9653144852,
+        "lat": 59.916828,
+        "lon": 10.757942,
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "bus": "yes",
+          "highway": "bus_stop",
+          "lit": "yes",
+          "name": "Nybrua",
+          "public_transport": "platform",
+          "ref:nsrq": "106762",
+          "shelter": "yes",
+          "tactile_paving": "yes"
+        }
+      },
+      {
+        "type": "way",
+        "id": 27204449,
+        "center": {
+          "lat": 59.9444677,
+          "lon": 10.7785859
+        },
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "building": "roof",
+          "lit": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "operator": "Sporveien T-banen",
+          "public_transport": "platform",
+          "railway": "platform",
+          "ref": "1;2",
+          "shelter": "yes",
+          "subway": "yes",
+          "tactile_paving": "yes"
+        }
+      },
+      {
+        "type": "way",
+        "id": 119084226,
+        "center": {
+          "lat": 59.9422374,
+          "lon": 10.7813442
+        },
+        "tags": {
+          "area": "yes",
+          "bench": "yes",
+          "bin": "yes",
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "operator": "Sporveien Trikken",
+          "public_transport": "platform",
+          "railway": "platform",
+          "shelter": "yes",
+          "source": "bing",
+          "tactile_paving": "no",
+          "tram": "yes"
+        }
+      },
+      {
+        "type": "way",
+        "id": 311564691,
+        "center": {
+          "lat": 59.9371512,
+          "lon": 10.7864189
+        },
+        "tags": {
+          "area": "yes",
+          "bench": "yes",
+          "bin": "yes",
+          "bus": "yes",
+          "lit": "no",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "platform",
+          "shelter": "yes",
+          "source": "extrapolation",
+          "tactile_paving": "yes"
+        }
+      },
+      {
+        "type": "way",
+        "id": 311564693,
+        "center": {
+          "lat": 59.9368609,
+          "lon": 10.7858286
+        },
+        "tags": {
+          "area": "yes",
+          "bench": "yes",
+          "bin": "yes",
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "platform",
+          "shelter": "yes",
+          "source": "extrapolation",
+          "tactile_paving": "yes"
+        }
+      },
+      {
+        "type": "way",
+        "id": 311606471,
+        "center": {
+          "lat": 59.9458274,
+          "lon": 10.7793263
+        },
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "bus": "yes",
+          "footway": "sidewalk",
+          "highway": "footway",
+          "name": "Storo",
+          "network": "Ruter",
+          "public_transport": "platform",
+          "shelter": "yes",
+          "surface": "paved",
+          "tactile_paving": "no"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 2914144,
+        "center": {
+          "lat": 59.9447296,
+          "lon": 10.7782392
+        },
+        "tags": {
+          "Ruter:code": "STR",
+          "Ruter:id": "3012120",
+          "Ruter:name": "Storo [T-bane]",
+          "Ruter:pay_zone": "1",
+          "name": "Storo",
+          "network": "Ruter",
+          "operator": "Sporveien T-banen",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "subway": "yes",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 3201229,
+        "center": {
+          "lat": 59.9421231,
+          "lon": 10.7813244
+        },
+        "tags": {
+          "Ruter:code": "GFS",
+          "Ruter:id": "3012111",
+          "Ruter:name": "Grefsen stasjon [trikk]",
+          "Ruter:pay_zone": "1",
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "operator": "Sporveien Trikken",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "tram": "yes",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 3201244,
+        "center": {
+          "lat": 59.9453534,
+          "lon": 10.7780749
+        },
+        "tags": {
+          "Ruter:code": "STOT",
+          "Ruter:id": "3012121",
+          "Ruter:name": "Storo (på brua)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "operator": "Sporveien Trikken",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "tram": "yes",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 3214979,
+        "center": {
+          "lat": 59.9456732,
+          "lon": 10.7175897
+        },
+        "tags": {
+          "Ruter:code": "GAUA",
+          "Ruter:id": "3012323",
+          "Ruter:name": "Gaustadalleen",
+          "Ruter:pay_zone": "1",
+          "name": "Gaustadalléen",
+          "network": "Ruter",
+          "operator": "Sporveien Trikken",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "tram": "yes",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 3242977,
+        "center": {
+          "lat": 59.9391002,
+          "lon": 10.7834238
+        },
+        "tags": {
+          "Ruter:code": "SS",
+          "Ruter:id": "3012105",
+          "Ruter:name": "Sinsenkrysset [trikk]",
+          "Ruter:pay_zone": "1",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "operator": "Sporveien Trikken",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "tram": "yes",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 4172308,
+        "center": {
+          "lat": 59.9368609,
+          "lon": 10.7858286
+        },
+        "tags": {
+          "Ruter:code": "SIKR",
+          "Ruter:id": "3012103",
+          "Ruter:name": "Sinsenkrysset (Ringv. mot syd)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 4172965,
+        "center": {
+          "lat": 59.9413303,
+          "lon": 10.7815874
+        },
+        "tags": {
+          "Ruter:code": "GFST",
+          "Ruter:id": "3012113",
+          "Ruter:name": "Grefsen stasjon (Ringv mot nord)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 4172966,
+        "center": {
+          "lat": 59.9409015,
+          "lon": 10.7813217
+        },
+        "tags": {
+          "Ruter:code": "GRST",
+          "Ruter:id": "3012112",
+          "Ruter:name": "Grefsen stasjon (Ringvn mot syd)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Grefsen stasjon",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 4172969,
+        "center": {
+          "lat": 59.9457166,
+          "lon": 10.7788331
+        },
+        "tags": {
+          "Ruter:code": "STORT",
+          "Ruter:id": "3012122",
+          "Ruter:name": "Storo (Ringvei-rampe sydover)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 5324242,
+        "center": {
+          "lat": 59.9379996,
+          "lon": 10.7864311
+        },
+        "tags": {
+          "Ruter:code": "SKRS",
+          "Ruter:id": "3012102",
+          "Ruter:name": "Sinsenkrysset (sydsiden Trh.vn)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 5324243,
+        "center": {
+          "lat": 59.9371512,
+          "lon": 10.7864189
+        },
+        "tags": {
+          "Ruter:code": "SKKR",
+          "Ruter:id": "3012106",
+          "Ruter:name": "Sinsenkrysset (Ringv. mot nord)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 5324244,
+        "center": {
+          "lat": 59.9383251,
+          "lon": 10.7859182
+        },
+        "tags": {
+          "Ruter:code": "SKRN",
+          "Ruter:id": "3012104",
+          "Ruter:name": "Sinsenkrysset (nordsiden Trh.vn)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Sinsenkrysset",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 5324245,
+        "center": {
+          "lat": 59.9458274,
+          "lon": 10.7792853
+        },
+        "tags": {
+          "Ruter:code": "STOR",
+          "Ruter:id": "3012123",
+          "Ruter:name": "Storo (Ringvei-rampe nordover)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Storo",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        }
+      },
+      {
+        "type": "relation",
+        "id": 12334782,
+        "center": {
+          "lat": 59.9170746,
+          "lon": 10.7583101
+        },
+        "tags": {
+          "name": "Nybrua",
+          "network": "Ruter",
+          "operator": "Sporveien Trikken;Unibuss;Nobina",
+          "public_transport": "stop_area",
+          "ruter:name": "Nybrua",
+          "ruter:pay_zone": "1",
+          "tactile_paving": "yes",
+          "type": "public_transport"
+        }
+      }
+    ]
+  }
+}

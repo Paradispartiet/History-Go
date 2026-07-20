@@ -1,59 +1,163 @@
 {
   "placeId": "trikk_17_18",
   "placeFile": "data/places/by/oslo/places_by.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.92,
-    "lon": 10.76,
+    "lat": 59.917044,
+    "lon": 10.758279,
     "r": 300,
-    "coordStatus": "semantic_anchor",
-    "coordSource": "",
-    "coordType": "route_midpoint",
-    "coordNote": "Tverrgående trikkelinjer. Ett punkt dekker ikke linjene; punktet er et bevisst symbolsk anker midt i indre by. Lav presisjon beholdt bevisst; bør få ruteankre ved senere manuell kartrunde."
+    "coordStatus": "verified_geometry",
+    "coordSource": "Ruter trikkelinjer/rutetabell gyldig fra 20. april 2026; Entur NSR parent-stoppankre",
+    "coordType": "branched_route_anchor",
+    "coordNote": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
   },
   "identity": {
     "currentName": "Trikkelinje 17/18",
-    "resolvedIdentity": "Trikkelinje 17/18",
+    "resolvedIdentity": "det forgrenede trikkeruteparret linje 17 og 18 mellom Gaustadalléen og Grefsen stasjon, via henholdsvis Sinsen og Storo",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
-    "splitReason": ""
+    "splitReason": "Combined-recorden kan modelleres eksplisitt som et forgrenet rutepar med egne grenankre."
   },
-  "requiredEvidence": [
-    "offisiell eller stabil rutekilde",
-    "traségeometri eller flere kildebelagte ruteankre",
-    "egen representasjonsregel for lineært unlock/display"
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "Ruter – trikkelinjer 17 og 18 / linjekart",
+      "sourceProvider": "official_map",
+      "sourceName": "Ruter – trikkelinjer og rutetabell gyldig fra 20. april 2026",
       "sourceUrl": "https://ruter.no/planlegg-reise/rutetabeller-og-linjekart/trikk",
-      "sourceObjectId": "ruter:tram-lines:17+18:2026",
-      "sourceQuality": "official_route_identity",
-      "finding": "Ruter dokumenterer linjene 17 og 18 i gjeldende trikkenett, men dagens kombinerte History Go-record har bare ett lavpresisjonspunkt og ingen kildebelagt traségeometri eller ruteankre.",
-      "canVerifyCoordinate": false,
-      "reason": "Ett punkt kan ikke verifisere to lineære trikkeruter. Stedet trenger rutegeometri/routeSegments eller et eksplisitt modellert fellessegment."
+      "sourceObjectId": "ruter:tram-lines:17+18:2026-04-20",
+      "sourceQuality": "official_current_route_definition",
+      "finding": "Ruter dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon i rutetabellen gyldig fra 20. april 2026.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Entur NSR – Gaustadalléen",
+      "sourceUrl": "https://api.entur.io/geocoder/v1/autocomplete?text=Gaustadall%C3%A9en&layers=venue&multiModal=parent",
+      "sourceObjectId": "NSR:StopPlace:6261",
+      "sourceQuality": "unique_exact_parent_stop_place",
+      "finding": "Entur multiModal=parent returnerte ett entydig eksakt parent-stopp for Gaustadalléen; ankerrolle: shared_west_terminus.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Entur NSR – Nybrua",
+      "sourceUrl": "https://api.entur.io/geocoder/v1/autocomplete?text=Nybrua&layers=venue&multiModal=parent",
+      "sourceObjectId": "NSR:StopPlace:61989",
+      "sourceQuality": "unique_exact_parent_stop_place",
+      "finding": "Entur multiModal=parent returnerte ett entydig eksakt parent-stopp for Nybrua; ankerrolle: shared_central_branch_anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Entur NSR – Sinsenkrysset",
+      "sourceUrl": "https://api.entur.io/geocoder/v1/autocomplete?text=Sinsenkrysset&layers=venue&multiModal=parent",
+      "sourceObjectId": "NSR:StopPlace:58406",
+      "sourceQuality": "unique_exact_parent_stop_place",
+      "finding": "Entur multiModal=parent returnerte ett entydig eksakt parent-stopp for Sinsenkrysset; ankerrolle: line_17_branch_anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Entur NSR – Storo",
+      "sourceUrl": "https://api.entur.io/geocoder/v1/autocomplete?text=Storo&layers=venue&multiModal=parent",
+      "sourceObjectId": "NSR:StopPlace:58195",
+      "sourceQuality": "unique_exact_parent_stop_place",
+      "finding": "Entur multiModal=parent returnerte ett entydig eksakt parent-stopp for Storo; ankerrolle: line_18_branch_anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Entur NSR – Grefsen stasjon",
+      "sourceUrl": "https://api.entur.io/geocoder/v1/autocomplete?text=Grefsen%20stasjon&layers=venue&multiModal=parent",
+      "sourceObjectId": "NSR:StopPlace:59643",
+      "sourceQuality": "unique_exact_parent_stop_place",
+      "finding": "Entur multiModal=parent returnerte ett entydig eksakt parent-stopp for Grefsen stasjon; ankerrolle: shared_east_terminus.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "ruter:tram-lines:17+18:2026",
-      "canApplyToPlace": false
+      "sourceProvider": "official_map",
+      "sourceObjectId": "ruter:tram-lines:17+18:2026-04-20",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:6261",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:61989",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:58406",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:58195",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:59643",
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:6261",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:61989",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:58406",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:58195",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "NSR:StopPlace:59643",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.917044,
+      "lon": 10.758279,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Ett punkt kan ikke verifisere to lineære trikkeruter. Stedet trenger rutegeometri/routeSegments eller et eksplisitt modellert fellessegment.",
-    "nextAction": "Bygg routeSegments/rutegeometri før koordinaten kan godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Det forgrenede ruteparret er anvendt med fem entydige parent-stoppankre."
   },
   "notes": [
-    "Ett punkt kan ikke verifisere to lineære trikkeruter. Stedet trenger rutegeometri/routeSegments eller et eksplisitt modellert fellessegment."
+    "Recorden representerer det forgrenede ruteparret trikk 17 og 18, ikke ett matematisk rutemidtpunkt. Ruters rutetabell gyldig fra 20. april 2026 dokumenterer linje 17 som Gaustadalléen–Sinsen–Grefsen stasjon og linje 18 som Gaustadalléen–Storo–Grefsen stasjon. Hovedpunktet ved Nybrua er et eksplisitt linjeanker (line_anchor) i den delte sentrumsstrekningen. Fem entydige parent-stopp fra Enturs nasjonale stoppregister dokumenterer felles vestende, felles sentrumsanker, hver av de to grenene og felles ende ved Grefsen stasjon."
   ]
 }
