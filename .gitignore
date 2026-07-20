@@ -6,6 +6,18 @@ node_modules/
 dist/*
 !dist/web/
 
+# Python backend development/build artifacts.
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+backend/.env
+
 # Lokal koordinatkilde-cache (generate-place-coordinate-candidates.mjs).
 # Cache committes ikke; den regenereres ved behov fra kildene.
 tmp/coordinate-cache/
