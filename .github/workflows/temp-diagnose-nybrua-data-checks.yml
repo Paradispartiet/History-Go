@@ -1,0 +1,46 @@
+name: Temporary Nybrua data check diagnostics
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 2618
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Nybrua branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-nybrua-vaterlandsparken-split
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Run People and Places diagnostics
+        shell: bash
+        run: |
+          set +e
+          mkdir -p /tmp/nybrua-diagnostics
+          bash scripts/check-people.sh > /tmp/nybrua-diagnostics/people.log 2>&1
+          people_status=$?
+          bash scripts/check-places.sh > /tmp/nybrua-diagnostics/places.log 2>&1
+          places_status=$?
+          cat /tmp/nybrua-diagnostics/people.log
+          cat /tmp/nybrua-diagnostics/places.log
+          printf '%s\n' "$people_status" > /tmp/nybrua-diagnostics/people.exit
+          printf '%s\n' "$places_status" > /tmp/nybrua-diagnostics/places.exit
+          exit 0
+      - name: Upload diagnostic logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: nybrua-data-check-diagnostics
+          path: /tmp/nybrua-diagnostics
