@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Lille Frøens vei 4 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Lille Frøens vei 4 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Lille%20Fr%C3%B8ens%20vei%204%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:14283:4",
+  "coordinate": {
+    "lat": 59.93569216008246,
+    "lon": 10.71161396805781,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14283:4",
+    "address": {
+      "street": "Lille Frøens vei",
+      "number": "4",
+      "postcode": "0371",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Lille Frøens vei 4, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Lille Frøens vei",
+    "adressetekst": "Lille Frøens vei 4",
+    "adressetilleggsnavn": null,
+    "adressekode": 14283,
+    "nummer": 4,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 38,
+    "bruksnummer": 33,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0371",
+    "adressetekstutenadressetilleggsnavn": "Lille Frøens vei 4",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.93569216008246,
+      "lon": 10.71161396805781
+    },
+    "oppdateringsdato": "2020-06-15T18:03:03"
+  }
+}
