@@ -1,4 +1,5 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "villa_stenersen",
   "placeFile": "data/places/historie/oslo/places_historie_added_batch_01.json",
   "evidenceStatus": "applied_to_place",
@@ -10,32 +11,28 @@
     "coordStatus": "verified",
     "coordSource": "geonorge_adresser_v1",
     "coordType": "address_point",
-    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tuengen allé 10C, OSLO. Punktet brukes som display-marker for Villa Stenersen og erstatter den eldre kildekoordinaten etter den låste address-first-metoden."
+    "coordNote": "Official Geonorge address coordinate for Tuengen allé 10C, OSLO. The address point is retained as the display marker for Villa Stenersen under the locked address-first method."
   },
   "identity": {
     "currentName": "Villa Stenersen",
-    "resolvedIdentity": "Villa Stenersen",
+    "resolvedIdentity": "Villa Stenersen at Tuengen allé 10C",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "stabil kildeidentitet for koordinatankeret",
-    "eksisterende canonical identitet i aggregate place-kilden",
-    "runtime-restaurering gjennom synkronisert split-manifest"
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
       "sourceProvider": "official_address",
-      "sourceName": "geonorge_adresser_v1",
+      "sourceName": "Geonorge Adresser API – Tuengen allé 10C",
       "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Tuengen%20all%C3%A9%2010C%20Oslo",
       "sourceObjectId": "geonorge-adresser-v1:0301:17802:10C",
-      "sourceQuality": "stable_source_identity_plus_existing_canonical_identity",
-      "finding": "Geonorge gir ett tydelig adressetreff for Tuengen allé 10C Oslo. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten å opprette ny place-id.",
+      "sourceQuality": "official_exact_address_point",
+      "finding": "The existing place uses the official address representation point for Tuengen allé 10C, Oslo.",
       "canVerifyCoordinate": true,
-      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Tuengen allé 10C, OSLO. Punktet brukes som display-marker for Villa Stenersen og erstatter den eldre kildekoordinaten etter den låste address-first-metoden."
+      "reason": "Concrete active building with a single official address anchor under the address-first policy."
     }
   ],
   "addressCandidates": [
@@ -59,16 +56,17 @@
       "lat": 59.939226276070805,
       "lon": 10.698765324399833,
       "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17802:10C",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source."
+    "nextAction": "Batch audit confirms the existing canonical coordinate source and closes this record in top-level source queue order."
   },
   "notes": [
-    "This is a runtime restoration of an existing canonical place, not a new place creation.",
-    "Offisiell adressekoordinat fra Geonorge Adresser API for Tuengen allé 10C, OSLO. Punktet brukes som display-marker for Villa Stenersen og erstatter den eldre kildekoordinaten etter den låste address-first-metoden."
+    "Coordinate re-audited 2026-07-21 in top-level source queue order.",
+    "Official Geonorge address coordinate for Tuengen allé 10C, OSLO. The address point is retained as the display marker for Villa Stenersen under the locked address-first method."
   ]
 }

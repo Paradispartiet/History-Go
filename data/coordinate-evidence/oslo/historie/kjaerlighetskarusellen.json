@@ -1,4 +1,5 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "kjaerlighetskarusellen",
   "placeFile": "data/places/historie/oslo/places_historie_added_batch_01.json",
   "evidenceStatus": "applied_to_place",
@@ -8,34 +9,40 @@
     "lon": 10.7296528,
     "r": 45,
     "coordStatus": "verified_geometry",
-    "coordSource": "OpenStreetMap node 1346356285; identity cross-checked with Wikidata Q6419506 and Oslo byleksikon",
+    "coordSource": "OpenStreetMap node 1346356285 – Kjærlighetskarusellen; identity cross-checked with Oslo byleksikon",
     "coordType": "poi_node",
-    "coordNote": "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet."
+    "coordNote": "Exact named OSM point for Kjærlighetskarusellen at Stensparken. Oslo byleksikon independently identifies the protected 1937 urinal at the same place. The point represents the structure itself, not Stensparken as a whole. Wikidata is not used as a coordinate source."
   },
   "identity": {
     "currentName": "Kjærlighetskarusellen",
-    "resolvedIdentity": "Kjærlighetskarusellen",
+    "resolvedIdentity": "Kjærlighetskarusellen, det fredede pissoaret i Stensparken",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "poi",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "stabil kildeidentitet for koordinatankeret",
-    "eksisterende canonical identitet i aggregate place-kilden",
-    "runtime-restaurering gjennom synkronisert split-manifest"
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
       "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap node 1346356285; identity cross-checked with Wikidata Q6419506 and Oslo byleksikon",
+      "sourceName": "OpenStreetMap node 1346356285 – Kjærlighetskarusellen",
       "sourceUrl": "https://www.openstreetmap.org/node/1346356285",
       "sourceObjectId": "osm-node:1346356285",
-      "sourceQuality": "stable_source_identity_plus_existing_canonical_identity",
-      "finding": "Kjærlighetskarusellen er knyttet til det navngitte OSM-objektet node 1346356285; identiteten er kryssjekket mot Wikidata Q6419506 og Oslo byleksikon. Den eksisterende canonical recorden ble skjult fra runtime av en stale sibling split-manifest og gjenopprettes uten å opprette ny place-id.",
+      "sourceQuality": "exact_named_poi_node",
+      "finding": "Exact named point object for Kjærlighetskarusellen.",
       "canVerifyCoordinate": true,
-      "reason": "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet."
+      "reason": "The point object matches the physical POI represented by the place record."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Kjærlighetskarusellen",
+      "sourceUrl": "https://oslobyleksikon.no/side/Kj%C3%A6rlighetskarusellen",
+      "sourceObjectId": "oslobyleksikon:kjaerlighetskarusellen",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Oslo byleksikon identifies the 1937 protected urinal below Fagerborg church in Stensparken as Kjærlighetskarusellen.",
+      "canVerifyCoordinate": false,
+      "reason": "Identity cross-check only; OSM node 1346356285 remains the coordinate source."
     }
   ],
   "addressCandidates": [],
@@ -44,24 +51,39 @@
       "sourceProvider": "osm",
       "sourceObjectId": "osm-node:1346356285",
       "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:kjaerlighetskarusellen",
+      "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [
+  "geometryCandidates": [
     {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1346356285",
       "lat": 59.9267,
       "lon": 10.7296528,
       "coordRole": "display_marker",
       "canApplyToPlace": true
     }
   ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9267,
+      "lon": 10.7296528,
+      "coordRole": "display_marker",
+      "sourceObjectId": "osm-node:1346356285",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Restored the existing canonical place to split/runtime materialization with a v1-compatible verified coordinate source."
+    "nextAction": "Batch audit confirms the existing canonical coordinate source and closes this record in top-level source queue order."
   },
   "notes": [
-    "This is a runtime restoration of an existing canonical place, not a new place creation.",
-    "Navngitt OSM-punkt for Kjærlighetskarusellen ved Stensparken. Objektidentiteten er kryssjekket mot Wikidata Q6419506, som oppgir samme OSM-node, og Oslo byleksikon. Punktet representerer selve det fredede pissoaret, ikke Stensparken som helhet."
+    "Coordinate re-audited 2026-07-21 in top-level source queue order.",
+    "Exact named OSM point for Kjærlighetskarusellen at Stensparken. Oslo byleksikon independently identifies the protected 1937 urinal at the same place. The point represents the structure itself, not Stensparken as a whole. Wikidata is not used as a coordinate source."
   ]
 }

@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 243 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 93 kontrollerer alle åtte Alnaelva-rutepunktene: fire får eksakt kildegeometri, mens fire avsluttes som dokumenterte needs_review-saker uten proxy-gjetting. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
+Oslo-tabellen inneholder nå 247 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 94 lukker de fire neste ukontrollerte recordene i `places_historie_added_batch_01.json` i kildefilens rekkefølge: ett eksplisitt publisert monumentpunkt med uavhengig identitetskryssjekk, ett eksakt OSM-POI og to offisielle Geonorge-adressepunkter. Ingen koordinater velges med nearest/first-hit-logikk, og Wikidata brukes ikke som koordinatkilde.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -274,6 +274,13 @@ Batch 92 (2026-07-21) retter `gol_stavkirke_bygdoy` fra legacy `verified_source_
 
 Batch 93 (2026-07-21) fullfører den utsatte kontrollen av de åtte Alnaelva-rutepunktene etter objekt-type-først-metoden. `alnaparken` bruker det eksakt navngitte OSM-parkankeret, `groruddammen` den navngitte vanngeometrien, `svartdalen` selve dalgeometrien i stedet for Svartdalsparken, og `kvaernerbyen_alna` et eksakt navngitt Alna-segment. `alnsjoen_alna_kilde`, `alna_smalvoll`, `alna_bryn` og `alna_utlop_bjorvika` avsluttes som needs_review fordi kontrollen ikke ga ett entydig kildeobjekt som samsvarer med hele recordens fysiske eller historiske scope.
 
+| 94 | `peststotten_krist_kirkegard` | Peststøtten – Krist kirkegård | verified | `atlasobscura:black-death-monument-peststotten` |
+| 94 | `kjaerlighetskarusellen` | Kjærlighetskarusellen | verified_geometry | `osm-node:1346356285` |
+| 94 | `villa_stenersen` | Villa Stenersen | verified | `geonorge-adresser-v1:0301:17802:10C` |
+| 94 | `st_hallvard_kirke_kloster` | St. Hallvard kirke og kloster | verified | `geonorge-adresser-v1:0301:11553:4` |
+
+Batch 94 (2026-07-21) følger top-level manifestrekkefølgen videre inn i `places_historie_added_batch_01.json`. De seks første recordene i filen var allerede kontrollert i tidligere batcher; de fire neste og siste recordene lukkes her. `peststotten_krist_kirkegard` beholder et eksplisitt publisert monumentpunkt med separat identitets- og plasseringskryssjekk mot Oslo byleksikon, `kjaerlighetskarusellen` bruker det eksakt navngitte OSM-punktet uten Wikidata som koordinatkilde, og `villa_stenersen` samt `st_hallvard_kirke_kloster` bruker offisielle Geonorge-adressepunkter etter address-first-policyen.
+
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -442,8 +449,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 94.
-- Før batch 94 starter skal neste aktive sekundære Oslo-kildekø auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
+- Neste nye Oslo-kontroll er batch 95.
+- `places_historie_added_batch_01.json` er nå uttømt i kildefilens rekkefølge. Før batch 95 starter skal neste aktive Oslo-kilde etter denne fila auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 
