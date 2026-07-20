@@ -1,48 +1,161 @@
 (() => {
   // js/map-controls-runtime.ts
   var win = window;
-  var FILTER_KEY = "hg_map_category_filter_v1";
+  var FILTER_KEY = "hg_map_category_filters_v2";
+  var LEGACY_FILTER_KEY = "hg_map_category_filter_v1";
   var ALL = "all";
-  var activeCategory = readSavedCategory();
+  var activeCategories = readSavedCategories();
   var sourcePlaces = [];
   var originalSetPlaces = null;
-  function readSavedCategory() {
-    try {
-      return localStorage.getItem(FILTER_KEY) || ALL;
-    } catch {
-      return ALL;
-    }
-  }
-  function categories() {
+  var badgeCatalog = [];
+  var badgeCatalogLoaded = false;
+  var badgeLoadPromise = null;
+  function runtimeCategories() {
     return Array.isArray(win.CATEGORY_LIST) ? win.CATEGORY_LIST : [];
   }
-  function normalizeCategory(value) {
-    const id = String(value || ALL).trim() || ALL;
-    if (id === ALL) return ALL;
-    return categories().some((category) => String(category.id || "") === id) ? id : ALL;
-  }
-  function placeCategory(place) {
-    const raw = String((place == null ? void 0 : place.category) || "").trim();
-    const match = categories().find(
+  function runtimeCategoryId(value) {
+    var _a;
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    const bridge = (_a = win.DomainRegistry) == null ? void 0 : _a.toRuntimeCategoryId;
+    if (typeof bridge === "function") {
+      try {
+        const resolved = String(bridge(raw) || "").trim();
+        if (resolved) return resolved;
+      } catch {
+      }
+    }
+    const match = runtimeCategories().find(
       (category) => String(category.id || "") === raw || Array.isArray(category.aliases) && category.aliases.some((alias) => String(alias) === raw)
     );
     return String((match == null ? void 0 : match.id) || raw);
   }
+  function normalizeSelection(values) {
+    const list = Array.isArray(values) ? values : [values];
+    const next = /* @__PURE__ */ new Set();
+    for (const value of list) {
+      const id = runtimeCategoryId(value);
+      if (id && id !== ALL) next.add(id);
+    }
+    return next;
+  }
+  function readSavedCategories() {
+    try {
+      const raw = localStorage.getItem(FILTER_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return normalizeSelection(parsed);
+      }
+      const legacy = localStorage.getItem(LEGACY_FILTER_KEY);
+      if (legacy && legacy !== ALL) return normalizeSelection([legacy]);
+    } catch {
+    }
+    return /* @__PURE__ */ new Set();
+  }
+  function saveActiveCategories() {
+    try {
+      localStorage.setItem(FILTER_KEY, JSON.stringify([...activeCategories]));
+      localStorage.removeItem(LEGACY_FILTER_KEY);
+    } catch {
+    }
+  }
+  function badgeImagePath(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    if (/^(https?:)?\/\//.test(raw)) return raw;
+    if (raw.includes("/") || /\.(png|jpe?g|webp|gif|svg)$/i.test(raw)) return raw;
+    return "";
+  }
+  function buildBadgeCatalog(badges) {
+    const byId = /* @__PURE__ */ new Map();
+    for (const badge of Array.isArray(badges) ? badges : []) {
+      const id = runtimeCategoryId(badge == null ? void 0 : badge.id);
+      if (!id || byId.has(id)) continue;
+      const runtime = runtimeCategories().find((category) => String(category.id || "") === id);
+      byId.set(id, {
+        id,
+        name: String((badge == null ? void 0 : badge.name) || (badge == null ? void 0 : badge.title) || (runtime == null ? void 0 : runtime.name) || id),
+        image: badgeImagePath((badge == null ? void 0 : badge.image) || (badge == null ? void 0 : badge.icon)),
+        color: String((badge == null ? void 0 : badge.color) || (runtime == null ? void 0 : runtime.color) || "#60758a"),
+        scope: runtime == null ? void 0 : runtime.scope,
+        aliases: runtime == null ? void 0 : runtime.aliases
+      });
+    }
+    return [...byId.values()];
+  }
+  async function ensureBadgeCatalog() {
+    var _a;
+    if (badgeCatalogLoaded) return;
+    if (Array.isArray(win.BADGES) && win.BADGES.length) {
+      badgeCatalog = buildBadgeCatalog(win.BADGES);
+      badgeCatalogLoaded = true;
+      return;
+    }
+    if (badgeLoadPromise) return badgeLoadPromise;
+    const loader = (_a = win.DataHub) == null ? void 0 : _a.loadBadges;
+    if (typeof loader !== "function") return;
+    badgeLoadPromise = Promise.resolve(loader({ cache: "no-store" })).then((badges) => {
+      badgeCatalog = buildBadgeCatalog(Array.isArray(badges) ? badges : []);
+      badgeCatalogLoaded = true;
+    }).catch((error) => {
+      console.warn("[HGMapCategoryFilter] badge-load failed", error);
+      badgeCatalog = [];
+      badgeCatalogLoaded = true;
+    }).finally(() => {
+      badgeLoadPromise = null;
+    });
+    return badgeLoadPromise;
+  }
+  function placeCategory(place) {
+    return runtimeCategoryId(place == null ? void 0 : place.category);
+  }
+  function mapApplicableCategories() {
+    const places = sourcePlaces.length ? sourcePlaces : Array.isArray(win.PLACES) ? win.PLACES : [];
+    const placeCategoryIds = new Set(places.map(placeCategory).filter(Boolean));
+    if (badgeCatalog.length) {
+      return badgeCatalog.filter((category) => {
+        const runtime = runtimeCategories().find((item) => String(item.id || "") === category.id);
+        const runtimeDomain = (runtime == null ? void 0 : runtime.scope) === "runtime_domain" || (runtime == null ? void 0 : runtime.scope) === "runtime_domain_alias";
+        return runtimeDomain || placeCategoryIds.has(category.id);
+      });
+    }
+    return runtimeCategories().filter((category) => category.scope !== "subfield_display").map((category) => ({
+      ...category,
+      image: `bilder/merker/${category.id}.PNG`
+    }));
+  }
+  function sanitizeActiveCategories() {
+    const validIds = new Set(mapApplicableCategories().map((category) => category.id));
+    if (!validIds.size) return;
+    const next = new Set([...activeCategories].filter((id) => validIds.has(id)));
+    if (next.size !== activeCategories.size) {
+      activeCategories = next;
+      saveActiveCategories();
+    }
+  }
   function filteredPlaces(places) {
     const list = Array.isArray(places) ? places : [];
-    activeCategory = normalizeCategory(activeCategory);
-    return activeCategory === ALL ? list : list.filter((place) => placeCategory(place) === activeCategory);
+    sanitizeActiveCategories();
+    if (!activeCategories.size) return list;
+    return list.filter((place) => activeCategories.has(placeCategory(place)));
+  }
+  function ensureControlStyles() {
+    if (document.getElementById("hgMapControlsRuntimeStyle")) return;
+    const style = document.createElement("style");
+    style.id = "hgMapControlsRuntimeStyle";
+    style.textContent = `.map-controls{--hg-map-control-width:min(268px,calc(100vw - 24px));top:auto!important;left:auto!important;right:calc(12px + env(safe-area-inset-right,0px))!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 14px)!important;width:var(--hg-map-control-width)!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - var(--hg-visual-header-height,74px) - var(--hg-bottom-nav-height,72px) - 24px);}body.mode-map .map-controls,body.map-only .map-controls{top:auto!important;bottom:calc(96px + var(--hg-safe-area-bottom,env(safe-area-inset-bottom,0px)))!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-style-toggle{display:inline-flex!important;}body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{display:flex!important;}.map-controls .hg-map-category-trigger{grid-template-columns:44px minmax(0,1fr) 18px;}.hg-map-category-trigger-logos,.hg-map-category-option-logos{display:flex;align-items:center;min-width:0;height:32px;}.hg-map-category-trigger-logos{width:44px;padding-left:2px;}.hg-map-category-logo{display:block;width:30px;height:30px;flex:0 0 30px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,.06);box-shadow:0 0 0 1px rgba(255,255,255,.12);}.hg-map-category-logo.is-stacked{margin-left:-13px;}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(2){transform:scale(.92);}.hg-map-category-trigger-logos .hg-map-category-logo:nth-child(3){transform:scale(.84);}.map-controls .hg-map-category-option{grid-template-columns:38px minmax(0,1fr) 24px;min-height:48px;}.hg-map-category-option-logos{width:38px;}.hg-map-category-option-logos .hg-map-category-logo{width:32px;height:32px;flex-basis:32px;}.hg-map-category-option-logos .hg-map-category-logo.is-stacked{width:25px;height:25px;flex-basis:25px;margin-left:-15px;}.hg-map-category-option-check{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.14);font-size:12px;font-weight:900;}.hg-map-category-option:not(.is-active) .hg-map-category-option-check{opacity:.18;color:transparent;}.hg-map-category-options{max-height:min(58dvh,560px);}@media (max-width:640px){.map-controls{--hg-map-control-width:min(248px,calc(100vw - 20px));right:calc(10px + env(safe-area-inset-right,0px))!important;bottom:calc(var(--hg-bottom-nav-height,72px) + 10px)!important;}body.mode-map .map-controls,body.map-only .map-controls{bottom:calc(90px + var(--hg-safe-area-bottom,env(safe-area-inset-bottom,0px)))!important;}}`;
+    document.head.appendChild(style);
   }
   function createCategoryFilter() {
     const filter = document.createElement("div");
     filter.className = "hg-map-category-filter";
     filter.innerHTML = `
     <button class="hg-map-category-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="hgMapCategoryOptions">
-      <span class="hg-map-category-trigger-icon" aria-hidden="true">\u{1F30D}</span>
+      <span class="hg-map-category-trigger-logos" aria-hidden="true"></span>
       <span class="hg-map-category-trigger-label">Alle prikker</span>
       <span class="hg-map-category-trigger-caret" aria-hidden="true">\u2304</span>
     </button>
-    <div id="hgMapCategoryOptions" class="hg-map-category-options" role="menu" aria-label="Filtrer kartprikker etter kategori" hidden></div>`;
+    <div id="hgMapCategoryOptions" class="hg-map-category-options" role="menu" aria-label="Velg \xE9n eller flere kategorier som skal vises p\xE5 kartet" hidden></div>`;
     return filter;
   }
   function createIconButton(id, className, label, title, iconMarkup) {
@@ -95,34 +208,43 @@
   function escapeHtml(value) {
     return String(value != null ? value : "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
-  function categoryMeta(categoryId) {
-    if (categoryId === ALL) {
-      return { id: ALL, name: "Alle prikker", icon: "\u{1F30D}", color: "#60758a" };
-    }
-    return categories().find((category) => String(category.id || "") === categoryId) || {
-      id: categoryId,
-      name: categoryId,
-      icon: "\u2022",
-      color: "#60758a"
-    };
+  function logoStackMarkup(categories, limit = 3) {
+    const images = categories.map((category) => badgeImagePath(category.image)).filter(Boolean).slice(0, limit);
+    return images.map(
+      (image, index) => `<img class="hg-map-category-logo${index ? " is-stacked" : ""}" src="${escapeHtml(image)}" alt="">`
+    ).join("");
   }
   function renderCategoryUi() {
-    if (!categories().length) return;
-    activeCategory = normalizeCategory(activeCategory);
+    const categories = mapApplicableCategories();
+    if (!categories.length) return;
+    sanitizeActiveCategories();
     const trigger = document.querySelector(".hg-map-category-trigger");
-    const icon = trigger == null ? void 0 : trigger.querySelector(".hg-map-category-trigger-icon");
+    const logos = trigger == null ? void 0 : trigger.querySelector(".hg-map-category-trigger-logos");
     const label = trigger == null ? void 0 : trigger.querySelector(".hg-map-category-trigger-label");
     const options = document.getElementById("hgMapCategoryOptions");
-    if (!trigger || !icon || !label || !options) return;
-    const active = categoryMeta(activeCategory);
-    icon.textContent = active.icon || "\u2022";
-    label.textContent = active.name || active.id;
-    trigger.title = activeCategory === ALL ? "Viser alle kategorier" : `Viser bare ${active.name || active.id}`;
-    options.innerHTML = [categoryMeta(ALL), ...categories()].map((category) => {
-      const id = String(category.id || ALL);
-      const selected = id === activeCategory;
-      return `<button class="hg-map-category-option${selected ? " is-active" : ""}" type="button" role="menuitemradio" aria-checked="${selected}" data-map-category="${escapeHtml(id)}" style="--hg-cat-color:${escapeHtml(category.color || "#60758a")}"><span class="hg-map-category-option-icon" aria-hidden="true">${escapeHtml(category.icon || "\u2022")}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
+    if (!trigger || !logos || !label || !options) return;
+    const selected = categories.filter((category) => activeCategories.has(category.id));
+    const visibleForLogos = selected.length ? selected : categories;
+    logos.innerHTML = logoStackMarkup(visibleForLogos);
+    if (!selected.length) {
+      label.textContent = "Alle prikker";
+      trigger.title = "Viser alle kategorier";
+    } else if (selected.length === 1) {
+      label.textContent = selected[0].name || selected[0].id;
+      trigger.title = `Viser ${selected[0].name || selected[0].id}`;
+    } else {
+      label.textContent = `${selected.length} kategorier`;
+      trigger.title = `Viser ${selected.map((category) => category.name || category.id).join(", ")}`;
+    }
+    const allSelected = activeCategories.size === 0;
+    const allLogos = logoStackMarkup(categories);
+    const allOption = `<button class="hg-map-category-option${allSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${allSelected}" data-map-category="${ALL}"><span class="hg-map-category-option-logos" aria-hidden="true">${allLogos}</span><span class="hg-map-category-option-label">Alle prikker</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
+    const categoryOptions = categories.map((category) => {
+      const id = category.id;
+      const isSelected = activeCategories.has(id);
+      return `<button class="hg-map-category-option${isSelected ? " is-active" : ""}" type="button" role="menuitemcheckbox" aria-checked="${isSelected}" data-map-category="${escapeHtml(id)}"><span class="hg-map-category-option-logos" aria-hidden="true">${logoStackMarkup([category], 1)}</span><span class="hg-map-category-option-label">${escapeHtml(category.name || id)}</span><span class="hg-map-category-option-check" aria-hidden="true">\u2713</span></button>`;
     }).join("");
+    options.innerHTML = allOption + categoryOptions;
   }
   function installFilterHook() {
     const api = win.HGMap;
@@ -131,6 +253,7 @@
     originalSetPlaces = api.setPlaces.bind(api);
     api.setPlaces = (places) => {
       sourcePlaces = Array.isArray(places) ? places : [];
+      renderCategoryUi();
       return originalSetPlaces == null ? void 0 : originalSetPlaces(filteredPlaces(sourcePlaces));
     };
     api.__hgCategoryFilterPatched = true;
@@ -140,20 +263,43 @@
     }
     return true;
   }
-  function applyFilter(categoryId) {
-    activeCategory = normalizeCategory(categoryId);
-    try {
-      localStorage.setItem(FILTER_KEY, activeCategory);
-    } catch {
-    }
+  function applyCurrentFilter() {
     if (!sourcePlaces.length && Array.isArray(win.PLACES)) {
       sourcePlaces = win.PLACES;
     }
+    saveActiveCategories();
     originalSetPlaces == null ? void 0 : originalSetPlaces(filteredPlaces(sourcePlaces));
     renderCategoryUi();
+    const categories = [...activeCategories];
     win.dispatchEvent(new CustomEvent("hg:map-category-filter", {
-      detail: { category: activeCategory }
+      detail: {
+        categories,
+        category: categories.length === 1 ? categories[0] : categories.length ? "multiple" : ALL
+      }
     }));
+  }
+  function setFilter(categoryIds) {
+    if (categoryIds === ALL || Array.isArray(categoryIds) && categoryIds.includes(ALL)) {
+      activeCategories = /* @__PURE__ */ new Set();
+    } else {
+      activeCategories = normalizeSelection(categoryIds);
+    }
+    applyCurrentFilter();
+  }
+  function toggleFilter(categoryId) {
+    const id = runtimeCategoryId(categoryId);
+    if (!id || id === ALL) {
+      activeCategories = /* @__PURE__ */ new Set();
+      applyCurrentFilter();
+      return;
+    }
+    if (activeCategories.has(id)) activeCategories.delete(id);
+    else activeCategories.add(id);
+    applyCurrentFilter();
+  }
+  function showAll() {
+    activeCategories = /* @__PURE__ */ new Set();
+    applyCurrentFilter();
   }
   function closeMenu() {
     const trigger = document.querySelector(".hg-map-category-trigger");
@@ -215,8 +361,9 @@
         const target = event.target;
         const option = target instanceof Element ? target.closest("[data-map-category]") : null;
         if (!option) return;
-        applyFilter(option.dataset.mapCategory || ALL);
-        closeMenu();
+        const categoryId = option.dataset.mapCategory || ALL;
+        if (categoryId === ALL) showAll();
+        else toggleFilter(categoryId);
       });
     }
     if (center && center.dataset.hgBound !== "1") {
@@ -235,10 +382,12 @@
     }
   }
   function refresh() {
+    ensureControlStyles();
     ensureControls();
     bindUi();
     installFilterHook();
     renderCategoryUi();
+    void ensureBadgeCatalog().then(() => renderCategoryUi());
   }
   function init() {
     refresh();
@@ -247,7 +396,7 @@
       var _a;
       refresh();
       attempts += 1;
-      if (((_a = win.HGMap) == null ? void 0 : _a.__hgCategoryFilterPatched) && categories().length || attempts > 80) {
+      if (((_a = win.HGMap) == null ? void 0 : _a.__hgCategoryFilterPatched) && runtimeCategories().length && badgeCatalogLoaded || attempts > 160) {
         window.clearInterval(timer);
       }
     }, 150);
@@ -263,9 +412,10 @@
     });
   }
   win.HGMapCategoryFilter = {
-    get: () => activeCategory,
-    set: applyFilter,
-    showAll: () => applyFilter(ALL),
+    get: () => [...activeCategories],
+    set: setFilter,
+    toggle: toggleFilter,
+    showAll,
     refresh
   };
   if (document.readyState === "loading") {
