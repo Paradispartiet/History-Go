@@ -1,0 +1,89 @@
+{
+  "placeId": "vikaterrassen",
+  "placeFile": "data/places/by/oslo/places/vikaterrassen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9138319,
+    "lon": 10.7285868,
+    "r": 130,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 14169568 – Vikaterrassen",
+    "coordType": "area_center",
+    "coordNote": "Geometriforankret områdeanker fra OpenStreetMap relation 14169568, som navngir og avgrenser Vikaterrassen som et eget pedestrian-område. Representasjonspunktet ligger inne i den verifiserte polygongeometrien og brukes som display- og unlock-anker for selve gågaten/byrommet. Radiusen dekker Vikaterrassens kjerne uten å bruke ett tilfeldig adressepunkt som proxy for hele komplekset, og skal ikke forveksles med det separate historiske komplekset Victoria terrasse ovenfor."
+  },
+  "identity": {
+    "currentName": "Vikaterrassen",
+    "resolvedIdentity": "Det navngitte bilfrie gågate- og butikkomplekset i Ruseløkkveien 3–5 nedenfor Victoria terrasse",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk kartobjekt for selve Vikaterrassen",
+    "polygongeometri som dekker gågate-/kompleksområdet",
+    "offisiell identitets- og adressekontekst",
+    "eksplisitt avgrensning mot Victoria terrasse"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 14169568 – Vikaterrassen",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14169568",
+      "sourceObjectId": "osm-relation:14169568",
+      "sourceQuality": "stable_object_or_area_definition",
+      "finding": "OSM relation 14169568 er én eksakt navngitt pedestrian-relation for Vikaterrassen og leverer polygongeometri som samsvarer med det bilfrie gågate-/byromskomplekset. Offisielle Vikaterrassen-kilder og Oslo byleksikon identifiserer samme sted ved Ruseløkkveien 3–5 og skiller det fra Victoria terrasse.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometriforankret områdeanker fra OpenStreetMap relation 14169568, som navngir og avgrenser Vikaterrassen som et eget pedestrian-område. Representasjonspunktet ligger inne i den verifiserte polygongeometrien og brukes som display- og unlock-anker for selve gågaten/byrommet. Radiusen dekker Vikaterrassens kjerne uten å bruke ett tilfeldig adressepunkt som proxy for hele komplekset, og skal ikke forveksles med det separate historiske komplekset Victoria terrasse ovenfor."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ruseløkkveien 3–5, 0251 Oslo",
+      "sourceProvider": "official_site",
+      "sourceObjectId": null,
+      "canApplyToPlace": false,
+      "note": "Brukes som identitets- og besøkskontekst, ikke som enkeltpunkt for et områdeobjekt som spenner over flere adresser."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14169568",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14169568",
+      "geometryType": "Polygon",
+      "boundingBox": [
+        59.913196,
+        59.9145149,
+        10.7272434,
+        10.7300272
+      ],
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9138319,
+      "lon": 10.7285868,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Bruk representasjonspunktet fra den eksakt navngitte OSM-relationen som canonical area/display anchor. Behold hele polygonet som kildegrunnlag og ikke erstatt det med ett enkelt adressepunkt."
+  },
+  "notes": [
+    "Geometriforankret områdeanker fra OpenStreetMap relation 14169568, som navngir og avgrenser Vikaterrassen som et eget pedestrian-område. Representasjonspunktet ligger inne i den verifiserte polygongeometrien og brukes som display- og unlock-anker for selve gågaten/byrommet. Radiusen dekker Vikaterrassens kjerne uten å bruke ett tilfeldig adressepunkt som proxy for hele komplekset, og skal ikke forveksles med det separate historiske komplekset Victoria terrasse ovenfor.",
+    "Vikaterrassen og Victoria terrasse er separate fysiske og historiske objekter. En eventuell framtidig Victoria terrasse-record skal ha eget bygningsanker og må ikke slås sammen med Vikaterrassen."
+  ]
+}

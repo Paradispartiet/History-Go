@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T08:22:34.340Z
+Generert: 2026-07-20T08:34:39.306Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -63,6 +63,7 @@ Generert: 2026-07-20T08:22:34.340Z
 | uranienborg_kirke | data/coordinate-evidence/oslo/by/uranienborg_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vaalerenga | data/coordinate-evidence/oslo/by/vaalerenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vigelandsparken | data/coordinate-evidence/oslo/by/vigelandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vikaterrassen | data/coordinate-evidence/oslo/by/vikaterrassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vinderen | data/coordinate-evidence/oslo/by/vinderen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | voienvolden | data/coordinate-evidence/oslo/by/voienvolden.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gimle_kino | data/coordinate-evidence/oslo/film/gimle_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
