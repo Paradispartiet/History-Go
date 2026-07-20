@@ -11,10 +11,28 @@ Dette repoet gjelder **History GO-spillet**. Civication behandles som eget prosj
 ## Start her
 
 - [`README/README.md`](./README/README.md) — hoved-README for History GO
+- [`docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md`](./docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md) — **canonical teknisk målarkitektur: TypeScript-klient, Python/FastAPI-backend, PostgreSQL/Supabase og JSON-data**
 - [`docs/HISTORY_GO_PRODUCT_MAP.md`](./docs/HISTORY_GO_PRODUCT_MAP.md) — ferdigstillelseskart: hva som mangler, hva som fullføres først, og hva som bør videreutvikles
 - [`README/README_DEV.md`](./README/README_DEV.md) — operativ utvikler-README: lokal kjøring, validering, debugging og trygg teamflyt
 - [`README/README.pensum.md`](./README/README.pensum.md) — fagkart, emner, pensum og progresjonslogikk
 - [`docs/HG_SOCIAL_README.md`](./docs/HG_SOCIAL_README.md) — HG Social-kontrakt og sosialt lag
+
+---
+
+## Teknisk retning
+
+Den overordnede språk- og plattformdelingen er fastsatt i `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md`:
+
+```text
+Klient/browser/app   → TypeScript
+Produksjonsbackend   → Python + FastAPI
+Database             → PostgreSQL
+Plattformtjenester   → Supabase der relevant
+Canonical innhold    → JSON + manifests
+Node repo-tooling    → TypeScript
+```
+
+Dette er en gradvis migrering, ikke en total rewrite. Dagens local-first-flyt, legacy-JavaScript og eksisterende Supabase-arbeid skal utvikles kontrollert inn i målarkitekturen.
 
 ---
 
@@ -70,6 +88,7 @@ Rot-README er bare inngang. Den skal ikke være idébibel, historisk lager eller
 
 Én sannhet per dokument:
 
+- teknisk målarkitektur og språk-/plattformvalg: `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md`
 - produktstatus og ferdigstillelse: `docs/HISTORY_GO_PRODUCT_MAP.md`
 - daglig utvikling: `README/README_DEV.md`
 - fag/pensum: `README/README.pensum.md`
