@@ -24,6 +24,7 @@ const STATIC_SCRIPTS = [
   "js/Civication/lifestory/lifestoryState.js",
   "js/Civication/lifestory/lifestoryRunner.js",
   "js/Civication/lifestory/lifestoryShellBridge.js",
+  "js/Civication/ui/CivicationLifestoryActions.js",
   "js/Civication/ui/CivicationLifestoryUI.js",
   "js/Civication/civicationShellLoader.js"
 ];
