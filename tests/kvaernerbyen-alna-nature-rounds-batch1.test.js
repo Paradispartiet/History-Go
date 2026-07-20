@@ -1,0 +1,38 @@
+const assert = require('assert');
+const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
+const repo = path.resolve(__dirname, '..');
+const readJson = p => JSON.parse(fs.readFileSync(path.join(repo, p), 'utf8'));
+const expectedRounds = ['tasks','nature','badges','training','civication','brands','før_nå','fortellinger','leksikon'];
+const runtime = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
+const profileMatch = runtime.match(/natur:\s*\[([^\]]+)\]/);
+assert(profileMatch, 'runtime mangler naturprofil');
+assert.deepStrictEqual(JSON.parse(`[${profileMatch[1]}]`), expectedRounds);
+const placePath='data/places/natur/oslo/places_oslo_natur_alnaelva_rute/kvaernerbyen_alna.json', quizPath='data/quiz/natur/kvaernerbyen_alna_sets.json', storyPath='data/stories/stories_kvaernerbyen_alna.json', articlePath='data/leksikon/places/oslo/natur/leksikon_kvaernerbyen_alna.json';
+const place=readJson(placePath), quiz=readJson(quizPath), story=readJson(storyPath)[0], article=readJson(articlePath);
+const index=readJson('data/places/natur/oslo/places_oslo_natur_alnaelva_rute_index.json').find(x=>x.id===place.id);
+const routeManifest=readJson('data/places/natur/oslo/places_oslo_natur_alnaelva_rute_manifest.json'); const manifestRow=routeManifest.places.find(x=>x.id===place.id);
+const quizManifest=readJson('data/quiz/manifest.json'); const storyManifest=readJson('data/stories/stories_manifest.json'); const leksikonManifest=readJson('data/leksikon/manifest.json');
+const validBadges=new Set(readJson('data/badges/natur.json').sub);
+assert.strictEqual(place.id,'kvaernerbyen_alna'); assert.strictEqual(place.name,'Kværnerbyen ved Alna'); assert.strictEqual(place.category,'natur');
+assert.deepStrictEqual([place.lat,place.lon,place.r,place.year??null],[59.90355,10.78787,130,null]);
+assert.strictEqual(place.routeId,'alnaelva_grontdrag'); assert.strictEqual(place.coordStatus,'verified'); assert.strictEqual(place.coordPrecisionM,90);
+assert(index&&manifestRow); assert.deepStrictEqual([index.lat,index.lon,index.r,index.year??null],[place.lat,place.lon,place.r,place.year??null]);
+const hash=crypto.createHash('sha256').update(fs.readFileSync(path.join(repo,placePath))).digest('hex'); assert.strictEqual(manifestRow.sha256,hash);
+for(const key of ['rounds','rundinger','routes','works','people','play_profile','flora','fauna']) assert(!Object.prototype.hasOwnProperty.call(place,key),`forbudt felt ${key}`);
+const roundContent={tasks:place.tasks_profile,nature:place.nature_profile,badges:place.underbadge_ids,training:place.training_profile,civication:place.civication_store,brands:place.brands,før_nå:place.for_na,fortellinger:[story],leksikon:[article]};
+assert.deepStrictEqual(Object.keys(roundContent),expectedRounds); for(const [id,value] of Object.entries(roundContent)){const filled=Array.isArray(value)?value.length>0:Boolean(value&&typeof value==='object');assert(filled,`mangler ${id}`);}
+assert(place.externalLinks.length>=9&&place.externalLinks.every(x=>x.type==='repository'||/^https:\/\//.test(x.url)));
+assert(place.underbadge_ids.length>=25&&place.underbadge_ids.every(x=>validBadges.has(x))); assert.strictEqual(place.tasks_profile.tasks.length,4); assert.strictEqual(place.training_profile.exercises.length,3);
+assert(/ikke.*mat|ikke.*jag/i.test(place.training_profile.safety)); assert(place.civication_store.length===4&&place.civication_store.every(x=>x.physicalObject&&x.placeSpecific)); assert(place.brands.length>=10);
+assert(place.nature_profile.summary.length>=3000); assert.strictEqual(place.nature_profile.water_system.open_natural_river_confirmed,false); assert(/ikke omtale/i.test(place.nature_profile.water_system.caution));
+assert.deepStrictEqual(place.nature_profile.nearby_place_ids,['svartdalen','alna_bryn','alna_utlop_bjorvika']);
+const mapFiles=["data/natur/nature_place_map.json","data/natur/nature_bird_place_map.json","data/natur/nature_oslo_expansion_place_map.json","data/natur/nature_routes_place_map.json","data/natur/nature_etne_place_map.json"]; const merged={flora:[],fauna:[]}; for(const file of mapFiles){const raw=readJson(file);const entry=(raw.places||raw).kvaernerbyen_alna;if(!entry)continue;merged.flora.push(...(entry.flora||[]));merged.fauna.push(...(entry.fauna||[]));}
+merged.flora=[...new Set(merged.flora)].sort(); merged.fauna=[...new Set(merged.fauna)].sort(); assert.deepStrictEqual(merged.flora,[]); assert.deepStrictEqual(merged.fauna,["emne_fauna_bokfink","emne_fauna_graatrost","emne_fauna_kjottmeis","emne_fauna_kraake","emne_fauna_linerle","emne_fauna_munk","emne_fauna_rodstrupe","emne_fauna_skjaere","emne_fauna_stokkand","emne_fauna_svarttrost"]);
+const inventory=place.nature_profile.species_inventory; assert.strictEqual(inventory.total_species,10); assert.deepStrictEqual(inventory.flora,[]); assert.deepStrictEqual(inventory.fauna.map(x=>x.id).sort(),["emne_fauna_bokfink","emne_fauna_graatrost","emne_fauna_kjottmeis","emne_fauna_kraake","emne_fauna_linerle","emne_fauna_munk","emne_fauna_rodstrupe","emne_fauna_skjaere","emne_fauna_stokkand","emne_fauna_svarttrost"]);
+assert.strictEqual(quiz.sets.length,6); assert(quiz.sets.every((s,i)=>s.order===i+1&&s.questions.length===7)); assert(quiz.sets.flatMap(s=>s.questions).every(q=>q.categoryId==='natur'&&q.placeId===place.id&&Array.isArray(q.source)&&q.source.length&&q.claim_basis==='documented'&&q.options[q.answerIndex]===q.answer&&q.related_emners.includes('em_natur_arter_habitat_mangfold')));
+assert.deepStrictEqual(quizManifest.sets.filter(x=>x.targetId===place.id),[{targetId:place.id,file:quizPath}]); assert(story&&story.place_id===place.id&&story.sources.length>=9); assert(storyManifest.files.some(x=>x.path===storyPath&&x.entity_id===place.id&&x.category==='natur'));
+assert(article&&article.place_id===place.id&&article.version===2&&article.title===place.name); assert(article.sources.length>=9&&article.facts.length>=15&&article.chronology.length>=9); assert(leksikonManifest.files.includes(articlePath));
+const all=JSON.stringify({place,quiz,story,article}); for(const token of ['Kværner Brug','1853','1999','Lodalsparken','2009','kulvert','vannspeil','grunnvannsbrønn','20 centimeter','rødstrupe','munk','svarttrost','bokfink','gråtrost','kjøttmeis','kråke','linerle','skjære','stokkand']) assert(all.toLowerCase().includes(token.toLowerCase()),`mangler ${token}`);
+assert(/ikke.*åpen Alna|ikke.*aapen Alna|ikke.*automatisk.*Alna/i.test(all)); assert(/ikke en garanti|ikke.*garanti/i.test(all)); console.log('Kvaernerbyen Alna nature rounds batch 1 OK');
