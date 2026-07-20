@@ -1,0 +1,73 @@
+{
+  "placeId": "oslo_reptilpark",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/oslo_reptilpark.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.918158949801764,
+    "lon": 10.74326746089802,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for St. Olavs gate 2, OSLO. Punktet er representasjonspunktet for Oslo Reptilparks nåværende besøksadresse og brukes som display-marker. Institusjonen åpnet først i Storgata i 2002 og flyttet til dagens adresse i 2007; koordinaten skal derfor ikke leses som opprinnelig 2002-lokasjon."
+  },
+  "identity": {
+    "currentName": "Oslo Reptilpark",
+    "resolvedIdentity": "Oslo Reptilpark at its current public visitor premises in St. Olavs gate 2, with the original 2002 Storgata location retained only as institutional history",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for dagens besøksadresse",
+    "offisiell institusjonsdokumentasjon av dagens adresse",
+    "eksplisitt skille mellom åpningen i Storgata i 2002 og dagens lokaler fra 2007"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=St.%20Olavs%20gate%202%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16935:2",
+      "sourceQuality": "official_address_plus_documented_visitor_identity",
+      "finding": "Geonorge gir et eksakt adressetreff for St. Olavs gate 2. Oslo Reptilpark oppgir samme adresse som dagens besøksadresse, og parkens egen historikkside dokumenterer at institusjonen åpnet i Storgata i 2002 og flyttet til St. Olavs gate 2 i september 2007.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for St. Olavs gate 2, OSLO. Punktet er representasjonspunktet for Oslo Reptilparks nåværende besøksadresse og brukes som display-marker. Institusjonen åpnet først i Storgata i 2002 og flyttet til dagens adresse i 2007; koordinaten skal derfor ikke leses som opprinnelig 2002-lokasjon."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "St. Olavs gate 2 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16935:2",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16935:2",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.918158949801764,
+      "lon": 10.74326746089802,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Current St. Olavs gate 2 visitor address is applied as canonical display marker; the 2002 Storgata opening remains an institutional-history layer rather than coordinate identity."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for St. Olavs gate 2, OSLO. Punktet er representasjonspunktet for Oslo Reptilparks nåværende besøksadresse og brukes som display-marker. Institusjonen åpnet først i Storgata i 2002 og flyttet til dagens adresse i 2007; koordinaten skal derfor ikke leses som opprinnelig 2002-lokasjon."
+  ]
+}
