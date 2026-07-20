@@ -3,7 +3,7 @@
   "placeId": "van_etten",
   "candidateName": "Van Etten",
   "status": "verified_address_candidate",
-  "productionGate": "manual_duplicate_review_required",
+  "productionGate": "ready_for_canonical_production",
   "primaryCategory": "kunst",
   "identity": {
     "currentName": "Van Etten",
@@ -43,13 +43,12 @@
     "sourceObjectId": "geonorge-adresser-v1:0301:16675:3"
   },
   "duplicateGate": {
-    "canonicalIdentityMatches": [
+    "canonicalIdentityMatches": [],
+    "discardedSubstringMatches": [
       {
         "id": "bla_skilt_enerhaugen_samfund_smedgata_34",
         "name": "Blått skilt: Enerhaugens Samfund",
-        "category": "historie",
-        "lat": 59.91369333254918,
-        "lon": 10.77036298230481
+        "reason": "The intake needle `smedgata 3` matched the text `smedgata 34` as a substring. The canonical ID itself identifies Smedgata 34, while Van Etten is at Smedgata 3. The records are physically and semantically distinct."
       }
     ],
     "nearbyWithin350m": [
@@ -126,8 +125,13 @@
         "distanceMeters": 348.3
       }
     ],
-    "conclusion": "Potential identity match requires review."
+    "conclusion": "No Van Etten / Smedgata 3 identity exists in the current canonical index. The only automated identity hit was a false substring match against a separate Smedgata 34 record."
   },
+  "sourcePriority": [
+    "Van Etten official site: current physical gallery identity",
+    "Oslo Art Guide: Smedgata 3, established 2020, independent artist-run/non-profit space",
+    "VisitOSLO Oslo East source coverage"
+  ],
   "guardrails": [
     "Do not describe Van Etten as a conventional commercial sales gallery when its documented profile is non-profit and independent.",
     "Do not merge the gallery into Enerhaugen as a neighborhood marker.",
