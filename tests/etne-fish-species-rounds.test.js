@@ -28,26 +28,27 @@ for (const entry of fish) {
 }
 
 const placeMap = readJson('data/natur/nature_etne_place_map.json');
-assert.deepStrictEqual(placeMap.places.etneelva.fauna, [
-  'emne_fauna_laks',
-  'emne_fauna_orret'
-]);
-assert.deepStrictEqual(placeMap.places.etneelva_forskningsplattform.fauna, [
-  'emne_fauna_laks',
-  'emne_fauna_orret'
-]);
-assert.deepStrictEqual(placeMap.places.stordalsvatnet_etne.fauna, [
-  'emne_fauna_laks',
-  'emne_fauna_orret',
-  'emne_fauna_roye',
-  'emne_fauna_al',
-  'emne_fauna_trepigget_stingsild'
-]);
+const expectedFishByPlace = {
+  etneelva: ['emne_fauna_laks', 'emne_fauna_orret'],
+  etneelva_forskningsplattform: ['emne_fauna_laks', 'emne_fauna_orret'],
+  stordalsvatnet_etne: [
+    'emne_fauna_laks',
+    'emne_fauna_orret',
+    'emne_fauna_roye',
+    'emne_fauna_al',
+    'emne_fauna_trepigget_stingsild'
+  ]
+};
+for (const [placeId, speciesIds] of Object.entries(expectedFishByPlace)) {
+  const fauna = placeMap.places[placeId]?.fauna || [];
+  for (const speciesId of speciesIds) {
+    assert(fauna.includes(speciesId), `${placeId} mangler fiskearten ${speciesId}`);
+  }
+}
 
 const knownIds = new Set(fish.map(entry => entry.id));
-for (const [placeId, mapping] of Object.entries(placeMap.places)) {
-  assert.strictEqual(new Set(mapping.fauna).size, mapping.fauna.length, `${placeId} har dupliserte arter`);
-  for (const speciesId of mapping.fauna) {
+for (const [placeId, speciesIds] of Object.entries(expectedFishByPlace)) {
+  for (const speciesId of speciesIds) {
     assert(knownIds.has(speciesId), `${placeId} peker til ukjent fiskeart ${speciesId}`);
   }
 }

@@ -10,7 +10,8 @@ const targetPaths = [
   'data/places/natur/vestland/akrafjorden.json',
   'data/places/natur/vestland/jettegrytene_rullestad.json',
   'data/places/natur/vestland/etneelva.json',
-  'data/places/natur/vestland/stordalsvatnet_etne.json'
+  'data/places/natur/vestland/stordalsvatnet_etne.json',
+  'data/places/natur/vestland/langebudalen_naturreservat.json'
 ];
 
 const manifest = readJson('data/places/manifest.json');
