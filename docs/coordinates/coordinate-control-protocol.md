@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 202 verifiserte eller kildekontrollerte canonical steder. Siste kontroll avgrenset `oslo_kraftselskap` til Oslo Lysverkers hovedkontor i Sommerrogata 1 og verifiserte bygget med Geonorge-adressepunkt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
+Oslo-tabellen inneholder nå 203 verifiserte eller kildekontrollerte canonical steder. Batch 56 legger til Brannmuseet i Oslo i den tidligere Grønland brannstasjon på det verifiserte Grønlandsleiret 32-punktet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -222,8 +222,9 @@ Oslo-tabellen inneholder nå 202 verifiserte eller kildekontrollerte canonical s
 | 52 | `toyenbadet` | Tøyenbadet | verified | `geonorge-adresser-v1:0301:12860:90` |
 | 53 | `ekt_rideskole_husdyrpark` | EKT Rideskole og Husdyrpark | verified | `geonorge-adresser-v1:0301:11462:99` |
 | 54 | `dronning_sonja_kunststall` | Dronning Sonja KunstStall | verified | `geonorge-adresser-v1:0301:15614:50` |
-
 | 55 | `holmlia_bad` | Holmlia bad | verified | `geonorge-adresser-v1:0301:13084:34` |
+| 56 | `brannmuseet_oslo` | Brannmuseet i Oslo | verified | `geonorge-adresser-v1:0301:12450:32` |
+
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -275,6 +276,8 @@ Batch 53 (2026-07-20) produserer `ekt_rideskole_husdyrpark` etter separat koordi
 Batch 54 (2026-07-20) legger til `dronning_sonja_kunststall` med det entydige Geonorge-punktet `geonorge-adresser-v1:0301:15614:50` for Parkveien 50. De kongelige stallene dateres til 1848, mens KunstStallen åpnet som offentlig kunst- og kulturarena 4. juli 2017. Stedet er en egen kunstinstitusjon og ikke en duplikat av `slottet` eller `slottsparken`.
 
 Batch 55 (2026-07-20) legger til `holmlia_bad` som et eget kommunalt svømme- og idrettsanlegg. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:13084:34` for Holmlia Senter vei 34 brukes som dagens bygnings-, display- og unlock-anker. Holmlia bad stod klart i 1983 som del av et fjellanlegg der idrettshall, svømmehall og tilfluktsrom ble kombinert. Den bredere underjordiske infrastrukturen er fysisk og historisk kontekst, ikke en ekstra overlappende markør. Midlertidige sommerstenginger gjelder drift og endrer ikke canonical stedsstatus.
+
+Batch 56 (2026-07-20) legger til `brannmuseet_oslo` som ett samlet historisk bygg- og museumssted. Det entydige Geonorge-adressepunktet `geonorge-adresser-v1:0301:12450:32` for Grønlandsleiret 32 brukes som bygnings-, display- og unlock-anker. Bygningen er den tidligere Grønland brannstasjon fra 1861 og var i ordinær brannstasjonsbruk fram til 1978; dagens Brannmuseet bevarer denne historien i samme fysiske bygg. Den brede canonical gaten `gronlandsleiret` beholdes separat og brukes ikke som proxy for museet.
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -288,7 +291,7 @@ Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fy
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 202 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 203 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|

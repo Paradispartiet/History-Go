@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T07:43:45.556Z
+Generert: 2026-07-20T07:53:42.096Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -76,6 +76,7 @@ Generert: 2026-07-20T07:43:45.556Z
 | arbeidermuseet | data/coordinate-evidence/oslo/historie/arbeidermuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankall_gard | data/coordinate-evidence/oslo/historie/bankall_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | botsfengselet | data/coordinate-evidence/oslo/historie/botsfengselet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| brannmuseet_oslo | data/coordinate-evidence/oslo/historie/brannmuseet_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | forsvarsmuseet | data/coordinate-evidence/oslo/historie/forsvarsmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frogner_hovedgard | data/coordinate-evidence/oslo/historie/frogner_hovedgard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galgeberg | data/coordinate-evidence/oslo/historie/galgeberg.json | applied_to_place | do_not_change_coordinates_yet | OK |
