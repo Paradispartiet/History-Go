@@ -48,9 +48,9 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 5 | `nationaltheatret` | Nationaltheatret | verified | `geonorge-adresser-v1:0301:20681:1` |
 | 5 | `tronsmo_bokhandel` | Tronsmo Bokhandel | verified | `osm-node:10524908476` |
 | 5 | `folketeateret` | Folketeateret | verified | `geonorge-adresser-v1:0301:18554:2` |
-| 6 | `gronland_basarene` | Grønland basarene | verified | `osm-node:1022312515` |
-| 6 | `mollergata_19` | Møllergata 19 | verified | `osm-way:112207578` |
-| 6 | `villa_grande` | Villa Grande | verified | `osm-node:12591050047` |
+| 6 | `gronland_basarene` | Grønland basarene | verified | `geonorge-adresser-v1:0301:17875:2` |
+| 6 | `mollergata_19` | Møllergata 19 | verified | `geonorge-adresser-v1:0301:14943:19` |
+| 6 | `villa_grande` | Villa Grande | verified | `geonorge-adresser-v1:0301:13153:56` |
 | 7 | `blaa` | Blå | verified_geometry | `osm-node:4312299494` |
 | 7 | `tinghuset` | Oslo tinghus | verified | `geonorge-adresser-v1:0301:11017:4` |
 | 7 | `bogstad_gard` | Bogstad gård | verified_geometry | `osm-way:219498663` |
@@ -99,7 +99,7 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 13 | `gronlandsleiret` | Grønlandsleiret | verified_geometry | `oslobyleksikon:gronlandsleiret` |
 | 13 | `storgata` | Storgata | verified_geometry | `oslobyleksikon:storgata` |
 | 14 | `slottsparken` | Slottsparken | verified_geometry | `royalcourt:palace-park` |
-| 14 | `botsparken` | Botsparken | verified_geometry | `lokalhistoriewiki:gronlands-park` |
+| 14 | `botsparken` | Botsparken | verified_geometry | `oslo-kommune:park:gronland-park-klosterenga` |
 | 14 | `stensparken` | Stensparken | verified_geometry | `oslo-kommune:parks:stensparken` |
 | 14 | `nydalen` | Nydalen | verified_geometry | `oslobyleksikon:nydalen` |
 | 14 | `tjuvholmen` | Tjuvholmen | verified_geometry | `oslo-kommune:fjordbyen:tjuvholmen` |
@@ -113,11 +113,11 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 15 | `barcode` | Barcode | verified_geometry | `osm-node:8071120191` |
 | 16 | `vigelandsparken` | Vigelandsparken | verified_geometry | `vigelandmuseet:vigeland-park` |
 | 16 | `voienvolden` | Vøienvolden | verified | `geonorge-adresser-v1:0301:14622:120` |
-| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `wikidata:Q5039902` |
+| 16 | `carl_berner_plass` | Carl Berners plass | verified_geometry | `oslobyleksikon:carl-berners-plass` |
 | 16 | `tullin` | Tullin | verified_geometry | `osm-way:666946874` |
-| 16 | `okern` | Økern | verified_geometry | `wikidata:Q12011791` |
-| 16 | `skoyen` | Skøyen | verified_geometry | `wikidata:Q6514682` |
-| 16 | `torshov` | Torshov | verified_geometry | `wikidata:Q7827191` |
+| 16 | `okern` | Økern | verified_geometry | `oslobyleksikon:okern-strok` |
+| 16 | `skoyen` | Skøyen | verified_geometry | `oslobyleksikon:skoyen-strok` |
+| 16 | `torshov` | Torshov | verified_geometry | `oslobyleksikon:torshov-strok` |
 | 17 | `grorud` | Grorud | verified_geometry | `oslobyleksikon:grorud-strok` |
 | 17 | `sagene` | Sagene | verified_geometry | `oslobyleksikon:sagene-strok` |
 | 17 | `saga_kino` | Saga kino | verified | `geonorge-adresser-v1:0301:17079:28` |
@@ -141,18 +141,18 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 | 20 | `gamle_radhus` | Gamle Rådhus | verified | `geonorge-adresser-v1:0301:15006:1` |
 | 21 | `ekebergparken` | Ekebergparken skulpturpark | verified_geometry | `ekebergparken:official-map` |
 | 21 | `camilla_collett_statue` | Camilla Collett-statuen | verified_geometry | `osm-node:7573449468` |
-| 21 | `henrik_wergeland_statue` | Henrik Wergeland-statuen | verified_geometry | `wikimedia-commons:oslo-museum-ob-a17403` |
+| 21 | `henrik_wergeland_statue` | Henrik Wergeland-statuen | verified_geometry | `oslo-museum:OB.A17403` |
 | 21 | `grotta` | Grotten | verified | `geonorge-adresser-v1:0301:18496:4` |
 | 21 | `eldorado_bokhandel` | Eldorado Bokhandel | verified | `geonorge-adresser-v1:0301:17635:9A` |
 | 21 | `gamle_deichman` | Gamle Deichman | verified | `geonorge-adresser-v1:0301:10244:4` |
 | 22 | `klassekampen_redaksjon` | Klassekampen-redaksjonen | verified | `geonorge-adresser-v1:0301:12446:4` |
 | 22 | `oslo_gassverk` | Oslo Gassverk | verified_historical_source | `oslobyleksikon:gassverket:storgata-36c` |
 | 22 | `oslo_posthus` | Oslo Posthus / Hovedpostkontoret | verified | `geonorge-adresser-v1:0301:11309:15` |
-| 22 | `telegrafbygningen` | Telegrafbygningen | verified_geometry | `wikidata:Q17195132` |
+| 22 | `telegrafbygningen` | Telegrafbygningen | verified_geometry | `osm-relation:13931026` |
 | 23 | `vinmonopolet_lager` | Vinmonopolets hovedlager | verified | `geonorge-adresser-v1:0301:12723:16` |
 | 23 | `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | verified | `geonorge-adresser-v1:0301:11370:2` |
 | 23 | `grunnlovsbygget_bankplassen` | Den gamle Norges Bank | verified | `geonorge-adresser-v1:0301:10412:3` |
-| 24 | `ovre_foss` | Øvre Foss – Hjula Veveri | verified_geometry | `wikidata:Q11975545` |
+| 24 | `ovre_foss` | Øvre Foss – Hjula Veveri | verified_historical_source | `kulturminnesok:164747` |
 | 24 | `schous_bryggeri` | Schous bryggeri | verified | `geonorge-adresser-v1:0301:17749:2` |
 | 24 | `ringnes_bryggeri` | Ringnes bryggeri | verified | `geonorge-adresser-v1:0301:17489:2A` |
 | 24 | `akershus_slott_bakeriet` | Bakeriet ved Akershus | verified_geometry | `osm-way:669390521` |
@@ -191,6 +191,12 @@ Oslo-tabellen inneholder nå 165 verifiserte eller kildekontrollerte canonical s
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
+
+Retrokontroll fra batch 6 (2026-07-20): Batch 6 er korrigert tilbake til den låste adresse-first-metoden. `gronland_basarene`, `mollergata_19` og `villa_grande` bruker igjen de entydige Geonorge-resultatene fra den opprinnelige batch-6-kjøringen; senere OSM-baserte visual-marker-overstyringer er fjernet fra canonical koordinatkilde. OSM kan fortsatt brukes som visuell QA, men ikke som primær koordinatkilde for disse tre konkrete adressebare byggene.
+
+Retrokontroll fra batch 6 (2026-07-20), pass 2: `torggata` og `storgata` er tilbakeført fra feilaktige enkeltadresseankre til dokumenterte lineære gateankre med ruteankre. `botsparken` bruker nå kommunal parkdefinisjon. De fire batch-16-recordene `carl_berner_plass`, `okern`, `skoyen` og `torshov` har fått dokumenterte steds-/områdefinisjoner fra Oslo byleksikon i stedet for Wikidata som primær verifikasjonskilde.
+
+Retrokontroll fra batch 6 (2026-07-20), pass 3: `telegrafbygningen` bruker nå det dokumenterte OSM-bygningsobjektet som primær geometrikilde etter tvetydig Geonorge-oppslag; `ovre_foss` dokumenterer at Geonorge faktisk ble forsøkt først og bruker Kulturminnesøk 164747 som semantisk historisk områdeanker; `henrik_wergeland_statue` bruker Oslo Museums stabile aksesjonsnummer OB.A17403 som primær kildeidentitet i stedet for Commons-siden.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 

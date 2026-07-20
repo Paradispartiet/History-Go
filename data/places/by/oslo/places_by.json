@@ -16,12 +16,12 @@
     "visual": {
       "designCode": "street_miniature"
     },
-    "lat": 59.91577558074357,
-    "lon": 10.750699720958542,
-    "r": 60,
-    "coordType": "address_point",
-    "coordStatus": "verified",
-    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Torggata 14, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "lat": 59.91535,
+    "lon": 10.75335,
+    "r": 180,
+    "coordType": "street_midpoint",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet.",
     "category": "by",
     "year": 1850,
     "emne_ids": [
@@ -220,20 +220,33 @@
         "source_note": "Bygger på Torggata-dataenes `for_na`, `tasks_profile`, `quiz_profile` og `civication_store`, som alle beskriver miljøgate, oppgradert gateprofil og transformasjon fra røffere sentrumsgate til kuratert bygate."
       }
     ],
-    "locatorType": "building",
-    "sourceProvider": "official_address",
-    "sourceObjectId": "geonorge-adresser-v1:0301:17635:14",
-    "geocodeAccuracy": "rooftop",
-    "coordRole": "display_marker",
-    "coordSource": "geonorge_adresser_v1",
-    "coordVerifiedAt": "2026-07-19",
-    "address": {
-      "street": "Torggata",
-      "number": "14",
-      "postcode": "0181",
-      "city": "Oslo",
-      "country": "NO"
-    }
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:torggata",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Torggata + dokumenterte ruteankre",
+    "coordVerifiedAt": "2026-07-20",
+    "anchors": [
+      {
+        "id": "torggata_sor_youngstorget",
+        "name": "Torggata sør (Youngstorget)",
+        "type": "route_point",
+        "lat": 59.9143,
+        "lon": 10.7513,
+        "r": 60
+      },
+      {
+        "id": "torggata_nord_ankerbrua",
+        "name": "Torggata nord (Ankerbrua)",
+        "type": "route_point",
+        "lat": 59.9164,
+        "lon": 10.7554,
+        "r": 60
+      }
+    ],
+    "coordSourceId": "oslobyleksikon:torggata",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Torggata"
   },
   {
     "id": "bispelokket",
@@ -397,12 +410,12 @@
     "visual": {
       "designCode": "commerce_miniature"
     },
-    "lat": 59.9128035,
-    "lon": 10.7636249,
+    "lat": 59.91278287002734,
+    "lon": 10.76391148376898,
     "r": 60,
-    "coordType": "poi",
+    "coordType": "address_point",
     "coordStatus": "verified",
-    "coordNote": "Navngitt OSM-punkt for Grønland basar, plassert inne i det kartlagte basar-/handelsbygget. Adressepunktet i Tøyengata 2 lå forskjøvet mot østsiden av bygget.",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tøyengata 2, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
     "category": "by",
     "rounds": [
       "people",
@@ -456,8 +469,8 @@
       "notes": "Spør om hvordan gamle handelsbygg leses annerledes i et levende og sammensatt bydelsmiljø."
     },
     "locatorType": "building",
-    "sourceProvider": "osm",
-    "sourceObjectId": "osm-node:1022312515",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:17875:2",
     "address": {
       "street": "Tøyengata",
       "number": "2",
@@ -465,13 +478,10 @@
       "city": "Oslo",
       "country": "NO"
     },
-    "geocodeAccuracy": "building",
+    "geocodeAccuracy": "rooftop",
     "coordRole": "display_marker",
-    "coordSource": "osm_geometry_or_address",
-    "coordVerifiedAt": "2026-07-18",
-    "coordSourceId": "osm_node:1022312515",
-    "coordSourceUrl": "https://www.openstreetmap.org/node/1022312515",
-    "coordPrecisionM": 5
+    "coordSource": "geonorge_adresser_v1",
+    "coordVerifiedAt": "2026-07-20"
   },
   {
     "id": "karl_johan",
@@ -2246,12 +2256,12 @@
     "visual": {
       "designCode": "street_miniature"
     },
-    "lat": 59.91401231902849,
-    "lon": 10.751188150585149,
-    "r": 60,
-    "coordType": "address_point",
-    "coordStatus": "verified",
-    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Storgata 25, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "lat": 59.9154,
+    "lon": 10.7539,
+    "r": 230,
+    "coordType": "street_midpoint",
+    "coordStatus": "verified_geometry",
+    "coordNote": "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt.",
     "category": "by",
     "year": 1850,
     "emne_ids": [
@@ -2296,20 +2306,33 @@
       ],
       "notes": "Skal spørres som historisk hybrid mellom ferdsel og handel."
     },
-    "locatorType": "building",
-    "sourceProvider": "official_address",
-    "sourceObjectId": "geonorge-adresser-v1:0301:17059:25",
-    "geocodeAccuracy": "rooftop",
-    "coordRole": "display_marker",
-    "coordSource": "geonorge_adresser_v1",
-    "coordVerifiedAt": "2026-07-19",
-    "address": {
-      "street": "Storgata",
-      "number": "25",
-      "postcode": "0184",
-      "city": "Oslo",
-      "country": "NO"
-    }
+    "locatorType": "street",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslobyleksikon:storgata",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSource": "Oslo byleksikon – Storgata + dokumenterte ruteankre",
+    "coordVerifiedAt": "2026-07-20",
+    "anchors": [
+      {
+        "id": "storgata_sorvest_kirkeristen",
+        "name": "Storgata sørvest (Kirkeristen)",
+        "type": "route_point",
+        "lat": 59.914,
+        "lon": 10.7512,
+        "r": 70
+      },
+      {
+        "id": "storgata_nordost_nybrua",
+        "name": "Storgata nordøst (Nybrua)",
+        "type": "route_point",
+        "lat": 59.9166,
+        "lon": 10.7567,
+        "r": 70
+      }
+    ],
+    "coordSourceId": "oslobyleksikon:storgata",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Storgata"
   },
   {
     "id": "ullevål_hageby",
@@ -2979,11 +3002,11 @@
     "r": 170,
     "coordType": "park_anchor",
     "coordStatus": "verified_geometry",
-    "coordNote": "Kildebasert områdeanker i Grønlands park, også kjent som Botsparken. Lokalhistoriewiki avgrenser parken mellom Botsfengselet, Grønlandsleiret, Borggata og Åkebergveien og oppgir koordinaten som brukes her. Punktet representerer parkrommet, ikke fengselet eller Politihuset.",
-    "coordSource": "Lokalhistoriewiki – Grønlands park / Botsparken",
-    "coordSourceId": "lokalhistoriewiki:gronlands-park",
-    "coordSourceUrl": "https://lokalhistoriewiki.no/wiki/Gr%C3%B8nlands_park",
-    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Representativt parkanker i Grønlands park/Botsparken, den vestlige delen av Klosterenga-systemet. Oslo kommune dokumenterer Grønland park som del av Klosterenga; punktet representerer parkrommet og ikke Botsfengselet eller Politihuset.",
+    "coordSource": "Oslo kommune – Grønland park, del av Klosterenga",
+    "coordSourceId": "oslo-kommune:park:gronland-park-klosterenga",
+    "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/gronland-park-del-av-klosterenga",
+    "coordVerifiedAt": "2026-07-20",
     "category": "by",
     "year": 1900,
     "emne_ids": [
@@ -3029,8 +3052,8 @@
       "notes": "Skal spørres som liten institusjonsnær park, ikke som vanlig bydelspark."
     },
     "locatorType": "park",
-    "sourceProvider": "manual_research",
-    "sourceObjectId": "lokalhistoriewiki:gronlands-park",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:park:gronland-park-klosterenga",
     "geocodeAccuracy": "semantic_anchor",
     "coordRole": "area_anchor"
   },
@@ -4915,11 +4938,11 @@
     "r": 180,
     "coordType": "square_center",
     "coordStatus": "verified_geometry",
-    "coordNote": "Representativt områdeanker for selve Carl Berners plass som trafikalt plass- og fordelingsrom. Wikidata-objekt Q5039902 identifiserer plassen, ikke T-banestasjonen eller en enkelt holdeplass. Punktet er derfor holdt adskilt fra kollektivobjektene med samme navn.",
-    "coordSource": "Wikidata Q5039902 – Carl Berners plass",
-    "coordSourceId": "wikidata:Q5039902",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q5039902",
-    "coordVerifiedAt": "2026-07-19",
+    "coordNote": "Representativt områdeanker for selve Carl Berners plass som trafikalt plass- og fordelingsrom. Oslo byleksikon dokumenterer plassen ved krysset Christian Michelsens gate, Tromsøgata, Trondheimsveien og Grenseveien. Punktet brukes som area_anchor for plassrommet og holdes adskilt fra T-banestasjonen og holdeplasser med samme navn.",
+    "coordSource": "Oslo byleksikon – Carl Berners plass",
+    "coordSourceId": "oslobyleksikon:carl-berners-plass",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Carl_Berners_plass",
+    "coordVerifiedAt": "2026-07-20",
     "category": "by",
     "year": 1905,
     "emne_ids": [
@@ -4966,7 +4989,7 @@
     },
     "locatorType": "square",
     "sourceProvider": "manual_research",
-    "sourceObjectId": "wikidata:Q5039902",
+    "sourceObjectId": "oslobyleksikon:carl-berners-plass",
     "geocodeAccuracy": "semantic_anchor",
     "coordRole": "area_anchor"
   },
@@ -5004,7 +5027,7 @@
     "r": 450,
     "coordType": "district_anchor",
     "coordStatus": "verified_geometry",
-    "coordNote": "Representativt områdeanker for Økern som by- og næringsområde. Wikidata Q12011791 identifiserer Økern som eget Oslo-strøk og koordinaten samsvarer med det eksisterende sentrale områdeankeret. Punktet er ikke én adresse eller selve T-banestasjonen.",
+    "coordNote": "Representativt områdeanker for Økern som industri- og boligstrøk øst for Sinsen. Oslo byleksikon dokumenterer strøkets områdeidentitet og kommunikasjonssenter. Punktet er et semantic area anchor, ikke en enkelt adresse eller et påstått geometrisk sentrum for hele strøket.",
     "category": "by",
     "desc": "Byområde i Oslo øst bygget rundt kollektivknutepunkt, Ring 3 og store næringsbygg, og preget av transformasjon fra randby og lager-/industriområde til tettere byutvikling.",
     "popupDesc": "Økern er et byområde i Oslo øst som er bygget rundt et kollektivknutepunkt, Ring 3 og store næringsbygg, og som over flere tiår har gått fra randby og lager-/industriområde til tettere byutvikling.",
@@ -5014,13 +5037,13 @@
     },
     "locatorType": "linear_area",
     "sourceProvider": "manual_research",
-    "sourceObjectId": "wikidata:Q12011791",
+    "sourceObjectId": "oslobyleksikon:okern-strok",
     "geocodeAccuracy": "semantic_anchor",
     "coordRole": "area_anchor",
-    "coordSource": "Wikidata Q12011791 – Økern",
-    "coordSourceId": "wikidata:Q12011791",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q12011791",
-    "coordVerifiedAt": "2026-07-19"
+    "coordSource": "Oslo byleksikon – Økern (strøk)",
+    "coordSourceId": "oslobyleksikon:okern-strok",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/%C3%98kern_%28str%C3%B8k%29",
+    "coordVerifiedAt": "2026-07-20"
   },
   {
     "id": "skoyen",
@@ -5030,7 +5053,7 @@
     "r": 450,
     "coordType": "district_anchor",
     "coordStatus": "verified_geometry",
-    "coordNote": "Representativt områdeanker for Skøyen som by- og næringsområde. Wikidata Q6514682 identifiserer strøket og den dokumenterte koordinaten samsvarer med dagens sentrale områdeanker. Punktet er ikke Skøyen stasjon eller én enkelt næringseiendom.",
+    "coordNote": "Representativt områdeanker for Skøyen som bolig- og industristrøk mellom Frognerkilen og Bestumkilen. Oslo byleksikon dokumenterer strøkets områdeidentitet; punktet er et semantic area anchor i det sentrale Skøyen-området, ikke stasjonen eller én adresse.",
     "category": "by",
     "desc": "Byområde i Oslo vest med Skøyen stasjon, Drammensveien/E18 og store kontor- og næringsbygg, kjent som et tydelig knutepunkt og næringskorridor.",
     "popupDesc": "Skøyen er et byområde i Oslo vest med Skøyen stasjon, Drammensveien/E18 og store kontor- og næringsbygg, og er kjent som et tydelig knutepunkt og næringskorridor.",
@@ -5040,13 +5063,13 @@
     },
     "locatorType": "linear_area",
     "sourceProvider": "manual_research",
-    "sourceObjectId": "wikidata:Q6514682",
+    "sourceObjectId": "oslobyleksikon:skoyen-strok",
     "geocodeAccuracy": "semantic_anchor",
     "coordRole": "area_anchor",
-    "coordSource": "Wikidata Q6514682 – Skøyen",
-    "coordSourceId": "wikidata:Q6514682",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q6514682",
-    "coordVerifiedAt": "2026-07-19"
+    "coordSource": "Oslo byleksikon – Skøyen (strøk)",
+    "coordSourceId": "oslobyleksikon:skoyen-strok",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Sk%C3%B8yen_%28str%C3%B8k%29",
+    "coordVerifiedAt": "2026-07-20"
   },
   {
     "id": "torshov",
@@ -5056,7 +5079,7 @@
     "r": 450,
     "coordType": "district_anchor",
     "coordStatus": "verified_geometry",
-    "coordNote": "Representativt områdeanker for Torshov som Oslo-strøk. Wikidata Q7827191 identifiserer Torshov som eget nabolag, og koordinaten samsvarer med det eksisterende sentrale områdeankeret. Punktet representerer ikke bare Torshov holdeplass eller Torshovparken.",
+    "coordNote": "Representativt områdeanker for Torshov som boligstrøk nord for Grünerløkka. Oslo byleksikon dokumenterer strøkets områdeidentitet rundt Torshovbyen, Torshovparken og Torshovdalen; punktet er et semantic area anchor, ikke én adresse eller et påstått geometrisk sentrum.",
     "category": "by",
     "desc": "Byområde i indre Oslo nordøst med tette boligkvartaler, Torshovparken og Torshovdalen som lokale byrom, og en lokal handelsakse rundt Vogts gate.",
     "popupDesc": "Torshov er en bydel i indre Oslo nordøst med tette boligkvartaler, Torshovparken og Torshovdalen som lokale byrom, og en lokal handelsakse rundt Vogts gate.",
@@ -5066,13 +5089,13 @@
     },
     "locatorType": "linear_area",
     "sourceProvider": "manual_research",
-    "sourceObjectId": "wikidata:Q7827191",
+    "sourceObjectId": "oslobyleksikon:torshov-strok",
     "geocodeAccuracy": "semantic_anchor",
     "coordRole": "area_anchor",
-    "coordSource": "Wikidata Q7827191 – Torshov",
-    "coordSourceId": "wikidata:Q7827191",
-    "coordSourceUrl": "https://www.wikidata.org/wiki/Q7827191",
-    "coordVerifiedAt": "2026-07-19"
+    "coordSource": "Oslo byleksikon – Torshov (strøk)",
+    "coordSourceId": "oslobyleksikon:torshov-strok",
+    "coordSourceUrl": "https://oslobyleksikon.no/side/Torshov_%28str%C3%B8k%29",
+    "coordVerifiedAt": "2026-07-20"
   },
   {
     "id": "grorud",

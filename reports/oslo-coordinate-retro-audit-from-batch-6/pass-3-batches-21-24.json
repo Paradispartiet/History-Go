@@ -1,0 +1,60 @@
+{
+  "date": "2026-07-20",
+  "corrections": [
+    {
+      "batch": 22,
+      "id": "telegrafbygningen",
+      "before": {
+        "lat": 59.91128055555556,
+        "lon": 10.742319444444444,
+        "coordType": "building_center",
+        "coordStatus": "verified_geometry",
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "wikidata:Q17195132"
+      },
+      "after": {
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-relation:13931026"
+      }
+    },
+    {
+      "batch": 24,
+      "id": "ovre_foss",
+      "before": {
+        "lat": 59.931317,
+        "lon": 10.756994,
+        "coordType": "building_center",
+        "coordStatus": "verified_geometry",
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "wikidata:Q11975545"
+      },
+      "after": {
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "kulturminnesok:164747",
+        "coordStatus": "verified_historical_source",
+        "coordRole": "area_anchor"
+      }
+    },
+    {
+      "batch": 21,
+      "id": "henrik_wergeland_statue",
+      "before": {
+        "lat": 59.914084,
+        "lon": 10.736378,
+        "coordType": "monument",
+        "coordStatus": "verified_geometry",
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "wikimedia-commons:oslo-museum-ob-a17403"
+      },
+      "after": {
+        "sourceProvider": "manual_research",
+        "sourceObjectId": "oslo-museum:OB.A17403"
+      }
+    }
+  ],
+  "findings": [
+    "Øvre Foss/Hjula was not an address-first omission: the saved batch-24 Geonorge lookup for Sagveien 23 exists and is ambiguous.",
+    "Telegrafbygningen also had a documented ambiguous Geonorge lookup before fallback.",
+    "Henrik Wergeland-statuen is a monument-object case, not an address case."
+  ]
+}
