@@ -1,313 +1,357 @@
 {
   "ok": true,
-  "overpassEndpoint": "https://overpass-api.de/api/interpreter",
-  "attempts": [
-    {
-      "endpoint": "https://overpass.kumi.systems/api/interpreter",
-      "status": 504
-    },
-    {
-      "endpoint": "https://overpass-api.de/api/interpreter",
-      "status": 200
-    }
-  ],
   "anchorResearch": [
     {
       "key": "gaustadalleen",
       "name": "Gaustadalléen",
       "role": "shared_west_terminus",
-      "decisionHint": "unique_stop_area_relation",
-      "preferredStopAreas": [
+      "decisionHint": "unique_exact_tram_stop",
+      "preferredCandidates": [
         {
-          "osm_type": "relation",
-          "osm_id": 3214979,
-          "sourceObjectId": "osm-relation:3214979",
+          "name": "Gaustadalléen",
+          "id": "NSR:StopPlace:6261",
           "coordinate": {
-            "lat": 59.9456732,
-            "lon": 10.7175897
+            "lat": 59.945686,
+            "lon": 10.717591
           },
-          "tags": {
-            "Ruter:code": "GAUA",
-            "Ruter:id": "3012323",
-            "Ruter:name": "Gaustadalleen",
-            "Ruter:pay_zone": "1",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Gaustadalléen, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6261",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6261",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6261",
             "name": "Gaustadalléen",
-            "network": "Ruter",
-            "operator": "Sporveien Trikken",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "tram": "yes",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6261",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Gaustadalléen, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         }
       ],
-      "tramStops": [
+      "exactName": [
         {
-          "osm_type": "node",
-          "osm_id": 739929954,
-          "sourceObjectId": "osm-node:739929954",
+          "name": "Gaustadalléen",
+          "id": "NSR:StopPlace:6261",
           "coordinate": {
-            "lat": 59.945666,
-            "lon": 10.7176202
+            "lat": 59.945686,
+            "lon": 10.717591
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Gaustadalléen, Oslo",
+          "source": "whosonfirst",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6261",
+            "gid": "whosonfirst:venue:NSR:StopPlace:6261",
+            "layer": "venue",
+            "source": "whosonfirst",
+            "source_id": "NSR:StopPlace:6261",
             "name": "Gaustadalléen",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes",
-            "wheelchair": "yes"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "node",
-          "osm_id": 1334087987,
-          "sourceObjectId": "osm-node:1334087987",
-          "coordinate": {
-            "lat": 59.9456811,
-            "lon": 10.7175624
-          },
-          "tags": {
-            "name": "Gaustadalléen",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes",
-            "wheelchair": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6261",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Gaustadalléen, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         }
-      ],
-      "stopPositions": [
-        {
-          "osm_type": "node",
-          "osm_id": 739929954,
-          "sourceObjectId": "osm-node:739929954",
-          "coordinate": {
-            "lat": 59.945666,
-            "lon": 10.7176202
-          },
-          "tags": {
-            "name": "Gaustadalléen",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes",
-            "wheelchair": "yes"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "node",
-          "osm_id": 1334087987,
-          "sourceObjectId": "osm-node:1334087987",
-          "coordinate": {
-            "lat": 59.9456811,
-            "lon": 10.7175624
-          },
-          "tags": {
-            "name": "Gaustadalléen",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes",
-            "wheelchair": "yes"
-          },
-          "memberCount": 0
-        }
-      ],
-      "platforms": []
+      ]
     },
     {
       "key": "nybrua",
       "name": "Nybrua",
       "role": "shared_central_anchor",
-      "decisionHint": "unique_stop_area_relation",
-      "preferredStopAreas": [
+      "decisionHint": "multiple_exact_tram_stops",
+      "preferredCandidates": [
         {
-          "osm_type": "relation",
-          "osm_id": 12334782,
-          "sourceObjectId": "osm-relation:12334782",
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61989",
           "coordinate": {
-            "lat": 59.9170746,
-            "lon": 10.7583101
+            "lat": 59.917044,
+            "lon": 10.758279
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61989",
+            "gid": "openstreetmap:venue:NSR:StopPlace:61989",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:61989",
             "name": "Nybrua",
-            "network": "Ruter",
-            "operator": "Sporveien Trikken;Unibuss;Nobina",
-            "public_transport": "stop_area",
-            "ruter:name": "Nybrua",
-            "ruter:pay_zone": "1",
-            "tactile_paving": "yes",
-            "type": "public_transport"
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61989",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "tram": null
+              },
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
+        },
+        {
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61249",
+          "coordinate": {
+            "lat": 59.917074,
+            "lon": 10.758314
           },
-          "memberCount": 0
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61249",
+            "gid": "geonames:venue:NSR:StopPlace:61249",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61249",
+            "name": "Nybrua",
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61249",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ],
+            "description": [
+              {
+                "nor": "i Storgata"
+              },
+              {
+                "eng": "in Storgata"
+              }
+            ]
+          }
         }
       ],
-      "tramStops": [
+      "exactName": [
         {
-          "osm_type": "node",
-          "osm_id": 8431977218,
-          "sourceObjectId": "osm-node:8431977218",
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61988",
           "coordinate": {
-            "lat": 59.9170687,
-            "lon": 10.7583409
+            "lat": 59.917013,
+            "lon": 10.758241
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61988",
+            "gid": "geonames:venue:NSR:StopPlace:61988",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61988",
             "name": "Nybrua",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tactile_paving": "yes",
-            "tram": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61988",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 8431977219,
-          "sourceObjectId": "osm-node:8431977219",
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61989",
           "coordinate": {
-            "lat": 59.9170848,
-            "lon": 10.7582931
+            "lat": 59.917044,
+            "lon": 10.758279
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61989",
+            "gid": "openstreetmap:venue:NSR:StopPlace:61989",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:61989",
             "name": "Nybrua",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tactile_paving": "yes",
-            "tram": "yes"
-          },
-          "memberCount": 0
-        }
-      ],
-      "stopPositions": [
-        {
-          "osm_type": "node",
-          "osm_id": 8431942805,
-          "sourceObjectId": "osm-node:8431942805",
-          "coordinate": {
-            "lat": 59.9170763,
-            "lon": 10.7583183
-          },
-          "tags": {
-            "bus": "yes",
-            "name": "Nybrua",
-            "network": "Ruter",
-            "operator": "Unibuss;Nobina",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61989",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "tram": null
+              },
+              {
+                "bus": "localBus"
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 8431977218,
-          "sourceObjectId": "osm-node:8431977218",
+          "name": "Nybrua",
+          "id": "NSR:StopPlace:61249",
           "coordinate": {
-            "lat": 59.9170687,
-            "lon": 10.7583409
+            "lat": 59.917074,
+            "lon": 10.758314
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Nybrua, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:61249",
+            "gid": "geonames:venue:NSR:StopPlace:61249",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:61249",
             "name": "Nybrua",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tactile_paving": "yes",
-            "tram": "yes"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "node",
-          "osm_id": 8431977219,
-          "sourceObjectId": "osm-node:8431977219",
-          "coordinate": {
-            "lat": 59.9170848,
-            "lon": 10.7582931
-          },
-          "tags": {
-            "name": "Nybrua",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tactile_paving": "yes",
-            "tram": "yes"
-          },
-          "memberCount": 0
-        }
-      ],
-      "platforms": [
-        {
-          "osm_type": "node",
-          "osm_id": 9653144851,
-          "sourceObjectId": "osm-node:9653144851",
-          "coordinate": {
-            "lat": 59.917224,
-            "lon": 10.758601
-          },
-          "tags": {
-            "bench": "yes",
-            "bin": "yes",
-            "bus": "yes",
-            "highway": "bus_stop",
-            "lit": "yes",
-            "name": "Nybrua",
-            "public_transport": "platform",
-            "ref:nsrq": "106761",
-            "shelter": "yes",
-            "tactile_paving": "yes"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "node",
-          "osm_id": 9653144852,
-          "sourceObjectId": "osm-node:9653144852",
-          "coordinate": {
-            "lat": 59.916828,
-            "lon": 10.757942
-          },
-          "tags": {
-            "bench": "yes",
-            "bin": "yes",
-            "bus": "yes",
-            "highway": "bus_stop",
-            "lit": "yes",
-            "name": "Nybrua",
-            "public_transport": "platform",
-            "ref:nsrq": "106762",
-            "shelter": "yes",
-            "tactile_paving": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:61249",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Nybrua, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ],
+            "description": [
+              {
+                "nor": "i Storgata"
+              },
+              {
+                "eng": "in Storgata"
+              }
+            ]
+          }
         }
       ]
     },
@@ -315,232 +359,241 @@
       "key": "sinsenkrysset",
       "name": "Sinsenkrysset",
       "role": "line_17_branch_anchor",
-      "decisionHint": "multiple_stop_area_relations",
-      "preferredStopAreas": [
+      "decisionHint": "multiple_exact_tram_stops",
+      "preferredCandidates": [
         {
-          "osm_type": "relation",
-          "osm_id": 3242977,
-          "sourceObjectId": "osm-relation:3242977",
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6045",
           "coordinate": {
-            "lat": 59.9391002,
-            "lon": 10.7834238
+            "lat": 59.939126,
+            "lon": 10.783368
           },
-          "tags": {
-            "Ruter:code": "SS",
-            "Ruter:id": "3012105",
-            "Ruter:name": "Sinsenkrysset [trikk]",
-            "Ruter:pay_zone": "1",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6045",
+            "gid": "geonames:venue:NSR:StopPlace:6045",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6045",
             "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "operator": "Sporveien Trikken",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "tram": "yes",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6045",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "relation",
-          "osm_id": 4172308,
-          "sourceObjectId": "osm-relation:4172308",
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:58406",
           "coordinate": {
-            "lat": 59.9368609,
-            "lon": 10.7858286
+            "lat": 59.938133,
+            "lon": 10.784755
           },
-          "tags": {
-            "Ruter:code": "SIKR",
-            "Ruter:id": "3012103",
-            "Ruter:name": "Sinsenkrysset (Ringv. mot syd)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetBus",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58406",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58406",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58406",
             "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "relation",
-          "osm_id": 5324242,
-          "sourceObjectId": "osm-relation:5324242",
-          "coordinate": {
-            "lat": 59.9379996,
-            "lon": 10.7864311
-          },
-          "tags": {
-            "Ruter:code": "SKRS",
-            "Ruter:id": "3012102",
-            "Ruter:name": "Sinsenkrysset (sydsiden Trh.vn)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
-            "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "relation",
-          "osm_id": 5324243,
-          "sourceObjectId": "osm-relation:5324243",
-          "coordinate": {
-            "lat": 59.9371512,
-            "lon": 10.7864189
-          },
-          "tags": {
-            "Ruter:code": "SKKR",
-            "Ruter:id": "3012106",
-            "Ruter:name": "Sinsenkrysset (Ringv. mot nord)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
-            "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "relation",
-          "osm_id": 5324244,
-          "sourceObjectId": "osm-relation:5324244",
-          "coordinate": {
-            "lat": 59.9383251,
-            "lon": 10.7859182
-          },
-          "tags": {
-            "Ruter:code": "SKRN",
-            "Ruter:id": "3012104",
-            "Ruter:name": "Sinsenkrysset (nordsiden Trh.vn)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
-            "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58406",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         }
       ],
-      "tramStops": [],
-      "stopPositions": [
+      "exactName": [
         {
-          "osm_type": "node",
-          "osm_id": 619900090,
-          "sourceObjectId": "osm-node:619900090",
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6045",
           "coordinate": {
-            "lat": 59.9380386,
-            "lon": 10.7863102
+            "lat": 59.939126,
+            "lon": 10.783368
           },
-          "tags": {
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6045",
+            "gid": "geonames:venue:NSR:StopPlace:6045",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6045",
             "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6045",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 3172479682,
-          "sourceObjectId": "osm-node:3172479682",
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:58406",
           "coordinate": {
-            "lat": 59.9369382,
-            "lon": 10.7858915
+            "lat": 59.938133,
+            "lon": 10.784755
           },
-          "tags": {
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetBus",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58406",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58406",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58406",
             "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58406",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 3172479683,
-          "sourceObjectId": "osm-node:3172479683",
+          "name": "Sinsenkrysset",
+          "id": "NSR:StopPlace:6039",
           "coordinate": {
-            "lat": 59.9370834,
-            "lon": 10.7863529
+            "lat": 59.937534,
+            "lon": 10.785629
           },
-          "tags": {
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Sinsenkrysset, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6039",
+            "gid": "geonames:venue:NSR:StopPlace:6039",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6039",
             "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "node",
-          "osm_id": 3214830382,
-          "sourceObjectId": "osm-node:3214830382",
-          "coordinate": {
-            "lat": 59.9381853,
-            "lon": 10.7857801
-          },
-          "tags": {
-            "bus": "yes",
-            "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
-        }
-      ],
-      "platforms": [
-        {
-          "osm_type": "way",
-          "osm_id": 311564691,
-          "sourceObjectId": "osm-way:311564691",
-          "coordinate": {
-            "lat": 59.9371512,
-            "lon": 10.7864189
-          },
-          "tags": {
-            "area": "yes",
-            "bench": "yes",
-            "bin": "yes",
-            "bus": "yes",
-            "lit": "no",
-            "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "platform",
-            "shelter": "yes",
-            "source": "extrapolation",
-            "tactile_paving": "yes"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "way",
-          "osm_id": 311564693,
-          "sourceObjectId": "osm-way:311564693",
-          "coordinate": {
-            "lat": 59.9368609,
-            "lon": 10.7858286
-          },
-          "tags": {
-            "area": "yes",
-            "bench": "yes",
-            "bin": "yes",
-            "bus": "yes",
-            "name": "Sinsenkrysset",
-            "network": "Ruter",
-            "public_transport": "platform",
-            "shelter": "yes",
-            "source": "extrapolation",
-            "tactile_paving": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6039",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Sinsenkrysset, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "INN:TariffZone:3000",
+              "INN:FareZone:214",
+              "RUT:FareZone:4"
+            ]
+          }
         }
       ]
     },
@@ -548,252 +601,385 @@
       "key": "storo",
       "name": "Storo",
       "role": "line_18_branch_anchor",
-      "decisionHint": "multiple_stop_area_relations",
-      "preferredStopAreas": [
+      "decisionHint": "multiple_exact_tram_stops",
+      "preferredCandidates": [
         {
-          "osm_type": "relation",
-          "osm_id": 2914144,
-          "sourceObjectId": "osm-relation:2914144",
+          "name": "Storo",
+          "id": "NSR:StopPlace:58195",
           "coordinate": {
-            "lat": 59.9447296,
-            "lon": 10.7782392
+            "lat": 59.94527,
+            "lon": 10.778637
           },
-          "tags": {
-            "Ruter:code": "STR",
-            "Ruter:id": "3012120",
-            "Ruter:name": "Storo [T-bane]",
-            "Ruter:pay_zone": "1",
+          "layer": "venue",
+          "categories": [
+            "metroStation",
+            "onstreetBus",
+            "onstreetTram",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58195",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58195",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58195",
             "name": "Storo",
-            "network": "Ruter",
-            "operator": "Sporveien T-banen",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "subway": "yes",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58195",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation",
+              "onstreetBus",
+              "onstreetTram",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "metro": null
+              },
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "relation",
-          "osm_id": 3201244,
-          "sourceObjectId": "osm-relation:3201244",
+          "name": "Storo",
+          "id": "NSR:StopPlace:6060",
           "coordinate": {
-            "lat": 59.9453534,
-            "lon": 10.7780749
+            "lat": 59.945261,
+            "lon": 10.778558
           },
-          "tags": {
-            "Ruter:code": "STOT",
-            "Ruter:id": "3012121",
-            "Ruter:name": "Storo (på brua)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6060",
+            "gid": "geonames:venue:NSR:StopPlace:6060",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6060",
             "name": "Storo",
-            "network": "Ruter",
-            "operator": "Sporveien Trikken",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "tram": "yes",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6060",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "relation",
-          "osm_id": 4172969,
-          "sourceObjectId": "osm-relation:4172969",
+          "name": "Storo",
+          "id": "NSR:StopPlace:6067",
           "coordinate": {
-            "lat": 59.9457166,
-            "lon": 10.7788331
+            "lat": 59.944896,
+            "lon": 10.779955
           },
-          "tags": {
-            "Ruter:code": "STORT",
-            "Ruter:id": "3012122",
-            "Ruter:name": "Storo (Ringvei-rampe sydover)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6067",
+            "gid": "geonames:venue:NSR:StopPlace:6067",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6067",
             "name": "Storo",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "relation",
-          "osm_id": 5324245,
-          "sourceObjectId": "osm-relation:5324245",
-          "coordinate": {
-            "lat": 59.9458274,
-            "lon": 10.7792853
-          },
-          "tags": {
-            "Ruter:code": "STOR",
-            "Ruter:id": "3012123",
-            "Ruter:name": "Storo (Ringvei-rampe nordover)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
-            "name": "Storo",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6067",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         }
       ],
-      "tramStops": [],
-      "stopPositions": [
+      "exactName": [
         {
-          "osm_type": "node",
-          "osm_id": 25319431,
-          "sourceObjectId": "osm-node:25319431",
+          "name": "Storo",
+          "id": "NSR:StopPlace:6057",
           "coordinate": {
-            "lat": 59.9446397,
-            "lon": 10.7786176
+            "lat": 59.944827,
+            "lon": 10.778419
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "metroStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6057",
+            "gid": "geonames:venue:NSR:StopPlace:6057",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6057",
             "name": "Storo",
-            "network": "Ruter",
-            "operator": "Sporveien T-banen",
-            "public_transport": "stop_position",
-            "railway": "stop",
-            "subway": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6057",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation"
+            ],
+            "mode": [
+              {
+                "metro": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 25447876,
-          "sourceObjectId": "osm-node:25447876",
+          "name": "Storo",
+          "id": "NSR:StopPlace:58195",
           "coordinate": {
-            "lat": 59.9457796,
-            "lon": 10.7789326
+            "lat": 59.94527,
+            "lon": 10.778637
           },
-          "tags": {
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "metroStation",
+            "onstreetBus",
+            "onstreetTram",
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:58195",
+            "gid": "openstreetmap:venue:NSR:StopPlace:58195",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:58195",
             "name": "Storo",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:58195",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "metroStation",
+              "onstreetBus",
+              "onstreetTram",
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "metro": null
+              },
+              {
+                "bus": null
+              },
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 25447883,
-          "sourceObjectId": "osm-node:25447883",
+          "name": "Storo",
+          "id": "NSR:StopPlace:6060",
           "coordinate": {
-            "lat": 59.9458034,
-            "lon": 10.7792323
+            "lat": 59.945261,
+            "lon": 10.778558
           },
-          "tags": {
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6060",
+            "gid": "geonames:venue:NSR:StopPlace:6060",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6060",
             "name": "Storo",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6060",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 660867661,
-          "sourceObjectId": "osm-node:660867661",
+          "name": "Storo",
+          "id": "NSR:StopPlace:6058",
           "coordinate": {
-            "lat": 59.9446075,
-            "lon": 10.7784095
+            "lat": 59.945275,
+            "lon": 10.77872
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6058",
+            "gid": "geonames:venue:NSR:StopPlace:6058",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6058",
             "name": "Storo",
-            "network": "Ruter",
-            "operator": "Sporveien T-banen",
-            "public_transport": "stop_position",
-            "railway": "stop",
-            "subway": "yes",
-            "wheelchair": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6058",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 3682835401,
-          "sourceObjectId": "osm-node:3682835401",
+          "name": "Storo",
+          "id": "NSR:StopPlace:6067",
           "coordinate": {
-            "lat": 59.945263,
-            "lon": 10.7785658
+            "lat": 59.944896,
+            "lon": 10.779955
           },
-          "tags": {
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Storo, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6067",
+            "gid": "geonames:venue:NSR:StopPlace:6067",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6067",
             "name": "Storo",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "node",
-          "osm_id": 3682835402,
-          "sourceObjectId": "osm-node:3682835402",
-          "coordinate": {
-            "lat": 59.9454386,
-            "lon": 10.7772453
-          },
-          "tags": {
-            "bus": "yes",
-            "name": "Storo",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
-        }
-      ],
-      "platforms": [
-        {
-          "osm_type": "way",
-          "osm_id": 27204449,
-          "sourceObjectId": "osm-way:27204449",
-          "coordinate": {
-            "lat": 59.9444677,
-            "lon": 10.7785859
-          },
-          "tags": {
-            "bench": "yes",
-            "bin": "yes",
-            "building": "roof",
-            "lit": "yes",
-            "name": "Storo",
-            "network": "Ruter",
-            "operator": "Sporveien T-banen",
-            "public_transport": "platform",
-            "railway": "platform",
-            "ref": "1;2",
-            "shelter": "yes",
-            "subway": "yes",
-            "tactile_paving": "yes"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "way",
-          "osm_id": 311606471,
-          "sourceObjectId": "osm-way:311606471",
-          "coordinate": {
-            "lat": 59.9458274,
-            "lon": 10.7793263
-          },
-          "tags": {
-            "bench": "yes",
-            "bin": "yes",
-            "bus": "yes",
-            "footway": "sidewalk",
-            "highway": "footway",
-            "name": "Storo",
-            "network": "Ruter",
-            "public_transport": "platform",
-            "shelter": "yes",
-            "surface": "paved",
-            "tactile_paving": "no"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6067",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Storo, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         }
       ]
     },
@@ -801,216 +987,293 @@
       "key": "grefsen_stasjon",
       "name": "Grefsen stasjon",
       "role": "shared_east_terminus",
-      "decisionHint": "multiple_stop_area_relations",
-      "preferredStopAreas": [
+      "decisionHint": "multiple_exact_tram_stops",
+      "preferredCandidates": [
         {
-          "osm_type": "relation",
-          "osm_id": 3201229,
-          "sourceObjectId": "osm-relation:3201229",
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:59643",
           "coordinate": {
-            "lat": 59.9421231,
-            "lon": 10.7813244
+            "lat": 59.94168,
+            "lon": 10.78079
           },
-          "tags": {
-            "Ruter:code": "GFS",
-            "Ruter:id": "3012111",
-            "Ruter:name": "Grefsen stasjon [trikk]",
-            "Ruter:pay_zone": "1",
+          "layer": "venue",
+          "categories": [
+            "railStation",
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:59643",
+            "gid": "openstreetmap:venue:NSR:StopPlace:59643",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:59643",
             "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "operator": "Sporveien Trikken",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "tram": "yes",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:59643",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation",
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "rail": null
+              },
+              {
+                "tram": null
+              },
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "relation",
-          "osm_id": 4172965,
-          "sourceObjectId": "osm-relation:4172965",
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6050",
           "coordinate": {
-            "lat": 59.9413303,
-            "lon": 10.7815874
+            "lat": 59.942077,
+            "lon": 10.781356
           },
-          "tags": {
-            "Ruter:code": "GFST",
-            "Ruter:id": "3012113",
-            "Ruter:name": "Grefsen stasjon (Ringv mot nord)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6050",
+            "gid": "geonames:venue:NSR:StopPlace:6050",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6050",
             "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "relation",
-          "osm_id": 4172966,
-          "sourceObjectId": "osm-relation:4172966",
-          "coordinate": {
-            "lat": 59.9409015,
-            "lon": 10.7813217
-          },
-          "tags": {
-            "Ruter:code": "GRST",
-            "Ruter:id": "3012112",
-            "Ruter:name": "Grefsen stasjon (Ringvn mot syd)",
-            "Ruter:pay_zone": "1",
-            "bus": "yes",
-            "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "public_transport": "stop_area",
-            "source": "Ruter",
-            "type": "public_transport"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6050",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         }
       ],
-      "tramStops": [
+      "exactName": [
         {
-          "osm_type": "node",
-          "osm_id": 1124931192,
-          "sourceObjectId": "osm-node:1124931192",
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:59643",
           "coordinate": {
-            "lat": 59.9419867,
-            "lon": 10.7813708
+            "lat": 59.94168,
+            "lon": 10.78079
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "railStation",
+            "onstreetTram",
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "openstreetmap",
+          "rawProperties": {
+            "id": "NSR:StopPlace:59643",
+            "gid": "openstreetmap:venue:NSR:StopPlace:59643",
+            "layer": "venue",
+            "source": "openstreetmap",
+            "source_id": "NSR:StopPlace:59643",
             "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:59643",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation",
+              "onstreetTram",
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "rail": null
+              },
+              {
+                "tram": null
+              },
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 1185120448,
-          "sourceObjectId": "osm-node:1185120448",
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:343",
           "coordinate": {
-            "lat": 59.9422961,
-            "lon": 10.7812602
+            "lat": 59.941666,
+            "lon": 10.78064
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "railStation"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:343",
+            "gid": "geonames:venue:NSR:StopPlace:343",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:343",
             "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes"
-          },
-          "memberCount": 0
-        }
-      ],
-      "stopPositions": [
-        {
-          "osm_type": "node",
-          "osm_id": 1124931192,
-          "sourceObjectId": "osm-node:1124931192",
-          "coordinate": {
-            "lat": 59.9419867,
-            "lon": 10.7813708
-          },
-          "tags": {
-            "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:343",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "railStation"
+            ],
+            "mode": [
+              {
+                "rail": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 1185120448,
-          "sourceObjectId": "osm-node:1185120448",
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6052",
           "coordinate": {
-            "lat": 59.9422961,
-            "lon": 10.7812602
+            "lat": 59.94106,
+            "lon": 10.781493
           },
-          "tags": {
+          "layer": "venue",
+          "categories": [
+            "onstreetBus"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6052",
+            "gid": "geonames:venue:NSR:StopPlace:6052",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6052",
             "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "network:wikidata": "Q750292",
-            "operator": "Sporveien Trikken",
-            "operator:wikidata": "Q287668",
-            "public_transport": "stop_position",
-            "railway": "tram_stop",
-            "tram": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6052",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetBus"
+            ],
+            "mode": [
+              {
+                "bus": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         },
         {
-          "osm_type": "node",
-          "osm_id": 3173034919,
-          "sourceObjectId": "osm-node:3173034919",
+          "name": "Grefsen stasjon",
+          "id": "NSR:StopPlace:6050",
           "coordinate": {
-            "lat": 59.9413167,
-            "lon": 10.7814792
+            "lat": 59.942077,
+            "lon": 10.781356
           },
-          "tags": {
-            "bus": "yes",
+          "layer": "venue",
+          "categories": [
+            "onstreetTram"
+          ],
+          "locality": "Oslo",
+          "county": "Oslo",
+          "label": "Grefsen stasjon, Oslo",
+          "source": "geonames",
+          "rawProperties": {
+            "id": "NSR:StopPlace:6050",
+            "gid": "geonames:venue:NSR:StopPlace:6050",
+            "layer": "venue",
+            "source": "geonames",
+            "source_id": "NSR:StopPlace:6050",
             "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
-        },
-        {
-          "osm_type": "node",
-          "osm_id": 3173034920,
-          "sourceObjectId": "osm-node:3173034920",
-          "coordinate": {
-            "lat": 59.9409199,
-            "lon": 10.7814479
-          },
-          "tags": {
-            "bus": "yes",
-            "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "public_transport": "stop_position"
-          },
-          "memberCount": 0
-        }
-      ],
-      "platforms": [
-        {
-          "osm_type": "way",
-          "osm_id": 119084226,
-          "sourceObjectId": "osm-way:119084226",
-          "coordinate": {
-            "lat": 59.9422374,
-            "lon": 10.7813442
-          },
-          "tags": {
-            "area": "yes",
-            "bench": "yes",
-            "bin": "yes",
-            "name": "Grefsen stasjon",
-            "network": "Ruter",
-            "operator": "Sporveien Trikken",
-            "public_transport": "platform",
-            "railway": "platform",
-            "shelter": "yes",
-            "source": "bing",
-            "tactile_paving": "no",
-            "tram": "yes"
-          },
-          "memberCount": 0
+            "street": "NOT_AN_ADDRESS-NSR:StopPlace:6050",
+            "accuracy": "point",
+            "country_a": "NOR",
+            "county": "Oslo",
+            "county_gid": "whosonfirst:county:KVE:TopographicPlace:03",
+            "locality": "Oslo",
+            "locality_gid": "whosonfirst:locality:KVE:TopographicPlace:0301",
+            "label": "Grefsen stasjon, Oslo",
+            "category": [
+              "onstreetTram"
+            ],
+            "mode": [
+              {
+                "tram": null
+              }
+            ],
+            "tariff_zones": [
+              "RUT:TariffZone:1",
+              "RUT:FareZone:4"
+            ]
+          }
         }
       ]
     }
