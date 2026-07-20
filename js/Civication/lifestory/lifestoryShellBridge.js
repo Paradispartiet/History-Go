@@ -94,6 +94,34 @@
   }
 
   /**
+   * Skriv et valgs livsstilstags til skallets HG_Lifestyle (path dependency:
+   * tellingene akkumuleres i hg_lifestyle_v1 og kårer dominant livsstil).
+   * Samme kontrakt som psyke-broen: énveis, testmodus skriver aldri,
+   * mangler motoren => stille no-op. HG_Lifestyle.addTags dispatcher selv
+   * updateProfile ved endring — ingen ekstra event her.
+   * @param {string[]|null|undefined} tags Tags fra valgets `livsstil`-felt.
+   * @returns {{ applied: string[], skipped: string|null }}
+   */
+  function applyLifestyleTagsToShell(tags) {
+    const lifestyle = /** @type {any} */ (globalScope).HG_Lifestyle;
+    if (!lifestyle || typeof lifestyle.addTags !== "function") {
+      return { applied: [], skipped: "lifestyle_unavailable" };
+    }
+    if (isTestOrDebugSession()) return { applied: [], skipped: "test_mode" };
+
+    const clean = (Array.isArray(tags) ? tags : []).filter((t) => typeof t === "string" && t);
+    if (!clean.length) return { applied: [], skipped: null };
+    try {
+      // addTags er async (laster lifestyles.json ved behov) — fire and forget.
+      lifestyle.addTags(clean, "lifestory");
+    } catch (error) {
+      console.warn("[CivicationLifestoryShellBridge] livsstil-skriv feilet", error);
+      return { applied: [], skipped: "lifestyle_error" };
+    }
+    return { applied: clean, skipped: null };
+  }
+
+  /**
    * Profil-snapshot: ProfileSignalBridge er async, men runnerens conditions
    * er synkrone. Broen holder derfor et synkront snapshot i
    * globalScope.CivicationLifestoryProfileTags. Uten bridge (ren Min dag-
@@ -116,7 +144,7 @@
     return null;
   }
 
-  const api = { METER_TO_PSYCHE, isTestOrDebugSession, applyMeterDeltasToShell, refreshProfileSnapshot };
+  const api = { METER_TO_PSYCHE, isTestOrDebugSession, applyMeterDeltasToShell, applyLifestyleTagsToShell, refreshProfileSnapshot };
   /** @type {any} */ (globalScope).CivicationLifestoryShellBridge = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 

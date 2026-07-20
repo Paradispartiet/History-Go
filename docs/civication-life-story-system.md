@@ -413,6 +413,20 @@ flere av disse retningene (skapende, sosial/uteliv, trening/friluft,
 nøktern/sparsom, ambisiøs, familie). Ting som koster penger i teksten
 (pub, kjøpelunsj, bestilt middag) skal også koste `penger` i effektene.
 
+**Livsstilsbroen (batch 7):** valg kan tagges med `livsstil: ["nightlife"]`
+— tags fra vokabularet i `lifestyles.json` (låst i `LIVSSTIL_TAGS` i
+`lifestoryContent.js`; ukjent tag => FAIL FAST). Ved valg sender
+`CivicationLifestoryUI` taggene gjennom
+`CivicationLifestoryShellBridge.applyLifestyleTagsToShell()` til skallets
+`HG_Lifestyle.addTags()`, som teller dem opp i `hg_lifestyle_v1` og kårer
+dominant livsstil (stamp). Dermed drar spillemønsteret i Min dag spilleren
+mot en faktisk livsstil: pub-kvelder => nightlife => hipster/gjeldsspiral,
+egne prosjekter => craft => håndverker/teknokrat, turene og banen =>
+outdoor/fitness => friluftstype/konkurransemenneske. Samme kontrakt som
+psyke-broen: énveis, testmodus skriver aldri, mangler motoren => stille
+no-op. Kontrakten eies av `civication-lifestory-lifestyle-bridge.test.js`
+(vokabular-sync, fail-fast, testmodus-gate, scoring-retninger).
+
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres
 batchvis inn som livsscener. Batch 1 dekket lunsj/ettermiddag/middag-hullene
@@ -447,8 +461,11 @@ delte scener og arbeidsledig-dagen skrevet om fra abstrakt/kvasifilosofisk
 til konkret hverdagsspråk (se skrivestil-regelen i §-en over), venne-kvelden
 ble en pubkveld som koster penger, og arbeidsledig-ettermiddagen fikk to nye
 livsstilsvalg: eget prosjekt (skrive/male/lage) og en øl på puben (som
-bygger relasjonen til bekjenten — nettverket som kjenner folk). Gjenstår:
-dag 3+ (lengre trådbuer).
+bygger relasjonen til bekjenten — nettverket som kjenner folk). Batch 7
+koblet valgene tilbake til livsstilssystemet: 41 valg tagget med
+`livsstil`-tags (18 retninger i bruk), broet til skallets `HG_Lifestyle`
+ved valg — se «Livsstilsbroen» i forrige seksjon. Gjenstår: dag 3+
+(lengre trådbuer).
 
 Alle kjernefilene er DOM-frie og har dobbel eksport (window-global +
 `module.exports`) så de kan testes rett i Node. Testene plukkes opp
