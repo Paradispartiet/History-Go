@@ -33,7 +33,7 @@ function hg$(id) {
 }
 
 function hgActiveLeftPanelMode() {
-  return document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
+  return window.HGLeftPanelMode?.getActiveMode?.() || "nearby";
 }
 
 function normalizeNearbySort(mode) {
@@ -47,49 +47,15 @@ function getNearbyControlsContainer(placeFilterBtn) {
 }
 
 function updateNearbyControlVisibility() {
-  const mode = hgActiveLeftPanelMode();
-  const btn = document.getElementById("nearbyFilterBtn");
-  const badgeBtn = document.getElementById("nearbyBadgeFilterBtn");
-  const sortBtn = document.getElementById("nearbySortBtn");
-  const favoritesBtn = document.getElementById("nearbyFavoritesFilterBtn");
-
-  if (btn) btn.style.display = (mode === "nearby" || mode === "nature") ? "inline-flex" : "none";
-  if (badgeBtn) badgeBtn.style.display = (mode === "nature") ? "none" : "inline-flex";
-  if (sortBtn) sortBtn.style.display = (mode === "nearby") ? "inline-flex" : "none";
-  if (favoritesBtn) favoritesBtn.style.display = (mode === "nearby") ? "inline-flex" : "none";
+  window.HGLeftPanelMode?.updateControlVisibility?.();
 }
 
-let _leftPanelRenderRaf = 0;
-let _leftPanelRenderTimer = 0;
-
 function renderActiveLeftPanelModeNow() {
-  const mode = hgActiveLeftPanelMode();
-
-  if (mode === "nearby" && typeof renderNearbyPlaces === "function") renderNearbyPlaces();
-  if (mode === "people" && typeof renderNearbyPeople === "function") renderNearbyPeople();
-  if (mode === "nature" && typeof renderNearbyNature === "function") renderNearbyNature();
-  if (mode === "routes" && typeof renderLeftRoutesList === "function") renderLeftRoutesList();
-  if (mode === "badges" && typeof renderLeftBadges === "function") renderLeftBadges();
+  window.HGLeftPanelMode?.renderNow?.();
 }
 
 function rerenderActiveLeftPanelMode() {
-  // Badgefilteret kan trykkes svært raskt på iPad/Safari.
-  // Ikke bygg hele Nearby/People/Nature/Routes-listen for hvert trykk.
-  // Samle flere raske trykk til én render i neste frame.
-  if (typeof window.requestAnimationFrame === "function") {
-    if (_leftPanelRenderRaf) window.cancelAnimationFrame(_leftPanelRenderRaf);
-    _leftPanelRenderRaf = window.requestAnimationFrame(() => {
-      _leftPanelRenderRaf = 0;
-      renderActiveLeftPanelModeNow();
-    });
-    return;
-  }
-
-  if (_leftPanelRenderTimer) window.clearTimeout(_leftPanelRenderTimer);
-  _leftPanelRenderTimer = window.setTimeout(() => {
-    _leftPanelRenderTimer = 0;
-    renderActiveLeftPanelModeNow();
-  }, 0);
+  window.HGLeftPanelMode?.rerender?.();
 }
 
 // ============================================================
@@ -97,56 +63,7 @@ function rerenderActiveLeftPanelMode() {
 // ============================================================
 
 function setLeftPanelMode(mode) {
-  const listIdsByMode = {
-    nearby: "nearbyList",
-    people: "leftPeopleList",
-    nature: "leftNatureList",
-    routes: "leftRoutesList",
-    badges: "leftBadgesList",
-  };
-
-  if (!Object.prototype.hasOwnProperty.call(listIdsByMode, mode)) mode = "nearby";
-
-  Object.entries(listIdsByMode).forEach(([key, id]) => {
-    const list = hg$(id);
-    if (list) list.hidden = key !== mode;
-  });
-
-  if (mode === "nature") {
-    window.HG_NEARBY_BADGE_FILTER = "all";
-    try {
-      localStorage.setItem("hg_nearby_badge_filter_v1", "all");
-    } catch {}
-  }
-
-  try {
-    localStorage.setItem("hg_leftpanel_mode_v1", mode);
-  } catch {}
-
-  document.querySelectorAll(".nearby-tab").forEach(btn => {
-    const active = btn.getAttribute("data-leftmode") === mode;
-    btn.classList.toggle("is-active", active);
-    btn.setAttribute("aria-selected", active ? "true" : "false");
-  });
-
-  if (typeof window.updateNearbyFilterButton === "function") {
-    window.updateNearbyFilterButton();
-  }
-
-  if (typeof window.updateNearbyBadgeFilterButton === "function") {
-    window.updateNearbyBadgeFilterButton();
-  }
-
-  if (typeof window.updateNearbySortButton === "function") {
-    window.updateNearbySortButton();
-  }
-
-  updateNearbyControlVisibility();
-
-  rerenderActiveLeftPanelMode();
-
-  window.HGMap?.resize?.();
-  window.MAP?.resize?.();
+  return window.HGLeftPanelMode?.setMode?.(mode) || "nearby";
 }
 
 // ============================================================

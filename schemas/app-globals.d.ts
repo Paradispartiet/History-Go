@@ -65,6 +65,13 @@ declare global {
     HG_TodayHubPanel?: { render?: (options?: any) => any; refresh?: (options?: any) => any; remove?: () => any; [key: string]: any };
     HG_TodayActionRouter?: any;
     HGHeaderMenu?: { open: () => void; close: () => void; toggle: () => void; isOpen: () => boolean };
+    HGLeftPanelMode?: {
+      getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
+      setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";
+      renderNow?: () => void;
+      rerender?: () => void;
+      updateControlVisibility?: () => void;
+    };
     HGNearbyDrawer?: {
       isOpen?: () => boolean;
       setOpen?: (open: boolean) => void;
