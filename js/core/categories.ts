@@ -34,6 +34,7 @@ const win = window as RuntimeWindow;
 
 const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "historie", name: "Historie", icon: "🏛️", color: "#f6c800", scope: "runtime_domain" },
+  { id: "religion", name: "Religion", icon: "🛐", color: "#d7b46a", scope: "runtime_domain" },
   { id: "vitenskap", name: "Vitenskap & filosofi", icon: "🧪", color: "#6ee7ff", scope: "runtime_domain" },
   { id: "kunst", name: "Kunst & kultur", icon: "🎨", color: "#ff5aa5", scope: "runtime_domain" },
   { id: "musikk", name: "Musikk & scenekunst", icon: "🎭", color: "#b48cff", scope: "runtime_domain" },
