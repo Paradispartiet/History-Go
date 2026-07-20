@@ -446,6 +446,11 @@ spillhandling når det tas:
 - `aapne_karriere` → åpner Karriere-panelet (jobbtilbudene)
 - `gaa_til_quiz` → navigerer til History GO (`index.html#/map`) — byen er
   spillbrettet, quizzene tas på stedene
+- `gaa_til_byen` → samme navigasjon, for turer/trening/aktiviteter der ute
+  (Fritid-panelet er foreløpig tomt — derfor går aktivitetsvalg ut i byen)
+- `gaa_til_debatt` → `index.html#/debate/<id>` — krever `id`, og id-en må
+  finnes i `data/debates/` (id-sync håndheves av actions-testen; f.eks.
+  går «det lokale møtet» til debatten `radhusplassen_bilfri`)
 
 Typene eies av `HANDLING_TYPES` i `lifestoryContent.js` (ukjent type =>
 FAIL FAST). Utføreren er `js/Civication/ui/CivicationLifestoryActions.js`
@@ -465,6 +470,14 @@ Første bruk: «Du må velge et sted å bo» (dag 1) og «Fortsatt uten fast
 adresse» (dag 2) fyrer kun når skallet faktisk mangler bosted, og
 handlingsvalget åpner nabolagsvalget. Kontrakten eies av
 `civication-lifestory-actions.test.js`.
+
+Batch 11 utvidet handlingene: tur-/trenings-/aktivitetsvalg (`by_02_banen_frister`,
+`by_01_groent_kveldslys`, `d3_ettermiddag_kroppen_vil_ut`) går ut i byen
+(`gaa_til_byen`), det lokale møtet går til en ekte debatt (`gaa_til_debatt` med
+id-sync mot `data/debates/`), og en ny husleiepress-scene (`husleie_01_presset`,
+dag 3) fyrer kun når skallets `getRentPressure().score >= 50` — med handlingsvalg
+som åpner nabolagsvalget (flytte billigere) eller karrierepanelet (mer inntekt).
+Ny shell-nøkkel: `harHusleiepress`.
 
 **Migreringskilde:** `data/Civication/privatePhaseMailFamilies/` (45 gamle
 private mailer over seks døgnfaser, 22 med History GO-profilmatch) migreres

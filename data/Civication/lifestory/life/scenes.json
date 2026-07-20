@@ -1341,7 +1341,10 @@
           "konsekvensTekst": "Du rekker det gylne lyset. Ti minutter der ute rydder mer i hodet enn en time inne.",
           "livsstil": [
             "outdoor"
-          ]
+          ],
+          "handling": {
+            "type": "gaa_til_byen"
+          }
         },
         {
           "id": "se_paa_lyset",
@@ -1405,7 +1408,10 @@
           "konsekvensTekst": "Svetten sitter løst og hodet blir stille. På vei hjem husker du hvorfor du alltid angrer på å IKKE dra — aldri på å dra.",
           "livsstil": [
             "fitness"
-          ]
+          ],
+          "handling": {
+            "type": "gaa_til_byen"
+          }
         },
         {
           "id": "kort_oekt_hjemme",
@@ -1471,7 +1477,11 @@
               }
             }
           },
-          "konsekvensTekst": "Du sa ikke noe høyt denne gangen. Men du forsto mer enn de fleste i salen — og noterte deg hvem som ikke gjorde det."
+          "konsekvensTekst": "Du sa ikke noe høyt denne gangen. Men du forsto mer enn de fleste i salen — og noterte deg hvem som ikke gjorde det.",
+          "handling": {
+            "type": "gaa_til_debatt",
+            "id": "radhusplassen_bilfri"
+          }
         },
         {
           "id": "les_referatet",
@@ -2850,7 +2860,10 @@
               }
             }
           },
-          "konsekvensTekst": "Svett og sliten på den gode måten. Du angrer aldri på økten — bare på dagene uten."
+          "konsekvensTekst": "Svett og sliten på den gode måten. Du angrer aldri på økten — bare på dagene uten.",
+          "handling": {
+            "type": "gaa_til_byen"
+          }
         },
         {
           "id": "ikke_i_dag",
@@ -3166,6 +3179,102 @@
             }
           },
           "konsekvensTekst": "Sofaen er lånt, og du merker at velkomsten slites. Dette må løses snart."
+        }
+      ]
+    },
+    {
+      "id": "husleie_01_presset",
+      "threadId": "byen_og_deg",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "conditions": {
+        "shell": {
+          "harHusleiepress": true
+        }
+      },
+      "tittel": "Husleia tar for mye",
+      "tekst": "Regnestykket for nabolaget ditt går ikke opp lenger — husleia spiser en for stor bit av det du har. Noe må gjøres: billigere nabolag, mer inntekt, eller strammere uker.",
+      "valg": [
+        {
+          "id": "se_billigere_nabolag",
+          "tekst": "Se på billigere nabolag og vurdere å flytte",
+          "tone": "nøktern",
+          "handling": {
+            "type": "velg_bosted"
+          },
+          "livsstil": [
+            "budget",
+            "minimalist"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "vurderte_flytting": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du åpner nabolagsoversikten og sorterer på husleie. Å flytte er et stort grep — men å bli presset ut er større."
+        },
+        {
+          "id": "skaff_mer_inntekt",
+          "tekst": "Åpne karrierepanelet — inntekt løser regnestykket",
+          "tone": "offensiv",
+          "handling": {
+            "type": "aapne_karriere"
+          },
+          "livsstil": [
+            "status",
+            "process"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": 1,
+              "synlighet": 1
+            },
+            "flagg": {
+              "saa_paa_jobbtilbud": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Karrierepanelet viser hva som finnes av stillinger — og hvilke merker som mangler for å låse opp mer. Veien dit går gjennom kunnskap."
+        },
+        {
+          "id": "stram_inn_uka",
+          "tekst": "Stramme inn uka: matpakke, hjemmekvelder, null impulskjøp",
+          "tone": "disiplinert",
+          "livsstil": [
+            "budget"
+          ],
+          "effekter": {
+            "meters": {
+              "psyke": -1,
+              "handlingsrom": 1
+            },
+            "flagg": {
+              "strammet_inn_uka": true
+            },
+            "threads": {
+              "byen_og_deg": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Uka blir kjedeligere og billigere. Det holder unna presset — en stund."
         }
       ]
     }

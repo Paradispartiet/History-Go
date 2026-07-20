@@ -56,8 +56,47 @@ for (const file of [manifest.life.scenes, ...Object.values(manifest.roles).map((
     }
   }
 }
-for (const type of ["velg_bosted", "aapne_butikk", "gaa_til_quiz"]) {
+for (const type of ["velg_bosted", "aapne_butikk", "gaa_til_quiz", "gaa_til_byen", "gaa_til_debatt"]) {
   assert.ok(brukteTyper.has(type), `handlingen "${type}" er ikke i bruk i noe valg`);
+}
+
+// --- 2b. Debatt-handlinger peker på EKTE debatter (id-sync mot data/debates) ---
+{
+  const debateIds = new Set();
+  for (const f of fs.readdirSync(path.join(ROOT, "data/debates")).filter((x) => x.startsWith("debates_") && x.endsWith(".json"))) {
+    const d = readJson("data/debates/" + f);
+    for (const deb of d.debates || d) if (deb && deb.id) debateIds.add(deb.id);
+  }
+  for (const file of [manifest.life.scenes, ...Object.values(manifest.roles).map((r) => r.scenes)]) {
+    for (const sc of readJson(file).scenes) {
+      for (const v of sc.valg || []) {
+        if (v.handling?.type !== "gaa_til_debatt") continue;
+        assert.ok(debateIds.has(v.handling.id),
+          `${file} ${sc.id}/${v.id}: debatten "${v.handling.id}" finnes ikke i data/debates`);
+      }
+    }
+  }
+}
+
+// --- 2c. Validatoren krever id for gaa_til_debatt ---
+assert.throws(() => {
+  const broken = JSON.parse(JSON.stringify(raw));
+  broken.roleScenes.scenes[0].valg[0].handling = { type: "gaa_til_debatt" };
+  Content.buildContent(broken);
+}, /krever en ikke-tom id/, "gaa_til_debatt uten id skal kaste");
+
+// --- 3b. Husleiepress-scenen fyrer KUN ved faktisk press ---
+{
+  const state = State.createInitialState(content);
+  state.dag = 3;
+  state.fase = "morgen";
+  globalThis.CivicationLifestoryShellState = { harBosted: true, harJobb: false, harHusleiepress: true };
+  assert.ok(Runner.getCandidateScenes(state, content).some((s) => s.id === "husleie_01_presset"),
+    "husleiepress i skallet => scenen tilbys");
+  globalThis.CivicationLifestoryShellState = { harBosted: true, harJobb: false, harHusleiepress: false };
+  assert.ok(!Runner.getCandidateScenes(state, content).some((s) => s.id === "husleie_01_presset"),
+    "uten press skal scenen ikke mase");
+  delete globalThis.CivicationLifestoryShellState;
 }
 
 // --- 3. Bosted-scenen fyrer KUN når skallet sier at bosted mangler ---
@@ -85,11 +124,17 @@ function bostedKandidater(state) {
 
 // --- 4. Broen speiler skallet inn i snapshotet ---
 try {
-  g.CivicationHome = { getCurrentDistrict: () => ({ id: "sagene", name: "Sagene" }) };
+  g.CivicationHome = {
+    getCurrentDistrict: () => ({ id: "sagene", name: "Sagene" }),
+    getRentPressure: () => ({ score: 62 })
+  };
   g.CivicationState = { getActivePosition: () => null };
-  assert.deepStrictEqual(Bridge.refreshShellStateSnapshot(), { harBosted: true, harJobb: false });
-  g.CivicationHome = { getCurrentDistrict: () => undefined };
-  assert.deepStrictEqual(Bridge.refreshShellStateSnapshot(), { harBosted: false, harJobb: false });
+  assert.deepStrictEqual(Bridge.refreshShellStateSnapshot(),
+    { harBosted: true, harJobb: false, harHusleiepress: true },
+    "score >= 50 er husleiepress (skallets egen terskel for Høyt/Kritisk)");
+  g.CivicationHome = { getCurrentDistrict: () => undefined, getRentPressure: () => ({ score: 20 }) };
+  assert.deepStrictEqual(Bridge.refreshShellStateSnapshot(),
+    { harBosted: false, harJobb: false, harHusleiepress: false });
   delete g.CivicationHome;
   assert.strictEqual(Bridge.refreshShellStateSnapshot(), null, "uten skall: ingen snapshot");
 } finally {
@@ -113,9 +158,20 @@ try {
     assert.deepStrictEqual(Actions.perform({ type: "aapne_butikk" }), { utfoert: true, type: "aapne_butikk" });
     assert.deepStrictEqual(klikk, ["personlig", "kommers"],
       "bosted åpner Personlig (nabolagsvalget), lunsj åpner Kommers (butikken)");
-    // gaa_til_quiz navigerer — i Node finnes ingen location => ærlig false.
-    const res = Actions.perform({ type: "gaa_til_quiz" });
-    assert.strictEqual(res.type, "gaa_til_quiz");
+    // Navigasjonene: mocket location fanger målet.
+    const hrefs = [];
+    g.location = { set href(v) { hrefs.push(v); } };
+    try {
+      assert.deepStrictEqual(Actions.perform({ type: "gaa_til_quiz" }), { utfoert: true, type: "gaa_til_quiz" });
+      assert.deepStrictEqual(Actions.perform({ type: "gaa_til_byen" }), { utfoert: true, type: "gaa_til_byen" });
+      assert.deepStrictEqual(Actions.perform({ type: "gaa_til_debatt", id: "radhusplassen_bilfri" }),
+        { utfoert: true, type: "gaa_til_debatt" });
+      assert.deepStrictEqual(hrefs,
+        ["index.html#/map", "index.html#/map", "index.html#/debate/radhusplassen_bilfri"],
+        "quiz/byen går til kartet, debatten til debattruten");
+    } finally {
+      delete g.location;
+    }
   } finally {
     delete g.document;
   }
