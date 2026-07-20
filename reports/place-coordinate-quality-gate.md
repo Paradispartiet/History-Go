@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T23:08:18.840Z
+Generert: 2026-07-20T23:13:26.693Z
 
 ## Oppsummering
-- Aktive filer validert: **561**
-- Antall steder validert: **1216**
+- Aktive filer validert: **562**
+- Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **428**
-- Coordinate review candidates: **708** signaler fordelt på **568** steder
+- Varsler: **427**
+- Coordinate review candidates: **707** signaler fordelt på **567** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -579,6 +579,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/langebudalen_naturreservat.json
 - data/places/natur/vestland/saevareidberget_landskapsvernomrade.json
 - data/places/natur/vestland/brattholmen_naturreservat_etne.json
+- data/places/natur/vestland/skano_naturreservat_etne.json
 
 ## Harde feil
 - Ingen
@@ -848,7 +849,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#hausmannsomradet_elvelop: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#svartdalen: coordinate_regression_risk (245 m fra tidligere verified)
 - data/places/natur/oslo/places_oslo_natur_hovedsteder.json#hovedoya: stort område uten coordNote/coordStatus
 - data/places/natur/oslo/places_oslo_natur_hovedsteder.json#alnaelva_hovedsteder: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: lineært sted uten anchors
@@ -1015,13 +1015,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 708 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 707 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordinate_regression_risk | 1 |
 | coordStatus=verified uten coordPrecisionM | 117 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 95 |
@@ -1031,12 +1030,6 @@ Totalt 708 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandi
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
-
-### coordinate_regression_risk (1)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| svartdalen | Svartdalen | natur | data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | 59.9037223 | 10.7972012 | 170 | Flyttet ~245 m fra tidligere verified. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (117)
 
