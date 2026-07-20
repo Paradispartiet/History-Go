@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 
 const placeId = 'seilduksfabrikken_nydalen';
-const placeName = 'Øvre spinneri';
 const placePath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json';
+const legacyIndexPath = 'data/places/natur/oslo/places_oslo_natur_akerselvarute_index.json';
 const evidencePath = 'data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json';
 const protocolPath = 'docs/coordinates/coordinate-control-protocol.md';
 
@@ -32,20 +32,36 @@ function writeJson(path, value) {
 }
 
 const place = readJson(placePath);
-place.lat = coordinate.lat;
-place.lon = coordinate.lon;
-place.coordStatus = coordinate.coordStatus;
-place.coordSource = coordinate.coordSource;
-place.coordType = coordinate.coordType;
-place.coordRole = coordinate.coordRole;
-place.locatorType = coordinate.locatorType;
-place.sourceProvider = coordinate.sourceProvider;
-place.sourceObjectId = coordinate.sourceObjectId;
-place.coordSourceUrl = coordinate.coordSourceUrl;
-place.geocodeAccuracy = coordinate.geocodeAccuracy;
-place.coordVerifiedAt = coordinate.coordVerifiedAt;
-place.coordNote = coordinate.coordNote;
+Object.assign(place, {
+  lat: coordinate.lat,
+  lon: coordinate.lon,
+  coordStatus: coordinate.coordStatus,
+  coordSource: coordinate.coordSource,
+  coordType: coordinate.coordType,
+  coordRole: coordinate.coordRole,
+  locatorType: coordinate.locatorType,
+  sourceProvider: coordinate.sourceProvider,
+  sourceObjectId: coordinate.sourceObjectId,
+  coordSourceUrl: coordinate.coordSourceUrl,
+  geocodeAccuracy: coordinate.geocodeAccuracy,
+  coordVerifiedAt: coordinate.coordVerifiedAt,
+  coordNote: coordinate.coordNote,
+});
 writeJson(placePath, place);
+
+// This Akerselva source still has a checked-in per-source index that is part of
+// the runtime/source parity contract. Keep its generated coordinate snapshot in
+// sync with the canonical split place record before the runner validates parity.
+const legacyIndex = readJson(legacyIndexPath);
+const legacyEntry = legacyIndex.find((entry) => entry.id === placeId);
+if (!legacyEntry) throw new Error(`Could not find ${placeId} in ${legacyIndexPath}.`);
+Object.assign(legacyEntry, {
+  lat: coordinate.lat,
+  lon: coordinate.lon,
+  coordStatus: coordinate.coordStatus,
+  coordType: coordinate.coordType,
+});
+writeJson(legacyIndexPath, legacyIndex);
 
 const evidence = readJson(evidencePath);
 evidence.placeId = placeId;
