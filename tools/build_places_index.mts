@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { applyCategoryOverride, readCategoryOverrides } from './lib/placeCategoryOverrides.mjs';
 
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
@@ -109,7 +110,6 @@ async function readJson(p: string): Promise<unknown> {
   return JSON.parse(raw) as unknown;
 }
 
-
 function splitManifestPathFor(sourcePath: string): string {
   const parsed = path.parse(sourcePath);
   return path.join(parsed.dir, `${parsed.name}_manifest${parsed.ext || '.json'}`);
@@ -210,8 +210,10 @@ async function main(): Promise<void> {
   const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
   const disabledPlaceIds = await readDisabledPlaceIds();
   const coordinateOverrides = await readCoordinateOverrides();
+  const categoryOverrides = await readCategoryOverrides(ROOT);
   const out: LightPlace[] = [];
   let skipped = 0;
+  let categoryOverridesApplied = 0;
 
   for (const rel of files) {
     const sourceFile = String(rel || '').trim();
@@ -219,7 +221,9 @@ async function main(): Promise<void> {
     const entries = await loadPlaceEntriesFromManifestEntry(sourceFile);
     for (const { place: rawPlace, sourceFile: actualSourceFile } of entries) {
       assertNoLegacyLng(rawPlace, actualSourceFile);
-      const place = applyCoordinateOverride(rawPlace, coordinateOverrides);
+      const placeWithCoordinates = applyCoordinateOverride(rawPlace, coordinateOverrides);
+      const place = applyCategoryOverride(placeWithCoordinates, categoryOverrides) as PlaceRow;
+      if (place !== placeWithCoordinates) categoryOverridesApplied += 1;
       const id = typeof place.id === 'string' ? place.id : '';
       if (id && disabledPlaceIds.has(id)) {
         skipped += 1;
@@ -231,8 +235,9 @@ async function main(): Promise<void> {
 
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8');
   const skippedText = skipped ? `; skipped ${skipped} disabled place(s)` : '';
-  const overrideText = coordinateOverrides.size ? `; applied ${coordinateOverrides.size} coordinate override(s)` : '';
-  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}${skippedText}${overrideText}`);
+  const coordinateOverrideText = coordinateOverrides.size ? `; loaded ${coordinateOverrides.size} coordinate override(s)` : '';
+  const categoryOverrideText = categoryOverridesApplied ? `; applied ${categoryOverridesApplied} category override(s)` : '';
+  console.log(`Wrote ${out.length} places -> ${path.relative(ROOT, OUTPUT_PATH)}${skippedText}${coordinateOverrideText}${categoryOverrideText}`);
 }
 
 main().catch((err: unknown) => {
