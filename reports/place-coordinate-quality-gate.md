@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T16:09:34.511Z
+Generert: 2026-07-20T16:29:20.599Z
 
 ## Oppsummering
-- Aktive filer validert: **539**
+- Aktive filer validert: **540**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **429**
@@ -557,6 +557,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/central_jam_e_mosque.json
 - data/places/historie/oslo/places_historie/toyen_hovedgard.json
 - data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json
+- data/places/by/oslo/places/akrobaten_gangbro.json
 
 ## Harde feil
 - Ingen
