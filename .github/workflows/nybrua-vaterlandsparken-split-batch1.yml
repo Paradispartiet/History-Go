@@ -1,0 +1,103 @@
+name: Nybrua Vaterlandsparken split batch 1
+
+on:
+  push:
+    branches:
+      - agent/nybrua-vaterlandsparken-split-rounds-batch1
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/nybrua-vaterlandsparken-split-rounds-batch1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Reconstruct production job
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat scripts/.nybrua-split-payload-* | base64 -d | gzip -dc > /tmp/nybrua-vaterlandsparken-split.mjs
+          node --check /tmp/nybrua-vaterlandsparken-split.mjs
+
+      - name: Materialize split and rounds
+        run: node /tmp/nybrua-vaterlandsparken-split.mjs
+
+      - name: Build and validate place indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+
+      - name: Validate split content
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/nybrua-vaterlandsparken-split-rounds-batch1.test.js
+          npm run audit:people-of-places
+          npm run leksikon:ids:check
+
+      - name: Validate coordinates
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run test:coordinate-source-contract
+          npm run places:coords:quality
+          npm run places:coords:intake
+          npm run places:coords:evidence:audit
+
+      - name: Validate TypeScript and whitespace
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run typecheck:tools
+          npm run typecheck:web
+          git diff --check
+
+      - name: Remove generated global audit churn
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          for f in \
+            reports/coordinate-evidence-audit.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/place-coordinate-intake-gate.md \
+            reports/place-coordinate-quality-gate.md \
+            reports/place-split-manifest-category-move-audit.json; do
+            if git cat-file -e "origin/main:$f" 2>/dev/null; then
+              git checkout origin/main -- "$f"
+            fi
+          done
+          rm -f scripts/.nybrua-split-payload-*
+          rm -f .github/workflows/nybrua-vaterlandsparken-split-batch1.yml
+          git diff --check
+
+      - name: Commit materialized result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Split Nybrua and Vaterlandsparken rounds"
+          git pull --rebase origin agent/nybrua-vaterlandsparken-split-rounds-batch1
+          git push origin HEAD:agent/nybrua-vaterlandsparken-split-rounds-batch1
