@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T22:33:49.266Z
+Generert: 2026-07-20T22:49:11.736Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -223,3 +223,11 @@ Generert: 2026-07-20T22:33:49.266Z
 | jordal_ungdomshall | data/coordinate-evidence/oslo/sport/jordal_ungdomshall.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamlebyen_kirke | data/coordinate-evidence/oslo/historie/gamlebyen_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_prosjektrom | data/coordinate-evidence/oslo/kunst/oslo_prosjektrom.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| alnaparken | data/coordinate-evidence/oslo/natur/alnaparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| groruddammen | data/coordinate-evidence/oslo/natur/groruddammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| svartdalen | data/coordinate-evidence/oslo/natur/svartdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kvaernerbyen_alna | data/coordinate-evidence/oslo/natur/kvaernerbyen_alna.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| alnsjoen_alna_kilde | data/coordinate-evidence/oslo/natur/alnsjoen_alna_kilde.json | needs_research | needs_geometry | OK |
+| alna_smalvoll | data/coordinate-evidence/oslo/natur/alna_smalvoll.json | needs_research | needs_geometry | OK |
+| alna_bryn | data/coordinate-evidence/oslo/natur/alna_bryn.json | needs_research | needs_geometry | OK |
+| alna_utlop_bjorvika | data/coordinate-evidence/oslo/natur/alna_utlop_bjorvika.json | needs_research | needs_geometry | OK |

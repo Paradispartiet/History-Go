@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "groruddammen",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9581221,
+    "lon": 10.8763191,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 60347628 – Groruddammen",
+    "coordType": "water_geometry_center",
+    "coordNote": "Geometrisk representasjonspunkt for den eksakt navngitte vannflaten Groruddammen (OSM way 60347628). Oslo kommune dokumenterer Groruddammen som egen fasilitet i Grorudparken; parkgeometrien brukes bare som identitetskryssjekk."
+  },
+  "identity": {
+    "currentName": "Groruddammen",
+    "resolvedIdentity": "Groruddammen som konkret vannflate i Grorudparken",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Groruddammen",
+      "sourceUrl": "https://www.openstreetmap.org/way/60347628",
+      "sourceObjectId": "osm-way:60347628",
+      "sourceQuality": "exact_named_water_geometry",
+      "finding": "Eksakt navngitt natural=water-polygon for Groruddammen.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometrisk representasjonspunkt for den eksakt navngitte vannflaten Groruddammen (OSM way 60347628). Oslo kommune dokumenterer Groruddammen som egen fasilitet i Grorudparken; parkgeometrien brukes bare som identitetskryssjekk."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Grorudparken",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/grorudparken",
+      "sourceObjectId": "oslo-kommune:park:grorudparken",
+      "sourceQuality": "official_identity_crosscheck",
+      "finding": "Oslo kommune oppgir Groruddammen som egen fasilitet i Grorudparken.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter identiteten; koordinaten kommer fra den eksakte vanngeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:60347628",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:park:grorudparken",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:60347628",
+      "lat": 59.9581221,
+      "lon": 10.8763191,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9581221,
+      "lon": 10.8763191,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Geometrisk representasjonspunkt for den eksakt navngitte vannflaten Groruddammen (OSM way 60347628). Oslo kommune dokumenterer Groruddammen som egen fasilitet i Grorudparken; parkgeometrien brukes bare som identitetskryssjekk."
+  ]
+}

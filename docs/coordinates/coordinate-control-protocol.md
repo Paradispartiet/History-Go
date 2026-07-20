@@ -1,6 +1,6 @@
 # Protokoll for koordinatkontroll
 
-Sist oppdatert: 2026-07-20
+Sist oppdatert: 2026-07-21
 
 Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det viser hvilke steder som faktisk er kontrollert, hvilken status som er godtatt, og hvilket stabilt kildeobjekt som støtter avgjørelsen. Protokollen utfyller koordinatkontrakten og evidensfilene; den erstatter dem ikke.
 
@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical steder. Batch 90 legger til Oslo Prosjektrom med eksakt Geonorge-adressepunkt for Platous gate 18, etter separat avklaring av den isolerte Platous gate 10-feiloppføringen. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 27.
+Oslo-tabellen inneholder nå 241 verifiserte eller kildekontrollerte canonical steder. Batch 91 kontrollerer alle åtte Alnaelva-rutepunktene: fire får eksakt kildegeometri, mens fire avsluttes som dokumenterte needs_review-saker uten proxy-gjetting. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -260,6 +260,13 @@ Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical s
 
 | 90 | `oslo_prosjektrom` | Oslo Prosjektrom | verified | `geonorge-adresser-v1:0301:15684:18` |
 
+| 91 | `alnaparken` | Alnaparken | verified_geometry | `osm-node:7810002134` |
+| 91 | `groruddammen` | Groruddammen | verified_geometry | `osm-way:60347628` |
+| 91 | `svartdalen` | Svartdalen | verified_geometry | `osm-way:579463147` |
+| 91 | `kvaernerbyen_alna` | Kværnerbyen ved Alna | verified_geometry | `osm-way:685201630` |
+
+Batch 91 (2026-07-21) fullfører den utsatte kontrollen av de åtte Alnaelva-rutepunktene etter objekt-type-først-metoden. `alnaparken` bruker det eksakt navngitte OSM-parkankeret, `groruddammen` den navngitte vanngeometrien, `svartdalen` selve dalgeometrien i stedet for Svartdalsparken, og `kvaernerbyen_alna` et eksakt navngitt Alna-segment. `alnsjoen_alna_kilde`, `alna_smalvoll`, `alna_bryn` og `alna_utlop_bjorvika` avsluttes som needs_review fordi kontrollen ikke ga ett entydig kildeobjekt som samsvarer med hele recordens fysiske eller historiske scope.
+
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -346,7 +353,7 @@ Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra lega
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 237 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 241 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -377,6 +384,10 @@ Disse kontrollene er fullført, men teller ikke blant de 237 verifiserte eller k
 | `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
 | `gronlikaia` – Grønlikaia | needs_review | Grønlikaia er et bredt tidligere havne-/containerområde og dagens utviklingsområde; batchens OSM-treff er serviceveier, ikke arealgeometri for hele stedet. | Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre. |
 | `akerselva_industri` – Akerselva industriområde | needs_review | Recorden beskriver en lang industrikorridor som overlapper canonical `akerselva` og flere separate industriplaces; ett punkt kan ikke representere hele systemet. | Legg inn lineær geometri/flere anchors eller modeller som tematisk relation til Akerselva og konkrete industristeder. |
+| `alnsjoen_alna_kilde` – Alnsjøen (Alna-kilde) | needs_review | Alna er dokumentert å renne ut fra Alnsjøen, men legacy-punktet ligger ved Gamle Gruvevei og kontrollen fant flere separate Alna-segmenter uten ett entydig sjø-/utløpsobjekt. | Finn eksakt Alnsjøen-vanngeometri eller et dokumentert Alna-utløpsobjekt før canonical koordinat godkjennes. |
+| `alna_smalvoll` – Alna ved Smalvoll | needs_review | Flere navngitte Alna-way-er passer det brede Smalvollområdet, mens recorden ikke avgrenser én konkret elvestrekning og dagens punkt ved Smalvollveien ikke er kildebevis. | Avgrens ett konkret elve-segment eller modeller flere kildebelagte ruteankre. |
+| `alna_bryn` – Alna ved Bryn | needs_review | Flere Alna-segmenter finnes ved Bryn; Bryn bru er ikke identisk med den brede elverecorden, og ingen entydig Brynsfossen-geometri ble dokumentert. | Avgrens recorden til en konkret elvestrekning eller modeller flere kildebelagte ankere. |
+| `alna_utlop_bjorvika` – Alna utløp i Bjørvika | needs_review | Recorden kombinerer historisk utløpslandskap, vannspeilet som markerer den gamle munningen og dagens tunnelutløp ved Kongshavn. Ett enkelt punkt kan ikke representere alle tidslagene. | Bygg en eksplisitt historisk area-/multi-anchor-modell som skiller opprinnelig elveos, vannspeil og dagens tunnelutløp. |
 
 ## Etne – historiesett
 
@@ -424,9 +435,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er nummer 175 og starter batch 29.
-- Batch 28 er fullført med to nye godkjente plassankere; `places_by_manifest.json` er nå ferdig kontrollert.
-- By-manifestet er uttømt etter `christiania_torv`. Før batch 29 starter skal neste aktive sekundære Oslo-kildekø auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
+- Neste nye Oslo-kontroll er batch 92.
+- Før batch 92 starter skal neste aktive sekundære Oslo-kildekø auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 

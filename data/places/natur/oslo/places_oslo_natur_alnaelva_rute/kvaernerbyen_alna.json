@@ -1,8 +1,8 @@
 {
   "id": "kvaernerbyen_alna",
   "name": "Kværnerbyen ved Alna",
-  "lat": 59.90355,
-  "lon": 10.78787,
+  "lat": 59.9035994,
+  "lon": 10.7875433,
   "r": 130,
   "category": "natur",
   "desc": "Transformert industriområde der Alna går i kulvert under et formgitt vannspeil, mens park, boligby og ti aktive fuglearter danner et nytt blågrønt byrom.",
@@ -17,11 +17,11 @@
   ],
   "routeId": "alnaelva_grontdrag",
   "sourceHint": "Koordinat justert til kartfestet Kværnerbyen/Lodalsparken-nær sone, der byelv- og vannspeilstrukturen møter grøntdraget.",
-  "coordType": "route_point",
-  "coordStatus": "verified",
-  "coordSource": "Mapcarta/OpenStreetMap",
+  "coordType": "river_segment_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 685201630 – Alna",
   "coordPrecisionM": 90,
-  "coordVerifiedAt": "2026-05-03",
+  "coordVerifiedAt": "2026-07-21",
   "popupDesc": "Kværnerbyen ligger på det tidligere industriområdet til Kværner Brug. Lodalsparken har et grunt, formgitt vannspeil og Kværnerdammen som følger et elvelignende løp gjennom bebyggelsen. Den virkelige Alna har historisk gått i kulvert under området; vannspeilet må derfor ikke omtales som en åpen elvestrekning uten ny dokumentasjon. History Gos aktive naturkart knytter ti fuglearter til stedet. Fuglene bruker vannspeil, park, tak, trær, gårdsrom og bebyggelse som en urban mosaikk, men kartkoblingen garanterer ikke funn ved hvert besøk.",
   "nature_profile": {
     "type": "transformert industriområde / formgitt vannrom / boligby / urban fuglemosaikk",
@@ -512,5 +512,13 @@
       "data/natur/fauna/fugler_by.json",
       "data/natur/fauna/fugler_vatmark_og_skog.json"
     ]
-  }
+  },
+  "locatorType": "route",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:685201630",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "coordSourceId": "osm-way:685201630",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/685201630",
+  "coordNote": "Eksakt navngitt Alna-segment gjennom Kværnerbyen, modellert som line_anchor fra OSM way 685201630. Punktet representerer selve vannløpet, ikke boligområdet eller et separat vannspeil."
 }

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "svartdalen",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9037223,
+    "lon": 10.7972012,
+    "r": 170,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 579463147 – Svartdalen",
+    "coordType": "valley_line_anchor",
+    "coordNote": "Representasjonspunkt for den eksakt navngitte dalgeometrien Svartdalen (OSM way 579463147). Recorden gjelder ravinedalen, ikke den fysisk separate Svartdalsparken."
+  },
+  "identity": {
+    "currentName": "Svartdalen",
+    "resolvedIdentity": "Svartdalen som ravinedal langs Alna, adskilt fra Svartdalsparken",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Svartdalen",
+      "sourceUrl": "https://www.openstreetmap.org/way/579463147",
+      "sourceObjectId": "osm-way:579463147",
+      "sourceQuality": "exact_named_valley_geometry",
+      "finding": "Eksakt navngitt natural=valley-geometri for Svartdalen.",
+      "canVerifyCoordinate": true,
+      "reason": "Representasjonspunkt for den eksakt navngitte dalgeometrien Svartdalen (OSM way 579463147). Recorden gjelder ravinedalen, ikke den fysisk separate Svartdalsparken."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Alnaelva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceQuality": "documented_valley_identity",
+      "finding": "Kilden beskriver den trange Alnadalen vest for Bryn som Svartdalen.",
+      "canVerifyCoordinate": false,
+      "reason": "Avklarer identiteten; geometrien kommer fra det eksakte OSM-objektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:579463147",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:579463147",
+      "lat": 59.9037223,
+      "lon": 10.7972012,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9037223,
+      "lon": 10.7972012,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Representasjonspunkt for den eksakt navngitte dalgeometrien Svartdalen (OSM way 579463147). Recorden gjelder ravinedalen, ikke den fysisk separate Svartdalsparken."
+  ]
+}

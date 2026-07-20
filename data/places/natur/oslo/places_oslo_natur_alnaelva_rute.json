@@ -16,11 +16,11 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat justert til Alnsjøen slik stedet er kartfestet i åpne kartdata. Stoppet representerer kildesonen, ikke hele vannet.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "Mapcarta/OpenStreetMap/GeoNames",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "alnsjoen_outflow_geometry_unresolved",
     "coordPrecisionM": 60,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "underbadge_ids": [
       "innsjo",
       "vann_og_vassdrag",
@@ -28,7 +28,8 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "coordNote": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
   },
   {
     "id": "alnaparken",
@@ -36,8 +37,8 @@
       "designCode": "park_miniature"
     },
     "name": "Alnaparken",
-    "lat": 59.94261,
-    "lon": 10.87749,
+    "lat": 59.9426114,
+    "lon": 10.8774877,
     "r": 140,
     "category": "natur",
     "desc": "Bynært park- og grøntdrag langs åpnet del av Alnaelva.",
@@ -49,24 +50,32 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat justert til kartfestet Alnaparken ved Nyland/Furuset. Tidligere punkt lå for langt vest/sørvest.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "Mapcarta/OpenStreetMap/Wikimedia Commons",
+    "coordType": "park_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 7810002134 – Alnaparken",
     "coordPrecisionM": 60,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Alnaparken er et konkret parkrom der Alnaelva inngår i et sammenhengende grøntdrag gjennom bebyggelsen. Her følger stier elveløpet og gjør overgangen mellom by, vann og vegetasjon lett å lese i terrenget. Området brukes til opphold og hverdagsferdsel, samtidig som det viser hvordan en byelv kan være en del av nærmiljøet. Stedet er interessant fordi det samler rekreasjon, bynatur og elveforløp i samme landskapsrom.",
     "underbadge_ids": [
       "elv",
       "park_og_hage",
       "gronn_korridor",
       "naturrestaurering"
-    ]
+    ],
+    "locatorType": "park",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:7810002134",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-node:7810002134",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/7810002134",
+    "coordNote": "Eksakt navngitt OSM-punkt for Alnaparken. Punktet brukes som eksplisitt parkanker; likelydende treff for idrettsbane og parkering er forkastet som andre fysiske objekter."
   },
   {
     "id": "groruddammen",
     "name": "Groruddammen",
-    "lat": 59.95812,
-    "lon": 10.87623,
+    "lat": 59.9581221,
+    "lon": 10.8763191,
     "r": 120,
     "category": "natur",
     "desc": "Dam- og våtmarkspreget punkt i Alna-vassdragets nærområde.",
@@ -78,11 +87,11 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat justert til kartfestet Groruddammen i Grorudparken/Alnaelva-korridoren.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "Mapcarta/OpenStreetMap",
+    "coordType": "water_geometry_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 60347628 – Groruddammen",
     "coordPrecisionM": 40,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Groruddammen er et tydelig vannpunkt i Alna-systemet, med en avgrenset vannflate, kantsoner og grøntdrag rundt. Dammen gjør vannets plass i dalstrukturen synlig, midt i et område som også er preget av park og nærområdebruk. Her ser du hvordan vann, vegetasjon og ferdsel møtes i et kompakt landskapsrom. Stedet er viktig som lokal referanse for hvordan blågrønne elementer henger sammen i Groruddalen.",
     "underbadge_ids": [
       "dam_og_tjern",
@@ -91,7 +100,15 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:60347628",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-way:60347628",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/60347628",
+    "coordNote": "Geometrisk representasjonspunkt for den eksakt navngitte vannflaten Groruddammen (OSM way 60347628). Oslo kommune dokumenterer Groruddammen som egen fasilitet i Grorudparken; parkgeometrien brukes bare som identitetskryssjekk."
   },
   {
     "id": "alna_smalvoll",
@@ -109,11 +126,11 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat justert til Smalvollveien/Alna Senter-området der åpne kartdata markerer Alna River i nærheten. Punktet er et lokalt ruteanker, ikke en presis hydrologisk munnings-/knekkpunktmåling.",
-    "coordType": "route_point",
-    "coordStatus": "nearby_reference",
-    "coordSource": "Mapcarta/OpenStreetMap nearby reference",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "alna_smalvoll_segment_unresolved",
     "coordPrecisionM": 180,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Ved Smalvoll går Alna gjennom et område der elveløp og grøntdrag ligger tett på næringsbebyggelse og transportårer. Stedet viser en tydelig overgang mellom bynatur og teknisk infrastruktur, med ferdselssoner langs og på tvers av dalen. Her blir det lett å se hvordan elva fortsatt fungerer som landskapselement i et sterkt utbygd område. Punktet er interessant fordi det samler naturkorridor, arbeidsområde og gjennomfart i samme del av Alna-forløpet.",
     "underbadge_ids": [
       "elv",
@@ -123,7 +140,8 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "coordNote": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
   },
   {
     "id": "alna_bryn",
@@ -141,11 +159,11 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat justert til Brynseng/Bryn bru-området som nærreferanse for Alna ved Bryn. Punktet er et ruteanker i grøntdraget, ikke hele Bryn-området.",
-    "coordType": "route_point",
-    "coordStatus": "nearby_reference",
-    "coordSource": "Mapcarta/OpenStreetMap nearby reference",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "alna_bryn_segment_unresolved",
     "coordPrecisionM": 180,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Alna ved Bryn ligger i en overgangssone der elveløp møter industrihistoriske strukturer, transportlinjer og nyere byutvikling. Området gjør samspillet mellom vann, terreng og infrastruktur synlig i et tett by- og næringsmiljø. Her kan du lese flere lag samtidig: grøntdrag langs elva, tekniske anlegg og forbindelser for ferdsel. Stedet er interessant fordi det viser hvordan Alna fortsatt preger landskapet i et område med høy utbyggings- og transportintensitet.",
     "underbadge_ids": [
       "elv",
@@ -153,13 +171,14 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "coordNote": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
   },
   {
     "id": "svartdalen",
     "name": "Svartdalen",
-    "lat": 59.90417,
-    "lon": 10.79289,
+    "lat": 59.9037223,
+    "lon": 10.7972012,
     "r": 170,
     "category": "natur",
     "desc": "Naturpreget ravinedal med elveløp, løvskog og tydelig grøntkorridor i indre byrand.",
@@ -171,11 +190,11 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat justert til kartfestet Svartdalsparken/Svartdalen-området langs Alnaelva. Stoppet representerer sentral tilgjengelig del av dalen.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "Mapcarta/OpenStreetMap",
+    "coordType": "valley_line_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 579463147 – Svartdalen",
     "coordPrecisionM": 80,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Svartdalen er en ravinedal der Alnaelva går i et sammenhengende grøntdrag tett på indre byområder. Her er elveløp, kantvegetasjon og terrengformer synlige på en måte som gjør dalstrukturen lett å lese. Stier og oppholdsflater knytter området til nærliggende bolig- og ferdselssoner uten at naturpreget forsvinner. Stedet er interessant fordi det viser et tydelig møte mellom bynær bruk og en markert elvedal.",
     "underbadge_ids": [
       "ravine_og_dal",
@@ -185,13 +204,21 @@
     ],
     "visual": {
       "designCode": "park_miniature"
-    }
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:579463147",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-way:579463147",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/579463147",
+    "coordNote": "Representasjonspunkt for den eksakt navngitte dalgeometrien Svartdalen (OSM way 579463147). Recorden gjelder ravinedalen, ikke den fysisk separate Svartdalsparken."
   },
   {
     "id": "kvaernerbyen_alna",
     "name": "Kværnerbyen ved Alna",
-    "lat": 59.90355,
-    "lon": 10.78787,
+    "lat": 59.9035994,
+    "lon": 10.7875433,
     "r": 130,
     "category": "natur",
     "desc": "Byelvpunkt der Alna igjen er synlig i byvev ved Kværnerbyen.",
@@ -203,11 +230,11 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat justert til kartfestet Kværnerbyen/Lodalsparken-nær sone, der byelv- og vannspeilstrukturen møter grøntdraget.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "Mapcarta/OpenStreetMap",
+    "coordType": "river_segment_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 685201630 – Alna",
     "coordPrecisionM": 90,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Ved Kværnerbyen blir Alna synlig i et område preget av tett byutvikling og tidligere industriell arealbruk. Elveløpet inngår i et blågrønt bånd som binder sammen bebyggelse, gangforbindelser og oppholdsrom. Her ser du hvordan vann, terreng og nye bystrukturer er koblet i samme landskapsrom. Stedet er interessant som eksempel på hvordan en byelv kan få en lesbar rolle i et transformert byområde.",
     "underbadge_ids": [
       "elv",
@@ -217,7 +244,15 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:685201630",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-way:685201630",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/685201630",
+    "coordNote": "Eksakt navngitt Alna-segment gjennom Kværnerbyen, modellert som line_anchor fra OSM way 685201630. Punktet representerer selve vannløpet, ikke boligområdet eller et separat vannspeil."
   },
   {
     "id": "alna_utlop_bjorvika",
@@ -235,38 +270,38 @@
     ],
     "routeId": "alnaelva_grontdrag",
     "sourceHint": "Koordinat lagt ved Alnas utløpsområde i Bjørvika, nær fjordkant og delta-/utløpssone. Beholdt som rute-/områdepunk inntil egen utløpsrevisjon gjøres mot detaljkart.",
-    "coordType": "route_midpoint",
-    "coordStatus": "needs_detail_check",
-    "coordSource": "manual_map_check",
+    "coordType": "legacy_historical_area_anchor",
+    "coordStatus": "needs_source",
+    "coordSource": "alna_historical_outlet_multilayer_unresolved",
     "coordPrecisionM": 120,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "anchors": [
       {
         "id": "alna_utlop_innlop",
-        "name": "Alna utløp – indre løp",
+        "name": "Alna historisk utløpslandskap – indre markør",
         "lat": 59.9047,
         "lon": 10.7651,
         "r": 100,
         "type": "route_point",
-        "note": "Siste åpne del av Alna før utløpet."
+        "note": "Foreløpig landskapsanker for historisk trase; ikke dokumentert som dagens åpne Alna-løp."
       },
       {
         "id": "alna_utlop_munning",
-        "name": "Alna utløp – munningspunkt",
+        "name": "Alna historisk munningslandskap – representasjonsanker",
         "lat": 59.9041,
         "lon": 10.7638,
         "r": 100,
         "type": "unlock_anchor",
-        "note": "Selve utløpspunktet der Alna møter fjorden."
+        "note": "Foreløpig markør for historisk munning/vannspeil; ikke dagens tunnelutløp ved Kongshavn."
       },
       {
         "id": "alna_utlop_fjord",
-        "name": "Alna utløp – fjordkant",
+        "name": "Alna historisk utløpslandskap – fjordkantmarkør",
         "lat": 59.9036,
         "lon": 10.7628,
         "r": 100,
         "type": "route_point",
-        "note": "Ytre fjordkant i Bjørvika med blanding av elv/fjord."
+        "note": "Foreløpig historisk landskapsanker; synlig fjordvann er ikke i seg selv dokumentasjon på dagens Alna-vannføring."
       }
     ],
     "popupDesc": "Dette er utløpssonen der Alna møter Oslofjorden i Bjørvika, med overgang mellom elveløp, munningsområde og fjordkant. Stedet synliggjør hvordan vannsystemet fra Groruddalen ender i et tett utviklet havne- og byrom. Her ligger blågrønne strukturer side om side med teknisk infrastruktur, kaiområder og nye byflater. Utløpet er interessant fordi det samler hele Alna-forløpet i ett konkret punkt mellom elv og fjord.",
@@ -277,6 +312,7 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "coordNote": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
   }
 ]

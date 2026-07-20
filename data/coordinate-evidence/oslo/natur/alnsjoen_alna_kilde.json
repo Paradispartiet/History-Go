@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "alnsjoen_alna_kilde",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.96527,
+    "lon": 10.84704,
+    "r": 140,
+    "coordStatus": "needs_source",
+    "coordSource": "alnsjoen_outflow_geometry_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+  },
+  "identity": {
+    "currentName": "Alnsjøen (Alna-kilde)",
+    "resolvedIdentity": "Alnas utløp/kildesone ved Alnsjøen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt Alnsjøen-vanngeometri eller dokumentert Alna-utløpsobjekt ved sjøen"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Alnaelva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceQuality": "documented_source_identity",
+      "finding": "Kilden dokumenterer at den egentlige Alna renner ut fra Alnsjøen og først går østover.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – separate Alna-segmenter øst for Alnsjøen",
+      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Alnsj%C3%B8en%20Oslo",
+      "sourceObjectId": "osm:alna-alnsjoen-multiple-waterway-ways",
+      "sourceQuality": "fragmented_local_waterway_geometry",
+      "finding": "Flere separate Alna-way-er, men ikke ett entydig sjø-/utløpsobjekt.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm:alna-alnsjoen-multiple-waterway-ways",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert.",
+    "nextAction": "eksakt Alnsjøen-vanngeometri eller dokumentert Alna-utløpsobjekt ved sjøen"
+  },
+  "notes": [
+    "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+  ]
+}
