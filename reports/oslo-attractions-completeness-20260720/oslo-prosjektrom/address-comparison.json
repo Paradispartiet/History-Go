@@ -1,0 +1,47 @@
+{
+  "candidateId": "oslo_prosjektrom",
+  "results": [
+    {
+      "key": "platous-gate-10",
+      "query": "Platous gate 10 Oslo",
+      "exitCode": 1,
+      "ok": false,
+      "status": "not_found",
+      "reason": "Geonorge returnerte ingen adressetreff.",
+      "sourceObjectId": null,
+      "coordinate": null,
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Platous%20gate%2010%20Oslo"
+    },
+    {
+      "key": "platous-gate-18",
+      "query": "Platous gate 18 Oslo",
+      "exitCode": 0,
+      "ok": true,
+      "status": "verified_candidate",
+      "reason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+      "coordinate": {
+        "lat": 59.91112080426534,
+        "lon": 10.76528983153175,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+        "address": {
+          "street": "Platous gate",
+          "number": "18",
+          "postcode": "0190",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Platous gate 18, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Platous%20gate%2018%20Oslo"
+    }
+  ]
+}
