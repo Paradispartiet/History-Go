@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/knowledge-v2.css">
+  <link rel="stylesheet" href="css/knowledge-badges.css">
   <style>
     .kv2-side-stack { display: grid; gap: 14px; }
   </style>
@@ -31,6 +32,7 @@
         <span class="kv2-eyebrow">Min kunnskap</span>
         <h1 id="knowledgeTitle">Det du kan.<br>Samlet.</h1>
         <p>Kunnskap fra quiz blir sortert etter fag, emner og begreper. Steder og personer beholdes som kilder, uten å fylle selve kunnskapsoversikten med ekstra støy.</p>
+        <a class="kv2-legacy-link" href="knowledge-profile.html">Åpne detaljert kunnskapsprofil →</a>
       </div>
       <section id="knowledgeSummary" class="kv2-summary" aria-label="Kunnskapsoversikt"></section>
     </section>
@@ -51,6 +53,8 @@
   <footer class="kv2-footer">
     <a href="profile.html">Profil</a>
     <span aria-hidden="true">·</span>
+    <a href="knowledge-profile.html">Detaljert kunnskapsprofil</a>
+    <span aria-hidden="true">·</span>
     <a href="index.html">Kart</a>
   </footer>
 
@@ -63,5 +67,6 @@
   <script src="dist/web/courses.js"></script>
   <script src="js/knowledgeV2.js"></script>
   <script src="js/knowledgePage.js"></script>
+  <script src="js/knowledgeBadgePresentation.js"></script>
 </body>
 </html>
