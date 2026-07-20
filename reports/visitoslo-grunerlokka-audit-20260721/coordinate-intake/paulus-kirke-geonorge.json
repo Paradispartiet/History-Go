@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Thorvald Meyers gate 31 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Thorvald Meyers gate 31 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Thorvald%20Meyers%20gate%2031%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:17489:31",
+  "coordinate": {
+    "lat": 59.9263530529718,
+    "lon": 10.757922110312622,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:17489:31",
+    "address": {
+      "street": "Thorvald Meyers gate",
+      "number": "31",
+      "postcode": "0555",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Thorvald Meyers gate 31, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Thorvald Meyers gate",
+    "adressetekst": "Thorvald Meyers gate 31",
+    "adressetilleggsnavn": null,
+    "adressekode": 17489,
+    "nummer": 31,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 228,
+    "bruksnummer": 471,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0555",
+    "adressetekstutenadressetilleggsnavn": "Thorvald Meyers gate 31",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.9263530529718,
+      "lon": 10.757922110312622
+    },
+    "oppdateringsdato": "2020-06-15T18:05:05"
+  }
+}
