@@ -139,9 +139,7 @@ def test_legacy_hs256_verification_returns_minimal_principal() -> None:
 
 
 def test_legacy_hs256_rejects_auth_server_failure() -> None:
-    client = httpx.Client(
-        transport=httpx.MockTransport(lambda request: httpx.Response(401))
-    )
+    client = httpx.Client(transport=httpx.MockTransport(lambda request: httpx.Response(401)))
     verifier = SupabaseTokenVerifier(
         Settings(
             environment="test",
