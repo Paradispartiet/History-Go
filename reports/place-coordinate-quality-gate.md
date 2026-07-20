@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T14:00:44.923Z
+Generert: 2026-07-20T14:30:28.937Z
 
 ## Oppsummering
-- Aktive filer validert: **535**
+- Aktive filer validert: **536**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **426**
@@ -553,6 +553,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places/kampen_okologiske_barnebondegard.json
 - data/places/vitenskap/oslo/places_vitenskap/klimahuset.json
 - data/places/kunst/oslo/places_kunst/fotografiens_hus.json
+- data/places/historie/oslo/places_historie/christian_radich.json
 
 ## Harde feil
 - Ingen

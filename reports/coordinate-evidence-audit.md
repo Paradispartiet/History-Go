@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T14:00:52.190Z
+Generert: 2026-07-20T14:30:36.128Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -194,3 +194,4 @@ Generert: 2026-07-20T14:00:52.190Z
 | kampen_okologiske_barnebondegard | data/coordinate-evidence/oslo/by/kampen_okologiske_barnebondegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klimahuset | data/coordinate-evidence/oslo/vitenskap/klimahuset.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| christian_radich | data/coordinate-evidence/oslo/historie/christian_radich.json | applied_to_place | do_not_change_coordinates_yet | OK |

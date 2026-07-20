@@ -1,0 +1,83 @@
+{
+  "placeId": "christian_radich",
+  "placeFile": "data/places/historie/oslo/places_historie/christian_radich.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90805979135746,
+    "lon": 10.733834060566368,
+    "r": 100,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Skur 32, Akershusstranda 9, OSLO. Punktet brukes som stabil display- og unlock-marker for Christian Radichs dokumenterte hjemmebase ved Akershusutstikkeren. Oslo Havn identifiserer Akershusutstikkeren som skipets hjemmehavn, og VisitOSLO opplyser at skuta ligger der når den ikke er på oppdrag. Punktet er ikke live-sporing og innebærer ikke at fartøyet alltid fysisk ligger ved kaia."
+  },
+  "identity": {
+    "currentName": "Christian Radich",
+    "resolvedIdentity": "Fullriggeren og skoleskipet Christian Radich, representert ved den dokumenterte Oslo-hjemmebasen ved Akershusutstikkeren / Skur 32",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Skur 32, Akershusstranda 9",
+    "offisiell dokumentasjon av Akershusutstikkeren som Christian Radichs hjemmehavn",
+    "dokumentasjon av normalfortøyning når skipet er i Oslo",
+    "eksplisitt skille mellom hjemmebase-markor og live fartoysposisjon",
+    "canonical overlap-kontroll mot akershus_kaier"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Akershusstranda%209%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:9",
+      "sourceQuality": "official_address_plus_official_harbour_home_berth_identity_plus_operator_and_destination_sources",
+      "finding": "Geonorge gir ett tydelig offisielt adressepunkt for Skur 32, Akershusstranda 9. Oslo Havn dokumenterer Akershusutstikkeren som Christian Radichs hjemmehavn og opplyser at skipet har hatt fast plass der siden 1994. VisitOSLO opplyser at skuta ligger ved Akershusutstikkeren når den ikke er på oppdrag. Punktet kan derfor brukes som stabil hjemmebase-markør uten å påstå live fysisk tilstedeværelse.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Skur 32, Akershusstranda 9, OSLO. Punktet brukes som stabil display- og unlock-marker for Christian Radichs dokumenterte hjemmebase ved Akershusutstikkeren. Oslo Havn identifiserer Akershusutstikkeren som skipets hjemmehavn, og VisitOSLO opplyser at skuta ligger der når den ikke er på oppdrag. Punktet er ikke live-sporing og innebærer ikke at fartøyet alltid fysisk ligger ved kaia."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Skur 32, Akershusstranda 9 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:9",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:9",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "oslohavn:omradekart-2026:akershusutstikkeren",
+      "canApplyToPlace": false,
+      "role": "home_berth_identity_and_visual_QA"
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90805979135746,
+      "lon": 10.733834060566368,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the verified Skur 32 address point as Christian Radich's stable Oslo home-base marker with explicit non-live vessel semantics."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Skur 32, Akershusstranda 9, OSLO. Punktet brukes som stabil display- og unlock-marker for Christian Radichs dokumenterte hjemmebase ved Akershusutstikkeren. Oslo Havn identifiserer Akershusutstikkeren som skipets hjemmehavn, og VisitOSLO opplyser at skuta ligger der når den ikke er på oppdrag. Punktet er ikke live-sporing og innebærer ikke at fartøyet alltid fysisk ligger ved kaia.",
+    "`akershus_kaier` remains the broader linear harbour-infrastructure place and is not a duplicate of the vessel identity.",
+    "Akershusutstikkeren is the documented home harbour; the vessel may be away from the marker at any given time."
+  ]
+}
