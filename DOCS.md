@@ -7,6 +7,8 @@
 - SYSTEM_REGISTRY.md — Kontrakter og regler
 - SYSTEM_MAP.md — Arkitektur og modulkart
 - ONTOLOGY.md — Begreps- og kunnskapsmodell
+- docs/TYPESCRIPT_FIRST_POLICY.md — Overordnet språkvalg, TypeScript-first-regel og CI/merge-prinsipp
+- docs/typescript-migration-plan.md — Operativ plan for gradvis migrering av browser-runtime til TypeScript
 
 ## Produkt & visjon
 - IDE_BIBLE.md — Idé, visjon og strategi
