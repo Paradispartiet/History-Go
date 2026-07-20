@@ -57,10 +57,7 @@ def _scan(value: object, *, path: str, found: list[ForbiddenField]) -> None:
         for raw_key, nested in value.items():
             key = str(raw_key)
             nested_path = f"{path}.{key}" if path else key
-            if (
-                key.replace("_", "").replace("-", "").lower()
-                in FORBIDDEN_PROFILE_FIELDS
-            ):
+            if key.replace("_", "").replace("-", "").lower() in FORBIDDEN_PROFILE_FIELDS:
                 found.append(ForbiddenField(field=key, path=nested_path))
             _scan(nested, path=nested_path, found=found)
         return
