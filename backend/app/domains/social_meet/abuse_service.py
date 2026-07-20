@@ -23,7 +23,11 @@ _ALLOWED_CONTEXT_TYPES = frozenset({"place", "quiz", "route", "observation", "to
 
 
 class SocialMeetInteractionGuard(Protocol):
-    def ensure_interaction_allowed(self, first_profile_id: UUID, second_profile_id: UUID) -> None: ...
+    def ensure_interaction_allowed(
+        self,
+        first_profile_id: UUID,
+        second_profile_id: UUID,
+    ) -> None: ...
 
 
 class SocialMeetInviteAbuseService:
