@@ -878,13 +878,13 @@ function initLeftRoutesPanel() {
   const sel = /** @type {HTMLSelectElement} */ (document.getElementById("leftPanelMode"));
   if (!sel) return;
 
-  sel.addEventListener("change", () => setLeftPanelMode(sel.value));
+  sel.addEventListener("change", () => hgWindow.setLeftPanelMode?.(sel.value));
 
   hgWindow.addEventListener("hg:geo", () => {
     if (sel.value === "routes") renderLeftRoutesList();
   });
 
-  setLeftPanelMode(sel.value || "nearby");
+  hgWindow.setLeftPanelMode?.(sel.value || "nearby");
 }
 
 hgWindow.HGRoutes = {

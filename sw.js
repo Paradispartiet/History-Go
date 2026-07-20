@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-07-20-v1.3.129";
+const SW_VERSION = "hg-sw-2026-07-20-v1.3.130";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -118,7 +118,7 @@ const PRECACHE_URLS = [
   "js/ui/events.js",
   "js/ui/interactions.js",
   "js/ui/lists.js",
-  "js/ui/left-panel.js",
+  "dist/web/left-panel.js",
   "js/ui/badges.js",
   "js/ui/badge-modal.js",
   "js/ui/mini-profile.js",
