@@ -57,8 +57,7 @@ class FakeSafetyRepository:
         return tuple(
             block
             for block in self.blocks
-            if block.blocker_profile_id == blocker_profile_id
-            and block.status is BlockStatus.ACTIVE
+            if block.blocker_profile_id == blocker_profile_id and block.status is BlockStatus.ACTIVE
         )
 
     def upsert_block(
