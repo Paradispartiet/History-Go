@@ -1,9 +1,8 @@
 window.HG_MAPTILER_KEY = "Yi8j8sLhEo4NyPygVmbN";
 window.HG_NATURTRO_STYLE_ID = "streets-v4";
 
-// Kartkontrollene må finnes før app-boot initialiserer LayerManager og HGMap.
-// index.html mistet denne DOM-blokken i en tidligere shell-opprydding, så vi
-// gjenoppretter verten tidlig og lar kart-runtime fylle resten.
+// Legacy bootstrap bridge only: the map-control implementation itself lives in
+// TypeScript and is built to dist/web according to docs/TYPESCRIPT_FIRST_POLICY.md.
 (function loadMapControlsRuntime() {
   function ensureMapControlsHost() {
     if (!document.getElementById("mapLayer") || document.querySelector(".map-controls")) return;
@@ -17,8 +16,8 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     ensureMapControlsHost();
     if (document.querySelector('script[data-hg-map-controls-runtime="1"]')) return;
     const script = document.createElement("script");
-    script.src = "js/map-controls-runtime.mjs";
-    script.type = "module";
+    script.src = "dist/web/map-controls-runtime.js";
+    script.async = false;
     script.dataset.hgMapControlsRuntime = "1";
     document.head.appendChild(script);
   }
