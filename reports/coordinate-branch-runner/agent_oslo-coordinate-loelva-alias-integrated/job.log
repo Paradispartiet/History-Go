@@ -1,0 +1,79 @@
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1267 places -> data/places/places_index.json; skipped 9 disabled place(s)
+
+> history-go@0.0.0 places:aliases:check
+> npm run build:tools && node dist/tools/check_place_id_aliases.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: no legacy place IDs found in checked JSON data.
+
+[Loelva finalizer] npm run audit:quiz-manifest:v2
+
+> history-go@0.0.0 audit:quiz-manifest:v2
+> node scripts/audit-quiz-manifest-v2.mjs
+
+Wrote reports/quiz_manifest_v2_audit_report.json
+{
+  "status": "failed",
+  "failureCounts": 9,
+  "legacyQuizItemsCount": 1118,
+  "setManifestEntriesCount": 226,
+  "setQuestionsChecked": 1761
+}
+
+[Loelva finalizer] audit:quiz-manifest:v2 has pre-existing non-target failures; no legacy-ID regression detected.
+
+[Loelva finalizer] npm run audit:people-of-places
+
+> history-go@0.0.0 audit:people-of-places
+> npm run build:tools && node dist/tools/audit-people-of-places-status.mjs && node dist/tools/check-people-of-places-gate.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1228; flat files: 0; geographic files: 628; invalid refs: 0; duplicate IDs: 0
+People of Places audit gate passed
+
+
+[Loelva finalizer] npm run places:emner:check
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 531
+Canonical emne files scanned: 15
+Canonical emne ids loaded: 996
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0
+
+{
+  "ok": true,
+  "verifiedCount": 209,
+  "unresolvedCount": 30,
+  "remainingExactIds": []
+}
