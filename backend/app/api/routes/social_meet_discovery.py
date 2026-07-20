@@ -10,7 +10,10 @@ from app.api.dependencies import (
     get_social_meet_candidate_discovery_service,
 )
 from app.auth.supabase import AuthPrincipal
-from app.domains.social_meet.discovery_models import ContextCandidateRequest, ContextCandidateResponse
+from app.domains.social_meet.discovery_models import (
+    ContextCandidateRequest,
+    ContextCandidateResponse,
+)
 from app.domains.social_meet.discovery_service import SocialMeetCandidateDiscoveryService
 from app.domains.social_meet.privacy import find_forbidden_fields
 from app.domains.social_meet.service import SocialMeetDomainError
