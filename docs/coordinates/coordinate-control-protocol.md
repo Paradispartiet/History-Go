@@ -1,6 +1,6 @@
 # Protokoll for koordinatkontroll
 
-Sist oppdatert: 2026-07-20
+Sist oppdatert: 2026-07-21
 
 Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det viser hvilke steder som faktisk er kontrollert, hvilken status som er godtatt, og hvilket stabilt kildeobjekt som støtter avgjørelsen. Protokollen utfyller koordinatkontrakten og evidensfilene; den erstatter dem ikke.
 
@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical steder. Batch 90 legger til Oslo Prosjektrom med eksakt Geonorge-adressepunkt for Platous gate 18, etter separat avklaring av den isolerte Platous gate 10-feiloppføringen. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 320 verifiserte eller kildekontrollerte canonical steder. Antallet aktive canonical Oslo-steder uten godkjent koordinatstatus er 83.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -58,12 +58,9 @@ Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical s
 | 7 | `tollbukaia` | Tollbukaia | verified_historical_source | `oslobyleksikon:tollbukaia` |
 | 7 | `akershus_kaier` | Akershuskaiene | verified_geometry | `osm-way:4252516` |
 | 7 | `oslo_mek` | Akers mekaniske Verksted | verified_historical_source | `oslobyleksikon:akers-mek-verksted` |
-| 8 | `folkeobservatoriet` | Folkeobservatoriet | verified | `geonorge-adresser-v1:0301:13070:119` |
-| 8 | `kjeglebanen_langgaardslokken` | Kjeglebanen på Langgaardsløkken | verified | `geonorge-adresser-v1:0301:10898:21` |
 | 8 | `radmannsgarden_og_anatomibygget` | Rådmannsgården og Anatomibygget | verified | `geonorge-adresser-v1:0301:16115:19` |
 | 8 | `magistratgarden` | Magistratgården | verified | `geonorge-adresser-v1:0301:11309:11` |
 | 8 | `hauges_minde` | Hauges Minde | verified | `geonorge-adresser-v1:0301:15331:2` |
-| 8 | `slurpen` | Slurpen | verified | `geonorge-adresser-v1:0301:14097:79C` |
 | 8 | `geitmyra_gard` | Geitmyra gård | verified | `geonorge-adresser-v1:0301:17894:2` |
 | 9 | `gronland_politistasjon` | Grønland politistasjon | verified | `geonorge-adresser-v1:0301:17872:5` |
 | 9 | `toyen_trafo` | Tøyen trafo | verified | `geonorge-adresser-v1:0301:13143:1` |
@@ -218,18 +215,13 @@ Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical s
 | 49 | `det_internasjonale_barnekunstmuseet` | Det internasjonale Barnekunstmuseet | verified | `geonorge-adresser-v1:0301:14283:4` |
 | 50 | `ibsen_museum_teater` | IBSEN Museum & Teater | verified | `geonorge-adresser-v1:0301:21471:26` |
 | 51 | `oslo_reptilpark` | Oslo Reptilpark | verified | `geonorge-adresser-v1:0301:16935:2` |
-| 52 | `toyenbadet` | Tøyenbadet | verified | `geonorge-adresser-v1:0301:12860:90` |
-| 53 | `ekt_rideskole_husdyrpark` | EKT Rideskole og Husdyrpark | verified | `geonorge-adresser-v1:0301:11462:99` |
 | 54 | `dronning_sonja_kunststall` | Dronning Sonja KunstStall | verified | `geonorge-adresser-v1:0301:15614:50` |
-| 55 | `holmlia_bad` | Holmlia bad | verified | `geonorge-adresser-v1:0301:13084:34` |
-| 56 | `skimore_oslo` | Skimore Oslo | verified | `geonorge-adresser-v1:0301:17787:64` |
 | 56 | `oslo_kraftselskap` | Oslo Lysverkers hovedkontor | verified | `geonorge-adresser-v1:0301:16854:1` |
 | 57 | `fagerborg_kirke` | Fagerborg kirke | verified | `geonorge-adresser-v1:0301:15670:74` |
 | 58 | `uranienborg_kirke` | Uranienborg kirke | verified | `geonorge-adresser-v1:0301:13110:15` |
 | 59 | `frogner_kirke` | Frogner kirke | verified | `geonorge-adresser-v1:0301:10967:36` |
 | 60 | `vestre_gravlund` | Vestre gravlund | verified | `osm-way:4740772` |
 | 61 | `brannmuseet_oslo` | Brannmuseet i Oslo | verified | `geonorge-adresser-v1:0301:12450:32` |
-| 62 | `skoytemuseet` | Skøytemuseet | verified | `geonorge-adresser-v1:0301:14742:26` |
 | 63 | `vikaterrassen` | Vikaterrassen | verified | `osm-relation:14169568` |
 | 64 | `kampen_okologiske_barnebondegard` | Kampen Økologiske Barnebondegård | verified | `geonorge-adresser-v1:0301:16443:23` |
 | 65 | `klimahuset` | Klimahuset | verified | `geonorge-adresser-v1:0301:14797:12` |
@@ -240,8 +232,6 @@ Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical s
 | 70 | `toyen_hovedgard` | Tøyen hovedgård | verified | `geonorge-adresser-v1:0301:17749:23B` |
 | 71 | `museumsleiligheten_grabein` | Museumsleiligheten Gråbein | verified | `geonorge-adresser-v1:0301:17875:38B` |
 | 72 | `akrobaten_gangbro` | Akrobaten gangbro | verified_geometry | `osm-way:468892289` |
-| 73 | `sorenga_sjobad` | Sørenga sjøbad | verified_geometry | `osm-node:5295458069` |
-| 74 | `frigo_friluftssenteret` | FRIGO – Friluftssenteret i Gamle Oslo | verified | `geonorge-adresser-v1:0301:11589:20` |
 | 75 | `galleri_map` | Galleri MAP | verified | `geonorge-adresser-v1:0301:17875:32` |
 | 76 | `vi_vii_gallery` | VI, VII | verified | `geonorge-adresser-v1:0301:15006:8` |
 | 77 | `ekeberg_helleristninger` | Helleristningene på Ekeberg | verified_geometry | `kulturminnesok:41907` |
@@ -257,6 +247,100 @@ Oslo-tabellen inneholder nå 237 verifiserte eller kildekontrollerte canonical s
 | 87 | `van_etten` | Van Etten | verified | `geonorge-adresser-v1:0301:16675:3` |
 | 88 | `jordal_ungdomshall` | Jordal ungdomshall | verified_geometry | `osm:way:33263069` |
 | 89 | `gamlebyen_kirke` | Gamlebyen kirke | verified_geometry | `osm-way:557799193` |
+| 90 | `egertorget` | Egertorget | verified_geometry | `osm-relation:4546219` |
+| 90 | `grev_wedels_plass` | Grev Wedels plass | verified_geometry | `osm-way:33610051` |
+| 90 | `stortorget` | Stortorget | verified_geometry | `osm-way:179095465` |
+| 90 | `wessels_plass` | Wessels plass | verified_geometry | `osm-way:942267111` |
+| 90 | `ostbanestasjonen` | Østbanestasjonen | verified_geometry | `osm-way:131419741` |
+| 90 | `schiollgarden_prinsens_gate_26` | Schiøllgården | verified | `geonorge-adresser-v1:0301:15742:26` |
+| 90 | `kjaerlighetskarusellen` | Kjærlighetskarusellen | verified_geometry | `osm-node:1346356285` |
+| 90 | `peststotten_krist_kirkegard` | Peststøtten – Krist kirkegård | verified | `atlasobscura:black-death-monument-peststotten` |
+| 90 | `st_hallvard_kirke_kloster` | St. Hallvard kirke og kloster | verified | `geonorge-adresser-v1:0301:11553:4` |
+| 90 | `villa_stenersen` | Villa Stenersen | verified | `geonorge-adresser-v1:0301:17802:10C` |
+| 90 | `nordisk_bibelmuseum` | Nordisk Bibelmuseum | verified | `geonorge-adresser-v1:0301:15006:4C` |
+| 90 | `bla_skilt_enerhaugen_samfund_smedgata_34` | Blått skilt: Enerhaugens Samfund | verified | `geonorge-adresser-v1:0301:16675:34` |
+| 90 | `bla_skilt_helverschous_lokke_munkedamsveien_35` | Blått skilt: Helverschous løkke | verified | `geonorge-adresser-v1:0301:14857:35` |
+| 90 | `slurpen_lakkegata` | Slurpen | verified | `geonorge-adresser-v1:0301:14097:79C` |
+| 90 | `minneparken_gamlebyen` | Minneparken | verified | `osm-way:111546637` |
+| 90 | `mustadgarden_kongens_gate_3` | Mustadgården – Kongens gate 3 | verified | `geonorge-adresser-v1:0301:13846:3` |
+| 90 | `den_gamle_krigsskolen` | Den gamle Krigsskolen | verified | `geonorge-adresser-v1:0301:17577:10` |
+| 90 | `kirkeristen_basarene_brannvakten` | Kirkeristen, Basarene og Brannvakten | verified | `geonorge-adresser-v1:0301:11309:27` |
+| 90 | `garmanngarden` | Garmanngården | verified | `geonorge-adresser-v1:0301:16115:7` |
+| 90 | `myntgatakvartalet` | Myntgatakvartalet | verified | `geonorge-adresser-v1:0301:14919:2` |
+| 90 | `stattholdergarden` | Stattholdergården | verified | `geonorge-adresser-v1:0301:16115:11` |
+| 90 | `waisenhuset_kongens_gate` | Waisenhuset | verified | `geonorge-adresser-v1:0301:13846:1` |
+| 90 | `kontraskjaeret` | Kontraskjæret | verified_geometry | `osm-way:545698008` |
+| 90 | `palehaven_paleet` | Paléhaven og Paleet | verified_historical_source | `oppdag-kvadraturen:palehaven-og-paleet` |
+| 90 | `avisen_tiden_radhusgata_10` | Avisen Tiden – Rådhusgata 10 | verified | `geonorge-adresser-v1:0301:16115:10` |
+| 90 | `abelonegarden` | Abelonegården | verified | `Lokalhistoriewiki / Store norske leksikon` |
+| 90 | `skulptursonen_ovre_slottsgate` | Skulptursonen i Øvre Slottsgate | verified_geometry | `oppdag-kvadraturen:skulptursonen-i-ovre-slottsgate` |
+| 90 | `emanuel_vigeland_mausoleum` | Emanuel Vigelands mausoleum | verified | `wikidata:Q17769549` |
+| 90 | `framtidsbiblioteket_nordmarka` | Framtidsbiblioteket – Nordmarka | verified | `visitnorway:future-library-forest-nordmarka` |
+| 90 | `oslo_prosjektrom` | Oslo Prosjektrom | verified | `geonorge-adresser-v1:0301:15684:18` |
+| 90 | `bla_skilt_stein_mehren_ullevalsveien_60` | Blått skilt: Stein Mehren | verified | `geonorge-adresser-v1:0301:17972:60` |
+| 90 | `flop_museum` | FLOP Museum | verified | `geonorge-adresser-v1:0301:21509:19` |
+| 90 | `borsen_oslo` | Oslo Børs | verified | `geonorge-adresser-v1:0301:17577:2` |
+| 90 | `centralbanken_kirkegata` | Centralbanken | verified | `geonorge-adresser-v1:0301:13707:18` |
+| 90 | `kafe_grei` | Kafé Grei | verified | `geonorge-adresser-v1:0301:16467:3` |
+| 90 | `steen_og_strom` | Steen & Strøm | verified | `geonorge-adresser-v1:0301:13846:23` |
+| 90 | `treschowgarden` | Treschowgården | verified | `geonorge-adresser-v1:0301:11926:2` |
+| 90 | `cafe_engebret` | Café Engebret | verified | `geonorge-adresser-v1:0301:10412:1B` |
+| 90 | `hotel_du_nord` | Hotel du Nord | verified | `geonorge-adresser-v1:0301:11309:13` |
+| 90 | `amerikalinjen` | Amerikalinjen | verified | `geonorge-adresser-v1:0301:13444:2` |
+| 90 | `dfds_bygget` | DFDS-bygget | verified | `geonorge-adresser-v1:0301:13630:1` |
+| 90 | `norges_bank_bankplassen_4` | Norges Bank – Bankplassen 4 | verified | `geonorge-adresser-v1:0301:10412:4` |
+| 90 | `tollboden_oslo` | Tollboden | verified_geometry | `osm-way:112195502` |
+| 90 | `tollpakkhuset` | Tollpakkhuset | verified_geometry | `osm-way:112195503` |
+| 90 | `sjofartsbygningen` | Sjøfartsbygningen | verified | `geonorge-adresser-v1:0301:13846:6` |
+| 90 | `kirkegata_5` | Kirkegata 5 | verified | `geonorge-adresser-v1:0301:13707:5` |
+| 90 | `norges_bank_bankplassen_2` | Norges Bank – Bankplassen 2 | verified | `geonorge-adresser-v1:0301:10412:2` |
+| 90 | `frysja_industriomrade` | Frysja industriområde | verified | `manual_map_check` |
+| 90 | `nybrua_vaterlandsparken` | Nybrua | verified_geometry | `osm-way:315066295` |
+| 90 | `vaterlandsparken` | Vaterlandsparken | verified_geometry | `osm-way:4334996` |
+| 90 | `alnaparken` | Alnaparken | verified | `Mapcarta/OpenStreetMap/Wikimedia Commons` |
+| 90 | `alnsjoen_alna_kilde` | Alnsjøen (Alna-kilde) | verified | `Mapcarta/OpenStreetMap/GeoNames` |
+| 90 | `groruddammen` | Groruddammen | verified | `Mapcarta/OpenStreetMap` |
+| 90 | `kvaernerbyen_alna` | Kværnerbyen ved Alna | verified | `Mapcarta/OpenStreetMap` |
+| 90 | `svartdalen` | Svartdalen | verified | `Mapcarta/OpenStreetMap` |
+| 90 | `bygdoy_bygdoynes` | Bygdøy Bygdøynes | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `bygdoy_dronningberget` | Bygdøy Dronningberget | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `bygdoy_huk` | Bygdøy Huk | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `bygdoy_paradisbukta` | Bygdøy Paradisbukta | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `bygdoy_roykenvika` | Bygdøy Røykensvika | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `ljanselva_bunnefjorden` | Ljanselva ut i Bunnefjorden | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `noklevann_ljanselva_start` | Nøklevann (Ljanselva start) | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `skraperudtjern` | Skraperudtjern | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `ostensjovannet_fugletarn` | Østensjøvannet fugletårn | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `ostensjovannet_nord` | Østensjøvannet nord | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `ostensjovannet_sor` | Østensjøvannet sør | verified | `OpenStreetMap/Mapcarta` |
+| 90 | `tjernsmyr_salamanderlokalitet` | Tjernsmyr salamanderlokalitet | verified | `OpenStreetMap/Geoview wetland reference + Statens vegvesen locality source` |
+| 90 | `bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5` | Blått skilt: Christopher Hornsrud | verified | `geonorge-adresser-v1:0301:14777:5` |
+| 90 | `folkets_hus_oslo` | Folkets Hus i Oslo | verified | `osm_geometry_and_wikidata` |
+| 90 | `stortinget` | Stortinget | verified | `manual_map_patch` |
+| 90 | `youngstorget` | Youngstorget | verified | `osm_geometry_or_address` |
+| 90 | `bla_skilt_aud_schonemann_vetlandsveien_69d` | Blått skilt: Aud Schønemann | verified | `geonorge-adresser-v1:0301:18274:69D` |
+| 90 | `blitzhuset` | Blitzhuset | verified | `wikimedia_photo_metadata_and_oslo_byleksikon` |
+| 90 | `club_7_vika` | Club 7 | verified | `verified_external_source` |
+| 90 | `gamlebyen_sport_og_fritid` | Gamlebyen Sport og Fritid | verified | `official_site_and_openstreetmap_geometry` |
+| 90 | `hausmania` | Hausmania | verified | `official_site_manual` |
+| 90 | `helvete_neseblod_records` | Helvete / Neseblod Records | verified | `verified_external_source` |
+| 90 | `jaeger_oslo` | Jaeger | verified | `verified_external_source` |
+| 90 | `kafe_haerverk` | Kafé Hærverk | verified | `official_site_manual_reuse_verified_parent_coordinate` |
+| 90 | `last_train_oslo` | Last Train | verified | `official_site_manual` |
+| 90 | `mir_grunerlokka_lufthavn` | MIR / Grünerløkka Lufthavn | verified | `verified_external_source` |
+| 90 | `oslo_skatehall` | Oslo Skatehall | verified | `official_site_and_openstreetmap_geometry` |
+| 90 | `revolver_oslo` | Revolver | verified | `official_site_manual` |
+| 90 | `rock_in_oslo` | Rock In | verified | `verified_external_source` |
+| 90 | `skur13` | Skur 13 | verified | `official_site_manual` |
+| 90 | `sofienbergparken_subkultur` | Sofienbergparken | verified | `official_site_manual` |
+| 90 | `stovnertarnet` | Stovnertårnet | verified | `oslo_byleksikon` |
+| 90 | `sub_scene` | Sub Scene | verified | `verified_external_source` |
+| 90 | `the_villa` | The Villa | verified | `verified_external_source` |
+| 90 | `torggata_blad` | Torggata Blad | verified | `geonorge-adresser-v1:0301:12782:19A` |
+| 90 | `vaterland_bar_scene` | Vaterland Bar & Scene | verified | `official_site_and_map_listing_manual` |
+| 90 | `xray_ungdomskulturhus` | X-Ray Ungdomskulturhus | verified | `oslo_kommune_and_wikimedia_category_coordinates` |
+| 90 | `folkeobservatoriet_holmenkollen` | Folkeobservatoriet | verified | `geonorge-adresser-v1:0301:13070:119` |
+| 90 | `universitetets_gamle_kjemi` | Universitetets gamle kjemibygning | verified | `manual_map_check` |
 
 | 90 | `oslo_prosjektrom` | Oslo Prosjektrom | verified | `geonorge-adresser-v1:0301:15684:18` |
 
@@ -340,102 +424,94 @@ Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fy
 
 Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk place fordi Loelva er dokumentert som historisk/alternativt navn på `alnaelva`, ikke som et eget vassdrag. Navnehistorien er bevart som en eksplisitt `historical_alias`-relasjon på canonical Alnaelva, aktive referanser er retargetet og den separate Civication-markøren er fjernet. Alnaelvas koordinatstatus er fortsatt `needs_source`; migreringen verifiserer ikke den uavklarte elvegeometrien.
 
+Batch 90 (2026-07-21) rekonsilerer hele Oslo-protokollen maskinelt mot canonical `data/places/places_index.json`. Oslo-avgrensningen følger canonical `sourceFile`, og bare `verified`, `verified_geometry` og `verified_historical_source` teller som godkjent koordinatstatus. Eksisterende verifiserte protokollrader beholdes med opprinnelig batchnummer når de fortsatt er canonical; manglende, allerede verifiserte canonical records etterføres som batch 90. Løste, utflyttede eller nedgraderte rader fjernes fra feil tabell, og alle aktive Oslo-records uten godkjent status føres i resttabellen. Batchen endrer ingen place-koordinater.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 213 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene gjelder 83 aktive canonical Oslo-steder som ikke teller blant de 320 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
-| `elvestrekning_bla_brenneriveien` – Elvestrekning ved Blå (Brenneriveien) | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
-| `fossveien_elvestrekning` – Fossveien – elvestrekning | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
-| `hausmannsomradet_elvelop` – Hausmannsområdet (elveløp) | needs_review | Bredt elveløp uten stabil fysisk avgrensning i recorden; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
-| `nybrua_vaterlandsparken` – Nybrua / Vaterlandsparken | needs_review | Recorden kombinerer Nybrua og Vaterlandsparken, to separate fysiske objekter, mens dagens punkt ligger på et tredje objekt. | Splitt recorden eller velg én canonical fysisk identitet før koordinat godkjennes. |
-| `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
-| `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
-| `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
-| `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |
-| `alnaelvstien` – Alnaelvstien / Alnastien | needs_review | Oslo kommune dokumenterer turveien langs Alnaelva, men OSM har flere separate Alnastien-way-er og ingen samlet ruterelasjon i kontrollen. | Bygg routeSegments eller finn samlet offisiell rutetrase før canonical punkt godkjennes. |
-| `trosterud_friomrade` – Trosterud friområde | needs_review | Kontrollen fant ingen stabil offisiell eller eksakt OSM-entitet med recordens navn; kommunale planer dokumenterer bare bredere grønt- og byutviklingskontekst. | Identifiser konkret navngitt friområde eller erstatt recorden med dokumentert arealobjekt. |
-| `furuset_haugerud_skogbelte` – Furuset–Haugerud skogbelte | needs_review | Navnet beskriver et bredt grønt overgangsområde, men ingen eksplisitt avgrenset offisiell eller eksakt OSM-geometri ble dokumentert. | Finn plan-/naturgeometri med eksplisitt avgrensning eller erstatt med konkrete navngitte naturområder. |
-| `hellerud_gard` – Hellerud gård | needs_review | Hellerud-navnet dekker flere historiske gårdsbruk. Det entydige Haugerudtunet 1 gjelder separate Østre Haugerud gård og kan ikke brukes som automatisk erstatning for den uklare Hellerud-recorden. | Avklar hvilken Hellerud-gård recorden representerer og dokumenter fysisk hovedanker før koordinaten godkjennes. |
-| `sigrid_undset_statue` – Sigrid Undset-skulpturen | needs_review | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
-| `alf_proysen_statue_nittedal` – Alf Prøysen-monumentet ved Kulturverket Flammen | needs_review; moved to Akershus/Nittedal | Recorden lå feilaktig i Oslo-kilden. Kulturverket Flammen er dokumentert på Borghild Ruds vei 3 og kommunens kunstdatabase plasserer monumentet utenfor nedre inngang, men Geonorge-adressepunktet er ikke selve sokkelen. | Finn eksakt monument-/sokkelpunkt; behold Flammen-adressen kun som foreløpig host/site-anchor. |
-| `ring_3` – Ring 3 | needs_review | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |
-| `grini_fangeleir` – Grini fangeleir | needs_review; moved to Akershus/Bærum | Recorden lå feilaktig i Oslo-kilden. Bærum kommune dokumenterer leiren ved Ila, men dagens punkt mangler kildebelagt leirgeometri. | Finn offisiell/historisk leirgeometri; Grinimuseets adresse skal ikke brukes som sentrum for hele leiren. |
-| `ibsen_quotes` – Ibsen sitater / Sitatgaten | needs_review | Den fysiske installasjonen består av 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men recorden har bare ett punkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes. |
-| `aftenposten_akersgata` – Aftenposten i Akersgata | needs_review | Dagens Akersgata 55 overlapper canonical `vg_huset`, mens den historiske recorden også omfatter 51/53. | Avklar om stedet skal være historisk flerankret Akersgata-record eller institusjonsrelation til A55. |
-| `dagbladet_akersgata` – Dagbladet i Akersgata | needs_review | Historisk redaksjonsforankring omfatter både Akersgata 36 og 47/49, men recorden har bare ett punkt. | Krever flerankre eller et eksplisitt tidsavgrenset hovedanker. |
-| `fornebu_teknologipark` – Fornebu Teknologipark | needs_review | Recorden ligger i Oslo-kilden, men Fornebu ligger i Bærum; navnet beskriver dessuten et bredt nærings-/utviklingsområde uten ett dokumentert fysisk hovedanker. | Flytt/erstatt i Bærum-kontekst etter at fysisk scope eller områdegeometri er eksplisitt definert. |
-| `ulven_handelspark` – Ulven handelspark | needs_review | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
-| `akershus_energi` – Akershus Energi Varme | needs_review | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
-| `sagene_kvernhus` – Sagene mølle og kvernhus | needs_review | Recorden kombinerer flere mølle-, sagbruks- og industriidentiteter langs Akerselva uten ett entydig fysisk anlegg; Hjula er allerede representert av `ovre_foss`. | Avgrens til ett dokumentert fysisk anlegg eller modeller industrimiljøet som område/relasjon med flere ankere. |
-| `grensen_kjopesenter` – Grensen – handelens sentrum | needs_review | ID/type antyder kjøpesenter/knutepunkt, mens navn, tekst og kilder beskriver den lineære gaten Grensen. Ett punkt uten traségeometri/ankre kan ikke verifisere hele gata. | Normaliser til gate og legg inn kildebelagte endepunkter/traségeometri før koordinaten godkjennes. |
-| `frysja_industriomrade` – Frysja industriområde | needs_review | Området er reelt, men dagens legacy `verified`-punkt bygger på `manual_map_check` og mangler kildebelagt områdegeometri eller flere area-ankre. | Hent offisiell plan-/områdegeometri eller dokumenterte area-ankre før verified-status kan forsvares. |
-| `norges_varemesse` – Norges Varemesse | needs_review | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
-| `bryn_industriomrade` – Bryn industriområde | needs_review | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
-| `gronlikaia` – Grønlikaia | needs_review | Grønlikaia er et bredt tidligere havne-/containerområde og dagens utviklingsområde; batchens OSM-treff er serviceveier, ikke arealgeometri for hele stedet. | Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre. |
-| `akerselva_industri` – Akerselva industriområde | needs_review | Recorden beskriver en lang industrikorridor som overlapper canonical `akerselva` og flere separate industriplaces; ett punkt kan ikke representere hele systemet. | Legg inn lineær geometri/flere anchors eller modeller som tematisk relation til Akerselva og konkrete industristeder. |
-
-## Etne – historiesett
-
-Alle de 35 innsendte radene er kontrollert. Trettitre er verifiserte Etne-steder. To rader hadde gyldige arkeologiske beskrivelser, men var plassert i feil kommune. De er flyttet til kommunene som primærkildene dokumenterer, og beholdes nedenfor som fullførte identitetskontroller i stedet for å bli telt som Etne-steder.
-
-| batch | placeId | navn | godkjent status | kildeobjekt |
-|---:|---|---|---|---|
-| 1 | `borgasen_etne` | Borgåsen bygdeborg | verified_geometry | `kulturminnesok:90166-1` |
-| 1 | `bruteigsteinen_etne` | Bruteigsteinen | verified_geometry | `kulturminnesok:90158-1` |
-| 1 | `gjerde_kyrkje_etne` | Gjerde kyrkje | verified | `geonorge-adresser-v1:4611:1030:2` |
-| 1 | `grindheim_kyrkje_etne` | Grindheim kyrkje | verified | `geonorge-adresser-v1:4611:1054:1` |
-| 1 | `helgaberget_etne` | Helgaberget | verified_geometry | `kulturminnesok:90164-1` |
-| 1 | `saebotunet_etne` | Sæbøtunet | verified | `sunnhordland-museum:saebotunet` |
-| 1 | `stodle_kyrkje` | Stødle kyrkje | verified | `geonorge-adresser-v1:4611:1006:183` |
-| 2 | `driftevegen_stordalen_roldal` | Driftevegen Stordalen–Røldal | verified_historical_source | `kartverket-stedsnavn:671399` |
-| 2 | `duesteinen_etne` | Duesteinen | verified_geometry | `kulturminnesok:90143-1` |
-| 2 | `folgefonden_minnesmerke_skanevik` | Folgefonden-minnesmerket | verified_historical_source | `kartverket-stedsnavn:978614` |
-| 2 | `gamle_akrafjordvegen` | Gamle Åkrafjordvegen | verified_historical_source | `kartverket-stedsnavn:64077` |
-| 2 | `postvegen_etne_skanevik` | Postvegen Etne–Skånevik | verified_historical_source | `ut-turforslag:114844` |
-| 2 | `postvegen_rullestadjuvet` | Postvegen i Rullestadjuvet | verified_historical_source | `kartverket-stedsnavn:550482` |
-| 2 | `skanevik_gjestgjevargarden` | Skånevik Gjestgjevargard | verified | `geonorge-adresser-v1:4611:1099:4` |
-| 3 | `etnesjoen_forromersk_landsby` | Den førromerske landsbyen ved Etnesjøen | verified_geometry | `kulturminnesok:130869` |
-| 3 | `grindheimsveien_nord_gravfelt` | Gravfeltet ved Grindheimsvegen | verified_geometry | `kulturminnesok:90213-1` |
-| 3 | `reichwald_snublesteiner_skanevik` | Reichwald-snublesteinene | verified | `geonorge-adresser-v1:4611:1152:10` |
-| 3 | `sorheimsmoen_gravfelt` | Sørheimsmoen gravfelt | verified_geometry | `kulturminnesok:90185-1` |
-| 3 | `steine_heio_bygdeborg` | Steine-Heio bygdeborg | verified_geometry | `kulturminnesok:90165-1` |
-| 3 | `tesdal_gravfelt` | Tesdal gravfelt | verified_geometry | `kulturminnesok:90178+90168` |
-| 3 | `varhaug_nervik` | Varhaug gravrøys | verified_geometry | `kulturminnesok:90182-1` |
-| 4 | `dysjanes_rivaisen_gravroys` | Gravrøysa på Dysjanes | verified_geometry | `kulturminnesok:90184-1` |
-| 4 | `gjerdesvagen_jernvinne` | Jernvinneanlegget i Gjerdesvågen | verified_geometry; moved to Kvinnherad | `kulturminnesok:94612-1` |
-| 4 | `grindheim_jernvinne` | Jernvinna på Grindheim | verified_geometry; moved to Bømlo | `kulturminnesok:72832-1` |
-| 4 | `hidlesnes_nernes_gravroys` | Gravrøysa på Hidlesnes | verified_geometry | `kulturminnesok:90179-1` |
-| 4 | `keisarhaugen_frette` | Keisarhaugen på Frette | verified_geometry | `kulturminnesok:90125-1` |
-| 4 | `nesjarhaugen_byrkjenes` | Nesjarhaugen | verified_geometry | `kulturminnesok:90161-1` |
-| 4 | `vardahaugen_lauareid` | Vardahaugen på Lauareid | verified_geometry | `kulturminnesok:90174-1` |
-| 5 | `etne_prestebustad` | Etne prestebustad | verified | `geonorge-adresser-v1:4611:1006:80` |
-| 5 | `fjaera_kapell` | Fjæra kapell | verified | `geonorge-adresser-v1:4611:1133:47` |
-| 5 | `grindheim_runestein` | Grindheim runestein | verified_historical_source | `kulturminnesok:84426-1` |
-| 5 | `grindheim_steinkross` | Grindheim steinkross | verified_historical_source | `kulturminnesok:84426-2` |
-| 5 | `hoyland_gravhaug_etne` | Gravhaugen på Høyland | verified_geometry | `kulturminnesok:90156-1` |
-| 5 | `skanevik_kyrkjestad` | Skånevik kyrkjestad | verified_historical_source | `kulturminnesok:85489-4` |
-| 5 | `stampehaug_meland` | Stampehaug på Meland | verified_geometry | `kulturminnesok:90135-1` |
-
-Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / PR #2309, `c1f8f9041` / PR #2314 og `3fd6d69ac` / PR #2318.
-
-## Neste arbeid
-
-- Neste nye Oslo-kontroll er nummer 175 og starter batch 29.
-- Batch 28 er fullført med to nye godkjente plassankere; `places_by_manifest.json` er nå ferdig kontrollert.
-- By-manifestet er uttømt etter `christiania_torv`. Før batch 29 starter skal neste aktive sekundære Oslo-kildekø auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
-- Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
-- Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
-
-Batch 67 (2026-07-20) produserer `fotografiens_hus` som eget offentlig fotogalleri og fotografispesifikt kunststed. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Rådhusgata 20. Offisiell institusjonsinformasjon dokumenterer samme adresse og kontinuerlig bruk som visningssted siden 1999; canonical overlap-audit fant ingen identitetsduplikat. Midlertidige enkeltutstillinger forblir innholdslag og skal ikke splittes til egne overlappende place-markører.
-
-Batch 68 (2026-07-20) produserer `christian_radich` som historisk fartøy med dokumentert Oslo-hjemmebase. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Skur 32, Akershusstranda 9. Oslo Havn dokumenterer Akershusutstikkeren som Christian Radichs hjemmehavn og fast plass siden 1994, mens VisitOSLO opplyser at skipet ligger der når det ikke er på oppdrag. Markøren bruker standard `official_address` / `address_point`-kontrakt, men place- og koordinatnotene presiserer at dette er et stabilt hjemmebaseanker og ikke live-sporing eller garanti for fysisk tilstedeværelse. `akershus_kaier` forblir det bredere lineære kaianlegget og er ikke en duplikatidentitet.
-
-Batch 69 (2026-07-20) produserer `central_jam_e_mosque` som eget historisk religions- og institusjonssted. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Åkebergveien 28B. World Islamic Mission dokumenterer samme adresse og den formålsbygde moskeens historie; canonical overlap-audit fant ingen identitetsduplikat, og nærmeste canonical sted er en annen bygning mer enn 100 meter unna.
-
-Batch 70 (2026-07-20) produserer `toyen_hovedgard` som eget historisk hovedgårdsanlegg. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Trondheimsveien 23B. Hovedgården ligger fysisk inne i Botanisk hage, men er et eldre selvstendig bygg- og gårdsanlegg; `botanisk_hage`, `naturhistorisk_museum` og `klimahuset` beholdes som separate parent-/nabosteder med andre fysiske og institusjonelle skalaer.
-
-Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhistorisk museumssted. Den generelle adressen Tøyengata 38 ga flere uentydige Geonorge-treff, mens Oslo Museum og Oslo byleksikon identifiserer leiligheten i Tøyengata 38B; den presise address-first-kjøringen ga ett tydelig offisielt punkt. Recorden representerer den bevarte museumsleiligheten inne i Gråbein-komplekset, ikke hele leiegårdskomplekset eller Tøyen som område.
-
-Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`. Den opprinnelige produksjonsmergen plasserte Ekeberg-raden nederst i Etne-tabellen, mens senere Oslo-batcher fortsatte å bruke den ordinære Oslo-tabellen. Denne reparasjonen fjerner den feilplasserte raden og den gamle produksjonsteksten og registrerer Ekeberg i riktig Oslo-tabell på neste ledige batch etter siste synkroniserte `main`. Canonical place, runtime-identitet, coordinate evidence og den Riksantikvaren-verifiserte geometrien `kulturminnesok:41907` endres ikke, og Oslo-totalen forblir 224.
+| `ring_3` – Ring 3 | semantic_anchor | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |
+| `frammuseet` – Frammuseet | verified_source_coordinate | Bygningspunkt fra Wikidata for Frammuseet, kryssjekket mot museets offisielle 2026-adresse Bygdøynesveien 39. Den offisielle museumsadressen er autoritativ for besøksstedet. | Kjør objekt-type-først og adresse-first når en konkret adresse representerer stedet; ellers dokumenter et stabilt fysisk kildeobjekt. |
+| `gol_stavkirke_bygdoy` – Gol stavkirke – Bygdøy | verified_source_coordinate | Bygningspunkt for Gol stavkirke på Norsk Folkemuseum, kryssjekket mot museets offisielle omtale og besøksadresse Museumsveien 10. | Kjør objekt-type-først og adresse-first når en konkret adresse representerer stedet; ellers dokumenter et stabilt fysisk kildeobjekt. |
+| `kon_tiki_museet` – Kon-Tiki Museet | verified_source_coordinate | Bygningspunkt fra Wikidata for Kon-Tiki Museet, kryssjekket mot museets offisielle 2026-adresse Bygdøynesveien 36. | Kjør objekt-type-først og adresse-first når en konkret adresse representerer stedet; ellers dokumenter et stabilt fysisk kildeobjekt. |
+| `ibsen_quotes` – Ibsen sitater | needs_source | Den fysiske installasjonen består av 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men recorden har bare ett punkt og ingen kildebelagt traségeometri. | Krever rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes. |
+| `sigrid_undset_statue` – Sigrid Undset-statuen | needs_source | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
+| `aftenposten_akersgata` – Aftenposten i Akersgata | unverified | Dagens Akersgata 55 overlapper canonical 'vg_huset', mens den historiske recorden også omfatter 51/53. | Avklar om stedet skal være historisk flerankret Akersgata-record eller institusjonsrelation til A55. |
+| `dagbladet_akersgata` – Dagbladet i Akersgata | unverified | Historisk redaksjonsforankring omfatter både Akersgata 36 og 47/49, men recorden har bare ett punkt. | Krever flerankre eller et eksplisitt tidsavgrenset hovedanker. |
+| `akerselva_industri` – Akerselva industriområde | unverified | Recorden beskriver en lang industrikorridor som overlapper canonical 'akerselva' og flere separate industriplaces; ett punkt kan ikke representere hele systemet. | Legg inn lineær geometri/flere anchors eller modeller som tematisk relation til Akerselva og konkrete industristeder. |
+| `akershus_energi` – Akershus Energi Varme | unverified | Recorden ligger i Oslo-kilden og har ett Oslo-punkt, men selskapet har flere dokumenterte fjernvarmeanlegg i Akershus og forretningsadresse i Lillestrøm. | Definer ett konkret anlegg som place eller modeller selskapet som aktør med flere anleggsrelasjoner; ikke behold generisk Oslo-punkt. |
+| `bryn_industriomrade` – Bryn industriområde | unverified | Bryn er et stort industri- og boligstrøk på tvers av flere bydeler; recorden har ett punkt, men ingen dokumentert avgrensning av hvilket industriområde den representerer. | Definer fysisk scope og legg inn offisiell områdegeometri eller flere area-ankre. |
+| `fornebu_teknologipark` – Fornebu Teknologipark | unverified | Recorden ligger i Oslo-kilden, men Fornebu ligger i Bærum; navnet beskriver dessuten et bredt nærings-/utviklingsområde uten ett dokumentert fysisk hovedanker. | Flytt/erstatt i Bærum-kontekst etter at fysisk scope eller områdegeometri er eksplisitt definert. |
+| `gronlikaia` – Grønlikaia | unverified | Grønlikaia er et bredt tidligere havne-/containerområde og dagens utviklingsområde; batchens OSM-treff er serviceveier, ikke arealgeometri for hele stedet. | Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre. |
+| `havnelageret` – Oslo Havnelager | needs_source | Bygganker for selve Oslo Havnelager-bygget på Langkaia 1; punktet er lagt på bygningskroppen, ikke generelt havneområde eller kai/vannflate. Bruker rapporterte at punktet fortsatt var feil etter batch 02; v1 krever ny primærkilde før verified. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `norges_varemesse` – Norges Varemesse | unverified | Recorden blander institusjonen stiftet i 1920 med Messehallen på Sjølyst fra 1962; virksomheten flyttet til Lillestrøm i 2002 og Oslo-bygningen ble revet. | Omdefiner til historisk Sjølyst-sted med historisk anker, eller flytt institusjonsinnholdet ut av place-modellen. |
+| `sagene_kvernhus` – Sagene mølle og kvernhus | unverified | Recorden kombinerer flere mølle-, sagbruks- og industriidentiteter langs Akerselva uten ett entydig fysisk anlegg; Hjula er allerede representert av 'ovre_foss'. | Avgrens til ett dokumentert fysisk anlegg eller modeller industrimiljøet som område/relasjon med flere ankere. |
+| `ulven_handelspark` – Ulven handelspark | unverified | Audit fant Ulven som transformasjons- og næringsområde, men ingen stabil dokumentert fysisk entitet med navnet «Ulven handelspark». | Identifiser konkret handels-/næringsanlegg eller erstatt med et dokumentert områdeobjekt før koordinaten godkjennes. |
+| `alnaelva` – Alnaelva | needs_source | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |
+| `alnaelvstien` – Alnaelvstien | needs_source | Oslo kommune dokumenterer turveien langs Alnaelva, men OSM har flere separate Alnastien-way-er og ingen samlet ruterelasjon i kontrollen. | Bygg routeSegments eller finn samlet offisiell rutetrase før canonical punkt godkjennes. |
+| `furuset_haugerud_skogbelte` – Furuset–Haugerud skogbelte | needs_source | Navnet beskriver et bredt grønt overgangsområde, men ingen eksplisitt avgrenset offisiell eller eksakt OSM-geometri ble dokumentert. | Finn plan-/naturgeometri med eksplisitt avgrensning eller erstatt med konkrete navngitte naturområder. |
+| `hellerud_gard` – Hellerud gård | needs_source | Hellerud-navnet dekker flere historiske gårdsbruk. Det entydige Haugerudtunet 1 gjelder separate Østre Haugerud gård og kan ikke brukes som automatisk erstatning for den uklare Hellerud-recorden. | Avklar hvilken Hellerud-gård recorden representerer og dokumenter fysisk hovedanker før koordinaten godkjennes. |
+| `trosterud_friomrade` – Trosterud friområde | needs_source | Kontrollen fant ingen stabil offisiell eller eksakt OSM-entitet med recordens navn; kommunale planer dokumenterer bare bredere grønt- og byutviklingskontekst. | Identifiser konkret navngitt friområde eller erstatt recorden med dokumentert arealobjekt. |
+| `elvestrekning_bla_brenneriveien` – Elvestrekning ved Blå (Brenneriveien) | needs_source | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
+| `fossveien_elvestrekning` – Fossveien – elvestrekning | needs_source | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
+| `frysjadammen` – Frysjadammen | needs_source | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
+| `hausmannsomradet_elvelop` – Hausmannsområdet (elveløp) | needs_source | Bredt elveløp uten stabil fysisk avgrensning i recorden; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
+| `stilla_nydalen` – Elvepartiet nedenfor Nydalsdammen | needs_source | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
+| `voienfossen` – Vøyenfallene | needs_source | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
+| `alna_bryn` – Alna ved Bryn | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `alna_smalvoll` – Alna ved Smalvoll | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `alna_utlop_bjorvika` – Alna utløp i Bjørvika | needs_detail_check | Canonical place har status needs_detail_check og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `bygdoy_kongeskogen` – Bygdøy Kongeskogen | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `alnaelva_hovedsteder` – Alnaelva | semantic_anchor | Bevisst hovedanker for hele Alnaelva; delpunkter som Alnsjøen, Svartdalen, Bryn og utløpet i Bjørvika skal ligge i rute-filen. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `bygdoy_natur` – Bygdøy natur- og kulturmiljø | semantic_anchor | Bevisst stort områdeanker for hele Bygdøy-halvøya; naturpunkter langs kyst og i skog ligger i delpunktfila. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `gressholmen` – Gressholmen | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `hovedoya` – Hovedøya | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `ljanselva` – Ljanselva | semantic_anchor | Bevisst hovedanker for hele Ljanselva; delpunkter fra Nøklevann til Bunnefjorden ligger i rute-filen. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `maerradalen` – Mærradalen | semantic_anchor | Bevisst stort områdeanker for daldraget; radius dekker hele Mærradalen. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `maridalsvannet` – Maridalsvannet | semantic_anchor | Bevisst stort områdeanker for hele vannflaten og drikkevannssonen; delankre markerer øst, nord og sør. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `noklevann` – Nøklevann | semantic_anchor | Bevisst stort områdeanker for hele Nøklevann; delankre markerer nord, øst og sørvest. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `ostensjovannet` – Østensjøvannet | semantic_anchor | Bevisst hovedanker for hele våtmarksområdet; observasjonspunkter og randsoner ligger i delpunktfila. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `ljanselva_fiskevollen` – Ljanselva ved Fiskevollen | needs_detail_check | Canonical place har status needs_detail_check og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `ljanselva_hauketo` – Ljanselva ved Hauketo | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `ljanselva_ljan` – Ljanselva ved Ljan | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `ljanselva_skullerud` – Ljanselva ved Skullerud | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `bogerudmyra` – Bøler/Bogerudmyra | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `ostensjovannet_sivbelte` – Østensjøvannet sivbelte | nearby_reference | Canonical place har status nearby_reference og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `bantjern_salamanderlokalitet` – Båntjern salamanderlokalitet | nearby_reference | Offentlig og robust nærområdeanker; biologisk registrering gjelder dammiljø ved Bånntjernveien og skal ikke brukes til privat tomtebesøk. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `blindern_forskningsparken_salamanderdam` – Blindern/Forskningsparken salamanderdam | nearby_reference | Næranker for campus-/Forskningsparken-området. Brukes som læringspunkt for kommunal damkartlegging, ikke presis fangstlokalitet. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `bygdoy_kongsgard_salamanderdam` – Bygdøy Kongsgård salamanderdam | nearby_reference | Offentlig pedagogisk anker for lokaliteten; brukere skal ikke ledes til fangst eller håndtering av dyr. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `eidsvolls_plass` – Eidsvolls plass | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `hoyesteretts_hus` – Høyesteretts hus | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `oslo_radhus` – Oslo rådhus | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `politihuset_gronland` – Politihuset på Grønland | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `regjeringskvartalet` – Regjeringskvartalet | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `chat_noir` – Chat Noir | manual_review | Punktet markerer teaterbygningen i Klingenberggata 5 og er manuelt kontrollert som byggsentrum. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `cinemateket_oslo` – Cinemateket i Oslo | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `colosseum_kino` – Colosseum kino | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `edderkoppen_scene` – Edderkoppen Scene | manual_review | Punktet markerer scene- og hotellbygningen ved St. Olavs plass 1 og er manuelt kontrollert som byggsentrum. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `frognerstranda` – Frognerstranda | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `grand_hotel` – Grand Hotel | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `house_of_nerds` – House of Nerds | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `latter` – Latter | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `slottsplassen` – Slottsplassen | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `psykologisk_institutt_uio` – Psykologisk institutt, UiO | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `bla` – Blå | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `nobelinstituttet` – Nobelinstituttet | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `observatoriet` – Observatoriet | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `abelhaugen` – Abelhaugen | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `arkitektur_og_designhogskolen` – Arkitektur- og designhøgskolen i Oslo | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `bi_nydalen` – BI i Nydalen | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `botanisk_hage` – Botanisk hage | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `forskningsparken` – Forskningsparken | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `gamlebyen_skole` – Gamlebyen skole | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `meteorologisk_institutt` – Meteorologisk institutt | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `naturhistorisk_museum` – Naturhistorisk museum | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `oslo_met_pilestredet` – OsloMet, Pilestredet | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `radiumhospitalet` – Radiumhospitalet | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `rikshospitalet` – Rikshospitalet | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `teknisk_museum` – Norsk Teknisk Museum | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `tvergastein` – Tvergastein | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `universitetet_i_oslo_blindern` – Universitetet i Oslo, Blindern | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |
+| `universitetets_gamle_hovedbygning` – Universitetets gamle hovedbygning | unverified | Canonical place har status unverified og mangler en godkjent kildekontrakt for fysisk identitet/koordinat. | Avklar fysisk identitet og dokumenter et stabilt kildeobjekt før canonical koordinat godkjennes. |

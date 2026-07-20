@@ -1,0 +1,47 @@
+[Batch 90] Rebuilding canonical runtime place index before full Oslo protocol reconciliation
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1300 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 201 category override(s)
+{
+  "ok": true,
+  "totalCanonicalOsloPlaces": 403,
+  "verifiedOrSourceControlledCount": 320,
+  "unresolvedCount": 83,
+  "verifiedProtocolBefore": 236,
+  "addedVerifiedProtocolRows": 94,
+  "removedVerifiedProtocolRows": [
+    "folkeobservatoriet",
+    "kjeglebanen_langgaardslokken",
+    "slurpen",
+    "toyenbadet",
+    "ekt_rideskole_husdyrpark",
+    "holmlia_bad",
+    "skimore_oslo",
+    "skoytemuseet",
+    "sorenga_sjobad",
+    "frigo_friluftssenteret"
+  ],
+  "addedUnresolvedProtocolRows": 59,
+  "removedUnresolvedProtocolRows": [
+    "nybrua_vaterlandsparken",
+    "alf_proysen_statue_nittedal",
+    "grini_fangeleir",
+    "grensen_kjopesenter",
+    "frysja_industriomrade"
+  ],
+  "statusCounts": {
+    "semantic_anchor": 8,
+    "verified_source_coordinate": 3,
+    "needs_source": 14,
+    "unverified": 43,
+    "nearby_reference": 11,
+    "needs_detail_check": 2,
+    "manual_review": 2
+  }
+}
