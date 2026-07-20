@@ -1,0 +1,74 @@
+{
+  "placeId": "skoytemuseet",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport/skoytemuseet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.92758067916017,
+    "lon": 10.70956955882363,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Middelthuns gate 26, OSLO, brukt som bygnings- og publikumsanker for Skøytemuseet. Den eksisterende canonical markøren for Frogner stadion ligger 70.5 meter unna på selve arenaområdet. Museet modelleres derfor som en egen institusjon i det tilhørende bygget, mens stadion fortsatt representerer idrettsflaten og arenaen."
+  },
+  "identity": {
+    "currentName": "Skøytemuseet",
+    "resolvedIdentity": "Skøytemuseet as the independent museum institution at Middelthuns gate 26, physically related to but functionally distinct from Frogner stadion",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The museum has its own institution, collections and public function; its verified building marker is 70.5 m from the canonical Frogner stadion arena marker."
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "normative Geonorge address-first result for Middelthuns gate 26",
+    "official museum identity and establishment history",
+    "physical overlap audit against frogner_stadion marker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Middelthuns%20gate%2026%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14742:26",
+      "sourceQuality": "official_address_plus_institution_identity_and_overlap_audit",
+      "finding": "Geonorge resolves Middelthuns gate 26 as the museum building address. The resulting marker is 70.5 m from the existing Frogner stadion arena marker, while official and VisitOSLO sources document Skøytemuseet as a separate museum institution in the associated building.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Middelthuns gate 26, OSLO, brukt som bygnings- og publikumsanker for Skøytemuseet. Den eksisterende canonical markøren for Frogner stadion ligger 70.5 meter unna på selve arenaområdet. Museet modelleres derfor som en egen institusjon i det tilhørende bygget, mens stadion fortsatt representerer idrettsflaten og arenaen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Middelthuns gate 26 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14742:26",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14742:26",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.92758067916017,
+      "lon": 10.70956955882363,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Use the verified museum-building address marker as a separate canonical sport place and keep Frogner stadion as the arena marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Middelthuns gate 26, OSLO, brukt som bygnings- og publikumsanker for Skøytemuseet. Den eksisterende canonical markøren for Frogner stadion ligger 70.5 meter unna på selve arenaområdet. Museet modelleres derfor som en egen institusjon i det tilhørende bygget, mens stadion fortsatt representerer idrettsflaten og arenaen."
+  ]
+}

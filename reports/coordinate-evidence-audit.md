@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T08:10:53.671Z
+Generert: 2026-07-20T08:14:52.304Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -186,6 +186,7 @@ Generert: 2026-07-20T08:10:53.671Z
 | ekt_rideskole_husdyrpark | data/coordinate-evidence/oslo/sport/ekt_rideskole_husdyrpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | holmlia_bad | data/coordinate-evidence/oslo/sport/holmlia_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skimore_oslo | data/coordinate-evidence/oslo/sport/skimore_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| skoytemuseet | data/coordinate-evidence/oslo/sport/skoytemuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyenbadet | data/coordinate-evidence/oslo/sport/toyenbadet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_reptilpark | data/coordinate-evidence/oslo/vitenskap/oslo_reptilpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
