@@ -16,6 +16,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Synchronize with current main
+        run: |
+          git fetch origin main
+          git rebase origin/main
+
       - name: Register quiz set and validate data
         run: |
           python - <<'PY'
@@ -25,7 +30,7 @@ jobs:
           manifest_path = Path("data/quiz/manifest.json")
           quiz_path = Path("data/quiz/sport/skimore_oslo_sets.json")
           target_id = "skimore_oslo"
-          file_path = str(quiz_path)
+          file_path = "data/quiz/sport/skimore_oslo_sets.json"
 
           manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
           sets = manifest.get("sets")
@@ -46,11 +51,6 @@ jobs:
                   len(sets),
               )
               sets.insert(insert_at, entry)
-
-          manifest_path.write_text(
-              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
-              encoding="utf-8",
-          )
 
           quiz = json.loads(quiz_path.read_text(encoding="utf-8"))
           blocks = quiz.get("sets", [])
@@ -80,6 +80,11 @@ jobs:
                   raise SystemExit(f"answerIndex mismatch in {question.get('id')}")
               if not question.get("emne_id"):
                   raise SystemExit(f"missing emne_id in {question.get('id')}")
+
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
           PY
 
       - name: Commit manifest and remove one-time workflow
@@ -89,4 +94,12 @@ jobs:
           git config user.email "history-go-data@users.noreply.github.com"
           git add data/quiz/manifest.json .github/workflows/register-skimore-oslo.yml
           git commit -m "Register Skimore Oslo quiz set"
-          git push
+
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
