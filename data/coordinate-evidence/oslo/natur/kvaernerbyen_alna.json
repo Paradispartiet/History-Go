@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kvaernerbyen_alna",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9035994,
+    "lon": 10.7875433,
+    "r": 130,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 685201630 – Alna",
+    "coordType": "river_segment_anchor",
+    "coordNote": "Eksakt navngitt Alna-segment gjennom Kværnerbyen, modellert som line_anchor fra OSM way 685201630. Punktet representerer selve vannløpet, ikke boligområdet eller et separat vannspeil."
+  },
+  "identity": {
+    "currentName": "Kværnerbyen ved Alna",
+    "resolvedIdentity": "Den konkrete Alna-strekningen gjennom Kværnerbyen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Alna ved Kværnerbyen",
+      "sourceUrl": "https://www.openstreetmap.org/way/685201630",
+      "sourceObjectId": "osm-way:685201630",
+      "sourceQuality": "exact_named_waterway_segment",
+      "finding": "Eksakt navngitt Alna-segment ved eksisterende markeringsområde.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt Alna-segment gjennom Kværnerbyen, modellert som line_anchor fra OSM way 685201630. Punktet representerer selve vannløpet, ikke boligområdet eller et separat vannspeil."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Alnaelva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceQuality": "documented_river_identity",
+      "finding": "Kilden dokumenterer Alnas nedre løp gjennom Kværnerområdet.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker elveidentiteten."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:685201630",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:685201630",
+      "lat": 59.9035994,
+      "lon": 10.7875433,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9035994,
+      "lon": 10.7875433,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt Alna-segment gjennom Kværnerbyen, modellert som line_anchor fra OSM way 685201630. Punktet representerer selve vannløpet, ikke boligområdet eller et separat vannspeil."
+  ]
+}
