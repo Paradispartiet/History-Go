@@ -7,7 +7,11 @@ from uuid import UUID
 from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from pydantic import ValidationError
 
-from app.api.dependencies import get_current_user, get_spotmeeting_invite_service
+from app.api.dependencies import (
+    get_current_user,
+    get_spotmeeting_invite_service,
+    require_spotmeeting_invite_writes,
+)
 from app.auth.supabase import AuthPrincipal
 from app.domains.social_meet.privacy import find_forbidden_fields
 from app.domains.social_meet.service import SocialMeetDomainError
@@ -49,6 +53,7 @@ def list_spotmeeting_presets() -> list[SpotmeetingPreset]:
     "/invites",
     response_model=SpotmeetingInviteView,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(require_spotmeeting_invite_writes)],
 )
 def create_spotmeeting_invite(
     payload: dict[str, Any] = Body(...),
@@ -88,7 +93,11 @@ def sync_spotmeeting_invites(
     return service.sync(current_user.user_id, cursor=cursor, limit=limit)
 
 
-@router.post("/invites/{invite_id}/accept", response_model=SpotmeetingInviteView)
+@router.post(
+    "/invites/{invite_id}/accept",
+    response_model=SpotmeetingInviteView,
+    dependencies=[Depends(require_spotmeeting_invite_writes)],
+)
 def accept_spotmeeting_invite(
     invite_id: UUID,
     payload: InviteTransitionRequest | None = Body(default=None),
@@ -104,7 +113,11 @@ def accept_spotmeeting_invite(
     )
 
 
-@router.post("/invites/{invite_id}/decline", response_model=SpotmeetingInviteView)
+@router.post(
+    "/invites/{invite_id}/decline",
+    response_model=SpotmeetingInviteView,
+    dependencies=[Depends(require_spotmeeting_invite_writes)],
+)
 def decline_spotmeeting_invite(
     invite_id: UUID,
     payload: InviteTransitionRequest | None = Body(default=None),
@@ -120,7 +133,11 @@ def decline_spotmeeting_invite(
     )
 
 
-@router.post("/invites/{invite_id}/cancel", response_model=SpotmeetingInviteView)
+@router.post(
+    "/invites/{invite_id}/cancel",
+    response_model=SpotmeetingInviteView,
+    dependencies=[Depends(require_spotmeeting_invite_writes)],
+)
 def cancel_spotmeeting_invite(
     invite_id: UUID,
     payload: InviteTransitionRequest | None = Body(default=None),
@@ -136,7 +153,11 @@ def cancel_spotmeeting_invite(
     )
 
 
-@router.post("/invites/{invite_id}/complete", response_model=SpotmeetingInviteView)
+@router.post(
+    "/invites/{invite_id}/complete",
+    response_model=SpotmeetingInviteView,
+    dependencies=[Depends(require_spotmeeting_invite_writes)],
+)
 def complete_spotmeeting_invite(
     invite_id: UUID,
     payload: InviteTransitionRequest | None = Body(default=None),
