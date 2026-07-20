@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T08:14:52.304Z
+Generert: 2026-07-20T08:22:34.340Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -170,7 +170,6 @@ Generert: 2026-07-20T08:14:52.304Z
 | hausmannsomradet_elvelop | data/coordinate-evidence/oslo/natur/hausmannsomradet_elvelop.json | needs_research | needs_geometry | OK |
 | hellerud_gard | data/coordinate-evidence/oslo/natur/hellerud_gard.json | needs_research | needs_identity_split | OK |
 | kuba_parken | data/coordinate-evidence/oslo/natur/kuba_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| loelva_historisk | data/coordinate-evidence/oslo/natur/loelva_historisk.json | needs_research | needs_identity_split | OK |
 | myralokka | data/coordinate-evidence/oslo/natur/myralokka.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nedre_foss | data/coordinate-evidence/oslo/natur/nedre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
