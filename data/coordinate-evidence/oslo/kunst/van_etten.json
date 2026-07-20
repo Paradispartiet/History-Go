@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "van_etten",
+  "placeFile": "data/places/kunst/oslo/places_kunst/van_etten.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91208993336192,
+    "lon": 10.769374391768624,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Smedgata 3, OSLO. Punktet brukes som display- og unlock-anker for Van Etten. Den eksisterende recorden bla_skilt_enerhaugen_samfund_smedgata_34 viser til Smedgata 34 og er en separat fysisk og semantisk identitet; et tidligere automatisk treff skyldtes bare substring-match mellom Smedgata 3 og Smedgata 34."
+  },
+  "identity": {
+    "currentName": "Van Etten",
+    "resolvedIdentity": "Van Etten independent non-profit contemporary art space at Smedgata 3",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Smedgata 3",
+    "eksplisitt avvisning av substring-treffet mot en separat Smedgata 34-record",
+    "duplikat- og fysisk overlap-kontroll mot eksisterende Enerhaugen- og Grønland-steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Smedgata%203%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16675:3",
+      "sourceQuality": "official_address_plus_resolved_false_duplicate",
+      "finding": "Geonorge returnerer ett entydig adressepunkt for Smedgata 3. Den eneste automatiske identitetsmatchen var en substring-feil mot bla_skilt_enerhaugen_samfund_smedgata_34, som eksplisitt representerer Smedgata 34 og ligger 186,6 meter unna.",
+      "canVerifyCoordinate": true,
+      "reason": "Det offisielle adressepunktet representerer Van Ettens dokumenterte besøkssted, og den potensielle duplikaten er avvist som en separat adresse og identitet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Smedgata 3 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16675:3",
+      "lat": 59.91208993336192,
+      "lon": 10.769374391768624,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16675:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91208993336192,
+      "lon": 10.769374391768624,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, false-duplicate-audit og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Smedgata 3, OSLO. Punktet brukes som display- og unlock-anker for Van Etten. Den eksisterende recorden bla_skilt_enerhaugen_samfund_smedgata_34 viser til Smedgata 34 og er en separat fysisk og semantisk identitet; et tidligere automatisk treff skyldtes bare substring-match mellom Smedgata 3 og Smedgata 34."
+  ]
+}
