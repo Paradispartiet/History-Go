@@ -173,4 +173,18 @@
     load,
     recordFromQuiz
   };
+
+  // NextUp progression is an optional extension that patches HGNavigator when it
+  // becomes available. Loading it here keeps the extension close to quiz/progress
+  // boot without making the main app entry depend on another ordering branch.
+  if (!document.querySelector('script[data-hg-nextup-progression="1"]')) {
+    const script = document.createElement("script");
+    script.src = "js/nextUpProgression.js";
+    script.async = true;
+    script.dataset.hgNextupProgression = "1";
+    script.onerror = () => {
+      if (window.DEBUG) console.warn("[HGUnlocks] could not load NextUp progression extension");
+    };
+    document.head.appendChild(script);
+  }
 })();
