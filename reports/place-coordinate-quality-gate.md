@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T23:40:34.946Z
+Generert: 2026-07-20T23:46:25.889Z
 
 ## Oppsummering
 - Aktive filer validert: **562**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **427**
-- Coordinate review candidates: **707** signaler fordelt på **567** steder
+- Varsler: **428**
+- Coordinate review candidates: **708** signaler fordelt på **568** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -891,6 +891,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/oslo/places_subkultur.json#brenneriveien_ingens_gate: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#brenneriveien_ingens_gate: lav koordinatpresisjon (<4 desimaler)
 - data/places/subkultur/oslo/places_subkultur.json#helvete_neseblod_records: lineært sted uten anchors
+- data/places/vitenskap/oslo/places_vitenskap.json#universitetets_gamle_kjemi: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetet_i_oslo_blindern: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/oslo/places_vitenskap.json#rikshospitalet: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/oslo/places_vitenskap.json#radiumhospitalet: lav koordinatpresisjon (<4 desimaler)
@@ -1015,13 +1016,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 707 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 708 signaler fordelt på 568 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 117 |
+| coordStatus=verified uten coordPrecisionM | 118 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 95 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 88 |
@@ -1031,7 +1032,7 @@ Totalt 707 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (117)
+### coordStatus=verified uten coordPrecisionM (118)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1093,6 +1094,7 @@ Totalt 707 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandi
 | folketeateret | Folketeateret | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.9145532904993 | 10.749678422671124 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | chateau_neuf | Chateau Neuf | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.93227611011727 | 10.71254747404495 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | torggata_blad | Torggata Blad | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91657334372696 | 10.75561428991178 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.917023156193885 | 10.73472914137377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | grannar_redaksjon_etne | Grannar-redaksjonen i Etne | media | data/places/media/vestland/etne/grannar_redaksjon_etne.json | 59.66414439895677 | 5.940649457868514 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_etne | Psykisk helse og rus – Etne | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json | 59.66534125070043 | 5.943034081601908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_skanevik | Psykisk helse og rus – Skånevik | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_skanevik.json | 59.73234389428389 | 5.935277893100119 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
