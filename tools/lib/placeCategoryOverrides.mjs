@@ -28,14 +28,17 @@ function parseOverrideRows(data, sourceFile) {
     if (!isObject(raw)) {
       throw new Error(`[category-overrides] ${sourceFile}[${index}]: expected an object.`);
     }
-
-    const id = String(raw.id || '').trim();
-    const category = String(raw.category || '').trim();
-
-    if (!id) {
-      throw new Error(`[category-overrides] ${sourceFile}[${index}]: missing non-empty id.`);
+    if (typeof raw.id !== 'string' || !raw.id.trim()) {
+      throw new Error(`[category-overrides] ${sourceFile}[${index}]: missing non-empty string id.`);
     }
-    if (!category || !CATEGORY_ID_PATTERN.test(category)) {
+    if (typeof raw.category !== 'string' || !raw.category.trim()) {
+      throw new Error(`[category-overrides] ${sourceFile}#${raw.id.trim()}: missing non-empty string category.`);
+    }
+
+    const id = raw.id.trim();
+    const category = raw.category.trim();
+
+    if (!CATEGORY_ID_PATTERN.test(category)) {
       throw new Error(`[category-overrides] ${sourceFile}#${id}: invalid category id "${category}".`);
     }
     if (seenIds.has(id)) {
@@ -47,11 +50,7 @@ function parseOverrideRows(data, sourceFile) {
   });
 }
 
-function resolveBatchPath(overridesDir, rawEntry) {
-  const entry = String(rawEntry || '').trim();
-  if (!entry) {
-    throw new Error('[category-overrides] index.json contains an empty file entry.');
-  }
+function resolveBatchPath(overridesDir, entry) {
   if (path.isAbsolute(entry)) {
     throw new Error(`[category-overrides] index.json contains an absolute path: ${entry}`);
   }
@@ -82,7 +81,10 @@ export async function readCategoryOverrides(root = process.cwd()) {
 
     const seenManifestFiles = new Set();
     for (const rawEntry of manifest.files) {
-      const entry = String(rawEntry || '').trim();
+      if (typeof rawEntry !== 'string' || !rawEntry.trim()) {
+        throw new Error(`[category-overrides] ${path.relative(root, manifestPath)}: file entries must be non-empty strings.`);
+      }
+      const entry = rawEntry.trim();
       if (seenManifestFiles.has(entry)) {
         throw new Error(`[category-overrides] ${path.relative(root, manifestPath)}: duplicate file entry "${entry}".`);
       }
@@ -103,7 +105,7 @@ export async function readCategoryOverrides(root = process.cwd()) {
 
 export function applyCategoryOverride(place, overrides) {
   if (!isObject(place) || !(overrides instanceof Map)) return place;
-  const id = String(place.id || '').trim();
+  const id = typeof place.id === 'string' ? place.id.trim() : '';
   const override = id ? overrides.get(id) : null;
   if (!override || place.category === override.category) return place;
   return { ...place, category: override.category };
