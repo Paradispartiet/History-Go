@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T20:21:56.503Z
+Generert: 2026-07-20T20:26:21.283Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -211,4 +211,4 @@ Generert: 2026-07-20T20:21:56.503Z
 | oslo_reptilpark | data/coordinate-evidence/oslo/vitenskap/oslo_reptilpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| valerenga_kirke | data/coordinate-evidence/oslo/historie/valerenga_kirke.json | applied_to_place | do_not_change_coordinates_yet | placeId finnes ikke i aktiv place-manifest |
+| valerenga_kirke | data/coordinate-evidence/oslo/historie/valerenga_kirke.json | applied_to_place | do_not_change_coordinates_yet | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |

@@ -6,21 +6,14 @@
 > history-go@0.0.0 build:tools
 > tsc -p tsconfig.tools.build.json
 
-node:fs:448
-    return binding.readFileUtf8(path, stringToFlags(options.flag));
-                   ^
-
-Error: ENOENT: no such file or directory, open '/home/runner/work/History-Go/History-Go/data/places/historie/oslo/places_historie/valerenga_kirke.json'
-    at Object.readFileSync (node:fs:448:20)
-    at readJson (file:///home/runner/work/History-Go/History-Go/dist/tools/audit-places-split-manifest-sync.mjs:15:45)
-    at file:///home/runner/work/History-Go/History-Go/dist/tools/audit-places-split-manifest-sync.mjs:37:40
-    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
-    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
-    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/home/runner/work/History-Go/History-Go/data/places/historie/oslo/places_historie/valerenga_kirke.json'
+{
+  "status": "passed",
+  "counts": {
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "aggregateRowsMissingFromSplitManifest": 0,
+    "movedPlacesStillActiveInOldCategory": 0
+  },
+  "auditReport": "reports/place-split-manifest-category-move-audit.json"
 }
-
-Node.js v20.20.2

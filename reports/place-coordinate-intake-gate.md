@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-20T20:21:53.464Z
+Generert: 2026-07-20T20:26:18.342Z
 
 ## Hvorfor denne gaten finnes
 
@@ -14,10 +14,10 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Strict-new: **true**
 - Base for nye/endrede place-objekter: **origin/main**
 - Base method: **origin/${GITHUB_BASE_REF}**
-- Aktive manifest-filer lest: **546**
+- Aktive manifest-filer lest: **547**
 - Place-objekter validert: **1213**
 - Nye/endrede koordinatobjekter mot base: **0**
-- Blokkerende feil i denne kjøringen: **1**
+- Blokkerende feil i denne kjøringen: **0**
 - Backlog-funn: **3415**
 - Rapport-warnings: **0**
 
@@ -41,7 +41,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 
 | nivå | endret | place id | name | fil | felt | problem | forslag til fix |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| error | ja | (manifest) | (manifest) | data/places/historie/oslo/places_historie/valerenga_kirke.json | file | Manifest peker på manglende aktiv place-fil. | Legg tilbake filen eller fjern manifest-referansen. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | nostvet_boplass | Nøstvet-boplassen | data/places/historie/akershus/places_historie_akershus_batch1.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +540,7 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
 _Listen er avkortet til 500 av 3415 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

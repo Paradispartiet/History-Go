@@ -7,16 +7,9 @@
 > tsc -p tsconfig.tools.build.json
 
 OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
-places_index sync check failed.
-Error: ENOENT: no such file or directory, open '/home/runner/work/History-Go/History-Go/data/places/historie/oslo/places_historie/valerenga_kirke.json'
-    at async open (node:internal/fs/promises:637:25)
-    at async Object.readFile (node:internal/fs/promises:1249:14)
-    at async readJson (file:///home/runner/work/History-Go/History-Go/dist/tools/check_places_index_sync.mjs:119:17)
-    at async loadPlaceEntriesFromManifestEntry (file:///home/runner/work/History-Go/History-Go/dist/tools/check_places_index_sync.mjs:170:18)
-    at async buildExpectedIndex (file:///home/runner/work/History-Go/History-Go/dist/tools/check_places_index_sync.mjs:281:25)
-    at async main (file:///home/runner/work/History-Go/History-Go/dist/tools/check_places_index_sync.mjs:295:27) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/home/runner/work/History-Go/History-Go/data/places/historie/oslo/places_historie/valerenga_kirke.json'
-}
+places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
