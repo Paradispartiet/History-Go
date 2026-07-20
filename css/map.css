@@ -1,8 +1,7 @@
 /* ===================================================== */
-/* map.css – KART + KARTKONTROLLER                        */
+/* map.css – KART + KARTKONTROLLER                       */
 /* ===================================================== */
 
-/* Kartet: bruk top/left/right/bottom (ikke 100vh) */
 #map{
   position: absolute;
   inset: 0;
@@ -11,74 +10,97 @@
   overflow: hidden;
 }
 
-
-
 /* Hindrer 1px-gaps */
 #map .maplibregl-canvas{
   display: block;
 }
 
-/* Kartknapper: alltid klikkbare (over placeCard) */
+/* ===================================================== */
+/* KARTKONTROLL-DOCK                                     */
+/* ===================================================== */
+
 .map-controls{
-  position: absolute;
-  top: auto;
-  right: 12px;
+  --hg-map-control-width: min(228px, calc(100vw - 24px));
 
-  /* ligger over placecard-høyden */
-  bottom: calc(var(--hg-visual-footer-height, 72px) + 12px);
-
-  /* må være > #placeCard (100) */
+  position: fixed;
+  right: calc(12px + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--hg-bottom-nav-height, 72px) + 14px);
   z-index: 10050;
 
-  display: grid;
+  /* LayerManager skjuler historisk hele kontrollflaten i explore-mode.
+     Kategorien skal nå være tilgjengelig i begge moduser, derfor eier CSS
+     den endelige display-kontrakten. */
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
   gap: 8px;
+
+  width: var(--hg-map-control-width);
+  max-width: calc(100vw - 24px);
+
   pointer-events: none;
   touch-action: manipulation;
-  width: max-content;
 }
 
+body.mode-map .map-controls,
+body.map-only .map-controls{
+  /* Hold hele docken over MapLibres native zoomkontroller. */
+  bottom: calc(96px + var(--hg-safe-area-bottom, env(safe-area-inset-bottom, 0px)));
+}
 
 .map-controls > *{
   pointer-events: auto;
 }
 
-.map-controls button{
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(20,30,45,.9);
-  color: #fff;
-  box-shadow: var(--shadow);
-  pointer-events: auto;
+/* I vanlig modus vises bare kategoriprikkvelgeren. */
+body:not(.mode-map):not(.map-only) .map-controls > .hg-map-style-toggle,
+body:not(.mode-map):not(.map-only) .map-controls > .hg-map-utility-row{
+  display: none !important;
 }
+
+.map-controls button{
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(18,27,39,.94);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.map-controls button:focus-visible{
+  outline: 2px solid rgba(255,255,255,.92);
+  outline-offset: 3px;
+}
+
+/* ===================================================== */
+/* KART / DETALJERT                                      */
+/* ===================================================== */
 
 .hg-map-style-toggle{
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  width: auto;
-  height: 44px;
+  gap: 4px;
+
+  width: 100%;
+  height: 46px;
   padding: 4px;
+  box-sizing: border-box;
+
   border-radius: 999px;
   overflow: hidden;
-  background: rgba(20,30,45,.9);
-  border: 1px solid var(--panel-border);
-  box-shadow: var(--shadow);
+  background: rgba(18,27,39,.94);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 12px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+
   pointer-events: auto;
   touch-action: manipulation;
   z-index: 30;
 }
 
+.hg-map-style-toggle::before,
 .hg-map-style-toggle::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.hg-map-style-toggle::before{
   content: "";
   position: absolute;
   inset: 0;
@@ -89,19 +111,217 @@
 .hg-map-style-toggle .hg-map-style-btn{
   position: relative;
   z-index: 2;
+
+  flex: 1 1 50%;
   width: auto;
-  min-width: 84px;
+  min-width: 0;
   height: 36px;
+  padding: 0 10px;
+
   border: 0;
   border-radius: 999px;
-  font-size: 12px;
-  padding: 0 10px;
   background: transparent;
-  pointer-events: auto;
-  touch-action: manipulation;
+  box-shadow: none;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .01em;
   cursor: pointer;
 }
 
 .hg-map-style-toggle .hg-map-style-btn.is-active{
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,.17);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+/* ===================================================== */
+/* KATEGORIPRIKKER                                       */
+/* ===================================================== */
+
+.hg-map-category-filter{
+  position: relative;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.map-controls .hg-map-category-trigger{
+  width: 100%;
+  height: 46px;
+  padding: 0 13px;
+
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 9px;
+
+  border-radius: 999px;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: left;
+}
+
+.hg-map-category-trigger-icon{
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  font-size: 18px;
+}
+
+.hg-map-category-trigger-label{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.hg-map-category-trigger-caret{
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  opacity: .72;
+  transition: transform .16s ease;
+}
+
+.hg-map-category-trigger[aria-expanded="true"] .hg-map-category-trigger-caret{
+  transform: rotate(180deg);
+}
+
+.hg-map-category-options{
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  z-index: 10080;
+
+  width: 100%;
+  max-height: min(56dvh, 520px);
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: auto;
+  overscroll-behavior: contain;
+
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  background: rgba(15,23,34,.97);
+  box-shadow: 0 18px 45px rgba(0,0,0,.38);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.hg-map-category-options[hidden]{
+  display: none !important;
+}
+
+.map-controls .hg-map-category-option{
+  width: 100%;
+  min-height: 44px;
+  height: auto;
+  padding: 8px 10px;
+
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 22px;
+  align-items: center;
+  gap: 9px;
+
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.map-controls .hg-map-category-option + .hg-map-category-option{
+  margin-top: 2px;
+}
+
+.map-controls .hg-map-category-option:hover,
+.map-controls .hg-map-category-option:focus-visible,
+.map-controls .hg-map-category-option.is-active{
+  background: rgba(255,255,255,.12);
+}
+
+.hg-map-category-option-icon{
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--hg-cat-color, rgba(255,255,255,.12));
+  font-size: 17px;
+}
+
+.hg-map-category-option-label{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hg-map-category-option-check{
+  text-align: center;
+  opacity: 0;
+}
+
+.hg-map-category-option.is-active .hg-map-category-option-check{
+  opacity: 1;
+}
+
+/* ===================================================== */
+/* NYTTEKNAPPER                                          */
+/* ===================================================== */
+
+.hg-map-utility-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.map-controls .hg-map-utility-btn{
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  flex: 0 0 46px;
+
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.map-controls .hg-map-utility-btn svg{
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.map-controls .hg-map-utility-btn:active{
+  transform: translateY(1px);
+  background: rgba(35,48,65,.98);
+}
+
+.map-controls .hg-map-utility-btn:disabled{
+  opacity: .55;
+  cursor: wait;
+}
+
+@media (max-width: 640px){
+  .map-controls{
+    --hg-map-control-width: min(208px, calc(100vw - 20px));
+    right: calc(10px + env(safe-area-inset-right, 0px));
+    bottom: calc(var(--hg-bottom-nav-height, 72px) + 10px);
+  }
+
+  body.mode-map .map-controls,
+  body.map-only .map-controls{
+    bottom: calc(90px + var(--hg-safe-area-bottom, env(safe-area-inset-bottom, 0px)));
+  }
 }
