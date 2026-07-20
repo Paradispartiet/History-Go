@@ -1,0 +1,74 @@
+{
+  "placeId": "dronning_sonja_kunststall",
+  "placeFile": "data/places/kunst/oslo/places_kunst/dronning_sonja_kunststall.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91623159845106,
+    "lon": 10.722971727795889,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Parkveien 50, OSLO. Punktet brukes som display- og unlock-marker for publikumsinngangen til Dronning Sonja KunstStall i de tidligere kongelige stallene. Stallbygningene skriver seg fra 1848, mens kunst- og kulturarenaen åpnet 4. juli 2017; koordinaten representerer dagens besøkssted og må ikke brukes som om KunstStallen eksisterte som institusjon siden 1848."
+  },
+  "identity": {
+    "currentName": "Dronning Sonja KunstStall",
+    "resolvedIdentity": "Dronning Sonja KunstStall at the public entrance in Parkveien 50, distinct from the Palace and Palace Park while occupying the historic Royal Stables",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Distinct public institution and entrance in a specific historic stable building."
+  },
+  "requiredEvidence": [
+    "Geonorge address-first result for Parkveien 50",
+    "Royal Court current visitor address",
+    "official 4 July 2017 opening",
+    "distinction between 1848 stable building and 2017 art institution"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Parkveien%2050%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15614:50",
+      "sourceQuality": "official_address_plus_royal_court_history",
+      "finding": "Geonorge resolves Parkveien 50 exactly; the Royal Court gives the same public address and documents both the 1848 stables and the 2017 opening of the art venue.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Parkveien 50, OSLO. Punktet brukes som display- og unlock-marker for publikumsinngangen til Dronning Sonja KunstStall i de tidligere kongelige stallene. Stallbygningene skriver seg fra 1848, mens kunst- og kulturarenaen åpnet 4. juli 2017; koordinaten representerer dagens besøkssted og må ikke brukes som om KunstStallen eksisterte som institusjon siden 1848."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Parkveien 50 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15614:50",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15614:50",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91623159845106,
+      "lon": 10.722971727795889,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Use the verified Parkveien 50 point for one distinct canonical art venue; keep Slottet and Slottsparken as separate broader places."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Parkveien 50, OSLO. Punktet brukes som display- og unlock-marker for publikumsinngangen til Dronning Sonja KunstStall i de tidligere kongelige stallene. Stallbygningene skriver seg fra 1848, mens kunst- og kulturarenaen åpnet 4. juli 2017; koordinaten representerer dagens besøkssted og må ikke brukes som om KunstStallen eksisterte som institusjon siden 1848."
+  ]
+}

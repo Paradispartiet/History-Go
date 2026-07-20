@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T07:19:33.710Z
+Generert: 2026-07-20T07:25:39.700Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -97,6 +97,7 @@ Generert: 2026-07-20T07:19:33.710Z
 | var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | viking_planet_oslo | data/coordinate-evidence/oslo/historie/viking_planet_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | det_internasjonale_barnekunstmuseet | data/coordinate-evidence/oslo/kunst/det_internasjonale_barnekunstmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| dronning_sonja_kunststall | data/coordinate-evidence/oslo/kunst/dronning_sonja_kunststall.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunstnernes_hus | data/coordinate-evidence/oslo/kunst/kunstnernes_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | roseslottet | data/coordinate-evidence/oslo/kunst/roseslottet.json | applied_to_place | do_not_change_coordinates_yet | OK |
