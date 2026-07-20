@@ -1,0 +1,74 @@
+{
+  "placeId": "the_salmon_vitensenter",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/the_salmon_vitensenter.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90793198330203,
+    "lon": 10.723239043633493,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Strandpromenaden 11, OSLO. Punktet brukes som display-marker for The Salmon kunnskapssenter og ikke som områdeanker for Tjuvholmen eller som egen restaurantmarkør."
+  },
+  "identity": {
+    "currentName": "The Salmon – kunnskapssenter",
+    "resolvedIdentity": "The Salmon kunnskapssenter, det gratis besøks- og læringssenteret om norsk lakseoppdrett i Strandpromenaden 11",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt",
+    "offisiell stedsidentitet",
+    "fysisk avgrensning mot nærliggende canonical steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Strandpromenaden%2011%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21458:11",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge gir et entydig offisielt adressepunkt for Strandpromenaden 11 Oslo. `tjuvholmen` er et bredt områdeanker. Canonical identitet her er kunnskapssenteret om havbruk, ikke restaurantvirksomheten eller hele Tjuvholmen.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Strandpromenaden 11, OSLO. Punktet brukes som display-marker for The Salmon kunnskapssenter og ikke som områdeanker for Tjuvholmen eller som egen restaurantmarkør."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Strandpromenaden 11 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21458:11",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21458:11",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90793198330203,
+      "lon": 10.723239043633493,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Strandpromenaden 11, OSLO. Punktet brukes som display-marker for The Salmon kunnskapssenter og ikke som områdeanker for Tjuvholmen eller som egen restaurantmarkør.",
+    "`tjuvholmen` er et bredt områdeanker. Canonical identitet her er kunnskapssenteret om havbruk, ikke restaurantvirksomheten eller hele Tjuvholmen."
+  ]
+}
