@@ -33,30 +33,38 @@ class SpotmeetingInviteState(StrEnum):
     BLOCKED = "blocked"
 
 
+class SpotmeetingPresetId(StrEnum):
+    QUIZ_TOGETHER = "quiz_together"
+    ROUTE_ONE_DAY = "route_one_day"
+    COMPARE_PLACE_LEARNING = "compare_place_learning"
+    SHARED_OBSERVATION = "shared_observation"
+    MEET_TOPIC = "meet_topic"
+
+
 class SpotmeetingPreset(ApiModel):
-    preset_message_id: str
+    preset_message_id: SpotmeetingPresetId
     label: str
 
 
 SPOTMEETING_PRESETS: tuple[SpotmeetingPreset, ...] = (
     SpotmeetingPreset(
-        preset_message_id="quiz_together",
+        preset_message_id=SpotmeetingPresetId.QUIZ_TOGETHER,
         label="Vil du ta denne quizen sammen?",
     ),
     SpotmeetingPreset(
-        preset_message_id="route_one_day",
+        preset_message_id=SpotmeetingPresetId.ROUTE_ONE_DAY,
         label="Vil du gå denne ruten en dag?",
     ),
     SpotmeetingPreset(
-        preset_message_id="compare_place_learning",
+        preset_message_id=SpotmeetingPresetId.COMPARE_PLACE_LEARNING,
         label="Vil du sammenligne hva vi har lært om dette stedet?",
     ),
     SpotmeetingPreset(
-        preset_message_id="shared_observation",
+        preset_message_id=SpotmeetingPresetId.SHARED_OBSERVATION,
         label="Vil du gjøre en felles observasjon her?",
     ),
     SpotmeetingPreset(
-        preset_message_id="meet_topic",
+        preset_message_id=SpotmeetingPresetId.MEET_TOPIC,
         label="Vil du møtes rundt dette temaet?",
     ),
 )
@@ -81,12 +89,12 @@ class SpotmeetingContext(ApiModel):
 class CreateSpotmeetingInviteRequest(ApiModel):
     recipient_profile_id: UUID
     context: SpotmeetingContext
-    preset_message_id: str = Field(min_length=1, max_length=80)
+    preset_message_id: SpotmeetingPresetId
     idempotency_key: str = Field(min_length=8, max_length=180)
 
-    @field_validator("preset_message_id", "idempotency_key", mode="before")
+    @field_validator("idempotency_key", mode="before")
     @classmethod
-    def normalize_invite_strings(cls, value: object) -> object:
+    def normalize_idempotency_key(cls, value: object) -> object:
         if not isinstance(value, str):
             return value
         return value.strip()
@@ -110,23 +118,20 @@ class SpotmeetingInviteView(ApiModel):
     sender_profile_id: UUID
     recipient_profile_id: UUID
     context: SpotmeetingContext
-    preset_message_id: str
+    preset_message_id: SpotmeetingPresetId
     state: SpotmeetingInviteState
     created_at: datetime
     updated_at: datetime
     expires_at: datetime
     version: int
+    sync_version: int
     actor_can_act: SpotmeetingActorActions
 
 
 class SpotmeetingInvitePage(ApiModel):
     invites: list[SpotmeetingInviteView]
-    next_cursor: str | None = None
-
-
-class SpotmeetingSyncPage(ApiModel):
-    invites: list[SpotmeetingInviteView]
-    next_cursor: str | None = None
+    cursor: int
+    has_more: bool
 
 
 @dataclass(frozen=True, slots=True)
@@ -141,10 +146,11 @@ class SpotmeetingInviteRecord:
     context_title: str
     context_reason: str
     source_surface: str
-    preset_message_id: str
+    preset_message_id: SpotmeetingPresetId
     state: SpotmeetingInviteState
     created_at: datetime
     updated_at: datetime
     expires_at: datetime
     version: int
+    sync_version: int
     idempotency_key: str | None
