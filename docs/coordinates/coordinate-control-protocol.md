@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 247 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 94 lukker de fire neste ukontrollerte recordene i `places_historie_added_batch_01.json` i kildefilens rekkefølge: ett eksplisitt publisert monumentpunkt med uavhengig identitetskryssjekk, ett eksakt OSM-POI og to offisielle Geonorge-adressepunkter. Ingen koordinater velges med nearest/first-hit-logikk, og Wikidata brukes ikke som koordinatkilde.
+Oslo-tabellen inneholder nå 240 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 95 erstatter Trailforks som primær koordinatkilde for `korketrekkeren` med den eksplisitte OSM-ruterelasjonen `osm-relation:1459739` og et eksakt Frognerseteren-side endepunkt, kontrollert mot Oslo kommunes dokumentasjon av traseen Frognerseteren–Midtstuen. Relasjonens 31,8 m kartgap er eksplisitt dokumentert og skjules ikke som en falskt ubrutt polyline. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -260,6 +260,7 @@ Oslo-tabellen inneholder nå 247 dokumenterte verifiserte eller kildekontrollert
 | 91 | `frammuseet` | Frammuseet | verified | `geonorge-adresser-v1:0301:10977:39` |
 | 91 | `kon_tiki_museet` | Kon-Tiki Museet | verified | `geonorge-adresser-v1:0301:10977:36` |
 | 92 | `gol_stavkirke_bygdoy` | Gol stavkirke – Bygdøy | verified_geometry | `osm-way:161661199` |
+| 95 | `korketrekkeren` | Korketrekkeren | verified_geometry | `osm-relation:1459739` |
 
 | 90 | `oslo_prosjektrom` | Oslo Prosjektrom | verified | `geonorge-adresser-v1:0301:15684:18` |
 
@@ -281,6 +282,8 @@ Batch 93 (2026-07-21) fullfører den utsatte kontrollen av de åtte Alnaelva-rut
 
 Batch 94 (2026-07-21) følger top-level manifestrekkefølgen videre inn i `places_historie_added_batch_01.json`. De seks første recordene i filen var allerede kontrollert i tidligere batcher; de fire neste og siste recordene lukkes her. `peststotten_krist_kirkegard` beholder et eksplisitt publisert monumentpunkt med separat identitets- og plasseringskryssjekk mot Oslo byleksikon, `kjaerlighetskarusellen` bruker det eksakt navngitte OSM-punktet uten Wikidata som koordinatkilde, og `villa_stenersen` samt `st_hallvard_kirke_kloster` bruker offisielle Geonorge-adressepunkter etter address-first-policyen.
 
+
+Batch 95 (2026-07-21) reviderer `korketrekkeren` som lineær akebakke/rute, ikke som adressepunkt. Oslo kommune dokumenterer Korketrekkeren fra Frognerseteren til Midtstuen og oppgir ca. 2700 meter. OSM-ruterelasjon 1459739 er eksplisitt navngitt Korketrekkeren og tagget `type=route`, `route=sled` og `piste:type=sled`. De 16 ordnede medlems-way-ene danner to internt sammenhengende rutedeler med samlet geometri 2436 meter og et 31.8 meter kartgap mellom delene; gap inkludert blir den dokumenterte ruterekken 2467 meter. Startankeret er det eksakte øvre relasjonsendepunktet 25 meter fra Frognerseteren stasjon, mens nedre ende er 41 meter fra Midtstuen stasjon. Relasjonen brukes som semantisk ruteobjekt og startpunktet som `route_start`; batchen påstår ikke at traseen er én topologisk ubrutt polyline. Trailforks er fjernet som primær koordinatkilde.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
