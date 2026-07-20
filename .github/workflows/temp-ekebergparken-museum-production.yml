@@ -1,0 +1,331 @@
+name: Temporary Ekebergparken Museum production
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'agent/oslo-coordinate-ekebergparken-museum-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-ekebergparken-museum-production
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize Ekebergparken Museum
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const placeId = 'ekebergparken_museum';
+          const placeRel = 'places/historie/oslo/places_historie/ekebergparken_museum.json';
+          const evidenceRel = 'oslo/historie/ekebergparken_museum.json';
+          const lat = 59.89854101481173;
+          const lon = 10.75966997323581;
+          const sourceObjectId = 'geonorge-adresser-v1:0301:13868:23';
+          const sourceUrl = 'https://ws.geonorge.no/adresser/v1/sok?sok=Kongsveien%2023%20Oslo';
+          const coordNote = 'Offisiell adressekoordinat fra Geonorge Adresser API for Kongsveien 23, OSLO. Punktet brukes som display- og unlock-anker for Ekebergparken Museum i Lunds villa. Det representerer ikke hele Ekebergparken skulpturpark, som beholder sitt separate dokumenterte områdeanker.';
+
+          const readJson = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const writeJson = (p, value) => {
+            fs.mkdirSync(path.dirname(p), { recursive: true });
+            fs.writeFileSync(p, JSON.stringify(value, null, 2) + '\n');
+          };
+          const haversine = (aLat, aLon, bLat, bLon) => {
+            const R = 6371000;
+            const dLat = (bLat - aLat) * Math.PI / 180;
+            const dLon = (bLon - aLon) * Math.PI / 180;
+            const x = Math.sin(dLat / 2) ** 2 + Math.cos(aLat * Math.PI / 180) * Math.cos(bLat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+            return 2 * R * Math.asin(Math.sqrt(x));
+          };
+
+          const currentIndex = readJson('data/places/places_index.json');
+          if (currentIndex.some(p => p.id === placeId)) throw new Error(`${placeId} already exists in runtime index`);
+          const nearby = currentIndex
+            .filter(p => Number.isFinite(p.lat) && Number.isFinite(p.lon))
+            .map(p => ({ id: p.id, name: p.name, category: p.category, distanceMeters: Math.round(haversine(lat, lon, p.lat, p.lon) * 10) / 10 }))
+            .filter(p => p.distanceMeters <= 350)
+            .sort((a, b) => a.distanceMeters - b.distanceMeters);
+
+          const place = {
+            id: placeId,
+            name: 'Ekebergparken Museum',
+            lat,
+            lon,
+            r: 60,
+            category: 'historie',
+            year: 1891,
+            period: 'Lunds villa – byggeår oppgitt som 1891',
+            emne_ids: [
+              'em_by_historiske_lag_i_hverdagsrom',
+              'em_by_materialitet_og_sanseerfaring'
+            ],
+            desc: 'Museum og besøkssenter i den historiske Lunds villa ved inngangen til Ekebergparken. Museet formidler Ekebergområdets kulturhistorie og natur og er et eget fysisk sted innenfor den større skulpturparken.',
+            popupDesc: 'Ekebergparken Museum ligger i Lunds villa, en hvit sveitservilla fra 1891 ved Kongsveien 23 nær Ekebergparken holdeplass. Bygningen rommer museum, besøkssenter, butikk og parkens administrasjon. Utstillingene handler først og fremst om Ekebergområdets lange kulturhistorie og natur, med historiske gjenstander, fotografier og kunnskap om landskapet og dyre- og plantelivet.\n\nMuseet er derfor noe annet enn selve `ekebergparken`: skulpturparken er et stort kunst- og landskapsområde som oppleves gjennom vandring, mens museet er en konkret bygning med egne åpningstider og innendørs formidling. De to stedene hører institusjonelt sammen, men skal ikke bruke samme kartanker.\n\nÅr 1891 i recorden viser til villaens oppføringsår slik det oppgis i besøkskildene, ikke til en dokumentert åpning av museet. History Go bruker museet til å knytte parkens kunstlandskap til de eldre historiske og naturmessige lagene på Ekeberg.',
+            quiz_profile: {
+              place_type: 'museum',
+              subtype: 'lokalhistorisk_og_naturhistorisk_museum_i_historisk_villa',
+              signature_features: [
+                'museum i Lunds villa ved Kongsveien 23',
+                'historisk sveitservilla oppgitt fra 1891',
+                'utstillinger om Ekebergområdets kulturhistorie og natur',
+                'museum, besøkssenter, butikk og administrasjon i samme bygning',
+                'egen fysisk institusjon inne i den større Ekebergparken'
+              ],
+              primary_angles: [
+                'lokalhistorie',
+                'kulturminner_og_landskap',
+                'naturhistorie',
+                'museum_og_formidling',
+                'forholdet_mellom_bygning_og_park'
+              ],
+              question_families: [
+                'institusjonshistorie',
+                'bygning_og_bruk',
+                'historiske_lag',
+                'natur_og_kulturhistorie',
+                'kontrast'
+              ],
+              avoid_angles: [
+                'forveksle_museet_med_hele_ekebergparken',
+                'behandle_museet_som_innendors_skulptursamling',
+                'presentere_1891_som_museets_apningsaar',
+                'generisk_museumssporsmal_uten_ekebergforankring'
+              ],
+              must_include: [
+                'Lunds villa som den konkrete museumsbygningen',
+                'utstillingene om Ekebergs historie og natur',
+                'skillet mellom museumsbygningen og parkens områdeanker',
+                'koblingen til den større Ekebergparken'
+              ],
+              contrast_targets: [
+                'ekebergparken',
+                'ekeberg_helleristninger',
+                'oslo_bymuseum'
+              ],
+              notes: 'Spør museet som konkret lokalhistorisk og naturhistorisk formidlingssted i Lunds villa. Eksterne museums-, lokalhistorie- og naturkilder skal dominere synlig quizinnhold.'
+            },
+            locatorType: 'building',
+            sourceProvider: 'official_address',
+            sourceObjectId,
+            address: {
+              street: 'Kongsveien',
+              number: '23',
+              postcode: '0193',
+              city: 'Oslo',
+              country: 'NO'
+            },
+            geocodeAccuracy: 'rooftop',
+            coordRole: 'display_marker',
+            coordStatus: 'verified',
+            coordSource: 'geonorge_adresser_v1',
+            coordSourceId: sourceObjectId,
+            coordSourceUrl: sourceUrl,
+            coordType: 'address_point',
+            coordVerifiedAt: '2026-07-20',
+            coordNote,
+            externalLinks: [
+              {
+                type: 'official',
+                label: 'Ekebergparken – Museum & Gift Shop',
+                url: 'https://ekebergparken.com/en/visit-us/museum-and-shop',
+                lang: 'en',
+                verifiedAt: '2026-07-20'
+              },
+              {
+                type: 'reference',
+                label: 'VisitNorway / VisitOSLO – Ekebergparken Museum',
+                url: 'https://www.visitnorway.com/listings//ekebergparken-museum/173210/',
+                lang: 'en',
+                verifiedAt: '2026-07-20'
+              }
+            ]
+          };
+          writeJson(path.join('data', placeRel), place);
+
+          const evidence = {
+            schemaVersion: '1.0',
+            placeId,
+            placeFile: `data/${placeRel}`,
+            evidenceStatus: 'applied_to_place',
+            coordinateDecision: 'do_not_change_coordinates_yet',
+            currentCoordinate: {
+              lat,
+              lon,
+              r: 60,
+              coordStatus: 'verified',
+              coordSource: 'geonorge_adresser_v1',
+              coordType: 'address_point',
+              coordNote
+            },
+            identity: {
+              currentName: 'Ekebergparken Museum',
+              resolvedIdentity: 'Ekebergparken Museum in Lunds villa / Lunds hus at Kongsveien 23',
+              identityStatus: 'resolved',
+              identityProblem: '',
+              locatorTypeCandidate: 'building',
+              requiresSplit: false,
+              splitReason: ''
+            },
+            requiredEvidence: [
+              'entydig offisielt adressepunkt for Kongsveien 23',
+              'dokumentert museum- og besøksenteridentitet i Lunds villa',
+              'eksplisitt skille fra `ekebergparken` som utstrakt parkanker'
+            ],
+            evidence: [
+              {
+                sourceProvider: 'official_address',
+                sourceName: 'geonorge_adresser_v1',
+                sourceUrl,
+                sourceObjectId,
+                sourceQuality: 'official_address_plus_current_museum_identity',
+                finding: 'Geonorge returnerer ett entydig adressetreff for Kongsveien 23. Offisielle Ekebergparken-kilder identifiserer museet, besøkssenteret og administrasjonen i Lunds villa som en egen fysisk bygning innenfor den større skulpturparken.',
+                canVerifyCoordinate: true,
+                reason: 'Det offisielle adressepunktet er et stabilt bygningsanker for museumsbygningen og brukes ikke som proxy for hele parkområdet.'
+              }
+            ],
+            addressCandidates: [
+              {
+                address: 'Kongsveien 23 Oslo',
+                sourceProvider: 'official_address',
+                sourceObjectId,
+                lat,
+                lon,
+                canApplyToPlace: true
+              }
+            ],
+            sourceObjectCandidates: [
+              { sourceProvider: 'official_address', sourceObjectId, canApplyToPlace: true }
+            ],
+            geometryCandidates: [],
+            coordinateCandidates: [
+              { lat, lon, coordRole: 'display_marker', canApplyToPlace: true }
+            ],
+            decision: {
+              canBecomeVerified: true,
+              blockedReason: '',
+              nextAction: 'Kildekontrakt, egen museumsidentitet og representasjonsanker er anvendt på canonical place.'
+            },
+            notes: [coordNote]
+          };
+          writeJson(path.join('data/coordinate-evidence', evidenceRel), evidence);
+
+          const placeManifestPath = 'data/places/manifest.json';
+          const placeManifest = readJson(placeManifestPath);
+          if (!placeManifest.files.includes(placeRel)) placeManifest.files.push(placeRel);
+          writeJson(placeManifestPath, placeManifest);
+
+          const evidenceManifestPath = 'data/coordinate-evidence/manifest.json';
+          const evidenceManifest = readJson(evidenceManifestPath);
+          if (!evidenceManifest.files.includes(evidenceRel)) evidenceManifest.files.push(evidenceRel);
+          writeJson(evidenceManifestPath, evidenceManifest);
+
+          const protocolPath = 'docs/coordinates/coordinate-control-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          const osloStart = protocol.indexOf('## Oslo');
+          const noCoordStart = protocol.indexOf('### Dokumenterte Oslo-kontroller uten godkjent koordinat');
+          if (osloStart < 0 || noCoordStart < 0) throw new Error('Could not locate bounded Oslo protocol section');
+          const osloSection = protocol.slice(osloStart, noCoordStart);
+          const rows = [...osloSection.matchAll(/^\| (\d+) \| `([^`]+)` \|.*$/gm)];
+          if (!rows.length) throw new Error('No Oslo protocol rows found');
+          const lastRow = rows[rows.length - 1];
+          const maxBatch = Math.max(...rows.map(m => Number(m[1])));
+          const nextBatch = maxBatch + 1;
+          const newRow = `| ${nextBatch} | \`${placeId}\` | Ekebergparken Museum | verified | \`${sourceObjectId}\` |`;
+          const insertAt = osloStart + lastRow.index + lastRow[0].length;
+          protocol = protocol.slice(0, insertAt) + '\n' + newRow + protocol.slice(insertAt);
+
+          const summaryRe = /Oslo-tabellen inneholder nå (\d+) verifiserte eller kildekontrollerte canonical steder\. Batch \d+ legger til .*? Antallet fullførte kontroller uten godkjent Oslo-koordinat er (\d+)\./;
+          const summaryMatch = protocol.match(summaryRe);
+          if (!summaryMatch) throw new Error('Could not locate Oslo protocol summary');
+          const newTotal = Number(summaryMatch[1]) + 1;
+          const noCoordCount = Number(summaryMatch[2]);
+          protocol = protocol.replace(summaryRe, `Oslo-tabellen inneholder nå ${newTotal} verifiserte eller kildekontrollerte canonical steder. Batch ${nextBatch} legger til Ekebergparken Museum med den entydige offisielle Geonorge-adressekoordinaten for Kongsveien 23, mens `ekebergparken` beholder sitt separate dokumenterte områdeanker for skulpturparken. Antallet fullførte kontroller uten godkjent Oslo-koordinat er ${noCoordCount}.`);
+          fs.writeFileSync(protocolPath, protocol);
+
+          const reportDir = 'reports/visitoslo-oslo-east-audit-20260720/ekebergparken-museum';
+          writeJson(path.join(reportDir, 'production-decision.json'), {
+            placeId,
+            decision: 'produce_distinct_canonical_museum_building',
+            primaryCategory: 'historie',
+            coordinate: { lat, lon, sourceObjectId },
+            nearbyWithin350m: nearby,
+            identityDecision: 'Ekebergparken Museum is the specific museum/visitor-centre building in Lunds villa at Kongsveien 23; `ekebergparken` remains the broad sculpture-park area identity.',
+            protocolBatch: nextBatch
+          });
+
+          console.log(JSON.stringify({ placeId, nextBatch, nearby }, null, 2));
+          NODE
+
+      - name: Run and persist validation gates
+        shell: bash
+        run: |
+          set -u
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-ekebergparken-museum-production"
+          mkdir -p "$LOGDIR"
+          : > "$LOGDIR/gate-status.txt"
+          BLOCKING_FAIL=0
+
+          run_gate() {
+            name="$1"
+            shift
+            set +e
+            "$@" > >(tee "$LOGDIR/$name.log") 2>&1
+            code=$?
+            set -e
+            printf '%s\n' "$code" > "$LOGDIR/$name.exit-code.txt"
+            echo "$name=$code" >> "$LOGDIR/gate-status.txt"
+            if [ "$code" -ne 0 ]; then BLOCKING_FAIL=1; fi
+            return 0
+          }
+
+          set -e
+          run_gate places-index-build npm run places:index:build
+          run_gate split-manifest-sync npm run audit:places-split-manifest-sync
+          run_gate places-index-check npm run places:index:check
+          run_gate coordinate-source-contract npm run test:coordinate-source-contract
+          run_gate coordinate-quality npm run places:coords:quality
+          run_gate coordinate-intake npm run places:coords:intake -- --strict-new
+          run_gate coordinate-evidence npm run places:coords:evidence:audit
+          run_gate git-diff-check git diff --check
+
+          set +e
+          npm run health:places 2>&1 | tee "$LOGDIR/health-places.log"
+          HEALTH_CODE=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$HEALTH_CODE" > "$LOGDIR/health-places.exit-code.txt"
+          echo "health-places=$HEALTH_CODE" >> "$LOGDIR/gate-status.txt"
+          printf '%s\n' "$BLOCKING_FAIL" > "$LOGDIR/blocking-fail.txt"
+
+      - name: Commit production result
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOGDIR="reports/coordinate-branch-runner/agent_oslo-coordinate-ekebergparken-museum-production"
+          BLOCKING_FAIL=$(cat "$LOGDIR/blocking-fail.txt")
+          rm -f .github/workflows/temp-ekebergparken-museum-production.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Ekebergparken Museum as canonical Oslo history place"
+          git push origin HEAD:agent/oslo-coordinate-ekebergparken-museum-production
+          if [ "$BLOCKING_FAIL" -ne 0 ]; then exit 1; fi
