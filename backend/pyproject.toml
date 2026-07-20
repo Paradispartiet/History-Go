@@ -51,6 +51,9 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 
 [tool.ruff.lint.per-file-ignores]
 "app/api/**/*.py" = ["B008"]
+# This repository contains long SQL predicates inside Python strings. Keep the
+# line-length exception narrowly scoped; all other Ruff rules remain active.
+"app/domains/social_meet/moderation_repository.py" = ["E501"]
 
 [tool.ruff.format]
 quote-style = "double"
