@@ -1,3 +1,4 @@
+// One-shot Oslo attraction coordinate production: batch 52 / Tøyenbadet.
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
