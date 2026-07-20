@@ -342,7 +342,7 @@
 
   function bindSearch() {
     const input = document.getElementById("knowledgeSearch");
-    if (!input) return;
+    if (!(input instanceof HTMLInputElement)) return;
     input.addEventListener("input", () => {
       const query = s(input.value);
       if (query.length < 2) renderCurrentView();
