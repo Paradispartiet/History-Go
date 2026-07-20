@@ -1524,46 +1524,361 @@
   {
     "place_id": "vaterland_historisk_elvelop",
     "visual": {
-      "designCode": "article_nature_route_miniature"
+      "designCode": "article_history_river_layers"
     },
-    "version": 1,
-    "popupDesc": "Vaterland som historisk elveløp viser hvordan byens vannlandskap er endret, skjult og omformet over tid.",
+    "version": 2,
+    "popupDesc": "Vaterland – historisk elveløp viser hvordan en synlig byelv, et tett gatenett og et hverdagsmiljø ble erstattet av sanering, kulvert og moderne infrastruktur.",
     "wikiText": [
-      "Vaterland er et historisk område der elveløp, havnefunksjoner, ferdsel og tett byutvikling har vært vevd sammen. Stedet viser hvordan vann og land i sentrum ikke alltid har hatt dagens grenser.",
-      "Som historisk elveløp gjør Vaterland byens omforming synlig: vann ble regulert, bygget over, flyttet i betydning eller gjort mindre synlig etter hvert som sentrum ble modernisert."
+      "Vaterlands bru er startankeret for en historisk elvestrekning som ikke lenger kan oppleves som åpent elverom. Den nedre Akerselva ble også kalt Vaterlandselva og fortsatte herfra mot Bjørvika.",
+      "Elvegata fulgte vannet gjennom Vaterland. Sju små Elveganger ga kontakt mellom gaten og bredden, mens et bolverk beskyttet området mot flom. Peter Andreas Blix' maleri fra 1895 og Ruth Raabes fotografi fra 1931 dokumenterer dette tapte miljøet.",
+      "Saneringen av Vaterland begynte i 1959. Nesten all eldre bebyggelse forsvant, og i perioden 1964–1969 ble elvestrekningen fra Vaterlands bru mot Bjørvika lagt i tunnel.",
+      "Vannet finnes fortsatt under byen. Stedet gjør det mulig å studere forskjellen mellom fysisk vannløp og synlig elverom, og hvordan byutvikling kan skjule både natur og sosial historie."
     ],
     "summary": {
-      "one_liner": "Historisk elveløp og byområde der vannlandskapet er omformet.",
+      "one_liner": "Historisk åpen byelv som ble lagt i tunnel under saneringen av Vaterland.",
       "themes": [
-        "elvehistorie",
-        "byutvikling",
-        "fravær"
+        "Akerselva",
+        "Vaterlandselva",
+        "sanering",
+        "kulvert",
+        "historiske lag",
+        "urban hydrologi"
       ],
       "tone": [
         "nøktern",
-        "faglig"
+        "kildebelagt",
+        "stedsspesifikk"
       ]
     },
     "facts": [
       {
         "id": "fact_01",
-        "label": "Historisk elveløp",
-        "desc": "Stedet viser endringer i vannlandskap og bystruktur.",
-        "confidence": "medium",
-        "sources": []
+        "label": "Historisk linjested",
+        "desc": "Stedet representerer den tidligere åpne Akerselva-strekningen fra Vaterlands bru mot Bjørvika.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_02",
+        "label": "Fysisk startanker",
+        "desc": "Vaterlands bru brukes som dokumentert startanker for linjen.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_03",
+        "label": "Bro fra 1654",
+        "desc": "Vaterlands bru ble åpnet i 1654 som viktig innfartsbro fra øst.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_04",
+        "label": "Vaterlandselva",
+        "desc": "Den nedre delen av Akerselva ble lokalt kalt Vaterlandselva.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_05",
+        "label": "Elvegata",
+        "desc": "Elvegata fulgte elva gjennom den eldre bydelen.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_06",
+        "label": "Sju Elveganger",
+        "desc": "Sju små passasjer knyttet Elvegata til vannet.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_07",
+        "label": "Flomvern",
+        "desc": "Det eldre navnet Bolverksgata viste til et bolverk mot flom.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_08",
+        "label": "Visuell dokumentasjon",
+        "desc": "Peter Andreas Blix malte Elvegata i 1895, og Ruth Raabe fotograferte gaten i 1931.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_09",
+        "label": "Sanering fra 1959",
+        "desc": "Den omfattende rivingen av den eldre bydelen begynte i 1959.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_10",
+        "label": "Tunnel 1964–1969",
+        "desc": "Strekningen fra Vaterlands bru mot Bjørvika ble lagt i tunnel i perioden 1964–1969.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_11",
+        "label": "Skjult vann",
+        "desc": "Vannet fortsatte å renne, men forsvant som synlig elverom fra byoverflaten.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "fact_12",
+        "label": "Eget sted",
+        "desc": "Det historiske elveløpet er modellert separat fra Vaterlandsparken og Nybrua.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          }
+        ]
       }
     ],
     "chronology": [
       {
-        "id": "chrono_01",
-        "year": null,
-        "period": "Modernisering",
-        "desc": "Elveløp og randsoner endres gjennom byvekst og teknisk regulering.",
-        "confidence": "medium",
-        "sources": []
+        "id": "chrono_1654",
+        "year": 1654,
+        "period": "Tidlig moderne tid",
+        "desc": "Vaterlands bru åpnes som innfartsbro fra øst.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Store norske leksikon – Vaterland",
+            "url": "https://snl.no/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "chrono_1658",
+        "year": 1658,
+        "period": "Tidlig moderne tid",
+        "desc": "Nils Trolle beordrer fattige bygninger i Vaterland brent.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Lokalhistoriewiki – Vaterland (Oslo)",
+            "url": "https://lokalhistoriewiki.no/wiki/Vaterland_(Oslo)"
+          }
+        ]
+      },
+      {
+        "id": "chrono_1895",
+        "year": 1895,
+        "period": "1800-tallet",
+        "desc": "Peter Andreas Blix maler en gårdsplass i Elvegata.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Lokalhistoriewiki – Elvegata (Oslo)",
+            "url": "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)"
+          }
+        ]
+      },
+      {
+        "id": "chrono_1931",
+        "year": 1931,
+        "period": "Mellomkrigstiden",
+        "desc": "Ruth Raabe fotograferer Elvegata fra Lilletorget.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Lokalhistoriewiki – Elvegata (Oslo)",
+            "url": "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)"
+          }
+        ]
+      },
+      {
+        "id": "chrono_1959",
+        "year": 1959,
+        "period": "Etterkrigstiden",
+        "desc": "Saneringen av Vaterland begynner.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Vaterland",
+            "url": "https://oslobyleksikon.no/side/Vaterland"
+          },
+          {
+            "title": "Store norske leksikon – Vaterland",
+            "url": "https://snl.no/Vaterland"
+          }
+        ]
+      },
+      {
+        "id": "chrono_1964",
+        "year": 1964,
+        "period": "Etterkrigstiden",
+        "desc": "Arbeidet med å legge den nedre elvestrekningen i tunnel begynner.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Store norske leksikon – Akerselva",
+            "url": "https://snl.no/Akerselva"
+          }
+        ]
+      },
+      {
+        "id": "chrono_1969",
+        "year": 1969,
+        "period": "Etterkrigstiden",
+        "desc": "Tunnelperioden for strekningen mot Bjørvika avsluttes.",
+        "confidence": "high",
+        "sources": [
+          {
+            "title": "Oslo byleksikon – Akerselva",
+            "url": "https://oslobyleksikon.no/side/Akerselva"
+          },
+          {
+            "title": "Store norske leksikon – Akerselva",
+            "url": "https://snl.no/Akerselva"
+          }
+        ]
       }
     ],
-    "sources": []
+    "sources": [
+      {
+        "title": "Oslo byleksikon – Akerselva",
+        "url": "https://oslobyleksikon.no/side/Akerselva"
+      },
+      {
+        "title": "Oslo byleksikon – Vaterland",
+        "url": "https://oslobyleksikon.no/side/Vaterland"
+      },
+      {
+        "title": "Store norske leksikon – Akerselva",
+        "url": "https://snl.no/Akerselva"
+      },
+      {
+        "title": "Store norske leksikon – Vaterland",
+        "url": "https://snl.no/Vaterland"
+      },
+      {
+        "title": "Lokalhistoriewiki – Vaterland (Oslo)",
+        "url": "https://lokalhistoriewiki.no/wiki/Vaterland_(Oslo)"
+      },
+      {
+        "title": "Lokalhistoriewiki – Elvegata (Oslo)",
+        "url": "https://lokalhistoriewiki.no/wiki/Elvegata_(Oslo)"
+      }
+    ]
   },
   {
     "place_id": "nydalsdammen",
