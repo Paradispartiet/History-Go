@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-20T13:21:51.079Z
+Generert: 2026-07-20T14:00:52.190Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -193,3 +193,4 @@ Generert: 2026-07-20T13:21:51.079Z
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kampen_okologiske_barnebondegard | data/coordinate-evidence/oslo/by/kampen_okologiske_barnebondegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klimahuset | data/coordinate-evidence/oslo/vitenskap/klimahuset.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |

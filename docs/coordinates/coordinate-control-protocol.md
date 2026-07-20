@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 213 verifiserte eller kildekontrollerte canonical steder. Batch 66 løser Øvre spinneri med Riksantikvarens offisielle enkeltminnegeometri for Spinneri (bygn 108), kulturminne 165570-6. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 214 verifiserte eller kildekontrollerte canonical steder. Batch 67 legger til Fotografiens Hus med det entydige Geonorge-adressepunktet for Rådhusgata 20 og dokumentert institusjonsidentitet som offentlig fotogalleri siden 1999. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -235,6 +235,7 @@ Oslo-tabellen inneholder nå 213 verifiserte eller kildekontrollerte canonical s
 | 64 | `kampen_okologiske_barnebondegard` | Kampen Økologiske Barnebondegård | verified | `geonorge-adresser-v1:0301:16443:23` |
 | 65 | `klimahuset` | Klimahuset | verified | `geonorge-adresser-v1:0301:14797:12` |
 | 66 | `seilduksfabrikken_nydalen` | Øvre spinneri | verified_geometry | `kulturminnesok:165570-6` |
+| 67 | `fotografiens_hus` | Fotografiens Hus | verified | `geonorge-adresser-v1:0301:16115:20` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
@@ -404,3 +405,5 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 - By-manifestet er uttømt etter `christiania_torv`. Før batch 29 starter skal neste aktive sekundære Oslo-kildekø auditeres eksplisitt mot top-level manifestrekkefølgen; ikke gjett neste kategori.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
+
+Batch 67 (2026-07-20) produserer `fotografiens_hus` som eget offentlig fotogalleri og fotografispesifikt kunststed. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Rådhusgata 20. Offisiell institusjonsinformasjon dokumenterer samme adresse og kontinuerlig bruk som visningssted siden 1999; canonical overlap-audit fant ingen identitetsduplikat. Midlertidige enkeltutstillinger forblir innholdslag og skal ikke splittes til egne overlappende place-markører.

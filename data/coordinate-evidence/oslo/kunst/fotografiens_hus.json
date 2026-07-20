@@ -1,0 +1,74 @@
+{
+  "placeId": "fotografiens_hus",
+  "placeFile": "data/places/kunst/oslo/places_kunst/fotografiens_hus.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90951628354778,
+    "lon": 10.74209892031479,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 20, OSLO. Punktet brukes som display-marker for Fotografiens Hus som offentlig fotogalleri og visningssted for fotografi. Det representerer ikke Kvadraturen, Rådhusgata som gate eller nærliggende canonical bygninger."
+  },
+  "identity": {
+    "currentName": "Fotografiens Hus",
+    "resolvedIdentity": "Fotografiens Hus, det offentlige fotogalleriet og visningsstedet for fotografi i Rådhusgata 20 i Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Rådhusgata 20",
+    "offisiell institusjonsidentitet og dokumentert besøksadresse",
+    "canonical identitets- og nærhetssøk mot eksisterende steder"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=R%C3%A5dhusgata%2020%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+      "sourceQuality": "official_address_plus_official_institution_identity_plus_canonical_overlap_audit",
+      "finding": "Geonorge gir ett tydelig offisielt adressepunkt for Rådhusgata 20 Oslo. Fotografiens Hus dokumenterer samme besøksadresse og at stedet har vært fast visningssted for fotografi der siden 1999. Aktiv runtime-indeks har ingen identitetsmatch; nærmeste canonical steder representerer andre navngitte adresser og fysiske identiteter.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 20, OSLO. Punktet brukes som display-marker for Fotografiens Hus som offentlig fotogalleri og visningssted for fotografi. Det representerer ikke Kvadraturen, Rådhusgata som gate eller nærliggende canonical bygninger."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Rådhusgata 20 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90951628354778,
+      "lon": 10.74209892031479,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Rådhusgata 20 as the canonical building/display marker for Fotografiens Hus after exact address-first verification, official institution identity confirmation and canonical overlap review."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 20, OSLO. Punktet brukes som display-marker for Fotografiens Hus som offentlig fotogalleri og visningssted for fotografi. Det representerer ikke Kvadraturen, Rådhusgata som gate eller nærliggende canonical bygninger.",
+    "Ingen eksisterende canonical place har samme Fotografiens Hus-identitet. Det nærmeste registrerte stedet, Kirkegata 5, ligger 36,8 meter unna og representerer en annen adresse og identitet."
+  ]
+}
