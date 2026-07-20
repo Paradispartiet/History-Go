@@ -1,0 +1,49 @@
+name: Fill Akerselva outlet nature rounds
+
+on:
+  push:
+    branches:
+      - agent/fill-akerselva-outlet-nature-rounds-batch1
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agent-fill-akerselva-outlet-rounds
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fill-akerselva-outlet-nature-rounds-batch1
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rebuild generator
+        run: |
+          cat scripts/_tmp_akerselva_outlet_*.b64 | base64 --decode | gzip --decompress > /tmp/fill_akerselva_outlet.py
+          python3 -m py_compile /tmp/fill_akerselva_outlet.py
+      - name: Generate content
+        run: python3 /tmp/fill_akerselva_outlet.py
+      - name: Regenerate Akerselva split files
+        run: node scripts/split-nature-oslo-akerselva-route.mjs
+      - name: Validate outlet batch
+        run: |
+          node tests/akerselva-outlet-nature-rounds-batch1.test.js
+          node tests/oslo-nature-rounds-batch13-akerselva-outlet.test.js
+          bash scripts/check-places.sh
+          bash scripts/check-people.sh
+          git diff --check
+      - name: Commit produced files and remove temporary job
+        run: |
+          git config user.name "actions"
+          git config user.email "actions@github.com"
+          rm -f scripts/_tmp_akerselva_outlet_*.b64
+          rm -f .github/workflows/agent-fill-akerselva-outlet-rounds.yml
+          git add -A
+          git commit -m "Fill Akerselva outlet nature rounds"
+          git push origin HEAD:agent/fill-akerselva-outlet-nature-rounds-batch1
