@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
     await safeRun("loadNearbyPeopleList", () => loadScriptOnce("dist/web/nearbyPeopleList.js"));
+    await safeRun("loadCollectionList", () => loadScriptOnce("dist/web/collectionList.js"));
     await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
 
     // persistence.js etter lists.js: saveVisited() kaller renderCollection() (lists.js)

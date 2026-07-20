@@ -133,6 +133,10 @@ declare global {
       render?: () => void;
     };
     renderNearbyPeople?: () => void;
+    HGCollectionList?: {
+      render?: () => void;
+    };
+    renderCollection?: () => void;
     HGLeftPanelMode?: {
       getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";
       setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";

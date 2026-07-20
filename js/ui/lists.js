@@ -350,38 +350,8 @@ function renderNearbyNature() {
   });
 }
 
-function renderCollection() {
-  const grid = document.getElementById("collectionGrid");
-  if (!grid) return;
-
-  const PLACES = window.PLACES || [];
-  const visited = window.visited || {};
-
-  grid.innerHTML = "";
-
-  PLACES.filter(p => visited[p.id]).forEach(place => {
-    const img = place.cardImage || place.image || "";
-
-    const item = document.createElement("div");
-    item.className = "collection-item";
-
-    item.innerHTML = `
-      <img src="${img}" alt="${place.name}">
-      <div>${place.name}</div>
-    `;
-
-    item.addEventListener("click", () => {
-      if (typeof window.openPlaceCard === "function") {
-        window.openPlaceCard(place);
-      }
-    });
-
-    grid.appendChild(item);
-  });
-}
 
 window.renderNearbyNature = renderNearbyNature;
-window.renderCollection = renderCollection;
 
 window.getNaturePlaces = async function (natureId) {
   const map = await ensureNatureToPlacesMap();
