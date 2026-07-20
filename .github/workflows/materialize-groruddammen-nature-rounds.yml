@@ -1,0 +1,52 @@
+name: Materialize Groruddammen nature rounds
+
+on:
+  push:
+    branches:
+      - agent/fill-groruddammen-nature-rounds-batch1
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Materialize content
+        run: node scripts/materialize-groruddammen-nature-rounds.mjs
+
+      - name: Run focused Groruddammen test
+        run: node tests/groruddammen-nature-rounds-batch1.test.js
+
+      - name: Run Alna regression test
+        run: node tests/oslo-nature-rounds-batch5-alna.test.js
+
+      - name: Run Oslo nature regression test
+        run: node tests/oslo-nature-rounds-batch4.test.js
+
+      - name: Run place health checks
+        run: bash scripts/check-places.sh
+
+      - name: Check whitespace
+        run: git diff --check
+
+      - name: Commit generated content and remove temporary materializer
+        run: |
+          rm scripts/materialize-groruddammen-nature-rounds.mjs
+          rm .github/workflows/materialize-groruddammen-nature-rounds.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fill Groruddammen nature rounds batch 1"
+          git push
