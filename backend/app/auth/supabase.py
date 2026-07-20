@@ -53,8 +53,8 @@ class SupabaseTokenVerifier:
     the backend never needs to possess or trust the legacy JWT signing secret.
 
     History GO staff authorization is sourced only from server-controlled Supabase
-    ``app_metadata``. User-editable metadata and email addresses are never treated
-    as authorization inputs.
+    ``app_metadata.history_go_roles``. User-editable metadata, generic role fields,
+    and email addresses are never treated as History GO authorization inputs.
     """
 
     def __init__(self, settings: Settings, http_client: httpx.Client | None = None) -> None:
@@ -172,9 +172,6 @@ def _extract_app_roles(value: object) -> frozenset[str]:
         return frozenset()
 
     raw_roles = value.get("history_go_roles")
-    if raw_roles is None:
-        raw_roles = value.get("roles")
-
     if isinstance(raw_roles, str):
         candidates: list[object] = [raw_roles]
     elif isinstance(raw_roles, list | tuple | set | frozenset):
