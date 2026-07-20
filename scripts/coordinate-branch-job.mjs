@@ -71,8 +71,13 @@ for (const rel of NATURE_COLLISION_FILES) {
 `;
 source = source.replace('const specialFiles = new Set([', `${collisionHandling}const specialFiles = new Set([\n  ...NATURE_COLLISION_FILES,`);
 
-for (const required of ['NATURE_COLLISION_FILES', 'mergeLegacyKeyRecursively', '...NATURE_COLLISION_FILES']) {
-  if (!source.includes(required)) throw new Error(`Failed to patch Nydalen nature-map collision handling: missing ${required}`);
+source = source.replace(
+  "const article = readJson(articlePath).find((row) => row.place_id === 'nydalen' && JSON.stringify(row).includes('Nydalens Compagnie'));",
+  "const article = readJson(articlePath).find((row) => row.place_id === 'nydalen' && Array.isArray(row.wikiText) && row.wikiText.length >= 2);"
+);
+
+for (const required of ['NATURE_COLLISION_FILES', 'mergeLegacyKeyRecursively', '...NATURE_COLLISION_FILES', "row.place_id === 'nydalen' && Array.isArray(row.wikiText)"]) {
+  if (!source.includes(required)) throw new Error(`Failed to patch Nydalen migration source: missing ${required}`);
 }
 
 fs.writeFileSync(TEMP_SCRIPT, source);
