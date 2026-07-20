@@ -22,8 +22,7 @@ if (!evidenceManifest.files.includes(evidenceRel)) {
 }
 
 let protocol = readFileSync(protocolPath, 'utf8');
-if (protocol.includes(`| \` ${id} \``)) throw new Error('Unexpected malformed Ekeberg row marker.');
-if (new RegExp(`^\\|\\s*\\d+\\s*\\|\\s*\\\`${id}\\\``,'m').test(protocol)) throw new Error('Ekeberg already has a protocol row; abort duplicate after-register.');
+if (protocol.includes(`| \`${id}\` |`)) throw new Error('Ekeberg already has a coordinate protocol table row; abort duplicate after-register.');
 
 const countMatch = protocol.match(/Oslo-tabellen inneholder nå (\d+) verifiserte eller kildekontrollerte canonical steder\./);
 if (!countMatch) throw new Error('Could not parse Oslo verified-place count.');
