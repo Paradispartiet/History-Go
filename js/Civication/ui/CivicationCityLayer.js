@@ -519,6 +519,7 @@
     const yearText = figure.year ? String(figure.year) : "";
     const factRows =
       row2("Sted", loc ? loc.label : (presence.locationId || "—")) +
+      (presence.atHomePlace ? row2("Kobling", "Personens eget sted fra History Go") : "") +
       row2("Nærvær", presence.activity || "—") +
       (figure.category ? row2("Kategori", figure.category) : "") +
       (yearText ? row2("År", yearText) : "");

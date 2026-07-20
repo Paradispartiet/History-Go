@@ -109,6 +109,41 @@ async function run() {
     assert.strictEqual(rows[0].figure.name, "Edvard Munch");
   }
 
+  // 7) Sted-kobling: person hvis placeId finnes som sourcePlaceId i bymodellen
+  //    stilles ved sitt eget sted — prioritert foran generiske skikkelser og
+  //    uavhengig av stedstype.
+  {
+    const figures = freshEnv();
+    const locsWithHome = LOCATIONS.concat([
+      { id: "brand_place:edderkoppen_scene:x", type: "social_place", label: "Edderkoppen", sourcePlaceId: "edderkoppen_scene" }
+    ]);
+    const rows = figures.pickFiguresForPhase(COLLECTED, "evening", 4, locsWithHome);
+    const homeRow = rows.find((r) => r.presence.atHomePlace);
+    assert.ok(homeRow, "sted-koblet skikkelse finnes");
+    assert.strictEqual(homeRow.figure.id, "leif_juster");
+    assert.strictEqual(homeRow.presence.locationId, "brand_place:edderkoppen_scene:x");
+    assert.strictEqual(homeRow.presence.activity, "Er ved sitt eget History Go-sted");
+    // Resten fylles fortsatt med generiske skikkelser (unike personer).
+    const ids = rows.map((r) => r.figure.id);
+    assert.strictEqual(new Set(ids).size, ids.length);
+    assert.strictEqual(rows.length, 2);
+    // Deterministisk også med sted-kobling.
+    assert.deepStrictEqual(rows, figures.pickFiguresForPhase(COLLECTED, "evening", 4, locsWithHome));
+  }
+
+  // 8) Sted-kobling fungerer selv uten generiske kultursteder i modellen.
+  {
+    const figures = freshEnv();
+    const onlyHome = [
+      { id: "home", type: "home", label: "Hjem" },
+      { id: "place:ekely", type: "social_place", label: "Ekely", sourcePlaceId: "ekely" }
+    ];
+    const rows = figures.pickFiguresForPhase(COLLECTED, "leisure", 2, onlyHome);
+    assert.strictEqual(rows.length, 1);
+    assert.strictEqual(rows[0].figure.id, "edvard_munch");
+    assert.strictEqual(rows[0].presence.atHomePlace, true);
+  }
+
   console.log("civication-history-figures.test.js: alle tester OK");
 }
 
