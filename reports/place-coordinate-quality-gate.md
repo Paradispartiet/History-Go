@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-20T20:37:13.925Z
+Generert: 2026-07-20T20:44:32.621Z
 
 ## Oppsummering
-- Aktive filer validert: **549**
+- Aktive filer validert: **550**
 - Antall steder validert: **1213**
 - Harde feil: **0**
 - Varsler: **429**
@@ -567,6 +567,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/valerenga_kirke.json
 - data/places/kunst/oslo/places_kunst/kunsthall_oslo.json
 - data/places/historie/oslo/places_historie/mariakirken_ruin_oslo.json
+- data/places/historie/oslo/places_historie/clemenskirken_ruin_oslo.json
 
 ## Harde feil
 - Ingen
