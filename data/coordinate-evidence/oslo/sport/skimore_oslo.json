@@ -1,0 +1,73 @@
+{
+  "placeId": "skimore_oslo",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport/skimore_oslo.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9853421444898,
+    "lon": 10.666588254871384,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tryvannsveien 64, OSLO. Punktet representerer hovedadressen og publikumsankeret for Skimore Oslo og brukes som display- og unlock-marker. Det skal ikke tolkes som geometrisk sentrum for alle alpinbakker, heiser eller klatreparkløyper i det større Tryvann-anlegget."
+  },
+  "identity": {
+    "currentName": "Skimore Oslo",
+    "resolvedIdentity": "The year-round Skimore Oslo visitor and activity complex anchored at Tryvannsveien 64, combining the winter alpine resort and summer climbing park under one physical visitor identity",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The summer and winter products share the same official visitor address and current facility identity; separate canonical markers would overlap the same host site."
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for hovedadressen",
+    "offisiell dokumentasjon av både sommer- og vinterdrift",
+    "eksplisitt representasjonsregel som skiller publikumsankeret fra hele ski- og klatreområdets geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Tryvannsveien%2064%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17787:64",
+      "sourceQuality": "official_address_plus_operator_and_visit_source_identity",
+      "finding": "Geonorge gir det normative adressepunktet for Tryvannsveien 64. Skimore oppgir samme adresse for Oslo-anlegget og dokumenterer både vinterens ski- og snowboardtilbud og sommerens klatrepark. VisitOSLO fører sommer- og vinterproduktene separat, men de representerer sesongbruk av samme anlegg og skal ikke bli to overlappende canonical places.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Tryvannsveien 64, OSLO. Punktet representerer hovedadressen og publikumsankeret for Skimore Oslo og brukes som display- og unlock-marker. Det skal ikke tolkes som geometrisk sentrum for alle alpinbakker, heiser eller klatreparkløyper i det større Tryvann-anlegget."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Tryvannsveien 64 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17787:64",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17787:64",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9853421444898,
+      "lon": 10.666588254871384,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Use the exact Tryvannsveien 64 address point as the canonical display/unlock anchor for one Skimore Oslo place. Preserve summer and winter as seasonal functional layers; do not infer full resort geometry from the address point."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Tryvannsveien 64, OSLO. Punktet representerer hovedadressen og publikumsankeret for Skimore Oslo og brukes som display- og unlock-marker. Det skal ikke tolkes som geometrisk sentrum for alle alpinbakker, heiser eller klatreparkløyper i det større Tryvann-anlegget."
+  ]
+}

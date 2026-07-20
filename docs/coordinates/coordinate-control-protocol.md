@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 206 verifiserte eller kildekontrollerte canonical steder. Batch 60 legger til Vestre gravlund med et verifisert områdeanker i selve gravlundsgeometrien, ikke et adressepunkt. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
+Oslo-tabellen inneholder nå 207 verifiserte eller kildekontrollerte canonical steder. Batch 56 legger til Skimore Oslo som ett helårs aktivitetsanlegg på Tryvann, med det verifiserte publikumsankeret i Tryvannsveien 64. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 31.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -224,6 +224,7 @@ Oslo-tabellen inneholder nå 206 verifiserte eller kildekontrollerte canonical s
 | 54 | `dronning_sonja_kunststall` | Dronning Sonja KunstStall | verified | `geonorge-adresser-v1:0301:15614:50` |
 
 | 55 | `holmlia_bad` | Holmlia bad | verified | `geonorge-adresser-v1:0301:13084:34` |
+| 56 | `skimore_oslo` | Skimore Oslo | verified | `geonorge-adresser-v1:0301:17787:64` |
 | 57 | `fagerborg_kirke` | Fagerborg kirke | verified | `geonorge-adresser-v1:0301:15670:74` |
 | 58 | `uranienborg_kirke` | Uranienborg kirke | verified | `geonorge-adresser-v1:0301:13110:15` |
 | 59 | `frogner_kirke` | Frogner kirke | verified | `geonorge-adresser-v1:0301:10967:36` |
@@ -283,6 +284,8 @@ Batch 55 (2026-07-20) legger til `holmlia_bad` som et eget kommunalt svømme- og
 Oslo West-kirkepakken (2026-07-20) legger til `fagerborg_kirke`, `uranienborg_kirke` og `frogner_kirke` som tre separate canonical `by`-steder etter aktiv duplikatkontroll og normative adresse-først-oppslag. De bruker eksisterende kirkemodell og ekskluderer `nature` for å beholde de åtte prioriterte PlaceCard-rundingene.
 
 Batch 60 (2026-07-20) legger til `vestre_gravlund` som et dokumentert `cemetery_area_anchor`. Oslo kommune identifiserer det 243 dekar store gravplassområdet, mens OpenStreetMap way 4740772 gir den konkrete, navngitte gravlundsgeometrien. Det representative punktet er kontrollert inne i polygonet. Besøksadressen Sørkedalsveien 66 brukes bevisst ikke som snarvei for hele gravlunden.
+Batch 56 (2026-07-20) legger til `skimore_oslo` som én canonical helårsrepresentasjon av Skimore-anlegget på Tryvann. Det entydige Geonorge-punktet `geonorge-adresser-v1:0301:17787:64` for Tryvannsveien 64 brukes som publikums-, display- og unlock-anker. Skimore dokumenterer både vinterens alpin-/snowboardanlegg og sommerens klatrepark ved samme anlegg; klatreparken ble bygget i 2012. VisitOSLOs separate sommer- og vinteroppføringer skal derfor ikke bli overlappende place-markører. Adressepunktet representerer hovedankeret og skal ikke leses som full geometri for alle bakker, heiser og klatreparkløyper.
+
 Duplikatmigrering (2026-07-20): `nrk_marienlyst` er fjernet som separat place og alle aktive datareferanser er migrert til canonical `nrk_huset_marienlyst`. Det tidligere naeringsliv-quizsettet er beholdt som faglig spor på canonical place-ID, den komplementære arbeidslivshistorien er slått inn i canonical storyfil, og legacy-ID-en er lagt til alias-gaten for å hindre nye referanser.
 
 Duplikatmigrering (2026-07-20): `jernbanetorget_trafikknutepunkt` er fjernet som separat place fordi recorden representerte samme fysiske knutepunkt som canonical `jernbanetorget`. Den separate næringslivs-Civication-mappingen er fjernet fordi canonical Jernbanetorget allerede har egen Civication-mapping, i18n-dublettnøkler er ryddet, og legacy-ID-en er lagt til alias-gaten. Ingen ny verifisert place er opprettet.
@@ -296,7 +299,7 @@ Duplikatmigrering (2026-07-20): `nydalen_industristed` er fjernet som separat fy
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 206 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 207 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
