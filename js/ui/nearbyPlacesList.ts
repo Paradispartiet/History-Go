@@ -153,16 +153,16 @@ function createPlaceItem(
   const parts = buildMetaParts(place, selection, visited);
   item.innerHTML = `
     <div class="nearby-thumbWrap">
-      <img class="nearby-thumb" src="${escapeHTML(image)}" alt="${escapeHTML(place.name || "")}" loading="lazy" decoding="async">
+      <img class="nearby-thumb" src="${image}" alt="${place.name || ""}" loading="lazy" decoding="async">
       <img class="nearby-badge"
-           src="bilder/merker/${escapeHTML(place.category || "")}.PNG"
+           src="bilder/merker/${place.category || ""}.PNG"
            alt="">
     </div>
 
     <div class="nearby-content">
-      <div class="nearby-title">${escapeHTML(place.name || "")}</div>
+      <div class="nearby-title">${place.name || ""}</div>
       <div class="nearby-meta">
-        ${escapeHTML(parts.join(" · "))}
+        ${parts.join(" · ")}
       </div>
     </div>
   `;
