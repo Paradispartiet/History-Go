@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 224 verifiserte eller kildekontrollerte canonical steder. Batch 77 flytter Helleristningene på Ekeberg fra den feilplasserte opprinnelige raden i Etne-tabellen til riktig Oslo-tabell. Totalantallet endres ikke fordi stedet allerede var canonical og medregnet. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
+Oslo-tabellen inneholder nå 225 verifiserte eller kildekontrollerte canonical steder. Batch 78 legger til The Oslo Gallery med den entydige offisielle Geonorge-adressekoordinaten for Josefines gate 2A, kryssjekket mot galleriets egen aktive nettside og VisitOSLO. Antallet fullførte kontroller uten godkjent Oslo-koordinat er 29.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -245,6 +245,7 @@ Oslo-tabellen inneholder nå 224 verifiserte eller kildekontrollerte canonical s
 | 75 | `galleri_map` | Galleri MAP | verified | `geonorge-adresser-v1:0301:17875:32` |
 | 76 | `vi_vii_gallery` | VI, VII | verified | `geonorge-adresser-v1:0301:15006:8` |
 | 77 | `ekeberg_helleristninger` | Helleristningene på Ekeberg | verified_geometry | `kulturminnesok:41907` |
+| 78 | `the_oslo_gallery` | The Oslo Gallery | verified | `geonorge-adresser-v1:0301:13536:2A` |
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 

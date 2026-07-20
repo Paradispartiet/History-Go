@@ -12,3 +12,13 @@
 - Current status: active gallery and creative hub on Bislett; the official site is active in 2026 and VisitOSLO last updated the listing in June 2026.
 
 Production is approved from this intake.
+
+## Production
+
+- Canonical place: `the_oslo_gallery`
+- Category: `kunst`
+- Coordinate source: `geonorge-adresser-v1:0301:13536:2A`
+- Coordinate status: `verified`
+- Coordinate batch: 78
+- Oslo verified/source-controlled total after production: 225
+- Year field: 2024, used as the start of the current operating company rather than an asserted exact gallery-room opening date.
