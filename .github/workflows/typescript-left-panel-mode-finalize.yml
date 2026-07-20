@@ -1,0 +1,211 @@
+name: TypeScript left panel mode finalize
+
+on:
+  pull_request:
+    paths:
+      - "js/ui/leftPanelMode.ts"
+      - "js/ui/left-panel.js"
+      - "js/app.js"
+      - "schemas/app-globals.d.ts"
+      - "build/build-web.mjs"
+      - ".github/workflows/typescript-left-panel-mode-finalize.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  finalize-left-panel-mode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Wire TypeScript mode controller into legacy left panel
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path_str, old, new):
+              path = Path(path_str)
+              source = path.read_text()
+              if old not in source:
+                  raise SystemExit(f"Expected migration anchor not found in {path_str}: {old[:120]!r}")
+              path.write_text(source.replace(old, new, 1))
+
+          replace_once(
+              "build/build-web.mjs",
+              '  { in: "js/ui/nearbyDrawer.ts", out: "nearbyDrawer" }\n',
+              '  { in: "js/ui/nearbyDrawer.ts", out: "nearbyDrawer" },\n  { in: "js/ui/leftPanelMode.ts", out: "leftPanelMode" }\n'
+          )
+
+          replace_once(
+              "js/app.js",
+              '    await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));\n    await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));',
+              '    await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));\n    await safeRun("loadLeftPanelMode", () => loadScriptOnce("dist/web/leftPanelMode.js"));\n    await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));'
+          )
+
+          replace_once(
+              "js/ui/left-panel.js",
+              '''function hgActiveLeftPanelMode() {
+  return document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
+}''',
+              '''function hgActiveLeftPanelMode() {
+  return window.HGLeftPanelMode?.getActiveMode?.() || "nearby";
+}'''
+          )
+
+          replace_once(
+              "js/ui/left-panel.js",
+              '''function updateNearbyControlVisibility() {
+  const mode = hgActiveLeftPanelMode();
+  const btn = document.getElementById("nearbyFilterBtn");
+  const badgeBtn = document.getElementById("nearbyBadgeFilterBtn");
+  const sortBtn = document.getElementById("nearbySortBtn");
+  const favoritesBtn = document.getElementById("nearbyFavoritesFilterBtn");
+
+  if (btn) btn.style.display = (mode === "nearby" || mode === "nature") ? "inline-flex" : "none";
+  if (badgeBtn) badgeBtn.style.display = (mode === "nature") ? "none" : "inline-flex";
+  if (sortBtn) sortBtn.style.display = (mode === "nearby") ? "inline-flex" : "none";
+  if (favoritesBtn) favoritesBtn.style.display = (mode === "nearby") ? "inline-flex" : "none";
+}''',
+              '''function updateNearbyControlVisibility() {
+  window.HGLeftPanelMode?.updateControlVisibility?.();
+}'''
+          )
+
+          replace_once(
+              "js/ui/left-panel.js",
+              '''let _leftPanelRenderRaf = 0;
+let _leftPanelRenderTimer = 0;
+
+function renderActiveLeftPanelModeNow() {
+  const mode = hgActiveLeftPanelMode();
+
+  if (mode === "nearby" && typeof renderNearbyPlaces === "function") renderNearbyPlaces();
+  if (mode === "people" && typeof renderNearbyPeople === "function") renderNearbyPeople();
+  if (mode === "nature" && typeof renderNearbyNature === "function") renderNearbyNature();
+  if (mode === "routes" && typeof renderLeftRoutesList === "function") renderLeftRoutesList();
+  if (mode === "badges" && typeof renderLeftBadges === "function") renderLeftBadges();
+}
+
+function rerenderActiveLeftPanelMode() {
+  // Badgefilteret kan trykkes svært raskt på iPad/Safari.
+  // Ikke bygg hele Nearby/People/Nature/Routes-listen for hvert trykk.
+  // Samle flere raske trykk til én render i neste frame.
+  if (typeof window.requestAnimationFrame === "function") {
+    if (_leftPanelRenderRaf) window.cancelAnimationFrame(_leftPanelRenderRaf);
+    _leftPanelRenderRaf = window.requestAnimationFrame(() => {
+      _leftPanelRenderRaf = 0;
+      renderActiveLeftPanelModeNow();
+    });
+    return;
+  }
+
+  if (_leftPanelRenderTimer) window.clearTimeout(_leftPanelRenderTimer);
+  _leftPanelRenderTimer = window.setTimeout(() => {
+    _leftPanelRenderTimer = 0;
+    renderActiveLeftPanelModeNow();
+  }, 0);
+}''',
+              '''function renderActiveLeftPanelModeNow() {
+  window.HGLeftPanelMode?.renderNow?.();
+}
+
+function rerenderActiveLeftPanelMode() {
+  window.HGLeftPanelMode?.rerender?.();
+}'''
+          )
+
+          replace_once(
+              "js/ui/left-panel.js",
+              '''function setLeftPanelMode(mode) {
+  const listIdsByMode = {
+    nearby: "nearbyList",
+    people: "leftPeopleList",
+    nature: "leftNatureList",
+    routes: "leftRoutesList",
+    badges: "leftBadgesList",
+  };
+
+  if (!Object.prototype.hasOwnProperty.call(listIdsByMode, mode)) mode = "nearby";
+
+  Object.entries(listIdsByMode).forEach(([key, id]) => {
+    const list = hg$(id);
+    if (list) list.hidden = key !== mode;
+  });
+
+  if (mode === "nature") {
+    window.HG_NEARBY_BADGE_FILTER = "all";
+    try {
+      localStorage.setItem("hg_nearby_badge_filter_v1", "all");
+    } catch {}
+  }
+
+  try {
+    localStorage.setItem("hg_leftpanel_mode_v1", mode);
+  } catch {}
+
+  document.querySelectorAll(".nearby-tab").forEach(btn => {
+    const active = btn.getAttribute("data-leftmode") === mode;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-selected", active ? "true" : "false");
+  });
+
+  if (typeof window.updateNearbyFilterButton === "function") {
+    window.updateNearbyFilterButton();
+  }
+
+  if (typeof window.updateNearbyBadgeFilterButton === "function") {
+    window.updateNearbyBadgeFilterButton();
+  }
+
+  if (typeof window.updateNearbySortButton === "function") {
+    window.updateNearbySortButton();
+  }
+
+  updateNearbyControlVisibility();
+
+  rerenderActiveLeftPanelMode();
+
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
+}''',
+              '''function setLeftPanelMode(mode) {
+  return window.HGLeftPanelMode?.setMode?.(mode) || "nearby";
+}'''
+          )
+
+          replace_once(
+              "schemas/app-globals.d.ts",
+              '    HGNearbyDrawer?: {\n',
+              '    HGLeftPanelMode?: {\n      getActiveMode?: () => "nearby" | "people" | "nature" | "routes" | "badges";\n      setMode?: (mode: unknown) => "nearby" | "people" | "nature" | "routes" | "badges";\n      renderNow?: () => void;\n      rerender?: () => void;\n      updateControlVisibility?: () => void;\n    };\n    HGNearbyDrawer?: {\n'
+          )
+          PY
+      - name: Verify modern and legacy TypeScript surfaces
+        run: |
+          npm run typecheck:web
+          npm run build:web
+          npm run typecheck
+      - name: Commit source integration and generated runtime
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            build/build-web.mjs \
+            js/app.js \
+            js/ui/left-panel.js \
+            js/ui/leftPanelMode.ts \
+            dist/web/leftPanelMode.js \
+            schemas/app-globals.d.ts
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Wire TypeScript left panel mode controller"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
