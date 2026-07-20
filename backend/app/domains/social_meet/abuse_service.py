@@ -142,7 +142,7 @@ def _policy_for_snapshot(
     snapshot: InviteAbuseSnapshot,
     checked_at: datetime,
 ) -> tuple[InviteAbusePolicyTier, InviteRatePolicy]:
-    is_new_profile = checked_at - snapshot.sender_profile_created_at < NEW_PROFILE_WINDOW
+    is_new_profile = checked_at - snapshot.sender_social_meet_started_at < NEW_PROFILE_WINDOW
     is_under_review = snapshot.unresolved_reports_against_sender > 0
     if is_new_profile or is_under_review:
         return InviteAbusePolicyTier.RESTRICTED, RESTRICTED_INVITE_POLICY
