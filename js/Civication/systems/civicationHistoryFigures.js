@@ -48,8 +48,45 @@
       : "Er til stede som byens skikkelse";
   }
 
+  // Sted-kobling: bymodellens sosiale steder (CivicationSocialPlaceResolver)
+  // bærer sourcePlaceId = ekte History Go-placeId. Første lokasjon per placeId
+  // vinner (stabil rekkefølge i modellen -> deterministisk).
+  function locationsByPlaceId(locations) {
+    const map = new Map();
+    (Array.isArray(locations) ? locations : []).forEach((loc) => {
+      const pid = norm(loc?.sourcePlaceId);
+      if (pid && !map.has(pid)) map.set(pid, loc);
+    });
+    return map;
+  }
+
+  function figureRow(person, loc, snapshotPhase, atHomePlace) {
+    return {
+      figure: {
+        id: norm(person.id),
+        name: norm(person.name),
+        category: norm(person.category),
+        desc: norm(person.desc),
+        placeId: norm(person.placeId),
+        year: Number.isFinite(Number(person.year)) ? Number(person.year) : null,
+        image: norm(person.cardImage || person.image)
+      },
+      presence: {
+        locationId: norm(loc.id),
+        state: "in_event",
+        activity: atHomePlace ? "Er ved sitt eget History Go-sted" : activityText(snapshotPhase),
+        phase: snapshotPhase,
+        atHomePlace: !!atHomePlace,
+        visibleOnMap: true
+      }
+    };
+  }
+
   // Ren og testbar: deterministisk utvalg av skikkelser for (fase, dag).
   // collected: samlede personer (LightPerson-rader fra indeksen), sortert-uavhengig.
+  // Sted-kobling: personer hvis ekte placeId finnes i bymodellen prioriteres og
+  // stilles ved sitt eget sted (uansett stedstype); resten fyller opp på de
+  // generiske kultur-/park-/kafésstedene.
   function pickFiguresForPhase(collected, phase, dayIndex, locations) {
     const snapshotPhase = norm(phase);
     if (!VISIBLE_SNAPSHOT_PHASES.includes(snapshotPhase)) return [];
@@ -59,34 +96,32 @@
       .sort((a, b) => norm(a.id).localeCompare(norm(b.id)));
     if (!people.length) return [];
 
+    const byPlace = locationsByPlaceId(locations);
+    const homePeople = people.filter((p) => byPlace.has(norm(p.placeId)));
+    const otherPeople = people.filter((p) => !byPlace.has(norm(p.placeId)));
     const spots = eligibleLocations(locations);
-    if (!spots.length) return [];
+    if (!homePeople.length && !spots.length) return [];
 
-    const start = stableHash("figday_" + String(Number(dayIndex) || 0) + "_" + snapshotPhase) % people.length;
-    const count = Math.min(MAX_FIGURES, people.length, spots.length);
-
+    const seedBase = "figday_" + String(Number(dayIndex) || 0) + "_" + snapshotPhase;
     const rows = [];
-    for (let i = 0; i < count; i++) {
-      const person = people[(start + i) % people.length];
-      const loc = spots[i % spots.length];
-      rows.push({
-        figure: {
-          id: norm(person.id),
-          name: norm(person.name),
-          category: norm(person.category),
-          desc: norm(person.desc),
-          placeId: norm(person.placeId),
-          year: Number.isFinite(Number(person.year)) ? Number(person.year) : null,
-          image: norm(person.cardImage || person.image)
-        },
-        presence: {
-          locationId: norm(loc.id),
-          state: "in_event",
-          activity: activityText(snapshotPhase),
-          phase: snapshotPhase,
-          visibleOnMap: true
-        }
-      });
+
+    // 1) Sted-koblede skikkelser først: personen står ved sitt ekte sted.
+    if (homePeople.length) {
+      const start = stableHash(seedBase + "_home") % homePeople.length;
+      for (let i = 0; i < homePeople.length && rows.length < MAX_FIGURES; i++) {
+        const person = homePeople[(start + i) % homePeople.length];
+        rows.push(figureRow(person, byPlace.get(norm(person.placeId)), snapshotPhase, true));
+      }
+    }
+
+    // 2) Fyll resten med generiske kultursteder.
+    if (rows.length < MAX_FIGURES && otherPeople.length && spots.length) {
+      const start = stableHash(seedBase) % otherPeople.length;
+      const slots = Math.min(MAX_FIGURES - rows.length, otherPeople.length, spots.length);
+      for (let i = 0; i < slots; i++) {
+        const person = otherPeople[(start + i) % otherPeople.length];
+        rows.push(figureRow(person, spots[i % spots.length], snapshotPhase, false));
+      }
     }
     return rows;
   }
