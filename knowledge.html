@@ -2,37 +2,57 @@
 <html lang="nb" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Min kunnskap | History Go</title>
   <meta name="description" content="Ditt personlige kunnskapskart i History Go, bygget av det du faktisk har lært gjennom quiz.">
 
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/knowledge.css">
   <link rel="stylesheet" href="css/knowledge-v2.css">
+  <style>
+    .kv2-side-stack { display: grid; gap: 14px; }
+  </style>
 </head>
 <body class="knowledge-v2-page">
+  <header class="kv2-appbar">
+    <a class="kv2-brand" href="index.html" aria-label="Til kartet">
+      <img src="bilder/logo_historygo.PNG" alt="History Go">
+    </a>
+    <nav class="kv2-appbar-actions" aria-label="Hovednavigasjon">
+      <a href="index.html" class="kv2-icon-link" aria-label="Kart" title="Kart">⌖</a>
+      <a href="profile.html" class="kv2-icon-link" aria-label="Profil" title="Profil">◎</a>
+    </nav>
+  </header>
+
   <main class="knowledge-v2-shell">
-    <header class="knowledge-v2-header">
-      <div class="knowledge-v2-header-row">
-        <a class="kv2-back" href="profile.html">← Til profil</a>
-        <a class="kv2-back" href="index.html">Kart</a>
+    <section class="kv2-hero" aria-labelledby="knowledgeTitle">
+      <div class="kv2-hero-copy">
+        <span class="kv2-eyebrow">Min kunnskap</span>
+        <h1 id="knowledgeTitle">Det du kan.<br>Samlet.</h1>
+        <p>Kunnskap fra quiz blir sortert etter fag, emner og begreper. Steder og personer beholdes som kilder, uten å fylle selve kunnskapsoversikten med ekstra støy.</p>
       </div>
-      <span class="kv2-eyebrow">Knowledge</span>
-      <h1>Min kunnskap</h1>
-      <p class="knowledge-v2-header-copy">
-        Dette er ditt personlige kart over hva du faktisk har forstått gjennom quiz. Kunnskapspunktene kobles til fag, emner og begreper, mens steder og personer beholdes som kilder og kontekst.
-      </p>
-    </header>
+      <section id="knowledgeSummary" class="kv2-summary" aria-label="Kunnskapsoversikt"></section>
+    </section>
 
-    <section id="knowledgeSummary" class="kv2-summary" aria-label="Kunnskapsoversikt"></section>
-    <nav id="knowledgeSubjectNav" class="kv2-subject-nav" aria-label="Velg fagfelt"></nav>
+    <section class="kv2-toolbar" aria-label="Finn og velg kunnskap">
+      <label class="kv2-search" for="knowledgeSearch">
+        <span aria-hidden="true">⌕</span>
+        <input id="knowledgeSearch" type="search" placeholder="Søk i kunnskapen din" autocomplete="off">
+      </label>
+      <nav id="knowledgeSubjectNav" class="kv2-subject-nav" aria-label="Velg fagfelt"></nav>
+    </section>
 
-    <p id="knowledgeLoading">Bygger kunnskapsprofil …</p>
-    <p id="knowledgeError" hidden></p>
-    <div id="knowledgeContent"></div>
+    <p id="knowledgeLoading" class="kv2-status">Bygger kunnskapsprofil …</p>
+    <p id="knowledgeError" class="kv2-status kv2-status-error" hidden></p>
+    <div id="knowledgeContent" aria-live="polite"></div>
   </main>
+
+  <footer class="kv2-footer">
+    <a href="profile.html">Profil</a>
+    <span aria-hidden="true">·</span>
+    <a href="index.html">Kart</a>
+  </footer>
 
   <script src="js/learningLog.js"></script>
   <script src="dist/web/knowledge.js"></script>

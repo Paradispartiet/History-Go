@@ -1,0 +1,83 @@
+name: Knowledge checks
+
+on:
+  pull_request:
+    paths:
+      - 'knowledge.html'
+      - 'knowledge_*.html'
+      - 'knowledge/**'
+      - 'css/knowledge*.css'
+      - 'js/knowledge*.js'
+      - 'scripts/audit-knowledge-*.mjs'
+      - 'tests/knowledge-*.test.*'
+      - 'build/smoke-web.mjs'
+      - '.github/workflows/knowledge-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  knowledge:
+    name: Knowledge UI, model and links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Syntax check Knowledge runtimes and audits
+        run: |
+          node --check js/knowledgeV2.js
+          node --check js/knowledgePage.js
+          node --check scripts/audit-knowledge-contract.mjs
+          node --check scripts/audit-knowledge-links.mjs
+          node --check build/smoke-web.mjs
+
+      - name: Guard Knowledge checkJs diagnostics
+        shell: bash
+        run: |
+          set -o pipefail
+          set +e
+          npm run typecheck > "$RUNNER_TEMP/knowledge-root-typecheck.log" 2>&1
+          set -e
+
+          grep -E '^(js/knowledgePage\.js|js/knowledgeV2\.js).*error TS[0-9]+:' \
+            "$RUNNER_TEMP/knowledge-root-typecheck.log" \
+            | tee reports/knowledge-checkjs-diagnostics.txt \
+            || true
+
+          if [[ -s reports/knowledge-checkjs-diagnostics.txt ]]; then
+            echo 'Knowledge checkJs diagnostics:'
+            cat reports/knowledge-checkjs-diagnostics.txt
+            exit 1
+          fi
+
+      - name: Run Knowledge V2 model tests
+        run: node --test tests/knowledge-v2-model.test.js
+
+      - name: Audit Knowledge links
+        run: node scripts/audit-knowledge-links.mjs
+
+      - name: Generate Knowledge contract audit
+        continue-on-error: true
+        run: node scripts/audit-knowledge-contract.mjs
+
+      - name: Upload Knowledge audits
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-audits
+          path: |
+            reports/knowledge-link-audit.json
+            reports/knowledge-contract-audit.json
+            reports/knowledge-checkjs-diagnostics.txt
+          if-no-files-found: warn
