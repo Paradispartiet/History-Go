@@ -1,3 +1,3 @@
 Triggerfil for engangsjobben. Slettes før PR-en gjøres klar.
 
-Kjør deterministisk batch 3-runner etter registrert workflow.
+Kjør batch 3 med eksplisitt godkjent samlokalisering i Hausmanns gate 34.
