@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "0.10.0",
+    "version": "0.11.0",
     "purpose": "Kildekontrollert artskobling for Etne-steder. Kartet viser bare arter som er eksplisitt dokumentert for stedet eller vassdraget; Artskart-utvidelser skal kurateres separat.",
     "updatedAt": "2026-07-21",
     "sources": [
@@ -21,7 +21,8 @@
       "https://lovdata.no/dokument/LF/forskrift/1987-04-03-245",
       "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28705433.3263871255+8364787.747050965%2C706073.3263871255+8364787.747050965%2C706073.3263871255+8365427.747050965%2C705433.3263871255+8365427.747050965%2C705433.3263871255+8364787.747050965%29%29",
       "https://www.nve.no/vann-og-vassdrag/vassdragsforvaltning/verneplan-for-vassdrag/vestland/042-1-vaulaelva-m-langfossen/",
-      "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28717729.5273050789+8371811.382068809%2C718209.5273050789+8371811.382068809%2C718209.5273050789+8372291.382068809%2C717729.5273050789+8372291.382068809%2C717729.5273050789+8371811.382068809%29%29"
+      "https://artskart.artsdatabanken.no/publicapi/api/observations/list/?gmWktPolygon=POLYGON%28%28717729.5273050789+8371811.382068809%2C718209.5273050789+8371811.382068809%2C718209.5273050789+8372291.382068809%2C717729.5273050789+8372291.382068809%2C717729.5273050789+8371811.382068809%29%29",
+      "https://arcgis001.miljodirektoratet.no/arcgis/rest/services/vann_nett_ekstern/Vannmiljo/MapServer/1"
     ]
   },
   "places": {
@@ -163,6 +164,52 @@
       "species_audit": "reports/etne-natur-batch-7-jettegrytene-artskart-candidates.json",
       "analysis_scope": "square_240m_from_canonical_place_anchor",
       "unmatched_taxa_count": 0
+    },
+    "akrafjorden": {
+      "fauna": [
+        "emne_fauna_graamaake",
+        "emne_fauna_fiskemaake",
+        "emne_fauna_knoppsvane",
+        "emne_fauna_svartbak",
+        "emne_fauna_havoern",
+        "emne_fauna_sildemaake",
+        "emne_fauna_tjeld",
+        "emne_fauna_siland",
+        "emne_fauna_graagas",
+        "emne_fauna_graahegre",
+        "emne_fauna_storskarv",
+        "emne_fauna_glassvar",
+        "emne_fauna_sandflyndre",
+        "emne_fauna_skrubbe",
+        "emne_fauna_nise",
+        "emne_fauna_lange",
+        "emne_fauna_grov_mudderslangestjerne",
+        "emne_fauna_lyresjomus",
+        "emne_fauna_raudaate",
+        "emne_fauna_brisling",
+        "emne_fauna_buet_kamborstemark",
+        "emne_fauna_langarmet_slangestjerne",
+        "emne_fauna_brosme",
+        "emne_fauna_sild",
+        "emne_fauna_havmus",
+        "emne_fauna_norsk_storkrill",
+        "emne_fauna_blaaskjell",
+        "emne_fauna_hvitting",
+        "emne_fauna_sjokreps",
+        "emne_fauna_makrell",
+        "emne_fauna_spekkhogger"
+      ],
+      "flora": [],
+      "documentation": "Åkrafjorden er avgrenset med Vann-Nett-vannforekomsten NO0260020600-C. Artskart-revisjonen spurte 104 fliser, dedupliserte 17 964 råobservasjoner og beholdt 1 093 observasjoner innenfor den eksakte fjordpolygonen etter år- og presisjonsfilter. Første publiserte kortbatch omfatter elleve eksisterende fjordfugler og tjue tydelige marine arter. Høyere taxa, samlegrupper og terrestriske kanttreff publiseres ikke som fjordarter.",
+      "species_audit": "reports/etne-natur-batch-9-akrafjorden-artskart.json",
+      "geometry_audit": "reports/etne-natur-batch-8-akrafjorden-waterbody-geometry.json",
+      "waterbody_code": "NO0260020600-C",
+      "analysis_scope": "exact_vann_nett_waterbody_polygon",
+      "published_species_batch": 1,
+      "published_species_count": 31,
+      "remaining_species_level_taxa_count": 230,
+      "excluded_higher_taxa_count": 99,
+      "unmatched_taxa_count": 230
     }
   }
 }
