@@ -1,0 +1,71 @@
+(node:2423) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/runner/work/History-Go/History-Go/tests/hovedoya-mapped-species-inventory.test.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/runner/work/History-Go/History-Go/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# Subtest: Hovedøya inventory matches active nature maps
+ok 1 - Hovedøya inventory matches active nature maps
+  ---
+  duration_ms: 1.412755
+  type: 'test'
+  ...
+# Subtest: Hovedøya inventory entries expose names, latin and map evidence
+ok 2 - Hovedøya inventory entries expose names, latin and map evidence
+  ---
+  duration_ms: 0.313877
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10.000026
+npm warn exec The following package was not found and will be installed: tsx@4.23.1
+{
+  "placesLoaded": 5479,
+  "placeFilesLoaded": 1610,
+  "floraIdsLoaded": 213,
+  "faunaIdsLoaded": 435,
+  "mapsChecked": [
+    {
+      "mapPath": "data/natur/nature_place_map.json",
+      "placeCount": 20,
+      "floraRefs": 84,
+      "faunaRefs": 63
+    },
+    {
+      "mapPath": "data/natur/nature_bird_place_map.json",
+      "placeCount": 67,
+      "floraRefs": 0,
+      "faunaRefs": 510
+    },
+    {
+      "mapPath": "data/natur/nature_oslo_expansion_place_map.json",
+      "placeCount": 19,
+      "floraRefs": 84,
+      "faunaRefs": 84
+    },
+    {
+      "mapPath": "data/natur/nature_routes_place_map.json",
+      "placeCount": 16,
+      "floraRefs": 19,
+      "faunaRefs": 118
+    },
+    {
+      "mapPath": "data/natur/nature_etne_place_map.json",
+      "placeCount": 10,
+      "floraRefs": 23,
+      "faunaRefs": 274
+    }
+  ],
+  "missingPlaces": [],
+  "missingFlora": [],
+  "missingFauna": []
+}
+
+Nature map validation passed.
+Hovedøya species_inventory OK: 21 flora + 1 fauna = 22 arter
