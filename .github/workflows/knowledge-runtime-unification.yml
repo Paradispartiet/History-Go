@@ -26,6 +26,24 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Apply deterministic TypeScript migration
         run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/apply-knowledge-runtime-unification.ts')
+          source = path.read_text()
+          source = source.replace(
+              'function write(path: string, content: string): void { fs.mkdirSync(path.split("/").slice(0, -1).join("/"), { recursive: true }); fs.writeFileSync(path, content); }',
+              'function write(path: string, content: string): void { const dir = path.split("/").slice(0, -1).join("/"); if (dir) fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(path, content); }'
+          )
+          source = source.replace(
+              'const base = `http://127.0.0.1:${port}`;',
+              'const base = "http://127.0.0.1:" + port;'
+          )
+          source = source.replace(
+              'await page.goto(`${base}/tests/fixtures/knowledge-e2e.html`);',
+              'await page.goto(base + "/tests/fixtures/knowledge-e2e.html");'
+          )
+          path.write_text(source)
+          PY
           rm -rf /tmp/hg-knowledge-unification
           npx tsc scripts/apply-knowledge-runtime-unification.ts --outDir /tmp/hg-knowledge-unification --target es2022 --module commonjs --moduleResolution node --types node --esModuleInterop --skipLibCheck
           node /tmp/hg-knowledge-unification/apply-knowledge-runtime-unification.js
