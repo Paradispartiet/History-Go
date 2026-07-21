@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 248 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 105 legger til Bygdø Kongsgård med et eksakt navngitt besøksobjekt, kryssjekket mot Kongehusets offisielle identitet og eksplisitt skilt fra salamanderdammen og de brede park-/farmyard-geometriene. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
+Oslo-tabellen inneholder nå 262 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 106 kontrollerer alle seks legacy-punktene i `places_oslo_natur_bygdoy.json` etter objekt-type-først-metoden. Dronningberget bruker offisiell Naturbase-vernepolygon; øvrige godkjente steder krever eksakt navngitt OSM-objekt med uavhengig identitetskryssjekk. Uavklarte navn eller geometrier avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -304,6 +304,11 @@ Batch 103 (2026-07-21) produserer `oscarshall` som eget historisk lystslott og k
 Batch 104 (2026-07-21) produserer `vikingtidsmuseet` som én stabil fysisk museumsidentitet for det bevarte Vikingskipshuset fra 1926 og det sammenkoblede nye museumsanlegget på Huk aveny 35. Geonorge-adressepunktet verifiserer stedet, mens bygge- og besøksstatus holdes eksplisitt adskilt fra koordinatstatus; recorden oppretter derfor ikke et konkurrerende separat `vikingskipshuset`-sted.
 
 | 105 | `bygdoy_kongsgard` | Bygdø Kongsgård | verified_geometry | `osm-node:6593517797` |
+| 106 | `bygdoy_dronningberget` | Bygdøy Dronningberget | verified_geometry | `miljodirektoratet-naturvern:VV00003059` |
+| 106 | `bygdoy_huk` | Bygdøy Huk | verified_geometry | `osm-way:32547162` |
+| 106 | `bygdoy_paradisbukta` | Bygdøy Paradisbukta | verified_geometry | `osm-way:28447738` |
+
+Batch 106 (2026-07-21) reviderer hele Bygdøy-naturkilden fra 2026-05-03, der legacy-statusene var `OpenStreetMap/Mapcarta` eller `nearby_reference`. Dronningberget forankres i offisiell Naturbase-geometri VV00003059. For Kongeskogen, Huk, Paradisbukta og Bygdøynes brukes bare et unikt eksakt navnetreff som også passer forhåndsdefinert fysisk objekttype innenfor Bygdøy-boksen; alle rå Nominatim-resultater lagres. Røykensvika godkjennes ikke uten uavhengig dokumentasjon av at place-identiteten faktisk finnes på Bygdøy.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -425,6 +430,9 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `alna_smalvoll` – Alna ved Smalvoll | needs_review | Flere navngitte Alna-way-er passer det brede Smalvollområdet, mens recorden ikke avgrenser én konkret elvestrekning og dagens punkt ved Smalvollveien ikke er kildebevis. | Avgrens ett konkret elve-segment eller modeller flere kildebelagte ruteankre. |
 | `alna_bryn` – Alna ved Bryn | needs_review | Flere Alna-segmenter finnes ved Bryn; Bryn bru er ikke identisk med den brede elverecorden, og ingen entydig Brynsfossen-geometri ble dokumentert. | Avgrens recorden til en konkret elvestrekning eller modeller flere kildebelagte ankere. |
 | `alna_utlop_bjorvika` – Alna utløp i Bjørvika | needs_review | Recorden kombinerer historisk utløpslandskap, vannspeilet som markerer den gamle munningen og dagens tunnelutløp ved Kongshavn. Ett enkelt punkt kan ikke representere alle tidslagene. | Bygg en eksplisitt historisk area-/multi-anchor-modell som skiller opprinnelig elveos, vannspeil og dagens tunnelutløp. |
+| `bygdoy_kongeskogen` – Bygdøy Kongeskogen | needs_review | Identiteten er dokumentert, men kontrollen ga ikke ett entydig eksakt navngitt objekt som passer fysisk objekttype innenfor Bygdøy-boksen. | ett entydig eksakt navngitt fysisk objekt eller offisiell områdegeometri |
+| `bygdoy_bygdoynes` – Bygdøy Bygdøynes | needs_review | Identiteten er dokumentert, men kontrollen ga ikke ett entydig eksakt navngitt objekt som passer fysisk objekttype innenfor Bygdøy-boksen. | ett entydig eksakt navngitt fysisk objekt eller offisiell områdegeometri |
+| `bygdoy_roykenvika` – Bygdøy Røykensvika | needs_review | Ingen uavhengig troverdig kilde dokumenterer Røykensvika som sted på Bygdøy; gamle Mapcarta/OSM-opplysninger kan ikke verifisere en uavklart identitet. | uavhengig troverdig kilde som dokumenterer lokal stedsidentitet på Bygdøy |
 
 ## Etne – historiesett
 
@@ -472,8 +480,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 97.
-- `places_kunst.json` er nå uttømt i kildefilens rekkefølge. Før batch 97 starter skal `data/places/litteratur/oslo/places_litteratur.json` auditeres mot protokollen, og tidligere kontrollerte placeId-er skal hoppes over eksplisitt.
+- Neste nye Oslo-kontroll er batch 107.
+- `places_oslo_natur_bygdoy.json` er nå fullt kontrollert i manifestrekkefølge. Før batch 107 starter skal `data/places/natur/oslo/places_oslo_natur_hovedsteder.json` auditeres mot protokollen og den separate needs_review-tabellen; tidligere kontrollerte placeId-er skal hoppes over eksplisitt.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 

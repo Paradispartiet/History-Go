@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bygdoy_huk",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_bygdoy.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.89502117,
+    "lon": 10.676365350000001,
+    "r": 130,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 32547162 – Huk",
+    "coordType": "named_recreation_area_anchor",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt med semantisk objekttypefilter innenfor en avgrenset Bygdøy-boks; ikke nearest/first-hit. Uavhengig kilde kryssjekker identiteten og fysisk scope. OSM-objekt: natural/beach, geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Bygdøy Huk",
+    "resolvedIdentity": "Huk bade- og friluftsområde ytterst på Bygdøy",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt OSM-objekt",
+    "uavhengig identitets-/scope-kryssjekk"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Huk",
+      "sourceUrl": "https://www.openstreetmap.org/way/32547162",
+      "sourceObjectId": "osm-way:32547162",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navngitt objekt innenfor Bygdøy-boksen: natural/beach, Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Unikt høyest rangerte eksakte navnetreff etter forhåndsdefinert objekttypefilter; ikke nearest/first-hit."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Huk",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/huk/",
+      "sourceObjectId": "oslo-kommune:badeplass:huk",
+      "sourceQuality": "official_recreation_area_identity",
+      "finding": "Oslo kommune beskriver Huk som bade- og friluftsområde på tuppen av Bygdøy.",
+      "canVerifyCoordinate": false,
+      "reason": "Kommunen bekrefter identiteten; det eksakt navngitte OSM-objektet leverer koordinatgeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:32547162",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:badeplass:huk",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:32547162",
+      "lat": 59.89502117,
+      "lon": 10.676365350000001,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.89502117,
+      "lon": 10.676365350000001,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:32547162",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt med semantisk objekttypefilter innenfor en avgrenset Bygdøy-boks; ikke nearest/first-hit. Uavhengig kilde kryssjekker identiteten og fysisk scope. OSM-objekt: natural/beach, geometri: Polygon."
+  ]
+}
