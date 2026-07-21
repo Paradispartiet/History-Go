@@ -67,7 +67,9 @@
         "The museum moved to Holmenkollbakken in connection with the 1952 Olympics and remains a distinct museum institution inside the ski-jump complex.",
         "The current combined visitor ticket includes both the museum and jump tower, but commercial bundling does not erase the physical and institutional distinction between museum and arena."
       ],
-      "coordinateGate": "Address-first/object-first hybrid: use the exact museum entrance/building identity at Kongeveien 40 if it resolves distinctly; cross-check against the existing Holmenkollen National Ski Arena geometry before production."
+      "coordinateGate": "Address conflict resolved in the final coordinate intake: use exact Geonorge Kongeveien 5 as the canonical visitor marker, retain Kongeveien 40 as a documented alternative access/complex address, and preserve the explicit parent-overlap audit against holmenkollen_nasjonalanlegg.",
+      "coordinateIntakeStatus": "closed_ready_for_production",
+      "coordinateDecisionFile": "reports/visitoslo-holmenkollen-audit-20260721/skimuseum-coordinate-intake-final.json"
     }
   ],
   "sourceItemSpecialResolution": {
@@ -82,6 +84,7 @@
     "A stable institution inside a broader parent complex may become a place when it has its own persistent identity, history and physical visitor location; this applies to the Ski Museum.",
     "Oslo Golfklubb Bogstad is already canonical on current main as coordinate batch 117 and must not be recreated by this audit.",
     "The jump tower is not a new candidate because it is already physically represented by the canonical Holmenkollen National Ski Arena scope.",
+    "Kongeveien 5 is the locked canonical museum visitor marker; Kongeveien 40 is retained transparently as an alternative access/complex address.",
     "The remaining approved candidate must be re-audited against current main immediately before production."
   ]
 }
