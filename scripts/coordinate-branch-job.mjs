@@ -13,26 +13,47 @@ const INDEX = 'data/places/politikk/oslo/places_politikk_index.json';
 const MANIFEST = 'data/places/politikk/oslo/places_politikk_manifest.json';
 const PROTOCOL = 'docs/coordinates/coordinate-control-protocol.md';
 const REPORT_DIR = 'reports/oslo-coordinate-control-batch-118-politikk';
+const COORD_FIELDS = [
+  'lat',
+  'lon',
+  'r',
+  'locatorType',
+  'sourceProvider',
+  'sourceObjectId',
+  'address',
+  'geocodeAccuracy',
+  'coordRole',
+  'coordType',
+  'coordStatus',
+  'coordSource',
+  'coordVerifiedAt',
+  'coordNote'
+];
 
 const BUILDINGS = {
   stortinget: {
     address: 'Karl Johans gate 22 Oslo',
+    variants: ['Karl Johans gate 22'],
     addressBasis: 'Stortingets egen bygningshistorikk dokumenterer Karl Johans gate 22 som stortingsbygningens adresse.'
   },
   oslo_radhus: {
     address: 'Rådhusplassen 1 Oslo',
+    variants: ['Rådhusplassen 1'],
     addressBasis: 'Oslo kommune oppgir Rådhusplassen 1 som besøksadresse for Oslo rådhus.'
   },
   hoyesteretts_hus: {
     address: 'Høyesteretts plass 1 Oslo',
+    variants: ['Høyesteretts plass 1', 'Hoyesteretts plass 1 Oslo'],
     addressBasis: 'Norges Høyesterett oppgir Høyesteretts plass 1 som adressen til Høyesteretts hus.'
   },
   politihuset_gronland: {
     address: 'Grønlandsleiret 44 Oslo',
+    variants: ['Grønlandsleiret 44'],
     addressBasis: 'Politiet oppgir Grønlandsleiret 44 som besøksadresse for Grønland politistasjon / Politihuset i Oslo.'
   },
   folkets_hus_oslo: {
     address: 'Youngs gate 11 Oslo',
+    variants: ['Youngs gate 11'],
     addressBasis: 'Folkets Hus / Oslo Kongressenter er dokumentert på Youngs gate 11.'
   }
 };
@@ -72,25 +93,59 @@ function currentCoordinate(place) {
   };
 }
 
-function runAddressLookup(id, address) {
+function runFinder(query) {
   const proc = spawnSync(
     process.execPath,
-    ['dist/tools/address-first-coordinate-finder.mjs', '--address', address],
+    ['dist/tools/address-first-coordinate-finder.mjs', '--address', query],
     { cwd: ROOT, encoding: 'utf8' }
   );
   const stdout = String(proc.stdout || '').trim();
   const stderr = String(proc.stderr || '').trim();
-  if (!stdout) throw new Error(`No Geonorge output for ${id}: ${stderr}`);
-
-  let result;
+  if (!stdout) {
+    return {
+      ok: false,
+      status: 'error',
+      reason: `Ingen output fra address-first-finneren${stderr ? `: ${stderr}` : ''}`,
+      query
+    };
+  }
   try {
-    result = JSON.parse(stdout);
+    return JSON.parse(stdout);
   } catch {
-    throw new Error(`Could not parse Geonorge output for ${id}: ${stdout}\n${stderr}`);
+    return {
+      ok: false,
+      status: 'error',
+      reason: `Ugyldig JSON fra address-first-finneren: ${stdout}${stderr ? ` / ${stderr}` : ''}`,
+      query
+    };
+  }
+}
+
+function runAddressLookup(id, config) {
+  const queries = [...new Set([config.address, ...(config.variants || [])])];
+  const attempts = [];
+  let firstNonError = null;
+
+  for (const query of queries) {
+    const result = runFinder(query);
+    attempts.push(result);
+    if (result.ok && result.status === 'verified_candidate' && result.coordinate) {
+      writeJson(`${REPORT_DIR}/geonorge-${id}.json`, result);
+      writeJson(`${REPORT_DIR}/geonorge-${id}-attempts.json`, attempts);
+      return result;
+    }
+    if (result.status !== 'error' && !firstNonError) firstNonError = result;
   }
 
-  writeJson(`${REPORT_DIR}/geonorge-${id}.json`, result);
-  return result;
+  writeJson(`${REPORT_DIR}/geonorge-${id}-attempts.json`, attempts);
+  if (firstNonError) {
+    writeJson(`${REPORT_DIR}/geonorge-${id}.json`, firstNonError);
+    return firstNonError;
+  }
+
+  throw new Error(
+    `Geonorge address-first remained technically unavailable for ${id}; refusing OSM fallback on transport/server errors. Attempts: ${attempts.map((x) => `${x.query}: ${x.reason}`).join(' | ')}`
+  );
 }
 
 function applyOfficialAddress(place, result) {
@@ -232,7 +287,7 @@ for (const [id, config] of Object.entries(BUILDINGS)) {
     coordSource: place.coordSource,
     sourceObjectId: place.sourceObjectId || place.coordSourceId || null
   };
-  const lookup = runAddressLookup(id, config.address);
+  const lookup = runAddressLookup(id, config);
   const evidencePath = `data/coordinate-evidence/oslo/politikk/${id}.json`;
   const evidence = readJson(evidencePath);
 
@@ -261,8 +316,8 @@ for (const [id, config] of Object.entries(BUILDINGS)) {
 
   writeJson(`${CHILD_DIR}/${id}.json`, place);
   const row = findPlace(index, id);
-  for (const key of ['lat', 'lon', 'r', 'coordStatus', 'coordType']) {
-    row[key] = place[key] ?? null;
+  for (const field of COORD_FIELDS) {
+    row[field] = place[field] ?? null;
   }
 }
 
@@ -319,7 +374,7 @@ fs.writeFileSync(full(PROTOCOL), protocol);
 const resultsPath = `${REPORT_DIR}/results.json`;
 const report = fs.existsSync(full(resultsPath)) ? readJson(resultsPath) : {};
 report.addressFirstCorrectionAt = new Date().toISOString();
-report.method = 'object-type first; concrete addressable buildings use Geonorge first; exact OSM geometry is only a documented fallback; public spaces use exact geometry; no nearest/first-hit';
+report.method = 'object-type first; concrete addressable buildings use Geonorge first; exact OSM geometry is only a documented fallback after a successful non-error address lookup; public spaces use exact geometry; no nearest/first-hit';
 report.addressFirstResults = results;
 report.after = report.after || {};
 for (const id of Object.keys(BUILDINGS)) {
@@ -343,7 +398,7 @@ const correctionHeader = '## Address-first correction';
 if (readme.includes(correctionHeader)) {
   readme = readme.slice(0, readme.indexOf(correctionHeader)).trimEnd();
 }
-readme += `\n\n${correctionHeader}\n\nDen opprinnelige batch-kjøringen gikk direkte til OSM for konkrete adressebare bygg. Dette er korrigert mot den låste coordinate policyen: Geonorge Adresser API er forsøkt først for Stortinget, Oslo rådhus, Høyesteretts hus, Politihuset på Grønland og Folkets Hus i Oslo. Entydige adressepunkter brukes som primær koordinatkilde; OSM-geometri beholdes bare som dokumentert fallback dersom adresseoppslaget ikke kan anvendes. Youngstorget og Eidsvolls plass forblir geometriankre, og Regjeringskvartalet forblir needs_review.\n\n- Geonorge primary: ${officialIds.join(', ') || 'ingen'}\n- OSM fallback etter dokumentert adresseforsøk: ${fallbackIds.join(', ') || 'ingen'}\n`;
+readme += `\n\n${correctionHeader}\n\nDen opprinnelige batch-kjøringen gikk direkte til OSM for konkrete adressebare bygg. Dette er korrigert mot den låste coordinate policyen: Geonorge Adresser API er forsøkt først for Stortinget, Oslo rådhus, Høyesteretts hus, Politihuset på Grønland og Folkets Hus i Oslo. Entydige adressepunkter brukes som primær koordinatkilde; OSM-geometri beholdes bare som dokumentert fallback etter et faktisk ikke-feilende Geonorge-resultat uten anvendbart treff. Tekniske Geonorge-feil blokkerer kjøringen og kan ikke legitimere fallback. Youngstorget og Eidsvolls plass forblir geometriankre, og Regjeringskvartalet forblir needs_review.\n\n- Geonorge primary: ${officialIds.join(', ') || 'ingen'}\n- OSM fallback etter dokumentert ikke-feilende adresseforsøk: ${fallbackIds.join(', ') || 'ingen'}\n`;
 fs.writeFileSync(full(readmePath), `${readme}\n`);
 
 console.log(JSON.stringify({ ok: true, batch: BATCH, officialIds, fallbackIds, results }, null, 2));
