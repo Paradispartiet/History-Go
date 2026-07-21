@@ -28,6 +28,20 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Resolve official Trøndelag Teater address pair
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/add-scenekunst-national-venues-batch-1.mjs')
+          s = p.read_text()
+          marker = "id: 'trondelag_teater'"
+          start = s.index(marker)
+          number_pos = s.index('number: 18,', start)
+          s = s[:number_pos] + 'number: 20,' + s[number_pos + len('number: 18,'):]
+          p.write_text(s)
+          PY
+          rm -f reports/scenekunst-national-new-venues-batch-1-runner-error.log
+
       - name: Build five national venue packages
         id: venue_build
         shell: bash
