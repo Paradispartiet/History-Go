@@ -1,0 +1,67 @@
+{
+  "capturedAt": "2026-07-21",
+  "source": "OpenStreetMap exact-name object lookup via Nominatim and Overpass; raw responses were captured by coordinate runner PR #3088",
+  "results": {
+    "bogstadvannet": {
+      "decision": "exact_named_water_geometry",
+      "osmType": "way",
+      "osmId": 4351126,
+      "sourceObjectId": "osm-way:4351126",
+      "name": "Bogstadvannet",
+      "natural": "water",
+      "representativeCenter": {
+        "lat": 59.9717505,
+        "lon": 10.6203388
+      },
+      "nominatimBoundingBox": [59.9648244, 59.9786765, 10.6037408, 10.6369369],
+      "representationNote": "Use the named lake geometry, not Bogstad gård. The final representative anchor must remain on the lake and the Oslo/Bærum boundary context must be documented."
+    },
+    "kollentrollet": {
+      "decision": "exact_named_artwork_point",
+      "osmType": "node",
+      "osmId": 1768125117,
+      "sourceObjectId": "osm-node:1768125117",
+      "lat": 59.9633497,
+      "lon": 10.6719057,
+      "tourism": "artwork",
+      "artworkType": "sculpture",
+      "artistWikidata": "Q543407",
+      "representationNote": "Exact named sculpture point; do not inherit Holmenkollen nasjonalanlegg coordinates."
+    },
+    "vettakollen": {
+      "decision": "exact_named_peak_point",
+      "osmType": "node",
+      "osmId": 301173327,
+      "sourceObjectId": "osm-node:301173327",
+      "lat": 59.9765497,
+      "lon": 10.6990279,
+      "natural": "peak",
+      "elevationM": 419,
+      "wikidata": "Q31371032",
+      "rejectedNamesakes": [
+        "osm-node:1347436843 railway halt",
+        "osm-node:1424623691 suburb",
+        "osm-relation:2890632 subway stop area"
+      ],
+      "representationNote": "The canonical candidate is the 419 m summit, not the T-bane station or residential area."
+    },
+    "kragstotten": {
+      "decision": "exact_named_memorial_point",
+      "osmType": "node",
+      "osmId": 484968664,
+      "sourceObjectId": "osm-node:484968664",
+      "lat": 59.9724502,
+      "lon": 10.6554365,
+      "historic": "memorial",
+      "memorial": "statue",
+      "startDate": "1909",
+      "descriptionNo": "Portrettstaue av veidirektør Hans Hagerup Krag (1829-1907)",
+      "wikidata": "Q63973180",
+      "rejectedNamesakes": [
+        "osm-node:617977363 guidepost",
+        "osm-node:1795800553 viewpoint"
+      ],
+      "representationNote": "Use the 1909 memorial statue, not the nearby guidepost or viewpoint sharing the name."
+    }
+  }
+}
