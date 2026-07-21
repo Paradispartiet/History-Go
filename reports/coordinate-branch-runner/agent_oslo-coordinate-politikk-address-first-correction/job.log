@@ -1,159 +1,19 @@
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
 {
-  "generatedAt": "2026-07-21T06:33:51.752Z",
+  "ok": true,
   "batch": 118,
-  "sourceQueue": "data/places/politikk/oslo/places_politikk.json",
-  "pendingIds": [
+  "officialIds": [
     "stortinget",
-    "youngstorget",
     "oslo_radhus",
-    "eidsvolls_plass",
-    "regjeringskvartalet",
     "hoyesteretts_hus",
     "politihuset_gronland",
     "folkets_hus_oslo"
   ],
-  "skippedPreviouslyCompleted": [
-    "tinghuset"
-  ],
-  "verified": [
-    "stortinget",
-    "youngstorget",
-    "oslo_radhus",
-    "eidsvolls_plass",
-    "hoyesteretts_hus",
-    "politihuset_gronland",
-    "folkets_hus_oslo"
-  ],
-  "needsReview": [
-    "regjeringskvartalet"
-  ],
-  "before": {
-    "stortinget": {
-      "lat": 59.91325,
-      "lon": 10.7389,
-      "coordStatus": "verified",
-      "coordSource": "manual_map_patch",
-      "coordType": "building_center"
-    },
-    "youngstorget": {
-      "lat": 59.91498,
-      "lon": 10.74916,
-      "coordStatus": "verified",
-      "coordSource": "osm_geometry_or_address",
-      "coordType": "square_center"
-    },
-    "oslo_radhus": {
-      "lat": 59.9129,
-      "lon": 10.7336,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "eidsvolls_plass": {
-      "lat": 59.9157,
-      "lon": 10.7388,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "regjeringskvartalet": {
-      "lat": 59.9156,
-      "lon": 10.7451,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "hoyesteretts_hus": {
-      "lat": 59.914444,
-      "lon": 10.744444,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "politihuset_gronland": {
-      "lat": 59.910833,
-      "lon": 10.770278,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "folkets_hus_oslo": {
-      "lat": 59.91547,
-      "lon": 10.74964,
-      "coordStatus": "verified",
-      "coordSource": "osm_geometry_and_wikidata",
-      "coordType": "building_center"
-    }
-  },
-  "after": {
-    "stortinget": {
-      "lat": 59.91321312337565,
-      "lon": 10.74032524097933,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:13630:22"
-    },
-    "youngstorget": {
-      "lat": 59.9148777657128,
-      "lon": 10.748995479003364,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap relation 12773689 – Youngstorget",
-      "coordType": "square_center",
-      "sourceObjectId": "osm-relation:12773689"
-    },
-    "oslo_radhus": {
-      "lat": 59.91174989125625,
-      "lon": 10.733452414128745,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:16120:1"
-    },
-    "eidsvolls_plass": {
-      "lat": 59.91333813065615,
-      "lon": 10.738953660589342,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap way 841080897 – Eidsvolls plass",
-      "coordType": "public_space_center",
-      "sourceObjectId": "osm-way:841080897"
-    },
-    "regjeringskvartalet": {
-      "lat": 59.9156,
-      "lon": 10.7451,
-      "coordStatus": "needs_source",
-      "coordSource": "regjeringskvartalet_canonical_geometry_unresolved",
-      "coordType": "legacy_unverified",
-      "sourceObjectId": null
-    },
-    "hoyesteretts_hus": {
-      "lat": 59.914567897676186,
-      "lon": 10.744510031498768,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1"
-    },
-    "politihuset_gronland": {
-      "lat": 59.91076260893923,
-      "lon": 10.770099603960052,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:12450:44"
-    },
-    "folkets_hus_oslo": {
-      "lat": 59.9148900622556,
-      "lon": 10.750628039496302,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:18550:11"
-    }
-  },
-  "method": "object-type first; concrete addressable buildings use Geonorge first; exact OSM geometry is only a documented fallback after a successful non-error address lookup; public spaces use exact geometry; no nearest/first-hit",
-  "addressFirstCorrectionAt": "2026-07-21T06:55:35.761Z",
-  "addressFirstResults": {
+  "fallbackIds": [],
+  "results": {
     "stortinget": {
       "method": "official_address",
       "address": "Karl Johans gate 22 Oslo",
