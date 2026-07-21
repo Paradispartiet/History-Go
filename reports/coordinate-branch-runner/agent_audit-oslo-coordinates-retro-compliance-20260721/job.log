@@ -7,157 +7,19 @@
 > tsc -p tsconfig.tools.build.json
 
 Wrote 1333 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 202 category override(s)
-
-> history-go@0.0.0 build:tools
-> tsc -p tsconfig.tools.build.json
-
 {
-  "status": "contract_failure_batch_resolved",
-  "addressFirstVerified": 13,
-  "addressFirstDowngraded": 2,
-  "explicitDowngrades": 4,
-  "normalized": 3,
-  "remainingFindings": 0,
-  "addressResults": [
-    {
-      "placeId": "blitzhuset",
-      "query": "Pilestredet 30C Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:15670:30C",
-      "lat": 59.91840193086,
-      "lon": 10.73778846737114
-    },
-    {
-      "placeId": "gamlebyen_sport_og_fritid",
-      "query": "St. Halvards gate 4 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:16931:4",
-      "lat": 59.905411273181684,
-      "lon": 10.768437847106954
-    },
-    {
-      "placeId": "hausmania",
-      "query": "Hausmanns gate 34 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
-      "lat": 59.919148209457326,
-      "lon": 10.751977548509613
-    },
-    {
-      "placeId": "helvete_neseblod_records",
-      "query": "Schweigaards gate 56 Oslo",
-      "status": "downgraded_needs_source",
-      "exactHits": 0,
-      "totalHits": 2
-    },
-    {
-      "placeId": "jaeger_oslo",
-      "query": "Grensen 9 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:12356:9",
-      "lat": 59.913899495519225,
-      "lon": 10.743437565163234
-    },
-    {
-      "placeId": "kafe_haerverk",
-      "query": "Hausmanns gate 34 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
-      "lat": 59.919148209457326,
-      "lon": 10.751977548509613
-    },
-    {
-      "placeId": "last_train_oslo",
-      "query": "Karl Johans gate 45 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:13630:45",
-      "lat": 59.91457300863339,
-      "lon": 10.73664031059204
-    },
-    {
-      "placeId": "mir_grunerlokka_lufthavn",
-      "query": "Toftes gate 69 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:17566:69",
-      "lat": 59.92154264383429,
-      "lon": 10.761013090288696
-    },
-    {
-      "placeId": "oslo_skatehall",
-      "query": "Stavangergata 28 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:16960:28",
-      "lat": 59.94192173205158,
-      "lon": 10.752505988709485
-    },
-    {
-      "placeId": "revolver_oslo",
-      "query": "Møllergata 32 Oslo",
-      "status": "downgraded_needs_source",
-      "exactHits": 0,
-      "totalHits": 4
-    },
-    {
-      "placeId": "rock_in_oslo",
-      "query": "Grønland 14 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:12446:14",
-      "lat": 59.91312888495517,
-      "lon": 10.760871395801564
-    },
-    {
-      "placeId": "sub_scene",
-      "query": "Rosenkrantz' gate 17 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:15980:17",
-      "lat": 59.912177321780405,
-      "lon": 10.736461501289167
-    },
-    {
-      "placeId": "the_villa",
-      "query": "Møllergata 23 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:14943:23",
-      "lat": 59.91563512459411,
-      "lon": 10.74856019808857
-    },
-    {
-      "placeId": "vaterland_bar_scene",
-      "query": "Brugata 9 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:10923:9",
-      "lat": 59.91391103248318,
-      "lon": 10.756101476822108
-    },
-    {
-      "placeId": "xray_ungdomskulturhus",
-      "query": "Maridalsveien 3 Oslo",
-      "status": "verified_address_first",
-      "exactHits": 1,
-      "sourceObjectId": "geonorge-adresser-v1:0301:14622:3",
-      "lat": 59.92065765555904,
-      "lon": 10.751597362221323
-    }
-  ]
+  "status": "method_classification_materialized",
+  "currentOsloVerified": 372,
+  "numericProtocolIds": 297,
+  "missingFromNumericProtocol": 75,
+  "methodPass": 75,
+  "methodReview": 0,
+  "byMethod": {
+    "historical_source_first": 2,
+    "address_first_official_address": 44,
+    "object_type_first_exact_osm_geometry": 26,
+    "official_map_object_type_first": 2,
+    "documented_semantic_geometry": 1
+  },
+  "reviewIds": []
 }
-
-> history-go@0.0.0 places:index:build
-> npm run build:tools && node dist/tools/build_places_index.mjs
-
-
-> history-go@0.0.0 build:tools
-> tsc -p tsconfig.tools.build.json
-
-Wrote 1333 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 202 category override(s)
