@@ -25,8 +25,6 @@ const migrations = {
   lekeplass_olaf_ryes_plass: 'olaf_ryes_plass',
   lekeplass_botsparken: 'botsparken',
   lekeplass_stensparken: 'stensparken',
-  lekeplass_kampen_park: 'kampen_park',
-  treningssted_kampen_park: 'kampen_park',
   treningssted_skur13: 'skur13',
 };
 const migratedIds = new Set(Object.keys(migrations));
@@ -34,8 +32,10 @@ const expectedRemaining = [
   'lekeplass_kirsebarlunden',
   'lekeplass_snippen',
   'lekeplass_frognerborgen',
+  'lekeplass_kampen_park',
   'aktivitet_rudolf_nilsens_plass',
   'treningssted_torshovdalen',
+  'treningssted_kampen_park',
   'treningssted_sognsvann',
   'korketrekkeren',
 ];
@@ -105,9 +105,9 @@ function pruneCivication(value) {
   return out;
 }
 
-// Every target parent must already be a real canonical place. We deliberately keep
-// Frognerborgen out of this migration because current data has no canonical Frognerparken
-// parent, and Vigelandsparken explicitly does not represent the whole Frognerparken.
+// Only migrate when today's canonical parent actually exists. Frognerborgen and the two
+// Kampen activity layers stay in manual review because their older proposed parent IDs
+// (`frognerparken` and `kampen_park`) no longer exist as canonical places.
 const currentIndex = readJson(path.join(root, 'data/places/places_index.json'));
 const currentIds = new Set((Array.isArray(currentIndex) ? currentIndex : []).map((place) => place?.id).filter(Boolean));
 for (const parentId of new Set(Object.values(migrations))) {
@@ -155,7 +155,7 @@ for (const file of walkJson(path.join(root, 'data/coordinate-evidence'))) {
 }
 
 // Wonderkammer is the destination model for these subfeatures. Retarget exact IDs and
-// merge duplicate parent groups, e.g. the two Kampen park activity layers.
+// merge any duplicate parent groups created by the retargeting.
 const wonderkammerChanges = [];
 for (const file of walkJson(path.join(root, 'data/wonderkammer'))) {
   const before = fs.readFileSync(file, 'utf8');
@@ -167,7 +167,7 @@ for (const file of walkJson(path.join(root, 'data/wonderkammer'))) {
   }
 }
 
-// These are no longer top-level History Go places, so their Civication map entries must go.
+// These subfeatures are no longer top-level History Go places, so their Civication map entries go.
 const civicationChanges = [];
 for (const file of walkJson(path.join(root, 'data/Civication'))) {
   const before = fs.readFileSync(file, 'utf8');
@@ -208,7 +208,7 @@ aliasTool = aliasTool.replace(
 );
 writeText(aliasToolFile, aliasTool);
 
-// Regenerate runtime and run the cross-surface integrity checks before the coordinate runner gates.
+// Regenerate runtime and run cross-surface integrity checks before the coordinate runner gates.
 execFileSync('npm', ['run', 'places:index:build'], { cwd: root, stdio: 'inherit' });
 execFileSync('npm', ['run', 'build:tools'], { cwd: root, stdio: 'inherit' });
 execFileSync('node', ['dist/tools/check_place_id_aliases.mjs'], { cwd: root, stdio: 'inherit' });
@@ -248,7 +248,7 @@ writeJson(path.join(reportDir, 'results.json'), report);
 writeText(path.join(reportDir, 'README.md'), [
   '# Oslo coordinate control batch 123 – playground/training parent migration',
   '',
-  'This batch resolves identity overlap before further coordinate production. Nine pure playground/training subfeature records are removed as independent active places and their Wonderkammer content is retargeted to existing canonical parent places.',
+  'This batch resolves identity overlap before further coordinate production. Seven pure playground/training subfeature records are removed as independent active places and their Wonderkammer content is retargeted to existing canonical parent places.',
   '',
   '## Migrated',
   ...Object.entries(migrations).map(([oldId, parentId]) => `- \`${oldId}\` → Wonderkammer under \`${parentId}\``),
@@ -256,14 +256,14 @@ writeText(path.join(reportDir, 'README.md'), [
   '## Still requires manual identity/parent review',
   ...manualReview.map((id) => `- \`${id}\``),
   '',
-  '`lekeplass_frognerborgen` remains open because the older audit referenced a non-existent `frognerparken` parent and `vigelandsparken` explicitly covers a narrower canonical scope. `korketrekkeren` remains the already controlled record in this source. No coordinate is fabricated for unresolved identity cases.',
+  '`lekeplass_frognerborgen`, `lekeplass_kampen_park` and `treningssted_kampen_park` remain open because the older audit referenced non-existent current parent IDs. `korketrekkeren` remains the already controlled record. No coordinate is fabricated for unresolved identity cases.',
 ].join('\n'));
 
 let protocol = fs.readFileSync(protocolFile, 'utf8');
 if (!protocol.includes('Batch 123 (2026-07-21)')) {
   const migratedText = Object.entries(migrations).map(([oldId, parentId]) => `\`${oldId}\` → \`${parentId}\``).join(', ');
   const reviewText = manualReview.map((id) => `\`${id}\``).join(', ');
-  const paragraph = `Batch 123 (2026-07-21) rydder lekeplass-/treningskøen før videre koordinatproduksjon. Repoets modellregel er at rene lekeplasser og rene treningsaktivitetslag skal være Wonderkammer-innhold under et faktisk canonical parent-place, ikke egne overlappende kartmarkører. Ni sikre subfeature-records er derfor migrert til parent-place og fjernet som aktive places: ${migratedText}. Wonderkammer-referanser er retargetet, Civication-top-level-mappings for de fjernede place-ID-ene er fjernet, og legacy-ID-ene er lagt i alias-gaten. Seks grensefall forblir urørt til egen identitetskontroll: ${reviewText}. Frognerborgen beholdes eksplisitt i review fordi den eldre migreringsauditen pekte på den nå ikke-eksisterende parent-ID-en \`frognerparken\`, mens dagens \`vigelandsparken\` har et smalere canonical scope. \`korketrekkeren\` var allerede kontrollert. Den tidligere lekeplass/trening-rapporten som brukte batchnummer 122 var kun read-only intake og endret ingen canonical data.`;
+  const paragraph = `Batch 123 (2026-07-21) rydder lekeplass-/treningskøen før videre koordinatproduksjon. Repoets modellregel er at rene lekeplasser og rene treningsaktivitetslag skal være Wonderkammer-innhold under et faktisk canonical parent-place, ikke egne overlappende kartmarkører. Syv sikre subfeature-records er derfor migrert til parent-place og fjernet som aktive places: ${migratedText}. Wonderkammer-referanser er retargetet, Civication-top-level-mappings for de fjernede place-ID-ene er fjernet, og legacy-ID-ene er lagt i alias-gaten. Åtte grensefall forblir urørt til egen identitetskontroll: ${reviewText}. Frognerborgen og de to Kampen-postene beholdes eksplisitt i review fordi den eldre migreringsauditen pekte på parent-ID-ene \`frognerparken\` og \`kampen_park\`, som ikke finnes i dagens canonical inventory. \`korketrekkeren\` var allerede kontrollert. Den tidligere lekeplass/trening-rapporten som brukte batchnummer 122 var kun read-only intake og endret ingen canonical data.`;
   const marker = 'Retrospektiv compliance-audit batch 1–120 (2026-07-21):';
   if (!protocol.includes(marker)) throw new Error('Fant ikke protokollmarkør for batch 123');
   protocol = protocol.replace(marker, `${paragraph}\n\n${marker}`);
