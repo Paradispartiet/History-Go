@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T10:13:36.778Z
+Generert: 2026-07-21T10:31:30.932Z
 
 ## Oppsummering
-- Aktive filer validert: **592**
-- Antall steder validert: **1209**
+- Aktive filer validert: **597**
+- Antall steder validert: **1206**
 - Harde feil: **0**
 - Varsler: **444**
-- Coordinate review candidates: **718** signaler fordelt på **581** steder
+- Coordinate review candidates: **717** signaler fordelt på **581** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -60,7 +60,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/politikk/ostfold/spydeberg_prestegard_1814.json
 - data/places/naeringsliv/ostfold/tistedalen_saugbrugsforeningen.json
 - data/places/historie/ostfold/places_historie_ostfold_batch4.json
-- data/places/kunst/ostfold/fredrikshalds_teater.json
+- data/places/scenekunst/ostfold/fredrikshalds_teater.json
 - data/places/by/ostfold/kornsjo_grensestasjon.json
 - data/places/historie/ostfold/places_historie_ostfold_batch5.json
 - data/places/by/ostfold/brekke_sluser_haldenkanalen.json
@@ -183,6 +183,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/telemark/tinnoset_stasjon_tinnosbanen.json
 - data/places/naeringsliv/telemark/porsgrund_porselensfabrik.json
 - data/places/historie/telemark/places_historie_telemark_batch3.json
+- data/places/scenekunst/oslo/places_scenekunst.json
 - data/places/sport/europa/norway/telemark/morgedal_norsk_skieventyr.json
 - data/places/naeringsliv/telemark/dalen_hotel_tokke.json
 - data/places/naeringsliv/telemark/ovre_verket_ulefoss.json
@@ -332,7 +333,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/agder/byremo_tingsted_lyngdal.json
 - data/places/kunst/agder/arendal_kulturhus.json
 - data/places/historie/agder/lindesnes_bygdemuseum.json
-- data/places/kunst/agder/kilden_teater_konserthus_kristiansand.json
+- data/places/scenekunst/agder/kilden_teater_konserthus_kristiansand.json
 - data/places/by/agder/fiskebrygga_kristiansand.json
 - data/places/natur/agder/baneheia_kristiansand_bypark.json
 - data/places/vitenskap/agder/dommesmoen_grimstad.json
@@ -384,6 +385,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json
 - data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json
 - data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json
+- data/places/scenekunst/europe/portugal/lisbon/places_lisbon_scenekunst.json
 - data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json
 - data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json
 - data/places/sport/europa/portugal/footballgrounds_lisbon.json
@@ -610,6 +612,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/norway/oslo_sport/oslo_golfklubb_bogstad.json
 - data/places/historie/oslo/places_historie/holmenkollen_skimuseum.json
 - data/places/by/oslo/frognerparken.json
+- data/places/by/oslo/sofienbergparken.json
+- data/places/by/oslo/torshovdalen.json
+- data/places/natur/oslo/sognsvann.json
 
 ## Harde feil
 - Ingen
@@ -722,6 +727,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/telemark/places_historie_telemark_batch1.json#heddal_stavkirke: stort område uten coordNote/coordStatus
 - data/places/historie/telemark/places_historie_telemark_batch1.json#heddal_stavkirke: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/telemark/places_historie_telemark_batch1.json#brekkeparken_skien: stort område uten coordNote/coordStatus
+- data/places/scenekunst/oslo/places_scenekunst.json#nationaltheatret: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#det_norske_teatret: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#chat_noir: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#edderkoppen_scene: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#latter: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#folketeateret: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#operahuset: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/telemark/morgedal_norsk_skieventyr.json#morgedal_norsk_skieventyr: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/telemark/dalen_hotel_tokke.json#dalen_hotel_tokke: stort område uten coordNote/coordStatus
 - data/places/by/telemark/lunde_sluse_telemarkskanalen.json#lunde_sluse_telemarkskanalen: lav koordinatpresisjon (<4 desimaler)
@@ -813,7 +825,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/agder/skjernoy_kystkultur_lindesnes.json#skjernoy_kystkultur_lindesnes: stort område uten coordNote/coordStatus
 - data/places/historie/agder/byremo_tingsted_lyngdal.json#byremo_tingsted_lyngdal: stort område uten coordNote/coordStatus
 - data/places/kunst/agder/arendal_kulturhus.json#arendal_kulturhus: stort område uten coordNote/coordStatus
-- data/places/kunst/agder/kilden_teater_konserthus_kristiansand.json#kilden_teater_konserthus_kristiansand: lineært sted uten anchors
+- data/places/scenekunst/agder/kilden_teater_konserthus_kristiansand.json#kilden_teater_konserthus_kristiansand: lineært sted uten anchors
 - data/places/by/agder/fiskebrygga_kristiansand.json#fiskebrygga_kristiansand: lineært sted uten anchors
 - data/places/natur/agder/baneheia_kristiansand_bypark.json#baneheia_kristiansand_bypark: lineært sted uten anchors
 - data/places/natur/agder/baneheia_kristiansand_bypark.json#baneheia_kristiansand_bypark: stort område uten coordNote/coordStatus
@@ -832,7 +844,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst.json#astrup_fearnley: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#nasjonalbiblioteket: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#grotta: coordStatus=verified uten coordPrecisionM
-- data/places/litteratur/oslo/places_litteratur.json#nationaltheatret: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#litteraturhuset: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#tronsmo_bokhandel: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#eldorado_bokhandel: coordStatus=verified uten coordPrecisionM
@@ -844,7 +855,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/media/oslo/places_oslo_media.json#vg_huset: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#nrk_huset_marienlyst: coordStatus=verified uten coordPrecisionM
 - data/places/media/oslo/places_oslo_media.json#klassekampen_redaksjon: coordStatus=verified uten coordPrecisionM
-- data/places/musikk/oslo/places_musikk.json#det_norske_teatret: coordStatus=verified uten coordPrecisionM
 - data/places/musikk/oslo/places_musikk.json#rockefeller: coordStatus=verified uten coordPrecisionM
 - data/places/musikk/oslo/places_musikk.json#john_dee: coordStatus=verified uten coordPrecisionM
 - data/places/musikk/oslo/places_musikk.json#sentrum_scene: coordStatus=verified uten coordPrecisionM
@@ -899,17 +909,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/politikk/oslo/places_politikk.json#folkets_hus_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#cinemateket_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#house_of_nerds: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#folketeateret: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#chateau_neuf: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#latter: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#grand_hotel: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#chat_noir: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#edderkoppen_scene: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/oslo_sport.json#kfum_arena: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/oslo_sport.json#nordre_aasen_idrettspark: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#lekeplass_kirsebarlunden: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#lekeplass_kampen_park: lav koordinatpresisjon (<4 desimaler)
-- data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#treningssted_torshovdalen: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#treningssted_kampen_park: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/norway/places_motorsport_ostlandet.json#rudskogen_motorsenter: stort område uten coordNote/coordStatus
 - data/places/sport/europa/norway/places_motorsport_ostlandet.json#gardermoen_motorpark: stort område uten coordNote/coordStatus
@@ -962,11 +967,11 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json#lisbon_avenida_24_de_julho: lav koordinatpresisjon (<4 desimaler)
 - data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_centro_cultural_de_belem: lav koordinatpresisjon (<4 desimaler)
 - data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_museu_do_oriente: lav koordinatpresisjon (<4 desimaler)
-- data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_teatro_nacional_d_maria_ii: lav koordinatpresisjon (<4 desimaler)
 - data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_museu_arpad_szenes_vieira_da_silva: lav koordinatpresisjon (<4 desimaler)
 - data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_museu_bordalo_pinheiro: lav koordinatpresisjon (<4 desimaler)
 - data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json#lisbon_gremio_literario: lav koordinatpresisjon (<4 desimaler)
 - data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json#lisbon_clube_de_fado: lav koordinatpresisjon (<4 desimaler)
+- data/places/scenekunst/europe/portugal/lisbon/places_lisbon_scenekunst.json#lisbon_teatro_nacional_d_maria_ii: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json#lisbon_parque_das_nacoes: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json#lisbon_conserveira_de_lisboa: lineært sted uten anchors
 - data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json#lisbon_santa_apolonia_station: lav koordinatpresisjon (<4 desimaler)
@@ -1062,23 +1067,23 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 717 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 145 |
+| coordStatus=verified uten coordPrecisionM | 146 |
 | lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 90 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 78 |
+| lav koordinatpresisjon (<4 desimaler) | 89 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 77 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 11 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (145)
+### coordStatus=verified uten coordPrecisionM (146)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1104,11 +1109,17 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | villa_stenersen | Villa Stenersen | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.939226276070805 | 10.698765324399833 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | st_hallvard_kirke_kloster | St. Hallvard kirke og kloster | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.91294052851478 | 10.769571694450226 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_radhus | Gamle rådhus | by | data/places/by/oslo/gamle_radhus.json | 59.909847408217715 | 10.740149053425348 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| nationaltheatret | Nationaltheatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91456789100917 | 10.733617256734934 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| det_norske_teatret | Det Norske Teatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91521126103172 | 10.738641190958791 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| chat_noir | Chat Noir | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91360791283421 | 10.732172099794877 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| edderkoppen_scene | Edderkoppen Scene | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91815941203321 | 10.739832936543767 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| latter | Latter | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91081373400813 | 10.726768537822347 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| folketeateret | Folketeateret | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.9145532904993 | 10.749678422671124 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| operahuset | Operahuset | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.90777660297918 | 10.752057851974856 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nasjonalmuseet | Nasjonalmuseet | kunst | data/places/kunst/oslo/places_kunst.json | 59.91149437954434 | 10.729109219868187 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | astrup_fearnley | Astrup Fearnley Museet | kunst | data/places/kunst/oslo/places_kunst.json | 59.90679078788014 | 10.721563360663236 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nasjonalbiblioteket | Nasjonalbiblioteket | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91429565254146 | 10.717362462417718 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | grotta | Grotten | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.918721365539604 | 10.731257963441367 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| nationaltheatret | Nationaltheatret | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91456789100917 | 10.733617256734934 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | litteraturhuset | Litteraturhuset | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.92027454485075 | 10.728566026476651 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | tronsmo_bokhandel | Tronsmo Bokhandel | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.916504851005804 | 10.738621210337177 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | eldorado_bokhandel | Eldorado Bokhandel | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91394802646695 | 10.747911617247832 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1120,7 +1131,6 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | vg_huset | VG-huset | media | data/places/media/oslo/places_oslo_media.json | 59.91512243824226 | 10.743666267309775 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nrk_huset_marienlyst | NRK-huset på Marienlyst | media | data/places/media/oslo/places_oslo_media.json | 59.934722555717045 | 10.719662425687908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | klassekampen_redaksjon | Klassekampen-redaksjonen | media | data/places/media/oslo/places_oslo_media.json | 59.91335273517942 | 10.759577592129606 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| det_norske_teatret | Det Norske Teatret | musikk | data/places/musikk/oslo/places_musikk.json | 59.91521126103172 | 10.738641190958791 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | rockefeller | Rockefeller Music Hall | musikk | data/places/musikk/oslo/places_musikk.json | 59.916235041685646 | 10.750323246840185 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | john_dee | John Dee | musikk | data/places/musikk/oslo/places_musikk.json | 59.916145361023055 | 10.750313157984397 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sentrum_scene | Sentrum Scene | musikk | data/places/musikk/oslo/places_musikk.json | 59.91552200049789 | 10.751804295846025 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1146,12 +1156,8 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | folkets_hus_oslo | Folkets Hus i Oslo | politikk | data/places/politikk/oslo/places_politikk.json | 59.9148900622556 | 10.750628039496302 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | cinemateket_oslo | Cinemateket i Oslo | film_tv | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.90961165359811 | 10.745752189439866 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | house_of_nerds | House of Nerds | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.92186714382747 | 10.75148579082984 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| folketeateret | Folketeateret | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.9145532904993 | 10.749678422671124 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | chateau_neuf | Chateau Neuf | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.93227611011727 | 10.71254747404495 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| latter | Latter | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91081373400813 | 10.726768537822347 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | grand_hotel | Grand Hotel | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.913745246491665 | 10.739476691613683 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| chat_noir | Chat Noir | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91360791283421 | 10.732172099794877 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| edderkoppen_scene | Edderkoppen Scene | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91815941203321 | 10.739832936543767 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kfum_arena | KFUM Arena | sport | data/places/sport/europa/norway/oslo_sport.json | 59.88862965039414 | 10.782076254654621 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nordre_aasen_idrettspark | Nordre Åsen idrettspark | sport | data/places/sport/europa/norway/oslo_sport.json | 59.94276845982983 | 10.784873923983723 | 170 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | hausmania | Hausmania | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.919148209457326 | 10.751977548509613 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1269,7 +1275,7 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | evje_mineralsti | Evje mineralsti | vitenskap | data/places/vitenskap/agder/evje_mineralsti.json | 58.5807 | 7.7901 | 520 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | boen_gard_kristiansand | Boen gård Kristiansand | historie | data/places/historie/agder/boen_gard_kristiansand.json | 58.2014 | 8.1118 | 420 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | kristiansand_lufthavn_kjevik | Kristiansand lufthavn Kjevik | by | data/places/by/agder/kristiansand_lufthavn_kjevik.json | 58.2042 | 8.0854 | 650 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| kilden_teater_konserthus_kristiansand | Kilden teater og konserthus Kristiansand | kunst | data/places/kunst/agder/kilden_teater_konserthus_kristiansand.json | 58.1442 | 7.9896 | 360 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kilden_teater_konserthus_kristiansand | Kilden teater og konserthus Kristiansand | scenekunst | data/places/scenekunst/agder/kilden_teater_konserthus_kristiansand.json | 58.1442 | 7.9896 | 360 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | fiskebrygga_kristiansand | Fiskebrygga Kristiansand | by | data/places/by/agder/fiskebrygga_kristiansand.json | 58.1449 | 7.9918 | 320 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | natur | data/places/natur/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | stiklestad | Stiklestad | historie | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | 63.7956 | 11.559 | 220 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -1312,7 +1318,7 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (90)
+### lav koordinatpresisjon (<4 desimaler) (89)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1357,7 +1363,6 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | tjernsmyr_salamanderlokalitet | Tjernsmyr salamanderlokalitet | natur | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json | 59.911 | 10.62714 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lekeplass_kirsebarlunden | Kirsebærlunden lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.916 | 10.7756 | 130 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lekeplass_kampen_park | Kampen park lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9148 | 10.779 | 140 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| treningssted_torshovdalen | Torshovdalen trenings- og aktivitetspark | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9368 | 10.777 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | treningssted_kampen_park | Kampen park treningssted | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9148 | 10.779 | 170 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | wembley_stadium_london | Wembley Stadium | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.556 | -0.2796 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | stamford_bridge_london | Stamford Bridge | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.4817 | -0.191 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1382,11 +1387,11 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_avenida_24_de_julho | Avenida 24 de Julho | politikk | data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | 38.705 | -9.1556 | 600 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_centro_cultural_de_belem | Centro Cultural de Belém | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.696 | -9.207 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_museu_do_oriente | Museu do Oriente | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.706 | -9.1828 | 100 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| lisbon_teatro_nacional_d_maria_ii | Teatro Nacional D. Maria II | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.714 | -9.139 | 80 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_museu_arpad_szenes_vieira_da_silva | Museu Arpad Szenes – Vieira da Silva | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.718 | -9.1543 | 80 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_museu_bordalo_pinheiro | Museu Bordalo Pinheiro | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.7367 | -9.153 | 80 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_gremio_literario | Grémio Literário | litteratur | data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json | 38.711 | -9.1428 | 60 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_clube_de_fado | Clube de Fado | musikk | data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json | 38.71 | -9.1297 | 60 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| lisbon_teatro_nacional_d_maria_ii | Teatro Nacional D. Maria II | scenekunst | data/places/scenekunst/europe/portugal/lisbon/places_lisbon_scenekunst.json | 38.714 | -9.139 | 80 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_parque_das_nacoes | Parque das Nações | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7681 | -9.095 | 800 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_santa_apolonia_station | Santa Apolónia Station | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.714 | -9.1228 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_centro_nautico_de_belem | Centro Náutico de Belém | sport | data/places/sport/europa/portugal/sportvenues_lisbon.json | 38.696 | -9.2076 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1407,7 +1412,7 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (78)
+### stasjon/park/gate/torg/elv uten coordinate metadata (77)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1475,7 +1480,6 @@ Totalt 718 signaler fordelt på 581 steder. Et sted kan ha flere signaler. Kandi
 | lekeplass_snippen | Snippen lekepark | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9167 | 10.7699 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lekeplass_kampen_park | Kampen park lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9148 | 10.779 | 140 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | aktivitet_rudolf_nilsens_plass | Rudolf Nilsens plass aktivitetspark | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.916297 | 10.765853 | 130 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| treningssted_torshovdalen | Torshovdalen trenings- og aktivitetspark | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9368 | 10.777 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | treningssted_kampen_park | Kampen park treningssted | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9148 | 10.779 | 170 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | gardermoen_motorpark | Gardermoen Motorpark | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1832 | 11.1399 | 280 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | selhurst_park_london | Selhurst Park | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.3983 | -0.0855 | 190 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |

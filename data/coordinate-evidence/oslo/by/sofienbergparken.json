@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "sofienbergparken",
+  "placeFile": "data/places/by/oslo/sofienbergparken.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9232203,
+    "lon": 10.7637958,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 3235895 – Sofienbergparken; scope cross-checked with Oslo kommune – Sofienbergparken",
+    "coordType": "park_center",
+    "coordNote": "Batch 125 canonical migration: Oslo kommune definerer Sofienbergparken som det fysiske parkstedet. Ett eksakt navngitt OSM-parkpolygon (osm-way:3235895) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parkgeometrien; subkultur beholdes som bruk-/innholdslag."
+  },
+  "identity": {
+    "currentName": "Sofienbergparken",
+    "resolvedIdentity": "Sofienbergparken – canonical physical identity replacing sofienbergparken_subkultur",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "closed canonical migration scope",
+    "official physical-place definition",
+    "one exact named stable polygon"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "VisitOSLO parks/nature canonical scope audit",
+      "sourceUrl": "reports/visitoslo-parks-nature-audit-20260721/SCOPE.md",
+      "sourceObjectId": "visitoslo-scope-migration:sofienbergparken_subkultur:sofienbergparken",
+      "sourceQuality": "closed_canonical_identity_decision",
+      "finding": "Scope audit requires sofienbergparken_subkultur → sofienbergparken.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves one-place/one-physical-identity before coordinate selection."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Sofienbergparken",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/sofienbergparken/",
+      "sourceObjectId": "oslo-kommune:place:sofienbergparken",
+      "sourceQuality": "official_physical_scope_definition",
+      "finding": "Oslo kommune – Sofienbergparken defines the physical place and public use.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines physical scope before geometry selection."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 3235895 – Sofienbergparken",
+      "sourceUrl": "https://www.openstreetmap.org/way/3235895",
+      "sourceObjectId": "osm-way:3235895",
+      "sourceQuality": "exact_named_polygon_after_object_type_filter",
+      "finding": "One exact named polygon in predefined Oslo scope.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 125 canonical migration: Oslo kommune definerer Sofienbergparken som det fysiske parkstedet. Ett eksakt navngitt OSM-parkpolygon (osm-way:3235895) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parkgeometrien; subkultur beholdes som bruk-/innholdslag."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:3235895",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:3235895",
+      "lat": 59.9232203,
+      "lon": 10.7637958,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:3235895",
+      "lat": 59.9232203,
+      "lon": 10.7637958,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical sofienbergparken applied; sofienbergparken_subkultur retired."
+  },
+  "notes": [
+    "Batch 125 canonical migration: Oslo kommune definerer Sofienbergparken som det fysiske parkstedet. Ett eksakt navngitt OSM-parkpolygon (osm-way:3235895) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parkgeometrien; subkultur beholdes som bruk-/innholdslag."
+  ]
+}
