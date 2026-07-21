@@ -2,22 +2,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const diagnosticQueries = {
-  freeTextOslo: 'https://ws.geonorge.no/adresser/v1/sok?sok=' + encodeURIComponent('Kabelgata 31 Oslo'),
-  structuredExact: 'https://ws.geonorge.no/adresser/v1/sok?adressenavn=' + encodeURIComponent('Kabelgata') + '&nummer=31&kommunenummer=0301&treffPerSide=100',
-  pointSearch: 'https://ws.geonorge.no/adresser/v1/punktsok?lat=59.9280898&lon=10.8192524&radius=150&treffPerSide=100'
-};
-console.log('=== KLODEN_GEONORGE_DIAGNOSTIC_BEGIN ===');
-for (const [name, url] of Object.entries(diagnosticQueries)) {
-  try {
-    const response = await fetch(url, { headers: { 'user-agent': 'History-Go-coordinate-audit/1.0' } });
-    const payload = await response.json();
-    console.log(JSON.stringify({ name, url, status: response.status, payload }));
-  } catch (error) {
-    console.log(JSON.stringify({ name, url, error: String(error?.stack || error) }));
-  }
+console.log('=== KLODEN_OSM_NODE_DIAGNOSTIC_BEGIN ===');
+try {
+  const url = 'https://api.openstreetmap.org/api/0.6/node/13243059793.json';
+  const response = await fetch(url, { headers: { 'user-agent': 'History-Go-coordinate-audit/1.0' } });
+  const payload = await response.json();
+  console.log(JSON.stringify({ url, status: response.status, payload }));
+} catch (error) {
+  console.log(JSON.stringify({ error: String(error?.stack || error) }));
 }
-console.log('=== KLODEN_GEONORGE_DIAGNOSTIC_END ===');
+console.log('=== KLODEN_OSM_NODE_DIAGNOSTIC_END ===');
 
 const ROOT = process.cwd();
 const PLACES_MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
