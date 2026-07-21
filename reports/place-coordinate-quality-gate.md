@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T08:45:14.761Z
+Generert: 2026-07-21T09:30:37.204Z
 
 ## Oppsummering
 - Aktive filer validert: **591**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **446**
-- Coordinate review candidates: **727** signaler fordelt på **588** steder
+- Varsler: **447**
+- Coordinate review candidates: **728** signaler fordelt på **589** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -904,7 +904,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#grand_hotel: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#chat_noir: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#edderkoppen_scene: coordStatus=verified uten coordPrecisionM
-- data/places/sport/europa/norway/oslo_sport.json#nordre_aasen_idrettspark: lav koordinatpresisjon (<4 desimaler)
+- data/places/sport/europa/norway/oslo_sport.json#kfum_arena: coordStatus=verified uten coordPrecisionM
+- data/places/sport/europa/norway/oslo_sport.json#nordre_aasen_idrettspark: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#lekeplass_sofienbergparken: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#lekeplass_botsparken: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#lekeplass_kirsebarlunden: lav koordinatpresisjon (<4 desimaler)
@@ -1063,15 +1064,15 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 727 signaler fordelt på 588 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 728 signaler fordelt på 589 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 143 |
+| coordStatus=verified uten coordPrecisionM | 145 |
 | lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 94 |
+| lav koordinatpresisjon (<4 desimaler) | 93 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 84 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1079,7 +1080,7 @@ Totalt 727 signaler fordelt på 588 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (143)
+### coordStatus=verified uten coordPrecisionM (145)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1153,6 +1154,8 @@ Totalt 727 signaler fordelt på 588 steder. Et sted kan ha flere signaler. Kandi
 | grand_hotel | Grand Hotel | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.913745246491665 | 10.739476691613683 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | chat_noir | Chat Noir | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91360791283421 | 10.732172099794877 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | edderkoppen_scene | Edderkoppen Scene | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91815941203321 | 10.739832936543767 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| kfum_arena | KFUM Arena | sport | data/places/sport/europa/norway/oslo_sport.json | 59.88862965039414 | 10.782076254654621 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| nordre_aasen_idrettspark | Nordre Åsen idrettspark | sport | data/places/sport/europa/norway/oslo_sport.json | 59.94276845982983 | 10.784873923983723 | 170 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | hausmania | Hausmania | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.919148209457326 | 10.751977548509613 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | torggata_blad | Torggata Blad | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91657334372696 | 10.75561428991178 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | blitzhuset | Blitzhuset | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91840193086 | 10.73778846737114 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1311,7 +1314,7 @@ Totalt 727 signaler fordelt på 588 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (94)
+### lav koordinatpresisjon (<4 desimaler) (93)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1354,7 +1357,6 @@ Totalt 727 signaler fordelt på 588 steder. Et sted kan ha flere signaler. Kandi
 | noklevann_ljanselva_start | Nøklevann (Ljanselva start) | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8836 | 10.878 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | ljanselva_hauketo | Ljanselva ved Hauketo | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8485 | 10.816 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | tjernsmyr_salamanderlokalitet | Tjernsmyr salamanderlokalitet | natur | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json | 59.911 | 10.62714 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| nordre_aasen_idrettspark | Nordre Åsen idrettspark | sport | data/places/sport/europa/norway/oslo_sport.json | 59.942778 | 10.785 | 170 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lekeplass_sofienbergparken | Sofienbergparken lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9229 | 10.763 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lekeplass_botsparken | Botsparken lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9053 | 10.769 | 110 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lekeplass_kirsebarlunden | Kirsebærlunden lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.916 | 10.7756 | 130 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |

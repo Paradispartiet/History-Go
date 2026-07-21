@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-07-21T09:30:20.430Z",
+  "batch": 122,
+  "sourceQueue": "four unresolved sport records from batch 121",
+  "method": "address-first; exact official address when unique; otherwise documented exact stable-ID geometry/composite model; never nearest/first-hit",
+  "verified": [
+    "kfum_arena",
+    "nordre_aasen_idrettspark",
+    "gressbanen",
+    "daelenenga_idrettspark"
+  ],
+  "unresolved": [],
+  "results": [
+    {
+      "placeId": "kfum_arena",
+      "status": "verified",
+      "method": "address_first_official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11462:109",
+      "lat": 59.88862965039414,
+      "lon": 10.782076254654621,
+      "exactHits": 1
+    },
+    {
+      "placeId": "nordre_aasen_idrettspark",
+      "status": "verified",
+      "method": "address_first_official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13747:7",
+      "lat": 59.94276845982983,
+      "lon": 10.784873923983723,
+      "exactHits": 1
+    },
+    {
+      "placeId": "gressbanen",
+      "status": "verified_geometry",
+      "method": "address_first_then_exact_named_osm_geometry",
+      "sourceObjectId": "osm-way:5046575",
+      "lat": 59.9507593,
+      "lon": 10.6767767,
+      "exactHits": 0,
+      "totalAddressHits": 2
+    },
+    {
+      "placeId": "daelenenga_idrettspark",
+      "status": "verified_geometry",
+      "method": "address_first_then_composite_exact_osm_components",
+      "sourceObjectId": "osm-composite:way/4708872+way/101769218",
+      "lat": 59.926595750000004,
+      "lon": 10.7647212,
+      "exactHits": 0,
+      "componentIds": [
+        "osm-way:4708872",
+        "osm-way:101769218"
+      ]
+    }
+  ]
+}

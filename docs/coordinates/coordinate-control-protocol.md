@@ -452,6 +452,13 @@ Protokollsynk (2026-07-21): stale needs_review-rader ble fjernet bare når både
 
 Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra legacy `verified` til `needs_source`. Det tidligere punktet bygger bare på `manual_map_check` og beholdes foreløpig som displayanker; ingen kildebelagt områdegeometri eller area-ankre er lagt til.
 
+| 122 | `kfum_arena` | KFUM Arena | verified | `geonorge-adresser-v1:0301:11462:109` |
+| 122 | `nordre_aasen_idrettspark` | Nordre Åsen idrettspark | verified | `geonorge-adresser-v1:0301:13747:7` |
+| 122 | `gressbanen` | Gressbanen | verified_geometry | `osm-way:5046575` |
+| 122 | `daelenenga_idrettspark` | Dælenenga idrettspark | verified_geometry | `osm-composite:way/4708872+way/101769218` |
+
+Batch 122 (2026-07-21) lukker de fire åpne sportstedene fra batch 121 etter den låste metodeprioriteten. KFUM Arena og Nordre Åsen bruker entydige Geonorge-adressepunkter etter offisiell adresseavklaring. Gressbanen har dokumentert address-first-forsøk uten ett entydig eksakt ulettert 24-treff og bruker derfor direkte stable-ID-oppslag av eksakt navngitt OSM way 5046575. Dælenenga ga ingen Geonorge-resultat for kommunens besøksadresse; ett enkelt delobjekt brukes derfor ikke som proxy. Canonical stedet modelleres med komponentankrene OSM way 4708872 og Grünerhallen OSM way 101769218, og hovedpunktet er et dokumentert semantisk area-anchor mellom dem. Ingen nearest/first-hit- eller teknisk-feil-fallback brukes.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)
