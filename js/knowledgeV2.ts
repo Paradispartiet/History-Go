@@ -2,6 +2,7 @@
 // Quiz memory is the evidence store. These entries are the durable, queryable read model.
 
 import claimCore from "./knowledgeClaimCore";
+import { createQuizKnowledgeMemory } from "./knowledgeQuizMemory";
 
 const root = globalThis as typeof globalThis & Record<string, any>;
 
@@ -172,28 +173,33 @@ function inferTargetKind(targetId: unknown): { place_id: string | null; person_i
   return { place_id: null, person_id: null };
 }
 
-function mergeEntry(previous: KnowledgeEntry, incoming: KnowledgeEntry, now: string): KnowledgeEntry {
+function mergeEntry(previous: KnowledgeEntry, incoming: KnowledgeEntry, now: string, incrementSeen = true): KnowledgeEntry {
   return {
     ...previous,
     ...incoming,
     learned_at: previous.learned_at || incoming.learned_at || now,
-    last_seen_at: now,
-    times_seen: Number(previous.times_seen || 1) + 1,
+    last_seen_at: incrementSeen ? now : (incoming.last_seen_at || previous.last_seen_at || now),
+    times_seen: incrementSeen
+      ? Number(previous.times_seen || 1) + 1
+      : Math.max(Number(previous.times_seen || 1), Number(incoming.times_seen || 1)),
     emne_ids: unique([...(previous.emne_ids || []), ...(incoming.emne_ids || [])]),
     concepts: unique([...(previous.concepts || []), ...(incoming.concepts || [])]),
     terms: unique([...(previous.terms || []), ...(incoming.terms || [])]),
-    tags: unique([...(previous.tags || []), ...(incoming.tags || [])])
+    tags: unique([...(previous.tags || []), ...(incoming.tags || [])]),
+    memory_evidence: { ...(previous.memory_evidence || {}), ...(incoming.memory_evidence || {}) }
   };
 }
 
-function upsertEntry(entry: KnowledgeEntry): KnowledgeEntry | null {
+function upsertEntry(entry: KnowledgeEntry, options: { incrementSeen?: boolean } = {}): KnowledgeEntry | null {
   if (!entry?.id || !entry?.text) return null;
   const rows = getEntries();
-  const index = rows.findIndex((row) => s(row?.id) === s(entry.id));
+  const identity = entryIdentity(entry);
+  const index = rows.findIndex((row) => s(row?.id) === s(entry.id) || (!!identity && entryIdentity(row) === identity));
   const now = new Date().toISOString();
+  const incrementSeen = options.incrementSeen !== false;
 
   if (index >= 0) {
-    rows[index] = mergeEntry(rows[index], entry, now);
+    rows[index] = mergeEntry(rows[index], entry, now, incrementSeen);
     saveEntries(rows);
     return rows[index];
   }
@@ -201,9 +207,9 @@ function upsertEntry(entry: KnowledgeEntry): KnowledgeEntry | null {
   const next: KnowledgeEntry = {
     schema: SCHEMA,
     version: VERSION,
-    learned_at: now,
-    last_seen_at: now,
-    times_seen: 1,
+    learned_at: entry.learned_at || now,
+    last_seen_at: entry.last_seen_at || now,
+    times_seen: Number(entry.times_seen || 1),
     ...entry
   };
   rows.push(next);
@@ -475,6 +481,8 @@ function installCaptureBridge(): boolean {
   return true;
 }
 
+const quizMemory = createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectId });
+
 async function loadEmner(subjectId: string): Promise<JsonObject[]> {
   if (root.DataHub?.loadEmner) {
     try {
@@ -538,6 +546,7 @@ async function buildProfile(options: JsonObject = {}): Promise<JsonObject> {
   sanitizeStoredEntries();
   migrateLegacyKnowledge();
   reconcileEntriesFromLearningLog();
+  quizMemory.syncMemoryEntries();
 
   const entries = getEntries();
   const learningLog = toArray<JsonObject>(readJson(LEARNING_LOG_KEY, []));
@@ -601,7 +610,7 @@ async function buildProfile(options: JsonObject = {}): Promise<JsonObject> {
     allConcepts.set(concept.id, previous);
   }));
 
-  return {
+  const profile = {
     schema: "history_go_knowledge_profile_v2",
     version: VERSION,
     generated_at: new Date().toISOString(),
@@ -615,6 +624,7 @@ async function buildProfile(options: JsonObject = {}): Promise<JsonObject> {
     concepts: Array.from(allConcepts.values()).sort((a, b) => b.count - a.count),
     subjects
   };
+  return quizMemory.attachMemoryToProfile(profile);
 }
 
 function getContractHealth(entries: KnowledgeEntry[] = getEntries()): JsonObject {
@@ -637,13 +647,15 @@ function boot(): void {
   migrateLegacyKnowledge();
   installCaptureBridge();
   reconcileEntriesFromLearningLog();
+  quizMemory.syncMemoryEntries();
+  quizMemory.initBrowserIntegration();
 }
 
 const api = {
   SCHEMA,
   VERSION,
   QUALITY_VERSION,
-  KEYS: { ENTRIES: ENTRY_KEY, LEGACY: LEGACY_KEY, LEARNING_LOG: LEARNING_LOG_KEY },
+  KEYS: { ENTRIES: ENTRY_KEY, LEGACY: LEGACY_KEY, LEARNING_LOG: LEARNING_LOG_KEY, MEMORY: quizMemory.STORAGE_KEY },
   SUBJECT_LABELS,
   claimCore,
   normalizeEmneIds,
@@ -658,10 +670,14 @@ const api = {
   installCaptureBridge,
   getEntries,
   buildProfile,
-  getContractHealth
+  getContractHealth,
+  quizMemory,
+  renderQuizMemoryOverview: quizMemory.renderOverview
 };
 
 root.HGKnowledgeV2 = api;
+root.HGQuizKnowledgeMemory = quizMemory;
+root.buildQuizKnowledgeBundle = quizMemory.buildQuizKnowledgeBundle;
 if (typeof root.addEventListener === "function") {
   root.addEventListener("hg:quizCompleted", () => { try { reconcileEntriesFromLearningLog(); } catch {} });
   root.addEventListener("hg:appReady", () => { try { installCaptureBridge(); } catch {} });

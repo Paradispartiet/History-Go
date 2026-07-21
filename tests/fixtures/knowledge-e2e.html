@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="nb"><head><meta charset="utf-8"><title>Knowledge E2E</title></head><body>
+<button id="startQuiz" type="button">Start quiz</button>
+<section id="knowledgeSummary"></section><input id="knowledgeSearch"><nav id="knowledgeSubjectNav"></nav><p id="knowledgeLoading"></p><p id="knowledgeError" hidden></p><main id="knowledgeContent"></main>
+<script>
+window.DEBUG = true;
+window.PLACES = [{ id: "e2e_place", name: "E2E-sted" }]; window.PEOPLE = [];
+window.DomainRegistry = { toRuntimeCategoryId: (value) => value };
+window.DataHub = { loadEmner: async () => [{ emne_id: "em_by_e2e", title: "E2E-emne", core_concepts: ["byrom", "arkitektur"] }], loadFagManifest: async () => ({ by: {} }) };
+window.HGCourses = { compute: async () => null };
+window.HGLearningLog = { getQuizHistory: () => [] };
+</script>
+<script src="/dist/web/knowledgeV2.js"></script><script src="/js/quizzes.js"></script><script src="/js/knowledgePage.js"></script>
+<script>
+window.QuizEngine.init({ getPlaceById: (id) => window.PLACES.find((place) => place.id === id), getPersonById: () => null, getVisited: () => ({}), isTestMode: () => true, showToast: (message) => { window.__lastToast = message; }, dispatchProfileUpdate: () => {}, quizFeedbackMs: 0 });
+document.getElementById("startQuiz").addEventListener("click", () => window.QuizEngine.start("e2e_place"));
+</script></body></html>
