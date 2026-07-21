@@ -1,0 +1,130 @@
+{
+  "version": "2026-07-21",
+  "source": {
+    "name": "VisitOSLO — Øyer og attraksjoner i Oslofjorden",
+    "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/omraader/oslofjorden/attraksjoner",
+    "capturedVisibleRows": 12
+  },
+  "status": "closed",
+  "summary": {
+    "sourceRows": 12,
+    "sourceRowsResolved": 12,
+    "physicalCanonicalIdentitiesResolvingSource": 15,
+    "existingCanonicalIdentities": 4,
+    "newCanonicalIdentitiesProduced": 11,
+    "unresolvedSourceRows": 0,
+    "unresolvedCoordinateDecisions": 0,
+    "remainingCanonicalGaps": 0
+  },
+  "existingCanonical": [
+    "gressholmen",
+    "hovedoya_kloster",
+    "hovedoya",
+    "aker_brygge"
+  ],
+  "newCanonical": [
+    "heggholmen",
+    "rambergoya",
+    "ormoya",
+    "malmoya",
+    "nakholmen",
+    "steilene",
+    "langoyene",
+    "lindoya",
+    "ingierstrand_bad",
+    "bleikoya",
+    "ulvoya"
+  ],
+  "sourceRowResolution": [
+    {
+      "sourceRow": "Gressholmen, Heggholmen og Rambergøya",
+      "canonicalIds": ["gressholmen", "heggholmen", "rambergoya"]
+    },
+    {
+      "sourceRow": "Klosterruinene på Hovedøya",
+      "canonicalIds": ["hovedoya_kloster"]
+    },
+    {
+      "sourceRow": "Ormøya og Malmøya",
+      "canonicalIds": ["ormoya", "malmoya"]
+    },
+    {
+      "sourceRow": "Nakholmen",
+      "canonicalIds": ["nakholmen"]
+    },
+    {
+      "sourceRow": "Steilene",
+      "canonicalIds": ["steilene"]
+    },
+    {
+      "sourceRow": "Langøyene",
+      "canonicalIds": ["langoyene"]
+    },
+    {
+      "sourceRow": "Lindøya",
+      "canonicalIds": ["lindoya"]
+    },
+    {
+      "sourceRow": "Hovedøya",
+      "canonicalIds": ["hovedoya"]
+    },
+    {
+      "sourceRow": "Aker Brygge",
+      "canonicalIds": ["aker_brygge"]
+    },
+    {
+      "sourceRow": "Ingierstrand bad",
+      "canonicalIds": ["ingierstrand_bad"]
+    },
+    {
+      "sourceRow": "Bleikøya",
+      "canonicalIds": ["bleikoya"]
+    },
+    {
+      "sourceRow": "Ulvøya",
+      "canonicalIds": ["ulvoya"]
+    }
+  ],
+  "production": {
+    "oslo": {
+      "pr": 3114,
+      "mergeSha": "6d6e195aeb1146d855bd1e9f81351b30c0d1c30d",
+      "coordinateBatch": 116,
+      "placeIds": ["heggholmen", "rambergoya", "ormoya", "malmoya", "nakholmen", "lindoya", "bleikoya", "ulvoya"]
+    },
+    "akershus": {
+      "pr": 3116,
+      "mergeSha": "a1bf5c84014410c9dc71691933058b909f9e70c1",
+      "placeIds": ["steilene", "langoyene", "ingierstrand_bad"]
+    }
+  },
+  "auditChain": [
+    {
+      "pr": 3086,
+      "purpose": "physical scope resolution"
+    },
+    {
+      "pr": 3101,
+      "purpose": "final coordinate intake for all 11 approved candidates"
+    },
+    {
+      "pr": 3105,
+      "purpose": "taxonomy and source-role lock"
+    },
+    {
+      "pr": 3114,
+      "purpose": "eight Oslo municipality canonical productions"
+    },
+    {
+      "pr": 3116,
+      "purpose": "three county-correct Akershus canonical productions"
+    }
+  ],
+  "closureRules": [
+    "Combined VisitOSLO rows were resolved to their actual named physical identities rather than copied as synthetic combined markers.",
+    "Physical county placement overrides the VisitOSLO marketing area: Steilene and Langøyene are stored under Nesodden/Akershus, and Ingierstrand bad under Nordre Follo/Akershus.",
+    "Heggholmen and Rambergøya retain separate official SSR island identities even though the present landform is physically connected to neighbouring islands.",
+    "Ingierstrand bad represents the complete named bathing complex, not only the restaurant building.",
+    "The source is closed with no remaining unaudited or coordinate-blocked rows in the captured 12-row attractions list."
+  ]
+}
