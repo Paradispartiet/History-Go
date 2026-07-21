@@ -38,7 +38,7 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "historie", name: "Historie", icon: "🏛️", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
   { id: "religion", name: "Religion", icon: "🛐", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
   { id: "vitenskap", name: "Vitenskap & filosofi", icon: "🧪", color: "#332B51", secondaryColor: "#413E17", scope: "runtime_domain" },
-  { id: "kunst", name: "Kunst", icon: "🎨", color: "#DFB020", secondaryColor: "#1D3E5F", scope: "runtime_domain" },
+  { id: "kunst", name: "Kunst", icon: "🎨", color: "#0057B8", secondaryColor: "#D71920", scope: "runtime_domain" },
   { id: "scenekunst", name: "Scenekunst", icon: "🎭", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
   { id: "musikk", name: "Musikk", icon: "🎵", color: "#122033", secondaryColor: "#121E2B", scope: "runtime_domain" },
   { id: "natur", name: "Natur & miljø", icon: "🌿", color: "#2E4F21", secondaryColor: "#DC7A04", scope: "runtime_domain" },
