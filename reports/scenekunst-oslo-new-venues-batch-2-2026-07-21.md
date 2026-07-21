@@ -36,3 +36,13 @@ Generert: 2026-07-21T11:33:04.273Z
 - Oslo Nye-recorden gjelder Hovedscenen i Rosenkrantz’ gate 10. Centralteatret og Teaterkjeller’n er et annet teaterhus i Akersgata.
 - Det Andre Teatret-recorden gjelder hovedscenen og teaterbaren i Ivan Bjørndals gate 9. Intimscenen i nummer 28 er en separat fysisk scene.
 - Nordic Black Theatre og Cafeteatret modelleres sammen fordi Cafeteatret er institusjonens faste teaterhjem i Hollendergata 8.
+
+## Byggevalidering
+
+- Eksakte Geonorge-adressetreff: `pass`
+- Canonical overlap-audit: `pass`
+- Regenerering av `places_index.json`: `pass`
+- Places-kontroll: `pass`
+- Kategoriaudit: `pass`
+
+Denne committen utløser ordinær PR-CI på det ferdige batchresultatet.
