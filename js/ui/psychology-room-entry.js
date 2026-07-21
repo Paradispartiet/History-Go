@@ -100,14 +100,34 @@
 
   installQuizManifestAdditions();
 
+  function loadQuizKnowledgeQualityLayer() {
+    if (window.HGQuizKnowledgeQuality) return;
+    if (document.getElementById("quiz-knowledge-quality-script")) return;
+
+    const script = document.createElement("script");
+    script.id = "quiz-knowledge-quality-script";
+    script.src = "js/quizKnowledgeQuality.js";
+    script.async = false;
+    document.head.appendChild(script);
+  }
+
   function loadQuizKnowledgeMemoryLayer() {
-    if (window.HGQuizKnowledgeMemory) return;
-    if (document.getElementById("quiz-knowledge-memory-script")) return;
+    if (window.HGQuizKnowledgeMemory) {
+      loadQuizKnowledgeQualityLayer();
+      return;
+    }
+
+    const existing = document.getElementById("quiz-knowledge-memory-script");
+    if (existing) {
+      existing.addEventListener("load", loadQuizKnowledgeQualityLayer, { once: true });
+      return;
+    }
 
     const script = document.createElement("script");
     script.id = "quiz-knowledge-memory-script";
     script.src = "js/quizKnowledgeMemory.js";
     script.async = false;
+    script.addEventListener("load", loadQuizKnowledgeQualityLayer, { once: true });
     document.head.appendChild(script);
   }
 
