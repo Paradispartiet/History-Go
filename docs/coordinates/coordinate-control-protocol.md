@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 262 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 106 kontrollerer alle seks legacy-punktene i `places_oslo_natur_bygdoy.json` etter objekt-type-først-metoden. Dronningberget bruker offisiell Naturbase-vernepolygon; øvrige godkjente steder krever eksakt navngitt OSM-objekt med uavhengig identitetskryssjekk. Uavklarte navn eller geometrier avsluttes som needs_review uten proxy-gjetting.
+Oslo-tabellen inneholder nå 268 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 107 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_hovedsteder.json` etter objekt-type-først-metoden. Offisiell vernegeometri prioriteres; øyer, innsjøer og eventuelle vassdrag krever ett eksakt navngitt fysisk kildeobjekt. Sammensatte eller canonical-overlappende systemrecords avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -309,6 +309,14 @@ Batch 104 (2026-07-21) produserer `vikingtidsmuseet` som én stabil fysisk museu
 | 106 | `bygdoy_paradisbukta` | Bygdøy Paradisbukta | verified_geometry | `osm-way:28447738` |
 
 Batch 106 (2026-07-21) reviderer hele Bygdøy-naturkilden fra 2026-05-03, der legacy-statusene var `OpenStreetMap/Mapcarta` eller `nearby_reference`. Dronningberget forankres i offisiell Naturbase-geometri VV00003059. For Kongeskogen, Huk, Paradisbukta og Bygdøynes brukes bare et unikt eksakt navnetreff som også passer forhåndsdefinert fysisk objekttype innenfor Bygdøy-boksen; alle rå Nominatim-resultater lagres. Røykensvika godkjennes ikke uten uavhengig dokumentasjon av at place-identiteten faktisk finnes på Bygdøy.
+| 107 | `ostensjovannet` | Østensjøvannet | verified_geometry | `miljodirektoratet-naturvern:VV00000972` |
+| 107 | `hovedoya` | Hovedøya | verified_geometry | `osm-relation:20749306` |
+| 107 | `gressholmen` | Gressholmen | verified_geometry | `osm-relation:11816903` |
+| 107 | `maerradalen` | Mærradalen | verified_geometry | `osm-way:844862938` |
+| 107 | `maridalsvannet` | Maridalsvannet | verified_geometry | `osm-relation:1438314` |
+| 107 | `noklevann` | Nøklevann | verified_geometry | `osm-relation:16661` |
+
+Batch 107 (2026-07-21) reviderer natur-hovedstedene som fortsatt manglet full Coordinate Source Contract v1. Runneren hopper eksplisitt over placeId-er som allerede står i Oslo-hovedtabellen eller den separate needs_review-tabellen. Offisiell Naturbase-geometri brukes der et entydig verneobjekt finnes; ellers må OSM-kandidaten være et unikt eksakt navnetreff med riktig forhåndsdefinert objekttype. `bygdoy_natur` og `alnaelva_hovedsteder` kan ikke reduseres til nye tilfeldige punktproxyer når deres scope overlapper separate canonical delsteder eller eksisterende hovedrecords.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -433,6 +441,9 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `bygdoy_kongeskogen` – Bygdøy Kongeskogen | needs_review | Identiteten er dokumentert, men kontrollen ga ikke ett entydig eksakt navngitt objekt som passer fysisk objekttype innenfor Bygdøy-boksen. | ett entydig eksakt navngitt fysisk objekt eller offisiell områdegeometri |
 | `bygdoy_bygdoynes` – Bygdøy Bygdøynes | needs_review | Identiteten er dokumentert, men kontrollen ga ikke ett entydig eksakt navngitt objekt som passer fysisk objekttype innenfor Bygdøy-boksen. | ett entydig eksakt navngitt fysisk objekt eller offisiell områdegeometri |
 | `bygdoy_roykenvika` – Bygdøy Røykensvika | needs_review | Ingen uavhengig troverdig kilde dokumenterer Røykensvika som sted på Bygdøy; gamle Mapcarta/OSM-opplysninger kan ikke verifisere en uavklart identitet. | uavhengig troverdig kilde som dokumenterer lokal stedsidentitet på Bygdøy |
+| `bygdoy_natur` – Bygdøy natur- og kulturmiljø | needs_review | Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet. | Dokumenter en eksplisitt halvøy-/multi-anchor-modell eller offisiell områdegeometri som samsvarer med hele recordens scope. |
+| `ljanselva` – Ljanselva | needs_review | Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker. | Finn én stabil eksakt geometri for hele recordens fysiske scope, eller modeller eksplisitt flere kildebelagte ankere. |
+| `alnaelva_hovedsteder` – Alnaelva | needs_review | Recorden representerer samme overordnede vassdrag som canonical `alnaelva`, som allerede er kontrollert og står needs_source fordi elva består av flere separate og delvis tunnellagte geometrier. En ny hovedstedsmarkør med et annet vilkårlig midtpunkt ville duplisere den uavklarte identiteten. | Avklar canonical duplikat-/aliasmodell mot `alnaelva`; modeller deretter samlet rutegeometri eller flere kildebelagte delankre. |
 
 ## Etne – historiesett
 
@@ -480,8 +491,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 107.
-- `places_oslo_natur_bygdoy.json` er nå fullt kontrollert i manifestrekkefølge. Før batch 107 starter skal `data/places/natur/oslo/places_oslo_natur_hovedsteder.json` auditeres mot protokollen og den separate needs_review-tabellen; tidligere kontrollerte placeId-er skal hoppes over eksplisitt.
+- Neste nye Oslo-kontroll er batch 108.
+- `places_oslo_natur_hovedsteder.json` er nå fullt kontrollert i manifestrekkefølge. Før batch 108 starter skal `data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json` auditeres mot protokollen og den separate needs_review-tabellen; tidligere kontrollerte placeId-er skal hoppes over eksplisitt.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 

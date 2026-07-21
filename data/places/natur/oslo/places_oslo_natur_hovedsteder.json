@@ -2,8 +2,8 @@
   {
     "id": "ostensjovannet",
     "name": "Østensjøvannet",
-    "lat": 59.88833,
-    "lon": 10.82694,
+    "lat": 59.88943337258171,
+    "lon": 10.829260727224845,
     "r": 450,
     "category": "natur",
     "desc": "Næringsrik innsjø, naturreservat og et av Oslos viktigste våtmarks- og fugleområder.",
@@ -16,12 +16,11 @@
       "biodiversitet"
     ],
     "sourceHint": "Bygd på eksisterende hovedobjekt og delpunktfila for Østensjøvannet. Hovedobjektet representerer hele våtmarksområdet, mens nord, sør, sivbelte, fugletårn og Bogerudmyra ligger som delpunkter.",
-    "coordType": "area_center",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "repo_synthesis_from_existing_natur_files",
-    "coordPrecisionM": 120,
-    "coordVerifiedAt": "2026-05-09",
-    "coordNote": "Bevisst hovedanker for hele våtmarksområdet; observasjonspunkter og randsoner ligger i delpunktfila.",
+    "coordType": "protected_wetland_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "Miljødirektoratet Naturvernområder – offisiell geometri for Østensjøvannet naturreservat",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Canonical punkt er et representativt områdeanker beregnet fra den offisielle vernegeometrien VV00000972. Punktet brukes for hele verne-/naturarealet og ikke som adresse- eller tilfeldig delpunkt.",
     "anchors": [
       {
         "id": "ostensjovannet_nord",
@@ -98,13 +97,20 @@
     },
     "underbadge_ids": [
       "biologisk_mangfold"
-    ]
+    ],
+    "locatorType": "natural_area",
+    "sourceProvider": "official_map",
+    "sourceObjectId": "miljodirektoratet-naturvern:VV00000972",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "miljodirektoratet-naturvern:VV00000972",
+    "coordSourceUrl": "https://faktaark.naturbase.no/?id=VV00000972"
   },
   {
     "id": "hovedoya",
     "name": "Hovedøya",
-    "lat": 59.89512,
-    "lon": 10.7379,
+    "lat": 59.895125029296096,
+    "lon": 10.731608215517637,
     "r": 450,
     "category": "natur",
     "desc": "Øy i indre Oslofjord med naturreservat, kalkrik flora, strender og sterke kulturhistoriske spor.",
@@ -160,13 +166,25 @@
     },
     "underbadge_ids": [
       "geologi"
-    ]
+    ],
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:20749306",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "island_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 20749306 – Hovedøya",
+    "coordSourceId": "osm-relation:20749306",
+    "coordSourceUrl": "https://www.openstreetmap.org/relation/20749306",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
   },
   {
     "id": "gressholmen",
     "name": "Gressholmen",
-    "lat": 59.8844,
-    "lon": 10.7226,
+    "lat": 59.88300168,
+    "lon": 10.71866025,
     "r": 420,
     "category": "natur",
     "desc": "Fjordøy sør for Hovedøya med rikt fugle- og planteliv og fredede naturkvaliteter.",
@@ -227,7 +245,19 @@
       "fugler",
       "planter_og_blomster",
       "naturvern"
-    ]
+    ],
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:11816903",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "island_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 11816903 – Gressholmen",
+    "coordSourceId": "osm-relation:11816903",
+    "coordSourceUrl": "https://www.openstreetmap.org/relation/11816903",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
   },
   {
     "id": "bygdoy_natur",
@@ -246,12 +276,11 @@
       "kystnatur"
     ],
     "sourceHint": "Bygd på eksisterende hovedobjekt og delpunktfila for Bygdøy. Hovedobjektet skal representere hele naturlandskapet, mens Kongeskogen, Huk, Paradisbukta og andre delpunkter ligger i egen sted-/rutefil.",
-    "coordType": "area_center",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "repo_synthesis_from_existing_natur_files",
-    "coordPrecisionM": 120,
-    "coordVerifiedAt": "2026-05-09",
-    "coordNote": "Bevisst stort områdeanker for hele Bygdøy-halvøya; naturpunkter langs kyst og i skog ligger i delpunktfila.",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "bygdoy_natur_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet.",
     "anchors": [
       {
         "id": "bygdoy_kongeskogen",
@@ -334,7 +363,8 @@
       "skog",
       "strandsone",
       "gronn_korridor"
-    ]
+    ],
+    "locatorType": "natural_area"
   },
   {
     "id": "ljanselva",
@@ -353,12 +383,11 @@
       "kantvegetasjon"
     ],
     "sourceHint": "Bygd på eksisterende hovedobjekt og Ljanselva-rutefila. Hovedobjektet skal representere hele marka–fjord-vassdraget, mens delpunktene ligger i egen rute-fil.",
-    "coordType": "route_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "repo_synthesis_from_existing_natur_files",
-    "coordPrecisionM": 130,
-    "coordVerifiedAt": "2026-05-09",
-    "coordNote": "Bevisst hovedanker for hele Ljanselva; delpunkter fra Nøklevann til Bunnefjorden ligger i rute-filen.",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "ljanselva_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker.",
     "anchors": [
       {
         "id": "ljanselva_start",
@@ -438,13 +467,14 @@
       "vann_og_vassdrag",
       "kantvegetasjon",
       "kyst_og_fjord"
-    ]
+    ],
+    "locatorType": "route"
   },
   {
     "id": "maerradalen",
     "name": "Mærradalen",
-    "lat": 59.9368,
-    "lon": 10.6612,
+    "lat": 59.937718080001645,
+    "lon": 10.655018282536306,
     "r": 700,
     "category": "natur",
     "desc": "Fredet bekkekløft og bynær skogdal med frodig vegetasjon, fugleliv, sopp og bekkeløp.",
@@ -456,12 +486,11 @@
       "fredet"
     ],
     "sourceHint": "Bymiljøetatens beskrivelse er gjengitt av lokale aktører: en nesten to kilometer lang bekkekløft med urørt skog av nasjonal verdi. Koordinatet er et områdesenter.",
-    "coordType": "area_center",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "manual_map_check",
-    "coordPrecisionM": 110,
-    "coordVerifiedAt": "2026-05-01",
-    "coordNote": "Bevisst stort områdeanker for daldraget; radius dekker hele Mærradalen.",
+    "coordType": "valley_line_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 844862938 – Mærradalen",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-dalgeometri way 844862938 (natural=valley) brukes som lineært representasjonsanker for Mærradalen. Punktet er beregnet midt langs den navngitte dalgeometrien; det påstås ikke at OSM-linjen er en offisiell vernegrense.",
     "anchors": [
       {
         "id": "maerradalen_nord",
@@ -539,13 +568,20 @@
       "ravine_og_dal",
       "skog",
       "naturvern"
-    ]
+    ],
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:844862938",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-way:844862938",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/844862938"
   },
   {
     "id": "maridalsvannet",
     "name": "Maridalsvannet",
-    "lat": 59.9843,
-    "lon": 10.7789,
+    "lat": 59.984773706468054,
+    "lon": 10.777045453207208,
     "r": 1150,
     "category": "natur",
     "desc": "Oslos største innsjø og hoveddrikkevannskilde, med skog, kulturlandskap og Akerselvas utspring i sørenden.",
@@ -558,12 +594,11 @@
       "kulturlandskap"
     ],
     "sourceHint": "Bygd på eksisterende hovedobjekt. Maridalsvannet skal leses som natur- og vannsystem, ikke som blandet by/historie-objekt.",
-    "coordType": "area_center",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "repo_synthesis_from_existing_natur_files",
-    "coordPrecisionM": 140,
-    "coordVerifiedAt": "2026-05-09",
-    "coordNote": "Bevisst stort områdeanker for hele vannflaten og drikkevannssonen; delankre markerer øst, nord og sør.",
+    "coordType": "lake_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 1438314 – Maridalsvannet",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: water/reservoir; geometri: Polygon.",
     "anchors": [
       {
         "id": "maridalsvannet_ost",
@@ -643,13 +678,20 @@
       "vann_og_vassdrag",
       "vannkvalitet",
       "skog"
-    ]
+    ],
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:1438314",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-relation:1438314",
+    "coordSourceUrl": "https://www.openstreetmap.org/relation/1438314"
   },
   {
     "id": "noklevann",
     "name": "Nøklevann",
-    "lat": 59.8834,
-    "lon": 10.8782,
+    "lat": 59.88044653,
+    "lon": 10.866737856666667,
     "r": 950,
     "category": "natur",
     "desc": "Stor innsjø i Østmarka med sterk kobling til skog, friluftsliv og Ljanselvas vassdragssystem.",
@@ -662,12 +704,11 @@
       "ljanselva"
     ],
     "sourceHint": "Bygd på eksisterende hovedobjekt. Nøklevann skal leses som markavann og vannsystem, ikke bare bade- og tursted.",
-    "coordType": "area_center",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "repo_synthesis_from_existing_natur_files",
-    "coordPrecisionM": 130,
-    "coordVerifiedAt": "2026-05-09",
-    "coordNote": "Bevisst stort områdeanker for hele Nøklevann; delankre markerer nord, øst og sørvest.",
+    "coordType": "lake_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 16661 – Nøklevann",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/water; geometri: Polygon.",
     "anchors": [
       {
         "id": "noklevann_nord",
@@ -748,7 +789,14 @@
       "skog",
       "friluftsliv",
       "bading"
-    ]
+    ],
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:16661",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-relation:16661",
+    "coordSourceUrl": "https://www.openstreetmap.org/relation/16661"
   },
   {
     "id": "alnaelva_hovedsteder",
@@ -767,12 +815,11 @@
       "vannkvalitet"
     ],
     "sourceHint": "Bygd fra eksisterende Alna-hovedobjekt og Alna-rutefila. Hovedobjektet skal representere hele vassdraget, mens delpunkter ligger i egen rute-fil.",
-    "coordType": "route_midpoint",
-    "coordStatus": "semantic_anchor",
-    "coordSource": "repo_synthesis_from_existing_natur_files",
-    "coordPrecisionM": 130,
-    "coordVerifiedAt": "2026-05-09",
-    "coordNote": "Bevisst hovedanker for hele Alnaelva; delpunkter som Alnsjøen, Svartdalen, Bryn og utløpet i Bjørvika skal ligge i rute-filen.",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "alnaelva_hovedsteder_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Recorden representerer samme overordnede vassdrag som canonical `alnaelva`, som allerede er kontrollert og står needs_source fordi elva består av flere separate og delvis tunnellagte geometrier. En ny hovedstedsmarkør med et annet vilkårlig midtpunkt ville duplisere den uavklarte identiteten.",
     "anchors": [
       {
         "id": "alnaelva_kilde",
@@ -854,6 +901,7 @@
       "vann_og_vassdrag",
       "naturrestaurering",
       "vannkvalitet"
-    ]
+    ],
+    "locatorType": "route"
   }
 ]

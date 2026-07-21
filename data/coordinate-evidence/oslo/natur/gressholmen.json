@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "gressholmen",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.88300168,
+    "lon": 10.71866025,
+    "r": 420,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 11816903 – Gressholmen",
+    "coordType": "island_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Gressholmen",
+    "resolvedIdentity": "Gressholmen som hel øy i indre Oslofjord",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk objekt/geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Gressholmen",
+      "sourceUrl": "https://www.openstreetmap.org/relation/11816903",
+      "sourceObjectId": "osm-relation:11816903",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navnetreff med objekttype place/island og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Independent geographic identity cross-check",
+      "sourceUrl": "https://snl.no/Gressholmen",
+      "sourceObjectId": "snl:gressholmen",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig kilde kryssjekker identiteten Gressholmen som hel øy i indre Oslofjord.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; koordinaten kommer fra det eksakte OSM-objektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11816903",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:gressholmen",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11816903",
+      "lat": 59.88300168,
+      "lon": 10.71866025,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.88300168,
+      "lon": 10.71866025,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:11816903",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
+  ]
+}
