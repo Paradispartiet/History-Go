@@ -1,44 +1,224 @@
 From https://github.com/Paradispartiet/History-Go
  * branch                main       -> FETCH_HEAD
+Auto-merging data/coordinate-evidence/manifest.json
+Auto-merging data/places/places_index.json
+Auto-merging docs/coordinates/coordinate-control-protocol.md
 Auto-merging reports/coordinate-evidence-audit.md
 Auto-merging reports/place-coordinate-intake-gate.md
 Auto-merging reports/place-coordinate-quality-gate.md
 Merge made by the 'ort' strategy.
- data/natur/fauna/manifest.json                     |    3 +-
- data/natur/fauna/marine_akrafjorden_batch_7.json   | 1560 +++++++++++
- data/natur/nature_etne_place_map.json              |   39 +-
+ data/coordinate-evidence/manifest.json             |   11 +-
+ data/coordinate-evidence/oslo/by/losaeter.json     |   75 +
+ .../oslo/by/sukkerbiten_badstulandsby.json         |   76 +
+ .../oslo/sport/friluftshuset_sorenga.json          |   76 +
+ .../oslo/sport/operastranda.json                   |   75 +
+ data/natur/fauna/manifest.json                     |    6 +-
+ data/natur/fauna/marine_akrafjorden_batch_10.json  | 1559 +++++++++++
+ data/natur/fauna/marine_akrafjorden_batch_11.json  | 1089 ++++++++
+ data/natur/fauna/marine_akrafjorden_batch_8.json   | 1556 +++++++++++
+ data/natur/fauna/marine_akrafjorden_batch_9.json   | 1561 +++++++++++
+ data/natur/nature_etne_place_map.json              |  133 +-
+ data/places/by/oslo/places/losaeter.json           |   78 +
+ .../by/oslo/places/sukkerbiten_badstulandsby.json  |   85 +
+ data/places/manifest.json                          |    6 +-
+ .../oslo/places_naeringsliv/havnelageret.json      |   28 +-
+ .../naeringsliv/oslo/places_naeringsliv_index.json |   28 +-
+ .../oslo/places_naeringsliv_manifest.json          |    4 +-
+ data/places/places_index.json                      |  124 +-
+ .../norway/oslo_sport/friluftshuset_sorenga.json   |  102 +
+ .../europa/norway/oslo_sport/operastranda.json     |   91 +
+ docs/coordinates/coordinate-control-protocol.md    |   19 +-
  .../coordinate-evidence.log                        |    9 +
  .../coordinate-intake.log                          |    9 +
  .../coordinate-quality.log                         |   13 +
  .../coordinate-source-contract.log                 |    9 +
  .../git-diff-check.log                             |    0
  .../health-places.exit-code.txt                    |    1 +
- .../health-places.log                              | 2883 ++++++++++++++++++++
- .../job.log                                        |   62 +
+ .../health-places.log                              | 2887 ++++++++++++++++++++
+ .../job.log                                        |   33 +
  .../npm-ci.log                                     |    7 +
  .../places-index-build.log                         |    9 +
  .../places-index-check.log                         |   15 +
  .../split-manifest-sync.log                        |   19 +
- reports/coordinate-evidence-audit.md               |    2 +-
- reports/place-coordinate-intake-gate.md            |    2 +-
- reports/place-coordinate-quality-gate.md           |    2 +-
- ...etne-akrafjorden-marine-species-batch-6.test.js |    8 +-
- ...etne-akrafjorden-marine-species-batch-7.test.js |   23 +
- 20 files changed, 4660 insertions(+), 15 deletions(-)
- create mode 100644 data/natur/fauna/marine_akrafjorden_batch_7.json
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-evidence.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-intake.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-quality.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-source-contract.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/git-diff-check.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/health-places.exit-code.txt
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/health-places.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/job.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/npm-ci.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/places-index-build.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/places-index-check.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/split-manifest-sync.log
- create mode 100644 tests/etne-akrafjorden-marine-species-batch-7.test.js
+ .../coordinate-evidence.log                        |    9 +
+ .../coordinate-intake.log                          |    9 +
+ .../coordinate-quality.log                         |   13 +
+ .../coordinate-source-contract.log                 |    9 +
+ .../git-diff-check.log                             |    0
+ .../health-places.exit-code.txt                    |    1 +
+ .../health-places.log                              | 2883 +++++++++++++++++++
+ .../job.log                                        |   34 +
+ .../npm-ci.log                                     |    7 +
+ .../places-index-build.log                         |    9 +
+ .../places-index-check.log                         |   15 +
+ .../split-manifest-sync.log                        |   19 +
+ .../coordinate-evidence.log                        |    9 +
+ .../coordinate-intake.log                          |    9 +
+ .../coordinate-quality.log                         |   13 +
+ .../coordinate-source-contract.log                 |    9 +
+ .../git-diff-check.log                             |    0
+ .../health-places.exit-code.txt                    |    1 +
+ .../health-places.log                              | 2883 +++++++++++++++++++
+ .../job.log                                        |   65 +
+ .../npm-ci.log                                     |    7 +
+ .../places-index-build.log                         |    9 +
+ .../places-index-check.log                         |   15 +
+ .../split-manifest-sync.log                        |   19 +
+ .../coordinate-evidence.log                        |    9 +
+ .../coordinate-intake.log                          |    9 +
+ .../coordinate-quality.log                         |   13 +
+ .../coordinate-source-contract.log                 |    9 +
+ .../git-diff-check.log                             |    0
+ .../health-places.exit-code.txt                    |    1 +
+ .../health-places.log                              | 2883 +++++++++++++++++++
+ .../job.log                                        |   67 +
+ .../npm-ci.log                                     |    7 +
+ .../places-index-build.log                         |    9 +
+ .../places-index-check.log                         |   15 +
+ .../split-manifest-sync.log                        |   19 +
+ .../coordinate-evidence.log                        |    9 +
+ .../coordinate-intake.log                          |    9 +
+ .../coordinate-quality.log                         |   13 +
+ .../coordinate-source-contract.log                 |    9 +
+ .../git-diff-check.log                             |    0
+ .../health-places.exit-code.txt                    |    1 +
+ .../health-places.log                              | 2883 +++++++++++++++++++
+ .../job.log                                        |   63 +
+ .../npm-ci.log                                     |    7 +
+ .../places-index-build.log                         |    9 +
+ .../places-index-check.log                         |   15 +
+ .../split-manifest-sync.log                        |   19 +
+ .../coordinate-evidence.log                        |    9 +
+ .../coordinate-intake.log                          |    9 +
+ .../coordinate-quality.log                         |   13 +
+ .../coordinate-source-contract.log                 |    9 +
+ .../git-diff-check.log                             |    0
+ .../health-places.exit-code.txt                    |    1 +
+ .../health-places.log                              | 2883 +++++++++++++++++++
+ .../job.log                                        |   64 +
+ .../npm-ci.log                                     |    7 +
+ .../places-index-build.log                         |    9 +
+ .../places-index-check.log                         |   15 +
+ .../split-manifest-sync.log                        |   19 +
+ reports/coordinate-evidence-audit.md               |   13 +-
+ .../oslo-coordinate-control-batch-102/README.md    |    8 +
+ .../address/havnelageret.json                      |   57 +
+ .../oslo-coordinate-control-batch-102/summary.json |   46 +
+ reports/place-coordinate-intake-gate.md            |    6 +-
+ reports/place-coordinate-quality-gate.md           |    8 +-
+ .../coordinate-intake/duplicate-audit.json         |    6 +
+ .../friluftshuset-sorenga-geonorge.txt             |   65 +
+ .../coordinate-intake/intake-summary.json          |   40 +
+ .../coordinate-intake/losaeter-nominatim.json      |  171 ++
+ .../coordinate-intake/operastranda-nominatim.json  |  266 ++
+ .../coordinate-intake/sukkerbiten-geonorge.txt     |   65 +
+ .../production-final.json                          |   47 +
+ ...tne-akrafjorden-marine-species-batch-10.test.js |   23 +
+ ...tne-akrafjorden-marine-species-batch-11.test.js |   27 +
+ ...etne-akrafjorden-marine-species-batch-7.test.js |   10 +-
+ ...etne-akrafjorden-marine-species-batch-8.test.js |   24 +
+ ...etne-akrafjorden-marine-species-batch-9.test.js |   24 +
+ ...etne-akrafjorden-species-audit-complete.test.js |   25 +
+ 112 files changed, 25822 insertions(+), 65 deletions(-)
+ create mode 100644 data/coordinate-evidence/oslo/by/losaeter.json
+ create mode 100644 data/coordinate-evidence/oslo/by/sukkerbiten_badstulandsby.json
+ create mode 100644 data/coordinate-evidence/oslo/sport/friluftshuset_sorenga.json
+ create mode 100644 data/coordinate-evidence/oslo/sport/operastranda.json
+ create mode 100644 data/natur/fauna/marine_akrafjorden_batch_10.json
+ create mode 100644 data/natur/fauna/marine_akrafjorden_batch_11.json
+ create mode 100644 data/natur/fauna/marine_akrafjorden_batch_8.json
+ create mode 100644 data/natur/fauna/marine_akrafjorden_batch_9.json
+ create mode 100644 data/places/by/oslo/places/losaeter.json
+ create mode 100644 data/places/by/oslo/places/sukkerbiten_badstulandsby.json
+ create mode 100644 data/places/sport/europa/norway/oslo_sport/friluftshuset_sorenga.json
+ create mode 100644 data/places/sport/europa/norway/oslo_sport/operastranda.json
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-bjorvika-four-post-akra-production/split-manifest-sync.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-control-batch-102-havnelageret-post-akra-final/split-manifest-sync.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-10/split-manifest-sync.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-11-final/split-manifest-sync.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-8/split-manifest-sync.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-9/split-manifest-sync.log
+ create mode 100644 reports/oslo-coordinate-control-batch-102/README.md
+ create mode 100644 reports/oslo-coordinate-control-batch-102/address/havnelageret.json
+ create mode 100644 reports/oslo-coordinate-control-batch-102/summary.json
+ create mode 100644 reports/visitoslo-bjorvika-audit-20260721/coordinate-intake/duplicate-audit.json
+ create mode 100644 reports/visitoslo-bjorvika-audit-20260721/coordinate-intake/friluftshuset-sorenga-geonorge.txt
+ create mode 100644 reports/visitoslo-bjorvika-audit-20260721/coordinate-intake/intake-summary.json
+ create mode 100644 reports/visitoslo-bjorvika-audit-20260721/coordinate-intake/losaeter-nominatim.json
+ create mode 100644 reports/visitoslo-bjorvika-audit-20260721/coordinate-intake/operastranda-nominatim.json
+ create mode 100644 reports/visitoslo-bjorvika-audit-20260721/coordinate-intake/sukkerbiten-geonorge.txt
+ create mode 100644 reports/visitoslo-bjorvika-audit-20260721/production-final.json
+ create mode 100644 tests/etne-akrafjorden-marine-species-batch-10.test.js
+ create mode 100644 tests/etne-akrafjorden-marine-species-batch-11.test.js
+ create mode 100644 tests/etne-akrafjorden-marine-species-batch-8.test.js
+ create mode 100644 tests/etne-akrafjorden-marine-species-batch-9.test.js
+ create mode 100644 tests/etne-akrafjorden-species-audit-complete.test.js
 To https://github.com/Paradispartiet/History-Go
-   d0107b643..3103ca1f5  HEAD -> agent/oslo-coordinate-ljanselva-route-final
-Siste main er merget inn før endelig Ljanselva-validering.
+   2ff9255a1..8345e9e0e  HEAD -> agent/oslo-coordinate-ljanselva-route-final
+Fersk main er merget inn før auto-merge av Ljanselva batch 108.
