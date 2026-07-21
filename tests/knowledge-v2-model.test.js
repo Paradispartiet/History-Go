@@ -204,5 +204,5 @@ test("buildProfile organiserer Knowledge etter fag og emne uten å gjøre observ
   const profile = await api.buildProfile({ subjectId: "by" });
   assert.equal(profile.summary.knowledge_count, 1);
   assert.equal(profile.subjects.by.entries.length, 1);
-  assert.equal(profile.subjects.by.emners[0].knowledge_count, 1);
+  assert.equal(profile.subjects.by.emner[0].knowledge_count, 1);
 });
