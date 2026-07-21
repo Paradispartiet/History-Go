@@ -1,0 +1,1504 @@
+{
+  "version": "2026-07-21",
+  "source": {
+    "name": "VisitOSLO — Holmenkollen attractions",
+    "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/omraader/holmenkollen/attraksjoner/",
+    "capturedAt": "2026-07-21",
+    "visibleResultCards": 28,
+    "introHighlightedAdditionalItems": 1,
+    "auditedItems": 29
+  },
+  "rules": [
+    "Only fixed physical identities may become canonical gap candidates.",
+    "Service vendors, rentals, schools, event entries and route products are audited as source rows but cannot automatically create places.",
+    "Sub-attractions inside an existing parent place require a separate physical inclusion case before they can become canonical.",
+    "Exact/alias matching is used for the machine gate; fuzzy candidates are review aids only and never automatic matches."
+  ],
+  "scopeSummary": {
+    "fixed_place_candidate": 14,
+    "sub_attraction_or_parent_scope": 4,
+    "service_or_activity": 9,
+    "route_or_event": 2
+  },
+  "machineSummary": {
+    "candidate_exact_or_alias_match": 12,
+    "candidate_resolved_to_parent_scope": 4,
+    "unresolved_fixed_place_candidate": 2,
+    "non_place_scope_no_production": 11
+  },
+  "results": [
+    {
+      "sourceName": "Skimore Oslo",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "skimore_oslo",
+        "skimore oslo",
+        "oslo vinterpark",
+        "tryvann vinterpark"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json",
+          "score": 1
+        },
+        {
+          "id": "oslo_s",
+          "name": "Oslo S",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_s.json",
+          "score": 0.5
+        },
+        {
+          "id": "oslo_bussterminal",
+          "name": "Oslo bussterminal",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_bussterminal.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_domkirke",
+          "name": "Oslo domkirke",
+          "category": "religion",
+          "sourceFile": "places/by/oslo/oslo_domkirke.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_ladegard",
+          "name": "Oslo ladegård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_hospital",
+          "name": "Oslo hospital",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_gassverk",
+          "name": "Oslo Gassverk",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_posthus",
+          "name": "Oslo Posthus",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_radhus",
+          "name": "Oslo rådhus",
+          "category": "politikk",
+          "sourceFile": "places/politikk/oslo/places_politikk/oslo_radhus.json",
+          "score": 0.333
+        },
+        {
+          "id": "cinemateket_oslo",
+          "name": "Cinemateket i Oslo",
+          "category": "film_tv",
+          "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/cinemateket_oslo.json",
+          "score": 0.333
+        }
+      ]
+    },
+    {
+      "sourceName": "Ski Simulator Holmenkollen",
+      "scopeClass": "sub_attraction_or_parent_scope",
+      "aliases": [
+        "ski simulator holmenkollen",
+        "skisimulator holmenkollen"
+      ],
+      "parentAliases": [
+        "holmenkollen nasjonalanlegg",
+        "holmenkollen skimuseum",
+        "skimuseet holmenkollen"
+      ],
+      "machineStatus": "candidate_resolved_to_parent_scope",
+      "exactMatches": [],
+      "parentMatches": [
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json"
+        }
+      ],
+      "fuzzyCandidates": [
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.25
+        },
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.25
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.25
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.25
+        }
+      ]
+    },
+    {
+      "sourceName": "Emanuel Vigeland Museum",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "emanuel_vigeland_mausoleum",
+        "emanuel vigeland museum",
+        "emanuel vigeland mausoleum"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "emanuel_vigeland_mausoleum",
+          "name": "Emanuel Vigelands mausoleum",
+          "category": "kunst",
+          "sourceFile": "places/kunst/oslo/places_kunst/emanuel_vigeland_mausoleum.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "emanuel_vigeland_mausoleum",
+          "name": "Emanuel Vigelands mausoleum",
+          "category": "kunst",
+          "sourceFile": "places/kunst/oslo/places_kunst/emanuel_vigeland_mausoleum.json",
+          "score": 0.4
+        },
+        {
+          "id": "folkenborg_museum",
+          "name": "Folkenborg Museum",
+          "category": "historie",
+          "sourceFile": "places/historie/ostfold/places_historie_ostfold_batch6/folkenborg_museum.json",
+          "score": 0.25
+        },
+        {
+          "id": "dagali_museum",
+          "name": "Dagali Museum",
+          "category": "historie",
+          "sourceFile": "places/historie/buskerud/places_historie_buskerud_batch4/dagali_museum.json",
+          "score": 0.25
+        },
+        {
+          "id": "bygland_museum",
+          "name": "Bygland Museum",
+          "category": "historie",
+          "sourceFile": "places/historie/agder/bygland_museum.json",
+          "score": 0.25
+        },
+        {
+          "id": "flekkefjord_museum",
+          "name": "Flekkefjord museum",
+          "category": "historie",
+          "sourceFile": "places/historie/agder/flekkefjord_museum.json",
+          "score": 0.25
+        },
+        {
+          "id": "risor_museum",
+          "name": "Risør museum",
+          "category": "historie",
+          "sourceFile": "places/historie/agder/risor_museum.json",
+          "score": 0.25
+        },
+        {
+          "id": "naturhistorisk_museum",
+          "name": "Naturhistorisk museum",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/naturhistorisk_museum.json",
+          "score": 0.25
+        },
+        {
+          "id": "flop_museum",
+          "name": "FLOP Museum",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07.json",
+          "score": 0.25
+        },
+        {
+          "id": "historisk_museum",
+          "name": "Historisk museum",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/historisk_museum.json",
+          "score": 0.25
+        },
+        {
+          "id": "ekebergparken_museum",
+          "name": "Ekebergparken Museum",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/ekebergparken_museum.json",
+          "score": 0.25
+        }
+      ]
+    },
+    {
+      "sourceName": "Bogstadvannet lake",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "bogstadvannet",
+        "bogstadvannet lake"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "bogstadvannet",
+          "name": "Bogstadvannet",
+          "category": "natur",
+          "sourceFile": "places/natur/oslo/places_natur/bogstadvannet.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "bogstadvannet",
+          "name": "Bogstadvannet",
+          "category": "natur",
+          "sourceFile": "places/natur/oslo/places_natur/bogstadvannet.json",
+          "score": 0.5
+        }
+      ]
+    },
+    {
+      "sourceName": "Holmenkollen Chapel",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "holmenkollen_kapell",
+        "holmenkollen kapell",
+        "holmenkollen chapel"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.333
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.333
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.333
+        }
+      ]
+    },
+    {
+      "sourceName": "Toboggan run: Korketrekkeren",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "korketrekkeren",
+        "toboggan run korketrekkeren"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "korketrekkeren",
+          "name": "Korketrekkeren",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/korketrekkeren.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "korketrekkeren",
+          "name": "Korketrekkeren",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/korketrekkeren.json",
+          "score": 0.333
+        }
+      ]
+    },
+    {
+      "sourceName": "Bogstad Manor",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "bogstad_gard",
+        "bogstad gård",
+        "bogstad gard",
+        "bogstad manor"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "bogstad_gard",
+          "name": "Bogstad gård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/bogstad_gard.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "bogstad_gard",
+          "name": "Bogstad gård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/bogstad_gard.json",
+          "score": 0.333
+        }
+      ]
+    },
+    {
+      "sourceName": "Open farm with animals at Bogstad",
+      "scopeClass": "sub_attraction_or_parent_scope",
+      "aliases": [
+        "åpen gård bogstad",
+        "apen gard bogstad",
+        "open farm bogstad"
+      ],
+      "parentAliases": [
+        "bogstad_gard",
+        "bogstad gård",
+        "bogstad gard",
+        "bogstad manor"
+      ],
+      "machineStatus": "candidate_resolved_to_parent_scope",
+      "exactMatches": [],
+      "parentMatches": [
+        {
+          "id": "bogstad_gard",
+          "name": "Bogstad gård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/bogstad_gard.json"
+        }
+      ],
+      "fuzzyCandidates": [
+        {
+          "id": "bogstad_gard",
+          "name": "Bogstad gård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/bogstad_gard.json",
+          "score": 0.167
+        }
+      ]
+    },
+    {
+      "sourceName": "Oslo Golf Club Bogstad",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "oslo_golfklubb",
+        "oslo golf club",
+        "oslo golfklubb",
+        "bogstad golf",
+        "bogstad golfbane"
+      ],
+      "machineStatus": "unresolved_fixed_place_candidate",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "oslo_s",
+          "name": "Oslo S",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_s.json",
+          "score": 0.25
+        },
+        {
+          "id": "oslo_bussterminal",
+          "name": "Oslo bussterminal",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_bussterminal.json",
+          "score": 0.2
+        },
+        {
+          "id": "bogstad_gard",
+          "name": "Bogstad gård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/bogstad_gard.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_domkirke",
+          "name": "Oslo domkirke",
+          "category": "religion",
+          "sourceFile": "places/by/oslo/oslo_domkirke.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_ladegard",
+          "name": "Oslo ladegård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_hospital",
+          "name": "Oslo hospital",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_gassverk",
+          "name": "Oslo Gassverk",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_posthus",
+          "name": "Oslo Posthus",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_radhus",
+          "name": "Oslo rådhus",
+          "category": "politikk",
+          "sourceFile": "places/politikk/oslo/places_politikk/oslo_radhus.json",
+          "score": 0.2
+        },
+        {
+          "id": "cinemateket_oslo",
+          "name": "Cinemateket i Oslo",
+          "category": "film_tv",
+          "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/cinemateket_oslo.json",
+          "score": 0.2
+        }
+      ]
+    },
+    {
+      "sourceName": "Holmenkollen National Ski Arena",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "holmenkollen_nasjonalanlegg",
+        "holmenkollen nasjonalanlegg",
+        "holmenkollen national ski arena",
+        "holmenkollbakken",
+        "holmenkollen ski arena"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.2
+        },
+        {
+          "id": "intility_arena",
+          "name": "Intility Arena",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/intility_arena.json",
+          "score": 0.2
+        },
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.2
+        },
+        {
+          "id": "kfum_arena",
+          "name": "KFUM Arena",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/kfum_arena.json",
+          "score": 0.2
+        },
+        {
+          "id": "vallhall_arena",
+          "name": "Vallhall Arena",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/vallhall_arena.json",
+          "score": 0.2
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.2
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.2
+        },
+        {
+          "id": "lisbon_altice_arena_web_summit",
+          "name": "Altice Arena / Web Summit Lisboa",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv/lisbon_altice_arena_web_summit.json",
+          "score": 0.111
+        }
+      ]
+    },
+    {
+      "sourceName": "The Holmenkollen Troll",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "kollentrollet",
+        "holmenkollen troll",
+        "the holmenkollen troll"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "kollentrollet",
+          "name": "Kollentrollet",
+          "category": "kunst",
+          "sourceFile": "places/kunst/oslo/places_kunst/kollentrollet.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.25
+        },
+        {
+          "id": "the_villa",
+          "name": "The Villa",
+          "category": "musikk",
+          "sourceFile": "places/subkultur/oslo/places_subkultur/the_villa.json",
+          "score": 0.25
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.25
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.25
+        },
+        {
+          "id": "the_den_london",
+          "name": "The Den",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/england/footballgrounds_london/the_den_london.json",
+          "score": 0.2
+        },
+        {
+          "id": "the_valley_london",
+          "name": "The Valley",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/england/footballgrounds_london/the_valley_london.json",
+          "score": 0.2
+        },
+        {
+          "id": "the_oslo_gallery",
+          "name": "The Oslo Gallery",
+          "category": "kunst",
+          "sourceFile": "places/kunst/oslo/places_kunst/the_oslo_gallery.json",
+          "score": 0.2
+        },
+        {
+          "id": "viking_planet_oslo",
+          "name": "The Viking Planet Oslo",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie/viking_planet_oslo.json",
+          "score": 0.167
+        },
+        {
+          "id": "the_salmon_vitensenter",
+          "name": "The Salmon – kunnskapssenter",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/the_salmon_vitensenter.json",
+          "score": 0.167
+        }
+      ]
+    },
+    {
+      "sourceName": "Ski & Guide",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "ski & guide",
+        "ski and guide"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.333
+        }
+      ]
+    },
+    {
+      "sourceName": "Skiglede ski school",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "skiglede",
+        "skiglede ski school",
+        "skiglede skiskole"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.25
+        }
+      ]
+    },
+    {
+      "sourceName": "Holmenkollen Ski Museum & Tower",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "holmenkollen_skimuseum",
+        "holmenkollen skimuseum",
+        "skimuseet_holmenkollen",
+        "skimuseet i holmenkollen",
+        "ski museum holmenkollen"
+      ],
+      "machineStatus": "unresolved_fixed_place_candidate",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.2
+        },
+        {
+          "id": "folkenborg_museum",
+          "name": "Folkenborg Museum",
+          "category": "historie",
+          "sourceFile": "places/historie/ostfold/places_historie_ostfold_batch6/folkenborg_museum.json",
+          "score": 0.2
+        },
+        {
+          "id": "dagali_museum",
+          "name": "Dagali Museum",
+          "category": "historie",
+          "sourceFile": "places/historie/buskerud/places_historie_buskerud_batch4/dagali_museum.json",
+          "score": 0.2
+        },
+        {
+          "id": "bygland_museum",
+          "name": "Bygland Museum",
+          "category": "historie",
+          "sourceFile": "places/historie/agder/bygland_museum.json",
+          "score": 0.2
+        },
+        {
+          "id": "flekkefjord_museum",
+          "name": "Flekkefjord museum",
+          "category": "historie",
+          "sourceFile": "places/historie/agder/flekkefjord_museum.json",
+          "score": 0.2
+        },
+        {
+          "id": "risor_museum",
+          "name": "Risør museum",
+          "category": "historie",
+          "sourceFile": "places/historie/agder/risor_museum.json",
+          "score": 0.2
+        },
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.2
+        },
+        {
+          "id": "naturhistorisk_museum",
+          "name": "Naturhistorisk museum",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/naturhistorisk_museum.json",
+          "score": 0.2
+        },
+        {
+          "id": "flop_museum",
+          "name": "FLOP Museum",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07.json",
+          "score": 0.2
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.2
+        }
+      ]
+    },
+    {
+      "sourceName": "Skimore Oslo Ski School",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "skimore oslo ski school",
+        "skimore skiskole"
+      ],
+      "parentAliases": [
+        "skimore_oslo",
+        "skimore oslo"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json"
+        }
+      ],
+      "fuzzyCandidates": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json",
+          "score": 0.5
+        },
+        {
+          "id": "oslo_s",
+          "name": "Oslo S",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_s.json",
+          "score": 0.25
+        },
+        {
+          "id": "oslo_bussterminal",
+          "name": "Oslo bussterminal",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_bussterminal.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_domkirke",
+          "name": "Oslo domkirke",
+          "category": "religion",
+          "sourceFile": "places/by/oslo/oslo_domkirke.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_ladegard",
+          "name": "Oslo ladegård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_hospital",
+          "name": "Oslo hospital",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json",
+          "score": 0.2
+        },
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_gassverk",
+          "name": "Oslo Gassverk",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_posthus",
+          "name": "Oslo Posthus",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_radhus",
+          "name": "Oslo rådhus",
+          "category": "politikk",
+          "sourceFile": "places/politikk/oslo/places_politikk/oslo_radhus.json",
+          "score": 0.2
+        }
+      ]
+    },
+    {
+      "sourceName": "Skimore Oslo - Summer Park",
+      "scopeClass": "sub_attraction_or_parent_scope",
+      "aliases": [
+        "skimore oslo summer park",
+        "skimore sommerpark"
+      ],
+      "parentAliases": [
+        "skimore_oslo",
+        "skimore oslo",
+        "oslo vinterpark"
+      ],
+      "machineStatus": "candidate_resolved_to_parent_scope",
+      "exactMatches": [],
+      "parentMatches": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json"
+        }
+      ],
+      "fuzzyCandidates": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json",
+          "score": 0.5
+        },
+        {
+          "id": "oslo_s",
+          "name": "Oslo S",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_s.json",
+          "score": 0.25
+        },
+        {
+          "id": "st_hanshaugen_park",
+          "name": "St. Hanshaugen park",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/st_hanshaugen_park.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_bussterminal",
+          "name": "Oslo bussterminal",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_bussterminal.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_domkirke",
+          "name": "Oslo domkirke",
+          "category": "religion",
+          "sourceFile": "places/by/oslo/oslo_domkirke.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_ladegard",
+          "name": "Oslo ladegård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_hospital",
+          "name": "Oslo hospital",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_gassverk",
+          "name": "Oslo Gassverk",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_posthus",
+          "name": "Oslo Posthus",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_radhus",
+          "name": "Oslo rådhus",
+          "category": "politikk",
+          "sourceFile": "places/politikk/oslo/places_politikk/oslo_radhus.json",
+          "score": 0.2
+        }
+      ]
+    },
+    {
+      "sourceName": "Holmenkollen zipline",
+      "scopeClass": "sub_attraction_or_parent_scope",
+      "aliases": [
+        "holmenkollen zipline",
+        "kollensvevet"
+      ],
+      "parentAliases": [
+        "holmenkollen_nasjonalanlegg",
+        "holmenkollen nasjonalanlegg",
+        "holmenkollbakken"
+      ],
+      "machineStatus": "candidate_resolved_to_parent_scope",
+      "exactMatches": [],
+      "parentMatches": [
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json"
+        }
+      ],
+      "fuzzyCandidates": [
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.333
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.333
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.333
+        }
+      ]
+    },
+    {
+      "sourceName": "Race up Oslos Bratteste",
+      "scopeClass": "route_or_event",
+      "aliases": [
+        "oslos bratteste",
+        "oslo bratteste"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": []
+    },
+    {
+      "sourceName": "Hike to Vettakollen",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "vettakollen",
+        "hike to vettakollen"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "vettakollen",
+          "name": "Vettakollen",
+          "category": "natur",
+          "sourceFile": "places/natur/oslo/places_natur/vettakollen.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "vettakollen",
+          "name": "Vettakollen",
+          "category": "natur",
+          "sourceFile": "places/natur/oslo/places_natur/vettakollen.json",
+          "score": 0.5
+        }
+      ]
+    },
+    {
+      "sourceName": "Green Bike Route: Bogstadvannet Lake to Radiumhospitalet",
+      "scopeClass": "route_or_event",
+      "aliases": [
+        "bogstadvannet radiumhospitalet",
+        "green bike route bogstadvannet"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "radiumhospitalet",
+          "name": "Radiumhospitalet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/radiumhospitalet.json",
+          "score": 0.167
+        },
+        {
+          "id": "bogstadvannet",
+          "name": "Bogstadvannet",
+          "category": "natur",
+          "sourceFile": "places/natur/oslo/places_natur/bogstadvannet.json",
+          "score": 0.167
+        }
+      ]
+    },
+    {
+      "sourceName": "Rose Castle",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "roseslottet",
+        "rose castle"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "roseslottet",
+          "name": "Roseslottet",
+          "category": "kunst",
+          "sourceFile": "places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": []
+    },
+    {
+      "sourceName": "Bull Superski Shop, ski school and ski rental at Holmenkollen",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "bull superski",
+        "bull superski holmenkollen"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.111
+        },
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.111
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.111
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.111
+        }
+      ]
+    },
+    {
+      "sourceName": "Holmenkollen Park Fitness & Spa",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "holmenkollen park fitness spa",
+        "holmenkollen park hotel"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "st_hanshaugen_park",
+          "name": "St. Hanshaugen park",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/st_hanshaugen_park.json",
+          "score": 0.2
+        },
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.2
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.2
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.2
+        },
+        {
+          "id": "lekeplass_kampen_park",
+          "name": "Kampen park lekeplass",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_kampen_park.json",
+          "score": 0.167
+        },
+        {
+          "id": "treningssted_kampen_park",
+          "name": "Kampen park treningssted",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/treningssted_kampen_park.json",
+          "score": 0.167
+        },
+        {
+          "id": "selhurst_park_london",
+          "name": "Selhurst Park",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/england/footballgrounds_london/selhurst_park_london.json",
+          "score": 0.167
+        }
+      ]
+    },
+    {
+      "sourceName": "XP Coaching",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "xp coaching"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": []
+    },
+    {
+      "sourceName": "GoSki Oslo",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "goski oslo",
+        "go ski oslo"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "oslo_s",
+          "name": "Oslo S",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_s.json",
+          "score": 0.5
+        },
+        {
+          "id": "oslo_bussterminal",
+          "name": "Oslo bussterminal",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_bussterminal.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_domkirke",
+          "name": "Oslo domkirke",
+          "category": "religion",
+          "sourceFile": "places/by/oslo/oslo_domkirke.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_ladegard",
+          "name": "Oslo ladegård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_hospital",
+          "name": "Oslo hospital",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_gassverk",
+          "name": "Oslo Gassverk",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_posthus",
+          "name": "Oslo Posthus",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_radhus",
+          "name": "Oslo rådhus",
+          "category": "politikk",
+          "sourceFile": "places/politikk/oslo/places_politikk/oslo_radhus.json",
+          "score": 0.333
+        },
+        {
+          "id": "cinemateket_oslo",
+          "name": "Cinemateket i Oslo",
+          "category": "film_tv",
+          "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/cinemateket_oslo.json",
+          "score": 0.333
+        },
+        {
+          "id": "oslo_skatehall",
+          "name": "Oslo Skatehall",
+          "category": "subkultur",
+          "sourceFile": "places/subkultur/oslo/places_subkultur/oslo_skatehall.json",
+          "score": 0.333
+        }
+      ]
+    },
+    {
+      "sourceName": "Bike Rental Holmenkollen",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "bike rental holmenkollen",
+        "sykkelutleie holmenkollen"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "holmenkollen_nasjonalanlegg",
+          "name": "Holmenkollen nasjonalanlegg",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json",
+          "score": 0.25
+        },
+        {
+          "id": "folkeobservatoriet_holmenkollen",
+          "name": "Folkeobservatoriet",
+          "category": "vitenskap",
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01.json",
+          "score": 0.25
+        },
+        {
+          "id": "holmenkollen_kapell",
+          "name": "Holmenkollen kapell",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json",
+          "score": 0.25
+        }
+      ]
+    },
+    {
+      "sourceName": "Ski Pass at Skimore Oslo, Tryvann",
+      "scopeClass": "service_or_activity",
+      "aliases": [
+        "ski pass skimore oslo",
+        "skipass tryvann"
+      ],
+      "parentAliases": [
+        "skimore_oslo",
+        "skimore oslo"
+      ],
+      "machineStatus": "non_place_scope_no_production",
+      "exactMatches": [],
+      "parentMatches": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json"
+        }
+      ],
+      "fuzzyCandidates": [
+        {
+          "id": "skimore_oslo",
+          "name": "Skimore Oslo",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json",
+          "score": 0.4
+        },
+        {
+          "id": "oslo_s",
+          "name": "Oslo S",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_s.json",
+          "score": 0.2
+        },
+        {
+          "id": "oslo_bussterminal",
+          "name": "Oslo bussterminal",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/oslo_bussterminal.json",
+          "score": 0.167
+        },
+        {
+          "id": "oslo_domkirke",
+          "name": "Oslo domkirke",
+          "category": "religion",
+          "sourceFile": "places/by/oslo/oslo_domkirke.json",
+          "score": 0.167
+        },
+        {
+          "id": "oslo_ladegard",
+          "name": "Oslo ladegård",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json",
+          "score": 0.167
+        },
+        {
+          "id": "oslo_hospital",
+          "name": "Oslo hospital",
+          "category": "historie",
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json",
+          "score": 0.167
+        },
+        {
+          "id": "ski_middelalderkirke",
+          "name": "Ski middelalderkirke",
+          "category": "religion",
+          "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+          "score": 0.167
+        },
+        {
+          "id": "oslo_gassverk",
+          "name": "Oslo Gassverk",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json",
+          "score": 0.167
+        },
+        {
+          "id": "oslo_posthus",
+          "name": "Oslo Posthus",
+          "category": "naeringsliv",
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+          "score": 0.167
+        },
+        {
+          "id": "oslo_radhus",
+          "name": "Oslo rådhus",
+          "category": "politikk",
+          "sourceFile": "places/politikk/oslo/places_politikk/oslo_radhus.json",
+          "score": 0.167
+        }
+      ]
+    },
+    {
+      "sourceName": "Gressbanen",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "gressbanen",
+        "gressbanen stadion",
+        "ready gressbanen"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "gressbanen",
+          "name": "Gressbanen",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/gressbanen.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "gressbanen",
+          "name": "Gressbanen",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/oslo_sport/gressbanen.json",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "sourceName": "Kragstøtten",
+      "scopeClass": "fixed_place_candidate",
+      "aliases": [
+        "kragstotten",
+        "kragstøtten",
+        "kragstøtta",
+        "kragstotta"
+      ],
+      "machineStatus": "candidate_exact_or_alias_match",
+      "exactMatches": [
+        {
+          "id": "kragstotten",
+          "name": "Kragstøtten",
+          "category": "kunst",
+          "sourceFile": "places/kunst/oslo/places_kunst/kragstotten.json"
+        }
+      ],
+      "parentMatches": [],
+      "fuzzyCandidates": [
+        {
+          "id": "kragstotten",
+          "name": "Kragstøtten",
+          "category": "kunst",
+          "sourceFile": "places/kunst/oslo/places_kunst/kragstotten.json",
+          "score": 1
+        }
+      ]
+    }
+  ]
+}
