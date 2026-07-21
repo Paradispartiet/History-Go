@@ -1,4 +1,15 @@
 (function () {
+  function loadQuizKnowledgeMemoryLayer() {
+    if (window.HGQuizKnowledgeMemory) return;
+    if (document.getElementById("quiz-knowledge-memory-script")) return;
+
+    const script = document.createElement("script");
+    script.id = "quiz-knowledge-memory-script";
+    script.src = "js/quizKnowledgeMemory.js";
+    script.async = false;
+    document.head.appendChild(script);
+  }
+
   function ensureCss() {
     if (document.getElementById("psychology-room-css")) return;
 
@@ -57,6 +68,8 @@
   }
 
   function init() {
+    loadQuizKnowledgeMemoryLayer();
+
     const button = document.getElementById("btnOpenPsychologyRoom");
     if (!button || button.dataset.hgPsychologyRoomBound === "1") return;
 
