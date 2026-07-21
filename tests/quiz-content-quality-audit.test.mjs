@@ -111,7 +111,7 @@ test("keeps repaired Deichman and Ullevaal quizzes within the canonical balance"
     assert.equal(report.summary.optionLengthSignals, 0);
 
     const byTarget = Object.fromEntries(report.groups.map((group) => [group.target, group.ratios]));
-    assert.deepEqual(byTarget.deichman_bjorvika, { fact: 0.7, context: 0.3, theory: 0 });
-    assert.deepEqual(byTarget.ullevaal_stadion, { fact: 0.7, context: 0.3, theory: 0 });
+    assert.deepEqual(byTarget.deichman_bjorvika, { fact: 0.7, context: 0.2, theory: 0.1 });
+    assert.deepEqual(byTarget.ullevaal_stadion, { fact: 0.7, context: 0.2, theory: 0.1 });
   });
 });
