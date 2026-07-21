@@ -1,0 +1,44 @@
+{
+  "source": {
+    "provider": "VisitOSLO",
+    "area": "Bygdøy",
+    "capturedAt": "2026-07-21",
+    "entryCount": 10
+  },
+  "summary": {
+    "resolvedEntries": 10,
+    "newCanonicalPlaces": 3,
+    "existingCanonicalCoverage": 7,
+    "unresolvedScopeDecisions": 0,
+    "unresolvedCanonicalGaps": 0,
+    "productionBatches": {
+      "first": 103,
+      "last": 105
+    }
+  },
+  "mappings": [
+    {"sourceName": "The Kon-Tiki Museum", "resolution": "kon_tiki_museet", "type": "reuse"},
+    {"sourceName": "Fram Museum", "resolution": "frammuseet", "type": "reuse"},
+    {"sourceName": "Norwegian Maritime Museum", "resolution": "norsk_maritimt_museum", "type": "reuse"},
+    {"sourceName": "Norsk Folkemuseum", "resolution": "norsk_folkemuseum", "type": "reuse"},
+    {"sourceName": "Bygdø Royal Manor", "resolution": "bygdoy_kongsgard", "type": "new_canonical"},
+    {"sourceName": "Holocaust Center", "resolution": "villa_grande", "type": "reuse_same_physical_building"},
+    {"sourceName": "Oscarshall", "resolution": "oscarshall", "type": "new_canonical"},
+    {"sourceName": "The Viking Ship Museum", "resolution": "vikingtidsmuseet", "type": "new_canonical_single_site"},
+    {"sourceName": "Bygdøy", "resolution": "bygdoy_natur", "type": "reuse_area"},
+    {"sourceName": "Huk & Paradisbukta beach", "resolution": ["bygdoy_huk", "bygdoy_paradisbukta"], "type": "split_source_entry_to_existing_places"}
+  ],
+  "newPlaces": [
+    {"id": "oscarshall", "batch": 103},
+    {"id": "vikingtidsmuseet", "batch": 104},
+    {"id": "bygdoy_kongsgard", "batch": 105}
+  ],
+  "scopeLocks": {
+    "bygdoyKongsgardDistinctFrom": "bygdoy_kongsgard_salamanderdam",
+    "oscarshall": "single_palace_visitor_complex",
+    "vikingtidsmuseet": "single_site_including_historic_vikingskipshuset",
+    "bygdoy": "bygdoy_natur",
+    "hukParadisbukta": ["bygdoy_huk", "bygdoy_paradisbukta"]
+  },
+  "status": "closed"
+}
