@@ -29,19 +29,45 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Build three verified Oslo venue packages
-        run: node tools/add-scenekunst-oslo-venues-batch-3.mjs
+        id: venue_build
+        shell: bash
+        run: |
+          set +e
+          node tools/add-scenekunst-oslo-venues-batch-3.mjs > /tmp/scenekunst-batch-3.log 2>&1
+          status=$?
+          cat /tmp/scenekunst-batch-3.log
+          if [ "$status" -ne 0 ]; then
+            mkdir -p reports
+            cp /tmp/scenekunst-batch-3.log reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "failed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit diagnostic on builder failure
+        if: steps.venue_build.outputs.failed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
+          git commit -m "Record Scenekunst batch 3 runner failure"
+          git push origin HEAD:agent/scenekunst-oslo-new-venues-03
+          exit 1
 
       - name: Build tools and regenerate place index
+        if: steps.venue_build.outputs.failed == 'false'
         run: |
           npm run build:tools
           npm run places:index:build
 
       - name: Validate places and categories
+        if: steps.venue_build.outputs.failed == 'false'
         run: |
           bash scripts/check-places.sh
           npm run audit:categories
 
       - name: Mark report validated
+        if: steps.venue_build.outputs.failed == 'false'
         run: |
           node <<'NODE'
           const fs = require('fs');
@@ -60,15 +86,15 @@ jobs:
           NODE
 
       - name: Remove one-shot runner and commit result
+        if: steps.venue_build.outputs.failed == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm tools/add-scenekunst-oslo-venues-batch-3.mjs
           git rm .github/workflows/scenekunst-oslo-new-venues-batch-3.yml
+          git rm -f reports/scenekunst-oslo-new-venues-batch-3-trigger.md
           git add -A
           git diff --cached --stat
           git diff --cached --quiet && { echo "No venue changes produced"; exit 1; }
           git commit -m "Add third missing Oslo Scenekunst venue batch"
           git push origin HEAD:agent/scenekunst-oslo-new-venues-03
-
-# Triggered after workflow registration.
