@@ -10,11 +10,11 @@ on:
       - 'css/knowledge*.css'
       - 'js/knowledge*.js'
       - 'js/knowledge*.ts'
-      - 'js/quizKnowledgeMemory.js'
       - 'dist/web/knowledge*.js'
       - 'scripts/audit-knowledge-*.mjs'
       - 'tests/knowledge-*.test.*'
       - 'tests/quiz-knowledge-memory.test.*'
+      - 'tests/fixtures/knowledge-*.html'
       - 'build/build-web.mjs'
       - '.github/workflows/knowledge-checks.yml'
   workflow_dispatch:
@@ -46,7 +46,6 @@ jobs:
         run: |
           node --check dist/web/knowledge.js
           node --check dist/web/knowledgeV2.js
-          node --check js/quizKnowledgeMemory.js
           node --check js/knowledgePage.js
           node --check js/knowledgeBadgeLogos.js
           node --check js/knowledgeProfileClassic.js
@@ -75,6 +74,12 @@ jobs:
 
       - name: Run Knowledge core tests
         run: npm run test:knowledge-core
+
+      - name: Install Chromium for Knowledge E2E
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Knowledge browser E2E
+        run: npm run test:knowledge-browser
 
       - name: Audit Knowledge links
         run: node scripts/audit-knowledge-links.mjs
