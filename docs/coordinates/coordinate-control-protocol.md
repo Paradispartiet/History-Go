@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 262 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 106 kontrollerer alle seks legacy-punktene i `places_oslo_natur_bygdoy.json` etter objekt-type-først-metoden. Dronningberget bruker offisiell Naturbase-vernepolygon; øvrige godkjente steder krever eksakt navngitt OSM-objekt med uavhengig identitetskryssjekk. Uavklarte navn eller geometrier avsluttes som needs_review uten proxy-gjetting.
+Oslo-tabellen inneholder nå 298 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 106 kontrollerer alle seks legacy-punktene i `places_oslo_natur_bygdoy.json` etter objekt-type-først-metoden. Dronningberget bruker offisiell Naturbase-vernepolygon; øvrige godkjente steder krever eksakt navngitt OSM-objekt med uavhengig identitetskryssjekk. Uavklarte navn eller geometrier avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -296,6 +296,7 @@ Batch 97 (2026-07-21) retter `universitetets_gamle_kjemi` etter objekt-type-før
 | 99 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
 | 100 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
 | 101 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
+| 102 | `havnelageret` | Oslo Havnelager | verified | `geonorge-adresser-v1:0301:14150:1` |
 | 103 | `oscarshall` | Oscarshall | verified | `geonorge-adresser-v1:0301:15443:15` |
 | 104 | `vikingtidsmuseet` | Vikingtidsmuseet | verified | `geonorge-adresser-v1:0301:13153:35` |
 
@@ -309,6 +310,8 @@ Batch 104 (2026-07-21) produserer `vikingtidsmuseet` som én stabil fysisk museu
 | 106 | `bygdoy_paradisbukta` | Bygdøy Paradisbukta | verified_geometry | `osm-way:28447738` |
 
 Batch 106 (2026-07-21) reviderer hele Bygdøy-naturkilden fra 2026-05-03, der legacy-statusene var `OpenStreetMap/Mapcarta` eller `nearby_reference`. Dronningberget forankres i offisiell Naturbase-geometri VV00003059. For Kongeskogen, Huk, Paradisbukta og Bygdøynes brukes bare et unikt eksakt navnetreff som også passer forhåndsdefinert fysisk objekttype innenfor Bygdøy-boksen; alle rå Nominatim-resultater lagres. Røykensvika godkjennes ikke uten uavhengig dokumentasjon av at place-identiteten faktisk finnes på Bygdøy.
+
+Batch 102 (2026-07-21) reparerer en dokumentert aggregate/split-divergens for `havnelageret`. Aggregate-recorden var allerede korrekt verifisert mot Geonorge-adressen Langkaia 1 (`geonorge-adresser-v1:0301:14150:1`), mens split-child og split-index fortsatt bar den gamle `needs_source`/`legacy_manual_map_check`-koordinaten. Geonorge address-first ble kjørt på nytt og måtte returnere samme kildeobjekt og et punkt innen 1 meter fra aggregate-recorden før canonical aggregate-data ble kopiert uendret til split-child og split-index. Evidence-recorden peker fortsatt på aggregate-filen og trengte derfor ingen semantisk omskriving.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
