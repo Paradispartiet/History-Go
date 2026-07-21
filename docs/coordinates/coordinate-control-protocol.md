@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 340 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 118 fullfører de åtte tidligere ukontrollerte recordene i `places/politikk/oslo/places_politikk.json`: sju med verified_geometry og Regjeringskvartalet som dokumentert needs_review.
+Oslo-tabellen inneholder nå 349 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 119 kontrollerer de gjenværende ukontrollerte recordene i `places/popkultur/oslo/places_oslo_populaerkultur.json` med offisiell adresse der den allerede er dokumentert og ellers eksakt navngitt fysisk objekt i lokal scope.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -355,6 +355,16 @@ Batch 115 (2026-07-21) produserer fem fysisk selvstendige Holmenkollen-steder fr
 | 118 | `folkets_hus_oslo` | Folkets Hus i Oslo | verified_geometry | `osm-way:112233121` |
 
 Batch 118 (2026-07-21) fullfører politikk-manifestet. Sju records har eksakte navngitte fysiske OSM-objekter i lokal scope. Regjeringskvartalet forblir needs_review fordi eneste eksakte samlede kandidat er en midlertidig landuse=construction-geometri, ikke en stabil canonical institusjonsgrense. Ingen nearest/first-hit-logikk brukes.
+| 119 | `cinemateket_oslo` | Cinemateket i Oslo | verified_geometry | `osm-node:2555016576` |
+| 119 | `colosseum_kino` | Colosseum kino | verified_geometry | `osm-way:115958003` |
+| 119 | `house_of_nerds` | House of Nerds | verified_geometry | `osm-node:10204324977` |
+| 119 | `latter` | Latter | verified_geometry | `osm-way:92649935` |
+| 119 | `grand_hotel` | Grand Hotel | verified_geometry | `osm-node:307505492` |
+| 119 | `slottsplassen` | Slottsplassen | verified_geometry | `osm-relation:12806921` |
+| 119 | `chat_noir` | Chat Noir | verified_geometry | `osm-node:34693408` |
+| 119 | `edderkoppen_scene` | Edderkoppen Scene | verified_geometry | `osm-node:12635984964` |
+
+Batch 119 (2026-07-21) reviderer popkultur-manifestet. Eksisterende Geonorge-adresser beholdes som offisielle venue-ankre når place-identiteten og adressen allerede er eksplisitt dokumentert. Øvrige steder krever ett eksakt navngitt fysisk objekt i lokal scope. Frognerstranda kan ikke verifiseres med en vei eller tilfeldig kystlinje som proxy for en bred strandsone. Ingen nearest/first-hit-logikk brukes.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -498,6 +508,7 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `tjernsmyr_salamanderlokalitet` – Tjernsmyr salamanderlokalitet | needs_review | Recorden dokumenterer selv at Tjernsmyr ligger i Bærum, men er lagret i Oslo-kilden. En koordinat kan ikke canonical-verifiseres i Oslo-køen før geografisk eierskap og kildefamilie er rettet; dagens generiske wetland-reference mangler dessuten et stabilt eksplisitt kildeobjekt. | Flytt recorden til Akershus/Bærum-kontekst og dokumenter deretter ett stabilt Tjernsmyr-områdeobjekt eller offisiell våtmarksgeometri før koordinaten godkjennes. |
 | `blindern_forskningsparken_salamanderdam` – Blindern/Forskningsparken salamanderdam | needs_review | Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam. | Dokumenter en offentlig og ikke-sensitiv damgeometri eller modeller lokaliteten som tematisk resultat av kommunal amfibiekartlegging uten separat presis place-markør. |
 | `regjeringskvartalet` – Regjeringskvartalet | needs_review | Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes. | Dokumenter én legitim samlet institusjonsgeometri for Regjeringskvartalet; enkeltbygninger kan ikke brukes som proxy for hele området. |
+| `frognerstranda` – Frognerstranda | needs_review | Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen. | Dokumenter en eksplisitt Frognerstranda-områdegeometri eller flere kildebelagte strand-/promenadeankre før ett canonical representasjonspunkt godkjennes. |
 
 ## Etne – historiesett
 
@@ -545,8 +556,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 119.
-- `places/politikk/oslo/places_politikk.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive manifestkilde er `places/popkultur/oslo/places_oslo_populaerkultur.json`; tidligere kontrollerte placeId-er skal hoppes over.
+- Neste nye Oslo-kontroll er batch 120.
+- `places/popkultur/oslo/places_oslo_populaerkultur.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive manifestkilde er `places/sport/europa/norway/oslo_sport.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 

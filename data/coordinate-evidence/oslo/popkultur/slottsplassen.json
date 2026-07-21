@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "slottsplassen",
+  "placeFile": "data/places/popkultur/oslo/places_oslo_populaerkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91670357078774,
+    "lon": 10.728956525408432,
+    "r": 200,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 12806921 – Slottsplassen",
+    "coordType": "public_space_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype highway/pedestrian; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Slottsplassen",
+    "resolvedIdentity": "Slottsplassen som det åpne plassrommet foran Slottet",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "square",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett eksakt navngitt fysisk objekt med riktig semantisk objekttype i lokal scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Slottsplassen",
+      "sourceUrl": "https://www.openstreetmap.org/relation/12806921",
+      "sourceObjectId": "osm-relation:12806921",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype highway/pedestrian og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype highway/pedestrian; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12806921",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12806921",
+      "lat": 59.91670357078774,
+      "lon": 10.728956525408432,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12806921",
+      "lat": 59.91670357078774,
+      "lon": 10.728956525408432,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype highway/pedestrian; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  ]
+}

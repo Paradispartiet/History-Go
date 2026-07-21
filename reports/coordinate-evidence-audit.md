@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:34:18.088Z
+Generert: 2026-07-21T06:51:02.225Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -291,3 +291,12 @@ Generert: 2026-07-21T06:34:18.088Z
 | hoyesteretts_hus | data/coordinate-evidence/oslo/politikk/hoyesteretts_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | politihuset_gronland | data/coordinate-evidence/oslo/politikk/politihuset_gronland.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | folkets_hus_oslo | data/coordinate-evidence/oslo/politikk/folkets_hus_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| cinemateket_oslo | data/coordinate-evidence/oslo/popkultur/cinemateket_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| colosseum_kino | data/coordinate-evidence/oslo/popkultur/colosseum_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| house_of_nerds | data/coordinate-evidence/oslo/popkultur/house_of_nerds.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| latter | data/coordinate-evidence/oslo/popkultur/latter.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| frognerstranda | data/coordinate-evidence/oslo/popkultur/frognerstranda.json | needs_research | needs_geometry | OK |
+| grand_hotel | data/coordinate-evidence/oslo/popkultur/grand_hotel.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| slottsplassen | data/coordinate-evidence/oslo/popkultur/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| chat_noir | data/coordinate-evidence/oslo/popkultur/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| edderkoppen_scene | data/coordinate-evidence/oslo/popkultur/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |

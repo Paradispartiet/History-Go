@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "chat_noir",
+  "placeFile": "data/places/popkultur/oslo/places_oslo_populaerkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9137282,
+    "lon": 10.7322982,
+    "r": 140,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 34693408 – Chat Noir",
+    "coordType": "building_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Chat Noir",
+    "resolvedIdentity": "Chat Noir som teaterbygning og revyscene i Klingenberggata",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett eksakt navngitt fysisk objekt med riktig semantisk objekttype i lokal scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Chat Noir",
+      "sourceUrl": "https://www.openstreetmap.org/node/34693408",
+      "sourceObjectId": "osm-node:34693408",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype amenity/theatre og geometri Point.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:34693408",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:34693408",
+      "lat": 59.9137282,
+      "lon": 10.7322982,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:34693408",
+      "lat": 59.9137282,
+      "lon": 10.7322982,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  ]
+}
