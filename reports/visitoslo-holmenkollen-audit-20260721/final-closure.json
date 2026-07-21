@@ -1,0 +1,98 @@
+{
+  "version": "2026-07-21",
+  "source": {
+    "name": "VisitOSLO — Holmenkollen attractions",
+    "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/omraader/holmenkollen/attraksjoner/",
+    "visibleResultCards": 28,
+    "introHighlightedAdditionalItems": 1,
+    "auditedItems": 29
+  },
+  "status": "closed",
+  "summary": {
+    "sourceItems": 29,
+    "sourceItemsResolved": 29,
+    "fixedCanonicalPlaceIdentities": 14,
+    "subAttractionsResolvedToParents": 4,
+    "nonPlaceServiceActivityRouteEventItems": 11,
+    "newCanonicalPlacesProducedDuringClosure": 2,
+    "unresolvedScopeItems": 0,
+    "unresolvedCoordinateDecisions": 0,
+    "remainingCanonicalGaps": 0
+  },
+  "fixedCanonicalPlaces": [
+    { "sourceItem": "Skimore Oslo", "canonicalIds": ["skimore_oslo"] },
+    { "sourceItem": "Emanuel Vigeland Museum", "canonicalIds": ["emanuel_vigeland_mausoleum"] },
+    { "sourceItem": "Bogstadvannet lake", "canonicalIds": ["bogstadvannet"] },
+    { "sourceItem": "Holmenkollen Chapel", "canonicalIds": ["holmenkollen_kapell"] },
+    { "sourceItem": "Toboggan run: Korketrekkeren", "canonicalIds": ["korketrekkeren"] },
+    { "sourceItem": "Bogstad Manor", "canonicalIds": ["bogstad_gard"] },
+    { "sourceItem": "Oslo Golf Club Bogstad", "canonicalIds": ["oslo_golfklubb_bogstad"] },
+    { "sourceItem": "Holmenkollen National Ski Arena", "canonicalIds": ["holmenkollen_nasjonalanlegg"] },
+    { "sourceItem": "The Holmenkollen Troll", "canonicalIds": ["kollentrollet"] },
+    { "sourceItem": "Holmenkollen Ski Museum & Tower", "canonicalIds": ["holmenkollen_skimuseum", "holmenkollen_nasjonalanlegg"] },
+    { "sourceItem": "Hike to Vettakollen", "canonicalIds": ["vettakollen"] },
+    { "sourceItem": "Rose Castle", "canonicalIds": ["roseslottet"] },
+    { "sourceItem": "Gressbanen", "canonicalIds": ["gressbanen"] },
+    { "sourceItem": "Kragstøtten", "canonicalIds": ["kragstotten"] }
+  ],
+  "subAttractions": [
+    { "sourceItem": "Ski Simulator Holmenkollen", "parentCanonicalIds": ["holmenkollen_nasjonalanlegg"] },
+    { "sourceItem": "Open farm with animals at Bogstad", "parentCanonicalIds": ["bogstad_gard"] },
+    { "sourceItem": "Skimore Oslo - Summer Park", "parentCanonicalIds": ["skimore_oslo"] },
+    { "sourceItem": "Holmenkollen zipline", "parentCanonicalIds": ["holmenkollen_nasjonalanlegg"] }
+  ],
+  "nonPlaceItems": [
+    "Ski & Guide",
+    "Skiglede ski school",
+    "Skimore Oslo Ski School",
+    "Race up Oslos Bratteste",
+    "Green Bike Route: Bogstadvannet Lake to Radiumhospitalet",
+    "Bull Superski Shop, ski school and ski rental at Holmenkollen",
+    "Holmenkollen Park Fitness & Spa",
+    "XP Coaching",
+    "GoSki Oslo",
+    "Bike Rental Holmenkollen",
+    "Ski Pass at Skimore Oslo, Tryvann"
+  ],
+  "newCanonicalProduction": [
+    {
+      "placeId": "oslo_golfklubb_bogstad",
+      "sourceItem": "Oslo Golf Club Bogstad",
+      "pr": 3121,
+      "coordinateBatch": 117,
+      "mergeSha": "d7dbb76a64a593346d627afae3588d47cb3f0243"
+    },
+    {
+      "placeId": "holmenkollen_skimuseum",
+      "sourceItem": "Holmenkollen Ski Museum & Tower",
+      "pr": 3148,
+      "coordinateBatch": 120,
+      "mergeSha": "f59a326ccc11a106f7ed44acb547803676b8e6fc"
+    }
+  ],
+  "museumCoordinateDecision": {
+    "selectedAddress": "Kongeveien 5, 0787 Oslo",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13850:5",
+    "lat": 59.96263248232449,
+    "lon": 10.666289172703161,
+    "alternateAddress": "Kongeveien 40, 0787 Oslo",
+    "alternateSourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+    "alternateDistanceM": 231.8,
+    "parentPlaceId": "holmenkollen_nasjonalanlegg",
+    "parentOverlapConclusion": "Expected parent/child overlap, not identity duplication. The Ski Museum is a persistent institution with its own collections and visitor identity; the jump tower remains part of the broader arena place."
+  },
+  "auditChain": [
+    { "pr": 3127, "purpose": "initial 29-item physical/source scope resolution" },
+    { "pr": 3139, "purpose": "current-main scope correction after concurrent Oslo Golfklubb merge" },
+    { "pr": 3145, "purpose": "final corrected Skimuseet coordinate intake and Kongeveien 5/40 address-conflict resolution" },
+    { "pr": 3148, "purpose": "canonical Skimuseet production as Oslo coordinate batch 120" }
+  ],
+  "closureRules": [
+    "VisitOSLO commercial services, rentals, ski schools, coaching products, routes, events and ticket products do not become canonical places merely because they appear on the attractions page.",
+    "Stable sub-attractions inside an existing broader place resolve to the parent unless they have an independently documented persistent institution/place identity.",
+    "The Ski Museum qualifies as its own canonical place because it is a persistent museum institution with its own collections, visitor identity and history inside the broader arena complex.",
+    "The jump tower does not get a separate new marker because it is already part of holmenkollen_nasjonalanlegg.",
+    "Oslo Golfklubb Bogstad was produced concurrently and is treated as existing canonical in the final current-main closure.",
+    "Kongeveien 5 is the locked canonical museum visitor marker; Kongeveien 40 remains a documented alternate access/complex address in coordinate evidence."
+  ]
+}
