@@ -1,0 +1,65 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Sørengkaia 124 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Sørengkaia 124 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=S%C3%B8rengkaia%20124%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:21549:124",
+  "coordinate": {
+    "lat": 59.901351775655876,
+    "lon": 10.752423812422574,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:21549:124",
+    "address": {
+      "street": "Sørengkaia",
+      "number": "124",
+      "postcode": "0194",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Sørengkaia 124, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Sørengkaia",
+    "adressetekst": "Sørengkaia 124",
+    "adressetilleggsnavn": null,
+    "adressekode": 21549,
+    "nummer": 124,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 234,
+    "bruksnummer": 107,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0194",
+    "adressetekstutenadressetilleggsnavn": "Sørengkaia 124",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.901351775655876,
+      "lon": 10.752423812422574
+    },
+    "oppdateringsdato": "2020-06-15T18:19:19"
+  }
+}

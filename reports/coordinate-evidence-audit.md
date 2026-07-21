@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T01:22:36.934Z
+Generert: 2026-07-21T01:46:28.621Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -253,10 +253,7 @@ Generert: 2026-07-21T01:22:36.934Z
 | maridalsvannet | data/coordinate-evidence/oslo/natur/maridalsvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | noklevann | data/coordinate-evidence/oslo/natur/noklevann.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnaelva_hovedsteder | data/coordinate-evidence/oslo/natur/alnaelva_hovedsteder.json | needs_research | needs_geometry | OK |
-| noklevann_ljanselva_start | data/coordinate-evidence/oslo/natur/noklevann_ljanselva_start.json | needs_research | needs_geometry | OK |
-| skraperudtjern | data/coordinate-evidence/oslo/natur/skraperudtjern.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| ljanselva_skullerud | data/coordinate-evidence/oslo/natur/ljanselva_skullerud.json | needs_research | needs_geometry | OK |
-| ljanselva_hauketo | data/coordinate-evidence/oslo/natur/ljanselva_hauketo.json | needs_research | needs_geometry | OK |
-| ljanselva_ljan | data/coordinate-evidence/oslo/natur/ljanselva_ljan.json | needs_research | needs_geometry | OK |
-| ljanselva_fiskevollen | data/coordinate-evidence/oslo/natur/ljanselva_fiskevollen.json | needs_research | needs_geometry | OK |
-| ljanselva_bunnefjorden | data/coordinate-evidence/oslo/natur/ljanselva_bunnefjorden.json | needs_research | needs_geometry | OK |
+| sukkerbiten_badstulandsby | data/coordinate-evidence/oslo/by/sukkerbiten_badstulandsby.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| losaeter | data/coordinate-evidence/oslo/by/losaeter.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| friluftshuset_sorenga | data/coordinate-evidence/oslo/sport/friluftshuset_sorenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| operastranda | data/coordinate-evidence/oslo/sport/operastranda.json | applied_to_place | do_not_change_coordinates_yet | OK |

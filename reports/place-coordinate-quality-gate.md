@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T01:22:31.326Z
+Generert: 2026-07-21T01:46:21.265Z
 
 ## Oppsummering
-- Aktive filer validert: **569**
+- Aktive filer validert: **573**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **425**
@@ -587,6 +587,10 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/oscarshall.json
 - data/places/historie/oslo/places_historie/vikingtidsmuseet.json
 - data/places/historie/oslo/places_historie/bygdoy_kongsgard.json
+- data/places/by/oslo/places/sukkerbiten_badstulandsby.json
+- data/places/by/oslo/places/losaeter.json
+- data/places/sport/europa/norway/oslo_sport/friluftshuset_sorenga.json
+- data/places/sport/europa/norway/oslo_sport/operastranda.json
 
 ## Harde feil
 - Ingen

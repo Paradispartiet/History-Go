@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "losaeter",
+  "placeFile": "data/places/by/oslo/places/losaeter.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9024423,
+    "lon": 10.7589396,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 172520783 – Losæter; identity cross-checked with Losæter",
+    "coordType": "park_center",
+    "coordNote": "Geometrisk sentrum av det eksakt navngitte OSM-parkpolygonet Losæter. Navn, funksjon og stedlig identitet er kryssjekket mot Losæters egen beskrivelse som offentlig park, kunstprosjekt og urbant jordbrukssted. Punktet er et områdeanker for Losæter, ikke et generelt Sørenga- eller Bjørvika-punkt."
+  },
+  "identity": {
+    "currentName": "Losæter",
+    "resolvedIdentity": "Losæter, offentlig park, kunstprosjekt og urbant jordbrukssted i Bjørvika",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt områdegeometri",
+    "uavhengig stedlig identitetskilde",
+    "skille fra brede Sørenga- og Bjørvika-ankre"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 172520783",
+      "sourceUrl": "https://www.openstreetmap.org/way/172520783",
+      "sourceObjectId": "osm-way:172520783",
+      "sourceQuality": "exact_named_park_polygon_crosschecked_with_official_site",
+      "finding": "Eksakt navngitt leisure=park-polygon for Losæter.",
+      "canVerifyCoordinate": true,
+      "reason": "Losæters egen side dokumenterer samme sted som offentlig park, kunstprosjekt og urbant jordbrukssted."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:172520783",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:172520783",
+      "lat": 59.9024423,
+      "lon": 10.7589396,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9024423,
+      "lon": 10.7589396,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact named park geometry applied to the canonical Losæter place."
+  },
+  "notes": [
+    "The place remains distinct from the broad sorenga and bjorvika area anchors."
+  ]
+}
