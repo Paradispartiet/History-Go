@@ -8,6 +8,7 @@ on:
       - 'scripts/apply-claim-id-separation.py'
       - 'scripts/apply-storage-test-audit-allowlist.py'
       - 'scripts/apply-legacy-id-label-preservation.py'
+      - 'scripts/apply-emne-inference-fixed-point.py'
       - 'tests/knowledge-canonical-storage-contract.test.js'
       - '.github/workflows/canonical-knowledge-cleanup-v2.yml'
 
@@ -34,6 +35,7 @@ jobs:
           python scripts/apply-claim-id-separation.py
           python scripts/apply-storage-test-audit-allowlist.py
           python scripts/apply-legacy-id-label-preservation.py
+          python scripts/apply-emne-inference-fixed-point.py
       - name: Build canonical data tooling
         run: npm run build:scripts
       - name: Backfill canonical IDs and registries
@@ -45,10 +47,7 @@ jobs:
       - name: Typecheck data tooling
         run: npm run typecheck:scripts
       - name: Verify canonical data has no drift
-        shell: bash
-        run: |
-          set -o pipefail
-          node dist/scripts/knowledge-canonical-data.mjs --check 2>&1 | tee reports/canonical-data-check.log
+        run: node dist/scripts/knowledge-canonical-data.mjs --check
       - name: Verify legacy readers are gone
         run: node dist/scripts/knowledge-canonical-data.mjs --legacy-only
       - name: Verify Knowledge contract
@@ -69,7 +68,6 @@ jobs:
         with:
           name: canonical-knowledge-cleanup-v2-reports
           path: |
-            reports/canonical-data-check.log
             reports/knowledge-id-backfill.json
             reports/knowledge-contract-audit.json
             reports/knowledge-universe-readers.json
@@ -80,7 +78,7 @@ jobs:
           git config user.name 'History GO CI'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
-          git reset -- reports/canonical-data-check.log scripts/apply-canonical-knowledge-cleanup.py scripts/apply-claim-id-separation.py scripts/apply-storage-test-audit-allowlist.py scripts/apply-legacy-id-label-preservation.py .github/workflows/canonical-knowledge-cleanup-v2.yml .github/workflows/knowledge-checks.yml .github/workflows/data-checks.yml
+          git reset -- scripts/apply-canonical-knowledge-cleanup.py scripts/apply-claim-id-separation.py scripts/apply-storage-test-audit-allowlist.py scripts/apply-legacy-id-label-preservation.py scripts/apply-emne-inference-fixed-point.py .github/workflows/canonical-knowledge-cleanup-v2.yml .github/workflows/knowledge-checks.yml .github/workflows/data-checks.yml
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
