@@ -1,0 +1,73 @@
+{
+  "placeId": "bygdoy_kongsgard",
+  "placeFile": "data/places/historie/oslo/places_historie/bygdoy_kongsgard.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.911188897399796,
+    "lon": 10.681875210824515,
+    "r": 269,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "site_center",
+    "coordNote": "Geometrisk senter for den eksakt navngitte OSM-farmyard-geometrien way 100155933, Bygdøy kongsgård. Punktet representerer den offentlige og operative gårds-/besøkskjernen, ikke den private kongelige hovedbygningen, Oscarshall, salamanderdammen eller hele den om lag 2 000 dekar store kongsgårdseiendommen."
+  },
+  "identity": {
+    "currentName": "Bygdø Kongsgård",
+    "resolvedIdentity": "The public and operational Bygdø Kongsgård farm/visitor-site core, represented by exact named farmyard geometry rather than the private main residence or the entire royal estate",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "direkte OSM API-bekreftelse av way 100155933 som lukket, eksakt navngitt landuse=farmyard-geometri",
+    "offisiell dokumentasjon av Bygdø Kongsgård som aktiv offentlig besøksgård og separat kongelig eiendom",
+    "eksplisitt fysisk avgrensning mot Oscarshall, privat hovedbygning, salamanderdam og hele eiendomslandskapet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap API",
+      "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/100155933/full.json",
+      "sourceObjectId": "osm-way:100155933",
+      "sourceQuality": "exact_named_geometry_plus_official_identity",
+      "finding": "Direkte OSM API bekrefter way 100155933 som lukket polygon med name=Bygdøy kongsgård og landuse=farmyard. Geometrisk sentrum beregnes fra de faktiske way-nodene.",
+      "canVerifyCoordinate": true,
+      "reason": "Geometrisk senter for den eksakt navngitte OSM-farmyard-geometrien way 100155933, Bygdøy kongsgård. Punktet representerer den offentlige og operative gårds-/besøkskjernen, ikke den private kongelige hovedbygningen, Oscarshall, salamanderdammen eller hele den om lag 2 000 dekar store kongsgårdseiendommen."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:100155933",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:100155933",
+      "geometryType": "polygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.911188897399796,
+      "lon": 10.681875210824515,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the exact named farmyard polygon center as the public operational site anchor for Bygdø Kongsgård."
+  },
+  "notes": [
+    "Geometrisk senter for den eksakt navngitte OSM-farmyard-geometrien way 100155933, Bygdøy kongsgård. Punktet representerer den offentlige og operative gårds-/besøkskjernen, ikke den private kongelige hovedbygningen, Oscarshall, salamanderdammen eller hele den om lag 2 000 dekar store kongsgårdseiendommen."
+  ]
+}

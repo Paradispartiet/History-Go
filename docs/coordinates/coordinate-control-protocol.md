@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 247 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 103–104 legger til Oscarshall og Vikingtidsmuseet med entydige Geonorge-adresseankre etter fullført VisitOSLO Bygdøy-identitets- og scope-audit.
+Oslo-tabellen inneholder nå 248 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 105 legger til Bygdø Kongsgård med eksakt navngitt gårdstun-geometri etter fullført VisitOSLO Bygdøy scope- og objektaudit.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -302,6 +302,10 @@ Batch 97 (2026-07-21) retter `universitetets_gamle_kjemi` etter objekt-type-før
 Batch 103 (2026-07-21) produserer `oscarshall` som eget historisk lystslott og kultursted. Geonorge gir ett entydig adressepunkt for Oscarshallveien 15, mens Det norske kongehus dokumenterer den selvstendige bygnings- og besøksidentiteten. Den romantiske parken beholdes som del av samme besøkskompleks og splittes ikke til en ny overlappende markør fra denne kilden alene.
 
 Batch 104 (2026-07-21) produserer `vikingtidsmuseet` som én stabil fysisk museumsidentitet for det bevarte Vikingskipshuset fra 1926 og det sammenkoblede nye museumsanlegget på Huk aveny 35. Geonorge-adressepunktet verifiserer stedet, mens bygge- og besøksstatus holdes eksplisitt adskilt fra koordinatstatus; recorden oppretter derfor ikke et konkurrerende separat `vikingskipshuset`-sted.
+
+| 105 | `bygdoy_kongsgard` | Bygdø Kongsgård | verified_geometry | `osm-way:100155933` |
+
+Batch 105 (2026-07-21) produserer `bygdoy_kongsgard` som den offentlige og operative gårds-/besøkskjernen, ikke som et punkt for den private kongelige hovedbygningen og ikke som en påstått geometri for hele den om lag 2 000 dekar store eiendommen. Direkte OSM API må bekrefte way 100155933 som lukket, eksakt navngitt `landuse=farmyard`-polygon før geometrisk sentrum brukes som `site_center`. Oscarshall og `bygdoy_kongsgard_salamanderdam` beholdes som fysisk separate canonical steder.
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
