@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-21",
+  "version": "2026-07-21-current-main-correction",
   "source": {
     "name": "VisitOSLO — Holmenkollen attractions",
     "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/omraader/holmenkollen/attraksjoner/",
@@ -8,12 +8,17 @@
     "introHighlightedAdditionalItems": 1
   },
   "status": "scope_closed",
+  "correction": {
+    "reason": "Oslo Golfklubb Bogstad was concurrently merged on current main as coordinate batch 117 in PR #3121 after the initial 29-item machine audit but before candidate intake completed.",
+    "supersededConclusion": "oslo_golfklubb_bogstad as a new candidate",
+    "currentConclusion": "oslo_golfklubb_bogstad is existing canonical; holmenkollen_skimuseum is the only remaining canonical gap in the 29-item source set"
+  },
   "summary": {
     "sourceItemsResolved": 29,
-    "existingCanonicalFixedPlaces": 12,
+    "existingCanonicalFixedPlaces": 13,
     "resolvedSubAttractions": 4,
     "nonPlaceServiceActivityRouteEventItems": 11,
-    "approvedNewCanonicalCandidates": 2,
+    "approvedNewCanonicalCandidates": 1,
     "unresolvedScopeItems": 0
   },
   "existingCanonicalFixedPlaces": [
@@ -23,6 +28,7 @@
     { "sourceItem": "Holmenkollen Chapel", "placeId": "holmenkollen_kapell" },
     { "sourceItem": "Toboggan run: Korketrekkeren", "placeId": "korketrekkeren" },
     { "sourceItem": "Bogstad Manor", "placeId": "bogstad_gard" },
+    { "sourceItem": "Oslo Golf Club Bogstad", "placeId": "oslo_golfklubb_bogstad", "mergedPr": 3121, "coordinateBatch": 117 },
     { "sourceItem": "Holmenkollen National Ski Arena", "placeId": "holmenkollen_nasjonalanlegg" },
     { "sourceItem": "The Holmenkollen Troll", "placeId": "kollentrollet" },
     { "sourceItem": "Hike to Vettakollen", "placeId": "vettakollen" },
@@ -31,26 +37,10 @@
     { "sourceItem": "Kragstøtten", "placeId": "kragstotten" }
   ],
   "resolvedSubAttractions": [
-    {
-      "sourceItem": "Ski Simulator Holmenkollen",
-      "resolution": "No new place. The simulator is an activity inside the Holmenkollen visitor/arena complex.",
-      "parentCanonicalIds": ["holmenkollen_nasjonalanlegg"]
-    },
-    {
-      "sourceItem": "Open farm with animals at Bogstad",
-      "resolution": "No new place. This is a visitor activity at the existing Bogstad Manor identity.",
-      "parentCanonicalIds": ["bogstad_gard"]
-    },
-    {
-      "sourceItem": "Skimore Oslo - Summer Park",
-      "resolution": "No new place in this source pass. It is a seasonal activity/facility layer inside the existing Skimore Oslo place scope.",
-      "parentCanonicalIds": ["skimore_oslo"]
-    },
-    {
-      "sourceItem": "Holmenkollen zipline",
-      "resolution": "No new place. The zipline is an activity using the existing Holmenkollen ski-jump/arena infrastructure.",
-      "parentCanonicalIds": ["holmenkollen_nasjonalanlegg"]
-    }
+    { "sourceItem": "Ski Simulator Holmenkollen", "resolution": "No new place. Activity inside the Holmenkollen visitor/arena complex.", "parentCanonicalIds": ["holmenkollen_nasjonalanlegg"] },
+    { "sourceItem": "Open farm with animals at Bogstad", "resolution": "No new place. Visitor activity at Bogstad Manor.", "parentCanonicalIds": ["bogstad_gard"] },
+    { "sourceItem": "Skimore Oslo - Summer Park", "resolution": "No new place in this source pass. Seasonal activity/facility layer inside Skimore Oslo.", "parentCanonicalIds": ["skimore_oslo"] },
+    { "sourceItem": "Holmenkollen zipline", "resolution": "No new place. Activity using existing ski-jump/arena infrastructure.", "parentCanonicalIds": ["holmenkollen_nasjonalanlegg"] }
   ],
   "nonPlaceItems": [
     "Ski & Guide",
@@ -67,18 +57,6 @@
   ],
   "approvedCandidates": [
     {
-      "placeId": "oslo_golfklubb_bogstad",
-      "name": "Oslo Golfklubb på Bogstad",
-      "sourceItem": "Oslo Golf Club Bogstad",
-      "proposedCategory": "sport",
-      "representation": "The stable golf course and club facility at Bogstad, not the abstract organization and not Bogstad Manor.",
-      "basis": [
-        "Oslo Golfklubb states that the club was founded in 1924 and that the golf course opened for play at Bogstad the same year.",
-        "The current course is a distinct 18-hole physical golf facility of about 480 dekar beside Bogstadvannet and Bogstad Manor."
-      ],
-      "coordinateGate": "Object-first exact named golf-course/facility geometry preferred. Do not use Bogstad Manor or a generic Bogstad area point as proxy."
-    },
-    {
       "placeId": "holmenkollen_skimuseum",
       "name": "Skimuseet i Holmenkollen",
       "sourceItem": "Holmenkollen Ski Museum & Tower",
@@ -87,7 +65,7 @@
       "basis": [
         "The Ski Museum was established in 1923 as a specialist museum for skiing history.",
         "The museum moved to Holmenkollbakken in connection with the 1952 Olympics and remains a distinct museum institution inside the ski-jump complex.",
-        "The current combined visitor ticket includes both the museum and jump tower, but this commercial bundling does not erase the physical/institutional distinction between museum and arena."
+        "The current combined visitor ticket includes both the museum and jump tower, but commercial bundling does not erase the physical and institutional distinction between museum and arena."
       ],
       "coordinateGate": "Address-first/object-first hybrid: use the exact museum entrance/building identity at Kongeveien 40 if it resolves distinctly; cross-check against the existing Holmenkollen National Ski Arena geometry before production."
     }
@@ -102,8 +80,8 @@
   "scopeGuards": [
     "VisitOSLO commercial products, ticket products, ski schools, rentals, coaching services, routes and events do not become canonical places merely by appearing on the attractions page.",
     "A stable institution inside a broader parent complex may become a place when it has its own persistent identity, history and physical visitor location; this applies to the Ski Museum.",
-    "Oslo Golfklubb at Bogstad is physically distinct from Bogstad Manor and must not be absorbed into the manor record merely because the course borders the estate.",
+    "Oslo Golfklubb Bogstad is already canonical on current main as coordinate batch 117 and must not be recreated by this audit.",
     "The jump tower is not a new candidate because it is already physically represented by the canonical Holmenkollen National Ski Arena scope.",
-    "All approved candidates must be re-audited against current main immediately before canonical production."
+    "The remaining approved candidate must be re-audited against current main immediately before production."
   ]
 }
