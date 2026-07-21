@@ -1,0 +1,45 @@
+{
+  "version": "2026-07-21",
+  "placeId": "holmenkollen_skimuseum",
+  "primaryCategory": "historie",
+  "productionGate": "ready_for_canonical_production",
+  "representationDecision": "Create one canonical history/museum place for Skimuseet i Holmenkollen. The museum is a distinct persistent institution inside Holmenkollen National Ski Arena; the jump tower is not a new place and remains within the existing arena identity.",
+  "coordinate": {
+    "lat": 59.96471254074996,
+    "lon": 10.666572782635253,
+    "r": 55,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordSourceId": "geonorge-adresser-v1:0301:13850:40",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongeveien%2040%20Oslo",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Kongeveien 40. Ingen entydig separat OSM-museumsidentitet ble funnet. Punktet brukes som museumsmarkør for den egenstendige institusjonen Skimuseet i Holmenkollen inne i Holmenkollen nasjonalanlegg; hopptårnet forblir del av parent-stedet."
+  },
+  "objectSearch": {
+    "exactNamedMuseumObjectsFound": 0,
+    "fallbackRule": "Use the exact official Kongeveien 40 Geonorge address when no unique exact named museum object exists."
+  },
+  "parentOverlapAudit": {
+    "parentPlaceId": "holmenkollen_nasjonalanlegg",
+    "parentName": "Holmenkollen nasjonalanlegg",
+    "distanceM": 239,
+    "conclusion": "Physical proximity is expected and not a duplicate. The museum is a distinct persistent institution and visitor place inside the broader ski arena complex; the jump tower remains represented by the parent arena scope."
+  },
+  "duplicateGate": {
+    "canonicalIdentityMatches": [],
+    "conclusion": "No canonical Skimuseet/Holmenkollen Ski Museum identity existed at intake time."
+  },
+  "alreadyCanonicalSkipped": [
+    "oslo_golfklubb_bogstad"
+  ],
+  "auditTrail": {
+    "sourcePr": 3130,
+    "sourceBranch": "agent/oslo-coordinate-holmenkollen-candidates-intake",
+    "validation": "Full coordinate runner completed successfully after the already-canonical Oslo Golfklubb candidate was removed from the retry."
+  }
+}
