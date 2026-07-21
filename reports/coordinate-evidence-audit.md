@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T10:52:00.094Z
+Generert: 2026-07-21T10:59:06.017Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -320,6 +320,8 @@ Generert: 2026-07-21T10:52:00.094Z
 | ullevaal_stadion | data/coordinate-evidence/oslo/sport/ullevaal_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | valle_hovin_stadion | data/coordinate-evidence/oslo/sport/valle_hovin_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vallhall_arena | data/coordinate-evidence/oslo/sport/vallhall_arena.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| revolver_oslo | data/coordinate-evidence/oslo/subkultur/revolver_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| stovnertarnet | data/coordinate-evidence/oslo/subkultur/stovnertarnet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klimahuset | data/coordinate-evidence/oslo/vitenskap/klimahuset.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_reptilpark | data/coordinate-evidence/oslo/vitenskap/oslo_reptilpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |

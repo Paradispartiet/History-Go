@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "revolver_oslo",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91699988365845,
+    "lon": 10.749742822662785,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Batch 129 address-first: Revolvers egen side og VisitOSLO oppgir Møllergata 32, mens Brønnøysundregistrenes virksomhetsadresse presiserer Møllergata 32B. Den presise registrerte adressen ble derfor brukt som address-first-kandidat. Ett eksakt Oslo-treff i Geonorge Adresser API v1 brukes som canonical display-marker; den tidligere manuelle kartplasseringen beholdes ikke som primær koordinatkilde."
+  },
+  "identity": {
+    "currentName": "Revolver",
+    "resolvedIdentity": "Revolver – aktiv scene og bar i Møllergata 32B",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "current venue address",
+    "precise registered sub-address",
+    "one exact official address point"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Revolver Oslo / VisitOSLO",
+      "sourceUrl": "https://revolveroslo.no/",
+      "sourceObjectId": "official-venue:revolver-oslo",
+      "sourceQuality": "official_current_venue_identity",
+      "finding": "Venue sources identify Revolver at Møllergata 32.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes current venue identity and street address."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Revolver Drift AS",
+      "sourceUrl": "https://virksomhet.brreg.no/",
+      "sourceObjectId": "brreg:revolver-drift-as:mollergata-32b",
+      "sourceQuality": "official_business_address_resolution",
+      "finding": "The registered business address resolves the sub-address to Møllergata 32B.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves the address ambiguity before geocoding."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Møllergata 32B",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=M%C3%B8llergata%2032B%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "sourceQuality": "exact_official_address_after_identity_resolution",
+      "finding": "One exact Oslo address result for Møllergata 32B.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 129 address-first: Revolvers egen side og VisitOSLO oppgir Møllergata 32, mens Brønnøysundregistrenes virksomhetsadresse presiserer Møllergata 32B. Den presise registrerte adressen ble derfor brukt som address-first-kandidat. Ett eksakt Oslo-treff i Geonorge Adresser API v1 brukes som canonical display-marker; den tidligere manuelle kartplasseringen beholdes ikke som primær koordinatkilde."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Møllergata 32B, 0179 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "lat": 59.91699988365845,
+      "lon": 10.749742822662785,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact Geonorge address point applied after precise registered-address resolution."
+  },
+  "notes": [
+    "Batch 129 address-first: Revolvers egen side og VisitOSLO oppgir Møllergata 32, mens Brønnøysundregistrenes virksomhetsadresse presiserer Møllergata 32B. Den presise registrerte adressen ble derfor brukt som address-first-kandidat. Ett eksakt Oslo-treff i Geonorge Adresser API v1 brukes som canonical display-marker; den tidligere manuelle kartplasseringen beholdes ikke som primær koordinatkilde."
+  ]
+}

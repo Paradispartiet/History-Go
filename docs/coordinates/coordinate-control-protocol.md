@@ -484,6 +484,11 @@ Batch 127 (2026-07-21) løser den tidligere manuelle parent-konflikten for `leke
 
 Batch 128 (2026-07-21) lukker siste ukontrollerte record i `places_oslo_lekeplasser_trening.json`. Oslo kommune omtaler området både som parken og lekeplassen på Kirsebærlunden, plasserer det nedenfor Tøyenparken og mellom Tøyen torg og Gamle Munch, mens prosjektbeskrivelsen klassifiserer det oppgraderte området som lekeplass/park. Ingen av de nærliggende canonical stedene er derfor dokumentert parent. `lekeplass_kirsebarlunden` normaliseres til canonical `kirsebarlunden`, med direkte stable-ID-oppslag av det eksakt navngitte polygonet `osm-way:1097943191` som geometrisk area-anchor. `korketrekkeren` var allerede kontrollert, så denne gamle kilden har etter batch 128 ingen ukontrollerte place-records.
 
+| 129 | `revolver_oslo` | Revolver | verified | `geonorge-adresser-v1:0301:14943:32B` |
+| 129 | `stovnertarnet` | Stovnertårnet | verified_geometry | `osm-node:5163964280` |
+
+Batch 129 (2026-07-21) gjenåpner to current physical places som retrokontrollen tidligere nedgraderte. `revolver_oslo` løses address-first etter at Brønnøysundregistrene presiserer den generelle venueadressen Møllergata 32 til virksomhetsadressen Møllergata 32B; ett eksakt Geonorge-treff kreves. `stovnertarnet` løses objekt-type-først som det konkrete tårn-/utsiktspunktet og bruker direkte stable-ID-oppslag av det eksakt navngitte OSM-objektet `osm-node:5163964280` (`tourism=viewpoint`). Ingen tidligere manuell kartplassering eller nearest/first-hit-logikk brukes.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)

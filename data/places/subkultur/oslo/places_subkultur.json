@@ -217,9 +217,9 @@
   {
     "id": "stovnertarnet",
     "name": "Stovnertårnet",
-    "lat": 59.9705,
-    "lon": 10.9238,
-    "r": 120,
+    "lat": 59.9610081,
+    "lon": 10.9299475,
+    "r": 100,
     "category": "subkultur",
     "year": 2017,
     "desc": "Landemerke i Groruddalen – utsiktstårn og symbol på byens mangfold.",
@@ -264,18 +264,18 @@
       ],
       "notes": "Spør som perifert nærmiljøsymbol og identitetssted, ikke som bare naturattraksjon."
     },
-    "coordType": "legacy_unverified",
-    "coordSource": "oslo_byleksikon",
-    "coordSourceId": "oslobyleksikon_stovnertarnet_karl_fossums_vei_30",
-    "coordSourceUrl": "https://oslobyleksikon.no/side/Stovnert%C3%A5rnet",
-    "coordStatus": "needs_source",
-    "coordPrecisionM": 20,
+    "coordType": "viewpoint_point",
+    "coordSource": "OpenStreetMap node 5163964280 – Stovnertårnet; identity cross-checked with Oslo byleksikon, VisitOSLO and DOGA",
+    "coordSourceId": "osm-node:5163964280",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/5163964280",
+    "coordStatus": "verified_geometry",
     "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Koordinat satt etter kildebasert retting. Retrospektiv compliance-audit 2026-07-21: tidligere verified-status kan ikke forsvares mot Coordinate Source Contract v1 med eksisterende evidens. Punktet beholdes kun som legacy-kartanker til en ny kildekontroll dokumenterer et stabilt primærkildeobjekt.",
+    "coordNote": "Batch 129 object-type-first: Stovnertårnet er et konkret fysisk utsikts-/tårnobjekt på Fossumberget, ikke et adressepunkt for hele området. Direkte stable-ID-oppslag av OSM node 5163964280 gir det eksakt navngitte tourism=viewpoint-objektet Stovnertårnet. Identiteten er kryssjekket mot Oslo byleksikon, VisitOSLO og DOGA. Punktet brukes som site-center for selve tårnet; ingen nearest/first-hit-logikk brukes.",
     "locatorType": "poi",
-    "sourceProvider": "legacy_unknown",
-    "geocodeAccuracy": "unknown",
-    "coordRole": "display_marker"
+    "sourceProvider": "osm",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "site_center",
+    "sourceObjectId": "osm-node:5163964280"
   },
   {
     "id": "bla",
@@ -1277,9 +1277,9 @@
   {
     "id": "revolver_oslo",
     "name": "Revolver",
-    "lat": 59.91655,
-    "lon": 10.74953,
-    "r": 70,
+    "lat": 59.91699988365845,
+    "lon": 10.749742822662785,
+    "r": 60,
     "category": "musikk",
     "year": 2007,
     "desc": "Rock-, indie- og klubbscene i Møllergata, med bar, kjellerkonserter og undergrunnsorientert nattkultur.",
@@ -1329,21 +1329,28 @@
       ],
       "notes": "Adresse verifisert fra offisiell side; sceneprofil verifisert fra venue-/turist- og festivalomtaler."
     },
-    "coordType": "legacy_unverified",
-    "coordSource": "official_site_manual",
-    "coordSourceId": "revolver_mollergata_32_official",
-    "coordSourceUrl": "https://www.revolveroslo.no/",
-    "coordStatus": "needs_source",
-    "coordPrecisionM": 35,
+    "coordType": "address_point",
+    "coordSource": "geonorge_adresser_v1",
+    "coordSourceId": "geonorge-adresser-v1:0301:14943:32B",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=M%C3%B8llergata%2032B%20Oslo",
+    "coordStatus": "verified",
     "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Adresse verifisert som Møllergata 32 på offisiell side; koordinat manuelt plassert på bygg-/gatepunktet for Møllergata 32. Retrospektiv compliance-audit 2026-07-21: tidligere verified-status kan ikke forsvares mot Coordinate Source Contract v1 med eksisterende evidens. Punktet beholdes kun som legacy-kartanker til en ny kildekontroll dokumenterer et stabilt primærkildeobjekt.",
+    "coordNote": "Batch 129 address-first: Revolvers egen side og VisitOSLO oppgir Møllergata 32, mens Brønnøysundregistrenes virksomhetsadresse presiserer Møllergata 32B. Den presise registrerte adressen ble derfor brukt som address-first-kandidat. Ett eksakt Oslo-treff i Geonorge Adresser API v1 brukes som canonical display-marker; den tidligere manuelle kartplasseringen beholdes ikke som primær koordinatkilde.",
     "secondaryBadgeIds": [
       "subkultur"
     ],
     "locatorType": "building",
-    "sourceProvider": "legacy_unknown",
-    "geocodeAccuracy": "unknown",
-    "coordRole": "display_marker"
+    "sourceProvider": "official_address",
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+    "address": {
+      "street": "Møllergata",
+      "number": "32B",
+      "postcode": "0179",
+      "city": "Oslo",
+      "country": "NO"
+    }
   },
   {
     "id": "the_villa",

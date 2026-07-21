@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "stovnertarnet",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9610081,
+    "lon": 10.9299475,
+    "r": 100,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 5163964280 – Stovnertårnet; identity cross-checked with Oslo byleksikon, VisitOSLO and DOGA",
+    "coordType": "viewpoint_point",
+    "coordNote": "Batch 129 object-type-first: Stovnertårnet er et konkret fysisk utsikts-/tårnobjekt på Fossumberget, ikke et adressepunkt for hele området. Direkte stable-ID-oppslag av OSM node 5163964280 gir det eksakt navngitte tourism=viewpoint-objektet Stovnertårnet. Identiteten er kryssjekket mot Oslo byleksikon, VisitOSLO og DOGA. Punktet brukes som site-center for selve tårnet; ingen nearest/first-hit-logikk brukes."
+  },
+  "identity": {
+    "currentName": "Stovnertårnet",
+    "resolvedIdentity": "Stovnertårnet – konkret utsikts-/tårnobjekt på Fossumberget",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "stable named physical object identity",
+    "exact direct object lookup",
+    "correct tourism/viewpoint object type"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Stovnertårnet",
+      "sourceUrl": "https://oslobyleksikon.no/side/Stovnert%C3%A5rnet",
+      "sourceObjectId": "oslo-byleksikon:stovnertarnet",
+      "sourceQuality": "local_reference_identity",
+      "finding": "Oslo byleksikon identifies Stovnertårnet at Fossumberget / Karl Fossums vei 30.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes named physical identity and local scope."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "VisitOSLO / DOGA – Stovnertårnet",
+      "sourceUrl": "https://www.visitoslo.com/no/produkt/?name=Stovnertarnet&tlp=3672223",
+      "sourceObjectId": "visitoslo:3672223",
+      "sourceQuality": "current_destination_identity",
+      "finding": "VisitOSLO describes the public tower at Fossumberget behind Stovner Senter.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks current physical identity and access context."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5163964280 – Stovnertårnet",
+      "sourceUrl": "https://www.openstreetmap.org/node/5163964280",
+      "sourceObjectId": "osm-node:5163964280",
+      "sourceQuality": "direct_stable_id_exact_named_viewpoint",
+      "finding": "Direct lookup returns the exact named tourism=viewpoint node Stovnertårnet.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 129 object-type-first: Stovnertårnet er et konkret fysisk utsikts-/tårnobjekt på Fossumberget, ikke et adressepunkt for hele området. Direkte stable-ID-oppslag av OSM node 5163964280 gir det eksakt navngitte tourism=viewpoint-objektet Stovnertårnet. Identiteten er kryssjekket mot Oslo byleksikon, VisitOSLO og DOGA. Punktet brukes som site-center for selve tårnet; ingen nearest/first-hit-logikk brukes."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5163964280",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5163964280",
+      "lat": 59.9610081,
+      "lon": 10.9299475,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Direct stable OSM point applied to the physical tower identity."
+  },
+  "notes": [
+    "Batch 129 object-type-first: Stovnertårnet er et konkret fysisk utsikts-/tårnobjekt på Fossumberget, ikke et adressepunkt for hele området. Direkte stable-ID-oppslag av OSM node 5163964280 gir det eksakt navngitte tourism=viewpoint-objektet Stovnertårnet. Identiteten er kryssjekket mot Oslo byleksikon, VisitOSLO og DOGA. Punktet brukes som site-center for selve tårnet; ingen nearest/first-hit-logikk brukes."
+  ]
+}
