@@ -3,9 +3,9 @@ import path from 'path';
 
 type AliasMap = Record<string, string>;
 
-const aliases: AliasMap = { sagene_film: 'sagene', kampen_film: 'kampen', psykologirommet_oslo: 'psykologisk_institutt_uio', nrk_marienlyst: 'nrk_huset_marienlyst', jernbanetorget_trafikknutepunkt: 'jernbanetorget', akerhus_slott: 'akershus_festning', good_game_redaksjon: 'nrk_huset_marienlyst', nydalen_industristed: 'nydalen', loelva_historisk: 'alnaelva' };
+const aliases: AliasMap = { sagene_film: 'sagene', kampen_film: 'kampen', psykologirommet_oslo: 'psykologisk_institutt_uio', nrk_marienlyst: 'nrk_huset_marienlyst', jernbanetorget_trafikknutepunkt: 'jernbanetorget', akerhus_slott: 'akershus_festning', good_game_redaksjon: 'nrk_huset_marienlyst', nydalen_industristed: 'nydalen', loelva_historisk: 'alnaelva' , lekeplass_sofienbergparken: 'sofienbergparken_subkultur' , lekeplass_st_hanshaugen: 'st_hanshaugen_park' , lekeplass_birkelunden: 'birkelunden' , lekeplass_olaf_ryes_plass: 'olaf_ryes_plass' , lekeplass_botsparken: 'botsparken' , lekeplass_stensparken: 'stensparken' , treningssted_skur13: 'skur13' };
 const root = process.cwd();
-const targets: string[] = ['data/i18n/content/places', 'data/leksikon', 'data/places', 'data/quiz'];
+const targets: string[] = ['data/i18n/content/places', 'data/leksikon', 'data/places', 'data/quiz', 'data/stories', 'data/wonderkammer', 'data/Civication'];
 
 function walk(d: string): string[] {
   if (!fs.existsSync(d)) return [];
