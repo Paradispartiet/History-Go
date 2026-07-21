@@ -8,6 +8,14 @@ Generert: 2026-07-21T10:18:49.606Z
 - `dansens_hus_oslo` – Dansens Hus
 - `riksscenen` – Riksscenen
 
+## Valideringsstatus
+
+- Eksakte Geonorge-adressetreff: `pass`
+- Fysisk overlap-audit: `pass`
+- Global stedindeks: `pass`
+- Places-kontroll: `pass`
+- Kategoriaudit: `pass`
+
 ## Koordinater
 
 ### `black_box_teater`
