@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "operastranda",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport/operastranda.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.906325,
+    "lon": 10.752978,
+    "r": 100,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 936040800 – Operastranda; identity cross-checked with Oslo kommune",
+    "coordType": "beach_center",
+    "coordNote": "Geometrisk sentrum av det eksakt navngitte OSM-polygonet Operastranda. Oslo kommune dokumenterer samme sted som offentlig badestrand mellom Operahuset og MUNCH. Punktet brukes som områdeanker for selve stranden og ligger separat fra det brede `bjorvika`-ankeret."
+  },
+  "identity": {
+    "currentName": "Operastranda",
+    "resolvedIdentity": "Operastranda, kommunal offentlig badestrand mellom Operahuset og MUNCH",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt strandgeometri",
+    "uavhengig kommunal badeplassidentitet",
+    "skille fra bredt Bjørvika-områdeanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 936040800",
+      "sourceUrl": "https://www.openstreetmap.org/way/936040800",
+      "sourceObjectId": "osm-way:936040800",
+      "sourceQuality": "exact_named_beach_polygon_crosschecked_with_municipality",
+      "finding": "Eksakt navngitt leisure=beach_resort-polygon for Operastranda.",
+      "canVerifyCoordinate": true,
+      "reason": "Oslo kommune dokumenterer samme navngitte sted som offentlig badestrand mellom Operahuset og MUNCH."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:936040800",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:936040800",
+      "lat": 59.906325,
+      "lon": 10.752978,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.906325,
+      "lon": 10.752978,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact named municipal-beach geometry applied to the canonical place."
+  },
+  "notes": [
+    "The broad bjorvika area and Sørenga sjøbad remain separate canonical places."
+  ]
+}
