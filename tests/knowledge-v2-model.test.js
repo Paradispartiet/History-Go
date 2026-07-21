@@ -19,11 +19,17 @@ function loadKnowledgeV2(seed = {}) {
   global.DomainRegistry = null;
   global.PLACES = [{ id: "torggata" }];
   global.PEOPLE = [];
-  global.saveKnowledgeFromQuiz = () => {};
+  delete global.DataHub;
+  delete global.Emner;
+  delete global.HGCourses;
+  delete global.HGKnowledgeV2;
+  delete global.__HG_KNOWLEDGE_V2_CAPTURE_INSTALLED__;
+  delete global.saveKnowledgeFromQuiz;
 
-  const path = require.resolve("../js/knowledgeV2.js");
+  const path = require.resolve("../dist/web/knowledgeV2.js");
   delete require.cache[path];
-  return require(path);
+  require(path);
+  return global.HGKnowledgeV2;
 }
 
 test("normaliserer alle emne-aliaser som finnes i quiz og learning log", () => {
@@ -59,6 +65,46 @@ test("riktig quiz-svar oppretter canonical Knowledge-entry med fag og concepts",
   assert.deepEqual(entry.concepts, ["gentrifisering", "planmakt"]);
   assert.equal(entry.source.place_id, "torggata");
   assert.equal(api.getEntries().length, 1);
+});
+
+test("fasitsvar alene blir aldri lagret som Knowledge", () => {
+  const api = loadKnowledgeV2();
+  const entry = api.captureQuizKnowledge({
+    id: "answer_only",
+    categoryId: "by",
+    question: "Hva er Deichman?",
+    answer: "Et bibliotek"
+  });
+
+  assert.equal(entry, null);
+  assert.equal(api.getEntries().length, 0);
+});
+
+test("canonical claim prioriteres og deles i selvstendige kunnskapspåstander", () => {
+  const api = loadKnowledgeV2();
+  const entries = api.captureQuizKnowledgeClaims({
+    id: "deichman_opening",
+    categoryId: "by",
+    question: "Når åpnet bygget?",
+    answer: "I 2020",
+    knowledge_payload: {
+      summary: "Bygget åpnet i 2020. Det ble Oslos nye hovedbibliotek."
+    },
+    explanation: "Denne teksten skal ikke velges når knowledge_payload finnes.",
+    core_concepts: ["offentlig institusjon"],
+    term_ids: ["hovedbibliotek"],
+    tags: ["oslo"]
+  });
+
+  assert.deepEqual(entries.map((entry) => entry.text), [
+    "Bygget åpnet i 2020.",
+    "Det ble Oslos nye hovedbibliotek."
+  ]);
+  assert.deepEqual(entries[0].concepts, ["offentlig institusjon"]);
+  assert.deepEqual(entries[0].terms, ["hovedbibliotek"]);
+  assert.deepEqual(entries[0].tags, ["oslo"]);
+  assert.equal(entries[0].concepts.includes("oslo"), false);
+  assert.equal("answer" in entries[0], false);
 });
 
 test("samme kunnskapspunkt dedupliseres og bygger relasjon over tid", () => {
@@ -103,21 +149,28 @@ test("learning log med related_emner kan reparere manglende emnekobling", () => 
   assert.deepEqual(api.getEntries()[0].emne_ids, ["em_by_gentrifisering_eiendom"]);
 });
 
-test("legacy knowledge bevares selv når emnekoblingen mangler", () => {
+test("legacy knowledge renses og bevares selv når emnekoblingen mangler", () => {
   const api = loadKnowledgeV2({
     knowledge_universe: {
       historie: {
-        historisk: [{ id: "quiz_legacy_1", topic: "Et gammelt punkt", text: "Bevar meg." }]
+        historisk: [{
+          id: "quiz_legacy_1",
+          topic: "Hva skjedde?",
+          text: "Bygget åpnet i 2020. Det ble et nytt hovedbibliotek."
+        }]
       }
     }
   });
 
   const result = api.migrateLegacyKnowledge();
-  assert.ok(result.total >= 1);
-  const row = api.getEntries().find((entry) => entry.text === "Bevar meg.");
-  assert.ok(row);
-  assert.equal(row.subject_id, "historie");
-  assert.equal(row.link_status, "legacy_unresolved");
+  assert.ok(result.total >= 2);
+  const rows = api.getEntries().filter((entry) => entry.subject_id === "historie");
+  assert.deepEqual(rows.map((entry) => entry.text), [
+    "Bygget åpnet i 2020.",
+    "Det ble et nytt hovedbibliotek."
+  ]);
+  assert.ok(rows.every((entry) => entry.topic === "Kunnskap"));
+  assert.ok(rows.every((entry) => entry.link_status === "legacy_unresolved"));
 });
 
 test("buildProfile organiserer Knowledge etter fag og emne uten å gjøre observasjoner til Knowledge", async () => {
@@ -151,5 +204,5 @@ test("buildProfile organiserer Knowledge etter fag og emne uten å gjøre observ
   const profile = await api.buildProfile({ subjectId: "by" });
   assert.equal(profile.summary.knowledge_count, 1);
   assert.equal(profile.subjects.by.entries.length, 1);
-  assert.equal(profile.subjects.by.emner[0].knowledge_count, 1);
+  assert.equal(profile.subjects.by.emners[0].knowledge_count, 1);
 });
