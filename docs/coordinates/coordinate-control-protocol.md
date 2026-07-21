@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 376 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
+Oslo-protokollen dekker nå 377 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -499,6 +499,10 @@ Batch 131 (2026-07-21) reviderer `revolver_oslo` etter address-first-policy. Rev
 | 132 | `helvete_neseblod_records` | Helvete / Neseblod Records | verified_geometry | `osm-node:2847570870` |
 
 Batch 132 (2026-07-21) reviderer `helvete_neseblod_records` med address-first før POI-fallback. Neseblod Records og Brønnøysundregistrene oppgir Schweigaards gate 56, men Geonorge har både 56A og 56B og ingen primærkilde i batchen avgjør bokstavleddet. Ingen adressekandidat velges derfor. I stedet kreves nøyaktig ett eksakt navngitt `shop=music`-POI i lokal Gamlebyen-scope; live oppslag gir `osm-node:2847570870`. Punktet brukes som site-center for dagens Neseblod Records og fysisk anker for den kombinerte Helvete/Neseblod-stedsfortellingen. Den gamle Yandex-/legacy-forankringen fjernes.
+
+| 133 | `club_7_vika` | Club 7 | verified_historical_source | `geonorge-adresser-v1:0301:14857:15` |
+
+Batch 133 (2026-07-21) reviderer `club_7_vika` som et historisk fler-lokasjonssted med eksplisitt representert periode. Recorden bruker Munkedamsveien 15-perioden 1971–1985 som kartanker. Sceneweb dokumenterer flyttingen til Konserthusets underetasje i 1971 og driften frem til 1985; Oslo byleksikon oppgir Munkedamsveien 15, og Røverstaden bekrefter kontinuiteten i lokalene. Etter denne historiske identitetsavklaringen brukes ett eksakt Geonorge-adresseobjekt for Munkedamsveien 15 som `historical_anchor`. Status er `verified_historical_source`, ikke en påstand om at Club 7 lå her gjennom hele 1963–1985.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
