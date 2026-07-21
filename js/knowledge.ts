@@ -9,60 +9,19 @@
    Struktur: category → dimension → array of knowledge objects
    ============================================================ */
 
-// Hent universet
+// Kompatibilitetsprojeksjon over den kanoniske V2-lesemodellen.
 function getKnowledgeUniverse() {
-  return JSON.parse(localStorage.getItem("knowledge_universe") || "{}");
+  return window.HGKnowledgeV2?.getLegacyProjection?.() || {};
 }
 
-// Lagre universet
 function saveKnowledgeUniverse(obj) {
-  localStorage.setItem("knowledge_universe", JSON.stringify(obj));
+  return window.HGKnowledgeV2?.importLegacyUniverse?.(obj) || { migrated: 0, total: 0 };
 }
 
-// ------------------------------------------------------------
-// 1) LAGRE KUNNSKAPSPUNKT
-// ------------------------------------------------------------
 function saveKnowledgePoint(entry) {
-  // Sikkerhetssjekk (unngår krasj hvis noe mangler)
-  if (!entry || !entry.category || !entry.dimension || !entry.id) return;
-
-  const uni = getKnowledgeUniverse();
-
-  // Opprett kategori hvis mangler
-  if (!uni[entry.category]) {
-    uni[entry.category] = {};
-  }
-
-  // Opprett dimensjon hvis mangler
-  if (!uni[entry.category][entry.dimension]) {
-    uni[entry.category][entry.dimension] = [];
-  }
-
-  const list = uni[entry.category][entry.dimension];
-
-  // Ikke legg til duplikater
-  let changed = false;
-  if (!list.some(k => k.id === entry.id)) {
-    list.push({
-      id: entry.id,
-      topic: entry.topic,
-      text: entry.text
-    });
-    changed = true;
-  }
-
-  if (!changed) return;
-
-  saveKnowledgeUniverse(uni);
-
-  // Trigger oppdatering av profil (fast regel 101)
-  window.dispatchEvent(new Event("updateProfile"));
-
-  // Sync til AHA hvis funksjonen finnes (History Go + AHA samme origin)
-  if (typeof window.syncHistoryGoToAHA === "function") {
-    window.syncHistoryGoToAHA();
-  }
+  return window.HGKnowledgeV2?.captureKnowledgePoint?.(entry) || null;
 }
+
 // ------------------------------------------------------------
 // 2) HENTE KUNNSKAP FOR ET MERKE
 // ------------------------------------------------------------
@@ -80,8 +39,7 @@ function getKnowledgeForCategory(categoryId) {
       });
     if (Object.keys(grouped).length) return grouped;
   }
-  const legacy = getKnowledgeUniverse();
-  return legacy[cid] || {};
+  return {};
 }
 
 // ------------------------------------------------------------

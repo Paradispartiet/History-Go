@@ -210,28 +210,15 @@
   }
 
   function collectKnowledgeTopics() {
-    const uni = readLS("knowledge_universe", {});
+    const entries = window.HGKnowledgeV2?.getEntries?.() || [];
     const out = [];
-
-    if (!uni || typeof uni !== "object") return [];
-
-    for (const cat of Object.keys(uni)) {
-      const dims = uni[cat];
-      if (!dims || typeof dims !== "object") continue;
-
-      for (const dim of Object.keys(dims)) {
-        const items = Array.isArray(dims[dim]) ? dims[dim] : [];
-
-        for (const item of items) {
-          const topic = normStr(item && item.topic);
-          const text = normStr(item && item.text);
-
-          if (topic) out.push(topic);
-          if (text) out.push(...tokenizeText(text));
-        }
-      }
+    for (const item of (Array.isArray(entries) ? entries : [])) {
+      const topic = normStr(item?.topic);
+      const text = normStr(item?.text);
+      if (topic) out.push(topic);
+      if (text) out.push(...tokenizeText(text));
+      (Array.isArray(item?.concepts) ? item.concepts : []).forEach((concept) => out.push(normStr(concept)));
     }
-
     return uniq(out.map(normLower).filter(Boolean));
   }
 

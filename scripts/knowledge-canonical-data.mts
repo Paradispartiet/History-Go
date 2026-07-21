@@ -32,6 +32,7 @@ const STORY_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'stories.generated.json');
 const BACKFILL_REPORT_PATH = path.join(ROOT, 'reports/knowledge-id-backfill.json');
 const CONTRACT_REPORT_PATH = path.join(ROOT, 'reports/knowledge-contract-audit.json');
 const LEGACY_REPORT_PATH = path.join(ROOT, 'reports/knowledge-universe-readers.json');
+const REVIEW_QUEUE_PATH = path.join(KNOWLEDGE_ROOT, 'knowledge_emne_review_queue.generated.json');
 const ID_PATTERN = {
   knowledge: /^ku_[a-z0-9_]+$/,
   concept: /^co_[a-z0-9_]+$/,
@@ -97,19 +98,22 @@ function emneIds(question: JsonObject): string[] {
   return unique([question.emne_id, question.emne_ids, question.related_emner, question.related_emners, question.relatedEmner, question.relatedEmneIds]);
 }
 function conceptLabels(question: JsonObject): string[] {
-  return unique([question.concepts, question.core_concepts, question.concept_focus, question.begreper]);
+  const legacyIdsAsLabels = unique([question.concept_ids, question.conceptIds]).filter((id) => !ID_PATTERN.concept.test(id));
+  return unique([question.concepts, question.core_concepts, question.concept_focus, question.begreper, legacyIdsAsLabels]);
 }
 function conceptIds(question: JsonObject): string[] {
   return unique([question.concept_ids, question.conceptIds]).filter((id) => ID_PATTERN.concept.test(id));
 }
 function termLabels(question: JsonObject): string[] {
-  return unique([question.terms, question.terminology, question.terminologi, question.faguttrykk]);
+  const legacyIdsAsLabels = unique([question.term_ids, question.termIds]).filter((id) => !ID_PATTERN.term.test(id));
+  return unique([question.terms, question.terminology, question.terminologi, question.faguttrykk, legacyIdsAsLabels]);
 }
 function termIds(question: JsonObject): string[] {
   return unique([question.term_ids, question.termIds]).filter((id) => ID_PATTERN.term.test(id));
 }
 function storyLabels(question: JsonObject): string[] {
-  return unique([question.related_stories, question.stories]);
+  const legacyIdsAsLabels = unique([question.story_ids, question.storyIds]).filter((id) => !ID_PATTERN.story.test(id));
+  return unique([question.related_stories, question.stories, legacyIdsAsLabels]);
 }
 function storyIds(question: JsonObject): string[] {
   return unique([question.story_ids, question.storyIds]).filter((id) => ID_PATTERN.story.test(id));
@@ -391,7 +395,13 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
       }
     });
 
-    if (!eids.length) unresolved.push({ file: row.file, location: row.location, question_id: questionId(q, row.file, row.location), subject_id: subject, target_id: targetId(q, row.root), reason: 'missing_emne_link', inference });
+    if (!eids.length) {
+      q.knowledge_link_status = 'editorial_review_required';
+      q.knowledge_link_evidence = { method: inference.method, confidence: inference.confidence, ...(inference.evidence || {}) };
+      unresolved.push({ file: row.file, location: row.location, question_id: questionId(q, row.file, row.location), subject_id: subject, target_id: targetId(q, row.root), reason: 'missing_emne_link', inference });
+    } else {
+      q.knowledge_link_status = 'linked';
+    }
     if (before !== JSON.stringify(q)) questionsChanged += 1;
   }
 
@@ -404,6 +414,7 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
   await writeOrCheck(CONCEPT_REGISTRY_PATH, { schema: 'history_go_concept_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList }, changedFiles);
   await writeOrCheck(TERM_REGISTRY_PATH, { schema: 'history_go_term_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList }, changedFiles);
   await writeOrCheck(STORY_REGISTRY_PATH, { schema: 'history_go_story_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList }, changedFiles);
+  await writeOrCheck(REVIEW_QUEUE_PATH, { schema: 'history_go_knowledge_emne_review_queue_v1', version: 1, policy: 'Do not infer ambiguous emne links automatically.', items: unresolved }, changedFiles);
   const report = {
     schema: 'history_go_knowledge_id_backfill_v1',
     manifest: 'data/quiz/manifest.json',
@@ -461,7 +472,10 @@ async function runContractAudit(): Promise<JsonObject> {
       const errors: string[] = [];
       const notes: string[] = [];
       if (!refs.subject_id) errors.push('missing_subject');
-      if (!refs.emne_ids.length) errors.push('missing_emne_link');
+      if (!refs.emne_ids.length) {
+        if (clean(row.question.knowledge_link_status) === 'editorial_review_required') notes.push('editorial_emne_review_required');
+        else errors.push('missing_emne_link');
+      }
       if (!refs.knowledge_unit_ids.length) errors.push('missing_knowledge_unit_ids');
       refs.knowledge_unit_ids.forEach((id: string) => {
         if (!ID_PATTERN.knowledge.test(id)) errors.push(`invalid_knowledge_unit_id:${id}`);
@@ -495,7 +509,8 @@ async function runContractAudit(): Promise<JsonObject> {
       missing_emne_link: failures.filter((row) => row.errors.includes('missing_emne_link')).length,
       missing_knowledge_unit_ids: failures.filter((row) => row.errors.includes('missing_knowledge_unit_ids')).length,
       invalid_or_unknown_ids: failures.filter((row) => row.errors.some((error: string) => error.includes('_id:'))).length,
-      missing_concept_ids: warnings.length,
+      missing_concept_ids: warnings.filter((row) => row.warnings.includes('missing_concept_ids')).length,
+      editorial_emne_review_required: warnings.filter((row) => row.warnings.includes('editorial_emne_review_required')).length,
     },
     failures,
     warnings,
@@ -559,7 +574,7 @@ async function main(): Promise<void> {
   }
   console.log(`Knowledge contract audit: ${contract.questions_with_errors} error question(s), ${contract.questions_with_warnings} warning question(s).`);
   console.log(`Legacy Knowledge audit: ${legacy.active.length} active reference(s).`);
-  if (!legacy.ok) process.exitCode = 1;
+  if (!legacy.ok || contract.questions_with_errors > 0) process.exitCode = 1;
 }
 
 main().catch((error: unknown) => {

@@ -145,8 +145,6 @@ function explicitConcepts(value: unknown): string[] {
   return unique([
     ...array(row.concepts),
     ...array(row.core_concepts),
-    ...array(row.conceptIds),
-    ...array(row.concept_ids),
     ...array(row.begreper)
   ]);
 }
@@ -155,7 +153,6 @@ function explicitTerms(value: unknown): string[] {
   const row = record(value);
   return unique([
     ...array(row.terms),
-    ...array(row.term_ids),
     ...array(row.terminology),
     ...array(row.terminologi),
     ...array(row.faguttrykk)

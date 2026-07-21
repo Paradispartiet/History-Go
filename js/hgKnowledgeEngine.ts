@@ -16,7 +16,7 @@
    * @property {unknown[]} learningLogMigrated
    * @property {KnowledgeRecord} knowledgeLearning
    * @property {unknown[]} insightEvents
-   * @property {unknown} knowledgeUniverse
+   * @property {unknown[]} knowledgeEntries
    * @property {unknown} quizProgress
    * @property {unknown} visitedPlacesRaw
    * @property {string[]} visitedPlaceIds
@@ -142,7 +142,7 @@
       learningLogMigrated: toArray(readJsonStorage("hg_learning_log_migrated_v1", [])),
       knowledgeLearning: toObject(readJsonStorage("hg_learning_v1", {})),
       insightEvents: toArray(readJsonStorage("hg_insights_events_v1", [])),
-      knowledgeUniverse: readJsonStorage("knowledge_universe", {}),
+      knowledgeEntries: toArray(window.HGKnowledgeV2?.getEntries?.() || readJsonStorage("hg_knowledge_entries_v2", [])),
       quizProgress: readJsonStorage("quiz_progress", {}),
       visitedPlacesRaw: visitedPlacesRaw,
       visitedPlaceIds: normalizeIdCollection(visitedPlacesRaw),
@@ -204,7 +204,7 @@
       .concat(toArray(state.learningLog).map((entry) => ({ entry: entry, streamType: "learningLog" })))
       .concat(toArray(state.learningLogMigrated).map((entry) => ({ entry: entry, streamType: "learningLogMigrated" })))
       .concat(toArray(state.insightEvents).map((entry) => ({ entry: entry, streamType: "insightEvents" })))
-      .concat(toArrayLike(state.knowledgeUniverse).map((entry) => ({ entry: entry, streamType: "knowledgeUniverse" })))
+      .concat(toArray(state.knowledgeEntries).map((entry) => ({ entry: entry, streamType: "knowledgeEntriesV2" })))
       .concat(toArrayLike(state.quizProgress).map((entry) => ({ entry: entry, streamType: "quizProgress" })))
       .concat(toArray(state.unlocks).map((entry) => ({ entry: entry, streamType: "unlocks" })));
 

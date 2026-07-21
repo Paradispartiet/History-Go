@@ -1,0 +1,174 @@
+
+> history-go@0.0.0 test:knowledge-core
+> node --test tests/knowledge-v2-model.test.js tests/quiz-knowledge-memory.test.js tests/knowledge-profile-memory-integration.test.js tests/knowledge-profile-restore.test.js
+
+TAP version 13
+# Subtest: buildProfile synkroniserer quizminne direkte til den kanoniske emner-kontrakten
+ok 1 - buildProfile synkroniserer quizminne direkte til den kanoniske emner-kontrakten
+  ---
+  duration_ms: 16.201093
+  ...
+# Subtest: gjentatt profilbygging er idempotent og øker ikke times_seen
+ok 2 - gjentatt profilbygging er idempotent og øker ikke times_seen
+  ---
+  duration_ms: 13.506722
+  ...
+# Subtest: målrettet repetisjon bevarer hele bundlen og oppdaterer bare feilspørsmålet
+ok 3 - målrettet repetisjon bevarer hele bundlen og oppdaterer bare feilspørsmålet
+  ---
+  duration_ms: 12.901192
+  ...
+# Subtest: Knowledge V2 loads canonical badge logos
+ok 4 - Knowledge V2 loads canonical badge logos
+  ---
+  duration_ms: 2.230387
+  ...
+# Subtest: Knowledge subject badges expose canonical image references
+ok 5 - Knowledge subject badges expose canonical image references
+  ---
+  duration_ms: 3.948743
+  ...
+# Subtest: classic Knowledge profile remains available alongside V2
+ok 6 - classic Knowledge profile remains available alongside V2
+  ---
+  duration_ms: 0.422074
+  ...
+# Subtest: normaliserer alle emne-aliaser som finnes i quiz og learning log
+ok 7 - normaliserer alle emne-aliaser som finnes i quiz og learning log
+  ---
+  duration_ms: 7.196585
+  ...
+# Subtest: riktig quiz-svar oppretter canonical Knowledge-entry med fag og concepts
+not ok 8 - riktig quiz-svar oppretter canonical Knowledge-entry med fag og concepts
+  ---
+  duration_ms: 9.52123
+  location: '/home/runner/work/History-Go/History-Go/tests/knowledge-v2-model.test.js:49:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 2
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/home/runner/work/History-Go/History-Go/tests/knowledge-v2-model.test.js:68:10)
+    Test.runInAsyncScope (node:async_hooks:206:9)
+    Test.run (node:internal/test_runner/test:796:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:526:18)
+    Test.postRun (node:internal/test_runner/test:889:19)
+    Test.run (node:internal/test_runner/test:835:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+  ...
+# Subtest: fasitsvar alene blir aldri lagret som Knowledge
+ok 9 - fasitsvar alene blir aldri lagret som Knowledge
+  ---
+  duration_ms: 4.508476
+  ...
+# Subtest: canonical claim prioriteres og deles i selvstendige kunnskapspåstander
+not ok 10 - canonical claim prioriteres og deles i selvstendige kunnskapspåstander
+  ---
+  duration_ms: 7.380111
+  location: '/home/runner/work/History-Go/History-Go/tests/knowledge-v2-model.test.js:86:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'ku_by_deichman_opening_test_1,ku_by_deichman_opening_test_2'
+    - 'ku_by_deichman_opening_test_1'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'ku_by_deichman_opening_test_1'
+  actual: 'ku_by_deichman_opening_test_1,ku_by_deichman_opening_test_2'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/home/runner/work/History-Go/History-Go/tests/knowledge-v2-model.test.js:111:10)
+    Test.runInAsyncScope (node:async_hooks:206:9)
+    Test.run (node:internal/test_runner/test:796:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:526:18)
+    Test.postRun (node:internal/test_runner/test:889:19)
+    Test.run (node:internal/test_runner/test:835:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+  ...
+# Subtest: samme kunnskapspunkt dedupliseres og bygger relasjon over tid
+ok 11 - samme kunnskapspunkt dedupliseres og bygger relasjon over tid
+  ---
+  duration_ms: 4.375897
+  ...
+# Subtest: learning log med related_emner kan reparere manglende emnekobling
+ok 12 - learning log med related_emner kan reparere manglende emnekobling
+  ---
+  duration_ms: 4.130304
+  ...
+# Subtest: legacy knowledge renses og bevares selv når emnekoblingen mangler
+ok 13 - legacy knowledge renses og bevares selv når emnekoblingen mangler
+  ---
+  duration_ms: 3.957688
+  ...
+# Subtest: buildProfile organiserer Knowledge etter fag og emne uten å gjøre observasjoner til Knowledge
+ok 14 - buildProfile organiserer Knowledge etter fag og emne uten å gjøre observasjoner til Knowledge
+  ---
+  duration_ms: 5.178056
+  ...
+# Subtest: bygger ett sammenhengende bundle fra spørsmål og toppnivåbanker
+ok 15 - bygger ett sammenhengende bundle fra spørsmål og toppnivåbanker
+  ---
+  duration_ms: 8.429515
+  ...
+# Subtest: skiller mestret kunnskap fra kunnskap som trenger repetisjon
+ok 16 - skiller mestret kunnskap fra kunnskap som trenger repetisjon
+  ---
+  duration_ms: 8.131281
+  ...
+# Subtest: støtter trivia som både tekst og liste uten å lagre tomme arrays
+ok 17 - støtter trivia som både tekst og liste uten å lagre tomme arrays
+  ---
+  duration_ms: 7.587461
+  ...
+# Subtest: forkaster spørsmål og fasitsvar og deler presise forklaringer
+not ok 18 - forkaster spørsmål og fasitsvar og deler presise forklaringer
+  ---
+  duration_ms: 6.465309
+  location: '/home/runner/work/History-Go/History-Go/tests/quiz-knowledge-memory.test.js:139:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + []
+    - [
+    -   'hovedbibliotek'
+    - ]
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'hovedbibliotek'
+  actual:
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/home/runner/work/History-Go/History-Go/tests/quiz-knowledge-memory.test.js:178:10)
+    Test.runInAsyncScope (node:async_hooks:206:9)
+    Test.run (node:internal/test_runner/test:796:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:526:18)
+    Test.postRun (node:internal/test_runner/test:889:19)
+    Test.run (node:internal/test_runner/test:835:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+  ...
+# Subtest: lagrer bundles og bygger indekser for fag, sted, emner og repetisjon
+ok 19 - lagrer bundles og bygger indekser for fag, sted, emner og repetisjon
+  ---
+  duration_ms: 7.372667
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 16
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 193.291121

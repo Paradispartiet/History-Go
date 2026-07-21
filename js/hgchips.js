@@ -4,7 +4,7 @@
 // Sources (merged):
 //  - Fagkart topic_hooks (+ canon thinkers)
 //  - Emner (concepts / thinkers / hook ids)
-//  - Local unlocked knowledge (knowledge_universe) + quiz_history (optional)
+//  - Canonical Knowledge V2 entries + quiz history (optional)
 // No hard coupling to "courses" UI.
 //
 // Requires:
@@ -46,34 +46,28 @@
 
   function getUnlockedConceptIds(categoryId) {
     const unlocked = new Set();
+    const entries = window.HGKnowledgeV2?.getEntries?.() || [];
+    (Array.isArray(entries) ? entries : [])
+      .filter((entry) => norm(entry?.subject_id || entry?.fagkart_category_id) === categoryId)
+      .forEach((entry) => {
+        const unitId = norm(entry?.knowledge_unit_id || entry?.id);
+        if (unitId) unlocked.add(unitId);
+        (Array.isArray(entry?.concept_ids) ? entry.concept_ids : []).forEach((id) => { const value = norm(id); if (value) unlocked.add(value); });
+        (Array.isArray(entry?.concepts) ? entry.concepts : []).forEach((label) => { const value = normLc(label); if (value) unlocked.add("topic:" + value); });
+        const topic = normLc(entry?.topic);
+        if (topic) unlocked.add("topic:" + topic);
+      });
 
-    // knowledge_universe: { [categoryId]: { dimension: [{id, topic, text}] } }
-    const uni = safeJsonParse(localStorage.getItem("knowledge_universe") || "null", null);
-    const cat = uni && typeof uni === "object" ? uni[categoryId] : null;
-    if (cat && typeof cat === "object") {
-      for (const items of Object.values(cat)) {
-        if (!Array.isArray(items)) continue;
-        for (const k of items) {
-          if (k && typeof k.id === "string") unlocked.add(k.id);
-          if (k && typeof k.topic === "string") unlocked.add("topic:" + normLc(k.topic));
-        }
-      }
-    }
-
-    // quiz-events (via HGLearningLog): accept optional fields if present
     const events = window.HGLearningLog?.getEvents?.() ?? [];
     const hist = Array.isArray(events) ? events : [];
     for (const h of hist) {
       if (!h) continue;
-      const list = Array.isArray(h.unlocked_concepts)
-        ? h.unlocked_concepts
-        : (Array.isArray(h.concepts) ? h.concepts : []);
+      const list = Array.isArray(h.unlocked_concepts) ? h.unlocked_concepts : (Array.isArray(h.concepts) ? h.concepts : []);
       for (const c of list) {
-        const t = normLc(c);
-        if (t) unlocked.add("topic:" + t);
+        const value = normLc(c);
+        if (value) unlocked.add("topic:" + value);
       }
     }
-
     return unlocked;
   }
 

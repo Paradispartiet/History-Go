@@ -8,6 +8,7 @@ const root = globalThis as typeof globalThis & Record<string, any>;
 
 const ENTRY_KEY = "hg_knowledge_entries_v2";
 const LEGACY_KEY = "knowledge_universe";
+const LEGACY_MIGRATION_KEY = "hg_knowledge_legacy_migrated_v1";
 const LEARNING_LOG_KEY = "hg_learning_log_v1";
 const SCHEMA = "history_go_knowledge_entry_v2";
 const VERSION = 2;
@@ -27,6 +28,10 @@ interface KnowledgeSource {
 
 interface KnowledgeEntry extends JsonObject {
   id: string;
+  knowledge_unit_id: string;
+  concept_ids: string[];
+  term_ids: string[];
+  story_ids: string[];
   schema?: string;
   version?: number;
   subject_id: string;
@@ -109,6 +114,27 @@ function slug(value: unknown): string {
     .slice(0, 120);
 }
 
+function stableHash(value: unknown): string {
+  let hash = 2166136261;
+  const source = s(value);
+  for (let index = 0; index < source.length; index += 1) {
+    hash ^= source.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36).padStart(7, "0");
+}
+
+function generatedCanonicalId(prefix: "ku" | "co" | "term" | "story", subjectId: unknown, value: unknown): string {
+  const subject = slug(subjectId) || "unknown";
+  const label = slug(value).slice(0, prefix === "ku" ? 24 : 36) || "item";
+  return `${prefix}_${subject}_${label}_${stableHash(`${subject}::${s(value).toLowerCase()}`)}`;
+}
+
+function explicitIdList(value: unknown, ...keys: string[]): string[] {
+  const row = toObject(value);
+  return unique(keys.flatMap((key) => toArray(row[key])));
+}
+
 function normalizeSubjectId(value: unknown): string {
   const raw = s(value);
   if (!raw) return "";
@@ -182,7 +208,11 @@ function mergeEntry(previous: KnowledgeEntry, incoming: KnowledgeEntry, now: str
     times_seen: incrementSeen
       ? Number(previous.times_seen || 1) + 1
       : Math.max(Number(previous.times_seen || 1), Number(incoming.times_seen || 1)),
+    knowledge_unit_id: previous.knowledge_unit_id || incoming.knowledge_unit_id || incoming.id,
     emne_ids: unique([...(previous.emne_ids || []), ...(incoming.emne_ids || [])]),
+    concept_ids: unique([...(previous.concept_ids || []), ...(incoming.concept_ids || [])]),
+    term_ids: unique([...(previous.term_ids || []), ...(incoming.term_ids || [])]),
+    story_ids: unique([...(previous.story_ids || []), ...(incoming.story_ids || [])]),
     concepts: unique([...(previous.concepts || []), ...(incoming.concepts || [])]),
     terms: unique([...(previous.terms || []), ...(incoming.terms || [])]),
     tags: unique([...(previous.tags || []), ...(incoming.tags || [])]),
@@ -252,16 +282,26 @@ function captureQuizKnowledgeClaims(quizValue: unknown, contextValue: unknown = 
   const concepts = normalizeConcepts(quizItem);
   const terms = normalizeTerms(quizItem);
   const tags = normalizeTags(quizItem);
+  const explicitKnowledgeIds = unique([quizItem.primary_knowledge_unit_id, quizItem.knowledge_unit_id, quizItem.knowledge_unit_ids]);
+  const knowledgeUnitIds = claims.map((claim, index) => explicitKnowledgeIds[index] || generatedCanonicalId("ku", subjectId, claim));
+  const explicitConceptIds = explicitIdList(quizItem, "concept_ids", "conceptIds");
+  const conceptIds = unique([explicitConceptIds, concepts.map((concept) => generatedCanonicalId("co", subjectId, concept))]);
+  const explicitTermIds = explicitIdList(quizItem, "term_ids", "termIds");
+  const termIds = unique([explicitTermIds, terms.map((term) => generatedCanonicalId("term", subjectId, term))]);
+  const storyIds = unique([quizItem.story_ids, quizItem.storyIds]);
   const kind = claimCore.inferKind(quizItem);
   const topic = claimCore.cleanTopic(quizItem.topic || context.topic, kind);
-  const stableSource = sourceQuizId || [targetId, topic, claims[0]].map(slug).filter(Boolean).join("_");
   const source = sourceForQuiz(quizItem, context, sourceQuizId, targetId);
 
   return claims.map((claim, index) => upsertEntry({
-    id: `kv2_${slug(subjectId)}_${slug(stableSource)}${claims.length > 1 ? `_claim_${index + 1}` : ""}`,
+    id: knowledgeUnitIds[index],
+    knowledge_unit_id: knowledgeUnitIds[index],
     subject_id: subjectId,
     fagkart_category_id: subjectId,
     emne_ids: emneIds,
+    concept_ids: conceptIds,
+    term_ids: termIds,
+    story_ids: storyIds,
     concepts,
     terms,
     tags,
@@ -299,21 +339,32 @@ function cleanStoredEntry(entryValue: unknown): KnowledgeEntry[] {
   const claims = claimCore.extractTextClaims(entry.text, { question, answer: entry.answer });
   const tags = normalizeTags(entry);
   const concepts = normalizeConcepts(entry).filter((concept) => !tags.includes(concept));
+  const subjectId = normalizeSubjectId(entry.subject_id || entry.fagkart_category_id);
+  const explicitKnowledgeIds = unique([entry.knowledge_unit_id, entry.knowledge_unit_ids]);
+  const explicitConceptIds = explicitIdList(entry, "concept_ids", "conceptIds");
+  const explicitTermIds = explicitIdList(entry, "term_ids", "termIds");
+  const explicitStoryIds = explicitIdList(entry, "story_ids", "storyIds");
   return claims.map((claim, index) => {
     const sourceId = s(entry.source_entry_id || entry.id || "knowledge_entry");
+    const knowledgeUnitId = explicitKnowledgeIds[index] || generatedCanonicalId("ku", subjectId, claim);
     const next = {
       ...entry,
-      id: claims.length === 1 ? s(entry.id || sourceId) : `${sourceId}::claim::${index + 1}`,
+      id: knowledgeUnitId,
+      knowledge_unit_id: knowledgeUnitId,
       source_entry_id: sourceId,
       topic: claimCore.cleanTopic(entry.topic, entry.kind),
       text: claim,
+      concept_ids: unique([explicitConceptIds, concepts.map((concept) => generatedCanonicalId("co", subjectId, concept))]),
+      term_ids: unique([explicitTermIds, normalizeTerms(entry).map((term) => generatedCanonicalId("term", subjectId, term))]),
+      story_ids: explicitStoryIds,
       concepts,
       terms: normalizeTerms(entry),
       tags,
       content_quality: {
         ...(entry.content_quality || {}),
         version: QUALITY_VERSION,
-        precise_claim: true
+        precise_claim: true,
+        canonical_ids: true
       }
     } as KnowledgeEntry;
     delete next.answer;
@@ -354,71 +405,102 @@ function sanitizeStoredEntries(): { changed: boolean; total: number } {
   return { changed, total: output.length };
 }
 
-function migrateLegacyKnowledge(): { migrated: number; total: number } {
-  const legacy = toObject(readJson(LEGACY_KEY, {}));
+function migrateLegacyValue(legacyValue: unknown, sourceType = "legacy_quiz_knowledge"): { migrated: number; total: number } {
+  const legacy = toObject(legacyValue);
   const learningLog = toArray(readJson(LEARNING_LOG_KEY, []));
   const existingIds = new Set(getEntries().map((entry) => s(entry?.legacy?.legacy_entry_id)).filter(Boolean));
-  const cleanLegacy: JsonObject = {};
   let migrated = 0;
 
   for (const [rawSubjectId, dimensionsValue] of Object.entries(legacy)) {
     const subjectId = normalizeSubjectId(rawSubjectId);
-    const cleanDimensions: JsonObject = {};
     for (const [dimension, itemsValue] of Object.entries(toObject(dimensionsValue))) {
-      const cleanItems: JsonObject[] = [];
       for (const itemValue of toArray(itemsValue)) {
         const item = toObject(itemValue);
         const question = claimCore.isQuestion(item.topic) ? s(item.topic) : "";
         const claims = claimCore.extractTextClaims(item.text, { question, answer: item.answer });
         claims.forEach((claim, index) => {
           const base = s(item.source_entry_id || item.id || item.topic || "legacy_knowledge");
-          const cleanItem: JsonObject = {
-            ...item,
-            id: claims.length === 1 ? s(item.id || base) : `${base}::claim::${index + 1}`,
-            source_entry_id: base,
-            topic: claimCore.cleanTopic(item.topic),
-            text: claim,
-            content_quality: { version: QUALITY_VERSION, precise_claim: true }
-          };
-          delete cleanItem.answer;
-          cleanItems.push(cleanItem);
-
-          const legacyEntryId = `${subjectId}:${dimension}:${cleanItem.id}`;
+          const legacyEntryId = `${subjectId}:${dimension}:${base}:${index + 1}`;
           if (existingIds.has(legacyEntryId)) return;
           const targetId = findLegacyTargetId(item.id, learningLog);
+          const knowledgeUnitId = generatedCanonicalId("ku", subjectId, claim);
           upsertEntry({
-            id: `legacy_${slug(legacyEntryId)}`,
+            id: knowledgeUnitId,
+            knowledge_unit_id: knowledgeUnitId,
             subject_id: subjectId,
             fagkart_category_id: subjectId,
             emne_ids: [],
+            concept_ids: [],
+            term_ids: [],
+            story_ids: [],
             concepts: [],
             terms: [],
             tags: [],
             dimension: s(dimension || "generelt") || "generelt",
-            topic: cleanItem.topic,
+            topic: claimCore.cleanTopic(item.topic),
             text: claim,
             source: {
-              type: "legacy_quiz_knowledge",
+              type: sourceType,
               quiz_id: s(item.id) || null,
               target_id: targetId || null,
               place_id: null,
               person_id: null
             },
-            legacy: { legacy_entry_id: legacyEntryId, storage_key: LEGACY_KEY },
-            content_quality: { version: QUALITY_VERSION, precise_claim: true, migrated: true },
+            legacy: { legacy_entry_id: legacyEntryId },
+            content_quality: { version: QUALITY_VERSION, precise_claim: true, migrated: true, canonical_ids: true },
             link_status: "legacy_unresolved"
-          });
+          }, { incrementSeen: false });
           existingIds.add(legacyEntryId);
           migrated += 1;
         });
       }
-      if (cleanItems.length) cleanDimensions[dimension] = cleanItems;
     }
-    if (Object.keys(cleanDimensions).length) cleanLegacy[rawSubjectId] = cleanDimensions;
   }
-
-  if (JSON.stringify(legacy) !== JSON.stringify(cleanLegacy)) writeJson(LEGACY_KEY, cleanLegacy);
   return { migrated, total: getEntries().length };
+}
+
+function importLegacyUniverse(value: unknown): { migrated: number; total: number } {
+  return migrateLegacyValue(value, "legacy_external_import");
+}
+
+function migrateLegacyKnowledge(): { migrated: number; total: number } {
+  const legacy = toObject(readJson(LEGACY_KEY, {}));
+  if (!Object.keys(legacy).length) return { migrated: 0, total: getEntries().length };
+  const result = migrateLegacyValue(legacy);
+  try { root.localStorage?.removeItem(LEGACY_KEY); } catch {}
+  writeJson(LEGACY_MIGRATION_KEY, { migrated_at: new Date().toISOString(), migrated: result.migrated });
+  return result;
+}
+
+function getLegacyProjection(): JsonObject {
+  const grouped: JsonObject = {};
+  getEntries().forEach((entry) => {
+    const subject = normalizeSubjectId(entry.subject_id || entry.fagkart_category_id);
+    const dimension = s(entry.dimension || "generelt") || "generelt";
+    if (!subject) return;
+    grouped[subject] ||= {};
+    grouped[subject][dimension] ||= [];
+    grouped[subject][dimension].push({
+      id: entry.knowledge_unit_id || entry.id,
+      topic: entry.topic,
+      text: entry.text,
+      knowledge_unit_id: entry.knowledge_unit_id || entry.id,
+      concept_ids: entry.concept_ids || [],
+      term_ids: entry.term_ids || [],
+      story_ids: entry.story_ids || []
+    });
+  });
+  return grouped;
+}
+
+function captureKnowledgePoint(entryValue: unknown): KnowledgeEntry | null {
+  const entry = toObject(entryValue);
+  return captureQuizKnowledge({
+    ...entry,
+    categoryId: entry.categoryId || entry.category || entry.subject_id,
+    knowledge: entry.knowledge || entry.text,
+    primary_knowledge_unit_id: entry.knowledge_unit_id || entry.id
+  }, { categoryId: entry.categoryId || entry.category || entry.subject_id, targetId: entry.targetId });
 }
 
 function scoreConceptOverlap(entryConcepts: unknown[], eventConcepts: unknown[]): number {
@@ -655,7 +737,7 @@ const api = {
   SCHEMA,
   VERSION,
   QUALITY_VERSION,
-  KEYS: { ENTRIES: ENTRY_KEY, LEGACY: LEGACY_KEY, LEARNING_LOG: LEARNING_LOG_KEY, MEMORY: quizMemory.STORAGE_KEY },
+  KEYS: { ENTRIES: ENTRY_KEY, LEARNING_LOG: LEARNING_LOG_KEY, MEMORY: quizMemory.STORAGE_KEY, LEGACY_MIGRATION: LEGACY_MIGRATION_KEY },
   SUBJECT_LABELS,
   claimCore,
   normalizeEmneIds,
@@ -664,6 +746,9 @@ const api = {
   normalizeTags,
   captureQuizKnowledge,
   captureQuizKnowledgeClaims,
+  captureKnowledgePoint,
+  importLegacyUniverse,
+  getLegacyProjection,
   sanitizeStoredEntries,
   migrateLegacyKnowledge,
   reconcileEntriesFromLearningLog,

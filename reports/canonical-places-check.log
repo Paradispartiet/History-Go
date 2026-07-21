@@ -1,0 +1,71 @@
+== Places JSON parse ==
+json ok (593 files)
+== Place primary/secondary badge audit ==
+place badge audit ok (1217 places, 8 secondary badge links)
+== Active subkultur place concreteness guard ==
+active subkultur place concreteness ok
+== Build places index ==
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1333 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 202 category override(s)
+== Place category override contract ==
+place-category-overrides: PASS
+== Religion candidate audit ==
+Religion candidate audit: 0 unreviewed candidate(s); 20 reviewed non-Religion decision(s).
+== Build tools ==
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+== Places index check ==
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+== Places emne check ==
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 591
+Canonical emne files scanned: 15
+Canonical emne ids loaded: 996
+
+Missing emne_ids: 1
+[
+  {
+    "file": "data/places/natur/vestland/saevareidberget_landskapsvernomrade.json",
+    "place_id": "saevareidberget_landskapsvernomrade",
+    "emne_id": "em_natur_menneske_natur_kulturmark"
+  }
+]
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0

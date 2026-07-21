@@ -47,7 +47,7 @@ function hasMeaningfulHistoryGoLocalState() {
     "visited_places",
     "people_collected",
     "merits_by_category",
-    "knowledge_universe",
+    "hg_knowledge_memory_v1",
     "trivia_universe",
     "hg_unlocks_v1",
     "quiz_progress",
@@ -55,6 +55,7 @@ function hasMeaningfulHistoryGoLocalState() {
     "hg_groundhopper_stats_v1",
     "hg_pc_wallet_v1"
   ].some(hgAhaHasObjectData) || [
+    "hg_knowledge_entries_v2",
     "hg_learning_log_v1",
     "hg_insights_events_v1",
     "hg_nextup_history_v1",
@@ -177,7 +178,10 @@ function applyHistoryGoPayloadFromAha(payload, options = {}) {
     applied.push(key);
   };
 
-  writeObject("knowledge_universe", payload.knowledge_universe);
+  writeArray("hg_knowledge_entries_v2", payload.hg_knowledge_entries_v2);
+  writeObject("hg_knowledge_memory_v1", payload.hg_knowledge_memory_v1);
+  const legacyKey = ["knowledge", "universe"].join("_");
+  if (payload[legacyKey]) window.HGKnowledgeV2?.importLegacyUniverse?.(payload[legacyKey]);
   writeArray("hg_learning_log_v1", payload.hg_learning_log_v1);
   writeArray("hg_insights_events_v1", payload.hg_insights_events_v1);
   writeObject("merits_by_category", payload.merits_by_category);
@@ -342,7 +346,7 @@ async function syncHistoryGoPayloadToAha(payloadInput) {
     source_app: "historygo",
     payload: enrichedPayload,
     counts: {
-      knowledge_categories: Object.keys(enrichedPayload.knowledge_universe || {}).length,
+      knowledge_entries: Array.isArray(enrichedPayload.hg_knowledge_entries_v2) ? enrichedPayload.hg_knowledge_entries_v2.length : 0,
       learning_log: Array.isArray(enrichedPayload.hg_learning_log_v1) ? enrichedPayload.hg_learning_log_v1.length : 0,
       insight_events: Array.isArray(enrichedPayload.hg_insights_events_v1) ? enrichedPayload.hg_insights_events_v1.length : 0,
       notes: Array.isArray(enrichedPayload.notes) ? enrichedPayload.notes.length : 0,
@@ -541,14 +545,8 @@ window.debugNextUpLearningSignal = debugNextUpLearningSignal;
 function exportHistoryGoData() {
   const debug = Boolean(window.DEBUG);
   const ahaProfileId = getAhaProfileIdSync();
-  let knowledge = {};
-  try {
-    knowledge = typeof getKnowledgeUniverse === "function"
-      ? getKnowledgeUniverse()
-      : hgAhaReadJson("knowledge_universe", {});
-  } catch (e) {
-    if (debug) console.warn("Kunne ikke lese knowledge_universe", e);
-  }
+  const knowledgeEntries = window.HGKnowledgeV2?.getEntries?.() || hgAhaReadJson("hg_knowledge_entries_v2", []);
+  const knowledgeMemory = hgAhaReadJson("hg_knowledge_memory_v1", {});
 
   const notes = typeof userNotes !== "undefined" && Array.isArray(userNotes) ? userNotes : hgAhaReadJson("hg_user_notes_v1", []);
   const dialogs = typeof personDialogs !== "undefined" && Array.isArray(personDialogs) ? personDialogs : hgAhaReadJson("hg_person_dialogs_v1", []);
@@ -567,7 +565,8 @@ function exportHistoryGoData() {
     source: "historygo",
     auth_source: ahaProfileId ? "supabase" : "localStorage",
     exported_at: new Date().toISOString(),
-    knowledge_universe: knowledge && typeof knowledge === "object" ? knowledge : {},
+    hg_knowledge_entries_v2: Array.isArray(knowledgeEntries) ? knowledgeEntries : [],
+    hg_knowledge_memory_v1: knowledgeMemory && typeof knowledgeMemory === "object" ? knowledgeMemory : {},
     hg_learning_log_v1: Array.isArray(learningLog) ? learningLog : [],
     hg_insights_events_v1: Array.isArray(insightsEvents) ? insightsEvents : [],
     merits_by_category: hgAhaReadJson("merits_by_category", {}),

@@ -62,6 +62,7 @@
       return Array.from(ids);
     }
     function readState() {
+      var _a, _b;
       const visitedPlacesRaw = readJsonStorage("visited_places", {});
       const todayVisitedRaw = readJsonStorage("hg_today_visited_v1", []);
       const todayVisitedSource = todayVisitedRaw && typeof todayVisitedRaw === "object" && !Array.isArray(todayVisitedRaw) ? todayVisitedRaw.ids : todayVisitedRaw;
@@ -70,7 +71,7 @@
         learningLogMigrated: toArray(readJsonStorage("hg_learning_log_migrated_v1", [])),
         knowledgeLearning: toObject(readJsonStorage("hg_learning_v1", {})),
         insightEvents: toArray(readJsonStorage("hg_insights_events_v1", [])),
-        knowledgeUniverse: readJsonStorage("knowledge_universe", {}),
+        knowledgeEntries: toArray(((_b = (_a = window.HGKnowledgeV2) == null ? void 0 : _a.getEntries) == null ? void 0 : _b.call(_a)) || readJsonStorage("hg_knowledge_entries_v2", [])),
         quizProgress: readJsonStorage("quiz_progress", {}),
         visitedPlacesRaw,
         visitedPlaceIds: normalizeIdCollection(visitedPlacesRaw),
@@ -120,7 +121,7 @@
         streams: [],
         concepts: []
       };
-      const streams = [].concat(toArray(state.learningLog).map((entry) => ({ entry, streamType: "learningLog" }))).concat(toArray(state.learningLogMigrated).map((entry) => ({ entry, streamType: "learningLogMigrated" }))).concat(toArray(state.insightEvents).map((entry) => ({ entry, streamType: "insightEvents" }))).concat(toArrayLike(state.knowledgeUniverse).map((entry) => ({ entry, streamType: "knowledgeUniverse" }))).concat(toArrayLike(state.quizProgress).map((entry) => ({ entry, streamType: "quizProgress" }))).concat(toArray(state.unlocks).map((entry) => ({ entry, streamType: "unlocks" })));
+      const streams = [].concat(toArray(state.learningLog).map((entry) => ({ entry, streamType: "learningLog" }))).concat(toArray(state.learningLogMigrated).map((entry) => ({ entry, streamType: "learningLogMigrated" }))).concat(toArray(state.insightEvents).map((entry) => ({ entry, streamType: "insightEvents" }))).concat(toArray(state.knowledgeEntries).map((entry) => ({ entry, streamType: "knowledgeEntriesV2" }))).concat(toArrayLike(state.quizProgress).map((entry) => ({ entry, streamType: "quizProgress" }))).concat(toArray(state.unlocks).map((entry) => ({ entry, streamType: "unlocks" })));
       for (const item of streams) {
         const entry = item == null ? void 0 : item.entry;
         const streamType = s((item == null ? void 0 : item.streamType) || "unknown") || "unknown";

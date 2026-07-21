@@ -1,0 +1,25 @@
+{
+  "schema": "history_go_legacy_knowledge_reader_audit_v1",
+  "references": [
+    {
+      "file": "js/knowledgeV2.ts",
+      "line": 10,
+      "allowed": true,
+      "text": "const LEGACY_KEY = \"knowledge_universe\";"
+    },
+    {
+      "file": "tests/knowledge-v2-model.test.js",
+      "line": 164,
+      "allowed": true,
+      "text": "knowledge_universe: {"
+    },
+    {
+      "file": "tests/knowledge-v2-model.test.js",
+      "line": 184,
+      "allowed": true,
+      "text": "assert.equal(global.localStorage.getItem(\"knowledge_universe\"), null);"
+    }
+  ],
+  "active": [],
+  "ok": true
+}
