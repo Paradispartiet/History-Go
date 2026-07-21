@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "vallhall_arena",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.92046509819916,
+    "lon": 10.806039867052915,
+    "r": 170,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 50634101 – Vallhall",
+    "coordType": "building_center",
+    "coordNote": "Eksakt navngitt OSM-sportsobjekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype leisure/sports_centre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Vallhall Arena",
+    "resolvedIdentity": "Vallhall Arena som innendørs idrettshall",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett eksakt navngitt fysisk sportsobjekt med riktig semantisk objekttype i lokal scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Vallhall",
+      "sourceUrl": "https://www.openstreetmap.org/way/50634101",
+      "sourceObjectId": "osm-way:50634101",
+      "sourceQuality": "exact_named_semantic_sports_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype leisure/sports_centre og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-sportsobjekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype leisure/sports_centre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:50634101",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:50634101",
+      "lat": 59.92046509819916,
+      "lon": 10.806039867052915,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:50634101",
+      "lat": 59.92046509819916,
+      "lon": 10.806039867052915,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-sportsobjekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype leisure/sports_centre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  ]
+}
