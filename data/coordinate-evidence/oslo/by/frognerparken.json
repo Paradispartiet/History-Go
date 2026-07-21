@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "frognerparken",
+  "placeFile": "data/places/by/oslo/frognerparken.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.92659,
+    "lon": 10.701652,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4334023 – Frognerparken; scope cross-checked with Oslo kommune",
+    "coordType": "park_center",
+    "coordNote": "Batch 124 object-type-first: Oslo kommune definerer Frognerparken som hele den sentrale parken og Frognerborgen som en lekeplass ved hovedinngangen inne i parken. Ett eksakt navngitt OSM-parkobjekt (osm-way:4334023) med polygongeometri ble valgt innen forhåndsdefinert Oslo-scope. Nominatims representasjonspunkt brukes som area-anchor for hele parkobjektet, ikke som koordinat for Vigelandsparken, Frognerborgen eller et annet enkelt understed."
+  },
+  "identity": {
+    "currentName": "Frognerparken",
+    "resolvedIdentity": "Frognerparken – hele parklandskapet, med Frognerborgen som subfeature",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell parent/subfeature-avgrensning",
+    "ett eksakt navngitt parkobjekt",
+    "stabil kildeidentitet og polygongeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Frognerparken",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/frognerparken/",
+      "sourceObjectId": "oslo-kommune:park:frognerparken",
+      "sourceQuality": "official_scope_definition",
+      "finding": "Oslo kommune definerer Frognerparken som hele parken og Frognerborgen som lekeplassen ved hovedinngangen inne i parken.",
+      "canVerifyCoordinate": false,
+      "reason": "Fastsetter canonical parent/subfeature-scope før geometrivalg."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Frognerparken (way 4334023)",
+      "sourceUrl": "https://www.openstreetmap.org/way/4334023",
+      "sourceObjectId": "osm-way:4334023",
+      "sourceQuality": "exact_named_polygon_after_object_type_filter",
+      "finding": "Ett eksakt navngitt parkobjekt med polygongeometri i forhåndsdefinert Oslo-scope.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 124 object-type-first: Oslo kommune definerer Frognerparken som hele den sentrale parken og Frognerborgen som en lekeplass ved hovedinngangen inne i parken. Ett eksakt navngitt OSM-parkobjekt (osm-way:4334023) med polygongeometri ble valgt innen forhåndsdefinert Oslo-scope. Nominatims representasjonspunkt brukes som area-anchor for hele parkobjektet, ikke som koordinat for Vigelandsparken, Frognerborgen eller et annet enkelt understed."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4334023",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4334023",
+      "lat": 59.92659,
+      "lon": 10.701652,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4334023",
+      "lat": 59.92659,
+      "lon": 10.701652,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical Frognerparken er produsert; Frognerborgen beholdes som Wonderkammer-subfeature."
+  },
+  "notes": [
+    "Batch 124 object-type-first: Oslo kommune definerer Frognerparken som hele den sentrale parken og Frognerborgen som en lekeplass ved hovedinngangen inne i parken. Ett eksakt navngitt OSM-parkobjekt (osm-way:4334023) med polygongeometri ble valgt innen forhåndsdefinert Oslo-scope. Nominatims representasjonspunkt brukes som area-anchor for hele parkobjektet, ikke som koordinat for Vigelandsparken, Frognerborgen eller et annet enkelt understed."
+  ]
+}
