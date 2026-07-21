@@ -2,6 +2,7 @@
 
 import fs from "node:fs/promises";
 
+// Force every tile in the official waterbody bounding box to be queried.
 const originalSome = Array.prototype.some;
 
 Array.prototype.some = function patchedSome(callback, thisArg) {
