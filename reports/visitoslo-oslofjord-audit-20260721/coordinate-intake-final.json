@@ -1,0 +1,287 @@
+{
+  "version": "2026-07-21",
+  "sourceScopePr": 3086,
+  "status": "all_approved_candidates_coordinate_ready",
+  "summary": {
+    "approvedCandidates": 11,
+    "coordinateReady": 11,
+    "canonicalIdentityDuplicates": 0,
+    "unresolvedCoordinates": 0
+  },
+  "method": {
+    "osmIslands": "Exact normalized name plus accepted island/islet/archipelago physical object type inside a predefined Oslofjord search scope; no nearest or first-hit selection.",
+    "ssrJoinedIslands": "Exact approved active Kartverket SSR name plus navneobjekttype 'Øy i sjø' and locked official stedsnummer, cross-checked between /navn and /sted.",
+    "ingierstrand": "Exact Kartverket SSR Badeplass object used as semantic site anchor for the whole bathing complex after no unique named Riksantikvaren area geometry resolved; exact Geonorge address retained as an independent cross-check."
+  },
+  "candidates": [
+    {
+      "placeId": "heggholmen",
+      "name": "Heggholmen",
+      "productionCategory": "historie",
+      "coordinate": {
+        "lat": 59.88374,
+        "lon": 10.71305,
+        "r": 80,
+        "locatorType": "natural_area",
+        "sourceProvider": "kartverket",
+        "sourceObjectId": "kartverket-ssr:692270",
+        "geocodeAccuracy": "semantic_anchor",
+        "coordRole": "area_anchor",
+        "coordType": "named_place_anchor",
+        "coordStatus": "verified_geometry",
+        "coordSource": "Kartverket Sentralt stedsnavnregister – Heggholmen, objekttype Øy i sjø",
+        "coordSourceId": "kartverket-ssr:692270",
+        "coordSourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Heggholmen&knr=0301&treffPerSide=100&side=1",
+        "coordNote": "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Heggholmen, objekttype Øy i sjø, stedsnummer 692270. Punktet brukes som stabilt navne-/områdeanker fordi Heggholmen nå er fysisk sammenvokst med naboøyene og ikke fikk et separat entydig øypolygon i den strenge OSM-gaten."
+      },
+      "duplicateGate": "No canonical Heggholmen identity; nearest is gressholmen at 323.6 m and represents a different named island.",
+      "sourceRunnerPrs": [3089, 3094, 3097]
+    },
+    {
+      "placeId": "rambergoya",
+      "name": "Rambergøya",
+      "productionCategory": "natur",
+      "coordinate": {
+        "lat": 59.88025,
+        "lon": 10.72007,
+        "r": 80,
+        "locatorType": "natural_area",
+        "sourceProvider": "kartverket",
+        "sourceObjectId": "kartverket-ssr:489838",
+        "geocodeAccuracy": "semantic_anchor",
+        "coordRole": "area_anchor",
+        "coordType": "named_place_anchor",
+        "coordStatus": "verified_geometry",
+        "coordSource": "Kartverket Sentralt stedsnavnregister – Rambergøya, objekttype Øy i sjø",
+        "coordSourceId": "kartverket-ssr:489838",
+        "coordSourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Ramberg%C3%B8ya&knr=0301&treffPerSide=100&side=1",
+        "coordNote": "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Rambergøya, objekttype Øy i sjø, stedsnummer 489838. Punktet brukes som stabilt navne-/områdeanker fordi Rambergøya nå er fysisk sammenvokst med naboøyene og ikke fikk et separat entydig øypolygon i den strenge OSM-gaten."
+      },
+      "duplicateGate": "No canonical Rambergøya identity; nearest is gressholmen at 315.9 m and represents a different named island.",
+      "sourceRunnerPrs": [3089, 3094, 3097]
+    },
+    {
+      "placeId": "ormoya",
+      "name": "Ormøya",
+      "productionCategory": "by",
+      "coordinate": {
+        "lat": 59.877238716487454,
+        "lon": 10.760332278136202,
+        "r": 180,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-way:4154500",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "island_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 4154500 – Ormøya",
+        "coordSourceId": "osm-way:4154500",
+        "coordSourceUrl": "https://www.openstreetmap.org/way/4154500",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon."
+      },
+      "duplicateGate": "No canonical Ormøya identity.",
+      "sourceRunnerPrs": [3089]
+    },
+    {
+      "placeId": "malmoya",
+      "name": "Malmøya",
+      "productionCategory": "natur",
+      "coordinate": {
+        "lat": 59.86767369909778,
+        "lon": 10.756803452030066,
+        "r": 260,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-way:35213472",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "island_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 35213472 – Malmøya",
+        "coordSourceId": "osm-way:35213472",
+        "coordSourceUrl": "https://www.openstreetmap.org/way/35213472",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon."
+      },
+      "duplicateGate": "No canonical Malmøya identity.",
+      "sourceRunnerPrs": [3089]
+    },
+    {
+      "placeId": "nakholmen",
+      "name": "Nakholmen",
+      "productionCategory": "by",
+      "coordinate": {
+        "lat": 59.889584926598545,
+        "lon": 10.694851942199495,
+        "r": 180,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-way:4154397",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "island_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 4154397 – Nakholmen",
+        "coordSourceId": "osm-way:4154397",
+        "coordSourceUrl": "https://www.openstreetmap.org/way/4154397",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon."
+      },
+      "duplicateGate": "No canonical Nakholmen identity.",
+      "sourceRunnerPrs": [3089]
+    },
+    {
+      "placeId": "steilene",
+      "name": "Steilene",
+      "productionCategory": "historie",
+      "coordinate": {
+        "lat": 59.81768354575886,
+        "lon": 10.607351639955356,
+        "r": 260,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-relation:15882838",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "archipelago_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap relation 15882838 – Steilene",
+        "coordSourceId": "osm-relation:15882838",
+        "coordSourceUrl": "https://www.openstreetmap.org/relation/15882838",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: archipelago; geometri: MultiPolygon. Punktet representerer øygruppen, ikke én tilfeldig enkeltøy."
+      },
+      "duplicateGate": "No canonical Steilene identity.",
+      "sourceRunnerPrs": [3089]
+    },
+    {
+      "placeId": "langoyene",
+      "name": "Langøyene",
+      "productionCategory": "natur",
+      "coordinate": {
+        "lat": 59.87180284489248,
+        "lon": 10.718234309408619,
+        "r": 260,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-way:4154560",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "island_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 4154560 – Langøyene",
+        "coordSourceId": "osm-way:4154560",
+        "coordSourceUrl": "https://www.openstreetmap.org/way/4154560",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon. Punktet representerer dagens sammenhengende Langøyene."
+      },
+      "duplicateGate": "No canonical Langøyene identity.",
+      "sourceRunnerPrs": [3089]
+    },
+    {
+      "placeId": "lindoya",
+      "name": "Lindøya",
+      "productionCategory": "by",
+      "coordinate": {
+        "lat": 59.890079734831424,
+        "lon": 10.713192091385766,
+        "r": 220,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-relation:11816904",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "island_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap relation 11816904 – Lindøya",
+        "coordSourceId": "osm-relation:11816904",
+        "coordSourceUrl": "https://www.openstreetmap.org/relation/11816904",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon."
+      },
+      "duplicateGate": "No canonical Lindøya identity.",
+      "sourceRunnerPrs": [3089]
+    },
+    {
+      "placeId": "ingierstrand_bad",
+      "name": "Ingierstrand bad",
+      "productionCategory": "historie",
+      "coordinate": {
+        "lat": 59.81831,
+        "lon": 10.74834,
+        "r": 180,
+        "locatorType": "poi",
+        "sourceProvider": "kartverket",
+        "sourceObjectId": "kartverket-ssr:448130",
+        "geocodeAccuracy": "semantic_anchor",
+        "coordRole": "area_anchor",
+        "coordType": "named_place_anchor",
+        "coordStatus": "verified_geometry",
+        "coordSource": "Kartverket Sentralt stedsnavnregister – Ingierstrand bad, objekttype Badeplass",
+        "coordSourceId": "kartverket-ssr:448130",
+        "coordSourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Ingierstrand+bad&treffPerSide=100&side=1",
+        "coordNote": "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Ingierstrand bad, objekttype Badeplass, stedsnummer 448130. Punktet representerer det navngitte badeanlegget som helhet og er ikke restaurantbygningens adressepunkt. Det eksakte Geonorge-punktet for Ingierstrandveien 30 ligger 197,8 meter unna og er beholdt som uavhengig fysisk kryssjekk."
+      },
+      "crosscheck": {
+        "geonorgeSourceObjectId": "geonorge-adresser-v1:3207:24030:30",
+        "geonorgeCoordinate": {
+          "lat": 59.816533117786626,
+          "lon": 10.748486743555548
+        },
+        "distanceM": 197.8
+      },
+      "duplicateGate": "No canonical Ingierstrand bad identity.",
+      "sourceRunnerPrs": [3090, 3095, 3098]
+    },
+    {
+      "placeId": "bleikoya",
+      "name": "Bleikøya",
+      "productionCategory": "natur",
+      "coordinate": {
+        "lat": 59.89024108759495,
+        "lon": 10.74219742405063,
+        "r": 180,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-way:4154383",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "island_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 4154383 – Bleikøya",
+        "coordSourceId": "osm-way:4154383",
+        "coordSourceUrl": "https://www.openstreetmap.org/way/4154383",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon."
+      },
+      "duplicateGate": "No canonical Bleikøya identity.",
+      "sourceRunnerPrs": [3089]
+    },
+    {
+      "placeId": "ulvoya",
+      "name": "Ulvøya",
+      "productionCategory": "by",
+      "coordinate": {
+        "lat": 59.867982824709344,
+        "lon": 10.770784753488378,
+        "r": 220,
+        "locatorType": "natural_area",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-way:4154565",
+        "geocodeAccuracy": "geometric_center",
+        "coordRole": "area_anchor",
+        "coordType": "island_center",
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 4154565 – Ulvøya",
+        "coordSourceId": "osm-way:4154565",
+        "coordSourceUrl": "https://www.openstreetmap.org/way/4154565",
+        "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon."
+      },
+      "duplicateGate": "No canonical Ulvøya identity.",
+      "sourceRunnerPrs": [3089]
+    }
+  ],
+  "productionGuards": [
+    "Re-audit current main for each candidate immediately before production to prevent duplicate creation from concurrent work.",
+    "OSM island records must preserve their exact object identity; no ferry-stop, beach or nearest-place point may replace an island object.",
+    "Heggholmen and Rambergøya use exact official SSR island objects because the connected landform does not expose separate accepted island polygons in the strict OSM gate.",
+    "Ingierstrand bad uses the exact official SSR Badeplass object as the whole-site semantic anchor; the restaurant/building address is not the canonical place identity.",
+    "Steilene remains one archipelago-level canonical candidate in this source pass.",
+    "County placement must follow the physical municipality: Steilene and Langøyene are in Nesodden/Akershus; Ingierstrand bad is in Nordre Follo/Akershus. They must not be forced into Oslo data paths merely because the source is VisitOSLO."
+  ]
+}
