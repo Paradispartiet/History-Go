@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T15:09:23.137Z
+Generert: 2026-07-21T15:22:07.477Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -232,7 +232,7 @@ Generert: 2026-07-21T15:09:23.137Z
 | bygdoy_bygdoynes | data/coordinate-evidence/oslo/natur/bygdoy_bygdoynes.json | needs_research | needs_geometry | OK |
 | bygdoy_dronningberget | data/coordinate-evidence/oslo/natur/bygdoy_dronningberget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_huk | data/coordinate-evidence/oslo/natur/bygdoy_huk.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| bygdoy_kongeskogen | data/coordinate-evidence/oslo/natur/bygdoy_kongeskogen.json | needs_research | needs_geometry | OK |
+| bygdoy_kongeskogen | data/coordinate-evidence/oslo/natur/bygdoy_kongeskogen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_kongsgard_salamanderdam | data/coordinate-evidence/oslo/natur/bygdoy_kongsgard_salamanderdam.json | needs_research | needs_geometry | OK |
 | bygdoy_natur | data/coordinate-evidence/oslo/natur/bygdoy_natur.json | needs_research | needs_geometry | OK |
 | bygdoy_paradisbukta | data/coordinate-evidence/oslo/natur/bygdoy_paradisbukta.json | applied_to_place | do_not_change_coordinates_yet | OK |
