@@ -346,15 +346,15 @@ Batch 113 (2026-07-21) reviderer Østensjøvannet-kildens fem legacy `OpenStreet
 Batch 114 (2026-07-21) avslutter `places_oslo_natur_salamanderdammer.json` uten å gjøre pedagogiske proxy-punkter til falskt presise natursteder. `bygdoy_kongsgard_salamanderdam` og `blindern_forskningsparken_salamanderdam` har dokumenterte lokalitetsidentiteter, men dagens koordinater er uttrykkelig brede offentlige nærankre; `bantjern_salamanderlokalitet` viser bevisst til et offentlig nærområde i stedet for den private damlokaliteten; og `tjernsmyr_salamanderlokalitet` ligger i Bærum og må flyttes ut av Oslo-kilden før eventuell geometri kan godkjennes. Alle fire avsluttes derfor som needs_review / needs_source i denne batchen.
 
 Batch 115 (2026-07-21) produserer fem fysisk selvstendige Holmenkollen-steder fra den lukkede VisitOSLO-auditen. `holmenkollen_kapell` bruker det entydige Geonorge-adressepunktet for Holmenkollveien 142. `bogstadvannet` bruker et områdeanker på eksakt navngitt vanngeometri, mens `kollentrollet`, `vettakollen` og `kragstotten` bruker eksakte navngitte OSM-punktobjekter med riktig objekttype. Vettakollen-stasjon/-bydel og Kragstøtten-guidepost/-utsiktspunkt er eksplisitt avvist som navnelike feilobjekter. Oslo Golfklubb Bogstad holdes utenfor batchen til representasjonsrollen mellom klubbhusadresse og golfbanegeometri er eksplisitt avgjort.
-| 118 | `stortinget` | Stortinget | verified_geometry | `osm-way:29132806` |
+| 118 | `stortinget` | Stortinget | verified | `geonorge-adresser-v1:0301:13630:22` |
 | 118 | `youngstorget` | Youngstorget | verified_geometry | `osm-relation:12773689` |
-| 118 | `oslo_radhus` | Oslo rådhus | verified_geometry | `osm-way:24900009` |
+| 118 | `oslo_radhus` | Oslo rådhus | verified | `geonorge-adresser-v1:0301:16120:1` |
 | 118 | `eidsvolls_plass` | Eidsvolls plass | verified_geometry | `osm-way:841080897` |
-| 118 | `hoyesteretts_hus` | Høyesteretts hus | verified_geometry | `osm-way:65071968` |
-| 118 | `politihuset_gronland` | Politihuset på Grønland | verified_geometry | `osm-way:557060199` |
-| 118 | `folkets_hus_oslo` | Folkets Hus i Oslo | verified_geometry | `osm-way:112233121` |
+| 118 | `hoyesteretts_hus` | Høyesteretts hus | verified | `geonorge-adresser-v1:0301:21338:1` |
+| 118 | `politihuset_gronland` | Politihuset på Grønland | verified | `geonorge-adresser-v1:0301:12450:44` |
+| 118 | `folkets_hus_oslo` | Folkets Hus i Oslo | verified | `geonorge-adresser-v1:0301:18550:11` |
 
-Batch 118 (2026-07-21) fullfører politikk-manifestet. Sju records har eksakte navngitte fysiske OSM-objekter i lokal scope. Regjeringskvartalet forblir needs_review fordi eneste eksakte samlede kandidat er en midlertidig landuse=construction-geometri, ikke en stabil canonical institusjonsgrense. Ingen nearest/first-hit-logikk brukes.
+Batch 118 (2026-07-21) fullfører politikk-manifestet etter objekt-type-først-metoden. `youngstorget` og `eidsvolls_plass` bruker eksakte navngitte plassgeometrier. De konkrete adressebare byggene `stortinget`, `oslo_radhus`, `hoyesteretts_hus`, `politihuset_gronland`, `folkets_hus_oslo` bruker entydige Geonorge-adressepunkter etter address-first-policyen. `regjeringskvartalet` forblir needs_review fordi eneste eksakte samlede OSM-kandidat er en midlertidig `landuse=construction`-geometri, ikke en stabil canonical institusjonsgrense. Ingen nearest/first-hit-logikk brukes.
 | 119 | `cinemateket_oslo` | Cinemateket i Oslo | verified_geometry | `osm-node:2555016576` |
 | 119 | `colosseum_kino` | Colosseum kino | verified_geometry | `osm-way:115958003` |
 | 119 | `house_of_nerds` | House of Nerds | verified_geometry | `osm-node:10204324977` |

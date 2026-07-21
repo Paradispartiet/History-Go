@@ -87,12 +87,12 @@
   },
   "after": {
     "stortinget": {
-      "lat": 59.91302035817837,
-      "lon": 10.740091042851615,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap way 29132806 – Stortinget",
-      "coordType": "building_center",
-      "sourceObjectId": "osm-way:29132806"
+      "lat": 59.91321312337565,
+      "lon": 10.74032524097933,
+      "coordStatus": "verified",
+      "coordSource": "geonorge_adresser_v1",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:22"
     },
     "youngstorget": {
       "lat": 59.9148777657128,
@@ -103,12 +103,12 @@
       "sourceObjectId": "osm-relation:12773689"
     },
     "oslo_radhus": {
-      "lat": 59.91201122418895,
-      "lon": 10.73365092213283,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap way 24900009 – Oslo rådhus",
-      "coordType": "building_center",
-      "sourceObjectId": "osm-way:24900009"
+      "lat": 59.91174989125625,
+      "lon": 10.733452414128745,
+      "coordStatus": "verified",
+      "coordSource": "geonorge_adresser_v1",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16120:1"
     },
     "eidsvolls_plass": {
       "lat": 59.91333813065615,
@@ -127,29 +127,137 @@
       "sourceObjectId": null
     },
     "hoyesteretts_hus": {
-      "lat": 59.91453018213708,
-      "lon": 10.744445291246665,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap way 65071968 – Høyesterett",
-      "coordType": "building_center",
-      "sourceObjectId": "osm-way:65071968"
+      "lat": 59.914567897676186,
+      "lon": 10.744510031498768,
+      "coordStatus": "verified",
+      "coordSource": "geonorge_adresser_v1",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1"
     },
     "politihuset_gronland": {
-      "lat": 59.910898221558305,
-      "lon": 10.771105828371049,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap way 557060199 – Grønland politistasjon",
-      "coordType": "building_center",
-      "sourceObjectId": "osm-way:557060199"
+      "lat": 59.91076260893923,
+      "lon": 10.770099603960052,
+      "coordStatus": "verified",
+      "coordSource": "geonorge_adresser_v1",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12450:44"
     },
     "folkets_hus_oslo": {
-      "lat": 59.9154962361718,
-      "lon": 10.749625822632467,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap way 112233121 – Folkets hus",
-      "coordType": "building_center",
-      "sourceObjectId": "osm-way:112233121"
+      "lat": 59.9148900622556,
+      "lon": 10.750628039496302,
+      "coordStatus": "verified",
+      "coordSource": "geonorge_adresser_v1",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18550:11"
     }
   },
-  "method": "bounded exact-name semantic physical object selection; composite institutional areas require one legitimate aggregate geometry; no nearest/first-hit"
+  "method": "object-type first; concrete addressable buildings use Geonorge first; exact OSM geometry is only a documented fallback after a successful non-error address lookup; public spaces use exact geometry; no nearest/first-hit",
+  "addressFirstCorrectionAt": "2026-07-21T06:55:35.761Z",
+  "addressFirstResults": {
+    "stortinget": {
+      "method": "official_address",
+      "address": "Karl Johans gate 22 Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:22",
+      "before": {
+        "lat": 59.91302035817837,
+        "lon": 10.740091042851615,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 29132806 – Stortinget",
+        "sourceObjectId": "osm-way:29132806"
+      },
+      "after": {
+        "lat": 59.91321312337565,
+        "lon": 10.74032524097933,
+        "r": 60,
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Karl Johans gate 22, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      }
+    },
+    "oslo_radhus": {
+      "method": "official_address",
+      "address": "Rådhusplassen 1 Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16120:1",
+      "before": {
+        "lat": 59.91201122418895,
+        "lon": 10.73365092213283,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 24900009 – Oslo rådhus",
+        "sourceObjectId": "osm-way:24900009"
+      },
+      "after": {
+        "lat": 59.91174989125625,
+        "lon": 10.733452414128745,
+        "r": 60,
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusplassen 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      }
+    },
+    "hoyesteretts_hus": {
+      "method": "official_address",
+      "address": "Høyesteretts plass 1 Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1",
+      "before": {
+        "lat": 59.91453018213708,
+        "lon": 10.744445291246665,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 65071968 – Høyesterett",
+        "sourceObjectId": "osm-way:65071968"
+      },
+      "after": {
+        "lat": 59.914567897676186,
+        "lon": 10.744510031498768,
+        "r": 60,
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Høyesteretts plass 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      }
+    },
+    "politihuset_gronland": {
+      "method": "official_address",
+      "address": "Grønlandsleiret 44 Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12450:44",
+      "before": {
+        "lat": 59.910898221558305,
+        "lon": 10.771105828371049,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 557060199 – Grønland politistasjon",
+        "sourceObjectId": "osm-way:557060199"
+      },
+      "after": {
+        "lat": 59.91076260893923,
+        "lon": 10.770099603960052,
+        "r": 60,
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Grønlandsleiret 44, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      }
+    },
+    "folkets_hus_oslo": {
+      "method": "official_address",
+      "address": "Youngs gate 11 Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18550:11",
+      "before": {
+        "lat": 59.9154962361718,
+        "lon": 10.749625822632467,
+        "coordStatus": "verified_geometry",
+        "coordSource": "OpenStreetMap way 112233121 – Folkets hus",
+        "sourceObjectId": "osm-way:112233121"
+      },
+      "after": {
+        "lat": 59.9148900622556,
+        "lon": 10.750628039496302,
+        "r": 60,
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Youngs gate 11, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      }
+    }
+  }
 }
