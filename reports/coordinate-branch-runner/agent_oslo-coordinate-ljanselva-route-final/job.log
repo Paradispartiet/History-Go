@@ -5,8 +5,8 @@ Auto-merging reports/place-coordinate-intake-gate.md
 Auto-merging reports/place-coordinate-quality-gate.md
 Merge made by the 'ort' strategy.
  data/natur/fauna/manifest.json                     |    3 +-
- data/natur/fauna/marine_akrafjorden_batch_6.json   | 1562 +++++++++++
- data/natur/nature_etne_place_map.json              |   34 +-
+ data/natur/fauna/marine_akrafjorden_batch_7.json   | 1560 +++++++++++
+ data/natur/nature_etne_place_map.json              |   39 +-
  .../coordinate-evidence.log                        |    9 +
  .../coordinate-intake.log                          |    9 +
  .../coordinate-quality.log                         |   13 +
@@ -14,7 +14,7 @@ Merge made by the 'ort' strategy.
  .../git-diff-check.log                             |    0
  .../health-places.exit-code.txt                    |    1 +
  .../health-places.log                              | 2883 ++++++++++++++++++++
- .../job.log                                        |   61 +
+ .../job.log                                        |   62 +
  .../npm-ci.log                                     |    7 +
  .../places-index-build.log                         |    9 +
  .../places-index-check.log                         |   15 +
@@ -22,23 +22,23 @@ Merge made by the 'ort' strategy.
  reports/coordinate-evidence-audit.md               |    2 +-
  reports/place-coordinate-intake-gate.md            |    2 +-
  reports/place-coordinate-quality-gate.md           |    2 +-
- ...etne-akrafjorden-marine-species-batch-5.test.js |    8 +-
- ...etne-akrafjorden-marine-species-batch-6.test.js |   22 +
- 20 files changed, 4655 insertions(+), 15 deletions(-)
- create mode 100644 data/natur/fauna/marine_akrafjorden_batch_6.json
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-evidence.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-intake.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-quality.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-source-contract.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/git-diff-check.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/health-places.exit-code.txt
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/health-places.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/job.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/npm-ci.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/places-index-build.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/places-index-check.log
- create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/split-manifest-sync.log
- create mode 100644 tests/etne-akrafjorden-marine-species-batch-6.test.js
+ ...etne-akrafjorden-marine-species-batch-6.test.js |    8 +-
+ ...etne-akrafjorden-marine-species-batch-7.test.js |   23 +
+ 20 files changed, 4660 insertions(+), 15 deletions(-)
+ create mode 100644 data/natur/fauna/marine_akrafjorden_batch_7.json
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-7/split-manifest-sync.log
+ create mode 100644 tests/etne-akrafjorden-marine-species-batch-7.test.js
 To https://github.com/Paradispartiet/History-Go
-   650499fab..676062d13  HEAD -> agent/oslo-coordinate-ljanselva-route-final
-Siste main er merget inn i Ljanselva-branchen før runtime- og koordinatportene regenereres.
+   d0107b643..3103ca1f5  HEAD -> agent/oslo-coordinate-ljanselva-route-final
+Siste main er merget inn før endelig Ljanselva-validering.
