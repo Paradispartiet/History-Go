@@ -6,7 +6,8 @@ import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
-const previous = execFileSync('git', ['show', 'HEAD~1:scripts/coordinate-branch-job.mjs'], {
+// HEAD~2 is the last full batch-125 implementation. HEAD~1 is the diagnostic wrapper.
+const previous = execFileSync('git', ['show', 'HEAD~2:scripts/coordinate-branch-job.mjs'], {
   cwd: root,
   encoding: 'utf8',
 });
@@ -39,6 +40,20 @@ for (const entry of canonicalEvidenceEntries) {
 evidenceManifest.files.sort((a, b) => a.localeCompare(b, 'nb'));
 writeJson(evidenceManifestFile, evidenceManifest);
 
+// The now-complete evidence audit exposed three unrelated stale source pointers caused by
+// an earlier category migration from popkultur to scenekunst. Repair only placeFile; the
+// coordinate snapshots and evidence decisions stay unchanged.
+for (const entry of [
+  'oslo/popkultur/chat_noir.json',
+  'oslo/popkultur/edderkoppen_scene.json',
+  'oslo/popkultur/latter.json',
+]) {
+  const evidencePath = path.join(root, 'data/coordinate-evidence', entry);
+  const evidence = readJson(evidencePath);
+  evidence.placeFile = 'data/places/scenekunst/oslo/places_scenekunst.json';
+  writeJson(evidencePath, evidence);
+}
+
 `;
 
 const implementation = previous.replace(marker, evidenceSync + marker);
@@ -48,7 +63,7 @@ fs.writeFileSync(tmp, implementation);
 try {
   await import(pathToFileURL(tmp).href + `?run=${Date.now()}`);
 
-  // Run evidence audit inside the one-shot step as a diagnostic gate so a future failure
+  // Run evidence audit inside the one-shot step as a diagnostic gate so any future failure
   // includes the full problem table in the runner artifact instead of only a problem count.
   execFileSync('npm', ['run', 'build:tools'], { cwd: root, stdio: 'inherit' });
   try {
