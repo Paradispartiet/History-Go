@@ -1,0 +1,46 @@
+{
+  "createdAt": "2026-07-21",
+  "candidates": [
+    "bygdoy_kongsgard",
+    "oscarshall",
+    "vikingtidsmuseet"
+  ],
+  "addressResults": [
+    {
+      "ok": true,
+      "address": "Oscarshallveien 15 Oslo",
+      "file": "oscarshall-geonorge.txt"
+    },
+    {
+      "ok": true,
+      "address": "Huk Aveny 35 Oslo",
+      "file": "vikingtidsmuseet-geonorge.txt"
+    }
+  ],
+  "nominatimResultCounts": {
+    "bygdoy-kongsgard": 4,
+    "oscarshall": 5,
+    "vikingtidsmuseet": 0,
+    "vikingskipshuset": 0
+  },
+  "overpassElementCount": 0,
+  "duplicateHits": {
+    "bygdoy_kongsgard": [
+      {
+        "id": "bygdoy_kongsgard_salamanderdam",
+        "name": "Bygdøy Kongsgård salamanderdam",
+        "category": "natur",
+        "lat": 59.91117,
+        "lon": 10.68258,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_salamanderdammer/bygdoy_kongsgard_salamanderdam.json"
+      }
+    ],
+    "oscarshall": [],
+    "vikingtidsmuseet": []
+  },
+  "representationRules": {
+    "bygdoy_kongsgard": "Do not reuse the separate salamander-dam nature locality as coverage for the royal farm / residence.",
+    "oscarshall": "Model the palace as the primary visitor place; do not create a second park marker from this source alone.",
+    "vikingtidsmuseet": "Use one stable physical site identity for the retained Vikingskipshuset plus new museum complex; opening status is separate from coordinate verification."
+  }
+}
