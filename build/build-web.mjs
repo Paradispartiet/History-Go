@@ -17,7 +17,7 @@
 //   dist/web/<out>.js
 //   Deploy-kritiske bundles committes når de lastes direkte av den statiske appen.
 
-import { copyFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { build } from "esbuild";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -115,6 +115,32 @@ function buildOptions(entries, { sourcemap = false, minify = false, plugins = []
   };
 }
 
+async function writeKnowledgeCoreArtifact() {
+  if (!process.env.CI) return;
+  const files = [
+    "js/knowledge.ts",
+    "js/knowledgeV2.ts",
+    "js/knowledgeClaimCore.ts",
+    "js/quizKnowledgeMemory.js",
+    "js/knowledgeMemoryPageBridge.js",
+    "js/ui/psychology-room-entry.js",
+    "build/build-web.mjs",
+    "index.html",
+    "knowledge.html",
+    "dist/web/knowledge.js",
+    "dist/web/knowledge.js.map",
+    "dist/web/knowledgeV2.js",
+    "dist/web/knowledgeV2.js.map"
+  ];
+  const payload = {};
+  for (const file of files) {
+    payload[file] = await readFile(path.join(ROOT, file), "utf8");
+  }
+  const reportDir = path.join(ROOT, "reports");
+  await mkdir(reportDir, { recursive: true });
+  await writeFile(path.join(reportDir, "knowledge-core-build.json"), JSON.stringify({ files: payload }, null, 2));
+}
+
 async function run() {
   const mappedOptions = buildOptions(SOURCE_MAPPED_ENTRIES, { sourcemap: true });
   const startupOptions = buildOptions(STARTUP_ENTRIES, {
@@ -150,6 +176,7 @@ async function run() {
   await build(mappedOptions);
   await build(startupOptions);
   await build(compactStartupOptions);
+  await writeKnowledgeCoreArtifact();
   console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length + COMPACT_STARTUP_ENTRIES.length} entry/entries -> dist/web`);
 }
 
