@@ -92,7 +92,7 @@
     "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",
     "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
     "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
-    "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
+    "audit:quiz-manifest:v2": "node --test tests/knowledge-v2-model.test.js tests/quiz-knowledge-memory.test.js tests/knowledge-memory-page-bridge.test.js tests/quiz-knowledge-quality.test.js tests/knowledge-legacy-text-quality.test.js && node scripts/audit-knowledge-contract.mjs && node scripts/audit-quiz-manifest-v2.mjs",
     "people:images:candidates": "npm run build:tools && node dist/tools/people-image-pipeline.mjs candidates",
     "people:images:apply": "npm run build:tools && node dist/tools/people-image-pipeline.mjs apply",
     "people:images:apply:write": "npm run build:tools && node dist/tools/people-image-pipeline.mjs apply --write",
