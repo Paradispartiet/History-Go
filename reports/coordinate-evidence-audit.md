@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:03:42.463Z
+Generert: 2026-07-21T06:09:42.423Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -271,3 +271,4 @@ Generert: 2026-07-21T06:03:42.463Z
 | kollentrollet | data/coordinate-evidence/oslo/kunst/kollentrollet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vettakollen | data/coordinate-evidence/oslo/natur/vettakollen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kragstotten | data/coordinate-evidence/oslo/kunst/kragstotten.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_golfklubb_bogstad | data/coordinate-evidence/oslo/sport/oslo_golfklubb_bogstad.json | applied_to_place | do_not_change_coordinates_yet | OK |
