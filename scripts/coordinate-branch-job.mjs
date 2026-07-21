@@ -32,15 +32,27 @@ const writeText = async (file, value) => {
 const ids = value => Array.isArray(value) ? value.map(item => typeof item === "string" ? item : item?.id).filter(Boolean) : [];
 const basename = file => path.basename(file);
 
+function collectCards(value, cards) {
+  if (Array.isArray(value)) {
+    for (const item of value) collectCards(item, cards);
+    return;
+  }
+  if (!value || typeof value !== "object") return;
+  if (typeof value.id === "string" && (value.title || value.latin || value.taxonomy)) {
+    cards.set(value.id, value);
+  }
+  for (const key of ["items", "cards", "species"]) {
+    if (Array.isArray(value[key])) collectCards(value[key], cards);
+  }
+}
+
 async function loadCards(manifestFile) {
   const manifest = await readJson(manifestFile);
   const base = path.dirname(manifestFile);
   const cards = new Map();
   for (const ref of manifest.files || []) {
     const file = String(ref).startsWith("data/") ? String(ref) : path.join(base, String(ref)).replaceAll("\\", "/");
-    const data = await readJson(file);
-    const entries = Array.isArray(data) ? data : Array.isArray(data?.cards) ? data.cards : Array.isArray(data?.species) ? data.species : [];
-    for (const card of entries) if (card?.id) cards.set(card.id, card);
+    collectCards(await readJson(file), cards);
   }
   return cards;
 }
