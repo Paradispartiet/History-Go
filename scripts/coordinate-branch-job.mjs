@@ -179,8 +179,30 @@ for (const file of walkJson(path.join(root, 'data/Civication'))) {
   }
 }
 
+// Place translation files use place IDs as top-level dictionary keys. Removed place keys
+// are deleted rather than merged into the parent translation, because playground text is
+// now Wonderkammer content and must not overwrite the canonical parent place description.
+const i18nChanges = [];
+for (const file of walkJson(path.join(root, 'data/i18n/content/places'))) {
+  const before = fs.readFileSync(file, 'utf8');
+  const payload = JSON.parse(before);
+  let changed = false;
+  if (payload && typeof payload === 'object' && !Array.isArray(payload)) {
+    for (const oldId of migratedIds) {
+      if (Object.prototype.hasOwnProperty.call(payload, oldId)) {
+        delete payload[oldId];
+        changed = true;
+      }
+    }
+  }
+  if (changed) {
+    fs.writeFileSync(file, JSON.stringify(payload, null, 2) + '\n');
+    i18nChanges.push(path.relative(root, file).replace(/\\/g, '/'));
+  }
+}
+
 // Retarget exact references on other active content surfaces. Never rewrite a record's own id.
-const retargetRoots = ['data/i18n/content/places', 'data/leksikon', 'data/quiz', 'data/stories', 'data/places'];
+const retargetRoots = ['data/leksikon', 'data/quiz', 'data/stories', 'data/places'];
 const retargetedFiles = [];
 for (const relRoot of retargetRoots) {
   for (const file of walkJson(path.join(root, relRoot))) {
@@ -241,6 +263,7 @@ const report = {
   deletedEvidence,
   wonderkammerChanges,
   civicationChanges,
+  i18nChanges,
   retargetedFiles,
   residualLegacyReferences: residuals,
 };
@@ -263,7 +286,7 @@ let protocol = fs.readFileSync(protocolFile, 'utf8');
 if (!protocol.includes('Batch 123 (2026-07-21)')) {
   const migratedText = Object.entries(migrations).map(([oldId, parentId]) => `\`${oldId}\` → \`${parentId}\``).join(', ');
   const reviewText = manualReview.map((id) => `\`${id}\``).join(', ');
-  const paragraph = `Batch 123 (2026-07-21) rydder lekeplass-/treningskøen før videre koordinatproduksjon. Repoets modellregel er at rene lekeplasser og rene treningsaktivitetslag skal være Wonderkammer-innhold under et faktisk canonical parent-place, ikke egne overlappende kartmarkører. Syv sikre subfeature-records er derfor migrert til parent-place og fjernet som aktive places: ${migratedText}. Wonderkammer-referanser er retargetet, Civication-top-level-mappings for de fjernede place-ID-ene er fjernet, og legacy-ID-ene er lagt i alias-gaten. Åtte grensefall forblir urørt til egen identitetskontroll: ${reviewText}. Frognerborgen og de to Kampen-postene beholdes eksplisitt i review fordi den eldre migreringsauditen pekte på parent-ID-ene \`frognerparken\` og \`kampen_park\`, som ikke finnes i dagens canonical inventory. \`korketrekkeren\` var allerede kontrollert. Den tidligere lekeplass/trening-rapporten som brukte batchnummer 122 var kun read-only intake og endret ingen canonical data.`;
+  const paragraph = `Batch 123 (2026-07-21) rydder lekeplass-/treningskøen før videre koordinatproduksjon. Repoets modellregel er at rene lekeplasser og rene treningsaktivitetslag skal være Wonderkammer-innhold under et faktisk canonical parent-place, ikke egne overlappende kartmarkører. Syv sikre subfeature-records er derfor migrert til parent-place og fjernet som aktive places: ${migratedText}. Wonderkammer-referanser er retargetet, Civication-top-level-mappings for de fjernede place-ID-ene er fjernet, place-i18n for de fjernede markørene er fjernet, og legacy-ID-ene er lagt i alias-gaten. Åtte grensefall forblir urørt til egen identitetskontroll: ${reviewText}. Frognerborgen og de to Kampen-postene beholdes eksplisitt i review fordi den eldre migreringsauditen pekte på parent-ID-ene \`frognerparken\` og \`kampen_park\`, som ikke finnes i dagens canonical inventory. \`korketrekkeren\` var allerede kontrollert. Den tidligere lekeplass/trening-rapporten som brukte batchnummer 122 var kun read-only intake og endret ingen canonical data.`;
   const marker = 'Retrospektiv compliance-audit batch 1–120 (2026-07-21):';
   if (!protocol.includes(marker)) throw new Error('Fant ikke protokollmarkør for batch 123');
   protocol = protocol.replace(marker, `${paragraph}\n\n${marker}`);
