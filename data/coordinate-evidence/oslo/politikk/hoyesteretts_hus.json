@@ -5,13 +5,13 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.91453018213708,
-    "lon": 10.744445291246665,
-    "r": 120,
-    "coordStatus": "verified_geometry",
-    "coordSource": "OpenStreetMap way 65071968 – Høyesterett",
-    "coordType": "building_center",
-    "coordNote": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "lat": 59.914567897676186,
+    "lon": 10.744510031498768,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Høyesteretts plass 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
   },
   "identity": {
     "currentName": "Høyesteretts hus",
@@ -23,53 +23,64 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "ett unikt eller semantisk entydig eksakt navngitt fysisk objekt i forhåndsdefinert lokal scope"
+    "entydig offisielt adressepunkt",
+    "dokumentert at adressen representerer den konkrete canonical bygningen"
   ],
   "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=H%C3%B8yesteretts%20plass%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge returnerte ett tydelig adressetreff. Norges Høyesterett oppgir Høyesteretts plass 1 som adressen til Høyesteretts hus.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Høyesteretts plass 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+    },
     {
       "sourceProvider": "osm",
       "sourceName": "OpenStreetMap – Høyesterett",
       "sourceUrl": "https://www.openstreetmap.org/way/65071968",
       "sourceObjectId": "osm-way:65071968",
-      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "sourceQuality": "secondary_geometry_qa",
       "finding": "Eksakt navnetreff med objekttype amenity/courthouse og geometri Polygon.",
-      "canVerifyCoordinate": true,
-      "reason": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+      "canVerifyCoordinate": false,
+      "reason": "Beholdes kun som sekundær identitets-/geometri-QA; Geonorge er primær koordinatkilde for det konkrete adressebare bygget."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "address": "Høyesteretts plass 1 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1",
+      "canApplyToPlace": true
+    }
+  ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-way:65071968",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [
-    {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-way:65071968",
-      "lat": 59.91453018213708,
-      "lon": 10.744445291246665,
-      "coordRole": "building_center",
-      "canApplyToPlace": true
-    }
-  ],
+  "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "lat": 59.91453018213708,
-      "lon": 10.744445291246665,
-      "coordRole": "building_center",
-      "sourceObjectId": "osm-way:65071968",
+      "lat": 59.914567897676186,
+      "lon": 10.744510031498768,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+    "nextAction": "Kildekontrakt, identitet og representasjonsanker er anvendt på canonical place."
   },
   "notes": [
-    "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Høyesteretts plass 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "Norges Høyesterett oppgir Høyesteretts plass 1 som adressen til Høyesteretts hus.",
+    "Address-first-korreksjon av batch 118: OSM-geometri brukes ikke som primærkilde når Geonorge gir ett entydig relevant adressepunkt."
   ]
 }
