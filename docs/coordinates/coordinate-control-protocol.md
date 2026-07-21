@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 340 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 118 fullfører de åtte tidligere ukontrollerte recordene i `places/politikk/oslo/places_politikk.json`: sju med verified_geometry og Regjeringskvartalet som dokumentert needs_review.
+Oslo-tabellen inneholder nå 341 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 119 legger til Skimuseet i Holmenkollen som en egen museumsinstitusjon ved det verifiserte Kongeveien 40-punktet, fysisk inne i men identitetsmessig skilt fra Holmenkollen nasjonalanlegg.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -262,6 +262,7 @@ Oslo-tabellen inneholder nå 340 dokumenterte verifiserte eller kildekontrollert
 | 92 | `gol_stavkirke_bygdoy` | Gol stavkirke – Bygdøy | verified_geometry | `osm-way:161661199` |
 | 95 | `korketrekkeren` | Korketrekkeren | verified_geometry | `osm-relation:1459739` |
 | 97 | `universitetets_gamle_kjemi` | Universitetets gamle kjemibygning | verified | `geonorge-adresser-v1:0301:11941:3` |
+| 119 | `holmenkollen_skimuseum` | Skimuseet i Holmenkollen | verified | `geonorge-adresser-v1:0301:13850:40` |
 
 | 90 | `oslo_prosjektrom` | Oslo Prosjektrom | verified | `geonorge-adresser-v1:0301:15684:18` |
 
@@ -441,7 +442,7 @@ Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra lega
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 242 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -545,7 +546,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 119.
+- Neste nye Oslo-kontroll er batch 120.
 - `places/politikk/oslo/places_politikk.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive manifestkilde er `places/popkultur/oslo/places_oslo_populaerkultur.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
@@ -562,6 +563,9 @@ Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhis
 
 Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`. Den opprinnelige produksjonsmergen plasserte Ekeberg-raden nederst i Etne-tabellen, mens senere Oslo-batcher fortsatte å bruke den ordinære Oslo-tabellen. Denne reparasjonen fjerner den feilplasserte raden og den gamle produksjonsteksten og registrerer Ekeberg i riktig Oslo-tabell på neste ledige batch etter siste synkroniserte `main`. Canonical place, runtime-identitet, coordinate evidence og den Riksantikvaren-verifiserte geometrien `kulturminnesok:41907` endres ikke, og Oslo-totalen forblir 224.
 
+
+
+Batch 119 (2026-07-21) produserer `holmenkollen_skimuseum` som en egen historisk museumsinstitusjon inne i det bredere Holmenkollen-anlegget. Den låste address-first-kjøringen ga det entydige Geonorge-punktet `geonorge-adresser-v1:0301:13850:40` for Kongeveien 40, som brukes som bygnings-, display- og unlock-anker. Skimuseet ble etablert i 1923 og flyttet fra Frognerseteren til Holmenkollbakken i forbindelse med OL-perioden rundt 1952. `holmenkollen_nasjonalanlegg` beholder hoppbakken, hopptårnet og den brede arenaidentiteten; dagens felles billett for museum og tårn er et besøksprodukt og oppretter ikke en ny hopptårn-markør.
 
 ## Vestland – Etne
 

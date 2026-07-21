@@ -1,0 +1,75 @@
+{
+  "placeId": "holmenkollen_skimuseum",
+  "placeFile": "data/places/historie/oslo/places_historie/holmenkollen_skimuseum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.96471254074996,
+    "lon": 10.666572782635253,
+    "r": 55,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongeveien 40, OSLO, brukt som bygnings-, display- og unlock-marker for Skimuseet i Holmenkollen. Museet er en egen vedvarende institusjon inne i Holmenkollen nasjonalanlegg, mens hopptårnet og det bredere arenaområdet fortsatt representeres av `holmenkollen_nasjonalanlegg`."
+  },
+  "identity": {
+    "currentName": "Skimuseet i Holmenkollen",
+    "resolvedIdentity": "Persistent Ski Museum institution at Kongeveien 40 inside the broader Holmenkollen National Ski Arena complex",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Kongeveien 40",
+    "dokumentert selvstendig museumsidentitet og institusjonshistorie",
+    "eksplisitt parent/child-avgrensning mot holmenkollen_nasjonalanlegg",
+    "ingen separat ny hopptarn-identitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongeveien%2040%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "sourceQuality": "official_address_plus_official_museum_identity",
+      "finding": "Geonorge gir ett entydig adressepunkt for Kongeveien 40. Skimuseets offisielle sider dokumenterer samme besøksadresse og en vedvarende museumsinstitusjon etablert i 1923, i dag fysisk inne i Holmenkollen-anlegget.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongeveien 40, OSLO, brukt som bygnings-, display- og unlock-marker for Skimuseet i Holmenkollen. Museet er en egen vedvarende institusjon inne i Holmenkollen nasjonalanlegg, mens hopptårnet og det bredere arenaområdet fortsatt representeres av `holmenkollen_nasjonalanlegg`."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kongeveien 40 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.96471254074996,
+      "lon": 10.666572782635253,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the exact Kongeveien 40 address point as the canonical museum marker. Keep the jump tower and broader arena under holmenkollen_nasjonalanlegg."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Kongeveien 40, OSLO, brukt som bygnings-, display- og unlock-marker for Skimuseet i Holmenkollen. Museet er en egen vedvarende institusjon inne i Holmenkollen nasjonalanlegg, mens hopptårnet og det bredere arenaområdet fortsatt representeres av `holmenkollen_nasjonalanlegg`.",
+    "The locked intake measured 239 meters to the existing holmenkollen_nasjonalanlegg marker; this is expected parent/child proximity, not identity duplication."
+  ]
+}
