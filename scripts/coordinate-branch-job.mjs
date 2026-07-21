@@ -9,7 +9,10 @@ const root = process.cwd();
 const batch = 129;
 const date = '2026-07-21';
 const placeId = 'skur13';
-const addressQuery = 'Filipstadveien 3 Oslo';
+const addressStreet = 'Filipstadveien';
+const addressNumber = '3';
+const municipalityNumber = '0301';
+const addressQuery = `${addressStreet} ${addressNumber} Oslo`;
 const officialSourceName = 'Oslo kommune – Skur 13';
 const officialSourceUrl = 'https://www.oslo.kommune.no/natur-kultur-og-fritid/idrett/idrettsanlegg/skur-13/';
 
@@ -30,31 +33,34 @@ const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const writeJson = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
 const writeText = (file, value) => fs.writeFileSync(file, value.endsWith('\n') ? value : value + '\n');
 const sha256File = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
-const rel = (file) => path.relative(root, file).replace(/\\/g, '/');
 const norm = (value) => String(value ?? '').toLowerCase().replace(/[.,]/g, ' ').replace(/\s+/g, ' ').trim();
 
-function findBestHit(query, hits) {
-  if (!hits.length) return { reason: 'Geonorge returnerte ingen adressetreff.' };
-  const q = norm(query);
-  const exact = hits.filter((hit) => {
-    const text = norm(hit?.adressetekst);
-    const withPoststed = norm(`${hit?.adressetekst ?? ''} ${hit?.poststed ?? ''}`);
-    const withKommune = norm(`${hit?.adressetekst ?? ''} ${hit?.kommunenavn ?? ''}`);
-    return text === q || withPoststed === q || withKommune === q || q.includes(text);
-  });
-  if (hits.length === 1) return { hit: hits[0], reason: 'Geonorge returnerte ett tydelig adressetreff.' };
-  if (exact.length === 1) return { hit: exact[0], reason: 'Geonorge returnerte flere treff, men ett eksakt adressetreff.' };
-  return { reason: exact.length > 1 ? 'Flere eksakte Geonorge-treff.' : 'Flere Geonorge-treff uten entydig match.' };
-}
-
-const geonorgeUrl = `https://ws.geonorge.no/adresser/v1/sok?sok=${encodeURIComponent(addressQuery)}`;
+// The initial free-text lookup was intentionally rejected because it returned multiple hits.
+// Retry with field-specific address constraints and still require exactly one exact Oslo match.
+const geonorgeParams = new URLSearchParams({
+  adressenavn: addressStreet,
+  nummer: addressNumber,
+  kommunenummer: municipalityNumber,
+  treffPerSide: '100',
+});
+const geonorgeUrl = `https://ws.geonorge.no/adresser/v1/sok?${geonorgeParams.toString()}`;
 const response = await fetch(geonorgeUrl, { headers: { Accept: 'application/json' } });
 if (!response.ok) throw new Error(`Geonorge-kall feilet: HTTP ${response.status}`);
 const payload = await response.json();
-writeJson(path.join(reportDir, 'geonorge-filipstadveien-3.json'), payload);
+writeJson(path.join(reportDir, 'geonorge-filipstadveien-3-structured.json'), payload);
 const hits = Array.isArray(payload?.adresser) ? payload.adresser : [];
-const { hit, reason } = findBestHit(addressQuery, hits);
-if (!hit) throw new Error(`Skur 13 kan ikke oppgraderes: ${reason}`);
+const exactHits = hits.filter((candidate) =>
+  norm(candidate?.adressenavn) === norm(addressStreet) &&
+  String(candidate?.nummer ?? '').trim() === addressNumber &&
+  String(candidate?.bokstav ?? '').trim() === '' &&
+  String(candidate?.kommunenummer ?? '').trim() === municipalityNumber &&
+  norm(candidate?.adressetekst) === norm(`${addressStreet} ${addressNumber}`)
+);
+if (exactHits.length !== 1) {
+  throw new Error(`Skur 13 kan ikke oppgraderes: structured Geonorge-query ga ${exactHits.length} eksakte treff av ${hits.length} total(e) treff.`);
+}
+const hit = exactHits[0];
+const reason = 'Geonorge structured exact query returned exactly one official Oslo address hit.';
 
 const lat = hit?.representasjonspunkt?.lat;
 const lon = hit?.representasjonspunkt?.lon;
@@ -67,10 +73,10 @@ const street = String(hit?.adressenavn ?? '').trim();
 const postcode = String(hit?.postnummer ?? '').trim();
 const cityRaw = String(hit?.poststed || hit?.kommunenavn || '').trim();
 const sourceObjectId = `geonorge-adresser-v1:${municipality}:${addressCode}:${number}${letter}`;
-if (!municipality || !addressCode || !number || !street || municipality !== '0301') {
+if (!municipality || !addressCode || !number || !street || municipality !== municipalityNumber) {
   throw new Error(`Ufullstendig eller feil kommune i Geonorge-treff: ${JSON.stringify({ municipality, addressCode, number, street })}`);
 }
-if (norm(hit?.adressetekst) !== norm('Filipstadveien 3')) throw new Error(`Uventet Geonorge-adresse: ${hit?.adressetekst}`);
+if (norm(hit?.adressetekst) !== norm(`${addressStreet} ${addressNumber}`)) throw new Error(`Uventet Geonorge-adresse: ${hit?.adressetekst}`);
 
 const coordinateFields = {
   lat,
@@ -94,7 +100,7 @@ const coordinateFields = {
   coordSourceUrl: geonorgeUrl,
   coordType: 'address_point',
   coordVerifiedAt: date,
-  coordNote: `Batch 129 address-first: Oslo kommune oppgir besøksadresse Filipstadveien 3 for Skur 13. Geonorge Adresser API returnerte ett entydig offisielt adressetreff (${sourceObjectId}). Representasjonspunktet brukes som display-marker for aktivitetshallen; den tidligere manuelle legacy-koordinaten er erstattet og legacy_unknown er fjernet.`,
+  coordNote: `Batch 129 address-first: Oslo kommune oppgir besøksadresse Filipstadveien 3 for Skur 13. Et innledende fritekstsøk i Geonorge var tvetydig og ble forkastet. Et strukturert oppslag på adressenavn=${addressStreet}, nummer=${addressNumber} og kommunenummer=${municipalityNumber} ga nøyaktig ett eksakt offisielt adressetreff (${sourceObjectId}). Representasjonspunktet brukes som display-marker for aktivitetshallen; den tidligere manuelle legacy-koordinaten er erstattet og legacy_unknown er fjernet.`,
 };
 
 function applyToPlace(place) {
@@ -160,7 +166,7 @@ writeJson(evidenceFile, {
     requiresSplit: false,
     splitReason: '',
   },
-  requiredEvidence: ['offisiell besøksadresse', 'entydig Geonorge-adresseobjekt', 'kryssjekk mot kommunal stedsidentitet'],
+  requiredEvidence: ['offisiell besøksadresse', 'entydig strukturert Geonorge-adresseobjekt', 'kryssjekk mot kommunal stedsidentitet'],
   evidence: [
     {
       sourceProvider: 'municipality',
@@ -177,8 +183,8 @@ writeJson(evidenceFile, {
       sourceName: 'Geonorge Adresser API v1',
       sourceUrl: geonorgeUrl,
       sourceObjectId,
-      sourceQuality: 'official_exact_address',
-      finding: `Ett entydig offisielt adressetreff for Filipstadveien 3 med representasjonspunkt ${lat}, ${lon}.`,
+      sourceQuality: 'official_structured_exact_address',
+      finding: `Strukturert Geonorge-oppslag ga nøyaktig ett eksakt Oslo-treff for Filipstadveien 3 med representasjonspunkt ${lat}, ${lon}.`,
       canVerifyCoordinate: true,
       reason: coordinateFields.coordNote,
     },
@@ -187,7 +193,7 @@ writeJson(evidenceFile, {
   sourceObjectCandidates: [{ sourceProvider: 'official_address', sourceObjectId, canApplyToPlace: true }],
   geometryCandidates: [],
   coordinateCandidates: [{ sourceProvider: 'official_address', sourceObjectId, lat, lon, coordRole: 'display_marker', canApplyToPlace: true }],
-  decision: { canBecomeVerified: true, blockedReason: '', nextAction: 'Skur 13 er oppgradert til verified med official-address-first.' },
+  decision: { canBecomeVerified: true, blockedReason: '', nextAction: 'Skur 13 er oppgradert til verified med strukturert official-address-first.' },
   notes: [coordinateFields.coordNote],
 });
 
@@ -200,7 +206,7 @@ writeJson(evidenceManifestFile, evidenceManifest);
 let protocol = fs.readFileSync(protocolFile, 'utf8');
 if (!protocol.includes('Batch 129 (2026-07-21)')) {
   const row = `| 129 | \`skur13\` | Skur 13 | verified | \`${sourceObjectId}\` |`;
-  const paragraph = `Batch 129 (2026-07-21) reviderer \`skur13\` etter dagens address-first-policy. Oslo kommune oppgir Skur 13 som skate-/aktivitetshall med besøksadresse Filipstadveien 3. Geonorge må returnere ett entydig offisielt adressetreff for nøyaktig Filipstadveien 3 i Oslo før status kan oppgraderes. Den tidligere \`official_site_manual\`/\`legacy_unknown\`-forankringen fjernes; Geonorges representasjonspunkt brukes som display-marker for bygningen.`;
+  const paragraph = `Batch 129 (2026-07-21) reviderer \`skur13\` etter dagens address-first-policy. Oslo kommune oppgir Skur 13 som skate-/aktivitetshall med besøksadresse Filipstadveien 3. Det innledende fritekstsøket i Geonorge ga flere treff og ble forkastet. Batchen bruker derfor et strukturert oppslag på adressenavn, nummer og kommunenummer og krever nøyaktig ett eksakt Oslo-treff før status oppgraderes. Den tidligere \`official_site_manual\`/\`legacy_unknown\`-forankringen fjernes; Geonorges representasjonspunkt brukes som display-marker for bygningen.`;
   const marker = 'Retrospektiv compliance-audit batch 1–120 (2026-07-21):';
   if (!protocol.includes(marker)) throw new Error('Fant ikke protokollmarkør for batch 129');
   protocol = protocol.replace(marker, `${row}\n\n${paragraph}\n\n${marker}`);
@@ -213,7 +219,10 @@ writeJson(path.join(reportDir, 'results.json'), {
   batch,
   placeId,
   query: addressQuery,
+  queryMode: 'structured_exact_fields',
   geonorgeReason: reason,
+  totalHits: hits.length,
+  exactHits: exactHits.length,
   sourceObjectId,
   lat,
   lon,
@@ -223,10 +232,12 @@ writeJson(path.join(reportDir, 'results.json'), {
 writeText(path.join(reportDir, 'README.md'), [
   '# Oslo coordinate control batch 129 – Skur 13 address-first', '',
   `- place: \`${placeId}\``,
-  `- official visit address: Filipstadveien 3`,
+  `- official visit address: ${addressStreet} ${addressNumber}`,
+  '- free-text Geonorge lookup: rejected as ambiguous',
+  '- structured Geonorge lookup: exact street + number + municipality',
   `- Geonorge source: \`${sourceObjectId}\``,
   `- coordinate: ${lat}, ${lon}`, '',
-  'The place is upgraded only because the official municipal visit address and one unambiguous Geonorge address object agree. The former manual legacy anchor is retired.',
+  'The place is upgraded only because the official municipal visit address and one exact structured Geonorge address object agree. The former manual legacy anchor is retired.',
 ].join('\n'));
 
 execFileSync('npm', ['run', 'places:index:build'], { cwd: root, stdio: 'inherit' });
