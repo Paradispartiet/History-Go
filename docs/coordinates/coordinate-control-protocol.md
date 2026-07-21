@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 247 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 103–104 legger til Oscarshall og Vikingtidsmuseet med entydige Geonorge-adresseankre etter fullført VisitOSLO Bygdøy-identitets- og scope-audit.
+Oslo-tabellen inneholder nå 248 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 105 legger til Bygdø Kongsgård med et eksakt navngitt besøksobjekt, kryssjekket mot Kongehusets offisielle identitet og eksplisitt skilt fra salamanderdammen og de brede park-/farmyard-geometriene. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -303,6 +303,7 @@ Batch 103 (2026-07-21) produserer `oscarshall` som eget historisk lystslott og k
 
 Batch 104 (2026-07-21) produserer `vikingtidsmuseet` som én stabil fysisk museumsidentitet for det bevarte Vikingskipshuset fra 1926 og det sammenkoblede nye museumsanlegget på Huk aveny 35. Geonorge-adressepunktet verifiserer stedet, mens bygge- og besøksstatus holdes eksplisitt adskilt fra koordinatstatus; recorden oppretter derfor ikke et konkurrerende separat `vikingskipshuset`-sted.
 
+| 105 | `bygdoy_kongsgard` | Bygdø Kongsgård | verified_geometry | `osm-node:6593517797` |
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.

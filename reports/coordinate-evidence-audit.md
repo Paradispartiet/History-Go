@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T00:20:49.793Z
+Generert: 2026-07-21T00:29:27.294Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -237,3 +237,4 @@ Generert: 2026-07-21T00:20:49.793Z
 | hodet_nn_torshovdalen | data/coordinate-evidence/oslo/kunst/hodet_nn_torshovdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oscarshall | data/coordinate-evidence/oslo/historie/oscarshall.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vikingtidsmuseet | data/coordinate-evidence/oslo/historie/vikingtidsmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bygdoy_kongsgard | data/coordinate-evidence/oslo/historie/bygdoy_kongsgard.json | applied_to_place | do_not_change_coordinates_yet | OK |

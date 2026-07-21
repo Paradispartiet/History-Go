@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T00:20:42.134Z
+Generert: 2026-07-21T00:29:20.169Z
 
 ## Oppsummering
-- Aktive filer validert: **568**
+- Aktive filer validert: **569**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **428**
@@ -586,6 +586,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/hodet_nn_torshovdalen.json
 - data/places/historie/oslo/places_historie/oscarshall.json
 - data/places/historie/oslo/places_historie/vikingtidsmuseet.json
+- data/places/historie/oslo/places_historie/bygdoy_kongsgard.json
 
 ## Harde feil
 - Ingen
