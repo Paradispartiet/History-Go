@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:19:19.948Z
+Generert: 2026-07-21T06:23:40.258Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -282,3 +282,4 @@ Generert: 2026-07-21T06:19:19.948Z
 | steilene | data/coordinate-evidence/akershus/historie/steilene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ingierstrand_bad | data/coordinate-evidence/akershus/historie/ingierstrand_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_golfklubb_bogstad | data/coordinate-evidence/oslo/sport/oslo_golfklubb_bogstad.json | applied_to_place | do_not_change_coordinates_yet | OK |

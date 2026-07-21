@@ -1,0 +1,74 @@
+{
+  "placeId": "oslo_golfklubb_bogstad",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport/oslo_golfklubb_bogstad.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.962399448254494,
+    "lon": 10.63892806989306,
+    "r": 90,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Ankerveien 127, OSLO. Punktet representerer dagens klubbhus og brukes som stabil display- og unlock-marker for Oslo Golfklubbs samlede anlegg på Bogstad. Det påstås ikke at adressepunktet er geometrisk sentrum av den omtrent 480 mål store 18-hullsbanen."
+  },
+  "identity": {
+    "currentName": "Oslo Golfklubb – Bogstad",
+    "resolvedIdentity": "Oslo Golfklubbs golfanlegg på Bogstad, represented by the current public clubhouse/address anchor at Ankerveien 127 while the 18-hole course remains the wider site extent",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "normative Geonorge address-first result for Ankerveien 127 Oslo",
+    "official club history and course documentation",
+    "explicit representation decision separating clubhouse marker from course extent"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ankerveien%20127%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10163:127",
+      "sourceQuality": "official_address_plus_official_club_history_and_course_sources",
+      "finding": "Address-first lookup returned one clear official address result for Ankerveien 127. Oslo Golfklubb documents the club and course at Bogstad and uses the clubhouse as the public arrival and service point.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Ankerveien 127, OSLO. Punktet representerer dagens klubbhus og brukes som stabil display- og unlock-marker for Oslo Golfklubbs samlede anlegg på Bogstad. Det påstås ikke at adressepunktet er geometrisk sentrum av den omtrent 480 mål store 18-hullsbanen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ankerveien 127 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10163:127",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10163:127",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.962399448254494,
+      "lon": 10.63892806989306,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keep the verified clubhouse/address marker as the stable display and unlock point for the combined golf facility; do not replace it with an arbitrary course centroid."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Ankerveien 127, OSLO. Punktet representerer dagens klubbhus og brukes som stabil display- og unlock-marker for Oslo Golfklubbs samlede anlegg på Bogstad. Det påstås ikke at adressepunktet er geometrisk sentrum av den omtrent 480 mål store 18-hullsbanen."
+  ]
+}

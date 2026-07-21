@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 339 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 116 legger til åtte separate Oslofjord-steder fra den lukkede VisitOSLO Oslofjorden-auditen. Batch 115 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
+Oslo-tabellen inneholder nå 340 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 117 produserer Oslo Golfklubb på Bogstad som det sjette og siste nye stedet fra den lukkede VisitOSLO Holmenkollen-auditen. Batch 116 legger til åtte separate Oslofjord-steder fra den lukkede VisitOSLO Oslofjorden-auditen.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -285,6 +285,7 @@ Batch 93 (2026-07-21) fullfører den utsatte kontrollen av de åtte Alnaelva-rut
 | 115 | `kollentrollet` | Kollentrollet | verified_geometry | `osm-node:1768125117` |
 | 115 | `vettakollen` | Vettakollen | verified_geometry | `osm-node:301173327` |
 | 115 | `kragstotten` | Kragstøtten | verified_geometry | `osm-node:484968664` |
+| 117 | `oslo_golfklubb_bogstad` | Oslo Golfklubb – Bogstad | verified | `geonorge-adresser-v1:0301:10163:127` |
 
 Batch 94 (2026-07-21) følger top-level manifestrekkefølgen videre inn i `places_historie_added_batch_01.json`. De seks første recordene i filen var allerede kontrollert i tidligere batcher; de fire neste og siste recordene lukkes her. `peststotten_krist_kirkegard` beholder et eksplisitt publisert monumentpunkt med separat identitets- og plasseringskryssjekk mot Oslo byleksikon, `kjaerlighetskarusellen` bruker det eksakt navngitte OSM-punktet uten Wikidata som koordinatkilde, og `villa_stenersen` samt `st_hallvard_kirke_kloster` bruker offisielle Geonorge-adressepunkter etter address-first-policyen.
 
@@ -534,7 +535,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 116.
+- Neste nye Oslo-kontroll er batch 118.
 - De åtte Oslo-naturfilene i `data/places/manifest.json` er nå fullt kontrollert. Neste aktive manifestkilde er `places/politikk/oslo/places_politikk.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest eller en biologisk lokalitetskilde er bare kø-/identitetskilde, ikke automatisk koordinatbevis.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
@@ -574,3 +575,5 @@ Etne batch 4 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som
 | 116 | `ulvoya` | Ulvøya | verified_geometry | `osm-way:4154565` |
 
 Batch 116 (2026-07-21) produserer åtte separate Oslofjord-identiteter. Kombinerte VisitOSLO-rader er ikke kopiert som syntetiske steder: Heggholmen og Rambergøya beholdes ved siden av eksisterende `gressholmen`, og Ormøya og Malmøya beholdes som separate øyer. Eksakte OSM-øygeometrier brukes der de finnes; Heggholmen og Rambergøya bruker eksakte aktive Kartverket SSR-objekter med objekttype Øy i sjø. Alle åtte place-id-er ble kontrollert mot current runtime index umiddelbart før produksjon.
+
+Batch 117 (2026-07-21) produserer `oslo_golfklubb_bogstad` som det sjette og siste nye stedet fra VisitOSLO Holmenkollen-auditen. Den normative address-first-kjøringen ga ett entydig Geonorge-treff for Ankerveien 127. Klubbhuset brukes som stabil offentlig display- og unlock-marker for hele golfanlegget; den omtrent 480 mål store 18-hullsbanen er stedsomfang og sportskontekst, men adressepunktet påstås ikke å være banens geometriske sentrum.
