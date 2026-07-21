@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T05:44:03.070Z
+Generert: 2026-07-21T05:51:26.970Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -262,3 +262,7 @@ Generert: 2026-07-21T05:44:03.070Z
 | ostensjovannet_sivbelte | data/coordinate-evidence/oslo/natur/ostensjovannet_sivbelte.json | needs_research | needs_geometry | OK |
 | ostensjovannet_sor | data/coordinate-evidence/oslo/natur/ostensjovannet_sor.json | needs_research | needs_geometry | OK |
 | bogerudmyra | data/coordinate-evidence/oslo/natur/bogerudmyra.json | needs_research | needs_geometry | OK |
+| bygdoy_kongsgard_salamanderdam | data/coordinate-evidence/oslo/natur/bygdoy_kongsgard_salamanderdam.json | needs_research | needs_geometry | OK |
+| bantjern_salamanderlokalitet | data/coordinate-evidence/oslo/natur/bantjern_salamanderlokalitet.json | needs_research | needs_geometry | OK |
+| tjernsmyr_salamanderlokalitet | data/coordinate-evidence/oslo/natur/tjernsmyr_salamanderlokalitet.json | needs_research | needs_geometry | OK |
+| blindern_forskningsparken_salamanderdam | data/coordinate-evidence/oslo/natur/blindern_forskningsparken_salamanderdam.json | needs_research | needs_geometry | OK |
