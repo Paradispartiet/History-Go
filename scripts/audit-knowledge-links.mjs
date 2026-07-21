@@ -4,21 +4,22 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const REPORT_PATH = path.join(ROOT, "reports", "knowledge-link-audit.json");
-const SUBJECT_IDS = [
-  "historie",
-  "vitenskap",
-  "kunst",
-  "natur",
-  "musikk",
-  "populaerkultur",
-  "subkultur",
-  "sport",
-  "by",
-  "politikk",
-  "naeringsliv",
-  "litteratur",
-  "psykologi"
-];
+const CATEGORY_CONTRACT_PATH = path.join(ROOT, "data", "categories", "category_contract.json");
+
+function loadSubjectIds() {
+  const contract = JSON.parse(fs.readFileSync(CATEGORY_CONTRACT_PATH, "utf8"));
+  const ids = Array.isArray(contract?.runtimeCategories)
+    ? contract.runtimeCategories.map((value) => String(value || "").trim()).filter(Boolean)
+    : [];
+
+  if (!ids.length) {
+    throw new Error(`Mangler runtimeCategories i ${path.relative(ROOT, CATEGORY_CONTRACT_PATH)}`);
+  }
+
+  return [...new Set(ids)];
+}
+
+const SUBJECT_IDS = loadSubjectIds();
 const SUBJECT_SET = new Set(SUBJECT_IDS);
 const SCAN_EXTENSIONS = new Set([".html", ".htm", ".js", ".mjs", ".ts"]);
 const SKIP_DIRS = new Set([".git", "node_modules", "dist", "reports"]);
@@ -129,7 +130,7 @@ for (const abs of files) {
     }
   }
 
-  if (dynamicLegacyKnowledgeTemplates(content)) {
+  if (rel !== "scripts/audit-knowledge-links.mjs" && dynamicLegacyKnowledgeTemplates(content)) {
     const missingTargets = SUBJECT_IDS
       .map((subject) => `knowledge/knowledge_${subject}.html`)
       .filter((target) => !fs.existsSync(path.join(ROOT, target)));
@@ -144,6 +145,8 @@ for (const abs of files) {
 const unique = (rows) => Array.from(new Map(rows.map((row) => [`${row.source}|${row.route || row.pattern}|${row.target || ""}`, row])).values());
 const report = {
   generated_at: new Date().toISOString(),
+  category_contract: path.relative(ROOT, CATEGORY_CONTRACT_PATH).split(path.sep).join("/"),
+  subject_ids: SUBJECT_IDS,
   scanned_files: files.length,
   references: unique(references),
   dynamic_templates: unique(dynamicTemplates),
@@ -156,6 +159,7 @@ fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
 fs.writeFileSync(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`);
 
 console.log(`Knowledge link audit: ${report.references.length} statiske ruter kontrollert i ${report.scanned_files} runtime-filer.`);
+console.log(`Gyldige Knowledge-subjects leses fra ${report.category_contract}: ${SUBJECT_IDS.join(", ")}.`);
 if (report.dynamic_templates.length) console.log(`Kontrollerte ${report.dynamic_templates.length} dynamiske legacy-rutegeneratorer.`);
 if (report.broken.length) {
   console.error(`Fant ${report.broken.length} døde Knowledge-ruter:`);
