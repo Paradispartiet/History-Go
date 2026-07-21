@@ -29,7 +29,18 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Prepare documented coordinate resolver
-        run: node tools/scenekunst-oslo-batch3-runner.mjs prepare
+        run: |
+          node tools/scenekunst-oslo-batch3-runner.mjs prepare
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/add-scenekunst-oslo-venues-batch-3.mjs')
+          s = p.read_text()
+          old = "allowedCoLocationIds: ['hausmania', 'hausmania_kulturhus']"
+          new = "allowedCoLocationIds: ['hausmania', 'hausmania_kulturhus', 'kafe_haerverk']"
+          if old not in s:
+              raise SystemExit('Grusomhetens co-location list not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
 
       - name: Build three verified Oslo venue packages
         id: venue_build
