@@ -1,0 +1,54 @@
+{
+  "version": "2.0",
+  "status": "canonical_category_profile",
+  "type": "category_quiz_profile",
+  "categoryId": "by",
+  "title": "By",
+  "governance": {
+    "production_standard": "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md",
+    "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
+    "authority": "category_content_only",
+    "may_override_global_rules": false
+  },
+  "required_emne_prefix": "em_by_",
+  "content_priorities": [
+    "stedets historie og tidligere funksjoner",
+    "arkitektur, byform og planlegging",
+    "infrastruktur, mobilitet og tekniske løsninger",
+    "offentlige rom, bruk og hverdagsliv",
+    "makt, eierskap, representasjon og byutvikling"
+  ],
+  "essential_concepts": [
+    "byrom",
+    "sosial infrastruktur",
+    "materialitet",
+    "mobilitet",
+    "gentrifisering",
+    "offentlighet",
+    "stedsidentitet",
+    "planmakt"
+  ],
+  "preferred_source_types": [
+    "kommunale plan- og byggesakskilder",
+    "arkitektur- og kulturminnekilder",
+    "lokalhistorie og byarkiv",
+    "verifiserbar observasjon ved stedet"
+  ],
+  "category_rules": [
+    "Start med dokumentert stoff fra kategorien, ikke med emneetiketten.",
+    "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata.",
+    "Bruk bare emne_id som finnes i kategoriens emnefil.",
+    "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."
+  ],
+  "example_question": {
+    "question": "Hva kalles et gratis sted som biblioteket, der folk kan oppholde seg uten å kjøpe noe?",
+    "options": ["Sosial infrastruktur", "Monofunksjon", "Privatisert sone"],
+    "answer": "Sosial infrastruktur",
+    "question_type": "concept",
+    "knowledge": "Begrepet sosial infrastruktur beskriver fysiske institusjoner og steder som gjør hverdagslige møter, læring og fellesskap mulig.",
+    "emne_id": "em_by_<velg_gyldig_emne>",
+    "source": ["<konkret_kilde>"],
+    "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
+  }
+}
