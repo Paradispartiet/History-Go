@@ -8,17 +8,24 @@
   "architectureReadme": "../../README/KNOWLEDGE_MEMORY_CHAMBER.md",
   "runtime": {
     "currentCaptureModel": "../../js/knowledgeV2.js",
+    "quizMemoryCompatibilityLayer": "../../js/quizKnowledgeMemory.js",
     "currentPageModel": "../../js/knowledgePage.js",
-    "migrationStatus": "v2_runtime_active_v3_semantic_and_reading_model_introduced",
-    "knownGap": "Dagens quizmotor lagrer hovedsakelig Knowledge ved riktig svar og viser bare kort riktig/feil-feedback. Ny runtime skal vise kunnskapsinnholdet og skille mellom møtt, lest og mestret.",
+    "quizMemoryStorageKey": "hg_knowledge_memory_v1",
+    "migrationStatus": "v3_quiz_bundle_compatibility_active",
+    "currentBehavior": "Quizviseren beholdes. Når en quiz eller et sett er fullført, bygger kompatibilitetslaget ett samlet kunnskapsbundle fra spørsmål, knowledge, trivia, emner, begreper, kilder og eventuelle toppnivåbanker. Sluttoppsummeringen får en inngang til kunnskapspopupen.",
+    "evidenceModel": {
+      "collected": "Kunnskapen er hentet fra den fullførte quizfila og lagt i minnekammeret.",
+      "presented": "Kunnskapspopupen er åpnet.",
+      "read": "Brukeren har bekreftet Lest – legg i Knowledge.",
+      "mastered": "Spørsmålet ble besvart riktig.",
+      "needs_review": "Spørsmålet ble besvart feil og kunnskapen er lagt til repetisjon."
+    },
     "nextRuntimeRequirements": [
-      "Show knowledge or knowledge_payload after every answer.",
-      "Record encountered when the knowledge explanation is presented.",
-      "Record read when the user actively continues after feedback.",
-      "Record assessment mastery separately from reading evidence.",
-      "Reference canonical knowledge_unit_id, concept_id, term_id and story_id.",
-      "Group multiple quiz and surface evidence events under the same personal memory node."
+      "Render hg_knowledge_memory_v1 as a first-class source on the full Knowledge page.",
+      "Migrate useful legacy knowledge_universe and trivia_universe entries into compatible memory nodes without deleting the original stores.",
+      "Use stable canonical knowledge_unit_id, concept_id, term_id and story_id when future quiz files provide them.",
+      "Keep quiz-file source provenance and never flatten stories, fun facts, concepts and assessment evidence into one text list."
     ]
   },
-  "canonicalPrinciple": "Emner organiserer faget, begreper gir presist språk, knowledge units bærer innholdet, historier binder innholdet sammen, steder og personer gir kontekst, quiz samler og formidler kunnskap samtidig som den prøver brukeren, og Knowledge husker hva som er lest og mestret."
+  "canonicalPrinciple": "Emner organiserer faget, begreper gir presist språk, knowledge units bærer innholdet, historier binder innholdet sammen, steder og personer gir kontekst, quiz samler kunnskapen og prøver brukeren, og Knowledge-minnekammeret skiller mellom samlet, presentert, lest, mestret og til repetisjon."
 }
