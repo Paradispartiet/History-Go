@@ -29,9 +29,13 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Prepare documented coordinate resolver
+        id: prepare
+        shell: bash
         run: |
-          node tools/scenekunst-oslo-batch3-runner.mjs prepare
-          python - <<'PY'
+          set +e
+          {
+            node tools/scenekunst-oslo-batch3-runner.mjs prepare
+            python - <<'PY'
           from pathlib import Path
           p = Path('tools/add-scenekunst-oslo-venues-batch-3.mjs')
           s = p.read_text()
@@ -41,8 +45,29 @@ jobs:
               raise SystemExit('Grusomhetens co-location list not found')
           p.write_text(s.replace(old, new, 1))
           PY
+          } > /tmp/scenekunst-batch-3-prepare.log 2>&1
+          status=$?
+          cat /tmp/scenekunst-batch-3-prepare.log
+          if [ "$status" -ne 0 ]; then
+            mkdir -p reports
+            cp /tmp/scenekunst-batch-3-prepare.log reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "failed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit diagnostic on preparation failure
+        if: steps.prepare.outputs.failed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
+          git diff --cached --quiet || git commit -m "Record Scenekunst batch 3 preparation failure"
+          git push origin HEAD:agent/scenekunst-oslo-new-venues-03
+          exit 1
 
       - name: Build three verified Oslo venue packages
+        if: steps.prepare.outputs.failed == 'false'
         id: venue_build
         shell: bash
         run: |
@@ -59,7 +84,7 @@ jobs:
           fi
 
       - name: Commit diagnostic on builder failure
-        if: steps.venue_build.outputs.failed == 'true'
+        if: steps.prepare.outputs.failed == 'false' && steps.venue_build.outputs.failed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -69,23 +94,23 @@ jobs:
           exit 1
 
       - name: Record coordinate evidence and protocol
-        if: steps.venue_build.outputs.failed == 'false'
+        if: steps.prepare.outputs.failed == 'false' && steps.venue_build.outputs.failed == 'false'
         run: node tools/scenekunst-oslo-batch3-runner.mjs finalize
 
       - name: Build tools and regenerate place index
-        if: steps.venue_build.outputs.failed == 'false'
+        if: steps.prepare.outputs.failed == 'false' && steps.venue_build.outputs.failed == 'false'
         run: |
           npm run build:tools
           npm run places:index:build
 
       - name: Validate places and categories
-        if: steps.venue_build.outputs.failed == 'false'
+        if: steps.prepare.outputs.failed == 'false' && steps.venue_build.outputs.failed == 'false'
         run: |
           bash scripts/check-places.sh
           npm run audit:categories
 
       - name: Mark report checks validated
-        if: steps.venue_build.outputs.failed == 'false'
+        if: steps.prepare.outputs.failed == 'false' && steps.venue_build.outputs.failed == 'false'
         run: |
           node <<'NODE'
           const fs = require('fs');
@@ -98,7 +123,7 @@ jobs:
           NODE
 
       - name: Remove one-shot files and commit result
-        if: steps.venue_build.outputs.failed == 'false'
+        if: steps.prepare.outputs.failed == 'false' && steps.venue_build.outputs.failed == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
