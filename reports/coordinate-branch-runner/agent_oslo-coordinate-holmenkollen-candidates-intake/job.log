@@ -1,0 +1,83 @@
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Kongeveien 40 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongeveien%2040%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+  "coordinate": {
+    "lat": 59.96471254074996,
+    "lon": 10.666572782635253,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+    "address": {
+      "street": "Kongeveien",
+      "number": "40",
+      "postcode": "0787",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongeveien 40, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Kongeveien",
+    "adressetekst": "Kongeveien 40",
+    "adressetilleggsnavn": null,
+    "adressekode": 13850,
+    "nummer": 40,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 33,
+    "bruksnummer": 2976,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0787",
+    "adressetekstutenadressetilleggsnavn": "Kongeveien 40",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.96471254074996,
+      "lon": 10.666572782635253
+    },
+    "oppdateringsdato": "2020-06-15T18:06:06"
+  }
+}
+{
+  "version": "2026-07-21",
+  "status": "remaining_candidate_coordinate_ready",
+  "approvedCandidates": 1,
+  "coordinateReady": 1,
+  "unresolved": 0,
+  "alreadyCanonicalSkipped": [
+    "oslo_golfklubb_bogstad"
+  ],
+  "candidates": [
+    {
+      "placeId": "holmenkollen_skimuseum",
+      "name": "Skimuseet i Holmenkollen",
+      "status": "ready_for_canonical_production",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "lat": 59.96471254074996,
+      "lon": 10.666572782635253,
+      "parentDistanceM": 239,
+      "addressDistanceM": 0
+    }
+  ]
+}
