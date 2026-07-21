@@ -18,6 +18,29 @@ if (!source.includes(badScript)) {
 }
 source = source.replace(badScript, "'places:emner:check'");
 
+const oldArrayRewrite = `    if (PHYSICAL_REF_ARRAY_KEYS.has(key) && Array.isArray(raw)) {
+      const next = raw.map((item) => typeof item === 'string' && ID_MAP.has(item) ? ID_MAP.get(item) : item);
+      out[key] = dedupeStrings(next);
+      next.forEach((item, i) => {
+        const old = raw[i];
+        if (typeof old === 'string' && ID_MAP.has(old)) actions.push({ path: [...pathParts, key, String(i)].join('.'), oldId: old, newId: item });
+      });
+      continue;
+    }`;
+const newArrayRewrite = `    if (PHYSICAL_REF_ARRAY_KEYS.has(key) && Array.isArray(raw) && raw.every((item) => typeof item === 'string')) {
+      const next = raw.map((item) => ID_MAP.has(item) ? ID_MAP.get(item) : item);
+      out[key] = dedupeStrings(next);
+      next.forEach((item, i) => {
+        const old = raw[i];
+        if (ID_MAP.has(old)) actions.push({ path: [...pathParts, key, String(i)].join('.'), oldId: old, newId: item });
+      });
+      continue;
+    }`;
+if (!source.includes(oldArrayRewrite)) {
+  throw new Error('Could not find the original physical-reference array rewrite block');
+}
+source = source.replace(oldArrayRewrite, newArrayRewrite);
+
 const stageMarkers = [
   ["const placeIndexRaw = readJson(PLACE_INDEX);", "console.log('[safe-six] preflight: verify legacy and canonical place IDs');\nconst placeIndexRaw = readJson(PLACE_INDEX);"],
   ["const initialPhysicalRefs = [];", "console.log('[safe-six] preflight: scan explicit physical references');\nconst initialPhysicalRefs = [];"],
