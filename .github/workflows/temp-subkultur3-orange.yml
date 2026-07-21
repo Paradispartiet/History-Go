@@ -1,0 +1,150 @@
+name: Refine Subkultur3 orange border
+
+on:
+  push:
+    branches:
+      - fix/subkultur3-badge-map-colors
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/subkultur3-badge-map-colors
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Read visible orange embroidery color
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const sharp = require('sharp');
+
+          function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            const l = (max + min) / 2;
+            if (max === min) return { h: 0, s: 0, l };
+            const d = max - min;
+            const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            let h;
+            if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+            else if (max === g) h = (b - r) / d + 2;
+            else h = (r - g) / d + 4;
+            return { h: h * 60, s, l };
+          }
+
+          function toHex(v) {
+            return Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0').toUpperCase();
+          }
+
+          (async () => {
+            const { data, info } = await sharp('bilder/merker/Subkultur3.PNG').ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+            const { width, height, channels } = info;
+            const cx = (width - 1) / 2;
+            const cy = (height - 1) / 2;
+            const radius = Math.min(width, height) / 2;
+            const buckets = new Map();
+
+            for (let y = 0; y < height; y++) {
+              for (let x = 0; x < width; x++) {
+                const i = (y * width + x) * channels;
+                const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
+                if (a < 160) continue;
+                const rn = Math.hypot(x - cx, y - cy) / radius;
+                if (rn > 0.985) continue;
+                const { h, s, l } = rgbToHsl(r, g, b);
+
+                // Synlig broderi: varm, tydelig oransje. Skygger og brun bakgrunn filtreres ut.
+                if (h < 12 || h > 48 || s < 0.52 || l < 0.30 || l > 0.72) continue;
+                if (r < 105 || r - g < 28 || g - b < 8 || b > 105) continue;
+
+                const step = 16;
+                const key = [r, g, b].map(v => Math.min(255, Math.floor(v / step) * step)).join(',');
+                let bucket = buckets.get(key);
+                if (!bucket) bucket = { count: 0, r: 0, g: 0, b: 0, s: 0, l: 0 };
+                bucket.count++;
+                bucket.r += r;
+                bucket.g += g;
+                bucket.b += b;
+                bucket.s += s;
+                bucket.l += l;
+                buckets.set(key, bucket);
+              }
+            }
+
+            if (!buckets.size) throw new Error('No bright orange embroidery pixels found');
+            const ranked = [...buckets.values()].map(bucket => {
+              const s = bucket.s / bucket.count;
+              const l = bucket.l / bucket.count;
+              // Behold dominant trådfarge, men prioriter synlig metning/lys fremfor mørke skygger.
+              const score = bucket.count * Math.pow(s, 1.35) * Math.pow(l, 1.1);
+              return { ...bucket, score };
+            }).sort((a, b) => b.score - a.score);
+
+            const winner = ranked[0];
+            const secondary = `#${toHex(winner.r / winner.count)}${toHex(winner.g / winner.count)}${toHex(winner.b / winner.count)}`;
+            console.log(`[Subkultur3 orange] secondary=${secondary} pixels=${winner.count} score=${winner.score.toFixed(2)}`);
+
+            const badgePath = 'data/badges/subkultur.json';
+            const badge = JSON.parse(fs.readFileSync(badgePath, 'utf8'));
+            badge.secondaryColor = secondary;
+            badge.image = 'bilder/merker/Subkultur3.PNG';
+            fs.writeFileSync(badgePath, JSON.stringify(badge, null, 2) + '\n');
+
+            const categoriesPath = 'js/core/categories.ts';
+            let categories = fs.readFileSync(categoriesPath, 'utf8');
+            const before = categories;
+            categories = categories.replace(
+              /(\{ id: "subkultur", name: "Subkultur", icon: "🧷", color: "#[0-9A-Fa-f]{6}", secondaryColor: ")#[0-9A-Fa-f]{6}("[^}]*\})/,
+              `$1${secondary}$2`
+            );
+            if (categories === before) throw new Error('Could not update Subkultur secondaryColor');
+            fs.writeFileSync(categoriesPath, categories);
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Validate and rebuild
+        shell: bash
+        run: |
+          npm run typecheck:web
+          npm run build:web
+          node <<'NODE'
+          const fs = require('node:fs');
+          const badge = JSON.parse(fs.readFileSync('data/badges/subkultur.json', 'utf8'));
+          const categories = fs.readFileSync('js/core/categories.ts', 'utf8');
+          if (badge.image !== 'bilder/merker/Subkultur3.PNG') throw new Error('Wrong badge image path');
+          if (!categories.includes(`color: "${badge.color}", secondaryColor: "${badge.secondaryColor}"`)) throw new Error('Category colors mismatch');
+          console.log(`[validated] primary=${badge.color} secondary=${badge.secondaryColor}`);
+          NODE
+          git diff --check
+
+      - name: Commit refined colors
+        shell: bash
+        run: |
+          rm -f .github/workflows/temp-subkultur3-orange.yml
+          git config user.name "Paradispartiet"
+          git config user.email "225725199+Paradispartiet@users.noreply.github.com"
+          git add \
+            data/badges/subkultur.json \
+            js/core/categories.ts \
+            js/core/categories.js \
+            dist/web/categories.js \
+            .github/workflows/temp-subkultur3-orange.yml
+          git commit -m "Refine Subkultur3 orange map border"
+          git push origin HEAD:fix/subkultur3-badge-map-colors
