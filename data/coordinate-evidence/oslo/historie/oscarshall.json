@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "oscarshall",
+  "placeFile": "data/places/historie/oslo/places_historie/oscarshall.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9102764,
+    "lon": 10.692207,
+    "r": 60,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 150542667 – Lystslottet Oscarshall; identity cross-checked with The Royal Court",
+    "coordType": "building_center",
+    "coordNote": "Geometrisk senter for det eksakt navngitte OSM-bygningspolygonet Lystslottet Oscarshall. Identitet og offentlig besøksadresse Oscarshallveien 15 er kryssjekket mot Kongehuset og et entydig Geonorge-adressetreff. Punktet gjelder selve lystslottet, ikke et tilfeldig park- eller veipunkt."
+  },
+  "identity": {
+    "currentName": "Oscarshall",
+    "resolvedIdentity": "Oscarshall, kongelig lystslott fra 1852 på Bygdøy",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt bygningspolygon",
+    "entydig offisiell besøksadresse",
+    "uavhengig offisiell identitetskilde"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 150542667",
+      "sourceUrl": "https://www.openstreetmap.org/way/150542667",
+      "sourceObjectId": "osm-way:150542667",
+      "sourceQuality": "exact_named_building_polygon_plus_official_address_crosscheck",
+      "finding": "Eksakt navngitt museum-/palasspolygon for Lystslottet Oscarshall.",
+      "canVerifyCoordinate": true,
+      "reason": "Kongehuset dokumenterer Oscarshall og besøksadressen Oscarshallveien 15; Geonorge returnerer ett entydig adressetreff på samme bygg."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Oscarshallveien 15 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15443:15",
+      "lat": 59.91026364422076,
+      "lon": 10.69231350671801,
+      "canApplyToPlace": false,
+      "reason": "Exact named building geometry is available and preferred for the palace itself."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150542667",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150542667",
+      "lat": 59.9102764,
+      "lon": 10.692207,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9102764,
+      "lon": 10.692207,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact named palace-building geometry applied to the canonical place."
+  },
+  "notes": [
+    "The surrounding romantic park remains part of the Oscarshall visitor complex and is not duplicated by this source pass."
+  ]
+}
