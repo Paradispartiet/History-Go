@@ -1,0 +1,43 @@
+name: Inventory recent badge uploads
+
+on:
+  push:
+    branches:
+      - fix/naeringsliv3-badge-map-colors
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/naeringsliv3-badge-map-colors
+          fetch-depth: 0
+
+      - name: Inventory recent branch badge changes
+        shell: bash
+        run: |
+          mkdir -p reports/tmp-naeringsliv3
+          {
+            echo "Recent remote branches with badge changes relative to main"
+            git for-each-ref --sort=-committerdate --count=120 --format='%(committerdate:iso8601)|%(refname:short)' refs/remotes/origin |
+            while IFS='|' read -r date ref; do
+              changes="$(git diff --name-status origin/main..."$ref" -- bilder/merker 2>/dev/null || true)"
+              if [ -n "$changes" ]; then
+                echo
+                echo "[$date] $ref"
+                printf '%s\n' "$changes"
+              fi
+            done
+          } | tee reports/tmp-naeringsliv3/recent-merker.log
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: recent-merker-inventory
+          path: reports/tmp-naeringsliv3/recent-merker.log
