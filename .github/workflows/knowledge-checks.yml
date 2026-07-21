@@ -9,9 +9,13 @@ on:
       - 'knowledge/**'
       - 'css/knowledge*.css'
       - 'js/knowledge*.js'
+      - 'js/knowledge*.ts'
+      - 'js/quizKnowledgeMemory.js'
+      - 'dist/web/knowledge*.js'
       - 'scripts/audit-knowledge-*.mjs'
       - 'tests/knowledge-*.test.*'
-      - 'build/smoke-web.mjs'
+      - 'tests/quiz-knowledge-memory.test.*'
+      - 'build/build-web.mjs'
       - '.github/workflows/knowledge-checks.yml'
   workflow_dispatch:
 
@@ -35,9 +39,14 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Typecheck canonical Knowledge core
+        run: npm run typecheck:web
+
       - name: Syntax check Knowledge runtimes and audits
         run: |
-          node --check js/knowledgeV2.js
+          node --check dist/web/knowledge.js
+          node --check dist/web/knowledgeV2.js
+          node --check js/quizKnowledgeMemory.js
           node --check js/knowledgePage.js
           node --check js/knowledgeBadgeLogos.js
           node --check js/knowledgeProfileClassic.js
@@ -45,7 +54,7 @@ jobs:
           node --check scripts/audit-knowledge-links.mjs
           node --check build/smoke-web.mjs
 
-      - name: Guard Knowledge checkJs diagnostics
+      - name: Guard remaining Knowledge checkJs diagnostics
         shell: bash
         run: |
           set -o pipefail
@@ -53,7 +62,7 @@ jobs:
           npm run typecheck > "$RUNNER_TEMP/knowledge-root-typecheck.log" 2>&1
           set -e
 
-          grep -E '^(js/knowledgePage\.js|js/knowledgeV2\.js|js/knowledgeBadgeLogos\.js|js/knowledgeProfileClassic\.js).*error TS[0-9]+:' \
+          grep -E '^(js/knowledgePage\.js|js/knowledgeBadgeLogos\.js|js/knowledgeProfileClassic\.js).*error TS[0-9]+:' \
             "$RUNNER_TEMP/knowledge-root-typecheck.log" \
             | tee reports/knowledge-checkjs-diagnostics.txt \
             || true
@@ -64,8 +73,8 @@ jobs:
             exit 1
           fi
 
-      - name: Run Knowledge tests
-        run: node --test tests/knowledge-v2-model.test.js tests/knowledge-profile-restore.test.js
+      - name: Run Knowledge core tests
+        run: npm run test:knowledge-core
 
       - name: Audit Knowledge links
         run: node scripts/audit-knowledge-links.mjs

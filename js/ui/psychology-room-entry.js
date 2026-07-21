@@ -100,54 +100,14 @@
 
   installQuizManifestAdditions();
 
-  function loadLegacyKnowledgeTextQualityLayer() {
-    if (window.HGKnowledgeLegacyTextQuality) return;
-    if (document.getElementById("knowledge-legacy-text-quality-script")) return;
-
-    const script = document.createElement("script");
-    script.id = "knowledge-legacy-text-quality-script";
-    script.src = "js/knowledgeLegacyTextQuality.js";
-    script.async = false;
-    document.head.appendChild(script);
-  }
-
-  function loadQuizKnowledgeQualityLayer() {
-    if (window.HGQuizKnowledgeQuality) {
-      loadLegacyKnowledgeTextQualityLayer();
-      return;
-    }
-
-    const existing = document.getElementById("quiz-knowledge-quality-script");
-    if (existing) {
-      existing.addEventListener("load", loadLegacyKnowledgeTextQualityLayer, { once: true });
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.id = "quiz-knowledge-quality-script";
-    script.src = "js/quizKnowledgeQuality.js";
-    script.async = false;
-    script.addEventListener("load", loadLegacyKnowledgeTextQualityLayer, { once: true });
-    document.head.appendChild(script);
-  }
-
   function loadQuizKnowledgeMemoryLayer() {
-    if (window.HGQuizKnowledgeMemory) {
-      loadQuizKnowledgeQualityLayer();
-      return;
-    }
-
-    const existing = document.getElementById("quiz-knowledge-memory-script");
-    if (existing) {
-      existing.addEventListener("load", loadQuizKnowledgeQualityLayer, { once: true });
-      return;
-    }
+    if (window.HGQuizKnowledgeMemory) return;
+    if (document.getElementById("quiz-knowledge-memory-script")) return;
 
     const script = document.createElement("script");
     script.id = "quiz-knowledge-memory-script";
     script.src = "js/quizKnowledgeMemory.js";
     script.async = false;
-    script.addEventListener("load", loadQuizKnowledgeQualityLayer, { once: true });
     document.head.appendChild(script);
   }
 
