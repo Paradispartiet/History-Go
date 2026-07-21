@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bygdoy_kongsgard",
+  "placeFile": "data/places/historie/oslo/places_historie/bygdoy_kongsgard.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9113605,
+    "lon": 10.6803409,
+    "r": 70,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 6593517797 – Bygdø kongsgård; identity cross-checked with The Royal Court",
+    "coordType": "poi",
+    "coordNote": "Eksakt navngitt OSM-besøkspunkt for Bygdø kongsgård inne i det dokumenterte kongsgårdsanlegget. Identiteten er kryssjekket mot Kongehusets offisielle beskrivelse. Punktet representerer kongsgårdens hoved-/besøksidentitet og ikke den separate salamanderdammen, parkpolygonet eller hele landbrukseiendommen."
+  },
+  "identity": {
+    "currentName": "Bygdø Kongsgård",
+    "resolvedIdentity": "Bygdø Kongsgård, historisk kongsgård og kongelig sommerresidens på Bygdøy",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt besøks-/hovedpunkt i kongsgårdsanlegget",
+    "uavhengig offisiell identitetskilde",
+    "skille fra salamanderdammen og brede park-/farmyard-geometrier"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593517797",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593517797",
+      "sourceObjectId": "osm-node:6593517797",
+      "sourceQuality": "exact_named_visitor_poi_crosschecked_with_official_identity",
+      "finding": "Eksakt navngitt tourism-punkt for Bygdø kongsgård inne i det navngitte farmyard-/parkanlegget.",
+      "canVerifyCoordinate": true,
+      "reason": "Kongehuset dokumenterer samme kongsgård og hovedanlegg; punktet ligger fysisk adskilt fra den eksisterende salamanderdammen."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593517797",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593517797",
+      "lat": 59.9113605,
+      "lon": 10.6803409,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9113605,
+      "lon": 10.6803409,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact named visitor point applied to the distinct canonical royal-farm place."
+  },
+  "notes": [
+    "The existing bygdoy_kongsgard_salamanderdam record remains a separate nature locality."
+  ]
+}
