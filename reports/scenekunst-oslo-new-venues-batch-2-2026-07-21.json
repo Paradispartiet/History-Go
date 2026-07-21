@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-07-21T11:33:04.273Z",
+  "status": "validated",
+  "category": "scenekunst",
+  "batch": "oslo_new_venues_2",
+  "dependsOn": "agent/scenekunst-oslo-new-venues-01 / PR #3179",
+  "addedPlaceIds": [
+    "oslo_nye_teater_hovedscenen",
+    "det_andre_teatret",
+    "nordic_black_theatre_cafeteatret"
+  ],
+  "officialInstitutionSources": {
+    "oslo_nye_teater_hovedscenen": [
+      "https://oslonye.no/historikk/",
+      "https://oslonye.no/leie-av-lokaler/"
+    ],
+    "det_andre_teatret": [
+      "https://detandreteatret.no/om",
+      "https://detandreteatret.no/kontakt"
+    ],
+    "nordic_black_theatre_cafeteatret": [
+      "https://nordicblacktheatre.no/info",
+      "https://nordicblacktheatre.no/lokaler"
+    ]
+  },
+  "coordinateResults": [
+    {
+      "id": "oslo_nye_teater_hovedscenen",
+      "query": "Rosenkrantz' gate 10 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Rosenkrantz'%20gate%2010%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15980:10",
+      "coordinate": {
+        "lat": 59.91444272072215,
+        "lon": 10.739709939907648
+      },
+      "address": {
+        "street": "Rosenkrantz' gate",
+        "number": "10",
+        "postcode": "0159",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "det_andre_teatret",
+      "query": "Ivan Bjørndals gate 9 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ivan%20Bj%C3%B8rndals%20gate%209%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21385:9",
+      "coordinate": {
+        "lat": 59.93874688851995,
+        "lon": 10.765362071425985
+      },
+      "address": {
+        "street": "Ivan Bjørndals gate",
+        "number": "9",
+        "postcode": "0472",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "nordic_black_theatre_cafeteatret",
+      "query": "Hollendergata 8 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hollendergata%208%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13044:8",
+      "coordinate": {
+        "lat": 59.91036041991715,
+        "lon": 10.767073643250859
+      },
+      "address": {
+        "street": "Hollendergata",
+        "number": "8",
+        "postcode": "0190",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    }
+  ],
+  "physicalScopeDecisions": {
+    "oslo_nye_teater_hovedscenen": "Only the Hovedscenen building at Rosenkrantz gate 10. Centralteatret and Teaterkjelleren remain separate future physical place packages.",
+    "det_andre_teatret": "Main stage and theatre bar at Ivan Bjørndals gate 9. The intimate stage at number 28 is outside this place package.",
+    "nordic_black_theatre_cafeteatret": "The institution and its permanent venue Cafeteatret at Hollendergata 8 are represented together."
+  },
+  "validation": {
+    "geonorgeExactAddressLookup": "pass",
+    "overlapAudit": "pass",
+    "placesIndexBuild": "pass",
+    "placesChecks": "pass",
+    "categoryAudit": "pass"
+  },
+  "validatedAt": "2026-07-21T11:33:26.972Z"
+}
