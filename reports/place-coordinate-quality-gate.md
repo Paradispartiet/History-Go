@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T10:51:52.655Z
+Generert: 2026-07-21T11:41:47.674Z
 
 ## Oppsummering
 - Aktive filer validert: **601**
 - Antall steder validert: **1201**
 - Harde feil: **0**
-- Varsler: **441**
-- Coordinate review candidates: **707** signaler fordelt på **576** steder
+- Varsler: **442**
+- Coordinate review candidates: **708** signaler fordelt på **577** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -923,6 +923,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/england/footballgrounds_london.json#wembley_stadium_london: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/england/footballgrounds_london.json#stamford_bridge_london: lav koordinatpresisjon (<4 desimaler)
 - data/places/subkultur/oslo/places_subkultur.json#hausmania: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#skur13: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#torggata_blad: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#bla: lav koordinatpresisjon (<4 desimaler)
 - data/places/subkultur/oslo/places_subkultur.json#hausmannsgate_aksen: lineært sted uten anchors
@@ -1068,13 +1069,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 707 signaler fordelt på 576 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 708 signaler fordelt på 577 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 146 |
+| coordStatus=verified uten coordPrecisionM | 147 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 86 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1084,7 +1085,7 @@ Totalt 707 signaler fordelt på 576 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (146)
+### coordStatus=verified uten coordPrecisionM (147)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1162,6 +1163,7 @@ Totalt 707 signaler fordelt på 576 steder. Et sted kan ha flere signaler. Kandi
 | kfum_arena | KFUM Arena | sport | data/places/sport/europa/norway/oslo_sport.json | 59.88862965039414 | 10.782076254654621 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nordre_aasen_idrettspark | Nordre Åsen idrettspark | sport | data/places/sport/europa/norway/oslo_sport.json | 59.94276845982983 | 10.784873923983723 | 170 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | hausmania | Hausmania | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.919148209457326 | 10.751977548509613 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| skur13 | Skur 13 | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.909652031188216 | 10.72082449208237 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | torggata_blad | Torggata Blad | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91657334372696 | 10.75561428991178 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | blitzhuset | Blitzhuset | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91840193086 | 10.73778846737114 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kafe_haerverk | Kafé Hærverk | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.919148209457326 | 10.751977548509613 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
