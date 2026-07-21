@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-21T10:13:41.580Z
+Generert: 2026-07-21T10:31:35.520Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **fa799ed02694e4a04e25716d21faf4410c811632**
+- Base for nye/endrede place-objekter: **6147ce71a074c32bc09fe12baf778077a22b8226**
 - Base method: **git merge-base HEAD origin/main**
-- Aktive manifest-filer lest: **592**
-- Place-objekter validert: **1209**
+- Aktive manifest-filer lest: **597**
+- Place-objekter validert: **1206**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **2997**
+- Backlog-funn: **2990**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -305,9 +305,9 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | aremark_kirke_kirkested | Aremark kirke / kirkested | data/places/historie/ostfold/places_historie_ostfold_batch4.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | aremark_kirke_kirkested | Aremark kirke / kirkested | data/places/historie/ostfold/places_historie_ostfold_batch4.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | aremark_kirke_kirkested | Aremark kirke / kirkested | data/places/historie/ostfold/places_historie_ostfold_batch4.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | fredrikshalds_teater | Fredrikshalds Teater | data/places/kunst/ostfold/fredrikshalds_teater.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | fredrikshalds_teater | Fredrikshalds Teater | data/places/kunst/ostfold/fredrikshalds_teater.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | fredrikshalds_teater | Fredrikshalds Teater | data/places/kunst/ostfold/fredrikshalds_teater.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | fredrikshalds_teater | Fredrikshalds Teater | data/places/scenekunst/ostfold/fredrikshalds_teater.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | fredrikshalds_teater | Fredrikshalds Teater | data/places/scenekunst/ostfold/fredrikshalds_teater.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | fredrikshalds_teater | Fredrikshalds Teater | data/places/scenekunst/ostfold/fredrikshalds_teater.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | data/places/by/ostfold/kornsjo_grensestasjon.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | data/places/by/ostfold/kornsjo_grensestasjon.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | data/places/by/ostfold/kornsjo_grensestasjon.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -543,4 +543,4 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 2997 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 2990 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

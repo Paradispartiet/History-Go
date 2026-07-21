@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T10:13:44.612Z
+Generert: 2026-07-21T10:31:38.386Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -26,6 +26,7 @@ Generert: 2026-07-21T10:13:44.612Z
 | damstredet_telthusbakken | data/coordinate-evidence/oslo/by/damstredet_telthusbakken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fagerborg_kirke | data/coordinate-evidence/oslo/by/fagerborg_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frogner_kirke | data/coordinate-evidence/oslo/by/frogner_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| frognerparken | data/coordinate-evidence/oslo/by/frognerparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamle_radhus | data/coordinate-evidence/oslo/by/gamle_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gamle_trikkestallen | data/coordinate-evidence/oslo/by/gamle_trikkestallen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlandsleiret | data/coordinate-evidence/oslo/by/gronlandsleiret.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -54,6 +55,7 @@ Generert: 2026-07-21T10:13:44.612Z
 | sagene | data/coordinate-evidence/oslo/by/sagene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skoyen | data/coordinate-evidence/oslo/by/skoyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | slottsparken | data/coordinate-evidence/oslo/by/slottsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| sofienbergparken | data/coordinate-evidence/oslo/by/sofienbergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sorenga | data/coordinate-evidence/oslo/by/sorenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | spikersuppa | data/coordinate-evidence/oslo/by/spikersuppa.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | st_hanshaugen_park | data/coordinate-evidence/oslo/by/st_hanshaugen_park.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -64,6 +66,7 @@ Generert: 2026-07-21T10:13:44.612Z
 | tjuvholmen | data/coordinate-evidence/oslo/by/tjuvholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | torggata | data/coordinate-evidence/oslo/by/torggata.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | torshov | data/coordinate-evidence/oslo/by/torshov.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| torshovdalen | data/coordinate-evidence/oslo/by/torshovdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | torshovparken | data/coordinate-evidence/oslo/by/torshovparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyen_torg | data/coordinate-evidence/oslo/by/toyen_torg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | trefoldighetskirken | data/coordinate-evidence/oslo/by/trefoldighetskirken.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -74,11 +77,11 @@ Generert: 2026-07-21T10:13:44.612Z
 | ulvoya | data/coordinate-evidence/oslo/by/ulvoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | universitetsplassen | data/coordinate-evidence/oslo/by/universitetsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | uranienborg_kirke | data/coordinate-evidence/oslo/by/uranienborg_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| vaalerenga | data/coordinate-evidence/oslo/by/vaalerenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vigelandsparken | data/coordinate-evidence/oslo/by/vigelandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vikaterrassen | data/coordinate-evidence/oslo/by/vikaterrassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vinderen | data/coordinate-evidence/oslo/by/vinderen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | voienvolden | data/coordinate-evidence/oslo/by/voienvolden.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vaalerenga | data/coordinate-evidence/oslo/by/vaalerenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gimle_kino | data/coordinate-evidence/oslo/film/gimle_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hartvig_nissens_skole_skam | data/coordinate-evidence/oslo/film/hartvig_nissens_skole_skam.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klingenberg_kino | data/coordinate-evidence/oslo/film/klingenberg_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -208,8 +211,8 @@ Generert: 2026-07-21T10:13:44.612Z
 | alna_smalvoll | data/coordinate-evidence/oslo/natur/alna_smalvoll.json | needs_research | needs_geometry | OK |
 | alna_utlop_bjorvika | data/coordinate-evidence/oslo/natur/alna_utlop_bjorvika.json | needs_research | needs_geometry | OK |
 | alnabru_jernbane_og_logistikk | data/coordinate-evidence/oslo/natur/alnabru_jernbane_og_logistikk.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| alnaelva | data/coordinate-evidence/oslo/natur/alnaelva.json | needs_research | needs_geometry | OK |
 | alnaelva_hovedsteder | data/coordinate-evidence/oslo/natur/alnaelva_hovedsteder.json | needs_research | needs_geometry | OK |
+| alnaelva | data/coordinate-evidence/oslo/natur/alnaelva.json | needs_research | needs_geometry | OK |
 | alnaelvstien | data/coordinate-evidence/oslo/natur/alnaelvstien.json | needs_research | needs_geometry | OK |
 | alnaparken | data/coordinate-evidence/oslo/natur/alnaparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnsjoen_alna_kilde | data/coordinate-evidence/oslo/natur/alnsjoen_alna_kilde.json | needs_research | needs_geometry | OK |
@@ -252,13 +255,14 @@ Generert: 2026-07-21T10:13:44.612Z
 | noklevann | data/coordinate-evidence/oslo/natur/noklevann.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nydalsdammen | data/coordinate-evidence/oslo/natur/nydalsdammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| ostensjovannet | data/coordinate-evidence/oslo/natur/ostensjovannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ostensjovannet_fugletarn | data/coordinate-evidence/oslo/natur/ostensjovannet_fugletarn.json | needs_research | needs_geometry | OK |
 | ostensjovannet_nord | data/coordinate-evidence/oslo/natur/ostensjovannet_nord.json | needs_research | needs_geometry | OK |
 | ostensjovannet_sivbelte | data/coordinate-evidence/oslo/natur/ostensjovannet_sivbelte.json | needs_research | needs_geometry | OK |
 | ostensjovannet_sor | data/coordinate-evidence/oslo/natur/ostensjovannet_sor.json | needs_research | needs_geometry | OK |
+| ostensjovannet | data/coordinate-evidence/oslo/natur/ostensjovannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | rambergoya | data/coordinate-evidence/oslo/natur/rambergoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| sognsvann | data/coordinate-evidence/oslo/natur/sognsvann.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | needs_research | needs_geometry | OK |
 | svartdalen | data/coordinate-evidence/oslo/natur/svartdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tjernsmyr_salamanderlokalitet | data/coordinate-evidence/oslo/natur/tjernsmyr_salamanderlokalitet.json | needs_research | needs_geometry | OK |

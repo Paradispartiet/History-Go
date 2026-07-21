@@ -465,6 +465,12 @@ Batch 123 (2026-07-21) rydder lekeplass-/treningskøen før videre koordinatprod
 
 Batch 124 (2026-07-21) løser Frognerborgen-parentproblemet ved å produsere den allerede scope-godkjente canonical identiteten `frognerparken`. Oslo kommune definerer Frognerparken som hele parken og Frognerborgen som lekeplassen ved hovedinngangen inne i parken. `lekeplass_frognerborgen` fjernes derfor som egen aktiv kartmarkør og beholdes som Wonderkammer-/subfeature-innhold under `frognerparken`. Parkankeret kommer fra ett eksakt navngitt OSM-parkobjekt med polygongeometri etter objekt-type-først-filter; ingen nearest/first-hit-logikk brukes, og Vigelandsparken, Frogner stadion og Frogner hovedgård forblir separate canonical steder.
 
+| 125 | `sofienbergparken` | Sofienbergparken | verified_geometry | `osm-way:3235895` |
+| 125 | `torshovdalen` | Torshovdalen | verified_geometry | `osm-relation:959781` |
+| 125 | `sognsvann` | Sognsvann | verified_geometry | `osm-relation:448255` |
+
+Batch 125 (2026-07-21) gjennomfører den lukkede treveis canonical identity-migreringen fra VisitOSLO parker/natur-scopeauditen: `sofienbergparken_subkultur` → `sofienbergparken`, `treningssted_torshovdalen` → `torshovdalen` og `treningssted_sognsvann` → `sognsvann`. Selve fysiske stedet er canonical identitet; subkultur, trening og aktivitet beholdes som bruk-/innholdslag. Hvert sted bruker ett eksakt navngitt OSM-polygon med riktig objekttype, kryssjekket mot Oslo kommunes stedsbeskrivelse. De gamle pseudo-place-ID-ene fjernes og beskyttes med alias-gaten.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)

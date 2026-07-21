@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "torshovdalen",
+  "placeFile": "data/places/by/oslo/torshovdalen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9349611,
+    "lon": 10.7776835,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 959781 – Torshovdalen; scope cross-checked with Oslo kommune – Torshovdalen",
+    "coordType": "park_center",
+    "coordNote": "Batch 125 canonical migration: Oslo kommune definerer Torshovdalen som hele parkområdet mellom Torshov og Sinsen. Ett eksakt navngitt OSM-parkpolygon (osm-relation:959781) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parken; trening og aktivitet er brukslag."
+  },
+  "identity": {
+    "currentName": "Torshovdalen",
+    "resolvedIdentity": "Torshovdalen – canonical physical identity replacing treningssted_torshovdalen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "closed canonical migration scope",
+    "official physical-place definition",
+    "one exact named stable polygon"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "VisitOSLO parks/nature canonical scope audit",
+      "sourceUrl": "reports/visitoslo-parks-nature-audit-20260721/SCOPE.md",
+      "sourceObjectId": "visitoslo-scope-migration:treningssted_torshovdalen:torshovdalen",
+      "sourceQuality": "closed_canonical_identity_decision",
+      "finding": "Scope audit requires treningssted_torshovdalen → torshovdalen.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves one-place/one-physical-identity before coordinate selection."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Torshovdalen",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/torshovdalen/",
+      "sourceObjectId": "oslo-kommune:place:torshovdalen",
+      "sourceQuality": "official_physical_scope_definition",
+      "finding": "Oslo kommune – Torshovdalen defines the physical place and public use.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines physical scope before geometry selection."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 959781 – Torshovdalen",
+      "sourceUrl": "https://www.openstreetmap.org/relation/959781",
+      "sourceObjectId": "osm-relation:959781",
+      "sourceQuality": "exact_named_polygon_after_object_type_filter",
+      "finding": "One exact named polygon in predefined Oslo scope.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 125 canonical migration: Oslo kommune definerer Torshovdalen som hele parkområdet mellom Torshov og Sinsen. Ett eksakt navngitt OSM-parkpolygon (osm-relation:959781) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parken; trening og aktivitet er brukslag."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:959781",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:959781",
+      "lat": 59.9349611,
+      "lon": 10.7776835,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:959781",
+      "lat": 59.9349611,
+      "lon": 10.7776835,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical torshovdalen applied; treningssted_torshovdalen retired."
+  },
+  "notes": [
+    "Batch 125 canonical migration: Oslo kommune definerer Torshovdalen som hele parkområdet mellom Torshov og Sinsen. Ett eksakt navngitt OSM-parkpolygon (osm-relation:959781) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parken; trening og aktivitet er brukslag."
+  ]
+}

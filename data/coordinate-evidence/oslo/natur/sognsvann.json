@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "sognsvann",
+  "placeFile": "data/places/natur/oslo/sognsvann.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9752043,
+    "lon": 10.7290873,
+    "r": 280,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 448255 – Sognsvann; scope cross-checked with Oslo kommune – Sognsvann",
+    "coordType": "lake_center",
+    "coordNote": "Batch 125 canonical migration: Oslo kommune og VisitOSLO-scopeauditen identifiserer Sognsvann som selve innsjø-/friluftsstedet. Ett eksakt navngitt OSM-vannpolygon (osm-relation:448255) er valgt etter objekttypefilter. Punktet er area-anchor for vannobjektet; treningsrunden er bruk-/ruteinnhold."
+  },
+  "identity": {
+    "currentName": "Sognsvann",
+    "resolvedIdentity": "Sognsvann – canonical physical identity replacing treningssted_sognsvann",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "closed canonical migration scope",
+    "official physical-place definition",
+    "one exact named stable polygon"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "VisitOSLO parks/nature canonical scope audit",
+      "sourceUrl": "reports/visitoslo-parks-nature-audit-20260721/SCOPE.md",
+      "sourceObjectId": "visitoslo-scope-migration:treningssted_sognsvann:sognsvann",
+      "sourceQuality": "closed_canonical_identity_decision",
+      "finding": "Scope audit requires treningssted_sognsvann → sognsvann.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves one-place/one-physical-identity before coordinate selection."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Sognsvann",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/sognsvann/",
+      "sourceObjectId": "oslo-kommune:place:sognsvann",
+      "sourceQuality": "official_physical_scope_definition",
+      "finding": "Oslo kommune – Sognsvann defines the physical place and public use.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines physical scope before geometry selection."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 448255 – Sognsvann",
+      "sourceUrl": "https://www.openstreetmap.org/relation/448255",
+      "sourceObjectId": "osm-relation:448255",
+      "sourceQuality": "exact_named_polygon_after_object_type_filter",
+      "finding": "One exact named polygon in predefined Oslo scope.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 125 canonical migration: Oslo kommune og VisitOSLO-scopeauditen identifiserer Sognsvann som selve innsjø-/friluftsstedet. Ett eksakt navngitt OSM-vannpolygon (osm-relation:448255) er valgt etter objekttypefilter. Punktet er area-anchor for vannobjektet; treningsrunden er bruk-/ruteinnhold."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:448255",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:448255",
+      "lat": 59.9752043,
+      "lon": 10.7290873,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:448255",
+      "lat": 59.9752043,
+      "lon": 10.7290873,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical sognsvann applied; treningssted_sognsvann retired."
+  },
+  "notes": [
+    "Batch 125 canonical migration: Oslo kommune og VisitOSLO-scopeauditen identifiserer Sognsvann som selve innsjø-/friluftsstedet. Ett eksakt navngitt OSM-vannpolygon (osm-relation:448255) er valgt etter objekttypefilter. Punktet er area-anchor for vannobjektet; treningsrunden er bruk-/ruteinnhold."
+  ]
+}
