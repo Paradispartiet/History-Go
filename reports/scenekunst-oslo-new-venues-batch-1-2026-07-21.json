@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-07-21T10:18:49.606Z",
+  "status": "validated",
+  "category": "scenekunst",
+  "batch": "oslo_new_venues_1",
+  "addedPlaceIds": [
+    "black_box_teater",
+    "dansens_hus_oslo",
+    "riksscenen"
+  ],
+  "officialInstitutionSources": {
+    "black_box_teater": [
+      "https://blackbox.no/en/welcome-to-black-box-teater/",
+      "https://blackbox.no/en/contact/"
+    ],
+    "dansens_hus_oslo": [
+      "https://www.dansenshus.com/om-dansens",
+      "https://www.dansenshus.com/"
+    ],
+    "riksscenen": [
+      "https://www.riksscenen.no/om-oss.556094.no.html"
+    ]
+  },
+  "coordinateResults": [
+    {
+      "id": "black_box_teater",
+      "query": "Marstrandgata 8 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Marstrandgata%208%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14660:8",
+      "coordinate": {
+        "lat": 59.92700508153591,
+        "lon": 10.768737228438797
+      },
+      "address": {
+        "street": "Marstrandgata",
+        "number": "8",
+        "postcode": "0566",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "dansens_hus_oslo",
+      "query": "Vulkan 1 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Vulkan%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21649:1",
+      "coordinate": {
+        "lat": 59.921391233585794,
+        "lon": 10.752559156734778
+      },
+      "address": {
+        "street": "Vulkan",
+        "number": "1",
+        "postcode": "0182",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "riksscenen",
+      "query": "Trondheimsveien 2 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Trondheimsveien%202%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17749:2",
+      "coordinate": {
+        "lat": 59.91871322894722,
+        "lon": 10.761703929151963
+      },
+      "address": {
+        "street": "Trondheimsveien",
+        "number": "2",
+        "postcode": "0560",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [
+        "schous_bryggeri"
+      ],
+      "overlapDecision": "intentional_shared_address_anchor_with_distinct_institution_function"
+    }
+  ],
+  "overlapAudit": {
+    "riksscenen": {
+      "status": "intentional_co_location",
+      "sharedCanonicalId": "schous_bryggeri",
+      "rationale": "Begge ligger i Schous Kulturbryggeri og deler registrert baseadresse, men Riksscenen har egne saler og en selvstendig nasjonal scenekunstfunksjon."
+    }
+  },
+  "validation": {
+    "geonorgeExactAddressLookup": "pass",
+    "overlapAudit": "pass",
+    "placesIndexBuild": "pass",
+    "placesChecks": "pass",
+    "categoryAudit": "pass"
+  },
+  "validatedAt": "2026-07-21T10:19:10.257Z"
+}
