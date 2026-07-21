@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "revolver_oslo",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91699988365845,
+    "lon": 10.749742822662785,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Batch 131 address-first: Revolvers egen nettside oppgir Møllergata 32, mens Brønnøysundregistrenes nåværende beliggenhetsadresse for REVOLVER og Revolvers nåværende TicketCo-profil presiserer Møllergata 32B. Geonorge ble derfor søkt strukturert på Møllergata 32 i kommune 0301, og batchen krevde nøyaktig ett offisielt treff med bokstav B. Treffet geonorge-adresser-v1:0301:14943:32B brukes som display-marker for det nåværende venue-lokalet; den gamle manuelt plasserte legacy-koordinaten er erstattet."
+  },
+  "identity": {
+    "currentName": "Revolver",
+    "resolvedIdentity": "Revolver – nåværende rock-/indie-/klubbscene i Møllergata 32B",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "nåværende venue-identitet",
+    "offentlig beliggenhetsadresse",
+    "ett eksakt Geonorge-adresseobjekt"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Revolver Oslo – kontakt/info",
+      "sourceUrl": "https://www.revolveroslo.no/",
+      "sourceObjectId": "revolver-official:mollergata-32",
+      "sourceQuality": "official_venue_identity",
+      "finding": "Revolvers egen nettside oppgir Møllergata 32, 0179 Oslo og bekrefter den nåværende venue-identiteten.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter venue og hovedadresse, men utelater bokstavleddet som offentlig virksomhetsregister presiserer."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – REVOLVER underenhet",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/underenheter/992100311",
+      "sourceObjectId": "brreg-underenhet:992100311",
+      "sourceQuality": "official_government_location_registry",
+      "finding": "Brønnøysundregistrene oppgir beliggenhetsadresse Møllergata 32B, 0179 Oslo, kommune 0301.",
+      "canVerifyCoordinate": false,
+      "reason": "Presiserer bokstavleddet B som brukes til å velge riktig offisielt matrikkeladresseobjekt."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=M%C3%B8llergata&nummer=32&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "sourceQuality": "official_structured_exact_address",
+      "finding": "Strukturert søk ga nøyaktig ett Møllergata 32B-treff i Oslo: 59.91699988365845, 10.749742822662785.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 131 address-first: Revolvers egen nettside oppgir Møllergata 32, mens Brønnøysundregistrenes nåværende beliggenhetsadresse for REVOLVER og Revolvers nåværende TicketCo-profil presiserer Møllergata 32B. Geonorge ble derfor søkt strukturert på Møllergata 32 i kommune 0301, og batchen krevde nøyaktig ett offisielt treff med bokstav B. Treffet geonorge-adresser-v1:0301:14943:32B brukes som display-marker for det nåværende venue-lokalet; den gamle manuelt plasserte legacy-koordinaten er erstattet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "address": {
+        "street": "Møllergata",
+        "number": "32B",
+        "postcode": "0179",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.91699988365845,
+      "lon": 10.749742822662785,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:32B",
+      "lat": 59.91699988365845,
+      "lon": 10.749742822662785,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Revolver er oppgradert til verified med Møllergata 32B address-first."
+  },
+  "notes": [
+    "Batch 131 address-first: Revolvers egen nettside oppgir Møllergata 32, mens Brønnøysundregistrenes nåværende beliggenhetsadresse for REVOLVER og Revolvers nåværende TicketCo-profil presiserer Møllergata 32B. Geonorge ble derfor søkt strukturert på Møllergata 32 i kommune 0301, og batchen krevde nøyaktig ett offisielt treff med bokstav B. Treffet geonorge-adresser-v1:0301:14943:32B brukes som display-marker for det nåværende venue-lokalet; den gamle manuelt plasserte legacy-koordinaten er erstattet."
+  ]
+}
