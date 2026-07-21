@@ -15,11 +15,10 @@
     ],
     "routeId": "ljanselva_grontdrag",
     "sourceHint": "Koordinat satt ved Nøklevanns sørvestlige utløpsnære område mot Ljanselvas videre løp.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
-    "coordPrecisionM": 70,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "noklevann_ljanselva_start_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Ved sørvestsiden av Nøklevann ligger dette startpunktet for Ljanselva-ruta. Her ser du hvordan et stort vannrom i Østmarka går over i et mer samlet elveløp videre ned i vassdraget. Stedet gjør det lett å lese hele systemet fra kildepreg og vannflate til bekk- og elvestrekninger lenger sør. Når du står ved vannkanten, kan du følge retningen ut av innsjøen som første etappe i det sammenhengende grøntdraget.",
     "underbadge_ids": [
       "innsjo",
@@ -29,13 +28,15 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "coordNote": "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert."
   },
   {
     "id": "skraperudtjern",
     "name": "Skraperudtjern",
-    "lat": 59.8728,
-    "lon": 10.8643,
+    "lat": 59.869215693088535,
+    "lon": 10.851491730900063,
     "r": 130,
     "category": "natur",
     "desc": "Skogsnært tjern i Ljanselva-vassdraget med våtmarkspreg.",
@@ -47,11 +48,10 @@
     ],
     "routeId": "ljanselva_grontdrag",
     "sourceHint": "Koordinat lagt ved Skraperudtjern i Østmarka-korridoren, kjent del av Ljanselva-systemet.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
-    "coordPrecisionM": 70,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "pond_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 23761672 – Skraperudtjern",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Skraperudtjern markerer et roligere vannpunkt i Ljanselva-systemet mellom skog og våtmarkspreg. Dette stedet viser tjernet som mellomledd der vann, kantsoner og videre avrenning henger sammen med elveløpet nedover daldraget. Langs vannkanten og stiene rundt blir det tydelig hvordan ferdsel følger samme grøntkorridor som vannet. Punktet skiller seg fra Nøklevann ved å være et mindre, mer lukket tjernrom i samme vassdrag.",
     "underbadge_ids": [
       "dam_og_tjern",
@@ -60,7 +60,15 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:23761672",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-way:23761672",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/23761672",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor en forhåndsdefinert lokal scope-boks og med riktig objekttype natural/water; ikke nearest/first-hit. Representasjonspunktet er beregnet fra selve kildegeometrien."
   },
   {
     "id": "ljanselva_skullerud",
@@ -78,11 +86,10 @@
     ],
     "routeId": "ljanselva_grontdrag",
     "sourceHint": "Koordinat satt på Ljanselvas løp ved Skullerud basert på turkart og vassdragskart.",
-    "coordType": "route_midpoint",
-    "coordStatus": "nearby_reference",
-    "coordSource": "OpenStreetMap nearby reference",
-    "coordPrecisionM": 180,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "ljanselva_skullerud_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Ved Skullerud går Ljanselva som et elvestrekk gjennom skog og åpne friområder. Her blir overgangen tydelig fra markapreget terreng til grøntdrag nærmere boligområder. Følger du stiene i området, kan du lese hvordan vannløpet binder sammen ferdsel, naturkorridor og bynær bruk. Dette punktet viser den midtre delen av systemet før elva går videre mot mer utbygd bebyggelse.",
     "underbadge_ids": [
       "elv",
@@ -92,7 +99,9 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
   },
   {
     "id": "ljanselva_hauketo",
@@ -110,11 +119,10 @@
     ],
     "routeId": "ljanselva_grontdrag",
     "sourceHint": "Koordinat satt ved Hauketo nær registrert elvekorridor for Ljanselva.",
-    "coordType": "route_midpoint",
-    "coordStatus": "nearby_reference",
-    "coordSource": "OpenStreetMap nearby reference",
-    "coordPrecisionM": 180,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "ljanselva_hauketo_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "I Hauketo-området leses Ljanselva som et bynært vassdrag med tydelig kantvegetasjon. Dette punktet viser hvordan elveløpet fortsetter i et daldrag der boligstruktur og infrastruktur ligger tett på grøntkorridoren. På stedet ser du kontrasten mellom vannets sammenhengende løp og et mer oppstykket bylandskap rundt. Det gjør Hauketo til et nøkkelpunkt for å forstå Ljanselva i den utbygde delen av ruta.",
     "underbadge_ids": [
       "elv",
@@ -123,7 +131,9 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
   },
   {
     "id": "ljanselva_ljan",
@@ -141,11 +151,10 @@
     ],
     "routeId": "ljanselva_grontdrag",
     "sourceHint": "Koordinat lagt ved Ljan i nedre elveløp, før utløpsnære partier.",
-    "coordType": "route_midpoint",
-    "coordStatus": "nearby_reference",
-    "coordSource": "OpenStreetMap nearby reference",
-    "coordPrecisionM": 170,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "ljanselva_ljan_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Ved Ljan ligger Ljanselva i nedre del av løpet, i terreng som gradvis åpner seg mot fjordnære soner. Her ser du overgangen mellom elvedraget, lokalt nærmiljø og landskapet som leder videre sørover. Stedet egner seg for å lese hvordan vannløpet samler tidligere delstrekninger før utløpsområdet. Dette punktet binder daldraget sammen med den siste etappen mot Bunnefjorden.",
     "underbadge_ids": [
       "elv",
@@ -154,7 +163,9 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
   },
   {
     "id": "ljanselva_fiskevollen",
@@ -172,11 +183,10 @@
     ],
     "routeId": "ljanselva_grontdrag",
     "sourceHint": "Koordinat satt ved Fiskevollen tett på Ljanselvas utløpsnære korridor.",
-    "coordType": "route_point",
-    "coordStatus": "needs_detail_check",
-    "coordSource": "manual_map_check",
-    "coordPrecisionM": 140,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "ljanselva_fiskevollen_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Fiskevollen er et elvenært stopp i den nedre, fjordnære delen av Ljanselva-systemet. Her vises overgangen mellom vassdrag, våtmarkspreg og ferdselslinjer i et lokalt landskap tett på vannkontakt. På stedet kan du lese at elva fortsatt har et tydelig løp, men at fjorden nå ligger nær som neste vannrom. Punktet fungerer som mellomledd før selve utløpet i Bunnefjorden.",
     "underbadge_ids": [
       "elv",
@@ -186,7 +196,9 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
   },
   {
     "id": "ljanselva_bunnefjorden",
@@ -204,11 +216,10 @@
     ],
     "routeId": "ljanselva_grontdrag",
     "sourceHint": "Koordinat lagt i Ljanselvas utløpssone mot Bunnefjorden ved Ljansbrukorridoren.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
-    "coordPrecisionM": 80,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "ljanselva_bunnefjorden_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
     "popupDesc": "Her munner Ljanselva ut i Bunnefjorden og avslutter det sammenhengende løpet fra øvre vannpunkter i Østmarka. Dette stedet viser den konkrete overgangen fra elveløp til et større fjordrom med annen skala og vannbevegelse. Når du står i utløpssonen, blir hele vassdragsretningen lesbar bakover gjennom daldraget. Punktet er sluttleddet i Ljanselva-systemet, ikke et generelt fjordstopp.",
     "underbadge_ids": [
       "elv",
@@ -217,6 +228,8 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "route",
+    "coordNote": "Recorden gjelder selve overgangen fra elv til fjord. Et midtpunkt på et nærliggende elve-segment eller et generelt fjordpunkt dokumenterer ikke munningspunktet. Legacy-punktet kan derfor ikke beholdes som verified uten eksplisitt utløpsgeometri."
   }
 ]
