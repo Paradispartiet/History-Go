@@ -1,16 +1,16 @@
 [
   {
     "id": "ibsen_quotes",
-    "name": "Ibsen sitater",
-    "lat": 59.9139,
-    "lon": 10.7383,
-    "r": 100,
+    "name": "Sitatgaten – Ibsen-sitatene",
+    "lat": 59.91445113869476,
+    "lon": 10.733161199867213,
+    "r": 180,
     "category": "litteratur",
-    "year": 2006,
-    "desc": "Sitater av Henrik Ibsen inngravert i Karl Johans gate – et litterært byminne.",
+    "year": 2008,
+    "desc": "Kunstverket Sitatgaten med 69 Henrik Ibsen-sitater nedfelt i fortauene mellom Ibsenmuseet og Grand Café.",
     "image": "bilder/places/ibsen_quotes.JPG",
     "cardImage": "bilder/kort/places/ibsen_quotes_kort.PNG",
-    "popupDesc": "Sitater av Henrik Ibsen inngravert i Karl Johans gate – et litterært byminne.",
+    "popupDesc": "Sitatgaten, også kalt Sitat Ibsen eller Ibsenstien, består av 69 Henrik Ibsen-sitater i metall nedfelt i fortauene langs ruten mellom Ibsenmuseet og Grand Café. History Go modellerer stedet som en distribuert rute med to dokumenterte endepunkter, ikke som ett enkelt monumentpunkt.",
     "emne_ids": [
       "em_lit_drama_scene_og_teatertekst",
       "em_lit_forfatterskap_verk_og_liv"
@@ -54,15 +54,53 @@
     "locatorType": "route",
     "sourceProvider": "manual_research",
     "sourceObjectId": "ibsen-museum:sitatgaten",
-    "geocodeAccuracy": "approximate",
+    "geocodeAccuracy": "semantic_anchor",
     "coordRole": "line_anchor",
-    "coordType": "distributed_quote_route",
-    "coordStatus": "needs_source",
-    "coordSource": "IBSEN Museum & Teater – Sitatgaten",
+    "coordType": "distributed_quote_route_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "IBSEN Museum & Teater + Oslo byleksikon – Sitatgaten; exact route endpoints anchored with Geonorge addresses",
     "coordSourceId": "ibsen-museum:sitatgaten",
     "coordSourceUrl": "https://ibsenmt.no/skoletilbud",
-    "coordVerifiedAt": null,
-    "coordNote": "IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate. Ett enkelt punkt kan ikke verifisere den distribuerte installasjonen. Eksisterende punkt beholdes kun som uverifisert representasjonsanker til rutegeometri eller flere kildebelagte ankere er modellert."
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Batch 139 multi-anchor route model: IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate, og Oslo byleksikon avgrenser kunstverket mellom Ibsenmuseet og Grand Café. De to fysiske endepunktene er forankret med eksakte Geonorge-adresseobjekter (geonorge-adresser-v1:0301:21471:26 og geonorge-adresser-v1:0301:13630:31). Canonical lat/lon er kun et beregnet semantisk midtanker mellom endepunktene for kartvisning; det er ikke et påstått enkelt sitatpunkt, en rettlinjet traségeometri eller en millimeterpresis posisjon for alle 69 installasjonene.",
+    "anchors": [
+      {
+        "id": "ibsen_museum_endpoint",
+        "name": "IBSEN Museum & Teater",
+        "lat": 59.91515703089785,
+        "lon": 10.726845708120743,
+        "r": 60,
+        "type": "route_endpoint",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:21471:26",
+        "address": {
+          "street": "Henrik Ibsens gate",
+          "number": "26",
+          "postcode": "0255",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "note": "Vestlig endepunkt for den dokumenterte Sitatgaten ved Ibsenmuseet."
+      },
+      {
+        "id": "grand_cafe_endpoint",
+        "name": "Grand Café",
+        "lat": 59.913745246491665,
+        "lon": 10.739476691613683,
+        "r": 60,
+        "type": "route_endpoint",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:13630:31",
+        "address": {
+          "street": "Karl Johans gate",
+          "number": "31",
+          "postcode": "0159",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "note": "Østlig endepunkt for den dokumenterte Sitatgaten ved Grand Café."
+      }
+    ]
   },
   {
     "id": "nasjonalbiblioteket",

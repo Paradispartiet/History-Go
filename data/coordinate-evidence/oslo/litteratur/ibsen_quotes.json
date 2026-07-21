@@ -1,30 +1,31 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "ibsen_quotes",
   "placeFile": "data/places/litteratur/oslo/places_litteratur.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9139,
-    "lon": 10.7383,
-    "r": 100,
-    "coordStatus": "needs_source",
-    "coordSource": "IBSEN Museum & Teater – Sitatgaten",
-    "coordType": "distributed_quote_route",
-    "coordNote": "IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate. Ett enkelt punkt kan ikke verifisere den distribuerte installasjonen. Eksisterende punkt beholdes kun som uverifisert representasjonsanker til rutegeometri eller flere kildebelagte ankere er modellert."
+    "lat": 59.91445113869476,
+    "lon": 10.733161199867213,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "IBSEN Museum & Teater + Oslo byleksikon – Sitatgaten; exact route endpoints anchored with Geonorge addresses",
+    "coordType": "distributed_quote_route_anchor",
+    "coordNote": "Batch 139 multi-anchor route model: IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate, og Oslo byleksikon avgrenser kunstverket mellom Ibsenmuseet og Grand Café. De to fysiske endepunktene er forankret med eksakte Geonorge-adresseobjekter (geonorge-adresser-v1:0301:21471:26 og geonorge-adresser-v1:0301:13630:31). Canonical lat/lon er kun et beregnet semantisk midtanker mellom endepunktene for kartvisning; det er ikke et påstått enkelt sitatpunkt, en rettlinjet traségeometri eller en millimeterpresis posisjon for alle 69 installasjonene."
   },
   "identity": {
-    "currentName": "Ibsen sitater",
-    "resolvedIdentity": "Sitatgaten med 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate",
+    "currentName": "Sitatgaten – Ibsen-sitatene",
+    "resolvedIdentity": "Sitatgaten mellom Ibsenmuseet og Grand Café, med 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate",
     "identityStatus": "resolved",
-    "identityProblem": "Den fysiske installasjonen er distribuert langs to gateløp, mens recorden bare har ett punkt.",
+    "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
   "requiredEvidence": [
-    "rutegeometri eller flere kildebelagte sitatankre",
-    "dokumentert start-/sluttpunkt eller representativt fellessegment",
-    "visuell kontroll av hele installasjonens utstrekning"
+    "dokumentert fysisk rutescope",
+    "minst to kildebelagte ruteankre",
+    "ingen påstand om ett enkelt monumentpunkt"
   ],
   "evidence": [
     {
@@ -32,35 +33,138 @@
       "sourceName": "IBSEN Museum & Teater – Sitatgaten",
       "sourceUrl": "https://ibsenmt.no/skoletilbud",
       "sourceObjectId": "ibsen-museum:sitatgaten",
-      "sourceQuality": "official_identity_and_extent_description",
-      "finding": "IBSEN Museum & Teater dokumenterer 69 sitater langs Karl Johans gate og Henrik Ibsens gate, men siden gir ikke en maskinlesbar traségeometri som kan anvendes direkte.",
+      "sourceQuality": "official_museum_route_identity",
+      "finding": "Museet dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate.",
+      "canVerifyCoordinate": true,
+      "reason": "Definerer kunstverket som distribuert rute."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Sitatgaten",
+      "sourceUrl": "https://oslobyleksikon.no/side/Sitatgaten",
+      "sourceObjectId": "oslobyleksikon:sitatgaten",
+      "sourceQuality": "independent_route_scope_crosscheck",
+      "finding": "Avgrenser Sitatgaten som kunstverket mellom Ibsenmuseet og Grand Café.",
       "canVerifyCoordinate": false,
-      "reason": "Sitatgaten består av 69 sitater langs både Karl Johans gate og Henrik Ibsens gate. Ett enkelt hovedpunkt kan ikke verifisere hele den distribuerte installasjonen uten rutegeometri eller flere kildebelagte ankere."
+      "reason": "Kryssjekker rutescope og endepunkter."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge – Ibsenmuseet endpoint",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Henrik+Ibsens+gate&nummer=26&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:26",
+      "sourceQuality": "official_exact_endpoint_anchor",
+      "finding": "Eksakt adresseanker: 59.91515703089785, 10.726845708120743.",
+      "canVerifyCoordinate": true,
+      "reason": "Vestlig ruteendepunkt."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge – Grand Café endpoint",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Karl+Johans+gate&nummer=31&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:31",
+      "sourceQuality": "official_exact_endpoint_anchor",
+      "finding": "Eksakt adresseanker: 59.913745246491665, 10.739476691613683.",
+      "canVerifyCoordinate": true,
+      "reason": "Østlig ruteendepunkt."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:26",
+      "address": {
+        "street": "Henrik Ibsens gate",
+        "number": "26",
+        "postcode": "0255",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.91515703089785,
+      "lon": 10.726845708120743,
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:31",
+      "address": {
+        "street": "Karl Johans gate",
+        "number": "31",
+        "postcode": "0159",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.913745246491665,
+      "lon": 10.739476691613683,
+      "canApplyToPlace": true
+    }
+  ],
   "sourceObjectCandidates": [
     {
       "sourceProvider": "manual_research",
       "sourceObjectId": "ibsen-museum:sitatgaten",
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
+  "geometryCandidates": [
+    {
+      "type": "multi_anchor_route",
+      "anchors": [
+        {
+          "id": "ibsen_museum_endpoint",
+          "name": "IBSEN Museum & Teater",
+          "lat": 59.91515703089785,
+          "lon": 10.726845708120743,
+          "r": 60,
+          "type": "route_endpoint",
+          "sourceProvider": "official_address",
+          "sourceObjectId": "geonorge-adresser-v1:0301:21471:26",
+          "address": {
+            "street": "Henrik Ibsens gate",
+            "number": "26",
+            "postcode": "0255",
+            "city": "Oslo",
+            "country": "NO"
+          },
+          "note": "Vestlig endepunkt for den dokumenterte Sitatgaten ved Ibsenmuseet."
+        },
+        {
+          "id": "grand_cafe_endpoint",
+          "name": "Grand Café",
+          "lat": 59.913745246491665,
+          "lon": 10.739476691613683,
+          "r": 60,
+          "type": "route_endpoint",
+          "sourceProvider": "official_address",
+          "sourceObjectId": "geonorge-adresser-v1:0301:13630:31",
+          "address": {
+            "street": "Karl Johans gate",
+            "number": "31",
+            "postcode": "0159",
+            "city": "Oslo",
+            "country": "NO"
+          },
+          "note": "Østlig endepunkt for den dokumenterte Sitatgaten ved Grand Café."
+        }
+      ],
+      "canApplyToPlace": true
+    }
+  ],
   "coordinateCandidates": [
     {
-      "lat": 59.9139,
-      "lon": 10.7383,
+      "lat": 59.91445113869476,
+      "lon": 10.733161199867213,
       "coordRole": "line_anchor",
-      "canApplyToPlace": false
+      "sourceObjectId": "ibsen-museum:sitatgaten",
+      "canApplyToPlace": true
     }
   ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Sitatgaten består av 69 sitater langs både Karl Johans gate og Henrik Ibsens gate. Ett enkelt hovedpunkt kan ikke verifisere hele den distribuerte installasjonen uten rutegeometri eller flere kildebelagte ankere.",
-    "nextAction": "Modeller rutegeometri eller flere kildebelagte ankere før canonical koordinat kan godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Sitatgaten er modellert som distribuert rute med to eksakte kildebelagte endepunkter og et semantisk kartanker."
   },
   "notes": [
-    "IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate. Ett enkelt punkt kan ikke verifisere den distribuerte installasjonen. Eksisterende punkt beholdes kun som uverifisert representasjonsanker til rutegeometri eller flere kildebelagte ankere er modellert."
+    "Batch 139 multi-anchor route model: IBSEN Museum & Teater dokumenterer 69 Ibsen-sitater langs Karl Johans gate og Henrik Ibsens gate, og Oslo byleksikon avgrenser kunstverket mellom Ibsenmuseet og Grand Café. De to fysiske endepunktene er forankret med eksakte Geonorge-adresseobjekter (geonorge-adresser-v1:0301:21471:26 og geonorge-adresser-v1:0301:13630:31). Canonical lat/lon er kun et beregnet semantisk midtanker mellom endepunktene for kartvisning; det er ikke et påstått enkelt sitatpunkt, en rettlinjet traségeometri eller en millimeterpresis posisjon for alle 69 installasjonene."
   ]
 }
