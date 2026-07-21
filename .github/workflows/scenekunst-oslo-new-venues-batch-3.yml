@@ -1,0 +1,72 @@
+name: Oslo Scenekunst new venues batch 3
+
+on:
+  push:
+    branches:
+      - agent/scenekunst-oslo-new-venues-03
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/scenekunst-oslo-new-venues-03
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build three verified Oslo venue packages
+        run: node tools/add-scenekunst-oslo-venues-batch-3.mjs
+
+      - name: Build tools and regenerate place index
+        run: |
+          npm run build:tools
+          npm run places:index:build
+
+      - name: Validate places and categories
+        run: |
+          bash scripts/check-places.sh
+          npm run audit:categories
+
+      - name: Mark report validated
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'reports/scenekunst-oslo-new-venues-batch-3-2026-07-21.json';
+          const report = JSON.parse(fs.readFileSync(p, 'utf8'));
+          report.status = 'validated';
+          report.validatedAt = new Date().toISOString();
+          report.validation = {
+            geonorgeExactAddressLookup: 'pass',
+            overlapAudit: 'pass',
+            placesIndexBuild: 'pass',
+            placesChecks: 'pass',
+            categoryAudit: 'pass'
+          };
+          fs.writeFileSync(p, JSON.stringify(report, null, 2) + '\n');
+          NODE
+
+      - name: Remove one-shot runner and commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm tools/add-scenekunst-oslo-venues-batch-3.mjs
+          git rm .github/workflows/scenekunst-oslo-new-venues-batch-3.yml
+          git add -A
+          git diff --cached --stat
+          git diff --cached --quiet && { echo "No venue changes produced"; exit 1; }
+          git commit -m "Add third missing Oslo Scenekunst venue batch"
+          git push origin HEAD:agent/scenekunst-oslo-new-venues-03
