@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 365 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
+Oslo-protokollen dekker nå 372 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -452,7 +452,96 @@ Protokollsynk (2026-07-21): stale needs_review-rader ble fjernet bare når både
 
 Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra legacy `verified` til `needs_source`. Det tidligere punktet bygger bare på `manual_map_check` og beholdes foreløpig som displayanker; ingen kildebelagt områdegeometri eller area-ankre er lagt til.
 
-Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full Oslo-only audit er gjennomført mot dagens Coordinate Source Contract v1 og current canonical runtime. Batch 1–5 er revidert på nytt mot address-first-evidens; batch 6–35 bygger på den dokumenterte full-retrokontrollen med tre korrigeringspass; batch 36–120 er kontrollert mot dagens verified-records og dokumenterte source-closure-/objekttypebeslutninger. Tronsmo, Oslo domkirke, Korketrekkeren, Vaterlands historiske elveløp og to stale canonical placeId-er er korrigert/synkronisert i audit-PR-en. Maskinrapport: `reports/oslo-coordinate-retro-compliance-20260721/audit.json`.
+Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
+
+### Retrospektiv current-sett compliance (2026-07-21)
+
+Denne tabellen dekker aktive current `verified*` Oslo-steder som ikke allerede har en unik historisk batchrad i tabellen over. Radene er ikke gitt oppdiktede gamle batchnumre; de dokumenterer den retrospektive revisjonen av dagens canonical sett. Hvert sted er kontrollert mot Coordinate Source Contract v1 og klassifisert mot den låste metodeprioriteten.
+
+| audit | placeId | navn | godkjent status | kildeobjekt | metodegrunnlag |
+|---|---|---|---|---|---|
+| R2026-07-21 | `abelonegarden` | Abelonegården | verified_historical_source | `lokalhistoriewiki:abelonegarden` | `historical_source_first` |
+| R2026-07-21 | `amerikalinjen` | Amerikalinjen | verified | `geonorge-adresser-v1:0301:13444:2` | `address_first_official_address` |
+| R2026-07-21 | `avisen_tiden_radhusgata_10` | Avisen Tiden – Rådhusgata 10 | verified | `geonorge-adresser-v1:0301:16115:10` | `address_first_official_address` |
+| R2026-07-21 | `bislett_stadion` | Bislett Stadion | verified_geometry | `osm-way:115277337` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `bla_skilt_aud_schonemann_vetlandsveien_69d` | Blått skilt: Aud Schønemann | verified | `geonorge-adresser-v1:0301:18274:69D` | `address_first_official_address` |
+| R2026-07-21 | `bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5` | Blått skilt: Christopher Hornsrud | verified | `geonorge-adresser-v1:0301:14777:5` | `address_first_official_address` |
+| R2026-07-21 | `bla_skilt_enerhaugen_samfund_smedgata_34` | Blått skilt: Enerhaugens Samfund | verified | `geonorge-adresser-v1:0301:16675:34` | `address_first_official_address` |
+| R2026-07-21 | `bla_skilt_helverschous_lokke_munkedamsveien_35` | Blått skilt: Helverschous løkke | verified | `geonorge-adresser-v1:0301:14857:35` | `address_first_official_address` |
+| R2026-07-21 | `bla_skilt_stein_mehren_ullevalsveien_60` | Blått skilt: Stein Mehren | verified | `geonorge-adresser-v1:0301:17972:60` | `address_first_official_address` |
+| R2026-07-21 | `bleikoya` | Bleikøya | verified_geometry | `osm-way:4154383` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `blitzhuset` | Blitzhuset | verified | `geonorge-adresser-v1:0301:15670:30C` | `address_first_official_address` |
+| R2026-07-21 | `borsen_oslo` | Oslo Børs | verified | `geonorge-adresser-v1:0301:17577:2` | `address_first_official_address` |
+| R2026-07-21 | `cafe_engebret` | Café Engebret | verified | `geonorge-adresser-v1:0301:10412:1B` | `address_first_official_address` |
+| R2026-07-21 | `centralbanken_kirkegata` | Centralbanken | verified | `geonorge-adresser-v1:0301:13707:18` | `address_first_official_address` |
+| R2026-07-21 | `den_gamle_krigsskolen` | Den gamle Krigsskolen | verified | `geonorge-adresser-v1:0301:17577:10` | `address_first_official_address` |
+| R2026-07-21 | `dfds_bygget` | DFDS-bygget | verified | `geonorge-adresser-v1:0301:13630:1` | `address_first_official_address` |
+| R2026-07-21 | `egertorget` | Egertorget | verified_geometry | `osm-relation:4546219` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `ekebergsletta` | Ekebergsletta | verified_geometry | `osm-relation:15951742` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `flop_museum` | FLOP Museum | verified | `geonorge-adresser-v1:0301:21509:19` | `address_first_official_address` |
+| R2026-07-21 | `frogner_stadion` | Frogner stadion | verified_geometry | `osm-way:4272321` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `furuset_forum` | Furuset Forum | verified_geometry | `osm-way:131269106` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `gamlebyen_sport_og_fritid` | Gamlebyen Sport og Fritid | verified | `geonorge-adresser-v1:0301:16931:4` | `address_first_official_address` |
+| R2026-07-21 | `garmanngarden` | Garmanngården | verified | `geonorge-adresser-v1:0301:16115:7` | `address_first_official_address` |
+| R2026-07-21 | `grev_wedels_plass` | Grev Wedels plass | verified_geometry | `osm-way:33610051` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `hausmania` | Hausmania | verified | `geonorge-adresser-v1:0301:12782:34` | `address_first_official_address` |
+| R2026-07-21 | `heggholmen` | Heggholmen | verified_geometry | `kartverket-ssr:692270` | `official_map_object_type_first` |
+| R2026-07-21 | `holmenkollen_nasjonalanlegg` | Holmenkollen nasjonalanlegg | verified_geometry | `osm-way:81300521` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `holmenkollen_skimuseum` | Skimuseet i Holmenkollen | verified | `geonorge-adresser-v1:0301:13850:5` | `address_first_official_address` |
+| R2026-07-21 | `hotel_du_nord` | Hotel du Nord | verified | `geonorge-adresser-v1:0301:11309:13` | `address_first_official_address` |
+| R2026-07-21 | `jaeger_oslo` | Jaeger | verified | `geonorge-adresser-v1:0301:12356:9` | `address_first_official_address` |
+| R2026-07-21 | `jordal_amfi` | Jordal Amfi | verified_geometry | `osm-way:760875553` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `kafe_grei` | Kafé Grei | verified | `geonorge-adresser-v1:0301:16467:3` | `address_first_official_address` |
+| R2026-07-21 | `kafe_haerverk` | Kafé Hærverk | verified | `geonorge-adresser-v1:0301:12782:34` | `address_first_official_address` |
+| R2026-07-21 | `kirkegata_5` | Kirkegata 5 | verified | `geonorge-adresser-v1:0301:13707:5` | `address_first_official_address` |
+| R2026-07-21 | `kirkeristen_basarene_brannvakten` | Kirkeristen, Basarene og Brannvakten | verified | `geonorge-adresser-v1:0301:11309:27` | `address_first_official_address` |
+| R2026-07-21 | `kontraskjaeret` | Kontraskjæret | verified_geometry | `osm-way:545698008` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `last_train_oslo` | Last Train | verified | `geonorge-adresser-v1:0301:13630:45` | `address_first_official_address` |
+| R2026-07-21 | `lindoya` | Lindøya | verified_geometry | `osm-relation:11816904` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `malmoya` | Malmøya | verified_geometry | `osm-way:35213472` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `manglerudhallen` | Manglerudhallen | verified_geometry | `osm-way:176303011` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `minneparken_gamlebyen` | Minneparken | verified_geometry | `osm-way:111546637` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `mir_grunerlokka_lufthavn` | MIR / Grünerløkka Lufthavn | verified | `geonorge-adresser-v1:0301:17566:69` | `address_first_official_address` |
+| R2026-07-21 | `mustadgarden_kongens_gate_3` | Mustadgården – Kongens gate 3 | verified | `geonorge-adresser-v1:0301:13846:3` | `address_first_official_address` |
+| R2026-07-21 | `myntgatakvartalet` | Myntgatakvartalet | verified | `geonorge-adresser-v1:0301:14919:2` | `address_first_official_address` |
+| R2026-07-21 | `nakholmen` | Nakholmen | verified_geometry | `osm-way:4154397` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `nordisk_bibelmuseum` | Nordisk Bibelmuseum | verified | `geonorge-adresser-v1:0301:15006:4C` | `address_first_official_address` |
+| R2026-07-21 | `norges_bank_bankplassen_2` | Norges Bank – Bankplassen 2 | verified | `geonorge-adresser-v1:0301:10412:2` | `address_first_official_address` |
+| R2026-07-21 | `norges_bank_bankplassen_4` | Norges Bank – Bankplassen 4 | verified | `geonorge-adresser-v1:0301:10412:4` | `address_first_official_address` |
+| R2026-07-21 | `nybrua_vaterlandsparken` | Nybrua | verified_geometry | `osm-way:315066295` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `ormoya` | Ormøya | verified_geometry | `osm-way:4154500` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `oslo_skatehall` | Oslo Skatehall | verified | `geonorge-adresser-v1:0301:16960:28` | `address_first_official_address` |
+| R2026-07-21 | `ostbanestasjonen` | Østbanestasjonen | verified_geometry | `osm-way:131419741` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `palehaven_paleet` | Paléhaven og Paleet | verified_historical_source | `oppdag-kvadraturen:palehaven-og-paleet` | `historical_source_first` |
+| R2026-07-21 | `rambergoya` | Rambergøya | verified_geometry | `kartverket-ssr:489838` | `official_map_object_type_first` |
+| R2026-07-21 | `rock_in_oslo` | Rock In | verified | `geonorge-adresser-v1:0301:12446:14` | `address_first_official_address` |
+| R2026-07-21 | `schiollgarden_prinsens_gate_26` | Schiøllgården | verified | `geonorge-adresser-v1:0301:15742:26` | `address_first_official_address` |
+| R2026-07-21 | `sjofartsbygningen` | Sjøfartsbygningen | verified | `geonorge-adresser-v1:0301:13846:6` | `address_first_official_address` |
+| R2026-07-21 | `skulptursonen_ovre_slottsgate` | Skulptursonen i Øvre Slottsgate | verified_geometry | `oppdag-kvadraturen:skulptursonen-i-ovre-slottsgate` | `documented_semantic_geometry` |
+| R2026-07-21 | `stattholdergarden` | Stattholdergården | verified | `geonorge-adresser-v1:0301:16115:11` | `address_first_official_address` |
+| R2026-07-21 | `steen_og_strom` | Steen & Strøm | verified | `geonorge-adresser-v1:0301:13846:23` | `address_first_official_address` |
+| R2026-07-21 | `stortorget` | Stortorget | verified_geometry | `osm-way:179095465` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `sub_scene` | Sub Scene | verified | `geonorge-adresser-v1:0301:15980:17` | `address_first_official_address` |
+| R2026-07-21 | `the_villa` | The Villa | verified | `geonorge-adresser-v1:0301:14943:23` | `address_first_official_address` |
+| R2026-07-21 | `tollboden_oslo` | Tollboden | verified_geometry | `osm-way:112195502` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `tollpakkhuset` | Tollpakkhuset | verified_geometry | `osm-way:112195503` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `torggata_blad` | Torggata Blad | verified | `geonorge-adresser-v1:0301:12782:19A` | `address_first_official_address` |
+| R2026-07-21 | `treschowgarden` | Treschowgården | verified | `geonorge-adresser-v1:0301:11926:2` | `address_first_official_address` |
+| R2026-07-21 | `ulvoya` | Ulvøya | verified_geometry | `osm-way:4154565` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `valle_hovin_stadion` | Valle Hovin stadion | verified_geometry | `osm-way:1528387076` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `vallhall_arena` | Vallhall Arena | verified_geometry | `osm-way:50634101` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `vaterland_bar_scene` | Vaterland Bar & Scene | verified | `geonorge-adresser-v1:0301:10923:9` | `address_first_official_address` |
+| R2026-07-21 | `vaterlandsparken` | Vaterlandsparken | verified_geometry | `osm-way:4334996` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `waisenhuset_kongens_gate` | Waisenhuset | verified | `geonorge-adresser-v1:0301:13846:1` | `address_first_official_address` |
+| R2026-07-21 | `wessels_plass` | Wessels plass | verified_geometry | `osm-way:942267111` | `object_type_first_exact_osm_geometry` |
+| R2026-07-21 | `xray_ungdomskulturhus` | X-Ray Ungdomskulturhus | verified | `geonorge-adresser-v1:0301:14622:3` | `address_first_official_address` |
+
+Metodegrunnlagene betyr:
+- `address_first_official_address`: konkret norsk adresse er verifisert med Geonorge og stabil adresse-ID.
+- `object_type_first_exact_osm_geometry`: eksakt navngitt fysisk objekt/geometri er valgt etter objekttype og dokumentert scope, ikke nearest/first-hit.
+- `official_map_object_type_first`: offisielt kartobjekt fra Kartverket brukes for ikke-adressebasert areal/geometri.
+- `historical_source_first`: historisk sted bruker stabil historisk forskningskilde og historisk anker.
+- `documented_semantic_geometry`: dokumentert linje-/områdeutstrekning bruker kildebelagt semantisk geometri.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 

@@ -33,3 +33,17 @@ _Ingen._
 - **Batch 36-120:** dagens canonical verified-rader validert mot Contract v1 og dokumenterte source-closure-/objekttypebeslutninger.
 
 Maskinrapport: `reports/oslo-coordinate-retro-compliance-20260721/audit.json`.
+
+## Endelig current-sett compliance
+
+- Aktive current `verified*` Oslo-steder: **372**
+- Historiske batchrader: **297**
+- Retrospektive current-sett-rader: **75**
+- Inventardekning: **372/372**
+- Contract v1-feil: **0**
+- Metode-review: **0**
+- Klassifiseringsdrift: **0**
+- Duplikater: **0**
+- Åpne funn: **0**
+
+Autoritativ sluttfil: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
