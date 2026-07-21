@@ -1,0 +1,72 @@
+{
+  "placeId": "bogstadvannet",
+  "placeFile": "data/places/natur/oslo/places_natur/bogstadvannet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9717523,
+    "lon": 10.6179088,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "area_center",
+    "coordNote": "Områdeanker på den eksakt navngitte OSM-vanngeometrien Bogstadvannet, way 4351126. Punktet er Nominatims representasjonspunkt for vannobjektet og brukes som display-/områdeanker; det er ikke et proxyanker for Bogstad gård eller en bestemt badeplass."
+  },
+  "identity": {
+    "currentName": "Bogstadvannet",
+    "resolvedIdentity": "Bogstadvannet as the named lake, distinct from Bogstad gård and individual bathing facilities",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "exact named source object with matching physical object type",
+    "independent identity/context source where applicable"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap exact named water geometry",
+      "sourceUrl": "https://www.openstreetmap.org/way/4351126",
+      "sourceObjectId": "osm-way:4351126",
+      "sourceQuality": "exact_named_geometry_plus_authoritative_place_context",
+      "finding": "Exact named OSM way 4351126 is tagged natural=water and identifies Bogstadvannet; the selected point is the geometry representation anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Områdeanker på den eksakt navngitte OSM-vanngeometrien Bogstadvannet, way 4351126. Punktet er Nominatims representasjonspunkt for vannobjektet og brukes som display-/områdeanker; det er ikke et proxyanker for Bogstad gård eller en bestemt badeplass."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4351126",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4351126",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9717523,
+      "lon": 10.6179088,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keep the verified area anchor for the lake and keep Bogstad gård as a separate canonical place."
+  },
+  "notes": [
+    "Områdeanker på den eksakt navngitte OSM-vanngeometrien Bogstadvannet, way 4351126. Punktet er Nominatims representasjonspunkt for vannobjektet og brukes som display-/områdeanker; det er ikke et proxyanker for Bogstad gård eller en bestemt badeplass."
+  ]
+}

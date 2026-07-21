@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 274 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 114 kontrollerer de fire gjenværende salamanderdam-recordene etter identitet-, publiserings- og kommuneprinsippet. Pedagogiske nærankre for private eller sårbare lokaliteter promoteres ikke til verified fysiske dammer, og Tjernsmyr kan ikke canonical-godkjennes i Oslo-køen fordi recorden selv plasserer lokaliteten i Bærum.
+Oslo-tabellen inneholder nå 279 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 115 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -280,6 +280,11 @@ Batch 93 (2026-07-21) fullfører den utsatte kontrollen av de åtte Alnaelva-rut
 | 94 | `kjaerlighetskarusellen` | Kjærlighetskarusellen | verified_geometry | `osm-node:1346356285` |
 | 94 | `villa_stenersen` | Villa Stenersen | verified | `geonorge-adresser-v1:0301:17802:10C` |
 | 94 | `st_hallvard_kirke_kloster` | St. Hallvard kirke og kloster | verified | `geonorge-adresser-v1:0301:11553:4` |
+| 115 | `bogstadvannet` | Bogstadvannet | verified_geometry | `osm-way:4351126` |
+| 115 | `holmenkollen_kapell` | Holmenkollen kapell | verified | `geonorge-adresser-v1:0301:13070:142` |
+| 115 | `kollentrollet` | Kollentrollet | verified_geometry | `osm-node:1768125117` |
+| 115 | `vettakollen` | Vettakollen | verified_geometry | `osm-node:301173327` |
+| 115 | `kragstotten` | Kragstøtten | verified_geometry | `osm-node:484968664` |
 
 Batch 94 (2026-07-21) følger top-level manifestrekkefølgen videre inn i `places_historie_added_batch_01.json`. De seks første recordene i filen var allerede kontrollert i tidligere batcher; de fire neste og siste recordene lukkes her. `peststotten_krist_kirkegard` beholder et eksplisitt publisert monumentpunkt med separat identitets- og plasseringskryssjekk mot Oslo byleksikon, `kjaerlighetskarusellen` bruker det eksakt navngitte OSM-punktet uten Wikidata som koordinatkilde, og `villa_stenersen` samt `st_hallvard_kirke_kloster` bruker offisielle Geonorge-adressepunkter etter address-first-policyen.
 
@@ -338,6 +343,8 @@ Batch 112 (2026-07-21) etterfører den allerede validerte Ljanselva-rutekontroll
 
 Batch 113 (2026-07-21) reviderer Østensjøvannet-kildens fem legacy `OpenStreetMap/Mapcarta`- og `nearby_reference`-punkter. `ostensjovannet_nord`, `ostensjovannet_sivbelte` og `ostensjovannet_sor` er lokale narrative delsoner og får ikke låne hele Naturbase-reservatpolygonet som falsk punktpresisjon. `ostensjovannet_fugletarn` og `bogerudmyra` kan bare verifiseres ved ett unikt eksakt navngitt fysisk objekt med riktig semantisk objekttype i forhåndsdefinert lokal scope; ingen nearest/first-hit-logikk brukes.
 Batch 114 (2026-07-21) avslutter `places_oslo_natur_salamanderdammer.json` uten å gjøre pedagogiske proxy-punkter til falskt presise natursteder. `bygdoy_kongsgard_salamanderdam` og `blindern_forskningsparken_salamanderdam` har dokumenterte lokalitetsidentiteter, men dagens koordinater er uttrykkelig brede offentlige nærankre; `bantjern_salamanderlokalitet` viser bevisst til et offentlig nærområde i stedet for den private damlokaliteten; og `tjernsmyr_salamanderlokalitet` ligger i Bærum og må flyttes ut av Oslo-kilden før eventuell geometri kan godkjennes. Alle fire avsluttes derfor som needs_review / needs_source i denne batchen.
+
+Batch 115 (2026-07-21) produserer fem fysisk selvstendige Holmenkollen-steder fra den lukkede VisitOSLO-auditen. `holmenkollen_kapell` bruker det entydige Geonorge-adressepunktet for Holmenkollveien 142. `bogstadvannet` bruker et områdeanker på eksakt navngitt vanngeometri, mens `kollentrollet`, `vettakollen` og `kragstotten` bruker eksakte navngitte OSM-punktobjekter med riktig objekttype. Vettakollen-stasjon/-bydel og Kragstøtten-guidepost/-utsiktspunkt er eksplisitt avvist som navnelike feilobjekter. Oslo Golfklubb Bogstad holdes utenfor batchen til representasjonsrollen mellom klubbhusadresse og golfbanegeometri er eksplisitt avgjort.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -527,7 +534,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 115.
+- Neste nye Oslo-kontroll er batch 116.
 - `places_oslo_natur_salamanderdammer.json` er nå fullt kontrollert i manifestrekkefølge. De eksplisitt splittede Oslo-naturmanifestene er dermed gjennomgått; før batch 115 starter skal resterende unsplit naturkilder auditeres mot `reports/places-unsplit-manifest-audit.json` og allerede kontrollerte placeId-er hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest eller en biologisk lokalitetskilde er bare kø-/identitetskilde, ikke automatisk koordinatbevis.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
