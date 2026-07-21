@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T07:41:41.276Z
+Generert: 2026-07-21T08:45:14.761Z
 
 ## Oppsummering
 - Aktive filer validert: **591**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **432**
-- Coordinate review candidates: **713** signaler fordelt på **574** steder
+- Varsler: **446**
+- Coordinate review candidates: **727** signaler fordelt på **588** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -628,6 +628,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie.json#villa_grande: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#mollergata_19: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#sagene_skole: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/oslo_domkirke.json#oslo_domkirke: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/gamle_trikkestallen.json#gamle_trikkestallen: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/slottet.json#slottet: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/sofienberg_kirke.json#sofienberg_kirke: coordStatus=verified uten coordPrecisionM
@@ -832,6 +833,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/litteratur/oslo/places_litteratur.json#grotta: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#nationaltheatret: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#litteraturhuset: coordStatus=verified uten coordPrecisionM
+- data/places/litteratur/oslo/places_litteratur.json#tronsmo_bokhandel: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#eldorado_bokhandel: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#gamle_deichman: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#deichman_grunerlokka: coordStatus=verified uten coordPrecisionM
@@ -915,15 +917,28 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/sport/europa/norway/places_motorsport_ostlandet.json#finnskogbanen: stort område uten coordNote/coordStatus
 - data/places/sport/europa/england/footballgrounds_london.json#wembley_stadium_london: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/england/footballgrounds_london.json#stamford_bridge_london: lav koordinatpresisjon (<4 desimaler)
+- data/places/subkultur/oslo/places_subkultur.json#hausmania: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#torggata_blad: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#bla: lav koordinatpresisjon (<4 desimaler)
 - data/places/subkultur/oslo/places_subkultur.json#hausmannsgate_aksen: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#schweigaards_gate_lodalen: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#schweigaards_gate_lodalen: stort område uten coordNote/coordStatus
 - data/places/subkultur/oslo/places_subkultur.json#kuba_akselpassasjer: lineært sted uten anchors
+- data/places/subkultur/oslo/places_subkultur.json#blitzhuset: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#kafe_haerverk: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#brenneriveien_ingens_gate: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#brenneriveien_ingens_gate: lav koordinatpresisjon (<4 desimaler)
+- data/places/subkultur/oslo/places_subkultur.json#gamlebyen_sport_og_fritid: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#oslo_skatehall: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#xray_ungdomskulturhus: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#vaterland_bar_scene: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#helvete_neseblod_records: lineært sted uten anchors
+- data/places/subkultur/oslo/places_subkultur.json#last_train_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#rock_in_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#the_villa: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#jaeger_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#sub_scene: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#mir_grunerlokka_lufthavn: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetets_gamle_kjemi: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetet_i_oslo_blindern: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/oslo/places_vitenskap.json#rikshospitalet: lav koordinatpresisjon (<4 desimaler)
@@ -1015,7 +1030,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json#nordre_skoyen_hovedgard: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json#lokomotivverkstedet: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json#tveten_gard: coordStatus=verified uten coordPrecisionM
-- data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11.json#minneparken_gamlebyen: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json#frysja_33_brekke_kraftstasjon: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json#steen_og_strom: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json#centralbanken_kirkegata: coordStatus=verified uten coordPrecisionM
@@ -1049,13 +1063,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 727 signaler fordelt på 588 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 129 |
+| coordStatus=verified uten coordPrecisionM | 143 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 94 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 84 |
@@ -1065,7 +1079,7 @@ Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (129)
+### coordStatus=verified uten coordPrecisionM (143)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1080,6 +1094,7 @@ Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandi
 | villa_grande | Villa Grande | historie | data/places/historie/oslo/places_historie.json | 59.89911019330011 | 10.678158888428362 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | mollergata_19 | Møllergata 19 | historie | data/places/historie/oslo/places_historie.json | 59.91528413168428 | 10.747869191554551 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sagene_skole | Sagene skole | historie | data/places/historie/oslo/places_historie.json | 59.93078969319966 | 10.75928429201007 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oslo_domkirke | Oslo domkirke | by | data/places/by/oslo/oslo_domkirke.json | 59.91266533589023 | 10.746431229351575 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_trikkestallen | Gamle trikkestallen på Sagene | by | data/places/by/oslo/gamle_trikkestallen.json | 59.93283549643305 | 10.768161829321377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | slottet | Det kongelige slott | politikk | data/places/politikk/oslo/slottet.json | 59.917063045432855 | 10.727724636631736 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sofienberg_kirke | Sofienberg kirke | by | data/places/by/oslo/sofienberg_kirke.json | 59.922239531059745 | 10.765987821107696 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1096,6 +1111,7 @@ Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandi
 | grotta | Grotten | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.918721365539604 | 10.731257963441367 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nationaltheatret | Nationaltheatret | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91456789100917 | 10.733617256734934 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | litteraturhuset | Litteraturhuset | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.92027454485075 | 10.728566026476651 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| tronsmo_bokhandel | Tronsmo Bokhandel | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.916504851005804 | 10.738621210337177 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | eldorado_bokhandel | Eldorado Bokhandel | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91394802646695 | 10.747911617247832 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_deichman | Gamle Deichman | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91655515223004 | 10.74636730347388 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | deichman_grunerlokka | Deichman Grünerløkka | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.920789784433865 | 10.760221823170998 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1137,7 +1153,20 @@ Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandi
 | grand_hotel | Grand Hotel | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.913745246491665 | 10.739476691613683 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | chat_noir | Chat Noir | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91360791283421 | 10.732172099794877 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | edderkoppen_scene | Edderkoppen Scene | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91815941203321 | 10.739832936543767 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| hausmania | Hausmania | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.919148209457326 | 10.751977548509613 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | torggata_blad | Torggata Blad | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91657334372696 | 10.75561428991178 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| blitzhuset | Blitzhuset | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91840193086 | 10.73778846737114 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| kafe_haerverk | Kafé Hærverk | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.919148209457326 | 10.751977548509613 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| gamlebyen_sport_og_fritid | Gamlebyen Sport og Fritid | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.905411273181684 | 10.768437847106954 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oslo_skatehall | Oslo Skatehall | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.94192173205158 | 10.752505988709485 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| xray_ungdomskulturhus | X-Ray Ungdomskulturhus | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.92065765555904 | 10.751597362221323 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| vaterland_bar_scene | Vaterland Bar & Scene | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91391103248318 | 10.756101476822108 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| last_train_oslo | Last Train | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91457300863339 | 10.73664031059204 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| rock_in_oslo | Rock In | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91312888495517 | 10.760871395801564 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| the_villa | The Villa | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.91563512459411 | 10.74856019808857 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| jaeger_oslo | Jaeger | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.913899495519225 | 10.743437565163234 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| sub_scene | Sub Scene | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.912177321780405 | 10.736461501289167 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| mir_grunerlokka_lufthavn | MIR / Grünerløkka Lufthavn | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.92154264383429 | 10.761013090288696 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.917023156193885 | 10.73472914137377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | grannar_redaksjon_etne | Grannar-redaksjonen i Etne | media | data/places/media/vestland/etne/grannar_redaksjon_etne.json | 59.66414439895677 | 5.940649457868514 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_etne | Psykisk helse og rus – Etne | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json | 59.66534125070043 | 5.943034081601908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1169,7 +1198,6 @@ Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandi
 | nordre_skoyen_hovedgard | Nordre Skøyen hovedgård | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.90761519680599 | 10.827573908322991 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | lokomotivverkstedet | Lokomotivverkstedet | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.90431860322039 | 10.763516120997933 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | tveten_gard | Tveten gård | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json | 59.913061375377836 | 10.836900380109173 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| minneparken_gamlebyen | Minneparken | historie | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11.json | 59.90616 | 10.76884 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frysja_33_brekke_kraftstasjon | Frysja 33 – Brekke kraftstasjon | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json | 59.96652761473437 | 10.776657553367157 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | steen_og_strom | Steen & Strøm | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json | 59.911562042330516 | 10.743066380237748 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | centralbanken_kirkegata | Centralbanken | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json | 59.910183744652514 | 10.743922294639356 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
