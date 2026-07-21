@@ -1,20 +1,37 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import { copyFile, mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { auditQuizContent } from "../scripts/audit-quiz-content-quality.mjs";
 
-async function withFixture(questions, run) {
+async function withTempRoot(run) {
   const root = await mkdtemp(path.join(os.tmpdir(), "hg-quiz-audit-"));
   try {
-    const quizDir = path.join(root, "by");
-    await mkdir(quizDir, { recursive: true });
-    await writeFile(path.join(quizDir, "fixture_sets.json"), JSON.stringify({ sets: [{ questions }] }), "utf8");
     await run(root);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+}
+
+async function withFixture(questions, run) {
+  await withTempRoot(async (root) => {
+    const quizDir = path.join(root, "by");
+    await mkdir(quizDir, { recursive: true });
+    await writeFile(path.join(quizDir, "fixture_sets.json"), JSON.stringify({ sets: [{ questions }] }), "utf8");
+    await run(root);
+  });
+}
+
+async function withRepoQuizFiles(relativePaths, run) {
+  await withTempRoot(async (root) => {
+    for (const relativePath of relativePaths) {
+      const destination = path.join(root, relativePath);
+      await mkdir(path.dirname(destination), { recursive: true });
+      await copyFile(path.resolve(relativePath), destination);
+    }
+    await run(root);
+  });
 }
 
 function question(id, text, questionType = "fact", options = ["Riktig", "Feil A", "Feil B"]) {
@@ -78,5 +95,23 @@ test("flags a correct answer that is much longer than the distractors", async ()
   ], async (rootDir) => {
     const report = await auditQuizContent({ rootDir });
     assert.equal(report.summary.optionLengthSignals, 1);
+  });
+});
+
+test("keeps repaired Deichman and Ullevaal quizzes within the canonical balance", async () => {
+  await withRepoQuizFiles([
+    "data/quiz/by/deichman_bjorvika_sets.json",
+    "data/quiz/sport/ullevaal_stadion_sets.json"
+  ], async (rootDir) => {
+    const report = await auditQuizContent({ rootDir });
+    assert.equal(report.summary.questionsScanned, 30);
+    assert.equal(report.summary.templateViolations, 0);
+    assert.equal(report.summary.balanceViolations, 0);
+    assert.equal(report.summary.repeatedOpenings, 0);
+    assert.equal(report.summary.optionLengthSignals, 0);
+
+    const byTarget = Object.fromEntries(report.groups.map((group) => [group.target, group.ratios]));
+    assert.deepEqual(byTarget.deichman_bjorvika, { fact: 0.7, context: 0.3, theory: 0 });
+    assert.deepEqual(byTarget.ullevaal_stadion, { fact: 0.7, context: 0.3, theory: 0 });
   });
 });
