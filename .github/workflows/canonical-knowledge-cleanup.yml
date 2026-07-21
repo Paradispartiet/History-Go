@@ -6,6 +6,7 @@ on:
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/apply-canonical-knowledge-cleanup.py'
       - 'scripts/apply-canonical-review-queue.py'
+      - 'scripts/apply-claim-id-separation.py'
       - '.github/workflows/canonical-knowledge-cleanup.yml'
 
 permissions:
@@ -29,6 +30,7 @@ jobs:
         run: |
           python scripts/apply-canonical-knowledge-cleanup.py
           python scripts/apply-canonical-review-queue.py
+          python scripts/apply-claim-id-separation.py
       - name: Build canonical data tooling
         run: npm run build:scripts
       - name: Backfill canonical IDs and registries
@@ -46,13 +48,13 @@ jobs:
       - name: Verify Knowledge contract
         run: node dist/scripts/knowledge-canonical-data.mjs --audit-only 2>&1 | tee reports/canonical-contract-check.log
       - name: Run Knowledge tests
-        run: npm run test:knowledge-core
+        run: npm run test:knowledge-core 2>&1 | tee reports/canonical-knowledge-tests.log
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Run Knowledge browser E2E
-        run: npm run test:knowledge-browser
+        run: npm run test:knowledge-browser 2>&1 | tee reports/canonical-browser-tests.log
       - name: Run Places check
-        run: bash scripts/check-places.sh
+        run: bash scripts/check-places.sh 2>&1 | tee reports/canonical-places-check.log
       - name: Upload cleanup reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -70,7 +72,7 @@ jobs:
           git config user.name 'History GO CI'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
-          git reset -- scripts/apply-canonical-knowledge-cleanup.py scripts/apply-canonical-review-queue.py .github/workflows/canonical-knowledge-cleanup.yml
+          git reset -- scripts/apply-canonical-knowledge-cleanup.py scripts/apply-canonical-review-queue.py scripts/apply-claim-id-separation.py .github/workflows/canonical-knowledge-cleanup.yml
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
