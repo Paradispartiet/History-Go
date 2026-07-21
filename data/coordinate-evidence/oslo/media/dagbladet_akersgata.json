@@ -1,53 +1,114 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "dagbladet_akersgata",
   "placeFile": "data/places/media/oslo/places_oslo_media.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_identity_split",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9143,
-    "lon": 10.7414,
-    "r": 140,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "lat": 59.914542408879896,
+    "lon": 10.74304201409404,
+    "r": 70,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslo byleksikon – Dagbladets Akersgata 49-period 1967–2008; exact physical address point from Geonorge Adresser API v1",
+    "coordType": "historical_press_building_address_anchor",
+    "coordNote": "Batch 135 historical-source + address-first: Recorden representerer eksplisitt Dagbladets formålsbygde avishus mot Akersgata 49 fra 1967 til flyttingen til Havnelageret i 2008, ikke alle Dagbladets adresser siden 1869. Oslo byleksikon og Lokalhistoriewiki dokumenterer denne perioden, og Dagbladets egen 2008-omtale dokumenterer flyttingen fra Akersgata 49 til Langkaia 1. Ett eksakt Geonorge-adresseobjekt (geonorge-adresser-v1:0301:10069:49) brukes som presist fysisk historical-anchor for den fortsatt eksisterende adressen. Den eldre Akersgata 36-perioden beholdes som historisk bakgrunn, men inngår ikke i canonical kartpunktet."
   },
   "identity": {
-    "currentName": "Dagbladet i Akersgata",
-    "resolvedIdentity": "Dagbladets historiske Akersgata-forankring i nr. 36 og 47/49 fram til flyttingen i 2008",
-    "identityStatus": "conflict",
-    "identityProblem": "Recorden representerer flere historiske redaksjonsadresser, men har bare ett punkt og ingen kildebelagte flerankre.",
-    "locatorTypeCandidate": "linear_area",
+    "currentName": "Dagbladet – Akersgata 49",
+    "resolvedIdentity": "Dagbladets avishus i Akersgata 49, 1967–2008",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
     "requiresSplit": false,
-    "splitReason": "Recorden representerer flere historiske redaksjonsadresser, men har bare ett punkt og ingen kildebelagte flerankre."
+    "splitReason": ""
   },
   "requiredEvidence": [
-    "entydig fysisk scope for canonical place",
-    "overlap-audit mot eksisterende canonical bygg",
-    "eventuelle flerankre for historiske adresseforløp"
+    "eksplisitt tidsavgrenset hovedanker",
+    "historisk kilde for Akersgata 49-perioden",
+    "entydig offisielt fysisk adresseobjekt"
   ],
   "evidence": [
     {
       "sourceProvider": "manual_research",
-      "sourceName": "History Go overlap-audit + dokumentert mediehistorie",
-      "sourceUrl": "",
-      "sourceObjectId": "history-go:coordinate-control:dagbladet_akersgata",
-      "sourceQuality": "identity_and_overlap_audit",
-      "finding": "Recorden representerer flere historiske redaksjonsadresser, men har bare ett punkt og ingen kildebelagte flerankre.",
+      "sourceName": "Oslo byleksikon – Dagbladet",
+      "sourceUrl": "https://oslobyleksikon.no/side/Dagbladet",
+      "sourceObjectId": "oslobyleksikon:dagbladet-akersgata49:1967-2008",
+      "sourceQuality": "city_historical_reference_with_period_and_address",
+      "finding": "Dokumenterer Dagbladets Akersgata-forankring og at avisen holdt til i den nye bygningen mot Akersgata 49 fram til flyttingen i 2008.",
+      "canVerifyCoordinate": true,
+      "reason": "Løser den tidligere fleradresse-konflikten ved å avgrense canonical place til 1967–2008-perioden i nr. 49."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Dagbladet",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+      "sourceObjectId": "lokalhistoriewiki:dagbladet:akersgata49-1967-2008",
+      "sourceQuality": "documented_press_history",
+      "finding": "Dokumenterer tidligere Akersgata 36-periode og den formålsbygde Akersgata 49-perioden fra 1967 til 2008.",
       "canVerifyCoordinate": false,
-      "reason": "Recorden representerer flere historiske redaksjonsadresser, men har bare ett punkt og ingen kildebelagte flerankre."
+      "reason": "Kryssjekker at nr. 49 er en eksplisitt senere periode, ikke en påstand om hele avisens historie."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Dagbladet – 2008 retrospective",
+      "sourceUrl": "https://www.dagbladet.no/kultur/her-er-dagbladets-beste-bilder-fra-2008/65298414",
+      "sourceObjectId": "dagbladet:2008:move-akersgata49-langakaia1",
+      "sourceQuality": "first_party_move_documentation",
+      "finding": "Dagbladets egen omtale dokumenterer flyttingen fra Akersgata 49 til Langkaia 1 i 2008.",
+      "canVerifyCoordinate": false,
+      "reason": "Førstepartskryssjekk av sluttpunktet for den representerte perioden."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Akersgata&nummer=49&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:49",
+      "sourceQuality": "official_exact_address_anchor",
+      "finding": "Ett eksakt offisielt adresseobjekt for Akersgata 49 ved 59.914542408879896, 10.74304201409404.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir det presise fysiske ankeret etter at historiske kilder har avgrenset perioden til nr. 49."
     }
   ],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:49",
+      "address": {
+        "street": "Akersgata",
+        "number": "49",
+        "postcode": "0180",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.914542408879896,
+      "lon": 10.74304201409404,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:dagbladet-akersgata49:1967-2008",
+      "canApplyToPlace": true
+    }
+  ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:49",
+      "lat": 59.914542408879896,
+      "lon": 10.74304201409404,
+      "coordRole": "historical_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Recorden representerer flere historiske redaksjonsadresser, men har bare ett punkt og ingen kildebelagte flerankre.",
-    "nextAction": "Modeller de historiske adressene som flere ankere eller velg ett eksplisitt tidsavgrenset hovedanker før koordinaten godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Fleradresse-konflikten er løst ved å gjøre 1967–2008-perioden i Akersgata 49 til eksplisitt canonical fysisk scope."
   },
   "notes": [
-    "Ingen koordinatendring i batch 22."
+    "Batch 135 historical-source + address-first: Recorden representerer eksplisitt Dagbladets formålsbygde avishus mot Akersgata 49 fra 1967 til flyttingen til Havnelageret i 2008, ikke alle Dagbladets adresser siden 1869. Oslo byleksikon og Lokalhistoriewiki dokumenterer denne perioden, og Dagbladets egen 2008-omtale dokumenterer flyttingen fra Akersgata 49 til Langkaia 1. Ett eksakt Geonorge-adresseobjekt (geonorge-adresser-v1:0301:10069:49) brukes som presist fysisk historical-anchor for den fortsatt eksisterende adressen. Den eldre Akersgata 36-perioden beholdes som historisk bakgrunn, men inngår ikke i canonical kartpunktet."
   ]
 }
