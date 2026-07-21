@@ -9,8 +9,11 @@
   function array(value) {
     return Array.isArray(value) ? value : [];
   }
+  function flattenValues(values) {
+    return values.flatMap((value) => Array.isArray(value) ? flattenValues(value) : [value]);
+  }
   function unique(values) {
-    return Array.from(new Set(values.map(text).filter(Boolean)));
+    return Array.from(new Set(flattenValues(values).map(text).filter(Boolean)));
   }
   function normalized(value) {
     return text(value).toLocaleLowerCase("nb").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9æøå]+/gi, " ").replace(/\s+/g, " ").trim();
@@ -86,8 +89,6 @@
     return unique([
       ...array(row.concepts),
       ...array(row.core_concepts),
-      ...array(row.conceptIds),
-      ...array(row.concept_ids),
       ...array(row.begreper)
     ]);
   }
@@ -95,7 +96,6 @@
     const row = record(value);
     return unique([
       ...array(row.terms),
-      ...array(row.term_ids),
       ...array(row.terminology),
       ...array(row.terminologi),
       ...array(row.faguttrykk)
@@ -225,10 +225,13 @@
     }
     return Array.from(rows.values());
   }
-  function explicitUnitId(question, fallback) {
-    return text2(
-      question.primary_knowledge_unit_id || question.knowledge_unit_id || array2(question.knowledge_unit_ids)[0] || question.quiz_id || question.quizId || question.id || fallback
-    );
+  function explicitUnitIds(question, fallback) {
+    return unique2([
+      question.primary_knowledge_unit_id,
+      question.knowledge_unit_id,
+      question.knowledge_unit_ids,
+      question.quiz_id || question.quizId || question.id || fallback
+    ]);
   }
   function buildCorrectQuestionKeys(result) {
     const keys = /* @__PURE__ */ new Set();
@@ -279,10 +282,13 @@
     var _a;
     const question = object(questionValue);
     const fallbackId = stableId(context.setId, "q", index + 1);
-    const unitId = explicitUnitId(question, fallbackId);
+    const unitIds = explicitUnitIds(question, fallbackId);
+    const unitId = unitIds[0];
     const correct = questionWasCorrect(question, correctKeys, result, index);
     return {
       unit_id: unitId,
+      knowledge_unit_id: unitId,
+      knowledge_unit_ids: unitIds,
       source_question_id: text2(question.quiz_id || question.quizId || question.id || fallbackId),
       kind: knowledgeClaimCore_default.inferKind(question),
       subject_id: context.categoryId,
@@ -299,13 +305,16 @@
       year: (_a = question.year) != null ? _a : null,
       epoke_id: text2(question.epoke_id),
       emne_ids: unique2([question.emne_id, question.emne_ids, question.related_emner, question.related_emnes]),
-      concepts: unique2([question.core_concepts, question.concept_ids]),
+      concepts: unique2([question.core_concepts, question.concepts]),
+      concept_ids: unique2([question.concept_ids, question.conceptIds]),
       concept_focus: unique2([question.concept_focus]),
-      terms: unique2([question.term_ids, question.terminology, question.terminologi, question.faguttrykk]),
+      terms: unique2([question.terminology, question.terminologi, question.faguttrykk]),
+      term_ids: unique2([question.term_ids, question.termIds]),
       people: unique2([question.personId, question.person_id, question.theorist_names, question.related_people]),
       events: unique2([question.event_ids, question.related_events]),
       methods: unique2([question.method_id, object(question.guidance_basis).method_id]),
-      stories: unique2([question.story_ids, question.related_stories]),
+      stories: unique2([question.related_stories]),
+      story_ids: unique2([question.story_ids, question.storyIds]),
       theory_focus: unique2([question.theory_focus]),
       tags: unique2([question.tags]),
       sources: normalizeSources(question.source || question.sources),
@@ -321,14 +330,16 @@
     const claims = knowledgeClaimCore_default.extractTextClaims(unit.text, { question: unit.question, answer: unit.answer });
     if (!claims.length) return [];
     const kind = knowledgeClaimCore_default.inferKind(unit);
-    const currentId = text2(unit.unit_id || unit.id || "knowledge_unit");
+    const currentId = text2(unit.knowledge_unit_id || unit.unit_id || unit.id || "knowledge_unit");
+    const explicitIds = unique2([unit.knowledge_unit_ids, unit.knowledge_unit_id, unit.unit_id]);
     const sourceId = text2(unit.source_question_id || currentId);
     return claims.map((claim, index) => {
       const next = { ...unit };
       delete next.question;
       delete next.answer;
       delete next.trivia;
-      next.unit_id = claims.length === 1 ? currentId : `${currentId}::claim::${index + 1}`;
+      next.unit_id = explicitIds[index] || (claims.length === 1 ? currentId : `${currentId}::claim::${index + 1}`);
+      next.knowledge_unit_id = next.unit_id;
       next.source_question_id = sourceId;
       next.kind = kind;
       next.topic = knowledgeClaimCore_default.cleanTopic(unit.topic, kind);
@@ -517,9 +528,13 @@
         schema: "history_go_knowledge_entry_v2",
         version: 2,
         id: `quiz_memory::${text2(bundle.bundle_id)}::${unitId}`,
+        knowledge_unit_id: unitId,
         subject_id: normalizeSubjectId2(bundle.subject_id),
         fagkart_category_id: normalizeSubjectId2(bundle.subject_id),
         emne_ids: emneIds,
+        concept_ids: unique2([unit.concept_ids]),
+        term_ids: unique2([unit.term_ids]),
+        story_ids: unique2([unit.story_ids]),
         concepts: unique2([unit.concepts, unit.concept_focus]),
         terms: unique2([unit.terms]),
         tags: unique2([unit.tags]),
@@ -1083,6 +1098,7 @@
   var root = globalThis;
   var ENTRY_KEY = "hg_knowledge_entries_v2";
   var LEGACY_KEY = "knowledge_universe";
+  var LEGACY_MIGRATION_KEY = "hg_knowledge_legacy_migrated_v1";
   var LEARNING_LOG_KEY = "hg_learning_log_v1";
   var SCHEMA2 = "history_go_knowledge_entry_v2";
   var VERSION = 2;
@@ -1136,6 +1152,40 @@
   }
   function slug(value) {
     return s(value).toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9_-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 120);
+  }
+  function stableHash(value) {
+    let hash = 2166136261;
+    const source = s(value);
+    for (let index = 0; index < source.length; index += 1) {
+      hash ^= source.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return (hash >>> 0).toString(36).padStart(7, "0");
+  }
+  function generatedCanonicalId(prefix, subjectId, value) {
+    const subject = slug(subjectId) || "unknown";
+    const label = slug(value).slice(0, prefix === "ku" ? 24 : 36) || "item";
+    return `${prefix}_${subject}_${label}_${stableHash(`${subject}::${s(value).toLowerCase()}`)}`;
+  }
+  function explicitIdList(value, ...keys) {
+    const row = toObject(value);
+    return unique3(keys.flatMap((key) => toArray(row[key])));
+  }
+  function canonicalIdsForLabels(prefix, subjectId, labels, explicitIds) {
+    const used = /* @__PURE__ */ new Set();
+    const aligned = labels.map((label, index) => {
+      const explicitId = explicitIds[index];
+      const generatedId = generatedCanonicalId(prefix, subjectId, label);
+      const id = explicitId && !used.has(explicitId) ? explicitId : generatedId;
+      used.add(id);
+      return id;
+    });
+    const extras = explicitIds.slice(labels.length).filter((id) => {
+      if (!id || used.has(id)) return false;
+      used.add(id);
+      return true;
+    });
+    return [...aligned, ...extras];
   }
   function normalizeSubjectId(value) {
     var _a, _b;
@@ -1201,7 +1251,11 @@
       learned_at: previous.learned_at || incoming.learned_at || now,
       last_seen_at: incrementSeen ? now : incoming.last_seen_at || previous.last_seen_at || now,
       times_seen: incrementSeen ? Number(previous.times_seen || 1) + 1 : Math.max(Number(previous.times_seen || 1), Number(incoming.times_seen || 1)),
+      knowledge_unit_id: previous.knowledge_unit_id || incoming.knowledge_unit_id || incoming.id,
       emne_ids: unique3([...previous.emne_ids || [], ...incoming.emne_ids || []]),
+      concept_ids: unique3([...previous.concept_ids || [], ...incoming.concept_ids || []]),
+      term_ids: unique3([...previous.term_ids || [], ...incoming.term_ids || []]),
+      story_ids: unique3([...previous.story_ids || [], ...incoming.story_ids || []]),
       concepts: unique3([...previous.concepts || [], ...incoming.concepts || []]),
       terms: unique3([...previous.terms || [], ...incoming.terms || []]),
       tags: unique3([...previous.tags || [], ...incoming.tags || []]),
@@ -1261,15 +1315,27 @@
     const concepts = normalizeConcepts(quizItem);
     const terms = normalizeTerms(quizItem);
     const tags = normalizeTags(quizItem);
+    const explicitKnowledgeIds = unique3([quizItem.primary_knowledge_unit_id, quizItem.knowledge_unit_id, quizItem.knowledge_unit_ids]);
+    const knowledgeUnitIds = claims.map((claim, index) => explicitKnowledgeIds[index] || generatedCanonicalId("ku", subjectId, claim));
+    const explicitConceptIds = explicitIdList(quizItem, "concept_ids", "conceptIds");
+    const conceptIds = canonicalIdsForLabels("co", subjectId, concepts, explicitConceptIds);
+    const explicitTermIds = explicitIdList(quizItem, "term_ids", "termIds");
+    const termIds = canonicalIdsForLabels("term", subjectId, terms, explicitTermIds);
+    const explicitStoryIds = explicitIdList(quizItem, "story_ids", "storyIds");
+    const storyLabels = unique3([quizItem.stories, quizItem.related_stories]);
+    const storyIds = canonicalIdsForLabels("story", subjectId, storyLabels, explicitStoryIds);
     const kind = knowledgeClaimCore_default.inferKind(quizItem);
     const topic = knowledgeClaimCore_default.cleanTopic(quizItem.topic || context.topic, kind);
-    const stableSource = sourceQuizId || [targetId, topic, claims[0]].map(slug).filter(Boolean).join("_");
     const source = sourceForQuiz(quizItem, context, sourceQuizId, targetId);
     return claims.map((claim, index) => upsertEntry({
-      id: `kv2_${slug(subjectId)}_${slug(stableSource)}${claims.length > 1 ? `_claim_${index + 1}` : ""}`,
+      id: knowledgeUnitIds[index],
+      knowledge_unit_id: knowledgeUnitIds[index],
       subject_id: subjectId,
       fagkart_category_id: subjectId,
       emne_ids: emneIds,
+      concept_ids: conceptIds,
+      term_ids: termIds,
+      story_ids: storyIds,
       concepts,
       terms,
       tags,
@@ -1304,21 +1370,32 @@
     const claims = knowledgeClaimCore_default.extractTextClaims(entry.text, { question, answer: entry.answer });
     const tags = normalizeTags(entry);
     const concepts = normalizeConcepts(entry).filter((concept) => !tags.includes(concept));
+    const subjectId = normalizeSubjectId(entry.subject_id || entry.fagkart_category_id);
+    const explicitKnowledgeIds = unique3([entry.knowledge_unit_id, entry.knowledge_unit_ids]);
+    const explicitConceptIds = explicitIdList(entry, "concept_ids", "conceptIds");
+    const explicitTermIds = explicitIdList(entry, "term_ids", "termIds");
+    const explicitStoryIds = explicitIdList(entry, "story_ids", "storyIds");
     return claims.map((claim, index) => {
       const sourceId = s(entry.source_entry_id || entry.id || "knowledge_entry");
+      const knowledgeUnitId = explicitKnowledgeIds[index] || generatedCanonicalId("ku", subjectId, claim);
       const next = {
         ...entry,
-        id: claims.length === 1 ? s(entry.id || sourceId) : `${sourceId}::claim::${index + 1}`,
+        id: knowledgeUnitId,
+        knowledge_unit_id: knowledgeUnitId,
         source_entry_id: sourceId,
         topic: knowledgeClaimCore_default.cleanTopic(entry.topic, entry.kind),
         text: claim,
+        concept_ids: canonicalIdsForLabels("co", subjectId, concepts, explicitConceptIds),
+        term_ids: canonicalIdsForLabels("term", subjectId, normalizeTerms(entry), explicitTermIds),
+        story_ids: canonicalIdsForLabels("story", subjectId, unique3([entry.stories, entry.related_stories]), explicitStoryIds),
         concepts,
         terms: normalizeTerms(entry),
         tags,
         content_quality: {
           ...entry.content_quality || {},
           version: QUALITY_VERSION2,
-          precise_claim: true
+          precise_claim: true,
+          canonical_ids: true
         }
       };
       delete next.answer;
@@ -1355,71 +1432,105 @@
     if (changed) saveEntries(output);
     return { changed, total: output.length };
   }
-  function migrateLegacyKnowledge() {
-    const legacy = toObject(readJson(LEGACY_KEY, {}));
+  function migrateLegacyValue(legacyValue, sourceType = "legacy_quiz_knowledge") {
+    const legacy = toObject(legacyValue);
     const learningLog = toArray(readJson(LEARNING_LOG_KEY, []));
     const existingIds = new Set(getEntries().map((entry) => {
       var _a;
       return s((_a = entry == null ? void 0 : entry.legacy) == null ? void 0 : _a.legacy_entry_id);
     }).filter(Boolean));
-    const cleanLegacy = {};
     let migrated = 0;
     for (const [rawSubjectId, dimensionsValue] of Object.entries(legacy)) {
       const subjectId = normalizeSubjectId(rawSubjectId);
-      const cleanDimensions = {};
       for (const [dimension, itemsValue] of Object.entries(toObject(dimensionsValue))) {
-        const cleanItems = [];
         for (const itemValue of toArray(itemsValue)) {
           const item = toObject(itemValue);
           const question = knowledgeClaimCore_default.isQuestion(item.topic) ? s(item.topic) : "";
           const claims = knowledgeClaimCore_default.extractTextClaims(item.text, { question, answer: item.answer });
           claims.forEach((claim, index) => {
             const base = s(item.source_entry_id || item.id || item.topic || "legacy_knowledge");
-            const cleanItem = {
-              ...item,
-              id: claims.length === 1 ? s(item.id || base) : `${base}::claim::${index + 1}`,
-              source_entry_id: base,
-              topic: knowledgeClaimCore_default.cleanTopic(item.topic),
-              text: claim,
-              content_quality: { version: QUALITY_VERSION2, precise_claim: true }
-            };
-            delete cleanItem.answer;
-            cleanItems.push(cleanItem);
-            const legacyEntryId = `${subjectId}:${dimension}:${cleanItem.id}`;
+            const legacyEntryId = `${subjectId}:${dimension}:${base}:${index + 1}`;
             if (existingIds.has(legacyEntryId)) return;
             const targetId = findLegacyTargetId(item.id, learningLog);
+            const knowledgeUnitId = generatedCanonicalId("ku", subjectId, claim);
             upsertEntry({
-              id: `legacy_${slug(legacyEntryId)}`,
+              id: knowledgeUnitId,
+              knowledge_unit_id: knowledgeUnitId,
               subject_id: subjectId,
               fagkart_category_id: subjectId,
               emne_ids: [],
+              concept_ids: [],
+              term_ids: [],
+              story_ids: [],
               concepts: [],
               terms: [],
               tags: [],
               dimension: s(dimension || "generelt") || "generelt",
-              topic: cleanItem.topic,
+              topic: knowledgeClaimCore_default.cleanTopic(item.topic),
               text: claim,
               source: {
-                type: "legacy_quiz_knowledge",
+                type: sourceType,
                 quiz_id: s(item.id) || null,
                 target_id: targetId || null,
                 place_id: null,
                 person_id: null
               },
-              legacy: { legacy_entry_id: legacyEntryId, storage_key: LEGACY_KEY },
-              content_quality: { version: QUALITY_VERSION2, precise_claim: true, migrated: true },
+              legacy: { legacy_entry_id: legacyEntryId },
+              content_quality: { version: QUALITY_VERSION2, precise_claim: true, migrated: true, canonical_ids: true },
               link_status: "legacy_unresolved"
-            });
+            }, { incrementSeen: false });
             existingIds.add(legacyEntryId);
             migrated += 1;
           });
         }
-        if (cleanItems.length) cleanDimensions[dimension] = cleanItems;
       }
-      if (Object.keys(cleanDimensions).length) cleanLegacy[rawSubjectId] = cleanDimensions;
     }
-    if (JSON.stringify(legacy) !== JSON.stringify(cleanLegacy)) writeJson(LEGACY_KEY, cleanLegacy);
     return { migrated, total: getEntries().length };
+  }
+  function importLegacyUniverse(value) {
+    return migrateLegacyValue(value, "legacy_external_import");
+  }
+  function migrateLegacyKnowledge() {
+    var _a;
+    const legacy = toObject(readJson(LEGACY_KEY, {}));
+    if (!Object.keys(legacy).length) return { migrated: 0, total: getEntries().length };
+    const result = migrateLegacyValue(legacy);
+    try {
+      (_a = root.localStorage) == null ? void 0 : _a.removeItem(LEGACY_KEY);
+    } catch {
+    }
+    writeJson(LEGACY_MIGRATION_KEY, { migrated_at: (/* @__PURE__ */ new Date()).toISOString(), migrated: result.migrated });
+    return result;
+  }
+  function getLegacyProjection() {
+    const grouped = {};
+    getEntries().forEach((entry) => {
+      var _a;
+      const subject = normalizeSubjectId(entry.subject_id || entry.fagkart_category_id);
+      const dimension = s(entry.dimension || "generelt") || "generelt";
+      if (!subject) return;
+      grouped[subject] || (grouped[subject] = {});
+      (_a = grouped[subject])[dimension] || (_a[dimension] = []);
+      grouped[subject][dimension].push({
+        id: entry.knowledge_unit_id || entry.id,
+        topic: entry.topic,
+        text: entry.text,
+        knowledge_unit_id: entry.knowledge_unit_id || entry.id,
+        concept_ids: entry.concept_ids || [],
+        term_ids: entry.term_ids || [],
+        story_ids: entry.story_ids || []
+      });
+    });
+    return grouped;
+  }
+  function captureKnowledgePoint(entryValue) {
+    const entry = toObject(entryValue);
+    return captureQuizKnowledge({
+      ...entry,
+      categoryId: entry.categoryId || entry.category || entry.subject_id,
+      knowledge: entry.knowledge || entry.text,
+      primary_knowledge_unit_id: entry.knowledge_unit_id || entry.id
+    }, { categoryId: entry.categoryId || entry.category || entry.subject_id, targetId: entry.targetId });
   }
   function scoreConceptOverlap(entryConcepts, eventConcepts) {
     const eventSet = new Set(unique3(eventConcepts).map((value) => value.toLowerCase()));
@@ -1631,7 +1742,7 @@
     SCHEMA: SCHEMA2,
     VERSION,
     QUALITY_VERSION: QUALITY_VERSION2,
-    KEYS: { ENTRIES: ENTRY_KEY, LEGACY: LEGACY_KEY, LEARNING_LOG: LEARNING_LOG_KEY, MEMORY: quizMemory.STORAGE_KEY },
+    KEYS: { ENTRIES: ENTRY_KEY, LEARNING_LOG: LEARNING_LOG_KEY, MEMORY: quizMemory.STORAGE_KEY, LEGACY_MIGRATION: LEGACY_MIGRATION_KEY },
     SUBJECT_LABELS,
     claimCore: knowledgeClaimCore_default,
     normalizeEmneIds,
@@ -1640,6 +1751,9 @@
     normalizeTags,
     captureQuizKnowledge,
     captureQuizKnowledgeClaims,
+    captureKnowledgePoint,
+    importLegacyUniverse,
+    getLegacyProjection,
     sanitizeStoredEntries,
     migrateLegacyKnowledge,
     reconcileEntriesFromLearningLog,

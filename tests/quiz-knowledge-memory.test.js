@@ -163,7 +163,8 @@ test("forkaster spørsmål og fasitsvar og deler presise forklaringer", () => {
         summary: "Bygget åpnet i 2020. Det ble Oslos nye hovedbibliotek."
       },
       core_concepts: ["offentlig institusjon"],
-      term_ids: ["hovedbibliotek"],
+      terminology: ["hovedbibliotek"],
+      term_ids: ["term_by_hovedbibliotek_test"],
       tags: ["oslo"]
     }
   ];

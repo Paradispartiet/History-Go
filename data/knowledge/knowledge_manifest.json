@@ -13,12 +13,11 @@
     "quizMemoryProducer": "../../dist/web/knowledgeV2.js",
     "currentPageModel": "../../js/knowledgePage.js",
     "storageKeys": [
-      "knowledge_universe",
       "hg_knowledge_entries_v2",
       "hg_knowledge_memory_v1"
     ],
-    "migrationStatus": "v7_targeted_review_active",
-    "currentBehavior": "Quizminne, capture, evidenssynkronisering, profilbygging og målrettet repetisjon eies av én TypeScript-runtime. needs_review peker tilbake til det eksakte quizsettet og bare feilbesvarte spørsmål repeteres uten nye poeng; resultatet oppdaterer den eksisterende bundlen idempotent.",
+    "migrationStatus": "v8_canonical_ids_and_legacy_retirement_active",
+    "currentBehavior": "Quizkilder har deterministiske canonical IDs. Knowledge V2 og quizminnet bevarer disse ID-ene gjennom capture, lesemodell, profil og repetisjon. Legacy-lageret leses bare én gang av migreringskoden, flyttes til V2 og slettes.",
     "evidenceModel": {
       "collected": "En presis kunnskapspåstand er automatisk hentet fra den fullførte quizfila og lagt i minnekammeret.",
       "presented": "Kunnskapspopupen er åpnet.",
@@ -27,11 +26,16 @@
       "needs_review": "Spørsmålet ble besvart feil og kunnskapen er lagt til repetisjon."
     },
     "nextRuntimeRequirements": [
-      "Expand stable canonical knowledge_unit_id, concept_id, term_id and story_id coverage in quiz source data.",
-      "Gradually retire knowledge_universe after migration telemetry confirms no active readers remain.",
-      "Add spaced repetition scheduling after targeted review has stable usage telemetry."
+      "Resolve only the remaining explicitly reported emne-link ambiguities through editorial review; never guess."
     ],
-    "canonicalQuizMemorySource": "../../js/knowledgeQuizMemory.ts"
+    "canonicalQuizMemorySource": "../../js/knowledgeQuizMemory.ts",
+    "canonicalDataPipeline": "../../scripts/knowledge-canonical-data.mts",
+    "canonicalRegistries": {
+      "knowledge_units": "knowledge_units.generated.json",
+      "concepts": "concepts.generated.json",
+      "terms": "terms.generated.json",
+      "stories": "stories.generated.json"
+    }
   },
   "canonicalPrinciple": "Emner organiserer faget, begrepene gir presist språk, knowledge units bærer korte selvstendige påstander, historiene binder innholdet sammen, steder og personer gir kontekst, quiz formidler og prøver brukeren, og Knowledge-minnekammeret lagrer automatisk uten å forveksle spørsmål, svar, tags, lesing og mestring."
 }

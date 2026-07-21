@@ -67,6 +67,22 @@ function stableId(prefix: 'ku' | 'co' | 'term' | 'story', subjectId: string, val
   const readable = slug(value, prefix === 'ku' ? 24 : 36) || 'item';
   return `${prefix}_${slug(subjectId, 24) || 'unknown'}_${readable}_${digest(`${subjectId}\0${normalize(value)}`, 10)}`;
 }
+function canonicalIdsForLabels(prefix: 'co' | 'term' | 'story', subject: string, labels: string[], explicitIds: string[]): string[] {
+  const used = new Set<string>();
+  const aligned = labels.map((label, index) => {
+    const explicitId = explicitIds[index];
+    const generatedId = stableId(prefix, subject, label);
+    const id = explicitId && !used.has(explicitId) ? explicitId : generatedId;
+    used.add(id);
+    return id;
+  });
+  const extras = explicitIds.slice(labels.length).filter((id) => {
+    if (!id || used.has(id)) return false;
+    used.add(id);
+    return true;
+  });
+  return [...aligned, ...extras];
+}
 function splitClaims(value: unknown): string[] {
   const source = clean(value).replace(/\s+/g, ' ');
   if (!source) return [];
@@ -274,9 +290,7 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
   const catalogs = await loadEmner();
   const targetExplicit = new Map<string, Set<string>>();
   const setExplicit = new Map<string, Set<string>>();
-  for (const row of rows) {
-    const ids = emneIds(row.question);
-    if (!ids.length) continue;
+  const addInferenceSignals = (row: QuestionRow, ids: string[]): void => {
     const subject = subjectId(row.question, row.root);
     const target = targetId(row.question, row.root);
     if (subject && target) {
@@ -289,6 +303,25 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
       if (!setExplicit.has(key)) setExplicit.set(key, new Set());
       ids.forEach((id) => setExplicit.get(key)!.add(id));
     }
+  };
+  rows.forEach((row) => {
+    const ids = emneIds(row.question);
+    if (ids.length) addInferenceSignals(row, ids);
+  });
+
+  const plannedInference = new Map<QuestionRow, Inference>();
+  for (let iteration = 0; iteration < rows.length; iteration += 1) {
+    const additions = rows
+      .filter((row) => knowledgeText(row.question))
+      .filter((row) => !emneIds(row.question).length && !plannedInference.has(row))
+      .map((row) => ({ row, inference: inferEmne(row, targetExplicit, setExplicit, catalogs) }))
+      .filter((candidate) => candidate.inference.ids.length)
+      .sort((a, b) => a.row.file.localeCompare(b.row.file, 'en') || a.row.location.localeCompare(b.row.location, 'en'));
+    if (!additions.length) break;
+    additions.forEach(({ row, inference }) => {
+      plannedInference.set(row, inference);
+      addInferenceSignals(row, inference.ids);
+    });
   }
 
   const units = new Map<string, JsonObject>();
@@ -313,13 +346,17 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
     const subject = subjectId(q, row.root);
     const claims = splitClaims(text);
     const effectiveClaims = claims.length ? claims : [text];
-    const inference = inferEmne(row, targetExplicit, setExplicit, catalogs);
+    const existingEmneIds = emneIds(q);
+    const inference = existingEmneIds.length
+      ? { ids: existingEmneIds, method: 'explicit', confidence: 1 }
+      : (plannedInference.get(row) || inferEmne(row, targetExplicit, setExplicit, catalogs));
     const eids = inference.ids;
-    if (!emneIds(q).length && eids.length) {
+    if (!existingEmneIds.length && eids.length) {
       q.emne_ids = eids;
       q.knowledge_link_evidence = { method: inference.method, confidence: inference.confidence, ...(inference.evidence || {}) };
-      inferredEmneLinks += 1;
     }
+    const linkMethod = clean(q.knowledge_link_evidence?.method || inference.method);
+    if (eids.length && linkMethod && linkMethod !== 'explicit') inferredEmneLinks += 1;
 
     const existingKnowledgeIds = unique([q.knowledge_unit_ids]).filter((id) => ID_PATTERN.knowledge.test(id));
     const generatedIds = effectiveClaims.map((claim) => stableId('ku', subject, claim));
@@ -328,33 +365,39 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
     q.knowledge_unit_ids = unique([q.primary_knowledge_unit_id, kuIds]);
     generatedKnowledgeIds += generatedIds.filter((id) => !existingKnowledgeIds.includes(id)).length;
 
+    const legacyConceptLabels = unique([q.concept_ids, q.conceptIds]).filter((id) => !ID_PATTERN.concept.test(id));
+    if (legacyConceptLabels.length) q.concepts = unique([q.concepts, legacyConceptLabels]);
     const labels = conceptLabels(q);
     const existingCoIds = conceptIds(q);
-    const generatedCoIds = labels.map((label) => stableId('co', subject, label));
-    q.concept_ids = unique([existingCoIds, generatedCoIds]);
-    generatedConceptIds += generatedCoIds.filter((id) => !existingCoIds.includes(id)).length;
+    const canonicalCoIds = canonicalIdsForLabels('co', subject, labels, existingCoIds);
+    q.concept_ids = canonicalCoIds;
+    generatedConceptIds += canonicalCoIds.filter((id) => !existingCoIds.includes(id)).length;
     labels.forEach((label, index) => {
-      const id = generatedCoIds[index];
+      const id = canonicalCoIds[index];
       if (!concepts.has(id)) concepts.set(id, { concept_id: id, subject_id: subject, label, status: 'generated_from_quiz_source' });
     });
 
+    const legacyTermLabels = unique([q.term_ids, q.termIds]).filter((id) => !ID_PATTERN.term.test(id));
+    if (legacyTermLabels.length) q.terms = unique([q.terms, legacyTermLabels]);
     const tLabels = termLabels(q);
     const existingTermIds = termIds(q);
-    const generatedTIds = tLabels.map((label) => stableId('term', subject, label));
-    q.term_ids = unique([existingTermIds, generatedTIds]);
-    generatedTermIds += generatedTIds.filter((id) => !existingTermIds.includes(id)).length;
+    const canonicalTermIds = canonicalIdsForLabels('term', subject, tLabels, existingTermIds);
+    q.term_ids = canonicalTermIds;
+    generatedTermIds += canonicalTermIds.filter((id) => !existingTermIds.includes(id)).length;
     tLabels.forEach((label, index) => {
-      const id = generatedTIds[index];
+      const id = canonicalTermIds[index];
       if (!terms.has(id)) terms.set(id, { term_id: id, subject_id: subject, label, definition: '', status: 'definition_required' });
     });
 
+    const legacyStoryLabels = unique([q.story_ids, q.storyIds]).filter((id) => !ID_PATTERN.story.test(id));
+    if (legacyStoryLabels.length) q.related_stories = unique([q.related_stories, legacyStoryLabels]);
     const sLabels = storyLabels(q);
     const existingStoryIds = storyIds(q);
-    const generatedSIds = sLabels.map((label) => stableId('story', subject, label));
-    if (existingStoryIds.length || generatedSIds.length) q.story_ids = unique([existingStoryIds, generatedSIds]);
-    generatedStoryIds += generatedSIds.filter((id) => !existingStoryIds.includes(id)).length;
+    const canonicalStoryIds = canonicalIdsForLabels('story', subject, sLabels, existingStoryIds);
+    if (canonicalStoryIds.length) q.story_ids = canonicalStoryIds;
+    generatedStoryIds += canonicalStoryIds.filter((id) => !existingStoryIds.includes(id)).length;
     sLabels.forEach((label, index) => {
-      const id = generatedSIds[index];
+      const id = canonicalStoryIds[index];
       if (!stories.has(id)) stories.set(id, { story_id: id, subject_id: subject, title: label, status: 'generated_reference' });
     });
     q.knowledge_contract_version = 1;
@@ -420,14 +463,14 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
     manifest: 'data/quiz/manifest.json',
     files_scanned: files.length,
     knowledge_questions: knowledgeQuestions,
-    questions_changed: questionsChanged,
+    questions_with_canonical_contract: rows.filter((row) => knowledgeText(row.question) && Number(row.question.knowledge_contract_version) === 1).length,
     canonical_units: unitList.length,
     concepts: conceptList.length,
     terms: termList.length,
     stories: storyList.length,
     inferred_emne_links: inferredEmneLinks,
     unresolved_emne_links: unresolved.length,
-    generated_ids: { knowledge: generatedKnowledgeIds, concepts: generatedConceptIds, terms: generatedTermIds, stories: generatedStoryIds },
+    canonical_id_counts: { knowledge: unitList.length, concepts: conceptList.length, terms: termList.length, stories: storyList.length },
     unresolved,
   };
   await writeOrCheck(BACKFILL_REPORT_PATH, report, changedFiles);
@@ -538,6 +581,7 @@ async function runLegacyReaderAudit(): Promise<JsonObject> {
     'js/knowledgeV2.ts',
     'tests/knowledge-v2-model.test.js',
     'tests/knowledge-profile-memory-integration.test.js',
+    'tests/knowledge-canonical-storage-contract.test.js',
     'scripts/knowledge-canonical-data.mts',
   ]);
   const references: JsonObject[] = [];
