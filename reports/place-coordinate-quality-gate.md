@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T00:49:44.252Z
+Generert: 2026-07-21T00:55:25.603Z
 
 ## Oppsummering
 - Aktive filer validert: **569**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **430**
-- Coordinate review candidates: **710** signaler fordelt på **570** steder
+- Varsler: **427**
+- Coordinate review candidates: **707** signaler fordelt på **567** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -856,9 +856,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#hausmannsomradet_elvelop: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_hovedsteder.json#ostensjovannet: coordinate_regression_risk (178 m fra tidligere semantic_anchor)
-- data/places/natur/oslo/places_oslo_natur_hovedsteder.json#maerradalen: coordinate_regression_risk (359 m fra tidligere semantic_anchor)
-- data/places/natur/oslo/places_oslo_natur_hovedsteder.json#noklevann: coordinate_regression_risk (719 m fra tidligere semantic_anchor)
 - data/places/natur/oslo/places_oslo_natur_hovedsteder.json#alnaelva_hovedsteder: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: coordStatus=verified uten coordNote for område/gate/rute
@@ -1025,13 +1022,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 710 signaler fordelt på 570 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 707 signaler fordelt på 567 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordinate_regression_risk | 3 |
 | coordStatus=verified uten coordPrecisionM | 118 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 95 |
@@ -1041,14 +1037,6 @@ Totalt 710 signaler fordelt på 570 steder. Et sted kan ha flere signaler. Kandi
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
-
-### coordinate_regression_risk (3)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ostensjovannet | Østensjøvannet | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.88943337258171 | 10.829260727224845 | 450 | Flyttet ~178 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-| maerradalen | Mærradalen | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.937718080001645 | 10.655018282536306 | 700 | Flyttet ~359 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
-| noklevann | Nøklevann | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.88044653 | 10.866737856666667 | 950 | Flyttet ~719 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (118)
 
