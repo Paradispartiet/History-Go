@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "helvete_neseblod_records",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.908405,
+    "lon": 10.769545,
+    "r": 80,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 2847570870 – Neseblod Records; current identity/address cross-checked with Neseblod Records and Brønnøysundregistrene",
+    "coordType": "poi_center",
+    "coordNote": "Batch 132 address-first + exact-POI fallback: Neseblod Records' aktive nettbutikk og Brønnøysundregistrene oppgir Schweigaards gate 56, men Geonorge har to offisielle adresseobjekter på nummeret, 56A og 56B. Address-first kunne derfor ikke velge et adressepunkt og ble eksplisitt forkastet som tvetydig. Nominatim/OSM returnerte deretter nøyaktig ett eksakt navngitt shop=music-punkt i lokal Gamlebyen-scope, osm-node:2847570870. Dette punktet brukes som site-center for den nåværende Neseblod Records-butikken og stedet som History Go kobler til den historiske Helvete-fortellingen; ingen A/B-adresse er valgt etter nærhet."
+  },
+  "identity": {
+    "currentName": "Helvete / Neseblod Records",
+    "resolvedIdentity": "Neseblod Records – nåværende platebutikk på Schweigaards gate 56, brukt som fysisk anker for den kombinerte Helvete/Neseblod-stedsfortellingen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "nåværende first-party butikkidentitet",
+    "offentlig virksomhetsadresse",
+    "dokumentert address-first-tvetydighet",
+    "ett eksakt navngitt stabilt POI-objekt"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Neseblod Records – active official shop",
+      "sourceUrl": "https://neseblodrecords.bigcartel.com/",
+      "sourceObjectId": "neseblod-official:schweigaards-gate-56",
+      "sourceQuality": "first_party_current_identity_and_address",
+      "finding": "Neseblod Records oppgir aktiv butikk på Schweigaards Gt. 56, 0656 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter nåværende fysisk identitet og gateadresse, men ikke A/B-deladresse."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – NESEBLOD RECORDS AS underenhet",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/underenheter/986015469",
+      "sourceObjectId": "brreg-underenhet:986015469",
+      "sourceQuality": "official_government_location_registry",
+      "finding": "Brønnøysundregistrene oppgir beliggenhetsadresse Schweigaardsgate 56, 0656 Oslo, kommune 0301.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter nåværende virksomhet på nr. 56, men registeroppføringen skiller ikke A/B."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Schweigaards+gate&nummer=56&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-address-ambiguity:0301:16260:56A+56B",
+      "sourceQuality": "official_address_ambiguous_for_place_identity",
+      "finding": "Address-first ga to offisielle kandidater: Schweigaards gate 56A, Schweigaards gate 56B. Ingen ble valgt.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell gateadresse uten bokstav kan ikke avgjøre hvilket matrikkelpunkt som representerer butikken."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 2847570870 – Neseblod Records",
+      "sourceUrl": "https://www.openstreetmap.org/node/2847570870",
+      "sourceObjectId": "osm-node:2847570870",
+      "sourceQuality": "exact_named_poi_after_address_first_ambiguity",
+      "finding": "Ett eksakt navngitt shop=music-punkt i forhåndsdefinert lokal scope ved 59.908405, 10.769545.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 132 address-first + exact-POI fallback: Neseblod Records' aktive nettbutikk og Brønnøysundregistrene oppgir Schweigaards gate 56, men Geonorge har to offisielle adresseobjekter på nummeret, 56A og 56B. Address-first kunne derfor ikke velge et adressepunkt og ble eksplisitt forkastet som tvetydig. Nominatim/OSM returnerte deretter nøyaktig ett eksakt navngitt shop=music-punkt i lokal Gamlebyen-scope, osm-node:2847570870. Dette punktet brukes som site-center for den nåværende Neseblod Records-butikken og stedet som History Go kobler til den historiske Helvete-fortellingen; ingen A/B-adresse er valgt etter nærhet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16260:56A",
+      "address": {
+        "street": "Schweigaards gate",
+        "number": "56A",
+        "postcode": "0656",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.908467987195834,
+      "lon": 10.769619772982017,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16260:56B",
+      "address": {
+        "street": "Schweigaards gate",
+        "number": "56B",
+        "postcode": "0656",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.90855564109121,
+      "lon": 10.769713854622395,
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2847570870",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2847570870",
+      "lat": 59.908405,
+      "lon": 10.769545,
+      "coordRole": "site_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Neseblod er oppgradert med eksakt navngitt POI etter dokumentert tvetydig address-first."
+  },
+  "notes": [
+    "Batch 132 address-first + exact-POI fallback: Neseblod Records' aktive nettbutikk og Brønnøysundregistrene oppgir Schweigaards gate 56, men Geonorge har to offisielle adresseobjekter på nummeret, 56A og 56B. Address-first kunne derfor ikke velge et adressepunkt og ble eksplisitt forkastet som tvetydig. Nominatim/OSM returnerte deretter nøyaktig ett eksakt navngitt shop=music-punkt i lokal Gamlebyen-scope, osm-node:2847570870. Dette punktet brukes som site-center for den nåværende Neseblod Records-butikken og stedet som History Go kobler til den historiske Helvete-fortellingen; ingen A/B-adresse er valgt etter nærhet."
+  ]
+}
