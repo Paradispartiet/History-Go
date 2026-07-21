@@ -12,7 +12,19 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private kveld-mailer om hvile, læring, fritid, venner, psyke og sosialt liv. Aldri jobbinnhold.",
-  "topics": ["hvile", "læring", "fritid", "venner", "psyke", "sosialt liv", "kultur", "politikk", "trening", "natur", "subkultur"],
+  "topics": [
+    "hvile",
+    "læring",
+    "fritid",
+    "venner",
+    "psyke",
+    "sosialt liv",
+    "kultur",
+    "politikk",
+    "trening",
+    "natur",
+    "subkultur"
+  ],
   "mails": [
     {
       "id": "private_evening_hvile_001",
@@ -30,7 +42,11 @@
           "label": "Skru ned tempoet og la kroppen hvile",
           "reply": "Jeg lar kvelden være rolig i kveld.",
           "effect": 1,
-          "tags": ["hvile", "psyke", "søvn"],
+          "tags": [
+            "hvile",
+            "psyke",
+            "søvn"
+          ],
           "feedback": "Kroppen begynner å slippe dagen. Kvelden kjennes myk."
         },
         {
@@ -38,7 +54,9 @@
           "label": "Fyll kvelden med skjerm og lyd",
           "reply": "Jeg kobler av foran skjermen.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Det underholder, men hodet får ikke helt ro."
         }
       ]
@@ -59,7 +77,11 @@
           "label": "Les eller øv litt på noe du liker",
           "reply": "Jeg bruker litt tid på noe jeg har lyst til å lære.",
           "effect": 1,
-          "tags": ["læring", "fritid", "psyke"],
+          "tags": [
+            "læring",
+            "fritid",
+            "psyke"
+          ],
           "feedback": "Hodet får noe å bryne seg på i sitt eget tempo."
         },
         {
@@ -67,7 +89,9 @@
           "label": "La kvelden være helt fri",
           "reply": "Jeg lar kvelden være uten mål i kveld.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "En kveld uten planer kan også være verdifull."
         }
       ]
@@ -88,7 +112,11 @@
           "label": "Ring noen og ta en ordentlig prat",
           "reply": "Jeg ringer noen jeg er glad i og prater litt.",
           "effect": 1,
-          "tags": ["venner", "sosialt liv", "psyke"],
+          "tags": [
+            "venner",
+            "sosialt liv",
+            "psyke"
+          ],
           "feedback": "En god samtale, og du kjenner deg litt mindre alene."
         },
         {
@@ -96,7 +124,10 @@
           "label": "Send en hilsen og ta praten senere",
           "reply": "Jeg sender en hilsen og ringer en annen kveld.",
           "effect": 0,
-          "tags": ["venner", "tempo"],
+          "tags": [
+            "venner",
+            "tempo"
+          ],
           "feedback": "Du holder kontakten, men litt på avstand i kveld."
         }
       ]
@@ -117,7 +148,10 @@
           "label": "Ta et øyeblikk til å kjenne etter",
           "reply": "Jeg lar meg selv kjenne etter hvordan dagen var.",
           "effect": 1,
-          "tags": ["psyke", "hvile"],
+          "tags": [
+            "psyke",
+            "hvile"
+          ],
           "feedback": "Du møter deg selv med litt vennlighet. Det letter."
         },
         {
@@ -125,7 +159,9 @@
           "label": "Skyv tankene unna for i kveld",
           "reply": "Jeg lar tankene ligge til en annen gang.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Det gir ro nå, men noe blir liggende uavklart."
         }
       ]
@@ -133,8 +169,18 @@
     {
       "id": "evening_culture_place_return_001",
       "topic": "kultur",
-      "requiresAnyProfileTags": ["culture", "kunst", "litteratur", "musikk", "historie"],
-      "weightFrom": ["capital.cultural", "identity.focus.cultural", "privatePhaseWeights.culture"],
+      "requiresAnyProfileTags": [
+        "culture",
+        "kunst",
+        "litteratur",
+        "musikk",
+        "historie"
+      ],
+      "weightFrom": [
+        "capital.cultural",
+        "identity.focus.cultural",
+        "privatePhaseWeights.culture"
+      ],
       "subject": "Et sted du har lagret trekker i deg",
       "summary": "Du går forbi et sted du har lagret før, og kvelden er fortsatt åpen.",
       "situation": [
@@ -148,7 +194,11 @@
           "label": "Bruk kvelden på kultur",
           "reply": "Jeg gir kvelden til lesing eller en utstilling.",
           "effect": 1,
-          "tags": ["kultur", "fritid", "læring"],
+          "tags": [
+            "kultur",
+            "fritid",
+            "læring"
+          ],
           "feedback": "Kvelden fylles av noe du bryr deg om. Det kjennes riktig."
         },
         {
@@ -156,7 +206,9 @@
           "label": "Dra hjem og ta det med ro",
           "reply": "Jeg drar hjem i kveld.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "Stedet venter. Du vet hvor det er."
         }
       ]
@@ -164,8 +216,14 @@
     {
       "id": "private_evening_politikk_profile_002",
       "topic": "politikk",
-      "requiresAnyProfileTags": ["politics", "politikk"],
-      "weightFrom": ["privatePhaseWeights.politics", "capital.political"],
+      "requiresAnyProfileTags": [
+        "politics",
+        "politikk"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.politics",
+        "capital.political"
+      ],
       "subject": "Et lokalt møte i nærheten",
       "summary": "Det er et lokalt møte i kveld, og du kjenner flere av temaene fra steder du har samlet.",
       "situation": [
@@ -179,7 +237,11 @@
           "label": "Gå på møtet",
           "reply": "Jeg går på møtet i kveld.",
           "effect": 1,
-          "tags": ["politikk", "sosialt liv", "læring"],
+          "tags": [
+            "politikk",
+            "sosialt liv",
+            "læring"
+          ],
           "feedback": "Du forsto mer av debatten enn de fleste i rommet."
         },
         {
@@ -187,7 +249,10 @@
           "label": "Følg saken hjemmefra",
           "reply": "Jeg leser meg opp på saken hjemme i stedet.",
           "effect": 0,
-          "tags": ["læring", "hvile"],
+          "tags": [
+            "læring",
+            "hvile"
+          ],
           "feedback": "Du holder deg oppdatert, på egne premisser."
         }
       ]
@@ -195,8 +260,12 @@
     {
       "id": "private_evening_sport_profile_003",
       "topic": "trening",
-      "requiresAnyProfileTags": ["sport"],
-      "weightFrom": ["privatePhaseWeights.sport"],
+      "requiresAnyProfileTags": [
+        "sport"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.sport"
+      ],
       "subject": "Kveldsøkt eller kveldsro",
       "summary": "Folkene fra banen du kjenner samles i kveld.",
       "situation": [
@@ -210,7 +279,11 @@
           "label": "Bli med på kveldsøkta",
           "reply": "Jeg blir med på økta i kveld.",
           "effect": 1,
-          "tags": ["trening", "sosialt liv", "helse"],
+          "tags": [
+            "trening",
+            "sosialt liv",
+            "helse"
+          ],
           "feedback": "Svette, latter og et par nye bekjentskaper fra banen."
         },
         {
@@ -218,7 +291,9 @@
           "label": "La kroppen hvile i kveld",
           "reply": "Jeg hviler i kveld og tar økta en annen dag.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "Restitusjon er også trening."
         }
       ]
@@ -226,8 +301,13 @@
     {
       "id": "private_evening_natur_profile_004",
       "topic": "natur",
-      "requiresAnyProfileTags": ["nature", "natur"],
-      "weightFrom": ["privatePhaseWeights.nature"],
+      "requiresAnyProfileTags": [
+        "nature",
+        "natur"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.nature"
+      ],
       "subject": "Kveldslys over et grønt sted",
       "summary": "En rolig kveldstur til et grønt sted du kjenner kan lande hele dagen.",
       "situation": [
@@ -241,7 +321,11 @@
           "label": "Ta kveldsturen til det grønne stedet",
           "reply": "Jeg tar en rolig kveldstur dit.",
           "effect": 1,
-          "tags": ["natur", "psyke", "helse"],
+          "tags": [
+            "natur",
+            "psyke",
+            "helse"
+          ],
           "feedback": "Lufta og roen gjør jobben sin. Du lander."
         },
         {
@@ -249,7 +333,9 @@
           "label": "Bli hjemme i kveld",
           "reply": "Jeg blir inne i kveld.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "Hjemme er også et fint sted å lande."
         }
       ]
@@ -257,8 +343,14 @@
     {
       "id": "private_evening_subkultur_profile_005",
       "topic": "subkultur",
-      "requiresAnyProfileTags": ["subculture", "subkultur"],
-      "weightFrom": ["privatePhaseWeights.subculture", "capital.subculture"],
+      "requiresAnyProfileTags": [
+        "subculture",
+        "subkultur"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.subculture",
+        "capital.subculture"
+      ],
       "subject": "Noe skjer under overflaten i kveld",
       "summary": "Miljøet ditt samles i kveld, et sted de fleste ikke vet om.",
       "situation": [
@@ -272,7 +364,11 @@
           "label": "Gå dit miljøet samles",
           "reply": "Jeg drar dit i kveld.",
           "effect": 1,
-          "tags": ["subkultur", "sosialt liv", "fritid"],
+          "tags": [
+            "subkultur",
+            "sosialt liv",
+            "fritid"
+          ],
           "feedback": "Riktig folk, riktig lyd. Du hører til her."
         },
         {
@@ -280,7 +376,10 @@
           "label": "Dyrk din egen kveld",
           "reply": "Jeg tar kvelden for meg selv, på min måte.",
           "effect": 0,
-          "tags": ["fritid", "hvile"],
+          "tags": [
+            "fritid",
+            "hvile"
+          ],
           "feedback": "Uavhengighet er også en del av stilen din."
         }
       ]
@@ -288,8 +387,12 @@
     {
       "id": "private_evening_laering_profile_006",
       "topic": "læring",
-      "requiresAnyProfileTags": ["learning"],
-      "weightFrom": ["privatePhaseWeights.learning"],
+      "requiresAnyProfileTags": [
+        "learning"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.learning"
+      ],
       "subject": "Kunnskapen din vil videre",
       "summary": "Kvelden har plass til en liten læringsøkt bygget på det du allerede kan.",
       "situation": [
@@ -303,7 +406,11 @@
           "label": "Ta en liten læringsøkt",
           "reply": "Jeg bruker en time på å lære noe mer.",
           "effect": 1,
-          "tags": ["læring", "fritid", "psyke"],
+          "tags": [
+            "læring",
+            "fritid",
+            "psyke"
+          ],
           "feedback": "Enda en bit på plass i samlingen din."
         },
         {
@@ -311,7 +418,9 @@
           "label": "La hodet få fri i kveld",
           "reply": "Jeg lar hodet hvile i kveld.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "Kunnskapen setter seg også når du hviler."
         }
       ]
@@ -319,8 +428,13 @@
     {
       "id": "private_evening_lavenergi_profile_007",
       "topic": "hvile",
-      "requiresAnyProfileTags": ["low_energy", "rest"],
-      "weightFrom": ["privatePhaseWeights.rest"],
+      "requiresAnyProfileTags": [
+        "low_energy",
+        "rest"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.rest"
+      ],
       "subject": "Kroppen henger etter samlingen din",
       "summary": "Du har samlet mye i det siste, men kroppen henger etter.",
       "situation": [
@@ -334,7 +448,11 @@
           "label": "Ta en helt rolig kveld",
           "reply": "Jeg tar en rolig kveld og lar kroppen hente seg inn.",
           "effect": 1,
-          "tags": ["hvile", "psyke", "søvn"],
+          "tags": [
+            "hvile",
+            "psyke",
+            "søvn"
+          ],
           "feedback": "Roen kommer sigende. Dette var det kloke valget."
         },
         {
@@ -342,7 +460,10 @@
           "label": "Gjør én liten læringsøkt, så ro",
           "reply": "Jeg gjør én liten økt, så senker jeg skuldrene.",
           "effect": 0,
-          "tags": ["læring", "hvile"],
+          "tags": [
+            "læring",
+            "hvile"
+          ],
           "feedback": "Kort og rolig. Så var kvelden din igjen."
         }
       ]

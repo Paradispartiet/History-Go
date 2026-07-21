@@ -30,20 +30,33 @@
           "choice_axis": "oppdatere_case_vs_fortsette_plan",
           "consequence_axis": "relevans_vs_tempo",
           "narrative_arc": "markedet_bryter_inn",
-          "learning_focus": ["markedsnyhet", "marginpress", "modelloppdatering", "presentasjonsrisiko", "relevans"],
+          "learning_focus": [
+            "markedsnyhet",
+            "marginpress",
+            "modelloppdatering",
+            "presentasjonsrisiko",
+            "relevans"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Oppdater sensitiviteten og vis effekten på caset.",
               "effect": 1,
-              "tags": ["analyse", "risiko", "kvalitet"],
+              "tags": [
+                "analyse",
+                "risiko",
+                "kvalitet"
+              ],
               "feedback": "Du gjør presentasjonen mer aktuell, selv om den blir mindre glatt. Modellen viser at den lytter til markedet."
             },
             {
               "id": "B",
               "label": "Nevn nyheten muntlig, men behold modellen uendret.",
               "effect": -1,
-              "tags": ["tempo", "risk"],
+              "tags": [
+                "tempo",
+                "risk"
+              ],
               "feedback": "Du sparer tid, men modellen blir liggende et skritt bak markedet. En muntlig advarsel er svakere enn en oppdatert analyse."
             }
           ]

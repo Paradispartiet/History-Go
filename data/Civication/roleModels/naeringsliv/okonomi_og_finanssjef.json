@@ -128,28 +128,45 @@
       "title": "Budsjett som makt",
       "description": "Budsjettet fordeler handlingsrom mellom avdelinger og bestemmer hvilke fremtider organisasjonen får råd til å tro på.",
       "pressure": "prioritering_vs_relationspress",
-      "affects": ["trust", "status", "capital", "strategy"]
+      "affects": [
+        "trust",
+        "status",
+        "capital",
+        "strategy"
+      ]
     },
     {
       "id": "likviditet_for_resultat",
       "title": "Likviditet før resultat",
       "description": "Resultatet kan se greit ut mens kontantstrømmen strammer seg til.",
       "pressure": "optimisme_vs_kontantdisiplin",
-      "affects": ["risk", "survival", "trust"]
+      "affects": [
+        "risk",
+        "survival",
+        "trust"
+      ]
     },
     {
       "id": "styrets_bilde",
       "title": "Styrets bilde",
       "description": "Styret trenger klarhet, men får for dårlig beslutningsgrunnlag hvis risiko og forutsetninger glattes bort.",
       "pressure": "klarhet_vs_fullstendighet",
-      "affects": ["governance", "trust", "decision_quality"]
+      "affects": [
+        "governance",
+        "trust",
+        "decision_quality"
+      ]
     },
     {
       "id": "okonomifunksjonens_tillit",
       "title": "Økonomifunksjonens tillit",
       "description": "Teamet under deg må være presist, men også oppleve at kontroll brukes til læring, ikke frykt.",
       "pressure": "kontroll_vs_ledelse",
-      "affects": ["team", "learning", "integrity"]
+      "affects": [
+        "team",
+        "learning",
+        "integrity"
+      ]
     }
   ],
   "dilemmas": [
@@ -159,7 +176,10 @@
       "setup": "Daglig leder ønsker et offensivt budsjett som viser vekst, mens dine egne tall viser at forutsetningene er strukket.",
       "choice_axis": "realisme_vs_ambisjon",
       "consequence_axis": "tillit_vs_motivasjon",
-      "mail_hooks": ["job", "conflict"]
+      "mail_hooks": [
+        "job",
+        "conflict"
+      ]
     },
     {
       "id": "kontantstrom_eller_resultatfortelling",
@@ -167,7 +187,10 @@
       "setup": "Resultatet kan presenteres pent, men likviditeten viser at organisasjonen må bremse investeringer eller reforhandle vilkår.",
       "choice_axis": "kontantdisiplin_vs_resultatro",
       "consequence_axis": "overlevelse_vs_status",
-      "mail_hooks": ["event", "story"]
+      "mail_hooks": [
+        "event",
+        "story"
+      ]
     },
     {
       "id": "stotte_teamet_eller_beskytte_ledelsen",
@@ -175,7 +198,11 @@
       "setup": "En controller under deg har funnet et avvik som gjør ledergruppens plan svakere. Du må avgjøre om funnet løftes fullt ut.",
       "choice_axis": "faglig_lojalitet_vs_politisk_ro",
       "consequence_axis": "integritet_vs_handlingsrom",
-      "mail_hooks": ["people", "conflict", "story"]
+      "mail_hooks": [
+        "people",
+        "conflict",
+        "story"
+      ]
     }
   ],
   "related_people": [

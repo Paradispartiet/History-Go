@@ -36,14 +36,24 @@
           "choice_axis": "datakritikk_vs_rask_anbefaling",
           "consequence_axis": "integritet_vs_tempo",
           "narrative_arc": "forste_modell",
-          "learning_focus": ["datakvalitet", "antakelser", "investeringsnotat", "kildekritikk", "kapitalbeslutning"],
+          "learning_focus": [
+            "datakvalitet",
+            "antakelser",
+            "investeringsnotat",
+            "kildekritikk",
+            "kapitalbeslutning"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Skill tydelig mellom rapporterte tall, guiding og egne antakelser.",
               "reply": "Jeg skiller rapporterte tall, guiding og egne antakelser tydelig i notatet.",
               "effect": 1,
-              "tags": ["integritet", "kvalitet", "analyse"],
+              "tags": [
+                "integritet",
+                "kvalitet",
+                "analyse"
+              ],
               "feedback": "Du gjør notatet mindre glatt, men mer sant. Modellen får flere lag, og derfor mer verdi."
             },
             {
@@ -51,7 +61,11 @@
               "label": "Bruk estimatene direkte for å få frem et tydelig hovedcase.",
               "reply": "Jeg bruker estimatene direkte for å få frem hovedcaset.",
               "effect": -1,
-              "tags": ["tempo", "risk", "visibility"],
+              "tags": [
+                "tempo",
+                "risk",
+                "visibility"
+              ],
               "feedback": "Caset blir tydeligere, men usikkerheten flyttes inn i modellen uten merking. Det som burde vært forbehold, begynner å ligne fakta."
             }
           ]
@@ -83,14 +97,23 @@
           "choice_axis": "versjonskontroll_vs_framdrift",
           "consequence_axis": "presisjon_vs_tempo",
           "narrative_arc": "modellen_som_argument",
-          "learning_focus": ["modellrisiko", "sensitivitetsanalyse", "versjonskontroll", "marginantakelser"],
+          "learning_focus": [
+            "modellrisiko",
+            "sensitivitetsanalyse",
+            "versjonskontroll",
+            "marginantakelser"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Rydd versjoner, merk sensitivitet og dokumenter marginantakelsen.",
               "reply": "Jeg rydder versjonene, merker sensitiviteten og dokumenterer marginantakelsen før vi sender.",
               "effect": 1,
-              "tags": ["process", "kvalitet", "analyse"],
+              "tags": [
+                "process",
+                "kvalitet",
+                "analyse"
+              ],
               "feedback": "Du gjør modellen til et dokument andre faktisk kan stole på. Det er mindre spektakulært enn en skarp konklusjon, men mer profesjonelt."
             },
             {
@@ -98,7 +121,10 @@
               "label": "Send modellen nå med en kort advarsel i mailen.",
               "reply": "Jeg sender modellen nå og legger inn en kort advarsel i mailen.",
               "effect": -1,
-              "tags": ["tempo", "risk"],
+              "tags": [
+                "tempo",
+                "risk"
+              ],
               "feedback": "Advarselen ligger utenfor modellen. Når filen vandrer videre, kan forbeholdet falle av mens tallet blir stående."
             }
           ]

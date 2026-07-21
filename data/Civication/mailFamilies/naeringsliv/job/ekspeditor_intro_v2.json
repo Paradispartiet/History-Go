@@ -41,7 +41,11 @@
               "id": "A",
               "label": "Sjekk hyllepris og forklar kunden hva du gjør.",
               "reply": "Jeg sjekker hyllepris og forklarer kunden hva jeg gjør.",
-              "tags": ["kvalitet", "kunde", "legitimacy"],
+              "tags": [
+                "kvalitet",
+                "kunde",
+                "legitimacy"
+              ],
               "effect": 1,
               "feedback": "Du senker tempoet litt, men bygger troverdighet i køen.",
               "triggers_on_choice": "sara_thread_kassepris_a"
@@ -50,7 +54,11 @@
               "id": "B",
               "label": "Slå inn registrert pris for å holde køen i gang.",
               "reply": "Jeg holder køen i gang og bruker registrert pris.",
-              "tags": ["tempo", "snarvei", "risk"],
+              "tags": [
+                "tempo",
+                "snarvei",
+                "risk"
+              ],
               "effect": -1,
               "feedback": "Køen går raskere, men avviket blir liggende som en feil noen andre må forklare.",
               "triggers_on_choice": "sara_thread_kassepris_b"
@@ -89,7 +97,11 @@
               "id": "A",
               "label": "Varsle Jonas tidlig og bytt til reservekasse ved første tegn.",
               "reply": "Jeg varsler deg tidlig og går over til reservekasse hvis den fryser.",
-              "tags": ["process", "drift", "kunde"],
+              "tags": [
+                "process",
+                "drift",
+                "kunde"
+              ],
               "effect": 1,
               "feedback": "Du behandler teknikk som drift, ikke som personlig panikk.",
               "triggers_on_choice": "jonas_thread_terminal_a"
@@ -98,7 +110,11 @@
               "id": "B",
               "label": "Prøv å løse terminalen alene mens kundene venter.",
               "reply": "Jeg prøver å løse terminalen selv først.",
-              "tags": ["visibility", "risk", "snarvei"],
+              "tags": [
+                "visibility",
+                "risk",
+                "snarvei"
+              ],
               "effect": -1,
               "feedback": "Du virker handlekraftig i starten, men køen gjør feilen større for hvert minutt.",
               "triggers_on_choice": "jonas_thread_terminal_b"
@@ -137,7 +153,11 @@
               "id": "A",
               "label": "Be Amir vise deg kampanjehylla før åpning.",
               "reply": "Ja, vis meg kampanjehylla før åpning.",
-              "tags": ["kollega", "learning", "kvalitet"],
+              "tags": [
+                "kollega",
+                "learning",
+                "kvalitet"
+              ],
               "effect": 1,
               "feedback": "Du gjør deg mindre alene og reduserer feil før de oppstår.",
               "triggers_on_choice": "amir_thread_kampanje_a"
@@ -146,7 +166,11 @@
               "id": "B",
               "label": "Svar at du finner ut av det selv.",
               "reply": "Jeg finner ut av det selv.",
-              "tags": ["autonomy", "risk", "visibility"],
+              "tags": [
+                "autonomy",
+                "risk",
+                "visibility"
+              ],
               "effect": 0,
               "feedback": "Du beholder fasaden, men mister en enkel snarvei til faktisk oversikt.",
               "triggers_on_choice": "amir_thread_kampanje_b"
@@ -175,7 +199,10 @@
               "id": "A",
               "label": "«Skjønner. Jeg fortsetter sånn.»",
               "reply": "Skjønner. Jeg fortsetter sånn.",
-              "tags": ["legitimacy", "kunde"],
+              "tags": [
+                "legitimacy",
+                "kunde"
+              ],
               "effect": 0,
               "feedback": "Standarden er satt."
             }
@@ -201,7 +228,10 @@
               "id": "A",
               "label": "«Forstått. Jeg sjekker neste gang.»",
               "reply": "Forstått. Jeg sjekker neste gang.",
-              "tags": ["process", "humility"],
+              "tags": [
+                "process",
+                "humility"
+              ],
               "effect": 0,
               "feedback": "Du tar korreksjonen uten å lage mer støy."
             }
@@ -227,7 +257,10 @@
               "id": "A",
               "label": "«Bra. Da vet jeg rutinen.»",
               "reply": "Bra. Da vet jeg rutinen.",
-              "tags": ["drift", "process"],
+              "tags": [
+                "drift",
+                "process"
+              ],
               "effect": 0,
               "feedback": "Rutinen sitter litt bedre."
             }
@@ -253,7 +286,10 @@
               "id": "A",
               "label": "«Skjønner. Jeg varsler tidligere.»",
               "reply": "Skjønner. Jeg varsler tidligere.",
-              "tags": ["humility", "drift"],
+              "tags": [
+                "humility",
+                "drift"
+              ],
               "effect": 0,
               "feedback": "Du får en tydeligere plass i systemet."
             }
@@ -279,7 +315,10 @@
               "id": "A",
               "label": "«Jeg kommer.»",
               "reply": "Jeg kommer.",
-              "tags": ["kollega", "learning"],
+              "tags": [
+                "kollega",
+                "learning"
+              ],
               "effect": 0,
               "feedback": "Du får en inngang til den uformelle kunnskapen på gulvet."
             }
@@ -305,7 +344,10 @@
               "id": "A",
               "label": "«Jeg roper hvis jeg står fast.»",
               "reply": "Jeg roper hvis jeg står fast.",
-              "tags": ["autonomy", "kollega"],
+              "tags": [
+                "autonomy",
+                "kollega"
+              ],
               "effect": 0,
               "feedback": "Du beholder litt stolthet og litt avstand."
             }

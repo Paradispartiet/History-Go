@@ -11,11 +11,25 @@
     "badge_name": "Næringsliv & industri",
     "tier_label": "Renholder",
     "tier_threshold": 70,
-    "progression_from": ["Driftsmedarbeider", "Assistent", "Ekstrahjelp"],
-    "progression_to": ["Hygienefaglig renholder", "Serviceleder", "Driftskoordinator"]
+    "progression_from": [
+      "Driftsmedarbeider",
+      "Assistent",
+      "Ekstrahjelp"
+    ],
+    "progression_to": [
+      "Hygienefaglig renholder",
+      "Serviceleder",
+      "Driftskoordinator"
+    ]
   },
   "fag_bindings": {
-    "primary_subjects": ["drift", "hms", "smittevern", "service", "arbeidsliv"],
+    "primary_subjects": [
+      "drift",
+      "hms",
+      "smittevern",
+      "service",
+      "arbeidsliv"
+    ],
     "category_files": [
       "data/Civication/roleModels/naeringsliv/renholder.json",
       "data/Civication/mailPlans/naeringsliv/renholder_plan.json",
@@ -23,15 +37,42 @@
       "data/Civication/mailFamilies/naeringsliv/people/renholder_people.json",
       "data/Civication/mailFamilies/naeringsliv/knowledge/renholder_knowledge.json"
     ],
-    "required_concepts": ["renholdssone", "berøringspunkt", "kontakttid", "dosering", "avvik", "HMS", "ergonomi", "smittekjede", "romstandard", "usynlig arbeid", "verdighetsarbeid"],
-    "methods": ["soneprioritering", "ren-til-skitten arbeidsflyt", "risikovurdering av flater", "riktig kjemi på riktig materiale", "mikropause og løfteteknikk", "avviksmelding", "servicekommunikasjon under tidspress"]
+    "required_concepts": [
+      "renholdssone",
+      "berøringspunkt",
+      "kontakttid",
+      "dosering",
+      "avvik",
+      "HMS",
+      "ergonomi",
+      "smittekjede",
+      "romstandard",
+      "usynlig arbeid",
+      "verdighetsarbeid"
+    ],
+    "methods": [
+      "soneprioritering",
+      "ren-til-skitten arbeidsflyt",
+      "risikovurdering av flater",
+      "riktig kjemi på riktig materiale",
+      "mikropause og løfteteknikk",
+      "avviksmelding",
+      "servicekommunikasjon under tidspress"
+    ]
   },
   "work_identity": {
     "one_sentence": "Renholderen gjør rom trygge, verdige og brukbare før noen legger merke til arbeidet.",
     "hidden_responsibility": "Å bryte smittekjeder, hindre fall og beskytte verdighet mens resultatet helst skal se selvsagt ut.",
     "status_tension": "Rollen har lav synlighet og lav status, men høyt ansvar for hygiene, drift, kroppslig sikkerhet og andres arbeidsdag.",
     "core_pressure": "hygiene_og_verdighet_vs_tidsbudsjett_og_servicepress",
-    "work_rhythm": ["lese rom, soner og brukertrykk", "prioritere berøringspunkter og smitterisiko", "velge utstyr, kjemi og metode", "arbeide ergonomisk under knapp tid", "håndtere avbrudd fra brukere og ledelse", "melde avvik og etterlate rommet trygt"]
+    "work_rhythm": [
+      "lese rom, soner og brukertrykk",
+      "prioritere berøringspunkter og smitterisiko",
+      "velge utstyr, kjemi og metode",
+      "arbeide ergonomisk under knapp tid",
+      "håndtere avbrudd fra brukere og ledelse",
+      "melde avvik og etterlate rommet trygt"
+    ]
   },
   "story_world": {
     "simulation_promise": "Du får oppleve hvordan renhold egentlig handler om å bryte smittekjeder, hindre fall og beskytte verdighet – et arbeid som helst skal være usynlig, men som beskytter alle som bruker rommet.",
@@ -54,17 +95,71 @@
       "en mikropause innført i tide hindrer en belastningsskade"
     ],
     "relationship_web": [
-      { "who": "driftsleder_mona", "relation": "din leder", "wants": "rom levert i tide og få avvikssaker", "creates": "press om tempo over standard", "tension": "smittevern_vs_minuttbudsjett" },
-      { "who": "amina_erfaren_renholder", "relation": "erfaren kollega og fagstemme", "wants": "at faget og kroppen respekteres", "creates": "støtte og metode, men også et speil for snarveier", "tension": "faglighet_vs_lav_status" },
-      { "who": "kontorbruker_jon", "relation": "bruker av rommet", "wants": "et tilgjengelig og tilsynelatende rent rom uten å se arbeidet", "creates": "servicepress og fristelse til å bli usynlig", "tension": "brukerkomfort_vs_arbeidsverdighet" },
-      { "who": "verneombud_sara", "relation": "HMS-kontrollpunkt", "wants": "trygg kropp, riktig kjemi og meldte avvik", "creates": "press om å gjøre belastning og risiko synlig", "tension": "tempo_vs_hms" }
+      {
+        "who": "driftsleder_mona",
+        "relation": "din leder",
+        "wants": "rom levert i tide og få avvikssaker",
+        "creates": "press om tempo over standard",
+        "tension": "smittevern_vs_minuttbudsjett"
+      },
+      {
+        "who": "amina_erfaren_renholder",
+        "relation": "erfaren kollega og fagstemme",
+        "wants": "at faget og kroppen respekteres",
+        "creates": "støtte og metode, men også et speil for snarveier",
+        "tension": "faglighet_vs_lav_status"
+      },
+      {
+        "who": "kontorbruker_jon",
+        "relation": "bruker av rommet",
+        "wants": "et tilgjengelig og tilsynelatende rent rom uten å se arbeidet",
+        "creates": "servicepress og fristelse til å bli usynlig",
+        "tension": "brukerkomfort_vs_arbeidsverdighet"
+      },
+      {
+        "who": "verneombud_sara",
+        "relation": "HMS-kontrollpunkt",
+        "wants": "trygg kropp, riktig kjemi og meldte avvik",
+        "creates": "press om å gjøre belastning og risiko synlig",
+        "tension": "tempo_vs_hms"
+      }
     ],
     "knowledge_in_practice": [
-      { "concept": "berøringspunkt", "practical_scene": "et rom skinner visuelt mens dørhåndtak og brytere er hoppet over", "what_player_must_notice": "hvor smitterisikoen faktisk sitter, ikke hvor skitten synes", "bad_misread": "visuell renhet er det samme som hygienisk kvalitet", "good_use": "starte med berøringspunkter og holde kontakttid før finish" },
-      { "concept": "romstandard", "practical_scene": "romlista gir tolv minutter til et rom som krever tjue", "what_player_must_notice": "hva minimum trygg standard faktisk krever", "bad_misread": "skrive rommet ferdig uten å være ferdig", "good_use": "prioritere risiko og melde tidsavvik tydelig" },
-      { "concept": "ergonomi", "practical_scene": "tempoet holdes ved at du bøyer, løfter og vrir feil", "what_player_must_notice": "egen kropp som buffer for for lite tid og utstyr", "bad_misread": "normalisere smerte som en del av jobben", "good_use": "justere utstyr, ta mikropauser og melde belastning før skade" },
-      { "concept": "avvik", "practical_scene": "et vått gulv eller en manglende kjemi utgjør en risiko", "what_player_must_notice": "forskjellen på personkritikk og systemavvik", "bad_misread": "stillhet for å unngå bråk", "good_use": "melde avviket konkret slik at årsaken kan rettes" },
-      { "concept": "verdighetsarbeid", "practical_scene": "en bruker omtaler arbeidet ditt som en forstyrrelse", "what_player_must_notice": "egen og brukerens verdighet i situasjonen", "bad_misread": "unnskylde eget nødvendig arbeid", "good_use": "sette en høflig grense og forklare hvorfor flaten må være trygg" }
+      {
+        "concept": "berøringspunkt",
+        "practical_scene": "et rom skinner visuelt mens dørhåndtak og brytere er hoppet over",
+        "what_player_must_notice": "hvor smitterisikoen faktisk sitter, ikke hvor skitten synes",
+        "bad_misread": "visuell renhet er det samme som hygienisk kvalitet",
+        "good_use": "starte med berøringspunkter og holde kontakttid før finish"
+      },
+      {
+        "concept": "romstandard",
+        "practical_scene": "romlista gir tolv minutter til et rom som krever tjue",
+        "what_player_must_notice": "hva minimum trygg standard faktisk krever",
+        "bad_misread": "skrive rommet ferdig uten å være ferdig",
+        "good_use": "prioritere risiko og melde tidsavvik tydelig"
+      },
+      {
+        "concept": "ergonomi",
+        "practical_scene": "tempoet holdes ved at du bøyer, løfter og vrir feil",
+        "what_player_must_notice": "egen kropp som buffer for for lite tid og utstyr",
+        "bad_misread": "normalisere smerte som en del av jobben",
+        "good_use": "justere utstyr, ta mikropauser og melde belastning før skade"
+      },
+      {
+        "concept": "avvik",
+        "practical_scene": "et vått gulv eller en manglende kjemi utgjør en risiko",
+        "what_player_must_notice": "forskjellen på personkritikk og systemavvik",
+        "bad_misread": "stillhet for å unngå bråk",
+        "good_use": "melde avviket konkret slik at årsaken kan rettes"
+      },
+      {
+        "concept": "verdighetsarbeid",
+        "practical_scene": "en bruker omtaler arbeidet ditt som en forstyrrelse",
+        "what_player_must_notice": "egen og brukerens verdighet i situasjonen",
+        "bad_misread": "unnskylde eget nødvendig arbeid",
+        "good_use": "sette en høflig grense og forklare hvorfor flaten må være trygg"
+      }
     ],
     "emotional_costs": [
       "usynlighet: arbeidet merkes bare når det mangler",
@@ -91,11 +186,25 @@
       "title": "Det usynlige arbeidet som faktisk beskytter folk",
       "story_type": "identity",
       "premise": "Ingen merker rommet du gjorde trygt, men en hoppet over flate ville fått konsekvenser for mange.",
-      "people": ["amina_erfaren_renholder"],
+      "people": [
+        "amina_erfaren_renholder"
+      ],
       "place_id": "toalett_og_beroringssoner",
-      "work_knowledge": ["berøringspunkt", "smittekjede", "usynlig arbeid"],
-      "conflict_axes": ["smittevern_vs_minuttbudsjett", "brukerkomfort_vs_arbeidsverdighet"],
-      "mail_types": ["story", "knowledge", "job", "consequence"],
+      "work_knowledge": [
+        "berøringspunkt",
+        "smittekjede",
+        "usynlig arbeid"
+      ],
+      "conflict_axes": [
+        "smittevern_vs_minuttbudsjett",
+        "brukerkomfort_vs_arbeidsverdighet"
+      ],
+      "mail_types": [
+        "story",
+        "knowledge",
+        "job",
+        "consequence"
+      ],
       "thread_potential": true,
       "possible_choices": [
         "holde metoden selv når ingen ser den",
@@ -114,11 +223,25 @@
       "title": "Synlig rent vs hygienisk rent",
       "story_type": "knowledge",
       "premise": "Rommet skinner, men berøringspunkter, kontakttid og soner er hoppet over.",
-      "people": ["amina_erfaren_renholder", "kontorbruker_jon"],
+      "people": [
+        "amina_erfaren_renholder",
+        "kontorbruker_jon"
+      ],
       "place_id": "kontor_moterom_og_korridor",
-      "work_knowledge": ["berøringspunkt", "kontakttid", "smittekjede"],
-      "conflict_axes": ["smittevern_vs_minuttbudsjett"],
-      "mail_types": ["job", "knowledge", "consequence", "micro"],
+      "work_knowledge": [
+        "berøringspunkt",
+        "kontakttid",
+        "smittekjede"
+      ],
+      "conflict_axes": [
+        "smittevern_vs_minuttbudsjett"
+      ],
+      "mail_types": [
+        "job",
+        "knowledge",
+        "consequence",
+        "micro"
+      ],
       "thread_potential": true,
       "possible_choices": [
         "prioritere risikoflater og holde kontakttid",
@@ -137,11 +260,24 @@
       "title": "Tidspress på toalett",
       "story_type": "everyday",
       "premise": "Romlista gir for få minutter til en toalettsone der smitterisikoen er høyest.",
-      "people": ["driftsleder_mona"],
+      "people": [
+        "driftsleder_mona"
+      ],
       "place_id": "toalett_og_beroringssoner",
-      "work_knowledge": ["romstandard", "kontakttid", "dosering"],
-      "conflict_axes": ["smittevern_vs_minuttbudsjett"],
-      "mail_types": ["job", "conflict", "followup", "micro"],
+      "work_knowledge": [
+        "romstandard",
+        "kontakttid",
+        "dosering"
+      ],
+      "conflict_axes": [
+        "smittevern_vs_minuttbudsjett"
+      ],
+      "mail_types": [
+        "job",
+        "conflict",
+        "followup",
+        "micro"
+      ],
       "thread_potential": true,
       "possible_choices": [
         "velge minimum trygg standard og melde tidsavvik",
@@ -160,11 +296,26 @@
       "title": "HMS-avviket som må meldes",
       "story_type": "conflict",
       "premise": "Du oppdager et vått gulv uten skilt og feil kjemi på et følsomt materiale, men å melde det bremser hele runden.",
-      "people": ["verneombud_sara", "driftsleder_mona"],
+      "people": [
+        "verneombud_sara",
+        "driftsleder_mona"
+      ],
       "place_id": "renholdsrom_vogn_og_kjemi",
-      "work_knowledge": ["avvik", "HMS", "dosering"],
-      "conflict_axes": ["tempo_vs_hms", "smittevern_vs_minuttbudsjett"],
-      "mail_types": ["event", "conflict", "followup", "knowledge"],
+      "work_knowledge": [
+        "avvik",
+        "HMS",
+        "dosering"
+      ],
+      "conflict_axes": [
+        "tempo_vs_hms",
+        "smittevern_vs_minuttbudsjett"
+      ],
+      "mail_types": [
+        "event",
+        "conflict",
+        "followup",
+        "knowledge"
+      ],
       "thread_potential": true,
       "possible_choices": [
         "melde avviket konkret med årsak",
@@ -183,11 +334,26 @@
       "title": "Lederen som vil ha tempo",
       "story_type": "conflict",
       "premise": "Driftslederen ber deg ta et ekstra rom og «ikke lage sak av småting», selv om det går ut over standarden.",
-      "people": ["driftsleder_mona", "amina_erfaren_renholder"],
+      "people": [
+        "driftsleder_mona",
+        "amina_erfaren_renholder"
+      ],
       "place_id": "kontor_moterom_og_korridor",
-      "work_knowledge": ["romstandard", "avvik", "berøringspunkt"],
-      "conflict_axes": ["smittevern_vs_minuttbudsjett", "tempo_vs_hms"],
-      "mail_types": ["people", "conflict", "consequence", "followup"],
+      "work_knowledge": [
+        "romstandard",
+        "avvik",
+        "berøringspunkt"
+      ],
+      "conflict_axes": [
+        "smittevern_vs_minuttbudsjett",
+        "tempo_vs_hms"
+      ],
+      "mail_types": [
+        "people",
+        "conflict",
+        "consequence",
+        "followup"
+      ],
       "thread_potential": true,
       "possible_choices": [
         "forklare hva trygg standard krever og foreslå prioritering",
@@ -206,11 +372,24 @@
       "title": "Brukeren som bare ser overflaten",
       "story_type": "relationship",
       "premise": "En bruker behandler arbeidet ditt som en forstyrrelse og vil inn på et nettopp vasket, vått gulv.",
-      "people": ["kontorbruker_jon"],
+      "people": [
+        "kontorbruker_jon"
+      ],
       "place_id": "kontor_moterom_og_korridor",
-      "work_knowledge": ["verdighetsarbeid", "HMS", "usynlig arbeid"],
-      "conflict_axes": ["brukerkomfort_vs_arbeidsverdighet"],
-      "mail_types": ["people", "conflict", "story", "followup"],
+      "work_knowledge": [
+        "verdighetsarbeid",
+        "HMS",
+        "usynlig arbeid"
+      ],
+      "conflict_axes": [
+        "brukerkomfort_vs_arbeidsverdighet"
+      ],
+      "mail_types": [
+        "people",
+        "conflict",
+        "story",
+        "followup"
+      ],
       "thread_potential": false,
       "possible_choices": [
         "sette en høflig grense og forklare risikoen",
@@ -229,11 +408,25 @@
       "title": "Slitasjen i kroppen",
       "story_type": "consequence",
       "premise": "For å levere romlista bruker du kroppen som buffer, og belastningen i rygg, skuldre og hender bygger seg opp.",
-      "people": ["verneombud_sara", "amina_erfaren_renholder"],
+      "people": [
+        "verneombud_sara",
+        "amina_erfaren_renholder"
+      ],
       "place_id": "rygg_skuldre_hender",
-      "work_knowledge": ["ergonomi", "HMS", "avvik"],
-      "conflict_axes": ["tempo_vs_hms"],
-      "mail_types": ["consequence", "people", "followup", "job"],
+      "work_knowledge": [
+        "ergonomi",
+        "HMS",
+        "avvik"
+      ],
+      "conflict_axes": [
+        "tempo_vs_hms"
+      ],
+      "mail_types": [
+        "consequence",
+        "people",
+        "followup",
+        "job"
+      ],
       "thread_potential": true,
       "possible_choices": [
         "justere utstyr, ta mikropauser og melde belastning",
@@ -252,11 +445,25 @@
       "title": "Faglig stolthet i lavstatusarbeid",
       "story_type": "identity",
       "premise": "Noen omtaler jobben din som noe hvem som helst kan gjøre, samme dag som metoden din hindret et smittespor.",
-      "people": ["amina_erfaren_renholder", "kontorbruker_jon"],
+      "people": [
+        "amina_erfaren_renholder",
+        "kontorbruker_jon"
+      ],
       "place_id": "renholdsrom_vogn_og_kjemi",
-      "work_knowledge": ["usynlig arbeid", "verdighetsarbeid", "smittekjede"],
-      "conflict_axes": ["brukerkomfort_vs_arbeidsverdighet"],
-      "mail_types": ["story", "knowledge", "people", "consequence"],
+      "work_knowledge": [
+        "usynlig arbeid",
+        "verdighetsarbeid",
+        "smittekjede"
+      ],
+      "conflict_axes": [
+        "brukerkomfort_vs_arbeidsverdighet"
+      ],
+      "mail_types": [
+        "story",
+        "knowledge",
+        "people",
+        "consequence"
+      ],
       "thread_potential": false,
       "possible_choices": [
         "eie faget og sette ord på hva arbeidet faktisk krever",
@@ -272,67 +479,701 @@
     }
   ],
   "task_grammar": [
-    {"id": "prioritize_touch_points", "label": "Prioriter berøringspunkter", "task_type": "hygiene_priority", "typical_inputs": ["dørhåndtak", "brytere", "rekkverk", "toalettsoner"], "good_work": ["starter med smitterisiko", "skiller synlig skitt fra kritiske kontaktflater", "holder metode selv når rommet ser rent ut"], "bad_work": ["pusser bare det synlige", "hopper over kontakttid", "lar brukerpress styre hygienerekkefølgen"], "mail_types": ["job", "knowledge", "micro"]},
-    {"id": "handle_time_boxed_room", "label": "Rydd et rom med for lite tid", "task_type": "tempo_quality", "typical_inputs": ["romliste", "minuttbudsjett", "akutt bruk"], "good_work": ["velger minimum trygg standard", "varsler når standard ikke kan holdes", "prioriterer risiko før finish"], "bad_work": ["later som alt er ferdig", "ofrer HMS for tempo", "skjuler tidsmangel i stillhet"], "mail_types": ["job", "conflict", "consequence"]},
-    {"id": "protect_body_as_tool", "label": "Beskytt kroppen som arbeidsverktøy", "task_type": "hms_ergonomics", "typical_inputs": ["vogn", "mopp", "løft", "trapp", "vått gulv"], "good_work": ["justerer utstyr", "tar mikropauser", "melder belastning før skade"], "bad_work": ["bærer for tungt", "vrir kroppen for å spare sekunder", "normaliserer smerte"], "mail_types": ["job", "people", "followup"]},
-    {"id": "serve_without_becoming_invisible", "label": "Gi service uten å bli usynlig", "task_type": "service_dignity", "typical_inputs": ["bruker i rommet", "ledermelding", "klage på synlighet"], "good_work": ["forklarer standard rolig", "setter grense for trygg arbeidsflate", "bevarer brukerens verdighet"], "bad_work": ["unnskylder eget arbeid som forstyrrelse", "lar folk gå inn på vått gulv", "tar skyld for systemfeil"], "mail_types": ["people", "conflict", "story"]}
+    {
+      "id": "prioritize_touch_points",
+      "label": "Prioriter berøringspunkter",
+      "task_type": "hygiene_priority",
+      "typical_inputs": [
+        "dørhåndtak",
+        "brytere",
+        "rekkverk",
+        "toalettsoner"
+      ],
+      "good_work": [
+        "starter med smitterisiko",
+        "skiller synlig skitt fra kritiske kontaktflater",
+        "holder metode selv når rommet ser rent ut"
+      ],
+      "bad_work": [
+        "pusser bare det synlige",
+        "hopper over kontakttid",
+        "lar brukerpress styre hygienerekkefølgen"
+      ],
+      "mail_types": [
+        "job",
+        "knowledge",
+        "micro"
+      ]
+    },
+    {
+      "id": "handle_time_boxed_room",
+      "label": "Rydd et rom med for lite tid",
+      "task_type": "tempo_quality",
+      "typical_inputs": [
+        "romliste",
+        "minuttbudsjett",
+        "akutt bruk"
+      ],
+      "good_work": [
+        "velger minimum trygg standard",
+        "varsler når standard ikke kan holdes",
+        "prioriterer risiko før finish"
+      ],
+      "bad_work": [
+        "later som alt er ferdig",
+        "ofrer HMS for tempo",
+        "skjuler tidsmangel i stillhet"
+      ],
+      "mail_types": [
+        "job",
+        "conflict",
+        "consequence"
+      ]
+    },
+    {
+      "id": "protect_body_as_tool",
+      "label": "Beskytt kroppen som arbeidsverktøy",
+      "task_type": "hms_ergonomics",
+      "typical_inputs": [
+        "vogn",
+        "mopp",
+        "løft",
+        "trapp",
+        "vått gulv"
+      ],
+      "good_work": [
+        "justerer utstyr",
+        "tar mikropauser",
+        "melder belastning før skade"
+      ],
+      "bad_work": [
+        "bærer for tungt",
+        "vrir kroppen for å spare sekunder",
+        "normaliserer smerte"
+      ],
+      "mail_types": [
+        "job",
+        "people",
+        "followup"
+      ]
+    },
+    {
+      "id": "serve_without_becoming_invisible",
+      "label": "Gi service uten å bli usynlig",
+      "task_type": "service_dignity",
+      "typical_inputs": [
+        "bruker i rommet",
+        "ledermelding",
+        "klage på synlighet"
+      ],
+      "good_work": [
+        "forklarer standard rolig",
+        "setter grense for trygg arbeidsflate",
+        "bevarer brukerens verdighet"
+      ],
+      "bad_work": [
+        "unnskylder eget arbeid som forstyrrelse",
+        "lar folk gå inn på vått gulv",
+        "tar skyld for systemfeil"
+      ],
+      "mail_types": [
+        "people",
+        "conflict",
+        "story"
+      ]
+    }
   ],
   "problem_grammar": [
-    {"id": "room_looks_clean_but_is_not_safe", "title": "Rommet ser rent ut, men er ikke trygt", "problem_type": "hidden_hygiene_risk", "symptom": "Synlige flater skinner mens berøringspunkter, kontakttid eller soner er hoppet over.", "underlying_issue": "Visuell renhet forveksles med hygienisk kvalitet.", "typical_sources": ["bruker", "driftsleder", "erfaren renholder"], "fag_concepts": ["berøringspunkt", "kontakttid", "smittekjede"], "possible_mail_types": ["job", "knowledge", "consequence"]},
-    {"id": "minutes_do_not_match_standard", "title": "Minuttene matcher ikke standarden", "problem_type": "resource_pressure", "symptom": "Planen gir tolv minutter til et rom som krever tjue for forsvarlig metode.", "underlying_issue": "Kvalitet, HMS og servicekrav er ikke bemannet etter faktisk arbeid.", "typical_sources": ["romliste", "leder", "kollega"], "fag_concepts": ["romstandard", "avvik", "prioritering"], "possible_mail_types": ["conflict", "event", "followup"]},
-    {"id": "body_absorbs_system_pressure", "title": "Kroppen tar systempresset", "problem_type": "ergonomic_risk", "symptom": "Tempoet holdes ved at renholderen bøyer, løfter og repeterer feil.", "underlying_issue": "Lavstatusarbeid gjør belastning usynlig til skaden kommer.", "typical_sources": ["egen kropp", "HMS-runde", "kollega"], "fag_concepts": ["ergonomi", "HMS", "mikropause"], "possible_mail_types": ["people", "job", "consequence"]}
+    {
+      "id": "room_looks_clean_but_is_not_safe",
+      "title": "Rommet ser rent ut, men er ikke trygt",
+      "problem_type": "hidden_hygiene_risk",
+      "symptom": "Synlige flater skinner mens berøringspunkter, kontakttid eller soner er hoppet over.",
+      "underlying_issue": "Visuell renhet forveksles med hygienisk kvalitet.",
+      "typical_sources": [
+        "bruker",
+        "driftsleder",
+        "erfaren renholder"
+      ],
+      "fag_concepts": [
+        "berøringspunkt",
+        "kontakttid",
+        "smittekjede"
+      ],
+      "possible_mail_types": [
+        "job",
+        "knowledge",
+        "consequence"
+      ]
+    },
+    {
+      "id": "minutes_do_not_match_standard",
+      "title": "Minuttene matcher ikke standarden",
+      "problem_type": "resource_pressure",
+      "symptom": "Planen gir tolv minutter til et rom som krever tjue for forsvarlig metode.",
+      "underlying_issue": "Kvalitet, HMS og servicekrav er ikke bemannet etter faktisk arbeid.",
+      "typical_sources": [
+        "romliste",
+        "leder",
+        "kollega"
+      ],
+      "fag_concepts": [
+        "romstandard",
+        "avvik",
+        "prioritering"
+      ],
+      "possible_mail_types": [
+        "conflict",
+        "event",
+        "followup"
+      ]
+    },
+    {
+      "id": "body_absorbs_system_pressure",
+      "title": "Kroppen tar systempresset",
+      "problem_type": "ergonomic_risk",
+      "symptom": "Tempoet holdes ved at renholderen bøyer, løfter og repeterer feil.",
+      "underlying_issue": "Lavstatusarbeid gjør belastning usynlig til skaden kommer.",
+      "typical_sources": [
+        "egen kropp",
+        "HMS-runde",
+        "kollega"
+      ],
+      "fag_concepts": [
+        "ergonomi",
+        "HMS",
+        "mikropause"
+      ],
+      "possible_mail_types": [
+        "people",
+        "job",
+        "consequence"
+      ]
+    }
   ],
   "conflict_grammar": [
-    {"id": "hygiene_vs_tempo", "title": "Hygiene vs tempo", "axis": "smittevern_vs_minuttbudsjett", "side_a": {"label": "Rask ferdigstilling", "values": ["flyt", "kostnad", "romtilgjengelighet"]}, "side_b": {"label": "Forsvarlig hygiene", "values": ["smittevern", "etterprøvbarhet", "trygghet"]}, "bad_resolution": ["skriver ferdig uten å være ferdig", "velger synlige flater først", "dropper avvik"], "good_resolution": ["prioriterer risikoflater", "melder tidsavvik", "forklarer minimum trygg standard"], "mail_families": ["soner_hygiene_og_prioritering", "first_week_praksisfortellinger_renholder_job", "second_week_praksisfortellinger_renholder_job"]},
-    {"id": "service_vs_dignity", "title": "Servicepress vs verdighet", "axis": "brukerkomfort_vs_arbeidsverdighet", "side_a": {"label": "Ikke forstyrre brukeren", "values": ["service", "smidighet", "lav friksjon"]}, "side_b": {"label": "Synliggjøre nødvendig arbeid", "values": ["respekt", "sikkerhet", "faglig grense"]}, "bad_resolution": ["gjør seg usynlig", "tar personlig skyld", "lar rom brukes før det er trygt"], "good_resolution": ["setter høflig grense", "forklarer risiko", "bevarer både brukerens og egen verdighet"], "mail_families": ["renhold_status_og_belastning", "renholder_people_v1", "renholder_story_v1"]},
-    {"id": "hms_vs_tempo", "title": "Tempo vs HMS og kropp", "axis": "tempo_vs_hms", "side_a": {"label": "Hold tempoet", "values": ["levering", "romtilgang", "lav friksjon"]}, "side_b": {"label": "Verne kropp og HMS", "values": ["ergonomi", "avvik", "langsiktig helse"]}, "bad_resolution": ["bruker kroppen som buffer", "normaliserer smerte", "dropper avviksmelding"], "good_resolution": ["justerer utstyr og tar mikropauser", "melder belastning og avvik", "gjør HMS-risiko synlig"], "mail_families": ["renhold_status_og_belastning", "soner_hygiene_og_prioritering"]}
+    {
+      "id": "hygiene_vs_tempo",
+      "title": "Hygiene vs tempo",
+      "axis": "smittevern_vs_minuttbudsjett",
+      "side_a": {
+        "label": "Rask ferdigstilling",
+        "values": [
+          "flyt",
+          "kostnad",
+          "romtilgjengelighet"
+        ]
+      },
+      "side_b": {
+        "label": "Forsvarlig hygiene",
+        "values": [
+          "smittevern",
+          "etterprøvbarhet",
+          "trygghet"
+        ]
+      },
+      "bad_resolution": [
+        "skriver ferdig uten å være ferdig",
+        "velger synlige flater først",
+        "dropper avvik"
+      ],
+      "good_resolution": [
+        "prioriterer risikoflater",
+        "melder tidsavvik",
+        "forklarer minimum trygg standard"
+      ],
+      "mail_families": [
+        "soner_hygiene_og_prioritering",
+        "first_week_praksisfortellinger_renholder_job",
+        "second_week_praksisfortellinger_renholder_job"
+      ]
+    },
+    {
+      "id": "service_vs_dignity",
+      "title": "Servicepress vs verdighet",
+      "axis": "brukerkomfort_vs_arbeidsverdighet",
+      "side_a": {
+        "label": "Ikke forstyrre brukeren",
+        "values": [
+          "service",
+          "smidighet",
+          "lav friksjon"
+        ]
+      },
+      "side_b": {
+        "label": "Synliggjøre nødvendig arbeid",
+        "values": [
+          "respekt",
+          "sikkerhet",
+          "faglig grense"
+        ]
+      },
+      "bad_resolution": [
+        "gjør seg usynlig",
+        "tar personlig skyld",
+        "lar rom brukes før det er trygt"
+      ],
+      "good_resolution": [
+        "setter høflig grense",
+        "forklarer risiko",
+        "bevarer både brukerens og egen verdighet"
+      ],
+      "mail_families": [
+        "renhold_status_og_belastning",
+        "renholder_people_v1",
+        "renholder_story_v1"
+      ]
+    },
+    {
+      "id": "hms_vs_tempo",
+      "title": "Tempo vs HMS og kropp",
+      "axis": "tempo_vs_hms",
+      "side_a": {
+        "label": "Hold tempoet",
+        "values": [
+          "levering",
+          "romtilgang",
+          "lav friksjon"
+        ]
+      },
+      "side_b": {
+        "label": "Verne kropp og HMS",
+        "values": [
+          "ergonomi",
+          "avvik",
+          "langsiktig helse"
+        ]
+      },
+      "bad_resolution": [
+        "bruker kroppen som buffer",
+        "normaliserer smerte",
+        "dropper avviksmelding"
+      ],
+      "good_resolution": [
+        "justerer utstyr og tar mikropauser",
+        "melder belastning og avvik",
+        "gjør HMS-risiko synlig"
+      ],
+      "mail_families": [
+        "renhold_status_og_belastning",
+        "soner_hygiene_og_prioritering"
+      ]
+    }
   ],
   "solution_patterns": [
-    {"id": "risk_before_shine", "title": "Risiko før glans", "works_for": ["hygiene_vs_tempo", "room_looks_clean_but_is_not_safe"], "steps": ["les rommets bruk", "ta berøringspunkter og våt/fallfare først", "hold kontakttid og dosering", "registrer hva som ikke rakk standard"], "choice_tags": ["hygiene", "precision", "integrity"], "effects": {"infection_risk": -1, "trust": 1, "tempo": -1, "visibility": 1}},
-    {"id": "name_the_standard", "title": "Sett navn på standarden", "works_for": ["minutes_do_not_match_standard", "service_vs_dignity"], "steps": ["forklar hva trygg standard krever", "skill personkritikk fra systemavvik", "foreslå prioritering innen tiden", "be om avklaring når krav kolliderer"], "choice_tags": ["service", "hms", "dignity"], "effects": {"trust": 1, "body_load": -1, "conflict_visibility": 1}}
+    {
+      "id": "risk_before_shine",
+      "title": "Risiko før glans",
+      "works_for": [
+        "hygiene_vs_tempo",
+        "room_looks_clean_but_is_not_safe"
+      ],
+      "steps": [
+        "les rommets bruk",
+        "ta berøringspunkter og våt/fallfare først",
+        "hold kontakttid og dosering",
+        "registrer hva som ikke rakk standard"
+      ],
+      "choice_tags": [
+        "hygiene",
+        "precision",
+        "integrity"
+      ],
+      "effects": {
+        "infection_risk": -1,
+        "trust": 1,
+        "tempo": -1,
+        "visibility": 1
+      }
+    },
+    {
+      "id": "name_the_standard",
+      "title": "Sett navn på standarden",
+      "works_for": [
+        "minutes_do_not_match_standard",
+        "service_vs_dignity"
+      ],
+      "steps": [
+        "forklar hva trygg standard krever",
+        "skill personkritikk fra systemavvik",
+        "foreslå prioritering innen tiden",
+        "be om avklaring når krav kolliderer"
+      ],
+      "choice_tags": [
+        "service",
+        "hms",
+        "dignity"
+      ],
+      "effects": {
+        "trust": 1,
+        "body_load": -1,
+        "conflict_visibility": 1
+      }
+    }
   ],
   "failure_patterns": [
-    {"id": "shine_over_risk", "title": "Polerer over risiko", "description": "Rommet ser bra ut raskt, men smitterisiko og avvik følger med videre.", "short_term_gain": ["tempo", "færre klager"], "long_term_risk": ["smitte", "fall", "tillitstap"], "followup_hooks": [{"hook": "touch_point_complaint", "fires_mail": "renholder_followup_001"}, {"hook": "infection_trace", "fires_mail": "renholder_consequence_002"}, {"hook": "leader_asks_why_no_deviation", "fires_mail": "renholder_consequence_003"}]},
-    {"id": "body_pays_the_difference", "title": "Kroppen betaler differansen", "description": "Renholderen leverer planen ved å bruke kroppen som buffer for for lite tid og utstyr.", "short_term_gain": ["levering", "lav friksjon"], "long_term_risk": ["belastningsskade", "fravær", "lav mestring"], "followup_hooks": [{"hook": "hms_followup", "fires_mail": "renholder_followup_005"}, {"hook": "colleague_warns", "fires_mail": "renholder_followup_004"}, {"hook": "shift_after_pain", "fires_mail": "renholder_consequence_006"}]}
+    {
+      "id": "shine_over_risk",
+      "title": "Polerer over risiko",
+      "description": "Rommet ser bra ut raskt, men smitterisiko og avvik følger med videre.",
+      "short_term_gain": [
+        "tempo",
+        "færre klager"
+      ],
+      "long_term_risk": [
+        "smitte",
+        "fall",
+        "tillitstap"
+      ],
+      "followup_hooks": [
+        {
+          "hook": "touch_point_complaint",
+          "fires_mail": "renholder_followup_001"
+        },
+        {
+          "hook": "infection_trace",
+          "fires_mail": "renholder_consequence_002"
+        },
+        {
+          "hook": "leader_asks_why_no_deviation",
+          "fires_mail": "renholder_consequence_003"
+        }
+      ]
+    },
+    {
+      "id": "body_pays_the_difference",
+      "title": "Kroppen betaler differansen",
+      "description": "Renholderen leverer planen ved å bruke kroppen som buffer for for lite tid og utstyr.",
+      "short_term_gain": [
+        "levering",
+        "lav friksjon"
+      ],
+      "long_term_risk": [
+        "belastningsskade",
+        "fravær",
+        "lav mestring"
+      ],
+      "followup_hooks": [
+        {
+          "hook": "hms_followup",
+          "fires_mail": "renholder_followup_005"
+        },
+        {
+          "hook": "colleague_warns",
+          "fires_mail": "renholder_followup_004"
+        },
+        {
+          "hook": "shift_after_pain",
+          "fires_mail": "renholder_consequence_006"
+        }
+      ]
+    }
   ],
   "actor_grammar": [
-    {"actor_type": "leder", "example_id": "kari_driftsleder", "function": "fordeler rom, tid og avvikstrykk", "pressure": "bemanning_vs_standard", "can_send_mail_types": ["people", "event", "micro", "job", "story", "knowledge", "followup", "consequence", "conflict"], "typical_requests": ["ta et ekstra rom", "ikke lag sak av småting", "meld tydelig avvik"]},
-    {"actor_type": "erfaren_fagperson", "example_id": "amina_erfaren_renholder", "function": "oversetter usynlig fagarbeid til metode og prioritering", "pressure": "faglighet_vs_lav_status", "can_send_mail_types": ["people", "event", "micro", "job", "story", "knowledge", "followup", "consequence", "conflict"]},
-    {"actor_type": "bruker", "example_id": "sindre_kontoransatt", "function": "vil ha rommet tilgjengelig og rent uten å se arbeidet", "pressure": "service_vs_sikkerhet", "can_send_mail_types": ["people", "event", "micro", "job", "story", "knowledge", "followup", "consequence", "conflict"]},
-    {"actor_type": "hms_kontrollpunkt", "example_id": "ole_verneombud", "function": "gjør kropp, kjemi og avvik synlig", "pressure": "tempo_vs_hms", "can_send_mail_types": ["people", "micro", "job", "knowledge", "followup", "consequence", "conflict"]}
+    {
+      "actor_type": "leder",
+      "example_id": "kari_driftsleder",
+      "function": "fordeler rom, tid og avvikstrykk",
+      "pressure": "bemanning_vs_standard",
+      "can_send_mail_types": [
+        "people",
+        "event",
+        "micro",
+        "job",
+        "story",
+        "knowledge",
+        "followup",
+        "consequence",
+        "conflict"
+      ],
+      "typical_requests": [
+        "ta et ekstra rom",
+        "ikke lag sak av småting",
+        "meld tydelig avvik"
+      ]
+    },
+    {
+      "actor_type": "erfaren_fagperson",
+      "example_id": "amina_erfaren_renholder",
+      "function": "oversetter usynlig fagarbeid til metode og prioritering",
+      "pressure": "faglighet_vs_lav_status",
+      "can_send_mail_types": [
+        "people",
+        "event",
+        "micro",
+        "job",
+        "story",
+        "knowledge",
+        "followup",
+        "consequence",
+        "conflict"
+      ]
+    },
+    {
+      "actor_type": "bruker",
+      "example_id": "sindre_kontoransatt",
+      "function": "vil ha rommet tilgjengelig og rent uten å se arbeidet",
+      "pressure": "service_vs_sikkerhet",
+      "can_send_mail_types": [
+        "people",
+        "event",
+        "micro",
+        "job",
+        "story",
+        "knowledge",
+        "followup",
+        "consequence",
+        "conflict"
+      ]
+    },
+    {
+      "actor_type": "hms_kontrollpunkt",
+      "example_id": "ole_verneombud",
+      "function": "gjør kropp, kjemi og avvik synlig",
+      "pressure": "tempo_vs_hms",
+      "can_send_mail_types": [
+        "people",
+        "micro",
+        "job",
+        "knowledge",
+        "followup",
+        "consequence",
+        "conflict"
+      ]
+    }
   ],
   "place_grammar": [
-    {"place_type": "inngang", "place_id": "inngangsparti", "function": "der bygget møter folk og førsteinntrykket av renhold avgjøres", "mail_types": ["job", "people", "micro"]},
-    {"place_type": "arbeidsflate", "place_id": "toalett_sone", "function": "der smitterisiko er høyere enn synlig skitt", "mail_types": ["job", "knowledge", "micro", "conflict"]},
-    {"place_type": "brukerrom", "place_id": "møterom", "function": "der rommet skal være klart før folk tar det i bruk", "mail_types": ["job", "event", "story"]},
-    {"place_type": "brukerrom", "place_id": "fellesareal", "function": "der mange brukere, fallfare og synlig arbeid møtes", "mail_types": ["people", "conflict", "micro"]},
-    {"place_type": "driftsrom", "place_id": "avfallsrom", "function": "der lukt, lekkasje og smitterisiko håndteres ved kilden", "mail_types": ["job", "event", "consequence"]},
-    {"place_type": "driftsrom", "place_id": "renholdsrom", "function": "der utstyr, dosering og HMS avgjør kvalitet før rommet åpnes", "mail_types": ["job", "knowledge", "micro"]},
-    {"place_type": "kroppslig_arbeidssted", "place_id": "garderobe", "function": "der kroppens regnskap og skift gjøres opp", "mail_types": ["story", "followup", "consequence"]},
-    {"place_type": "forvaltning", "place_id": "driftskontor", "function": "der avvik, lister og prioriteringer meldes og avklares", "mail_types": ["people", "followup", "consequence"]},
-    {"place_type": "arbeidsgiverkontekst", "place_id": "lilleborg_fabrikker", "function": "byggkonteksten der rollebuen og oppfølgingen forankres", "mail_types": ["job", "story"]},
-    {"place_type": "privat", "place_id": "hjemme", "function": "der dagens slitasje og refleksjon følger med hjem", "mail_types": ["story", "people"]}
+    {
+      "place_type": "inngang",
+      "place_id": "inngangsparti",
+      "function": "der bygget møter folk og førsteinntrykket av renhold avgjøres",
+      "mail_types": [
+        "job",
+        "people",
+        "micro"
+      ]
+    },
+    {
+      "place_type": "arbeidsflate",
+      "place_id": "toalett_sone",
+      "function": "der smitterisiko er høyere enn synlig skitt",
+      "mail_types": [
+        "job",
+        "knowledge",
+        "micro",
+        "conflict"
+      ]
+    },
+    {
+      "place_type": "brukerrom",
+      "place_id": "møterom",
+      "function": "der rommet skal være klart før folk tar det i bruk",
+      "mail_types": [
+        "job",
+        "event",
+        "story"
+      ]
+    },
+    {
+      "place_type": "brukerrom",
+      "place_id": "fellesareal",
+      "function": "der mange brukere, fallfare og synlig arbeid møtes",
+      "mail_types": [
+        "people",
+        "conflict",
+        "micro"
+      ]
+    },
+    {
+      "place_type": "driftsrom",
+      "place_id": "avfallsrom",
+      "function": "der lukt, lekkasje og smitterisiko håndteres ved kilden",
+      "mail_types": [
+        "job",
+        "event",
+        "consequence"
+      ]
+    },
+    {
+      "place_type": "driftsrom",
+      "place_id": "renholdsrom",
+      "function": "der utstyr, dosering og HMS avgjør kvalitet før rommet åpnes",
+      "mail_types": [
+        "job",
+        "knowledge",
+        "micro"
+      ]
+    },
+    {
+      "place_type": "kroppslig_arbeidssted",
+      "place_id": "garderobe",
+      "function": "der kroppens regnskap og skift gjøres opp",
+      "mail_types": [
+        "story",
+        "followup",
+        "consequence"
+      ]
+    },
+    {
+      "place_type": "forvaltning",
+      "place_id": "driftskontor",
+      "function": "der avvik, lister og prioriteringer meldes og avklares",
+      "mail_types": [
+        "people",
+        "followup",
+        "consequence"
+      ]
+    },
+    {
+      "place_type": "arbeidsgiverkontekst",
+      "place_id": "lilleborg_fabrikker",
+      "function": "byggkonteksten der rollebuen og oppfølgingen forankres",
+      "mail_types": [
+        "job",
+        "story"
+      ]
+    },
+    {
+      "place_type": "privat",
+      "place_id": "hjemme",
+      "function": "der dagens slitasje og refleksjon følger med hjem",
+      "mail_types": [
+        "story",
+        "people"
+      ]
+    }
   ],
   "knowledge_dependencies": [
-    {"id": "hygiene_before_appearance", "requires": ["berøringspunkt", "kontakttid", "smittekjede"], "supports_mail_types": ["job", "knowledge", "consequence"]},
-    {"id": "standard_and_deviation", "requires": ["romstandard", "avvik", "prioritering"], "supports_mail_types": ["conflict", "event", "followup"]},
-    {"id": "body_and_hms", "requires": ["ergonomi", "HMS", "dosering"], "supports_mail_types": ["job", "people", "knowledge"]},
-    {"id": "dignity_of_low_status_work", "requires": ["servicekommunikasjon", "usynlig arbeid", "verdighetsarbeid"], "supports_mail_types": ["people", "story", "consequence"]}
+    {
+      "id": "hygiene_before_appearance",
+      "requires": [
+        "berøringspunkt",
+        "kontakttid",
+        "smittekjede"
+      ],
+      "supports_mail_types": [
+        "job",
+        "knowledge",
+        "consequence"
+      ]
+    },
+    {
+      "id": "standard_and_deviation",
+      "requires": [
+        "romstandard",
+        "avvik",
+        "prioritering"
+      ],
+      "supports_mail_types": [
+        "conflict",
+        "event",
+        "followup"
+      ]
+    },
+    {
+      "id": "body_and_hms",
+      "requires": [
+        "ergonomi",
+        "HMS",
+        "dosering"
+      ],
+      "supports_mail_types": [
+        "job",
+        "people",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "dignity_of_low_status_work",
+      "requires": [
+        "servicekommunikasjon",
+        "usynlig arbeid",
+        "verdighetsarbeid"
+      ],
+      "supports_mail_types": [
+        "people",
+        "story",
+        "consequence"
+      ]
+    }
   ],
   "mail_generation_contract": {
-    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
-    "minimum_counts": {"job": 10, "people": 8, "conflict": 6, "story": 4, "event": 4, "micro": 8, "followup": 6, "knowledge": 6, "consequence": 4},
-    "required_axes": ["task_domain", "competency", "pressure", "choice_axis", "consequence_axis", "narrative_arc", "learning_focus"],
-    "thematic_axes": ["hygiene", "tidspress", "smittevern", "ergonomi", "servicepress", "verdighet", "usynlig_arbeid", "avvik"]
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "minimum_counts": {
+      "job": 10,
+      "people": 8,
+      "conflict": 6,
+      "story": 4,
+      "event": 4,
+      "micro": 8,
+      "followup": 6,
+      "knowledge": 6,
+      "consequence": 4
+    },
+    "required_axes": [
+      "task_domain",
+      "competency",
+      "pressure",
+      "choice_axis",
+      "consequence_axis",
+      "narrative_arc",
+      "learning_focus"
+    ],
+    "thematic_axes": [
+      "hygiene",
+      "tidspress",
+      "smittevern",
+      "ergonomi",
+      "servicepress",
+      "verdighet",
+      "usynlig_arbeid",
+      "avvik"
+    ]
   },
   "day_one_contract": {
     "title": "Rommet ser rent ut",
-    "required_beats": {"morning": "rollen åpnes gjennom romstandard og skjult hygieneansvar", "forenoon": "første valg mellom synlig flate og kritisk berøringspunkt", "workday": "tidspress gjør standarden umulig uten prioritering", "lunch": "privat eller sosial konsekvens viser at renholdsblikket følger kroppen", "afternoon": "kjemi, HMS eller brukerpress krever faglig grense", "evening": "knowledge eller consequence viser hva usynlig arbeid beskyttet", "day_end": "carryover: spilleren vet at renhold handler om trygghet, kropp og verdighet"},
-    "required_themes": ["berøringspunkter", "romstandard", "tidspress", "ergonomi", "verdighet"]
+    "required_beats": {
+      "morning": "rollen åpnes gjennom romstandard og skjult hygieneansvar",
+      "forenoon": "første valg mellom synlig flate og kritisk berøringspunkt",
+      "workday": "tidspress gjør standarden umulig uten prioritering",
+      "lunch": "privat eller sosial konsekvens viser at renholdsblikket følger kroppen",
+      "afternoon": "kjemi, HMS eller brukerpress krever faglig grense",
+      "evening": "knowledge eller consequence viser hva usynlig arbeid beskyttet",
+      "day_end": "carryover: spilleren vet at renhold handler om trygghet, kropp og verdighet"
+    },
+    "required_themes": [
+      "berøringspunkter",
+      "romstandard",
+      "tidspress",
+      "ergonomi",
+      "verdighet"
+    ]
   },
   "test_contract": {
     "reference_test": "tests/civication-renholder-mail-plan.test.js",
-    "flow_tests": ["tests/civication-renholder-role-package.test.js", "tests/civication-renholder-first-week-praksisfortellinger.test.js", "tests/civication-renholder-second-week-praksisfortellinger.test.js", "tests/civication-renholder-two-week-flow.test.js"],
-    "audit_expectations": ["roleModel finnes", "workGrammar finnes", "mailPlan finnes", "alle mailFamilies finnes", "Day 1 kan bygges uten runtime- eller UI-endring", "ingen broken_mapping for renholder"]
+    "flow_tests": [
+      "tests/civication-renholder-role-package.test.js",
+      "tests/civication-renholder-first-week-praksisfortellinger.test.js",
+      "tests/civication-renholder-second-week-praksisfortellinger.test.js",
+      "tests/civication-renholder-two-week-flow.test.js"
+    ],
+    "audit_expectations": [
+      "roleModel finnes",
+      "workGrammar finnes",
+      "mailPlan finnes",
+      "alle mailFamilies finnes",
+      "Day 1 kan bygges uten runtime- eller UI-endring",
+      "ingen broken_mapping for renholder"
+    ]
   }
 }

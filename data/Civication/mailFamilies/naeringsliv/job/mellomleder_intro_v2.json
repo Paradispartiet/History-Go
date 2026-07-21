@@ -4,12 +4,10 @@
   "role_scope": "mellomleder",
   "mail_type": "job",
   "description": "V2 mellomleder_intro: tre intro-mails som etablerer mellomlederens klemte posisjon (over deg: tall fra ledelsen; peer: politisk samarbeid; under deg: gulvkrav). 6 thread-followups.",
-
   "families": [
     {
       "id": "mellomleder_intro_v2",
       "description": "Første dager som mellomleder. Inger (avdelingsleder) leverer tall, Stein (peer-mellomleder) sonderer allianse, Frode (formann) ber om støtte for gulvet.",
-
       "mails": [
         {
           "id": "mellomleder_intro_v2_001",
@@ -21,25 +19,25 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
-
           "from": "inger_avdelingsleder",
           "place_id": "lilleborg_fabrikker",
           "subject": "Tall for september — vi må snakke",
           "purpose": "Etablere mellomlederens grunnklemme: ledelsen trenger forklaring, tallene må eies, og spilleren må lære at ansvar oppover er en egen sosial valuta.",
           "stakes": "Spilleren må velge mellom realistisk ansvar med lavere risiko og offensiv synlighet som kan gi autoritet, men også binde spilleren til en hard frist.",
-
           "situation": [
             "Inger sender en kort, tørr mail som du forstår betyr noe.",
             "«Effektiviteten din er 7,2 % under budsjett. Det er innenfor avvikssonen, men direktøren har spurt to ganger. Jeg trenger et 14-dagers svar — hva gjør vi?»",
             "Det er ikke en irettesettelse. Det er en invitasjon til å eie problemet før hun må."
           ],
-
           "choices": [
             {
               "id": "A",
               "label": "«Jeg har en plan klar fredag. Realistisk, ikke optimistisk.»",
               "reply": "Jeg har en plan klar fredag. Realistisk, ikke optimistisk.",
-              "tags": ["legitimacy", "humility"],
+              "tags": [
+                "legitimacy",
+                "humility"
+              ],
               "effect": 0,
               "feedback": "Inger setter pris på at du senker forventningen først.",
               "triggers_on_choice": "inger_thread_tall_a"
@@ -48,14 +46,16 @@
               "id": "B",
               "label": "«7,2 % skyldes B-linja. Jeg fikser det innen 14 dager.»",
               "reply": "7,2 % skyldes B-linja. Jeg fikser det innen 14 dager.",
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "effect": 1,
               "feedback": "Du tar ansvar offentlig. Det binder deg til en offensiv tidsplan.",
               "triggers_on_choice": "inger_thread_tall_b"
             }
           ]
         },
-
         {
           "id": "mellomleder_intro_v2_002",
           "mail_type": "job",
@@ -66,25 +66,25 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
-
           "from": "stein_peer_mellomleder",
           "place_id": "schous_bryggeri",
           "subject": "Tanke om B og C",
           "purpose": "Etablere horisontal politikk mellom mellomledere: samarbeid kan være løsning, men også alliansebygging, posisjonering og gjensidig risiko.",
           "stakes": "Spilleren må velge mellom å gå inn i et politisk samarbeid før saken er forankret, eller holde avstand og risikere isolasjon.",
-
           "situation": [
             "Stein sender en hyggelig, men beregnet melding sent på dagen.",
             "«Hører du har lignende tall som meg på effektivitet. Hva om vi foreslår å slå sammen B og C i ett skift en periode? Det avlaster begge avdelinger. Jeg har ikke nevnt det for Inger ennå.»",
             "Han spør om allianse. Det er også en politisk handling."
           ],
-
           "choices": [
             {
               "id": "A",
               "label": "«La oss møtes en kaffe i morgen før vi sender det videre.»",
               "reply": "La oss møtes en kaffe i morgen før vi sender det videre.",
-              "tags": ["alliance", "diplomacy"],
+              "tags": [
+                "alliance",
+                "diplomacy"
+              ],
               "effect": 0,
               "feedback": "Du svarer ja, men flytter avgjørelsen til et rom hvor du beholder kontroll.",
               "triggers_on_choice": "stein_thread_alliance_a"
@@ -93,14 +93,16 @@
               "id": "B",
               "label": "«Interessant, men jeg vil tenke før jeg svarer.»",
               "reply": "Interessant, men jeg vil tenke før jeg svarer.",
-              "tags": ["caution", "isolation"],
+              "tags": [
+                "caution",
+                "isolation"
+              ],
               "effect": 1,
               "feedback": "Du holder på avstanden. Stein kan tolke det som svakhet eller styrke.",
               "triggers_on_choice": "stein_thread_alliance_b"
             }
           ]
         },
-
         {
           "id": "mellomleder_intro_v2_003",
           "mail_type": "job",
@@ -111,25 +113,25 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
-
           "from": "frode_formann",
           "place_id": "lilleborg_fabrikker",
           "subject": "Verneplan på B-linja",
           "purpose": "Etablere press nedenfra: gulvet trenger vern, formannen trenger oversettelse oppover, og spilleren må velge hva slags mellomleder de blir.",
           "stakes": "Spilleren må velge mellom å løfte gulvets sikkerhetskrav inn i systemet eller skyve det ut til tallene ser bedre ut.",
-
           "situation": [
             "Frode skriver kort etter skiftet, slik han pleier.",
             "«Vi trenger ny verneplan på B. Den gamle er fra 2018 og dekker ikke nye doseringen. Roger har sagt han kan kjøre det formelt, men det går fort uoffisielt om du støtter at vi tar det inn nå.»",
             "Han ber deg om noe Inger ikke vil prioritere. Det er gulvets stemme — som forventer at du oversetter."
           ],
-
           "choices": [
             {
               "id": "A",
               "label": "«Jeg tar det med Inger neste uke. Få Roger til å skrive utkast.»",
               "reply": "Jeg tar det med Inger neste uke. Få Roger til å skrive utkast.",
-              "tags": ["loyalty_to_workers", "formal"],
+              "tags": [
+                "loyalty_to_workers",
+                "formal"
+              ],
               "effect": 0,
               "feedback": "Du går den lange formelle veien. Frode setter pris på det.",
               "triggers_on_choice": "frode_thread_vern_a"
@@ -138,7 +140,10 @@
               "id": "B",
               "label": "«Vi venter til september-tallene er bra. Ny plan da.»",
               "reply": "Vi venter til september-tallene er bra. Ny plan da.",
-              "tags": ["loyalty_to_leader", "deferral"],
+              "tags": [
+                "loyalty_to_leader",
+                "deferral"
+              ],
               "effect": 1,
               "feedback": "Du prioriterer Ingers tall først. Frode skriver «OK» og sier ikke mer den dagen.",
               "triggers_on_choice": "frode_thread_vern_b"
@@ -146,7 +151,6 @@
           ]
         }
       ],
-
       "threads": [
         {
           "id": "inger_thread_tall_a",
@@ -168,7 +172,9 @@
               "id": "A",
               "label": "«Du får den fredag 14:00. Litt buffer.»",
               "reply": "Du får den fredag 14:00. Litt buffer.",
-              "tags": ["legitimacy"],
+              "tags": [
+                "legitimacy"
+              ],
               "effect": 0,
               "feedback": "Du leverer på et tidspunkt som gir Inger pusterom. Det huskes."
             }
@@ -194,13 +200,14 @@
               "id": "A",
               "label": "«Greit. Status på dag 7 er garantert.»",
               "reply": "Greit. Status på dag 7 er garantert.",
-              "tags": ["visibility"],
+              "tags": [
+                "visibility"
+              ],
               "effect": 0,
               "feedback": "Du har bundet deg synlig. Resten av avdelingen vil registrere det."
             }
           ]
         },
-
         {
           "id": "stein_thread_alliance_a",
           "from": "stein_peer_mellomleder",
@@ -221,7 +228,9 @@
               "id": "A",
               "label": "«Vi ses 09:30.»",
               "reply": "Vi ses 09:30.",
-              "tags": ["alliance"],
+              "tags": [
+                "alliance"
+              ],
               "effect": 0,
               "feedback": "Avtalen er gjort. Du har gått inn i en allianse — eller en vurdering."
             }
@@ -247,13 +256,14 @@
               "id": "A",
               "label": "«OK. Vi snakkes.»",
               "reply": "OK. Vi snakkes.",
-              "tags": ["isolation"],
+              "tags": [
+                "isolation"
+              ],
               "effect": 0,
               "feedback": "Du står alene med din egen avdeling. Det kan være styrke eller utsatthet."
             }
           ]
         },
-
         {
           "id": "frode_thread_vern_a",
           "from": "frode_formann",
@@ -274,7 +284,9 @@
               "id": "A",
               "label": "«Send det til meg så snart Roger er ferdig.»",
               "reply": "Send det til meg så snart Roger er ferdig.",
-              "tags": ["loyalty_to_workers"],
+              "tags": [
+                "loyalty_to_workers"
+              ],
               "effect": 0,
               "feedback": "Du holder farten oppe. Frode noterer."
             }
@@ -300,7 +312,10 @@
               "id": "A",
               "label": "«Jeg vet det er sent. September har prioritet.»",
               "reply": "Jeg vet det er sent. September har prioritet.",
-              "tags": ["loyalty_to_leader", "isolation"],
+              "tags": [
+                "loyalty_to_leader",
+                "isolation"
+              ],
               "effect": 0,
               "feedback": "Du forklarer. Frode svarer ikke. Linja er trukket."
             }

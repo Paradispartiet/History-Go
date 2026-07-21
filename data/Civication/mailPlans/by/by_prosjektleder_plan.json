@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "by_prosjekt_framdrift_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "by_prosjekt_framdrift_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -39,64 +45,100 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere at politisk bestilling må presiseres før prosjektet kan styres godt.",
-      "allowed_families": ["politisk_bestilling_og_mandat"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "politisk_bestilling_og_mandat"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
       "step_goal": "La spilleren møte aktørbildet og skille dialog fra beslutningsansvar.",
-      "allowed_families": ["aktorer_og_koordinering"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "aktorer_og_koordinering"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 3,
       "type": "job",
       "phase": "early",
       "step_goal": "Introdusere tidlig risiko som må varsles før alt er bevist.",
-      "allowed_families": ["framdrift_budsjett_og_risiko"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "framdrift_budsjett_og_risiko"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 4,
       "type": "job",
       "phase": "early",
       "step_goal": "Vise at gjennomføring kan svekke bykvalitet hvis kvaliteten ikke følges aktivt.",
-      "allowed_families": ["kvalitet_tillit_og_gjennomforing"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kvalitet_tillit_og_gjennomforing"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "Teste om spilleren avklarer mandat og ansvar før prosjektet skyves videre.",
-      "allowed_families": ["politisk_bestilling_og_mandat", "aktorer_og_koordinering"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "politisk_bestilling_og_mandat",
+        "aktorer_og_koordinering"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "mid",
       "step_goal": "La budsjett og framdrift presse et faglig kvalitetspunkt.",
-      "allowed_families": ["framdrift_budsjett_og_risiko"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "framdrift_budsjett_og_risiko"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
       "step_goal": "La medvirkning og tillit stå på spill når gjennomføringen strammes inn.",
-      "allowed_families": ["kvalitet_tillit_og_gjennomforing", "aktorer_og_koordinering"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kvalitet_tillit_og_gjennomforing",
+        "aktorer_og_koordinering"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 8,
       "type": "job",
       "phase": "mastery",
       "step_goal": "Avrunde rollen: god prosjektledelse viser pris, risiko, ansvar og kvalitet før beslutning.",
-      "allowed_families": ["politisk_bestilling_og_mandat", "framdrift_budsjett_og_risiko", "kvalitet_tillit_og_gjennomforing"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "politisk_bestilling_og_mandat",
+        "framdrift_budsjett_og_risiko",
+        "kvalitet_tillit_og_gjennomforing"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     }
   ]
 }

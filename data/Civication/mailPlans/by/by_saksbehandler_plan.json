@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "by_saksbehandling_formalia_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "by_saksbehandling_formalia_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -39,64 +45,100 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere dokumentasjonskontroll som mer enn formalitet.",
-      "allowed_families": ["dokumentasjon_og_mangler"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "dokumentasjon_og_mangler"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
       "step_goal": "La spilleren møte første nabomerknad som peker på reell stedlig virkning.",
-      "allowed_families": ["nabomerknader_og_sted"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "nabomerknader_og_sted"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 3,
       "type": "job",
       "phase": "early",
       "step_goal": "Teste forskjellen mellom å sitere regel og å anvende regel på en konkret sak.",
-      "allowed_families": ["regelverk_og_skjonn"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "regelverk_og_skjonn"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 4,
       "type": "job",
       "phase": "early",
       "step_goal": "Vise hvordan frist og saksflyt kan presse kvaliteten i vurderingen.",
-      "allowed_families": ["frist_og_forvaltning"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "frist_og_forvaltning"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "La manglende dokumentasjon og nabomerknad peke mot samme byproblem.",
-      "allowed_families": ["dokumentasjon_og_mangler", "nabomerknader_og_sted"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "dokumentasjon_og_mangler",
+        "nabomerknader_og_sted"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "mid",
       "step_goal": "La spilleren begrunne skjønn uten å gjøre likebehandling mekanisk.",
-      "allowed_families": ["regelverk_og_skjonn"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "regelverk_og_skjonn"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
       "step_goal": "Teste forvaltningsmodenhet når fristpress og rettssikkerhet trekker ulikt.",
-      "allowed_families": ["frist_og_forvaltning", "dokumentasjon_og_mangler"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "frist_og_forvaltning",
+        "dokumentasjon_og_mangler"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 8,
       "type": "job",
       "phase": "mastery",
       "step_goal": "Avrunde rollen: en god vurdering gjør regel, sted, naboer og begrunnelse lesbare sammen.",
-      "allowed_families": ["regelverk_og_skjonn", "nabomerknader_og_sted", "frist_og_forvaltning"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "regelverk_og_skjonn",
+        "nabomerknader_og_sted",
+        "frist_og_forvaltning"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     }
   ]
 }

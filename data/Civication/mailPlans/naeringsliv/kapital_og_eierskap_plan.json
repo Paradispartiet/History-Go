@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "naer_kapital_kortsiktig_avkastning_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "naer_kapital_kortsiktig_avkastning_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -39,64 +45,100 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere at kapital gir mulighet, men også ny risiko og mulig kontrolltap.",
-      "allowed_families": ["kapital_risiko_og_vekst"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kapital_risiko_og_vekst"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
       "step_goal": "La spilleren møte første eierbeslutning der nøytralt styrespråk skjuler reelle konsekvenser.",
-      "allowed_families": ["eierskap_styring_og_ansvar"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "eierskap_styring_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 3,
       "type": "job",
       "phase": "early",
       "step_goal": "Introdusere investering der avkastning og samfunnsverdi peker mot ulike prioriteringer.",
-      "allowed_families": ["investering_avkastning_og_samfunnsverdi"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "investering_avkastning_og_samfunnsverdi"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 4,
       "type": "job",
       "phase": "early",
       "step_goal": "Vise hvordan bygging, salg og ettermæle ikke alltid peker samme vei.",
-      "allowed_families": ["bygging_exit_og_ettermale"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "bygging_exit_og_ettermale"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "Teste om spilleren velger sunn vekst framfor vekst som bare flytter risiko framover.",
-      "allowed_families": ["kapital_risiko_og_vekst", "eierskap_styring_og_ansvar"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kapital_risiko_og_vekst",
+        "eierskap_styring_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "mid",
       "step_goal": "La investering, avkastning og lokal forankring trekke i ulike retninger.",
-      "allowed_families": ["investering_avkastning_og_samfunnsverdi"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "investering_avkastning_og_samfunnsverdi"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
       "step_goal": "La exit-mulighet, ansatte og virksomhetens framtid kollidere i samme eierbeslutning.",
-      "allowed_families": ["bygging_exit_og_ettermale", "eierskap_styring_og_ansvar"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "bygging_exit_og_ettermale",
+        "eierskap_styring_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 8,
       "type": "job",
       "phase": "mastery",
       "step_goal": "Avrunde rollen: modent eierskap forener kapital, risiko, ansvar, samfunnsverdi og ettermæle.",
-      "allowed_families": ["kapital_risiko_og_vekst", "investering_avkastning_og_samfunnsverdi", "bygging_exit_og_ettermale"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kapital_risiko_og_vekst",
+        "investering_avkastning_og_samfunnsverdi",
+        "bygging_exit_og_ettermale"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     }
   ]
 }

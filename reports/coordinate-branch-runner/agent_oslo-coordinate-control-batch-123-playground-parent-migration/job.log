@@ -1,0 +1,28 @@
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1326 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 209 category override(s)
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: no legacy place IDs found in checked JSON data.
+{
+  "batch": 123,
+  "migrated": 7,
+  "remainingForManualIdentityReview": [
+    "lekeplass_kirsebarlunden",
+    "lekeplass_snippen",
+    "lekeplass_frognerborgen",
+    "lekeplass_kampen_park",
+    "aktivitet_rudolf_nilsens_plass",
+    "treningssted_torshovdalen",
+    "treningssted_kampen_park",
+    "treningssted_sognsvann"
+  ]
+}

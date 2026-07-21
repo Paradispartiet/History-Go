@@ -30,20 +30,33 @@
           "choice_axis": "teste_antakelse_vs_beholde_oppside",
           "consequence_axis": "troverdighet_vs_avkastningsbilde",
           "narrative_arc": "modellen_som_argument",
-          "learning_focus": ["EBITDA", "marginanalyse", "base case", "sensitivitet", "modellrisiko"],
+          "learning_focus": [
+            "EBITDA",
+            "marginanalyse",
+            "base case",
+            "sensitivitet",
+            "modellrisiko"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Kjør sensitivitet og forklar marginløftet eksplisitt.",
               "effect": 1,
-              "tags": ["analyse", "integritet", "risiko"],
+              "tags": [
+                "analyse",
+                "integritet",
+                "risiko"
+              ],
               "feedback": "Du gjør oppsiden betinget, ikke magisk. Caset blir mindre blankt, men mer robust."
             },
             {
               "id": "B",
               "label": "Behold marginløftet som ledelsens base case.",
               "effect": -1,
-              "tags": ["risk", "visibility"],
+              "tags": [
+                "risk",
+                "visibility"
+              ],
               "feedback": "Caset ser sterkere ut, men modellen bærer en umerket antakelse. En celle har begynt å opptre som bevis."
             }
           ]
@@ -75,20 +88,32 @@
           "choice_axis": "ren_peergruppe_vs_bredt_snitt",
           "consequence_axis": "presisjon_vs_enkelhet",
           "narrative_arc": "markedets_speil",
-          "learning_focus": ["multipler", "peer group", "kapitalstruktur", "relativ verdsettelse", "metodekritikk"],
+          "learning_focus": [
+            "multipler",
+            "peer group",
+            "kapitalstruktur",
+            "relativ verdsettelse",
+            "metodekritikk"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Rens peer-gruppen og vis hvorfor noen selskaper utelates.",
               "effect": 1,
-              "tags": ["kvalitet", "analyse"],
+              "tags": [
+                "kvalitet",
+                "analyse"
+              ],
               "feedback": "Verdsettelsen blir smalere, men mer forklarbar. Du viser markedet som metode, ikke pynt."
             },
             {
               "id": "B",
               "label": "Bruk hele snittet for å få et enkelt tall til presentasjonen.",
               "effect": -1,
-              "tags": ["tempo", "snarvei"],
+              "tags": [
+                "tempo",
+                "snarvei"
+              ],
               "feedback": "Tallet blir lett å presentere, men vanskeligere å forsvare. Snittet skjuler at selskapene egentlig forteller ulike historier."
             }
           ]
@@ -120,20 +145,33 @@
           "choice_axis": "risikobilde_vs_salgbar_anbefaling",
           "consequence_axis": "ansvar_vs_appetitt",
           "narrative_arc": "risikoens_eier",
-          "learning_focus": ["scenarioanalyse", "downside case", "sensitivitet", "kapitalrisiko", "beslutningsgrunnlag"],
+          "learning_focus": [
+            "scenarioanalyse",
+            "downside case",
+            "sensitivitet",
+            "kapitalrisiko",
+            "beslutningsgrunnlag"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Legg inn eksplisitt nedsidescenario med utløsende faktorer.",
               "effect": 1,
-              "tags": ["integritet", "risiko", "analyse"],
+              "tags": [
+                "integritet",
+                "risiko",
+                "analyse"
+              ],
               "feedback": "Du gjør anbefalingen mer ansvarlig, selv om den blir mindre blank. Risikoen får form før kapitalen flytter seg."
             },
             {
               "id": "B",
               "label": "Hold nedsiden kort for ikke å svekke hovedcaset.",
               "effect": -1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Hovedcaset står sterkere, men risikoen blir underkommunisert. Det som ikke tegnes i modellen, forsvinner ikke i virkeligheten."
             }
           ]

@@ -1346,6 +1346,14 @@
           "topic_hook_id",
           "theory_ref"
         ],
+        "5": [
+          "topic_hook_id",
+          "theory_ref"
+        ],
+        "6": [
+          "topic_hook_id",
+          "theory_ref"
+        ],
         "7": [
           "topic_hook_id",
           "theory_ref"
@@ -1355,14 +1363,6 @@
           "theory_ref"
         ],
         "10": [
-          "topic_hook_id",
-          "theory_ref"
-        ],
-        "5": [
-          "topic_hook_id",
-          "theory_ref"
-        ],
-        "6": [
           "topic_hook_id",
           "theory_ref"
         ]
@@ -1465,6 +1465,34 @@
     "fallback_rule": "If these fields are missing, the generator must derive equivalent material from desc, popupDesc, signature_features, must_include and mapped quiz context before falling back to emner."
   },
   "source_pool_rules": {
+    "4": {
+      "primary": [
+        "emner",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 4 must resolve each emne-driven question through a topic_hook and named theorist."
+    },
+    "7": {
+      "primary": [
+        "emner",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 7 must deepen emne questions through theory and named theorists from fagplan canon."
+    },
+    "8": {
+      "primary": [
+        "emner.core_concepts",
+        "concept_focus",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 8 must connect concepts to theories/theorists from the fagplan canon rather than stay glossary-like."
+    },
     "early_set_source_priority": {
       "1": [
         "stories",
@@ -1529,34 +1557,6 @@
       "mapped emner"
     ],
     "rule": "For sets 1-5, the generator must first harvest and test external place-specific historical sources, then exhaust concrete place-near source pools, and only then draw on emne wording or abstract analytical language.",
-    "4": {
-      "primary": [
-        "emner",
-        "emnemapping",
-        "fagkart.topic_hooks",
-        "fagkart.topic_hooks.canon.thinkers"
-      ],
-      "rule": "Set 4 must resolve each emne-driven question through a topic_hook and named theorist."
-    },
-    "7": {
-      "primary": [
-        "emner",
-        "emnemapping",
-        "fagkart.topic_hooks",
-        "fagkart.topic_hooks.canon.thinkers"
-      ],
-      "rule": "Set 7 must deepen emne questions through theory and named theorists from fagplan canon."
-    },
-    "8": {
-      "primary": [
-        "emner.core_concepts",
-        "concept_focus",
-        "emnemapping",
-        "fagkart.topic_hooks",
-        "fagkart.topic_hooks.canon.thinkers"
-      ],
-      "rule": "Set 8 must connect concepts to theories/theorists from the fagplan canon rather than stay glossary-like."
-    },
     "deep_history_source_priority": [
       "stories",
       "related_events",
@@ -1705,6 +1705,16 @@
         "min_direct_name_mentions": 2,
         "min_theory_application_questions": 2
       },
+      "5": {
+        "min_named_theorist_questions": 2,
+        "min_direct_name_mentions": 1,
+        "min_theory_application_questions": 1
+      },
+      "6": {
+        "min_named_theorist_questions": 3,
+        "min_direct_name_mentions": 2,
+        "min_theory_application_questions": 2
+      },
       "7": {
         "min_named_theorist_questions": 4,
         "min_direct_name_mentions": 2,
@@ -1719,16 +1729,6 @@
         "min_named_theorist_questions": 5,
         "min_direct_name_mentions": 3,
         "min_theory_comparison_questions": 3
-      },
-      "5": {
-        "min_named_theorist_questions": 2,
-        "min_direct_name_mentions": 1,
-        "min_theory_application_questions": 1
-      },
-      "6": {
-        "min_named_theorist_questions": 3,
-        "min_direct_name_mentions": 2,
-        "min_theory_application_questions": 2
       }
     },
     "theory_ref_example": {

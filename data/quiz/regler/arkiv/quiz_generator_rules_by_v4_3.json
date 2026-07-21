@@ -1282,6 +1282,34 @@
     "fallback_rule": "If these fields are missing, the generator must derive equivalent material from desc, popupDesc, signature_features, must_include and mapped quiz context before falling back to emner."
   },
   "source_pool_rules": {
+    "4": {
+      "primary": [
+        "emner",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 4 must resolve each emne-driven question through a topic_hook and named theorist."
+    },
+    "7": {
+      "primary": [
+        "emner",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 7 must deepen emne questions through theory and named theorists from fagplan canon."
+    },
+    "8": {
+      "primary": [
+        "emner.core_concepts",
+        "concept_focus",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 8 must connect concepts to theories/theorists from the fagplan canon rather than stay glossary-like."
+    },
     "early_set_source_priority": {
       "1": [
         "stories",
@@ -1346,34 +1374,6 @@
       "mapped emner"
     ],
     "rule": "For sets 1, 2, 3, 5 and 6, the generator must exhaust concrete place-near source pools before drawing on emne wording or abstract analytical language.",
-    "4": {
-      "primary": [
-        "emner",
-        "emnemapping",
-        "fagkart.topic_hooks",
-        "fagkart.topic_hooks.canon.thinkers"
-      ],
-      "rule": "Set 4 must resolve each emne-driven question through a topic_hook and named theorist."
-    },
-    "7": {
-      "primary": [
-        "emner",
-        "emnemapping",
-        "fagkart.topic_hooks",
-        "fagkart.topic_hooks.canon.thinkers"
-      ],
-      "rule": "Set 7 must deepen emne questions through theory and named theorists from fagplan canon."
-    },
-    "8": {
-      "primary": [
-        "emner.core_concepts",
-        "concept_focus",
-        "emnemapping",
-        "fagkart.topic_hooks",
-        "fagkart.topic_hooks.canon.thinkers"
-      ],
-      "rule": "Set 8 must connect concepts to theories/theorists from the fagplan canon rather than stay glossary-like."
-    },
     "deep_history_source_priority": [
       "stories",
       "related_events",

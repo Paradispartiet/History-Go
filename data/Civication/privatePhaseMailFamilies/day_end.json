@@ -12,7 +12,13 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private dagslutt-mailer om søvn, hvile, psyke og helse. Aldri jobbinnhold.",
-  "topics": ["søvn", "hvile", "psyke", "helse", "læring"],
+  "topics": [
+    "søvn",
+    "hvile",
+    "psyke",
+    "helse",
+    "læring"
+  ],
   "mails": [
     {
       "id": "private_day_end_sovn_001",
@@ -30,7 +36,11 @@
           "label": "Legg deg mens kroppen er klar for det",
           "reply": "Jeg legger meg nå mens jeg kjenner søvnen.",
           "effect": 1,
-          "tags": ["søvn", "helse", "hvile"],
+          "tags": [
+            "søvn",
+            "helse",
+            "hvile"
+          ],
           "feedback": "Du gir kroppen en ærlig sjanse til å hvile ut."
         },
         {
@@ -38,7 +48,10 @@
           "label": "Strekk kvelden litt til",
           "reply": "Jeg blir oppe litt til.",
           "effect": 0,
-          "tags": ["tempo", "søvn"],
+          "tags": [
+            "tempo",
+            "søvn"
+          ],
           "feedback": "Kvelden varer litt lenger, men natten blir kortere."
         }
       ]
@@ -59,7 +72,11 @@
           "label": "Tenk på én god ting fra dagen",
           "reply": "Jeg lar den siste tanken være noe godt.",
           "effect": 1,
-          "tags": ["psyke", "hvile", "søvn"],
+          "tags": [
+            "psyke",
+            "hvile",
+            "søvn"
+          ],
           "feedback": "Du sovner litt lettere med noe varmt i tankene."
         },
         {
@@ -67,7 +84,9 @@
           "label": "La tankene surre som de vil",
           "reply": "Jeg lar tankene gå sin gang.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Hodet får ikke helt landet før søvnen tar over."
         }
       ]
@@ -88,7 +107,11 @@
           "label": "La det uferdige vente til i morgen",
           "reply": "Jeg legger fra meg dagen og lar resten vente.",
           "effect": 1,
-          "tags": ["hvile", "psyke", "søvn"],
+          "tags": [
+            "hvile",
+            "psyke",
+            "søvn"
+          ],
           "feedback": "Du gir deg selv lov til å hvile. Morgendagen tar sitt."
         },
         {
@@ -96,7 +119,9 @@
           "label": "Bli liggende og gruble på det uferdige",
           "reply": "Jeg blir liggende og tenker på det som gjenstår.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Grublingen løser lite, og søvnen kommer senere."
         }
       ]
@@ -104,8 +129,13 @@
     {
       "id": "private_day_end_lavenergi_profile_001",
       "topic": "søvn",
-      "requiresAnyProfileTags": ["low_energy", "rest"],
-      "weightFrom": ["privatePhaseWeights.rest"],
+      "requiresAnyProfileTags": [
+        "low_energy",
+        "rest"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.rest"
+      ],
       "subject": "Legg deg tidligere i natt",
       "summary": "Kroppen har bedt om det hele dagen: mer søvn.",
       "situation": [
@@ -119,7 +149,11 @@
           "label": "Legg deg tidlig",
           "reply": "Jeg legger meg tidlig i natt.",
           "effect": 1,
-          "tags": ["søvn", "hvile", "helse"],
+          "tags": [
+            "søvn",
+            "hvile",
+            "helse"
+          ],
           "feedback": "Kroppen sier takk. Natten gjør jobben sin."
         },
         {
@@ -127,7 +161,9 @@
           "label": "Skvis ut litt mer av kvelden",
           "reply": "Jeg er oppe litt til.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Du fikk litt mer kveld, men morgendagen betaler."
         }
       ]
@@ -135,8 +171,12 @@
     {
       "id": "private_day_end_samling_profile_002",
       "topic": "læring",
-      "requiresAnyProfileTags": ["learning"],
-      "weightFrom": ["privatePhaseWeights.learning"],
+      "requiresAnyProfileTags": [
+        "learning"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.learning"
+      ],
       "subject": "Et blikk på det du har samlet",
       "summary": "Før du sover kan du kaste et kort blikk på det du har samlet i det siste.",
       "situation": [
@@ -150,7 +190,11 @@
           "label": "Ta et kort blikk på samlingen",
           "reply": "Jeg ser kjapt over det jeg har samlet, så sover jeg.",
           "effect": 1,
-          "tags": ["læring", "psyke", "søvn"],
+          "tags": [
+            "læring",
+            "psyke",
+            "søvn"
+          ],
           "feedback": "Dagens biter faller på plass. God natt."
         },
         {
@@ -158,7 +202,10 @@
           "label": "Gå rett til ro",
           "reply": "Jeg lar det ligge og legger meg.",
           "effect": 0,
-          "tags": ["søvn", "hvile"],
+          "tags": [
+            "søvn",
+            "hvile"
+          ],
           "feedback": "Hodet sorterer i søvne. Det holder lenge."
         }
       ]

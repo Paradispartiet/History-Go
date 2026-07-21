@@ -17,7 +17,11 @@
           "cooldown": 4,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["mentorlinje", "lokal_tilpasning", "stille_observasjon"],
+          "branch_flags": [
+            "mentorlinje",
+            "lokal_tilpasning",
+            "stille_observasjon"
+          ],
           "subject": "Det viktigste du vet finnes knapt i dokumentene",
           "situation": [
             "Den avgjørende kunnskapen i arbeidet sitter i vurderinger, tegn og små forskjeller som sjelden står i manualene.",
@@ -29,24 +33,43 @@
               "id": "A",
               "label": "Lese dette som et tegn på at faget er større enn systemet registrerer",
               "effect": 1,
-              "tags": ["process", "legitimacy"],
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
               "feedback": "Du gjør den stille kunnskapen til en del av hvordan du forstår arbeidet.",
               "next_bias": {
-                "prefer_mail_types": ["story", "event"],
-                "prefer_families": ["kunnskapens_usynlighet"],
-                "set_flags": ["erkjent_usynlig_kunnskap"]
+                "prefer_mail_types": [
+                  "story",
+                  "event"
+                ],
+                "prefer_families": [
+                  "kunnskapens_usynlighet"
+                ],
+                "set_flags": [
+                  "erkjent_usynlig_kunnskap"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Akseptere at det viktigste bare må leve i praksis",
               "effect": 0,
-              "tags": ["craft", "avoidance"],
+              "tags": [
+                "craft",
+                "avoidance"
+              ],
               "feedback": "Du holder faget levende, men lar også systemet slippe å se det.",
               "next_bias": {
-                "prefer_mail_types": ["story"],
-                "prefer_families": ["industriell_stolthet"],
-                "set_flags": ["taus_fagkjerne"]
+                "prefer_mail_types": [
+                  "story"
+                ],
+                "prefer_families": [
+                  "industriell_stolthet"
+                ],
+                "set_flags": [
+                  "taus_fagkjerne"
+                ]
               }
             }
           ]
@@ -61,7 +84,11 @@
           "cooldown": 4,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["erkjent_usynlig_kunnskap", "signaturansvar", "respekt_gjennom_motstand"],
+          "branch_flags": [
+            "erkjent_usynlig_kunnskap",
+            "signaturansvar",
+            "respekt_gjennom_motstand"
+          ],
           "subject": "Du merker hvor mye vurdering som skjer før ordene kommer",
           "situation": [
             "Erfaringen i faget viser seg ofte som små stopp, blikk og justeringer lenge før noe kan forklares fullt ut.",
@@ -73,24 +100,43 @@
               "id": "A",
               "label": "Tenke at faget må romme også det som ikke lett kan standardiseres",
               "effect": 1,
-              "tags": ["craft", "legitimacy"],
+              "tags": [
+                "craft",
+                "legitimacy"
+              ],
               "feedback": "Du gir plass til en dypere forståelse av hva kompetanse egentlig er.",
               "next_bias": {
-                "prefer_mail_types": ["event"],
-                "prefer_families": ["kunnskapens_usynlighet"],
-                "set_flags": ["faglig_dybde"]
+                "prefer_mail_types": [
+                  "event"
+                ],
+                "prefer_families": [
+                  "kunnskapens_usynlighet"
+                ],
+                "set_flags": [
+                  "faglig_dybde"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Akseptere at systemet bare vil fange en mindre del av dette",
               "effect": 0,
-              "tags": ["process", "avoidance"],
+              "tags": [
+                "process",
+                "avoidance"
+              ],
               "feedback": "Du ser begrensningen klart og lar den stå.",
               "next_bias": {
-                "prefer_mail_types": ["story", "people"],
-                "prefer_families": ["taus_fagrespekt"],
-                "set_flags": ["akseptert_systemgrense"]
+                "prefer_mail_types": [
+                  "story",
+                  "people"
+                ],
+                "prefer_families": [
+                  "taus_fagrespekt"
+                ],
+                "set_flags": [
+                  "akseptert_systemgrense"
+                ]
               }
             }
           ]
@@ -110,7 +156,11 @@
           "cooldown": 4,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["hard_integritet", "taus_fagkjerne", "uformell_ledelse"],
+          "branch_flags": [
+            "hard_integritet",
+            "taus_fagkjerne",
+            "uformell_ledelse"
+          ],
           "subject": "Faget bærer en eldre rytme enn dagens språk",
           "situation": [
             "Det moderne språket rundt effektivitet og leveranse fanger ikke helt stoltheten som ligger i å kunne et arbeid ordentlig.",
@@ -122,24 +172,44 @@
               "id": "A",
               "label": "Tenke på deg selv som del av en lengre faglinje",
               "effect": 1,
-              "tags": ["craft", "legitimacy"],
+              "tags": [
+                "craft",
+                "legitimacy"
+              ],
               "feedback": "Du plasserer dagens arbeid i en større historisk form.",
               "next_bias": {
-                "prefer_mail_types": ["story", "event"],
-                "prefer_families": ["industriell_stolthet"],
-                "set_flags": ["historisk_faglinje"]
+                "prefer_mail_types": [
+                  "story",
+                  "event"
+                ],
+                "prefer_families": [
+                  "industriell_stolthet"
+                ],
+                "set_flags": [
+                  "historisk_faglinje"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Holde det til dagens produksjonsmål og ikke mer",
               "effect": 0,
-              "tags": ["visibility", "shortcut"],
+              "tags": [
+                "visibility",
+                "shortcut"
+              ],
               "feedback": "Du gjør dagen mindre, men også enklere å bære.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["kollega_med_snarveier", "ansvar_som_glir"],
-                "set_flags": ["flat_produksjonslogikk"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "kollega_med_snarveier",
+                  "ansvar_som_glir"
+                ],
+                "set_flags": [
+                  "flat_produksjonslogikk"
+                ]
               }
             }
           ]
@@ -154,7 +224,11 @@
           "cooldown": 4,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["historisk_faglinje", "faglig_dybde", "taus_fagrespekt"],
+          "branch_flags": [
+            "historisk_faglinje",
+            "faglig_dybde",
+            "taus_fagrespekt"
+          ],
           "subject": "Det ligger en verdighet i å kunne noe andre overser",
           "situation": [
             "Mange ser bare sluttresultatet, men du vet hvor mye av kvaliteten som hviler på ferdigheter som nesten aldri blir navngitt offentlig.",
@@ -166,24 +240,44 @@
               "id": "A",
               "label": "La denne stoltheten være en del av hvordan du holder standarden oppe",
               "effect": 1,
-              "tags": ["craft", "visibility"],
+              "tags": [
+                "craft",
+                "visibility"
+              ],
               "feedback": "Du gjør verdigheten i faget til et aktivt holdepunkt.",
               "next_bias": {
-                "prefer_mail_types": ["event"],
-                "prefer_families": ["industriell_stolthet"],
-                "set_flags": ["verdighetslinje"]
+                "prefer_mail_types": [
+                  "event"
+                ],
+                "prefer_families": [
+                  "industriell_stolthet"
+                ],
+                "set_flags": [
+                  "verdighetslinje"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Holde stoltheten privat og la systemet være like flatt som før",
               "effect": 0,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Du bærer meningen selv uten å gi den større form.",
               "next_bias": {
-                "prefer_mail_types": ["people", "story"],
-                "prefer_families": ["ansvar_som_glir", "kunnskapens_usynlighet"],
-                "set_flags": ["privat_stolthet"]
+                "prefer_mail_types": [
+                  "people",
+                  "story"
+                ],
+                "prefer_families": [
+                  "ansvar_som_glir",
+                  "kunnskapens_usynlighet"
+                ],
+                "set_flags": [
+                  "privat_stolthet"
+                ]
               }
             }
           ]

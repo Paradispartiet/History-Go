@@ -21,7 +21,10 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["faglig_integritet", "presisjon_forst"],
+          "branch_flags": [
+            "faglig_integritet",
+            "presisjon_forst"
+          ],
           "subject": "Du vet at dette burde vært gjort annerledes",
           "situation": [
             "En løsning ser grei ut på avstand, men bryter med det du vet om godt fagarbeid.",
@@ -40,24 +43,44 @@
               "id": "A",
               "label": "Stanser og forklarer hvorfor det må gjøres ordentlig",
               "effect": 1,
-              "tags": ["craft", "visibility"],
+              "tags": [
+                "craft",
+                "visibility"
+              ],
               "feedback": "Du gjør faget til målestokk, ikke bare resultatet.",
               "next_bias": {
-                "prefer_mail_types": ["conflict", "people"],
-                "prefer_families": ["faglig_integritet_early", "taus_fagrespekt"],
-                "set_flags": ["hard_integritet"]
+                "prefer_mail_types": [
+                  "conflict",
+                  "people"
+                ],
+                "prefer_families": [
+                  "faglig_integritet_early",
+                  "taus_fagrespekt"
+                ],
+                "set_flags": [
+                  "hard_integritet"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Lar det passere fordi dagen ellers blir tyngre",
               "effect": 0,
-              "tags": ["shortcut", "avoidance"],
+              "tags": [
+                "shortcut",
+                "avoidance"
+              ],
               "feedback": "Du skåner flyten og tærer litt på standarden.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["kollega_med_snarveier"],
-                "set_flags": ["glidende_standard"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "kollega_med_snarveier"
+                ],
+                "set_flags": [
+                  "glidende_standard"
+                ]
               }
             }
           ]
@@ -72,7 +95,10 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["faglig_integritet", "tidlig_inngrep"],
+          "branch_flags": [
+            "faglig_integritet",
+            "tidlig_inngrep"
+          ],
           "subject": "Godt nok for hvem?",
           "situation": [
             "Noen bruker uttrykket godt nok som om det var teknisk presist.",
@@ -91,24 +117,42 @@
               "id": "A",
               "label": "Be om en konkret faglig begrunnelse",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du tvinger vurderingen ut av tåkespråk og inn i ansvar.",
               "next_bias": {
-                "prefer_mail_types": ["conflict"],
-                "prefer_families": ["faglig_integritet_early"],
-                "set_flags": ["spraklig_konfrontasjon"]
+                "prefer_mail_types": [
+                  "conflict"
+                ],
+                "prefer_families": [
+                  "faglig_integritet_early"
+                ],
+                "set_flags": [
+                  "spraklig_konfrontasjon"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Akseptere formuleringen og jobbe videre",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du lar ordene gjøre jobben med å senke standarden.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["ansvar_som_glir"],
-                "set_flags": ["taktisk_taushet"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "ansvar_som_glir"
+                ],
+                "set_flags": [
+                  "taktisk_taushet"
+                ]
               }
             }
           ]
@@ -123,7 +167,10 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["faglig_integritet", "flyt_forst"],
+          "branch_flags": [
+            "faglig_integritet",
+            "flyt_forst"
+          ],
           "subject": "Det raske valget begynner å låne legitimitet fra vanen",
           "situation": [
             "En løsning som først ble valgt fordi dagen var presset, gjentas nå oftere med henvisning til at den pleier å fungere.",
@@ -142,24 +189,44 @@
               "id": "A",
               "label": "Markere at gjentakelse ikke i seg selv gjør noe faglig riktig",
               "effect": 1,
-              "tags": ["craft", "visibility"],
+              "tags": [
+                "craft",
+                "visibility"
+              ],
               "feedback": "Du nekter å la vane kle seg ut som kvalitet.",
               "next_bias": {
-                "prefer_mail_types": ["conflict", "people"],
-                "prefer_families": ["faglig_integritet_early", "taus_fagrespekt"],
-                "set_flags": ["vaneoppgjor"]
+                "prefer_mail_types": [
+                  "conflict",
+                  "people"
+                ],
+                "prefer_families": [
+                  "faglig_integritet_early",
+                  "taus_fagrespekt"
+                ],
+                "set_flags": [
+                  "vaneoppgjor"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Godta at det som glir lett ofte blir stående som norm",
               "effect": 0,
-              "tags": ["legitimacy", "shortcut"],
+              "tags": [
+                "legitimacy",
+                "shortcut"
+              ],
               "feedback": "Du lar systemets treghet gi snarveien tyngde.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["kollega_med_snarveier"],
-                "set_flags": ["normalisert_snarvei"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "kollega_med_snarveier"
+                ],
+                "set_flags": [
+                  "normalisert_snarvei"
+                ]
               }
             }
           ]
@@ -183,7 +250,10 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["uformell_autoritet", "forbedringslinje"],
+          "branch_flags": [
+            "uformell_autoritet",
+            "forbedringslinje"
+          ],
           "subject": "Du skal sikre det, men ikke bestemme det",
           "situation": [
             "Andre tar beslutninger som forutsetter at du får detaljene til å holde.",
@@ -202,24 +272,44 @@
               "id": "A",
               "label": "Ta ordet og styre prosessen faglig",
               "effect": 1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Du fyller tomrommet med kompetanse, ikke formell rett.",
               "next_bias": {
-                "prefer_mail_types": ["people", "conflict"],
-                "prefer_families": ["taus_fagrespekt", "ansvar_uten_myndighet_early"],
-                "set_flags": ["styrer_uten_tittel"]
+                "prefer_mail_types": [
+                  "people",
+                  "conflict"
+                ],
+                "prefer_families": [
+                  "taus_fagrespekt",
+                  "ansvar_uten_myndighet_early"
+                ],
+                "set_flags": [
+                  "styrer_uten_tittel"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Holde deg til rollen og la andre eie beslutningen",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du beskytter deg formelt og gjør samtidig tomrommet større.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["ansvar_som_glir"],
-                "set_flags": ["baret_ansvar"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "ansvar_som_glir"
+                ],
+                "set_flags": [
+                  "baret_ansvar"
+                ]
               }
             }
           ]
@@ -234,7 +324,10 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
-          "branch_flags": ["mandatlojal", "rolleavgrensning"],
+          "branch_flags": [
+            "mandatlojal",
+            "rolleavgrensning"
+          ],
           "subject": "Du blir ansvarlig i andres øyne lenge før du får retten til å definere rammen",
           "situation": [
             "Folk rundt deg forventer at du griper inn når noe er uklart, nettopp fordi du kan mest.",
@@ -253,24 +346,42 @@
               "id": "A",
               "label": "Gjøre det tydelig at ansvar krever mer enn tillit fra sidelinjen",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du prøver å knytte ansvar tettere til faktisk styringsrett.",
               "next_bias": {
-                "prefer_mail_types": ["conflict"],
-                "prefer_families": ["ansvar_uten_myndighet_early"],
-                "set_flags": ["ansvarsoppgjor"]
+                "prefer_mail_types": [
+                  "conflict"
+                ],
+                "prefer_families": [
+                  "ansvar_uten_myndighet_early"
+                ],
+                "set_flags": [
+                  "ansvarsoppgjor"
+                ]
               }
             },
             {
               "id": "B",
               "label": "La forventningen om at du fikser det leve videre uten å utfordre rammen",
               "effect": 0,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Du holder hjulene i gang og lar tomrommet bestå.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["ansvar_som_glir"],
-                "set_flags": ["stille_byrde"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "ansvar_som_glir"
+                ],
+                "set_flags": [
+                  "stille_byrde"
+                ]
               }
             }
           ]
@@ -294,7 +405,10 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
-          "branch_flags": ["hard_integritet", "vaneoppgjor"],
+          "branch_flags": [
+            "hard_integritet",
+            "vaneoppgjor"
+          ],
           "subject": "Du blir bedt om å signere under på noe du ikke helt står for",
           "situation": [
             "Arbeidet er gjennomført, men ikke på et nivå du ville kalt sikkert eller godt.",
@@ -313,24 +427,42 @@
               "id": "A",
               "label": "Nekte å stå inne for det uten retting",
               "effect": 1,
-              "tags": ["craft", "risk"],
+              "tags": [
+                "craft",
+                "risk"
+              ],
               "feedback": "Du lar navnet ditt bety noe mer enn bare bekreftelse.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["taus_fagrespekt"],
-                "set_flags": ["respekt_gjennom_motstand"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "taus_fagrespekt"
+                ],
+                "set_flags": [
+                  "respekt_gjennom_motstand"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Godta det fordi systemet ellers stopper",
               "effect": 0,
-              "tags": ["shortcut", "legitimacy"],
+              "tags": [
+                "shortcut",
+                "legitimacy"
+              ],
               "feedback": "Du redder strømmen i systemet og skyver tyngden inn i deg selv.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["kollega_med_snarveier"],
-                "set_flags": ["systembevarer"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "kollega_med_snarveier"
+                ],
+                "set_flags": [
+                  "systembevarer"
+                ]
               }
             }
           ]
@@ -345,7 +477,10 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
-          "branch_flags": ["spraklig_konfrontasjon", "faglig_integritet"],
+          "branch_flags": [
+            "spraklig_konfrontasjon",
+            "faglig_integritet"
+          ],
           "subject": "Du kjenner at signaturen din kan bli brukt til å lukke mer enn du egentlig godkjenner",
           "situation": [
             "Det forventes at din vurdering skal gi saken et siste preg av trygghet og legitimitet.",
@@ -364,24 +499,42 @@
               "id": "A",
               "label": "Insistere på at signaturen må følge en reell vurdering, ikke bare et behov for lukking",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du forsvarer signaturen som faglig handling, ikke som formalitet.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["taus_fagrespekt"],
-                "set_flags": ["signaturansvar"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "taus_fagrespekt"
+                ],
+                "set_flags": [
+                  "signaturansvar"
+                ]
               }
             },
             {
               "id": "B",
               "label": "La saken passere for å unngå mer stans og friksjon",
               "effect": 0,
-              "tags": ["shortcut", "avoidance"],
+              "tags": [
+                "shortcut",
+                "avoidance"
+              ],
               "feedback": "Du hjelper systemet videre og lar integriteten bli litt tynnere.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["ansvar_som_glir"],
-                "set_flags": ["stille_fortynning"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "ansvar_som_glir"
+                ],
+                "set_flags": [
+                  "stille_fortynning"
+                ]
               }
             }
           ]
@@ -405,7 +558,10 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
-          "branch_flags": ["styrer_uten_tittel", "ansvarsoppgjor"],
+          "branch_flags": [
+            "styrer_uten_tittel",
+            "ansvarsoppgjor"
+          ],
           "subject": "Feilen blir din når vurderingen var andres",
           "situation": [
             "Et valg høyere opp i linjen gir problemer på gulvet, men ansvaret vender raskt tilbake til den som kan mest.",
@@ -424,24 +580,42 @@
               "id": "A",
               "label": "Dokumentere hvor ansvaret faktisk startet",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du nekter å la kompetanse være det samme som skyld.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["taus_fagrespekt"],
-                "set_flags": ["ansvarssporing"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "taus_fagrespekt"
+                ],
+                "set_flags": [
+                  "ansvarssporing"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Rydde opp uten å åpne fordeling av ansvar",
               "effect": 0,
-              "tags": ["craft", "avoidance"],
+              "tags": [
+                "craft",
+                "avoidance"
+              ],
               "feedback": "Du holder ting gående og lar mønsteret fortsette.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["ansvar_som_glir"],
-                "set_flags": ["absorberer_systemet"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "ansvar_som_glir"
+                ],
+                "set_flags": [
+                  "absorberer_systemet"
+                ]
               }
             }
           ]
@@ -456,7 +630,10 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
-          "branch_flags": ["baret_ansvar", "stille_byrde"],
+          "branch_flags": [
+            "baret_ansvar",
+            "stille_byrde"
+          ],
           "subject": "Du blir stående som siste vern mot konsekvensene av andres valg",
           "situation": [
             "Igjen oppstår en situasjon hvor beslutningen kom ovenfra, men risikoen folder seg ut hos deg og dem nærmest arbeidet.",
@@ -475,24 +652,42 @@
               "id": "A",
               "label": "Gjøre det eksplisitt at vern ikke er det samme som ansvarseierskap",
               "effect": 1,
-              "tags": ["visibility", "process"],
+              "tags": [
+                "visibility",
+                "process"
+              ],
               "feedback": "Du prøver å bryte koblingen mellom kompetanse og automatisk skyld.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["taus_fagrespekt"],
-                "set_flags": ["bryter_koblingen"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "taus_fagrespekt"
+                ],
+                "set_flags": [
+                  "bryter_koblingen"
+                ]
               }
             },
             {
               "id": "B",
               "label": "Fortsette å ta slaget fordi noen må gjøre det",
               "effect": 0,
-              "tags": ["craft", "legitimacy"],
+              "tags": [
+                "craft",
+                "legitimacy"
+              ],
               "feedback": "Du holder skaden nede og styrker samtidig forventningen om at du alltid skal bære den.",
               "next_bias": {
-                "prefer_mail_types": ["people"],
-                "prefer_families": ["ansvar_som_glir"],
-                "set_flags": ["barer_videre"]
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "ansvar_som_glir"
+                ],
+                "set_flags": [
+                  "barer_videre"
+                ]
               }
             }
           ]

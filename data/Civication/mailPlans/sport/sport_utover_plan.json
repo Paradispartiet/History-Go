@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "sport_resultatpress_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "sport_resultatpress_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -39,64 +45,101 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere at utvikling bygger på rytme og disiplin, ikke bare motivasjon.",
-      "allowed_families": ["trening_rytme_og_disiplin"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trening_rytme_og_disiplin"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
       "step_goal": "La spilleren møte første kroppssignal og valget mellom ambisjon og belastningsstyring.",
-      "allowed_families": ["kropp_belastning_og_skade"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kropp_belastning_og_skade"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 3,
       "type": "job",
       "phase": "early",
       "step_goal": "Introdusere lagrolle og normer som del av utøverutviklingen.",
-      "allowed_families": ["lagmiljo_rolle_og_normer"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "lagmiljo_rolle_og_normer"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 4,
       "type": "job",
       "phase": "early",
       "step_goal": "Vise hvordan konkurransepress kan skjerpe eller forvrenge utviklingen.",
-      "allowed_families": ["konkurranse_press_og_resultat"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "konkurranse_press_og_resultat"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "Teste om spilleren holder utviklingsrytme når framgang ikke synes tydelig ennå.",
-      "allowed_families": ["trening_rytme_og_disiplin", "konkurranse_press_og_resultat"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trening_rytme_og_disiplin",
+        "konkurranse_press_og_resultat"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "mid",
       "step_goal": "La kropp, spilletid og lagmiljø trekke i ulike retninger.",
-      "allowed_families": ["kropp_belastning_og_skade", "lagmiljo_rolle_og_normer"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kropp_belastning_og_skade",
+        "lagmiljo_rolle_og_normer"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
       "step_goal": "La resultatpress true både kropp, rolle og læring.",
-      "allowed_families": ["konkurranse_press_og_resultat", "kropp_belastning_og_skade"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "konkurranse_press_og_resultat",
+        "kropp_belastning_og_skade"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 8,
       "type": "job",
       "phase": "mastery",
       "step_goal": "Avrunde rollen: moden utøverutvikling holder prestasjon, kropp, lag og selvbilde sammen.",
-      "allowed_families": ["trening_rytme_og_disiplin", "lagmiljo_rolle_og_normer", "konkurranse_press_og_resultat"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trening_rytme_og_disiplin",
+        "lagmiljo_rolle_og_normer",
+        "konkurranse_press_og_resultat"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     }
   ]
 }

@@ -127,28 +127,45 @@
       "title": "Vekst finansiert med skjørhet",
       "description": "Vekstplanen kan finansieres, men bare ved å redusere selskapets buffer og øke refinansieringsrisikoen.",
       "pressure": "vekst_vs_soliditet",
-      "affects": ["capital", "risk", "trust", "strategy"]
+      "affects": [
+        "capital",
+        "risk",
+        "trust",
+        "strategy"
+      ]
     },
     {
       "id": "covenant_rommet_krymper",
       "title": "Covenant-rommet krymper",
       "description": "Nøkkeltallene nærmer seg grensen i lånevilkårene, samtidig som ledelsen vil holde kapitalfortellingen rolig.",
       "pressure": "tidlig_varsel_vs_ro",
-      "affects": ["bank_trust", "risk", "status"]
+      "affects": [
+        "bank_trust",
+        "risk",
+        "status"
+      ]
     },
     {
       "id": "styrets_kapitalvalg",
       "title": "Styrets kapitalvalg",
       "description": "Styret trenger anbefaling om investering, oppkjøp eller finansiering der oppside og nedsiderisiko er tett sammenvevd.",
       "pressure": "beslutningskraft_vs_full_risiko",
-      "affects": ["governance", "capital", "decision_quality"]
+      "affects": [
+        "governance",
+        "capital",
+        "decision_quality"
+      ]
     },
     {
       "id": "markedets_forventning",
       "title": "Markedets forventning",
       "description": "Eiere eller marked forventer vekst, mens intern analyse viser at handlingsrommet er smalere.",
       "pressure": "kapitalfortelling_vs_bæreevne",
-      "affects": ["reputation", "strategy", "integrity"]
+      "affects": [
+        "reputation",
+        "strategy",
+        "integrity"
+      ]
     }
   ],
   "dilemmas": [
@@ -158,7 +175,11 @@
       "setup": "Selskapet kan finansiere en aggressiv vekstplan, men det vil redusere buffer og gjøre refinansiering mer risikabel.",
       "choice_axis": "vekst_vs_soliditet",
       "consequence_axis": "oppside_vs_overlevelse",
-      "mail_hooks": ["job", "conflict", "event"]
+      "mail_hooks": [
+        "job",
+        "conflict",
+        "event"
+      ]
     },
     {
       "id": "tidlig_varsel_eller_kontrollert_fortelling",
@@ -166,7 +187,10 @@
       "setup": "Banken eller styret bør varsles tidlig om risiko, men et tidlig varsel kan skape uro før alle tall er klare.",
       "choice_axis": "apenhet_vs_ro",
       "consequence_axis": "tillit_vs_status",
-      "mail_hooks": ["event", "conflict"]
+      "mail_hooks": [
+        "event",
+        "conflict"
+      ]
     },
     {
       "id": "oppkjøp_som_strategi_eller_prestisje",
@@ -174,7 +198,11 @@
       "setup": "Et mulig oppkjøp kan gi vekst og status, men integrasjonsrisikoen er større enn presentasjonen viser.",
       "choice_axis": "strategisk_verdi_vs_prestisje",
       "consequence_axis": "langsiktig_styrke_vs_kortsiktig_posisjon",
-      "mail_hooks": ["job", "story", "conflict"]
+      "mail_hooks": [
+        "job",
+        "story",
+        "conflict"
+      ]
     }
   ],
   "related_people": [

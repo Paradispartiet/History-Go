@@ -12,7 +12,16 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private lunsj-mailer om mat, hvile, energi, venner og sosialt liv. Aldri jobbinnhold.",
-  "topics": ["mat", "hvile", "energi", "venner", "sosialt liv", "natur", "nettverk", "økonomi"],
+  "topics": [
+    "mat",
+    "hvile",
+    "energi",
+    "venner",
+    "sosialt liv",
+    "natur",
+    "nettverk",
+    "økonomi"
+  ],
   "mails": [
     {
       "id": "private_lunch_mat_001",
@@ -30,7 +39,11 @@
           "label": "Ta deg tid til et ordentlig måltid",
           "reply": "Jeg setter meg ned og spiser skikkelig.",
           "effect": 1,
-          "tags": ["mat", "hvile", "energi"],
+          "tags": [
+            "mat",
+            "hvile",
+            "energi"
+          ],
           "feedback": "Du får både mat og en pause. Ettermiddagen kjennes lettere."
         },
         {
@@ -38,7 +51,10 @@
           "label": "Spis raskt og gå videre",
           "reply": "Jeg tar noe kjapt i farten.",
           "effect": 0,
-          "tags": ["tempo", "mat"],
+          "tags": [
+            "tempo",
+            "mat"
+          ],
           "feedback": "Du blir mett, men rekker aldri helt å lande."
         }
       ]
@@ -59,7 +75,11 @@
           "label": "Lukk øynene og pust rolig noen minutter",
           "reply": "Jeg gir hodet en liten pause.",
           "effect": 1,
-          "tags": ["hvile", "psyke", "energi"],
+          "tags": [
+            "hvile",
+            "psyke",
+            "energi"
+          ],
           "feedback": "Skuldrene senker seg litt. Du kjenner deg mer til stede."
         },
         {
@@ -67,7 +87,9 @@
           "label": "Bruk pausen på skjermen",
           "reply": "Jeg scroller litt mens jeg spiser.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Tiden går, men hodet får ikke helt hvilt."
         }
       ]
@@ -88,7 +110,11 @@
           "label": "Svar og spør hvordan det står til hos dem",
           "reply": "Jeg svarer og hører hvordan de har det.",
           "effect": 1,
-          "tags": ["venner", "sosialt liv", "psyke"],
+          "tags": [
+            "venner",
+            "sosialt liv",
+            "psyke"
+          ],
           "feedback": "En kort samtale, men vennskapet kjennes litt nærmere."
         },
         {
@@ -96,7 +122,10 @@
           "label": "Send en rask tommel opp og ta det senere",
           "reply": "Jeg svarer kort nå og ringer heller i kveld.",
           "effect": 0,
-          "tags": ["tempo", "venner"],
+          "tags": [
+            "tempo",
+            "venner"
+          ],
           "feedback": "Du holder kontakten så vidt. Det får holde for nå."
         }
       ]
@@ -117,7 +146,11 @@
           "label": "Ta en kort tur ute",
           "reply": "Jeg går en liten runde og trekker litt luft.",
           "effect": 1,
-          "tags": ["energi", "helse", "fritid"],
+          "tags": [
+            "energi",
+            "helse",
+            "fritid"
+          ],
           "feedback": "Litt luft og bevegelse, og hodet klarner."
         },
         {
@@ -125,7 +158,9 @@
           "label": "Bli sittende innendørs",
           "reply": "Jeg blir sittende der jeg er.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "Det er behagelig nok, men kroppen får lite påfyll."
         }
       ]
@@ -133,8 +168,13 @@
     {
       "id": "private_lunch_natur_profile_001",
       "topic": "natur",
-      "requiresAnyProfileTags": ["nature", "natur"],
-      "weightFrom": ["privatePhaseWeights.nature"],
+      "requiresAnyProfileTags": [
+        "nature",
+        "natur"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.nature"
+      ],
       "subject": "Et grønt sted innen rekkevidde",
       "summary": "Du har en halvtime, og et grønt sted du kjenner fra kartet ligger nær nok.",
       "situation": [
@@ -148,7 +188,11 @@
           "label": "Gå til det grønne stedet",
           "reply": "Jeg tar lunsjpausen ute i det grønne.",
           "effect": 1,
-          "tags": ["natur", "psyke", "helse"],
+          "tags": [
+            "natur",
+            "psyke",
+            "helse"
+          ],
           "feedback": "En halvtime med luft og ro. Du kommer tilbake med nytt blikk."
         },
         {
@@ -156,7 +200,9 @@
           "label": "Bli sittende inne",
           "reply": "Jeg blir inne denne gangen.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Praktisk, men det grønne stedet ligger der fortsatt."
         }
       ]
@@ -164,8 +210,14 @@
     {
       "id": "private_lunch_nettverk_profile_002",
       "topic": "nettverk",
-      "requiresAnyProfileTags": ["social", "people"],
-      "weightFrom": ["privatePhaseWeights.social", "capital.social"],
+      "requiresAnyProfileTags": [
+        "social",
+        "people"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.social",
+        "capital.social"
+      ],
       "subject": "En kjapp lunsj med en kjenning",
       "summary": "En du har møtt gjennom byen spør om dere skal spise lunsj sammen.",
       "situation": [
@@ -179,7 +231,11 @@
           "label": "Møt kjenningen til lunsj",
           "reply": "Ja, vi tar lunsjen sammen.",
           "effect": 1,
-          "tags": ["nettverk", "sosialt liv", "venner"],
+          "tags": [
+            "nettverk",
+            "sosialt liv",
+            "venner"
+          ],
           "feedback": "En god prat, og en tråd i nettverket ditt er litt sterkere."
         },
         {
@@ -187,7 +243,9 @@
           "label": "Ta pausen for deg selv",
           "reply": "Jeg trenger pausen alene i dag, vi finner en annen dag.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "Du verner om pausen din. Kontakten forstår."
         }
       ]
@@ -195,8 +253,13 @@
     {
       "id": "private_lunch_okonomi_profile_003",
       "topic": "økonomi",
-      "requiresAnyProfileTags": ["economy"],
-      "weightFrom": ["privatePhaseWeights.economy", "capital.economic"],
+      "requiresAnyProfileTags": [
+        "economy"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.economy",
+        "capital.economic"
+      ],
       "subject": "Lunsj med hodet på budsjettet",
       "summary": "Du har blikk for hva ting koster, også midt på dagen.",
       "situation": [
@@ -210,7 +273,10 @@
           "label": "Velg det billige, smarte alternativet",
           "reply": "Jeg holder meg til det rimelige i dag.",
           "effect": 1,
-          "tags": ["økonomi", "mat"],
+          "tags": [
+            "økonomi",
+            "mat"
+          ],
           "feedback": "Små valg, stor sum. Budsjettet ditt takker deg."
         },
         {
@@ -218,7 +284,9 @@
           "label": "Unn deg noe dyrere i dag",
           "reply": "I dag kjøper jeg det jeg har lyst på.",
           "effect": 0,
-          "tags": ["mat"],
+          "tags": [
+            "mat"
+          ],
           "feedback": "Godt i øyeblikket. Regnearket får tåle det."
         }
       ]

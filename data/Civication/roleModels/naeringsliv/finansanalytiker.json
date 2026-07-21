@@ -128,28 +128,45 @@
       "title": "Blandet datagrunnlag",
       "description": "Historiske tall, guiding og egne antakelser ligger i samme modell uten tydelig merking.",
       "pressure": "tempo_vs_kildekritikk",
-      "affects": ["integrity", "risk", "trust", "valuation"]
+      "affects": [
+        "integrity",
+        "risk",
+        "trust",
+        "valuation"
+      ]
     },
     {
       "id": "modellrisiko",
       "title": "Modellrisiko",
       "description": "En gammel forutsetning, feil versjon eller umerket sensitivitet kan endre anbefalingen.",
       "pressure": "deling_vs_kontroll",
-      "affects": ["risk", "status", "capital"]
+      "affects": [
+        "risk",
+        "status",
+        "capital"
+      ]
     },
     {
       "id": "onsket_konklusjon",
       "title": "Ønsket konklusjon",
       "description": "Seniorer eller komité ønsker klar anbefaling før usikkerheten er tilstrekkelig forstått.",
       "pressure": "klarhet_vs_usikkerhet",
-      "affects": ["integrity", "status", "decision_quality"]
+      "affects": [
+        "integrity",
+        "status",
+        "decision_quality"
+      ]
     },
     {
       "id": "markedet_bryter_inn",
       "title": "Markedet bryter inn",
       "description": "Ny markedsinformasjon endrer en sentral antakelse rett før presentasjon.",
       "pressure": "relevans_vs_presentasjonsflyt",
-      "affects": ["risk", "trust", "capital"]
+      "affects": [
+        "risk",
+        "trust",
+        "capital"
+      ]
     }
   ],
   "dilemmas": [
@@ -159,7 +176,10 @@
       "setup": "Du kan la estimater gli inn i modellen som om de var historiske tall, eller merke dem tydelig og gjøre caset mindre glatt.",
       "choice_axis": "tydelig_usikkerhet_vs_salgbar_modell",
       "consequence_axis": "integritet_vs_tempo",
-      "mail_hooks": ["job", "conflict"]
+      "mail_hooks": [
+        "job",
+        "conflict"
+      ]
     },
     {
       "id": "skarpt_svar_eller_betinget_anbefaling",
@@ -167,7 +187,10 @@
       "setup": "Komiteen trenger en beslutning, men modellen tåler ikke en helt ren konklusjon.",
       "choice_axis": "beslutningskraft_vs_metodepresisjon",
       "consequence_axis": "status_vs_ansvar",
-      "mail_hooks": ["conflict", "story"]
+      "mail_hooks": [
+        "conflict",
+        "story"
+      ]
     },
     {
       "id": "oppside_som_basecase",
@@ -175,7 +198,10 @@
       "setup": "Et legitimt, men optimistisk datapunkt kan brukes som sensitivitet eller gjøres til hovedcase.",
       "choice_axis": "metode_vs_onsket_resultat",
       "consequence_axis": "troverdighet_vs_salgbarhet",
-      "mail_hooks": ["conflict", "event"]
+      "mail_hooks": [
+        "conflict",
+        "event"
+      ]
     },
     {
       "id": "kapitalfortelling",
@@ -183,7 +209,10 @@
       "setup": "Du kan vise hvordan verdien avhenger av antakelser, eller fortelle én stram fremtidshistorie som er lettere å kjøpe.",
       "choice_axis": "forstaelse_vs_overbevisning",
       "consequence_axis": "ansvar_vs_innflytelse",
-      "mail_hooks": ["story", "job"]
+      "mail_hooks": [
+        "story",
+        "job"
+      ]
     }
   ],
   "related_people": [

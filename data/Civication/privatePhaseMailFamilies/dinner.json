@@ -12,7 +12,13 @@
   "employer_id": "",
   "workday_related": false,
   "description": "Private middag-mailer om mat, familie, økonomi og sosialt liv. Aldri jobbinnhold.",
-  "topics": ["mat", "familie", "økonomi", "sosialt liv", "nettverk"],
+  "topics": [
+    "mat",
+    "familie",
+    "økonomi",
+    "sosialt liv",
+    "nettverk"
+  ],
   "mails": [
     {
       "id": "private_dinner_mat_001",
@@ -30,7 +36,11 @@
           "label": "Lag noe godt fra bunnen",
           "reply": "Jeg lager middag ordentlig i kveld.",
           "effect": 1,
-          "tags": ["mat", "helse", "hvile"],
+          "tags": [
+            "mat",
+            "helse",
+            "hvile"
+          ],
           "feedback": "Maten smaker bedre når du har laget den selv, og kvelden får en rolig start."
         },
         {
@@ -38,7 +48,10 @@
           "label": "Ta noe raskt og enkelt",
           "reply": "Jeg tar noe kjapt i kveld.",
           "effect": 0,
-          "tags": ["tempo", "mat"],
+          "tags": [
+            "tempo",
+            "mat"
+          ],
           "feedback": "Du blir mett, men middagen ble mer et stopp enn en pause."
         }
       ]
@@ -59,7 +72,11 @@
           "label": "Legg bort telefonen og vær til stede",
           "reply": "Jeg legger bort skjermen og spør hvordan dagen har vært.",
           "effect": 1,
-          "tags": ["familie", "sosialt liv", "psyke"],
+          "tags": [
+            "familie",
+            "sosialt liv",
+            "psyke"
+          ],
           "feedback": "En helt vanlig middag blir litt varmere fordi du var der."
         },
         {
@@ -67,7 +84,9 @@
           "label": "Spis mens du sjekker telefonen",
           "reply": "Jeg spiser mens jeg tar unna litt på telefonen.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Du fikk spist, men stunden gled litt forbi."
         }
       ]
@@ -88,7 +107,10 @@
           "label": "Ta fem minutter på å se over økonomien",
           "reply": "Jeg tar en rolig titt på hva som går ut og inn.",
           "effect": 1,
-          "tags": ["økonomi", "psyke"],
+          "tags": [
+            "økonomi",
+            "psyke"
+          ],
           "feedback": "Oversikt gir ro. Pengene føles litt mer på plass."
         },
         {
@@ -96,7 +118,10 @@
           "label": "La det ligge til en annen kveld",
           "reply": "Jeg tar det senere i uka.",
           "effect": 0,
-          "tags": ["tempo", "økonomi"],
+          "tags": [
+            "tempo",
+            "økonomi"
+          ],
           "feedback": "Det er greit, men usikkerheten blir liggende litt til."
         }
       ]
@@ -117,7 +142,11 @@
           "label": "Si ja og lag noe enkelt sammen",
           "reply": "Jeg sier ja, vi finner ut av noe enkelt.",
           "effect": 1,
-          "tags": ["venner", "sosialt liv", "mat"],
+          "tags": [
+            "venner",
+            "sosialt liv",
+            "mat"
+          ],
           "feedback": "Maten blir bedre med selskap, og kvelden får varme."
         },
         {
@@ -125,7 +154,9 @@
           "label": "Ta det som en rolig kveld alene",
           "reply": "Jeg tar en stille kveld for meg selv i kveld.",
           "effect": 0,
-          "tags": ["hvile"],
+          "tags": [
+            "hvile"
+          ],
           "feedback": "En rolig kveld alene kan også være akkurat det du trenger."
         }
       ]
@@ -133,8 +164,14 @@
     {
       "id": "private_dinner_nettverk_profile_001",
       "topic": "nettverk",
-      "requiresAnyProfileTags": ["social", "people"],
-      "weightFrom": ["privatePhaseWeights.social", "capital.social"],
+      "requiresAnyProfileTags": [
+        "social",
+        "people"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.social",
+        "capital.social"
+      ],
       "subject": "En invitasjon fra en du har møtt",
       "summary": "En kontakt fra et sted du tidligere besøkte spør om du vil møtes til middag.",
       "situation": [
@@ -148,7 +185,11 @@
           "label": "Si ja til middagen",
           "reply": "Ja, la oss møtes til middag.",
           "effect": 1,
-          "tags": ["nettverk", "sosialt liv", "venner"],
+          "tags": [
+            "nettverk",
+            "sosialt liv",
+            "venner"
+          ],
           "feedback": "En god kveld, og båndet er blitt litt sterkere."
         },
         {
@@ -156,7 +197,10 @@
           "label": "Foreslå en annen dag",
           "reply": "Ikke i kveld, men la oss finne en annen dag.",
           "effect": 0,
-          "tags": ["hvile", "tempo"],
+          "tags": [
+            "hvile",
+            "tempo"
+          ],
           "feedback": "Du holder døren åpen uten å tømme deg selv i kveld."
         }
       ]
@@ -164,8 +208,13 @@
     {
       "id": "private_dinner_okonomi_profile_002",
       "topic": "økonomi",
-      "requiresAnyProfileTags": ["economy"],
-      "weightFrom": ["privatePhaseWeights.economy", "capital.economic"],
+      "requiresAnyProfileTags": [
+        "economy"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.economy",
+        "capital.economic"
+      ],
       "subject": "Middag som går opp i regnestykket",
       "summary": "Du ser middagen med økonomiblikket ditt: godt og billig går an samtidig.",
       "situation": [
@@ -179,7 +228,10 @@
           "label": "Lag billig middag av det du har",
           "reply": "Jeg lager middag av det jeg har hjemme.",
           "effect": 1,
-          "tags": ["økonomi", "mat"],
+          "tags": [
+            "økonomi",
+            "mat"
+          ],
           "feedback": "Mett og med penger igjen. Du liker det regnestykket."
         },
         {
@@ -187,7 +239,10 @@
           "label": "Bestill eller gå ut i kveld",
           "reply": "I kveld kjøper jeg middagen ferdig.",
           "effect": 0,
-          "tags": ["mat", "fritid"],
+          "tags": [
+            "mat",
+            "fritid"
+          ],
           "feedback": "Lettvint og godt, men det synes på ukesbudsjettet."
         }
       ]
@@ -195,8 +250,13 @@
     {
       "id": "private_dinner_ro_profile_003",
       "topic": "hvile",
-      "requiresAnyProfileTags": ["low_energy", "rest"],
-      "weightFrom": ["privatePhaseWeights.rest"],
+      "requiresAnyProfileTags": [
+        "low_energy",
+        "rest"
+      ],
+      "weightFrom": [
+        "privatePhaseWeights.rest"
+      ],
       "subject": "En stille middag hjemme",
       "summary": "Kroppen ber om en rolig kveldsmat uten mer inntrykk.",
       "situation": [
@@ -210,7 +270,11 @@
           "label": "Spis rolig og la kvelden være enkel",
           "reply": "Jeg tar en helt rolig middag hjemme.",
           "effect": 1,
-          "tags": ["hvile", "mat", "psyke"],
+          "tags": [
+            "hvile",
+            "mat",
+            "psyke"
+          ],
           "feedback": "Enkelt, varmt og stille. Akkurat det du trengte."
         },
         {
@@ -218,7 +282,9 @@
           "label": "Press inn litt mer program",
           "reply": "Jeg fyller på kvelden likevel.",
           "effect": 0,
-          "tags": ["tempo"],
+          "tags": [
+            "tempo"
+          ],
           "feedback": "Det gikk, men kroppen hadde ønsket seg roen."
         }
       ]

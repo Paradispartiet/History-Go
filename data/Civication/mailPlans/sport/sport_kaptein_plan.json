@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "sport_kaptein_garderobe_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "sport_kaptein_garderobe_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -39,64 +45,100 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere kapteinsrollen som normsetting i små hverdagsreaksjoner.",
-      "allowed_families": ["garderobe_normer_og_kultur"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "garderobe_normer_og_kultur"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
       "step_goal": "La spilleren møte første situasjon der trenerkrav må oversettes til spillergruppen.",
-      "allowed_families": ["trener_bro_og_beskjed"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trener_bro_og_beskjed"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 3,
       "type": "job",
       "phase": "early",
       "step_goal": "Vise at kapteinen må prestere og lede samtidig under kamptrykk.",
-      "allowed_families": ["kamp_press_og_ansvar"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kamp_press_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 4,
       "type": "job",
       "phase": "early",
       "step_goal": "Introdusere konflikt der støtte og grense må balanseres.",
-      "allowed_families": ["konflikt_stotte_og_grense"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "konflikt_stotte_og_grense"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "Teste om spilleren tar en dårlig norm før den blir lagets standard.",
-      "allowed_families": ["garderobe_normer_og_kultur", "konflikt_stotte_og_grense"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "garderobe_normer_og_kultur",
+        "konflikt_stotte_og_grense"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "mid",
       "step_goal": "La frustrasjon i spillergruppen bli konkret beskjed oppover uten å splitte laget.",
-      "allowed_families": ["trener_bro_og_beskjed"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trener_bro_og_beskjed"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
       "step_goal": "La kamptrykk og garderobeuro trekke samtidig i kapteinens ansvar.",
-      "allowed_families": ["kamp_press_og_ansvar", "garderobe_normer_og_kultur"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kamp_press_og_ansvar",
+        "garderobe_normer_og_kultur"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 8,
       "type": "job",
       "phase": "mastery",
       "step_goal": "Avrunde rollen: moden kapteinsledelse holder tillit, grense, beskjed og egen prestasjon sammen.",
-      "allowed_families": ["trener_bro_og_beskjed", "konflikt_stotte_og_grense", "kamp_press_og_ansvar"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trener_bro_og_beskjed",
+        "konflikt_stotte_og_grense",
+        "kamp_press_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     }
   ]
 }

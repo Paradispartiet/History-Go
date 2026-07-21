@@ -30,20 +30,32 @@
           "choice_axis": "betinget_anbefaling_vs_skarp_konklusjon",
           "consequence_axis": "ansvar_vs_beslutningskraft",
           "narrative_arc": "analyse_under_press",
-          "learning_focus": ["anbefaling", "usikkerhet", "beslutningspress", "kapitalallokering"],
+          "learning_focus": [
+            "anbefaling",
+            "usikkerhet",
+            "beslutningspress",
+            "kapitalallokering"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Gi betinget anbefaling med tydelige usikkerhetsdrivere.",
               "effect": 1,
-              "tags": ["integritet", "analyse", "risiko"],
+              "tags": [
+                "integritet",
+                "analyse",
+                "risiko"
+              ],
               "feedback": "Du gir komiteen en beslutning, men lar usikkerheten stå synlig. Det er mindre dramatisk, men mer ansvarlig."
             },
             {
               "id": "B",
               "label": "Gi en klar kjøpsanbefaling og tone ned forbeholdene.",
               "effect": -1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Anbefalingen blir sterkere, men du eier mer av usikkerheten enn modellen egentlig tåler. Klarhet kan også være en form for forenkling."
             }
           ]
@@ -75,20 +87,32 @@
           "choice_axis": "metode_vs_onsket_resultat",
           "consequence_axis": "troverdighet_vs_salgbarhet",
           "narrative_arc": "modellens_grense",
-          "learning_focus": ["verdsettelsesetikk", "multipler", "sensitivitet", "metodevalg"],
+          "learning_focus": [
+            "verdsettelsesetikk",
+            "multipler",
+            "sensitivitet",
+            "metodevalg"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Vis øvre kvartil som sensitivitet, ikke base case.",
               "effect": 1,
-              "tags": ["integritet", "kvalitet", "analyse"],
+              "tags": [
+                "integritet",
+                "kvalitet",
+                "analyse"
+              ],
               "feedback": "Du lar oppsiden finnes uten å gjøre den til normaltilstand. Metoden holder selv om historien blir mindre salgsvennlig."
             },
             {
               "id": "B",
               "label": "Bruk øvre kvartil som hovedcase for å støtte anbefalingen.",
               "effect": -1,
-              "tags": ["risk", "visibility"],
+              "tags": [
+                "risk",
+                "visibility"
+              ],
               "feedback": "Presentasjonen blir mer overbevisende, men mindre balansert. Du har ikke funnet sannere verdi; du har valgt en mer nyttig sammenligning."
             }
           ]

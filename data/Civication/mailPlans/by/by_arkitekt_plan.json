@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "by_arkitektur_objekt_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "by_arkitektur_objekt_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -39,64 +45,100 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere at volum og skala må leses i gaterommet, ikke bare i modellen.",
-      "allowed_families": ["volum_skala_og_sted"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "volum_skala_og_sted"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
       "step_goal": "La spilleren møte førsteetasje som byggets viktigste forhandling med byen.",
-      "allowed_families": ["forsteetasje_program_og_byliv"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "forsteetasje_program_og_byliv"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 3,
       "type": "job",
       "phase": "early",
       "step_goal": "Introdusere materialitet som varighet og hverdagsbruk, ikke bare visuell effekt.",
-      "allowed_families": ["materialitet_og_varighet"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "materialitet_og_varighet"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 4,
       "type": "job",
       "phase": "early",
       "step_goal": "Vise hvordan et sterkt signaturgrep kan styrke eller dominere stedet.",
-      "allowed_families": ["signatur_og_stedstilpasning"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "signatur_og_stedstilpasning"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "Teste om spilleren justerer volum og førsteetasje for faktisk byliv og menneskelig skala.",
-      "allowed_families": ["volum_skala_og_sted", "forsteetasje_program_og_byliv"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "volum_skala_og_sted",
+        "forsteetasje_program_og_byliv"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "mid",
       "step_goal": "La kostnadspress utfordre materialitet og langsiktig kvalitet.",
-      "allowed_families": ["materialitet_og_varighet"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "materialitet_og_varighet"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
       "step_goal": "La signatur, program og stedstilpasning kollidere i samme arkitektoniske grep.",
-      "allowed_families": ["signatur_og_stedstilpasning", "forsteetasje_program_og_byliv"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "signatur_og_stedstilpasning",
+        "forsteetasje_program_og_byliv"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 8,
       "type": "job",
       "phase": "mastery",
       "step_goal": "Avrunde rollen: god byarkitektur gjør bygget bedre ved å gjøre stedet bedre.",
-      "allowed_families": ["volum_skala_og_sted", "materialitet_og_varighet", "signatur_og_stedstilpasning"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "volum_skala_og_sted",
+        "materialitet_og_varighet",
+        "signatur_og_stedstilpasning"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     }
   ]
 }

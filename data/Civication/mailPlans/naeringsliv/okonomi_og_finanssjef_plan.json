@@ -22,64 +22,115 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere rollen gjennom første budsjettmøte og ansvar for økonomifunksjonens prioriteringer.",
-      "allowed_families": ["okonomi_og_finanssjef_intro_v2"],
-      "fallback_types": ["job", "conflict", "story"]
+      "allowed_families": [
+        "okonomi_og_finanssjef_intro_v2"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "story"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "early",
       "step_goal": "La spilleren prioritere mellom avdelinger, investeringer og realistiske forutsetninger.",
-      "allowed_families": ["budsjett_og_prioritering"],
-      "fallback_types": ["conflict", "event", "story"]
+      "allowed_families": [
+        "budsjett_og_prioritering"
+      ],
+      "fallback_types": [
+        "conflict",
+        "event",
+        "story"
+      ]
     },
     {
       "step": 3,
       "type": "event",
       "phase": "early",
       "step_goal": "Utløse likviditets- eller bankhendelse som tester kapitaldisiplin under press.",
-      "allowed_families": ["likviditet_og_kapital", "bank_og_covenant"],
-      "fallback_types": ["job", "conflict", "story"]
+      "allowed_families": [
+        "likviditet_og_kapital",
+        "bank_og_covenant"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "story"
+      ]
     },
     {
       "step": 4,
       "type": "conflict",
       "phase": "mid",
       "step_goal": "Konfrontere spilleren med konflikt mellom vekstplan, realistisk budsjett og ledelsens ønskede fortelling.",
-      "allowed_families": ["styre_og_rapportering", "budsjett_og_prioritering"],
-      "fallback_types": ["job", "event", "story"]
+      "allowed_families": [
+        "styre_og_rapportering",
+        "budsjett_og_prioritering"
+      ],
+      "fallback_types": [
+        "job",
+        "event",
+        "story"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "Gi ansvar for teamledelse og kvalitet i økonomifunksjonen.",
-      "allowed_families": ["team_og_kontroll"],
-      "fallback_types": ["conflict", "story", "event"]
+      "allowed_families": [
+        "team_og_kontroll"
+      ],
+      "fallback_types": [
+        "conflict",
+        "story",
+        "event"
+      ]
     },
     {
       "step": 6,
       "type": "event",
       "phase": "advanced",
       "step_goal": "La styre, bank eller eier reagere på risiko, likviditet eller svakere forutsetninger.",
-      "allowed_families": ["bank_og_covenant", "likviditet_og_kapital"],
-      "fallback_types": ["conflict", "job", "story"]
+      "allowed_families": [
+        "bank_og_covenant",
+        "likviditet_og_kapital"
+      ],
+      "fallback_types": [
+        "conflict",
+        "job",
+        "story"
+      ]
     },
     {
       "step": 7,
       "type": "conflict",
       "phase": "mastery",
       "step_goal": "Teste om spilleren beskytter faglig integritet når ledelsen ønsker en penere økonomisk fortelling.",
-      "allowed_families": ["styre_og_rapportering"],
-      "fallback_types": ["job", "event", "story"]
+      "allowed_families": [
+        "styre_og_rapportering"
+      ],
+      "fallback_types": [
+        "job",
+        "event",
+        "story"
+      ]
     },
     {
       "step": 8,
       "type": "story",
       "phase": "climax",
       "step_goal": "Avrunde rollen som økonomisk ledelse: kontroll, kapital og tillit som samlet ansvar.",
-      "allowed_families": ["finanssjef_identitet"],
-      "fallback_types": ["event", "conflict", "job"]
+      "allowed_families": [
+        "finanssjef_identitet"
+      ],
+      "fallback_types": [
+        "event",
+        "conflict",
+        "job"
+      ]
     }
   ]
 }

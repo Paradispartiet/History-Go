@@ -125,28 +125,45 @@
       "title": "Rapportfrist mot forklaring",
       "description": "Rapporten må sendes før ledermøtet, men avviket er ikke forstått.",
       "pressure": "frist_vs_kvalitet",
-      "affects": ["trust", "status", "risk", "learning"]
+      "affects": [
+        "trust",
+        "status",
+        "risk",
+        "learning"
+      ]
     },
     {
       "id": "avstemming_uten_underlag",
       "title": "Avstemming uten underlag",
       "description": "Tallene kan fås til å stemme, men dokumentasjonen mangler.",
       "pressure": "sporbarhet_vs_tempo",
-      "affects": ["risk", "integrity", "audit"]
+      "affects": [
+        "risk",
+        "integrity",
+        "audit"
+      ]
     },
     {
       "id": "driftens_forklaring",
       "title": "Driftens forklaring",
       "description": "Driften mener rapporten gjør dem skyldige, mens økonomi trenger en tydelig avviksforklaring.",
       "pressure": "presisjon_vs_relationsfred",
-      "affects": ["trust", "status", "cooperation"]
+      "affects": [
+        "trust",
+        "status",
+        "cooperation"
+      ]
     },
     {
       "id": "resultatpynt",
       "title": "Resultatpynt",
       "description": "En leder ønsker å flytte eller tone ned et tap for å unngå uro.",
       "pressure": "etikk_vs_resultatpress",
-      "affects": ["integrity", "risk", "reputation"]
+      "affects": [
+        "integrity",
+        "risk",
+        "reputation"
+      ]
     }
   ],
   "dilemmas": [
@@ -156,7 +173,10 @@
       "setup": "Du kan behandle et avvik som en ferdig konklusjon, eller som et spor som må undersøkes i driftens virkelighet.",
       "choice_axis": "fasit_vs_undersokelse",
       "consequence_axis": "autoritet_vs_laring",
-      "mail_hooks": ["job", "story"]
+      "mail_hooks": [
+        "job",
+        "story"
+      ]
     },
     {
       "id": "kontroll_som_stotte_eller_overvaking",
@@ -164,7 +184,11 @@
       "setup": "Kontrollen din kan hjelpe folk å forstå feil tidligere, eller få dem til å skjule problemer til rapporten finner dem.",
       "choice_axis": "stotte_vs_overvaking",
       "consequence_axis": "tillit_vs_frykt",
-      "mail_hooks": ["story", "conflict", "people"]
+      "mail_hooks": [
+        "story",
+        "conflict",
+        "people"
+      ]
     },
     {
       "id": "periodisering_eller_resultatpynt",
@@ -172,7 +196,10 @@
       "setup": "Et tap kan kanskje flyttes, men bare hvis det finnes regnskapsmessig substans. Ellers blir det pynting av virkeligheten.",
       "choice_axis": "metode_vs_onsket_resultat",
       "consequence_axis": "integritet_vs_ro",
-      "mail_hooks": ["conflict", "event"]
+      "mail_hooks": [
+        "conflict",
+        "event"
+      ]
     }
   ],
   "related_people": [

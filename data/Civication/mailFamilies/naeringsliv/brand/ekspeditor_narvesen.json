@@ -21,7 +21,9 @@
           "brand_role": "kioskmedarbeider",
           "subject": "Kampanjepris på pølsekombo slår ikke inn",
           "summary": "Kassa viser feil pris i lunsjrush.",
-          "situation": ["En kunde peker på kombo-plakaten, men kassa registrerer fullpris på pølse og drikke."],
+          "situation": [
+            "En kunde peker på kombo-plakaten, men kassa registrerer fullpris på pølse og drikke."
+          ],
           "task_domain": "cash_desk",
           "competency": "noyaktighet_under_press",
           "pressure": "hoy_ko",
@@ -29,8 +31,26 @@
           "consequence_axis": "tillit_vs_tempo",
           "narrative_arc": "forste_uke_pa_gulvet",
           "choices": [
-            { "id": "A", "label": "Bekreft kampanjen og korriger manuelt", "effect": 1, "tags": ["kunde", "kvalitet"], "feedback": "Du løser feilen tydelig og beholder flyt i køen." },
-            { "id": "B", "label": "Ta fullpris for å holde linjen i gang", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Raskt nå, men skaper irritasjon og mulig klage." }
+            {
+              "id": "A",
+              "label": "Bekreft kampanjen og korriger manuelt",
+              "effect": 1,
+              "tags": [
+                "kunde",
+                "kvalitet"
+              ],
+              "feedback": "Du løser feilen tydelig og beholder flyt i køen."
+            },
+            {
+              "id": "B",
+              "label": "Ta fullpris for å holde linjen i gang",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "snarvei"
+              ],
+              "feedback": "Raskt nå, men skaper irritasjon og mulig klage."
+            }
           ]
         }
       ]
@@ -48,7 +68,9 @@
           "brand_role": "kioskmedarbeider",
           "subject": "Morgenkunde vil ha raskt allergisvar",
           "summary": "Du må svare presist under tidspress.",
-          "situation": ["En pendler spør om en wrap inneholder nøtter mens flere står i kø bak."],
+          "situation": [
+            "En pendler spør om en wrap inneholder nøtter mens flere står i kø bak."
+          ],
           "task_domain": "customer_service",
           "competency": "presis_kommunikasjon",
           "pressure": "rush",
@@ -56,8 +78,26 @@
           "consequence_axis": "trygghet_vs_tempo",
           "narrative_arc": "kundenes_blikk",
           "choices": [
-            { "id": "A", "label": "Sjekk ingredienslisten før svar", "effect": 1, "tags": ["kvalitet", "kunde"], "feedback": "Du prioriterer trygghet og korrekt informasjon." },
-            { "id": "B", "label": "Svar etter antakelse for å spare tid", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Raskt levert, men med unødvendig risiko." }
+            {
+              "id": "A",
+              "label": "Sjekk ingredienslisten før svar",
+              "effect": 1,
+              "tags": [
+                "kvalitet",
+                "kunde"
+              ],
+              "feedback": "Du prioriterer trygghet og korrekt informasjon."
+            },
+            {
+              "id": "B",
+              "label": "Svar etter antakelse for å spare tid",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "snarvei"
+              ],
+              "feedback": "Raskt levert, men med unødvendig risiko."
+            }
           ]
         }
       ]
@@ -75,7 +115,9 @@
           "brand_role": "kioskmedarbeider",
           "subject": "Ny kollega glemmer påfyll av småvarer",
           "summary": "Du velger mellom å ta alt selv eller bygge rutine.",
-          "situation": ["Småvarer ved kassa er tomme i ettermiddagsrush fordi ny kollega ikke kjenner sjekklisten."],
+          "situation": [
+            "Småvarer ved kassa er tomme i ettermiddagsrush fordi ny kollega ikke kjenner sjekklisten."
+          ],
           "task_domain": "teamwork",
           "competency": "veiledning",
           "pressure": "travelt_gulv",
@@ -83,8 +125,26 @@
           "consequence_axis": "kortsiktig_flyt_vs_langsiktig_stabilitet",
           "narrative_arc": "forste_uke_pa_gulvet",
           "choices": [
-            { "id": "A", "label": "Forklar sjekklisten og fordel oppgaver", "effect": 1, "tags": ["kollega", "kvalitet"], "feedback": "Du styrker laget og reduserer gjentatte stopp." },
-            { "id": "B", "label": "Fyll opp i skjul og si ingenting", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Du redder øyeblikket, men lærer ikke bort rutinen." }
+            {
+              "id": "A",
+              "label": "Forklar sjekklisten og fordel oppgaver",
+              "effect": 1,
+              "tags": [
+                "kollega",
+                "kvalitet"
+              ],
+              "feedback": "Du styrker laget og reduserer gjentatte stopp."
+            },
+            {
+              "id": "B",
+              "label": "Fyll opp i skjul og si ingenting",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "snarvei"
+              ],
+              "feedback": "Du redder øyeblikket, men lærer ikke bort rutinen."
+            }
           ]
         }
       ]
@@ -102,7 +162,9 @@
           "brand_role": "kioskmedarbeider",
           "subject": "Frokostkunde trenger rask pakkeløsning",
           "summary": "Du vurderer relevant mersalg i farta.",
-          "situation": ["En kunde ber om kaffe to go og noe raskt å spise før toget går."],
+          "situation": [
+            "En kunde ber om kaffe to go og noe raskt å spise før toget går."
+          ],
           "task_domain": "sales_dialog",
           "competency": "behovsavdekking",
           "pressure": "rush",
@@ -110,8 +172,26 @@
           "consequence_axis": "tillit_vs_kortsiktig_omsetning",
           "narrative_arc": "kundenes_blikk",
           "choices": [
-            { "id": "A", "label": "Anbefal ferdig kombo som sparer tid", "effect": 1, "tags": ["kunde", "salg"], "feedback": "Forslaget oppleves nyttig og situasjonstilpasset." },
-            { "id": "B", "label": "Tilby tilfeldig ekstra uten behovsavklaring", "effect": -1, "tags": ["tempo", "salg"], "feedback": "Du forsøker mersalg, men med lav treffsikkerhet." }
+            {
+              "id": "A",
+              "label": "Anbefal ferdig kombo som sparer tid",
+              "effect": 1,
+              "tags": [
+                "kunde",
+                "salg"
+              ],
+              "feedback": "Forslaget oppleves nyttig og situasjonstilpasset."
+            },
+            {
+              "id": "B",
+              "label": "Tilby tilfeldig ekstra uten behovsavklaring",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "salg"
+              ],
+              "feedback": "Du forsøker mersalg, men med lav treffsikkerhet."
+            }
           ]
         }
       ]
@@ -129,7 +209,9 @@
           "brand_role": "kioskmedarbeider",
           "subject": "Tre samtidige forespørsler ved disken",
           "summary": "Du må prioritere tydelig under høyt trykk.",
-          "situation": ["Kaffemaskin stanser, en kunde vil betale tobakk, og en annen spør etter pakkelevering samtidig."],
+          "situation": [
+            "Kaffemaskin stanser, en kunde vil betale tobakk, og en annen spør etter pakkelevering samtidig."
+          ],
           "task_domain": "frontline_operations",
           "competency": "prioritering",
           "pressure": "travelt_gulv",
@@ -137,8 +219,26 @@
           "consequence_axis": "kontroll_vs_kaos",
           "narrative_arc": "yrkesstolthet_i_hverdagen",
           "choices": [
-            { "id": "A", "label": "Kommuniser kørekkefølge og deleger kort", "effect": 1, "tags": ["kunde", "drift"], "feedback": "Du skaper ro og fremdrift i en presset situasjon." },
-            { "id": "B", "label": "Hopp mellom oppgaver uten plan", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Det går fort i starten, men skaper fort mer forvirring." }
+            {
+              "id": "A",
+              "label": "Kommuniser kørekkefølge og deleger kort",
+              "effect": 1,
+              "tags": [
+                "kunde",
+                "drift"
+              ],
+              "feedback": "Du skaper ro og fremdrift i en presset situasjon."
+            },
+            {
+              "id": "B",
+              "label": "Hopp mellom oppgaver uten plan",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "snarvei"
+              ],
+              "feedback": "Det går fort i starten, men skaper fort mer forvirring."
+            }
           ]
         }
       ]

@@ -36,14 +36,23 @@
           "choice_axis": "forklaring_vs_frist",
           "consequence_axis": "sporbarhet_vs_tempo",
           "narrative_arc": "forste_rapport",
-          "learning_focus": ["avviksanalyse", "periodisering", "driftsforklaring", "styringsinformasjon"],
+          "learning_focus": [
+            "avviksanalyse",
+            "periodisering",
+            "driftsforklaring",
+            "styringsinformasjon"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Kontakt driftsleder og be om kort forklaring før innsending.",
               "reply": "Jeg henter forklaring fra drift før vi sender rapporten.",
               "effect": 1,
-              "tags": ["kvalitet", "process", "drift"],
+              "tags": [
+                "kvalitet",
+                "process",
+                "drift"
+              ],
               "feedback": "Du forsinker rapporten litt, men gjør avviket styrbart. Tallet får en årsak, ikke bare en fargekode."
             },
             {
@@ -51,7 +60,11 @@
               "label": "Send rapporten nå og la avviket stå uten kommentar.",
               "reply": "Jeg sender rapporten nå, så tar vi forklaringen senere.",
               "effect": -1,
-              "tags": ["tempo", "risk", "snarvei"],
+              "tags": [
+                "tempo",
+                "risk",
+                "snarvei"
+              ],
               "feedback": "Fristen holdes, men avviket blir en dom før det blir en analyse. Driften må forsvare seg mot et tall de ikke fikk forklare."
             }
           ]
@@ -83,14 +96,23 @@
           "choice_axis": "dokumentere_vs_anta",
           "consequence_axis": "kontroll_vs_flyt",
           "narrative_arc": "sporbarhet_i_tallene",
-          "learning_focus": ["avstemming", "internkontroll", "periodisering", "revisjonsspor"],
+          "learning_focus": [
+            "avstemming",
+            "internkontroll",
+            "periodisering",
+            "revisjonsspor"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Be om faktura og periodiseringsnotat før godkjenning.",
               "reply": "Jeg trenger faktura og periodiseringsnotat før jeg godkjenner avstemmingen.",
               "effect": 1,
-              "tags": ["process", "kvalitet", "kontroll"],
+              "tags": [
+                "process",
+                "kvalitet",
+                "kontroll"
+              ],
               "feedback": "Du gjør avstemmingen tregere, men du bygger et revisjonsspor. Det er slik kontroll blir tillit."
             },
             {
@@ -98,7 +120,10 @@
               "label": "Godkjenn som sannsynlig periodisering og gå videre.",
               "reply": "Jeg godkjenner dette som sannsynlig periodisering foreløpig.",
               "effect": -1,
-              "tags": ["tempo", "risk"],
+              "tags": [
+                "tempo",
+                "risk"
+              ],
               "feedback": "Du rydder skjemaet, men ikke årsaken. Differansen blir en liten gjeld til fremtidig deg."
             }
           ]
