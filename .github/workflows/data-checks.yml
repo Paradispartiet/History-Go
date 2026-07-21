@@ -7,6 +7,13 @@ on:
       - 'data/places/**'
       - 'data/quiz/**'
       - 'data/fag/**'
+      - 'data/badges/**'
+      - 'data/categories/**'
+      - 'bilder/merker/**'
+      - 'js/DomainRegistry.js'
+      - 'js/core/categories.ts'
+      - 'js/core/categories.js'
+      - 'dist/web/categories.js'
       - 'tests/etne-people-manifest-integration.test.js'
       - 'tests/etne-people-of-places-*.test.js'
       - 'tests/quiz-content-quality-audit.test.mjs'
@@ -14,6 +21,7 @@ on:
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
       - 'scripts/audit-knowledge-contract.mjs'
+      - 'scripts/audit-category-governance.mjs'
       - 'scripts/audit-quiz-content-quality.mjs'
       - 'scripts/audit-quiz-template-governance.mjs'
       - 'data/Civication/historyPeople_index.json'
@@ -115,7 +123,7 @@ jobs:
           if-no-files-found: ignore
 
   quiz-governance:
-    name: Quiz governance
+    name: Category and quiz governance
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -128,6 +136,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+
+      - name: Audit canonical categories
+        run: npm run audit:categories
 
       - name: Audit canonical quiz templates
         run: npm run audit:quiz-templates
