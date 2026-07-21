@@ -46,7 +46,7 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "politikk", name: "Politikk & samfunn", icon: "🏛️", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
   { id: "subkultur", name: "Subkultur", icon: "🧷", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
   { id: "litteratur", name: "Litteratur", icon: "📚", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
-  { id: "naeringsliv", name: "Næringsliv", icon: "🏭", color: "#0F62BD", secondaryColor: "#0754A9", scope: "runtime_domain" },
+  { id: "naeringsliv", name: "Næringsliv", icon: "🏭", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain" },
   { id: "psykologi", name: "Psykologi", icon: "🧠", color: "#06d6a0", scope: "runtime_domain" },
   { id: "film_tv", name: "Film & TV", icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
   { id: "media", name: "Medier", icon: "🗞️", color: "#ff595e", scope: "runtime_domain" },
