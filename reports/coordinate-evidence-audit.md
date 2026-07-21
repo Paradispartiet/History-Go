@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T15:49:32.238Z
+Generert: 2026-07-21T16:14:46.927Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -219,7 +219,7 @@ Generert: 2026-07-21T15:49:32.238Z
 | alnaelva | data/coordinate-evidence/oslo/natur/alnaelva.json | needs_research | needs_geometry | OK |
 | alnaelvstien | data/coordinate-evidence/oslo/natur/alnaelvstien.json | needs_research | needs_geometry | OK |
 | alnaparken | data/coordinate-evidence/oslo/natur/alnaparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| alnsjoen_alna_kilde | data/coordinate-evidence/oslo/natur/alnsjoen_alna_kilde.json | needs_research | needs_geometry | OK |
+| alnsjoen_alna_kilde | data/coordinate-evidence/oslo/natur/alnsjoen_alna_kilde.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ankerbrua | data/coordinate-evidence/oslo/natur/ankerbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bantjern_salamanderlokalitet | data/coordinate-evidence/oslo/natur/bantjern_salamanderlokalitet.json | needs_research | needs_geometry | OK |
 | beierbrua | data/coordinate-evidence/oslo/natur/beierbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
