@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 309 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 108–111 produserer fire stabile fysiske steder fra den avgrensede VisitOSLO Bjørvika-auditen etter ferdig duplicate-, scope- og coordinate-intake. Batch 112 etterfører den fullførte Ljanselva-rutekontrollen og legger til ett verifisert canonical sted; seks lokale rutepunkter er dokumentert separat som needs_review.
+Oslo-tabellen inneholder nå 274 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 113 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_ostensjovannet.json`. Narrative delsoner må ha egen eksplisitt lokal geometri og kan ikke arve hele reservatpolygonet; fugletårnet og Bogerudmyra krever ett unikt eksakt navngitt fysisk objekt med riktig objekttype.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -336,6 +336,7 @@ Batch 111 (2026-07-21) produserer `operastranda`. Eksakt navngitt kommunal bades
 
 Batch 112 (2026-07-21) etterfører den allerede validerte Ljanselva-rutekontrollen etter at parallelle VisitOSLO-batcher tok numrene 108–111 før Ljanselva-PR-en ble merget. `skraperudtjern` bruker det eksakt navngitte OSM-vannobjektet way 23761672 som `pond_center`. `noklevann_ljanselva_start`, `ljanselva_skullerud`, `ljanselva_hauketo`, `ljanselva_ljan`, `ljanselva_fiskevollen` og `ljanselva_bunnefjorden` er fullførte kontroller uten godkjent koordinat og står derfor i needs_review-tabellen. Den opprinnelige build-rapporten ble generert som batch 108 før den parallelle køen landet; rapportstien og resultatmetadataen er i denne reparasjonen canonical-renummerert til batch 112.
 
+Batch 113 (2026-07-21) reviderer Østensjøvannet-kildens fem legacy `OpenStreetMap/Mapcarta`- og `nearby_reference`-punkter. `ostensjovannet_nord`, `ostensjovannet_sivbelte` og `ostensjovannet_sor` er lokale narrative delsoner og får ikke låne hele Naturbase-reservatpolygonet som falsk punktpresisjon. `ostensjovannet_fugletarn` og `bogerudmyra` kan bare verifiseres ved ett unikt eksakt navngitt fysisk objekt med riktig semantisk objekttype i forhåndsdefinert lokal scope; ingen nearest/first-hit-logikk brukes.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -469,6 +470,11 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `ljanselva_ljan` – Ljanselva ved Ljan | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
 | `ljanselva_fiskevollen` – Ljanselva ved Fiskevollen | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
 | `ljanselva_bunnefjorden` – Ljanselva ut i Bunnefjorden | needs_review | Recorden gjelder selve overgangen fra elv til fjord. Et midtpunkt på et nærliggende elve-segment eller et generelt fjordpunkt dokumenterer ikke munningspunktet. Legacy-punktet kan derfor ikke beholdes som verified uten eksplisitt utløpsgeometri. | Dokumenter siste Ljanselva-segment og et eksplisitt kildebelagt endepunkt/munningspunkt mot Bunnefjorden. |
+| `ostensjovannet_nord` – Østensjøvannet nord | needs_review | Recorden beskriver en retningsbestemt del av det større Østensjøvannet naturreservat uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt nordpunkt. | Dokumenter en eksplisitt lokal sonegeometri eller flere kildebelagte våtmarksankre som avgrenser nordsonen. |
+| `ostensjovannet_fugletarn` – Østensjøvannet fugletårn | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig eksakt fugletårn-/observasjonsobjekt med fysisk punkt eller geometri. |
+| `ostensjovannet_sivbelte` – Østensjøvannet sivbelte | needs_review | Recorden beskriver et habitatbelte med skiftende utstrekning, ikke ett dokumentert navngitt fysisk objekt med stabil grense. Reservatets samlede polygon kan ikke verifisere ett vilkårlig sivbelte-midpunkt. | Dokumenter eksplisitt kartlagt siv-/våtmarksgeometri eller flere kildebelagte habitatankre før et canonical punkt godkjennes. |
+| `ostensjovannet_sor` – Østensjøvannet sør | needs_review | Recorden beskriver en retningsbestemt sørsone uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt sørpunkt. | Dokumenter en eksplisitt lokal sonegeometri eller flere kildebelagte vannkant-/våtmarksankre som avgrenser sørsonen. |
+| `bogerudmyra` – Bøler/Bogerudmyra | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig navngitt myr-/våtmarksobjekt med eksplisitt geometri eller flere kildebelagte habitatankre. |
 
 ## Etne – historiesett
 
@@ -516,8 +522,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 113.
-- `places_oslo_natur_ljanselva_rute.json` er nå fullt kontrollert og canonical ført som batch 112. Neste aktive naturkilde i køen er `places_oslo_natur_ostensjovannet.json`; tidligere kontrollerte placeId-er skal hoppes over.
+- Neste nye Oslo-kontroll er batch 114.
+- `places_oslo_natur_ostensjovannet.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive naturkilde i køen er `places_oslo_natur_salamanderdammer.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 

@@ -1,12 +1,12 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T05:39:24.714Z
+Generert: 2026-07-21T05:43:55.514Z
 
 ## Oppsummering
 - Aktive filer validert: **573**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **425**
+- Varsler: **422**
 - Coordinate review candidates: **707** signaler fordelt på **567** steder
 
 Nivåene betyr:
@@ -869,9 +869,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_ljan: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_fiskevollen: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_bunnefjorden: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_ostensjovannet.json#ostensjovannet_nord: coordStatus=verified uten coordNote for område/gate/rute
-- data/places/natur/oslo/places_oslo_natur_ostensjovannet.json#ostensjovannet_fugletarn: coordStatus=verified uten coordNote for område/gate/rute
-- data/places/natur/oslo/places_oslo_natur_ostensjovannet.json#ostensjovannet_sor: coordStatus=verified uten coordNote for område/gate/rute
 - data/places/natur/oslo/places_oslo_natur_salamanderdammer.json#tjernsmyr_salamanderlokalitet: lav koordinatpresisjon (<4 desimaler)
 - data/places/politikk/oslo/places_politikk.json#tinghuset: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#house_of_nerds: lav koordinatpresisjon (<4 desimaler)
