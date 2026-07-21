@@ -4,13 +4,14 @@ on:
   pull_request:
     paths:
       - 'scripts/knowledge-canonical-data.mts'
+      - 'scripts/apply-canonical-knowledge-cleanup.py'
       - '.github/workflows/canonical-knowledge-cleanup.yml'
 
 permissions:
   contents: write
 
 jobs:
-  audit:
+  cleanup:
     if: github.event.pull_request.head.ref == 'agent/canonical-knowledge-data-cleanup'
     runs-on: ubuntu-latest
     steps:
@@ -23,15 +24,48 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Compile canonical Knowledge pipeline
-        run: npx tsc scripts/knowledge-canonical-data.mts --target ES2022 --module NodeNext --moduleResolution NodeNext --types node --skipLibCheck --outDir /tmp/knowledge-pipeline
-      - name: Audit active legacy readers
-        continue-on-error: true
-        run: node /tmp/knowledge-pipeline/knowledge-canonical-data.mjs --legacy-only
-      - name: Upload reader audit
+      - name: Apply controlled source migration
+        run: python scripts/apply-canonical-knowledge-cleanup.py
+      - name: Build canonical data tooling
+        run: npm run build:scripts
+      - name: Backfill canonical IDs and registries
+        run: node dist/scripts/knowledge-canonical-data.mjs --write
+      - name: Build browser runtimes
+        run: npm run build:web
+      - name: Typecheck and verify canonical data
+        run: |
+          npm run typecheck:web
+          npm run typecheck:scripts
+          node dist/scripts/knowledge-canonical-data.mjs --check
+          node dist/scripts/knowledge-canonical-data.mjs --legacy-only
+          node dist/scripts/knowledge-canonical-data.mjs --audit-only
+      - name: Run Knowledge tests
+        run: npm run test:knowledge-core
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run Knowledge browser E2E
+        run: npm run test:knowledge-browser
+      - name: Run Places check
+        run: bash scripts/check-places.sh
+      - name: Upload cleanup reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: knowledge-universe-reader-audit
-          path: reports/knowledge-universe-readers.json
-          if-no-files-found: error
+          name: canonical-knowledge-cleanup-reports
+          path: |
+            reports/knowledge-id-backfill.json
+            reports/knowledge-contract-audit.json
+            reports/knowledge-universe-readers.json
+          if-no-files-found: warn
+      - name: Commit verified cleanup
+        run: |
+          git config user.name 'History GO CI'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git reset -- scripts/apply-canonical-knowledge-cleanup.py .github/workflows/canonical-knowledge-cleanup.yml
+          if git diff --cached --quiet; then
+            echo 'No generated changes'
+            exit 0
+          fi
+          git commit -m 'Canonicalize Knowledge data and retire legacy storage'
+          git push origin HEAD:agent/canonical-knowledge-data-cleanup
