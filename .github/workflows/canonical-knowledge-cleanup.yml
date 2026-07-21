@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/apply-canonical-knowledge-cleanup.py'
+      - 'scripts/apply-canonical-review-queue.py'
       - '.github/workflows/canonical-knowledge-cleanup.yml'
 
 permissions:
@@ -25,20 +26,25 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - name: Apply controlled source migration
-        run: python scripts/apply-canonical-knowledge-cleanup.py
+        run: |
+          python scripts/apply-canonical-knowledge-cleanup.py
+          python scripts/apply-canonical-review-queue.py
       - name: Build canonical data tooling
         run: npm run build:scripts
       - name: Backfill canonical IDs and registries
         run: node dist/scripts/knowledge-canonical-data.mjs --write
       - name: Build browser runtimes
         run: npm run build:web
-      - name: Typecheck and verify canonical data
-        run: |
-          npm run typecheck:web
-          npm run typecheck:scripts
-          node dist/scripts/knowledge-canonical-data.mjs --check
-          node dist/scripts/knowledge-canonical-data.mjs --legacy-only
-          node dist/scripts/knowledge-canonical-data.mjs --audit-only
+      - name: Typecheck browser runtime
+        run: npm run typecheck:web 2>&1 | tee reports/canonical-typecheck-web.log
+      - name: Typecheck data tooling
+        run: npm run typecheck:scripts 2>&1 | tee reports/canonical-typecheck-scripts.log
+      - name: Verify canonical data has no drift
+        run: node dist/scripts/knowledge-canonical-data.mjs --check 2>&1 | tee reports/canonical-data-check.log
+      - name: Verify legacy readers are gone
+        run: node dist/scripts/knowledge-canonical-data.mjs --legacy-only 2>&1 | tee reports/canonical-legacy-check.log
+      - name: Verify Knowledge contract
+        run: node dist/scripts/knowledge-canonical-data.mjs --audit-only 2>&1 | tee reports/canonical-contract-check.log
       - name: Run Knowledge tests
         run: npm run test:knowledge-core
       - name: Install Chromium
@@ -56,13 +62,15 @@ jobs:
             reports/knowledge-id-backfill.json
             reports/knowledge-contract-audit.json
             reports/knowledge-universe-readers.json
+            reports/canonical-*.log
+            data/knowledge/knowledge_emne_review_queue.generated.json
           if-no-files-found: warn
       - name: Commit verified cleanup
         run: |
           git config user.name 'History GO CI'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
-          git reset -- scripts/apply-canonical-knowledge-cleanup.py .github/workflows/canonical-knowledge-cleanup.yml
+          git reset -- scripts/apply-canonical-knowledge-cleanup.py scripts/apply-canonical-review-queue.py .github/workflows/canonical-knowledge-cleanup.yml
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
