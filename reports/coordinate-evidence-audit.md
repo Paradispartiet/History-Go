@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:03:42.463Z
+Generert: 2026-07-21T06:11:15.898Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -271,3 +271,6 @@ Generert: 2026-07-21T06:03:42.463Z
 | kollentrollet | data/coordinate-evidence/oslo/kunst/kollentrollet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vettakollen | data/coordinate-evidence/oslo/natur/vettakollen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kragstotten | data/coordinate-evidence/oslo/kunst/kragstotten.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| steilene | data/coordinate-evidence/akershus/historie/steilene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ingierstrand_bad | data/coordinate-evidence/akershus/historie/ingierstrand_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |

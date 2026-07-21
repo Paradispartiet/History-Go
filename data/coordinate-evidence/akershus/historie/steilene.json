@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "steilene",
+  "placeFile": "data/places/historie/akershus/steilene.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.81768354575886,
+    "lon": 10.607351639955356,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 15882838 – Steilene",
+    "coordType": "archipelago_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: archipelago; geometri: MultiPolygon. Punktet representerer øygruppen, ikke én tilfeldig enkeltøy."
+  },
+  "identity": {
+    "currentName": "Steilene",
+    "resolvedIdentity": "Steilene som egen fysisk stedsidentitet i Nesodden, Akershus",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk OSM-objekt/geometri",
+    "uavhengig identitets- og historiekryssjekk",
+    "canonical identitetskontroll mot current main",
+    "fylkes- og kommuneplassering kontrollert uavhengig av VisitOSLO-kildens markedsområde"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 15882838 – Steilene",
+      "sourceUrl": "https://www.openstreetmap.org/relation/15882838",
+      "sourceObjectId": "osm-relation:15882838",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: archipelago; geometri: MultiPolygon. Punktet representerer øygruppen, ikke én tilfeldig enkeltøy.",
+      "canVerifyCoordinate": true,
+      "reason": "Den lukkede Oslofjord-intaken godkjente kildeobjektet uten nearest/first-hit og uten canonical identitetsduplikat."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Steilene",
+      "sourceUrl": "https://snl.no/Steilene",
+      "sourceObjectId": "snl:steilene",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig referansekilde kryssjekker Steilene og den historiske/fysiske place-identiteten som produseres.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og innholdskryssjekk; koordinaten kommer fra det låste kartobjektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:15882838",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:steilene",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:15882838",
+      "lat": 59.81768354575886,
+      "lon": 10.607351639955356,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.81768354575886,
+      "lon": 10.607351639955356,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:15882838",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place i korrekt fylkessti."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: archipelago; geometri: MultiPolygon. Punktet representerer øygruppen, ikke én tilfeldig enkeltøy.",
+    "Steilene ligger fysisk i Nesodden, Akershus, og produseres derfor ikke i Oslo-sti eller Oslo-koordinatprotokoll."
+  ]
+}
