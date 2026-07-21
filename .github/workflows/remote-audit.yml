@@ -19,7 +19,7 @@ on:
           - full
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   audit:
@@ -30,12 +30,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Check out Knowledge core branch
-        if: github.event_name == 'pull_request' && github.head_ref == 'agent/knowledge-core-cleanup-20260721'
-        run: |
-          git fetch origin "$GITHUB_HEAD_REF"
-          git checkout -B "$GITHUB_HEAD_REF" "origin/$GITHUB_HEAD_REF"
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -96,32 +90,6 @@ jobs:
                 ;;
             esac
           } 2>&1 | tee reports/remote-audit.log
-
-      - name: Commit generated Knowledge core files
-        if: always() && github.event_name == 'pull_request' && github.head_ref == 'agent/knowledge-core-cleanup-20260721'
-        run: |
-          git config user.name "History GO CI"
-          git config user.email "actions@users.noreply.github.com"
-          git add \
-            js/knowledge.ts \
-            js/knowledgeV2.ts \
-            js/knowledgeClaimCore.ts \
-            js/quizKnowledgeMemory.js \
-            js/knowledgeMemoryPageBridge.js \
-            js/ui/psychology-room-entry.js \
-            build/build-web.mjs \
-            index.html \
-            knowledge.html \
-            dist/web/knowledge.js \
-            dist/web/knowledge.js.map \
-            dist/web/knowledgeV2.js \
-            dist/web/knowledgeV2.js.map
-          if git diff --cached --quiet; then
-            echo "No generated Knowledge changes to commit"
-            exit 0
-          fi
-          git commit -m "Build canonical TypeScript Knowledge core"
-          git push origin HEAD:"$GITHUB_HEAD_REF"
 
       - name: Add audit summary
         if: always()
