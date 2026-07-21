@@ -6,17 +6,30 @@ import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
-let implementation = execFileSync('git', ['show', 'HEAD~1:scripts/coordinate-branch-job.mjs'], {
+// HEAD~2 is the full batch-133 implementation. Apply the URLSearchParams typo fix,
+// then instrument only the evidence audit so its exact failing row is visible.
+let implementation = execFileSync('git', ['show', 'HEAD~2:scripts/coordinate-branch-job.mjs'], {
   cwd: root,
   encoding: 'utf8',
 });
 
-const from = "  nummer,\n  kommunenummer: municipality,";
-const to = "  nummer: number,\n  kommunenummer: municipality,";
-if (!implementation.includes(from)) throw new Error('Fant ikke Club 7 URLSearchParams-feilen som skulle rettes');
-implementation = implementation.replace(from, to);
+const paramFrom = "  nummer,\n  kommunenummer: municipality,";
+const paramTo = "  nummer: number,\n  kommunenummer: municipality,";
+if (!implementation.includes(paramFrom)) throw new Error('Fant ikke Club 7 URLSearchParams-feilen');
+implementation = implementation.replace(paramFrom, paramTo);
 
-const tmp = path.join(root, 'scripts/.coordinate-batch-133-production.tmp.mjs');
+const gateFrom = "execFileSync('node', ['dist/tools/audit-coordinate-evidence.mjs'], { cwd: root, stdio: 'inherit' });";
+const gateTo = `try {
+  execFileSync('node', ['dist/tools/audit-coordinate-evidence.mjs'], { cwd: root, stdio: 'inherit' });
+} catch (error) {
+  const report = path.join(root, 'reports/coordinate-evidence-audit.md');
+  if (fs.existsSync(report)) console.error('\\n--- coordinate evidence diagnostic ---\\n' + fs.readFileSync(report, 'utf8'));
+  throw error;
+}`;
+if (!implementation.includes(gateFrom)) throw new Error('Fant ikke evidence-gaten');
+implementation = implementation.replace(gateFrom, gateTo);
+
+const tmp = path.join(root, 'scripts/.coordinate-batch-133-diagnostic.tmp.mjs');
 fs.writeFileSync(tmp, implementation);
 try {
   await import(pathToFileURL(tmp).href + `?run=${Date.now()}`);
