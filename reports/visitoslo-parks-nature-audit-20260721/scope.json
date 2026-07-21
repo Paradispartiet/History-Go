@@ -1,0 +1,76 @@
+{
+  "date": "2026-07-21",
+  "sourceEntryCount": 30,
+  "summary": {
+    "alreadyCovered": 17,
+    "outsideOslo": 3,
+    "approvedNewPlaces": 7,
+    "canonicalIdentityMigrations": 3,
+    "unresolved": 0
+  },
+  "approvedNewPlaces": [
+    "frognerparken",
+    "lillomarka",
+    "grorudparken",
+    "aamot_bru",
+    "klosterenga_skulpturpark",
+    "brekkedammen",
+    "peer_gynt_parken"
+  ],
+  "canonicalIdentityMigrations": {
+    "Sofienbergparken": {
+      "currentId": "sofienbergparken_subkultur",
+      "targetId": "sofienbergparken",
+      "reason": "The physical park must be the canonical place; subculture is a content/use layer, not a separate pseudo-place identity."
+    },
+    "Sognsvann": {
+      "currentId": "treningssted_sognsvann",
+      "targetId": "sognsvann",
+      "reason": "The lake/recreation place must be canonical; the training loop is a sport/use layer rather than the whole place identity."
+    },
+    "Torshovdalen": {
+      "currentId": "treningssted_torshovdalen",
+      "targetId": "torshovdalen",
+      "reason": "The valley/park must be canonical; the training and activity use is a layer within the physical place."
+    }
+  },
+  "alreadyCovered": {
+    "Vigelandsparken": ["vigelandsparken"],
+    "Ekebergparken skulpturpark": ["ekebergparken"],
+    "Stovnertårnet": ["stovnertarnet"],
+    "Botanisk hage": ["botanisk_hage"],
+    "Bleikøya": ["bleikoya"],
+    "Akerselva": ["akerselva"],
+    "Torshovparken": ["torshovparken"],
+    "Gressholmen, Heggholmen og Rambergøya": ["gressholmen", "heggholmen", "rambergoya"],
+    "Langøyene": ["langoyene"],
+    "Lindøya": ["lindoya"],
+    "Helleristningene på Ekeberg": ["ekeberg_helleristninger"],
+    "Ormøya og Malmøya": ["ormoya", "malmoya"],
+    "Bogstadvannet": ["bogstadvannet"],
+    "Ulvøya": ["ulvoya"],
+    "Østensjøvannet": ["ostensjovannet"],
+    "Oscarshall": ["oscarshall"],
+    "Bygdøy": ["bygdoy_natur"]
+  },
+  "outsideOslo": {
+    "Bærums Verk": "baerums_verk_jernverk",
+    "Ingierstrand bad": "ingierstrand_bad",
+    "Steilene": "steilene"
+  },
+  "nonBlockingCleanupFlags": [
+    {
+      "placeId": "stovnertarnet",
+      "issue": "The place is covered but remains categorized as subkultur; taxonomy cleanup is separate from this completeness pass."
+    },
+    {
+      "placeId": "langoyene",
+      "issue": "The place is covered but its source file is under natur/akershus even though this VisitOSLO row is treated in the Oslo thematic source pass; geographic file placement should be audited separately."
+    },
+    {
+      "placeId": "frysjadammen",
+      "issue": "This existing record represents the regulated Maridalsoset outlet and is not Brekkedammen. Its identity/name should be audited separately; it must not be used to close the VisitOSLO Frysja / Brekkedammen row."
+    }
+  ],
+  "status": "scope_closed_ready_for_coordinate_and_migration_intake"
+}
