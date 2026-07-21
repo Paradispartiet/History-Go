@@ -504,6 +504,10 @@ Batch 132 (2026-07-21) reviderer `helvete_neseblod_records` med address-first f�
 
 Batch 133 (2026-07-21) reviderer `club_7_vika` som et historisk fler-lokasjonssted med eksplisitt representert periode. Recorden bruker Munkedamsveien 15-perioden 1971–1985 som kartanker. Sceneweb dokumenterer flyttingen til Konserthusets underetasje i 1971 og driften frem til 1985; Oslo byleksikon oppgir Munkedamsveien 15, og Røverstaden bekrefter kontinuiteten i lokalene. Etter denne historiske identitetsavklaringen brukes ett eksakt Geonorge-adresseobjekt for Munkedamsveien 15 som `historical_anchor`. Status er `verified_historical_source`, ikke en påstand om at Club 7 lå her gjennom hele 1963–1985.
 
+| 134 | `norges_varemesse` | Norges Varemesse – Sjølystsenteret | verified_historical_source | `lokalhistoriewiki:norges-varemesse-sjolyst` |
+
+Batch 134 (2026-07-21) løser identity-konflikten i `norges_varemesse` ved å avgrense Oslo-recorden til det konkrete Sjølystsenteret/Messehallen i Drammensveien 154, 1962–2002, i stedet for institusjonen Norges Varemesse gjennom alle lokasjoner. Et obligatorisk address-first-forsøk viste at den revne adressen 154 ikke lenger finnes som aktivt Geonorge-objekt; ingen moderne naboadresse brukes som proxy. Lokalhistoriewikis stedfestede artikkel for det tidligere anlegget oppgir 59.9206, 10.6791 og dokumenterer at dagens Messepromenaden går gjennom området der Messehallen lå. Oslo byleksikon dokumenterer adressen, perioden, rivningen og at Sjølyststranda ble bygget på den tidligere messeeiendommen. Punktet behandles derfor som `verified_historical_source` med `historical_approximation`/`historical_anchor`, ikke som et eksakt nåværende bygningspunkt.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)

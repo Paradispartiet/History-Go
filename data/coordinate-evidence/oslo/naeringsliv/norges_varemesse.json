@@ -1,51 +1,89 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "norges_varemesse",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_identity_split",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.953,
-    "lon": 10.7525,
-    "r": 250,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "lat": 59.9206,
+    "lon": 10.6791,
+    "r": 180,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Lokalhistoriewiki – georeferenced Norges Varemesse (Sjølyst), cross-checked with Oslo byleksikon",
+    "coordType": "demolished_historical_venue_anchor",
+    "coordNote": "Batch 134 historical-source-first: Recorden representerer eksplisitt Norges Varemesses Sjølystsenter/Messehall i Drammensveien 154 fra 1962 til flyttingen i 2002, ikke institusjonen gjennom alle lokasjoner. Lokalhistoriewikis stedfestede artikkel for det tidligere anlegget oppgir 59.9206, 10.6791 og dokumenterer at dagens Messepromenaden går mellom blokkene og næringsbyggene der Messehallen lå. Oslo byleksikon dokumenterer adressen, perioden, rivningen og at Sjølyststranda ble bygget på den tidligere messeeiendommen. Punktet er derfor et kildebelagt historisk områdeanker, ikke et påstått eksakt bygningssenter eller et moderne adressepunkt."
   },
   "identity": {
-    "currentName": "Norges Varemesse",
-    "resolvedIdentity": "institusjonen Norges Varemesse, med tidligere Messehallen/Sjølystsenteret i Drammensveien 154 og dagens virksomhet i Lillestrøm",
-    "identityStatus": "conflict",
-    "identityProblem": "Recorden bruker institusjonsnavn og stiftelsesåret 1920, mens den konkrete Oslo-bygningen på Sjølyst åpnet i 1962, ble forlatt i 2002 og senere revet. Ett nåtidspunkt i Oslo kan ikke representere hele institusjonen eller et revet historisk bygg uten tydelig scope.",
+    "currentName": "Norges Varemesse – Sjølystsenteret",
+    "resolvedIdentity": "Norges Varemesse – Sjølystsenteret/Messehallen, Drammensveien 154, 1962–2002",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "historic_site",
-    "requiresSplit": true,
-    "splitReason": "Institusjonen og det historiske Oslo-messestedet må skilles før ett fysisk anker kan godkjennes."
+    "requiresSplit": false,
+    "splitReason": ""
   },
   "requiredEvidence": [
-    "beslutning om recorden skal være institusjon eller historisk Sjølyst-sted",
-    "historisk kart-/tomteanker dersom Messehallen beholdes som place",
-    "korrekt tidslinje for 1920, 1962, 2002 og rivning"
+    "entydig fysisk Oslo-scope",
+    "historisk kilde som binder Sjølyst-perioden til Drammensveien 154",
+    "kildebelagt historisk områdeanker for den revne messeeiendommen"
   ],
   "evidence": [
     {
       "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Norges Varemesse (Sjølyst)",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Norges_Varemesse_(Sj%C3%B8lyst)",
+      "sourceObjectId": "lokalhistoriewiki:norges-varemesse-sjolyst",
+      "sourceQuality": "georeferenced_historical_site_article",
+      "finding": "Artikkelen identifiserer Messehallen/Sjølystsenteret i Drammensveien 154, oppgir koordinaten 59.9206, 10.6791 og beskriver at Messepromenaden i dag går gjennom området der Messehallen lå.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir et eksplisitt stedfestet historisk områdeanker med stabil kildeidentitet for det revne anlegget."
+    },
+    {
+      "sourceProvider": "manual_research",
       "sourceName": "Oslo byleksikon – Norges Varemesse",
       "sourceUrl": "https://oslobyleksikon.no/side/Norges_Varemesse",
-      "sourceObjectId": "oslobyleksikon:norges-varemesse",
-      "sourceQuality": "documented_identity_history",
-      "finding": "Kilden dokumenterer institusjonen stiftet i 1920, Messehallen i Drammensveien 154 fra 1962, flytting til Lillestrøm i 2002 og senere rivning av Oslo-bygningen.",
+      "sourceObjectId": "oslobyleksikon:norges-varemesse-sjolyst:1962-2002",
+      "sourceQuality": "city_historical_reference",
+      "finding": "Dokumenterer tidligere bygning i Drammensveien 154, åpningen av Sjølystsenteret i 1962, flyttingen i 2002 og etterfølgende rivning.",
       "canVerifyCoordinate": false,
-      "reason": "Den aktive recorden skiller ikke mellom institusjon og revet Oslo-venue."
+      "reason": "Kryssjekker historisk identitet, adresse og periode; koordinaten kommer fra den stedfestede Lokalhistoriewiki-artikkelen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Sjølyststranda",
+      "sourceUrl": "https://oslobyleksikon.no/side/Sj%C3%B8lyststranda",
+      "sourceObjectId": "oslobyleksikon:sjolyststranda:former-varemesse-site",
+      "sourceQuality": "current_site_continuity_reference",
+      "finding": "Dokumenterer at dagens Sjølyststranda er boligområdet bygget der Norges Varemesse tidligere lå.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker tomtekontinuitet etter rivningen uten å late som dagens boliger er den historiske Messehallen."
     }
   ],
   "addressCandidates": [],
-  "sourceObjectCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:norges-varemesse-sjolyst",
+      "canApplyToPlace": true
+    }
+  ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:norges-varemesse-sjolyst",
+      "lat": 59.9206,
+      "lon": 10.6791,
+      "coordRole": "historical_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Institusjonsrecord og historisk/revet Oslo-bygg er blandet sammen.",
-    "nextAction": "Omdefiner til historiske Messehallen på Sjølyst med historisk source contract, eller flytt institusjonsinnholdet ut av place-modellen."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Identity-konflikten er løst ved å avgrense recorden til Sjølystsenteret/Messehallen 1962–2002 og bruke et dokumentert historisk områdeanker."
   },
-  "notes": ["Ingen koordinatendring i batch 25."]
+  "notes": [
+    "Batch 134 historical-source-first: Recorden representerer eksplisitt Norges Varemesses Sjølystsenter/Messehall i Drammensveien 154 fra 1962 til flyttingen i 2002, ikke institusjonen gjennom alle lokasjoner. Lokalhistoriewikis stedfestede artikkel for det tidligere anlegget oppgir 59.9206, 10.6791 og dokumenterer at dagens Messepromenaden går mellom blokkene og næringsbyggene der Messehallen lå. Oslo byleksikon dokumenterer adressen, perioden, rivningen og at Sjølyststranda ble bygget på den tidligere messeeiendommen. Punktet er derfor et kildebelagt historisk områdeanker, ikke et påstått eksakt bygningssenter eller et moderne adressepunkt."
+  ]
 }

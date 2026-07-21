@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T12:40:41.421Z
+Generert: 2026-07-21T14:51:36.041Z
 
 ## Oppsummering
 - Aktive filer validert: **601**
-- Antall steder validert: **1201**
+- Antall steder validert: **1207**
 - Harde feil: **0**
-- Varsler: **443**
-- Coordinate review candidates: **709** signaler fordelt på **578** steder
+- Varsler: **448**
+- Coordinate review candidates: **714** signaler fordelt på **583** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -738,6 +738,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/oslo/places_scenekunst.json#latter: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/oslo/places_scenekunst.json#folketeateret: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/oslo/places_scenekunst.json#operahuset: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#black_box_teater: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#dansens_hus_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#riksscenen: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#oslo_nye_teater_hovedscenen: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#det_andre_teatret: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/places_scenekunst.json#nordic_black_theatre_cafeteatret: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/telemark/morgedal_norsk_skieventyr.json#morgedal_norsk_skieventyr: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/telemark/dalen_hotel_tokke.json#dalen_hotel_tokke: stort område uten coordNote/coordStatus
 - data/places/by/telemark/lunde_sluse_telemarkskanalen.json#lunde_sluse_telemarkskanalen: lav koordinatpresisjon (<4 desimaler)
@@ -873,7 +879,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv.json#ringnes_bryggeri: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#vippetangen_fisketorg: coordStatus=verified uten coordPrecisionM
-- data/places/naeringsliv/oslo/places_naeringsliv.json#norges_varemesse: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#bryn_industriomrade: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/oslo/places_naeringsliv.json#christiania_seildugsfabrik: lineært sted uten anchors
 - data/places/naeringsliv/oslo/places_naeringsliv.json#christiania_seildugsfabrik: coordStatus=verified uten coordPrecisionM
@@ -1070,15 +1075,15 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 709 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 714 signaler fordelt på 583 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 148 |
+| coordStatus=verified uten coordPrecisionM | 154 |
 | lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 86 |
+| lav koordinatpresisjon (<4 desimaler) | 85 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1086,7 +1091,7 @@ Totalt 709 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (148)
+### coordStatus=verified uten coordPrecisionM (154)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1119,6 +1124,12 @@ Totalt 709 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandi
 | latter | Latter | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91081373400813 | 10.726768537822347 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | folketeateret | Folketeateret | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.9145532904993 | 10.749678422671124 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | operahuset | Operahuset | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.90777660297918 | 10.752057851974856 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| black_box_teater | Black Box teater | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.92700508153591 | 10.768737228438797 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| dansens_hus_oslo | Dansens Hus | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.921391233585794 | 10.752559156734778 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| riksscenen | Riksscenen | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91871322894722 | 10.761703929151963 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oslo_nye_teater_hovedscenen | Oslo Nye Teater – Hovedscenen | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91444272072215 | 10.739709939907648 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| det_andre_teatret | Det Andre Teatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.93874688851995 | 10.765362071425985 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| nordic_black_theatre_cafeteatret | Nordic Black Theatre / Cafeteatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst.json | 59.91036041991715 | 10.767073643250859 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nasjonalmuseet | Nasjonalmuseet | kunst | data/places/kunst/oslo/places_kunst.json | 59.91149437954434 | 10.729109219868187 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | astrup_fearnley | Astrup Fearnley Museet | kunst | data/places/kunst/oslo/places_kunst.json | 59.90679078788014 | 10.721563360663236 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nasjonalbiblioteket | Nasjonalbiblioteket | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91429565254146 | 10.717362462417718 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1323,7 +1334,7 @@ Totalt 709 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (86)
+### lav koordinatpresisjon (<4 desimaler) (85)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1355,7 +1366,6 @@ Totalt 709 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandi
 | jelling_kongsgard | Jelling kongsgård og monumentområde | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 55.756 | 9.419 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | orkney_birsay | Brough of Birsay / Orknøyene | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.136 | -3.322 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akershus_energi | Akershus Energi Varme | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.947 | 10.8355 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| norges_varemesse | Norges Varemesse | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.953 | 10.7525 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelva | Alnaelva | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9325 | 10.833 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelvstien | Alnaelvstien | natur | data/places/natur/oslo/places_oslo_alna.json | 59.931 | 10.83 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
