@@ -5,13 +5,13 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9218644,
-    "lon": 10.7514611,
-    "r": 120,
-    "coordStatus": "verified_geometry",
-    "coordSource": "OpenStreetMap node 10204324977 – House of Nerds",
-    "coordType": "venue_anchor",
-    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype leisure/amusement_arcade; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "lat": 59.92186714382747,
+    "lon": 10.75148579082984,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Vulkan 18, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
   },
   "identity": {
     "currentName": "House of Nerds",
@@ -23,54 +23,74 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "ett eksakt navngitt fysisk objekt med riktig semantisk objekttype i lokal scope"
+    "entydig offisielt adressepunkt",
+    "dokumentert at adressen representerer det konkrete canonical stedet"
   ],
   "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Vulkan%2018%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21649:18",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge returnerte ett tydelig adressetreff. House of Nerds oppgir Vulkan 18 som adressen til Oslo-lokasjonen på Vulkan.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Vulkan 18, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+    },
+    {
+      "sourceProvider": "official_site",
+      "sourceName": "House of Nerds Vulkan",
+      "sourceUrl": "https://houseofnerds.no/house-of-nerds-oslo-vulkan",
+      "sourceObjectId": "official-site:house_of_nerds:address",
+      "sourceQuality": "official_venue_address_identity",
+      "finding": "House of Nerds oppgir Vulkan 18 som adressen til Oslo-lokasjonen på Vulkan.",
+      "canVerifyCoordinate": false,
+      "reason": "Primærkilden dokumenterer venue-identiteten og adressen; Geonorge dokumenterer koordinatpunktet."
+    },
     {
       "sourceProvider": "osm",
       "sourceName": "OpenStreetMap – House of Nerds",
       "sourceUrl": "https://www.openstreetmap.org/node/10204324977",
       "sourceObjectId": "osm-node:10204324977",
-      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "sourceQuality": "secondary_geometry_qa",
       "finding": "Eksakt navnetreff med objekttype leisure/amusement_arcade og geometri Point.",
-      "canVerifyCoordinate": true,
-      "reason": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype leisure/amusement_arcade; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+      "canVerifyCoordinate": false,
+      "reason": "Sekundær identitets-/geometri-QA; Geonorge er primær koordinatkilde for det konkrete adressebare stedet."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "address": "Vulkan 18 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21649:18",
+      "canApplyToPlace": true
+    }
+  ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:10204324977",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21649:18",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [
-    {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:10204324977",
-      "lat": 59.9218644,
-      "lon": 10.7514611,
-      "coordRole": "building_center",
-      "canApplyToPlace": true
-    }
-  ],
+  "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:10204324977",
-      "lat": 59.9218644,
-      "lon": 10.7514611,
-      "coordRole": "building_center",
+      "lat": 59.92186714382747,
+      "lon": 10.75148579082984,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21649:18",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+    "nextAction": "Kildekontrakt, venue-identitet og representasjonsanker er anvendt på canonical place."
   },
   "notes": [
-    "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype leisure/amusement_arcade; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Vulkan 18, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "House of Nerds oppgir Vulkan 18 som adressen til Oslo-lokasjonen på Vulkan.",
+    "Batch 119 address-first-korreksjon: OSM beholdes bare som sekundær geometri-QA når Geonorge gir et entydig relevant adressepunkt."
   ]
 }

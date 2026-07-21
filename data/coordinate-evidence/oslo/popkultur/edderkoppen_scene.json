@@ -5,13 +5,13 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9182583,
-    "lon": 10.7396307,
-    "r": 140,
-    "coordStatus": "verified_geometry",
-    "coordSource": "OpenStreetMap node 12635984964 – Edderkoppen scene",
-    "coordType": "building_center",
-    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "lat": 59.91815941203321,
+    "lon": 10.739832936543767,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for St. Olavs plass 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
   },
   "identity": {
     "currentName": "Edderkoppen Scene",
@@ -23,54 +23,74 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "ett eksakt navngitt fysisk objekt med riktig semantisk objekttype i lokal scope"
+    "entydig offisielt adressepunkt",
+    "dokumentert at adressen representerer det konkrete canonical stedet"
   ],
   "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=St.%20Olavs%20plass%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16937:1",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge returnerte ett tydelig adressetreff. Edderkoppen Scene oppgir St. Olavs plass 1 som besøksadresse og beskriver scenen som integrert i Scandic St. Olavs plass.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for St. Olavs plass 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+    },
+    {
+      "sourceProvider": "official_site",
+      "sourceName": "Edderkoppen Scene",
+      "sourceUrl": "https://edderkoppenscene.no/kontakt-oss/",
+      "sourceObjectId": "official-site:edderkoppen_scene:address",
+      "sourceQuality": "official_venue_address_identity",
+      "finding": "Edderkoppen Scene oppgir St. Olavs plass 1 som besøksadresse og beskriver scenen som integrert i Scandic St. Olavs plass.",
+      "canVerifyCoordinate": false,
+      "reason": "Primærkilden dokumenterer venue-identiteten og adressen; Geonorge dokumenterer koordinatpunktet."
+    },
     {
       "sourceProvider": "osm",
       "sourceName": "OpenStreetMap – Edderkoppen scene",
       "sourceUrl": "https://www.openstreetmap.org/node/12635984964",
       "sourceObjectId": "osm-node:12635984964",
-      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "sourceQuality": "secondary_geometry_qa",
       "finding": "Eksakt navnetreff med objekttype amenity/theatre og geometri Point.",
-      "canVerifyCoordinate": true,
-      "reason": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+      "canVerifyCoordinate": false,
+      "reason": "Sekundær identitets-/geometri-QA; Geonorge er primær koordinatkilde for det konkrete adressebare stedet."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "address": "St. Olavs plass 1 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16937:1",
+      "canApplyToPlace": true
+    }
+  ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:12635984964",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16937:1",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [
-    {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:12635984964",
-      "lat": 59.9182583,
-      "lon": 10.7396307,
-      "coordRole": "building_center",
-      "canApplyToPlace": true
-    }
-  ],
+  "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:12635984964",
-      "lat": 59.9182583,
-      "lon": 10.7396307,
-      "coordRole": "building_center",
+      "lat": 59.91815941203321,
+      "lon": 10.739832936543767,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16937:1",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+    "nextAction": "Kildekontrakt, venue-identitet og representasjonsanker er anvendt på canonical place."
   },
   "notes": [
-    "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "Offisiell adressekoordinat fra Geonorge Adresser API for St. Olavs plass 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "Edderkoppen Scene oppgir St. Olavs plass 1 som besøksadresse og beskriver scenen som integrert i Scandic St. Olavs plass.",
+    "Batch 119 address-first-korreksjon: OSM beholdes bare som sekundær geometri-QA når Geonorge gir et entydig relevant adressepunkt."
   ]
 }

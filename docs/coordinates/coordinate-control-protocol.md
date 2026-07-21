@@ -355,16 +355,16 @@ Batch 115 (2026-07-21) produserer fem fysisk selvstendige Holmenkollen-steder fr
 | 118 | `folkets_hus_oslo` | Folkets Hus i Oslo | verified | `geonorge-adresser-v1:0301:18550:11` |
 
 Batch 118 (2026-07-21) fullfører politikk-manifestet etter objekt-type-først-metoden. `youngstorget` og `eidsvolls_plass` bruker eksakte navngitte plassgeometrier. De konkrete adressebare byggene `stortinget`, `oslo_radhus`, `hoyesteretts_hus`, `politihuset_gronland`, `folkets_hus_oslo` bruker entydige Geonorge-adressepunkter etter address-first-policyen. `regjeringskvartalet` forblir needs_review fordi eneste eksakte samlede OSM-kandidat er en midlertidig `landuse=construction`-geometri, ikke en stabil canonical institusjonsgrense. Ingen nearest/first-hit-logikk brukes.
-| 119 | `cinemateket_oslo` | Cinemateket i Oslo | verified_geometry | `osm-node:2555016576` |
+| 119 | `cinemateket_oslo` | Cinemateket i Oslo | verified | `geonorge-adresser-v1:0301:11309:16` |
 | 119 | `colosseum_kino` | Colosseum kino | verified_geometry | `osm-way:115958003` |
-| 119 | `house_of_nerds` | House of Nerds | verified_geometry | `osm-node:10204324977` |
-| 119 | `latter` | Latter | verified_geometry | `osm-way:92649935` |
-| 119 | `grand_hotel` | Grand Hotel | verified_geometry | `osm-node:307505492` |
+| 119 | `house_of_nerds` | House of Nerds | verified | `geonorge-adresser-v1:0301:21649:18` |
+| 119 | `latter` | Latter | verified | `geonorge-adresser-v1:0301:20305:1` |
+| 119 | `grand_hotel` | Grand Hotel | verified | `geonorge-adresser-v1:0301:13630:31` |
 | 119 | `slottsplassen` | Slottsplassen | verified_geometry | `osm-relation:12806921` |
-| 119 | `chat_noir` | Chat Noir | verified_geometry | `osm-node:34693408` |
-| 119 | `edderkoppen_scene` | Edderkoppen Scene | verified_geometry | `osm-node:12635984964` |
+| 119 | `chat_noir` | Chat Noir | verified | `geonorge-adresser-v1:0301:13780:5` |
+| 119 | `edderkoppen_scene` | Edderkoppen Scene | verified | `geonorge-adresser-v1:0301:16937:1` |
 
-Batch 119 (2026-07-21) reviderer popkultur-manifestet. Eksisterende Geonorge-adresser beholdes som offisielle venue-ankre når place-identiteten og adressen allerede er eksplisitt dokumentert. Øvrige steder krever ett eksakt navngitt fysisk objekt i lokal scope. Frognerstranda kan ikke verifiseres med en vei eller tilfeldig kystlinje som proxy for en bred strandsone. Ingen nearest/first-hit-logikk brukes.
+Batch 119 (2026-07-21) er korrigert til objekt-type-først/address-first-metoden. De konkrete adressebare stedene `cinemateket_oslo`, `house_of_nerds`, `latter`, `grand_hotel`, `chat_noir`, `edderkoppen_scene` bruker entydige Geonorge-adressepunkter med venue-adressen dokumentert av stedet selv. `colosseum_kino` beholdes på eksakt OSM-geometri først etter dokumentert ikke-feilende Geonorge-forsøk uten anvendbart entydig treff. `slottsplassen` forblir et eksakt navngitt offentlig plassanker basert på geometri. `frognerstranda` forblir needs_source fordi en vei eller tilfeldig kystlinje ikke kan brukes som proxy for en bred strandsone. Tekniske Geonorge-feil kan ikke legitimere OSM-fallback, og ingen nearest/first-hit-logikk brukes.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.

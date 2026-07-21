@@ -5,13 +5,13 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9137282,
-    "lon": 10.7322982,
-    "r": 140,
-    "coordStatus": "verified_geometry",
-    "coordSource": "OpenStreetMap node 34693408 – Chat Noir",
-    "coordType": "building_center",
-    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "lat": 59.91360791283421,
+    "lon": 10.732172099794877,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Klingenberggata 5, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
   },
   "identity": {
     "currentName": "Chat Noir",
@@ -23,54 +23,74 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "ett eksakt navngitt fysisk objekt med riktig semantisk objekttype i lokal scope"
+    "entydig offisielt adressepunkt",
+    "dokumentert at adressen representerer det konkrete canonical stedet"
   ],
   "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Klingenberggata%205%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13780:5",
+      "sourceQuality": "official_address_plus_documented_identity",
+      "finding": "Geonorge returnerte ett tydelig adressetreff. Chat Noir oppgir Klingenberggata 5 som besøksadresse.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Klingenberggata 5, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+    },
+    {
+      "sourceProvider": "official_site",
+      "sourceName": "Chat Noir",
+      "sourceUrl": "https://www.chatnoir.no/kontakt",
+      "sourceObjectId": "official-site:chat_noir:address",
+      "sourceQuality": "official_venue_address_identity",
+      "finding": "Chat Noir oppgir Klingenberggata 5 som besøksadresse.",
+      "canVerifyCoordinate": false,
+      "reason": "Primærkilden dokumenterer venue-identiteten og adressen; Geonorge dokumenterer koordinatpunktet."
+    },
     {
       "sourceProvider": "osm",
       "sourceName": "OpenStreetMap – Chat Noir",
       "sourceUrl": "https://www.openstreetmap.org/node/34693408",
       "sourceObjectId": "osm-node:34693408",
-      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "sourceQuality": "secondary_geometry_qa",
       "finding": "Eksakt navnetreff med objekttype amenity/theatre og geometri Point.",
-      "canVerifyCoordinate": true,
-      "reason": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+      "canVerifyCoordinate": false,
+      "reason": "Sekundær identitets-/geometri-QA; Geonorge er primær koordinatkilde for det konkrete adressebare stedet."
     }
   ],
-  "addressCandidates": [],
+  "addressCandidates": [
+    {
+      "address": "Klingenberggata 5 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13780:5",
+      "canApplyToPlace": true
+    }
+  ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:34693408",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13780:5",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [
-    {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:34693408",
-      "lat": 59.9137282,
-      "lon": 10.7322982,
-      "coordRole": "building_center",
-      "canApplyToPlace": true
-    }
-  ],
+  "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:34693408",
-      "lat": 59.9137282,
-      "lon": 10.7322982,
-      "coordRole": "building_center",
+      "lat": 59.91360791283421,
+      "lon": 10.732172099794877,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13780:5",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+    "nextAction": "Kildekontrakt, venue-identitet og representasjonsanker er anvendt på canonical place."
   },
   "notes": [
-    "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/theatre; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Klingenberggata 5, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker.",
+    "Chat Noir oppgir Klingenberggata 5 som besøksadresse.",
+    "Batch 119 address-first-korreksjon: OSM beholdes bare som sekundær geometri-QA når Geonorge gir et entydig relevant adressepunkt."
   ]
 }
