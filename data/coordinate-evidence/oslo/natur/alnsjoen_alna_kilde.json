@@ -2,20 +2,20 @@
   "schemaVersion": "1.0",
   "placeId": "alnsjoen_alna_kilde",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.96527,
-    "lon": 10.84704,
-    "r": 140,
-    "coordStatus": "needs_source",
-    "coordSource": "alnsjoen_outflow_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+    "lat": 59.9665991,
+    "lon": 10.8589871,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OSM topology node 844892785: shared by Alunsjødammen way 70869529 and Alna way 70869513",
+    "coordType": "hydrological_outflow_topology_anchor",
+    "coordNote": "Batch 140 hydrological topology: Kartverket SSR stedsnummer 733527 fastsetter Alungsjøen som offisiell skrivemåte; den tidligere skrivemåten Alnsjøen er avslått. Oslo kommune og Oslo byleksikon dokumenterer at Alna renner fra innsjøen. OSM modellerer den konkrete utløpskoblingen topologisk: Alunsjødammen (way 70869529) og det første lokale Alna-segmentet (way 70869513, name=Alna, loc_name=Alunsjøbekken) deler nøyaktig node 844892785 ved 59.9665991, 10.8589871. Denne delte noden brukes som kildebelagt hydrologisk area-anchor. Punktet er ikke valgt etter avstand, er ikke sjøens sentrum og er ikke et generelt punkt på Gamle Gruvevei."
   },
   "identity": {
-    "currentName": "Alnsjøen (Alna-kilde)",
-    "resolvedIdentity": "Alnas utløp/kildesone ved Alnsjøen",
+    "currentName": "Alungsjøen (Alna-kilde)",
+    "resolvedIdentity": "Alnas konkrete utløps-/kildesone ved Alungsjøen og Alunsjødammen",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "natural_area",
@@ -23,51 +23,114 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "eksakt Alnsjøen-vanngeometri eller dokumentert Alna-utløpsobjekt ved sjøen"
+    "offisiell identitet for Alungsjøen",
+    "uavhengig dokumentasjon på Alna fra innsjøen",
+    "eksplisitt topologisk kobling mellom dam og første Alna-segment"
   ],
   "evidence": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket Sentralt stedsnavnregister – Alungsjøen",
+      "sourceUrl": "https://stadnamn.kartverket.no/fakta/733527",
+      "sourceObjectId": "kartverket-ssr:733527",
+      "sourceQuality": "official_named_place_registry",
+      "finding": "Kartverket SSR stedsnummer 733527 fastsetter Alungsjøen som vedtatt hovednavn; Alnsjøen er avslått skrivemåte.",
+      "canVerifyCoordinate": false,
+      "reason": "Fastsetter offisiell innsjøidentitet og navn; utløpskoordinaten kommer fra eksplisitt hydrologisk OSM-topologi."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo kommune – Lakes and rivers",
+      "sourceUrl": "https://www.oslo.kommune.no/english/welcome-to-oslo/life-in-oslo/enjoy-the-outdoors/lakes-and-rivers/",
+      "sourceObjectId": "oslo-kommune:alna-from-alungsjoen-to-oslofjord",
+      "sourceQuality": "official_hydrological_identity_crosscheck",
+      "finding": "Oslo kommune dokumenterer Alna som elva som går fra innsjøen til Oslofjorden.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker vassdragsidentiteten; selve utløpspunktet verifiseres topologisk."
+    },
     {
       "sourceProvider": "manual_research",
       "sourceName": "Oslo byleksikon – Alnaelva",
       "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
       "sourceObjectId": "oslobyleksikon:alnaelva",
       "sourceQuality": "documented_source_identity",
-      "finding": "Kilden dokumenterer at den egentlige Alna renner ut fra Alnsjøen og først går østover.",
+      "finding": "Dokumenterer at den egentlige Alna renner ut fra innsjøen og først går østover.",
       "canVerifyCoordinate": false,
-      "reason": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+      "reason": "Uavhengig historisk/geografisk kryssjekk av kilde-/utløpsidentiteten."
     },
     {
       "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap – separate Alna-segmenter øst for Alnsjøen",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Alnsj%C3%B8en%20Oslo",
-      "sourceObjectId": "osm:alna-alnsjoen-multiple-waterway-ways",
-      "sourceQuality": "fragmented_local_waterway_geometry",
-      "finding": "Flere separate Alna-way-er, men ikke ett entydig sjø-/utløpsobjekt.",
-      "canVerifyCoordinate": false,
-      "reason": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+      "sourceName": "OpenStreetMap – shared Alunsjødammen/Alna topology node",
+      "sourceUrl": "https://www.openstreetmap.org/node/844892785",
+      "sourceObjectId": "osm-node:844892785",
+      "sourceQuality": "explicit_shared_network_topology_node",
+      "finding": "Alunsjødammen way 70869529 og Alna way 70869513 deler nøyaktig OSM-node 844892785 ved 59.9665991, 10.8589871.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksplisitt felles nettverksnode mellom navngitt dam og navngitt Alna-segment; ingen nearest/first-hit eller proxy."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:844892785",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:70869529",
       "canApplyToPlace": false
     },
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm:alna-alnsjoen-multiple-waterway-ways",
+      "sourceObjectId": "osm-way:70869513",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:733527",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "type": "shared_hydrological_topology_node",
+      "anchors": [
+        {
+          "id": "alungsjoen_alna_outflow",
+          "name": "Alnas utløp fra Alungsjøen ved Alunsjødammen",
+          "lat": 59.9665991,
+          "lon": 10.8589871,
+          "r": 60,
+          "type": "hydrological_outflow",
+          "sourceProvider": "osm",
+          "sourceObjectId": "osm-node:844892785",
+          "note": "Eksakt delt OSM-topologinode mellom Alunsjødammen (way 70869529) og første lokale Alna-segment (way 70869513)."
+        }
+      ],
+      "supportingObjects": [
+        "osm-relation:11365358",
+        "osm-way:70869529",
+        "osm-way:70869513"
+      ],
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9665991,
+      "lon": 10.8589871,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-node:844892785",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert.",
-    "nextAction": "eksakt Alnsjøen-vanngeometri eller dokumentert Alna-utløpsobjekt ved sjøen"
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Den eksplisitte delte topologinoden mellom Alunsjødammen og Alna er anvendt som canonical kildesoneanker."
   },
   "notes": [
-    "Kontrollen bekrefter at Alna renner ut fra Alnsjøen, men legacy-markøren ligger ved Gamle Gruvevei og kontrollen fant ingen entydig navngitt Alnsjøen-vanngeometri eller ett eksplisitt utløpsobjekt som kan brukes uten gjetting. Flere separate Alna-way-er finnes øst for sjøen. Punktet beholdes bare som midlertidig kartanker til eksakt sjø-/utløpsgeometri er dokumentert."
+    "Batch 140 hydrological topology: Kartverket SSR stedsnummer 733527 fastsetter Alungsjøen som offisiell skrivemåte; den tidligere skrivemåten Alnsjøen er avslått. Oslo kommune og Oslo byleksikon dokumenterer at Alna renner fra innsjøen. OSM modellerer den konkrete utløpskoblingen topologisk: Alunsjødammen (way 70869529) og det første lokale Alna-segmentet (way 70869513, name=Alna, loc_name=Alunsjøbekken) deler nøyaktig node 844892785 ved 59.9665991, 10.8589871. Denne delte noden brukes som kildebelagt hydrologisk area-anchor. Punktet er ikke valgt etter avstand, er ikke sjøens sentrum og er ikke et generelt punkt på Gamle Gruvevei."
   ]
 }
