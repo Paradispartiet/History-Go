@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T00:53:37.586Z
+Generert: 2026-07-21T00:59:57.467Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -244,3 +244,12 @@ Generert: 2026-07-21T00:53:37.586Z
 | bygdoy_kongeskogen | data/coordinate-evidence/oslo/natur/bygdoy_kongeskogen.json | needs_research | needs_geometry | OK |
 | bygdoy_bygdoynes | data/coordinate-evidence/oslo/natur/bygdoy_bygdoynes.json | needs_research | needs_geometry | OK |
 | bygdoy_roykenvika | data/coordinate-evidence/oslo/natur/bygdoy_roykenvika.json | needs_research | needs_geometry | OK |
+| ostensjovannet | data/coordinate-evidence/oslo/natur/ostensjovannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| hovedoya | data/coordinate-evidence/oslo/natur/hovedoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| gressholmen | data/coordinate-evidence/oslo/natur/gressholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bygdoy_natur | data/coordinate-evidence/oslo/natur/bygdoy_natur.json | needs_research | needs_geometry | OK |
+| ljanselva | data/coordinate-evidence/oslo/natur/ljanselva.json | needs_research | needs_geometry | OK |
+| maerradalen | data/coordinate-evidence/oslo/natur/maerradalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| maridalsvannet | data/coordinate-evidence/oslo/natur/maridalsvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| noklevann | data/coordinate-evidence/oslo/natur/noklevann.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| alnaelva_hovedsteder | data/coordinate-evidence/oslo/natur/alnaelva_hovedsteder.json | needs_research | needs_geometry | OK |

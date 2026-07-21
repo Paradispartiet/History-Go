@@ -15,12 +15,11 @@
     "kantvegetasjon"
   ],
   "sourceHint": "Bygd på eksisterende hovedobjekt og Ljanselva-rutefila. Hovedobjektet skal representere hele marka–fjord-vassdraget, mens delpunktene ligger i egen rute-fil.",
-  "coordType": "route_midpoint",
-  "coordStatus": "semantic_anchor",
-  "coordSource": "repo_synthesis_from_existing_natur_files",
-  "coordPrecisionM": 130,
-  "coordVerifiedAt": "2026-05-09",
-  "coordNote": "Bevisst hovedanker for hele Ljanselva; delpunkter fra Nøklevann til Bunnefjorden ligger i rute-filen.",
+  "coordType": "legacy_unverified",
+  "coordStatus": "needs_source",
+  "coordSource": "ljanselva_canonical_geometry_unresolved",
+  "coordVerifiedAt": "2026-07-21",
+  "coordNote": "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker.",
   "anchors": [
     {
       "id": "ljanselva_start",
@@ -118,5 +117,6 @@
     "vann_og_vassdrag",
     "kantvegetasjon",
     "kyst_og_fjord"
-  ]
+  ],
+  "locatorType": "route"
 }

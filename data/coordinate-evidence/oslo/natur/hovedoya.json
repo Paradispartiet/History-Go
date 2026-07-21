@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hovedoya",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.895125029296096,
+    "lon": 10.731608215517637,
+    "r": 450,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 20749306 – Hovedøya",
+    "coordType": "island_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Hovedøya",
+    "resolvedIdentity": "Hovedøya som hel øy i indre Oslofjord",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk objekt/geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Hovedøya",
+      "sourceUrl": "https://www.openstreetmap.org/relation/20749306",
+      "sourceObjectId": "osm-relation:20749306",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navnetreff med objekttype place/island og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Independent geographic identity cross-check",
+      "sourceUrl": "https://snl.no/Hoved%C3%B8ya",
+      "sourceObjectId": "snl:hovedoya",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig kilde kryssjekker identiteten Hovedøya som hel øy i indre Oslofjord.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; koordinaten kommer fra det eksakte OSM-objektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:20749306",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:hovedoya",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:20749306",
+      "lat": 59.895125029296096,
+      "lon": 10.731608215517637,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.895125029296096,
+      "lon": 10.731608215517637,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:20749306",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: place/island; geometri: Polygon."
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "noklevann",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.88044653,
+    "lon": 10.866737856666667,
+    "r": 950,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 16661 – Nøklevann",
+    "coordType": "lake_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/water; geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Nøklevann",
+    "resolvedIdentity": "Nøklevann som samlet innsjø/vannflate i Østmarka",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk objekt/geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Nøklevann",
+      "sourceUrl": "https://www.openstreetmap.org/relation/16661",
+      "sourceObjectId": "osm-relation:16661",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navnetreff med objekttype natural/water og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/water; geometri: Polygon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Independent geographic identity cross-check",
+      "sourceUrl": "https://snl.no/N%C3%B8klevann",
+      "sourceObjectId": "snl:noklevann",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig kilde kryssjekker identiteten Nøklevann som samlet innsjø/vannflate i Østmarka.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; koordinaten kommer fra det eksakte OSM-objektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:16661",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:noklevann",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:16661",
+      "lat": 59.88044653,
+      "lon": 10.866737856666667,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.88044653,
+      "lon": 10.866737856666667,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:16661",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/water; geometri: Polygon."
+  ]
+}

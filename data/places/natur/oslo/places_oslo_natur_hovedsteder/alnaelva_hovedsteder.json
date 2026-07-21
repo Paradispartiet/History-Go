@@ -15,12 +15,11 @@
     "vannkvalitet"
   ],
   "sourceHint": "Bygd fra eksisterende Alna-hovedobjekt og Alna-rutefila. Hovedobjektet skal representere hele vassdraget, mens delpunkter ligger i egen rute-fil.",
-  "coordType": "route_midpoint",
-  "coordStatus": "semantic_anchor",
-  "coordSource": "repo_synthesis_from_existing_natur_files",
-  "coordPrecisionM": 130,
-  "coordVerifiedAt": "2026-05-09",
-  "coordNote": "Bevisst hovedanker for hele Alnaelva; delpunkter som Alnsjøen, Svartdalen, Bryn og utløpet i Bjørvika skal ligge i rute-filen.",
+  "coordType": "legacy_unverified",
+  "coordStatus": "needs_source",
+  "coordSource": "alnaelva_hovedsteder_canonical_geometry_unresolved",
+  "coordVerifiedAt": "2026-07-21",
+  "coordNote": "Recorden representerer samme overordnede vassdrag som canonical `alnaelva`, som allerede er kontrollert og står needs_source fordi elva består av flere separate og delvis tunnellagte geometrier. En ny hovedstedsmarkør med et annet vilkårlig midtpunkt ville duplisere den uavklarte identiteten.",
   "anchors": [
     {
       "id": "alnaelva_kilde",
@@ -120,5 +119,6 @@
     "vann_og_vassdrag",
     "naturrestaurering",
     "vannkvalitet"
-  ]
+  ],
+  "locatorType": "route"
 }

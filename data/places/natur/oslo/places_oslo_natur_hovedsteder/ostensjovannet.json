@@ -1,8 +1,8 @@
 {
   "id": "ostensjovannet",
   "name": "Østensjøvannet",
-  "lat": 59.88833,
-  "lon": 10.82694,
+  "lat": 59.88943337258171,
+  "lon": 10.829260727224845,
   "r": 450,
   "category": "natur",
   "desc": "Næringsrik innsjø, naturreservat og et av Oslos viktigste våtmarks- og fugleområder.",
@@ -15,12 +15,11 @@
     "biodiversitet"
   ],
   "sourceHint": "Bygd på eksisterende hovedobjekt og delpunktfila for Østensjøvannet. Hovedobjektet representerer hele våtmarksområdet, mens nord, sør, sivbelte, fugletårn og Bogerudmyra ligger som delpunkter.",
-  "coordType": "area_center",
-  "coordStatus": "semantic_anchor",
-  "coordSource": "repo_synthesis_from_existing_natur_files",
-  "coordPrecisionM": 120,
-  "coordVerifiedAt": "2026-05-09",
-  "coordNote": "Bevisst hovedanker for hele våtmarksområdet; observasjonspunkter og randsoner ligger i delpunktfila.",
+  "coordType": "protected_wetland_center",
+  "coordStatus": "verified_geometry",
+  "coordSource": "Miljødirektoratet Naturvernområder – offisiell geometri for Østensjøvannet naturreservat",
+  "coordVerifiedAt": "2026-07-21",
+  "coordNote": "Canonical punkt er et representativt områdeanker beregnet fra den offisielle vernegeometrien VV00000972. Punktet brukes for hele verne-/naturarealet og ikke som adresse- eller tilfeldig delpunkt.",
   "anchors": [
     {
       "id": "ostensjovannet_nord",
@@ -115,5 +114,12 @@
   },
   "underbadge_ids": [
     "biologisk_mangfold"
-  ]
+  ],
+  "locatorType": "natural_area",
+  "sourceProvider": "official_map",
+  "sourceObjectId": "miljodirektoratet-naturvern:VV00000972",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "area_anchor",
+  "coordSourceId": "miljodirektoratet-naturvern:VV00000972",
+  "coordSourceUrl": "https://faktaark.naturbase.no/?id=VV00000972"
 }
