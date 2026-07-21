@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 349 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 119 kontrollerer de gjenværende ukontrollerte recordene i `places/popkultur/oslo/places_oslo_populaerkultur.json` med offisiell adresse der den allerede er dokumentert og ellers eksakt navngitt fysisk objekt i lokal scope.
+Oslo-tabellen inneholder nå 350 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 120 legger til Skimuseet i Holmenkollen som egen museumsinstitusjon inne i det bredere Holmenkollen nasjonalanlegg, med Kongeveien 5 som låst visitor-facing museumsanker. Batch 119 kontrollerer de gjenværende ukontrollerte recordene i `places/popkultur/oslo/places_oslo_populaerkultur.json` med offisiell adresse der den allerede er dokumentert og ellers eksakt navngitt fysisk objekt i lokal scope.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -598,3 +598,7 @@ Etne batch 4 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som
 Batch 116 (2026-07-21) produserer åtte separate Oslofjord-identiteter. Kombinerte VisitOSLO-rader er ikke kopiert som syntetiske steder: Heggholmen og Rambergøya beholdes ved siden av eksisterende `gressholmen`, og Ormøya og Malmøya beholdes som separate øyer. Eksakte OSM-øygeometrier brukes der de finnes; Heggholmen og Rambergøya bruker eksakte aktive Kartverket SSR-objekter med objekttype Øy i sjø. Alle åtte place-id-er ble kontrollert mot current runtime index umiddelbart før produksjon.
 
 Batch 117 (2026-07-21) produserer `oslo_golfklubb_bogstad` som det sjette og siste nye stedet fra VisitOSLO Holmenkollen-auditen. Den normative address-first-kjøringen ga ett entydig Geonorge-treff for Ankerveien 127. Klubbhuset brukes som stabil offentlig display- og unlock-marker for hele golfanlegget; den omtrent 480 mål store 18-hullsbanen er stedsomfang og sportskontekst, men adressepunktet påstås ikke å være banens geometriske sentrum.
+
+| 120 | `holmenkollen_skimuseum` | Skimuseet i Holmenkollen | verified | `geonorge-adresser-v1:0301:13850:5` |
+
+Batch 120 (2026-07-21) produserer `holmenkollen_skimuseum` som egen museumsidentitet. Kongeveien 5 er valgt etter den lukkede adressekonflikt-auditen; Kongeveien 40 ligger 231,8 meter unna og beholdes som alternativ adkomst-/anleggsadresse i coordinate evidence. Fysisk nærhet til `holmenkollen_nasjonalanlegg` er forventet parent/child-overlap og skaper ikke et nytt hopptårn-place.

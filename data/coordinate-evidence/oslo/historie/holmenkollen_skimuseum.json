@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "holmenkollen_skimuseum",
+  "placeFile": "data/places/historie/oslo/places_historie/holmenkollen_skimuseum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.96263248232449,
+    "lon": 10.666289172703161,
+    "r": 55,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge for Kongeveien 5, valgt som Skimuseets besøksmarkør fordi dagens VisitOSLO-oppføring, VisitOSLOs bookinglokasjon og Holmenkollen.com/Skiforeningen-kontaktinformasjon bruker Kongeveien 5. En Skiforeningen-veibeskrivelse nevner også Kongeveien 40; dette punktet ligger 231,8 meter unna og beholdes som dokumentert alternativ adkomst-/anleggsadresse, ikke som canonical museumsanker."
+  },
+  "identity": {
+    "currentName": "Skimuseet i Holmenkollen",
+    "resolvedIdentity": "Skimuseet som egen persistent museumsinstitusjon og besøksidentitet inne i Holmenkollen nasjonalanlegg",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "nåværende besøksadresse for museet",
+    "uavhengig adressekonfliktkontroll mellom Kongeveien 5 og Kongeveien 40",
+    "dokumentert museumsidentitet og institusjonshistorie",
+    "eksplisitt parent-overlap-audit mot holmenkollen_nasjonalanlegg",
+    "canonical identitetskontroll mot current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Kongeveien 5",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongeveien%205%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:5",
+      "sourceQuality": "official_address_selected_from_current_visitor_sources",
+      "finding": "Kongeveien 5 er valgt som canonical museumsmarkør etter at dagens visitor-facing VisitOSLO- og Holmenkollen/Skiforeningen-kilder ble veid mot en motstridende Kongeveien 40-henvisning.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge for Kongeveien 5, valgt som Skimuseets besøksmarkør fordi dagens VisitOSLO-oppføring, VisitOSLOs bookinglokasjon og Holmenkollen.com/Skiforeningen-kontaktinformasjon bruker Kongeveien 5. En Skiforeningen-veibeskrivelse nevner også Kongeveien 40; dette punktet ligger 231,8 meter unna og beholdes som dokumentert alternativ adkomst-/anleggsadresse, ikke som canonical museumsanker."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Kongeveien 40",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongeveien%2040%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "sourceQuality": "official_address_alternate_access_crosscheck",
+      "finding": "Kongeveien 40 er dokumentert i en Skiforeningen-veibeskrivelse, men ligger 231.8 meter fra valgt museumsanker og brukes ikke som canonical coordinate.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumentert alternativ adkomst-/anleggsadresse; beholdes som kryssjekk uten å overstyre den nåværende visitor-facing museumsadressen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "VisitOSLO / Holmenkollen / Skiforeningen – current museum identity",
+      "sourceUrl": "https://www.visitoslo.com/en/product/?tlp=2992333",
+      "sourceObjectId": "visitoslo:2992333",
+      "sourceQuality": "current_institution_identity_and_visitor_location",
+      "finding": "Skimuseet er en vedvarende museumsinstitusjon med egen samling og besøksidentitet inne i Holmenkollen-komplekset; den kombinerte museum-og-tårn-billetten skaper ikke en ny hopptårn-identitet.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets-, scope- og visitor-location-kryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kongeveien 5, 0787 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:5",
+      "canApplyToPlace": true
+    },
+    {
+      "address": "Kongeveien 40, 0787 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:5",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "visitoslo:2992333",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.96263248232449,
+      "lon": 10.666289172703161,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:5",
+      "canApplyToPlace": true
+    },
+    {
+      "lat": 59.96471254074996,
+      "lon": 10.666572782635253,
+      "coordRole": "alternate_access_crosscheck",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kongeveien 5 Geonorge-punktet er anvendt på canonical museum-place; Kongeveien 40 beholdes som ikke-anvendt alternativ adressekryssjekk."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge for Kongeveien 5, valgt som Skimuseets besøksmarkør fordi dagens VisitOSLO-oppføring, VisitOSLOs bookinglokasjon og Holmenkollen.com/Skiforeningen-kontaktinformasjon bruker Kongeveien 5. En Skiforeningen-veibeskrivelse nevner også Kongeveien 40; dette punktet ligger 231,8 meter unna og beholdes som dokumentert alternativ adkomst-/anleggsadresse, ikke som canonical museumsanker.",
+    "Parent-overlap mot holmenkollen_nasjonalanlegg er eksplisitt vurdert som forventet parent/child-overlap. Selected point distance to current parent anchor: 323.3 m.",
+    "Place-id og museumsidentitet var fraværende i current runtime index umiddelbart før produksjon."
+  ]
+}
