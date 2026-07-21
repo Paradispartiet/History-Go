@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:23:40.258Z
+Generert: 2026-07-21T06:34:18.088Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -283,3 +283,11 @@ Generert: 2026-07-21T06:23:40.258Z
 | langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ingierstrand_bad | data/coordinate-evidence/akershus/historie/ingierstrand_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_golfklubb_bogstad | data/coordinate-evidence/oslo/sport/oslo_golfklubb_bogstad.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| stortinget | data/coordinate-evidence/oslo/politikk/stortinget.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| youngstorget | data/coordinate-evidence/oslo/politikk/youngstorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_radhus | data/coordinate-evidence/oslo/politikk/oslo_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| eidsvolls_plass | data/coordinate-evidence/oslo/politikk/eidsvolls_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| regjeringskvartalet | data/coordinate-evidence/oslo/politikk/regjeringskvartalet.json | needs_research | needs_geometry | OK |
+| hoyesteretts_hus | data/coordinate-evidence/oslo/politikk/hoyesteretts_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| politihuset_gronland | data/coordinate-evidence/oslo/politikk/politihuset_gronland.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| folkets_hus_oslo | data/coordinate-evidence/oslo/politikk/folkets_hus_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
