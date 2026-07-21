@@ -476,6 +476,10 @@ Batch 125 (2026-07-21) gjennomfører den lukkede treveis canonical identity-migr
 
 Batch 126 (2026-07-21) normaliserer aktivitetsorienterte pseudo-ID-er til de fysiske park-/byromidentitetene. `lekeplass_kampen_park` og `treningssted_kampen_park` samles i `kampen_park`; `aktivitet_rudolf_nilsens_plass` blir `rudolf_nilsens_plass`. Oslo kommune beskriver Kampen park som én park med blant annet lekeplass, bordtennis og treningsmuligheter, og Rudolf Nilsens plass som ett samlet park-/byrom med lekeplass, treningsapparater, multibane og kunstgress/kunstis. Begge canonical steder bruker ett eksakt navngitt OSM-parkpolygon med stable ID fra den tidligere intake-kontrollen. De gamle aktivitets-ID-ene fjernes og beholdes kun som alias/innholdslag; ingen overlappende markører opprettes.
 
+| 127 | `snippen_lekepark` | Snippen lekepark | verified_geometry | `osm-way:761333023` |
+
+Batch 127 (2026-07-21) løser den tidligere manuelle parent-konflikten for `lekeplass_snippen`. Oslo kommune beskriver Snippen lekepark som et eget navngitt lekeparksted rett utenfor sørsiden av Botanisk hage; `botanisk_hage` avvises derfor som parent. `lekeplass_snippen` normaliseres til canonical `snippen_lekepark`, basert på det eksakt navngitte OSM-parkpolygonet `osm-way:761333023` som allerede ble funnet i intake-kontrollen. Ingen nearest/first-hit-logikk brukes.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)

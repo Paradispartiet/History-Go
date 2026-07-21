@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T10:38:15.333Z
+Generert: 2026-07-21T10:44:28.477Z
 
 ## Oppsummering
-- Aktive filer validert: **599**
-- Antall steder validert: **1203**
+- Aktive filer validert: **600**
+- Antall steder validert: **1202**
 - Harde feil: **0**
 - Varsler: **442**
-- Coordinate review candidates: **710** signaler fordelt på **578** steder
+- Coordinate review candidates: **709** signaler fordelt på **577** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -617,6 +617,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/sognsvann.json
 - data/places/by/oslo/kampen_park.json
 - data/places/by/oslo/rudolf_nilsens_plass.json
+- data/places/by/oslo/snippen_lekepark.json
 
 ## Harde feil
 - Ingen
@@ -1067,7 +1068,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 710 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 709 signaler fordelt på 577 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -1076,7 +1077,7 @@ Totalt 710 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandi
 | coordStatus=verified uten coordPrecisionM | 146 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 87 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 74 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 73 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
@@ -1410,7 +1411,7 @@ Totalt 710 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (74)
+### stasjon/park/gate/torg/elv uten coordinate metadata (73)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1475,7 +1476,6 @@ Totalt 710 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandi
 | ulven_handelspark | Ulven handelspark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9229 | 10.8215 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lekeplass_kirsebarlunden | Kirsebærlunden lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.916 | 10.7756 | 130 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| lekeplass_snippen | Snippen lekepark | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9167 | 10.7699 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | gardermoen_motorpark | Gardermoen Motorpark | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1832 | 11.1399 | 280 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | selhurst_park_london | Selhurst Park | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.3983 | -0.0855 | 190 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |

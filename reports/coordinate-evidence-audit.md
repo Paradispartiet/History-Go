@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T10:38:23.340Z
+Generert: 2026-07-21T10:44:35.594Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -57,6 +57,7 @@ Generert: 2026-07-21T10:38:23.340Z
 | sagene | data/coordinate-evidence/oslo/by/sagene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skoyen | data/coordinate-evidence/oslo/by/skoyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | slottsparken | data/coordinate-evidence/oslo/by/slottsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| snippen_lekepark | data/coordinate-evidence/oslo/by/snippen_lekepark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sofienbergparken | data/coordinate-evidence/oslo/by/sofienbergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sorenga | data/coordinate-evidence/oslo/by/sorenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | spikersuppa | data/coordinate-evidence/oslo/by/spikersuppa.json | applied_to_place | do_not_change_coordinates_yet | OK |
