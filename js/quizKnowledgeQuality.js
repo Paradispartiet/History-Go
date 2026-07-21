@@ -1,6 +1,5 @@
 // js/quizKnowledgeQuality.js
-// Kvalitetsport for quizminnet: bevarer eksisterende modell, men fjerner
-// spørsmåls-/svarkopier og deler lange forklaringer i små kunnskapspåstander.
+// Renser quizminnet uten å opprette nye parallelle kunnskapslag.
 (function (root, factory) {
   const api = factory(root);
   if (typeof module === "object" && module.exports) module.exports = api;
@@ -12,19 +11,11 @@
   const QUALITY_VERSION = 1;
   const INSTALL_FLAG = "__HG_QUIZ_KNOWLEDGE_QUALITY_INSTALLED__";
 
-  function s(value) {
-    return String(value == null ? "" : value).trim();
-  }
+  const s = (value) => String(value == null ? "" : value).trim();
+  const rows = (value) => Array.isArray(value) ? value : [];
+  const unique = (values) => Array.from(new Set(rows(values).map(s).filter(Boolean)));
 
-  function rows(value) {
-    return Array.isArray(value) ? value : [];
-  }
-
-  function unique(values) {
-    return Array.from(new Set(rows(values).map(s).filter(Boolean)));
-  }
-
-  function normalize(value) {
+  function normalized(value) {
     return s(value)
       .toLocaleLowerCase("nb")
       .normalize("NFKD")
@@ -34,25 +25,13 @@
       .trim();
   }
 
-  function wordSet(value) {
-    return new Set(normalize(value).split(" ").filter((word) => word.length > 1));
-  }
-
   function overlap(a, b) {
-    const aa = wordSet(a);
-    const bb = wordSet(b);
+    const aa = new Set(normalized(a).split(" ").filter((word) => word.length > 1));
+    const bb = new Set(normalized(b).split(" ").filter((word) => word.length > 1));
     if (!aa.size || !bb.size) return 0;
     let common = 0;
     aa.forEach((word) => { if (bb.has(word)) common += 1; });
     return common / Math.min(aa.size, bb.size);
-  }
-
-  function cleanClaim(value) {
-    return s(value)
-      .replace(/^[•·*-]+\s*/, "")
-      .replace(/^(kunnskap|forklaring|fakta?|fact)\s*:\s*/i, "")
-      .replace(/\s+/g, " ")
-      .trim();
   }
 
   function splitClaims(value) {
@@ -62,40 +41,37 @@
       .trim();
     if (!raw) return [];
 
-    return unique(
-      raw
-        .split(/(?<=[.!?])\s+|;\s+(?=[A-ZÆØÅ0-9])/u)
-        .map(cleanClaim)
-        .filter((claim) => claim.length >= 12)
-    );
+    return unique(raw
+      .split(/(?<=[.!?])\s+|;\s+(?=[A-ZÆØÅ0-9])/u)
+      .map((claim) => s(claim)
+        .replace(/^[•·*-]+\s*/, "")
+        .replace(/^(kunnskap|forklaring|fakta?|fact)\s*:\s*/i, "")
+        .replace(/\s+/g, " "))
+      .filter((claim) => claim.length >= 12));
   }
 
   function isQuestionOrAnswerCopy(claim, unit = {}) {
-    const candidate = normalize(claim);
-    const question = normalize(unit.question);
-    const answer = normalize(unit.answer);
-    if (!candidate) return true;
-    if (/[?]\s*$/.test(s(claim))) return true;
+    const candidate = normalized(claim);
+    const question = normalized(unit.question);
+    const answer = normalized(unit.answer);
+    if (!candidate || /[?]\s*$/.test(s(claim))) return true;
     if (/^(riktig svar|svaret er|du svarte|spørsmålet er|spørsmålet viser)\b/.test(candidate)) return true;
-    if (question && candidate === question) return true;
-    if (answer && candidate === answer) return true;
+    if ((question && candidate === question) || (answer && candidate === answer)) return true;
 
     const candidateWords = candidate.split(" ").filter(Boolean).length;
     const answerWords = answer.split(" ").filter(Boolean).length;
-    if (answer && candidateWords <= Math.max(5, answerWords + 2) && (candidate.includes(answer) || answer.includes(candidate))) {
-      return true;
-    }
+    if (answer && candidateWords <= answerWords + 1 && (candidate.includes(answer) || answer.includes(candidate))) return true;
 
     if (question) {
-      const lengthRatio = candidate.length / Math.max(1, question.length);
-      if (lengthRatio >= 0.72 && lengthRatio <= 1.35 && overlap(candidate, question) >= 0.86) return true;
+      const ratio = candidate.length / Math.max(1, question.length);
+      if (ratio >= 0.72 && ratio <= 1.35 && overlap(candidate, question) >= 0.86) return true;
     }
     return false;
   }
 
-  function kindFor(unit) {
-    const current = normalize(unit?.kind);
-    const type = normalize(unit?.question_type || unit?.question_family || unit?.dimension);
+  function unitKind(unit) {
+    const current = normalized(unit?.kind);
+    const type = normalized(unit?.question_type || unit?.question_family || unit?.dimension);
     if (/^(fact|fakta|faktum)$/.test(current) || /\b(fact|fakta|faktum)\b/.test(type)) return "fact";
     if (current && current !== "knowledge") return s(unit.kind);
     if (/\b(concept|begrep|terminologi)\b/.test(type)) return "concept";
@@ -105,101 +81,72 @@
     return "knowledge";
   }
 
-  function topicFor(unit, kind) {
+  function unitTopic(unit, kind) {
     const topic = s(unit?.topic);
-    if (topic && normalize(topic) !== normalize(unit?.question)) return topic;
-    const labels = {
-      fact: "Fakta",
-      concept: "Begrep",
-      method: "Metode",
-      story: "Historie",
-      analysis: "Sammenheng",
-      observation: "Observasjon",
-      knowledge: "Kunnskap"
-    };
-    return labels[kind] || "Kunnskap";
-  }
-
-  function mergeAssessment(a, b) {
-    const mastered = a?.state === "mastered" || b?.state === "mastered" || a?.correct === true || b?.correct === true;
-    return {
-      ...(a || {}),
-      ...(b || {}),
-      correct: mastered,
-      state: mastered ? "mastered" : (a?.state || b?.state || "needs_review")
-    };
+    if (topic && normalized(topic) !== normalized(unit?.question)) return topic;
+    return ({ fact: "Fakta", concept: "Begrep", method: "Metode", story: "Historie", analysis: "Sammenheng" })[kind] || "Kunnskap";
   }
 
   function splitUnit(unit) {
     const claims = splitClaims(unit?.text).filter((claim) => !isQuestionOrAnswerCopy(claim, unit));
     if (!claims.length) return [];
+    const kind = unitKind(unit);
+    const sourceId = s(unit?.unit_id || unit?.id || "knowledge_unit");
 
-    const kind = kindFor(unit);
-    const baseId = s(unit?.unit_id || unit?.id || "knowledge_unit");
     return claims.map((claim, index) => {
       const next = { ...unit };
       delete next.question;
       delete next.answer;
       delete next.trivia;
-      next.unit_id = claims.length === 1 ? baseId : `${baseId}::claim::${index + 1}`;
-      next.source_question_id = baseId;
+      next.unit_id = claims.length === 1 ? sourceId : `${sourceId}::claim::${index + 1}`;
+      next.source_question_id = sourceId;
       next.kind = kind;
-      next.topic = topicFor(unit, kind);
+      next.topic = unitTopic(unit, kind);
       next.text = claim;
-      next.quality = {
-        version: QUALITY_VERSION,
-        source: "quiz_knowledge_filter",
-        split_from_question: claims.length > 1
-      };
+      next.quality = { version: QUALITY_VERSION, source: "quiz_knowledge_filter", split_from_question: claims.length > 1 };
       return next;
     });
   }
 
+  function mergeAssessment(a, b) {
+    const mastered = a?.state === "mastered" || b?.state === "mastered" || a?.correct === true || b?.correct === true;
+    return { ...(a || {}), ...(b || {}), correct: mastered, state: mastered ? "mastered" : (a?.state || b?.state || "needs_review") };
+  }
+
   function dedupeUnits(units) {
-    const byClaim = new Map();
+    const map = new Map();
     rows(units).forEach((unit) => {
-      const key = normalize(unit?.text);
+      const key = normalized(unit?.text);
       if (!key) return;
-      const previous = byClaim.get(key);
-      if (!previous) {
-        byClaim.set(key, unit);
-        return;
+      const previous = map.get(key);
+      if (!previous) return map.set(key, unit);
+      for (const field of ["emne_ids", "concepts", "concept_focus", "terms", "tags"]) {
+        previous[field] = unique([...(previous[field] || []), ...(unit[field] || [])]);
       }
-      previous.emne_ids = unique([...(previous.emne_ids || []), ...(unit.emne_ids || [])]);
-      previous.concepts = unique([...(previous.concepts || []), ...(unit.concepts || [])]);
-      previous.concept_focus = unique([...(previous.concept_focus || []), ...(unit.concept_focus || [])]);
-      previous.terms = unique([...(previous.terms || []), ...(unit.terms || [])]);
-      previous.tags = unique([...(previous.tags || []), ...(unit.tags || [])]);
       previous.sources = rows(previous.sources).concat(rows(unit.sources));
       previous.assessment = mergeAssessment(previous.assessment, unit.assessment);
     });
-    return Array.from(byClaim.values());
+    return Array.from(map.values());
   }
 
-  function sanitizeNamedRows(items, kind, blockedClaims = new Set()) {
-    const out = [];
+  function sanitizeFunFacts(items, blocked) {
+    const output = [];
     rows(items).forEach((item, itemIndex) => {
       splitClaims(item?.text || item).forEach((claim, claimIndex) => {
-        const key = normalize(claim);
-        if (!key || blockedClaims.has(key)) return;
-        blockedClaims.add(key);
+        const key = normalized(claim);
+        if (!key || blocked.has(key)) return;
+        blocked.add(key);
         const raw = item && typeof item === "object" ? item : {};
-        out.push({
-          ...raw,
-          id: s(raw.id) || `${kind}_${itemIndex + 1}_${claimIndex + 1}`,
-          kind,
-          text: claim
-        });
+        output.push({ ...raw, id: s(raw.id) || `fun_fact_${itemIndex + 1}_${claimIndex + 1}`, kind: "fun_fact", text: claim });
       });
     });
-    return out;
+    return output;
   }
 
   function rebuildBundleIndexes(bundle) {
     const units = rows(bundle?.knowledge_units);
-    const existing = bundle?.indexes || {};
     bundle.indexes = {
-      ...existing,
+      ...(bundle.indexes || {}),
       emne_ids: unique(units.flatMap((unit) => rows(unit?.emne_ids))),
       concepts: unique(units.flatMap((unit) => rows(unit?.concepts))),
       concept_focus: unique(units.flatMap((unit) => rows(unit?.concept_focus))),
@@ -214,36 +161,22 @@
 
   function sanitizeBundle(bundle) {
     if (!bundle || typeof bundle !== "object") return bundle;
-    const beforeUnits = rows(bundle.knowledge_units);
-    const splitUnits = beforeUnits.flatMap(splitUnit);
-    const knowledgeUnits = dedupeUnits(splitUnits);
-    const blockedClaims = new Set(knowledgeUnits.map((unit) => normalize(unit.text)));
-    const funFacts = sanitizeNamedRows(bundle.fun_facts, "fun_fact", blockedClaims);
-
+    const original = rows(bundle.knowledge_units);
+    const knowledgeUnits = dedupeUnits(original.flatMap(splitUnit));
+    const blocked = new Set(knowledgeUnits.map((unit) => normalized(unit.text)));
     const next = {
       ...bundle,
       knowledge_units: knowledgeUnits,
-      fun_facts: funFacts,
+      fun_facts: sanitizeFunFacts(bundle.fun_facts, blocked),
       content_quality: {
         version: QUALITY_VERSION,
-        original_unit_count: beforeUnits.length,
+        original_unit_count: original.length,
         precise_unit_count: knowledgeUnits.length,
-        removed_or_merged_count: Math.max(0, beforeUnits.length - knowledgeUnits.length),
+        removed_or_merged_count: Math.max(0, original.length - knowledgeUnits.length),
         automatic_storage: true
       }
     };
     return rebuildBundleIndexes(next);
-  }
-
-  function emptyIndexes() {
-    return {
-      by_subject: {},
-      by_target: {},
-      by_emne: {},
-      by_concept: {},
-      mastered: [],
-      needs_review: []
-    };
   }
 
   function addIndex(index, key, bundleId) {
@@ -254,7 +187,7 @@
   }
 
   function rebuildMemoryIndexes(memory) {
-    const indexes = emptyIndexes();
+    const indexes = { by_subject: {}, by_target: {}, by_emne: {}, by_concept: {}, mastered: [], needs_review: [] };
     Object.values(memory?.bundles || {}).forEach((bundle) => {
       const bundleId = s(bundle?.bundle_id);
       addIndex(indexes.by_subject, bundle?.subject_id, bundleId);
@@ -272,73 +205,59 @@
   }
 
   function sanitizeMemory(memory) {
-    const next = {
-      ...(memory || {}),
-      bundles: {}
-    };
-    Object.entries(memory?.bundles || {}).forEach(([bundleId, bundle]) => {
-      next.bundles[bundleId] = sanitizeBundle(bundle);
-    });
+    const next = { ...(memory || {}), bundles: {} };
+    Object.entries(memory?.bundles || {}).forEach(([id, bundle]) => { next.bundles[id] = sanitizeBundle(bundle); });
     return rebuildMemoryIndexes(next);
   }
 
   function sanitizeStoredMemory() {
     if (!root?.localStorage) return null;
     let current;
-    try {
-      current = JSON.parse(root.localStorage.getItem(STORAGE_KEY) || "null");
-    } catch {
-      return null;
-    }
+    try { current = JSON.parse(root.localStorage.getItem(STORAGE_KEY) || "null"); } catch { return null; }
     if (!current?.bundles) return current;
     const next = sanitizeMemory(current);
-    if (JSON.stringify(next) !== JSON.stringify(current)) {
-      root.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      try {
-        root.dispatchEvent?.(new CustomEvent("hg:knowledgeMemoryQualityUpdated", {
-          detail: { storage_key: STORAGE_KEY }
-        }));
-      } catch {}
-    }
+    if (JSON.stringify(next) !== JSON.stringify(current)) root.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     return next;
   }
 
   function cleanKnowledgeUi() {
     const document = root?.document;
     if (!document) return;
+    const button = document.getElementById("quizSummaryKnowledge");
+    if (button && button.textContent !== "Se kunnskapen som ble lagret") button.textContent = "Se kunnskapen som ble lagret";
+    const line = document.getElementById("quizSummaryKnowledgeLine");
+    const lineText = "Kunnskapen ble automatisk filtrert og lagt i Knowledge-minnekammeret.";
+    if (line && line.textContent !== lineText) line.textContent = lineText;
+    document.getElementById("quizKnowledgeMemoryRead")?.parentElement?.remove();
+  }
 
-    const summaryButton = document.getElementById("quizSummaryKnowledge");
-    if (summaryButton) summaryButton.textContent = "Se kunnskapen som ble lagret";
-
-    const summaryLine = document.getElementById("quizSummaryKnowledgeLine");
-    if (summaryLine) summaryLine.textContent = "Kunnskapen ble automatisk filtrert og lagt i Knowledge-minnekammeret.";
-
-    const readButton = document.getElementById("quizKnowledgeMemoryRead");
-    if (readButton) readButton.parentElement?.remove();
+  function scheduleUiCleanup() {
+    cleanKnowledgeUi();
+    if (typeof root?.setTimeout === "function") {
+      root.setTimeout(cleanKnowledgeUi, 0);
+      root.setTimeout(cleanKnowledgeUi, 100);
+    }
   }
 
   function install() {
     if (!root || root[INSTALL_FLAG]) return false;
     root[INSTALL_FLAG] = true;
-
     const memoryApi = root.HGQuizKnowledgeMemory;
     if (memoryApi?.buildQuizKnowledgeBundle && !memoryApi.__qualityWrapped) {
       const originalBuild = memoryApi.buildQuizKnowledgeBundle.bind(memoryApi);
-      memoryApi.buildQuizKnowledgeBundle = function buildPreciseQuizKnowledgeBundle(input) {
-        return sanitizeBundle(originalBuild(input));
-      };
+      memoryApi.buildQuizKnowledgeBundle = (input) => sanitizeBundle(originalBuild(input));
       root.buildQuizKnowledgeBundle = memoryApi.buildQuizKnowledgeBundle;
       memoryApi.__qualityWrapped = true;
     }
-
     sanitizeStoredMemory();
-    root.addEventListener?.("hg:knowledgeMemoryUpdated", sanitizeStoredMemory);
-
-    if (root.document && typeof MutationObserver !== "undefined") {
-      const observer = new MutationObserver(cleanKnowledgeUi);
-      observer.observe(root.document.documentElement, { childList: true, subtree: true });
-      cleanKnowledgeUi();
-    }
+    root.addEventListener?.("hg:knowledgeMemoryUpdated", () => {
+      sanitizeStoredMemory();
+      scheduleUiCleanup();
+    });
+    root.document?.addEventListener?.("click", (event) => {
+      if (event.target?.closest?.("#quizSummaryKnowledge")) scheduleUiCleanup();
+    });
+    scheduleUiCleanup();
     return true;
   }
 
