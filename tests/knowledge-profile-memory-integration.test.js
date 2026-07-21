@@ -67,3 +67,26 @@ test("gjentatt profilbygging er idempotent og øker ikke times_seen", async () =
   await api.buildProfile({ subjectId: "by" });
   assert.equal(api.getEntries()[0].times_seen, first);
 });
+
+
+test("målrettet repetisjon bevarer hele bundlen og oppdaterer bare feilspørsmålet", () => {
+  const api = loadRuntime();
+  const questions = [
+    { quiz_id: "q1", categoryId: "by", targetId: "sted", knowledge: "Første påstand.", emne_id: "em_by_test" },
+    { quiz_id: "q2", categoryId: "by", targetId: "sted", knowledge: "Andre påstand.", emne_id: "em_by_test" }
+  ];
+  const original = api.quizMemory.buildQuizKnowledgeBundle({
+    targetId: "sted", categoryId: "by", setId: "set_1", questions,
+    result: { correct: 1, total: 2, answers: [{ question_id: "q1", correct: true }] }
+  });
+  api.quizMemory.saveBundle(original);
+  const reviewed = api.quizMemory.buildQuizKnowledgeBundle({
+    targetId: "sted", categoryId: "by", setId: "set_1", questions: [questions[1]],
+    result: { correct: 1, total: 1, answers: [{ question_id: "q2", correct: true }] }
+  });
+  const updated = api.quizMemory.applyReviewBundle(original.bundle_id, reviewed);
+  assert.equal(updated.knowledge_units.length, 2);
+  assert.equal(api.quizMemory.reviewCount(updated), 0);
+  assert.equal(updated.knowledge_units.every((unit) => unit.assessment.state === "mastered"), true);
+  assert.equal(updated.review.attempt_count, 1);
+});

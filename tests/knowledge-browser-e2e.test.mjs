@@ -40,11 +40,27 @@ assert.equal(stored.entries.some((entry) => entry.text.includes("Når åpnet")),
 await page.click("#quizSummaryKnowledge");
 await page.waitForSelector("#quizKnowledgeMemoryModal");
 assert.match(await page.textContent("#quizKnowledgeMemoryModal"), /E2E-stedet åpnet i 2020/);
+await page.waitForSelector("#quizKnowledgeMemoryReview");
+await page.click("#quizKnowledgeMemoryReview");
+await page.waitForFunction(() => document.querySelector("#quizQuestion")?.textContent?.includes("Hvem tegnet"));
+assert.match(await page.textContent("#quizProgress"), /1\/1/);
+await page.click('#quizChoices button[data-idx="0"]');
+await page.waitForSelector("#quizSummaryModal");
+await page.waitForFunction(() => {
+  const memory = JSON.parse(localStorage.getItem("hg_knowledge_memory_v1"));
+  return memory.bundles["e2e_place::set_1"].knowledge_units.every((unit) => unit.assessment.state === "mastered");
+});
+const reviewed = await page.evaluate(() => JSON.parse(localStorage.getItem("hg_knowledge_memory_v1")).bundles["e2e_place::set_1"]);
+assert.equal(reviewed.knowledge_units.length, 2);
+assert.equal(reviewed.knowledge_units.filter((unit) => unit.assessment.state === "needs_review").length, 0);
+assert.equal(reviewed.review.attempt_count, 1);
 await page.reload();
 await page.waitForFunction(() => window.hgKnowledgeProfileV2?.subjects?.by?.emner?.length > 0);
 const profile = await page.evaluate(() => window.hgKnowledgeProfileV2);
 assert.equal(profile.subjects.by.emners, undefined);
 assert.equal(profile.subjects.by.emner.find((emne) => emne.emne_id === "em_by_e2e").knowledge_count, 2);
 assert.match(await page.textContent("#knowledgeContent"), /Arkitekt A tegnet E2E-stedet/);
+assert.equal(profile.quiz_memory.summary.review_count, 0);
+assert.equal((await page.textContent("#knowledgeMemoryOverview")).includes("Gjenta feil"), false);
 await browser.close(); server.close();
 console.log("knowledge browser e2e ok");

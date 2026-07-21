@@ -10,6 +10,7 @@ type Dependencies = {
 };
 
 const STORAGE_KEY = "hg_knowledge_memory_v1";
+const REVIEW_REQUEST_KEY = "hg_quiz_review_request_v1";
 const SCHEMA = "hg_knowledge_memory_v1";
 const MANIFEST_PATH = "data/quiz/manifest.json";
 const QUALITY_VERSION = 3;
@@ -536,6 +537,100 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
     return bundle;
   }
 
+
+  function reviewQuestionIds(bundleValue: unknown): string[] {
+    return unique(array<JsonObject>(object(bundleValue).knowledge_units)
+      .filter((unit) => unit.assessment?.state === "needs_review")
+      .map((unit) => unit.source_question_id || unit.unit_id));
+  }
+
+  function reviewCount(bundleValue: unknown): number {
+    return array<JsonObject>(object(bundleValue).knowledge_units)
+      .filter((unit) => unit.assessment?.state === "needs_review").length;
+  }
+
+  function applyReviewBundle(bundleIdValue: unknown, reviewedValue: unknown): JsonObject | null {
+    const bundleId = text(bundleIdValue);
+    const memory = readMemory();
+    const existing = object(memory.bundles?.[bundleId]);
+    if (!bundleId || !Object.keys(existing).length) return null;
+
+    const reviewed = sanitizeBundle(reviewedValue);
+    const reviewedByQuestion = new Map<string, JsonObject>();
+    array<JsonObject>(reviewed.knowledge_units).forEach((unit) => {
+      const questionId = text(unit.source_question_id || unit.unit_id);
+      if (questionId && !reviewedByQuestion.has(questionId)) reviewedByQuestion.set(questionId, unit);
+    });
+    if (!reviewedByQuestion.size) return existing;
+
+    const now = new Date().toISOString();
+    const knowledgeUnits = array<JsonObject>(existing.knowledge_units).map((unit) => {
+      const questionId = text(unit.source_question_id || unit.unit_id);
+      const reviewedUnit = reviewedByQuestion.get(questionId);
+      if (!reviewedUnit) return unit;
+      const previousReview = object(unit.review);
+      return {
+        ...unit,
+        assessment: { ...object(unit.assessment), ...object(reviewedUnit.assessment) },
+        review: {
+          attempt_count: Number(previousReview.attempt_count || 0) + 1,
+          last_reviewed_at: now,
+          last_result: text(reviewedUnit.assessment?.state),
+          correct: reviewedUnit.assessment?.correct === true
+        }
+      };
+    });
+
+    const previousReview = object(existing.review);
+    return saveBundle({
+      ...existing,
+      knowledge_units: knowledgeUnits,
+      review: {
+        attempt_count: Number(previousReview.attempt_count || 0) + 1,
+        last_reviewed_at: now,
+        correct: Number(reviewed.result?.correct || 0),
+        total: Number(reviewed.result?.total || 0)
+      },
+      updated_at: now
+    });
+  }
+
+  function startReview(bundleOrId: unknown): boolean {
+    const memory = readMemory();
+    const bundle = typeof bundleOrId === "string" ? object(memory.bundles?.[bundleOrId]) : object(bundleOrId);
+    const questionIds = reviewQuestionIds(bundle);
+    if (!bundle.bundle_id || !bundle.target_id || !bundle.set_id || !questionIds.length) return false;
+
+    const request = {
+      bundleId: text(bundle.bundle_id),
+      targetId: text(bundle.target_id),
+      setId: text(bundle.set_id),
+      questionIds,
+      requestedAt: new Date().toISOString()
+    };
+
+    closeKnowledgePopup();
+    root.document?.getElementById("quizSummaryModal")?.remove();
+    if (typeof root.QuizEngine?.startReview === "function") {
+      void Promise.resolve(root.QuizEngine.startReview(request));
+      return true;
+    }
+
+    try { root.localStorage?.setItem(REVIEW_REQUEST_KEY, JSON.stringify(request)); } catch { return false; }
+    if (root.location) root.location.href = new URL("index.html", root.location.href).toString();
+    return true;
+  }
+
+  function consumePendingReview(): boolean {
+    if (typeof root.QuizEngine?.startReview !== "function") return false;
+    let request: JsonObject = {};
+    try { request = JSON.parse(root.localStorage?.getItem(REVIEW_REQUEST_KEY) || "null") || {}; } catch {}
+    if (!request.targetId || !request.setId || !array(request.questionIds).length) return false;
+    try { root.localStorage?.removeItem(REVIEW_REQUEST_KEY); } catch {}
+    void Promise.resolve(root.QuizEngine.startReview(request));
+    return true;
+  }
+
   function memorySummary(memory: JsonObject = readMemory()): JsonObject {
     const bundles = Object.values(object(memory.bundles)) as JsonObject[];
     const units = bundles.flatMap((bundle) => array(bundle.knowledge_units));
@@ -630,9 +725,10 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
     const facts = array<JsonObject>(bundle.fun_facts);
     const stories = array<JsonObject>(bundle.stories);
     const mastered = units.filter((unit) => unit.assessment?.state === "mastered").length;
-    const review = units.filter((unit) => unit.assessment?.state === "needs_review").length;
+    const review = reviewCount(bundle);
     const unitHtml = units.map((unit) => `<article style="padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12)"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><strong>${escapeHtml(unit.topic || unit.dimension || "Kunnskap")}</strong><small style="white-space:nowrap">${unit.assessment?.state === "mastered" ? "Mestret" : "Til repetisjon"}</small></div><p style="margin:6px 0 0;line-height:1.45">${escapeHtml(unit.text)}</p>${renderChips([unit.emne_ids, unit.concepts, unit.concept_focus, unit.terms])}</article>`).join("");
-    return `<div class="modal-body" style="max-height:min(86vh,900px);overflow:hidden"><div class="modal-head"><div><small class="muted">Knowledge-minnekammer</small><strong style="display:block">${escapeHtml(bundle.set_title || bundle.target_id || "Kunnskapen du samlet")}</strong></div><button class="ghost" id="quizKnowledgeMemoryClose">Lukk</button></div><div class="sheet-body" style="overflow:auto;max-height:68vh"><p class="muted" style="margin-top:0">${mastered} mestret • ${review} til repetisjon • ${units.length} kunnskapspunkter</p>${unitHtml || "<p>Ingen strukturerte kunnskapspunkter ble funnet.</p>"}${facts.length ? `<section style="margin-top:18px"><h3>Funfacts og trivia</h3>${facts.map((row) => `<p>• ${escapeHtml(row.text)}</p>`).join("")}</section>` : ""}${stories.length ? `<section style="margin-top:18px"><h3>Historier</h3>${stories.map((row) => `<p>• ${escapeHtml(row.text)}</p>`).join("")}</section>` : ""}</div></div>`;
+    const reviewAction = review > 0 ? `<div style="display:flex;justify-content:flex-end;margin:14px 0"><button class="ghost" id="quizKnowledgeMemoryReview" type="button">Gjenta feil (${review})</button></div>` : "";
+    return `<div class="modal-body" style="max-height:min(86vh,900px);overflow:hidden"><div class="modal-head"><div><small class="muted">Knowledge-minnekammer</small><strong style="display:block">${escapeHtml(bundle.set_title || bundle.target_id || "Kunnskapen du samlet")}</strong></div><button class="ghost" id="quizKnowledgeMemoryClose">Lukk</button></div><div class="sheet-body" style="overflow:auto;max-height:68vh"><p class="muted" style="margin-top:0">${mastered} mestret • ${review} til repetisjon • ${units.length} kunnskapspunkter</p>${reviewAction}${unitHtml || "<p>Ingen strukturerte kunnskapspunkter ble funnet.</p>"}${facts.length ? `<section style="margin-top:18px"><h3>Funfacts og trivia</h3>${facts.map((row) => `<p>• ${escapeHtml(row.text)}</p>`).join("")}</section>` : ""}${stories.length ? `<section style="margin-top:18px"><h3>Historier</h3>${stories.map((row) => `<p>• ${escapeHtml(row.text)}</p>`).join("")}</section>` : ""}</div></div>`;
   }
 
   function closeKnowledgePopup(): void {
@@ -654,6 +750,8 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
     updateReadingState(bundle.bundle_id, "presented");
     const close = modal.querySelector<HTMLElement>("#quizKnowledgeMemoryClose");
     if (close) close.onclick = closeKnowledgePopup;
+    const reviewButton = modal.querySelector<HTMLElement>("#quizKnowledgeMemoryReview");
+    if (reviewButton) reviewButton.onclick = () => { startReview(bundle.bundle_id); };
     modal.addEventListener("click", (event: MouseEvent) => { if (event.target === modal) closeKnowledgePopup(); });
     return modal;
   }
@@ -673,6 +771,22 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
     }
     button.textContent = `Kunnskapen du samlet (${array(bundle.knowledge_units).length})`;
     button.onclick = () => { openKnowledgePopup(bundle.bundle_id); };
+
+    const review = reviewCount(bundle);
+    let reviewButton = modal.querySelector<HTMLButtonElement>("#quizSummaryReview");
+    if (review > 0) {
+      if (!reviewButton) {
+        reviewButton = root.document.createElement("button");
+        reviewButton.id = "quizSummaryReview";
+        reviewButton.className = "ghost";
+        actions.insertBefore(reviewButton, primary);
+      }
+      reviewButton.textContent = `Gjenta feil (${review})`;
+      reviewButton.onclick = () => { startReview(bundle.bundle_id); };
+    } else {
+      reviewButton?.remove();
+    }
+
     const meta = modal.querySelector("#quizSummaryMeta");
     if (meta && !modal.querySelector("#quizSummaryKnowledgeLine")) {
       const line = root.document.createElement("div");
@@ -718,6 +832,38 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
     }
   }
 
+
+  async function captureReviewCompletion(detailValue: unknown = {}): Promise<JsonObject | null> {
+    try {
+      const detail = object(detailValue);
+      const context = await resolveSetContext(detail);
+      const questionIds = new Set(array(detail.questionIds).map(text).filter(Boolean));
+      const questions = array<JsonObject>(context.questions).filter((question) => questionIds.has(text(question.quiz_id || question.quizId || question.id)));
+      const reviewed = buildQuizKnowledgeBundle({
+        targetId: context.targetId,
+        categoryId: text(detail.categoryId || detail.domain || context.setData?.categoryId),
+        setId: context.setId,
+        sourceFile: context.sourceFile,
+        setData: context.setData,
+        setBlock: context.setBlock,
+        questions,
+        result: {
+          correct: Number(detail.correct || 0),
+          total: Number(detail.total || 0),
+          correctAnswers: array(detail.correctAnswers),
+          answers: array(detail.answers)
+        }
+      });
+      const saved = applyReviewBundle(stableId(context.targetId, context.setId), reviewed);
+      pendingBundle = saved;
+      if (saved && attachBundleToSummary(saved)) pendingBundle = null;
+      return saved;
+    } catch (error) {
+      if (root.DEBUG) console.warn("[HGKnowledgeV2.quizMemory] review capture failed", error, detailValue);
+      return null;
+    }
+  }
+
   function renderOverview(profileValue: unknown): void {
     if (!root.document) return;
     const profile = object(profileValue);
@@ -739,9 +885,12 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
       panel.innerHTML = `<div class="kv2-panel-head"><div><span class="kv2-eyebrow">Quiz-minnekammer</span><h2>Kunnskap fra fullførte quizzer</h2></div></div><p class="kv2-empty">Ingen kunnskapsbundle er samlet ennå.</p>`;
       return;
     }
-    panel.innerHTML = `<div class="kv2-panel-head"><div><span class="kv2-eyebrow">Quiz-minnekammer</span><h2>Kunnskap samlet i quiz</h2></div><span class="kv2-panel-meta">Kunnskap, historier, funfacts og vurderingsevidens er separate roller i samme TypeScript-motor.</span></div><div class="kv2-summary" style="margin:0 0 16px"><article class="kv2-stat"><strong>${Number(summary.bundle_count || 0)}</strong><span>Quizforløp</span></article><article class="kv2-stat"><strong>${Number(summary.knowledge_unit_count || 0)}</strong><span>Kunnskapsenheter</span></article><article class="kv2-stat"><strong>${Number(summary.mastered_count || 0)}</strong><span>Mestret</span></article><article class="kv2-stat"><strong>${Number(summary.review_count || 0)}</strong><span>Til repetisjon</span></article></div>${bundles.length ? `<div class="kv2-recent-list">${bundles.map((bundle) => `<article class="kv2-recent-item"><span class="kv2-recent-meta">${escapeHtml(root.HGKnowledgeV2?.SUBJECT_LABELS?.[bundle.subject_id] || bundle.subject_id)} · ${escapeHtml(bundle.reading?.state || "Samlet")}</span><button type="button" data-knowledge-bundle="${escapeHtml(bundle.bundle_id)}" style="appearance:none;border:0;background:none;color:inherit;padding:0;text-align:left;font:inherit;cursor:pointer;font-weight:700">${escapeHtml(bundle.set_title || humanize(bundle.target_id) || "Quizkunnskap")}</button><p>${Number(bundle.result?.correct || 0)} av ${Number(bundle.result?.total || 0)} riktig · ${array(bundle.knowledge_units).length} kunnskapspunkter</p></article>`).join("")}</div>` : ""}`;
+    panel.innerHTML = `<div class="kv2-panel-head"><div><span class="kv2-eyebrow">Quiz-minnekammer</span><h2>Kunnskap samlet i quiz</h2></div><span class="kv2-panel-meta">Kunnskap, historier, funfacts og vurderingsevidens er separate roller i samme TypeScript-motor.</span></div><div class="kv2-summary" style="margin:0 0 16px"><article class="kv2-stat"><strong>${Number(summary.bundle_count || 0)}</strong><span>Quizforløp</span></article><article class="kv2-stat"><strong>${Number(summary.knowledge_unit_count || 0)}</strong><span>Kunnskapsenheter</span></article><article class="kv2-stat"><strong>${Number(summary.mastered_count || 0)}</strong><span>Mestret</span></article><article class="kv2-stat"><strong>${Number(summary.review_count || 0)}</strong><span>Til repetisjon</span></article></div>${bundles.length ? `<div class="kv2-recent-list">${bundles.map((bundle) => { const review = reviewCount(bundle); return `<article class="kv2-recent-item"><span class="kv2-recent-meta">${escapeHtml(root.HGKnowledgeV2?.SUBJECT_LABELS?.[bundle.subject_id] || bundle.subject_id)} · ${escapeHtml(bundle.reading?.state || "Samlet")}</span><button type="button" data-knowledge-bundle="${escapeHtml(bundle.bundle_id)}" style="appearance:none;border:0;background:none;color:inherit;padding:0;text-align:left;font:inherit;cursor:pointer;font-weight:700">${escapeHtml(bundle.set_title || humanize(bundle.target_id) || "Quizkunnskap")}</button><p>${Number(bundle.result?.correct || 0)} av ${Number(bundle.result?.total || 0)} riktig · ${array(bundle.knowledge_units).length} kunnskapspunkter</p>${review > 0 ? `<button type="button" class="ghost" data-knowledge-review="${escapeHtml(bundle.bundle_id)}">Gjenta feil (${review})</button>` : ""}</article>`; }).join("")}</div>` : ""}`;
     panel.querySelectorAll<HTMLElement>("[data-knowledge-bundle]").forEach((button) => {
       button.addEventListener("click", () => openKnowledgePopup(button.getAttribute("data-knowledge-bundle") || ""));
+    });
+    panel.querySelectorAll<HTMLElement>("[data-knowledge-review]").forEach((button) => {
+      button.addEventListener("click", () => startReview(button.getAttribute("data-knowledge-review") || ""));
     });
   }
 
@@ -750,6 +899,8 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
     root.__HG_KNOWLEDGE_MEMORY_BROWSER_INTEGRATION__ = true;
     watchForSummary();
     root.addEventListener("hg:quizCompleted", (event: CustomEvent) => { void captureCompletion(event.detail || {}); });
+    root.addEventListener("hg:quizReviewCompleted", (event: CustomEvent) => { void captureReviewCompletion(event.detail || {}); });
+    root.addEventListener("hg:appReady", () => { consumePendingReview(); });
   }
 
   return {
@@ -767,9 +918,15 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
     syncMemoryEntries,
     memorySummary,
     attachMemoryToProfile,
+    reviewQuestionIds,
+    reviewCount,
+    applyReviewBundle,
+    startReview,
+    consumePendingReview,
     openKnowledgePopup,
     attachBundleToSummary,
     captureCompletion,
+    captureReviewCompletion,
     renderOverview,
     initBrowserIntegration
   };

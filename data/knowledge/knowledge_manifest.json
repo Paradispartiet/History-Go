@@ -17,8 +17,8 @@
       "hg_knowledge_entries_v2",
       "hg_knowledge_memory_v1"
     ],
-    "migrationStatus": "v6_single_typescript_knowledge_runtime_active",
-    "currentBehavior": "Quizminne, capture, evidenssynkronisering og profilbygging eies av én TypeScript-runtime. hg_knowledge_memory_v1 er evidenslager, hg_knowledge_entries_v2 er den kanoniske lesemodellen, og buildProfile synkroniserer dem idempotent før den bygger fag og emner. Ingen JavaScript-bro monkey-patcher profilen.",
+    "migrationStatus": "v7_targeted_review_active",
+    "currentBehavior": "Quizminne, capture, evidenssynkronisering, profilbygging og målrettet repetisjon eies av én TypeScript-runtime. needs_review peker tilbake til det eksakte quizsettet og bare feilbesvarte spørsmål repeteres uten nye poeng; resultatet oppdaterer den eksisterende bundlen idempotent.",
     "evidenceModel": {
       "collected": "En presis kunnskapspåstand er automatisk hentet fra den fullførte quizfila og lagt i minnekammeret.",
       "presented": "Kunnskapspopupen er åpnet.",
@@ -28,8 +28,8 @@
     },
     "nextRuntimeRequirements": [
       "Expand stable canonical knowledge_unit_id, concept_id, term_id and story_id coverage in quiz source data.",
-      "Add targeted repetition navigation from needs_review evidence.",
-      "Gradually retire knowledge_universe after migration telemetry confirms no active readers remain."
+      "Gradually retire knowledge_universe after migration telemetry confirms no active readers remain.",
+      "Add spaced repetition scheduling after targeted review has stable usage telemetry."
     ],
     "canonicalQuizMemorySource": "../../js/knowledgeQuizMemory.ts"
   },

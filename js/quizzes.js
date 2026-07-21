@@ -595,6 +595,7 @@ function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", prog
   const correctAnswers = [];   // [{question, answer, chosenAnswer}]
   const conceptsCorrect = [];  // string[]
   const emnerTouched = [];     // string[]
+  const answers = [];            // [{question_id, question, answer, chosenAnswer, correct}]
 
   // ✅ categoryId beregnes ÉN gang per quiz-run (strict: ingen "by" fallback her)
   const categoryId = getQuizCategoryId(questions);
@@ -638,14 +639,20 @@ function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", prog
         qs.feedback.textContent = ok ? tt("ui.quiz.correct", "Riktig ✅") : tt("ui.quiz.wrong", "Feil ❌");
 
         const tid = s(targetId);
+        const qText = q.question || q.text || "";
+        const chosenAnswer = options[chosenIdx] ?? "";
+        const correctAnswer = options[answerIndex] ?? (q.answer ?? "");
+        answers.push({
+          question_id: s(q.quiz_id || q.quizId || q.id || tid),
+          question: qText,
+          answer: correctAnswer,
+          chosenAnswer,
+          correct: ok
+        });
 
         // --- KUN ved RIKTIG: registrer alt (meta + hooks) ---
         if (ok) {
           correct++;
-
-          const qText = q.question || q.text || "";
-          const chosenAnswer = options[chosenIdx] ?? "";
-          const correctAnswer = options[answerIndex] ?? (q.answer ?? "");
 
           correctAnswers.push({ question: qText, answer: correctAnswer, chosenAnswer });
 
@@ -787,7 +794,7 @@ if (canTag) {
           if (i < questions.length) step();
           else {
             if (autoClose) closeQuiz();
-            const meta = { correctAnswers, conceptsCorrect, emnerTouched };
+            const meta = { correctAnswers, conceptsCorrect, emnerTouched, answers };
             try { onEnd(correct, questions.length, meta); }
             catch (e) { dwarn("onEnd crashed", e); }
           }
@@ -1180,6 +1187,103 @@ if (perfect) {
     } catch (e) {
       dwarn("start crashed:", e);
       API.showToast(tt("ui.quiz.runtimeError", "Quiz-feil: noe krasjet."));
+    }
+  };
+
+
+
+  // ============================================================
+  // PUBLIC: startReview({ targetId, setId, questionIds })
+  // Målrettet repetisjon uten poeng eller progresjonsmutasjon.
+  // ============================================================
+  QuizEngine.startReview = async function (request = {}) {
+    try {
+      await ensureLoaded();
+
+      const tid = s(request.targetId || request.target_id);
+      const requestedSetId = s(request.setId || request.set_id);
+      const wantedIds = new Set(arr(request.questionIds || request.question_ids).map(s).filter(Boolean));
+      if (!tid || !requestedSetId || !wantedIds.size) {
+        API.showToast("Fant ingen spørsmål som trenger repetisjon");
+        return false;
+      }
+
+      const person =
+        API.getPersonById(tid) ||
+        (Array.isArray(window.PEOPLE) ? window.PEOPLE.find((p) => s(p?.id) === tid) : null);
+      const place =
+        API.getPlaceById(tid) ||
+        (Array.isArray(window.PLACES) ? window.PLACES.find((p) => s(p?.id) === tid) : null);
+      if (!person && !place) {
+        API.showToast(tt("ui.quiz.targetMissing", "Fant verken person eller sted"));
+        return false;
+      }
+
+      const setList = (_byTargetSets && _byTargetSets.get(tid)) || [];
+      const setMeta = setList.find((item) => s(item?.set_id) === requestedSetId);
+      if (!setMeta) {
+        API.showToast("Fant ikke quizsettet som skal repeteres");
+        return false;
+      }
+
+      const setData = await loadSetFile(setMeta.file);
+      const block = arr(setData?.sets).find((item) => s(item?.set_id) === requestedSetId);
+      const allQuestions = arr(block?.questions);
+      const questions = allQuestions.filter((question) => wantedIds.has(s(question?.quiz_id || question?.quizId || question?.id)));
+      if (!questions.length) {
+        API.showToast("Fant ikke spørsmålene som skal repeteres");
+        return false;
+      }
+
+      const setName = s(block?.title || block?.name || block?.label || requestedSetId);
+      localStorage.setItem("hg_active_set", requestedSetId);
+      openQuiz();
+      runQuizFlow({
+        title: person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")),
+        titleSuffix: `${setName} · Repetisjon`,
+        progressPrefix: "Repetisjon",
+        targetId: tid,
+        questions,
+        autoClose: false,
+        onEnd: (correct, total, meta) => {
+          localStorage.removeItem("hg_active_set");
+          const categoryId = getQuizCategoryId(questions);
+          const compositeSetId = `${tid}::${requestedSetId}`;
+          try {
+            window.dispatchEvent(new CustomEvent("hg:quizReviewCompleted", { detail: {
+              quizId: compositeSetId,
+              targetId: tid,
+              placeId: place ? tid : null,
+              setId: requestedSetId,
+              domain: categoryId,
+              categoryId,
+              questionIds: Array.from(wantedIds),
+              correct,
+              total,
+              correctAnswers: Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [],
+              answers: Array.isArray(meta?.answers) ? meta.answers : []
+            }}));
+          } catch {}
+
+          closeQuiz();
+          setTimeout(() => {
+            openQuizSummary({
+              title: person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")),
+              lead: "Repetisjon fullført",
+              meta: `Score: ${correct}/${total} · Ingen nye poeng`,
+              primaryText: tt("ui.quiz.done", "Ferdig"),
+              onPrimary: () => {},
+              secondaryText: "",
+              onSecondary: null
+            });
+          }, 180);
+        }
+      });
+      return true;
+    } catch (error) {
+      dwarn("startReview crashed:", error);
+      API.showToast("Kunne ikke starte repetisjonen");
+      return false;
     }
   };
 
