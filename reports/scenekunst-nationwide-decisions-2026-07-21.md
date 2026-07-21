@@ -11,6 +11,7 @@ Generert: 2026-07-21T09:58:15.881Z
 - Regenerering av `places_index.json`: `pass`
 - Places-kontroll: `pass`
 - Kategoriaudit: `pass`
+- Resync mot `main` etter coordinate-batch 123: `pass`
 
 ## Flyttes
 
