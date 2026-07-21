@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "folkets_hus_oslo",
+  "placeFile": "data/places/politikk/oslo/places_politikk.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9154962361718,
+    "lon": 10.749625822632467,
+    "r": 90,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 112233121 – Folkets hus",
+    "coordType": "building_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype building/office; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Folkets Hus i Oslo",
+    "resolvedIdentity": "Folkets Hus i Oslo som arbeiderbevegelsens institusjonsbygg",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett unikt eller semantisk entydig eksakt navngitt fysisk objekt i forhåndsdefinert lokal scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Folkets hus",
+      "sourceUrl": "https://www.openstreetmap.org/way/112233121",
+      "sourceObjectId": "osm-way:112233121",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype building/office og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype building/office; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112233121",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112233121",
+      "lat": 59.9154962361718,
+      "lon": 10.749625822632467,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9154962361718,
+      "lon": 10.749625822632467,
+      "coordRole": "building_center",
+      "sourceObjectId": "osm-way:112233121",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype building/office; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  ]
+}

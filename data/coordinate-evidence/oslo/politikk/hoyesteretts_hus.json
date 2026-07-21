@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hoyesteretts_hus",
+  "placeFile": "data/places/politikk/oslo/places_politikk.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91453018213708,
+    "lon": 10.744445291246665,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 65071968 – Høyesterett",
+    "coordType": "building_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Høyesteretts hus",
+    "resolvedIdentity": "Høyesteretts hus som bygning for Norges øverste domstol",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett unikt eller semantisk entydig eksakt navngitt fysisk objekt i forhåndsdefinert lokal scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Høyesterett",
+      "sourceUrl": "https://www.openstreetmap.org/way/65071968",
+      "sourceObjectId": "osm-way:65071968",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype amenity/courthouse og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:65071968",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:65071968",
+      "lat": 59.91453018213708,
+      "lon": 10.744445291246665,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91453018213708,
+      "lon": 10.744445291246665,
+      "coordRole": "building_center",
+      "sourceObjectId": "osm-way:65071968",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  ]
+}

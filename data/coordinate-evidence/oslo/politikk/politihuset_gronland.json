@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "politihuset_gronland",
+  "placeFile": "data/places/politikk/oslo/places_politikk.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.910898221558305,
+    "lon": 10.771105828371049,
+    "r": 140,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 557060199 – Grønland politistasjon",
+    "coordType": "building_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/police; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Politihuset på Grønland",
+    "resolvedIdentity": "Politihuset på Grønland som politi- og beredskapsinstitusjon",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett unikt eksakt navngitt fysisk objekt i forhåndsdefinert lokal scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Grønland politistasjon",
+      "sourceUrl": "https://www.openstreetmap.org/way/557060199",
+      "sourceObjectId": "osm-way:557060199",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype amenity/police og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/police; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557060199",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557060199",
+      "lat": 59.910898221558305,
+      "lon": 10.771105828371049,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.910898221558305,
+      "lon": 10.771105828371049,
+      "coordRole": "building_center",
+      "sourceObjectId": "osm-way:557060199",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/police; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "youngstorget",
+  "placeFile": "data/places/politikk/oslo/places_politikk.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9148777657128,
+    "lon": 10.748995479003364,
+    "r": 150,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 12773689 – Youngstorget",
+    "coordType": "square_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype highway/pedestrian; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Youngstorget",
+    "resolvedIdentity": "Youngstorget som fysisk torg og offentlig byrom",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "square",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett unikt eller semantisk entydig eksakt navngitt fysisk objekt i forhåndsdefinert lokal scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Youngstorget",
+      "sourceUrl": "https://www.openstreetmap.org/relation/12773689",
+      "sourceObjectId": "osm-relation:12773689",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype highway/pedestrian og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype highway/pedestrian; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12773689",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12773689",
+      "lat": 59.9148777657128,
+      "lon": 10.748995479003364,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9148777657128,
+      "lon": 10.748995479003364,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:12773689",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype highway/pedestrian; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
+  ]
+}
