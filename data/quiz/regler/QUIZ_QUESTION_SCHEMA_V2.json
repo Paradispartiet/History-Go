@@ -1,0 +1,80 @@
+{
+  "version": "2.0",
+  "status": "canonical",
+  "purpose": "Teknisk feltkontrakt for quizspørsmål. Innholdsreglene ligger kun i QUIZ_STANDARD_CANONICAL_V2.md.",
+  "required_fields": [
+    "id",
+    "quiz_id",
+    "categoryId",
+    "targetId",
+    "question_scope",
+    "question",
+    "options",
+    "answer",
+    "answerIndex",
+    "knowledge",
+    "difficulty",
+    "question_type",
+    "emne_id",
+    "source"
+  ],
+  "target_fields": {
+    "place_question": ["placeId", "targetId"],
+    "person_question": ["personId", "targetId"],
+    "nature_question": ["natureId", "targetId"]
+  },
+  "question_type_values": [
+    "fact",
+    "context",
+    "analysis",
+    "concept",
+    "observation",
+    "comparison"
+  ],
+  "content_classification": {
+    "fact": "Konkret, verifiserbar opplysning om person, tid, verk, hendelse, funksjon, objekt, art, teknikk eller synlig spor.",
+    "context": "Årsak, utvikling, konsekvens eller sammenheng mellom konkrete opplysninger.",
+    "analysis": "Steds- eller faglig analyse som bygger på en dokumentert situasjon.",
+    "concept": "Et nødvendig fagbegrep brukt på en konkret situasjon, ikke en emneetikett i spørsmålsform.",
+    "observation": "Verifiserbar observasjon som kan gjøres ved stedet eller objektet.",
+    "comparison": "Sammenligning med eksplisitt og relevant sammenligningsgrunnlag."
+  },
+  "field_roles": {
+    "question": "Det spilleren faktisk skal løse.",
+    "options": "Plausible alternativer på samme faglige og språklige nivå.",
+    "knowledge": "Forklaring, kontekst og faglig fordypning som ikke bare gjentar svaret.",
+    "emne_id": "Primær faglig organisering. Skal finnes i kategoriens emnefil.",
+    "related_emner": "Sekundære faglige koblinger.",
+    "core_concepts": "Sentrale faguttrykk som spørsmålet eller forklaringen faktisk bruker.",
+    "concept_focus": "Begreper spilleren særlig skal forstå.",
+    "method_id": "Relevant faglig metode når den faktisk brukes.",
+    "source": "Konkrete kilder eller kilde-ID-er for synlige påstander.",
+    "source_origin": "external, mixed eller observation. internal_only er ikke tillatt for synlige faktapåstander.",
+    "claim_basis": "Den konkrete påstanden eller observasjonen spørsmålet bygger på.",
+    "guidance_basis": "Fagfilene som hjalp med organisering, ikke med å dikte faktapåstanden."
+  },
+  "recommended_fields": [
+    "year",
+    "epoke_id",
+    "epoke_domain",
+    "related_emner",
+    "core_concepts",
+    "concept_focus",
+    "method_id",
+    "tags",
+    "source_origin",
+    "claim_basis",
+    "guidance_basis"
+  ],
+  "array_rules": {
+    "options_min": 3,
+    "options_max": 4,
+    "answer_must_equal_option": true,
+    "answer_index_must_match_answer": true
+  },
+  "authority": {
+    "content_standard": "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md",
+    "category_profiles": "data/fag/fag_manifest.json",
+    "registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json"
+  }
+}
