@@ -9,10 +9,11 @@
   "runtime": {
     "currentCaptureModel": "../../js/knowledgeV2.js",
     "quizMemoryCompatibilityLayer": "../../js/quizKnowledgeMemory.js",
+    "quizMemoryPageBridge": "../../js/knowledgeMemoryPageBridge.js",
     "currentPageModel": "../../js/knowledgePage.js",
     "quizMemoryStorageKey": "hg_knowledge_memory_v1",
-    "migrationStatus": "v3_quiz_bundle_compatibility_active",
-    "currentBehavior": "Quizviseren beholdes. Når en quiz eller et sett er fullført, bygger kompatibilitetslaget ett samlet kunnskapsbundle fra spørsmål, knowledge, trivia, emner, begreper, kilder og eventuelle toppnivåbanker. Sluttoppsummeringen får en inngang til kunnskapspopupen.",
+    "migrationStatus": "v3_quiz_bundle_and_knowledge_page_read_model_active",
+    "currentBehavior": "Quizviseren beholdes. Når en quiz eller et sett er fullført, bygger kompatibilitetslaget ett samlet kunnskapsbundle fra spørsmål, knowledge, trivia, emner, begreper, kilder og eventuelle toppnivåbanker. Sluttoppsummeringen får en inngang til kunnskapspopupen, og Knowledge-siden leser samme bundle som en førsteklasses kilde i fag, emner, begreper, søk og et eget quizminnekammer.",
     "evidenceModel": {
       "collected": "Kunnskapen er hentet fra den fullførte quizfila og lagt i minnekammeret.",
       "presented": "Kunnskapspopupen er åpnet.",
@@ -21,11 +22,11 @@
       "needs_review": "Spørsmålet ble besvart feil og kunnskapen er lagt til repetisjon."
     },
     "nextRuntimeRequirements": [
-      "Render hg_knowledge_memory_v1 as a first-class source on the full Knowledge page.",
       "Migrate useful legacy knowledge_universe and trivia_universe entries into compatible memory nodes without deleting the original stores.",
       "Use stable canonical knowledge_unit_id, concept_id, term_id and story_id when future quiz files provide them.",
-      "Keep quiz-file source provenance and never flatten stories, fun facts, concepts and assessment evidence into one text list."
+      "Keep quiz-file source provenance and never flatten stories, fun facts, concepts and assessment evidence into one text list.",
+      "Add repetition actions that can launch targeted quiz sets from needs_review memory units."
     ]
   },
-  "canonicalPrinciple": "Emner organiserer faget, begreper gir presist språk, knowledge units bærer innholdet, historier binder innholdet sammen, steder og personer gir kontekst, quiz samler kunnskapen og prøver brukeren, og Knowledge-minnekammeret skiller mellom samlet, presentert, lest, mestret og til repetisjon."
+  "canonicalPrinciple": "Emner organiserer faget, begrepene gir presist språk, knowledge units bærer innholdet, historiene binder innholdet sammen, steder og personer gir kontekst, quiz samler kunnskapen og prøver brukeren, og Knowledge-minnekammeret skiller mellom samlet, presentert, lest, mestret og til repetisjon."
 }
