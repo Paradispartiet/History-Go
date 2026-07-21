@@ -1,251 +1,54 @@
 {
-  "id": "bislett_stadion_quiz_1",
-  "quiz_id": "sport_bislett_stadion_set_1_q1",
+  "version": "2.0",
+  "status": "canonical_category_profile",
+  "type": "category_quiz_profile",
   "categoryId": "sport",
-  "subject_id": "sport",
-  "placeId": "bislett_stadion",
-  "personId": "",
-  "natureId": "",
-  "targetId": "bislett_stadion",
-  "question_scope": "place",
-  "set_number": 1,
-  "set_guidance_id": "1",
-  "set_guidance_name": "grunnfakta_arena_klubb_sted",
-  "question": "Hva gjør Bislett Stadion særlig relevant som sport- og Groundhopper-sted?",
-  "options": [
-    "Det er en dokumentert idrettsarena knyttet til stadionminne, konkurranser, rekorder, publikum og stedlig idrettshistorie",
-    "Det er et rent finansielt hovedkontor der kapitalmarked og børsfunksjon er hovedpoenget",
-    "Det er et våtmarksområde der fugleliv, vannspeil og habitat er hovedpoenget"
-  ],
-  "answer": "Det er en dokumentert idrettsarena knyttet til stadionminne, konkurranser, rekorder, publikum og stedlig idrettshistorie",
-  "answerIndex": 0,
-  "dimension": "sport",
-  "topic": "Arena, stadionminne og Groundhopper",
-  "knowledge": "Bislett Stadion brukes her som eksempel på sportens stedlige og historiske form i byen: et sted der arena, konkurranse, rekorder, publikum, kroppslig praksis og idrettshukommelse kan undersøkes gjennom dokumenterte kilder.",
-  "knowledge_payload": {
-    "summary": "Bislett er både konkurransearena og et sted der idrettshistorie, rekorder, publikum og stadionminne møtes.",
-    "explanation": "Arenaen kan leses gjennom det som har skjedd der, hvordan den brukes, hvilke prestasjoner som er knyttet til den, og hvordan disse hendelsene huskes.",
-    "why_it_matters": "Dette viser hvordan en idrettsarena også kan fungere som et historisk minnested og som del av brukerens Groundhopper-samling.",
-    "term_definitions": [
-      {
-        "term_id": "term_sport_stadionminne",
-        "label": "stadionminne",
-        "definition": "Kollektiv eller dokumentert hukommelse knyttet til hendelser, prestasjoner, personer og publikum ved en idrettsarena."
-      },
-      {
-        "term_id": "term_sport_groundhopper",
-        "label": "Groundhopper",
-        "definition": "En person som oppsøker og samler besøk ved idrettsarenaer som en egen praksis."
-      }
-    ],
-    "story_fragment": "Bislett inngår i historien om hvordan moderne idrettsarenaer har blitt steder for både konkurranse, folkeliv og kollektiv hukommelse.",
-    "relations": [
-      "arena_til_konkurranse",
-      "prestasjon_til_rekord",
-      "hendelse_til_stadionminne"
-    ],
-    "source_note": "Kunnskapsinnholdet skal verifiseres med konkrete arena-, kommune-, arkiv-, idrettshistoriske eller statistiske kilder."
+  "title": "Sport",
+  "governance": {
+    "production_standard": "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md",
+    "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
+    "authority": "category_content_only",
+    "may_override_global_rules": false
   },
-  "trivia": [],
-  "difficulty": 1,
-  "question_type": "fact",
-  "question_layer": "fakta_sted_sport",
-  "year": null,
-  "epoke_id": "moderne_idrettsarena_og_stadionminne",
-  "epoke_domain": "sport",
-  "emne_id": "em_sport_stadion_minne",
-  "emne_ids": [
-    "em_sport_stadion_minne",
-    "em_sport_idrettsarena_sted",
-    "em_sport_groundhopper_stedsbesok",
-    "em_sport_stedlig_idrettshukommelse"
+  "required_emne_prefix": "em_sport_",
+  "content_priorities": [
+    "utøver, lag, klubb og konkurranse",
+    "resultater, rekorder og historiske hendelser",
+    "arena, anlegg, regler og utstyr",
+    "forbund, organisering og profesjonalisering",
+    "supporterkultur, identitet, ritual og samfunnsrolle"
   ],
-  "related_emner": [
-    "em_sport_idrettsarena_sted",
-    "em_sport_groundhopper_stedsbesok",
-    "em_sport_stedlig_idrettshukommelse"
-  ],
-  "primary_knowledge_unit_id": "ku_sport_bislett_stadionminne",
-  "knowledge_unit_ids": [
-    "ku_sport_bislett_stadionminne",
-    "ku_sport_bislett_groundhopper_arena"
-  ],
-  "concept_ids": [
-    "concept_sport_idrettsarena",
-    "concept_sport_stadionminne",
-    "concept_sport_groundhopper",
-    "concept_sport_stedlig_idrettshukommelse"
-  ],
-  "term_ids": [
-    "term_sport_stadionminne",
-    "term_sport_groundhopper",
-    "term_sport_idrettsarena"
-  ],
-  "story_ids": [
-    "story_sport_oslo_idrettsarenaer_og_minner"
-  ],
-  "learning_objective_id": "lo_sport_forklare_stadion_som_arena_og_minnested",
-  "evidence_type": "explain",
-  "feedback_basis": {
-    "knowledge_unit_id": "ku_sport_bislett_stadionminne",
-    "claim_field": "canonical_claim",
-    "rule": "Kunnskapsforklaringen som vises etter svaret skal være en presis avledning av den kanoniske kunnskapsenheten."
-  },
-  "delivery_surfaces": [
-    "quiz",
-    "place_page",
-    "emne_page",
-    "story_page",
-    "knowledge_page"
-  ],
-  "quiz_evidence_policy": {
-    "knowledge_presented_creates": "encountered",
-    "continue_after_feedback_creates": "read",
-    "wrong_answer_creates_mastery": false,
-    "correct_answer_mastery_from_evidence_type": true,
-    "mark_wrong_answer_for_review": true
-  },
-  "core_concepts": [
-    "stadion",
-    "arena",
+  "essential_concepts": [
+    "nasjonalarena",
+    "klubbidentitet",
+    "supporterkultur",
+    "taktikk",
     "rekord",
-    "publikum",
-    "groundhopper"
+    "profesjonalisering",
+    "ritual",
+    "idrettsinstitusjon"
   ],
-  "concept_focus": [
-    "arena",
-    "stadionminne"
+  "preferred_source_types": [
+    "forbunds- og klubbarkiv",
+    "resultatdatabaser og konkurransedokumentasjon",
+    "idrettshistorie og museumskilder",
+    "arena- og arrangementsdokumentasjon"
   ],
-  "learning_paths": [
-    "fra sted til arena",
-    "fra stadion til idrettshukommelse",
-    "fra kampdag og prestasjon til Groundhopper-samling"
+  "category_rules": [
+    "Start med dokumentert stoff fra kategorien, ikke med emneetiketten.",
+    "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata.",
+    "Bruk bare emne_id som finnes i kategoriens emnefil.",
+    "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."
   ],
-  "tags": [
-    "sport",
-    "sted",
-    "arena",
-    "stadion",
-    "groundhopper",
-    "rekord",
-    "publikum"
-  ],
-  "required_tags": [
-    "external_source",
-    "sport_anchor",
-    "em_sport"
-  ],
-  "source": [
-    {
-      "type": "official_arena_club_or_archive_source",
-      "name": "Bislett Stadion / Oslo kommune / Bislettalliansen / Oslo byarkiv / tilsvarende offisiell arena-, klubb-, kommune- eller arkivkilde",
-      "role": "verifiserer stedets funksjon som idrettsarena, stadion, konkurransested, rekordsted eller Groundhopper-relevant sportsted",
-      "required": true
-    },
-    {
-      "type": "sport_history_or_statistics_source",
-      "name": "idrettshistorisk, statistisk, friidrettshistorisk, klubbhistorisk, arrangements-, avis-, museums- eller lokalhistorisk kilde",
-      "role": "verifiserer stedets betydning for konkurranser, rekorder, publikum, kampdag, idrettskultur, prestasjoner eller stedlig idrettshukommelse",
-      "required": true
-    }
-  ],
-  "related_emners": [
-    "em_sport_idrettsarena_sted",
-    "em_sport_groundhopper_stedsbesok",
-    "em_sport_stedlig_idrettshukommelse"
-  ],
-  "source_origin": "mixed",
-  "claim_basis": "Ekstern arena-, kommune-, arkiv-, idrettshistorisk eller statistisk kilde skal verifisere at Bislett Stadion fungerer som idrettsarena og sportsted knyttet til stadionminne, konkurranser, rekorder, publikum og stedlig idrettshistorie.",
-  "guidance_basis": {
-    "fagkart_category_id": "arenaer_steder_groundhopper",
-    "topic_hook": "stadion_som_minne",
-    "emne_id": "em_sport_stadion_minne",
-    "method_id": "met_sport_arenaanalyse",
-    "canonical_files_used_as_guidance_only": [
-      "fagkart_sport_canonical_v4_5.json",
-      "methods_sport_canonical_v4_5.json",
-      "emner_sport_canonical_v4_5.json",
-      "emnemapping_sport_canonical_v4_5.json",
-      "sportpensum_canonical_v4_5.json",
-      "quiz_generator_rules_sport_v5_3_knowledge_coherence_patch.json",
-      "../../knowledge/knowledge_system_policy_v1.json",
-      "../../quiz/quiz_knowledge_delivery_contract_v1.json"
-    ]
-  },
-  "method_id": "met_sport_arenaanalyse",
-  "sport_anchor_type": "stadium",
-  "source_note": "Spørsmålet skal bygges fra ekstern arena-, kommune-, arkiv-, idrettshistorisk, statistisk, arrangements-, avis- eller lokalhistorisk kilde; fagfilene styrer metode, emne, kunnskapskobling og spørsmålsflate.",
-  "external_source_ratio_target": 0.85,
-  "internal_file_only_allowed": false,
-  "requires_sport_anchor": true,
-  "requires_external_claim_basis": true,
-  "requires_arena_club_rule_body_or_play_anchor": true,
-  "requires_documented_sport_context": true,
-  "groundhopper_relevant": true,
-  "groundhopper_profile_feed": true,
-  "groundhopper_unlock_types": [
-    "arena_minne",
-    "historiske_spillere",
-    "kampdag_spor",
-    "klubbhistorie",
-    "badges"
-  ],
-  "generator_guardrails": {
-    "do_not_generate_from_emne_label_only": true,
-    "do_not_generate_from_method_label_only": true,
-    "do_not_use_non_sport_emne_id": true,
-    "required_emne_prefix": "em_sport_",
-    "blocked_emne_prefixes": [
-      "em_by_",
-      "em_his_",
-      "em_kunst_",
-      "em_lit_",
-      "em_media_",
-      "em_musikk_",
-      "em_pop_",
-      "em_pol_",
-      "em_naering_",
-      "em_natur_",
-      "em_psy_",
-      "em_sub_",
-      "em_vit_"
-    ],
-    "arena_club_rule_body_play_first_then_theory": true,
-    "source_first": true,
-    "avoid_generic_sport_questions": true,
-    "avoid_pure_result_trivia": true,
-    "avoid_personal_supporter_preference": true,
-    "avoid_vague_sport_angle_without_arena_club_rule_performance_play_or_source": true,
-    "set_count_is_relative_to_scope_significance_and_sources": true,
-    "eight_sets_are_ceiling_not_default": true,
-    "filler_sets_forbidden": true,
-    "quiz_is_knowledge_delivery_and_assessment_surface": true,
-    "knowledge_feedback_required_after_answer": true,
-    "reading_and_mastery_are_separate": true,
-    "tags_are_not_concept_ids": true,
-    "strict_knowledge_unit_ids_required": true
-  },
-  "validation": {
-    "emne_id_exists_in_sport_structure": true,
-    "method_id_exists_in_methods_sport": true,
-    "mapping_exists_in_emnemapping_sport": true,
-    "category_matches_badge": true,
-    "schema_extends_generic_supersetQUIZMAL": true,
-    "set_guidance_id_exists_in_generator_rules": true,
-    "set_count_matches_scope_assessment": true,
-    "eight_sets_treated_as_ceiling_not_default": true,
-    "primary_knowledge_unit_id_exists": true,
-    "concept_ids_exist": true,
-    "term_ids_exist": true,
-    "knowledge_payload_matches_feedback_basis": true,
-    "wrong_answer_does_not_create_mastery": true
-  },
-  "template_notes": {
-    "template_role": "sport_superset_quiz_learning_and_assessment_object",
-    "generic_template_source": "supersetQUIZMAL (10).json",
-    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizzer skal fylle kilder med konkrete kilder og bruke quizen som et reelt læringsrom med kunnskapsforklaring, samtidig som alt kobles til stabile kunnskapsenheter.",
-    "set_scope_policy": "Quizroten skal oppgi selected_set_count, scope_tier, set_count_basis, selected_set_guidance_ids, omitted_set_guidance_ids og source_coverage_note. Antall sett skal følge objektets omfang, betydning og kildedekning; åtte sett er fullmodell, ikke standardkrav.",
-    "knowledge_policy": "Quiz samler, formidler og prøver kunnskapen. Når forklaringen vises og brukeren går videre, kan stoffet registreres som lest. Riktig svar registrerer mestring i henhold til evidence_type.",
-    "next_use": "Bruk som grunnmal for sportquiz-spørsmål. Les først hele sportfagpakken, velg riktig omfangsnivå, definer kunnskapsenheter, begreper, termer og historier, og bestem deretter sett og spørsmål."
+  "example_question": {
+    "question": "Hva kalles en arena som har en fast, nasjonal rolle for landslag og store finaler?",
+    "options": ["Nasjonalarena", "Klubbakademi", "Treningsfelt"],
+    "answer": "Nasjonalarena",
+    "question_type": "concept",
+    "knowledge": "En nasjonalarena er knyttet til landslag, forbund og store nasjonale arrangementer, ikke bare til én lokal klubb.",
+    "emne_id": "em_sport_<velg_gyldig_emne>",
+    "source": ["<konkret_kilde>"],
+    "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
   }
 }
