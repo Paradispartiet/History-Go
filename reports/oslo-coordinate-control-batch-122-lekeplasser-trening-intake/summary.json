@@ -1,0 +1,1267 @@
+{
+  "version": "2026-07-21",
+  "batch": 122,
+  "sourceFile": "data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+  "sourceRecordCount": 16,
+  "alreadyControlledCount": 1,
+  "pendingCount": 15,
+  "alreadyControlled": [
+    {
+      "id": "korketrekkeren",
+      "name": "Korketrekkeren"
+    }
+  ],
+  "groups": {
+    "lekeplass": [
+      "lekeplass_sofienbergparken",
+      "lekeplass_st_hanshaugen",
+      "lekeplass_birkelunden",
+      "lekeplass_olaf_ryes_plass",
+      "lekeplass_botsparken",
+      "lekeplass_stensparken",
+      "lekeplass_kirsebarlunden",
+      "lekeplass_snippen",
+      "lekeplass_frognerborgen",
+      "lekeplass_kampen_park"
+    ],
+    "aktivitetspark": [
+      "aktivitet_rudolf_nilsens_plass"
+    ],
+    "treningssted": [
+      "treningssted_torshovdalen",
+      "treningssted_kampen_park",
+      "treningssted_sognsvann",
+      "treningssted_skur13"
+    ]
+  },
+  "resultCounts": {
+    "unique_exact_semantic_candidate": 2,
+    "exact_name_wrong_or_unclear_type": 8,
+    "no_exact_semantic_candidate": 5
+  },
+  "uniqueExactSemanticCandidates": [
+    "lekeplass_sofienbergparken",
+    "lekeplass_kirsebarlunden"
+  ],
+  "overlapReviewRequired": [
+    "lekeplass_sofienbergparken",
+    "lekeplass_st_hanshaugen",
+    "lekeplass_birkelunden",
+    "lekeplass_olaf_ryes_plass",
+    "lekeplass_botsparken",
+    "lekeplass_stensparken",
+    "lekeplass_kirsebarlunden",
+    "lekeplass_snippen",
+    "lekeplass_frognerborgen",
+    "lekeplass_kampen_park",
+    "treningssted_torshovdalen",
+    "treningssted_kampen_park",
+    "treningssted_skur13"
+  ],
+  "noExactCandidate": [
+    "lekeplass_frognerborgen",
+    "treningssted_torshovdalen",
+    "treningssted_kampen_park",
+    "treningssted_sognsvann",
+    "treningssted_skur13"
+  ],
+  "inventory": [
+    {
+      "sourceOrder": 1,
+      "id": "lekeplass_sofienbergparken",
+      "name": "Sofienbergparken lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9229,
+        "lon": 10.763
+      },
+      "currentRadius": 120,
+      "candidateStatus": "unique_exact_semantic_candidate",
+      "queryVariants": [
+        "Sofienbergparken lekeplass, Oslo, Norway",
+        "Sofienbergparken, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:763180334",
+          "osmType": "way",
+          "osmId": 763180334,
+          "type": "playground",
+          "displayName": "Sofienbergparken lekeplass, Helgesens gate, Rodeløkka, Grünerløkka, Oslo, 0558, Norge",
+          "lat": 59.9229282,
+          "lon": 10.7655172,
+          "geojsonType": "Polygon",
+          "semanticFit": true
+        },
+        {
+          "sourceObjectId": "osm-way:3235895",
+          "osmType": "way",
+          "osmId": 3235895,
+          "type": "park",
+          "displayName": "Sofienbergparken, Grünerløkka, Oslo, Norge",
+          "lat": 59.9232203,
+          "lon": 10.7637958,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:7131583954",
+          "osmType": "node",
+          "osmId": 7131583954,
+          "type": "picnic_site",
+          "displayName": "Sofienbergparken, Helgesens gate, Sofienberg, Grünerløkka, Oslo, 0553, Norge",
+          "lat": 59.9231358,
+          "lon": 10.7629364,
+          "geojsonType": "Point",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:6373812492",
+          "osmType": "node",
+          "osmId": 6373812492,
+          "type": "bus_stop",
+          "displayName": "Sofienbergparken, Toftes gate, Grünerløkka, Oslo, 0552, Norge",
+          "lat": 59.923184,
+          "lon": 10.761119,
+          "geojsonType": "Point",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "sofienbergparken_subkultur",
+          "name": "Sofienbergparken",
+          "category": "subkultur",
+          "distanceM": 45.9,
+          "sourceFile": "places/subkultur/oslo/places_subkultur/sofienbergparken_subkultur.json"
+        },
+        {
+          "id": "sofienberg_kirke",
+          "name": "Sofienberg kirke",
+          "category": "kunst",
+          "distanceM": 182,
+          "sourceFile": "places/by/oslo/sofienberg_kirke.json"
+        },
+        {
+          "id": "mir_grunerlokka_lufthavn",
+          "name": "MIR / Grünerløkka Lufthavn",
+          "category": "subkultur",
+          "distanceM": 185.7,
+          "sourceFile": "places/subkultur/oslo/places_subkultur/mir_grunerlokka_lufthavn.json"
+        },
+        {
+          "id": "olaf_ryes_plass",
+          "name": "Olaf Ryes plass",
+          "category": "by",
+          "distanceM": 229.6,
+          "sourceFile": "places/by/oslo/places/olaf_ryes_plass.json"
+        },
+        {
+          "id": "arkitektur_og_designhogskolen",
+          "name": "Arkitektur- og designhøgskolen i Oslo",
+          "category": "vitenskap",
+          "distanceM": 230.9,
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/arkitektur_og_designhogskolen.json"
+        },
+        {
+          "id": "lekeplass_olaf_ryes_plass",
+          "name": "Olaf Ryes plass lekeplass",
+          "category": "sport",
+          "distanceM": 249.4,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_olaf_ryes_plass.json"
+        },
+        {
+          "id": "hauges_minde",
+          "name": "Hauges Minde",
+          "category": "kunst",
+          "distanceM": 277.7,
+          "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03.json"
+        },
+        {
+          "id": "deichman_grunerlokka",
+          "name": "Deichman Grünerløkka",
+          "category": "litteratur",
+          "distanceM": 281.1,
+          "sourceFile": "places/litteratur/oslo/places_litteratur/deichman_grunerlokka.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "sofienbergparken_subkultur",
+          "name": "Sofienbergparken",
+          "category": "subkultur",
+          "sourceFile": "places/subkultur/oslo/places_subkultur/sofienbergparken_subkultur.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 2,
+      "id": "lekeplass_st_hanshaugen",
+      "name": "St. Hanshaugen lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9234,
+        "lon": 10.7463
+      },
+      "currentRadius": 120,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "St. Hanshaugen lekeplass, Oslo, Norway",
+        "St. Hanshaugen, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-relation:1279951",
+          "osmType": "relation",
+          "osmId": 1279951,
+          "type": "administrative",
+          "displayName": "St. Hanshaugen, Oslo, Norge",
+          "lat": 59.9279499,
+          "lon": 10.7389583,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-way:3426697",
+          "osmType": "way",
+          "osmId": 3426697,
+          "type": "park",
+          "displayName": "St. Hanshaugen, Oslo, Norge",
+          "lat": 59.9272597,
+          "lon": 10.741115,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:1234676198",
+          "osmType": "node",
+          "osmId": 1234676198,
+          "type": "suburb",
+          "displayName": "St. Hanshaugen, Oslo, 0171, Norge",
+          "lat": 59.9261982,
+          "lon": 10.7400423,
+          "geojsonType": "Point",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:8044979103",
+          "osmType": "node",
+          "osmId": 8044979103,
+          "type": "peak",
+          "displayName": "St. Hanshaugen, Oslo, 0171, Norge",
+          "lat": 59.9273572,
+          "lon": 10.7408014,
+          "geojsonType": "Point",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "gamle_aker_kirke",
+          "name": "Gamle Aker kirke",
+          "category": "religion",
+          "distanceM": 51.1,
+          "sourceFile": "places/historie/oslo/places_historie/gamle_aker_kirke.json"
+        },
+        {
+          "id": "damstredet_telthusbakken",
+          "name": "Damstredet og Telthusbakken",
+          "category": "by",
+          "distanceM": 65.2,
+          "sourceFile": "places/by/oslo/damstredet_telthusbakken.json"
+        },
+        {
+          "id": "var_frelsers_gravlund",
+          "name": "Vår Frelsers gravlund",
+          "category": "historie",
+          "distanceM": 262.6,
+          "sourceFile": "places/historie/oslo/places_historie/var_frelsers_gravlund.json"
+        },
+        {
+          "id": "vulkan_industriomrade",
+          "name": "Vulkan industriområde",
+          "category": "by",
+          "distanceM": 285.9,
+          "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/vulkan_industriomrade.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "st_hanshaugen_park",
+          "name": "St. Hanshaugen park",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/st_hanshaugen_park.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 3,
+      "id": "lekeplass_birkelunden",
+      "name": "Birkelunden lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9256,
+        "lon": 10.7574
+      },
+      "currentRadius": 110,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "Birkelunden lekeplass, Oslo, Norway",
+        "Birkelunden, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:3236549",
+          "osmType": "way",
+          "osmId": 3236549,
+          "type": "park",
+          "displayName": "Birkelunden, Dælenenga, Grünerløkka, Oslo, Norge",
+          "lat": 59.9263514,
+          "lon": 10.7601971,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "paulus_kirke",
+          "name": "Paulus kirke",
+          "category": "religion",
+          "distanceM": 88.6,
+          "sourceFile": "places/historie/oslo/places_historie/paulus_kirke.json"
+        },
+        {
+          "id": "christiania_seildugsfabrik",
+          "name": "Christiania Seildugsfabrik",
+          "category": "naeringsliv",
+          "distanceM": 150.1,
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/christiania_seildugsfabrik.json"
+        },
+        {
+          "id": "birkelunden",
+          "name": "Birkelunden",
+          "category": "by",
+          "distanceM": 172.9,
+          "sourceFile": "places/by/oslo/places/birkelunden.json"
+        },
+        {
+          "id": "grunerlokka_helgesens_tm",
+          "name": "Grünerløkka – Helgesens / Thorvald Meyers",
+          "category": "by",
+          "distanceM": 211.6,
+          "sourceFile": "places/by/oslo/places/grunerlokka_helgesens_tm.json"
+        },
+        {
+          "id": "lekeplass_olaf_ryes_plass",
+          "name": "Olaf Ryes plass lekeplass",
+          "category": "sport",
+          "distanceM": 216.9,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_olaf_ryes_plass.json"
+        },
+        {
+          "id": "markveien",
+          "name": "Markveien",
+          "category": "by",
+          "distanceM": 244.7,
+          "sourceFile": "places/by/oslo/places/markveien.json"
+        },
+        {
+          "id": "purenkel_galleri",
+          "name": "Purenkel galleri",
+          "category": "kunst",
+          "distanceM": 258.5,
+          "sourceFile": "places/kunst/oslo/places_kunst/purenkel_galleri.json"
+        },
+        {
+          "id": "mir_grunerlokka_lufthavn",
+          "name": "MIR / Grünerløkka Lufthavn",
+          "category": "subkultur",
+          "distanceM": 279.3,
+          "sourceFile": "places/subkultur/oslo/places_subkultur/mir_grunerlokka_lufthavn.json"
+        },
+        {
+          "id": "arkitektur_og_designhogskolen",
+          "name": "Arkitektur- og designhøgskolen i Oslo",
+          "category": "vitenskap",
+          "distanceM": 279.7,
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/arkitektur_og_designhogskolen.json"
+        },
+        {
+          "id": "olaf_ryes_plass",
+          "name": "Olaf Ryes plass",
+          "category": "by",
+          "distanceM": 290.3,
+          "sourceFile": "places/by/oslo/places/olaf_ryes_plass.json"
+        },
+        {
+          "id": "kuba_parken",
+          "name": "Kuba-parken",
+          "category": "natur",
+          "distanceM": 292.8,
+          "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "birkelunden",
+          "name": "Birkelunden",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/birkelunden.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 4,
+      "id": "lekeplass_olaf_ryes_plass",
+      "name": "Olaf Ryes plass lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9238,
+        "lon": 10.7589
+      },
+      "currentRadius": 100,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "Olaf Ryes plass lekeplass, Oslo, Norway",
+        "Olaf Ryes plass, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:3236548",
+          "osmType": "way",
+          "osmId": 3236548,
+          "type": "park",
+          "displayName": "Olaf Ryes plass, Grünerløkka, Oslo, Norge",
+          "lat": 59.9228816,
+          "lon": 10.7582637,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-way:237581822",
+          "osmType": "way",
+          "osmId": 237581822,
+          "type": "platform",
+          "displayName": "Olaf Ryes plass, Thorvald Meyers gate, Grünerløkka, Oslo, 0552, Norge",
+          "lat": 59.9228559,
+          "lon": 10.7591454,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:1386598679",
+          "osmType": "node",
+          "osmId": 1386598679,
+          "type": "tram_stop",
+          "displayName": "Olaf Ryes plass, Thorvald Meyers gate, Grünerløkka, Oslo, 0552, Norge",
+          "lat": 59.9229375,
+          "lon": 10.7592513,
+          "geojsonType": "Point",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:13030778028",
+          "osmType": "node",
+          "osmId": 13030778028,
+          "type": "bus_stop",
+          "displayName": "Olaf Ryes plass, Thorvald Meyers gate, Grünerløkka, Oslo, 0552, Norge",
+          "lat": 59.922977,
+          "lon": 10.759284,
+          "geojsonType": "Point",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "arkitektur_og_designhogskolen",
+          "name": "Arkitektur- og designhøgskolen i Oslo",
+          "category": "vitenskap",
+          "distanceM": 66.7,
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/arkitektur_og_designhogskolen.json"
+        },
+        {
+          "id": "mir_grunerlokka_lufthavn",
+          "name": "MIR / Grünerløkka Lufthavn",
+          "category": "subkultur",
+          "distanceM": 67.9,
+          "sourceFile": "places/subkultur/oslo/places_subkultur/mir_grunerlokka_lufthavn.json"
+        },
+        {
+          "id": "grunerlokka_helgesens_tm",
+          "name": "Grünerløkka – Helgesens / Thorvald Meyers",
+          "category": "by",
+          "distanceM": 73.3,
+          "sourceFile": "places/by/oslo/places/grunerlokka_helgesens_tm.json"
+        },
+        {
+          "id": "olaf_ryes_plass",
+          "name": "Olaf Ryes plass",
+          "category": "by",
+          "distanceM": 77.8,
+          "sourceFile": "places/by/oslo/places/olaf_ryes_plass.json"
+        },
+        {
+          "id": "markveien",
+          "name": "Markveien",
+          "category": "by",
+          "distanceM": 99.6,
+          "sourceFile": "places/by/oslo/places/markveien.json"
+        },
+        {
+          "id": "purenkel_galleri",
+          "name": "Purenkel galleri",
+          "category": "kunst",
+          "distanceM": 163.2,
+          "sourceFile": "places/kunst/oslo/places_kunst/purenkel_galleri.json"
+        },
+        {
+          "id": "akerselva",
+          "name": "Akerselva",
+          "category": "by",
+          "distanceM": 172.8,
+          "sourceFile": "places/by/oslo/places/akerselva.json"
+        },
+        {
+          "id": "hauges_minde",
+          "name": "Hauges Minde",
+          "category": "kunst",
+          "distanceM": 173.7,
+          "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03.json"
+        },
+        {
+          "id": "sofienbergparken_subkultur",
+          "name": "Sofienbergparken",
+          "category": "subkultur",
+          "distanceM": 214.9,
+          "sourceFile": "places/subkultur/oslo/places_subkultur/sofienbergparken_subkultur.json"
+        },
+        {
+          "id": "lekeplass_birkelunden",
+          "name": "Birkelunden lekeplass",
+          "category": "sport",
+          "distanceM": 216.9,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_birkelunden.json"
+        },
+        {
+          "id": "lekeplass_sofienbergparken",
+          "name": "Sofienbergparken lekeplass",
+          "category": "sport",
+          "distanceM": 249.4,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_sofienbergparken.json"
+        },
+        {
+          "id": "christiania_seildugsfabrik",
+          "name": "Christiania Seildugsfabrik",
+          "category": "naeringsliv",
+          "distanceM": 287.8,
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/christiania_seildugsfabrik.json"
+        },
+        {
+          "id": "paulus_kirke",
+          "name": "Paulus kirke",
+          "category": "religion",
+          "distanceM": 289.1,
+          "sourceFile": "places/historie/oslo/places_historie/paulus_kirke.json"
+        },
+        {
+          "id": "birkelunden",
+          "name": "Birkelunden",
+          "category": "by",
+          "distanceM": 290.6,
+          "sourceFile": "places/by/oslo/places/birkelunden.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "olaf_ryes_plass",
+          "name": "Olaf Ryes plass",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/olaf_ryes_plass.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 5,
+      "id": "lekeplass_botsparken",
+      "name": "Botsparken lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9053,
+        "lon": 10.769
+      },
+      "currentRadius": 110,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "Botsparken lekeplass, Oslo, Norway",
+        "Botsparken, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-relation:7951543",
+          "osmType": "relation",
+          "osmId": 7951543,
+          "type": "park",
+          "displayName": "Botsparken, Gamle Oslo, Oslo, Norge",
+          "lat": 59.9094087,
+          "lon": 10.7695949,
+          "geojsonType": "MultiPolygon",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "gamlebyen_sport_og_fritid",
+          "name": "Gamlebyen Sport og Fritid",
+          "category": "subkultur",
+          "distanceM": 12.4,
+          "sourceFile": "places/subkultur/oslo/places_subkultur/gamlebyen_sport_og_fritid.json"
+        },
+        {
+          "id": "minneparken_gamlebyen",
+          "name": "Minneparken",
+          "category": "historie",
+          "distanceM": 96,
+          "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11.json"
+        },
+        {
+          "id": "oslo_ladegard",
+          "name": "Oslo ladegård",
+          "category": "historie",
+          "distanceM": 122.3,
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json"
+        },
+        {
+          "id": "gamlebyen_skole",
+          "name": "Gamlebyen skole",
+          "category": "vitenskap",
+          "distanceM": 216.7,
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/gamlebyen_skole.json"
+        },
+        {
+          "id": "clemenskirken_ruin_oslo",
+          "name": "Clemenskirkeruinen",
+          "category": "historie",
+          "distanceM": 217.5,
+          "sourceFile": "places/historie/oslo/places_historie/clemenskirken_ruin_oslo.json"
+        },
+        {
+          "id": "gamlebyen_kirke",
+          "name": "Gamlebyen kirke",
+          "category": "religion",
+          "distanceM": 242.7,
+          "sourceFile": "places/historie/oslo/places_historie/gamlebyen_kirke.json"
+        },
+        {
+          "id": "oslo_hospital",
+          "name": "Oslo hospital",
+          "category": "historie",
+          "distanceM": 246.3,
+          "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json"
+        },
+        {
+          "id": "hallvardskirken_oslo",
+          "name": "Hallvardskirken i middelalder-Oslo",
+          "category": "historie",
+          "distanceM": 289.1,
+          "sourceFile": "places/historie/norge/places_historie_norge_for_1500_batch2/hallvardskirken_oslo.json"
+        },
+        {
+          "id": "saxegarden",
+          "name": "Saxegården",
+          "category": "historie",
+          "distanceM": 292.8,
+          "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "botsparken",
+          "name": "Botsparken",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/botsparken.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 6,
+      "id": "lekeplass_stensparken",
+      "name": "Stensparken lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9268,
+        "lon": 10.7406
+      },
+      "currentRadius": 110,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "Stensparken lekeplass, Oslo, Norway",
+        "Stensparken, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:4218904",
+          "osmType": "way",
+          "osmId": 4218904,
+          "type": "park",
+          "displayName": "Stensparken, St. Hanshaugen, Oslo, Norge",
+          "lat": 59.9288206,
+          "lon": 10.7308255,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "st_hanshaugen_park",
+          "name": "St. Hanshaugen park",
+          "category": "by",
+          "distanceM": 71.3,
+          "sourceFile": "places/by/oslo/places/st_hanshaugen_park.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "stensparken",
+          "name": "Stensparken",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/stensparken.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 7,
+      "id": "lekeplass_kirsebarlunden",
+      "name": "Kirsebærlunden lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.916,
+        "lon": 10.7756
+      },
+      "currentRadius": 130,
+      "candidateStatus": "unique_exact_semantic_candidate",
+      "queryVariants": [
+        "Kirsebærlunden lekeplass, Oslo, Norway",
+        "Kirsebærlunden, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:1097943191",
+          "osmType": "way",
+          "osmId": 1097943191,
+          "type": "playground",
+          "displayName": "Kirsebærlunden lekeplass, Finnmarkgata, Normannsløkka, Kampen, Gamle Oslo, Oslo, 0577, Norge",
+          "lat": 59.9159415,
+          "lon": 10.7756227,
+          "geojsonType": "Polygon",
+          "semanticFit": true
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "toyen_torg",
+          "name": "Tøyen torg",
+          "category": "by",
+          "distanceM": 77.8,
+          "sourceFile": "places/by/oslo/places/toyen_torg.json"
+        },
+        {
+          "id": "naturhistorisk_museum",
+          "name": "Naturhistorisk museum",
+          "category": "vitenskap",
+          "distanceM": 158.2,
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/naturhistorisk_museum.json"
+        },
+        {
+          "id": "biblo_toyen",
+          "name": "Biblo Tøyen",
+          "category": "litteratur",
+          "distanceM": 175.8,
+          "sourceFile": "places/litteratur/oslo/places_litteratur/biblo_toyen.json"
+        },
+        {
+          "id": "botanisk_hage",
+          "name": "Botanisk hage",
+          "category": "vitenskap",
+          "distanceM": 212.4,
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/botanisk_hage.json"
+        },
+        {
+          "id": "lekeplass_kampen_park",
+          "name": "Kampen park lekeplass",
+          "category": "sport",
+          "distanceM": 231.8,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_kampen_park.json"
+        },
+        {
+          "id": "treningssted_kampen_park",
+          "name": "Kampen park treningssted",
+          "category": "sport",
+          "distanceM": 231.8,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/treningssted_kampen_park.json"
+        }
+      ],
+      "parentNameMatches": [],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 8,
+      "id": "lekeplass_snippen",
+      "name": "Snippen lekepark",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9167,
+        "lon": 10.7699
+      },
+      "currentRadius": 120,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "Snippen lekepark, Oslo, Norway",
+        "Snippen, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:761333023",
+          "osmType": "way",
+          "osmId": 761333023,
+          "type": "park",
+          "displayName": "Snippen lekepark, Tøyen, Grünerløkka, Oslo, Norge",
+          "lat": 59.9155394,
+          "lon": 10.7698842,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:5526331857",
+          "osmType": "node",
+          "osmId": 5526331857,
+          "type": "halt",
+          "displayName": "Snippen, Greveveien, Snippen, Marka, Oslo, 0891, Norge",
+          "lat": 60.0239105,
+          "lon": 10.8099796,
+          "geojsonType": "Point",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:7909978527",
+          "osmType": "node",
+          "osmId": 7909978527,
+          "type": "hamlet",
+          "displayName": "Snippen, Marka, Oslo, 0891, Norge",
+          "lat": 60.0253444,
+          "lon": 10.8085944,
+          "geojsonType": "Point",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-way:4757675",
+          "osmType": "way",
+          "osmId": 4757675,
+          "type": "residential",
+          "displayName": "Snippen, Rodeløkka, Grünerløkka, Oslo, 0566, Norge",
+          "lat": 59.9234184,
+          "lon": 10.7697724,
+          "geojsonType": "LineString",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:7998178637",
+          "osmType": "node",
+          "osmId": 7998178637,
+          "type": "neighbourhood",
+          "displayName": "Snippen, Hovseter, Vestre Aker, Oslo, 0770, Norge",
+          "lat": 59.9486012,
+          "lon": 10.6580728,
+          "geojsonType": "Point",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "toyen_hovedgard",
+          "name": "Tøyen hovedgård",
+          "category": "historie",
+          "distanceM": 145.4,
+          "sourceFile": "places/historie/oslo/places_historie/toyen_hovedgard.json"
+        },
+        {
+          "id": "museumsleiligheten_grabein",
+          "name": "Museumsleiligheten Gråbein",
+          "category": "historie",
+          "distanceM": 197.5,
+          "sourceFile": "places/historie/oslo/places_historie/museumsleiligheten_grabein.json"
+        },
+        {
+          "id": "naturhistorisk_museum",
+          "name": "Naturhistorisk museum",
+          "category": "vitenskap",
+          "distanceM": 221.9,
+          "sourceFile": "places/vitenskap/oslo/places_vitenskap/naturhistorisk_museum.json"
+        },
+        {
+          "id": "aktivitet_rudolf_nilsens_plass",
+          "name": "Rudolf Nilsens plass aktivitetspark",
+          "category": "sport",
+          "distanceM": 230,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/aktivitet_rudolf_nilsens_plass.json"
+        },
+        {
+          "id": "galleri_map",
+          "name": "Galleri MAP",
+          "category": "kunst",
+          "distanceM": 284.1,
+          "sourceFile": "places/kunst/oslo/places_kunst/galleri_map.json"
+        }
+      ],
+      "parentNameMatches": [],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 9,
+      "id": "lekeplass_frognerborgen",
+      "name": "Frognerborgen",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.927,
+        "lon": 10.7003
+      },
+      "currentRadius": 140,
+      "candidateStatus": "no_exact_semantic_candidate",
+      "queryVariants": [
+        "Frognerborgen, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "vigelandsparken",
+          "name": "Vigelandsparken",
+          "category": "by",
+          "distanceM": 11.1,
+          "sourceFile": "places/by/oslo/places/vigelandsparken.json"
+        }
+      ],
+      "parentNameMatches": [],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 10,
+      "id": "lekeplass_kampen_park",
+      "name": "Kampen park lekeplass",
+      "placeType": "lekeplass",
+      "currentCoordinate": {
+        "lat": 59.9148,
+        "lon": 10.779
+      },
+      "currentRadius": 140,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "Kampen park lekeplass, Oslo, Norway",
+        "Kampen park, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:4870715",
+          "osmType": "way",
+          "osmId": 4870715,
+          "type": "park",
+          "displayName": "Kampen park, Gamle Oslo, Oslo, Norge",
+          "lat": 59.9153872,
+          "lon": 10.780343,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:6373809082",
+          "osmType": "node",
+          "osmId": 6373809082,
+          "type": "bus_stop",
+          "displayName": "Kampen park, Bøgata, Normannsløkka, Kampen, Gamle Oslo, Oslo, 0655, Norge",
+          "lat": 59.91484,
+          "lon": 10.781646,
+          "geojsonType": "Point",
+          "semanticFit": false
+        },
+        {
+          "sourceObjectId": "osm-node:1289257378",
+          "osmType": "node",
+          "osmId": 1289257378,
+          "type": "bus_stop",
+          "displayName": "Kampen park, Bøgata, Normannsløkka, Kampen, Gamle Oslo, Oslo, 0654, Norge",
+          "lat": 59.91441,
+          "lon": 10.781281,
+          "geojsonType": "Point",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "treningssted_kampen_park",
+          "name": "Kampen park treningssted",
+          "category": "sport",
+          "distanceM": 0,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/treningssted_kampen_park.json"
+        },
+        {
+          "id": "toyen_torg",
+          "name": "Tøyen torg",
+          "category": "by",
+          "distanceM": 197.5,
+          "sourceFile": "places/by/oslo/places/toyen_torg.json"
+        },
+        {
+          "id": "biblo_toyen",
+          "name": "Biblo Tøyen",
+          "category": "litteratur",
+          "distanceM": 202.9,
+          "sourceFile": "places/litteratur/oslo/places_litteratur/biblo_toyen.json"
+        },
+        {
+          "id": "lekeplass_kirsebarlunden",
+          "name": "Kirsebærlunden lekeplass",
+          "category": "sport",
+          "distanceM": 231.8,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_kirsebarlunden.json"
+        },
+        {
+          "id": "toyen_trafo",
+          "name": "Tøyen trafo",
+          "category": "naeringsliv",
+          "distanceM": 270.5,
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "treningssted_kampen_park",
+          "name": "Kampen park treningssted",
+          "category": "sport",
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/treningssted_kampen_park.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 11,
+      "id": "aktivitet_rudolf_nilsens_plass",
+      "name": "Rudolf Nilsens plass aktivitetspark",
+      "placeType": "aktivitetspark",
+      "currentCoordinate": {
+        "lat": 59.916297,
+        "lon": 10.765853
+      },
+      "currentRadius": 130,
+      "candidateStatus": "exact_name_wrong_or_unclear_type",
+      "queryVariants": [
+        "Rudolf Nilsens plass aktivitetspark, Oslo, Norway",
+        "Rudolf Nilsens plass, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [
+        {
+          "sourceObjectId": "osm-way:36972584",
+          "osmType": "way",
+          "osmId": 36972584,
+          "type": "park",
+          "displayName": "Rudolf Nilsens plass, Enerhaugen, Gamle Oslo, Oslo, Norge",
+          "lat": 59.9161311,
+          "lon": 10.7653344,
+          "geojsonType": "Polygon",
+          "semanticFit": false
+        }
+      ],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "lekeplass_snippen",
+          "name": "Snippen lekepark",
+          "category": "sport",
+          "distanceM": 230,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_snippen.json"
+        },
+        {
+          "id": "museumsleiligheten_grabein",
+          "name": "Museumsleiligheten Gråbein",
+          "category": "historie",
+          "distanceM": 230.2,
+          "sourceFile": "places/historie/oslo/places_historie/museumsleiligheten_grabein.json"
+        },
+        {
+          "id": "galleri_map",
+          "name": "Galleri MAP",
+          "category": "kunst",
+          "distanceM": 243.6,
+          "sourceFile": "places/kunst/oslo/places_kunst/galleri_map.json"
+        }
+      ],
+      "parentNameMatches": [],
+      "overlapFlag": false
+    },
+    {
+      "sourceOrder": 12,
+      "id": "treningssted_torshovdalen",
+      "name": "Torshovdalen trenings- og aktivitetspark",
+      "placeType": "treningssted",
+      "currentCoordinate": {
+        "lat": 59.9368,
+        "lon": 10.777
+      },
+      "currentRadius": 220,
+      "candidateStatus": "no_exact_semantic_candidate",
+      "queryVariants": [
+        "Torshovdalen trenings- og aktivitetspark, Oslo, Norway",
+        "Torshovdalen trenings- og, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [],
+      "nearestCanonicalPlaces": [],
+      "parentNameMatches": [
+        {
+          "id": "torshov",
+          "name": "Torshov",
+          "category": "by",
+          "sourceFile": "places/by/oslo/places/torshov.json"
+        }
+      ],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 13,
+      "id": "treningssted_kampen_park",
+      "name": "Kampen park treningssted",
+      "placeType": "treningssted",
+      "currentCoordinate": {
+        "lat": 59.9148,
+        "lon": 10.779
+      },
+      "currentRadius": 170,
+      "candidateStatus": "no_exact_semantic_candidate",
+      "queryVariants": [
+        "Kampen park treningssted, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "lekeplass_kampen_park",
+          "name": "Kampen park lekeplass",
+          "category": "sport",
+          "distanceM": 0,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_kampen_park.json"
+        },
+        {
+          "id": "toyen_torg",
+          "name": "Tøyen torg",
+          "category": "by",
+          "distanceM": 197.5,
+          "sourceFile": "places/by/oslo/places/toyen_torg.json"
+        },
+        {
+          "id": "biblo_toyen",
+          "name": "Biblo Tøyen",
+          "category": "litteratur",
+          "distanceM": 202.9,
+          "sourceFile": "places/litteratur/oslo/places_litteratur/biblo_toyen.json"
+        },
+        {
+          "id": "lekeplass_kirsebarlunden",
+          "name": "Kirsebærlunden lekeplass",
+          "category": "sport",
+          "distanceM": 231.8,
+          "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_kirsebarlunden.json"
+        },
+        {
+          "id": "toyen_trafo",
+          "name": "Tøyen trafo",
+          "category": "naeringsliv",
+          "distanceM": 270.5,
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json"
+        }
+      ],
+      "parentNameMatches": [],
+      "overlapFlag": true
+    },
+    {
+      "sourceOrder": 14,
+      "id": "treningssted_sognsvann",
+      "name": "Sognsvann treningsrunde",
+      "placeType": "treningssted",
+      "currentCoordinate": {
+        "lat": 59.9717,
+        "lon": 10.7331
+      },
+      "currentRadius": 240,
+      "candidateStatus": "no_exact_semantic_candidate",
+      "queryVariants": [
+        "Sognsvann treningsrunde, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [],
+      "nearestCanonicalPlaces": [],
+      "parentNameMatches": [],
+      "overlapFlag": false
+    },
+    {
+      "sourceOrder": 15,
+      "id": "treningssted_skur13",
+      "name": "Skur 13 skate- og balansetrening",
+      "placeType": "treningssted",
+      "currentCoordinate": {
+        "lat": 59.9066,
+        "lon": 10.7315
+      },
+      "currentRadius": 130,
+      "candidateStatus": "no_exact_semantic_candidate",
+      "queryVariants": [
+        "Skur 13 skate- og balansetrening, Oslo, Norway"
+      ],
+      "exactNamedCandidates": [],
+      "nearestCanonicalPlaces": [
+        {
+          "id": "skur13",
+          "name": "Skur 13",
+          "category": "subkultur",
+          "distanceM": 0,
+          "sourceFile": "places/subkultur/oslo/places_subkultur/skur13.json"
+        },
+        {
+          "id": "christian_radich",
+          "name": "Christian Radich",
+          "category": "historie",
+          "distanceM": 208,
+          "sourceFile": "places/historie/oslo/places_historie/christian_radich.json"
+        },
+        {
+          "id": "akershus_kaier",
+          "name": "Akershuskaiene",
+          "category": "naeringsliv",
+          "distanceM": 210.4,
+          "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/akershus_kaier.json"
+        },
+        {
+          "id": "norges_hjemmefrontmuseum",
+          "name": "Norges Hjemmefrontmuseum",
+          "category": "historie",
+          "distanceM": 262.3,
+          "sourceFile": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json"
+        },
+        {
+          "id": "akershus_festning",
+          "name": "Akershus festning",
+          "category": "historie",
+          "distanceM": 264.8,
+          "sourceFile": "places/historie/oslo/places_historie/akershus_festning.json"
+        }
+      ],
+      "parentNameMatches": [
+        {
+          "id": "skur13",
+          "name": "Skur 13",
+          "category": "subkultur",
+          "sourceFile": "places/subkultur/oslo/places_subkultur/skur13.json"
+        }
+      ],
+      "overlapFlag": true
+    }
+  ],
+  "nextAction": "Resolve parent/subfeature overlap and physical identity per object type before any canonical coordinate updates. This intake intentionally changes no place or evidence data."
+}
