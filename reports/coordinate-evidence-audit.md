@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:15:32.436Z
+Generert: 2026-07-21T06:19:19.948Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -279,3 +279,6 @@ Generert: 2026-07-21T06:15:32.436Z
 | lindoya | data/coordinate-evidence/oslo/by/lindoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bleikoya | data/coordinate-evidence/oslo/natur/bleikoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ulvoya | data/coordinate-evidence/oslo/by/ulvoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| steilene | data/coordinate-evidence/akershus/historie/steilene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ingierstrand_bad | data/coordinate-evidence/akershus/historie/ingierstrand_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |
