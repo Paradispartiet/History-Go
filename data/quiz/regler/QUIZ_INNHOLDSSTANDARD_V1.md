@@ -42,6 +42,29 @@ Konkrete faktaspørsmål omfatter blant annet:
 
 Teori og begreper er tillatt når de tilfører nødvendig presisjon. De skal normalt ligge i `emne_id`, `core_concepts`, `concept_focus`, `knowledge` eller annen metadata.
 
+## Faglig bevaringsregel
+
+Reparasjon av en quiz skal ikke avfagliggjøre den.
+
+Når et svakt teorispørsmål fjernes, skal essensielle faguttrykk og relevante poenger fortsatt bevares på riktig sted:
+
+- i et konkret og kildebelagt spørsmål når begrepet faktisk må forstås
+- i `knowledge` når begrepet forklarer hvorfor svaret er riktig
+- i `emne_id`, `core_concepts` og `concept_focus` som læringsmetadata
+- i kunnskapspopupen når poenget er viktig, men ikke egner seg som flervalgsoppgave
+
+Målet er ikke null teori. Målet er at teori skal forklare virkeligheten, ikke erstatte den.
+
+Eksempler på gode, stedbundne fagbegreper:
+
+- sosial infrastruktur ved et gratis bibliotek
+- lav terskel i et offentlig tilbud uten kjøpspress
+- termisk masse i betongdekker som demper temperatursvingninger
+- nasjonalarena som fast scene for landslag og cupfinaler
+- supporterkultur som sanger, farger, ritualer og minner knyttet til en arena
+
+Slike begreper kan inngå i de 10–15 prosentene når de er nødvendige og spørsmålene fortsatt lærer spilleren noe konkret om stedet.
+
 ## Forbudte spørsmålsmaler
 
 Disse formuleringene skal ikke brukes som standardproduksjon:
@@ -131,5 +154,7 @@ Auditen finner:
 - gjentatte spørsmålsåpninger på tvers av filer
 - korrektalternativer som skiller seg mistenkelig ut i lengde
 - JSON-filer som ikke kan leses
+
+Auditen skal ikke fjerne eller straffe faguttrykk i `knowledge` eller metadata. Den kontrollerer hvordan spørsmålene er bygget.
 
 `--strict` kan brukes når eksisterende arv er ryddet nok til at porten skal blokkere nye brudd.
