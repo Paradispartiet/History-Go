@@ -1,26 +1,28 @@
 // Shared place schema and category policy for History Go health scripts.
+// Canonical source: data/categories/category_contract.json
 
 export const OFFICIAL_HISTORY_GO_CATEGORIES = [
-  "historie",
-  "religion",
-  "vitenskap",
-  "kunst",
-  "musikk",
-  "natur",
-  "sport",
   "by",
+  "historie",
+  "kunst",
+  "litteratur",
+  "media",
+  "musikk",
+  "naeringsliv",
+  "natur",
   "politikk",
   "populaerkultur",
-  "subkultur"
+  "psykologi",
+  "religion",
+  "scenekunst",
+  "sport",
+  "subkultur",
+  "vitenskap",
+  "film_tv"
 ] as const;
 
 export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = [
-  "litteratur",
-  "naeringsliv",
-  "film",
-  "film_tv",
-  "media",
-  "psykologi"
+  "film"
 ] as const;
 
 export const REQUIRED_PLACE_FIELDS = [
@@ -45,6 +47,7 @@ export const OPTIONAL_PLACE_FIELDS = [
   "popupImage",
   "emne_ids",
   "quiz_profile",
+  "secondaryBadgeIds",
   "hidden",
   "stub",
   "relations",
