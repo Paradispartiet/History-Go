@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T06:08:16.618Z
+Generert: 2026-07-21T06:14:41.773Z
 
 ## Oppsummering
-- Aktive filer validert: **578**
+- Aktive filer validert: **579**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **422**
@@ -596,6 +596,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/kollentrollet.json
 - data/places/natur/oslo/places_natur/vettakollen.json
 - data/places/kunst/oslo/places_kunst/kragstotten.json
+- data/places/sport/europa/norway/oslo_sport/oslo_golfklubb_bogstad.json
 
 ## Harde feil
 - Ingen
