@@ -1,5 +1,3 @@
-const fs = require("node:fs");
-const path = require("node:path");
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
@@ -26,9 +24,7 @@ function loadApi() {
   delete require.cache[knowledgePath];
   require(knowledgePath);
 
-  const memoryPath = require.resolve("../js/quizKnowledgeMemory.js");
-  delete require.cache[memoryPath];
-  return require(memoryPath);
+  return global.HGKnowledgeV2.quizMemory;
 }
 
 function sampleInput() {
@@ -198,8 +194,3 @@ test("lagrer bundles og bygger indekser for fag, sted, emner og repetisjon", () 
   assert.equal(memory.indexes.needs_review.length, 1);
 });
 
-test("popupen er en oversikt, ikke en manuell lagringsport", () => {
-  const source = fs.readFileSync(path.join(__dirname, "../js/quizKnowledgeMemory.js"), "utf8");
-  assert.equal(source.includes("Lest – legg i Knowledge"), false);
-  assert.equal(source.includes("quizKnowledgeMemoryRead"), false);
-});

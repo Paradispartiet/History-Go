@@ -372,6 +372,7 @@
       renderSubjectNav(activeProfile, activeSubjectId);
       renderCurrentView();
       bindSearch();
+      window.HGKnowledgeV2.renderQuizMemoryOverview?.(activeProfile);
       if (loading) loading.hidden = true;
     } catch (err) {
       console.error("[KnowledgePage]", err);
