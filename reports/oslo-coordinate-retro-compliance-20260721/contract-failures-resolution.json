@@ -1,24 +1,6 @@
-
-> history-go@0.0.0 places:index:build
-> npm run build:tools && node dist/tools/build_places_index.mjs
-
-
-> history-go@0.0.0 build:tools
-> tsc -p tsconfig.tools.build.json
-
-Wrote 1333 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 202 category override(s)
-
-> history-go@0.0.0 build:tools
-> tsc -p tsconfig.tools.build.json
-
 {
-  "status": "contract_failure_batch_resolved",
-  "addressFirstVerified": 13,
-  "addressFirstDowngraded": 2,
-  "explicitDowngrades": 4,
-  "normalized": 3,
-  "remainingFindings": 0,
-  "addressResults": [
+  "generatedAt": "2026-07-21T08:39:02.158Z",
+  "addressFirstResults": [
     {
       "placeId": "blitzhuset",
       "query": "Pilestredet 30C Oslo",
@@ -150,14 +132,41 @@ Wrote 1333 places -> data/places/places_index.json; skipped 9 disabled place(s);
       "lat": 59.92065765555904,
       "lon": 10.751597362221323
     }
-  ]
+  ],
+  "downgradedWithoutNewSource": [
+    "club_7_vika",
+    "sofienbergparken_subkultur",
+    "skur13",
+    "stovnertarnet"
+  ],
+  "normalizedWithoutCoordinateChange": [
+    "abelonegarden",
+    "minneparken_gamlebyen",
+    "skulptursonen_ovre_slottsgate"
+  ],
+  "changedIds": [
+    "abelonegarden",
+    "blitzhuset",
+    "club_7_vika",
+    "gamlebyen_sport_og_fritid",
+    "hausmania",
+    "helvete_neseblod_records",
+    "jaeger_oslo",
+    "kafe_haerverk",
+    "last_train_oslo",
+    "minneparken_gamlebyen",
+    "mir_grunerlokka_lufthavn",
+    "oslo_skatehall",
+    "revolver_oslo",
+    "rock_in_oslo",
+    "skulptursonen_ovre_slottsgate",
+    "skur13",
+    "sofienbergparken_subkultur",
+    "stovnertarnet",
+    "sub_scene",
+    "the_villa",
+    "vaterland_bar_scene",
+    "xray_ungdomskulturhus"
+  ],
+  "remainingVerifiedContractFindingsAmongChanged": []
 }
-
-> history-go@0.0.0 places:index:build
-> npm run build:tools && node dist/tools/build_places_index.mjs
-
-
-> history-go@0.0.0 build:tools
-> tsc -p tsconfig.tools.build.json
-
-Wrote 1333 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 202 category override(s)
