@@ -12,7 +12,7 @@ let source = execFileSync('git', ['show', `${SOURCE_RUNNER_COMMIT}:${SOURCE_PATH
   encoding: 'utf8'
 });
 
-const oldBlock = `// Strong replay gate: none of the sport source/split/evidence files may have changed on current main
+const oldEvidenceBlock = `// Strong replay gate: none of the sport source/split/evidence files may have changed on current main
 // since the validated source branch started. Shared runtime/protocol/report files are intentionally excluded.
 for (const rel of targetFiles) {
   const oldContent = execFileSync('git', ['show', \`\${SOURCE_BASE}:\${rel}\`], { cwd: ROOT, encoding: 'utf8' });
@@ -33,7 +33,7 @@ for (const rel of targetEvidenceFiles) {
   }
 }`;
 
-const newBlock = `// Strong replay gate for files that existed when the validated source branch started.
+const newEvidenceBlock = `// Strong replay gate for files that existed when the validated source branch started.
 // No pre-existing sport source/split/index/manifest file may have changed on current main.
 for (const rel of targetPlaceFiles) {
   const oldContent = execFileSync('git', ['show', \`\${SOURCE_BASE}:\${rel}\`], { cwd: ROOT, encoding: 'utf8' });
@@ -73,10 +73,39 @@ for (const rel of targetEvidenceFiles) {
 evidenceManifest.files.sort();
 writeJson(EVIDENCE_MANIFEST, evidenceManifest);`;
 
-if (!source.includes(oldBlock)) {
+const oldDuplicateBlock = `// Guard against duplicate protocol decisions anywhere inside the Oslo section.
+for (const id of [...verified.map(([id]) => id), ...needsReview.map(({ id }) => id)]) {
+  const token = \`\\\`\${id}\\\`\`;
+  if (lines.slice(osloIndex, osloEnd).some((line) => line.includes(token) && (line.startsWith('| ') || line.includes('needs_review')))) {
+    throw new Error(\`Protocol already contains completed decision for \${id}; replay must be re-audited\`);
+  }
+}`;
+
+const newDuplicateBlock = `// Guard only actual completed protocol decisions, not narrative mentions or contrast references.
+const existingNumericIds = new Set();
+const existingNeedsReviewIds = new Set();
+for (const line of lines.slice(osloIndex, osloEnd)) {
+  const numericMatch = line.match(/^\\|\\s*\\d+\\s*\\|\\s*\\\`([^\\\`]+)\\\`\\s*\\|/);
+  if (numericMatch) existingNumericIds.add(numericMatch[1]);
+  if (line.startsWith('| ') && line.includes('| needs_review |')) {
+    const needsMatch = line.match(/\\\`([^\\\`]+)\\\`/);
+    if (needsMatch) existingNeedsReviewIds.add(needsMatch[1]);
+  }
+}
+for (const id of [...verified.map(([id]) => id), ...needsReview.map(({ id }) => id)]) {
+  if (existingNumericIds.has(id) || existingNeedsReviewIds.has(id)) {
+    throw new Error(\`Protocol already contains completed decision for \${id}; replay must be re-audited\`);
+  }
+}`;
+
+if (!source.includes(oldEvidenceBlock)) {
   throw new Error('Could not find the original replay/evidence guard block');
 }
-source = source.replace(oldBlock, newBlock);
+if (!source.includes(oldDuplicateBlock)) {
+  throw new Error('Could not find the original protocol duplicate guard block');
+}
+source = source.replace(oldEvidenceBlock, newEvidenceBlock);
+source = source.replace(oldDuplicateBlock, newDuplicateBlock);
 fs.writeFileSync(TEMP_RUNNER, source);
 
 try {
