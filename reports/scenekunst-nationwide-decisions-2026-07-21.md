@@ -5,6 +5,13 @@ Generert: 2026-07-21T09:58:15.881Z
 - Flyttes til Scenekunst: 6
 - Beholdes i nåværende kategori: 8
 
+## Migreringsstatus
+
+- Kildemigrering: `pass`
+- Regenerering av `places_index.json`: `pass`
+- Places-kontroll: `pass`
+- Kategoriaudit: `pass`
+
 ## Flyttes
 
 ### `operahuset`
