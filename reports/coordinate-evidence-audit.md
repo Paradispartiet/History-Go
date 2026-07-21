@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T05:44:03.070Z
+Generert: 2026-07-21T05:55:30.798Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -262,3 +262,8 @@ Generert: 2026-07-21T05:44:03.070Z
 | ostensjovannet_sivbelte | data/coordinate-evidence/oslo/natur/ostensjovannet_sivbelte.json | needs_research | needs_geometry | OK |
 | ostensjovannet_sor | data/coordinate-evidence/oslo/natur/ostensjovannet_sor.json | needs_research | needs_geometry | OK |
 | bogerudmyra | data/coordinate-evidence/oslo/natur/bogerudmyra.json | needs_research | needs_geometry | OK |
+| bogstadvannet | data/coordinate-evidence/oslo/natur/bogstadvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| holmenkollen_kapell | data/coordinate-evidence/oslo/by/holmenkollen_kapell.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kollentrollet | data/coordinate-evidence/oslo/kunst/kollentrollet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vettakollen | data/coordinate-evidence/oslo/natur/vettakollen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kragstotten | data/coordinate-evidence/oslo/kunst/kragstotten.json | applied_to_place | do_not_change_coordinates_yet | OK |

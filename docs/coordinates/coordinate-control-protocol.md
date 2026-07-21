@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 274 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 113 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_ostensjovannet.json`. Narrative delsoner må ha egen eksplisitt lokal geometri og kan ikke arve hele reservatpolygonet; fugletårnet og Bogerudmyra krever ett unikt eksakt navngitt fysisk objekt med riktig objekttype.
+Oslo-tabellen inneholder nå 279 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 114 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -325,6 +325,11 @@ Batch 102 (2026-07-21) reparerer en dokumentert aggregate/split-divergens for `h
 | 110 | `friluftshuset_sorenga` | Friluftshuset på Sørenga | verified | `geonorge-adresser-v1:0301:21549:124` |
 | 111 | `operastranda` | Operastranda | verified_geometry | `osm-way:936040800` |
 | 112 | `skraperudtjern` | Skraperudtjern | verified_geometry | `osm-way:23761672` |
+| 114 | `bogstadvannet` | Bogstadvannet | verified_geometry | `osm-way:4351126` |
+| 114 | `holmenkollen_kapell` | Holmenkollen kapell | verified | `geonorge-adresser-v1:0301:13070:142` |
+| 114 | `kollentrollet` | Kollentrollet | verified_geometry | `osm-node:1768125117` |
+| 114 | `vettakollen` | Vettakollen | verified_geometry | `osm-node:301173327` |
+| 114 | `kragstotten` | Kragstøtten | verified_geometry | `osm-node:484968664` |
 
 Batch 108 (2026-07-21) produserer `sukkerbiten_badstulandsby`. Én samlet og stabil badstulandsby ved Sukkerbiten. Enkeltbadstuer og Oslo Badstuforenings andre lokasjoner får ikke overlappende markører fra denne kilden.
 
@@ -337,6 +342,8 @@ Batch 111 (2026-07-21) produserer `operastranda`. Eksakt navngitt kommunal bades
 Batch 112 (2026-07-21) etterfører den allerede validerte Ljanselva-rutekontrollen etter at parallelle VisitOSLO-batcher tok numrene 108–111 før Ljanselva-PR-en ble merget. `skraperudtjern` bruker det eksakt navngitte OSM-vannobjektet way 23761672 som `pond_center`. `noklevann_ljanselva_start`, `ljanselva_skullerud`, `ljanselva_hauketo`, `ljanselva_ljan`, `ljanselva_fiskevollen` og `ljanselva_bunnefjorden` er fullførte kontroller uten godkjent koordinat og står derfor i needs_review-tabellen. Den opprinnelige build-rapporten ble generert som batch 108 før den parallelle køen landet; rapportstien og resultatmetadataen er i denne reparasjonen canonical-renummerert til batch 112.
 
 Batch 113 (2026-07-21) reviderer Østensjøvannet-kildens fem legacy `OpenStreetMap/Mapcarta`- og `nearby_reference`-punkter. `ostensjovannet_nord`, `ostensjovannet_sivbelte` og `ostensjovannet_sor` er lokale narrative delsoner og får ikke låne hele Naturbase-reservatpolygonet som falsk punktpresisjon. `ostensjovannet_fugletarn` og `bogerudmyra` kan bare verifiseres ved ett unikt eksakt navngitt fysisk objekt med riktig semantisk objekttype i forhåndsdefinert lokal scope; ingen nearest/first-hit-logikk brukes.
+
+Batch 114 (2026-07-21) produserer fem fysisk selvstendige Holmenkollen-steder fra den lukkede VisitOSLO-auditen. `holmenkollen_kapell` bruker det entydige Geonorge-adressepunktet for Holmenkollveien 142. `bogstadvannet` bruker et områdeanker på eksakt navngitt vanngeometri, mens `kollentrollet`, `vettakollen` og `kragstotten` bruker eksakte navngitte OSM-punktobjekter med riktig objekttype. Vettakollen-stasjon/-bydel og Kragstøtten-guidepost/-utsiktspunkt er eksplisitt avvist som navnelike feilobjekter. Oslo Golfklubb Bogstad holdes utenfor batchen til representasjonsrollen mellom klubbhusadresse og golfbanegeometri er eksplisitt avgjort.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -522,7 +529,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 114.
+- Neste nye Oslo-kontroll er batch 115.
 - `places_oslo_natur_ostensjovannet.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive naturkilde i køen er `places_oslo_natur_salamanderdammer.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
