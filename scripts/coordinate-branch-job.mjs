@@ -34,6 +34,7 @@ writeJson(splitIndexPath, splitIndex);
 
 const evidence = readJson(evidencePath);
 evidence.currentCoordinate.coordType = place.coordType;
+evidence.currentCoordinate.coordNote = place.coordNote;
 for (const candidate of evidence.geometryCandidates ?? []) candidate.coordRole = place.coordRole;
 for (const candidate of evidence.coordinateCandidates ?? []) candidate.coordRole = place.coordRole;
 evidence.notes = [place.coordNote];
@@ -52,4 +53,4 @@ for (const row of splitManifest.places) {
 splitManifest.generated_at = new Date().toISOString();
 writeJson(splitManifestPath, splitManifest);
 
-console.log('Mærradalen metadata rettet til line_anchor / valley_line_anchor.');
+console.log('Mærradalen metadata og evidence currentCoordinate rettet.');
