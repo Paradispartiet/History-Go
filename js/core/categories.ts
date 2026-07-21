@@ -44,7 +44,7 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "sport", name: "Sport & lek", icon: "⚽", color: "#A01D13", secondaryColor: "#A51E15", scope: "runtime_domain" },
   { id: "by", name: "By & arkitektur", icon: "🏙️", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
   { id: "politikk", name: "Politikk & samfunn", icon: "🏛️", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
-  { id: "subkultur", name: "Subkultur", icon: "🧷", color: "#914E1E", secondaryColor: "#181615", scope: "runtime_domain" },
+  { id: "subkultur", name: "Subkultur", icon: "🧷", color: "#292625", secondaryColor: "#572816", scope: "runtime_domain" },
   { id: "litteratur", name: "Litteratur", icon: "📚", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
   { id: "naeringsliv", name: "Næringsliv", icon: "🏭", color: "#0F62BD", secondaryColor: "#0754A9", scope: "runtime_domain" },
   { id: "psykologi", name: "Psykologi", icon: "🧠", color: "#06d6a0", scope: "runtime_domain" },
