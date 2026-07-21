@@ -91,14 +91,15 @@
     const claims = splitClaims(unit?.text).filter((claim) => !isQuestionOrAnswerCopy(claim, unit));
     if (!claims.length) return [];
     const kind = unitKind(unit);
-    const sourceId = s(unit?.unit_id || unit?.id || "knowledge_unit");
+    const currentId = s(unit?.unit_id || unit?.id || "knowledge_unit");
+    const sourceId = s(unit?.source_question_id || currentId);
 
     return claims.map((claim, index) => {
       const next = { ...unit };
       delete next.question;
       delete next.answer;
       delete next.trivia;
-      next.unit_id = claims.length === 1 ? sourceId : `${sourceId}::claim::${index + 1}`;
+      next.unit_id = claims.length === 1 ? currentId : `${sourceId}::claim::${index + 1}`;
       next.source_question_id = sourceId;
       next.kind = kind;
       next.topic = unitTopic(unit, kind);
@@ -162,6 +163,9 @@
   function sanitizeBundle(bundle) {
     if (!bundle || typeof bundle !== "object") return bundle;
     const original = rows(bundle.knowledge_units);
+    const alreadyPrecise = bundle?.content_quality?.version === QUALITY_VERSION && original.every((unit) => unit?.quality?.version === QUALITY_VERSION);
+    if (alreadyPrecise) return bundle;
+
     const knowledgeUnits = dedupeUnits(original.flatMap(splitUnit));
     const blocked = new Set(knowledgeUnits.map((unit) => normalized(unit.text)));
     const next = {
@@ -236,6 +240,7 @@
     if (typeof root?.setTimeout === "function") {
       root.setTimeout(cleanKnowledgeUi, 0);
       root.setTimeout(cleanKnowledgeUi, 100);
+      root.setTimeout(cleanKnowledgeUi, 500);
     }
   }
 
@@ -255,7 +260,7 @@
       scheduleUiCleanup();
     });
     root.document?.addEventListener?.("click", (event) => {
-      if (event.target?.closest?.("#quizSummaryKnowledge")) scheduleUiCleanup();
+      if (event.target?.closest?.("#quizSummaryKnowledge, [data-knowledge-bundle]")) scheduleUiCleanup();
     });
     scheduleUiCleanup();
     return true;
