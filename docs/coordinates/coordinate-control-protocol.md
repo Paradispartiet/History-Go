@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 268 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 107 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_hovedsteder.json` etter objekt-type-først-metoden. Offisiell vernegeometri prioriteres; øyer, innsjøer og eventuelle vassdrag krever ett eksakt navngitt fysisk kildeobjekt. Sammensatte eller canonical-overlappende systemrecords avsluttes som needs_review uten proxy-gjetting.
+Oslo-tabellen inneholder nå 269 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 108 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_ljanselva_rute.json`. Lokale elvestrekninger kan bare godkjennes ved ett unikt eksakt navngitt Ljanselva-objekt med riktig vannløpstype innenfor recordens forhåndsdefinerte lokale scope; start- og utløpspunkter krever eksplisitt hydrologisk geometri og blir ikke erstattet av tilfeldige segmentmidtpunkter.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -317,6 +317,9 @@ Batch 106 (2026-07-21) reviderer hele Bygdøy-naturkilden fra 2026-05-03, der le
 | 107 | `noklevann` | Nøklevann | verified_geometry | `osm-relation:16661` |
 
 Batch 107 (2026-07-21) reviderer natur-hovedstedene som fortsatt manglet full Coordinate Source Contract v1. Runneren hopper eksplisitt over placeId-er som allerede står i Oslo-hovedtabellen eller den separate needs_review-tabellen. Offisiell Naturbase-geometri brukes der et entydig verneobjekt finnes; ellers må OSM-kandidaten være et unikt eksakt navnetreff med riktig forhåndsdefinert objekttype. `bygdoy_natur` og `alnaelva_hovedsteder` kan ikke reduseres til nye tilfeldige punktproxyer når deres scope overlapper separate canonical delsteder eller eksisterende hovedrecords.
+| 108 | `skraperudtjern` | Skraperudtjern | verified_geometry | `osm-way:23761672` |
+
+Batch 108 (2026-07-21) reviderer Ljanselva-rutens legacy `OpenStreetMap/Mapcarta`, `nearby_reference` og manuelle punkter. Kandidater søkes i forhåndsdefinerte lokale scope-bokser, men velges bare ved et unikt eksakt navnetreff og riktig fysisk objekttype; ingen nearest/first-hit-logikk brukes. Nøklevann-starten og Bunnefjorden-utløpet krever egne eksplisitte hydrologiske objekter og godkjennes ikke via generelle innsjø-/elveproxyer.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -444,6 +447,12 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `bygdoy_natur` – Bygdøy natur- og kulturmiljø | needs_review | Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet. | Dokumenter en eksplisitt halvøy-/multi-anchor-modell eller offisiell områdegeometri som samsvarer med hele recordens scope. |
 | `ljanselva` – Ljanselva | needs_review | Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker. | Finn én stabil eksakt geometri for hele recordens fysiske scope, eller modeller eksplisitt flere kildebelagte ankere. |
 | `alnaelva_hovedsteder` – Alnaelva | needs_review | Recorden representerer samme overordnede vassdrag som canonical `alnaelva`, som allerede er kontrollert og står needs_source fordi elva består av flere separate og delvis tunnellagte geometrier. En ny hovedstedsmarkør med et annet vilkårlig midtpunkt ville duplisere den uavklarte identiteten. | Avklar canonical duplikat-/aliasmodell mot `alnaelva`; modeller deretter samlet rutegeometri eller flere kildebelagte delankre. |
+| `noklevann_ljanselva_start` – Nøklevann (Ljanselva start) | needs_review | Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert. | Dokumenter et eksplisitt hydrologisk utløpsobjekt eller en kildebelagt kobling mellom Nøklevann og første Ljanselva-segment. |
+| `ljanselva_skullerud` – Ljanselva ved Skullerud | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
+| `ljanselva_hauketo` – Ljanselva ved Hauketo | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
+| `ljanselva_ljan` – Ljanselva ved Ljan | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
+| `ljanselva_fiskevollen` – Ljanselva ved Fiskevollen | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
+| `ljanselva_bunnefjorden` – Ljanselva ut i Bunnefjorden | needs_review | Recorden gjelder selve overgangen fra elv til fjord. Et midtpunkt på et nærliggende elve-segment eller et generelt fjordpunkt dokumenterer ikke munningspunktet. Legacy-punktet kan derfor ikke beholdes som verified uten eksplisitt utløpsgeometri. | Dokumenter siste Ljanselva-segment og et eksplisitt kildebelagt endepunkt/munningspunkt mot Bunnefjorden. |
 
 ## Etne – historiesett
 
@@ -491,8 +500,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 108.
-- `places_oslo_natur_hovedsteder.json` er nå fullt kontrollert i manifestrekkefølge. Før batch 108 starter skal `data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json` auditeres mot protokollen og den separate needs_review-tabellen; tidligere kontrollerte placeId-er skal hoppes over eksplisitt.
+- Neste nye Oslo-kontroll er batch 109.
+- `places_oslo_natur_ljanselva_rute.json` er nå fullt kontrollert i manifestrekkefølge. Før batch 109 starter skal neste aktive naturkilde etter denne fila auditeres eksplisitt mot manifestrekkefølgen; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 
