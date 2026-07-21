@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-07-21T09:46:10.843Z",
+  "reviewedAt": "2026-07-21T09:49:00.000Z",
+  "status": "reviewed_no_migrations",
+  "scope": "aktive Oslo-steder utenfor scenekunst",
+  "candidateCount": 7,
+  "migrationCount": 0,
+  "summary": "Alle maskintreff er gjennomgått. Ingen har scenekunst som tydelig nok hovedfunksjon til å flyttes fra nåværende kanoniske kategori.",
+  "decisions": [
+    {
+      "id": "ibsen_museum_teater",
+      "name": "IBSEN Museum & Teater",
+      "currentCategory": "litteratur",
+      "decision": "keep_litteratur",
+      "reason": "Institusjonen beskriver seg som museum og kulturhus som forvalter og formidler Henrik Ibsens liv og dramatikk. Teatersalen brukes til gjestespill, men museums- og Ibsenformidlingen er den bærende stedsidentiteten.",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/ibsen_museum_teater.json",
+      "officialSources": [
+        "https://ibsenmt.no/om-oss",
+        "https://ibsenmt.no/fra-dramatikerhjem-til-museum",
+        "https://ibsenmt.no/besok-oss"
+      ]
+    },
+    {
+      "id": "sentrum_scene",
+      "name": "Sentrum Scene",
+      "currentCategory": "musikk",
+      "decision": "keep_musikk",
+      "reason": "Operatøren beskriver Sentrum Scene som en innendørs konsertscene og en av Norges fremste konsertarenaer. Standup, film og andre arrangementer er sekundære programformer.",
+      "sourceFile": "places/musikk/oslo/places_musikk.json",
+      "officialSources": [
+        "https://www.rockefeller.no/en/booking-utleie",
+        "https://www.rockefeller.no/en/booking-utleie-sentrumscene"
+      ]
+    },
+    {
+      "id": "sub_scene",
+      "name": "Sub Scene",
+      "currentCategory": "subkultur",
+      "decision": "keep_subkultur",
+      "reason": "Sub Scene er et rusfritt ungdomskulturhus med hovedvekt på konserter, punk, indie og metal, men også film, DIY, spill og andre lavterskelaktiviteter. Den brede undergrunns- og ungdomskulturfunksjonen er mer presis enn scenekunst.",
+      "sourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "officialSources": [
+        "https://subscene.no/index.php/info/",
+        "https://subscene.no/index.php/testside/"
+      ]
+    },
+    {
+      "id": "vaterland_bar_scene",
+      "name": "Vaterland Bar & Scene",
+      "currentCategory": "subkultur",
+      "decision": "keep_subkultur",
+      "reason": "Stedet profilerer seg som bar, pizzasted og rockescene, med program dominert av metal, punk og tilgrensende undergrunnsmusikk. Scenen er en del av en tydelig subkulturell helhet.",
+      "sourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "officialSources": [
+        "https://www.vaterlandoslo.no/",
+        "https://www.vaterlandoslo.no/arrangementer"
+      ]
+    },
+    {
+      "id": "chateau_neuf",
+      "name": "Chateau Neuf",
+      "currentCategory": "populaerkultur",
+      "decision": "keep_populaerkultur",
+      "reason": "Chateau Neuf er Studentersamfundets flerbrukshus for sosial, kulturell, politisk og faglig studentaktivitet. Revy og improvisasjon er viktige deler, men ikke husets eneste eller klart dominerende funksjon.",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur.json",
+      "officialSources": [
+        "https://viteboka.studentersamfundet.no/Chateau_Neuf",
+        "https://viteboka.studentersamfundet.no/Det_Norske_Studentersamfund"
+      ]
+    },
+    {
+      "id": "honse_lovisas_hus",
+      "name": "Hønse-Lovisas hus",
+      "currentCategory": "litteratur",
+      "decision": "keep_litteratur",
+      "reason": "Stedets History Go-identitet er knyttet til Oskar Braatens litterære univers. Dagens hovedbruk er kafé i samarbeid med Oslo Museum, ikke en fast scenekunstinstitusjon.",
+      "sourceFile": "places/litteratur/oslo/places_litteratur_oslo_kultureiendommer_batch_05.json",
+      "officialSources": [
+        "https://www.oslomuseum.no/besok-oss/kafe/",
+        "https://www.oslomuseum.no/besok-oss/arbeidermuseet/"
+      ]
+    },
+    {
+      "id": "karl_johan",
+      "name": "Karl Johans gate",
+      "currentCategory": "by",
+      "decision": "keep_by",
+      "reason": "Treffet skyldes metaforisk språk om gaten som offentlig scene og teater. Karl Johans gate er et byrom og skal ikke behandles som scenekunststed.",
+      "sourceFile": "places/by/oslo/places_by.json",
+      "officialSources": []
+    }
+  ],
+  "nextStep": "Behold batch 1 som eneste Oslo-kildemigrering i denne PR-en. Nye Scenekunst-steder må produseres som egne, kilde- og koordinatkontrollerte stedspakker i senere batcher."
+}

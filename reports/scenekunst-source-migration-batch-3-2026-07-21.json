@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-07-21T09:58:15.881Z",
+  "status": "source_migration_validated",
+  "category": "scenekunst",
+  "movedPlaceIds": [
+    "operahuset",
+    "lisbon_teatro_nacional_d_maria_ii",
+    "lisbon_teatro_sao_luiz",
+    "lisbon_teatro_tivoli_bbva",
+    "kilden_teater_konserthus_kristiansand",
+    "fredrikshalds_teater"
+  ],
+  "targets": {
+    "oslo": "data/places/scenekunst/oslo/places_scenekunst.json",
+    "lisbon": "data/places/scenekunst/europe/portugal/lisbon/places_lisbon_scenekunst.json",
+    "agder": "data/places/scenekunst/agder/kilden_teater_konserthus_kristiansand.json",
+    "ostfold": "data/places/scenekunst/ostfold/fredrikshalds_teater.json"
+  },
+  "sourceGroups": [
+    {
+      "aggregate": "data/places/by/oslo/places_by.json",
+      "manifest": "data/places/by/oslo/places_by_manifest.json",
+      "index": "data/places/by/oslo/places_by_index.json",
+      "ids": [
+        "operahuset"
+      ]
+    },
+    {
+      "aggregate": "data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json",
+      "manifest": "data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst_manifest.json",
+      "index": "data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst_index.json",
+      "ids": [
+        "lisbon_teatro_nacional_d_maria_ii",
+        "lisbon_teatro_sao_luiz"
+      ]
+    },
+    {
+      "aggregate": "data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json",
+      "manifest": "data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk_manifest.json",
+      "index": "data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk_index.json",
+      "ids": [
+        "lisbon_teatro_tivoli_bbva"
+      ]
+    }
+  ],
+  "standaloneMoves": [
+    {
+      "id": "kilden_teater_konserthus_kristiansand",
+      "oldPath": "data/places/kunst/agder/kilden_teater_konserthus_kristiansand.json",
+      "newPath": "data/places/scenekunst/agder/kilden_teater_konserthus_kristiansand.json"
+    },
+    {
+      "id": "fredrikshalds_teater",
+      "oldPath": "data/places/kunst/ostfold/fredrikshalds_teater.json",
+      "newPath": "data/places/scenekunst/ostfold/fredrikshalds_teater.json"
+    }
+  ],
+  "validation": {
+    "placesIndexBuild": "pass",
+    "placesChecks": "pass",
+    "categoryAudit": "pass"
+  },
+  "validatedAt": "2026-07-21T09:58:37.522Z"
+}

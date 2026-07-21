@@ -61,3 +61,7 @@ Disse krever egen vurdering og er ikke automatisk flyttet:
 - kinoer med sporadisk sceneprogram,
 - historiske teaterbygg uten aktiv scenedrift,
 - steder der en enkelt forestilling er viktigere enn stedets nåværende hovedfunksjon.
+
+## Kildemigrering fullført
+
+Batchen er flyttet fra midlertidig category override til kanoniske kildefiler under `data/places/scenekunst/oslo/`. De gamle radene og split-filene er fjernet fra Litteratur, Musikk og Populærkultur, override-batchen er slettet, og `places_index.json` regenereres av migreringsjobben.
