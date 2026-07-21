@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 268 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 107 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_hovedsteder.json` etter objekt-type-først-metoden. Offisiell vernegeometri prioriteres; øyer, innsjøer og eventuelle vassdrag krever ett eksakt navngitt fysisk kildeobjekt. Sammensatte eller canonical-overlappende systemrecords avsluttes som needs_review uten proxy-gjetting.
+Oslo-tabellen inneholder nå 304 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 107 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_hovedsteder.json` etter objekt-type-først-metoden. Offisiell vernegeometri prioriteres; øyer, innsjøer og eventuelle vassdrag krever ett eksakt navngitt fysisk kildeobjekt. Sammensatte eller canonical-overlappende systemrecords avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -296,6 +296,7 @@ Batch 97 (2026-07-21) retter `universitetets_gamle_kjemi` etter objekt-type-før
 | 99 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
 | 100 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
 | 101 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
+| 102 | `havnelageret` | Oslo Havnelager | verified | `geonorge-adresser-v1:0301:14150:1` |
 | 103 | `oscarshall` | Oscarshall | verified | `geonorge-adresser-v1:0301:15443:15` |
 | 104 | `vikingtidsmuseet` | Vikingtidsmuseet | verified | `geonorge-adresser-v1:0301:13153:35` |
 
@@ -317,6 +318,8 @@ Batch 106 (2026-07-21) reviderer hele Bygdøy-naturkilden fra 2026-05-03, der le
 | 107 | `noklevann` | Nøklevann | verified_geometry | `osm-relation:16661` |
 
 Batch 107 (2026-07-21) reviderer natur-hovedstedene som fortsatt manglet full Coordinate Source Contract v1. Runneren hopper eksplisitt over placeId-er som allerede står i Oslo-hovedtabellen eller den separate needs_review-tabellen. Offisiell Naturbase-geometri brukes der et entydig verneobjekt finnes; ellers må OSM-kandidaten være et unikt eksakt navnetreff med riktig forhåndsdefinert objekttype. `bygdoy_natur` og `alnaelva_hovedsteder` kan ikke reduseres til nye tilfeldige punktproxyer når deres scope overlapper separate canonical delsteder eller eksisterende hovedrecords.
+
+Batch 102 (2026-07-21) reparerer en dokumentert aggregate/split-divergens for `havnelageret`. Aggregate-recorden var allerede korrekt verifisert mot Geonorge-adressen Langkaia 1 (`geonorge-adresser-v1:0301:14150:1`), mens split-child og split-index fortsatt bar den gamle `needs_source`/`legacy_manual_map_check`-koordinaten. Geonorge address-first ble kjørt på nytt og måtte returnere samme kildeobjekt og et punkt innen 1 meter fra aggregate-recorden før canonical aggregate-data ble kopiert uendret til split-child og split-index. Evidence-recorden peker fortsatt på aggregate-filen og trengte derfor ingen semantisk omskriving.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
