@@ -50,8 +50,22 @@ VisitOSLO bundles the museum and jump tower as one visitor product. History Go s
 - `holmenkollen_skimuseum` is the one genuinely missing stable institution/place identity.
 - No separate new jump-tower marker is approved.
 
-Coordinate rule: resolve the exact museum entrance/building identity at Kongeveien 40 where possible, and explicitly audit overlap against `holmenkollen_nasjonalanlegg` before production.
+## Coordinate decision — closed
+
+The candidate is coordinate-ready for production.
+
+- Selected canonical visitor address: **Kongeveien 5, 0787 Oslo**
+- Geonorge object: `geonorge-adresser-v1:0301:13850:5`
+- Coordinate: `59.96263248232449, 10.666289172703161`
+- Alternative documented address: Kongeveien 40
+- Separation between the two official address points: 231.8 m
+
+Current visitor-facing VisitOSLO and Holmenkollen/Skiforeningen sources identify Kongeveien 5 for the museum. A Skiforeningen directions page also mentions Kongeveien 40, so the alternate address is retained transparently as an access/complex address rather than silently discarded.
+
+The selected museum marker is 323.3 m from the current `holmenkollen_nasjonalanlegg` anchor. This is expected parent/child proximity, not identity duplication: the museum is a persistent institution with its own collections and visitor identity, while the arena remains the broader sports-infrastructure place.
+
+Final coordinate decision: `reports/visitoslo-holmenkollen-audit-20260721/skimuseum-coordinate-intake-final.json`.
 
 ## Final status
 
-**SCOPE CLOSED — 29/29 SOURCE ITEMS RESOLVED, 1 CANDIDATE READY FOR COORDINATE INTAKE.**
+**SCOPE CLOSED — 29/29 SOURCE ITEMS RESOLVED, 1 CANDIDATE COORDINATE-READY FOR CANONICAL PRODUCTION.**
