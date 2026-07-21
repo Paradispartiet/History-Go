@@ -1,116 +1,136 @@
-# Set-mal for stedsknyttede quizfiler i History Go
+# Set-mal for stedsknyttede quizfiler i History Go v4.4
 
-Denne malen gjelder for `*_sets.json`-filer i History Go og skal leses sammen med:
+Denne malen gjelder for `*_sets.json`-filer og skal leses sammen med:
 
-- `quiz_generator_rules_by_v4_3.json`
+- `QUIZ_INNHOLDSSTANDARD_V1.md`
+- `quiz_generator_rules_by_v1.md`
+- `quiz_generator_rules_by_v5_1_source_priority_patch.json`
+
+Ved motstrid er `QUIZ_INNHOLDSSTANDARD_V1.md` bindende.
 
 ## Hovedprinsipp
 
-History Go skal først og fremst være **historie gjennom sted**.
+History Go skal først og fremst være **historie og kunnskap gjennom sted**.
 
-Prioritert rekkefølge i quizene:
+Prioritert rekkefølge:
 
-1. lokalhistorie  
-2. historier, personer, bygninger og hendelser  
-3. humor, kuriositeter og minneverdige detaljer  
-4. konkrete fakta om stedet  
-5. fag, emner og begreper
+1. lokale og historiske kilder
+2. personer, hendelser, bygninger, verk og tidligere funksjoner
+3. konkrete arkitektoniske, tekniske og synlige trekk
+4. årsak, endring og sammenheng
+5. emner, teori og begreper som metadata og dybdelag
 
-Det betyr at quiz generatoren aldri skal starte med emner eller teori hvis stedet ennå ikke har fått en sterk historisk og stedlig quizkjerne.
+Generatoren skal ikke starte med et emne og deretter konstruere et stedsspørsmål som demonstrerer emnet.
 
-## Viktig regel
+## Obligatorisk quizbalanse
 
-Quiz generatoren kan bruke emner, mapping og teori i bakgrunnen, men spørsmålene skal **ikke** se ut som generator-spørsmål.
+For quizpakker med minst ti spørsmål:
 
-### Forbudt stil
-- «Hvilken topic hook fra fagkartet passer best …»
-- «Hvilken teoretiker fra fagplanen er særlig nyttig når …»
-- «Hvilken hook fra fagkartet …»
-- «Når stedet analyseres gjennom fagplanen …»
+- 60–70 % konkrete faktaspørsmål
+- 20–30 % årsak, endring og sammenheng
+- maks 10–15 % teori og begreper
 
-### Riktig stil
-- spørsmål om hva som lå her før
-- spørsmål om hva som ble bygget, flyttet, revet eller endret
-- spørsmål om personer, bygninger, konflikter, spor og konkrete hendelser
-- dype analytiske spørsmål som fortsatt handler om stedet, ikke om fagplanspråk
+Teoriandelen er et maksimum, ikke et mål. En quiz kan ha null synlige teorispørsmål.
+
+## Forbudt generatorstil
+
+- «Hvorfor passer stedet til emnet …»
+- «Hva gjør stedet relevant for emnet …»
+- «Hvordan kan stedet leses som …»
+- «Hva er den mest presise faglige lesningen …»
+- «Hvilket begrep beskriver best …» når oppgaven bare velger et emneord
+- spørsmål som nevner fagplan, fagkart, emnekart, mapping eller hooks
+- ett langt akademisk fasitsvar mot to korte tullesvar
+
+## Riktig stil
+
+- hvem, hva, når og hvor
+- hva som lå der før
+- hva som ble bygget, flyttet, revet eller endret
+- personer, verk, konflikter, funksjoner og hendelser
+- hvordan en konkret konstruksjon eller løsning virker
+- hvorfor en dokumentert beslutning ble tatt
+- hvilke synlige spor som viser historien
+- reelle sammenligninger som bygger på kilder
+
+Et normalt faktaspørsmål er bedre enn en kunstig analyseoppgave.
 
 ## Adaptiv størrelse
 
-Quiz generatoren skal velge størrelse etter stoffmengde.
+Quizlengde skal følge stoffmengden, ikke et produksjonsmål.
 
 - **minimal_place** = 4 sett × 5 spørsmål
 - **normal_place** = 5 sett × 6 spørsmål
 - **rich_place** = 8 sett × 7 spørsmål
 - **major_place** = 10 sett × 7 spørsmål
 
-Små og mellomstore steder kan derfor stoppe før emnesettene.
+Disse er øvre produksjonsrammer, ikke krav om fylling. Et rikt sted kan få en kortere quiz dersom de ekstra spørsmålene ellers blir svake eller gjentakende.
 
-## Settstruktur i v4.3
+## Settstruktur
 
-### Set 1 — `history_intro_story`
-Sterk åpning med opprinnelse, lokal historie og stedets viktigste fortelling.
+### Sett 1 — opprinnelse og hovedhistorie
 
-### Set 2 — `local_history_buildings_events`
-Bygninger, tidligere funksjoner, personer, hendelser og synlige historiske spor.
+Grunnleggelse, tidligere funksjon, sentrale personer, datoer og stedets viktigste fortelling.
 
-### Set 3 — `humor_curiosities_life`
-Kuriositeter, humor, visual hooks og hverdagsliv.
+### Sett 2 — bygninger, verk og hendelser
 
-### Set 4 — `place_facts_architecture`
-Konkrete og verifiserbare spørsmål om bygninger, arkitektur, materialitet og synlige trekk.
+Arkitektur, konstruksjon, historiske hendelser, ombygginger og synlige spor.
 
-### Set 5 — `place_concrete_advanced`
-Dypere, men fortsatt stedsnære spørsmål om utvikling, institusjoner, konflikter og sammenligninger.
+### Sett 3 — bruk, liv og kuriositeter
 
-### Set 6 — `emne_based_foundation`
-Første analytiske sett. Akademisk språk er lov, men spørsmålene må fortsatt handle om stedet.
+Faktisk bruk, brukergrupper, aktiviteter, teknologi, hverdagsliv og minneverdige detaljer.
 
-### Set 7 — `emne_based_advanced`
-Dypere analyse. Teori kan brukes som motor i bakgrunnen, men ikke som synlig «hvilken teoretiker»-quiz.
+### Sett 4 — stedsspesifikke fakta og løsninger
 
-### Set 8 — `concept_based`
-Begreper som faktisk hjelper spilleren å lese stedet.
+Materialer, funksjoner, miljøløsninger, teknikk, priser og dokumenterbare kjennetegn.
 
-### Set 9 — `deep_history_conflict`
-Kun for store steder. Krig, rivning, makt, konflikt, omstridt utvikling.
+### Sett 5 — årsak og utvikling
 
-### Set 10 — `synthesis_comparison`
-Kun for store steder. Sammenligner og samler stedets historiske og analytiske lag uten å bli en ren teoriquiz.
+Hvorfor stedet ble slik, hva endringer førte til, og hvilke konflikter eller valg som hadde betydning.
+
+### Sett 6 og videre — bare ved nok stoff
+
+Dypere sammenhenger, sammenligninger og i begrenset grad teori. Senere sett fritar aldri generatoren fra balansekravet for hele quizen.
 
 ## Banality guard
 
-Hvis quiz generatoren ikke finner nok sterke spørsmål om:
-- lokalhistorie
-- bygninger
+Hvis generatoren ikke finner nok sterke spørsmål om:
+
 - personer
 - hendelser
+- bygninger eller verk
+- tidligere funksjoner
 - konflikter
+- konstruksjon
 - synlige spor
+- dokumentert bruk
 
-skal den **korte ned quizen**.
+skal den korte ned quizen.
 
 Den skal ikke fylle med:
-- opplagte «hva heter»-spørsmål
-- isolerte årstall uten kontekst
-- tekniske spørsmål uten interesse
+
+- emneparafraser
+- gjentatte begrepsvalg
+- isolerte årstall uten sammenheng
+- konstruerte kontraster
 - fagplanspråk i spørsmålsform
 
 ## Theory rule
 
-Teori og teoretikere kan brukes i generatoren som støtte og dybdelag, men de skal som hovedregel:
+Teori og begreper skal som hovedregel:
+
 - ligge i metadata
-- eventuelt nevnes i `knowledge`
-- ikke være selve quizspørsmålet
+- utdype `knowledge`
+- hjelpe progresjon og læringskobling
+- ikke være selve motoren i synlige spørsmål
 
-Spørsmålet skal fortsatt være om **stedet**.
+## Kontroll
 
-## Praktisk tommelfingerregel
+Kjør:
 
-Hvis et spørsmål ikke lærer spilleren noe om:
-- hva stedet var før
-- hva som skjedde der
-- hvem som var knyttet til det
-- hvilke bygninger eller spor som betyr noe
-- hvordan stedet ble slik det er
+```bash
+npm run audit:quiz-content
+npm run test:quiz-content-audit
+```
 
-så er spørsmålet for svakt og bør byttes ut eller kuttes.
+Auditen kontrollerer balanse, forbudte språkmønstre, gjentatte åpninger og avslørende svarlengde.
