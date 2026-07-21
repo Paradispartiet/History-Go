@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T07:15:29.245Z
+Generert: 2026-07-21T07:23:54.935Z
 
 ## Oppsummering
 - Aktive filer validert: **591**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **426**
-- Coordinate review candidates: **709** signaler fordelt på **569** steder
+- Varsler: **432**
+- Coordinate review candidates: **715** signaler fordelt på **575** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -894,8 +894,14 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/politikk/oslo/places_politikk.json#hoyesteretts_hus: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#politihuset_gronland: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#folkets_hus_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json#cinemateket_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json#house_of_nerds: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#folketeateret: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#chateau_neuf: coordStatus=verified uten coordPrecisionM
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json#latter: coordStatus=verified uten coordPrecisionM
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json#grand_hotel: coordStatus=verified uten coordPrecisionM
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json#chat_noir: coordStatus=verified uten coordPrecisionM
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json#edderkoppen_scene: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/oslo_sport.json#nordre_aasen_idrettspark: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#lekeplass_sofienbergparken: lav koordinatpresisjon (<4 desimaler)
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json#lekeplass_botsparken: lav koordinatpresisjon (<4 desimaler)
@@ -1043,13 +1049,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 709 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 715 signaler fordelt på 575 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 123 |
+| coordStatus=verified uten coordPrecisionM | 129 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 94 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 86 |
@@ -1059,7 +1065,7 @@ Totalt 709 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (123)
+### coordStatus=verified uten coordPrecisionM (129)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1123,8 +1129,14 @@ Totalt 709 signaler fordelt på 569 steder. Et sted kan ha flere signaler. Kandi
 | hoyesteretts_hus | Høyesteretts hus | politikk | data/places/politikk/oslo/places_politikk.json | 59.914567897676186 | 10.744510031498768 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | politihuset_gronland | Politihuset på Grønland | politikk | data/places/politikk/oslo/places_politikk.json | 59.91076260893923 | 10.770099603960052 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | folkets_hus_oslo | Folkets Hus i Oslo | politikk | data/places/politikk/oslo/places_politikk.json | 59.9148900622556 | 10.750628039496302 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| cinemateket_oslo | Cinemateket i Oslo | film_tv | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.90961165359811 | 10.745752189439866 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| house_of_nerds | House of Nerds | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.92186714382747 | 10.75148579082984 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | folketeateret | Folketeateret | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.9145532904993 | 10.749678422671124 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | chateau_neuf | Chateau Neuf | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.93227611011727 | 10.71254747404495 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| latter | Latter | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91081373400813 | 10.726768537822347 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| grand_hotel | Grand Hotel | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.913745246491665 | 10.739476691613683 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| chat_noir | Chat Noir | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91360791283421 | 10.732172099794877 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| edderkoppen_scene | Edderkoppen Scene | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.91815941203321 | 10.739832936543767 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | torggata_blad | Torggata Blad | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91657334372696 | 10.75561428991178 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.917023156193885 | 10.73472914137377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | grannar_redaksjon_etne | Grannar-redaksjonen i Etne | media | data/places/media/vestland/etne/grannar_redaksjon_etne.json | 59.66414439895677 | 5.940649457868514 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
