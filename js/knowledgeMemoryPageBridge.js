@@ -88,9 +88,9 @@
     const emneIds = unique([...(unit?.emne_ids || [])]);
     const concepts = unique([
       ...(unit?.concepts || []),
-      ...(unit?.concept_focus || []),
-      ...(unit?.terms || [])
+      ...(unit?.concept_focus || [])
     ]);
+    const terms = unique(unit?.terms || []);
     const unitId = s(unit?.unit_id || unit?.id);
 
     return {
@@ -102,6 +102,8 @@
       emne_ids: emneIds,
       resolved_emne_ids: emneIds,
       concepts,
+      terms,
+      tags: unique(unit?.tags || []),
       dimension: s(unit?.dimension || unit?.kind || "kunnskap"),
       topic: s(unit?.topic || unit?.question_family || unit?.question_type || unit?.question || "Kunnskap"),
       text: s(unit?.text || unit?.answer),
@@ -131,7 +133,9 @@
       fagkart_category_id: s(bundle?.subject_id),
       emne_ids: [],
       resolved_emne_ids: [],
-      concepts: unique(item?.tags || []),
+      concepts: [],
+      terms: [],
+      tags: unique(item?.tags || []),
       dimension: kind,
       topic: s(item?.title || humanize(kind) || "Kunnskap"),
       text: s(item?.text),
@@ -182,7 +186,7 @@
         unresolved_count: 0,
         concepts: [],
         entries: [],
-        emner: [],
+        emners: [],
         course: null
       };
     }
@@ -202,6 +206,8 @@
         previous.emne_ids = unique([...(previous.emne_ids || []), ...(entry.emne_ids || [])]);
         previous.resolved_emne_ids = unique([...(previous.resolved_emne_ids || []), ...(entry.resolved_emne_ids || [])]);
         previous.concepts = unique([...(previous.concepts || []), ...(entry.concepts || [])]);
+        previous.terms = unique([...(previous.terms || []), ...(entry.terms || [])]);
+        previous.tags = unique([...(previous.tags || []), ...(entry.tags || [])]);
         return;
       }
       existing.push(entry);
