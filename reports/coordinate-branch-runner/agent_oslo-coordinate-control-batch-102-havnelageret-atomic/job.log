@@ -1,0 +1,36 @@
+From https://github.com/Paradispartiet/History-Go
+ * branch                main       -> FETCH_HEAD
+HEAD is now at 08737fc7c Add validated Åkrafjorden marine species batch 3
+[Batch 102] Building coordinate tools
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+[Batch 102] Reconfirming Geonorge address-first result: Langkaia 1 Oslo
+{
+  "ok": true,
+  "batch": 102,
+  "placeId": "havnelageret",
+  "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+  "divergenceBefore": {
+    "aggregate": {
+      "lat": 59.90760281927637,
+      "lon": 10.746880614147818,
+      "r": 60,
+      "coordStatus": "verified",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1"
+    },
+    "splitChild": {
+      "lat": 59.90845,
+      "lon": 10.74305,
+      "r": 160,
+      "coordStatus": "needs_source",
+      "coordType": "site_center",
+      "sourceObjectId": ""
+    },
+    "meters": 233.4
+  },
+  "aggregateVsFreshGeonorgeMeters": 0,
+  "protocolUniqueVerifiedCountAfterBatch": 304
+}
