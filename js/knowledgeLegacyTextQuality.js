@@ -28,9 +28,7 @@
   }
 
   function splitClaims(value) {
-    if (root?.HGQuizKnowledgeQuality?.splitClaims) {
-      return root.HGQuizKnowledgeQuality.splitClaims(value);
-    }
+    if (root?.HGQuizKnowledgeQuality?.splitClaims) return root.HGQuizKnowledgeQuality.splitClaims(value);
     const raw = s(value).replace(/\r\n?/g, "\n").replace(/\n[•·*-]?\s*/g, ". ");
     if (!raw) return [];
     return unique(raw
@@ -40,11 +38,13 @@
   }
 
   function isCopy(claim, question, answer) {
+    const candidate = normalized(claim);
+    if (!candidate || candidate === "ingen forklaring registrert") return true;
+    if (question && candidate.split(" ").length <= 3) return true;
     if (root?.HGQuizKnowledgeQuality?.isQuestionOrAnswerCopy) {
       return root.HGQuizKnowledgeQuality.isQuestionOrAnswerCopy(claim, { question, answer });
     }
-    const candidate = normalized(claim);
-    return !candidate || candidate === normalized(question) || candidate === normalized(answer) || /[?]\s*$/.test(s(claim));
+    return candidate === normalized(question) || candidate === normalized(answer) || /[?]\s*$/.test(s(claim));
   }
 
   function isQuestion(value) {
@@ -154,8 +154,7 @@
   }
 
   function writeIfChanged(key, before, after) {
-    if (!root?.localStorage) return false;
-    if (JSON.stringify(before) === JSON.stringify(after)) return false;
+    if (!root?.localStorage || JSON.stringify(before) === JSON.stringify(after)) return false;
     root.localStorage.setItem(key, JSON.stringify(after));
     return true;
   }
@@ -165,7 +164,9 @@
     const v2Before = readJson(V2_KEY, []);
     const legacyAfter = sanitizeLegacyUniverse(legacyBefore);
     const v2After = sanitizeV2Entries(v2Before, quizItem);
-    const changed = writeIfChanged(LEGACY_KEY, legacyBefore, legacyAfter) || writeIfChanged(V2_KEY, v2Before, v2After);
+    const legacyChanged = writeIfChanged(LEGACY_KEY, legacyBefore, legacyAfter);
+    const v2Changed = writeIfChanged(V2_KEY, v2Before, v2After);
+    const changed = legacyChanged || v2Changed;
     if (changed) {
       try { root.dispatchEvent?.(new CustomEvent("hg:knowledgeTextQualityUpdated")); } catch {}
     }
