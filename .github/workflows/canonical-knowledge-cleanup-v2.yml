@@ -7,6 +7,7 @@ on:
       - 'scripts/apply-canonical-knowledge-cleanup.py'
       - 'scripts/apply-claim-id-separation.py'
       - 'scripts/apply-storage-test-audit-allowlist.py'
+      - 'scripts/apply-legacy-id-label-preservation.py'
       - 'tests/knowledge-canonical-storage-contract.test.js'
       - '.github/workflows/canonical-knowledge-cleanup-v2.yml'
 
@@ -32,6 +33,7 @@ jobs:
           python scripts/apply-canonical-knowledge-cleanup.py
           python scripts/apply-claim-id-separation.py
           python scripts/apply-storage-test-audit-allowlist.py
+          python scripts/apply-legacy-id-label-preservation.py
       - name: Build canonical data tooling
         run: npm run build:scripts
       - name: Backfill canonical IDs and registries
@@ -74,7 +76,7 @@ jobs:
           git config user.name 'History GO CI'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
-          git reset -- scripts/apply-canonical-knowledge-cleanup.py scripts/apply-claim-id-separation.py scripts/apply-storage-test-audit-allowlist.py .github/workflows/canonical-knowledge-cleanup-v2.yml .github/workflows/knowledge-checks.yml .github/workflows/data-checks.yml
+          git reset -- scripts/apply-canonical-knowledge-cleanup.py scripts/apply-claim-id-separation.py scripts/apply-storage-test-audit-allowlist.py scripts/apply-legacy-id-label-preservation.py .github/workflows/canonical-knowledge-cleanup-v2.yml .github/workflows/knowledge-checks.yml .github/workflows/data-checks.yml
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
