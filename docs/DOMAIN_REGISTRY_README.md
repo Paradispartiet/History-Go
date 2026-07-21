@@ -2,208 +2,144 @@
 
 Status: practical usage guide
 Runtime file: `js/DomainRegistry.js`
+Machine contract: `data/categories/category_contract.json`
 Decision contract: `docs/DOMAIN_CONTRACT.md`
-
-This README explains which DomainRegistry method to use in each layer of History Go.
-It is documentation only. Runtime source of truth is still `js/DomainRegistry.js`.
 
 ## Core rule
 
-Do not use one generic domain resolver everywhere.
-
-History Go has two different id directions:
+History Go has two id directions:
 
 ```text
 fag/editorial subject id  -> emner, pensum, fagkart, methods
 runtime category id       -> place.category, quiz categoryId, badges, merits, profile progression
 ```
 
-For most domains these ids are identical.
-For populærkultur they are deliberately different names for the same domain:
+For every category except popular culture, the fag id and runtime id are identical.
+
+Popular culture deliberately uses:
 
 ```text
-popkultur       = short fag/editorial id
-populaerkultur  = runtime badge/category/progression id
+popkultur       = fag/editorial id
+populaerkultur  = runtime category, badge and progression id
 ```
 
-They are not two badges.
-They are not two progression tracks.
+They are one domain, not two badges.
 
-Runtime category writes must call `DomainRegistry.toRuntimeCategoryId(raw)` explicitly at the source.
-There is no `Storage.prototype` monkey-patching or hidden storage normalization.
-`popkultur` must never become a `merits_by_category` key; runtime progression uses `populaerkultur`.
+## Which method to use
 
-## Method choice
+### `toFagSubjectId()`
 
-### Use `toFagSubjectId()` for fag/emne/pensum
+Use for:
 
-Use this when code is going into `data/fag/<subjectId>/` or loading subject structure.
+- `data/fag/<subjectId>/`
+- fag manifest keys
+- emner, pensum, fagkart and methods
+- learning and course structure
+
+Examples:
 
 ```js
-DomainRegistry.toFagSubjectId("populaerkultur");
-// "popkultur"
+DomainRegistry.toFagSubjectId("populaerkultur"); // "popkultur"
+DomainRegistry.toFagSubjectId("teater");         // "scenekunst"
+DomainRegistry.toFagSubjectId("film");           // "film_tv"
+DomainRegistry.toFagSubjectId("journalistikk");  // "media"
+DomainRegistry.toFagSubjectId("filosofi");       // "vitenskap"
 ```
 
-Correct places to use this direction:
+### `toRuntimeCategoryId()`
 
-```text
-data/fag/<subjectId>/
-fag_manifest subject keys
-emner
-pensum
-fagkart
-methods
-course/learning subject analysis
-```
+Use for:
 
-### Use `toRuntimeCategoryId()` for badges/progression
+- `place.category`
+- quiz `categoryId`
+- `merits_by_category`
+- badges and badge images
+- profile and progression statistics
 
-Use this when code is comparing or writing runtime categories.
+Examples:
 
 ```js
-DomainRegistry.toRuntimeCategoryId("popkultur");
-// "populaerkultur"
+DomainRegistry.toRuntimeCategoryId("popkultur");     // "populaerkultur"
+DomainRegistry.toRuntimeCategoryId("teater");        // "scenekunst"
+DomainRegistry.toRuntimeCategoryId("film");          // "film_tv"
+DomainRegistry.toRuntimeCategoryId("journalistikk"); // "media"
 ```
 
-Correct places to use this direction:
+Runtime writes must normalize explicitly at the source. Storage must not be monkey-patched to hide missing normalization.
 
-```text
-place.category
-quiz categoryId
-merits_by_category
-badge id
-badge lookup
-badge image/overlay
-profile/progression stats
-```
+## Canonical lists
 
-## Important examples
-
-### Correct: fag load
-
-```js
-const subjectId = DomainRegistry.toFagSubjectId(rawId);
-await DataHub.loadEmner(subjectId);
-```
-
-If `rawId` is `populaerkultur`, this loads from the fag/editorial side as `popkultur`.
-
-### Correct: badge/progression lookup
-
-```js
-const categoryId = DomainRegistry.toRuntimeCategoryId(rawId);
-const badge = badges.find((b) => b.id === categoryId);
-```
-
-If `rawId` is `popkultur`, this matches the existing badge id `populaerkultur`.
-
-### Wrong: using `resolve()` for merits
-
-```js
-const id = DomainRegistry.resolve("populaerkultur");
-merits_by_category[id] += 1;
-```
-
-This is wrong because `resolve("populaerkultur")` returns `popkultur`, which is the fag/editorial id.
-That would create a new progression key instead of using the existing runtime key.
-
-Use this instead:
-
-```js
-const id = DomainRegistry.toRuntimeCategoryId("populaerkultur");
-merits_by_category[id] += 1;
-```
-
-## Current populærkultur contract
-
-```text
-populaerkultur = active runtime id
-popkultur      = short fag/editorial id
-```
-
-Current correct files:
-
-```text
-data/badges/populaerkultur.json
-data/quiz/quiz_populaerkultur.json
-data/fag/popkultur/
-data/people/popkultur/
-```
-
-Do not create these unless a full migration is planned:
-
-```text
-data/badges/popkultur.json
-data/quiz/quiz_popkultur.json
-```
-
-## Runtime category list
-
-`DomainRegistry.listRuntimeCategories()` should include ids used directly by runtime category/badge/progression logic:
+`DomainRegistry.list()` returns these fag ids:
 
 ```text
 by
 historie
 kunst
 litteratur
-musikk
-naeringsliv
-natur
-politikk
-populaerkultur
-psykologi
-sport
-subkultur
-vitenskap
-film_tv
 media
-```
-
-`film_tv` and `media` are their own badge domains. They are not subdomains of `popkultur`.
-
-## Fag/editorial list
-
-`DomainRegistry.list()` returns canonical fag/editorial ids:
-
-```text
-by
-historie
-kunst
-litteratur
 musikk
 naeringsliv
 natur
 politikk
 popkultur
 psykologi
+religion
+scenekunst
 sport
 subkultur
 vitenskap
+film_tv
 ```
 
-`filosofi` resolves to `vitenskap`.
-`scenekunst` resolves to `kunst`.
-
-## Practical rule before coding
-
-Before changing category code, ask:
+`DomainRegistry.listRuntimeCategories()` returns these runtime ids:
 
 ```text
-Am I loading learning structure?
--> use toFagSubjectId()
-
-Am I matching badges, categories, quiz categoryId or merits?
--> use toRuntimeCategoryId()
+by
+historie
+kunst
+litteratur
+media
+musikk
+naeringsliv
+natur
+politikk
+populaerkultur
+psykologi
+religion
+scenekunst
+sport
+subkultur
+vitenskap
+film_tv
 ```
 
-Do not call `resolve()` in new runtime badge/progression code unless you specifically want the fag/editorial id.
+## Category decisions
 
-## Storage and debugging
+- `kunst` means visual and material art. The display name is **Kunst**.
+- `scenekunst` is its own category for theatre, dance, musicals, revue, standup, improvisation and live performance.
+- `musikk` means music. The display name is **Musikk**.
+- `kultur` is not a category id.
+- `film_tv` and `media` remain independent categories, not children of popular culture.
+- `religion` remains an independent category.
+- `filosofi` resolves to `vitenskap`.
+- `sosial_laering` is a non-place badge and is not returned by either category-list method.
 
-Storage is deliberately passive: no helper may replace `Storage.prototype.getItem` or
-`Storage.prototype.setItem`. Every quiz, badge and progression writer must normalize its
-category before indexing a map, calling an API hook or dispatching a runtime event.
+## Correct popular-culture files
 
-In DEBUG mode the app warns if existing `merits_by_category` data contains both
-`popkultur` and `populaerkultur`. The warning is diagnostic only; it does not silently
-migrate or rewrite user data.
+```text
+data/badges/populaerkultur.json
+data/quiz/quiz_populaerkultur.json
+data/fag/popkultur/
+```
+
+Do not create parallel runtime files named `popkultur` without a complete migration.
+
+## Before adding a category
+
+1. Update `data/categories/category_contract.json`.
+2. Update `docs/DOMAIN_CONTRACT.md`.
+3. Update `js/DomainRegistry.js`.
+4. Update badges, fag manifest, category UI and place policy.
+5. Run `npm run audit:categories`.
+
+If the audit fails, do not add a local fallback or an extra alias map elsewhere.
