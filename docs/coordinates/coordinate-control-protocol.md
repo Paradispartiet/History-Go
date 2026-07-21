@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 279 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 115 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
+Oslo-tabellen inneholder nå 331 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 115 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -535,7 +535,7 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 ## Neste arbeid
 
 - Neste nye Oslo-kontroll er batch 116.
-- `places_oslo_natur_salamanderdammer.json` er nå fullt kontrollert i manifestrekkefølge. De eksplisitt splittede Oslo-naturmanifestene er dermed gjennomgått; før batch 115 starter skal resterende unsplit naturkilder auditeres mot `reports/places-unsplit-manifest-audit.json` og allerede kontrollerte placeId-er hoppes over.
+- De åtte Oslo-naturfilene i `data/places/manifest.json` er nå fullt kontrollert. Neste aktive manifestkilde er `places/politikk/oslo/places_politikk.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest eller en biologisk lokalitetskilde er bare kø-/identitetskilde, ikke automatisk koordinatbevis.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 
