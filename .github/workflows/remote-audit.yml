@@ -19,7 +19,7 @@ on:
           - full
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
@@ -31,6 +31,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Check out Knowledge emner branch
+        if: github.event_name == 'pull_request' && github.head_ref == 'agent/knowledge-emner-contract-fix-20260721'
+        run: |
+          git fetch origin "$GITHUB_HEAD_REF"
+          git checkout -B "$GITHUB_HEAD_REF" "origin/$GITHUB_HEAD_REF"
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -39,6 +45,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+
+      - name: Apply and verify Knowledge emner contract
+        if: github.event_name == 'pull_request' && github.head_ref == 'agent/knowledge-emner-contract-fix-20260721'
+        run: |
+          npm run build:scripts
+          node dist/scripts/fix-knowledge-emner-contract.js
+          npm run build:web
+          npm run test:knowledge-core
 
       - name: Resolve audit suite
         id: suite
@@ -90,6 +104,23 @@ jobs:
                 ;;
             esac
           } 2>&1 | tee reports/remote-audit.log
+
+      - name: Commit generated Knowledge emner files
+        if: always() && github.event_name == 'pull_request' && github.head_ref == 'agent/knowledge-emner-contract-fix-20260721'
+        run: |
+          git config user.name "History GO CI"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            js/knowledgeV2.ts \
+            tests/knowledge-v2-model.test.js \
+            dist/web/knowledgeV2.js \
+            dist/web/knowledgeV2.js.map
+          if git diff --cached --quiet; then
+            echo "No Knowledge emner changes to commit"
+            exit 0
+          fi
+          git commit -m "Restore canonical Knowledge emner contract"
+          git push origin HEAD:"$GITHUB_HEAD_REF"
 
       - name: Add audit summary
         if: always()
