@@ -44,43 +44,69 @@ DomainHealthReport.run({ toast: true });
 
 ---
 
-## Codex/GitHub: verifiser at `origin` faktisk fungerer
-I Codex-runner skal tasken normalt provisioneres via GitHub-integrasjonen, og `origin` skal da eksistere automatisk.
-Hvis `origin` mangler, behandle det som et provisioning/integration-problem (ikke som vanlig repo-feil).
+## GitHub-tilgang: lokal git er valgfri, connector er fallback
 
-### Hurtigsjekk
+I Codex-/agentmiljøer kan direkte `git fetch`, `git ls-remote` eller `gh` være blokkert av runner, proxy eller nettpolicy. Dette er **ikke** en repo-feil og skal aldri brukes som grunn til å stoppe en audit eller annen repooppgave.
+
+Canonical repository er:
+
+```text
+Paradispartiet/History-Go
+```
+
+### Obligatorisk arbeidsregel
+
+1. Bruk GitHub-connectoren/GitHub App til filsøk, lesing, brancher, commits, PR-er, CI-innsyn og merge.
+2. Bruk lokal clone bare når den allerede fungerer.
+3. Dersom lokal `origin` feiler, fortsett umiddelbart via connectoren.
+4. Utfør statisk audit direkte mot filer hentet gjennom connectoren.
+5. Dersom kontrollen må kjøre kode mot hele repositoriet, bruk eksisterende CI eller `Remote repository audit`.
+
+**Det er forbudt å konkludere med at en audit ikke kan utføres bare fordi den lokale clonen ikke får kontakt med GitHub.**
+
+### Lokal diagnostikk
+
 ```bash
 git remote get-url origin
 git ls-remote --heads origin main
 git fetch origin "+refs/heads/main:refs/remotes/origin/main" --prune
 git rev-parse --verify refs/remotes/origin/main
 ```
-Bruk full refspec/full ref som over for å unngå tvetydig fetch i Codespaces.
 
-### Repo-script (anbefalt)
+Eller:
+
 ```bash
 ./scripts/verify-git-origin.sh
 ```
 
-Scriptet stopper med feilkode hvis:
-- `origin` mangler
-- `origin` ikke kan nås
-- `origin/main` ikke kan verifiseres
+Scriptet diagnostiserer kun lokal git-transport. En feilkode betyr `LOCAL_GIT_UNAVAILABLE`, ikke `REPOSITORY_UNAVAILABLE`.
 
-Valgfrie argumenter:
-```bash
-./scripts/verify-git-origin.sh <remote> <branch>
-```
-Eksempel:
-```bash
-./scripts/verify-git-origin.sh upstream main
+### Fjern-audit uten lokal clone
+
+Audit-workflowen ligger her:
+
+```text
+.github/workflows/remote-audit.yml
 ```
 
-### Operativ regel før migrering (TypeScript/JSDoc)
-- Hvis scriptet feiler på **remote missing**: stopp migreringsarbeid og løs runner-provisioning/GitHub-integrasjon først.
-- Hvis scriptet feiler med **`CONNECT tunnel failed, response 403`**: stopp migreringsarbeid og behandle det som runner/proxy/GitHub-integrasjon-problem.
-- Ikke start TypeScript/JSDoc-migrering før scriptet passerer.
+Slik startes den gjennom connectoren:
+
+1. Opprett en branch fra aktuell `main`.
+2. Oppdater `.github/audit-request.json` med ønsket `suite` og en ny unik `nonce`.
+3. Åpne en PR fra samme repository.
+4. Les workflow-run, jobber og logger gjennom GitHub-connectoren.
+
+Tillatte audit-suites:
+
+```text
+data
+coordinates
+quiz
+full
+```
+
+Workflowen tillater ikke vilkårlige shell-kommandoer fra request-filen. Suite-navnet mappes til eksplisitte repo-scripts i workflowen.
 
 ### Om manuell `git remote add origin ...`
-Manuell `git remote add origin https://github.com/Paradispartiet/History-Go.git` kan brukes lokalt eller diagnostisk,
-men er ikke en fullverdig løsning i Codex-runner hvis proxy/auth fortsatt blokkerer `fetch`.
+
+Manuell `git remote add origin https://github.com/Paradispartiet/History-Go.git` kan brukes lokalt eller diagnostisk, men er ikke nødvendig for connector-basert repoarbeid og løser ikke en blokkert proxy.

@@ -1,0 +1,116 @@
+name: Remote repository audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/audit-request.json'
+      - '.github/workflows/remote-audit.yml'
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: Audit suite to run
+        required: true
+        default: data
+        type: choice
+        options:
+          - data
+          - coordinates
+          - quiz
+          - full
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Remote audit
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Resolve audit suite
+        id: suite
+        env:
+          DISPATCH_SUITE: ${{ inputs.suite }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const allowed = new Set(['data', 'coordinates', 'quiz', 'full']);
+          let suite = process.env.DISPATCH_SUITE || '';
+          if (process.env.EVENT_NAME !== 'workflow_dispatch') {
+            const request = JSON.parse(fs.readFileSync('.github/audit-request.json', 'utf8'));
+            suite = String(request.suite || '');
+          }
+          if (!allowed.has(suite)) {
+            console.error(`Unsupported audit suite: ${suite}`);
+            process.exit(1);
+          }
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `suite=${suite}\n`);
+          NODE
+
+      - name: Run audit suite
+        env:
+          AUDIT_SUITE: ${{ steps.suite.outputs.suite }}
+        run: |
+          set -o pipefail
+          mkdir -p reports
+          {
+            echo "Remote audit suite: $AUDIT_SUITE"
+            case "$AUDIT_SUITE" in
+              data)
+                npm run health:data
+                npm run audit:places-split-manifest-sync
+                npm run audit:people-of-places
+                npm run audit:quiz-manifest:v2
+                ;;
+              coordinates)
+                npm run places:coords:audit
+                npm run places:coords:evidence:audit
+                npm run places:coords:quality
+                ;;
+              quiz)
+                npm run audit:quiz-manifest:v2
+                npm run health:data
+                ;;
+              full)
+                npm run tools:check
+                ;;
+            esac
+          } 2>&1 | tee reports/remote-audit.log
+
+      - name: Add audit summary
+        if: always()
+        env:
+          AUDIT_SUITE: ${{ steps.suite.outputs.suite }}
+        run: |
+          {
+            echo "## Remote repository audit"
+            echo
+            echo "Suite: \`$AUDIT_SUITE\`"
+            echo
+            echo "This audit ran on GitHub Actions and did not depend on a local clone."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: remote-audit-${{ steps.suite.outputs.suite }}
+          path: |
+            reports/remote-audit.log
+            reports/**/*.json
+            reports/**/*.md
+          if-no-files-found: ignore
