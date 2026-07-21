@@ -6,9 +6,9 @@ import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
-// HEAD~2 is the full batch-133 implementation. Apply the URLSearchParams typo fix,
-// then instrument only the evidence audit so its exact failing row is visible.
-let implementation = execFileSync('git', ['show', 'HEAD~2:scripts/coordinate-branch-job.mjs'], {
+// HEAD~3 is the original full batch-133 implementation. The next two commits were
+// a URLSearchParams typo wrapper and an evidence diagnostic wrapper.
+let implementation = execFileSync('git', ['show', 'HEAD~3:scripts/coordinate-branch-job.mjs'], {
   cwd: root,
   encoding: 'utf8',
 });
@@ -18,18 +18,19 @@ const paramTo = "  nummer: number,\n  kommunenummer: municipality,";
 if (!implementation.includes(paramFrom)) throw new Error('Fant ikke Club 7 URLSearchParams-feilen');
 implementation = implementation.replace(paramFrom, paramTo);
 
-const gateFrom = "execFileSync('node', ['dist/tools/audit-coordinate-evidence.mjs'], { cwd: root, stdio: 'inherit' });";
-const gateTo = `try {
-  execFileSync('node', ['dist/tools/audit-coordinate-evidence.mjs'], { cwd: root, stdio: 'inherit' });
-} catch (error) {
-  const report = path.join(root, 'reports/coordinate-evidence-audit.md');
-  if (fs.existsSync(report)) console.error('\\n--- coordinate evidence diagnostic ---\\n' + fs.readFileSync(report, 'utf8'));
-  throw error;
-}`;
-if (!implementation.includes(gateFrom)) throw new Error('Fant ikke evidence-gaten');
-implementation = implementation.replace(gateFrom, gateTo);
+// Contract v1 requires historic_site to use a historical source provider as the primary
+// contract identity. Sceneweb resolves the represented 1971–1985 occupancy; the structured
+// Munkedamsveien 15 address and Geonorge point remain the exact physical coordinate basis.
+implementation = implementation.replace(
+  "  sourceProvider: 'official_address',\n  sourceObjectId,",
+  "  sourceProvider: 'manual_research',\n  sourceObjectId: 'sceneweb-organisation:39671:club7-munkedamsveien15-1971-1985',"
+);
+implementation = implementation.replace(
+  "  coordSource: 'Geonorge Adresser API v1 – Munkedamsveien 15; historical occupancy documented by Sceneweb and Oslo byleksikon',\n  coordSourceId: sourceObjectId,\n  coordSourceUrl: geonorgeUrl,",
+  "  coordSource: 'Sceneweb + Oslo byleksikon – Club 7 at Munkedamsveien 15, 1971–1985; exact physical address point from Geonorge Adresser API v1',\n  coordSourceId: 'sceneweb-organisation:39671:club7-munkedamsveien15-1971-1985',\n  coordSourceUrl: scenewebUrl,"
+);
 
-const tmp = path.join(root, 'scripts/.coordinate-batch-133-diagnostic.tmp.mjs');
+const tmp = path.join(root, 'scripts/.coordinate-batch-133-production.tmp.mjs');
 fs.writeFileSync(tmp, implementation);
 try {
   await import(pathToFileURL(tmp).href + `?run=${Date.now()}`);
