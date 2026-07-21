@@ -1,53 +1,114 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "aftenposten_akersgata",
   "placeFile": "data/places/media/oslo/places_oslo_media.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_identity_split",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9145,
-    "lon": 10.7417,
-    "r": 140,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "lat": 59.91475521441622,
+    "lon": 10.743249924327655,
+    "r": 80,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Aftenposten – documented Akersgata 51 main address, 1876–2003; exact physical address point from Geonorge Adresser API v1",
+    "coordType": "historical_press_house_address_anchor",
+    "coordNote": "Batch 136 historical-source + address-first: Recorden representerer eksplisitt Aftenpostens historiske hovedadresse Akersgata 51 fra 1876 til flyttingen til Posthuset i 2003. Aftenpostens egen historikk dokumenterer 127 år i nr. 51 og forklarer at pressekomplekset senere ble utvidet til nr. 53 og, mot slutten, også nr. 55. Canonical kartpunkt bruker likevel hovedadressen 51 som eksplisitt fysisk scope; dagens Akersgata 55 overlapper derfor ikke denne recorden og forblir canonical `vg_huset`. Ett eksakt Geonorge-adresseobjekt (geonorge-adresser-v1:0301:10069:51) brukes som presist physical historical-anchor for Akersgata 51. Punktet er ikke en påstand om at alle Aftenpostens tilknyttede bygg eller funksjoner gjennom 1876–2003 lå i én bygningskropp."
   },
   "identity": {
-    "currentName": "Aftenposten i Akersgata",
-    "resolvedIdentity": "Aftenpostens Akersgata-forankring gjennom historiske 51/53 og 55, med dagens redaksjon i Akersgata 55",
-    "identityStatus": "conflict",
-    "identityProblem": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene.",
-    "locatorTypeCandidate": "linear_area",
+    "currentName": "Aftenposten – Akersgata 51",
+    "resolvedIdentity": "Aftenpostens historiske hovedadresse Akersgata 51, 1876–2003",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
     "requiresSplit": false,
-    "splitReason": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene."
+    "splitReason": ""
   },
   "requiredEvidence": [
-    "entydig fysisk scope for canonical place",
-    "overlap-audit mot eksisterende canonical bygg",
-    "eventuelle flerankre for historiske adresseforløp"
+    "eksplisitt historisk hovedanker uten overlap mot Akersgata 55",
+    "historisk kilde for 1876–2003-perioden",
+    "entydig offisielt fysisk adresseobjekt for nr. 51"
   ],
   "evidence": [
     {
       "sourceProvider": "manual_research",
-      "sourceName": "History Go overlap-audit + dokumentert mediehistorie",
-      "sourceUrl": "",
-      "sourceObjectId": "history-go:coordinate-control:aftenposten_akersgata",
-      "sourceQuality": "identity_and_overlap_audit",
-      "finding": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene.",
+      "sourceName": "Aftenposten – Tanta flytter hjem",
+      "sourceUrl": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+      "sourceObjectId": "aftenposten:akersgata51:1876-2003",
+      "sourceQuality": "first_party_detailed_press_history",
+      "finding": "Aftenpostens egen historikk dokumenterer redaksjon, ekspedisjon og setteri i Akersgata 51 fra 1876 til 2003, samt senere utvidelser av pressekomplekset.",
+      "canVerifyCoordinate": true,
+      "reason": "Avgrenser et stabilt historisk hovedanker som ikke er identisk med dagens Akersgata 55 / vg_huset."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Aftenposten",
+      "sourceUrl": "https://oslobyleksikon.no/side/Aftenposten",
+      "sourceObjectId": "oslobyleksikon:aftenposten-akersgata51",
+      "sourceQuality": "city_historical_reference",
+      "finding": "Dokumenterer hovedbygningen, Akersgata-perioden og flyttingen til Postgirobygget i 2003.",
       "canVerifyCoordinate": false,
-      "reason": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene."
+      "reason": "Kryssjekker historisk identitet og tidslinje."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Akersgata 51 – current building history",
+      "sourceUrl": "https://www.akersgata51.no/",
+      "sourceObjectId": "akersgata51:building:1964-aftenposten",
+      "sourceQuality": "current_property_history",
+      "finding": "Dokumenterer at dagens bygg i Akersgata 51 ble reist for Aftenposten i 1964 og var avishus fram til 2003.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter fysisk kontinuitet for dagens adresseobjekt uten å gjøre dagens kontorbruk til Aftenpostens nåværende lokasjon."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Akersgata&nummer=51&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:51",
+      "sourceQuality": "official_exact_address_anchor",
+      "finding": "Ett eksakt offisielt adresseobjekt for Akersgata 51 ved 59.91475521441622, 10.743249924327655.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir presist fysisk historical-anchor etter at det historiske hovedscopet er avklart."
     }
   ],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:51",
+      "address": {
+        "street": "Akersgata",
+        "number": "51",
+        "postcode": "0180",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.91475521441622,
+      "lon": 10.743249924327655,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "aftenposten:akersgata51:1876-2003",
+      "canApplyToPlace": true
+    }
+  ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:51",
+      "lat": 59.91475521441622,
+      "lon": 10.743249924327655,
+      "coordRole": "historical_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Recorden blander en historisk fleradresse-forankring med dagens Akersgata 55, som allerede er det canonical `vg_huset`-bygget. Ett nytt punkt ville enten duplisere A55 eller skjule de eldre adressene.",
-    "nextAction": "Avklar om recorden skal være en historisk flerankret Akersgata-record eller en institusjonsrelation til `vg_huset`/Akersgata 55."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Overlap-konflikten er løst ved å bruke Akersgata 51 som eksplisitt historisk hovedanker og holde dagens Akersgata 55 separat som vg_huset."
   },
   "notes": [
-    "Ingen koordinatendring i batch 22."
+    "Batch 136 historical-source + address-first: Recorden representerer eksplisitt Aftenpostens historiske hovedadresse Akersgata 51 fra 1876 til flyttingen til Posthuset i 2003. Aftenpostens egen historikk dokumenterer 127 år i nr. 51 og forklarer at pressekomplekset senere ble utvidet til nr. 53 og, mot slutten, også nr. 55. Canonical kartpunkt bruker likevel hovedadressen 51 som eksplisitt fysisk scope; dagens Akersgata 55 overlapper derfor ikke denne recorden og forblir canonical `vg_huset`. Ett eksakt Geonorge-adresseobjekt (geonorge-adresser-v1:0301:10069:51) brukes som presist physical historical-anchor for Akersgata 51. Punktet er ikke en påstand om at alle Aftenpostens tilknyttede bygg eller funksjoner gjennom 1876–2003 lå i én bygningskropp."
   ]
 }
