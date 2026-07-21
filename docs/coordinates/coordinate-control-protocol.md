@@ -516,8 +516,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 109.
-- `places_oslo_natur_ljanselva_rute.json` er nå fullt kontrollert i manifestrekkefølge. Før batch 109 starter skal neste aktive naturkilde etter denne fila auditeres eksplisitt mot manifestrekkefølgen; tidligere kontrollerte placeId-er skal hoppes over.
+- Neste nye Oslo-kontroll er batch 113.
+- `places_oslo_natur_ljanselva_rute.json` er nå fullt kontrollert og canonical ført som batch 112. Neste aktive naturkilde i køen er `places_oslo_natur_ostensjovannet.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 
