@@ -10,11 +10,16 @@
     "currentCaptureModel": "../../js/knowledgeV2.js",
     "quizMemoryCompatibilityLayer": "../../js/quizKnowledgeMemory.js",
     "quizMemoryQualityFilter": "../../js/quizKnowledgeQuality.js",
+    "legacyTextQualityBridge": "../../js/knowledgeLegacyTextQuality.js",
     "quizMemoryPageBridge": "../../js/knowledgeMemoryPageBridge.js",
     "currentPageModel": "../../js/knowledgePage.js",
-    "quizMemoryStorageKey": "hg_knowledge_memory_v1",
+    "storageKeys": [
+      "knowledge_universe",
+      "hg_knowledge_entries_v2",
+      "hg_knowledge_memory_v1"
+    ],
     "migrationStatus": "v4_precise_automatic_quiz_knowledge_active",
-    "currentBehavior": "Quizviseren beholdes. Når en quiz eller et sett er fullført, lagres kunnskapen automatisk. Kvalitetsfilteret forkaster kopier av spørsmål og fasitsvar, deler fler-setningsforklaringer i små selvstendige kunnskapspåstander, dedupliserer påstandene og beholder eksisterende emne-, begreps-, term-, funfact-, historie-, kilde- og vurderingsfelt uten å opprette parallelle datalag.",
+    "currentBehavior": "Quizviseren beholdes. Når en quiz eller et sett er fullført, lagres kunnskapen automatisk. Kvalitetsportene renser de tre eksisterende lagrene uten å opprette en ny database: kopier av spørsmål og fasitsvar forkastes, korte svarfragmenter uten selvstendig mening fjernes, fler-setningsforklaringer deles i små kunnskapspåstander, duplikater slås sammen, og bare eksplisitte begrepsfelter brukes som begreper ved nye lagringer. Emner, faguttrykk, funfacts, historier, kilder og vurderingsevidens beholder sine eksisterende roller.",
     "evidenceModel": {
       "collected": "En presis kunnskapspåstand er automatisk hentet fra den fullførte quizfila og lagt i minnekammeret.",
       "presented": "Kunnskapspopupen er åpnet.",
@@ -24,10 +29,10 @@
     },
     "nextRuntimeRequirements": [
       "Prioritize canonical_claim and knowledge_payload.summary directly in the base builder when newer quiz files provide them.",
-      "Migrate useful legacy knowledge_universe and trivia_universe entries into compatible memory nodes without deleting the original stores.",
+      "Replace the old answer fallback in knowledge.ts and knowledgeV2.js at source level when the compiled Knowledge bundle is next rebuilt.",
       "Use stable canonical knowledge_unit_id, concept_id, term_id and story_id when future quiz files provide them.",
       "Add repetition actions that can launch targeted quiz sets from needs_review memory units."
     ]
   },
-  "canonicalPrinciple": "Emner organiserer faget, begrepene gir presist språk, knowledge units bærer korte selvstendige påstander, historiene binder innholdet sammen, steder og personer gir kontekst, quiz formidler og prøver brukeren, og Knowledge-minnekammeret lagrer automatisk uten å forveksle spørsmål, svar, lesing og mestring."
+  "canonicalPrinciple": "Emner organiserer faget, begrepene gir presist språk, knowledge units bærer korte selvstendige påstander, historiene binder innholdet sammen, steder og personer gir kontekst, quiz formidler og prøver brukeren, og Knowledge-minnekammeret lagrer automatisk uten å forveksle spørsmål, svar, tags, lesing og mestring."
 }
