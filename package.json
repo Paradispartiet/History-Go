@@ -92,7 +92,7 @@
     "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",
     "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
     "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
-    "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
+    "audit:quiz-manifest:v2": "npm run build:scripts && node dist/scripts/apply-knowledge-core-cleanup.js && npm run build:web && mkdir -p reports/knowledge-core-build && cp --parents js/knowledge.ts js/knowledgeV2.ts js/knowledgeClaimCore.ts js/quizKnowledgeMemory.js js/knowledgeMemoryPageBridge.js js/ui/psychology-room-entry.js build/build-web.mjs index.html knowledge.html dist/web/knowledge.js dist/web/knowledge.js.map dist/web/knowledgeV2.js dist/web/knowledgeV2.js.map reports/knowledge-core-build/ && node scripts/audit-quiz-manifest-v2.mjs",
     "people:images:candidates": "npm run build:tools && node dist/tools/people-image-pipeline.mjs candidates",
     "people:images:apply": "npm run build:tools && node dist/tools/people-image-pipeline.mjs apply",
     "people:images:apply:write": "npm run build:tools && node dist/tools/people-image-pipeline.mjs apply --write",
