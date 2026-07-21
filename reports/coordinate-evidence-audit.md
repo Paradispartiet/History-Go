@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:51:02.225Z
+Generert: 2026-07-21T07:00:34.738Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -300,3 +300,18 @@ Generert: 2026-07-21T06:51:02.225Z
 | slottsplassen | data/coordinate-evidence/oslo/popkultur/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | chat_noir | data/coordinate-evidence/oslo/popkultur/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | edderkoppen_scene | data/coordinate-evidence/oslo/popkultur/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bislett_stadion | data/coordinate-evidence/oslo/sport/bislett_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ullevaal_stadion | data/coordinate-evidence/oslo/sport/ullevaal_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| intility_arena | data/coordinate-evidence/oslo/sport/intility_arena.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| jordal_amfi | data/coordinate-evidence/oslo/sport/jordal_amfi.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| holmenkollen_nasjonalanlegg | data/coordinate-evidence/oslo/sport/holmenkollen_nasjonalanlegg.json | needs_research | needs_geometry | OK |
+| frogner_stadion | data/coordinate-evidence/oslo/sport/frogner_stadion.json | needs_research | needs_geometry | OK |
+| valle_hovin_stadion | data/coordinate-evidence/oslo/sport/valle_hovin_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| daelenenga_idrettspark | data/coordinate-evidence/oslo/sport/daelenenga_idrettspark.json | needs_research | needs_geometry | OK |
+| gressbanen | data/coordinate-evidence/oslo/sport/gressbanen.json | needs_research | needs_geometry | OK |
+| ekebergsletta | data/coordinate-evidence/oslo/sport/ekebergsletta.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kfum_arena | data/coordinate-evidence/oslo/sport/kfum_arena.json | needs_research | needs_geometry | OK |
+| nordre_aasen_idrettspark | data/coordinate-evidence/oslo/sport/nordre_aasen_idrettspark.json | needs_research | needs_geometry | OK |
+| vallhall_arena | data/coordinate-evidence/oslo/sport/vallhall_arena.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| manglerudhallen | data/coordinate-evidence/oslo/sport/manglerudhallen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| furuset_forum | data/coordinate-evidence/oslo/sport/furuset_forum.json | applied_to_place | do_not_change_coordinates_yet | OK |

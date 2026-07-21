@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 349 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 119 kontrollerer de gjenværende ukontrollerte recordene i `places/popkultur/oslo/places_oslo_populaerkultur.json` med offisiell adresse der den allerede er dokumentert og ellers eksakt navngitt fysisk objekt i lokal scope.
+Oslo-tabellen inneholder nå 364 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 120 kontrollerer de gjenværende ukontrollerte recordene i `places/sport/europa/norway/oslo_sport.json` med eksisterende verified v1-kilder der de allerede finnes og ellers eksakt navngitt fysisk sportsobjekt i lokal scope.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -365,6 +365,17 @@ Batch 118 (2026-07-21) fullfører politikk-manifestet. Sju records har eksakte n
 | 119 | `edderkoppen_scene` | Edderkoppen Scene | verified_geometry | `osm-node:12635984964` |
 
 Batch 119 (2026-07-21) reviderer popkultur-manifestet. Eksisterende Geonorge-adresser beholdes som offisielle venue-ankre når place-identiteten og adressen allerede er eksplisitt dokumentert. Øvrige steder krever ett eksakt navngitt fysisk objekt i lokal scope. Frognerstranda kan ikke verifiseres med en vei eller tilfeldig kystlinje som proxy for en bred strandsone. Ingen nearest/first-hit-logikk brukes.
+| 120 | `bislett_stadion` | Bislett Stadion | verified_geometry | `osm-way:115277337` |
+| 120 | `ullevaal_stadion` | Ullevaal Stadion | verified_geometry | `osm-way:43222619` |
+| 120 | `intility_arena` | Intility Arena | verified_geometry | `osm-way:443983964` |
+| 120 | `jordal_amfi` | Jordal Amfi | verified_geometry | `osm-way:760875553` |
+| 120 | `valle_hovin_stadion` | Valle Hovin stadion | verified_geometry | `osm-way:1528387076` |
+| 120 | `ekebergsletta` | Ekebergsletta | verified_geometry | `osm-relation:15951742` |
+| 120 | `vallhall_arena` | Vallhall Arena | verified_geometry | `osm-way:50634101` |
+| 120 | `manglerudhallen` | Manglerudhallen | verified_geometry | `osm-way:176303011` |
+| 120 | `furuset_forum` | Furuset Forum | verified_geometry | `osm-way:131269106` |
+
+Batch 120 (2026-07-21) reviderer Oslo-sport-manifestet. Stadioner og haller krever ett eksakt navngitt fysisk sportsobjekt; brede områder som Holmenkollen nasjonalanlegg og Ekebergsletta krever én legitim samlet områdegeometri og kan ikke verifiseres med en enkelt bakke eller bane som proxy. Ingen nearest/first-hit-logikk brukes.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -509,6 +520,12 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `blindern_forskningsparken_salamanderdam` – Blindern/Forskningsparken salamanderdam | needs_review | Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam. | Dokumenter en offentlig og ikke-sensitiv damgeometri eller modeller lokaliteten som tematisk resultat av kommunal amfibiekartlegging uten separat presis place-markør. |
 | `regjeringskvartalet` – Regjeringskvartalet | needs_review | Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes. | Dokumenter én legitim samlet institusjonsgeometri for Regjeringskvartalet; enkeltbygninger kan ikke brukes som proxy for hele området. |
 | `frognerstranda` – Frognerstranda | needs_review | Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen. | Dokumenter en eksplisitt Frognerstranda-områdegeometri eller flere kildebelagte strand-/promenadeankre før ett canonical representasjonspunkt godkjennes. |
+| `holmenkollen_nasjonalanlegg` – Holmenkollen nasjonalanlegg | needs_review | Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området. | Dokumenter én samlet navngitt områdegeometri eller eksplisitt sammensatt canonical modell for hele anlegget. |
+| `frogner_stadion` – Frogner stadion | needs_review | Den avgrensede kontrollen ga ikke ett entydig eksakt navngitt fysisk sportsobjekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig eksakt fysisk sportsobjekt eller en offisiell adresse/geometri som matcher canonical identiteten. |
+| `daelenenga_idrettspark` – Dælenenga idrettspark | needs_review | Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området. | Dokumenter én samlet navngitt områdegeometri eller eksplisitt sammensatt canonical modell for hele anlegget. |
+| `gressbanen` – Gressbanen | needs_review | Den avgrensede kontrollen ga ikke ett entydig eksakt navngitt fysisk sportsobjekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig eksakt fysisk sportsobjekt eller en offisiell adresse/geometri som matcher canonical identiteten. |
+| `kfum_arena` – KFUM Arena | needs_review | Den avgrensede kontrollen ga ikke ett entydig eksakt navngitt fysisk sportsobjekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig eksakt fysisk sportsobjekt eller en offisiell adresse/geometri som matcher canonical identiteten. |
+| `nordre_aasen_idrettspark` – Nordre Åsen idrettspark | needs_review | Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området. | Dokumenter én samlet navngitt områdegeometri eller eksplisitt sammensatt canonical modell for hele anlegget. |
 
 ## Etne – historiesett
 
@@ -556,8 +573,8 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 120.
-- `places/popkultur/oslo/places_oslo_populaerkultur.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive manifestkilde er `places/sport/europa/norway/oslo_sport.json`; tidligere kontrollerte placeId-er skal hoppes over.
+- Neste nye Oslo-kontroll er batch 121.
+- `places/sport/europa/norway/oslo_sport.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive manifestkilde er `places/sport/europa/norway/places_oslo_lekeplasser_trening.json`; tidligere kontrollerte placeId-er skal hoppes over.
 - Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 
