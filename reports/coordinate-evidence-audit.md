@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:15:32.436Z
+Generert: 2026-07-21T06:21:43.502Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -279,3 +279,4 @@ Generert: 2026-07-21T06:15:32.436Z
 | lindoya | data/coordinate-evidence/oslo/by/lindoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bleikoya | data/coordinate-evidence/oslo/natur/bleikoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ulvoya | data/coordinate-evidence/oslo/by/ulvoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oslo_golfklubb_bogstad | data/coordinate-evidence/oslo/sport/oslo_golfklubb_bogstad.json | applied_to_place | do_not_change_coordinates_yet | OK |

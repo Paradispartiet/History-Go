@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T06:15:25.200Z
+Generert: 2026-07-21T06:21:36.066Z
 
 ## Oppsummering
-- Aktive filer validert: **586**
+- Aktive filer validert: **587**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **422**
@@ -604,6 +604,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places/lindoya.json
 - data/places/natur/oslo/bleikoya.json
 - data/places/by/oslo/places/ulvoya.json
+- data/places/sport/europa/norway/oslo_sport/oslo_golfklubb_bogstad.json
 
 ## Harde feil
 - Ingen
