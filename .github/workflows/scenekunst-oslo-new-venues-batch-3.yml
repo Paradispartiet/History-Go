@@ -28,6 +28,24 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Accept one unique lettered matrikkelpoint
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/add-scenekunst-oslo-venues-batch-3.mjs')
+          s = p.read_text()
+          old = """    normalize(row.adressenavn) === normalize(venue.street) &&
+              Number(row.nummer) === Number(venue.number) &&
+              !String(row.bokstav ?? '').trim()
+          """
+          new = """    normalize(row.adressenavn) === normalize(venue.street) &&
+              Number(row.nummer) === Number(venue.number)
+          """
+          if old not in s:
+              raise SystemExit('Expected exact-address filter not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+
       - name: Build three verified Oslo venue packages
         id: venue_build
         shell: bash
@@ -50,7 +68,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
-          git commit -m "Record Scenekunst batch 3 runner failure"
+          git diff --cached --quiet || git commit -m "Record Scenekunst batch 3 runner failure"
           git push origin HEAD:agent/scenekunst-oslo-new-venues-03
           exit 1
 
@@ -93,6 +111,7 @@ jobs:
           git rm tools/add-scenekunst-oslo-venues-batch-3.mjs
           git rm .github/workflows/scenekunst-oslo-new-venues-batch-3.yml
           git rm -f reports/scenekunst-oslo-new-venues-batch-3-trigger.md
+          git rm -f reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
           git add -A
           git diff --cached --stat
           git diff --cached --quiet && { echo "No venue changes produced"; exit 1; }
