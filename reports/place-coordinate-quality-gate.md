@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T06:50:54.677Z
+Generert: 2026-07-21T07:00:16.490Z
 
 ## Oppsummering
-- Aktive filer validert: **590**
+- Aktive filer validert: **591**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **421**
@@ -608,6 +608,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/akershus/langoyene.json
 - data/places/historie/akershus/ingierstrand_bad.json
 - data/places/sport/europa/norway/oslo_sport/oslo_golfklubb_bogstad.json
+- data/places/historie/oslo/places_historie/holmenkollen_skimuseum.json
 
 ## Harde feil
 - Ingen

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:51:02.225Z
+Generert: 2026-07-21T07:00:23.893Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -300,3 +300,4 @@ Generert: 2026-07-21T06:51:02.225Z
 | slottsplassen | data/coordinate-evidence/oslo/popkultur/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | chat_noir | data/coordinate-evidence/oslo/popkultur/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | edderkoppen_scene | data/coordinate-evidence/oslo/popkultur/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| holmenkollen_skimuseum | data/coordinate-evidence/oslo/historie/holmenkollen_skimuseum.json | applied_to_place | do_not_change_coordinates_yet | OK |
