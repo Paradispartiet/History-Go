@@ -1,177 +1,22 @@
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
 {
-  "generatedAt": "2026-07-21T06:50:36.790Z",
+  "ok": true,
   "batch": 119,
-  "sourceQueue": "data/places/popkultur/oslo/places_oslo_populaerkultur.json",
-  "pendingIds": [
+  "officialIds": [
     "cinemateket_oslo",
-    "colosseum_kino",
-    "house_of_nerds",
-    "latter",
-    "frognerstranda",
-    "grand_hotel",
-    "slottsplassen",
-    "chat_noir",
-    "edderkoppen_scene"
-  ],
-  "skippedPreviouslyCompleted": [
-    "folketeateret",
-    "chateau_neuf"
-  ],
-  "verified": [
-    "cinemateket_oslo",
-    "colosseum_kino",
     "house_of_nerds",
     "latter",
     "grand_hotel",
-    "slottsplassen",
     "chat_noir",
     "edderkoppen_scene"
   ],
-  "needsReview": [
-    "frognerstranda"
+  "fallbackIds": [
+    "colosseum_kino"
   ],
-  "before": {
-    "cinemateket_oslo": {
-      "lat": 59.911868,
-      "lon": 10.741041,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "colosseum_kino": {
-      "lat": 59.9287549,
-      "lon": 10.7068625,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "house_of_nerds": {
-      "lat": 59.923,
-      "lon": 10.7506,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "latter": {
-      "lat": 59.910686,
-      "lon": 10.726594,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "frognerstranda": {
-      "lat": 59.9129,
-      "lon": 10.7098,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "grand_hotel": {
-      "lat": 59.9139,
-      "lon": 10.7395,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "slottsplassen": {
-      "lat": 59.9169,
-      "lon": 10.7276,
-      "coordStatus": null,
-      "coordSource": null,
-      "coordType": null
-    },
-    "chat_noir": {
-      "lat": 59.913606,
-      "lon": 10.732175,
-      "coordStatus": "manual_review",
-      "coordSource": null,
-      "coordType": "building_center"
-    },
-    "edderkoppen_scene": {
-      "lat": 59.918075,
-      "lon": 10.739692,
-      "coordStatus": "manual_review",
-      "coordSource": null,
-      "coordType": "building_center"
-    }
-  },
-  "after": {
-    "cinemateket_oslo": {
-      "lat": 59.90961165359811,
-      "lon": 10.745752189439866,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:11309:16"
-    },
-    "colosseum_kino": {
-      "lat": 59.92960551247345,
-      "lon": 10.710407394303973,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap way 115958003 – Colosseum kino",
-      "coordType": "building_center",
-      "sourceObjectId": "osm-way:115958003"
-    },
-    "house_of_nerds": {
-      "lat": 59.92186714382747,
-      "lon": 10.75148579082984,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:21649:18"
-    },
-    "latter": {
-      "lat": 59.91081373400813,
-      "lon": 10.726768537822347,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:20305:1"
-    },
-    "frognerstranda": {
-      "lat": 59.9129,
-      "lon": 10.7098,
-      "coordStatus": "needs_source",
-      "coordSource": "frognerstranda_canonical_geometry_unresolved",
-      "coordType": "legacy_unverified",
-      "sourceObjectId": null
-    },
-    "grand_hotel": {
-      "lat": 59.913745246491665,
-      "lon": 10.739476691613683,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:13630:31"
-    },
-    "slottsplassen": {
-      "lat": 59.91670357078774,
-      "lon": 10.728956525408432,
-      "coordStatus": "verified_geometry",
-      "coordSource": "OpenStreetMap relation 12806921 – Slottsplassen",
-      "coordType": "public_space_center",
-      "sourceObjectId": "osm-relation:12806921"
-    },
-    "chat_noir": {
-      "lat": 59.91360791283421,
-      "lon": 10.732172099794877,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:13780:5"
-    },
-    "edderkoppen_scene": {
-      "lat": 59.91815941203321,
-      "lon": 10.739832936543767,
-      "coordStatus": "verified",
-      "coordSource": "geonorge_adresser_v1",
-      "coordType": "address_point",
-      "sourceObjectId": "geonorge-adresser-v1:0301:16937:1"
-    }
-  },
-  "method": "object-type first; concrete addressable venues use Geonorge first; exact OSM geometry is only a documented fallback after a successful non-error address lookup; Slottsplassen remains geometry-based; no nearest/first-hit",
-  "addressFirstCorrectionAt": "2026-07-21T07:18:09.163Z",
-  "addressFirstResults": {
+  "results": {
     "cinemateket_oslo": {
       "method": "official_address",
       "address": "Dronningens gate 16 Oslo",
