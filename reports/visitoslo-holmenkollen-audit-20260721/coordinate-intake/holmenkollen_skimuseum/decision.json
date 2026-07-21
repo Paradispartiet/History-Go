@@ -1,45 +1,42 @@
 {
-  "version": "2026-07-21",
+  "version": "2026-07-21-superseded",
   "placeId": "holmenkollen_skimuseum",
   "primaryCategory": "historie",
-  "productionGate": "ready_for_canonical_production",
-  "representationDecision": "Create one canonical history/museum place for Skimuseet i Holmenkollen. The museum is a distinct persistent institution inside Holmenkollen National Ski Arena; the jump tower is not a new place and remains within the existing arena identity.",
-  "coordinate": {
+  "productionGate": "superseded_by_final_coordinate_decision",
+  "representationDecision": "The museum remains a distinct persistent institution inside Holmenkollen National Ski Arena; the jump tower remains part of the existing parent arena identity and does not get a separate place marker.",
+  "supersededDecision": {
+    "address": "Kongeveien 40, 0787 Oslo",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
+    "reason": "This early retry used the exact official address fallback after no unique named OSM museum object was found. Later source verification showed that current visitor-facing VisitOSLO, booking and Holmenkollen/Skiforeningen sources use Kongeveien 5 for the Ski Museum."
+  },
+  "finalCanonicalDecision": {
+    "address": "Kongeveien 5, 0787 Oslo",
+    "lat": 59.96263248232449,
+    "lon": 10.666289172703161,
+    "sourceObjectId": "geonorge-adresser-v1:0301:13850:5",
+    "decisionFile": "reports/visitoslo-holmenkollen-audit-20260721/skimuseum-coordinate-intake-final.json",
+    "canonicalPlaceFile": "data/places/historie/oslo/places_historie/holmenkollen_skimuseum.json",
+    "coordinateBatch": 120,
+    "productionPr": 3148,
+    "closurePr": 3150
+  },
+  "alternateAddressCrosscheck": {
+    "address": "Kongeveien 40, 0787 Oslo",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
     "lat": 59.96471254074996,
     "lon": 10.666572782635253,
-    "r": 55,
-    "locatorType": "building",
-    "sourceProvider": "official_address",
-    "sourceObjectId": "geonorge-adresser-v1:0301:13850:40",
-    "geocodeAccuracy": "rooftop",
-    "coordRole": "display_marker",
-    "coordStatus": "verified",
-    "coordSource": "geonorge_adresser_v1",
-    "coordSourceId": "geonorge-adresser-v1:0301:13850:40",
-    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongeveien%2040%20Oslo",
-    "coordType": "address_point",
-    "coordNote": "Offisiell adressekoordinat fra Geonorge for Kongeveien 40. Ingen entydig separat OSM-museumsidentitet ble funnet. Punktet brukes som museumsmarkør for den egenstendige institusjonen Skimuseet i Holmenkollen inne i Holmenkollen nasjonalanlegg; hopptårnet forblir del av parent-stedet."
-  },
-  "objectSearch": {
-    "exactNamedMuseumObjectsFound": 0,
-    "fallbackRule": "Use the exact official Kongeveien 40 Geonorge address when no unique exact named museum object exists."
+    "distanceFromCanonicalM": 231.8,
+    "role": "documented_alternate_access_or_complex_address_not_canonical_marker"
   },
   "parentOverlapAudit": {
     "parentPlaceId": "holmenkollen_nasjonalanlegg",
-    "parentName": "Holmenkollen nasjonalanlegg",
-    "distanceM": 239,
-    "conclusion": "Physical proximity is expected and not a duplicate. The museum is a distinct persistent institution and visitor place inside the broader ski arena complex; the jump tower remains represented by the parent arena scope."
+    "conclusion": "Expected parent/child physical overlap, not identity duplication. The museum is a distinct institution and visitor place; the jump tower and broader arena remain represented by the parent place."
   },
-  "duplicateGate": {
-    "canonicalIdentityMatches": [],
-    "conclusion": "No canonical Skimuseet/Holmenkollen Ski Museum identity existed at intake time."
-  },
-  "alreadyCanonicalSkipped": [
-    "oslo_golfklubb_bogstad"
-  ],
   "auditTrail": {
-    "sourcePr": 3130,
-    "sourceBranch": "agent/oslo-coordinate-holmenkollen-candidates-intake",
-    "validation": "Full coordinate runner completed successfully after the already-canonical Oslo Golfklubb candidate was removed from the retry."
+    "staleSourcePr": 3130,
+    "staleCleanDecisionPr": 3138,
+    "finalAddressDecisionPr": 3145,
+    "productionPr": 3148,
+    "scopeClosurePr": 3150
   }
 }
