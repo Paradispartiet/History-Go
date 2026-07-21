@@ -12583,37 +12583,6 @@
     "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_snippen.json"
   },
   {
-    "id": "lekeplass_kampen_park",
-    "name": "Kampen park lekeplass",
-    "lat": 59.9148,
-    "lon": 10.779,
-    "r": 140,
-    "category": "sport",
-    "desc": "Lekeplass og aktivitetspark i Kampen park, med lekeapparater, bakker, bordtennis, grusbane og plass til frisbee.",
-    "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_kampen_park.json"
-  },
-  {
-    "id": "aktivitet_rudolf_nilsens_plass",
-    "name": "Rudolf Nilsens plass aktivitetspark",
-    "lat": 59.916297,
-    "lon": 10.765853,
-    "r": 130,
-    "category": "sport",
-    "year": 2022,
-    "desc": "Aktivitetspark på Tøyen/Grønland med stor småbarnslekeplass, multibane, treningsapparater og kunstgressbane med kunstis om vinteren.",
-    "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/aktivitet_rudolf_nilsens_plass.json"
-  },
-  {
-    "id": "treningssted_kampen_park",
-    "name": "Kampen park treningssted",
-    "lat": 59.9148,
-    "lon": 10.779,
-    "r": 170,
-    "category": "sport",
-    "desc": "Treningsmuligheter i Kampen park: trappeløp, frisbee, bordtennis, kunstgressbane i nærheten og terrenglek.",
-    "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/treningssted_kampen_park.json"
-  },
-  {
     "id": "korketrekkeren",
     "name": "Korketrekkeren",
     "lat": 59.9790042,
@@ -21927,5 +21896,46 @@
     "coordVerifiedAt": "2026-07-21",
     "coordNote": "Batch 125 canonical migration: Oslo kommune og VisitOSLO-scopeauditen identifiserer Sognsvann som selve innsjø-/friluftsstedet. Ett eksakt navngitt OSM-vannpolygon (osm-relation:448255) er valgt etter objekttypefilter. Punktet er area-anchor for vannobjektet; treningsrunden er bruk-/ruteinnhold.",
     "sourceFile": "places/natur/oslo/sognsvann.json"
+  },
+  {
+    "id": "kampen_park",
+    "name": "Kampen park",
+    "lat": 59.9153872,
+    "lon": 10.780343,
+    "r": 240,
+    "category": "by",
+    "desc": "Historisk park på Kampen med utsikt, variert terreng, lekeplass, bordtennis, trapper, grusbane og mange muligheter for både rolig opphold og aktivitet.",
+    "locatorType": "park",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:4870715",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "park_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4870715 – Kampen park; scope cross-checked with Oslo kommune",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Batch 126 canonical migration: Oslo kommune definerer Kampen park som hele parklandskapet og lister både lekeplass og treningsmuligheter som fasiliteter/bruk inne i parken. Ett eksakt navngitt OSM-parkpolygon (osm-way:4870715) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parken; de to gamle aktivitets-ID-ene blir innholdslag, ikke egne overlappende places.",
+    "sourceFile": "places/by/oslo/kampen_park.json"
+  },
+  {
+    "id": "rudolf_nilsens_plass",
+    "name": "Rudolf Nilsens plass",
+    "lat": 59.9161311,
+    "lon": 10.7653344,
+    "r": 160,
+    "category": "by",
+    "year": 2022,
+    "desc": "Historisk park og byrom på Tøyen med lekeplass, multibane, treningsapparater, plen, kunstgress og kunstis om vinteren.",
+    "locatorType": "park",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:36972584",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "park_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 36972584 – Rudolf Nilsens plass; scope cross-checked with Oslo kommune",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Batch 126 canonical migration: Oslo kommune definerer Rudolf Nilsens plass som et samlet park-/byrom med flere aktivitetsfunksjoner. Ett eksakt navngitt OSM-parkpolygon (osm-way:36972584) er valgt etter objekt-type-først-filter. Punktet er area-anchor for hele plassen; den gamle aktivitets-ID-en blir et brukslag, ikke et eget overlappende place.",
+    "sourceFile": "places/by/oslo/rudolf_nilsens_plass.json"
   }
 ]
