@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bygdoy_kongeskogen",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_bygdoy.json",
+  "evidenceStatus": "needs_research",
+  "coordinateDecision": "needs_geometry",
+  "currentCoordinate": {
+    "lat": 59.9121,
+    "lon": 10.6758,
+    "r": 180,
+    "coordStatus": "needs_source",
+    "coordSource": "bygdoy_kongeskogen_exact_geometry_unresolved",
+    "coordType": "legacy_unverified",
+    "coordNote": "Identiteten er dokumentert av uavhengig kilde, men Nominatim/OSM-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer objekttypen innenfor Bygdøy-boksen (no_exact_named_candidate_in_bygdoy). Det gamle Mapcarta/nearby-reference-punktet beholdes kun som legacy-kartanker og er ikke verifisert."
+  },
+  "identity": {
+    "currentName": "Bygdøy Kongeskogen",
+    "resolvedIdentity": "Kongeskogen på Bygdøy, regulert natur-/frilufts- og kulturmiljøområde",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett entydig eksakt navngitt fysisk objekt eller offisiell områdegeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "government",
+      "sourceName": "Regjeringen – reguleringsplan for Bygdø kongsgård og folkepark",
+      "sourceUrl": "https://www.regjeringen.no/no/dokumenter/oslo-kommune---reguleringsplan-for-bygdo/id673093/",
+      "sourceObjectId": "regjeringen:201100061:kongeskogen-s-f1",
+      "sourceQuality": "official_area_identity_crosscheck",
+      "finding": "Reguleringsvedtaket avgrenser S-F1 Kongeskogen som kombinert kulturmiljø-, naturvern- og friluftsområde.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell identitets- og områdescope-kryssjekk; et eksakt navngitt OSM-objekt må levere koordinatgeometrien."
+    },
+    {
+      "sourceProvider": "official_operator",
+      "sourceName": "Bygdø Kongsgård – Kongeskogen",
+      "sourceUrl": "https://bygdokongsgard.no/kunnskapsformidling",
+      "sourceObjectId": "bygdokongsgard:kongeskogen",
+      "sourceQuality": "official_local_identity_crosscheck",
+      "finding": "Bygdø Kongsgård beskriver Kongeskogen som et eget rekreasjonsområde med variert vegetasjon og geologiske verdier.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter den lokale identiteten, men publiserer ikke et maskinlesbart canonical punkt."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "government",
+      "sourceObjectId": "regjeringen:201100061:kongeskogen-s-f1",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_operator",
+      "sourceObjectId": "bygdokongsgard:kongeskogen",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Identiteten er dokumentert av uavhengig kilde, men Nominatim/OSM-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer objekttypen innenfor Bygdøy-boksen (no_exact_named_candidate_in_bygdoy). Det gamle Mapcarta/nearby-reference-punktet beholdes kun som legacy-kartanker og er ikke verifisert.",
+    "nextAction": "ett entydig eksakt navngitt fysisk objekt eller offisiell områdegeometri"
+  },
+  "notes": [
+    "Identiteten er dokumentert av uavhengig kilde, men Nominatim/OSM-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer objekttypen innenfor Bygdøy-boksen (no_exact_named_candidate_in_bygdoy). Det gamle Mapcarta/nearby-reference-punktet beholdes kun som legacy-kartanker og er ikke verifisert."
+  ]
+}

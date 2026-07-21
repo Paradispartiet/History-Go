@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bygdoy_dronningberget",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_bygdoy.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91592771897445,
+    "lon": 10.684415254573047,
+    "r": 110,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Miljødirektoratet Naturvernområder – offisiell polygon for Dronningberget naturreservat",
+    "coordType": "protected_area_center",
+    "coordNote": "Dronningberget behandles som naturreservat/arealobjekt. Canonical punkt er et representativt områdeanker beregnet inne i Miljødirektoratets offisielle vernepolygon VV00003059, ikke et utsiktspunkt, en vei eller Sæterhytten."
+  },
+  "identity": {
+    "currentName": "Bygdøy Dronningberget",
+    "resolvedIdentity": "Dronningberget naturreservat på nordre Bygdøy",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell navngitt vernepolygon",
+    "stabil Naturbase-ID",
+    "representativt punkt inne i polygonet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_map",
+      "sourceName": "Miljødirektoratet Naturvernområder – Dronningberget",
+      "sourceUrl": "https://faktaark.naturbase.no/?id=VV00003059",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00003059",
+      "sourceQuality": "official_protected_area_polygon",
+      "finding": "Naturbase/FPNV identifiserer Dronningberget naturreservat på Bygdøy med stabil verne-ID VV00003059 og offisiell arealgeometri.",
+      "canVerifyCoordinate": true,
+      "reason": "Recorden er et arealobjekt og kan forankres direkte i den offisielle vernepolygonen."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00003059",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00003059",
+      "lat": 59.91592771897445,
+      "lon": 10.684415254573047,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91592771897445,
+      "lon": 10.684415254573047,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00003059",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Dronningberget behandles som naturreservat/arealobjekt. Canonical punkt er et representativt områdeanker beregnet inne i Miljødirektoratets offisielle vernepolygon VV00003059, ikke et utsiktspunkt, en vei eller Sæterhytten."
+  ]
+}

@@ -22,11 +22,11 @@
     ],
     "routeId": "bygdoy_natur",
     "sourceHint": "Koordinat lagt i Kongeskogen på Bygdøy basert på lokal turkartplassering.",
-    "coordType": "route_midpoint",
-    "coordStatus": "nearby_reference",
-    "coordSource": "OpenStreetMap nearby reference",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "bygdoy_kongeskogen_exact_geometry_unresolved",
     "coordPrecisionM": 180,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "underbadge_ids": [
       "skog",
       "tursti",
@@ -35,13 +35,15 @@
     ],
     "visual": {
       "designCode": "park_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "coordNote": "Identiteten er dokumentert av uavhengig kilde, men Nominatim/OSM-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer objekttypen innenfor Bygdøy-boksen (no_exact_named_candidate_in_bygdoy). Det gamle Mapcarta/nearby-reference-punktet beholdes kun som legacy-kartanker og er ikke verifisert."
   },
   {
     "id": "bygdoy_dronningberget",
     "name": "Bygdøy Dronningberget",
-    "lat": 59.9088,
-    "lon": 10.6921,
+    "lat": 59.91592771897445,
+    "lon": 10.684415254573047,
     "r": 110,
     "category": "natur",
     "desc": "Kystnært berg- og skogpunkt med utsyn over indre fjord.",
@@ -54,11 +56,10 @@
     ],
     "routeId": "bygdoy_natur",
     "sourceHint": "Koordinat satt ved Dronningberget på Bygdøys østlige kystlinje.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
-    "coordPrecisionM": 60,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "protected_area_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "Miljødirektoratet Naturvernområder – offisiell polygon for Dronningberget naturreservat",
+    "coordVerifiedAt": "2026-07-21",
     "underbadge_ids": [
       "berg_og_knaus",
       "kyst_og_fjord",
@@ -67,13 +68,21 @@
     ],
     "visual": {
       "designCode": "park_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "sourceProvider": "official_map",
+    "sourceObjectId": "miljodirektoratet-naturvern:VV00003059",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "miljodirektoratet-naturvern:VV00003059",
+    "coordSourceUrl": "https://faktaark.naturbase.no/?id=VV00003059",
+    "coordNote": "Dronningberget behandles som naturreservat/arealobjekt. Canonical punkt er et representativt områdeanker beregnet inne i Miljødirektoratets offisielle vernepolygon VV00003059, ikke et utsiktspunkt, en vei eller Sæterhytten."
   },
   {
     "id": "bygdoy_huk",
     "name": "Bygdøy Huk",
-    "lat": 59.8994,
-    "lon": 10.6661,
+    "lat": 59.89502117,
+    "lon": 10.676365350000001,
     "r": 130,
     "category": "natur",
     "desc": "Ytre oddesone med strandenger, svaberg og marint fugleliv.",
@@ -86,11 +95,10 @@
     ],
     "routeId": "bygdoy_natur",
     "sourceHint": "Koordinat lagt ved Huk-området i ytre Bygdøy, kjent natur- og friluftsområde.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
-    "coordPrecisionM": 70,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "named_recreation_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 32547162 – Huk",
+    "coordVerifiedAt": "2026-07-21",
     "underbadge_ids": [
       "kyst_og_fjord",
       "strandsone",
@@ -99,13 +107,21 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:32547162",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-way:32547162",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/32547162",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt med semantisk objekttypefilter innenfor en avgrenset Bygdøy-boks; ikke nearest/first-hit. Uavhengig kilde kryssjekker identiteten og fysisk scope. OSM-objekt: natural/beach, geometri: Polygon."
   },
   {
     "id": "bygdoy_paradisbukta",
     "name": "Bygdøy Paradisbukta",
-    "lat": 59.8975,
-    "lon": 10.6738,
+    "lat": 59.9019590414655,
+    "lon": 10.665526631277148,
     "r": 120,
     "category": "natur",
     "desc": "Lun bukt med strand, gruntvann og kystnært naturmiljø.",
@@ -118,11 +134,10 @@
     ],
     "routeId": "bygdoy_natur",
     "sourceHint": "Koordinat satt ved Paradisbukta på sørsiden av Bygdøy-halvøya.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
-    "coordPrecisionM": 70,
-    "coordVerifiedAt": "2026-05-03",
+    "coordType": "named_bay_or_beach_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 28447738 – Paradisbukta",
+    "coordVerifiedAt": "2026-07-21",
     "underbadge_ids": [
       "kyst_og_fjord",
       "strandsone",
@@ -130,7 +145,15 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:28447738",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-way:28447738",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/28447738",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt med semantisk objekttypefilter innenfor en avgrenset Bygdøy-boks; ikke nearest/first-hit. Uavhengig kilde kryssjekker identiteten og fysisk scope. OSM-objekt: leisure/bathing_place, geometri: Polygon."
   },
   {
     "id": "bygdoy_bygdoynes",
@@ -149,11 +172,11 @@
     ],
     "routeId": "bygdoy_natur",
     "sourceHint": "Koordinat plassert ved Bygdøynes med tydelig kystlinje og grøntarealer.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "bygdoy_bygdoynes_exact_geometry_unresolved",
     "coordPrecisionM": 70,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "underbadge_ids": [
       "oy_og_halvoy",
       "kyst_og_fjord",
@@ -161,7 +184,9 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "coordNote": "Identiteten er dokumentert av uavhengig kilde, men Nominatim/OSM-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer objekttypen innenfor Bygdøy-boksen (no_exact_named_candidate_in_bygdoy). Det gamle Mapcarta/nearby-reference-punktet beholdes kun som legacy-kartanker og er ikke verifisert."
   },
   {
     "id": "bygdoy_roykenvika",
@@ -180,11 +205,11 @@
     ],
     "routeId": "bygdoy_natur",
     "sourceHint": "Koordinat satt ved Røykensvika i indre del av Bygdøy-kysten.",
-    "coordType": "route_point",
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap/Mapcarta",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "bygdoy_roykenvika_identity_unresolved",
     "coordPrecisionM": 70,
-    "coordVerifiedAt": "2026-05-03",
+    "coordVerifiedAt": "2026-07-21",
     "underbadge_ids": [
       "kyst_og_fjord",
       "strandsone",
@@ -192,6 +217,8 @@
     ],
     "visual": {
       "designCode": "waterfront_miniature"
-    }
+    },
+    "locatorType": "natural_area",
+    "coordNote": "Kontrollen fant ingen troverdig uavhengig kilde som dokumenterer et sted kalt Røykensvika på Bygdøy. Søketreff for Røykensvik/Røykensvika peker i hovedsak til andre geografiske områder. Den gamle OpenStreetMap/Mapcarta-statusen demoteres derfor til needs_source; place-identiteten må avklares før koordinat kan godkjennes."
   }
 ]
