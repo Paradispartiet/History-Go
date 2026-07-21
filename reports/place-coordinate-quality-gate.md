@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T07:41:41.276Z
+Generert: 2026-07-21T08:04:19.477Z
 
 ## Oppsummering
 - Aktive filer validert: **591**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **432**
-- Coordinate review candidates: **713** signaler fordelt på **574** steder
+- Varsler: **433**
+- Coordinate review candidates: **714** signaler fordelt på **575** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -832,6 +832,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/litteratur/oslo/places_litteratur.json#grotta: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#nationaltheatret: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#litteraturhuset: coordStatus=verified uten coordPrecisionM
+- data/places/litteratur/oslo/places_litteratur.json#tronsmo_bokhandel: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#eldorado_bokhandel: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#gamle_deichman: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur.json#deichman_grunerlokka: coordStatus=verified uten coordPrecisionM
@@ -1049,13 +1050,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 714 signaler fordelt på 575 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 129 |
+| coordStatus=verified uten coordPrecisionM | 130 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 94 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 84 |
@@ -1065,7 +1066,7 @@ Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (129)
+### coordStatus=verified uten coordPrecisionM (130)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1096,6 +1097,7 @@ Totalt 713 signaler fordelt på 574 steder. Et sted kan ha flere signaler. Kandi
 | grotta | Grotten | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.918721365539604 | 10.731257963441367 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nationaltheatret | Nationaltheatret | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91456789100917 | 10.733617256734934 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | litteraturhuset | Litteraturhuset | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.92027454485075 | 10.728566026476651 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| tronsmo_bokhandel | Tronsmo Bokhandel | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.916504851005804 | 10.738621210337177 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | eldorado_bokhandel | Eldorado Bokhandel | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91394802646695 | 10.747911617247832 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_deichman | Gamle Deichman | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.91655515223004 | 10.74636730347388 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | deichman_grunerlokka | Deichman Grünerløkka | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.920789784433865 | 10.760221823170998 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |

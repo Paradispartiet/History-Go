@@ -46,7 +46,7 @@ Oslo-tabellen inneholder nå 365 dokumenterte verifiserte eller kildekontrollert
 | 5 | `chateau_neuf` | Chateau Neuf | verified | `geonorge-adresser-v1:0301:16621:15` |
 | 5 | `litteraturhuset` | Litteraturhuset | verified | `geonorge-adresser-v1:0301:18496:29` |
 | 5 | `nationaltheatret` | Nationaltheatret | verified | `geonorge-adresser-v1:0301:20681:1` |
-| 5 | `tronsmo_bokhandel` | Tronsmo Bokhandel | verified | `osm-node:10524908476` |
+| 5 | `tronsmo_bokhandel` | Tronsmo Bokhandel | verified | `geonorge-adresser-v1:0301:17999:12` |
 | 5 | `folketeateret` | Folketeateret | verified | `geonorge-adresser-v1:0301:18554:2` |
 | 6 | `gronland_basarene` | Grønland basarene | verified | `geonorge-adresser-v1:0301:17875:2` |
 | 6 | `mollergata_19` | Møllergata 19 | verified | `geonorge-adresser-v1:0301:14943:19` |
@@ -227,10 +227,10 @@ Oslo-tabellen inneholder nå 365 dokumenterte verifiserte eller kildekontrollert
 | 57 | `fagerborg_kirke` | Fagerborg kirke | verified | `geonorge-adresser-v1:0301:15670:74` |
 | 58 | `uranienborg_kirke` | Uranienborg kirke | verified | `geonorge-adresser-v1:0301:13110:15` |
 | 59 | `frogner_kirke` | Frogner kirke | verified | `geonorge-adresser-v1:0301:10967:36` |
-| 60 | `vestre_gravlund` | Vestre gravlund | verified | `osm-way:4740772` |
+| 60 | `vestre_gravlund` | Vestre gravlund | verified_geometry | `osm-way:4740772` |
 | 61 | `brannmuseet_oslo` | Brannmuseet i Oslo | verified | `geonorge-adresser-v1:0301:12450:32` |
 | 62 | `skoytemuseet` | Skøytemuseet | verified | `geonorge-adresser-v1:0301:14742:26` |
-| 63 | `vikaterrassen` | Vikaterrassen | verified | `osm-relation:14169568` |
+| 63 | `vikaterrassen` | Vikaterrassen | verified_geometry | `osm-relation:14169568` |
 | 64 | `kampen_okologiske_barnebondegard` | Kampen Økologiske Barnebondegård | verified | `geonorge-adresser-v1:0301:16443:23` |
 | 65 | `klimahuset` | Klimahuset | verified | `geonorge-adresser-v1:0301:14797:12` |
 | 66 | `seilduksfabrikken_nydalen` | Øvre spinneri | verified_geometry | `kulturminnesok:165570-6` |
@@ -448,6 +448,8 @@ Alias-migrering (2026-07-20): `loelva_historisk` er fjernet som separat fysisk p
 Protokollsynk (2026-07-21): stale needs_review-rader ble fjernet bare når både dagens canonical runtime-index og koordinat-evidensen dokumenterer en godkjent koordinatstatus. Fjernet: `nybrua_vaterlandsparken`, `grensen_kjopesenter`. Synken endrer ingen koordinater.
 
 Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra legacy `verified` til `needs_source`. Det tidligere punktet bygger bare på `manual_map_check` og beholdes foreløpig som displayanker; ingen kildebelagt områdegeometri eller area-ankre er lagt til.
+
+Retrospektiv compliance-audit batch 1–120 (2026-07-21): Alle dokumenterte `verified`, `verified_geometry` og `verified_historical_source`-rader er kontrollert mot dagens canonical runtime og Coordinate Source Contract v1. Batch 1–5 er revidert på nytt mot de lagrede address-first-resultatene; Tronsmo er korrigert tilbake til det entydige Geonorge-punktet etter en senere OSM/storefront-regresjon. Oslo domkirke er kontrollert på nytt mot riktig besøksadresse Stortorvet 1; det gamle Karl Johans gate 11-punktet forblir forkastet som Kirkeristen. Batch 6–35 bygger på den eksisterende fullstendige retrokontrollen med tre korrigeringspass, mens batch 36–120 er kontrollert mot de dokumenterte objekt-type-først/source-closure-løpene og dagens kontrakt. Protokollens status- og kildeceller er samtidig synkronisert til dagens canonical verified-records. Detaljert maskinrapport ligger i `reports/oslo-coordinate-retro-compliance-20260721/`.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 

@@ -1,0 +1,3904 @@
+{
+  "generatedAt": "2026-07-21T08:04:01.725Z",
+  "scope": "All documented Oslo protocol rows with verified / verified_geometry / verified_historical_source status, batches 1–120, checked against current canonical runtime and Coordinate Source Contract v1.",
+  "summary": {
+    "documentedVerifiedRows": 348,
+    "uniquePlaceIds": 348,
+    "batchesRepresented": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121
+    ],
+    "contractPass": 340,
+    "contractFailures": 6,
+    "missingCurrentRecords": 2,
+    "protocolRowsSynced": 3,
+    "protocolMismatchesAfterSync": 0,
+    "protocolRowsNoLongerVerified": 2,
+    "savedAddressCandidateNonPrimary": 1,
+    "domkirkeAddressFirstApplied": false,
+    "openBlockingFindings": 12
+  },
+  "coverage": [
+    {
+      "range": "1–5",
+      "status": "re-reviewed",
+      "evidence": "Original address-first batch reports and saved Geonorge candidates compared with current canonical records. Tronsmo regression corrected; Oslo domkirke re-run against correct address Stortorvet 1."
+    },
+    {
+      "range": "6–35",
+      "status": "existing full retrospective audit reused",
+      "evidence": "reports/oslo-coordinate-retro-audit-from-batch-6/README.md documents full review of every batch 6–35 and three corrective passes."
+    },
+    {
+      "range": "36–120",
+      "status": "re-reviewed against current contract and documented source-closure/object-type-first decisions",
+      "evidence": "Current protocol rows validated against canonical runtime; source-specific batch/application/closure reports reviewed for fallback and scope decisions, including batches 116, 117, 119 and 120."
+    }
+  ],
+  "correctionsApplied": {
+    "tronsmo": {
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:12",
+      "coordinate": {
+        "lat": 59.916504851005804,
+        "lon": 10.738621210337177
+      }
+    },
+    "osloDomkirke": {
+      "query": "Stortorvet 1 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Stortorvet%201%20Oslo",
+      "applied": false,
+      "status": "needs_review",
+      "reason": "Forventet ett eksakt Stortorvet 1-treff, fant 2.",
+      "hitCount": 2,
+      "exactHitCount": 2
+    }
+  },
+  "protocolRowsSynced": [
+    {
+      "batch": 5,
+      "placeId": "tronsmo_bokhandel",
+      "beforeStatus": "verified",
+      "afterStatus": "verified",
+      "beforeSource": "osm-node:10524908476",
+      "afterSource": "geonorge-adresser-v1:0301:17999:12"
+    },
+    {
+      "batch": 60,
+      "placeId": "vestre_gravlund",
+      "beforeStatus": "verified",
+      "afterStatus": "verified_geometry",
+      "beforeSource": "osm-way:4740772",
+      "afterSource": "osm-way:4740772"
+    },
+    {
+      "batch": 63,
+      "placeId": "vikaterrassen",
+      "beforeStatus": "verified",
+      "afterStatus": "verified_geometry",
+      "beforeSource": "osm-relation:14169568",
+      "afterSource": "osm-relation:14169568"
+    }
+  ],
+  "protocolRowsNoLongerVerified": [
+    {
+      "lineIndex": 60,
+      "batch": 8,
+      "placeId": "folkeobservatoriet",
+      "name": "Folkeobservatoriet",
+      "status": "verified",
+      "source": "geonorge-adresser-v1:0301:13070:119",
+      "raw": "| 8 | `folkeobservatoriet` | Folkeobservatoriet | verified | `geonorge-adresser-v1:0301:13070:119` |",
+      "reason": "placeId mangler i runtime index"
+    },
+    {
+      "lineIndex": 65,
+      "batch": 8,
+      "placeId": "slurpen",
+      "name": "Slurpen",
+      "status": "verified",
+      "source": "geonorge-adresser-v1:0301:14097:79C",
+      "raw": "| 8 | `slurpen` | Slurpen | verified | `geonorge-adresser-v1:0301:14097:79C` |",
+      "reason": "placeId mangler i runtime index"
+    }
+  ],
+  "protocolMismatchesAfterSync": [],
+  "contractFailures": [
+    {
+      "batch": 35,
+      "placeId": "vaterland_historisk_elvelop",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:akerselva:vaterlands-bru",
+      "problems": []
+    },
+    {
+      "batch": 95,
+      "placeId": "korketrekkeren",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:1459739",
+      "problems": [
+        {
+          "field": "locatorType",
+          "problem": "Ugyldig locatorType=route_start.",
+          "severity": "error",
+          "recommendedAction": "downgrade_to_needs_source"
+        },
+        {
+          "field": "geocodeAccuracy",
+          "problem": "Ugyldig geocodeAccuracy=exact_route_endpoint.",
+          "severity": "error",
+          "recommendedAction": "downgrade_to_needs_source"
+        },
+        {
+          "field": "coordRole",
+          "problem": "Ugyldig coordRole=route_start.",
+          "severity": "error",
+          "recommendedAction": "downgrade_to_needs_source"
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "placeId": "saebotunet_etne",
+      "currentStatus": "verified",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "sunnhordland-museum:saebotunet",
+      "problems": []
+    },
+    {
+      "batch": 2,
+      "placeId": "folgefonden_minnesmerke_skanevik",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kartverket-stedsnavn:978614",
+      "problems": []
+    },
+    {
+      "batch": 5,
+      "placeId": "grindheim_runestein",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:84426-1",
+      "problems": []
+    },
+    {
+      "batch": 5,
+      "placeId": "grindheim_steinkross",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:84426-2",
+      "problems": []
+    }
+  ],
+  "missingCurrentRecords": [
+    {
+      "batch": 8,
+      "placeId": "folkeobservatoriet",
+      "name": "Folkeobservatoriet"
+    },
+    {
+      "batch": 8,
+      "placeId": "slurpen",
+      "name": "Slurpen"
+    }
+  ],
+  "savedAddressCandidateNonPrimary": [
+    {
+      "placeId": "oslo_domkirke",
+      "candidateFile": "reports/geonorge-address-batch-4/oslo_domkirke.json",
+      "savedSourceObjectId": "geonorge-adresser-v1:0301:13630:11",
+      "currentSourceProvider": "osm",
+      "currentSourceObjectId": "osm-node:2785921267",
+      "currentStatus": "verified",
+      "currentNote": "Hovedinngangen til Oslo domkirke, hentet fra inngangsnoden som ligger i kirkebygningens OSM-geometri. Adressepunktet i Karl Johans gate og et generelt bygningspunkt er forkastet som display-marker."
+    }
+  ],
+  "openBlockingFindings": [
+    {
+      "type": "contract_failure",
+      "batch": 35,
+      "placeId": "vaterland_historisk_elvelop",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:akerselva:vaterlands-bru",
+      "problems": []
+    },
+    {
+      "type": "contract_failure",
+      "batch": 95,
+      "placeId": "korketrekkeren",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:1459739",
+      "problems": [
+        {
+          "field": "locatorType",
+          "problem": "Ugyldig locatorType=route_start.",
+          "severity": "error",
+          "recommendedAction": "downgrade_to_needs_source"
+        },
+        {
+          "field": "geocodeAccuracy",
+          "problem": "Ugyldig geocodeAccuracy=exact_route_endpoint.",
+          "severity": "error",
+          "recommendedAction": "downgrade_to_needs_source"
+        },
+        {
+          "field": "coordRole",
+          "problem": "Ugyldig coordRole=route_start.",
+          "severity": "error",
+          "recommendedAction": "downgrade_to_needs_source"
+        }
+      ]
+    },
+    {
+      "type": "contract_failure",
+      "batch": 1,
+      "placeId": "saebotunet_etne",
+      "currentStatus": "verified",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "sunnhordland-museum:saebotunet",
+      "problems": []
+    },
+    {
+      "type": "contract_failure",
+      "batch": 2,
+      "placeId": "folgefonden_minnesmerke_skanevik",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kartverket-stedsnavn:978614",
+      "problems": []
+    },
+    {
+      "type": "contract_failure",
+      "batch": 5,
+      "placeId": "grindheim_runestein",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:84426-1",
+      "problems": []
+    },
+    {
+      "type": "contract_failure",
+      "batch": 5,
+      "placeId": "grindheim_steinkross",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:84426-2",
+      "problems": []
+    },
+    {
+      "type": "missing_current_record",
+      "batch": 8,
+      "placeId": "folkeobservatoriet",
+      "name": "Folkeobservatoriet"
+    },
+    {
+      "type": "missing_current_record",
+      "batch": 8,
+      "placeId": "slurpen",
+      "name": "Slurpen"
+    },
+    {
+      "type": "protocol_row_no_longer_verified",
+      "lineIndex": 60,
+      "batch": 8,
+      "placeId": "folkeobservatoriet",
+      "name": "Folkeobservatoriet",
+      "status": "verified",
+      "source": "geonorge-adresser-v1:0301:13070:119",
+      "raw": "| 8 | `folkeobservatoriet` | Folkeobservatoriet | verified | `geonorge-adresser-v1:0301:13070:119` |",
+      "reason": "placeId mangler i runtime index"
+    },
+    {
+      "type": "protocol_row_no_longer_verified",
+      "lineIndex": 65,
+      "batch": 8,
+      "placeId": "slurpen",
+      "name": "Slurpen",
+      "status": "verified",
+      "source": "geonorge-adresser-v1:0301:14097:79C",
+      "raw": "| 8 | `slurpen` | Slurpen | verified | `geonorge-adresser-v1:0301:14097:79C` |",
+      "reason": "placeId mangler i runtime index"
+    },
+    {
+      "type": "saved_address_candidate_not_primary",
+      "placeId": "oslo_domkirke",
+      "candidateFile": "reports/geonorge-address-batch-4/oslo_domkirke.json",
+      "savedSourceObjectId": "geonorge-adresser-v1:0301:13630:11",
+      "currentSourceProvider": "osm",
+      "currentSourceObjectId": "osm-node:2785921267",
+      "currentStatus": "verified",
+      "currentNote": "Hovedinngangen til Oslo domkirke, hentet fra inngangsnoden som ligger i kirkebygningens OSM-geometri. Adressepunktet i Karl Johans gate og et generelt bygningspunkt er forkastet som display-marker."
+    },
+    {
+      "type": "oslo_domkirke_address_first_unresolved",
+      "query": "Stortorvet 1 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Stortorvet%201%20Oslo",
+      "applied": false,
+      "status": "needs_review",
+      "reason": "Forventet ett eksakt Stortorvet 1-treff, fant 2.",
+      "hitCount": 2,
+      "exactHitCount": 2
+    }
+  ],
+  "auditedRows": [
+    {
+      "batch": 1,
+      "placeId": "nasjonalmuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18199:3",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/nasjonalmuseet.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "munch_museet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21680:1",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/munch_museet.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "astrup_fearnley",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21458:2",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/astrup_fearnley.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "nasjonalbiblioteket",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:110",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/nasjonalbiblioteket.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "vg_huset",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:55",
+      "trust": "verified",
+      "sourceFile": "places/media/oslo/places_oslo_media/vg_huset.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "nrk_huset_marienlyst",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10722:1",
+      "trust": "verified",
+      "sourceFile": "places/media/oslo/places_oslo_media/nrk_huset_marienlyst.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "deichman_grunerlokka",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16240:10",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/deichman_grunerlokka.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "deichman_bjorvika",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21670:1",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/deichman_bjorvika.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "det_norske_teatret",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13973:8",
+      "trust": "verified",
+      "sourceFile": "places/musikk/oslo/places_musikk/det_norske_teatret.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "rockefeller",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14618:5B",
+      "trust": "verified",
+      "sourceFile": "places/musikk/oslo/places_musikk/rockefeller.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "john_dee",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14618:5A",
+      "trust": "verified",
+      "sourceFile": "places/musikk/oslo/places_musikk/john_dee.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "sentrum_scene",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10210:1",
+      "trust": "verified",
+      "sourceFile": "places/musikk/oslo/places_musikk/sentrum_scene.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "oslo_s",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13444:1",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/oslo_s.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "vulkan_energisentral",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21649:5",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/vulkan_energisentral.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "gronland_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12450:34",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/gronland_kirke.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "kampen_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10988:1",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/kampen_kirke.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "oslo_bussterminal",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16260:10",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/oslo_bussterminal.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "operahuset",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21493:1",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/operahuset.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "oslo_domkirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2785921267",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/oslo_domkirke.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "slottet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21608:1",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/slottet.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "sofienberg_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15821:18",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/sofienberg_kirke.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "gamle_aker_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10057:26",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/gamle_aker_kirke.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "chateau_neuf",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16621:15",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/chateau_neuf.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "litteraturhuset",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18496:29",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/litteraturhuset.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "nationaltheatret",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:20681:1",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/nationaltheatret.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "tronsmo_bokhandel",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17999:12",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/tronsmo_bokhandel.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "folketeateret",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18554:2",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/folketeateret.json"
+    },
+    {
+      "batch": 6,
+      "placeId": "gronland_basarene",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:2",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/gronland_basarene.json"
+    },
+    {
+      "batch": 6,
+      "placeId": "mollergata_19",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:19",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/mollergata_19.json"
+    },
+    {
+      "batch": 6,
+      "placeId": "villa_grande",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13153:56",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/villa_grande.json"
+    },
+    {
+      "batch": 7,
+      "placeId": "blaa",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4312299494",
+      "trust": "verified",
+      "sourceFile": "places/musikk/oslo/places_musikk/blaa.json"
+    },
+    {
+      "batch": 7,
+      "placeId": "tinghuset",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11017:4",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/tinghuset.json"
+    },
+    {
+      "batch": 7,
+      "placeId": "bogstad_gard",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:219498663",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/bogstad_gard.json"
+    },
+    {
+      "batch": 7,
+      "placeId": "salt",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6677384187",
+      "trust": "verified",
+      "sourceFile": "places/musikk/oslo/places_musikk/salt.json"
+    },
+    {
+      "batch": 7,
+      "placeId": "tollbukaia",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:tollbukaia",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/tollbukaia.json"
+    },
+    {
+      "batch": 7,
+      "placeId": "akershus_kaier",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4252516",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/akershus_kaier.json"
+    },
+    {
+      "batch": 7,
+      "placeId": "oslo_mek",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:akers-mek-verksted",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_mek.json"
+    },
+    {
+      "batch": 8,
+      "placeId": "kjeglebanen_langgaardslokken",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10898:21",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/places_oslo_kultureiendommer_batch_01.json"
+    },
+    {
+      "batch": 8,
+      "placeId": "radmannsgarden_og_anatomibygget",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:19",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02.json"
+    },
+    {
+      "batch": 8,
+      "placeId": "magistratgarden",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11309:11",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02.json"
+    },
+    {
+      "batch": 8,
+      "placeId": "hauges_minde",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15331:2",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03.json"
+    },
+    {
+      "batch": 8,
+      "placeId": "geitmyra_gard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17894:2",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json"
+    },
+    {
+      "batch": 9,
+      "placeId": "gronland_politistasjon",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17872:5",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json"
+    },
+    {
+      "batch": 9,
+      "placeId": "toyen_trafo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13143:1",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json"
+    },
+    {
+      "batch": 9,
+      "placeId": "honse_lovisas_hus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16161:2",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur_oslo_kultureiendommer_batch_05.json"
+    },
+    {
+      "batch": 9,
+      "placeId": "sagene_festivitetshus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13102:3",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05.json"
+    },
+    {
+      "batch": 9,
+      "placeId": "etterstadgata_6",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11631:6",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_05.json"
+    },
+    {
+      "batch": 9,
+      "placeId": "villa_furulund",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12855:5",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_05.json"
+    },
+    {
+      "batch": 9,
+      "placeId": "villa_romsli",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15318:83",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json"
+    },
+    {
+      "batch": 10,
+      "placeId": "stubljan_paviljongen_hvervenbukta",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12168:4C",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_07.json"
+    },
+    {
+      "batch": 10,
+      "placeId": "trosterudvillaen",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11287:28D",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08.json"
+    },
+    {
+      "batch": 10,
+      "placeId": "sporveismuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12188:15",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+    },
+    {
+      "batch": 10,
+      "placeId": "saxegarden",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16210:17",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+    },
+    {
+      "batch": 10,
+      "placeId": "ovre_fossum_gard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15338:130",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+    },
+    {
+      "batch": 10,
+      "placeId": "lambertseter_gard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14120:2B",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+    },
+    {
+      "batch": 10,
+      "placeId": "nordre_skoyen_hovedgard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15665:17",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+    },
+    {
+      "batch": 11,
+      "placeId": "lokomotivverkstedet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10641:16",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+    },
+    {
+      "batch": 11,
+      "placeId": "tveten_gard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17852:101",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+    },
+    {
+      "batch": 11,
+      "placeId": "torggata",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:torggata",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/torggata.json"
+    },
+    {
+      "batch": 11,
+      "placeId": "bispelokket",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "regjeringen:stmeld-28-2001-2002:bispelokket",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/bispelokket.json"
+    },
+    {
+      "batch": 11,
+      "placeId": "karl_johan",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:karl-johans-gate",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/karl_johan.json"
+    },
+    {
+      "batch": 11,
+      "placeId": "radhusplassen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:fjordbyen:radhusplassen",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/radhusplassen.json"
+    },
+    {
+      "batch": 11,
+      "placeId": "bjorvika",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:fjordbyen:bjorvika",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/bjorvika.json"
+    },
+    {
+      "batch": 12,
+      "placeId": "grunerlokka_helgesens_tm",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:thorvald-meyers-gate:helgesens-gate-corner",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/grunerlokka_helgesens_tm.json"
+    },
+    {
+      "batch": 12,
+      "placeId": "toyen_torg",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:byplan:toyen-torg",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/toyen_torg.json"
+    },
+    {
+      "batch": 12,
+      "placeId": "majorstuen_krysset",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:valkyriegata:majorstukrysset",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/majorstuen_krysset.json"
+    },
+    {
+      "batch": 12,
+      "placeId": "st_hanshaugen_park",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:park:st-hanshaugen",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/st_hanshaugen_park.json"
+    },
+    {
+      "batch": 12,
+      "placeId": "aker_brygge",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:fjordbyen:aker-brygge",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/aker_brygge.json"
+    },
+    {
+      "batch": 13,
+      "placeId": "tigeren",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:3578576333",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/tigeren.json"
+    },
+    {
+      "batch": 13,
+      "placeId": "jernbanetorget",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:10576072",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/jernbanetorget.json"
+    },
+    {
+      "batch": 13,
+      "placeId": "helsfyr",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5218231670",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/helsfyr.json"
+    },
+    {
+      "batch": 13,
+      "placeId": "bogstadveien",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:bogstadveien",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/bogstadveien.json"
+    },
+    {
+      "batch": 13,
+      "placeId": "markveien",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:markveien",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/markveien.json"
+    },
+    {
+      "batch": 13,
+      "placeId": "gronlandsleiret",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:gronlandsleiret",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/gronlandsleiret.json"
+    },
+    {
+      "batch": 13,
+      "placeId": "storgata",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:storgata",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/storgata.json"
+    },
+    {
+      "batch": 14,
+      "placeId": "slottsparken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "royalcourt:palace-park",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/slottsparken.json"
+    },
+    {
+      "batch": 14,
+      "placeId": "botsparken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:park:gronland-park-klosterenga",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/botsparken.json"
+    },
+    {
+      "batch": 14,
+      "placeId": "stensparken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:parks:stensparken",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/stensparken.json"
+    },
+    {
+      "batch": 14,
+      "placeId": "nydalen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:nydalen",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/nydalen.json"
+    },
+    {
+      "batch": 14,
+      "placeId": "tjuvholmen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:fjordbyen:tjuvholmen",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/tjuvholmen.json"
+    },
+    {
+      "batch": 14,
+      "placeId": "sorenga",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:bjorvika:sorenga",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/sorenga.json"
+    },
+    {
+      "batch": 14,
+      "placeId": "majorstuen_tbanestasjon",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2274012035",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/majorstuen_tbanestasjon.json"
+    },
+    {
+      "batch": 15,
+      "placeId": "nationaltheatret_stasjon",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5218231660+1759965001",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/nationaltheatret_stasjon.json"
+    },
+    {
+      "batch": 15,
+      "placeId": "olaf_ryes_plass",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:park:olaf-ryes-plass",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/olaf_ryes_plass.json"
+    },
+    {
+      "batch": 15,
+      "placeId": "birkelunden",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:3236549",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/birkelunden.json"
+    },
+    {
+      "batch": 15,
+      "placeId": "akerselva",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:river:akerselva",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/akerselva.json"
+    },
+    {
+      "batch": 15,
+      "placeId": "universitetsplassen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:universitetsplassen",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/universitetsplassen.json"
+    },
+    {
+      "batch": 15,
+      "placeId": "barcode",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8071120191",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/barcode.json"
+    },
+    {
+      "batch": 16,
+      "placeId": "vigelandsparken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "vigelandmuseet:vigeland-park",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/vigelandsparken.json"
+    },
+    {
+      "batch": 16,
+      "placeId": "voienvolden",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:120",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/voienvolden.json"
+    },
+    {
+      "batch": 16,
+      "placeId": "carl_berner_plass",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:carl-berners-plass",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/carl_berner_plass.json"
+    },
+    {
+      "batch": 16,
+      "placeId": "tullin",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:666946874",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/tullin.json"
+    },
+    {
+      "batch": 16,
+      "placeId": "okern",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:okern-strok",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/okern.json"
+    },
+    {
+      "batch": 16,
+      "placeId": "skoyen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:skoyen-strok",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/skoyen.json"
+    },
+    {
+      "batch": 16,
+      "placeId": "torshov",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:torshov-strok",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/torshov.json"
+    },
+    {
+      "batch": 17,
+      "placeId": "grorud",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:grorud-strok",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/grorud.json"
+    },
+    {
+      "batch": 17,
+      "placeId": "sagene",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:sagene-strok",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/sagene.json"
+    },
+    {
+      "batch": 17,
+      "placeId": "saga_kino",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17079:28",
+      "trust": "verified",
+      "sourceFile": "places/film/oslo/places/saga_kino.json"
+    },
+    {
+      "batch": 17,
+      "placeId": "klingenberg_kino",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:20950:4",
+      "trust": "verified",
+      "sourceFile": "places/film/oslo/places/klingenberg_kino.json"
+    },
+    {
+      "batch": 17,
+      "placeId": "gimle_kino",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10967:39",
+      "trust": "verified",
+      "sourceFile": "places/film/oslo/places/gimle_kino.json"
+    },
+    {
+      "batch": 17,
+      "placeId": "vika_kino",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16038:14",
+      "trust": "verified",
+      "sourceFile": "places/film/oslo/places/vika_kino.json"
+    },
+    {
+      "batch": 18,
+      "placeId": "middelalder_oslo",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:kultureiendom:middelalderparken",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/middelalder_oslo.json"
+    },
+    {
+      "batch": 18,
+      "placeId": "gamlebyen_gravlund",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:gravplass:gamlebyen",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/gamlebyen_gravlund.json"
+    },
+    {
+      "batch": 18,
+      "placeId": "akershus_festning",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "forsvarsbygg:akershus-festning",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/akershus_festning.json"
+    },
+    {
+      "batch": 18,
+      "placeId": "var_frelsers_gravlund",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:gravplass:var-frelsers",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/var_frelsers_gravlund.json"
+    },
+    {
+      "batch": 18,
+      "placeId": "hovedoya_kloster",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:457724681",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/hovedoya_kloster.json"
+    },
+    {
+      "batch": 19,
+      "placeId": "sagene_skole",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10585:2",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/sagene_skole.json"
+    },
+    {
+      "batch": 19,
+      "placeId": "damstredet_telthusbakken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:damstredet+telthusbakken",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/damstredet_telthusbakken.json"
+    },
+    {
+      "batch": 19,
+      "placeId": "gamle_trikkestallen",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17667:33",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/gamle_trikkestallen.json"
+    },
+    {
+      "batch": 19,
+      "placeId": "trefoldighetskirken",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:60",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/trefoldighetskirken.json"
+    },
+    {
+      "batch": 19,
+      "placeId": "nonneseter_kloster",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:nonneseter",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/nonneseter_kloster.json"
+    },
+    {
+      "batch": 19,
+      "placeId": "oslo_ladegard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15449:13",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_ladegard.json"
+    },
+    {
+      "batch": 19,
+      "placeId": "galgeberg",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:galgeberg-rettersted",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/galgeberg.json"
+    },
+    {
+      "batch": 20,
+      "placeId": "oslo_hospital",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111555053",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json"
+    },
+    {
+      "batch": 20,
+      "placeId": "botsfengselet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18780:11",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/botsfengselet.json"
+    },
+    {
+      "batch": 20,
+      "placeId": "gamle_radhus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15006:1",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/gamle_radhus.json"
+    },
+    {
+      "batch": 21,
+      "placeId": "ekebergparken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "ekebergparken:official-map",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/ekebergparken.json"
+    },
+    {
+      "batch": 21,
+      "placeId": "camilla_collett_statue",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:7573449468",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/camilla_collett_statue.json"
+    },
+    {
+      "batch": 21,
+      "placeId": "henrik_wergeland_statue",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslo-museum:OB.A17403",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/henrik_wergeland_statue.json"
+    },
+    {
+      "batch": 21,
+      "placeId": "grotta",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18496:4",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/grotta.json"
+    },
+    {
+      "batch": 21,
+      "placeId": "eldorado_bokhandel",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17635:9A",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/eldorado_bokhandel.json"
+    },
+    {
+      "batch": 21,
+      "placeId": "gamle_deichman",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10244:4",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/gamle_deichman.json"
+    },
+    {
+      "batch": 22,
+      "placeId": "klassekampen_redaksjon",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12446:4",
+      "trust": "verified",
+      "sourceFile": "places/media/oslo/places_oslo_media/klassekampen_redaksjon.json"
+    },
+    {
+      "batch": 22,
+      "placeId": "oslo_gassverk",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:gassverket:storgata-36c",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json"
+    },
+    {
+      "batch": 22,
+      "placeId": "oslo_posthus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11309:15",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json"
+    },
+    {
+      "batch": 22,
+      "placeId": "telegrafbygningen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:13931026",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json"
+    },
+    {
+      "batch": 23,
+      "placeId": "vinmonopolet_lager",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12723:16",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/vinmonopolet_lager.json"
+    },
+    {
+      "batch": 23,
+      "placeId": "jernbaneverkstedet_lodalen",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11370:2",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json"
+    },
+    {
+      "batch": 23,
+      "placeId": "grunnlovsbygget_bankplassen",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10412:3",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/grunnlovsbygget_bankplassen.json"
+    },
+    {
+      "batch": 24,
+      "placeId": "ovre_foss",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:164747",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/ovre_foss.json"
+    },
+    {
+      "batch": 24,
+      "placeId": "schous_bryggeri",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17749:2",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/schous_bryggeri.json"
+    },
+    {
+      "batch": 24,
+      "placeId": "ringnes_bryggeri",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:2A",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json"
+    },
+    {
+      "batch": 24,
+      "placeId": "akershus_slott_bakeriet",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:669390521",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/akershus_slott_bakeriet.json"
+    },
+    {
+      "batch": 26,
+      "placeId": "myrens_verksted",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:99757039",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/myrens_verksted.json"
+    },
+    {
+      "batch": 26,
+      "placeId": "christiania_seildugsfabrik",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11891:24",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/christiania_seildugsfabrik.json"
+    },
+    {
+      "batch": 27,
+      "placeId": "ullevål_hageby",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1125978057",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/ullevål_hageby.json"
+    },
+    {
+      "batch": 27,
+      "placeId": "romsaås",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:963813366",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/romsaås.json"
+    },
+    {
+      "batch": 27,
+      "placeId": "rodelokka",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1290871351",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/rodelokka.json"
+    },
+    {
+      "batch": 27,
+      "placeId": "vaalerenga",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:366154118",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/vaalerenga.json"
+    },
+    {
+      "batch": 27,
+      "placeId": "vinderen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1125573258",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/vinderen.json"
+    },
+    {
+      "batch": 27,
+      "placeId": "ullern",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1370932493",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/ullern.json"
+    },
+    {
+      "batch": 27,
+      "placeId": "spikersuppa",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11158886",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/spikersuppa.json"
+    },
+    {
+      "batch": 28,
+      "placeId": "bankplassen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12044741",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/bankplassen.json"
+    },
+    {
+      "batch": 28,
+      "placeId": "christiania_torv",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:594329484",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/christiania_torv.json"
+    },
+    {
+      "batch": 29,
+      "placeId": "kulturkirken_jakob_litteratur",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:14",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/kulturkirken_jakob_litteratur.json"
+    },
+    {
+      "batch": 29,
+      "placeId": "ruth_maier_minne",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11153:3",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/ruth_maier_minne.json"
+    },
+    {
+      "batch": 30,
+      "placeId": "oscar_braaten_statuen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:10819902960",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/oscar_braaten_statuen.json"
+    },
+    {
+      "batch": 30,
+      "placeId": "alexander_kiellands_plass",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:3610607",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/alexander_kiellands_plass.json"
+    },
+    {
+      "batch": 31,
+      "placeId": "alnabru_jernbane_og_logistikk",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:84268939",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_alna/alnabru_jernbane_og_logistikk.json"
+    },
+    {
+      "batch": 32,
+      "placeId": "nydalsdammen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14637129",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/nydalsdammen.json"
+    },
+    {
+      "batch": 32,
+      "placeId": "bjoelsenfossen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:10679414566",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenfossen.json"
+    },
+    {
+      "batch": 32,
+      "placeId": "bjoelsenparken_elvenaer",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:336602343",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenparken_elvenaer.json"
+    },
+    {
+      "batch": 33,
+      "placeId": "glads_molle",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16161:10A",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/glads_molle.json"
+    },
+    {
+      "batch": 33,
+      "placeId": "voien_gard_voienvolden",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:120",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/voien_gard_voienvolden.json"
+    },
+    {
+      "batch": 33,
+      "placeId": "myralokka",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4648305",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/myralokka.json"
+    },
+    {
+      "batch": 33,
+      "placeId": "kuba_parken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:1103963",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json"
+    },
+    {
+      "batch": 33,
+      "placeId": "beierbrua",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:532768329",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json"
+    },
+    {
+      "batch": 33,
+      "placeId": "nedre_foss",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4171862592",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/nedre_foss.json"
+    },
+    {
+      "batch": 34,
+      "placeId": "vulkan_industriomrade",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:17",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/vulkan_industriomrade.json"
+    },
+    {
+      "batch": 34,
+      "placeId": "hausmannsbrua",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:377766486",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/hausmannsbrua.json"
+    },
+    {
+      "batch": 34,
+      "placeId": "ankerbrua",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:381749949",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/ankerbrua.json"
+    },
+    {
+      "batch": 35,
+      "placeId": "vaterland_historisk_elvelop",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:akerselva:vaterlands-bru",
+      "trust": "review",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/vaterland_historisk_elvelop.json"
+    },
+    {
+      "batch": 35,
+      "placeId": "akerselva_utlop_bjorvika",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:246047712",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/akerselva_utlop_bjorvika.json"
+    },
+    {
+      "batch": 36,
+      "placeId": "prinds_christian_augusts_minde",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "prindsen:official-documentation",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/prinds_christian_augusts_minde.json"
+    },
+    {
+      "batch": 36,
+      "placeId": "hartvig_nissens_skole_skam",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:325636287",
+      "trust": "verified",
+      "sourceFile": "places/film/oslo/places/hartvig_nissens_skole_skam.json"
+    },
+    {
+      "batch": 36,
+      "placeId": "inger_hagerups_plass",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:inger-hagerups-plass",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/inger_hagerups_plass.json"
+    },
+    {
+      "batch": 37,
+      "placeId": "norli_universitetsgata",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1664967174",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/norli_universitetsgata.json"
+    },
+    {
+      "batch": 37,
+      "placeId": "bankall_gard",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11788354",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json"
+    },
+    {
+      "batch": 37,
+      "placeId": "frysja_33_brekke_kraftstasjon",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13747:151C",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json"
+    },
+    {
+      "batch": 38,
+      "placeId": "bislett",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1126526860",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/bislett.json"
+    },
+    {
+      "batch": 38,
+      "placeId": "st_halvard_bryggeri",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:st-halvards-bryggeri",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/st_halvard_bryggeri.json"
+    },
+    {
+      "batch": 39,
+      "placeId": "grensen_kjopesenter",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:grensen",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/grensen_kjopesenter.json"
+    },
+    {
+      "batch": 40,
+      "placeId": "trikk_17_18",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "ruter:tram-lines:17+18:2026-04-20",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/trikk_17_18.json"
+    },
+    {
+      "batch": 41,
+      "placeId": "norges_hjemmefrontmuseum",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111833902",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json"
+    },
+    {
+      "batch": 41,
+      "placeId": "forsvarsmuseet",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:54830211",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json"
+    },
+    {
+      "batch": 41,
+      "placeId": "roseslottet",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1004591108",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json"
+    },
+    {
+      "batch": 42,
+      "placeId": "norsk_folkemuseum",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14899:10",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/norsk_folkemuseum.json"
+    },
+    {
+      "batch": 42,
+      "placeId": "norsk_maritimt_museum",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10977:37",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/norsk_maritimt_museum.json"
+    },
+    {
+      "batch": 42,
+      "placeId": "historisk_museum",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11941:2",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/historisk_museum.json"
+    },
+    {
+      "batch": 43,
+      "placeId": "frogner_hovedgard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12613:58",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/frogner_hovedgard.json"
+    },
+    {
+      "batch": 43,
+      "placeId": "arbeidermuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16135:28",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/arbeidermuseet.json"
+    },
+    {
+      "batch": 43,
+      "placeId": "nobels_fredssenter",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18199:1",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/nobels_fredssenter.json"
+    },
+    {
+      "batch": 44,
+      "placeId": "oslo_kornmagasin",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:669390505",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_kornmagasin.json"
+    },
+    {
+      "batch": 45,
+      "placeId": "kunstnernes_hus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18496:17",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/kunstnernes_hus.json"
+    },
+    {
+      "batch": 45,
+      "placeId": "vigelandmuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15080:32",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/vigelandmuseet.json"
+    },
+    {
+      "batch": 45,
+      "placeId": "mollergata_skole",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:49",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/mollergata_skole.json"
+    },
+    {
+      "batch": 46,
+      "placeId": "vippetangen_fisketorg",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:23",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/vippetangen_fisketorg.json"
+    },
+    {
+      "batch": 47,
+      "placeId": "lilleborg_fabrikker",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16161:54",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/lilleborg_fabrikker.json"
+    },
+    {
+      "batch": 48,
+      "placeId": "tbs_gallery",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15439:23",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/tbs_gallery.json"
+    },
+    {
+      "batch": 48,
+      "placeId": "viking_planet_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11993:4",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/viking_planet_oslo.json"
+    },
+    {
+      "batch": 48,
+      "placeId": "the_salmon_vitensenter",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21458:11",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/the_salmon_vitensenter.json"
+    },
+    {
+      "batch": 49,
+      "placeId": "jodisk_museum_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11019:15B",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/jodisk_museum_oslo.json"
+    },
+    {
+      "batch": 49,
+      "placeId": "det_internasjonale_barnekunstmuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14283:4",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/det_internasjonale_barnekunstmuseet.json"
+    },
+    {
+      "batch": 50,
+      "placeId": "ibsen_museum_teater",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:26",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/ibsen_museum_teater.json"
+    },
+    {
+      "batch": 51,
+      "placeId": "oslo_reptilpark",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16935:2",
+      "trust": "verified",
+      "sourceFile": "places/vitenskap/oslo/places_vitenskap/oslo_reptilpark.json"
+    },
+    {
+      "batch": 52,
+      "placeId": "toyenbadet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12860:90",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/toyenbadet.json"
+    },
+    {
+      "batch": 53,
+      "placeId": "ekt_rideskole_husdyrpark",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11462:99",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/ekt_rideskole_husdyrpark.json"
+    },
+    {
+      "batch": 54,
+      "placeId": "dronning_sonja_kunststall",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15614:50",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/dronning_sonja_kunststall.json"
+    },
+    {
+      "batch": 55,
+      "placeId": "holmlia_bad",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13084:34",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/holmlia_bad.json"
+    },
+    {
+      "batch": 56,
+      "placeId": "skimore_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17787:64",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/skimore_oslo.json"
+    },
+    {
+      "batch": 56,
+      "placeId": "oslo_kraftselskap",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16854:1",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/oslo_kraftselskap.json"
+    },
+    {
+      "batch": 57,
+      "placeId": "fagerborg_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:74",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/fagerborg_kirke.json"
+    },
+    {
+      "batch": 58,
+      "placeId": "uranienborg_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13110:15",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/uranienborg_kirke.json"
+    },
+    {
+      "batch": 59,
+      "placeId": "frogner_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10967:36",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/frogner_kirke.json"
+    },
+    {
+      "batch": 60,
+      "placeId": "vestre_gravlund",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4740772",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/vestre_gravlund.json"
+    },
+    {
+      "batch": 61,
+      "placeId": "brannmuseet_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12450:32",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/brannmuseet_oslo.json"
+    },
+    {
+      "batch": 62,
+      "placeId": "skoytemuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14742:26",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/skoytemuseet.json"
+    },
+    {
+      "batch": 63,
+      "placeId": "vikaterrassen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14169568",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/vikaterrassen.json"
+    },
+    {
+      "batch": 64,
+      "placeId": "kampen_okologiske_barnebondegard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16443:23",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/kampen_okologiske_barnebondegard.json"
+    },
+    {
+      "batch": 65,
+      "placeId": "klimahuset",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14797:12",
+      "trust": "verified",
+      "sourceFile": "places/vitenskap/oslo/places_vitenskap/klimahuset.json"
+    },
+    {
+      "batch": 66,
+      "placeId": "seilduksfabrikken_nydalen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:165570-6",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json"
+    },
+    {
+      "batch": 67,
+      "placeId": "fotografiens_hus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/fotografiens_hus.json"
+    },
+    {
+      "batch": 68,
+      "placeId": "christian_radich",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10077:9",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/christian_radich.json"
+    },
+    {
+      "batch": 69,
+      "placeId": "central_jam_e_mosque",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18780:28B",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/central_jam_e_mosque.json"
+    },
+    {
+      "batch": 70,
+      "placeId": "toyen_hovedgard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17749:23B",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/toyen_hovedgard.json"
+    },
+    {
+      "batch": 71,
+      "placeId": "museumsleiligheten_grabein",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:38B",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/museumsleiligheten_grabein.json"
+    },
+    {
+      "batch": 72,
+      "placeId": "akrobaten_gangbro",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:468892289",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/akrobaten_gangbro.json"
+    },
+    {
+      "batch": 73,
+      "placeId": "sorenga_sjobad",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5295458069",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/sorenga_sjobad.json"
+    },
+    {
+      "batch": 74,
+      "placeId": "frigo_friluftssenteret",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11589:20",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/frigo_friluftssenteret.json"
+    },
+    {
+      "batch": 75,
+      "placeId": "galleri_map",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17875:32",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/galleri_map.json"
+    },
+    {
+      "batch": 76,
+      "placeId": "vi_vii_gallery",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15006:8",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/vi_vii_gallery.json"
+    },
+    {
+      "batch": 77,
+      "placeId": "ekeberg_helleristninger",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:41907",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/ekeberg_helleristninger.json"
+    },
+    {
+      "batch": 78,
+      "placeId": "the_oslo_gallery",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13536:2A",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/the_oslo_gallery.json"
+    },
+    {
+      "batch": 79,
+      "placeId": "valerenga_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12974:3",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/valerenga_kirke.json"
+    },
+    {
+      "batch": 80,
+      "placeId": "kunsthall_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13764:21",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/kunsthall_oslo.json"
+    },
+    {
+      "batch": 81,
+      "placeId": "mariakirken_ruin_oslo",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:42178",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/mariakirken_ruin_oslo.json"
+    },
+    {
+      "batch": 82,
+      "placeId": "clemenskirken_ruin_oslo",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:51949",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/clemenskirken_ruin_oslo.json"
+    },
+    {
+      "batch": 83,
+      "placeId": "biblo_toyen",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12580:22",
+      "trust": "verified",
+      "sourceFile": "places/litteratur/oslo/places_litteratur/biblo_toyen.json"
+    },
+    {
+      "batch": 84,
+      "placeId": "ekebergparken_museum",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13868:23",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/ekebergparken_museum.json"
+    },
+    {
+      "batch": 85,
+      "placeId": "kosk_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21508:63C",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/kosk_oslo.json"
+    },
+    {
+      "batch": 86,
+      "placeId": "galleri_mini_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14861:1",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/galleri_mini_oslo.json"
+    },
+    {
+      "batch": 87,
+      "placeId": "van_etten",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16675:3",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/van_etten.json"
+    },
+    {
+      "batch": 88,
+      "placeId": "jordal_ungdomshall",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:33263069",
+      "trust": "verified",
+      "sourceFile": "places/sport/oslo/places_sport/jordal_ungdomshall.json"
+    },
+    {
+      "batch": 89,
+      "placeId": "gamlebyen_kirke",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557799193",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/gamlebyen_kirke.json"
+    },
+    {
+      "batch": 91,
+      "placeId": "frammuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10977:39",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json"
+    },
+    {
+      "batch": 91,
+      "placeId": "kon_tiki_museet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10977:36",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json"
+    },
+    {
+      "batch": 92,
+      "placeId": "gol_stavkirke_bygdoy",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:161661199",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json"
+    },
+    {
+      "batch": 95,
+      "placeId": "korketrekkeren",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:1459739",
+      "trust": "review",
+      "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/korketrekkeren.json"
+    },
+    {
+      "batch": 97,
+      "placeId": "universitetets_gamle_kjemi",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11941:3",
+      "trust": "verified",
+      "sourceFile": "places/vitenskap/oslo/places_vitenskap/universitetets_gamle_kjemi.json"
+    },
+    {
+      "batch": 90,
+      "placeId": "oslo_prosjektrom",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15684:18",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/oslo_prosjektrom.json"
+    },
+    {
+      "batch": 93,
+      "placeId": "alnaparken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:7810002134",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/alnaparken.json"
+    },
+    {
+      "batch": 93,
+      "placeId": "groruddammen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:60347628",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/groruddammen.json"
+    },
+    {
+      "batch": 93,
+      "placeId": "svartdalen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:579463147",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/svartdalen.json"
+    },
+    {
+      "batch": 93,
+      "placeId": "kvaernerbyen_alna",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:685201630",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/kvaernerbyen_alna.json"
+    },
+    {
+      "batch": 94,
+      "placeId": "peststotten_krist_kirkegard",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "atlasobscura:black-death-monument-peststotten",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/peststotten_krist_kirkegard.json"
+    },
+    {
+      "batch": 94,
+      "placeId": "kjaerlighetskarusellen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1346356285",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/kjaerlighetskarusellen.json"
+    },
+    {
+      "batch": 94,
+      "placeId": "villa_stenersen",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17802:10C",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/villa_stenersen.json"
+    },
+    {
+      "batch": 94,
+      "placeId": "st_hallvard_kirke_kloster",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11553:4",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01/st_hallvard_kirke_kloster.json"
+    },
+    {
+      "batch": 115,
+      "placeId": "bogstadvannet",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4351126",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_natur/bogstadvannet.json"
+    },
+    {
+      "batch": 115,
+      "placeId": "holmenkollen_kapell",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13070:142",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/holmenkollen_kapell.json"
+    },
+    {
+      "batch": 115,
+      "placeId": "kollentrollet",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1768125117",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/kollentrollet.json"
+    },
+    {
+      "batch": 115,
+      "placeId": "vettakollen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:301173327",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_natur/vettakollen.json"
+    },
+    {
+      "batch": 115,
+      "placeId": "kragstotten",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:484968664",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/kragstotten.json"
+    },
+    {
+      "batch": 117,
+      "placeId": "oslo_golfklubb_bogstad",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10163:127",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/oslo_golfklubb_bogstad.json"
+    },
+    {
+      "batch": 96,
+      "placeId": "emanuel_vigeland_mausoleum",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:974731248",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/emanuel_vigeland_mausoleum.json"
+    },
+    {
+      "batch": 96,
+      "placeId": "framtidsbiblioteket_nordmarka",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "visitnorway:future-library-forest-nordmarka",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/framtidsbiblioteket_nordmarka.json"
+    },
+    {
+      "batch": 98,
+      "placeId": "paulus_kirke",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17489:31",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/paulus_kirke.json"
+    },
+    {
+      "batch": 99,
+      "placeId": "purenkel_galleri",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12432:3",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/purenkel_galleri.json"
+    },
+    {
+      "batch": 100,
+      "placeId": "torshovparken",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:252260743",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/torshovparken.json"
+    },
+    {
+      "batch": 101,
+      "placeId": "hodet_nn_torshovdalen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2965223021",
+      "trust": "verified",
+      "sourceFile": "places/kunst/oslo/places_kunst/hodet_nn_torshovdalen.json"
+    },
+    {
+      "batch": 102,
+      "placeId": "havnelageret",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+      "trust": "verified",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/havnelageret.json"
+    },
+    {
+      "batch": 103,
+      "placeId": "oscarshall",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15443:15",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/oscarshall.json"
+    },
+    {
+      "batch": 104,
+      "placeId": "vikingtidsmuseet",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13153:35",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/vikingtidsmuseet.json"
+    },
+    {
+      "batch": 105,
+      "placeId": "bygdoy_kongsgard",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593517797",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/bygdoy_kongsgard.json"
+    },
+    {
+      "batch": 106,
+      "placeId": "bygdoy_dronningberget",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00003059",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_bygdoy/bygdoy_dronningberget.json"
+    },
+    {
+      "batch": 106,
+      "placeId": "bygdoy_huk",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:32547162",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_bygdoy/bygdoy_huk.json"
+    },
+    {
+      "batch": 106,
+      "placeId": "bygdoy_paradisbukta",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:28447738",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_bygdoy/bygdoy_paradisbukta.json"
+    },
+    {
+      "batch": 107,
+      "placeId": "ostensjovannet",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00000972",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/ostensjovannet.json"
+    },
+    {
+      "batch": 107,
+      "placeId": "hovedoya",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:20749306",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/hovedoya.json"
+    },
+    {
+      "batch": 107,
+      "placeId": "gressholmen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11816903",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/gressholmen.json"
+    },
+    {
+      "batch": 107,
+      "placeId": "maerradalen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:844862938",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/maerradalen.json"
+    },
+    {
+      "batch": 107,
+      "placeId": "maridalsvannet",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:1438314",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/maridalsvannet.json"
+    },
+    {
+      "batch": 107,
+      "placeId": "noklevann",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:16661",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/noklevann.json"
+    },
+    {
+      "batch": 108,
+      "placeId": "sukkerbiten_badstulandsby",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15256:28",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/sukkerbiten_badstulandsby.json"
+    },
+    {
+      "batch": 109,
+      "placeId": "losaeter",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:172520783",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/losaeter.json"
+    },
+    {
+      "batch": 110,
+      "placeId": "friluftshuset_sorenga",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21549:124",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/friluftshuset_sorenga.json"
+    },
+    {
+      "batch": 111,
+      "placeId": "operastranda",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:936040800",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/operastranda.json"
+    },
+    {
+      "batch": 112,
+      "placeId": "skraperudtjern",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:23761672",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute/skraperudtjern.json"
+    },
+    {
+      "batch": 118,
+      "placeId": "stortinget",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:22",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/stortinget.json"
+    },
+    {
+      "batch": 118,
+      "placeId": "youngstorget",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12773689",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/youngstorget.json"
+    },
+    {
+      "batch": 118,
+      "placeId": "oslo_radhus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16120:1",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/oslo_radhus.json"
+    },
+    {
+      "batch": 118,
+      "placeId": "eidsvolls_plass",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:841080897",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/eidsvolls_plass.json"
+    },
+    {
+      "batch": 118,
+      "placeId": "hoyesteretts_hus",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21338:1",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/hoyesteretts_hus.json"
+    },
+    {
+      "batch": 118,
+      "placeId": "politihuset_gronland",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12450:44",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/politihuset_gronland.json"
+    },
+    {
+      "batch": 118,
+      "placeId": "folkets_hus_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:18550:11",
+      "trust": "verified",
+      "sourceFile": "places/politikk/oslo/places_politikk/folkets_hus_oslo.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "cinemateket_oslo",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11309:16",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/cinemateket_oslo.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "colosseum_kino",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:115958003",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/colosseum_kino.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "house_of_nerds",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21649:18",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/house_of_nerds.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "latter",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:20305:1",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/latter.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "grand_hotel",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:31",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/grand_hotel.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "slottsplassen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:12806921",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/slottsplassen.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "chat_noir",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13780:5",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/chat_noir.json"
+    },
+    {
+      "batch": 119,
+      "placeId": "edderkoppen_scene",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16937:1",
+      "trust": "verified",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur/edderkoppen_scene.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "borgasen_etne",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90166-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/borgasen_etne.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "bruteigsteinen_etne",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90158-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/bruteigsteinen_etne.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "gjerde_kyrkje_etne",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:4611:1030:2",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/gjerde_kyrkje_etne.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "grindheim_kyrkje_etne",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:4611:1054:1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/grindheim_kyrkje_etne.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "helgaberget_etne",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90164-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/helgaberget_etne.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "saebotunet_etne",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "sunnhordland-museum:saebotunet",
+      "trust": "review",
+      "sourceFile": "places/historie/vestland/etne/saebotunet_etne.json"
+    },
+    {
+      "batch": 1,
+      "placeId": "stodle_kyrkje",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:4611:1006:183",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/stodle_kyrkje.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "driftevegen_stordalen_roldal",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kartverket-stedsnavn:671399",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/driftevegen_stordalen_roldal.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "duesteinen_etne",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90143-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/duesteinen_etne.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "folgefonden_minnesmerke_skanevik",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kartverket-stedsnavn:978614",
+      "trust": "review",
+      "sourceFile": "places/historie/vestland/etne/folgefonden_minnesmerke_skanevik.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "gamle_akrafjordvegen",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kartverket-stedsnavn:64077",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/gamle_akrafjordvegen.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "postvegen_etne_skanevik",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ut-turforslag:114844",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/postvegen_etne_skanevik.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "postvegen_rullestadjuvet",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kartverket-stedsnavn:550482",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/postvegen_rullestadjuvet.json"
+    },
+    {
+      "batch": 2,
+      "placeId": "skanevik_gjestgjevargarden",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:4611:1099:4",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/skanevik_gjestgjevargarden.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "etnesjoen_forromersk_landsby",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:130869",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/etnesjoen_forromersk_landsby.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "grindheimsveien_nord_gravfelt",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90213-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/grindheimsveien_nord_gravfelt.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "reichwald_snublesteiner_skanevik",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:4611:1152:10",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/reichwald_snublesteiner_skanevik.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "sorheimsmoen_gravfelt",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90185-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/sorheimsmoen_gravfelt.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "steine_heio_bygdeborg",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90165-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/steine_heio_bygdeborg.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "tesdal_gravfelt",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90178+90168",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/tesdal_gravfelt.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "varhaug_nervik",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90182-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/varhaug_nervik.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "dysjanes_rivaisen_gravroys",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90184-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/dysjanes_rivaisen_gravroys.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "hidlesnes_nernes_gravroys",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90179-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/hidlesnes_nernes_gravroys.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "keisarhaugen_frette",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90125-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/keisarhaugen_frette.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "nesjarhaugen_byrkjenes",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90161-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/nesjarhaugen_byrkjenes.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "vardahaugen_lauareid",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90174-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/vardahaugen_lauareid.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "etne_prestebustad",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:4611:1006:80",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/etne_prestebustad.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "fjaera_kapell",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:4611:1133:47",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/fjaera_kapell.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "grindheim_runestein",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:84426-1",
+      "trust": "review",
+      "sourceFile": "places/historie/vestland/etne/grindheim_runestein.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "grindheim_steinkross",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:84426-2",
+      "trust": "review",
+      "sourceFile": "places/historie/vestland/etne/grindheim_steinkross.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "hoyland_gravhaug_etne",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90156-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/hoyland_gravhaug_etne.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "skanevik_kyrkjestad",
+      "protocolStatus": "verified_historical_source",
+      "currentStatus": "verified_historical_source",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:85489-4",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/skanevik_kyrkjestad.json"
+    },
+    {
+      "batch": 5,
+      "placeId": "stampehaug_meland",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminnesok:90135-1",
+      "trust": "verified",
+      "sourceFile": "places/historie/vestland/etne/stampehaug_meland.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "bislett_stadion",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:115277337",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/bislett_stadion.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "jordal_amfi",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:760875553",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/jordal_amfi.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "holmenkollen_nasjonalanlegg",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:81300521",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/holmenkollen_nasjonalanlegg.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "frogner_stadion",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4272321",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/frogner_stadion.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "valle_hovin_stadion",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1528387076",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/valle_hovin_stadion.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "ekebergsletta",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:15951742",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/ekebergsletta.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "vallhall_arena",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:50634101",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/vallhall_arena.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "manglerudhallen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:176303011",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/manglerudhallen.json"
+    },
+    {
+      "batch": 121,
+      "placeId": "furuset_forum",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:131269106",
+      "trust": "verified",
+      "sourceFile": "places/sport/europa/norway/oslo_sport/furuset_forum.json"
+    },
+    {
+      "batch": 3,
+      "placeId": "brattholmen_naturreservat_etne",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001741",
+      "trust": "verified",
+      "sourceFile": "places/natur/vestland/brattholmen_naturreservat_etne.json"
+    },
+    {
+      "batch": 4,
+      "placeId": "skano_naturreservat_etne",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "official_map",
+      "sourceObjectId": "miljodirektoratet-naturvern:VV00001719",
+      "trust": "verified",
+      "sourceFile": "places/natur/vestland/skano_naturreservat_etne.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "heggholmen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:692270",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/heggholmen.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "rambergoya",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:489838",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/rambergoya.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "ormoya",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154500",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/ormoya.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "malmoya",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35213472",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/malmoya.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "nakholmen",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154397",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/nakholmen.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "lindoya",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11816904",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/lindoya.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "bleikoya",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154383",
+      "trust": "verified",
+      "sourceFile": "places/natur/oslo/bleikoya.json"
+    },
+    {
+      "batch": 116,
+      "placeId": "ulvoya",
+      "protocolStatus": "verified_geometry",
+      "currentStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154565",
+      "trust": "verified",
+      "sourceFile": "places/by/oslo/places/ulvoya.json"
+    },
+    {
+      "batch": 120,
+      "placeId": "holmenkollen_skimuseum",
+      "protocolStatus": "verified",
+      "currentStatus": "verified",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13850:5",
+      "trust": "verified",
+      "sourceFile": "places/historie/oslo/places_historie/holmenkollen_skimuseum.json"
+    }
+  ]
+}
