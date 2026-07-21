@@ -11,7 +11,7 @@
     { id: "sport", name: "Sport & lek", icon: "\u26BD", color: "#A01D13", secondaryColor: "#A51E15", scope: "runtime_domain" },
     { id: "by", name: "By & arkitektur", icon: "\u{1F3D9}\uFE0F", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
     { id: "politikk", name: "Politikk & samfunn", icon: "\u{1F3DB}\uFE0F", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
-    { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#292625", secondaryColor: "#572816", scope: "runtime_domain" },
+    { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
     { id: "litteratur", name: "Litteratur", icon: "\u{1F4DA}", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
     { id: "naeringsliv", name: "N\xE6ringsliv", icon: "\u{1F3ED}", color: "#0F62BD", secondaryColor: "#0754A9", scope: "runtime_domain" },
     { id: "psykologi", name: "Psykologi", icon: "\u{1F9E0}", color: "#06d6a0", scope: "runtime_domain" },
