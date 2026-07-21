@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T01:14:53.806Z
+Generert: 2026-07-21T01:18:18.430Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -253,3 +253,7 @@ Generert: 2026-07-21T01:14:53.806Z
 | maridalsvannet | data/coordinate-evidence/oslo/natur/maridalsvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | noklevann | data/coordinate-evidence/oslo/natur/noklevann.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnaelva_hovedsteder | data/coordinate-evidence/oslo/natur/alnaelva_hovedsteder.json | needs_research | needs_geometry | OK |
+| sukkerbiten_badstulandsby | data/coordinate-evidence/oslo/by/sukkerbiten_badstulandsby.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| losaeter | data/coordinate-evidence/oslo/by/losaeter.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| friluftshuset_sorenga | data/coordinate-evidence/oslo/sport/friluftshuset_sorenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| operastranda | data/coordinate-evidence/oslo/sport/operastranda.json | applied_to_place | do_not_change_coordinates_yet | OK |

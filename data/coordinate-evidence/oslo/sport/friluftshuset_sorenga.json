@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "friluftshuset_sorenga",
+  "placeFile": "data/places/sport/europa/norway/oslo_sport/friluftshuset_sorenga.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.901351775655876,
+    "lon": 10.752423812422574,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Sørengkaia 124, OSLO. DNT oppgir samme besøksadresse, og et navngitt OSM-punkt for Friluftshuset ligger ved samme bygg. Markøren ligger omtrent 114 meter fra eksisterende `sorenga_sjobad` og representerer en egen institusjons- og aktivitetssenteridentitet."
+  },
+  "identity": {
+    "currentName": "Friluftshuset på Sørenga",
+    "resolvedIdentity": "DNTs faste Friluftshus og aktivitetssenter på Sørengkaia 124",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisiell besøksadresse",
+    "uavhengig dokumentert institusjonsidentitet",
+    "overlap-audit mot Sørenga sjøbad"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=S%C3%B8rengkaia%20124%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21549:124",
+      "sourceQuality": "exact_official_address_plus_current_dnt_identity",
+      "finding": "Geonorge returnerer ett entydig adressepunkt for Sørengkaia 124. DNT oppgir samme adresse for Friluftshuset.",
+      "canVerifyCoordinate": true,
+      "reason": "Det navngitte Friluftshuset er en egen fysisk institusjon omtrent 114 meter fra eksisterende Sørenga sjøbad-markør."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Sørengkaia 124 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21549:124",
+      "lat": 59.901351775655876,
+      "lon": 10.752423812422574,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21549:124",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.901351775655876,
+      "lon": 10.752423812422574,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact official address point applied to the distinct DNT activity-centre place."
+  },
+  "notes": [
+    "Sørenga sjøbad remains a separate bathing facility; courses and rentals are use layers under Friluftshuset."
+  ]
+}

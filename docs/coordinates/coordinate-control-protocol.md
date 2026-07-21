@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 268 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 107 kontrollerer de gjenværende ukontrollerte recordene i `places_oslo_natur_hovedsteder.json` etter objekt-type-først-metoden. Offisiell vernegeometri prioriteres; øyer, innsjøer og eventuelle vassdrag krever ett eksakt navngitt fysisk kildeobjekt. Sammensatte eller canonical-overlappende systemrecords avsluttes som needs_review uten proxy-gjetting.
+Oslo-tabellen inneholder nå 272 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 108–111 legger til Sukkerbiten badstulandsby og Friluftshuset på Sørenga med entydige offisielle adressepunkter, samt Losæter og Operastranda med eksakte navngitte områdegeometrier. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -317,6 +317,10 @@ Batch 106 (2026-07-21) reviderer hele Bygdøy-naturkilden fra 2026-05-03, der le
 | 107 | `noklevann` | Nøklevann | verified_geometry | `osm-relation:16661` |
 
 Batch 107 (2026-07-21) reviderer natur-hovedstedene som fortsatt manglet full Coordinate Source Contract v1. Runneren hopper eksplisitt over placeId-er som allerede står i Oslo-hovedtabellen eller den separate needs_review-tabellen. Offisiell Naturbase-geometri brukes der et entydig verneobjekt finnes; ellers må OSM-kandidaten være et unikt eksakt navnetreff med riktig forhåndsdefinert objekttype. `bygdoy_natur` og `alnaelva_hovedsteder` kan ikke reduseres til nye tilfeldige punktproxyer når deres scope overlapper separate canonical delsteder eller eksisterende hovedrecords.
+| 108 | `sukkerbiten_badstulandsby` | Sukkerbiten badstulandsby | verified | `geonorge-adresser-v1:0301:15256:28` |
+| 109 | `losaeter` | Losæter | verified_geometry | `osm-way:172520783` |
+| 110 | `friluftshuset_sorenga` | Friluftshuset på Sørenga | verified | `geonorge-adresser-v1:0301:21549:124` |
+| 111 | `operastranda` | Operastranda | verified_geometry | `osm-way:936040800` |
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
