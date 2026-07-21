@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "stovnertarnet",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9610081,
+    "lon": 10.9299475,
+    "r": 90,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 5163964280 – Stovnertårnet; identity and local scope cross-checked with Oslo kommune",
+    "coordType": "poi_point",
+    "coordNote": "Batch 130 object-type-first: Karl Fossums vei 30 brukes ikke som adresseanker fordi kommunale kilder bruker adressen i bydels-/administrasjonssammenheng, mens selve Stovnertårnet ligger ved Jesperudjordet/Fossumberget. Nominatim/OSM-kontrollen må gi nøyaktig ett eksakt navngitt tourism=viewpoint-punkt i lokal Stovner-scope og stable ID osm-node:5163964280. Punktet brukes som display-marker for selve utsiktstårnet og kryssjekkes mot Oslo kommunes beskrivelse av Stovnertårnet som eget kommunalt utsiktstårn ved Jesperudjordet."
+  },
+  "identity": {
+    "currentName": "Stovnertårnet",
+    "resolvedIdentity": "Stovnertårnet – kommunalt utsiktstårn/gangbane på Fossumberget ved Jesperudjordet",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "kommunal fysisk identitet og lokal scope",
+    "ett eksakt navngitt stabilt POI-objekt",
+    "ingen administrativ adresseproxy"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Jesperudjordet",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/idrett/idrettsanlegg/jesperudjordet",
+      "sourceObjectId": "oslo-kommune:idrettsanlegg:jesperudjordet:stovnertarnet-nearby",
+      "sourceQuality": "official_local_scope_definition",
+      "finding": "Oslo kommune oppgir at Stovnertårnet ligger ved siden av Jesperudjordet og beskriver det som et eget tilbud i nærheten.",
+      "canVerifyCoordinate": false,
+      "reason": "Avviser Karl Fossums vei 30 som administrativ adresseproxy og fastsetter lokal fysisk scope."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Stovnertårnet, arkitekturpris 2018",
+      "sourceUrl": "https://www.oslo.kommune.no/utmerkelser-og-priser/oslo-bys-arkitekturpris/pameldte/kandidater-til-oslo-bys-arkitekturpris-2018/",
+      "sourceObjectId": "oslo-kommune:arkitekturpris-2018:stovnertarnet",
+      "sourceQuality": "official_identity_definition",
+      "finding": "Oslo kommune identifiserer Stovnertårnet som utsiktstårn, tiltakshaver Oslo kommune/Bymiljøetaten.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter selvstendig fysisk identitet og objekttype."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5163964280 – Stovnertårnet",
+      "sourceUrl": "https://www.openstreetmap.org/node/5163964280",
+      "sourceObjectId": "osm-node:5163964280",
+      "sourceQuality": "exact_named_point_after_object_type_filter",
+      "finding": "Ett eksakt navngitt tourism=viewpoint-punkt i forhåndsdefinert Stovner-scope ved 59.9610081, 10.9299475.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 130 object-type-first: Karl Fossums vei 30 brukes ikke som adresseanker fordi kommunale kilder bruker adressen i bydels-/administrasjonssammenheng, mens selve Stovnertårnet ligger ved Jesperudjordet/Fossumberget. Nominatim/OSM-kontrollen må gi nøyaktig ett eksakt navngitt tourism=viewpoint-punkt i lokal Stovner-scope og stable ID osm-node:5163964280. Punktet brukes som display-marker for selve utsiktstårnet og kryssjekkes mot Oslo kommunes beskrivelse av Stovnertårnet som eget kommunalt utsiktstårn ved Jesperudjordet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5163964280",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5163964280",
+      "lat": 59.9610081,
+      "lon": 10.9299475,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Stovnertårnet er oppgradert til verified_geometry med eksakt navngitt POI-punkt."
+  },
+  "notes": [
+    "Batch 130 object-type-first: Karl Fossums vei 30 brukes ikke som adresseanker fordi kommunale kilder bruker adressen i bydels-/administrasjonssammenheng, mens selve Stovnertårnet ligger ved Jesperudjordet/Fossumberget. Nominatim/OSM-kontrollen må gi nøyaktig ett eksakt navngitt tourism=viewpoint-punkt i lokal Stovner-scope og stable ID osm-node:5163964280. Punktet brukes som display-marker for selve utsiktstårnet og kryssjekkes mot Oslo kommunes beskrivelse av Stovnertårnet som eget kommunalt utsiktstårn ved Jesperudjordet."
+  ]
+}
