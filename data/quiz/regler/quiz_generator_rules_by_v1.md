@@ -1,95 +1,102 @@
-# Quizgenerator-regler for BY v1
-Dette er laget fra `places_by_22_with_quiz_profiles_v2_refined.json` og `emner_by_31_patched_full_v2_concepts_restored.json`. Målet er at generatoren faktisk skal bruke `quiz_profile`-feltene i stedet for å ignorere dem.
+# Quizgenerator-regler for BY v1.1
+
+Denne filen skal leses sammen med `QUIZ_INNHOLDSSTANDARD_V1.md`. Innholdsstandarden er bindende dersom eldre eksempler eller profiler peker i en annen retning.
+
 ## Hovedregel
-Spørsmål skal genereres slik: **emne -> stedskarakter -> spørsmålsvinkel -> konkret spørsmål**. Et emne får aldri formulere spørsmål alene.
+
+Spørsmål skal genereres slik:
+
+> **ekstern kilde eller konkret observasjon → verifiserbar påstand → spørsmålsvinkel → konkret spørsmål → emnekobling som metadata**
+
+Et emne får aldri være startpunktet for synlig quizinnhold. `quiz_profile`, emner og fagkart kan hjelpe generatoren å variere spørsmål og knytte dem til læringssystemet, men de kan ikke erstatte faktisk kunnskap om stedet.
+
+## Innholdsbalanse
+
+For quizpakker med minst ti spørsmål:
+
+- 60–70 % konkrete fakta
+- 20–30 % årsak, endring og sammenheng
+- maks 10–15 % teori og begreper
+
+Hvis kildestoffet ikke bærer denne balansen, skal quizen kortes ned.
+
 ## Bindinger generatoren må følge
-- Maks 1 spørsmål per emne-vinkel per sted.
-- Maks 1 definisjonsspørsmål per sett.
-- Minst 3 ulike spørsmålsfamilier per sett.
-- Minst 2 stedsspesifikke trekk per sett.
-- Minst 1 `must_include` per sett.
-- Generiske åpninger skal blokkeres.
-- Hvis `contrast_targets` finnes, skal minst ett kontrastspørsmål inn i hele quizpakken.
+
+- Minst tre ulike spørsmålsfamilier per sett.
+- Minst to stedsspesifikke trekk per sett.
+- Minst ett konkret historisk, fysisk eller funksjonelt holdepunkt per spørsmål.
+- Maks ett nødvendig definisjons- eller begrepsspørsmål per sett.
+- Emne- og teorifelt skal primært ligge i metadata og `knowledge`.
+- Kontrastspørsmål krever en reell og kildebelagt forskjell, ikke en konstruert emnesammenligning.
+- Spørsmål med samme seksordsåpning skal ikke masseproduseres på tvers av steder.
+- Riktig svar skal ikke være lett å finne fordi det er mye lengre eller mer akademisk enn distraktorene.
 
 ## Blokkerte formuleringer
-- Hvorfor er dette stedet relevant for ...
+
+- Hvorfor passer stedet til emnet ...
+- Hva gjør stedet relevant for emnet ...
 - Hva gjør stedet til et eksempel på ...
-- Hvilket begrep passer best ...
-- Hva slags grøntområde er dette ...
-- Hvordan fungerer stedet som byrom ...
+- Hvordan kan stedet leses som ...
+- Hva er den mest presise faglige lesningen ...
+- Hvilket begrep passer eller beskriver best ...
+- Hvilken teori, teoretiker, metode eller hook passer best ...
+- Hvordan fungerer stedet som byrom ... når spørsmålet bare parafraserer et emne
 
 ## Foretrukne åpninger
-- Hva forteller ...
+
+- Hvem ...
+- Når ...
+- Hva skjedde ...
+- Hva lå her før ...
 - Hvorfor ble ...
-- Hva skiller ...
-- Hvordan merker man ...
-- Hvilket spor ser man av ...
-- Hva gjør at ...
-- Hvorfor oppleves ...
-- Hva var dette stedet før ...
+- Hva førte til ...
+- Hvilket spor viser ...
 - Hvilken løsning gjør ...
-- Hvor i stedet ser man ...
+- Hva skiller ...
+- Hvordan virker den konkrete løsningen ...
 
 ## Spørsmålsfamilier
-### gjenkjenning
-- Formål: Identify the place through a concrete signature trait.
-- Gode åpninger: Hva ved stedet gjør det lett å kjenne igjen, Hva er det første som skiller, Hvilket trekk gjør at
-- Knowledge må: must name a concrete place trait, must add why the trait matters in the city
+
+### konkret_fakta
+
+Personer, datoer, verk, bygninger, funksjoner, hendelser og dokumenterte detaljer.
+
 ### historisk_endring
-- Formål: Frame the place through change over time.
-- Gode åpninger: Hva var dette stedet før, Hvorfor ble, Hvilken endring gjorde at
-- Knowledge må: must mention at least one dated or periodized shift, must connect shift to current place character
+
+Hva stedet var før, hva som ble flyttet, revet, bygget eller endret, og hva endringen førte til.
+
 ### teknisk_fysisk
-- Formål: Ask about construction, infrastructure, material or physical solution.
-- Gode åpninger: Hvilken løsning gjør, Hva er bygget i, Hvordan er dette anlagt
-- Knowledge må: must include a concrete technical or material detail, must explain what that detail enables
+
+Konstruksjon, infrastruktur, materiale, arkitektonisk løsning eller synlig fysisk spor.
+
 ### bruk
-- Formål: Ask about actual use, rhythms and user groups.
-- Gode åpninger: Hva brukes stedet til i dag, Hvem virker stedet laget for, Hvordan merker man at
-- Knowledge må: must describe actual use today, must avoid generic byliv wording
-### romlig_lesning
-- Formål: Read movement, openness, closure, direction and position in space.
-- Gode åpninger: Hva gjør at stedet åpner seg, Hvor i stedet ser man, Hvordan leder stedet deg
-- Knowledge må: must describe a spatial effect, must tie it to movement or orientation
-### saertrekk
-- Formål: Distinguish the place from similar places in Oslo.
-- Gode åpninger: Hva skiller, Hvorfor oppleves dette annerledes enn, Hva gjør dette stedet ulikt
-- Knowledge må: must state a real differentiator, must not fall back to generic category labels
+
+Faktisk bruk, aktiviteter, brukergrupper og funksjoner. Unngå generisk språk om «byliv» når en konkret aktivitet kan spørres om.
+
+### årsak_sammenheng
+
+Hvorfor en beslutning ble tatt, hvorfor en løsning virker, eller hvordan en hendelse påvirket stedet.
+
+### observasjon
+
+Noe spilleren faktisk kan se eller kontrollere på stedet. Observasjonen må ha et presist fasitsvar.
+
 ### kontrast
-- Formål: Use contrast against a nearby or comparable place.
-- Gode åpninger: Hvorfor føles dette annerledes enn, Hva er den tydeligste forskjellen mellom, Hvilket trekk gjør at dette ikke fungerer som
-- Knowledge må: must compare against an explicit contrast target or same-type place, must explain difference, not just name it
-### tidslag
-- Formål: Read multiple periods or surviving traces in the same place.
-- Gode åpninger: Hvilket spor ser man av, Hvilke epoker kan fortsatt leses her, Hva i stedet røper at
-- Knowledge må: must identify at least one surviving trace, must connect trace to present-day reading
+
+En konkret og kildebelagt forskjell mot et navngitt sammenligningssted. Kontrast er ikke en unnskyldning for å dikte en abstrakt emneoppgave.
+
+### teori_begrep
+
+Tillatt i liten mengde når begrepet gir nødvendig presisjon. Spørsmålet skal fortsatt lære spilleren noe vesentlig om stedet.
 
 ## Knowledge-regel
-Knowledge skal ikke bare gjenta svaret. Den skal vanligvis legge til minst to av disse lagene: historisk kontekst, materiale/fysisk trekk, bruk i dag, kontrast, eller hvorfor dette betyr noe i bylogikken.
 
-## Eksempler fra faktiske steder
-### Slottsparken (`slottsparken`)
-- Primærvinkler: institusjon, bruk, form, utsyn_orientering
-- Familier: gjenkjenning, romlig_lesning, saertrekk, kontrast
-- Må ha med: forholdet til Slottet, dobbelrollen som representasjon og hverdag
-- Bør støttes av emner: Parker som sosial infrastruktur, Opphold vs gjennomgang
-### Oslo S (`oslo_s`)
-- Primærvinkler: teknikk, bruk, konflikt_forandring, institusjon
-- Familier: gjenkjenning, teknisk_fysisk, bruk, romlig_lesning
-- Må ha med: rollen som nasjonal inngangsport, sammensmeltingen av mobilitet, venting og konsum
-- Bør støttes av emner: Infrastruktur og mobilitet, Sosiale knutepunkt
-### Torggata (`torggata`)
-- Primærvinkler: historie, bruk, konflikt_forandring, materialitet
-- Familier: historisk_endring, bruk, saertrekk, kontrast
-- Må ha med: ombyggingen og oppgraderingen av gaten, spenningen mellom råere fortid og kuratert nåtid
-- Bør støttes av emner: Gentrifisering, eiendom og spekulasjon, Styring, forvaltning og planmakt
-### Grønlandsleiret (`gronlandsleiret`)
-- Primærvinkler: historie, bruk, konflikt_forandring, institusjon
-- Familier: gjenkjenning, bruk, saertrekk, kontrast
-- Må ha med: hverdagshandelen, forskjellen mellom lokal intensitet og mer polert sentrumsgatelogikk
-- Bør støttes av emner: Kommersielle gater og handelsstrøk, Sosial miks i offentlige rom
-### Birkelunden (`birkelunden`)
-- Primærvinkler: bruk, historie, vegetasjon, konflikt_forandring
-- Familier: bruk, saertrekk, kontrast, tidslag
-- Må ha med: parken som sosialt frirom, rollen i en tett og kommersielt aktiv bydel
-- Bør støttes av emner: Parker som sosial infrastruktur, Opphold vs gjennomgang
+`knowledge` skal forklare hvorfor svaret er riktig og legge til relevant kontekst. Det skal ikke bare gjenta korrekt alternativ eller skjule en ny teorileksjon som ikke hører til spørsmålet.
+
+## Kilderegel
+
+Synlig innhold skal hovedsakelig bygge på lokale historiekilder, offisielle institusjonssider, arkiv, museum, oppslagsverk, faglitteratur eller verifiserbar observasjon. Interne emnefiler er veiledning, ikke kildebelegg.
+
+## Kontroll
+
+Kjør `npm run audit:quiz-content` før nye større quizbatcher publiseres.
