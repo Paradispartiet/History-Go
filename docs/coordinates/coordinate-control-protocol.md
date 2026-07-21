@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 350 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 120 legger til Skimuseet i Holmenkollen som egen museumsinstitusjon inne i det bredere Holmenkollen nasjonalanlegg, med Kongeveien 5 som låst visitor-facing museumsanker. Batch 119 kontrollerer de gjenværende ukontrollerte recordene i `places/popkultur/oslo/places_oslo_populaerkultur.json` med offisiell adresse der den allerede er dokumentert og ellers eksakt navngitt fysisk objekt i lokal scope.
+Oslo-tabellen inneholder nå 365 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -451,7 +451,7 @@ Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra lega
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller kildekontrollerte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller kildekontrollerte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
@@ -509,6 +509,10 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `blindern_forskningsparken_salamanderdam` – Blindern/Forskningsparken salamanderdam | needs_review | Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam. | Dokumenter en offentlig og ikke-sensitiv damgeometri eller modeller lokaliteten som tematisk resultat av kommunal amfibiekartlegging uten separat presis place-markør. |
 | `regjeringskvartalet` – Regjeringskvartalet | needs_review | Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes. | Dokumenter én legitim samlet institusjonsgeometri for Regjeringskvartalet; enkeltbygninger kan ikke brukes som proxy for hele området. |
 | `frognerstranda` – Frognerstranda | needs_review | Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen. | Dokumenter en eksplisitt Frognerstranda-områdegeometri eller flere kildebelagte strand-/promenadeankre før ett canonical representasjonspunkt godkjennes. |
+| `daelenenga_idrettspark` – Dælenenga idrettspark | needs_review | Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området. | Dokumenter én samlet navngitt områdegeometri eller eksplisitt sammensatt canonical modell for hele anlegget. |
+| `gressbanen` – Gressbanen | needs_review | Den avgrensede kontrollen ga ikke ett entydig eksakt navngitt fysisk sportsobjekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig eksakt fysisk sportsobjekt eller en offisiell adresse/geometri som matcher canonical identiteten. |
+| `kfum_arena` – KFUM Arena | needs_review | Den avgrensede kontrollen ga ikke ett entydig eksakt navngitt fysisk sportsobjekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig eksakt fysisk sportsobjekt eller en offisiell adresse/geometri som matcher canonical identiteten. |
+| `nordre_aasen_idrettspark` – Nordre Åsen idrettspark | needs_review | Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området. | Dokumenter én samlet navngitt områdegeometri eller eksplisitt sammensatt canonical modell for hele anlegget. |
 
 ## Etne – historiesett
 
@@ -551,6 +555,17 @@ Alle de 35 innsendte radene er kontrollert. Trettitre er verifiserte Etne-steder
 | 5 | `hoyland_gravhaug_etne` | Gravhaugen på Høyland | verified_geometry | `kulturminnesok:90156-1` |
 | 5 | `skanevik_kyrkjestad` | Skånevik kyrkjestad | verified_historical_source | `kulturminnesok:85489-4` |
 | 5 | `stampehaug_meland` | Stampehaug på Meland | verified_geometry | `kulturminnesok:90135-1` |
+| 121 | `bislett_stadion` | Bislett Stadion | verified_geometry | `osm-way:115277337` |
+- Neste nye Oslo-kontroll er batch 122.
+- `places/sport/europa/norway/oslo_sport.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive manifestkilde er `places/sport/europa/norway/places_oslo_lekeplasser_trening.json`; tidligere kontrollerte placeId-er skal hoppes over.
+| 121 | `jordal_amfi` | Jordal Amfi | verified_geometry | `osm-way:760875553` |
+| 121 | `holmenkollen_nasjonalanlegg` | Holmenkollen nasjonalanlegg | verified_geometry | `osm-way:81300521` |
+| 121 | `frogner_stadion` | Frogner stadion | verified_geometry | `osm-way:4272321` |
+| 121 | `valle_hovin_stadion` | Valle Hovin stadion | verified_geometry | `osm-way:1528387076` |
+| 121 | `ekebergsletta` | Ekebergsletta | verified_geometry | `osm-relation:15951742` |
+| 121 | `vallhall_arena` | Vallhall Arena | verified_geometry | `osm-way:50634101` |
+| 121 | `manglerudhallen` | Manglerudhallen | verified_geometry | `osm-way:176303011` |
+| 121 | `furuset_forum` | Furuset Forum | verified_geometry | `osm-way:131269106` |
 
 Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / PR #2309, `c1f8f9041` / PR #2314 og `3fd6d69ac` / PR #2318.
 
@@ -573,6 +588,9 @@ Batch 71 (2026-07-20) produserer `museumsleiligheten_grabein` som eget sosialhis
 
 Batch 77 (2026-07-20) retter protokollplasseringen for `ekeberg_helleristninger`. Den opprinnelige produksjonsmergen plasserte Ekeberg-raden nederst i Etne-tabellen, mens senere Oslo-batcher fortsatte å bruke den ordinære Oslo-tabellen. Denne reparasjonen fjerner den feilplasserte raden og den gamle produksjonsteksten og registrerer Ekeberg i riktig Oslo-tabell på neste ledige batch etter siste synkroniserte `main`. Canonical place, runtime-identitet, coordinate evidence og den Riksantikvaren-verifiserte geometrien `kulturminnesok:41907` endres ikke, og Oslo-totalen forblir 224.
 
+
+
+Batch 121 (2026-07-21) reviderer Oslo-sport-manifestet på fersk main med den tidligere fullt gate-validerte payloaden fra commit `4a05cc98487c19215670d5f13d50285bd15f09d7`. Replayen ble bare tillatt etter byte-for-byte-kontroll av at aggregate sport-kilden, split-filene, sport-index/manifest og alle 15 evidence-recordene var uendret siden source-base `b0e4227557591cec48f53dcdd4eb98a0d61af072`. Stadioner og haller bruker ett eksakt navngitt fysisk sportsobjekt; Holmenkollen nasjonalanlegg og Ekebergsletta bruker legitime samlede områdegeometrier. `daelenenga_idrettspark`, `gressbanen`, `kfum_arena` og `nordre_aasen_idrettspark` forblir needs_review fordi kontrollen ikke ga ett entydig fysisk kildeobjekt som matcher hele canonical identiteten. Ingen nearest/first-hit-logikk brukes.
 
 ## Vestland – Etne
 
