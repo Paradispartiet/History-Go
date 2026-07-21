@@ -12,6 +12,9 @@ on:
       - 'js/knowledge*.ts'
       - 'dist/web/knowledge*.js'
       - 'scripts/audit-knowledge-*.mjs'
+      - 'scripts/knowledge-canonical-data.mts'
+      - 'data/knowledge/**'
+      - 'data/quiz/**'
       - 'tests/knowledge-*.test.*'
       - 'tests/quiz-knowledge-memory.test.*'
       - 'tests/fixtures/knowledge-*.html'
@@ -49,7 +52,6 @@ jobs:
           node --check js/knowledgePage.js
           node --check js/knowledgeBadgeLogos.js
           node --check js/knowledgeProfileClassic.js
-          node --check scripts/audit-knowledge-contract.mjs
           node --check scripts/audit-knowledge-links.mjs
           node --check build/smoke-web.mjs
 
@@ -72,8 +74,19 @@ jobs:
             exit 1
           fi
 
-      - name: Run Knowledge core tests
-        run: npm run test:knowledge-core
+      - name: Build canonical Knowledge data tooling
+        run: npm run build:scripts
+
+      - name: Guard canonical Knowledge data
+        run: npm run knowledge:canonical:check
+
+      - name: Guard legacy Knowledge readers
+        run: npm run knowledge:legacy:check
+
+      - name: Run Knowledge core and storage contract tests
+        run: |
+          npm run test:knowledge-core
+          node --test tests/knowledge-canonical-storage-contract.test.js
 
       - name: Install Chromium for Knowledge E2E
         run: npx playwright install --with-deps chromium
@@ -85,8 +98,7 @@ jobs:
         run: node scripts/audit-knowledge-links.mjs
 
       - name: Generate Knowledge contract audit
-        continue-on-error: true
-        run: node scripts/audit-knowledge-contract.mjs
+        run: npm run audit:knowledge
 
       - name: Upload Knowledge audits
         if: always()
@@ -96,5 +108,7 @@ jobs:
           path: |
             reports/knowledge-link-audit.json
             reports/knowledge-contract-audit.json
+            reports/knowledge-id-backfill.json
+            reports/knowledge-universe-readers.json
             reports/knowledge-checkjs-diagnostics.txt
           if-no-files-found: warn
