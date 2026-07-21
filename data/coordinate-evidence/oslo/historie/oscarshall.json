@@ -1,0 +1,73 @@
+{
+  "placeId": "oscarshall",
+  "placeFile": "data/places/historie/oslo/places_historie/oscarshall.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91026364422076,
+    "lon": 10.69231350671801,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Oscarshallveien 15, OSLO. Punktet brukes som display- og unlock-marker for Oscarshall og representerer ikke hele parken eller det bredere Bygdø Kongsgård-anlegget."
+  },
+  "identity": {
+    "currentName": "Oscarshall",
+    "resolvedIdentity": "Oscarshall summer palace and its integrated visitor complex at Oscarshallveien 15",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Oscarshallveien 15",
+    "offisiell identitet som eget kongelig lystslott og offentlig kultursted",
+    "eksplisitt skille fra Bygdø Kongsgård og park som egen duplikatmarkør"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Oscarshallveien%2015%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15443:15",
+      "sourceQuality": "official_address_plus_official_institution_identity",
+      "finding": "Geonorge gir ett tydelig adressetreff for Oscarshallveien 15. Det norske kongehus dokumenterer Oscarshall som et eget historisk lystslott og offentlig besøkssted.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Oscarshallveien 15, OSLO. Punktet brukes som display- og unlock-marker for Oscarshall og representerer ikke hele parken eller det bredere Bygdø Kongsgård-anlegget."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Oscarshallveien 15 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15443:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15443:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91026364422076,
+      "lon": 10.69231350671801,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Oscarshallveien 15 as the canonical display marker for Oscarshall."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Oscarshallveien 15, OSLO. Punktet brukes som display- og unlock-marker for Oscarshall og representerer ikke hele parken eller det bredere Bygdø Kongsgård-anlegget."
+  ]
+}

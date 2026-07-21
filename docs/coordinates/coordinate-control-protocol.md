@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 245 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 98–101 legger til Paulus kirke, Purenkel galleri, Torshovparken og HODET N.N. med verifiserte adresse- eller objektankre. Resttabellen under er en dokumentasjonsliste for eksplisitt førte konflikter og er ikke en komplett opptelling av all runtime-koordinatbacklog.
+Oslo-tabellen inneholder nå 247 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 103–104 legger til Oscarshall og Vikingtidsmuseet med entydige Geonorge-adresseankre etter fullført VisitOSLO Bygdøy-identitets- og scope-audit.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -296,6 +296,13 @@ Batch 97 (2026-07-21) retter `universitetets_gamle_kjemi` etter objekt-type-før
 | 99 | `purenkel_galleri` | Purenkel galleri | verified | `geonorge-adresser-v1:0301:12432:3` |
 | 100 | `torshovparken` | Torshovparken | verified_geometry | `osm-way:252260743` |
 | 101 | `hodet_nn_torshovdalen` | HODET N.N. | verified_geometry | `osm-node:2965223021` |
+| 103 | `oscarshall` | Oscarshall | verified | `geonorge-adresser-v1:0301:15443:15` |
+| 104 | `vikingtidsmuseet` | Vikingtidsmuseet | verified | `geonorge-adresser-v1:0301:13153:35` |
+
+Batch 103 (2026-07-21) produserer `oscarshall` som eget historisk lystslott og kultursted. Geonorge gir ett entydig adressepunkt for Oscarshallveien 15, mens Det norske kongehus dokumenterer den selvstendige bygnings- og besøksidentiteten. Den romantiske parken beholdes som del av samme besøkskompleks og splittes ikke til en ny overlappende markør fra denne kilden alene.
+
+Batch 104 (2026-07-21) produserer `vikingtidsmuseet` som én stabil fysisk museumsidentitet for det bevarte Vikingskipshuset fra 1926 og det sammenkoblede nye museumsanlegget på Huk aveny 35. Geonorge-adressepunktet verifiserer stedet, mens bygge- og besøksstatus holdes eksplisitt adskilt fra koordinatstatus; recorden oppretter derfor ikke et konkurrerende separat `vikingskipshuset`-sted.
+
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.

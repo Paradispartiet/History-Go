@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T00:11:58.556Z
+Generert: 2026-07-21T00:20:49.793Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -235,3 +235,5 @@ Generert: 2026-07-21T00:11:58.556Z
 | purenkel_galleri | data/coordinate-evidence/oslo/kunst/purenkel_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | torshovparken | data/coordinate-evidence/oslo/by/torshovparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hodet_nn_torshovdalen | data/coordinate-evidence/oslo/kunst/hodet_nn_torshovdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| oscarshall | data/coordinate-evidence/oslo/historie/oscarshall.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vikingtidsmuseet | data/coordinate-evidence/oslo/historie/vikingtidsmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
