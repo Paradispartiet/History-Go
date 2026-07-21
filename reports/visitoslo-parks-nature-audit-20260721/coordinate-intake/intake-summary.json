@@ -1,0 +1,302 @@
+{
+  "capturedAt": "2026-07-21",
+  "sourceScopePr": 3144,
+  "candidates": [
+    "frognerparken",
+    "lillomarka",
+    "grorudparken",
+    "aamot_bru",
+    "klosterenga_skulpturpark",
+    "brekkedammen",
+    "peer_gynt_parken"
+  ],
+  "duplicateHitsTotal": 1,
+  "overpass": {
+    "ok": true,
+    "elementCount": 11
+  },
+  "byCandidate": {
+    "frognerparken": {
+      "rule": "Require the named park geometry. Keep Vigelandsparken as a nested/distinct sculpture-park identity rather than using it as a proxy for the whole park.",
+      "duplicateHits": [],
+      "nominatim": {
+        "rule": "Require the named park geometry. Keep Vigelandsparken as a nested/distinct sculpture-park identity rather than using it as a proxy for the whole park.",
+        "queries": [
+          {
+            "query": "Frognerparken, Oslo, Norway",
+            "ok": true,
+            "count": 1
+          },
+          {
+            "query": "Frogner Park, Oslo, Norway",
+            "ok": true,
+            "count": 1
+          }
+        ]
+      },
+      "overpassObjectCount": 2,
+      "overpassObjects": [
+        {
+          "type": "way",
+          "id": 4334023,
+          "tags": {
+            "alt_name": "Vigelandsparken;Vigelandsanlegget",
+            "leisure": "park",
+            "name": "Frognerparken",
+            "name:de": "Frognerpark",
+            "name:en": "Frogner Park",
+            "name:ko": "프로그네르 공원",
+            "opening_date": "1904",
+            "wikidata": "Q1126911",
+            "wikipedia": "en:Frogner Park"
+          }
+        },
+        {
+          "type": "way",
+          "id": 30136261,
+          "tags": {
+            "access": "yes",
+            "amenity": "parking",
+            "capacity": "183",
+            "capacity:disabled": "3",
+            "fee": "yes",
+            "hiking": "yes",
+            "name": "Frognerparken",
+            "operator": "Oslo kommune bymiljøetaten",
+            "parking": "surface",
+            "ref:pregister": "5578",
+            "surface": "asphalt"
+          }
+        }
+      ]
+    },
+    "lillomarka": {
+      "rule": "Require a named forest/Marka area object or authoritative boundary-aware semantic anchor. Do not reduce the large forest area to a trailhead address.",
+      "duplicateHits": [],
+      "nominatim": {
+        "rule": "Require a named forest/Marka area object or authoritative boundary-aware semantic anchor. Do not reduce the large forest area to a trailhead address.",
+        "queries": [
+          {
+            "query": "Lillomarka, Oslo, Norway",
+            "ok": true,
+            "count": 2
+          }
+        ]
+      },
+      "overpassObjectCount": 1,
+      "overpassObjects": [
+        {
+          "type": "relation",
+          "id": 5806405,
+          "tags": {
+            "name": "Lillomarka",
+            "place": "woodland",
+            "type": "multipolygon",
+            "wikidata": "Q1825238"
+          }
+        }
+      ]
+    },
+    "grorudparken": {
+      "rule": "Require the named park geometry, distinct from the broad Grorud district place.",
+      "duplicateHits": [
+        {
+          "id": "grorud",
+          "name": "Grorud",
+          "category": "by",
+          "lat": 59.9575,
+          "lon": 10.880833,
+          "r": 600,
+          "sourceFile": "places/by/oslo/places/grorud.json"
+        }
+      ],
+      "nominatim": {
+        "rule": "Require the named park geometry, distinct from the broad Grorud district place.",
+        "queries": [
+          {
+            "query": "Grorudparken, Oslo, Norway",
+            "ok": true,
+            "count": 1
+          }
+        ]
+      },
+      "overpassObjectCount": 1,
+      "overpassObjects": [
+        {
+          "type": "way",
+          "id": 125848624,
+          "tags": {
+            "leisure": "park",
+            "name": "Grorudparken",
+            "wikidata": "Q17778604"
+          }
+        }
+      ]
+    },
+    "aamot_bru": {
+      "rule": "Require the exact physical bridge object/geometry and normalize the canonical display name only after source cross-check.",
+      "duplicateHits": [],
+      "nominatim": {
+        "rule": "Require the exact physical bridge object/geometry and normalize the canonical display name only after source cross-check.",
+        "queries": [
+          {
+            "query": "Aamot bru, Oslo, Norway",
+            "ok": true,
+            "count": 0
+          },
+          {
+            "query": "Åmot bru, Oslo, Norway",
+            "ok": true,
+            "count": 1
+          },
+          {
+            "query": "Aamodt bru, Oslo, Norway",
+            "ok": true,
+            "count": 1
+          }
+        ]
+      },
+      "overpassObjectCount": 1,
+      "overpassObjects": [
+        {
+          "type": "way",
+          "id": 791117473,
+          "tags": {
+            "layer": "1",
+            "man_made": "bridge",
+            "name": "Åmot bru"
+          }
+        }
+      ]
+    },
+    "klosterenga_skulpturpark": {
+      "rule": "Require the named park/sculpture-park geometry and keep individual artworks as nested exact objects where already canonical.",
+      "duplicateHits": [],
+      "nominatim": {
+        "rule": "Require the named park/sculpture-park geometry and keep individual artworks as nested exact objects where already canonical.",
+        "queries": [
+          {
+            "query": "Klosterenga skulpturpark, Oslo, Norway",
+            "ok": true,
+            "count": 0
+          },
+          {
+            "query": "Klosterenga park, Oslo, Norway",
+            "ok": true,
+            "count": 2
+          }
+        ]
+      },
+      "overpassObjectCount": 3,
+      "overpassObjects": [
+        {
+          "type": "node",
+          "id": 10968291125,
+          "lat": 59.9073658,
+          "lon": 10.7779753,
+          "tags": {
+            "board_type": "art",
+            "information": "board",
+            "name": "Klosterenga park",
+            "tourism": "information"
+          }
+        },
+        {
+          "type": "node",
+          "id": 11882194159,
+          "lat": 59.9090198,
+          "lon": 10.7769424,
+          "tags": {
+            "image": "https://photos.app.goo.gl/HaPQ7SZpo6qWiLYx8",
+            "information": "board",
+            "name": "Klosterenga park",
+            "tourism": "information"
+          }
+        },
+        {
+          "type": "way",
+          "id": 4874898,
+          "tags": {
+            "leisure": "park",
+            "name": "Klosterenga",
+            "wikidata": "Q15091162",
+            "wikipedia": "en:Klosterenga"
+          }
+        }
+      ]
+    },
+    "brekkedammen": {
+      "rule": "Require the named Brekkedammen/Kjelsåsdammen water or recreation geometry. Explicitly reject the existing frysjadammen record, which represents Maridalsoset.",
+      "duplicateHits": [],
+      "nominatim": {
+        "rule": "Require the named Brekkedammen/Kjelsåsdammen water or recreation geometry. Explicitly reject the existing frysjadammen record, which represents Maridalsoset.",
+        "queries": [
+          {
+            "query": "Brekkedammen, Oslo, Norway",
+            "ok": true,
+            "count": 2
+          },
+          {
+            "query": "Kjelsåsdammen, Oslo, Norway",
+            "ok": true,
+            "count": 0
+          }
+        ]
+      },
+      "overpassObjectCount": 2,
+      "overpassObjects": [
+        {
+          "type": "way",
+          "id": 66357555,
+          "tags": {
+            "name": "Brekkedammen",
+            "waterway": "weir",
+            "website": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser-og-temperaturer/brekkedammen-ved-frysja/#gref"
+          }
+        },
+        {
+          "type": "way",
+          "id": 87803443,
+          "tags": {
+            "name": "Sagdammen",
+            "natural": "water"
+          }
+        }
+      ]
+    },
+    "peer_gynt_parken": {
+      "rule": "Require the named sculpture-park geometry at Løren, distinct from individual sculptures and the wider neighbourhood.",
+      "duplicateHits": [],
+      "nominatim": {
+        "rule": "Require the named sculpture-park geometry at Løren, distinct from individual sculptures and the wider neighbourhood.",
+        "queries": [
+          {
+            "query": "Peer Gynt-parken, Oslo, Norway",
+            "ok": true,
+            "count": 1
+          },
+          {
+            "query": "Peer Gynt park, Oslo, Norway",
+            "ok": true,
+            "count": 1
+          }
+        ]
+      },
+      "overpassObjectCount": 1,
+      "overpassObjects": [
+        {
+          "type": "way",
+          "id": 126850692,
+          "tags": {
+            "leisure": "park",
+            "name": "Peer Gynt-parken",
+            "source": "bing",
+            "website": "https://www.peergyntparken.no/",
+            "wikidata": "Q7160374",
+            "wikipedia": "no:Peer Gynt-parken"
+          }
+        }
+      ]
+    }
+  }
+}
