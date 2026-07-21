@@ -1,0 +1,82 @@
+import assert from "node:assert/strict";
+import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import test from "node:test";
+import { auditQuizContent } from "../scripts/audit-quiz-content-quality.mjs";
+
+async function withFixture(questions, run) {
+  const root = await mkdtemp(path.join(os.tmpdir(), "hg-quiz-audit-"));
+  try {
+    const quizDir = path.join(root, "by");
+    await mkdir(quizDir, { recursive: true });
+    await writeFile(path.join(quizDir, "fixture_sets.json"), JSON.stringify({ sets: [{ questions }] }), "utf8");
+    await run(root);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+}
+
+function question(id, text, questionType = "fact", options = ["Riktig", "Feil A", "Feil B"]) {
+  return {
+    id,
+    targetId: "fixture_place",
+    question: text,
+    options,
+    answer: options[0],
+    answerIndex: 0,
+    question_type: questionType
+  };
+}
+
+test("flags emne-first wording and an imbalanced quiz", async () => {
+  const questions = [
+    ...Array.from({ length: 5 }, (_, index) => question(`f${index}`, `Hvilket år skjedde hendelse ${index}?`)),
+    question("c1", "Hvorfor ble bygningen reist?", "analysis"),
+    question("c2", "Hva førte til at stedet ble endret?", "analysis"),
+    question("t1", "Hvorfor passer stedet til emnet offentlige rom?", "analysis"),
+    question("t2", "Hva er den mest presise faglige lesningen av stedet?", "analysis"),
+    question("t3", "Hvilket begrep beskriver best stedet?", "concept")
+  ];
+
+  await withFixture(questions, async (rootDir) => {
+    const report = await auditQuizContent({ rootDir });
+    assert.equal(report.summary.questionsScanned, 10);
+    assert.equal(report.summary.templateViolations, 3);
+    assert.equal(report.balanceViolations.length, 1);
+    assert.ok(report.balanceViolations[0].violations.some((value) => value.startsWith("fact_ratio_below_60_percent")));
+    assert.ok(report.balanceViolations[0].violations.some((value) => value.startsWith("theory_ratio_above_15_percent")));
+  });
+});
+
+test("accepts a 70/20/10 content mix", async () => {
+  const questions = [
+    ...Array.from({ length: 7 }, (_, index) => question(`f${index}`, `Hvem var knyttet til hendelse ${index}?`)),
+    question("c1", "Hvorfor ble bygningen reist?", "analysis"),
+    question("c2", "Hva førte til at funksjonen ble endret?", "analysis"),
+    question("t1", "Hva betyr sosial infrastruktur i denne sammenhengen?", "concept")
+  ];
+
+  await withFixture(questions, async (rootDir) => {
+    const report = await auditQuizContent({ rootDir });
+    assert.equal(report.balanceViolations.length, 0);
+    assert.equal(report.summary.templateViolations, 0);
+    assert.equal(report.groups[0].ratios.fact, 0.7);
+    assert.equal(report.groups[0].ratios.context, 0.2);
+    assert.equal(report.groups[0].ratios.theory, 0.1);
+  });
+});
+
+test("flags a correct answer that is much longer than the distractors", async () => {
+  await withFixture([
+    question(
+      "length",
+      "Hva skjedde?",
+      "fact",
+      ["Dette er en svært lang formulering som avslører det riktige svaret alene", "Nei", "Aldri"]
+    )
+  ], async (rootDir) => {
+    const report = await auditQuizContent({ rootDir });
+    assert.equal(report.summary.optionLengthSignals, 1);
+  });
+});
