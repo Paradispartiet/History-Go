@@ -28,23 +28,29 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Accept one unique lettered matrikkelpoint
+      - name: Capture Kloden Geonorge candidates
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('tools/add-scenekunst-oslo-venues-batch-3.mjs')
-          s = p.read_text()
-          old = """    normalize(row.adressenavn) === normalize(venue.street) &&
-              Number(row.nummer) === Number(venue.number) &&
-              !String(row.bokstav ?? '').trim()
-          """
-          new = """    normalize(row.adressenavn) === normalize(venue.street) &&
-              Number(row.nummer) === Number(venue.number)
-          """
-          if old not in s:
-              raise SystemExit('Expected exact-address filter not found')
-          p.write_text(s.replace(old, new, 1))
-          PY
+          node <<'NODE'
+          const fs = require('fs');
+          const queries = {
+            freeTextOslo: 'https://ws.geonorge.no/adresser/v1/sok?sok=' + encodeURIComponent('Kabelgata 31 Oslo'),
+            structuredExact: 'https://ws.geonorge.no/adresser/v1/sok?adressenavn=' + encodeURIComponent('Kabelgata') + '&nummer=31&kommunenummer=0301&treffPerSide=100',
+            streetOslo: 'https://ws.geonorge.no/adresser/v1/sok?adressenavn=' + encodeURIComponent('Kabelgata') + '&kommunenummer=0301&treffPerSide=100'
+          };
+          const output = {};
+          for (const [name, url] of Object.entries(queries)) {
+            const response = await fetch(url, { headers: { 'user-agent': 'History-Go-coordinate-audit/1.0' } });
+            const text = await response.text();
+            let payload;
+            try { payload = JSON.parse(text); } catch { payload = { raw: text }; }
+            output[name] = { url, status: response.status, payload };
+          }
+          fs.mkdirSync('reports', { recursive: true });
+          fs.writeFileSync(
+            'reports/scenekunst-oslo-new-venues-batch-3-kloden-geonorge-candidates.json',
+            JSON.stringify(output, null, 2) + '\n'
+          );
+          NODE
 
       - name: Build three verified Oslo venue packages
         id: venue_build
@@ -68,7 +74,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
-          git diff --cached --quiet || git commit -m "Record Scenekunst batch 3 runner failure"
+          git add reports/scenekunst-oslo-new-venues-batch-3-kloden-geonorge-candidates.json
+          git diff --cached --quiet || git commit -m "Record Kloden Geonorge address candidates"
           git push origin HEAD:agent/scenekunst-oslo-new-venues-03
           exit 1
 
@@ -112,6 +119,7 @@ jobs:
           git rm .github/workflows/scenekunst-oslo-new-venues-batch-3.yml
           git rm -f reports/scenekunst-oslo-new-venues-batch-3-trigger.md
           git rm -f reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
+          git rm -f reports/scenekunst-oslo-new-venues-batch-3-kloden-geonorge-candidates.json
           git add -A
           git diff --cached --stat
           git diff --cached --quiet && { echo "No venue changes produced"; exit 1; }
