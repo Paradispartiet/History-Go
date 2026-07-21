@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T14:56:44.155Z
+Generert: 2026-07-21T15:03:16.498Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -180,7 +180,7 @@ Generert: 2026-07-21T14:56:44.155Z
 | ruth_maier_minne | data/coordinate-evidence/oslo/litteratur/ruth_maier_minne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sigrid_undset_statue | data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json | needs_research | needs_geometry | OK |
 | aftenposten_akersgata | data/coordinate-evidence/oslo/media/aftenposten_akersgata.json | needs_research | needs_identity_split | OK |
-| dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | needs_research | needs_identity_split | OK |
+| dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klassekampen_redaksjon | data/coordinate-evidence/oslo/media/klassekampen_redaksjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva_industri | data/coordinate-evidence/oslo/naeringsliv/akerselva_industri.json | needs_research | needs_geometry | OK |
 | akershus_energi | data/coordinate-evidence/oslo/naeringsliv/akershus_energi.json | needs_research | needs_identity_split | OK |
