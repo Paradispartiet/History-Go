@@ -39,7 +39,7 @@ Oslo-tabellen inneholder nå 365 dokumenterte verifiserte eller kildekontrollert
 | 3 | `kampen_kirke` | Kampen kirke | verified | `geonorge-adresser-v1:0301:10988:1` |
 | 3 | `oslo_bussterminal` | Oslo bussterminal | verified | `geonorge-adresser-v1:0301:16260:10` |
 | 4 | `operahuset` | Operahuset | verified | `geonorge-adresser-v1:0301:21493:1` |
-| 4 | `oslo_domkirke` | Oslo domkirke | verified | `osm-node:2785921267` |
+| 4 | `oslo_domkirke` | Oslo domkirke | verified | `geonorge-adresser-v1:0301:17083:1` |
 | 4 | `slottet` | Det kongelige slott | verified | `geonorge-adresser-v1:0301:21608:1` |
 | 4 | `sofienberg_kirke` | Sofienberg kirke | verified | `geonorge-adresser-v1:0301:15821:18` |
 | 4 | `gamle_aker_kirke` | Gamle Aker kirke | verified | `geonorge-adresser-v1:0301:10057:26` |
@@ -58,12 +58,12 @@ Oslo-tabellen inneholder nå 365 dokumenterte verifiserte eller kildekontrollert
 | 7 | `tollbukaia` | Tollbukaia | verified_historical_source | `oslobyleksikon:tollbukaia` |
 | 7 | `akershus_kaier` | Akershuskaiene | verified_geometry | `osm-way:4252516` |
 | 7 | `oslo_mek` | Akers mekaniske Verksted | verified_historical_source | `oslobyleksikon:akers-mek-verksted` |
-| 8 | `folkeobservatoriet` | Folkeobservatoriet | verified | `geonorge-adresser-v1:0301:13070:119` |
+| 8 | `folkeobservatoriet_holmenkollen` | Folkeobservatoriet | verified | `geonorge-adresser-v1:0301:13070:119` |
 | 8 | `kjeglebanen_langgaardslokken` | Kjeglebanen på Langgaardsløkken | verified | `geonorge-adresser-v1:0301:10898:21` |
 | 8 | `radmannsgarden_og_anatomibygget` | Rådmannsgården og Anatomibygget | verified | `geonorge-adresser-v1:0301:16115:19` |
 | 8 | `magistratgarden` | Magistratgården | verified | `geonorge-adresser-v1:0301:11309:11` |
 | 8 | `hauges_minde` | Hauges Minde | verified | `geonorge-adresser-v1:0301:15331:2` |
-| 8 | `slurpen` | Slurpen | verified | `geonorge-adresser-v1:0301:14097:79C` |
+| 8 | `slurpen_lakkegata` | Slurpen | verified | `geonorge-adresser-v1:0301:14097:79C` |
 | 8 | `geitmyra_gard` | Geitmyra gård | verified | `geonorge-adresser-v1:0301:17894:2` |
 | 9 | `gronland_politistasjon` | Grønland politistasjon | verified | `geonorge-adresser-v1:0301:17872:5` |
 | 9 | `toyen_trafo` | Tøyen trafo | verified | `geonorge-adresser-v1:0301:13143:1` |
@@ -449,7 +449,7 @@ Protokollsynk (2026-07-21): stale needs_review-rader ble fjernet bare når både
 
 Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra legacy `verified` til `needs_source`. Det tidligere punktet bygger bare på `manual_map_check` og beholdes foreløpig som displayanker; ingen kildebelagt områdegeometri eller area-ankre er lagt til.
 
-Retrospektiv compliance-audit batch 1–120 (2026-07-21): Alle dokumenterte `verified`, `verified_geometry` og `verified_historical_source`-rader er kontrollert mot dagens canonical runtime og Coordinate Source Contract v1. Batch 1–5 er revidert på nytt mot de lagrede address-first-resultatene; Tronsmo er korrigert tilbake til det entydige Geonorge-punktet etter en senere OSM/storefront-regresjon. Oslo domkirke er kontrollert på nytt mot riktig besøksadresse Stortorvet 1; det gamle Karl Johans gate 11-punktet forblir forkastet som Kirkeristen. Batch 6–35 bygger på den eksisterende fullstendige retrokontrollen med tre korrigeringspass, mens batch 36–120 er kontrollert mot de dokumenterte objekt-type-først/source-closure-løpene og dagens kontrakt. Protokollens status- og kildeceller er samtidig synkronisert til dagens canonical verified-records. Detaljert maskinrapport ligger i `reports/oslo-coordinate-retro-compliance-20260721/`.
+Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full Oslo-only audit er gjennomført mot dagens Coordinate Source Contract v1 og current canonical runtime. Batch 1–5 er revidert på nytt mot address-first-evidens; batch 6–35 bygger på den dokumenterte full-retrokontrollen med tre korrigeringspass; batch 36–120 er kontrollert mot dagens verified-records og dokumenterte source-closure-/objekttypebeslutninger. Tronsmo, Oslo domkirke, Korketrekkeren, Vaterlands historiske elveløp og to stale canonical placeId-er er korrigert/synkronisert i audit-PR-en. Maskinrapport: `reports/oslo-coordinate-retro-compliance-20260721/audit.json`.
 
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 

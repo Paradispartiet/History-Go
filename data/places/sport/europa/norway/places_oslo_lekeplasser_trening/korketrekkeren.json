@@ -86,18 +86,18 @@
   "visual": {
     "designCode": "sports_field_miniature"
   },
-  "locatorType": "route_start",
+  "locatorType": "route",
   "coordType": "route_start",
   "coordStatus": "verified_geometry",
   "coordSource": "OpenStreetMap route relation 1459739 + Oslo kommune route identity",
   "coordSourceId": "osm-relation:1459739",
   "coordSourceUrl": "https://www.openstreetmap.org/relation/1459739",
   "coordVerifiedAt": "2026-07-21",
-  "coordNote": "Eksakt øvre endepunkt i OSM-ruterelasjon 1459739, eksplisitt navngitt Korketrekkeren og tagget type=route, route=sled og piste:type=sled. Relasjonen har 16 ordnede medlems-way-er fordelt på to internt sammenhengende komponenter: en 409 m øvre sled-del ved Frognerseteren og en 2027 m hoveddel mot Midtstuen. Mellom komponentene er et dokumentert kartgap på 31.8 m; derfor brukes relasjonen som semantisk ruteobjekt og det eksakte øvre relasjonsendepunktet som route_start, uten å hevde at hele traseen er én ubrutt polyline. Medlemgeometri pluss gap er 2467 m, innenfor ca.-angivelsen 2700 m fra Oslo kommune. Startankeret ligger 25 m fra Frognerseteren stasjon og nedre relasjonsende 41 m fra Midtstuen stasjon. Trailforks er fjernet som primær koordinatkilde.",
+  "coordNote": "Eksakt øvre endepunkt i OSM-ruterelasjon 1459739, eksplisitt navngitt Korketrekkeren og tagget type=route, route=sled og piste:type=sled. Relasjonen har 16 ordnede medlems-way-er fordelt på to internt sammenhengende komponenter: en 409 m øvre sled-del ved Frognerseteren og en 2027 m hoveddel mot Midtstuen. Mellom komponentene er et dokumentert kartgap på 31.8 m; derfor brukes relasjonen som semantisk ruteobjekt og det eksakte øvre relasjonsendepunktet som route_start, uten å hevde at hele traseen er én ubrutt polyline. Medlemgeometri pluss gap er 2467 m, innenfor ca.-angivelsen 2700 m fra Oslo kommune. Startankeret ligger 25 m fra Frognerseteren stasjon og nedre relasjonsende 41 m fra Midtstuen stasjon. Trailforks er fjernet som primær koordinatkilde. Contract v1-normalisering 2026-07-21: samme eksakte øvre rutepunkt og samme OSM-ruterelasjon beholdes, men metadata uttrykkes med tillatte canonical verdier locatorType=route, geocodeAccuracy=semantic_anchor og coordRole=line_anchor. Ingen koordinat eller kildeidentitet er endret.",
   "sourceProvider": "osm",
   "sourceObjectId": "osm-relation:1459739",
-  "geocodeAccuracy": "exact_route_endpoint",
-  "coordRole": "route_start",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
   "routeAnchors": [
     {
       "role": "route_start",

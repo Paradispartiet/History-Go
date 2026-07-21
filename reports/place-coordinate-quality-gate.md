@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T08:04:19.477Z
+Generert: 2026-07-21T08:18:12.343Z
 
 ## Oppsummering
 - Aktive filer validert: **591**
 - Antall steder validert: **1217**
 - Harde feil: **0**
-- Varsler: **433**
-- Coordinate review candidates: **714** signaler fordelt på **575** steder
+- Varsler: **434**
+- Coordinate review candidates: **715** signaler fordelt på **576** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -628,6 +628,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie.json#villa_grande: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#mollergata_19: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#sagene_skole: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/oslo_domkirke.json#oslo_domkirke: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/gamle_trikkestallen.json#gamle_trikkestallen: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/slottet.json#slottet: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/sofienberg_kirke.json#sofienberg_kirke: coordStatus=verified uten coordPrecisionM
@@ -1050,13 +1051,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 714 signaler fordelt på 575 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 715 signaler fordelt på 576 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 130 |
+| coordStatus=verified uten coordPrecisionM | 131 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 94 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 84 |
@@ -1066,7 +1067,7 @@ Totalt 714 signaler fordelt på 575 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 12 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (130)
+### coordStatus=verified uten coordPrecisionM (131)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1081,6 +1082,7 @@ Totalt 714 signaler fordelt på 575 steder. Et sted kan ha flere signaler. Kandi
 | villa_grande | Villa Grande | historie | data/places/historie/oslo/places_historie.json | 59.89911019330011 | 10.678158888428362 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | mollergata_19 | Møllergata 19 | historie | data/places/historie/oslo/places_historie.json | 59.91528413168428 | 10.747869191554551 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sagene_skole | Sagene skole | historie | data/places/historie/oslo/places_historie.json | 59.93078969319966 | 10.75928429201007 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oslo_domkirke | Oslo domkirke | by | data/places/by/oslo/oslo_domkirke.json | 59.91266533589023 | 10.746431229351575 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_trikkestallen | Gamle trikkestallen på Sagene | by | data/places/by/oslo/gamle_trikkestallen.json | 59.93283549643305 | 10.768161829321377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | slottet | Det kongelige slott | politikk | data/places/politikk/oslo/slottet.json | 59.917063045432855 | 10.727724636631736 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sofienberg_kirke | Sofienberg kirke | by | data/places/by/oslo/sofienberg_kirke.json | 59.922239531059745 | 10.765987821107696 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
