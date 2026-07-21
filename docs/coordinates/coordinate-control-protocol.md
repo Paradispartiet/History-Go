@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 331 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 115 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
+Oslo-tabellen inneholder nå 339 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 116 legger til åtte separate Oslofjord-steder fra den lukkede VisitOSLO Oslofjorden-auditen. Batch 115 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -563,3 +563,14 @@ Etne batch 3 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som
 | 4 | `skano_naturreservat_etne` | Skåno naturreservat | verified_geometry | `miljodirektoratet-naturvern:VV00001719` |
 
 Etne batch 4 (2026-07-21) bruker Miljødirektoratets offisielle vernepolygon som områdegeometri. Artskart-revisjonen er avgrenset til den samme polygonen og dokumentert i `reports/etne-natur-batch-5-skano-artskart.json`.
+
+| 116 | `heggholmen` | Heggholmen | verified_geometry | `kartverket-ssr:692270` |
+| 116 | `rambergoya` | Rambergøya | verified_geometry | `kartverket-ssr:489838` |
+| 116 | `ormoya` | Ormøya | verified_geometry | `osm-way:4154500` |
+| 116 | `malmoya` | Malmøya | verified_geometry | `osm-way:35213472` |
+| 116 | `nakholmen` | Nakholmen | verified_geometry | `osm-way:4154397` |
+| 116 | `lindoya` | Lindøya | verified_geometry | `osm-relation:11816904` |
+| 116 | `bleikoya` | Bleikøya | verified_geometry | `osm-way:4154383` |
+| 116 | `ulvoya` | Ulvøya | verified_geometry | `osm-way:4154565` |
+
+Batch 116 (2026-07-21) produserer åtte separate Oslofjord-identiteter. Kombinerte VisitOSLO-rader er ikke kopiert som syntetiske steder: Heggholmen og Rambergøya beholdes ved siden av eksisterende `gressholmen`, og Ormøya og Malmøya beholdes som separate øyer. Eksakte OSM-øygeometrier brukes der de finnes; Heggholmen og Rambergøya bruker eksakte aktive Kartverket SSR-objekter med objekttype Øy i sjø. Alle åtte place-id-er ble kontrollert mot current runtime index umiddelbart før produksjon.

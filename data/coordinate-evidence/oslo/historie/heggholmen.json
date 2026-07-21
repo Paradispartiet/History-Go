@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "heggholmen",
+  "placeFile": "data/places/historie/oslo/places_historie/heggholmen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.88374,
+    "lon": 10.71305,
+    "r": 90,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Kartverket Sentralt stedsnavnregister – Heggholmen, objekttype Øy i sjø",
+    "coordType": "named_place_anchor",
+    "coordNote": "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Heggholmen, objekttype Øy i sjø, stedsnummer 692270. Punktet brukes som stabilt navne-/områdeanker fordi Heggholmen nå er fysisk sammenvokst med naboøyene og ikke fikk et separat entydig øypolygon i den strenge OSM-gaten."
+  },
+  "identity": {
+    "currentName": "Heggholmen",
+    "resolvedIdentity": "Heggholmen som egen navngitt fysisk stedsidentitet",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt aktiv Kartverket SSR-identitet",
+    "uavhengig identitetskryssjekk",
+    "canonical duplikatkontroll mot current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket Sentralt stedsnavnregister – Heggholmen, objekttype Øy i sjø",
+      "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Heggholmen&knr=0301&treffPerSide=100&side=1",
+      "sourceObjectId": "kartverket-ssr:692270",
+      "sourceQuality": "official_named_place_registry",
+      "finding": "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Heggholmen, objekttype Øy i sjø, stedsnummer 692270. Punktet brukes som stabilt navne-/områdeanker fordi Heggholmen nå er fysisk sammenvokst med naboøyene og ikke fikk et separat entydig øypolygon i den strenge OSM-gaten.",
+      "canVerifyCoordinate": true,
+      "reason": "Kildeobjektet ble godkjent i den lukkede Oslofjord-intaken uten nearest/first-hit."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Heggholmen",
+      "sourceUrl": "https://oslobyleksikon.no/side/Heggholmen",
+      "sourceObjectId": "oslobyleksikon:heggholmen",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig lokalhistorisk kilde kryssjekker Heggholmen som egen stedsidentitet.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; primærkoordinaten kommer fra det låste kartobjektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:692270",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:heggholmen",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.88374,
+      "lon": 10.71305,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "kartverket-ssr:692270",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Heggholmen, objekttype Øy i sjø, stedsnummer 692270. Punktet brukes som stabilt navne-/områdeanker fordi Heggholmen nå er fysisk sammenvokst med naboøyene og ikke fikk et separat entydig øypolygon i den strenge OSM-gaten.",
+    "Place-id var fraværende i current runtime index umiddelbart før produksjon."
+  ]
+}
