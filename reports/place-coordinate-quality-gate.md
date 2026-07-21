@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T06:15:25.200Z
+Generert: 2026-07-21T06:19:15.206Z
 
 ## Oppsummering
-- Aktive filer validert: **586**
+- Aktive filer validert: **589**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **422**
@@ -604,6 +604,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places/lindoya.json
 - data/places/natur/oslo/bleikoya.json
 - data/places/by/oslo/places/ulvoya.json
+- data/places/historie/akershus/steilene.json
+- data/places/natur/akershus/langoyene.json
+- data/places/historie/akershus/ingierstrand_bad.json
 
 ## Harde feil
 - Ingen

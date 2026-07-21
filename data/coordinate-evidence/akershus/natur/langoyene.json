@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "langoyene",
+  "placeFile": "data/places/natur/akershus/langoyene.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.87180284489248,
+    "lon": 10.718234309408619,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4154560 – Langøyene",
+    "coordType": "island_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon. Punktet representerer dagens sammenhengende Langøyene."
+  },
+  "identity": {
+    "currentName": "Langøyene",
+    "resolvedIdentity": "Langøyene som egen fysisk stedsidentitet i Nesodden, Akershus",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk OSM-objekt",
+    "uavhengig identitetskryssjekk",
+    "canonical duplikatkontroll",
+    "korrekt fysisk fylkesplassering"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 4154560 – Langøyene",
+      "sourceUrl": "https://www.openstreetmap.org/way/4154560",
+      "sourceObjectId": "osm-way:4154560",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon. Punktet representerer dagens sammenhengende Langøyene.",
+      "canVerifyCoordinate": true,
+      "reason": "Godkjent i den lukkede Oslofjord-intaken uten nearest/first-hit."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Referansekilde – Langøyene",
+      "sourceUrl": "https://oslobyleksikon.no/side/Lang%C3%B8yene",
+      "sourceObjectId": "reference:langoyene",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Kryssjekker Langøyene som egen stedsidentitet og historisk/naturfaglig case.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og innholdskryssjekk."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154560",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "reference:langoyene",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154560",
+      "lat": 59.87180284489248,
+      "lon": 10.718234309408619,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.87180284489248,
+      "lon": 10.718234309408619,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:4154560",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place i korrekt fylkessti."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon. Punktet representerer dagens sammenhengende Langøyene.",
+    "Langøyene produseres i Akershus-sti og legges ikke i Oslo-koordinatprotokollen."
+  ]
+}

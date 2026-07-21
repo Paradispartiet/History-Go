@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "ingierstrand_bad",
+  "placeFile": "data/places/historie/akershus/ingierstrand_bad.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.81831,
+    "lon": 10.74834,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Kartverket Sentralt stedsnavnregister – Ingierstrand bad, objekttype Badeplass",
+    "coordType": "named_place_anchor",
+    "coordNote": "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Ingierstrand bad, objekttype Badeplass, stedsnummer 448130. Punktet representerer det navngitte badeanlegget som helhet og er ikke restaurantbygningens adressepunkt. Det eksakte Geonorge-punktet for Ingierstrandveien 30 ligger 197,8 meter unna og er beholdt som uavhengig fysisk kryssjekk."
+  },
+  "identity": {
+    "currentName": "Ingierstrand bad",
+    "resolvedIdentity": "Ingierstrand bad som egen fysisk stedsidentitet i Nordre Follo, Akershus",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt aktiv Kartverket SSR-identitet",
+    "uavhengig identitetskryssjekk",
+    "canonical duplikatkontroll",
+    "korrekt fysisk fylkesplassering"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket Sentralt stedsnavnregister – Ingierstrand bad, objekttype Badeplass",
+      "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Ingierstrand+bad&treffPerSide=100&side=1",
+      "sourceObjectId": "kartverket-ssr:448130",
+      "sourceQuality": "official_named_place_registry",
+      "finding": "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Ingierstrand bad, objekttype Badeplass, stedsnummer 448130. Punktet representerer det navngitte badeanlegget som helhet og er ikke restaurantbygningens adressepunkt. Det eksakte Geonorge-punktet for Ingierstrandveien 30 ligger 197,8 meter unna og er beholdt som uavhengig fysisk kryssjekk.",
+      "canVerifyCoordinate": true,
+      "reason": "Godkjent i den lukkede Oslofjord-intaken uten nearest/first-hit."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Referansekilde – Ingierstrand bad",
+      "sourceUrl": "https://oslobyleksikon.no/side/Ingierstrand_bad",
+      "sourceObjectId": "reference:ingierstrand_bad",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Kryssjekker Ingierstrand bad som egen stedsidentitet og historisk/naturfaglig case.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og innholdskryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ingierstrandveien 30, 1420 Svartskog",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3207:24030:30",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:448130",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "reference:ingierstrand_bad",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.81831,
+      "lon": 10.74834,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "kartverket-ssr:448130",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place i korrekt fylkessti."
+  },
+  "notes": [
+    "Offisielt representasjonspunkt fra Kartverkets Sentralt stedsnavnregister for Ingierstrand bad, objekttype Badeplass, stedsnummer 448130. Punktet representerer det navngitte badeanlegget som helhet og er ikke restaurantbygningens adressepunkt. Det eksakte Geonorge-punktet for Ingierstrandveien 30 ligger 197,8 meter unna og er beholdt som uavhengig fysisk kryssjekk.",
+    "Ingierstrand bad produseres i Akershus-sti og legges ikke i Oslo-koordinatprotokollen."
+  ]
+}
