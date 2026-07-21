@@ -3,7 +3,7 @@ name: Targeted Knowledge review
 on:
   pull_request:
     paths:
-      - 'scripts/apply-targeted-knowledge-review.mjs'
+      - 'scripts/apply-targeted-knowledge-review.py'
       - '.github/workflows/targeted-knowledge-review.yml'
 
 permissions:
@@ -25,18 +25,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Apply targeted review migration
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('scripts/apply-targeted-knowledge-review.mjs')
-          source = path.read_text()
-          source = source.replace('throw new Error(`Missing ${label}`);', 'throw new Error("Missing " + label);')
-          source = source.replace('const meta = { correctAnswers, conceptsCorrect, emnersTouched: emnerTouched, emnerTouched, answers };', 'const meta = { correctAnswers, conceptsCorrect, emnerTouched, answers };')
-          source = source.replace('String.raw', '')
-          source = source.replace('${', '\\${')
-          path.write_text(source)
-          PY
           set +e
-          node scripts/apply-targeted-knowledge-review.mjs > targeted-review-migration.log 2>&1
+          python scripts/apply-targeted-knowledge-review.py > targeted-review-migration.log 2>&1
           status=$?
           set -e
           cat targeted-review-migration.log
@@ -60,7 +50,7 @@ jobs:
           git config user.name 'History GO CI'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
-          git reset -- scripts/apply-targeted-knowledge-review.mjs .github/workflows/targeted-knowledge-review.yml targeted-review-migration.log
+          git reset -- scripts/apply-targeted-knowledge-review.mjs scripts/apply-targeted-knowledge-review.py .github/workflows/targeted-knowledge-review.yml targeted-review-migration.log
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
