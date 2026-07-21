@@ -1,0 +1,155 @@
+{
+  "generatedAt": "2026-07-21T06:20:03.843Z",
+  "batch": 116,
+  "sourceQueue": "data/places/politikk/oslo/places_politikk.json",
+  "pendingIds": [
+    "stortinget",
+    "youngstorget",
+    "oslo_radhus",
+    "eidsvolls_plass",
+    "regjeringskvartalet",
+    "hoyesteretts_hus",
+    "politihuset_gronland",
+    "folkets_hus_oslo"
+  ],
+  "skippedPreviouslyCompleted": [
+    "tinghuset"
+  ],
+  "verified": [
+    "stortinget",
+    "oslo_radhus",
+    "eidsvolls_plass",
+    "politihuset_gronland"
+  ],
+  "needsReview": [
+    "youngstorget",
+    "regjeringskvartalet",
+    "hoyesteretts_hus",
+    "folkets_hus_oslo"
+  ],
+  "before": {
+    "stortinget": {
+      "lat": 59.91325,
+      "lon": 10.7389,
+      "coordStatus": "verified",
+      "coordSource": "manual_map_patch",
+      "coordType": "building_center"
+    },
+    "youngstorget": {
+      "lat": 59.91498,
+      "lon": 10.74916,
+      "coordStatus": "verified",
+      "coordSource": "osm_geometry_or_address",
+      "coordType": "square_center"
+    },
+    "oslo_radhus": {
+      "lat": 59.9129,
+      "lon": 10.7336,
+      "coordStatus": null,
+      "coordSource": null,
+      "coordType": null
+    },
+    "eidsvolls_plass": {
+      "lat": 59.9157,
+      "lon": 10.7388,
+      "coordStatus": null,
+      "coordSource": null,
+      "coordType": null
+    },
+    "regjeringskvartalet": {
+      "lat": 59.9156,
+      "lon": 10.7451,
+      "coordStatus": null,
+      "coordSource": null,
+      "coordType": null
+    },
+    "hoyesteretts_hus": {
+      "lat": 59.914444,
+      "lon": 10.744444,
+      "coordStatus": null,
+      "coordSource": null,
+      "coordType": null
+    },
+    "politihuset_gronland": {
+      "lat": 59.910833,
+      "lon": 10.770278,
+      "coordStatus": null,
+      "coordSource": null,
+      "coordType": null
+    },
+    "folkets_hus_oslo": {
+      "lat": 59.91547,
+      "lon": 10.74964,
+      "coordStatus": "verified",
+      "coordSource": "osm_geometry_and_wikidata",
+      "coordType": "building_center"
+    }
+  },
+  "after": {
+    "stortinget": {
+      "lat": 59.91302035817837,
+      "lon": 10.740091042851615,
+      "coordStatus": "verified_geometry",
+      "coordSource": "OpenStreetMap way 29132806 – Stortinget",
+      "coordType": "building_center",
+      "sourceObjectId": "osm-way:29132806"
+    },
+    "youngstorget": {
+      "lat": 59.91498,
+      "lon": 10.74916,
+      "coordStatus": "needs_source",
+      "coordSource": "youngstorget_canonical_geometry_unresolved",
+      "coordType": "legacy_unverified",
+      "sourceObjectId": null
+    },
+    "oslo_radhus": {
+      "lat": 59.91201122418895,
+      "lon": 10.73365092213283,
+      "coordStatus": "verified_geometry",
+      "coordSource": "OpenStreetMap way 24900009 – Oslo rådhus",
+      "coordType": "building_center",
+      "sourceObjectId": "osm-way:24900009"
+    },
+    "eidsvolls_plass": {
+      "lat": 59.91333813065615,
+      "lon": 10.738953660589342,
+      "coordStatus": "verified_geometry",
+      "coordSource": "OpenStreetMap way 841080897 – Eidsvolls plass",
+      "coordType": "public_space_center",
+      "sourceObjectId": "osm-way:841080897"
+    },
+    "regjeringskvartalet": {
+      "lat": 59.9156,
+      "lon": 10.7451,
+      "coordStatus": "needs_source",
+      "coordSource": "regjeringskvartalet_canonical_geometry_unresolved",
+      "coordType": "legacy_unverified",
+      "sourceObjectId": null
+    },
+    "hoyesteretts_hus": {
+      "lat": 59.914444,
+      "lon": 10.744444,
+      "coordStatus": "needs_source",
+      "coordSource": "hoyesteretts_hus_canonical_geometry_unresolved",
+      "coordType": "legacy_unverified",
+      "sourceObjectId": null
+    },
+    "politihuset_gronland": {
+      "lat": 59.910898221558305,
+      "lon": 10.771105828371049,
+      "coordStatus": "verified_geometry",
+      "coordSource": "OpenStreetMap way 557060199 – Grønland politistasjon",
+      "coordType": "building_center",
+      "sourceObjectId": "osm-way:557060199"
+    },
+    "folkets_hus_oslo": {
+      "lat": 59.91547,
+      "lon": 10.74964,
+      "coordStatus": "needs_source",
+      "coordSource": "folkets_hus_oslo_canonical_geometry_unresolved",
+      "coordType": "legacy_unverified",
+      "sourceObjectId": null
+    }
+  },
+  "method": "bounded exact-name semantic physical object selection; composite institutional areas require one legitimate aggregate geometry; no nearest/first-hit"
+}

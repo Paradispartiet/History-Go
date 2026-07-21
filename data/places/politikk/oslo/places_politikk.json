@@ -5,8 +5,8 @@
     "visual": {
       "designCode": "civic_miniature"
     },
-    "lat": 59.91325,
-    "lon": 10.7389,
+    "lat": 59.91302035817837,
+    "lon": 10.740091042851615,
     "r": 120,
     "category": "politikk",
     "rounds": [
@@ -64,13 +64,17 @@
       "notes": "Skal spørres som Stortingets demokratiske kjernefunksjon, ikke bare som kjent fasade; medielaget skal knyttes nøkternt til parlamentarisk offentlighet, pressebilder og nyhetsdekning av politiske beslutninger."
     },
     "coordType": "building_center",
-    "coordSource": "manual_map_patch",
-    "coordSourceId": "Stortinget building center",
-    "coordSourceUrl": "",
-    "coordStatus": "verified",
-    "coordPrecisionM": 20,
-    "coordVerifiedAt": "2026-05-03",
-    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
+    "coordSource": "OpenStreetMap way 29132806 – Stortinget",
+    "coordSourceId": "osm-way:29132806",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/29132806",
+    "coordStatus": "verified_geometry",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype office/government; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien.",
+    "locatorType": "building",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:29132806",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "building_center"
   },
   {
     "id": "youngstorget",
@@ -135,14 +139,11 @@
       ],
       "notes": "Skal spørres som folkelig mobiliseringsrom med historisk konflikttyngde."
     },
-    "coordType": "square_center",
-    "coordStatus": "verified",
-    "coordSource": "osm_geometry_or_address",
-    "coordSourceId": "osm_square:Youngstorget",
-    "coordSourceUrl": "https://www.openstreetmap.org/search?query=Youngstorget%20Oslo",
-    "coordPrecisionM": 20,
-    "coordVerifiedAt": "2026-05-03",
-    "coordNote": "Koordinat rettet etter faktisk gate-/bygg-/parkgeometri, ikke manuell midpoint-patch.",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "youngstorget_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (ambiguous_exact_semantic_candidates:2). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
     "tags": [
       "breaking_news",
       "tv",
@@ -192,13 +193,14 @@
     },
     "underbadge_ids": [
       "velferd_og_institusjoner"
-    ]
+    ],
+    "locatorType": "square"
   },
   {
     "id": "oslo_radhus",
     "name": "Oslo rådhus",
-    "lat": 59.9129,
-    "lon": 10.7336,
+    "lat": 59.91201122418895,
+    "lon": 10.73365092213283,
     "r": 140,
     "category": "politikk",
     "rounds": [
@@ -304,13 +306,25 @@
           ]
         }
       }
-    }
+    },
+    "locatorType": "building",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:24900009",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "building_center",
+    "coordType": "building_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 24900009 – Oslo rådhus",
+    "coordSourceId": "osm-way:24900009",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/24900009",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/townhall; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
   },
   {
     "id": "eidsvolls_plass",
     "name": "Eidsvolls plass",
-    "lat": 59.9157,
-    "lon": 10.7388,
+    "lat": 59.91333813065615,
+    "lon": 10.738953660589342,
     "r": 120,
     "category": "politikk",
     "rounds": [
@@ -367,7 +381,19 @@
         "stortinget"
       ],
       "notes": "Skal spørres som koblingen mellom folkelig protest, parlamentets nærvær og hvordan krav foran Stortinget kan bli synlige i presse- og nyhetsbilder."
-    }
+    },
+    "locatorType": "square",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:841080897",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "public_space_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 841080897 – Eidsvolls plass",
+    "coordSourceId": "osm-way:841080897",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/841080897",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype leisure/park; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
   },
   {
     "id": "tinghuset",
@@ -492,7 +518,13 @@
         "tinghuset"
       ],
       "notes": "Skal spørres som møtepunkt mellom utøvende makt, sikkerhetspolitikk, byomforming og nyhetsformidlet offentlighet; medielaget skal knyttes til regjeringsmakt, kriser, 22. juli-etterhistorie og debatt om åpenhet/sikkerhet, ikke til generell bygningssymbolikk."
-    }
+    },
+    "locatorType": "institutional_area",
+    "coordStatus": "needs_source",
+    "coordType": "legacy_unverified",
+    "coordSource": "regjeringskvartalet_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
   },
   {
     "id": "hoyesteretts_hus",
@@ -547,13 +579,19 @@
         "regjeringskvartalet"
       ],
       "notes": "Skal spørres som rettsstatlig symbolsted og maktfordelingssted, ikke bare som gammel domstolsbygning."
-    }
+    },
+    "locatorType": "building",
+    "coordStatus": "needs_source",
+    "coordType": "legacy_unverified",
+    "coordSource": "hoyesteretts_hus_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
   },
   {
     "id": "politihuset_gronland",
     "name": "Politihuset på Grønland",
-    "lat": 59.910833,
-    "lon": 10.770278,
+    "lat": 59.910898221558305,
+    "lon": 10.771105828371049,
     "r": 140,
     "category": "politikk",
     "year": 1978,
@@ -603,7 +641,19 @@
         "hoyesteretts_hus"
       ],
       "notes": "Skal spørres som moderne politihus og rettsstatens førstelinje, ikke som kriminalitetsfortelling om Grønland."
-    }
+    },
+    "locatorType": "building",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:557060199",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "building_center",
+    "coordType": "building_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 557060199 – Grønland politistasjon",
+    "coordSourceId": "osm-way:557060199",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/557060199",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor forhåndsdefinert lokal scope og riktig objekttype amenity/police; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
   },
   {
     "id": "folkets_hus_oslo",
@@ -867,14 +917,11 @@
       ],
       "notes": "Skal leses som organisasjonsapparatet bak mobiliseringen på Youngstorget: møter, kontorer, arkiv, finansiering og institusjonell kontinuitet."
     },
-    "coordType": "building_center",
-    "coordStatus": "verified",
-    "coordSource": "osm_geometry_and_wikidata",
-    "coordSourceId": "osm_way:112233121",
-    "coordSourceUrl": "https://www.openstreetmap.org/way/112233121",
-    "coordPrecisionM": 20,
-    "coordVerifiedAt": "2026-07-18",
-    "coordNote": "Koordinatet er satt til bygningskompleksets sentrum mot Youngstorget.",
+    "coordType": "legacy_unverified",
+    "coordStatus": "needs_source",
+    "coordSource": "folkets_hus_oslo_canonical_geometry_unresolved",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
     "tags": [
       "arbeiderbevegelse",
       "fagbevegelse",
@@ -891,6 +938,7 @@
       "youngstorget",
       "folketeateret",
       "mollergata_19"
-    ]
+    ],
+    "locatorType": "building"
   }
 ]

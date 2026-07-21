@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:15:32.436Z
+Generert: 2026-07-21T06:20:30.663Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -279,3 +279,11 @@ Generert: 2026-07-21T06:15:32.436Z
 | lindoya | data/coordinate-evidence/oslo/by/lindoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bleikoya | data/coordinate-evidence/oslo/natur/bleikoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ulvoya | data/coordinate-evidence/oslo/by/ulvoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| stortinget | data/coordinate-evidence/oslo/politikk/stortinget.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| youngstorget | data/coordinate-evidence/oslo/politikk/youngstorget.json | needs_research | needs_geometry | OK |
+| oslo_radhus | data/coordinate-evidence/oslo/politikk/oslo_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| eidsvolls_plass | data/coordinate-evidence/oslo/politikk/eidsvolls_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| regjeringskvartalet | data/coordinate-evidence/oslo/politikk/regjeringskvartalet.json | needs_research | needs_geometry | OK |
+| hoyesteretts_hus | data/coordinate-evidence/oslo/politikk/hoyesteretts_hus.json | needs_research | needs_geometry | OK |
+| politihuset_gronland | data/coordinate-evidence/oslo/politikk/politihuset_gronland.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| folkets_hus_oslo | data/coordinate-evidence/oslo/politikk/folkets_hus_oslo.json | needs_research | needs_geometry | OK |

@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 339 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 116 legger til åtte separate Oslofjord-steder fra den lukkede VisitOSLO Oslofjorden-auditen. Batch 115 produserer fem stabile Holmenkollen-kandidater fra VisitOSLO-auditen: Bogstadvannet, Holmenkollen kapell, Kollentrollet, Vettakollen og Kragstøtten.
+Oslo-tabellen inneholder nå 339 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 116 kontrollerer de gjenværende ukontrollerte recordene i `places/politikk/oslo/places_politikk.json` med eksakt navngitt fysisk objekt i lokal scope. Sammensatte institusjonsområder som Regjeringskvartalet krever én legitim samlet geometri og kan ikke verifiseres med et tilfeldig enkeltbygg.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -345,6 +345,12 @@ Batch 113 (2026-07-21) reviderer Østensjøvannet-kildens fem legacy `OpenStreet
 Batch 114 (2026-07-21) avslutter `places_oslo_natur_salamanderdammer.json` uten å gjøre pedagogiske proxy-punkter til falskt presise natursteder. `bygdoy_kongsgard_salamanderdam` og `blindern_forskningsparken_salamanderdam` har dokumenterte lokalitetsidentiteter, men dagens koordinater er uttrykkelig brede offentlige nærankre; `bantjern_salamanderlokalitet` viser bevisst til et offentlig nærområde i stedet for den private damlokaliteten; og `tjernsmyr_salamanderlokalitet` ligger i Bærum og må flyttes ut av Oslo-kilden før eventuell geometri kan godkjennes. Alle fire avsluttes derfor som needs_review / needs_source i denne batchen.
 
 Batch 115 (2026-07-21) produserer fem fysisk selvstendige Holmenkollen-steder fra den lukkede VisitOSLO-auditen. `holmenkollen_kapell` bruker det entydige Geonorge-adressepunktet for Holmenkollveien 142. `bogstadvannet` bruker et områdeanker på eksakt navngitt vanngeometri, mens `kollentrollet`, `vettakollen` og `kragstotten` bruker eksakte navngitte OSM-punktobjekter med riktig objekttype. Vettakollen-stasjon/-bydel og Kragstøtten-guidepost/-utsiktspunkt er eksplisitt avvist som navnelike feilobjekter. Oslo Golfklubb Bogstad holdes utenfor batchen til representasjonsrollen mellom klubbhusadresse og golfbanegeometri er eksplisitt avgjort.
+| 116 | `stortinget` | Stortinget | verified_geometry | `osm-way:29132806` |
+| 116 | `oslo_radhus` | Oslo rådhus | verified_geometry | `osm-way:24900009` |
+| 116 | `eidsvolls_plass` | Eidsvolls plass | verified_geometry | `osm-way:841080897` |
+| 116 | `politihuset_gronland` | Politihuset på Grønland | verified_geometry | `osm-way:557060199` |
+
+Batch 116 (2026-07-21) reviderer politikk-manifestet etter objekt-type-først-metoden. Allerede kontrollerte placeId-er hoppes over. Fysiske bygg, torg og plasser må ha ett unikt eksakt navngitt objekt med riktig semantisk type i forhåndsdefinert lokal scope. Regjeringskvartalet krever én samlet legitim institusjonsgeometri; enkeltbygg brukes ikke som proxy. Ingen nearest/first-hit-logikk brukes.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
 Nyere Oslo-kontroller ble integrert gjennom PR #2327, #2330, #2332, #2335, #2338, #2342, #2343, #2347 og #2357. Protokollen ble etterført 2026-07-19 fordi disse kontrollene var dokumentert i batchrapportene og place-recordene, men ikke var blitt ført fortløpende i denne tabellen.
@@ -487,6 +493,10 @@ Disse kontrollene er fullført, men teller ikke blant de 243 verifiserte eller k
 | `bantjern_salamanderlokalitet` – Båntjern salamanderlokalitet | needs_review | Kilden gjelder et dammiljø ved Bånntjernveien 5, mens canonical record bevisst bruker et offentlig Båntjern-næranker for å unngå å sende brukere til privat tomt. Båntjern-området er derfor ikke det samme fysiske objektet som salamanderlokaliteten, og nærankeret kan ikke godkjennes som verified koordinat for dammen. | Behold lokaliteten som ikke-publisert eller tematisk arts-/habitatrelation, eller dokumenter et separat offentlig besøksanker som eksplisitt modelleres som formidlingspunkt og ikke som selve salamanderdammen. |
 | `tjernsmyr_salamanderlokalitet` – Tjernsmyr salamanderlokalitet | needs_review | Recorden dokumenterer selv at Tjernsmyr ligger i Bærum, men er lagret i Oslo-kilden. En koordinat kan ikke canonical-verifiseres i Oslo-køen før geografisk eierskap og kildefamilie er rettet; dagens generiske wetland-reference mangler dessuten et stabilt eksplisitt kildeobjekt. | Flytt recorden til Akershus/Bærum-kontekst og dokumenter deretter ett stabilt Tjernsmyr-områdeobjekt eller offisiell våtmarksgeometri før koordinaten godkjennes. |
 | `blindern_forskningsparken_salamanderdam` – Blindern/Forskningsparken salamanderdam | needs_review | Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam. | Dokumenter en offentlig og ikke-sensitiv damgeometri eller modeller lokaliteten som tematisk resultat av kommunal amfibiekartlegging uten separat presis place-markør. |
+| `youngstorget` – Youngstorget | needs_review | Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (ambiguous_exact_semantic_candidates:2). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes. | Dokumenter ett entydig eksakt fysisk kildeobjekt eller en offisiell adresse/geometri som matcher canonical place-identiteten. |
+| `regjeringskvartalet` – Regjeringskvartalet | needs_review | Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes. | Dokumenter én legitim samlet institusjonsgeometri for Regjeringskvartalet; enkeltbygninger kan ikke brukes som proxy for hele området. |
+| `hoyesteretts_hus` – Høyesteretts hus | needs_review | Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes. | Dokumenter ett entydig eksakt fysisk kildeobjekt eller en offisiell adresse/geometri som matcher canonical place-identiteten. |
+| `folkets_hus_oslo` – Folkets Hus i Oslo | needs_review | Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes. | Dokumenter ett entydig eksakt fysisk kildeobjekt eller en offisiell adresse/geometri som matcher canonical place-identiteten. |
 
 ## Etne – historiesett
 
@@ -534,9 +544,9 @@ Etne-batchmerger: `083a6a07b` / PR #2300, `f6e668d35` / PR #2305, `4c1bc18a6` / 
 
 ## Neste arbeid
 
-- Neste nye Oslo-kontroll er batch 116.
-- De åtte Oslo-naturfilene i `data/places/manifest.json` er nå fullt kontrollert. Neste aktive manifestkilde er `places/politikk/oslo/places_politikk.json`; tidligere kontrollerte placeId-er skal hoppes over.
-- Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest eller en biologisk lokalitetskilde er bare kø-/identitetskilde, ikke automatisk koordinatbevis.
+- Neste nye Oslo-kontroll er batch 117.
+- `places/politikk/oslo/places_politikk.json` er nå fullt kontrollert i manifestrekkefølge. Neste aktive manifestkilde er `places/popkultur/oslo/places_oslo_populaerkultur.json`; tidligere kontrollerte placeId-er skal hoppes over.
+- Fortsett alltid med koordinatmetode etter fysisk objekttype; et manifest er bare køkilde, ikke metodevalg.
 - Før alle fullførte `needs_review`-kontroller i den separate Oslo-tabellen samme dag som avgjørelsen tas.
 
 Batch 67 (2026-07-20) produserer `fotografiens_hus` som eget offentlig fotogalleri og fotografispesifikt kunststed. Den låste address-first-kjøringen ga ett tydelig Geonorge-treff for Rådhusgata 20. Offisiell institusjonsinformasjon dokumenterer samme adresse og kontinuerlig bruk som visningssted siden 1999; canonical overlap-audit fant ingen identitetsduplikat. Midlertidige enkeltutstillinger forblir innholdslag og skal ikke splittes til egne overlappende place-markører.
