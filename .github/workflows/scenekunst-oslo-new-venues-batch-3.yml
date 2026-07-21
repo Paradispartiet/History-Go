@@ -122,19 +122,18 @@ jobs:
           fs.writeFileSync(p, JSON.stringify(report, null, 2) + '\n');
           NODE
 
-      - name: Remove one-shot files and commit result
+      - name: Commit production result
         if: steps.prepare.outputs.failed == 'false' && steps.venue_build.outputs.failed == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm tools/add-scenekunst-oslo-venues-batch-3.mjs
-          git rm tools/scenekunst-oslo-batch3-runner.mjs
-          git rm .github/workflows/scenekunst-oslo-new-venues-batch-3.yml
-          git rm -f reports/scenekunst-oslo-new-venues-batch-3-trigger.md
-          git rm -f reports/scenekunst-oslo-new-venues-batch-3-runner-error.log
-          git rm -f reports/scenekunst-oslo-new-venues-batch-3-kloden-geonorge-candidates.json
-          git add -A
+          git add data/places/places_index.json
+          git add data/places/scenekunst/oslo
+          git add data/coordinate-evidence/oslo/scenekunst/kloden_teater_pilotscenen.json
+          git add docs/coordinates/coordinate-control-protocol.md
+          git add reports/scenekunst-oslo-new-venues-batch-3-2026-07-21.json
+          git add reports/scenekunst-oslo-new-venues-batch-3-2026-07-21.md
           git diff --cached --stat
-          git diff --cached --quiet && { echo "No venue changes produced"; exit 1; }
+          git diff --cached --quiet && { echo "No production changes produced"; exit 1; }
           git commit -m "Add third missing Oslo Scenekunst venue batch"
           git push origin HEAD:agent/scenekunst-oslo-new-venues-03
