@@ -766,3 +766,10 @@ Batch 117 (2026-07-21) produserer `oslo_golfklubb_bogstad` som det sjette og sis
 | 120 | `holmenkollen_skimuseum` | Skimuseet i Holmenkollen | verified | `geonorge-adresser-v1:0301:13850:5` |
 
 Batch 120 (2026-07-21) produserer `holmenkollen_skimuseum` som egen museumsidentitet. Kongeveien 5 er valgt etter den lukkede adressekonflikt-auditen; Kongeveien 40 ligger 231,8 meter unna og beholdes som alternativ adkomst-/anleggsadresse i coordinate evidence. Fysisk nærhet til `holmenkollen_nasjonalanlegg` er forventet parent/child-overlap og skaper ikke et nytt hopptårn-place.
+
+
+| 137 | `centralteatret` | Centralteatret | verified | `geonorge-adresser-v1:0301:10069:38` |
+| 137 | `kloden_teater_pilotscenen` | Kloden teater – Pilotscenen | verified_geometry | `osm-node:13243059793` |
+| 137 | `grusomhetens_teater` | Grusomhetens Teater | verified | `geonorge-adresser-v1:0301:12782:34` |
+
+Batch 137 (2026-07-21) oppretter tre fysisk avgrensede Scenekunst-steder. `centralteatret` og `grusomhetens_teater` bruker entydige Geonorge-adressepunkter etter address-first-policyen; Grusomhetens Teater deler bevisst adresseanker med Hausmania, men representerer en selvstendig teaterscene. `kloden_teater_pilotscenen` oppgir Kabelgata 31 som besøksadresse, men Geonorge returnerer ingen matrikkeladresse for nummer 31. Nærmeste adresse, Kabelgata 33, avvises som proxy. Etter dokumentert address-first-miss brukes derfor det eksakt navngitte OSM-punktet `osm-node:13243059793`, tagget `amenity=theatre` og `name=Kloden Teater - Pilotscenen`, som verified_geometry display-marker. Kloden-recorden gjelder dagens aktive Pilotscene og skal revurderes ved åpningen av det permanente teaterhuset.

@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-07-21T15:35:03.368Z",
+  "status": "validated",
+  "category": "scenekunst",
+  "batch": "oslo_new_venues_3",
+  "addedPlaceIds": [
+    "centralteatret",
+    "kloden_teater_pilotscenen",
+    "grusomhetens_teater"
+  ],
+  "officialInstitutionSources": {
+    "centralteatret": [
+      "https://oslonye.no/historikk/",
+      "https://oslonye.no/forestillinger/centralrevyen/"
+    ],
+    "kloden_teater_pilotscenen": [
+      "https://www.kloden.no/om-kloden/hva-er-kloden/",
+      "https://www.kloden.no/besok-oss/",
+      "https://www.kloden.no/om-kloden/kloden-2-0/"
+    ],
+    "grusomhetens_teater": [
+      "https://www.grusomhetensteater.no/kompaniet/",
+      "https://www.grusomhetensteater.no/kontakt/",
+      "https://www.hausmania.org/"
+    ]
+  },
+  "coordinateResults": [
+    {
+      "id": "centralteatret",
+      "query": "Akersgata 38 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Akersgata%2038%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:10069:38",
+      "coordinate": {
+        "lat": 59.91458184873146,
+        "lon": 10.743455468460521
+      },
+      "address": {
+        "street": "Akersgata",
+        "number": "38",
+        "postcode": "0180",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "kloden_teater_pilotscenen",
+      "query": "Kabelgata 31 Oslo",
+      "sourceUrl": "https://www.openstreetmap.org/node/13243059793",
+      "sourceObjectId": "osm-node:13243059793",
+      "coordinate": {
+        "lat": 59.928103,
+        "lon": 10.8194263
+      },
+      "address": {
+        "street": "Kabelgata",
+        "number": "31",
+        "postcode": "0581",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "grusomhetens_teater",
+      "query": "Hausmanns gate 34 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hausmanns%20gate%2034%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
+      "coordinate": {
+        "lat": 59.919148209457326,
+        "lon": 10.751977548509613
+      },
+      "address": {
+        "street": "Hausmanns gate",
+        "number": "34",
+        "postcode": "0182",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [
+        "hausmania",
+        "kafe_haerverk"
+      ],
+      "overlapDecision": "intentional_shared_address_anchor_with_distinct_function"
+    }
+  ],
+  "physicalScopeDecisions": {
+    "centralteatret": "Centralteatret, Teaterkjeller’n og Caféscenen representeres som ett fysisk teaterkompleks i Akersgata 38.",
+    "kloden_teater_pilotscenen": "Den aktive Pilotscenen i Kabelgata 31. Administrasjonen i Kabelgata 39 C og det framtidige teaterhuset representeres ikke som separate ferdige scener.",
+    "grusomhetens_teater": "Grusomhetens Teaters egen scene i Hausmanns gate 34, ikke hele Hausmania-komplekset."
+  },
+  "lifecycleDecisions": {
+    "kloden_teater_pilotscenen": {
+      "status": "active_temporary_venue",
+      "plannedTransition": "Permanent teaterhus i samme bygningskropp er planlagt åpnet sommeren 2027.",
+      "reviewAfter": "2027-06-01"
+    }
+  },
+  "validation": {
+    "coordinateSourceResolution": "pass",
+    "geonorgeAddressFirst": "pass",
+    "osmNamedPoiFallback": "pass_for_kloden_only",
+    "overlapAudit": "pass",
+    "placesIndexBuild": "pass",
+    "placesChecks": "pass",
+    "categoryAudit": "pass",
+    "coordinateProtocol": "pass",
+    "coordinateEvidence": "pass"
+  },
+  "validatedAt": "2026-07-21T15:35:04.619Z",
+  "coordinateResolution": {
+    "centralteatret": "exact_geonorge_address",
+    "kloden_teater_pilotscenen": "named_osm_poi_after_documented_geonorge_address_miss",
+    "grusomhetens_teater": "exact_geonorge_address"
+  }
+}
