@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-07-21T09:40:18.279Z",
+  "status": "source_migration_validated",
+  "category": "scenekunst",
+  "movedPlaceIds": [
+    "nationaltheatret",
+    "det_norske_teatret",
+    "chat_noir",
+    "edderkoppen_scene",
+    "latter",
+    "folketeateret"
+  ],
+  "newAggregate": "data/places/scenekunst/oslo/places_scenekunst.json",
+  "newSplitManifest": "data/places/scenekunst/oslo/places_scenekunst_manifest.json",
+  "newSplitIndex": "data/places/scenekunst/oslo/places_scenekunst_index.json",
+  "oldSources": [
+    {
+      "aggregate": "data/places/litteratur/oslo/places_litteratur.json",
+      "splitManifest": "data/places/litteratur/oslo/places_litteratur_manifest.json",
+      "splitIndex": "data/places/litteratur/oslo/places_litteratur_index.json",
+      "movedIds": [
+        "nationaltheatret"
+      ]
+    },
+    {
+      "aggregate": "data/places/musikk/oslo/places_musikk.json",
+      "splitManifest": "data/places/musikk/oslo/places_musikk_manifest.json",
+      "splitIndex": "data/places/musikk/oslo/places_musikk_index.json",
+      "movedIds": [
+        "det_norske_teatret"
+      ]
+    },
+    {
+      "aggregate": "data/places/popkultur/oslo/places_oslo_populaerkultur.json",
+      "splitManifest": "data/places/popkultur/oslo/places_oslo_populaerkultur_manifest.json",
+      "splitIndex": "data/places/popkultur/oslo/places_oslo_populaerkultur_index.json",
+      "movedIds": [
+        "chat_noir",
+        "edderkoppen_scene",
+        "latter",
+        "folketeateret"
+      ]
+    }
+  ],
+  "removedOverrideBatch": "data/places/category_overrides/scenekunst_oslo_batch_1.json",
+  "validation": {
+    "placesIndexBuild": "pass",
+    "placesChecks": "pass",
+    "categoryAudit": "pass"
+  },
+  "validatedAt": "2026-07-21T09:40:39.296Z"
+}
