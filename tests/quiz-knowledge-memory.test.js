@@ -1,3 +1,5 @@
+const fs = require("node:fs");
+const path = require("node:path");
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
@@ -13,9 +15,20 @@ function createStorage(seed = {}) {
 
 function loadApi() {
   global.localStorage = createStorage();
-  const path = require.resolve("../js/quizKnowledgeMemory.js");
-  delete require.cache[path];
-  return require(path);
+  global.addEventListener = () => {};
+  global.PLACES = [];
+  global.PEOPLE = [];
+  delete global.HGKnowledgeV2;
+  delete global.HGQuizKnowledgeMemory;
+  delete global.__HG_KNOWLEDGE_V2_CAPTURE_INSTALLED__;
+
+  const knowledgePath = require.resolve("../dist/web/knowledgeV2.js");
+  delete require.cache[knowledgePath];
+  require(knowledgePath);
+
+  const memoryPath = require.resolve("../js/quizKnowledgeMemory.js");
+  delete require.cache[memoryPath];
+  return require(memoryPath);
 }
 
 function sampleInput() {
@@ -93,6 +106,7 @@ test("bygger ett sammenhengende bundle fra spørsmål og toppnivåbanker", () =>
   assert.deepEqual(bundle.indexes.emne_ids, ["em_by_infrastruktur", "em_by_byutvikling"]);
   assert.ok(bundle.indexes.concepts.includes("trafikksystem"));
   assert.ok(bundle.indexes.methods.includes("met_stedsanalyse"));
+  assert.ok(bundle.knowledge_units.every((unit) => !("question" in unit) && !("answer" in unit)));
 });
 
 test("skiller mestret kunnskap fra kunnskap som trenger repetisjon", () => {
@@ -113,7 +127,7 @@ test("støtter trivia som både tekst og liste uten å lagre tomme arrays", () =
     quiz_id: "by_bispelokket_set_1_q3",
     question: "Tom trivia",
     answer: "Svar",
-    knowledge: "Kunnskap",
+    knowledge: "Kunnskap om stedet.",
     trivia: []
   });
 
@@ -124,6 +138,50 @@ test("støtter trivia som både tekst og liste uten å lagre tomme arrays", () =
   assert.ok(triviaTexts.includes("Rivingen endret trafikkmønsteret."));
   assert.ok(triviaTexts.includes("Området fikk nye forbindelser."));
   assert.equal(triviaTexts.includes(""), false);
+});
+
+test("forkaster spørsmål og fasitsvar og deler presise forklaringer", () => {
+  const api = loadApi();
+  const input = sampleInput();
+  input.questions = [
+    {
+      id: "q1",
+      question_type: "fact",
+      question: "Når åpnet bygget?",
+      answer: "I 2020",
+      knowledge: "Når åpnet bygget?"
+    },
+    {
+      id: "q2",
+      question_type: "fact",
+      question: "Hva er fasitsvaret?",
+      answer: "Et bibliotek",
+      explanation: "Et bibliotek"
+    },
+    {
+      id: "q3",
+      question_type: "fact",
+      question: "Hva skjedde?",
+      answer: "Bygget åpnet",
+      knowledge_payload: {
+        summary: "Bygget åpnet i 2020. Det ble Oslos nye hovedbibliotek."
+      },
+      core_concepts: ["offentlig institusjon"],
+      term_ids: ["hovedbibliotek"],
+      tags: ["oslo"]
+    }
+  ];
+  input.result = { correct: 1, total: 3, correctAnswers: [{ question: "Hva skjedde?", answer: "Bygget åpnet" }] };
+
+  const bundle = api.buildQuizKnowledgeBundle(input);
+  assert.deepEqual(bundle.knowledge_units.map((unit) => unit.text), [
+    "Bygget åpnet i 2020.",
+    "Det ble Oslos nye hovedbibliotek."
+  ]);
+  assert.deepEqual(bundle.indexes.concepts, ["offentlig institusjon"]);
+  assert.deepEqual(bundle.indexes.terms, ["hovedbibliotek"]);
+  assert.equal(bundle.indexes.concepts.includes("oslo"), false);
+  assert.equal(bundle.content_quality.canonical_builder, true);
 });
 
 test("lagrer bundles og bygger indekser for fag, sted, emner og repetisjon", () => {
@@ -138,4 +196,10 @@ test("lagrer bundles og bygger indekser for fag, sted, emner og repetisjon", () 
   assert.deepEqual(memory.indexes.by_emne.em_by_infrastruktur, [bundle.bundle_id]);
   assert.equal(memory.indexes.mastered.length, 1);
   assert.equal(memory.indexes.needs_review.length, 1);
+});
+
+test("popupen er en oversikt, ikke en manuell lagringsport", () => {
+  const source = fs.readFileSync(path.join(__dirname, "../js/quizKnowledgeMemory.js"), "utf8");
+  assert.equal(source.includes("Lest – legg i Knowledge"), false);
+  assert.equal(source.includes("quizKnowledgeMemoryRead"), false);
 });
