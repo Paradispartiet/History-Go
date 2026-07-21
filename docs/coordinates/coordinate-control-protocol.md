@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 274 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 114 kontrollerer de fire gjenværende salamanderdam-recordene etter identitet-, publiserings- og kommuneprinsippet. Pedagogiske nærankre for private eller sårbare lokaliteter promoteres ikke til verified fysiske dammer, og Tjernsmyr kan ikke canonical-godkjennes i Oslo-køen fordi recorden selv plasserer lokaliteten i Bærum.
+Oslo-tabellen inneholder nå 326 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 114 kontrollerer de fire gjenværende salamanderdam-recordene etter identitet-, publiserings- og kommuneprinsippet. Pedagogiske nærankre for private eller sårbare lokaliteter promoteres ikke til verified fysiske dammer, og Tjernsmyr kan ikke canonical-godkjennes i Oslo-køen fordi recorden selv plasserer lokaliteten i Bærum.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
