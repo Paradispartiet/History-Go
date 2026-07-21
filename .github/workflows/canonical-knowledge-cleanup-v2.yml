@@ -6,6 +6,7 @@ on:
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/apply-canonical-knowledge-cleanup.py'
       - 'scripts/apply-claim-id-separation.py'
+      - 'scripts/apply-storage-test-audit-allowlist.py'
       - 'tests/knowledge-canonical-storage-contract.test.js'
       - '.github/workflows/canonical-knowledge-cleanup-v2.yml'
 
@@ -30,13 +31,11 @@ jobs:
         run: |
           python scripts/apply-canonical-knowledge-cleanup.py
           python scripts/apply-claim-id-separation.py
+          python scripts/apply-storage-test-audit-allowlist.py
       - name: Build canonical data tooling
         run: npm run build:scripts
       - name: Backfill canonical IDs and registries
-        shell: bash
-        run: |
-          set -o pipefail
-          node dist/scripts/knowledge-canonical-data.mjs --write 2>&1 | tee reports/canonical-backfill.log
+        run: node dist/scripts/knowledge-canonical-data.mjs --write
       - name: Build browser runtimes
         run: npm run build:web
       - name: Typecheck browser runtime
@@ -65,7 +64,6 @@ jobs:
         with:
           name: canonical-knowledge-cleanup-v2-reports
           path: |
-            reports/canonical-backfill.log
             reports/knowledge-id-backfill.json
             reports/knowledge-contract-audit.json
             reports/knowledge-universe-readers.json
@@ -76,7 +74,7 @@ jobs:
           git config user.name 'History GO CI'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
-          git reset -- reports/canonical-backfill.log scripts/apply-canonical-knowledge-cleanup.py scripts/apply-claim-id-separation.py .github/workflows/canonical-knowledge-cleanup-v2.yml .github/workflows/knowledge-checks.yml .github/workflows/data-checks.yml
+          git reset -- scripts/apply-canonical-knowledge-cleanup.py scripts/apply-claim-id-separation.py scripts/apply-storage-test-audit-allowlist.py .github/workflows/canonical-knowledge-cleanup-v2.yml .github/workflows/knowledge-checks.yml .github/workflows/data-checks.yml
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
