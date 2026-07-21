@@ -1,0 +1,74 @@
+name: Scenekunst source migration batch 3
+
+on:
+  push:
+    branches:
+      - agent/scenekunst-source-migration-01
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    name: Move verified theatre places to Scenekunst
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out migration branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/scenekunst-source-migration-01
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Apply guarded nationwide migration
+        run: node tools/migrate-scenekunst-source-batch-3.mjs
+
+      - name: Build tools and regenerate place index
+        run: |
+          npm run build:tools
+          npm run places:index:build
+
+      - name: Validate places and category contract
+        run: |
+          bash scripts/check-places.sh
+          npm run audit:categories
+
+      - name: Mark migration report validated
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const reportPath = 'reports/scenekunst-source-migration-batch-3-2026-07-21.json';
+          const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+          report.status = 'source_migration_validated';
+          report.validatedAt = new Date().toISOString();
+          report.validation = {
+            placesIndexBuild: 'pass',
+            placesChecks: 'pass',
+            categoryAudit: 'pass'
+          };
+          fs.writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n');
+          NODE
+
+      - name: Remove one-time migration runner
+        run: |
+          rm tools/migrate-scenekunst-source-batch-3.mjs
+          rm .github/workflows/scenekunst-source-migration-batch-3.yml
+
+      - name: Commit generated source migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --stat
+          git diff --cached --quiet && { echo "No migration changes produced"; exit 1; }
+          git commit -m "Migrate verified theatre places to Scenekunst"
+          git push origin HEAD:agent/scenekunst-source-migration-01
