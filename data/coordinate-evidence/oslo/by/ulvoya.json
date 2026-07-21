@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "ulvoya",
+  "placeFile": "data/places/by/oslo/places/ulvoya.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.867982824709344,
+    "lon": 10.770784753488378,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4154565 – Ulvøya",
+    "coordType": "island_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Ulvøya",
+    "resolvedIdentity": "Ulvøya som egen navngitt fysisk stedsidentitet",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk OSM-objekt",
+    "uavhengig identitetskryssjekk",
+    "canonical duplikatkontroll mot current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 4154565 – Ulvøya",
+      "sourceUrl": "https://www.openstreetmap.org/way/4154565",
+      "sourceObjectId": "osm-way:4154565",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Kildeobjektet ble godkjent i den lukkede Oslofjord-intaken uten nearest/first-hit."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Ulvøya",
+      "sourceUrl": "https://oslobyleksikon.no/side/Ulv%C3%B8ya",
+      "sourceObjectId": "oslobyleksikon:ulvoya",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig lokalhistorisk kilde kryssjekker Ulvøya som egen stedsidentitet.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; primærkoordinaten kommer fra det låste kartobjektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154565",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:ulvoya",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154565",
+      "lat": 59.867982824709344,
+      "lon": 10.770784753488378,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.867982824709344,
+      "lon": 10.770784753488378,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:4154565",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon.",
+    "Place-id var fraværende i current runtime index umiddelbart før produksjon."
+  ]
+}

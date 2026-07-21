@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nakholmen",
+  "placeFile": "data/places/by/oslo/places/nakholmen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.889584926598545,
+    "lon": 10.694851942199495,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4154397 – Nakholmen",
+    "coordType": "island_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Nakholmen",
+    "resolvedIdentity": "Nakholmen som egen navngitt fysisk stedsidentitet",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk OSM-objekt",
+    "uavhengig identitetskryssjekk",
+    "canonical duplikatkontroll mot current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 4154397 – Nakholmen",
+      "sourceUrl": "https://www.openstreetmap.org/way/4154397",
+      "sourceObjectId": "osm-way:4154397",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Kildeobjektet ble godkjent i den lukkede Oslofjord-intaken uten nearest/first-hit."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Nakholmen",
+      "sourceUrl": "https://oslobyleksikon.no/side/Nakholmen",
+      "sourceObjectId": "oslobyleksikon:nakholmen",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig lokalhistorisk kilde kryssjekker Nakholmen som egen stedsidentitet.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; primærkoordinaten kommer fra det låste kartobjektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154397",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:nakholmen",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4154397",
+      "lat": 59.889584926598545,
+      "lon": 10.694851942199495,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.889584926598545,
+      "lon": 10.694851942199495,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:4154397",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: islet; geometri: Polygon.",
+    "Place-id var fraværende i current runtime index umiddelbart før produksjon."
+  ]
+}

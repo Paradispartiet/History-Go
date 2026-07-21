@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T06:08:22.352Z
+Generert: 2026-07-21T06:15:32.436Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -271,3 +271,11 @@ Generert: 2026-07-21T06:08:22.352Z
 | kollentrollet | data/coordinate-evidence/oslo/kunst/kollentrollet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vettakollen | data/coordinate-evidence/oslo/natur/vettakollen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kragstotten | data/coordinate-evidence/oslo/kunst/kragstotten.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| heggholmen | data/coordinate-evidence/oslo/historie/heggholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| rambergoya | data/coordinate-evidence/oslo/natur/rambergoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ormoya | data/coordinate-evidence/oslo/by/ormoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| malmoya | data/coordinate-evidence/oslo/natur/malmoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| nakholmen | data/coordinate-evidence/oslo/by/nakholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| lindoya | data/coordinate-evidence/oslo/by/lindoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bleikoya | data/coordinate-evidence/oslo/natur/bleikoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ulvoya | data/coordinate-evidence/oslo/by/ulvoya.json | applied_to_place | do_not_change_coordinates_yet | OK |

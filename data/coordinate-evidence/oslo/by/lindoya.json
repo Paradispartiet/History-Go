@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "lindoya",
+  "placeFile": "data/places/by/oslo/places/lindoya.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.890079734831424,
+    "lon": 10.713192091385766,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 11816904 – Lindøya",
+    "coordType": "island_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Lindøya",
+    "resolvedIdentity": "Lindøya som egen navngitt fysisk stedsidentitet",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk OSM-objekt",
+    "uavhengig identitetskryssjekk",
+    "canonical duplikatkontroll mot current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 11816904 – Lindøya",
+      "sourceUrl": "https://www.openstreetmap.org/relation/11816904",
+      "sourceObjectId": "osm-relation:11816904",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Kildeobjektet ble godkjent i den lukkede Oslofjord-intaken uten nearest/first-hit."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Lindøya",
+      "sourceUrl": "https://oslobyleksikon.no/side/Lind%C3%B8ya",
+      "sourceObjectId": "oslobyleksikon:lindoya",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig lokalhistorisk kilde kryssjekker Lindøya som egen stedsidentitet.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; primærkoordinaten kommer fra det låste kartobjektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11816904",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:lindoya",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:11816904",
+      "lat": 59.890079734831424,
+      "lon": 10.713192091385766,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.890079734831424,
+      "lon": 10.713192091385766,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:11816904",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: island; geometri: Polygon.",
+    "Place-id var fraværende i current runtime index umiddelbart før produksjon."
+  ]
+}

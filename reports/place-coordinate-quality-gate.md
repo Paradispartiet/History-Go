@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T06:08:16.618Z
+Generert: 2026-07-21T06:15:25.200Z
 
 ## Oppsummering
-- Aktive filer validert: **578**
+- Aktive filer validert: **586**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **422**
@@ -596,6 +596,14 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/kollentrollet.json
 - data/places/natur/oslo/places_natur/vettakollen.json
 - data/places/kunst/oslo/places_kunst/kragstotten.json
+- data/places/historie/oslo/places_historie/heggholmen.json
+- data/places/natur/oslo/rambergoya.json
+- data/places/by/oslo/places/ormoya.json
+- data/places/natur/oslo/malmoya.json
+- data/places/by/oslo/places/nakholmen.json
+- data/places/by/oslo/places/lindoya.json
+- data/places/natur/oslo/bleikoya.json
+- data/places/by/oslo/places/ulvoya.json
 
 ## Harde feil
 - Ingen
