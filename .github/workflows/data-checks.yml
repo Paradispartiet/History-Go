@@ -11,13 +11,14 @@ on:
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
-      - 'scripts/audit-knowledge-contract.mjs'
+      - 'scripts/knowledge-canonical-data.mts'
       - 'data/Civication/historyPeople_index.json'
       - 'data/Civication/people_access_map.json'
       - 'tools/**'
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.tools*.json'
+      - 'tsconfig.scripts*.json'
       - 'js/knowledgeV2.ts'
       - 'js/knowledgeClaimCore.ts'
       - 'dist/web/knowledgeV2.js'
@@ -131,23 +132,29 @@ jobs:
       - name: Typecheck Knowledge core
         run: npm run typecheck:web
 
-      - name: Syntax check Knowledge runtimes
+      - name: Build and syntax check canonical Knowledge tooling
         run: |
+          npm run build:scripts
           node --check dist/web/knowledgeV2.js
           node --check js/knowledgePage.js
-          node --check scripts/audit-knowledge-contract.mjs
+          node --check dist/scripts/knowledge-canonical-data.mjs
+
+      - name: Guard canonical Knowledge data and contract
+        run: |
+          npm run knowledge:canonical:check
+          npm run knowledge:legacy:check
+          npm run audit:knowledge
 
       - name: Run Knowledge V2 model tests
         run: npm run test:knowledge-v2
-
-      - name: Generate Knowledge contract audit
-        continue-on-error: true
-        run: npm run audit:knowledge
 
       - name: Upload Knowledge contract audit
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: knowledge-contract-audit
-          path: reports/knowledge-contract-audit.json
+          path: |
+            reports/knowledge-contract-audit.json
+            reports/knowledge-id-backfill.json
+            reports/knowledge-universe-readers.json
           if-no-files-found: warn
