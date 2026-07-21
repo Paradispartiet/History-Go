@@ -12561,17 +12561,6 @@
     "sourceFile": "places/sport/europa/norway/oslo_sport/furuset_forum.json"
   },
   {
-    "id": "lekeplass_kirsebarlunden",
-    "name": "Kirsebærlunden lekeplass",
-    "lat": 59.916,
-    "lon": 10.7756,
-    "r": 130,
-    "category": "sport",
-    "year": 2022,
-    "desc": "Stor og stedstilpasset lekeplass på Tøyen med lange sklier, fabeldyr, balansesti, sitteplasser og kirsebærtrær.",
-    "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening/lekeplass_kirsebarlunden.json"
-  },
-  {
     "id": "korketrekkeren",
     "name": "Korketrekkeren",
     "lat": 59.9790042,
@@ -21947,5 +21936,26 @@
     "coordVerifiedAt": "2026-07-21",
     "coordNote": "Batch 127 canonical migration: Oslo kommune beskriver Snippen lekepark som et eget navngitt lekeparksted rett utenfor sørsiden av Botanisk hage, så botanisk_hage avvises som parent. Ett eksakt navngitt OSM-parkpolygon (osm-way:761333023) er valgt etter objekt-type-først-filter og matcher den lagrede intake-kandidaten. Punktet er area-anchor for hele lekeparken.",
     "sourceFile": "places/by/oslo/snippen_lekepark.json"
+  },
+  {
+    "id": "kirsebarlunden",
+    "name": "Kirsebærlunden",
+    "lat": 59.9159415,
+    "lon": 10.7756227,
+    "r": 150,
+    "category": "by",
+    "year": 2022,
+    "desc": "Navngitt park- og lekeområde på Tøyen med kirsebærtrær, lange sklier, fabeldyr, balansesti og sitteplasser i et grønt byrom nedenfor Tøyenparken.",
+    "locatorType": "current_place",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:1097943191",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "playground_park_center",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 1097943191 – Kirsebærlunden lekeplass; canonical site scope cross-checked with Oslo kommune and the Kirsebærlunden project description",
+    "coordVerifiedAt": "2026-07-21",
+    "coordNote": "Batch 128 canonical closure: Oslo kommune omtaler området som parken og lekeplassen på Kirsebærlunden, sier at det ligger nedenfor Tøyenparken og mellom Tøyen torg og Gamle Munch, og oppgir besøksadresse Økernveien 7. Prosjektbeskrivelsen klassifiserer det oppgraderte området som lekeplass/park. Ingen av de nærliggende stedene kan derfor brukes som dokumentert parent. Det eksakte navngitte OSM-polygonet osm-way:1097943191 for Kirsebærlunden lekeplass, allerede identifisert i intake-kontrollen, brukes som geometrisk area-anchor for det canonical navngitte byrommet. Ingen nearest/first-hit-logikk brukes.",
+    "sourceFile": "places/by/oslo/kirsebarlunden.json"
   }
 ]

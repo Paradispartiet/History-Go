@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T10:44:35.594Z
+Generert: 2026-07-21T10:52:00.094Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -38,6 +38,7 @@ Generert: 2026-07-21T10:44:35.594Z
 | kampen_okologiske_barnebondegard | data/coordinate-evidence/oslo/by/kampen_okologiske_barnebondegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kampen_park | data/coordinate-evidence/oslo/by/kampen_park.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | karl_johan | data/coordinate-evidence/oslo/by/karl_johan.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kirsebarlunden | data/coordinate-evidence/oslo/by/kirsebarlunden.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | lindoya | data/coordinate-evidence/oslo/by/lindoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | losaeter | data/coordinate-evidence/oslo/by/losaeter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | majorstuen_krysset | data/coordinate-evidence/oslo/by/majorstuen_krysset.json | applied_to_place | do_not_change_coordinates_yet | OK |

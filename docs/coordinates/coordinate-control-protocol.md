@@ -480,6 +480,10 @@ Batch 126 (2026-07-21) normaliserer aktivitetsorienterte pseudo-ID-er til de fys
 
 Batch 127 (2026-07-21) løser den tidligere manuelle parent-konflikten for `lekeplass_snippen`. Oslo kommune beskriver Snippen lekepark som et eget navngitt lekeparksted rett utenfor sørsiden av Botanisk hage; `botanisk_hage` avvises derfor som parent. `lekeplass_snippen` normaliseres til canonical `snippen_lekepark`, basert på det eksakt navngitte OSM-parkpolygonet `osm-way:761333023` som allerede ble funnet i intake-kontrollen. Ingen nearest/first-hit-logikk brukes.
 
+| 128 | `kirsebarlunden` | Kirsebærlunden | verified_geometry | `osm-way:1097943191` |
+
+Batch 128 (2026-07-21) lukker siste ukontrollerte record i `places_oslo_lekeplasser_trening.json`. Oslo kommune omtaler området både som parken og lekeplassen på Kirsebærlunden, plasserer det nedenfor Tøyenparken og mellom Tøyen torg og Gamle Munch, mens prosjektbeskrivelsen klassifiserer det oppgraderte området som lekeplass/park. Ingen av de nærliggende canonical stedene er derfor dokumentert parent. `lekeplass_kirsebarlunden` normaliseres til canonical `kirsebarlunden`, med direkte stable-ID-oppslag av det eksakt navngitte polygonet `osm-way:1097943191` som geometrisk area-anchor. `korketrekkeren` var allerede kontrollert, så denne gamle kilden har etter batch 128 ingen ukontrollerte place-records.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)
