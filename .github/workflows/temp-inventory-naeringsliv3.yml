@@ -1,0 +1,44 @@
+name: Inventory Naeringsliv3 upload
+
+on:
+  push:
+    branches:
+      - fix/naeringsliv3-badge-map-colors
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/naeringsliv3-badge-map-colors
+          fetch-depth: 0
+
+      - name: Inventory candidate badge files
+        shell: bash
+        run: |
+          mkdir -p reports/tmp-naeringsliv3
+          {
+            echo "CURRENT BRANCH"
+            find bilder/merker -maxdepth 1 -type f -print | sort | grep -Ei 'naer|nær|ringsliv|industry|industri' || true
+            echo
+            echo "REMOTE BRANCHES"
+            while IFS= read -r ref; do
+              matches="$(git ls-tree -r --name-only "$ref" -- bilder/merker | grep -Ei 'naer|nær|ringsliv|industry|industri' || true)"
+              if [ -n "$matches" ]; then
+                echo "[$ref]"
+                printf '%s\n' "$matches"
+              fi
+            done < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin)
+          } | tee reports/tmp-naeringsliv3/inventory.log
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: naeringsliv3-inventory
+          path: reports/tmp-naeringsliv3/inventory.log
