@@ -1,0 +1,31 @@
+exit_code=1
+signal=
+
+--- stdout ---
+== Places JSON parse ==
+json ok (580 files)
+== Place primary/secondary badge audit ==
+place badge audit ok (1217 places, 8 secondary badge links)
+== Active subkultur place concreteness guard ==
+active subkultur place concreteness ok
+== Build places index ==
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1320 places -> data/places/places_index.json; skipped 9 disabled place(s); applied 202 category override(s)
+== Place category override contract ==
+place-category-overrides: PASS
+== Religion candidate audit ==
+Religion candidate audit: 1 unreviewed candidate(s); 19 reviewed non-Religion decision(s).
+- holmenkollen_kapell [by] Holmenkollen kapell
+  source: places/by/oslo/places/holmenkollen_kapell.json
+  reasons: name:kapell, tag=kirke, tag=kapell
+
+
+--- stderr ---
+Unreviewed Religion place candidates found. Classify them as Religion or add an explicit reviewed non-Religion decision.
