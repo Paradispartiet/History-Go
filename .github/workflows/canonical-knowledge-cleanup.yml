@@ -1,0 +1,37 @@
+name: Canonical Knowledge cleanup
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/knowledge-canonical-data.mts'
+      - '.github/workflows/canonical-knowledge-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.event.pull_request.head.ref == 'agent/canonical-knowledge-data-cleanup'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/canonical-knowledge-data-cleanup
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Compile canonical Knowledge pipeline
+        run: npx tsc scripts/knowledge-canonical-data.mts --target ES2022 --module NodeNext --moduleResolution NodeNext --types node --skipLibCheck --outDir /tmp/knowledge-pipeline
+      - name: Audit active legacy readers
+        continue-on-error: true
+        run: node /tmp/knowledge-pipeline/knowledge-canonical-data.mjs --legacy-only
+      - name: Upload reader audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-universe-reader-audit
+          path: reports/knowledge-universe-readers.json
+          if-no-files-found: error
