@@ -1,0 +1,72 @@
+{
+  "placeId": "kragstotten",
+  "placeFile": "data/places/kunst/oslo/places_kunst/kragstotten.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9724502,
+    "lon": 10.6554365,
+    "r": 55,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "poi",
+    "coordNote": "Eksakt navngitt OSM-punkt for Kragstøtten, node 484968664, tagget historic=memorial, memorial=statue og start_date=1909. Punktet representerer selve monumentet; nærliggende guidepost og viewpoint med samme navn er avvist."
+  },
+  "identity": {
+    "currentName": "Kragstøtten",
+    "resolvedIdentity": "The 1909 Hans Hagerup Krag memorial statue, distinct from nearby guidepost and viewpoint objects sharing the name",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "exact named source object with matching physical object type",
+    "independent identity/context source where applicable"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap exact named memorial point",
+      "sourceUrl": "https://www.openstreetmap.org/node/484968664",
+      "sourceObjectId": "osm-node:484968664",
+      "sourceQuality": "exact_named_memorial_plus_local_history_reference",
+      "finding": "Exact named OSM node 484968664 is tagged historic=memorial, memorial=statue and start_date=1909; guidepost and viewpoint namesakes were explicitly rejected.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-punkt for Kragstøtten, node 484968664, tagget historic=memorial, memorial=statue og start_date=1909. Punktet representerer selve monumentet; nærliggende guidepost og viewpoint med samme navn er avvist."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:484968664",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:484968664",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9724502,
+      "lon": 10.6554365,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keep the exact memorial point as its own canonical art place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-punkt for Kragstøtten, node 484968664, tagget historic=memorial, memorial=statue og start_date=1909. Punktet representerer selve monumentet; nærliggende guidepost og viewpoint med samme navn er avvist."
+  ]
+}

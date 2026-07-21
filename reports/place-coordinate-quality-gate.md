@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T05:51:19.726Z
+Generert: 2026-07-21T06:03:37.699Z
 
 ## Oppsummering
-- Aktive filer validert: **573**
+- Aktive filer validert: **578**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **422**
@@ -591,6 +591,11 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places/losaeter.json
 - data/places/sport/europa/norway/oslo_sport/friluftshuset_sorenga.json
 - data/places/sport/europa/norway/oslo_sport/operastranda.json
+- data/places/natur/oslo/places_natur/bogstadvannet.json
+- data/places/by/oslo/places/holmenkollen_kapell.json
+- data/places/kunst/oslo/places_kunst/kollentrollet.json
+- data/places/natur/oslo/places_natur/vettakollen.json
+- data/places/kunst/oslo/places_kunst/kragstotten.json
 
 ## Harde feil
 - Ingen

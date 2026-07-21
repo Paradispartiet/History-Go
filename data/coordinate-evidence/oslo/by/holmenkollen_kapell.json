@@ -1,0 +1,73 @@
+{
+  "placeId": "holmenkollen_kapell",
+  "placeFile": "data/places/by/oslo/places/holmenkollen_kapell.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.96566486446608,
+    "lon": 10.672227570089706,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Holmenkollveien 142, OSLO. Punktet brukes som display- og unlock-marker for Holmenkollen kapell-bygningen."
+  },
+  "identity": {
+    "currentName": "Holmenkollen kapell",
+    "resolvedIdentity": "Holmenkollen kapell at Holmenkollveien 142, represented as one continuous chapel place across original and rebuilt structures",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "normative Geonorge address-first result",
+    "independent identity/context source where applicable"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Holmenkollveien%20142%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13070:142",
+      "sourceQuality": "official_address_plus_current_visitor_source",
+      "finding": "Address-first lookup returned one clear official address result for Holmenkollveien 142, matching the documented chapel address.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Holmenkollveien 142, OSLO. Punktet brukes som display- og unlock-marker for Holmenkollen kapell-bygningen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Holmenkollveien 142 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13070:142",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13070:142",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.96566486446608,
+      "lon": 10.672227570089706,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keep the verified building-address marker and treat the chapel as distinct from the Holmenkollen sports complex."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Holmenkollveien 142, OSLO. Punktet brukes som display- og unlock-marker for Holmenkollen kapell-bygningen."
+  ]
+}

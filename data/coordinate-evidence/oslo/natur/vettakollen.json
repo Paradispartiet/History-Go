@@ -1,0 +1,72 @@
+{
+  "placeId": "vettakollen",
+  "placeFile": "data/places/natur/oslo/places_natur/vettakollen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9765497,
+    "lon": 10.6990279,
+    "r": 100,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "peak",
+    "coordNote": "Eksakt navngitt OSM-toppunkt for Vettakollen, node 301173327, tagget natural=peak og ele=419. Punktet representerer fjelltoppen og ikke T-banestasjonen, stopområdet eller boligstrøket med samme navn."
+  },
+  "identity": {
+    "currentName": "Vettakollen",
+    "resolvedIdentity": "The 419 metre Vettakollen summit in Nordmarka, not the subway stop or residential suburb",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "active canonical duplicate audit",
+    "exact named source object with matching physical object type",
+    "independent identity/context source where applicable"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap exact named peak point",
+      "sourceUrl": "https://www.openstreetmap.org/node/301173327",
+      "sourceObjectId": "osm-node:301173327",
+      "sourceQuality": "exact_named_peak_plus_topographic_reference",
+      "finding": "Exact named OSM node 301173327 is tagged natural=peak and ele=419; same-name station, stop area and suburb objects were explicitly rejected.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-toppunkt for Vettakollen, node 301173327, tagget natural=peak og ele=419. Punktet representerer fjelltoppen og ikke T-banestasjonen, stopområdet eller boligstrøket med samme navn."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:301173327",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:301173327",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9765497,
+      "lon": 10.6990279,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keep the exact summit point as the canonical nature place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-toppunkt for Vettakollen, node 301173327, tagget natural=peak og ele=419. Punktet representerer fjelltoppen og ikke T-banestasjonen, stopområdet eller boligstrøket med samme navn."
+  ]
+}
