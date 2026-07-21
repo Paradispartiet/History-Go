@@ -9,24 +9,25 @@
   "runtime": {
     "currentCaptureModel": "../../js/knowledgeV2.js",
     "quizMemoryCompatibilityLayer": "../../js/quizKnowledgeMemory.js",
+    "quizMemoryQualityFilter": "../../js/quizKnowledgeQuality.js",
     "quizMemoryPageBridge": "../../js/knowledgeMemoryPageBridge.js",
     "currentPageModel": "../../js/knowledgePage.js",
     "quizMemoryStorageKey": "hg_knowledge_memory_v1",
-    "migrationStatus": "v3_quiz_bundle_and_knowledge_page_read_model_active",
-    "currentBehavior": "Quizviseren beholdes. Når en quiz eller et sett er fullført, bygger kompatibilitetslaget ett samlet kunnskapsbundle fra spørsmål, knowledge, trivia, emner, begreper, kilder og eventuelle toppnivåbanker. Sluttoppsummeringen får en inngang til kunnskapspopupen, og Knowledge-siden leser samme bundle som en førsteklasses kilde i fag, emner, begreper, søk og et eget quizminnekammer.",
+    "migrationStatus": "v4_precise_automatic_quiz_knowledge_active",
+    "currentBehavior": "Quizviseren beholdes. Når en quiz eller et sett er fullført, lagres kunnskapen automatisk. Kvalitetsfilteret forkaster kopier av spørsmål og fasitsvar, deler fler-setningsforklaringer i små selvstendige kunnskapspåstander, dedupliserer påstandene og beholder eksisterende emne-, begreps-, term-, funfact-, historie-, kilde- og vurderingsfelt uten å opprette parallelle datalag.",
     "evidenceModel": {
-      "collected": "Kunnskapen er hentet fra den fullførte quizfila og lagt i minnekammeret.",
+      "collected": "En presis kunnskapspåstand er automatisk hentet fra den fullførte quizfila og lagt i minnekammeret.",
       "presented": "Kunnskapspopupen er åpnet.",
-      "read": "Brukeren har bekreftet Lest – legg i Knowledge.",
+      "read": "Reservert for aktiv videreføring etter at kunnskapsforklaringen faktisk er vist; popupen krever ikke manuell godkjenning for lagring.",
       "mastered": "Spørsmålet ble besvart riktig.",
       "needs_review": "Spørsmålet ble besvart feil og kunnskapen er lagt til repetisjon."
     },
     "nextRuntimeRequirements": [
+      "Prioritize canonical_claim and knowledge_payload.summary directly in the base builder when newer quiz files provide them.",
       "Migrate useful legacy knowledge_universe and trivia_universe entries into compatible memory nodes without deleting the original stores.",
       "Use stable canonical knowledge_unit_id, concept_id, term_id and story_id when future quiz files provide them.",
-      "Keep quiz-file source provenance and never flatten stories, fun facts, concepts and assessment evidence into one text list.",
       "Add repetition actions that can launch targeted quiz sets from needs_review memory units."
     ]
   },
-  "canonicalPrinciple": "Emner organiserer faget, begrepene gir presist språk, knowledge units bærer innholdet, historiene binder innholdet sammen, steder og personer gir kontekst, quiz samler kunnskapen og prøver brukeren, og Knowledge-minnekammeret skiller mellom samlet, presentert, lest, mestret og til repetisjon."
+  "canonicalPrinciple": "Emner organiserer faget, begrepene gir presist språk, knowledge units bærer korte selvstendige påstander, historiene binder innholdet sammen, steder og personer gir kontekst, quiz formidler og prøver brukeren, og Knowledge-minnekammeret lagrer automatisk uten å forveksle spørsmål, svar, lesing og mestring."
 }
