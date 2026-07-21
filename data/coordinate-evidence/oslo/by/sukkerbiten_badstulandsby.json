@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "sukkerbiten_badstulandsby",
+  "placeFile": "data/places/by/oslo/places/sukkerbiten_badstulandsby.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90511544518361,
+    "lon": 10.752999453009872,
+    "r": 70,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Nylandsveien 28, OSLO, brukt som representasjonspunkt for Sukkerbiten badstulandsby. Oslo Badstuforening oppgir samme besøksadresse, og det navngitte OSM-området Sukkerbiten ligger på samme sted. Punktet representerer den samlede badstulandsbyen, ikke hver enkelt flytende badstue."
+  },
+  "identity": {
+    "currentName": "Sukkerbiten badstulandsby",
+    "resolvedIdentity": "Den faste badstulandsbyen ved Sukkerbiten i Bjørvika",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig besøksadresse",
+    "uavhengig dokumentert stabil lokasjon",
+    "skille mellom samlet badstulandsby og enkeltbadstuer"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Nylandsveien%2028%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15256:28",
+      "sourceQuality": "exact_official_address_plus_current_operator_location",
+      "finding": "Geonorge returnerer ett entydig adressepunkt for Nylandsveien 28. Oslo Badstuforening oppgir samme besøksadresse for Sukkerbiten.",
+      "canVerifyCoordinate": true,
+      "reason": "Adressepunktet sammenfaller med det navngitte Sukkerbiten-området og representerer den stabile badstulandsbylokasjonen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Nylandsveien 28 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15256:28",
+      "lat": 59.90511544518361,
+      "lon": 10.752999453009872,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15256:28",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90511544518361,
+      "lon": 10.752999453009872,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact official visitor address applied to the stable sauna-village site."
+  },
+  "notes": [
+    "Individual saunas remain components of the site and do not receive separate markers from this source pass."
+  ]
+}
