@@ -39,9 +39,18 @@ jobs:
 
           const dir = "bilder/merker";
           const files = fs.readdirSync(dir);
-          const normalizeStem = (name) => path.parse(name).name.toLowerCase().replaceAll("æ", "ae").replaceAll("ø", "o").replaceAll("å", "a");
-          const filename = files.find((name) => normalizeStem(name) === "naeringsliv3");
-          if (!filename) throw new Error(`Fant ikke naeringsliv3 i ${dir}. Filer: ${files.join(", ")}`);
+          const normalizeStem = (name) => path.parse(name).name
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replaceAll("æ", "ae")
+            .replaceAll("ø", "o")
+            .replaceAll("å", "a")
+            .replace(/[^a-z0-9]/g, "");
+          const candidates = files.filter((name) => normalizeStem(name).includes("naeringsliv"));
+          const filename = candidates.find((name) => normalizeStem(name).includes("naeringsliv3"))
+            || candidates.find((name) => normalizeStem(name).includes("3"));
+          if (!filename) throw new Error(`Fant ikke naeringsliv3 i ${dir}. Næringsliv-kandidater: ${candidates.join(", ") || "ingen"}`);
           const imagePath = `${dir}/${filename}`;
 
           const { data, info } = await sharp(imagePath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
