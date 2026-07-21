@@ -35,7 +35,70 @@
       "bygdoy_kongeskogen",
       "bygdoy_bygdoynes",
       "bygdoy_huk"
-    ]
+    ],
+    "species_inventory": {
+      "source_maps": [
+        "data/natur/nature_place_map.json",
+        "data/natur/nature_bird_place_map.json",
+        "data/natur/nature_oslo_expansion_place_map.json",
+        "data/natur/nature_routes_place_map.json"
+      ],
+      "flora": [
+        {
+          "id": "emne_flora_gravbergknapp",
+          "name": "Gravbergknapp",
+          "latin": "Phedimus spurius",
+          "status": "aktiv_kartkobling",
+          "map": "nature_routes_place_map.json",
+          "maps": [
+            "nature_routes_place_map.json"
+          ]
+        },
+        {
+          "id": "emne_flora_syrin",
+          "name": "Syrin",
+          "latin": "Syringa vulgaris",
+          "status": "aktiv_kartkobling",
+          "map": "nature_routes_place_map.json",
+          "maps": [
+            "nature_routes_place_map.json"
+          ]
+        },
+        {
+          "id": "emne_ved_ask",
+          "name": "Ask",
+          "latin": "Fraxinus excelsior",
+          "status": "aktiv_kartkobling",
+          "map": "nature_routes_place_map.json",
+          "maps": [
+            "nature_routes_place_map.json"
+          ]
+        },
+        {
+          "id": "emne_flora_blodstorkenebb",
+          "name": "Blodstorkenebb",
+          "latin": "Geranium sanguineum",
+          "status": "aktiv_kartkobling",
+          "map": "nature_routes_place_map.json",
+          "maps": [
+            "nature_routes_place_map.json"
+          ]
+        },
+        {
+          "id": "emne_kratt_geitved",
+          "name": "Geitved",
+          "latin": "Lonicera xylosteum",
+          "status": "aktiv_kartkobling",
+          "map": "nature_routes_place_map.json",
+          "maps": [
+            "nature_routes_place_map.json"
+          ]
+        }
+      ],
+      "fauna": [],
+      "total_species": 5,
+      "rule": "all_active_mapped_species_for_place"
+    }
   },
   "underbadge_ids": [
     "berg_og_knaus",
@@ -53,5 +116,44 @@
   "coordRole": "area_anchor",
   "coordSourceId": "miljodirektoratet-naturvern:VV00003059",
   "coordSourceUrl": "https://faktaark.naturbase.no/?id=VV00003059",
-  "coordNote": "Dronningberget behandles som naturreservat/arealobjekt. Canonical punkt er et representativt områdeanker beregnet inne i Miljødirektoratets offisielle vernepolygon VV00003059, ikke et utsiktspunkt, en vei eller Sæterhytten."
+  "coordNote": "Dronningberget behandles som naturreservat/arealobjekt. Canonical punkt er et representativt områdeanker beregnet inne i Miljødirektoratets offisielle vernepolygon VV00003059, ikke et utsiktspunkt, en vei eller Sæterhytten.",
+  "quiz_profile": {
+    "place_type": "kystberg i naturreservat",
+    "subtype": "kalkrik_torrbakke_og_skogkant",
+    "signature_features": [
+      "vernet bergknaus på østsiden av Bygdøy",
+      "overgang mellom åpne bergflater og løvskog",
+      "sol- og vindeksponert tørrbakke over indre fjord",
+      "aktivt kartinventar av dokumenterte plantearter"
+    ],
+    "primary_angles": [
+      "berggrunn_og_jordsmonn",
+      "torrbakkevegetasjon",
+      "skogkant_og_busksjikt",
+      "vern_og_terrengform"
+    ],
+    "question_families": [
+      "stedsspesifikk_observasjon",
+      "geologi_og_vegetasjon",
+      "arter_og_habitat",
+      "sammenligning_med_kystsonen"
+    ],
+    "avoid_angles": [
+      "generisk_utsiktsquiz",
+      "ren_turguide",
+      "arter_utenfor_species_inventory",
+      "påstander_uten_kildestotte"
+    ],
+    "must_include": [
+      "den offisielle vernepolygonen",
+      "overgangen mellom berg og skog",
+      "at artsoppgaver begrenses til det aktive kartinventaret"
+    ],
+    "contrast_targets": [
+      "bygdoy_kongeskogen",
+      "bygdoy_paradisbukta",
+      "hovedoya"
+    ],
+    "notes": "Knytt artsoppgaver til de 5 aktive plantekortene og 0 aktive faunakortene i species_inventory. Andre arter skal ikke legges til uten ny dokumentasjon."
+  }
 }
