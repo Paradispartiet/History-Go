@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "maerradalen",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.937718080001645,
+    "lon": 10.655018282536306,
+    "r": 700,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 844862938 – Mærradalen",
+    "coordType": "protected_valley_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/valley; geometri: LineString."
+  },
+  "identity": {
+    "currentName": "Mærradalen",
+    "resolvedIdentity": "Mærradalen som dalføre/bekkekløft og vernet naturmiljø",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk objekt/geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Mærradalen",
+      "sourceUrl": "https://www.openstreetmap.org/way/844862938",
+      "sourceObjectId": "osm-way:844862938",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navnetreff med objekttype natural/valley og geometri LineString.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/valley; geometri: LineString."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Independent geographic identity cross-check",
+      "sourceUrl": "https://snl.no/M%C3%A6rradalen",
+      "sourceObjectId": "snl:maerradalen",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig kilde kryssjekker identiteten Mærradalen som dalføre/bekkekløft og vernet naturmiljø.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; koordinaten kommer fra det eksakte OSM-objektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:844862938",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:maerradalen",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:844862938",
+      "lat": 59.937718080001645,
+      "lon": 10.655018282536306,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.937718080001645,
+      "lon": 10.655018282536306,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:844862938",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/valley; geometri: LineString."
+  ]
+}

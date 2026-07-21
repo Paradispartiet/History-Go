@@ -1,8 +1,8 @@
 {
   "id": "noklevann",
   "name": "Nøklevann",
-  "lat": 59.8834,
-  "lon": 10.8782,
+  "lat": 59.88044653,
+  "lon": 10.866737856666667,
   "r": 950,
   "category": "natur",
   "desc": "Stor innsjø i Østmarka med sterk kobling til skog, friluftsliv og Ljanselvas vassdragssystem.",
@@ -15,12 +15,11 @@
     "ljanselva"
   ],
   "sourceHint": "Bygd på eksisterende hovedobjekt. Nøklevann skal leses som markavann og vannsystem, ikke bare bade- og tursted.",
-  "coordType": "area_center",
-  "coordStatus": "semantic_anchor",
-  "coordSource": "repo_synthesis_from_existing_natur_files",
-  "coordPrecisionM": 130,
-  "coordVerifiedAt": "2026-05-09",
-  "coordNote": "Bevisst stort områdeanker for hele Nøklevann; delankre markerer nord, øst og sørvest.",
+  "coordType": "lake_center",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap relation 16661 – Nøklevann",
+  "coordVerifiedAt": "2026-07-21",
+  "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: natural/water; geometri: Polygon.",
   "anchors": [
     {
       "id": "noklevann_nord",
@@ -119,5 +118,12 @@
     "skog",
     "friluftsliv",
     "bading"
-  ]
+  ],
+  "locatorType": "natural_area",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-relation:16661",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "area_anchor",
+  "coordSourceId": "osm-relation:16661",
+  "coordSourceUrl": "https://www.openstreetmap.org/relation/16661"
 }

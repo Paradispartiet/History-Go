@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "maridalsvannet",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.984773706468054,
+    "lon": 10.777045453207208,
+    "r": 1150,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 1438314 – Maridalsvannet",
+    "coordType": "lake_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: water/reservoir; geometri: Polygon."
+  },
+  "identity": {
+    "currentName": "Maridalsvannet",
+    "resolvedIdentity": "Maridalsvannet som samlet innsjø/vannflate",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt fysisk objekt/geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Maridalsvannet",
+      "sourceUrl": "https://www.openstreetmap.org/relation/1438314",
+      "sourceObjectId": "osm-relation:1438314",
+      "sourceQuality": "exact_named_semantic_object",
+      "finding": "Eksakt navnetreff med objekttype water/reservoir og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: water/reservoir; geometri: Polygon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Independent geographic identity cross-check",
+      "sourceUrl": "https://snl.no/Maridalsvannet",
+      "sourceObjectId": "snl:maridalsvannet",
+      "sourceQuality": "independent_identity_crosscheck",
+      "finding": "Uavhengig kilde kryssjekker identiteten Maridalsvannet som samlet innsjø/vannflate.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; koordinaten kommer fra det eksakte OSM-objektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:1438314",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:maridalsvannet",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:1438314",
+      "lat": 59.984773706468054,
+      "lon": 10.777045453207208,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.984773706468054,
+      "lon": 10.777045453207208,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:1438314",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt etter forhåndsdefinert semantisk objekttypefilter, ikke nearest/first-hit. Objekttype: water/reservoir; geometri: Polygon."
+  ]
+}
