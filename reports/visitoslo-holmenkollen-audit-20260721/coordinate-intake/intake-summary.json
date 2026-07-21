@@ -1,0 +1,63 @@
+{
+  "createdAt": "2026-07-21T05:39:48.528Z",
+  "candidates": [
+    "bogstadvannet",
+    "holmenkollen_kapell",
+    "oslo_golfklubb_bogstad",
+    "kollentrollet",
+    "vettakollen",
+    "kragstotten"
+  ],
+  "addressResults": [
+    {
+      "address": "Holmenkollveien 142 Oslo",
+      "file": "reports/visitoslo-holmenkollen-audit-20260721/coordinate-intake/holmenkollen-kapell-geonorge.txt",
+      "ok": true,
+      "exitCode": 0
+    },
+    {
+      "address": "Ankerveien 127 Oslo",
+      "file": "reports/visitoslo-holmenkollen-audit-20260721/coordinate-intake/oslo-golfklubb-bogstad-geonorge.txt",
+      "ok": true,
+      "exitCode": 0
+    }
+  ],
+  "nominatim": {
+    "bogstadvannet": {
+      "ok": true,
+      "count": 1
+    },
+    "kollentrollet": {
+      "ok": true,
+      "count": 1
+    },
+    "vettakollen": {
+      "ok": true,
+      "count": 3
+    },
+    "kragstotten": {
+      "ok": true,
+      "count": 3
+    }
+  },
+  "overpass": {
+    "ok": true,
+    "elementCount": 10
+  },
+  "duplicateHits": {
+    "bogstadvannet": [],
+    "holmenkollen_kapell": [],
+    "oslo_golfklubb_bogstad": [],
+    "kollentrollet": [],
+    "vettakollen": [],
+    "kragstotten": []
+  },
+  "coordinateRules": {
+    "bogstadvannet": "Use exact named lake geometry; select a representative point that remains on the lake and document the Oslo/Bærum boundary context.",
+    "holmenkollen_kapell": "Use normative Geonorge address-first for Holmenkollveien 142 before any production coordinate is approved.",
+    "oslo_golfklubb_bogstad": "Use Ankerveien 127 to verify site identity, then explicitly decide whether the canonical display anchor represents the clubhouse/address or the named golf-course geometry.",
+    "kollentrollet": "Require one exact named sculpture object or independently verified physical point; do not inherit the Holmenkollen arena coordinate.",
+    "vettakollen": "Require the exact summit/hill object; reject station and residential-area namesakes.",
+    "kragstotten": "Require the exact monument object and cross-check identity against the documented 1909 monument at Voksenkollen."
+  }
+}

@@ -1,0 +1,130 @@
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Holmenkollveien 142 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Holmenkollveien 142 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Holmenkollveien%20142%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:13070:142",
+  "coordinate": {
+    "lat": 59.96566486446608,
+    "lon": 10.672227570089706,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13070:142",
+    "address": {
+      "street": "Holmenkollveien",
+      "number": "142",
+      "postcode": "0791",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Holmenkollveien 142, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Holmenkollveien",
+    "adressetekst": "Holmenkollveien 142",
+    "adressetilleggsnavn": null,
+    "adressekode": 13070,
+    "nummer": 142,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 33,
+    "bruksnummer": 296,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0791",
+    "adressetekstutenadressetilleggsnavn": "Holmenkollveien 142",
+    "stedfestingverifisert": false,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.96566486446608,
+      "lon": 10.672227570089706
+    },
+    "oppdateringsdato": "2020-06-15T18:03:03"
+  }
+}
+
+> history-go@0.0.0 places:coords:find:address
+> npm run build:tools && node dist/tools/address-first-coordinate-finder.mjs --address Ankerveien 127 Oslo
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "ok": true,
+  "status": "verified_candidate",
+  "reason": "Geonorge returnerte ett tydelig adressetreff.",
+  "query": "Ankerveien 127 Oslo",
+  "sourceProvider": "official_address",
+  "sourceName": "Geonorge Adresser API v1",
+  "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ankerveien%20127%20Oslo",
+  "sourceObjectId": "geonorge-adresser-v1:0301:10163:127",
+  "coordinate": {
+    "lat": 59.962399448254494,
+    "lon": 10.63892806989306,
+    "r": 60,
+    "locatorType": "building",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:10163:127",
+    "address": {
+      "street": "Ankerveien",
+      "number": "127",
+      "postcode": "0766",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Ankerveien 127, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+  },
+  "rawHit": {
+    "adressenavn": "Ankerveien",
+    "adressetekst": "Ankerveien 127",
+    "adressetilleggsnavn": null,
+    "adressekode": 10163,
+    "nummer": 127,
+    "bokstav": "",
+    "kommunenummer": "0301",
+    "kommunenavn": "OSLO",
+    "gardsnummer": 27,
+    "bruksnummer": 2752,
+    "festenummer": 0,
+    "undernummer": null,
+    "bruksenhetsnummer": [],
+    "objtype": "Vegadresse",
+    "poststed": "OSLO",
+    "postnummer": "0766",
+    "adressetekstutenadressetilleggsnavn": "Ankerveien 127",
+    "stedfestingverifisert": true,
+    "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.962399448254494,
+      "lon": 10.63892806989306
+    },
+    "oppdateringsdato": "2020-06-15T18:02:02"
+  }
+}
