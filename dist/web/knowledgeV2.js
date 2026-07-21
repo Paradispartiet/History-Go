@@ -641,7 +641,7 @@
         unresolved_count: enrichedEntries.filter((entry) => !toArray(entry.resolved_emne_ids).length).length,
         concepts: Array.from(conceptCounts.values()).sort((a, b) => b.count - a.count),
         entries: enrichedEntries,
-        emners: emneRows.sort((a, b) => b.knowledge_count - a.knowledge_count || a.title.localeCompare(b.title, "nb")),
+        emner: emneRows.sort((a, b) => b.knowledge_count - a.knowledge_count || a.title.localeCompare(b.title, "nb")),
         course
       };
     }
