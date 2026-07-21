@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-tabellen inneholder nå 308 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 108–111 produserer fire stabile fysiske steder fra den avgrensede VisitOSLO Bjørvika-auditen etter ferdig duplicate-, scope- og coordinate-intake.
+Oslo-tabellen inneholder nå 309 dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch 108–111 produserer fire stabile fysiske steder fra den avgrensede VisitOSLO Bjørvika-auditen etter ferdig duplicate-, scope- og coordinate-intake. Batch 112 etterfører den fullførte Ljanselva-rutekontrollen og legger til ett verifisert canonical sted; seks lokale rutepunkter er dokumentert separat som needs_review.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -324,6 +324,7 @@ Batch 102 (2026-07-21) reparerer en dokumentert aggregate/split-divergens for `h
 | 109 | `losaeter` | Losæter | verified_geometry | `osm-way:172520783` |
 | 110 | `friluftshuset_sorenga` | Friluftshuset på Sørenga | verified | `geonorge-adresser-v1:0301:21549:124` |
 | 111 | `operastranda` | Operastranda | verified_geometry | `osm-way:936040800` |
+| 112 | `skraperudtjern` | Skraperudtjern | verified_geometry | `osm-way:23761672` |
 
 Batch 108 (2026-07-21) produserer `sukkerbiten_badstulandsby`. Én samlet og stabil badstulandsby ved Sukkerbiten. Enkeltbadstuer og Oslo Badstuforenings andre lokasjoner får ikke overlappende markører fra denne kilden.
 
@@ -332,6 +333,8 @@ Batch 109 (2026-07-21) produserer `losaeter`. Eksakt navngitt Losæter-parkpolyg
 Batch 110 (2026-07-21) produserer `friluftshuset_sorenga`. DNTs konkrete institusjons- og aktivitetssenter på Sørengkaia 124, fysisk og funksjonelt separat fra Sørenga sjøbad og det brede Sørenga-områdeankeret.
 
 Batch 111 (2026-07-21) produserer `operastranda`. Eksakt navngitt kommunal badestrand som eget fysisk badested; ikke en erstatning for det brede Bjørvika-ankeret og ikke samme anlegg som Sørenga sjøbad.
+
+Batch 112 (2026-07-21) etterfører den allerede validerte Ljanselva-rutekontrollen etter at parallelle VisitOSLO-batcher tok numrene 108–111 før Ljanselva-PR-en ble merget. `skraperudtjern` bruker det eksakt navngitte OSM-vannobjektet way 23761672 som `pond_center`. `noklevann_ljanselva_start`, `ljanselva_skullerud`, `ljanselva_hauketo`, `ljanselva_ljan`, `ljanselva_fiskevollen` og `ljanselva_bunnefjorden` er fullførte kontroller uten godkjent koordinat og står derfor i needs_review-tabellen. Den opprinnelige build-rapporten ble generert som batch 108 før den parallelle køen landet; rapportstien og resultatmetadataen er i denne reparasjonen canonical-renummerert til batch 112.
 
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 

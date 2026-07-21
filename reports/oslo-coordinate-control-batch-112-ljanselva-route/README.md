@@ -1,4 +1,4 @@
-# Oslo coordinate control batch 108 – Ljanselva route
+# Oslo coordinate control batch 112 – Ljanselva route
 
 ## Verified
 - `skraperudtjern` → `osm-way:23761672`
