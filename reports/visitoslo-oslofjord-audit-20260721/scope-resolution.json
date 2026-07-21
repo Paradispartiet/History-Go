@@ -1,0 +1,135 @@
+{
+  "version": "2026-07-21",
+  "source": {
+    "name": "VisitOSLO — Øyer og attraksjoner i Oslofjorden",
+    "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/omraader/oslofjorden/attraksjoner",
+    "capturedAt": "2026-07-21",
+    "visibleResultCount": 12
+  },
+  "summary": {
+    "sourceRowsResolved": 12,
+    "existingCanonicalResolutions": 4,
+    "approvedNewCanonicalCandidates": 11,
+    "unresolvedScopeDecisions": 0
+  },
+  "existingCanonical": [
+    {
+      "sourceRow": "Gressholmen, Heggholmen og Rambergøya",
+      "placeId": "gressholmen",
+      "scope": "covers Gressholmen only; the two other named islands remain separate approved gaps"
+    },
+    {
+      "sourceRow": "Klosterruinene på Hovedøya",
+      "placeId": "hovedoya_kloster",
+      "scope": "exact heritage-site identity"
+    },
+    {
+      "sourceRow": "Hovedøya",
+      "placeId": "hovedoya",
+      "scope": "exact island identity"
+    },
+    {
+      "sourceRow": "Aker Brygge",
+      "placeId": "aker_brygge",
+      "scope": "exact urban-area identity"
+    }
+  ],
+  "approvedCandidates": [
+    {
+      "id": "heggholmen",
+      "name": "Heggholmen",
+      "sourceRow": "Gressholmen, Heggholmen og Rambergøya",
+      "representation": "the named island Heggholmen, with lighthouse and industrial-history layers; not Gressholmen and not the full connected three-island system",
+      "coordinateGate": "object-first exact named island geometry; lighthouse may be an internal content anchor but must not replace the island identity",
+      "proposedCategory": "historie"
+    },
+    {
+      "id": "rambergoya",
+      "name": "Rambergøya",
+      "sourceRow": "Gressholmen, Heggholmen og Rambergøya",
+      "representation": "the named island Rambergøya and its protected/recreational landscape; not Gressholmen",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "natur"
+    },
+    {
+      "id": "ormoya",
+      "name": "Ormøya",
+      "sourceRow": "Ormøya og Malmøya",
+      "representation": "the named inhabited island Ormøya; not the combined Ormøya/Malmøya destination row",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "by"
+    },
+    {
+      "id": "malmoya",
+      "name": "Malmøya",
+      "sourceRow": "Ormøya og Malmøya",
+      "representation": "the named island Malmøya, including its protected coastal landscape as a content layer; not Ormøya and not Solvikbukta alone",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "natur"
+    },
+    {
+      "id": "nakholmen",
+      "name": "Nakholmen",
+      "sourceRow": "Nakholmen",
+      "representation": "the named cabin island as one stable physical island identity",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "by"
+    },
+    {
+      "id": "steilene",
+      "name": "Steilene",
+      "sourceRow": "Steilene",
+      "representation": "the named Steilene archipelago as one source-level island-group identity, including lighthouse, industrial and friluftsliv layers; do not invent separate markers for every islet in this source pass",
+      "coordinateGate": "object-first exact named archipelago/group geometry or documented stable group anchor; no arbitrary single-islet proxy",
+      "proposedCategory": "historie"
+    },
+    {
+      "id": "langoyene",
+      "name": "Langøyene",
+      "sourceRow": "Langøyene",
+      "representation": "the present connected recreation island formed from Nordre and Søndre Langøy, with landfill and rehabilitation history as content layers",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "natur"
+    },
+    {
+      "id": "lindoya",
+      "name": "Lindøya",
+      "sourceRow": "Lindøya",
+      "representation": "the named cabin island, including its nature reserve and seasonal settlement as content layers",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "by"
+    },
+    {
+      "id": "ingierstrand_bad",
+      "name": "Ingierstrand bad",
+      "sourceRow": "Ingierstrand bad",
+      "representation": "the protected functionalist bathing complex as a whole, including beach, diving tower and restaurant architecture; not the restaurant business alone",
+      "coordinateGate": "prefer exact documented bathing-complex/heritage geometry; use an address only if it is demonstrated to represent the whole complex rather than merely the restaurant building",
+      "proposedCategory": "historie"
+    },
+    {
+      "id": "bleikoya",
+      "name": "Bleikøya",
+      "sourceRow": "Bleikøya",
+      "representation": "the named cabin island, with nature-reserve and seabird layers; not Bleikøykalven alone",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "natur"
+    },
+    {
+      "id": "ulvoya",
+      "name": "Ulvøya",
+      "sourceRow": "Ulvøya",
+      "representation": "the named inhabited island and its distinct coastal/residential landscape; the public beach is a content layer, not a replacement island identity",
+      "coordinateGate": "object-first exact named island geometry",
+      "proposedCategory": "by"
+    }
+  ],
+  "scopeGuards": [
+    "Combined VisitOSLO rows may resolve to several canonical physical places; do not create synthetic combined markers solely to mirror source presentation.",
+    "The existing gressholmen record is explicitly an exact named Gressholmen island polygon and does not absorb Heggholmen or Rambergøya.",
+    "Klosterruinene på Hovedøya resolves to hovedoya_kloster, while the separate Hovedøya source row resolves to hovedoya.",
+    "Steilene remains one archipelago-level candidate in this source pass unless coordinate research proves that no legitimate group geometry or stable group anchor exists.",
+    "Ingierstrand bad is a protected bathing complex; restaurant-only coordinates must not silently redefine the place scope.",
+    "Geographic location outside Oslo municipality is not an exclusion criterion when the current VisitOSLO Oslofjorden source explicitly includes the place."
+  ]
+}
