@@ -10,24 +10,41 @@ function runBrowserScript(file, windowOverrides = {}) {
   return window;
 }
 
+const contract = JSON.parse(fs.readFileSync("data/categories/category_contract.json", "utf8"));
 const registryWindow = runBrowserScript("js/DomainRegistry.js");
-assert.equal(registryWindow.DomainRegistry.toFagSubjectId("populaerkultur"), "popkultur");
-assert.equal(registryWindow.DomainRegistry.toFagSubjectId("popkultur"), "popkultur");
-assert.equal(registryWindow.DomainRegistry.toRuntimeCategoryId("popkultur"), "populaerkultur");
-assert.equal(registryWindow.DomainRegistry.toRuntimeCategoryId("populaerkultur"), "populaerkultur");
+const registry = registryWindow.DomainRegistry;
+
+assert.equal(registry.toFagSubjectId("populaerkultur"), "popkultur");
+assert.equal(registry.toFagSubjectId("popkultur"), "popkultur");
+assert.equal(registry.toRuntimeCategoryId("popkultur"), "populaerkultur");
+assert.equal(registry.toRuntimeCategoryId("populaerkultur"), "populaerkultur");
+assert.equal(registry.toFagSubjectId("teater"), "scenekunst");
+assert.equal(registry.toRuntimeCategoryId("teater"), "scenekunst");
+assert.equal(registry.toFagSubjectId("film"), "film_tv");
+assert.equal(registry.toRuntimeCategoryId("film"), "film_tv");
+assert.equal(registry.toFagSubjectId("journalistikk"), "media");
+assert.equal(registry.toRuntimeCategoryId("journalistikk"), "media");
+assert.deepEqual(registry.list().slice().sort(), contract.fagSubjects.slice().sort());
+assert.deepEqual(registry.listRuntimeCategories().slice().sort(), contract.runtimeCategories.slice().sort());
+
 assert.equal(
-  registryWindow.DomainRegistry.file("quiz", "popkultur"),
+  registry.file("quiz", "popkultur"),
   "data/quiz/quiz_populaerkultur.json"
 );
 assert.equal(
-  registryWindow.DomainRegistry.file("quiz", "populaerkultur"),
+  registry.file("quiz", "populaerkultur"),
   "data/quiz/quiz_populaerkultur.json"
+);
+assert.equal(
+  registry.file("quiz", "teater"),
+  "data/quiz/quiz_scenekunst.json"
 );
 
 const runtimeWindow = runBrowserScript("js/core/domainRuntime.js", {
-  DomainRegistry: registryWindow.DomainRegistry
+  DomainRegistry: registry
 });
 assert.equal(runtimeWindow.HGDomainRuntime.toRuntimeCategoryId("popkultur"), "populaerkultur");
+assert.equal(runtimeWindow.HGDomainRuntime.toRuntimeCategoryId("teater"), "scenekunst");
 assert.deepEqual(
   JSON.parse(JSON.stringify(runtimeWindow.HGDomainRuntime.normalizeCategoryMap({
     popkultur: { points: 2 }

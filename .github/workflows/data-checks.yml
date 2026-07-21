@@ -6,12 +6,24 @@ on:
       - 'data/people/**'
       - 'data/places/**'
       - 'data/quiz/**'
+      - 'data/fag/**'
+      - 'data/badges/**'
+      - 'data/categories/**'
+      - 'bilder/merker/**'
+      - 'js/DomainRegistry.js'
+      - 'js/core/categories.ts'
+      - 'js/core/categories.js'
+      - 'dist/web/categories.js'
       - 'tests/etne-people-manifest-integration.test.js'
       - 'tests/etne-people-of-places-*.test.js'
+      - 'tests/quiz-content-quality-audit.test.mjs'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
       - 'scripts/audit-knowledge-contract.mjs'
+      - 'scripts/audit-category-governance.mjs'
+      - 'scripts/audit-quiz-content-quality.mjs'
+      - 'scripts/audit-quiz-template-governance.mjs'
       - 'data/Civication/historyPeople_index.json'
       - 'data/Civication/people_access_map.json'
       - 'tools/**'
@@ -64,12 +76,15 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Run places check
+        shell: bash
         run: |
+          set -o pipefail
           if [ -f scripts/check-places.sh ]; then
-            bash scripts/check-places.sh
+            bash scripts/check-places.sh 2>&1 | tee /tmp/places-check.log
           else
-            echo "scripts/check-places.sh not found; using inline places checks"
-            node <<'NODE'
+            echo "scripts/check-places.sh not found; using inline places checks" | tee /tmp/places-check.log
+            {
+              node <<'NODE'
           const fs = require('fs');
           const path = require('path');
           function readJson(file) {
@@ -97,12 +112,21 @@ jobs:
           }
           console.log(`json ok (${files.length} files)`);
           NODE
-            npm run places:index:build
-            npm run build:tools
-            npm run places:index:check
-            npm run places:emner:check
-            npm run places:coords:check
+              npm run places:index:build
+              npm run build:tools
+              npm run places:index:check
+              npm run places:emner:check
+              npm run places:coords:check
+            } 2>&1 | tee -a /tmp/places-check.log
           fi
+
+      - name: Upload Places check log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: places-check-log
+          path: /tmp/places-check.log
+          if-no-files-found: warn
 
       - name: Upload Religion candidate audit
         if: always()
@@ -111,6 +135,30 @@ jobs:
           name: religion-place-candidate-audit
           path: /tmp/religion-place-candidate-audit.log
           if-no-files-found: ignore
+
+  quiz-governance:
+    name: Category and quiz governance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Audit canonical categories
+        run: npm run audit:categories
+
+      - name: Audit canonical quiz templates
+        run: npm run audit:quiz-templates
+
+      - name: Test quiz content audit and repaired quizzes
+        run: npm run test:quiz-content-audit
 
   knowledge:
     name: Knowledge V2

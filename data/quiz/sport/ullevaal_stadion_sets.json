@@ -1,257 +1,120 @@
 {
   "targetId": "ullevaal_stadion",
   "categoryId": "sport",
+  "sources": {
+    "snl_ullevaal": "https://snl.no/Ullevaal_Stadion",
+    "nff_100_years": "https://www.fotball.no/tema/nff-nyheter/2026/ullevaal-stadion-fyller-100-ar---en-nasjonalarena-med-stolthet-og-tilhorighet/",
+    "nff_locker_room": "https://www.fotball.no/tema/nff-nyheter/2021/se-ullevaals-nye-garderobeomrade-her/",
+    "nff_tickets": "https://www.fotball.no/turneringer/nm-menn/2026/billettinformasjon-cupfinale-herrer/"
+  },
   "sets": [
     {
       "set_id": "sport_ullevaal_stadion_set_1",
       "level": 1,
       "order": 1,
       "xp": 50,
-      "title": "Ullevaal som nasjonalarena",
+      "title": "Fra Lyn-bane til nasjonalarena",
       "questions": [
         {
           "id": "ullevaal_stadion_quiz_1_1",
           "quiz_id": "sport_ullevaal_stadion_set_1_q1",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Du står ved Ullevaal før en landskamp. Hva gjør stedet til mer enn en vanlig fotballbane?",
-          "options": [
-            "Det samler landslag, forbund, publikum og nasjonale fotballritualer på ett sted",
-            "Det brukes bare til lokal trening uten publikum",
-            "Det er først og fremst et friidrettsanlegg"
-          ],
-          "answer": "Det samler landslag, forbund, publikum og nasjonale fotballritualer på ett sted",
+          "question": "Når ble den første kampen spilt på Ullevaal Stadion?",
+          "options": ["26. september 1926", "17. mai 1914", "7. juni 1945"],
+          "answer": "26. september 1926",
           "answerIndex": 0,
-          "dimension": "arena",
-          "topic": "Nasjonalarena",
-          "knowledge": "Ullevaal fungerer som nasjonalarena fordi stedet knytter kamp, landslag, forbund, supportere og felles fotballminner sammen.",
-          "trivia": [],
+          "knowledge": "Ullevaal Stadion åpnet med sin første kamp 26. september 1926.",
           "difficulty": 1,
-          "question_type": "place_reading",
-          "year": null,
-          "epoke_id": null,
+          "question_type": "fact",
+          "year": 1926,
           "epoke_domain": "sport",
           "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_klubbidentitet"
-          ],
-          "core_concepts": [
-            "nasjonalarena",
-            "fotball",
-            "publikum",
-            "arena",
-            "ritual",
-            "supporterkultur"
-          ],
-          "concept_focus": [
-            "nasjonalarena"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "fotball",
-            "stadion",
-            "nasjonalarena",
-            "landslag",
-            "oslo"
-          ],
-          "required_tags": [],
-          "source": []
+          "source": ["nff_100_years", "nff_locker_room"]
         },
         {
           "id": "ullevaal_stadion_quiz_1_2",
           "quiz_id": "sport_ullevaal_stadion_set_1_q2",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hvorfor er cupfinalen et sterkt History Go-spørsmål på Ullevaal?",
-          "options": [
-            "Fordi samme arena blir et årlig ritual der klubber, supportere og nasjonal fotballkultur møtes",
-            "Fordi cupfinalen alltid spilles uten publikum",
-            "Fordi cupfinalen ikke har noe med stadion å gjøre"
-          ],
-          "answer": "Fordi samme arena blir et årlig ritual der klubber, supportere og nasjonal fotballkultur møtes",
+          "question": "Hvilken Oslo-klubb fikk Ullevaal som hjemmebane da stadion åpnet?",
+          "options": ["Lyn", "Vålerenga", "Skeid"],
+          "answer": "Lyn",
           "answerIndex": 0,
-          "dimension": "ritual",
-          "topic": "Cupfinale",
-          "knowledge": "Cupfinalen gjør Ullevaal til et tilbakevendende samlingssted. Stedet blir ikke bare en bane, men en scene for finaledag, klubbfarger og supporterfortellinger.",
-          "trivia": [],
+          "knowledge": "Ullevaal ble bygd som hjemmebane for Lyn, som spilte der fra åpningen i 1926 til 2009.",
           "difficulty": 1,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
+          "question_type": "fact",
+          "year": 1926,
           "epoke_domain": "sport",
-          "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_klubbidentitet"
-          ],
-          "core_concepts": [
-            "cupfinale",
-            "ritual",
-            "supporterkultur",
-            "publikum"
-          ],
-          "concept_focus": [
-            "cupfinale"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "cupfinale",
-            "fotball",
-            "publikum",
-            "supporter"
-          ],
-          "required_tags": [],
-          "source": []
+          "emne_id": "em_sport_klubbidentitet",
+          "source": ["snl_ullevaal", "nff_locker_room"]
         },
         {
           "id": "ullevaal_stadion_quiz_1_3",
           "quiz_id": "sport_ullevaal_stadion_set_1_q3",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hvilket spørsmål hjelper spilleren best å lese Ullevaal som institusjon, ikke bare som bygg?",
-          "options": [
-            "Hvem organiserer kampene, finalene og landslagssymbolene her?",
-            "Hvor mange trær står utenfor stadion?",
-            "Hvilken farge har nærmeste fortauskant?"
-          ],
-          "answer": "Hvem organiserer kampene, finalene og landslagssymbolene her?",
+          "question": "Hvilket år ble den første landskampen spilt på Ullevaal?",
+          "options": ["1927", "1936", "1948"],
+          "answer": "1927",
           "answerIndex": 0,
-          "dimension": "institusjon",
-          "topic": "Forbund og organisering",
-          "knowledge": "Som nasjonalarena peker Ullevaal også mot fotballens organisering: forbund, kampkalender, finaler, landslag og offisielle ritualer.",
-          "trivia": [],
+          "knowledge": "Den første landskampen på Ullevaal ble spilt i 1927, året etter at stadion åpnet.",
           "difficulty": 1,
-          "question_type": "interpretation",
-          "year": null,
-          "epoke_id": null,
+          "question_type": "fact",
+          "year": 1927,
           "epoke_domain": "sport",
           "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_klubbidentitet"
-          ],
-          "core_concepts": [
-            "forbund",
-            "institusjon",
-            "nasjonalarena",
-            "organisering"
-          ],
-          "concept_focus": [
-            "institusjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "forbund",
-            "nff",
-            "institusjon",
-            "nasjonalarena"
-          ],
-          "required_tags": [],
-          "source": []
+          "source": ["nff_locker_room"]
         },
         {
           "id": "ullevaal_stadion_quiz_1_4",
           "quiz_id": "sport_ullevaal_stadion_set_1_q4",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hva bør spilleren se etter på en stadion for å forstå publikumsrollen?",
-          "options": [
-            "Tribuner, innganger, supporterfelt, siktlinjer og hvordan folk samles før og etter kamp",
-            "Bare gressets lengde midt på banen",
-            "Bare om stadion har samme form som et museum"
-          ],
-          "answer": "Tribuner, innganger, supporterfelt, siktlinjer og hvordan folk samles før og etter kamp",
+          "question": "Hvor mange tilskuere satte publikumsrekord under Norge–Danmark i 1949?",
+          "options": ["37 096", "27 096", "47 096"],
+          "answer": "37 096",
           "answerIndex": 0,
-          "dimension": "publikum",
-          "topic": "Tribune og samling",
-          "knowledge": "En stadion kan leses som et publikumsapparat. Tribuner, innganger, siktlinjer og supporterfelt styrer hvordan folk ser, synger, beveger seg og samles.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "observation",
-          "year": null,
-          "epoke_id": null,
+          "knowledge": "37 096 tilskuere så Norge møte Danmark i 1949. Det er publikumsrekorden på Ullevaal.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1949,
           "epoke_domain": "sport",
           "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_klubbidentitet"
-          ],
-          "core_concepts": [
-            "publikum",
-            "tribune",
-            "supporterkultur",
-            "siktlinje",
-            "samling"
-          ],
-          "concept_focus": [
-            "publikum"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "tribune",
-            "publikum",
-            "supporter",
-            "observasjon"
-          ],
-          "required_tags": [],
-          "source": []
+          "source": ["nff_locker_room"]
         },
         {
           "id": "ullevaal_stadion_quiz_1_5",
           "quiz_id": "sport_ullevaal_stadion_set_1_q5",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hvilken sammenligning forklarer Ullevaal best?",
+          "question": "Hvorfor utviklet Ullevaal seg fra klubbane til nasjonalarena?",
           "options": [
-            "Ullevaal som nasjonalarena mot Intility Arena som moderne klubbground",
-            "Ullevaal som badeplass mot Tøyenbadet som fotballstadion",
-            "Ullevaal som kunstmuseum mot MUNCH som fotballbane"
+            "NFF fikk eierskap, og landskamper og cupfinaler ble samlet der",
+            "Klubbkamper ble enerådende, mens landskamper ble flyttet til andre arenaer",
+            "Stadion ble omgjort til friidrettsanlegg og mistet den nasjonale fotballrollen"
           ],
-          "answer": "Ullevaal som nasjonalarena mot Intility Arena som moderne klubbground",
+          "answer": "NFF fikk eierskap, og landskamper og cupfinaler ble samlet der",
           "answerIndex": 0,
-          "dimension": "sammenligning",
-          "topic": "Nasjonalarena vs klubbground",
-          "knowledge": "Ullevaal og Intility kan brukes som kontrast: én arena med nasjonal og forbundsmessig tyngde, én arena med tydeligere moderne klubbidentitet.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "compare",
-          "year": null,
-          "epoke_id": null,
+          "knowledge": "Norges Fotballforbund kom inn på eiersiden i 1960 og ble etter hvert hovedeier. Landskamper og cupfinaler ga stadion en stadig tydeligere nasjonal rolle.",
+          "difficulty": 2,
+          "question_type": "analysis",
+          "year": 1960,
           "epoke_domain": "sport",
           "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_klubbidentitet"
-          ],
-          "core_concepts": [
-            "nasjonalarena",
-            "klubbground",
-            "sammenligning",
-            "fotballgeografi"
-          ],
-          "concept_focus": [
-            "klubbground"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "intility_arena",
-            "nasjonalarena",
-            "klubbground",
-            "sammenligning"
-          ],
-          "required_tags": [],
-          "source": []
+          "core_concepts": ["nasjonalarena", "forbund", "landskamp", "cupfinale"],
+          "concept_focus": ["nasjonalarena"],
+          "source": ["snl_ullevaal", "nff_locker_room"]
         }
       ]
     },
@@ -260,248 +123,173 @@
       "level": 2,
       "order": 2,
       "xp": 70,
-      "title": "Klubb, forbund og supporteridentitet",
+      "title": "Finaler, landslag og ombygging",
       "questions": [
         {
           "id": "ullevaal_stadion_quiz_2_1",
           "quiz_id": "sport_ullevaal_stadion_set_2_q1",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hvorfor er det viktig at Ullevaal både har klubbhistorie og nasjonal rolle?",
-          "options": [
-            "Fordi stedet viser hvordan en arena kan gå fra klubbtilhørighet til nasjonalt fotballsymbol",
-            "Fordi klubbhistorie gjør nasjonal fotball irrelevant",
-            "Fordi nasjonalarenaer aldri har lokale spor"
-          ],
-          "answer": "Fordi stedet viser hvordan en arena kan gå fra klubbtilhørighet til nasjonalt fotballsymbol",
+          "question": "Fra hvilket år har mennenes cupfinale blitt spilt på Ullevaal?",
+          "options": ["1948", "1926", "1960"],
+          "answer": "1948",
           "answerIndex": 0,
-          "dimension": "klubbhistorie",
-          "topic": "Fra klubb til nasjonalarena",
-          "knowledge": "Ullevaal kan leses lagvis: klubbhistorie, tidligere hjemmelag, forbundsrolle, landslag og cupfinaler ligger oppå hverandre i samme sted.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "interpretation",
-          "year": null,
-          "epoke_id": null,
+          "knowledge": "Mennenes norske cupfinale har hatt Ullevaal som fast arena siden 1948.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": 1948,
           "epoke_domain": "sport",
-          "emne_id": "em_sport_klubbidentitet",
-          "related_emner": [
-            "em_sport_arena_samling"
-          ],
-          "core_concepts": [
-            "klubbidentitet",
-            "hjemmebane",
-            "nasjonalarena",
-            "fotballhistorie"
-          ],
-          "concept_focus": [
-            "klubbidentitet"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "klubbhistorie",
-            "hjemmebane",
-            "nasjonalarena",
-            "fotballhistorie"
-          ],
-          "required_tags": [],
-          "source": []
+          "emne_id": "em_sport_arena_samling",
+          "source": ["snl_ullevaal", "nff_locker_room"]
         },
         {
           "id": "ullevaal_stadion_quiz_2_2",
           "quiz_id": "sport_ullevaal_stadion_set_2_q2",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hva er den beste grunnen til å spørre om Lyn og Vålerenga i en Ullevaal-quiz?",
-          "options": [
-            "De viser at stadionets historie også handler om klubbidentitet og skiftende hjemmebaner",
-            "De viser at Ullevaal aldri har vært knyttet til klubblag",
-            "De viser at stadion bare brukes til individuell idrett"
-          ],
-          "answer": "De viser at stadionets historie også handler om klubbidentitet og skiftende hjemmebaner",
+          "question": "Hva er den oppgitte publikumskapasiteten på Ullevaal i 2026?",
+          "options": ["26 800", "16 800", "36 800"],
+          "answer": "26 800",
           "answerIndex": 0,
-          "dimension": "klubbidentitet",
-          "topic": "Tidligere hjemmelag",
-          "knowledge": "Klubbsporene gjør Ullevaal mer interessant enn en ren nasjonalarena. Stedet har også vært del av byens klubbfotball og supporterfortellinger.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
+          "knowledge": "NFF oppgir i 2026 en kapasitet på 26 800 tilskuere på Ullevaal Stadion.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": 2026,
           "epoke_domain": "sport",
-          "emne_id": "em_sport_klubbidentitet",
-          "related_emner": [
-            "em_sport_arena_samling"
-          ],
-          "core_concepts": [
-            "klubbidentitet",
-            "hjemmebane",
-            "supporterkultur",
-            "fotballgeografi"
-          ],
-          "concept_focus": [
-            "klubbidentitet"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "lyn",
-            "valerenga",
-            "klubbhistorie",
-            "hjemmebane"
-          ],
-          "required_tags": [],
-          "source": []
+          "emne_id": "em_sport_arena_samling",
+          "source": ["nff_tickets"]
         },
         {
           "id": "ullevaal_stadion_quiz_2_3",
           "quiz_id": "sport_ullevaal_stadion_set_2_q3",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hva betyr supporterkultur på et sted som Ullevaal?",
-          "options": [
-            "At lag, landslag og finaler fyller samme stadion med ulike sanger, farger, ritualer og minner",
-            "At publikum ikke påvirker opplevelsen av fotballstedet",
-            "At alle kamper oppleves likt uansett hvem som spiller"
-          ],
-          "answer": "At lag, landslag og finaler fyller samme stadion med ulike sanger, farger, ritualer og minner",
+          "question": "Hvilke to år ble EM-finalen for kvinner spilt på Ullevaal?",
+          "options": ["1987 og 1997", "1977 og 2007", "1991 og 2001"],
+          "answer": "1987 og 1997",
           "answerIndex": 0,
-          "dimension": "supporterkultur",
-          "topic": "Publikum og identitet",
-          "knowledge": "Supporterkultur er stedlig: samme tribune kan romme landslagsstemning, cupfinalefarger, klubbminner og rivalisering på ulike kampdager.",
-          "trivia": [],
+          "knowledge": "Ullevaal var finalearena under kvinne-EM både i 1987 og i 1997.",
           "difficulty": 2,
-          "question_type": "interpretation",
-          "year": null,
-          "epoke_id": null,
+          "question_type": "fact",
+          "year": 1997,
           "epoke_domain": "sport",
-          "emne_id": "em_sport_klubbidentitet",
-          "related_emner": [
-            "em_sport_arena_samling"
-          ],
-          "core_concepts": [
-            "supporterkultur",
-            "klubbidentitet",
-            "ritual",
-            "fellesskap"
-          ],
-          "concept_focus": [
-            "supporterkultur"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "supporter",
-            "publikum",
-            "identitet",
-            "fellesskap"
-          ],
-          "required_tags": [],
-          "source": []
+          "emne_id": "em_sport_arena_samling",
+          "source": ["nff_locker_room"]
         },
         {
           "id": "ullevaal_stadion_quiz_2_4",
           "quiz_id": "sport_ullevaal_stadion_set_2_q4",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hva bør en god Groundhopper-quiz på Ullevaal trene spilleren i?",
+          "question": "Hvorfor har Ullevaal lavere kapasitet enn publikumsrekorden fra 1949?",
           "options": [
-            "Å koble fysisk stadion, kampdag, publikum, klubbspor og nasjonal fotballhistorie",
-            "Å memorere tilfeldige tall uten å forstå stedet",
-            "Å ignorere forskjellen mellom landslag, klubb og cupfinale"
+            "Ombygginger ga flere sitteplasser, moderne fasiliteter og nye sikkerhetskrav",
+            "Ombygginger fjernet tribunene og gjorde banen til et lukket treningsanlegg",
+            "Ombygginger halverte spilleflaten og ga plass til en permanent ishall"
           ],
-          "answer": "Å koble fysisk stadion, kampdag, publikum, klubbspor og nasjonal fotballhistorie",
+          "answer": "Ombygginger ga flere sitteplasser, moderne fasiliteter og nye sikkerhetskrav",
           "answerIndex": 0,
-          "dimension": "stedslæring",
-          "topic": "Groundhopper-lesning",
-          "knowledge": "Groundhopper-modusen blir sterkere når spilleren lærer å lese stadion som sted: ikke bare resultat og kapasitet, men kampdag, publikum, klubbspor og institusjonell rolle.",
-          "trivia": [],
+          "knowledge": "Stadion er bygd om flere ganger. Ståplasser og eldre tribuner er erstattet av moderne fasiliteter, sitteplasser og strengere sikkerhetsløsninger.",
           "difficulty": 2,
-          "question_type": "place_reading",
+          "question_type": "analysis",
           "year": null,
-          "epoke_id": null,
           "epoke_domain": "sport",
           "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_klubbidentitet"
-          ],
-          "core_concepts": [
-            "stedslæring",
-            "groundhopper",
-            "arena",
-            "fotballhistorie"
-          ],
-          "concept_focus": [
-            "groundhopper"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "history_go",
-            "groundhopper",
-            "fotballhistorie",
-            "arena"
-          ],
-          "required_tags": [],
-          "source": []
+          "core_concepts": ["stadionmodernisering", "sitteplasser", "sikkerhetskrav"],
+          "concept_focus": ["stadionmodernisering"],
+          "source": ["snl_ullevaal", "nff_locker_room"]
         },
         {
           "id": "ullevaal_stadion_quiz_2_5",
           "quiz_id": "sport_ullevaal_stadion_set_2_q5",
           "categoryId": "sport",
           "placeId": "ullevaal_stadion",
-          "personId": "",
           "targetId": "ullevaal_stadion",
           "question_scope": "place",
-          "question": "Hvilken observasjon passer best når spilleren står utenfor Ullevaal?",
+          "question": "Hva betyr det at Ullevaal er en nasjonalarena?",
           "options": [
-            "Hvilke tegn viser kampdag, forbund, klubbspor, supportere eller nasjonal identitet?",
-            "Hvor mange tilfeldige biler passerer på ett minutt?",
-            "Hvilken bygning i byen er lengst unna stadion?"
+            "Arenaen er en fast scene for landslag, cupfinaler og nasjonale fotballminner",
+            "Arenaen er en kommunal klubbane for lag som spiller sine hjemmekamper i Oslo",
+            "Arenaen er et regionalt treningsanlegg uten fast rolle for finaler og landslag"
           ],
-          "answer": "Hvilke tegn viser kampdag, forbund, klubbspor, supportere eller nasjonal identitet?",
+          "answer": "Arenaen er en fast scene for landslag, cupfinaler og nasjonale fotballminner",
           "answerIndex": 0,
-          "dimension": "observasjon",
-          "topic": "Stedlige tegn",
-          "knowledge": "En god observasjon ved Ullevaal ser etter spor av fotballens fellesskap: innganger, symboler, supporterbevegelse, kampdag, forbund og nasjonal identitet.",
-          "trivia": [],
+          "knowledge": "En nasjonalarena er mer enn et stort stadion. Rollen bygges gjennom landskamper, cupfinaler, forbundets tilstedeværelse og kollektive minner. Supporterkultur gir rollen sanger, farger og ritualer.",
           "difficulty": 2,
-          "question_type": "observation",
+          "question_type": "concept",
           "year": null,
-          "epoke_id": null,
           "epoke_domain": "sport",
           "emne_id": "em_sport_arena_samling",
-          "related_emner": [
-            "em_sport_klubbidentitet"
+          "core_concepts": ["nasjonalarena", "supporterkultur", "ritual", "kollektivt minne"],
+          "concept_focus": ["nasjonalarena", "supporterkultur"],
+          "source": ["snl_ullevaal", "nff_locker_room", "nff_100_years"]
+        }
+      ]
+    },
+    {
+      "set_id": "sport_ullevaal_stadion_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 90,
+      "title": "Supporterkultur og kollektivt minne",
+      "questions": [
+        {
+          "id": "ullevaal_stadion_quiz_3_1",
+          "quiz_id": "sport_ullevaal_stadion_set_3_q1",
+          "categoryId": "sport",
+          "placeId": "ullevaal_stadion",
+          "targetId": "ullevaal_stadion",
+          "question_scope": "place",
+          "question": "Hvorfor kan stemningen på en landskamp være annerledes enn under en cupfinale?",
+          "options": [
+            "Landslaget samler nasjonale symboler, mens finalen samler to klubbers egne farger og sanger",
+            "Landskamper mangler organiserte tilskuere, mens cupfinaler bare har nøytrale publikummere",
+            "Landskamper spilles uten klubbhistorie, mens cupfinaler ikke har ritualer eller supporterfelt"
           ],
-          "core_concepts": [
-            "observasjon",
-            "nasjonal identitet",
-            "supporterkultur",
-            "kampdag",
-            "arena"
+          "answer": "Landslaget samler nasjonale symboler, mens finalen samler to klubbers egne farger og sanger",
+          "answerIndex": 0,
+          "knowledge": "Den samme arenaen kan romme ulike supporterfellesskap. Landskamper bruker nasjonale symboler, mens cupfinaler preges av de to finaleklubbenes identitet, sanger og rivalisering.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "year": null,
+          "epoke_domain": "sport",
+          "emne_id": "em_sport_klubbidentitet",
+          "core_concepts": ["supporterkultur", "klubbidentitet", "nasjonal identitet", "ritual"],
+          "concept_focus": ["supporterkultur"],
+          "source": ["nff_100_years", "snl_ullevaal"]
+        },
+        {
+          "id": "ullevaal_stadion_quiz_3_2",
+          "quiz_id": "sport_ullevaal_stadion_set_3_q2",
+          "categoryId": "sport",
+          "placeId": "ullevaal_stadion",
+          "targetId": "ullevaal_stadion",
+          "question_scope": "place",
+          "question": "Hva betyr kollektivt minne på en arena som Ullevaal?",
+          "options": [
+            "Delte minner knyttet til kamper, finaler, spillere og hendelser på samme sted",
+            "En offisiell liste over alle resultater som er registrert av fotballforbundet",
+            "En personlig treningsplan som utøvere bruker før de går ut på banen"
           ],
-          "concept_focus": [
-            "observasjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "observasjon",
-            "kampdag",
-            "supporter",
-            "nasjonal_identitet"
-          ],
-          "required_tags": [],
-          "source": []
+          "answer": "Delte minner knyttet til kamper, finaler, spillere og hendelser på samme sted",
+          "answerIndex": 0,
+          "knowledge": "Kollektivt minne oppstår når mange mennesker knytter felles fortellinger og erfaringer til de samme hendelsene og stedene. Ullevaals landskamper og finaler har bygd slike minner over tid.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "epoke_domain": "sport",
+          "emne_id": "em_sport_arena_samling",
+          "core_concepts": ["kollektivt minne", "arena", "ritual", "fotballhistorie"],
+          "concept_focus": ["kollektivt minne"],
+          "source": ["nff_100_years", "snl_ullevaal"]
         }
       ]
     }

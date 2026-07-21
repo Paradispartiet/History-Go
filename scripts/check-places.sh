@@ -157,10 +157,48 @@ node tests/place-category-overrides.test.mjs
 
 echo "== Religion candidate audit =="
 node dist/tools/audit-religion-place-candidates.mjs | tee /tmp/religion-place-candidate-audit.log
-if grep -Eq '^Religion candidate audit: [1-9][0-9]* unreviewed candidate\(s\)' /tmp/religion-place-candidate-audit.log; then
-  echo "Unreviewed Religion place candidates found. Classify them as Religion or add an explicit reviewed non-Religion decision." >&2
-  exit 1
-fi
+node <<'NODE'
+const fs = require('fs');
+const path = require('path');
+
+function readJson(file) {
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
+}
+
+const overrideIds = new Set();
+const basePath = 'data/places/category_overrides.json';
+if (fs.existsSync(basePath)) {
+  for (const row of readJson(basePath)) {
+    if (row && typeof row.id === 'string') overrideIds.add(row.id.trim());
+  }
+}
+
+const overrideDir = 'data/places/category_overrides';
+const overrideIndexPath = path.join(overrideDir, 'index.json');
+if (fs.existsSync(overrideIndexPath)) {
+  const index = readJson(overrideIndexPath);
+  for (const entry of index.files || []) {
+    const file = path.join(overrideDir, entry);
+    for (const row of readJson(file)) {
+      if (row && typeof row.id === 'string') overrideIds.add(row.id.trim());
+    }
+  }
+}
+
+const log = fs.readFileSync('/tmp/religion-place-candidate-audit.log', 'utf8');
+const candidateIds = [...log.matchAll(/^-\s+([^\s]+)\s+\[/gm)].map((match) => match[1]);
+const unresolved = candidateIds.filter((id) => !overrideIds.has(id));
+const covered = candidateIds.filter((id) => overrideIds.has(id));
+
+if (covered.length) {
+  console.log(`Religion audit compatibility: ${covered.length} candidate(s) already covered by canonical category overrides: ${covered.join(', ')}`);
+}
+if (unresolved.length) {
+  console.error(`Unreviewed Religion place candidates found: ${unresolved.join(', ')}`);
+  console.error('Classify them as Religion or add an explicit reviewed non-Religion decision.');
+  process.exit(1);
+}
+NODE
 
 echo "== Build tools =="
 npm run build:tools
