@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kampen_park",
+  "placeFile": "data/places/by/oslo/kampen_park.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9153872,
+    "lon": 10.780343,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4870715 – Kampen park; scope cross-checked with Oslo kommune",
+    "coordType": "park_center",
+    "coordNote": "Batch 126 canonical migration: Oslo kommune definerer Kampen park som hele parklandskapet og lister både lekeplass og treningsmuligheter som fasiliteter/bruk inne i parken. Ett eksakt navngitt OSM-parkpolygon (osm-way:4870715) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parken; de to gamle aktivitets-ID-ene blir innholdslag, ikke egne overlappende places."
+  },
+  "identity": {
+    "currentName": "Kampen park",
+    "resolvedIdentity": "Kampen park – canonical park/byrom identity",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "official physical-place definition",
+    "exact named stable park polygon",
+    "explicit retirement of purpose-specific overlapping IDs"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Kampen park",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/kampen-park/",
+      "sourceObjectId": "oslo-kommune:park:kampen_park",
+      "sourceQuality": "official_physical_scope_definition",
+      "finding": "Oslo kommune – Kampen park defines the physical park/byrom and its internal activity functions.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves the physical identity before geometry selection."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 4870715 – Kampen park; scope cross-checked with Oslo kommune",
+      "sourceUrl": "https://www.openstreetmap.org/way/4870715",
+      "sourceObjectId": "osm-way:4870715",
+      "sourceQuality": "exact_named_polygon_after_object_type_filter",
+      "finding": "One exact named park polygon in predefined Oslo scope, matching the saved intake candidate stable ID.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 126 canonical migration: Oslo kommune definerer Kampen park som hele parklandskapet og lister både lekeplass og treningsmuligheter som fasiliteter/bruk inne i parken. Ett eksakt navngitt OSM-parkpolygon (osm-way:4870715) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parken; de to gamle aktivitets-ID-ene blir innholdslag, ikke egne overlappende places."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4870715",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4870715",
+      "lat": 59.9153872,
+      "lon": 10.780343,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4870715",
+      "lat": 59.9153872,
+      "lon": 10.780343,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical kampen_park applied and overlapping purpose-specific IDs retired."
+  },
+  "notes": [
+    "Batch 126 canonical migration: Oslo kommune definerer Kampen park som hele parklandskapet og lister både lekeplass og treningsmuligheter som fasiliteter/bruk inne i parken. Ett eksakt navngitt OSM-parkpolygon (osm-way:4870715) er valgt etter objekt-type-først-filter. Punktet er area-anchor for parken; de to gamle aktivitets-ID-ene blir innholdslag, ikke egne overlappende places."
+  ]
+}

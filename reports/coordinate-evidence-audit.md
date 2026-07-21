@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T10:31:38.386Z
+Generert: 2026-07-21T10:38:23.340Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -36,6 +36,7 @@ Generert: 2026-07-21T10:31:38.386Z
 | holmenkollen_kapell | data/coordinate-evidence/oslo/by/holmenkollen_kapell.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jernbanetorget | data/coordinate-evidence/oslo/by/jernbanetorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kampen_okologiske_barnebondegard | data/coordinate-evidence/oslo/by/kampen_okologiske_barnebondegard.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kampen_park | data/coordinate-evidence/oslo/by/kampen_park.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | karl_johan | data/coordinate-evidence/oslo/by/karl_johan.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | lindoya | data/coordinate-evidence/oslo/by/lindoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | losaeter | data/coordinate-evidence/oslo/by/losaeter.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -52,6 +53,7 @@ Generert: 2026-07-21T10:31:38.386Z
 | ring_3 | data/coordinate-evidence/oslo/by/ring_3.json | needs_research | needs_geometry | OK |
 | rodelokka | data/coordinate-evidence/oslo/by/rodelokka.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | romsaås | data/coordinate-evidence/oslo/by/romsaås.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| rudolf_nilsens_plass | data/coordinate-evidence/oslo/by/rudolf_nilsens_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sagene | data/coordinate-evidence/oslo/by/sagene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skoyen | data/coordinate-evidence/oslo/by/skoyen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | slottsparken | data/coordinate-evidence/oslo/by/slottsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |

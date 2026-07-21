@@ -471,6 +471,11 @@ Batch 124 (2026-07-21) løser Frognerborgen-parentproblemet ved å produsere den
 
 Batch 125 (2026-07-21) gjennomfører den lukkede treveis canonical identity-migreringen fra VisitOSLO parker/natur-scopeauditen: `sofienbergparken_subkultur` → `sofienbergparken`, `treningssted_torshovdalen` → `torshovdalen` og `treningssted_sognsvann` → `sognsvann`. Selve fysiske stedet er canonical identitet; subkultur, trening og aktivitet beholdes som bruk-/innholdslag. Hvert sted bruker ett eksakt navngitt OSM-polygon med riktig objekttype, kryssjekket mot Oslo kommunes stedsbeskrivelse. De gamle pseudo-place-ID-ene fjernes og beskyttes med alias-gaten.
 
+| 126 | `kampen_park` | Kampen park | verified_geometry | `osm-way:4870715` |
+| 126 | `rudolf_nilsens_plass` | Rudolf Nilsens plass | verified_geometry | `osm-way:36972584` |
+
+Batch 126 (2026-07-21) normaliserer aktivitetsorienterte pseudo-ID-er til de fysiske park-/byromidentitetene. `lekeplass_kampen_park` og `treningssted_kampen_park` samles i `kampen_park`; `aktivitet_rudolf_nilsens_plass` blir `rudolf_nilsens_plass`. Oslo kommune beskriver Kampen park som én park med blant annet lekeplass, bordtennis og treningsmuligheter, og Rudolf Nilsens plass som ett samlet park-/byrom med lekeplass, treningsapparater, multibane og kunstgress/kunstis. Begge canonical steder bruker ett eksakt navngitt OSM-parkpolygon med stable ID fra den tidligere intake-kontrollen. De gamle aktivitets-ID-ene fjernes og beholdes kun som alias/innholdslag; ingen overlappende markører opprettes.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)

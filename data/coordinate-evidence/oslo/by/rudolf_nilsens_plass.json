@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rudolf_nilsens_plass",
+  "placeFile": "data/places/by/oslo/rudolf_nilsens_plass.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9161311,
+    "lon": 10.7653344,
+    "r": 160,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 36972584 – Rudolf Nilsens plass; scope cross-checked with Oslo kommune",
+    "coordType": "park_center",
+    "coordNote": "Batch 126 canonical migration: Oslo kommune definerer Rudolf Nilsens plass som et samlet park-/byrom med flere aktivitetsfunksjoner. Ett eksakt navngitt OSM-parkpolygon (osm-way:36972584) er valgt etter objekt-type-først-filter. Punktet er area-anchor for hele plassen; den gamle aktivitets-ID-en blir et brukslag, ikke et eget overlappende place."
+  },
+  "identity": {
+    "currentName": "Rudolf Nilsens plass",
+    "resolvedIdentity": "Rudolf Nilsens plass – canonical park/byrom identity",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "official physical-place definition",
+    "exact named stable park polygon",
+    "explicit retirement of purpose-specific overlapping IDs"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Rudolf Nilsens plass",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/rudolf-nilsens-plass/",
+      "sourceObjectId": "oslo-kommune:park:rudolf_nilsens_plass",
+      "sourceQuality": "official_physical_scope_definition",
+      "finding": "Oslo kommune – Rudolf Nilsens plass defines the physical park/byrom and its internal activity functions.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves the physical identity before geometry selection."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 36972584 – Rudolf Nilsens plass; scope cross-checked with Oslo kommune",
+      "sourceUrl": "https://www.openstreetmap.org/way/36972584",
+      "sourceObjectId": "osm-way:36972584",
+      "sourceQuality": "exact_named_polygon_after_object_type_filter",
+      "finding": "One exact named park polygon in predefined Oslo scope, matching the saved intake candidate stable ID.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 126 canonical migration: Oslo kommune definerer Rudolf Nilsens plass som et samlet park-/byrom med flere aktivitetsfunksjoner. Ett eksakt navngitt OSM-parkpolygon (osm-way:36972584) er valgt etter objekt-type-først-filter. Punktet er area-anchor for hele plassen; den gamle aktivitets-ID-en blir et brukslag, ikke et eget overlappende place."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36972584",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36972584",
+      "lat": 59.9161311,
+      "lon": 10.7653344,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36972584",
+      "lat": 59.9161311,
+      "lon": 10.7653344,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical rudolf_nilsens_plass applied and overlapping purpose-specific IDs retired."
+  },
+  "notes": [
+    "Batch 126 canonical migration: Oslo kommune definerer Rudolf Nilsens plass som et samlet park-/byrom med flere aktivitetsfunksjoner. Ett eksakt navngitt OSM-parkpolygon (osm-way:36972584) er valgt etter objekt-type-først-filter. Punktet er area-anchor for hele plassen; den gamle aktivitets-ID-en blir et brukslag, ikke et eget overlappende place."
+  ]
+}
