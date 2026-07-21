@@ -33,25 +33,24 @@
     }
   }
   function getKnowledgeForCategory(categoryId) {
-    const uni = getKnowledgeUniverse();
-    return uni[categoryId] || {};
+    var _a, _b;
+    const cid = String(categoryId || "").trim();
+    const canonical = (_b = (_a = window.HGKnowledgeV2) == null ? void 0 : _a.getEntries) == null ? void 0 : _b.call(_a);
+    if (Array.isArray(canonical)) {
+      const grouped = {};
+      canonical.filter((entry) => String((entry == null ? void 0 : entry.subject_id) || (entry == null ? void 0 : entry.fagkart_category_id) || "").trim() === cid).forEach((entry) => {
+        const dimension = String((entry == null ? void 0 : entry.dimension) || "generelt").trim() || "generelt";
+        grouped[dimension] || (grouped[dimension] = []);
+        grouped[dimension].push({ id: entry.id, topic: entry.topic, text: entry.text });
+      });
+      if (Object.keys(grouped).length) return grouped;
+    }
+    const legacy = getKnowledgeUniverse();
+    return legacy[cid] || {};
   }
   function saveKnowledgeFromQuiz(quizItem, context = {}) {
-    if (!quizItem) return;
-    const baseId = quizItem.id || context.id;
-    if (!baseId) return;
-    const category = quizItem.categoryId || context.categoryId || "ukjent";
-    const dimension = quizItem.dimension || context.dimension || "generelt";
-    const topic = quizItem.topic || quizItem.question || context.topic || "L\xE6rt gjennom quiz";
-    const text = quizItem.knowledge || quizItem.explanation || quizItem.answer || "Ingen forklaring registrert.";
-    const entry = {
-      id: "quiz_" + baseId,
-      category,
-      dimension,
-      topic,
-      text
-    };
-    saveKnowledgePoint(entry);
+    var _a, _b;
+    return ((_b = (_a = window.HGKnowledgeV2) == null ? void 0 : _a.captureQuizKnowledge) == null ? void 0 : _b.call(_a, quizItem, context)) || null;
   }
   window.saveKnowledgeFromQuiz = saveKnowledgeFromQuiz;
   function renderKnowledgeSection(categoryId) {

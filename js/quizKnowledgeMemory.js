@@ -15,6 +15,8 @@
   const STORAGE_KEY = "hg_knowledge_memory_v1";
   const SCHEMA = "hg_knowledge_memory_v1";
   const MANIFEST_PATH = "data/quiz/manifest.json";
+  const ClaimCore = root?.HGKnowledgeV2?.claimCore;
+  if (!ClaimCore) throw new Error("HGKnowledgeV2 must load before quizKnowledgeMemory.js");
   const fetchCache = new Map();
   let pendingBundle = null;
   let summaryObserver = null;
@@ -113,14 +115,7 @@
   }
 
   function inferKnowledgeKind(question) {
-    const type = text(question?.question_type || question?.question_family || question?.dimension).toLowerCase();
-    if (/trivia|kurios|fun.?fact/.test(type)) return "fun_fact";
-    if (/story|historie|fortelling/.test(type)) return "story";
-    if (/concept|begrep|termin/.test(type)) return "concept";
-    if (/method|metode/.test(type)) return "method";
-    if (/theory|teori|analysis|analyse/.test(type)) return "analysis";
-    if (/observation|observasjon|place_reading|steds/.test(type)) return "observation";
-    return "knowledge";
+    return ClaimCore.inferKind(question);
   }
 
   function buildCorrectQuestionKeys(result) {
@@ -169,7 +164,7 @@
     const events = flattenValues(question?.event_ids, question?.related_events);
     const methods = flattenValues(question?.method_id, question?.guidance_basis?.method_id);
     const stories = flattenValues(question?.story_ids, question?.related_stories);
-    const knowledgeText = text(question?.knowledge || question?.explanation || question?.answer);
+    const knowledgeText = ClaimCore.extractQuizClaims(question).join(" ");
 
     return {
       unit_id: questionId,
@@ -264,6 +259,99 @@
     };
   }
 
+  function splitUnit(unit) {
+    const claims = ClaimCore.extractTextClaims(unit?.text, { question: unit?.question, answer: unit?.answer });
+    if (!claims.length) return [];
+    const kind = ClaimCore.inferKind(unit);
+    const currentId = text(unit?.unit_id || unit?.id || "knowledge_unit");
+    const sourceId = text(unit?.source_question_id || currentId);
+    return claims.map((claim, index) => {
+      const next = { ...unit };
+      delete next.question;
+      delete next.answer;
+      delete next.trivia;
+      next.unit_id = claims.length === 1 ? currentId : `${sourceId}::claim::${index + 1}`;
+      next.source_question_id = sourceId;
+      next.kind = kind;
+      next.topic = ClaimCore.cleanTopic(unit?.topic, kind);
+      next.text = claim;
+      next.quality = { version: 2, source: "canonical_quiz_builder", split_from_question: claims.length > 1 };
+      return next;
+    });
+  }
+
+  function mergeAssessment(a, b) {
+    const mastered = a?.state === "mastered" || b?.state === "mastered" || a?.correct === true || b?.correct === true;
+    return { ...(a || {}), ...(b || {}), correct: mastered, state: mastered ? "mastered" : (a?.state || b?.state || "needs_review") };
+  }
+
+  function dedupeUnits(units) {
+    const map = new Map();
+    array(units).forEach((unit) => {
+      const key = ClaimCore.normalized(unit?.text);
+      if (!key) return;
+      const previous = map.get(key);
+      if (!previous) return map.set(key, unit);
+      for (const field of ["emne_ids", "concepts", "concept_focus", "terms", "tags"]) {
+        previous[field] = unique([...(previous[field] || []), ...(unit[field] || [])]);
+      }
+      previous.sources = array(previous.sources).concat(array(unit.sources));
+      previous.assessment = mergeAssessment(previous.assessment, unit.assessment);
+    });
+    return Array.from(map.values());
+  }
+
+  function sanitizeFunFacts(items, blocked) {
+    const output = [];
+    array(items).forEach((item, itemIndex) => {
+      ClaimCore.splitClaims(item?.text || item).forEach((claim, claimIndex) => {
+        const key = ClaimCore.normalized(claim);
+        if (!key || blocked.has(key)) return;
+        blocked.add(key);
+        const raw = item && typeof item === "object" ? item : {};
+        output.push({ ...raw, id: text(raw.id) || `fun_fact_${itemIndex + 1}_${claimIndex + 1}`, kind: "fun_fact", text: claim });
+      });
+    });
+    return output;
+  }
+
+  function rebuildBundleIndexes(bundle) {
+    const units = array(bundle?.knowledge_units);
+    bundle.indexes = {
+      ...(bundle.indexes || {}),
+      emne_ids: unique(units.flatMap((unit) => array(unit?.emne_ids))),
+      concepts: unique(units.flatMap((unit) => array(unit?.concepts))),
+      concept_focus: unique(units.flatMap((unit) => array(unit?.concept_focus))),
+      terms: unique(units.flatMap((unit) => array(unit?.terms))),
+      people: unique(units.flatMap((unit) => array(unit?.people))),
+      events: unique(units.flatMap((unit) => array(unit?.events))),
+      methods: unique(units.flatMap((unit) => array(unit?.methods))),
+      stories: unique(units.flatMap((unit) => array(unit?.stories)))
+    };
+    return bundle;
+  }
+
+  function sanitizeBundle(bundle) {
+    if (!bundle || typeof bundle !== "object") return bundle;
+    if (bundle?.content_quality?.version === 2 && array(bundle.knowledge_units).every((unit) => unit?.quality?.version === 2)) return bundle;
+    const original = array(bundle.knowledge_units);
+    const knowledgeUnits = dedupeUnits(original.flatMap(splitUnit));
+    const blocked = new Set(knowledgeUnits.map((unit) => ClaimCore.normalized(unit.text)));
+    return rebuildBundleIndexes({
+      ...bundle,
+      knowledge_units: knowledgeUnits,
+      fun_facts: sanitizeFunFacts(bundle.fun_facts, blocked),
+      content_quality: {
+        version: 2,
+        original_unit_count: original.length,
+        precise_unit_count: knowledgeUnits.length,
+        removed_or_merged_count: Math.max(0, original.length - knowledgeUnits.length),
+        automatic_storage: true,
+        canonical_builder: true
+      }
+    });
+  }
+
   function buildQuizKnowledgeBundle(input = {}) {
     const questions = array(input.questions || input.setBlock?.questions);
     const result = input.result || {};
@@ -288,7 +376,7 @@
     const total = Number.isFinite(Number(result?.total)) ? Number(result.total) : units.length;
     const now = new Date().toISOString();
 
-    return {
+    return sanitizeBundle({
       schema: SCHEMA,
       bundle_id: stableId(targetId, setId),
       target_id: targetId,
@@ -329,7 +417,7 @@
         stories,
         sources
       }
-    };
+    });
   }
 
   function emptyMemory() {
@@ -352,7 +440,17 @@
     if (!root?.localStorage) return emptyMemory();
     try {
       const parsed = JSON.parse(root.localStorage.getItem(STORAGE_KEY) || "null");
-      return parsed && parsed.schema === SCHEMA && parsed.bundles ? parsed : emptyMemory();
+      if (!parsed || parsed.schema !== SCHEMA || !parsed.bundles) return emptyMemory();
+      const next = { ...parsed, bundles: { ...parsed.bundles } };
+      let changed = false;
+      Object.entries(next.bundles).forEach(([bundleId, bundle]) => {
+        const clean = sanitizeBundle(bundle);
+        next.bundles[bundleId] = clean;
+        if (JSON.stringify(clean) !== JSON.stringify(bundle)) changed = true;
+      });
+      rebuildIndexes(next);
+      if (changed) root.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      return next;
     } catch {
       return emptyMemory();
     }
@@ -384,7 +482,9 @@
   }
 
   function saveBundle(bundle) {
-    if (!bundle?.bundle_id) return null;
+    const preciseBundle = sanitizeBundle(bundle);
+    if (!preciseBundle?.bundle_id) return null;
+    bundle = preciseBundle;
     const memory = readMemory();
     const previous = memory.bundles[bundle.bundle_id];
     memory.bundles[bundle.bundle_id] = {
@@ -534,9 +634,6 @@
             ${renderChips([...(bundle.indexes?.emne_ids || []), ...(bundle.indexes?.concepts || []), ...(bundle.indexes?.concept_focus || []), ...(bundle.indexes?.terms || [])]) || "<p class=\"muted\">Ingen emner eller begreper registrert.</p>"}
           </section>
         </div>
-        <div style="display:flex;justify-content:flex-end;padding:12px 16px 16px">
-          <button id="quizKnowledgeMemoryRead">Lest – legg i Knowledge</button>
-        </div>
       </div>`;
   }
 
@@ -558,10 +655,6 @@
     root.document.body.appendChild(modal);
     updateReadingState(bundle.bundle_id, "presented");
     modal.querySelector("#quizKnowledgeMemoryClose").onclick = closeKnowledgePopup;
-    modal.querySelector("#quizKnowledgeMemoryRead").onclick = () => {
-      updateReadingState(bundle.bundle_id, "read");
-      closeKnowledgePopup();
-    };
     modal.addEventListener("click", (event) => {
       if (event.target === modal) closeKnowledgePopup();
     });
@@ -645,6 +738,7 @@
     openKnowledgePopup,
     attachBundleToSummary,
     captureCompletion,
+    sanitizeBundle,
     initBrowserIntegration
   };
 

@@ -67,8 +67,21 @@ function saveKnowledgePoint(entry) {
 // 2) HENTE KUNNSKAP FOR ET MERKE
 // ------------------------------------------------------------
 function getKnowledgeForCategory(categoryId) {
-  const uni = getKnowledgeUniverse();
-  return uni[categoryId] || {};
+  const cid = String(categoryId || "").trim();
+  const canonical = window.HGKnowledgeV2?.getEntries?.();
+  if (Array.isArray(canonical)) {
+    const grouped = {};
+    canonical
+      .filter((entry) => String(entry?.subject_id || entry?.fagkart_category_id || "").trim() === cid)
+      .forEach((entry) => {
+        const dimension = String(entry?.dimension || "generelt").trim() || "generelt";
+        grouped[dimension] ||= [];
+        grouped[dimension].push({ id: entry.id, topic: entry.topic, text: entry.text });
+      });
+    if (Object.keys(grouped).length) return grouped;
+  }
+  const legacy = getKnowledgeUniverse();
+  return legacy[cid] || {};
 }
 
 // ------------------------------------------------------------
@@ -78,44 +91,7 @@ function getKnowledgeForCategory(categoryId) {
 // LAG KUNNSKAPSPUNKT NÅR QUIZ SVARES RIKTIG
 // ------------------------------------------------------------
 function saveKnowledgeFromQuiz(quizItem, context = {}) {
-  if (!quizItem) return;
-
-  // Vi tillater at quizItem mangler id, da kan vi bruke context.id
-  const baseId = quizItem.id || context.id;
-  if (!baseId) return;
-
-  const category =
-    quizItem.categoryId ||
-    context.categoryId ||
-    "ukjent";
-
-  const dimension =
-    quizItem.dimension ||
-    context.dimension ||
-    "generelt";
-
-  const topic =
-    quizItem.topic ||
-    quizItem.question ||
-    context.topic ||
-    "Lært gjennom quiz";
-
-  // Vi prøver først 'knowledge' (History Go-stil), så 'explanation', så 'answer'
-  const text =
-    quizItem.knowledge ||
-    quizItem.explanation ||
-    quizItem.answer ||
-    "Ingen forklaring registrert.";
-
-  const entry = {
-    id: "quiz_" + baseId,
-    category,
-    dimension,
-    topic,
-    text
-  };
-
-  saveKnowledgePoint(entry);
+  return window.HGKnowledgeV2?.captureQuizKnowledge?.(quizItem, context) || null;
 }
 
 window.saveKnowledgeFromQuiz = saveKnowledgeFromQuiz;

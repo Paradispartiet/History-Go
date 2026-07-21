@@ -35,6 +35,7 @@ const SOURCE_MAPPED_ENTRIES = [
   { in: "js/emnerLoader.ts", out: "emnerLoader" },
   { in: "js/hgInsights.ts", out: "hgInsights" },
   { in: "js/knowledge.ts", out: "knowledge" },
+  { in: "js/knowledgeV2.ts", out: "knowledgeV2" },
   { in: "js/trivia.ts", out: "trivia" },
   { in: "js/courses.ts", out: "courses" },
   { in: "js/emneDekning.ts", out: "emneDekning" }
