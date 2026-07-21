@@ -104,13 +104,13 @@ function mergeNamedRows(...groups: JsonObject[][]): JsonObject[] {
   return Array.from(rows.values());
 }
 
-function explicitUnitId(question: JsonObject, fallback: string): string {
-  return text(
-    question.primary_knowledge_unit_id ||
-    question.knowledge_unit_id ||
-    array(question.knowledge_unit_ids)[0] ||
+function explicitUnitIds(question: JsonObject, fallback: string): string[] {
+  return unique([
+    question.primary_knowledge_unit_id,
+    question.knowledge_unit_id,
+    question.knowledge_unit_ids,
     question.quiz_id || question.quizId || question.id || fallback
-  );
+  ]);
 }
 
 function buildCorrectQuestionKeys(result: JsonObject): Set<string> {
@@ -168,10 +168,13 @@ function collectTopLevelMaterial(setDataValue: unknown): JsonObject {
 function buildKnowledgeUnit(questionValue: unknown, index: number, correctKeys: Set<string>, result: JsonObject, context: JsonObject): JsonObject {
   const question = object(questionValue);
   const fallbackId = stableId(context.setId, "q", index + 1);
-  const unitId = explicitUnitId(question, fallbackId);
+  const unitIds = explicitUnitIds(question, fallbackId);
+  const unitId = unitIds[0];
   const correct = questionWasCorrect(question, correctKeys, result, index);
   return {
     unit_id: unitId,
+    knowledge_unit_id: unitId,
+    knowledge_unit_ids: unitIds,
     source_question_id: text(question.quiz_id || question.quizId || question.id || fallbackId),
     kind: claimCore.inferKind(question),
     subject_id: context.categoryId,
@@ -188,13 +191,16 @@ function buildKnowledgeUnit(questionValue: unknown, index: number, correctKeys: 
     year: question.year ?? null,
     epoke_id: text(question.epoke_id),
     emne_ids: unique([question.emne_id, question.emne_ids, question.related_emner, question.related_emnes]),
-    concepts: unique([question.core_concepts, question.concept_ids]),
+    concepts: unique([question.core_concepts, question.concepts]),
+    concept_ids: unique([question.concept_ids, question.conceptIds]),
     concept_focus: unique([question.concept_focus]),
-    terms: unique([question.term_ids, question.terminology, question.terminologi, question.faguttrykk]),
+    terms: unique([question.terminology, question.terminologi, question.faguttrykk]),
+    term_ids: unique([question.term_ids, question.termIds]),
     people: unique([question.personId, question.person_id, question.theorist_names, question.related_people]),
     events: unique([question.event_ids, question.related_events]),
     methods: unique([question.method_id, object(question.guidance_basis).method_id]),
-    stories: unique([question.story_ids, question.related_stories]),
+    stories: unique([question.related_stories]),
+    story_ids: unique([question.story_ids, question.storyIds]),
     theory_focus: unique([question.theory_focus]),
     tags: unique([question.tags]),
     sources: normalizeSources(question.source || question.sources),
@@ -211,14 +217,16 @@ function splitUnit(unitValue: unknown): JsonObject[] {
   const claims = claimCore.extractTextClaims(unit.text, { question: unit.question, answer: unit.answer });
   if (!claims.length) return [];
   const kind = claimCore.inferKind(unit);
-  const currentId = text(unit.unit_id || unit.id || "knowledge_unit");
+  const currentId = text(unit.knowledge_unit_id || unit.unit_id || unit.id || "knowledge_unit");
+  const explicitIds = unique([unit.knowledge_unit_ids, unit.knowledge_unit_id, unit.unit_id]);
   const sourceId = text(unit.source_question_id || currentId);
   return claims.map((claim, index) => {
     const next = { ...unit };
     delete next.question;
     delete next.answer;
     delete next.trivia;
-    next.unit_id = claims.length === 1 ? currentId : `${currentId}::claim::${index + 1}`;
+    next.unit_id = explicitIds[index] || (claims.length === 1 ? currentId : `${currentId}::claim::${index + 1}`);
+    next.knowledge_unit_id = next.unit_id;
     next.source_question_id = sourceId;
     next.kind = kind;
     next.topic = claimCore.cleanTopic(unit.topic, kind);
@@ -416,9 +424,13 @@ export function createQuizKnowledgeMemory({ root, upsertEntry, normalizeSubjectI
       schema: "history_go_knowledge_entry_v2",
       version: 2,
       id: `quiz_memory::${text(bundle.bundle_id)}::${unitId}`,
+      knowledge_unit_id: unitId,
       subject_id: normalizeSubjectId(bundle.subject_id),
       fagkart_category_id: normalizeSubjectId(bundle.subject_id),
       emne_ids: emneIds,
+      concept_ids: unique([unit.concept_ids]),
+      term_ids: unique([unit.term_ids]),
+      story_ids: unique([unit.story_ids]),
       concepts: unique([unit.concepts, unit.concept_focus]),
       terms: unique([unit.terms]),
       tags: unique([unit.tags]),

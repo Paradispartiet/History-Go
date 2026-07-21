@@ -63,6 +63,9 @@ test("riktig quiz-svar oppretter canonical Knowledge-entry med fag og concepts",
   assert.equal(entry.subject_id, "by");
   assert.deepEqual(entry.emne_ids, ["em_by_gentrifisering_eiendom"]);
   assert.deepEqual(entry.concepts, ["gentrifisering", "planmakt"]);
+  assert.match(entry.knowledge_unit_id, /^ku_by_/);
+  assert.equal(entry.id, entry.knowledge_unit_id);
+  assert.equal(entry.concept_ids.length, 2);
   assert.equal(entry.source.place_id, "torggata");
   assert.equal(api.getEntries().length, 1);
 });
@@ -92,7 +95,10 @@ test("canonical claim prioriteres og deles i selvstendige kunnskapspåstander", 
     },
     explanation: "Denne teksten skal ikke velges når knowledge_payload finnes.",
     core_concepts: ["offentlig institusjon"],
-    term_ids: ["hovedbibliotek"],
+    terminology: ["hovedbibliotek"],
+    term_ids: ["term_by_hovedbibliotek_test"],
+    concept_ids: ["co_by_offentlig_institusjon_test"],
+    knowledge_unit_ids: ["ku_by_deichman_opening_test_1", "ku_by_deichman_opening_test_2"],
     tags: ["oslo"]
   });
 
@@ -102,6 +108,10 @@ test("canonical claim prioriteres og deles i selvstendige kunnskapspåstander", 
   ]);
   assert.deepEqual(entries[0].concepts, ["offentlig institusjon"]);
   assert.deepEqual(entries[0].terms, ["hovedbibliotek"]);
+  assert.equal(entries[0].knowledge_unit_id, "ku_by_deichman_opening_test_1");
+  assert.equal(entries[1].knowledge_unit_id, "ku_by_deichman_opening_test_2");
+  assert.deepEqual(entries[0].concept_ids, ["co_by_offentlig_institusjon_test"]);
+  assert.deepEqual(entries[0].term_ids, ["term_by_hovedbibliotek_test"]);
   assert.deepEqual(entries[0].tags, ["oslo"]);
   assert.equal(entries[0].concepts.includes("oslo"), false);
   assert.equal("answer" in entries[0], false);
@@ -171,6 +181,8 @@ test("legacy knowledge renses og bevares selv når emnekoblingen mangler", () =>
   ]);
   assert.ok(rows.every((entry) => entry.topic === "Kunnskap"));
   assert.ok(rows.every((entry) => entry.link_status === "legacy_unresolved"));
+  assert.equal(global.localStorage.getItem("knowledge_universe"), null);
+  assert.ok(global.localStorage.getItem("hg_knowledge_legacy_migrated_v1"));
 });
 
 test("buildProfile organiserer Knowledge etter fag og emne uten å gjøre observasjoner til Knowledge", async () => {

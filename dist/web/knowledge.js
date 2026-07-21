@@ -1,36 +1,12 @@
 (() => {
   // js/knowledge.ts
   function getKnowledgeUniverse() {
-    return JSON.parse(localStorage.getItem("knowledge_universe") || "{}");
-  }
-  function saveKnowledgeUniverse(obj) {
-    localStorage.setItem("knowledge_universe", JSON.stringify(obj));
+    var _a, _b;
+    return ((_b = (_a = window.HGKnowledgeV2) == null ? void 0 : _a.getLegacyProjection) == null ? void 0 : _b.call(_a)) || {};
   }
   function saveKnowledgePoint(entry) {
-    if (!entry || !entry.category || !entry.dimension || !entry.id) return;
-    const uni = getKnowledgeUniverse();
-    if (!uni[entry.category]) {
-      uni[entry.category] = {};
-    }
-    if (!uni[entry.category][entry.dimension]) {
-      uni[entry.category][entry.dimension] = [];
-    }
-    const list = uni[entry.category][entry.dimension];
-    let changed = false;
-    if (!list.some((k) => k.id === entry.id)) {
-      list.push({
-        id: entry.id,
-        topic: entry.topic,
-        text: entry.text
-      });
-      changed = true;
-    }
-    if (!changed) return;
-    saveKnowledgeUniverse(uni);
-    window.dispatchEvent(new Event("updateProfile"));
-    if (typeof window.syncHistoryGoToAHA === "function") {
-      window.syncHistoryGoToAHA();
-    }
+    var _a, _b;
+    return ((_b = (_a = window.HGKnowledgeV2) == null ? void 0 : _a.captureKnowledgePoint) == null ? void 0 : _b.call(_a, entry)) || null;
   }
   function getKnowledgeForCategory(categoryId) {
     var _a, _b;
@@ -45,8 +21,7 @@
       });
       if (Object.keys(grouped).length) return grouped;
     }
-    const legacy = getKnowledgeUniverse();
-    return legacy[cid] || {};
+    return {};
   }
   function saveKnowledgeFromQuiz(quizItem, context = {}) {
     var _a, _b;

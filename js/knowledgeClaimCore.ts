@@ -38,8 +38,12 @@ function array<T = unknown>(value: unknown): T[] {
   return Array.isArray(value) ? value as T[] : [];
 }
 
+function flattenValues(values: unknown[]): unknown[] {
+  return values.flatMap((value) => Array.isArray(value) ? flattenValues(value) : [value]);
+}
+
 function unique(values: unknown[]): string[] {
-  return Array.from(new Set(values.map(text).filter(Boolean)));
+  return Array.from(new Set(flattenValues(values).map(text).filter(Boolean)));
 }
 
 function normalized(value: unknown): string {
@@ -145,8 +149,6 @@ function explicitConcepts(value: unknown): string[] {
   return unique([
     ...array(row.concepts),
     ...array(row.core_concepts),
-    ...array(row.conceptIds),
-    ...array(row.concept_ids),
     ...array(row.begreper)
   ]);
 }
@@ -155,7 +157,6 @@ function explicitTerms(value: unknown): string[] {
   const row = record(value);
   return unique([
     ...array(row.terms),
-    ...array(row.term_ids),
     ...array(row.terminology),
     ...array(row.terminologi),
     ...array(row.faguttrykk)

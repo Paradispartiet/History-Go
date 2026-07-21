@@ -47,18 +47,14 @@
     return count;
   }
 
-  function collectKnowledgeSignals(chamber, universe, fallbackTimestamp) {
+  function collectKnowledgeSignals(chamber, entries, fallbackTimestamp) {
     let count = 0;
-    const categories = universe && typeof universe === "object" ? universe : {};
-    Object.entries(categories).forEach(([category, dimensions]) => {
-      Object.entries(dimensions || {}).forEach(([dimension, items]) => {
-        (Array.isArray(items) ? items : []).forEach((item) => {
-          const topic = item.topic || item.title || item.id || "tema";
-          const text = `${topic}: ${item.text || item.content || item.summary || ""}`;
-          const meta = { dimension, item_id: item.id || null, imported: true, source_app: "historygo", source_type: "historygo_knowledge_item" };
-          if (addSignal(chamber, text, category, item.updatedAt || item.createdAt || fallbackTimestamp, meta)) count++;
-        });
-      });
+    (Array.isArray(entries) ? entries : []).forEach((item) => {
+      const category = item.subject_id || item.fagkart_category_id || "historygo";
+      const topic = item.topic || item.title || item.knowledge_unit_id || item.id || "tema";
+      const text = `${topic}: ${item.text || item.content || item.summary || ""}`;
+      const meta = { dimension: item.dimension || null, item_id: item.knowledge_unit_id || item.id || null, concept_ids: item.concept_ids || [], term_ids: item.term_ids || [], imported: true, source_app: "historygo", source_type: "historygo_knowledge_item_v2" };
+      if (addSignal(chamber, text, category, item.last_seen_at || item.learned_at || fallbackTimestamp, meta)) count++;
     });
     return count;
   }
@@ -71,7 +67,7 @@
     importedSignals += collectNextUpSignal(chamber, payload.nextup_learning_signal, ts);
     importedSignals += collectLearningLogSignals(chamber, payload.hg_learning_log_v1, ts);
     importedSignals += collectInsightEventSignals(chamber, payload.hg_insights_events_v1, ts);
-    importedSignals += collectKnowledgeSignals(chamber, payload.knowledge_universe, ts);
+    importedSignals += collectKnowledgeSignals(chamber, payload.hg_knowledge_entries_v2, ts);
     importedSignals += collectLearningLogSignals(chamber, payload.notes, ts);
     importedSignals += collectLearningLogSignals(chamber, payload.dialogs, ts);
     global.saveChamberToStorage(chamber);

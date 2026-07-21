@@ -680,37 +680,21 @@ async function enhanceQuizButton(btn, targetId) {
 }
 
 // Hent kunnskapsblokker for en bestemt kategori + mål (person/sted)
-// Leser direkte fra localStorage: knowledge_universe
 function getInlineKnowledgeFor(categoryId, targetId) {
   if (!categoryId || !targetId) return null;
-
-  let uni;
-  try {
-    uni = JSON.parse(localStorage.getItem("knowledge_universe") || "{}");
-  } catch {
-    return null;
-  }
-
-  const cat = uni[categoryId];
-  if (!cat) return null;
-
+  const entries = window.HGKnowledgeV2?.getEntries?.() || [];
   const out = {};
-  const prefix = ("quiz_" + targetId + "_").toLowerCase();
-
-  Object.entries(cat).forEach(([dimension, items]) => {
-    if (!Array.isArray(items)) return;
-
-    const filtered = items.filter(k =>
-      k.id &&
-      typeof k.id === "string" &&
-      k.id.toLowerCase().startsWith(prefix)
-    );
-
-    if (filtered.length) {
-      out[dimension] = filtered;
-    }
-  });
-
+  (Array.isArray(entries) ? entries : [])
+    .filter((entry) => String(entry?.subject_id || entry?.fagkart_category_id || "").trim() === String(categoryId).trim())
+    .filter((entry) => {
+      const source = entry?.source || {};
+      return [source.target_id, source.place_id, source.person_id].map((value) => String(value || "").trim()).includes(String(targetId).trim());
+    })
+    .forEach((entry) => {
+      const dimension = String(entry?.dimension || "generelt").trim() || "generelt";
+      out[dimension] ||= [];
+      out[dimension].push({ id: entry.knowledge_unit_id || entry.id, topic: entry.topic, text: entry.text });
+    });
   return Object.keys(out).length ? out : null;
 }
 

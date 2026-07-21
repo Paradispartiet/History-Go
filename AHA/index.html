@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>History Go Innsiktsmotor</h1>
-  <p>Dette er History Go sin lokale innsiktsmotor. Den samler signaler fra steder, quiz, badges, personer, NextUp, learning log og knowledge universe, og kan eksportere ferdig History Go-materiale til AHA-EchoNet.</p>
+  <p>Dette er History Go sin lokale innsiktsmotor. Den samler signaler fra steder, quiz, badges, personer, NextUp, learning log og canonical Knowledge V2, og kan eksportere ferdig History Go-materiale til AHA-EchoNet.</p>
 
   <div class="buttons">
     <button id="btn-import-hg">Vis aha_import_payload_v1</button>
@@ -22,7 +22,7 @@
       <li>aha_import_payload_v1: <span id="count-aha-import">0</span></li>
       <li>hg_learning_log_v1: <span id="count-learning-log">0</span></li>
       <li>hg_insights_events_v1: <span id="count-insights-events">0</span></li>
-      <li>knowledge_universe: <span id="count-knowledge">0</span></li>
+      <li>hg_knowledge_entries_v2: <span id="count-knowledge">0</span></li>
       <li>visited_places: <span id="count-visited-places">0</span></li>
       <li>merits_by_category: <span id="count-merits">0</span></li>
     </ul>
@@ -56,7 +56,7 @@
       setCount('count-aha-import', 'aha_import_payload_v1');
       setCount('count-learning-log', 'hg_learning_log_v1');
       setCount('count-insights-events', 'hg_insights_events_v1');
-      setCount('count-knowledge', 'knowledge_universe');
+      setCount('count-knowledge', 'hg_knowledge_entries_v2');
       setCount('count-visited-places', 'visited_places');
       setCount('count-merits', 'merits_by_category');
     }
@@ -78,7 +78,7 @@
         const payload = JSON.parse(raw);
         const learningLogCount = Array.isArray(payload?.hg_learning_log_v1) ? payload.hg_learning_log_v1.length : 0;
         const insightsEventsCount = Array.isArray(payload?.hg_insights_events_v1) ? payload.hg_insights_events_v1.length : 0;
-        const knowledgeUniverseCount = payload?.knowledge_universe && typeof payload.knowledge_universe === 'object' ? Object.keys(payload.knowledge_universe).length : 0;
+        const knowledgeEntryCount = Array.isArray(payload?.hg_knowledge_entries_v2) ? payload.hg_knowledge_entries_v2.length : 0;
         const visitedPlacesCount = payload?.visited_places && typeof payload.visited_places === 'object' ? Object.keys(payload.visited_places).length : 0;
         const meritsCount = payload?.merits_by_category && typeof payload.merits_by_category === 'object' ? Object.keys(payload.merits_by_category).length : 0;
 
@@ -88,7 +88,7 @@
           'exported_at: ' + (payload?.exported_at ?? 'ukjent'),
           'hg_learning_log_v1: ' + learningLogCount,
           'hg_insights_events_v1: ' + insightsEventsCount,
-          'knowledge_universe kategorier: ' + knowledgeUniverseCount,
+          'hg_knowledge_entries_v2: ' + knowledgeEntryCount,
           'visited_places nøkler: ' + visitedPlacesCount,
           'merits_by_category nøkler: ' + meritsCount
         ]);

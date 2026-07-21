@@ -923,47 +923,19 @@ function renderConcepts() {
 // ------------------------------------------------------------
 function renderLatestKnowledge() {
   const elTopic = document.getElementById("lkTopic");
-  const elCat   = document.getElementById("lkCategory");
-  const elText  = document.getElementById("lkText");
+  const elCat = document.getElementById("lkCategory");
+  const elText = document.getElementById("lkText");
   if (!elTopic || !elCat || !elText) return;
-
-  // Fallback hvis wrapperen (latestKnowledgeBox) ikke finnes i DOM
-  const box =
-    document.getElementById("latestKnowledgeBox") ||
-    document.getElementById("profileKnowledge") ||
-    elTopic.closest(".profile-card, .profile-section, .hg-card, .card") ||
-    elTopic.parentElement;
-
+  const box = document.getElementById("latestKnowledgeBox") || document.getElementById("profileKnowledge") || elTopic.closest(".profile-card, .profile-section, .hg-card, .card") || elTopic.parentElement;
   if (!box) return;
-
-  // Hent knowledge-univers – fallback til localStorage hvis funksjonen ikke gir noe
-  let uni = (typeof window.getKnowledgeUniverse === "function") ? window.getKnowledgeUniverse() : null;
-  if (!uni || !Object.keys(uni).length) {
-    try { uni = JSON.parse(localStorage.getItem("knowledge_universe") || "{}"); }
-    catch { uni = {}; }
-  }
-
-  const flat = [];
-  for (const cat of Object.keys(uni || {})) {
-    const dims = uni[cat] || {};
-    for (const dim of Object.keys(dims)) {
-      const arr = dims[dim] || [];
-      arr.forEach(k => flat.push({ category: cat, dimension: dim, item: k }));
-    }
-  }
-
-  if (!flat.length) {
-    box.style.display = "none";
-    return;
-  }
-
-  const last = flat[flat.length - 1];
-  const item = last.item || {};
-
-  elTopic.textContent = item.topic || item.question || _t("ui.knowledge.knowledge", "Kunnskap");
-  elCat.textContent = (last.category || "").charAt(0).toUpperCase() + (last.category || "").slice(1);
-  elText.textContent = item.text || item.knowledge || "";
-
+  const entries = window.HGKnowledgeV2?.getEntries?.() || [];
+  const sorted = (Array.isArray(entries) ? entries : []).slice().sort((a, b) => Date.parse(b?.last_seen_at || b?.learned_at || 0) - Date.parse(a?.last_seen_at || a?.learned_at || 0));
+  const item = sorted[0];
+  if (!item) { box.style.display = "none"; return; }
+  const category = String(item.subject_id || item.fagkart_category_id || "");
+  elTopic.textContent = item.topic || _t("ui.knowledge.knowledge", "Kunnskap");
+  elCat.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+  elText.textContent = item.text || "";
   box.style.display = "block";
 }
 
