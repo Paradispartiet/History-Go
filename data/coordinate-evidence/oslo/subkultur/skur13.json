@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "skur13",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.909652031188216,
+    "lon": 10.72082449208237,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Batch 129 address-first: Oslo kommune oppgir besøksadresse Filipstadveien 3 for Skur 13. Et innledende fritekstsøk i Geonorge var tvetydig og ble forkastet. Et strukturert oppslag på adressenavn=Filipstadveien, nummer=3 og kommunenummer=0301 ga nøyaktig ett eksakt offisielt adressetreff (geonorge-adresser-v1:0301:11762:3). Representasjonspunktet brukes som display-marker for aktivitetshallen; den tidligere manuelle legacy-koordinaten er erstattet og legacy_unknown er fjernet."
+  },
+  "identity": {
+    "currentName": "Skur 13",
+    "resolvedIdentity": "Skur 13 – aktivitetshall/skatehall i havneskuret på Filipstadveien 3",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell besøksadresse",
+    "entydig strukturert Geonorge-adresseobjekt",
+    "kryssjekk mot kommunal stedsidentitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Skur 13",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/idrett/idrettsanlegg/skur-13/",
+      "sourceObjectId": "oslo-kommune:idrettsanlegg:skur-13",
+      "sourceQuality": "official_identity_and_visit_address",
+      "finding": "Oslo kommune identifiserer Skur 13 som skate-/aktivitetshall og oppgir besøksadresse Filipstadveien 3, 0250 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Fastsetter fysisk identitet og address-first-query."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Filipstadveien&nummer=3&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11762:3",
+      "sourceQuality": "official_structured_exact_address",
+      "finding": "Strukturert Geonorge-oppslag ga nøyaktig ett eksakt Oslo-treff for Filipstadveien 3 med representasjonspunkt 59.909652031188216, 10.72082449208237.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 129 address-first: Oslo kommune oppgir besøksadresse Filipstadveien 3 for Skur 13. Et innledende fritekstsøk i Geonorge var tvetydig og ble forkastet. Et strukturert oppslag på adressenavn=Filipstadveien, nummer=3 og kommunenummer=0301 ga nøyaktig ett eksakt offisielt adressetreff (geonorge-adresser-v1:0301:11762:3). Representasjonspunktet brukes som display-marker for aktivitetshallen; den tidligere manuelle legacy-koordinaten er erstattet og legacy_unknown er fjernet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11762:3",
+      "address": {
+        "street": "Filipstadveien",
+        "number": "3",
+        "postcode": "0250",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.909652031188216,
+      "lon": 10.72082449208237,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11762:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11762:3",
+      "lat": 59.909652031188216,
+      "lon": 10.72082449208237,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Skur 13 er oppgradert til verified med strukturert official-address-first."
+  },
+  "notes": [
+    "Batch 129 address-first: Oslo kommune oppgir besøksadresse Filipstadveien 3 for Skur 13. Et innledende fritekstsøk i Geonorge var tvetydig og ble forkastet. Et strukturert oppslag på adressenavn=Filipstadveien, nummer=3 og kommunenummer=0301 ga nøyaktig ett eksakt offisielt adressetreff (geonorge-adresser-v1:0301:11762:3). Representasjonspunktet brukes som display-marker for aktivitetshallen; den tidligere manuelle legacy-koordinaten er erstattet og legacy_unknown er fjernet."
+  ]
+}

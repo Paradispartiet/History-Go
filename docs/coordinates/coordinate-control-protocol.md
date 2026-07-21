@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 372 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
+Oslo-protokollen dekker nå 373 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -483,6 +483,10 @@ Batch 127 (2026-07-21) løser den tidligere manuelle parent-konflikten for `leke
 | 128 | `kirsebarlunden` | Kirsebærlunden | verified_geometry | `osm-way:1097943191` |
 
 Batch 128 (2026-07-21) lukker siste ukontrollerte record i `places_oslo_lekeplasser_trening.json`. Oslo kommune omtaler området både som parken og lekeplassen på Kirsebærlunden, plasserer det nedenfor Tøyenparken og mellom Tøyen torg og Gamle Munch, mens prosjektbeskrivelsen klassifiserer det oppgraderte området som lekeplass/park. Ingen av de nærliggende canonical stedene er derfor dokumentert parent. `lekeplass_kirsebarlunden` normaliseres til canonical `kirsebarlunden`, med direkte stable-ID-oppslag av det eksakt navngitte polygonet `osm-way:1097943191` som geometrisk area-anchor. `korketrekkeren` var allerede kontrollert, så denne gamle kilden har etter batch 128 ingen ukontrollerte place-records.
+
+| 129 | `skur13` | Skur 13 | verified | `geonorge-adresser-v1:0301:11762:3` |
+
+Batch 129 (2026-07-21) reviderer `skur13` etter dagens address-first-policy. Oslo kommune oppgir Skur 13 som skate-/aktivitetshall med besøksadresse Filipstadveien 3. Det innledende fritekstsøket i Geonorge ga flere treff og ble forkastet. Batchen bruker derfor et strukturert oppslag på adressenavn, nummer og kommunenummer og krever nøyaktig ett eksakt Oslo-treff før status oppgraderes. Den tidligere `official_site_manual`/`legacy_unknown`-forankringen fjernes; Geonorges representasjonspunkt brukes som display-marker for bygningen.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
