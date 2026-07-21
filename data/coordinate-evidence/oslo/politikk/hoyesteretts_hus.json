@@ -2,57 +2,74 @@
   "schemaVersion": "1.0",
   "placeId": "hoyesteretts_hus",
   "placeFile": "data/places/politikk/oslo/places_politikk.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.914444,
-    "lon": 10.744444,
+    "lat": 59.91453018213708,
+    "lon": 10.744445291246665,
     "r": 120,
-    "coordStatus": "needs_source",
-    "coordSource": "hoyesteretts_hus_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 65071968 – Høyesterett",
+    "coordType": "building_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
   },
   "identity": {
     "currentName": "Høyesteretts hus",
     "resolvedIdentity": "Høyesteretts hus som bygning for Norges øverste domstol",
     "identityStatus": "resolved",
-    "identityProblem": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
+    "identityProblem": "",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
     "splitReason": ""
   },
   "requiredEvidence": [
-    "Dokumenter ett entydig eksakt fysisk kildeobjekt eller en offisiell adresse/geometri som matcher canonical place-identiteten."
+    "ett unikt eller semantisk entydig eksakt navngitt fysisk objekt i forhåndsdefinert lokal scope"
   ],
   "evidence": [
     {
       "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap bounded exact-name candidate audit",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=H%C3%B8yesteretts%20hus%20Oslo",
-      "sourceObjectId": "osm-search-audit:hoyesteretts_hus",
-      "sourceQuality": "candidate_search_without_unique_applicable_object",
-      "finding": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
-      "canVerifyCoordinate": false,
-      "reason": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
+      "sourceName": "OpenStreetMap – Høyesterett",
+      "sourceUrl": "https://www.openstreetmap.org/way/65071968",
+      "sourceObjectId": "osm-way:65071968",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype amenity/courthouse og geometri Polygon.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm-search-audit:hoyesteretts_hus",
-      "canApplyToPlace": false
+      "sourceObjectId": "osm-way:65071968",
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:65071968",
+      "lat": 59.91453018213708,
+      "lon": 10.744445291246665,
+      "coordRole": "building_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91453018213708,
+      "lon": 10.744445291246665,
+      "coordRole": "building_center",
+      "sourceObjectId": "osm-way:65071968",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
-    "nextAction": "Dokumenter ett entydig eksakt fysisk kildeobjekt eller en offisiell adresse/geometri som matcher canonical place-identiteten."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
   },
   "notes": [
-    "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
+    "Eksakt navngitt OSM-objekt valgt etter lokal bounded kontroll og fysisk objekttype amenity/courthouse; ikke nearest/first-hit. Representasjonspunktet er beregnet fra kildegeometrien."
   ]
 }
