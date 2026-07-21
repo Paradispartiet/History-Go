@@ -364,6 +364,9 @@ Batch 118 (2026-07-21) fullfører politikk-manifestet etter objekt-type-først-m
 | 119 | `chat_noir` | Chat Noir | verified | `geonorge-adresser-v1:0301:13780:5` |
 | 119 | `edderkoppen_scene` | Edderkoppen Scene | verified | `geonorge-adresser-v1:0301:16937:1` |
 
+| 121 | `ullevaal_stadion` | Ullevaal Stadion | verified_geometry | `osm-way:43222619` |
+| 121 | `intility_arena` | Intility Arena | verified_geometry | `osm-way:443983964` |
+
 Batch 119 (2026-07-21) er korrigert til objekt-type-først/address-first-metoden. De konkrete adressebare stedene `cinemateket_oslo`, `house_of_nerds`, `latter`, `grand_hotel`, `chat_noir`, `edderkoppen_scene` bruker entydige Geonorge-adressepunkter med venue-adressen dokumentert av stedet selv. `colosseum_kino` beholdes på eksakt OSM-geometri først etter dokumentert ikke-feilende Geonorge-forsøk uten anvendbart entydig treff. `slottsplassen` forblir et eksakt navngitt offentlig plassanker basert på geometri. `frognerstranda` forblir needs_source fordi en vei eller tilfeldig kystlinje ikke kan brukes som proxy for en bred strandsone. Tekniske Geonorge-feil kan ikke legitimere OSM-fallback, og ingen nearest/first-hit-logikk brukes.
 Relevante korrigerende merger for de første Oslo-batchene: `a39747039` (siste visuelle Oslo-kontroll) og `91c7a74e4` (Tronsmo runtime/kilde-korrigering).
 
