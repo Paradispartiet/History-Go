@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "club_7_vika",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9133435811279,
+    "lon": 10.729046226078546,
+    "r": 90,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Sceneweb + Oslo byleksikon – Club 7 at Munkedamsveien 15, 1971–1985; exact physical address point from Geonorge Adresser API v1",
+    "coordType": "historical_address_point",
+    "coordNote": "Batch 133 historical-source + address-first: Recorden representerer eksplisitt Club 7s siste og lengste periode, 1971–1985, ikke alle tidligere lokasjoner. Sceneweb dokumenterer at Club 7 flyttet til underetasjen i Konserthuset sommeren 1971 og ble der til 1985; Oslo byleksikon oppgir Munkedamsveien 15, og dagens Røverstaden beskriver Club 7 som tidligere virksomhet i de samme lokalene. Ett eksakt offisielt Geonorge-adresseobjekt for Munkedamsveien 15 (geonorge-adresser-v1:0301:14857:15) brukes derfor som historical-anchor. Punktet er ikke en påstand om én fast Club 7-lokasjon gjennom hele 1963–1985-perioden."
+  },
+  "identity": {
+    "currentName": "Club 7",
+    "resolvedIdentity": "Club 7 – Munkedamsveien 15-perioden 1971–1985, med eksplisitt fler-lokasjonsforbehold for 1963–1971",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "historisk kilde for representert periode",
+    "eksakt fysisk adresse for den perioden",
+    "nåværende lokal-kontinuitet som kryssjekk"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Sceneweb – Club 7",
+      "sourceUrl": "https://fnma.sceneweb.no/nb/organisation/39671/Club_7",
+      "sourceObjectId": "sceneweb-organisation:39671:club7-munkedamsveien-period",
+      "sourceQuality": "national_performing_arts_historical_database",
+      "finding": "Sceneweb dokumenterer Club 7s mange lokasjoner og at klubben flyttet til Konserthusets underetasje sommeren 1971 og ble der til 1985; Munkedamsveien 15 omtales i lokalhistorikken.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastsetter at denne recordens representerte periode faktisk hører til Konserthus-/Munkedamsveien-lokalene."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Club 7",
+      "sourceUrl": "https://oslobyleksikon.no/index.php?title=Club_7",
+      "sourceObjectId": "oslobyleksikon:club7:munkedamsveien15:1971-1985",
+      "sourceQuality": "city_historical_reference",
+      "finding": "Oslo byleksikon oppgir eksplisitt Munkedamsveien 15 for Club 7 i perioden 1971–1985.",
+      "canVerifyCoordinate": true,
+      "reason": "Binder den historiske perioden til den konkrete adressen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Røverstaden – om lokalene",
+      "sourceUrl": "https://www.roverstaden.no/omroverstaden",
+      "sourceObjectId": "roverstaden:munkedamsveien15:club7-history",
+      "sourceQuality": "current_site_historical_continuity",
+      "finding": "Dagens virksomhet i Munkedamsveien 15 beskriver Club 7 som tidligere aktør i de samme lokalene.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker lokal-kontinuiteten, men er ikke alene historisk koordinatkilde."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Munkedamsveien&nummer=15&kommunenummer=0301&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14857:15",
+      "sourceQuality": "official_exact_address",
+      "finding": "Ett eksakt offisielt adresseobjekt for Munkedamsveien 15 ved 59.9133435811279, 10.729046226078546.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir det stabile fysiske adressepunktet etter at historiske kilder har bundet Club 7-perioden til adressen."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14857:15",
+      "address": {
+        "street": "Munkedamsveien",
+        "number": "15",
+        "postcode": "0250",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "lat": 59.9133435811279,
+      "lon": 10.729046226078546,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14857:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14857:15",
+      "lat": 59.9133435811279,
+      "lon": 10.729046226078546,
+      "coordRole": "historical_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Club 7s Munkedamsveien 15-periode er oppgradert til verified_historical_source."
+  },
+  "notes": [
+    "Batch 133 historical-source + address-first: Recorden representerer eksplisitt Club 7s siste og lengste periode, 1971–1985, ikke alle tidligere lokasjoner. Sceneweb dokumenterer at Club 7 flyttet til underetasjen i Konserthuset sommeren 1971 og ble der til 1985; Oslo byleksikon oppgir Munkedamsveien 15, og dagens Røverstaden beskriver Club 7 som tidligere virksomhet i de samme lokalene. Ett eksakt offisielt Geonorge-adresseobjekt for Munkedamsveien 15 (geonorge-adresser-v1:0301:14857:15) brukes derfor som historical-anchor. Punktet er ikke en påstand om én fast Club 7-lokasjon gjennom hele 1963–1985-perioden."
+  ]
+}
