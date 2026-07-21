@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "snippen_lekepark",
+  "placeFile": "data/places/by/oslo/snippen_lekepark.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9155394,
+    "lon": 10.7698842,
+    "r": 150,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 761333023 – Snippen lekepark; scope cross-checked with Oslo kommune",
+    "coordType": "park_center",
+    "coordNote": "Batch 127 canonical migration: Oslo kommune beskriver Snippen lekepark som et eget navngitt lekeparksted rett utenfor sørsiden av Botanisk hage, så botanisk_hage avvises som parent. Ett eksakt navngitt OSM-parkpolygon (osm-way:761333023) er valgt etter objekt-type-først-filter og matcher den lagrede intake-kandidaten. Punktet er area-anchor for hele lekeparken."
+  },
+  "identity": {
+    "currentName": "Snippen lekepark",
+    "resolvedIdentity": "Snippen lekepark – selvstendig navngitt parksted utenfor Botanisk hage",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "official parent rejection",
+    "exact named stable park polygon",
+    "one-place/one-physical-identity"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Snippen lekepark",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/snippen-lekepark/",
+      "sourceObjectId": "oslo-kommune:park:snippen-lekepark",
+      "sourceQuality": "official_physical_scope_definition",
+      "finding": "Oslo kommune states that Snippen lekepark lies immediately outside the south side of Botanisk hage.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejects Botanisk hage as parent and establishes independent physical identity."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 761333023 – Snippen lekepark; scope cross-checked with Oslo kommune",
+      "sourceUrl": "https://www.openstreetmap.org/way/761333023",
+      "sourceObjectId": "osm-way:761333023",
+      "sourceQuality": "exact_named_polygon_after_object_type_filter",
+      "finding": "One exact named park polygon in predefined Oslo scope, matching the saved intake candidate.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 127 canonical migration: Oslo kommune beskriver Snippen lekepark som et eget navngitt lekeparksted rett utenfor sørsiden av Botanisk hage, så botanisk_hage avvises som parent. Ett eksakt navngitt OSM-parkpolygon (osm-way:761333023) er valgt etter objekt-type-først-filter og matcher den lagrede intake-kandidaten. Punktet er area-anchor for hele lekeparken."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:761333023",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:761333023",
+      "lat": 59.9155394,
+      "lon": 10.7698842,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:761333023",
+      "lat": 59.9155394,
+      "lon": 10.7698842,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical Snippen lekepark applied; old purpose-specific ID retired."
+  },
+  "notes": [
+    "Batch 127 canonical migration: Oslo kommune beskriver Snippen lekepark som et eget navngitt lekeparksted rett utenfor sørsiden av Botanisk hage, så botanisk_hage avvises som parent. Ett eksakt navngitt OSM-parkpolygon (osm-way:761333023) er valgt etter objekt-type-først-filter og matcher den lagrede intake-kandidaten. Punktet er area-anchor for hele lekeparken."
+  ]
+}
