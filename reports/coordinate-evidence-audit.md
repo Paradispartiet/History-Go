@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T12:05:19.953Z
+Generert: 2026-07-21T12:17:38.433Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -320,6 +320,7 @@ Generert: 2026-07-21T12:05:19.953Z
 | ullevaal_stadion | data/coordinate-evidence/oslo/sport/ullevaal_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | valle_hovin_stadion | data/coordinate-evidence/oslo/sport/valle_hovin_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vallhall_arena | data/coordinate-evidence/oslo/sport/vallhall_arena.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| helvete_neseblod_records | data/coordinate-evidence/oslo/subkultur/helvete_neseblod_records.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | revolver_oslo | data/coordinate-evidence/oslo/subkultur/revolver_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skur13 | data/coordinate-evidence/oslo/subkultur/skur13.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stovnertarnet | data/coordinate-evidence/oslo/subkultur/stovnertarnet.json | applied_to_place | do_not_change_coordinates_yet | OK |

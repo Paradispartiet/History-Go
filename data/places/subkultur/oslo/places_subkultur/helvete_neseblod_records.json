@@ -1,8 +1,8 @@
 {
   "id": "helvete_neseblod_records",
   "name": "Helvete / Neseblod Records",
-  "lat": 59.908453,
-  "lon": 10.769525,
+  "lat": 59.908405,
+  "lon": 10.769545,
   "r": 80,
   "category": "subkultur",
   "year": 1991,
@@ -55,16 +55,39 @@
     ],
     "notes": "Spør som historisk musikk- og undergrunnssted. Ikke som kriminalhistorisk attraksjon."
   },
-  "coordType": "legacy_unverified",
-  "coordSource": "verified_external_source",
-  "coordSourceId": "schweigaards_gate_56_yandex_maps",
-  "coordSourceUrl": "https://yandex.com/maps/10467/oslo/house/ZUkYcQFpTEcCQFtjfXVxeXhmZw%3D%3D/",
-  "coordStatus": "needs_source",
-  "coordPrecisionM": 25,
+  "coordType": "poi_center",
+  "coordSource": "OpenStreetMap node 2847570870 – Neseblod Records; current identity/address cross-checked with Neseblod Records and Brønnøysundregistrene",
+  "coordSourceId": "osm-node:2847570870",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/2847570870",
+  "coordStatus": "verified_geometry",
   "coordVerifiedAt": "2026-07-21",
-  "coordNote": "Koordinat verifisert mot kartoppføring for Schweigaards gate 56A; kilder kobler Helvete/Neseblod til Schweigaards gate 56. Ikke formulert som ordinært åpen status etter brann uten fersk primærkilde. Retrospektiv compliance-audit 2026-07-21: tidligere verified-status kan ikke forsvares mot Coordinate Source Contract v1 med eksisterende evidens. Punktet beholdes kun som legacy-kartanker til en ny kildekontroll dokumenterer et stabilt primærkildeobjekt.",
-  "locatorType": "building",
-  "sourceProvider": "legacy_unknown",
-  "geocodeAccuracy": "unknown",
-  "coordRole": "display_marker"
+  "coordNote": "Batch 132 address-first + exact-POI fallback: Neseblod Records' aktive nettbutikk og Brønnøysundregistrene oppgir Schweigaards gate 56, men Geonorge har to offisielle adresseobjekter på nummeret, 56A og 56B. Address-first kunne derfor ikke velge et adressepunkt og ble eksplisitt forkastet som tvetydig. Nominatim/OSM returnerte deretter nøyaktig ett eksakt navngitt shop=music-punkt i lokal Gamlebyen-scope, osm-node:2847570870. Dette punktet brukes som site-center for den nåværende Neseblod Records-butikken og stedet som History Go kobler til den historiske Helvete-fortellingen; ingen A/B-adresse er valgt etter nærhet.",
+  "locatorType": "poi",
+  "sourceProvider": "osm",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "site_center",
+  "sourceObjectId": "osm-node:2847570870",
+  "address": {
+    "street": "Schweigaards gate",
+    "number": "56",
+    "postcode": "0656",
+    "city": "Oslo",
+    "country": "NO"
+  },
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Neseblod Records",
+      "url": "https://neseblodrecords.bigcartel.com/",
+      "lang": "en",
+      "verifiedAt": "2026-07-21"
+    },
+    {
+      "type": "official_registry",
+      "label": "Brønnøysundregistrene – NESEBLOD RECORDS AS",
+      "url": "https://virksomhet.brreg.no/nb/oppslag/underenheter/986015469",
+      "lang": "nb",
+      "verifiedAt": "2026-07-21"
+    }
+  ]
 }

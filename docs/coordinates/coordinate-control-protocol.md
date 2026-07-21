@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 375 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
+Oslo-protokollen dekker nå 376 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -495,6 +495,10 @@ Batch 130 (2026-07-21) reviderer `stovnertarnet` etter objekt-type-først-metode
 | 131 | `revolver_oslo` | Revolver | verified | `geonorge-adresser-v1:0301:14943:32B` |
 
 Batch 131 (2026-07-21) reviderer `revolver_oslo` etter address-first-policy. Revolvers egen nettside oppgir Møllergata 32, mens Brønnøysundregistrenes beliggenhetsadresse og nåværende TicketCo-oppføring presiserer Møllergata 32B. Batchen godtar derfor bare et strukturert Geonorge-resultat med nøyaktig adressenavn Møllergata, nummer 32, bokstav B og kommunenummer 0301. Den gamle `official_site_manual`/`legacy_unknown`-forankringen fjernes og erstattes av offisielt matrikkeladressepunkt.
+
+| 132 | `helvete_neseblod_records` | Helvete / Neseblod Records | verified_geometry | `osm-node:2847570870` |
+
+Batch 132 (2026-07-21) reviderer `helvete_neseblod_records` med address-first før POI-fallback. Neseblod Records og Brønnøysundregistrene oppgir Schweigaards gate 56, men Geonorge har både 56A og 56B og ingen primærkilde i batchen avgjør bokstavleddet. Ingen adressekandidat velges derfor. I stedet kreves nøyaktig ett eksakt navngitt `shop=music`-POI i lokal Gamlebyen-scope; live oppslag gir `osm-node:2847570870`. Punktet brukes som site-center for dagens Neseblod Records og fysisk anker for den kombinerte Helvete/Neseblod-stedsfortellingen. Den gamle Yandex-/legacy-forankringen fjernes.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
