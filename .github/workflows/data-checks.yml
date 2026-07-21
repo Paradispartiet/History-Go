@@ -18,7 +18,9 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.tools*.json'
-      - 'js/knowledgeV2.js'
+      - 'js/knowledgeV2.ts'
+      - 'js/knowledgeClaimCore.ts'
+      - 'dist/web/knowledgeV2.js'
       - 'js/knowledgePage.js'
       - 'tests/knowledge-v2-model.test.js'
       - '.github/workflows/data-checks.yml'
@@ -121,10 +123,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Typecheck Knowledge core
+        run: npm run typecheck:web
 
       - name: Syntax check Knowledge runtimes
         run: |
-          node --check js/knowledgeV2.js
+          node --check dist/web/knowledgeV2.js
           node --check js/knowledgePage.js
           node --check scripts/audit-knowledge-contract.mjs
 
