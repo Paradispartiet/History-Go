@@ -74,12 +74,15 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Run places check
+        shell: bash
         run: |
+          set -o pipefail
           if [ -f scripts/check-places.sh ]; then
-            bash scripts/check-places.sh
+            bash scripts/check-places.sh 2>&1 | tee /tmp/places-check.log
           else
-            echo "scripts/check-places.sh not found; using inline places checks"
-            node <<'NODE'
+            echo "scripts/check-places.sh not found; using inline places checks" | tee /tmp/places-check.log
+            {
+              node <<'NODE'
           const fs = require('fs');
           const path = require('path');
           function readJson(file) {
@@ -107,12 +110,21 @@ jobs:
           }
           console.log(`json ok (${files.length} files)`);
           NODE
-            npm run places:index:build
-            npm run build:tools
-            npm run places:index:check
-            npm run places:emner:check
-            npm run places:coords:check
+              npm run places:index:build
+              npm run build:tools
+              npm run places:index:check
+              npm run places:emner:check
+              npm run places:coords:check
+            } 2>&1 | tee -a /tmp/places-check.log
           fi
+
+      - name: Upload Places check log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: places-check-log
+          path: /tmp/places-check.log
+          if-no-files-found: warn
 
       - name: Upload Religion candidate audit
         if: always()
