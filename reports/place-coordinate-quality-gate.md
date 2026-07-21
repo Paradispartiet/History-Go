@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T00:11:52.620Z
+Generert: 2026-07-21T00:20:42.134Z
 
 ## Oppsummering
-- Aktive filer validert: **566**
+- Aktive filer validert: **568**
 - Antall steder validert: **1217**
 - Harde feil: **0**
 - Varsler: **428**
@@ -584,6 +584,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/purenkel_galleri.json
 - data/places/by/oslo/places/torshovparken.json
 - data/places/kunst/oslo/places_kunst/hodet_nn_torshovdalen.json
+- data/places/historie/oslo/places_historie/oscarshall.json
+- data/places/historie/oslo/places_historie/vikingtidsmuseet.json
 
 ## Harde feil
 - Ingen

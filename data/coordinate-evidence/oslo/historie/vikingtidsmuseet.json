@@ -1,0 +1,73 @@
+{
+  "placeId": "vikingtidsmuseet",
+  "placeFile": "data/places/historie/oslo/places_historie/vikingtidsmuseet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9045924976552,
+    "lon": 10.684908358141946,
+    "r": 75,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Huk aveny 35, OSLO. Punktet brukes som stabil display- og unlock-marker for den samlede museumsplassen med bevart Vikingskipshus og nytt Vikingtidsmuseum; det uttrykker ikke åpningstatus og er ikke en markør for hele Bygdøy."
+  },
+  "identity": {
+    "currentName": "Vikingtidsmuseet",
+    "resolvedIdentity": "One stable museum-site identity combining the retained 1926 Vikingskipshuset and the connected new Vikingtidsmuseet at Huk aveny 35",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig offisielt adressepunkt for Huk aveny 35",
+    "dokumentert kontinuitet mellom bevart Vikingskipshus og nytt sammenkoblet museumsanlegg",
+    "eksplisitt skille mellom fysisk koordinatverifisering og nåværende besøksstatus"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "geonorge_adresser_v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Huk%20Aveny%2035%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13153:35",
+      "sourceQuality": "official_address_plus_official_institution_identity",
+      "finding": "Geonorge gir ett tydelig adressetreff for Huk aveny 35. Statsbygg dokumenterer at det bevarte Vikingskipshuset og nybygget utgjør ett sammenkoblet Vikingtidsmuseum.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Huk aveny 35, OSLO. Punktet brukes som stabil display- og unlock-marker for den samlede museumsplassen med bevart Vikingskipshus og nytt Vikingtidsmuseum; det uttrykker ikke åpningstatus og er ikke en markør for hele Bygdøy."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Huk aveny 35 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13153:35",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13153:35",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9045924976552,
+      "lon": 10.684908358141946,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Huk aveny 35 as the canonical display marker for Vikingtidsmuseet."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Huk aveny 35, OSLO. Punktet brukes som stabil display- og unlock-marker for den samlede museumsplassen med bevart Vikingskipshus og nytt Vikingtidsmuseum; det uttrykker ikke åpningstatus og er ikke en markør for hele Bygdøy."
+  ]
+}
