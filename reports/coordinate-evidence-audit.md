@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T05:51:26.970Z
+Generert: 2026-07-21T05:58:39.038Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -266,3 +266,8 @@ Generert: 2026-07-21T05:51:26.970Z
 | bantjern_salamanderlokalitet | data/coordinate-evidence/oslo/natur/bantjern_salamanderlokalitet.json | needs_research | needs_geometry | OK |
 | tjernsmyr_salamanderlokalitet | data/coordinate-evidence/oslo/natur/tjernsmyr_salamanderlokalitet.json | needs_research | needs_geometry | OK |
 | blindern_forskningsparken_salamanderdam | data/coordinate-evidence/oslo/natur/blindern_forskningsparken_salamanderdam.json | needs_research | needs_geometry | OK |
+| bogstadvannet | data/coordinate-evidence/oslo/natur/bogstadvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| holmenkollen_kapell | data/coordinate-evidence/oslo/by/holmenkollen_kapell.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kollentrollet | data/coordinate-evidence/oslo/kunst/kollentrollet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vettakollen | data/coordinate-evidence/oslo/natur/vettakollen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kragstotten | data/coordinate-evidence/oslo/kunst/kragstotten.json | applied_to_place | do_not_change_coordinates_yet | OK |
