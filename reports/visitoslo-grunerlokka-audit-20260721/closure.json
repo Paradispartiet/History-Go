@@ -1,0 +1,50 @@
+{
+  "source": {
+    "provider": "VisitOSLO",
+    "title": "Galleries and attractions at Grünerløkka",
+    "capturedAt": "2026-07-21",
+    "entryCount": 14
+  },
+  "summary": {
+    "resolvedEntries": 14,
+    "newCanonicalPlaces": 4,
+    "existingCanonicalReuses": 10,
+    "unresolvedScopeDecisions": 0,
+    "unresolvedCanonicalGaps": 0,
+    "productionBatches": {
+      "first": 98,
+      "last": 101
+    }
+  },
+  "mappings": [
+    {"sourceName": "Akerselva river", "resolution": "akerselva", "type": "reuse"},
+    {"sourceName": "Sculpturestop - HEAD N.N.", "resolution": "hodet_nn_torshovdalen", "type": "new_canonical"},
+    {"sourceName": "Paulus Church", "resolution": "paulus_kirke", "type": "new_canonical", "runtimeCategory": "religion"},
+    {"sourceName": "Torshovparken", "resolution": "torshovparken", "type": "new_canonical"},
+    {"sourceName": "Atelier Nord", "resolution": "hauges_minde", "type": "reuse_same_physical_building"},
+    {"sourceName": "Sofienberg Park", "resolution": "sofienbergparken_subkultur", "type": "reuse"},
+    {"sourceName": "Hønse-Lovisas hus", "resolution": "honse_lovisas_hus", "type": "reuse"},
+    {"sourceName": "Purenkel", "resolution": "purenkel_galleri", "type": "new_canonical"},
+    {"sourceName": "Labour Museum", "resolution": "arbeidermuseet", "type": "reuse"},
+    {"sourceName": "Jakob Culture Church", "resolution": "kulturkirken_jakob_litteratur", "type": "reuse"},
+    {"sourceName": "Vulkan", "resolution": "vulkan_industriomrade", "type": "reuse_area"},
+    {"sourceName": "Waterfall at Mølla", "resolution": "voienfossen", "type": "reuse", "rejectedCandidate": "ovre_foss"},
+    {"sourceName": "Anker bridge", "resolution": "ankerbrua", "type": "reuse"},
+    {"sourceName": "Birkelunden", "resolution": "birkelunden", "type": "reuse"}
+  ],
+  "newPlaces": [
+    {"id": "paulus_kirke", "batch": 98},
+    {"id": "purenkel_galleri", "batch": 99},
+    {"id": "torshovparken", "batch": 100},
+    {"id": "hodet_nn_torshovdalen", "batch": 101}
+  ],
+  "scopeLocks": {
+    "atelierNord": "hauges_minde",
+    "vulkan": "vulkan_industriomrade",
+    "waterfallAtMolla": "voienfossen",
+    "waterfallRejectedCandidate": "ovre_foss",
+    "torshovparkenDistinctFrom": ["torshov", "treningssted_torshovdalen"],
+    "paulusKirkeRuntimeCategory": "religion"
+  },
+  "status": "closed"
+}
