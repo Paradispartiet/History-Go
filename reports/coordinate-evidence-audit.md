@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T08:45:22.231Z
+Generert: 2026-07-21T09:30:44.567Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -287,22 +287,22 @@ Generert: 2026-07-21T08:45:22.231Z
 | latter | data/coordinate-evidence/oslo/popkultur/latter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | slottsplassen | data/coordinate-evidence/oslo/popkultur/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bislett_stadion | data/coordinate-evidence/oslo/sport/bislett_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| daelenenga_idrettspark | data/coordinate-evidence/oslo/sport/daelenenga_idrettspark.json | needs_research | needs_geometry | OK |
+| daelenenga_idrettspark | data/coordinate-evidence/oslo/sport/daelenenga_idrettspark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergsletta | data/coordinate-evidence/oslo/sport/ekebergsletta.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekt_rideskole_husdyrpark | data/coordinate-evidence/oslo/sport/ekt_rideskole_husdyrpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frigo_friluftssenteret | data/coordinate-evidence/oslo/sport/frigo_friluftssenteret.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | friluftshuset_sorenga | data/coordinate-evidence/oslo/sport/friluftshuset_sorenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frogner_stadion | data/coordinate-evidence/oslo/sport/frogner_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | furuset_forum | data/coordinate-evidence/oslo/sport/furuset_forum.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| gressbanen | data/coordinate-evidence/oslo/sport/gressbanen.json | needs_research | needs_geometry | OK |
+| gressbanen | data/coordinate-evidence/oslo/sport/gressbanen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | holmenkollen_nasjonalanlegg | data/coordinate-evidence/oslo/sport/holmenkollen_nasjonalanlegg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | holmlia_bad | data/coordinate-evidence/oslo/sport/holmlia_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | intility_arena | data/coordinate-evidence/oslo/sport/intility_arena.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jordal_amfi | data/coordinate-evidence/oslo/sport/jordal_amfi.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jordal_ungdomshall | data/coordinate-evidence/oslo/sport/jordal_ungdomshall.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| kfum_arena | data/coordinate-evidence/oslo/sport/kfum_arena.json | needs_research | needs_geometry | OK |
+| kfum_arena | data/coordinate-evidence/oslo/sport/kfum_arena.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | manglerudhallen | data/coordinate-evidence/oslo/sport/manglerudhallen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| nordre_aasen_idrettspark | data/coordinate-evidence/oslo/sport/nordre_aasen_idrettspark.json | needs_research | needs_geometry | OK |
+| nordre_aasen_idrettspark | data/coordinate-evidence/oslo/sport/nordre_aasen_idrettspark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | operastranda | data/coordinate-evidence/oslo/sport/operastranda.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_golfklubb_bogstad | data/coordinate-evidence/oslo/sport/oslo_golfklubb_bogstad.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skimore_oslo | data/coordinate-evidence/oslo/sport/skimore_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |

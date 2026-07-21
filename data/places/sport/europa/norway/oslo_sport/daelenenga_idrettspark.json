@@ -4,8 +4,8 @@
     "designCode": "park_miniature"
   },
   "name": "Dælenenga idrettspark",
-  "lat": 59.9264,
-  "lon": 10.76449,
+  "lat": 59.926595750000004,
+  "lon": 10.7647212,
   "r": 170,
   "category": "sport",
   "sport_type": "multi_sport",
@@ -116,9 +116,37 @@
     "grunerlokka_helgesens_tm"
   ],
   "locatorType": "current_place",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "daelenenga_idrettspark_canonical_geometry_unresolved",
+  "coordStatus": "verified_geometry",
+  "coordType": "sports_complex_composite_anchor",
+  "coordSource": "OpenStreetMap composite – Dælenenga idrettspark way 4708872 + Grünerhallen way 101769218; scope cross-checked with Oslo kommune",
   "coordVerifiedAt": "2026-07-21",
-  "coordNote": "Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området."
+  "coordNote": "Batch 122 composite closure: Oslo kommune dokumenterer Dælenenga idrettsplass/idrettspark og Grünerhallen som del av samme idrettsområde, med besøksadresse Seilduksgata 30. Address-first ble forsøkt først, men Geonorge ga ingen treff for adressen. Ett enkelt bane- eller hallobjekt brukes derfor ikke som proxy for hele canonical stedet. To direkte stable-ID-oppslag dokumenterer hovedkomponentene, OSM way 4708872 og OSM way 101769218. Hovedpunktet er et eksplisitt semantisk area-anchor midt mellom komponentankrene, ikke et påstått geometrisk sentrum.",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-composite:way/4708872+way/101769218",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordSourceId": "osm-composite:way/4708872+way/101769218",
+  "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/idrett/idrettsanlegg/dalenenga-idrettsplass/",
+  "anchors": [
+    {
+      "id": "daelenenga_main_pitch",
+      "name": "Dælenenga idrettspark",
+      "type": "sports_ground",
+      "lat": 59.926342,
+      "lon": 10.7642962,
+      "r": 90,
+      "sourceObjectId": "osm-way:4708872",
+      "componentRole": "main_historic_ground"
+    },
+    {
+      "id": "daelenenga_grunerhallen",
+      "name": "Grünerhallen",
+      "type": "sports_hall",
+      "lat": 59.9268495,
+      "lon": 10.7651462,
+      "r": 70,
+      "sourceObjectId": "osm-way:101769218",
+      "componentRole": "indoor_ice_rink_component"
+    }
+  ]
 }

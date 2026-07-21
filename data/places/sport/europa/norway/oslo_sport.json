@@ -862,8 +862,8 @@
       "designCode": "park_miniature"
     },
     "name": "Dælenenga idrettspark",
-    "lat": 59.9264,
-    "lon": 10.76449,
+    "lat": 59.926595750000004,
+    "lon": 10.7647212,
     "r": 170,
     "category": "sport",
     "sport_type": "multi_sport",
@@ -974,17 +974,45 @@
       "grunerlokka_helgesens_tm"
     ],
     "locatorType": "current_place",
-    "coordStatus": "needs_source",
-    "coordType": "legacy_unverified",
-    "coordSource": "daelenenga_idrettspark_canonical_geometry_unresolved",
+    "coordStatus": "verified_geometry",
+    "coordType": "sports_complex_composite_anchor",
+    "coordSource": "OpenStreetMap composite – Dælenenga idrettspark way 4708872 + Grünerhallen way 101769218; scope cross-checked with Oslo kommune",
     "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området."
+    "coordNote": "Batch 122 composite closure: Oslo kommune dokumenterer Dælenenga idrettsplass/idrettspark og Grünerhallen som del av samme idrettsområde, med besøksadresse Seilduksgata 30. Address-first ble forsøkt først, men Geonorge ga ingen treff for adressen. Ett enkelt bane- eller hallobjekt brukes derfor ikke som proxy for hele canonical stedet. To direkte stable-ID-oppslag dokumenterer hovedkomponentene, OSM way 4708872 og OSM way 101769218. Hovedpunktet er et eksplisitt semantisk area-anchor midt mellom komponentankrene, ikke et påstått geometrisk sentrum.",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-composite:way/4708872+way/101769218",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-composite:way/4708872+way/101769218",
+    "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/idrett/idrettsanlegg/dalenenga-idrettsplass/",
+    "anchors": [
+      {
+        "id": "daelenenga_main_pitch",
+        "name": "Dælenenga idrettspark",
+        "type": "sports_ground",
+        "lat": 59.926342,
+        "lon": 10.7642962,
+        "r": 90,
+        "sourceObjectId": "osm-way:4708872",
+        "componentRole": "main_historic_ground"
+      },
+      {
+        "id": "daelenenga_grunerhallen",
+        "name": "Grünerhallen",
+        "type": "sports_hall",
+        "lat": 59.9268495,
+        "lon": 10.7651462,
+        "r": 70,
+        "sourceObjectId": "osm-way:101769218",
+        "componentRole": "indoor_ice_rink_component"
+      }
+    ]
   },
   {
     "id": "gressbanen",
     "name": "Gressbanen",
-    "lat": 59.951211,
-    "lon": 10.675275,
+    "lat": 59.9507593,
+    "lon": 10.6767767,
     "r": 170,
     "category": "sport",
     "sport_type": "multi_sport",
@@ -1078,11 +1106,48 @@
       "idrettshistorie"
     ],
     "locatorType": "current_place",
-    "coordStatus": "needs_source",
-    "coordType": "legacy_unverified",
-    "coordSource": "gressbanen_canonical_geometry_unresolved",
+    "coordStatus": "verified_geometry",
+    "coordType": "sports_ground_center",
+    "coordSource": "OpenStreetMap way 5046575 – Gressbanen",
     "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Den avgrensede kontrollen ga ikke ett entydig eksakt navngitt fysisk sportsobjekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordNote": "Batch 122: Ready og Oslo kommune dokumenterer Gressbanen på Stasjonsveien 24. Address-first ble forsøkt først, men Geonorge-søket ga 2 adressetreff og ingen entydig eksakt ulettert 24-rad. Ingen adressevariant ble derfor valgt. Canonical place er selve navngitte fotball-/bandygrounden, og direkte stable-ID-oppslag av eksakt OSM way 5046575 brukes som geometrisk area-anchor; ingen nearest/first-hit-logikk.",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:5046575",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-way:5046575",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/5046575",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            10.6756537,
+            59.9506703
+          ],
+          [
+            10.6774278,
+            59.9502925
+          ],
+          [
+            10.6778998,
+            59.9508483
+          ],
+          [
+            10.6761257,
+            59.9512261
+          ],
+          [
+            10.6760444,
+            59.9511304
+          ],
+          [
+            10.6756537,
+            59.9506703
+          ]
+        ]
+      ]
+    }
   },
   {
     "id": "ekebergsletta",
@@ -1199,8 +1264,8 @@
     "visual": {
       "designCode": "stadium_miniature"
     },
-    "lat": 59.89087,
-    "lon": 10.78112,
+    "lat": 59.88862965039414,
+    "lon": 10.782076254654621,
     "r": 160,
     "category": "sport",
     "sport_type": "football",
@@ -1292,11 +1357,24 @@
       "lokalidrett"
     ],
     "locatorType": "current_place",
-    "coordStatus": "needs_source",
-    "coordType": "legacy_unverified",
-    "coordSource": "kfum_arena_canonical_geometry_unresolved",
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "coordSource": "geonorge_adresser_v1",
     "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Den avgrensede kontrollen ga ikke ett entydig eksakt navngitt fysisk sportsobjekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordNote": "Batch 122 address-first: KFUM-kameratene Oslo – klubb- og arenaadresse dokumenterer besøksadressen Ekebergveien 109. Ett eksakt Oslo-treff i Geonorge Adresser API v1 brukes som canonical display-marker for KFUM Arena som KFUM Oslos hjemmeground. Adressepunktet er ikke en påstand om geometrisk sentrum for hele anlegget; eksisterende radius beholdes som gameplay-/besøksradius.",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11462:109",
+    "address": {
+      "street": "Ekebergveien",
+      "number": "109",
+      "postcode": "1178",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordSourceId": "geonorge-adresser-v1:0301:11462:109",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ekebergveien%20109%20Oslo"
   },
   {
     "id": "nordre_aasen_idrettspark",
@@ -1304,8 +1382,8 @@
       "designCode": "park_miniature"
     },
     "name": "Nordre Åsen idrettspark",
-    "lat": 59.942778,
-    "lon": 10.785,
+    "lat": 59.94276845982983,
+    "lon": 10.784873923983723,
     "r": 170,
     "category": "sport",
     "sport_type": "football",
@@ -1397,11 +1475,24 @@
       "lokalidrett"
     ],
     "locatorType": "current_place",
-    "coordStatus": "needs_source",
-    "coordType": "legacy_unverified",
-    "coordSource": "nordre_aasen_idrettspark_canonical_geometry_unresolved",
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "coordSource": "geonorge_adresser_v1",
     "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Kontrollen ga ikke én legitim samlet eksakt navngitt områdegeometri for hele canonical anlegget (no_exact_semantic_candidate). En enkelt bakke, bane eller delarena kan ikke brukes som proxy for hele området."
+    "coordNote": "Batch 122 address-first: Oslo kommune – Nordre Åsen idrettspark dokumenterer besøksadressen Kjelsåsveien 7. Ett eksakt Oslo-treff i Geonorge Adresser API v1 brukes som canonical display-marker for Nordre Åsen idrettspark som samlet Skeid- og flerbanekompleks. Adressepunktet er ikke en påstand om geometrisk sentrum for hele anlegget; eksisterende radius beholdes som gameplay-/besøksradius.",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13747:7",
+    "address": {
+      "street": "Kjelsåsveien",
+      "number": "7",
+      "postcode": "0488",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordSourceId": "geonorge-adresser-v1:0301:13747:7",
+    "coordSourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kjels%C3%A5sveien%207%20Oslo"
   },
   {
     "id": "vallhall_arena",
