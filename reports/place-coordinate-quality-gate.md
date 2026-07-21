@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T11:55:07.824Z
+Generert: 2026-07-21T12:05:12.563Z
 
 ## Oppsummering
 - Aktive filer validert: **601**
 - Antall steder validert: **1201**
 - Harde feil: **0**
-- Varsler: **442**
-- Coordinate review candidates: **708** signaler fordelt på **577** steder
+- Varsler: **443**
+- Coordinate review candidates: **709** signaler fordelt på **578** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -941,6 +941,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/oslo/places_subkultur.json#helvete_neseblod_records: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#last_train_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#rock_in_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#revolver_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#the_villa: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#jaeger_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#sub_scene: coordStatus=verified uten coordPrecisionM
@@ -1069,13 +1070,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 708 signaler fordelt på 577 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 709 signaler fordelt på 578 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 147 |
+| coordStatus=verified uten coordPrecisionM | 148 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 86 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1085,7 +1086,7 @@ Totalt 708 signaler fordelt på 577 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (147)
+### coordStatus=verified uten coordPrecisionM (148)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1173,6 +1174,7 @@ Totalt 708 signaler fordelt på 577 steder. Et sted kan ha flere signaler. Kandi
 | vaterland_bar_scene | Vaterland Bar & Scene | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91391103248318 | 10.756101476822108 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | last_train_oslo | Last Train | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91457300863339 | 10.73664031059204 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | rock_in_oslo | Rock In | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91312888495517 | 10.760871395801564 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| revolver_oslo | Revolver | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.91699988365845 | 10.749742822662785 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | the_villa | The Villa | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.91563512459411 | 10.74856019808857 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | jaeger_oslo | Jaeger | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.913899495519225 | 10.743437565163234 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sub_scene | Sub Scene | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.912177321780405 | 10.736461501289167 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
