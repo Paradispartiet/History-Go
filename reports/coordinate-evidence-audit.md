@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-21T01:04:46.483Z
+Generert: 2026-07-21T01:08:44.019Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -253,3 +253,10 @@ Generert: 2026-07-21T01:04:46.483Z
 | maridalsvannet | data/coordinate-evidence/oslo/natur/maridalsvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | noklevann | data/coordinate-evidence/oslo/natur/noklevann.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnaelva_hovedsteder | data/coordinate-evidence/oslo/natur/alnaelva_hovedsteder.json | needs_research | needs_geometry | OK |
+| noklevann_ljanselva_start | data/coordinate-evidence/oslo/natur/noklevann_ljanselva_start.json | needs_research | needs_geometry | OK |
+| skraperudtjern | data/coordinate-evidence/oslo/natur/skraperudtjern.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ljanselva_skullerud | data/coordinate-evidence/oslo/natur/ljanselva_skullerud.json | needs_research | needs_geometry | OK |
+| ljanselva_hauketo | data/coordinate-evidence/oslo/natur/ljanselva_hauketo.json | needs_research | needs_geometry | OK |
+| ljanselva_ljan | data/coordinate-evidence/oslo/natur/ljanselva_ljan.json | needs_research | needs_geometry | OK |
+| ljanselva_fiskevollen | data/coordinate-evidence/oslo/natur/ljanselva_fiskevollen.json | needs_research | needs_geometry | OK |
+| ljanselva_bunnefjorden | data/coordinate-evidence/oslo/natur/ljanselva_bunnefjorden.json | needs_research | needs_geometry | OK |

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "skraperudtjern",
+  "placeFile": "data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.869215693088535,
+    "lon": 10.851491730900063,
+    "r": 130,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 23761672 – Skraperudtjern",
+    "coordType": "pond_center",
+    "coordNote": "Eksakt navngitt OSM-objekt valgt innenfor en forhåndsdefinert lokal scope-boks og med riktig objekttype natural/water; ikke nearest/first-hit. Representasjonspunktet er beregnet fra selve kildegeometrien."
+  },
+  "identity": {
+    "currentName": "Skraperudtjern",
+    "resolvedIdentity": "Skraperudtjern som navngitt tjern/vannflate i Ljanselva-vassdraget",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "ett unikt eksakt navngitt fysisk objekt i recordens forhåndsdefinerte lokale scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Skraperudtjern",
+      "sourceUrl": "https://www.openstreetmap.org/way/23761672",
+      "sourceObjectId": "osm-way:23761672",
+      "sourceQuality": "exact_named_semantic_object_in_local_scope",
+      "finding": "Eksakt navnetreff med objekttype natural/water og geometri Polygon innenfor den lokale scope-boksen.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt valgt innenfor en forhåndsdefinert lokal scope-boks og med riktig objekttype natural/water; ikke nearest/first-hit. Representasjonspunktet er beregnet fra selve kildegeometrien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Ljanselva",
+      "sourceUrl": "https://snl.no/Ljanselva",
+      "sourceObjectId": "snl:ljanselva",
+      "sourceQuality": "independent_river_identity_crosscheck",
+      "finding": "Uavhengig kilde dokumenterer Ljanselva-vassdragets identitet og løp gjennom sørøstre Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; koordinaten kommer fra det eksakte lokale OSM-objektet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:23761672",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:ljanselva",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:23761672",
+      "lat": 59.869215693088535,
+      "lon": 10.851491730900063,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.869215693088535,
+      "lon": 10.851491730900063,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:23761672",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildeobjekt og representasjonspunkt er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt valgt innenfor en forhåndsdefinert lokal scope-boks og med riktig objekttype natural/water; ikke nearest/first-hit. Representasjonspunktet er beregnet fra selve kildegeometrien."
+  ]
+}
