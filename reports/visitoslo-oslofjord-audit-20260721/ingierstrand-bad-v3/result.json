@@ -1,0 +1,404 @@
+{
+  "version": "2026-07-21",
+  "placeId": "ingierstrand_bad",
+  "status": "verified_complex_candidate",
+  "representationLock": "whole protected functionalist bathing complex; not restaurant business alone",
+  "appliedCandidate": {
+    "authority": "kartverket_ssr_site_point",
+    "sourceProvider": "kartverket_ssr",
+    "sourceObjectId": "kartverket-ssr:448130",
+    "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Ingierstrand+bad&treffPerSide=100&side=1",
+    "layerId": null,
+    "layerName": null,
+    "geometryType": "Point",
+    "lat": 59.81831,
+    "lon": 10.74834,
+    "coordinateMethod": "representasjonspunkt.nord_øst",
+    "attributes": {
+      "fylker": [
+        {
+          "fylkesnavn": "Akershus",
+          "fylkesnummer": "32"
+        }
+      ],
+      "geojson": {
+        "geometry": {
+          "coordinates": [
+            10.74834,
+            59.81831
+          ],
+          "type": "Point"
+        }
+      },
+      "kommuner": [
+        {
+          "kommunenavn": "Nordre Follo",
+          "kommunenummer": "3207"
+        }
+      ],
+      "navneobjekttype": "Badeplass",
+      "oppdateringsdato": "2023-12-29T10:20:20",
+      "representasjonspunkt": {
+        "nord": 59.81831,
+        "øst": 10.74834
+      },
+      "stedsnavn": [
+        {
+          "navnestatus": "hovednavn",
+          "skrivemåte": "Ingierstrand bad",
+          "skrivemåtestatus": "godkjent og prioritert",
+          "språk": "Norsk",
+          "stedsnavnnummer": 1
+        }
+      ],
+      "stedsnummer": 448130,
+      "stedstatus": "aktiv"
+    }
+  },
+  "fallbackRule": "Use one exact named Riksantikvaren area geometry only if unique; otherwise use exact Kartverket SSR place object 448130 as semantic site anchor. Geonorge address is cross-check only.",
+  "crosschecks": {
+    "ssrEndpointDistanceM": 0,
+    "geonorgeAddress": {
+      "ok": true,
+      "status": "verified_candidate",
+      "reason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+      "query": "Ingierstrandveien 30 Svartskog",
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ingierstrandveien%2030%20Svartskog",
+      "sourceObjectId": "geonorge-adresser-v1:3207:24030:30",
+      "coordinate": {
+        "lat": 59.816533117786626,
+        "lon": 10.748486743555548,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:3207:24030:30",
+        "address": {
+          "street": "Ingierstrandveien",
+          "number": "30",
+          "postcode": "1420",
+          "city": "SVARTSKOG",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Ingierstrandveien 30, SVARTSKOG. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Ingierstrandveien",
+        "adressetekst": "Ingierstrandveien 30",
+        "adressetilleggsnavn": null,
+        "adressekode": 24030,
+        "nummer": 30,
+        "bokstav": "",
+        "kommunenummer": "3207",
+        "kommunenavn": "NORDRE FOLLO",
+        "gardsnummer": 232,
+        "bruksnummer": 28,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "SVARTSKOG",
+        "postnummer": "1420",
+        "adressetekstutenadressetilleggsnavn": "Ingierstrandveien 30",
+        "stedfestingverifisert": true,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.816533117786626,
+          "lon": 10.748486743555548
+        },
+        "oppdateringsdato": "2024-01-01T00:00:00"
+      }
+    },
+    "addressDistanceFromAppliedM": 197.8
+  },
+  "duplicateGate": {
+    "canonicalIdentityMatches": [],
+    "nearestCanonicalPlaces": [
+      {
+        "id": "stubljan_paviljongen_hvervenbukta",
+        "name": "Stubljan-paviljongen i Hvervenbukta",
+        "category": "historie",
+        "distanceM": 2193.2,
+        "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_07.json"
+      },
+      {
+        "id": "holmlia_bad",
+        "name": "Holmlia bad",
+        "category": "sport",
+        "distanceM": 3048.2,
+        "sourceFile": "places/sport/europa/norway/oslo_sport/holmlia_bad.json"
+      },
+      {
+        "id": "ljanselva_bunnefjorden",
+        "name": "Ljanselva ut i Bunnefjorden",
+        "category": "natur",
+        "distanceM": 3291.1,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute/ljanselva_bunnefjorden.json"
+      },
+      {
+        "id": "nesodden_kirke",
+        "name": "Nesodden kirke",
+        "category": "religion",
+        "distanceM": 3396.7,
+        "sourceFile": "places/historie/akershus/places_historie_akershus_batch4/nesodden_kirke.json"
+      },
+      {
+        "id": "ljanselva_fiskevollen",
+        "name": "Ljanselva ved Fiskevollen",
+        "category": "natur",
+        "distanceM": 3498.8,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute/ljanselva_fiskevollen.json"
+      },
+      {
+        "id": "roald_amundsens_hjem_uranienborg",
+        "name": "Roald Amundsens hjem Uranienborg",
+        "category": "historie",
+        "distanceM": 3665.3,
+        "sourceFile": "places/historie/akershus/places_historie_akershus_batch3/roald_amundsens_hjem_uranienborg.json"
+      },
+      {
+        "id": "ljanselva_ljan",
+        "name": "Ljanselva ved Ljan",
+        "category": "natur",
+        "distanceM": 3957.6,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute/ljanselva_ljan.json"
+      },
+      {
+        "id": "ljanselva",
+        "name": "Ljanselva",
+        "category": "natur",
+        "distanceM": 4824.1,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/ljanselva.json"
+      },
+      {
+        "id": "ljanselva_hauketo",
+        "name": "Ljanselva ved Hauketo",
+        "category": "natur",
+        "distanceM": 5055.9,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute/ljanselva_hauketo.json"
+      },
+      {
+        "id": "lambertseter_gard",
+        "name": "Lambertseter gård",
+        "category": "historie",
+        "distanceM": 7175.3,
+        "sourceFile": "places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json"
+      },
+      {
+        "id": "ljanselva_skullerud",
+        "name": "Ljanselva ved Skullerud",
+        "category": "natur",
+        "distanceM": 7320.5,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute/ljanselva_skullerud.json"
+      },
+      {
+        "id": "gressholmen",
+        "name": "Gressholmen",
+        "category": "natur",
+        "distanceM": 7381.9,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder/gressholmen.json"
+      },
+      {
+        "id": "nostvet_boplass",
+        "name": "Nøstvet-boplassen",
+        "category": "historie",
+        "distanceM": 8006,
+        "sourceFile": "places/historie/akershus/places_historie_akershus_batch1/nostvet_boplass.json"
+      },
+      {
+        "id": "skraperudtjern",
+        "name": "Skraperudtjern",
+        "category": "natur",
+        "distanceM": 8077.2,
+        "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute/skraperudtjern.json"
+      },
+      {
+        "id": "kfum_arena",
+        "name": "KFUM Arena",
+        "category": "sport",
+        "distanceM": 8273.3,
+        "sourceFile": "places/sport/europa/norway/oslo_sport/kfum_arena.json"
+      }
+    ]
+  },
+  "riksantikvaren": {
+    "url": "https://kart.ra.no/arcgis/rest/services/Distribusjon/Kulturminner20180301/MapServer/find?searchText=Ingierstrand&contains=true&searchFields=navn%2CNavn&layers=1%2C4%2C5%2C6%2C7%2C8%2C15%2C16&returnGeometry=true&sr=4326&f=json",
+    "resultCount": 0,
+    "ingierstrandMatchCount": 0,
+    "nonPointNamedAreaCandidateCount": 0,
+    "candidates": []
+  },
+  "ssr": {
+    "sourceObjectId": "kartverket-ssr:448130",
+    "navnRow": {
+      "fylker": [
+        {
+          "fylkesnavn": "Akershus",
+          "fylkesnummer": "32"
+        }
+      ],
+      "kommuner": [
+        {
+          "kommunenavn": "Nordre Follo",
+          "kommunenummer": "3207"
+        }
+      ],
+      "navneobjekttype": "Badeplass",
+      "navnestatus": "hovednavn",
+      "representasjonspunkt": {
+        "nord": 59.81831,
+        "øst": 10.74834
+      },
+      "skrivemåte": "Ingierstrand bad",
+      "skrivemåtestatus": "godkjent og prioritert",
+      "språk": "Norsk",
+      "stedsnummer": 448130,
+      "stedstatus": "aktiv"
+    },
+    "stedRow": {
+      "fylker": [
+        {
+          "fylkesnavn": "Akershus",
+          "fylkesnummer": "32"
+        }
+      ],
+      "geojson": {
+        "geometry": {
+          "coordinates": [
+            10.74834,
+            59.81831
+          ],
+          "type": "Point"
+        }
+      },
+      "kommuner": [
+        {
+          "kommunenavn": "Nordre Follo",
+          "kommunenummer": "3207"
+        }
+      ],
+      "navneobjekttype": "Badeplass",
+      "oppdateringsdato": "2023-12-29T10:20:20",
+      "representasjonspunkt": {
+        "nord": 59.81831,
+        "øst": 10.74834
+      },
+      "stedsnavn": [
+        {
+          "navnestatus": "hovednavn",
+          "skrivemåte": "Ingierstrand bad",
+          "skrivemåtestatus": "godkjent og prioritert",
+          "språk": "Norsk",
+          "stedsnavnnummer": 1
+        }
+      ],
+      "stedsnummer": 448130,
+      "stedstatus": "aktiv"
+    },
+    "attempts": [
+      {
+        "endpoint": "navn",
+        "url": "https://api.kartverket.no/stedsnavn/v1/navn?sok=Ingierstrand+bad&treffPerSide=100&side=1",
+        "data": {
+          "metadata": {
+            "side": 1,
+            "sokeStreng": "sok=Ingierstrand+bad&treffPerSide=100&side=1",
+            "totaltAntallTreff": 1,
+            "treffPerSide": 100,
+            "viserFra": 1,
+            "viserTil": 100
+          },
+          "navn": [
+            {
+              "fylker": [
+                {
+                  "fylkesnavn": "Akershus",
+                  "fylkesnummer": "32"
+                }
+              ],
+              "kommuner": [
+                {
+                  "kommunenavn": "Nordre Follo",
+                  "kommunenummer": "3207"
+                }
+              ],
+              "navneobjekttype": "Badeplass",
+              "navnestatus": "hovednavn",
+              "representasjonspunkt": {
+                "nord": 59.81831,
+                "øst": 10.74834
+              },
+              "skrivemåte": "Ingierstrand bad",
+              "skrivemåtestatus": "godkjent og prioritert",
+              "språk": "Norsk",
+              "stedsnummer": 448130,
+              "stedstatus": "aktiv"
+            }
+          ]
+        }
+      },
+      {
+        "endpoint": "sted",
+        "url": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Ingierstrand+bad&treffPerSide=100&side=1",
+        "data": {
+          "metadata": {
+            "side": 1,
+            "sokeStreng": "sok=Ingierstrand+bad&treffPerSide=100&side=1",
+            "totaltAntallTreff": 1,
+            "treffPerSide": 100,
+            "viserFra": 1,
+            "viserTil": 100
+          },
+          "navn": [
+            {
+              "fylker": [
+                {
+                  "fylkesnavn": "Akershus",
+                  "fylkesnummer": "32"
+                }
+              ],
+              "geojson": {
+                "geometry": {
+                  "coordinates": [
+                    10.74834,
+                    59.81831
+                  ],
+                  "type": "Point"
+                }
+              },
+              "kommuner": [
+                {
+                  "kommunenavn": "Nordre Follo",
+                  "kommunenummer": "3207"
+                }
+              ],
+              "navneobjekttype": "Badeplass",
+              "oppdateringsdato": "2023-12-29T10:20:20",
+              "representasjonspunkt": {
+                "nord": 59.81831,
+                "øst": 10.74834
+              },
+              "stedsnavn": [
+                {
+                  "navnestatus": "hovednavn",
+                  "skrivemåte": "Ingierstrand bad",
+                  "skrivemåtestatus": "godkjent og prioritert",
+                  "språk": "Norsk",
+                  "stedsnavnnummer": 1
+                }
+              ],
+              "stedsnummer": 448130,
+              "stedstatus": "aktiv"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
