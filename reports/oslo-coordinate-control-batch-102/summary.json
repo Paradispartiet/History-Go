@@ -1,0 +1,46 @@
+{
+  "date": "2026-07-21",
+  "batch": 102,
+  "placeId": "havnelageret",
+  "method": "fresh Geonorge address-first reconfirmation followed by aggregate-to-split synchronization",
+  "expectedSourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+  "divergenceBefore": {
+    "aggregate": {
+      "lat": 59.90760281927637,
+      "lon": 10.746880614147818,
+      "r": 60,
+      "coordStatus": "verified",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1"
+    },
+    "splitChild": {
+      "lat": 59.90845,
+      "lon": 10.74305,
+      "r": 160,
+      "coordStatus": "needs_source",
+      "coordType": "site_center",
+      "sourceObjectId": ""
+    },
+    "meters": 233.4
+  },
+  "aggregateVsFreshGeonorgeMeters": 0,
+  "repairedCoordinate": {
+    "lat": 59.90760281927637,
+    "lon": 10.746880614147818,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+    "address": {
+      "street": "Langkaia",
+      "number": "1",
+      "postcode": "0150",
+      "city": "Oslo",
+      "country": "NO"
+    },
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker"
+  },
+  "protocolUniqueVerifiedCountAfterBatch": 304
+}
