@@ -1,5 +1,5 @@
 // History Go runtime category registry.
-// This is the canonical UI/runtime list for place.category, chips and merit display.
+// Machine-readable contract: data/categories/category_contract.json
 
 export type CategoryScope = "runtime_domain" | "runtime_domain_alias" | "subfield_display";
 
@@ -38,8 +38,9 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "historie", name: "Historie", icon: "🏛️", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
   { id: "religion", name: "Religion", icon: "🛐", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
   { id: "vitenskap", name: "Vitenskap & filosofi", icon: "🧪", color: "#332B51", secondaryColor: "#413E17", scope: "runtime_domain" },
-  { id: "kunst", name: "Kunst & kultur", icon: "🎨", color: "#DFB020", secondaryColor: "#1D3E5F", scope: "runtime_domain" },
-  { id: "musikk", name: "Musikk & scenekunst", icon: "🎭", color: "#122033", secondaryColor: "#121E2B", scope: "runtime_domain" },
+  { id: "kunst", name: "Kunst", icon: "🎨", color: "#DFB020", secondaryColor: "#1D3E5F", scope: "runtime_domain" },
+  { id: "scenekunst", name: "Scenekunst", icon: "🎭", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
+  { id: "musikk", name: "Musikk", icon: "🎵", color: "#122033", secondaryColor: "#121E2B", scope: "runtime_domain" },
   { id: "natur", name: "Natur & miljø", icon: "🌿", color: "#2E4F21", secondaryColor: "#DC7A04", scope: "runtime_domain" },
   { id: "sport", name: "Sport & lek", icon: "⚽", color: "#A01D13", secondaryColor: "#A51E15", scope: "runtime_domain" },
   { id: "by", name: "By & arkitektur", icon: "🏙️", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
@@ -59,15 +60,6 @@ const CATEGORY_LIST: CategoryDefinition[] = [
     scope: "runtime_domain_alias",
     canonicalFagId: "popkultur",
     aliases: ["popkultur"]
-  },
-  {
-    id: "scenekunst",
-    name: "Scenekunst",
-    icon: "🎭",
-    color: "#ffb703",
-    scope: "subfield_display",
-    parentId: "kunst",
-    canonicalFagId: "kunst"
   }
 ];
 
