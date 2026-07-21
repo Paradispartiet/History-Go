@@ -449,6 +449,8 @@ Protokollsynk (2026-07-21): stale needs_review-rader ble fjernet bare når både
 
 Koordinatkorreksjon (2026-07-21): `frysja_industriomrade` er nedgradert fra legacy `verified` til `needs_source`. Det tidligere punktet bygger bare på `manual_map_check` og beholdes foreløpig som displayanker; ingen kildebelagt områdegeometri eller area-ankre er lagt til.
 
+Batch 122-forberedelse (2026-07-21): seks rene lekeplass-/trenings-pseudo-places er migrert til eksisterende canonical parents uten nye markører: `lekeplass_st_hanshaugen` → `st_hanshaugen_park`, `lekeplass_birkelunden` → `birkelunden`, `lekeplass_olaf_ryes_plass` → `olaf_ryes_plass`, `lekeplass_botsparken` → `botsparken`, `lekeplass_stensparken` → `stensparken` og `treningssted_skur13` → `skur13`. Leke-/treningsinnhold beholdes som Wonderkammer/activity-lag, mens pseudo-place-postene og deres separate Civication-markører er fjernet. Batch 122 forblir aktiv for de ni gjenværende source-recordene.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller kildekontrollerte canonical Oslo-stedene.
