@@ -1,34 +1,44 @@
 From https://github.com/Paradispartiet/History-Go
  * branch                main       -> FETCH_HEAD
-HEAD is now at ab4fe9669 Add Åkrafjorden marine species batch 5
-[agent/oslo-coordinate-ljanselva-route-final 873cc141f] Rebase Ljanselva route coordinate runner onto latest main
- 1 file changed, 18 insertions(+)
- create mode 100644 scripts/coordinate-branch-job.mjs
+Auto-merging reports/coordinate-evidence-audit.md
+Auto-merging reports/place-coordinate-intake-gate.md
+Auto-merging reports/place-coordinate-quality-gate.md
+Merge made by the 'ort' strategy.
+ data/natur/fauna/manifest.json                     |    3 +-
+ data/natur/fauna/marine_akrafjorden_batch_6.json   | 1562 +++++++++++
+ data/natur/nature_etne_place_map.json              |   34 +-
+ .../coordinate-evidence.log                        |    9 +
+ .../coordinate-intake.log                          |    9 +
+ .../coordinate-quality.log                         |   13 +
+ .../coordinate-source-contract.log                 |    9 +
+ .../git-diff-check.log                             |    0
+ .../health-places.exit-code.txt                    |    1 +
+ .../health-places.log                              | 2883 ++++++++++++++++++++
+ .../job.log                                        |   61 +
+ .../npm-ci.log                                     |    7 +
+ .../places-index-build.log                         |    9 +
+ .../places-index-check.log                         |   15 +
+ .../split-manifest-sync.log                        |   19 +
+ reports/coordinate-evidence-audit.md               |    2 +-
+ reports/place-coordinate-intake-gate.md            |    2 +-
+ reports/place-coordinate-quality-gate.md           |    2 +-
+ ...etne-akrafjorden-marine-species-batch-5.test.js |    8 +-
+ ...etne-akrafjorden-marine-species-batch-6.test.js |   22 +
+ 20 files changed, 4655 insertions(+), 15 deletions(-)
+ create mode 100644 data/natur/fauna/marine_akrafjorden_batch_6.json
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-evidence.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-intake.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-quality.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/coordinate-source-contract.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/git-diff-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/health-places.exit-code.txt
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/health-places.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/job.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/npm-ci.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/places-index-build.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/places-index-check.log
+ create mode 100644 reports/coordinate-branch-runner/agent_oslo-coordinate-etne-akrafjorden-species-batch-6/split-manifest-sync.log
+ create mode 100644 tests/etne-akrafjorden-marine-species-batch-6.test.js
 To https://github.com/Paradispartiet/History-Go
- + b4c06ef34...873cc141f HEAD -> agent/oslo-coordinate-ljanselva-route-final (forced update)
-{
-  "batch": 108,
-  "pendingIds": [
-    "noklevann_ljanselva_start",
-    "skraperudtjern",
-    "ljanselva_skullerud",
-    "ljanselva_hauketo",
-    "ljanselva_ljan",
-    "ljanselva_fiskevollen",
-    "ljanselva_bunnefjorden"
-  ],
-  "verified": [
-    "skraperudtjern"
-  ],
-  "needsReview": [
-    "noklevann_ljanselva_start",
-    "ljanselva_skullerud",
-    "ljanselva_hauketo",
-    "ljanselva_ljan",
-    "ljanselva_fiskevollen",
-    "ljanselva_bunnefjorden"
-  ],
-  "newTotal": 269,
-  "nextBatch": 109,
-  "reportDir": "reports/oslo-coordinate-control-batch-108-ljanselva-route"
-}
+   650499fab..676062d13  HEAD -> agent/oslo-coordinate-ljanselva-route-final
+Siste main er merget inn i Ljanselva-branchen før runtime- og koordinatportene regenereres.
