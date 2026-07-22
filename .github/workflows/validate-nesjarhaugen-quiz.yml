@@ -1,0 +1,81 @@
+name: Validate Nesjarhaugen quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-nesjarhaugen-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-nesjarhaugen-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Validate quiz contract
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/quiz/historie/nesjarhaugen_byrkjenes_sets.json';
+          const quiz = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const questions = quiz.sets.flatMap(set => set.questions);
+          if (quiz.targetId !== 'nesjarhaugen_byrkjenes') throw new Error('Wrong targetId');
+          if (quiz.sets.length !== 3 || questions.length !== 15) throw new Error('Expected 3 sets and 15 questions');
+          if (quiz.sets.some(set => set.questions.length !== 5)) throw new Error('Every set must contain 5 questions');
+          const concrete = questions.filter(q => ['fact', 'observation'].includes(q.question_type)).length;
+          const context = questions.filter(q => ['context', 'analysis', 'comparison'].includes(q.question_type)).length;
+          const concepts = questions.filter(q => q.question_type === 'concept').length;
+          if (concrete !== 8 || context !== 4 || concepts !== 3) throw new Error(`Wrong balance: ${concrete}/${context}/${concepts}`);
+          for (const q of questions) {
+            if (q.placeId !== quiz.targetId || q.targetId !== quiz.targetId || q.question_scope !== 'place') throw new Error(`Target contract failed: ${q.id}`);
+            if (!Array.isArray(q.options) || q.options.length !== 3) throw new Error(`Option contract failed: ${q.id}`);
+            if (q.options[q.answerIndex] !== q.answer) throw new Error(`Answer contract failed: ${q.id}`);
+            if (!q.source?.length || !q.claim_basis || !q.emne_id || !q.method_id) throw new Error(`Metadata contract failed: ${q.id}`);
+            if (q.knowledge_link_status !== 'linked') throw new Error(`Knowledge link failed: ${q.id}`);
+          }
+          const manifest = JSON.parse(fs.readFileSync('data/quiz/manifest.json', 'utf8'));
+          const entries = manifest.sets.filter(entry => entry.targetId === quiz.targetId);
+          if (entries.length !== 1 || entries[0].file !== path) throw new Error('Manifest registration failed');
+          console.log('Nesjarhaugen quiz contract OK');
+          NODE
+
+      - name: Audit quiz content
+        run: npm run audit:quiz-content
+
+      - name: Audit quiz templates
+        run: npm run audit:quiz-templates
+
+      - name: Test quiz audit
+        run: npm run test:quiz-content-audit
+
+      - name: Check Knowledge data
+        run: npm run knowledge:canonical:check
+
+      - name: Commit final package
+        shell: bash
+        run: |
+          rm -f .github/workflows/validate-nesjarhaugen-quiz.yml
+          rm -f reports/nesjarhaugen-validation-trigger.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'Validate Nesjarhaugen quiz package'
+            git push origin HEAD:agent/etne-nesjarhaugen-quiz
+          fi
