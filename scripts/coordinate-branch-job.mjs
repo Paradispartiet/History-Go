@@ -17,6 +17,7 @@ let source = await response.text();
 source = source.replace('const BATCH = 142;', 'const BATCH = 143;');
 source = source.replaceAll('batch-142', 'batch-143');
 source = source.replaceAll('Batch 142', 'Batch 143');
+source = source.replaceAll('| 142 |', '| 143 |');
 
 const tempScript = path.join('/tmp', 'history-go-coordinate-batch-143.mjs');
 fs.writeFileSync(tempScript, source);
