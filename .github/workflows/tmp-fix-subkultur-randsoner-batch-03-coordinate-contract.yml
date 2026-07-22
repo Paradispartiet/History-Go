@@ -33,14 +33,29 @@ jobs:
           node scripts/split-subkultur-oslo-places.mjs
           npm run places:index:build
 
-      - name: Revalidate batch with real pipeline exit codes
+      - name: Validate split manifest sync
         shell: bash
         run: |
-          set -euo pipefail
+          set -o pipefail
           mkdir -p reports/subkultur-oslo-randsoner-batch-03/validation
           npm run audit:places-split-manifest-sync | tee reports/subkultur-oslo-randsoner-batch-03/validation/split-manifest-sync.txt
+
+      - name: Validate global places index
+        shell: bash
+        run: |
+          set -o pipefail
           npm run places:index:check | tee reports/subkultur-oslo-randsoner-batch-03/validation/places-index-check.txt
+
+      - name: Validate canonical place emner
+        shell: bash
+        run: |
+          set -o pipefail
           npm run places:emners:check | tee reports/subkultur-oslo-randsoner-batch-03/validation/emne-check.txt
+
+      - name: Validate coordinate intake
+        shell: bash
+        run: |
+          set -o pipefail
           npm run places:coords:intake | tee reports/subkultur-oslo-randsoner-batch-03/validation/coordinate-intake.txt
 
       - name: Remove one-shot fixer
