@@ -174,8 +174,8 @@
   {
     "id": "ljanselva_ljan",
     "name": "Ljanselva ved Ljan",
-    "lat": 59.8359,
-    "lon": 10.8099,
+    "lat": 59.8465614,
+    "lon": 10.7911851,
     "r": 170,
     "category": "natur",
     "desc": "Nedre del av Ljanselva med overgang mot fjordnære naturtyper.",
@@ -186,11 +186,11 @@
       "fjordnaer"
     ],
     "routeId": "ljanselva_grontdrag",
-    "sourceHint": "Koordinat lagt ved Ljan i nedre elveløp, før utløpsnære partier.",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "ljanselva_ljan_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
+    "sourceHint": "Koordinaten er lengdemidtpunktet på OSM way 98539575, den lange eksakt navngitte Ljanselva-geometrien gjennom kjernen av Liadalen ved Ljan.",
+    "coordType": "river_segment_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 98539575 – Ljanselva gjennom Liadalen ved Ljan",
+    "coordVerifiedAt": "2026-07-22",
     "popupDesc": "Ved Ljan ligger Ljanselva i nedre del av løpet, i terreng som gradvis åpner seg mot fjordnære soner. Her ser du overgangen mellom elvedraget, lokalt nærmiljø og landskapet som leder videre sørover. Stedet egner seg for å lese hvordan vannløpet samler tidligere delstrekninger før utløpsområdet. Dette punktet binder daldraget sammen med den siste etappen mot Bunnefjorden.",
     "underbadge_ids": [
       "elv",
@@ -201,7 +201,13 @@
       "designCode": "waterfront_miniature"
     },
     "locatorType": "route",
-    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordNote": "Batch 145 korrigerer den feilplasserte batch-112-scope-boksen og avgrenser Ljan-stoppet til Ljanselva gjennom Liadalen. Uavhengige kilder dokumenterer Liadalen som Ljanselvas dalføre ved Ljan. I den korrigerte Liadalen-boksen er OSM way 98539575 den eneste eksakt navngitte Ljanselva-geometrien over én kilometer og den dekker hovedstrekningen gjennom dalen; nedstrøms endepunkt kobler eksakt til way 156700580, som beholdes for den separate utløpsnære Fiskevollen-kontrollen. Canonical lat/lon er beregnet som lengdemidtpunkt langs way 98539575. Legacy-punktet 59.8359, 10.8099 brukes ikke som kilde eller utvelgelseskriterium.",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:98539575",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-way:98539575",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/98539575"
   },
   {
     "id": "ljanselva_fiskevollen",

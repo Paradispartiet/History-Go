@@ -2,57 +2,118 @@
   "schemaVersion": "1.0",
   "placeId": "ljanselva_ljan",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.8359,
-    "lon": 10.8099,
+    "lat": 59.8465614,
+    "lon": 10.7911851,
     "r": 170,
-    "coordStatus": "needs_source",
-    "coordSource": "ljanselva_ljan_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 98539575 – Ljanselva gjennom Liadalen ved Ljan",
+    "coordType": "river_segment_anchor",
+    "coordNote": "Batch 145 korrigerer den feilplasserte batch-112-scope-boksen og avgrenser Ljan-stoppet til Ljanselva gjennom Liadalen. Uavhengige kilder dokumenterer Liadalen som Ljanselvas dalføre ved Ljan. I den korrigerte Liadalen-boksen er OSM way 98539575 den eneste eksakt navngitte Ljanselva-geometrien over én kilometer og den dekker hovedstrekningen gjennom dalen; nedstrøms endepunkt kobler eksakt til way 156700580, som beholdes for den separate utløpsnære Fiskevollen-kontrollen. Canonical lat/lon er beregnet som lengdemidtpunkt langs way 98539575. Legacy-punktet 59.8359, 10.8099 brukes ikke som kilde eller utvelgelseskriterium."
   },
   "identity": {
     "currentName": "Ljanselva ved Ljan",
-    "resolvedIdentity": "Lokal Ljanselva-strekning ved Ljan",
+    "resolvedIdentity": "Den lange åpne Ljanselva-hovedstrekningen gjennom Liadalen ved Ljan",
     "identityStatus": "resolved",
-    "identityProblem": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker.",
+    "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Ljanselva gjennom Liadalen",
+      "sourceUrl": "https://www.openstreetmap.org/way/98539575",
+      "sourceObjectId": "osm-way:98539575",
+      "sourceQuality": "exact_named_long_waterway_segment_in_documented_local_corridor",
+      "finding": "Fresh way 98539575 er eksakt navngitt Ljanselva og er 1233.4 m lang. I korrigert Liadalen-scope er dette den eneste eksakte kandidaten over 1 km. Nedstrøms endepunkt kobler til way 156700580 med 0.00 m avvik.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt fysisk elvegeometri dekker den dokumenterte Liadalen-korridoren. Canonical line_anchor beregnes fra kildegeometrien."
+    },
+    {
       "sourceProvider": "manual_research",
-      "sourceName": "Route-scope coordinate audit",
-      "sourceUrl": "https://snl.no/Ljanselva",
-      "sourceObjectId": "manual-audit:ljanselva_ljan:unresolved",
-      "sourceQuality": "documented_route_scope_conflict",
-      "finding": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker.",
+      "sourceName": "Lokalhistoriewiki – Liadalen",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Liadalen_%28Oslo%29",
+      "sourceObjectId": "lokalhistoriewiki:liadalen-oslo",
+      "sourceQuality": "documented_local_valley_scope",
+      "finding": "Kilden definerer Liadalen som Ljanselvas dalføre vest for Ljabru og dokumenterer elva som bydelsgrense gjennom dalen.",
       "canVerifyCoordinate": false,
-      "reason": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+      "reason": "Avgrenser Ljan/Liadalen-identiteten; selve koordinaten kommer fra OSM-geometrien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ljan skole – Ljanselva i nærmiljøet",
+      "sourceUrl": "https://ljan.osloskolen.no/om-skolen/om-oss/skolen-og-naromradet/",
+      "sourceObjectId": "osloskolen:ljan-ljanselva-naermiljo",
+      "sourceQuality": "official_local_context",
+      "finding": "Ljan skole beskriver Ljanselva gjennom Liadalen som et viktig element i Ljans nærmiljø og turveien videre gjennom dalen mot nedre elveløp.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker at Liadalen-strekningen er legitim for place-navnet «Ljanselva ved Ljan»."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Ljanselva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Ljanselva",
+      "sourceObjectId": "oslobyleksikon:ljanselva",
+      "sourceQuality": "documented_river_corridor",
+      "finding": "Kilden beskriver Liadalen som Ljanselvas dalføre mellom jernbanekrysningen og elvekneet ved nedre løp.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker dalføre og sekvens i vassdraget."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:98539575",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:156700580",
+      "canApplyToPlace": false
+    },
+    {
       "sourceProvider": "manual_research",
-      "sourceObjectId": "manual-audit:ljanselva_ljan:unresolved",
+      "sourceObjectId": "lokalhistoriewiki:liadalen-oslo",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "osloskolen:ljan-ljanselva-naermiljo",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:98539575",
+      "lat": 59.8465614,
+      "lon": 10.7911851,
+      "coordRole": "line_anchor",
+      "geometryType": "LineString",
+      "lineLengthM": 1233.4,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.8465614,
+      "lon": 10.7911851,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker.",
-    "nextAction": "Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og line_anchor er anvendt på canonical place."
   },
   "notes": [
-    "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "Batch 145 korrigerer den feilplasserte batch-112-scope-boksen og avgrenser Ljan-stoppet til Ljanselva gjennom Liadalen. Uavhengige kilder dokumenterer Liadalen som Ljanselvas dalføre ved Ljan. I den korrigerte Liadalen-boksen er OSM way 98539575 den eneste eksakt navngitte Ljanselva-geometrien over én kilometer og den dekker hovedstrekningen gjennom dalen; nedstrøms endepunkt kobler eksakt til way 156700580, som beholdes for den separate utløpsnære Fiskevollen-kontrollen. Canonical lat/lon er beregnet som lengdemidtpunkt langs way 98539575. Legacy-punktet 59.8359, 10.8099 brukes ikke som kilde eller utvelgelseskriterium."
   ]
 }
