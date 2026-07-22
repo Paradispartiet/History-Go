@@ -7,10 +7,10 @@ on:
     paths:
       - 'scripts/apply-hidden-test-mode.mjs'
       - '.github/workflows/apply-hidden-test-mode.yml'
-  pull_request:
-    paths:
-      - 'scripts/apply-hidden-test-mode.mjs'
-      - '.github/workflows/apply-hidden-test-mode.yml'
+
+concurrency:
+  group: hidden-test-mode-migration
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -26,11 +26,9 @@ jobs:
           show-progress: false
 
       - name: Apply migration
-        id: apply
-        continue-on-error: true
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
           rm -f reports/hidden-test-mode-apply-error.txt reports/hidden-test-mode-test-error.txt
           python - <<'PY'
           from pathlib import Path
@@ -52,7 +50,7 @@ jobs:
               text = text.replace(old, new, 1)
           path.write_text(text)
           PY
-          node scripts/apply-hidden-test-mode.mjs 2>&1 | tee /tmp/hidden-test-mode-apply.log
+          node scripts/apply-hidden-test-mode.mjs
           python - <<'PY'
           from pathlib import Path
           path = Path('tests/header-search-menu.test.js')
@@ -74,50 +72,14 @@ jobs:
           path.write_text(text)
           PY
 
-      - name: Persist migration error
-        if: steps.apply.outcome == 'failure'
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p reports
-          cp /tmp/hidden-test-mode-apply.log reports/hidden-test-mode-apply-error.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/hidden-test-mode-apply-error.txt
-          git commit -m "Record hidden test mode migration error"
-          git push
-          exit 1
-
       - name: Test hidden test mode
-        id: test
-        if: steps.apply.outcome == 'success'
-        continue-on-error: true
-        shell: bash
         run: |
-          set -o pipefail
-          {
-            node tests/hg-test-mode.test.js
-            node tests/header-search-menu.test.js
-            node --check js/debug/HGTestMode.js
-            node --check js/ui/dom.js
-          } 2>&1 | tee /tmp/hidden-test-mode-test.log
-
-      - name: Persist test error
-        if: steps.apply.outcome == 'success' && steps.test.outcome == 'failure'
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p reports
-          cp /tmp/hidden-test-mode-test.log reports/hidden-test-mode-test-error.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/hidden-test-mode-test-error.txt
-          git commit -m "Record hidden test mode test error"
-          git push
-          exit 1
+          node tests/hg-test-mode.test.js
+          node tests/header-search-menu.test.js
+          node --check js/debug/HGTestMode.js
+          node --check js/ui/dom.js
 
       - name: Commit changes
-        if: steps.apply.outcome == 'success' && steps.test.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
