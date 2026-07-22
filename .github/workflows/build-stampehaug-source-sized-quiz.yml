@@ -1,0 +1,329 @@
+name: Build Stampehaug source-sized quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-stampehaug-source-sized-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-stampehaug-source-sized-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize source-sized Stampehaug quiz
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'stampehaug_meland';
+          const quizPath = `data/quiz/historie/${targetId}_sets.json`;
+          const guidanceFiles = [
+            'data/fag/historie/emner_historie_canonical_v4_5.json',
+            'data/fag/historie/supersetQUIZMAL_historie.json',
+            'data/fag/historie/methods_historie_canonical_v4_5.json'
+          ];
+
+          function q({n, set, local, text, options, answer, knowledge, type, difficulty, emne, method, concepts, tags, claim, sources, focus = []}) {
+            const answerIndex = options.indexOf(answer);
+            if (answerIndex < 0) throw new Error(`Answer missing for ${n}`);
+            return {
+              id: `${targetId}_quiz_${n}`,
+              quiz_id: `historie_${targetId}_set_${set}_q${local}`,
+              categoryId: 'historie',
+              placeId: targetId,
+              targetId,
+              question_scope: 'place',
+              question: text,
+              options,
+              answer,
+              answerIndex,
+              knowledge,
+              difficulty,
+              question_type: type,
+              year: null,
+              epoke_id: null,
+              epoke_domain: 'historie',
+              emne_id: emne,
+              related_emner: [],
+              source: sources,
+              source_origin: 'mixed',
+              claim_basis: claim,
+              guidance_basis: {
+                emne_id: emne,
+                canonical_files_used_as_guidance_only: guidanceFiles,
+                method_id: method
+              },
+              method_id: method,
+              core_concepts: concepts,
+              concept_focus: focus,
+              tags: [targetId, ...tags]
+            };
+          }
+
+          const sets = [
+            {
+              set_id: `historie_${targetId}_set_1`, level: 1, order: 1, xp: 50,
+              title: 'Ryggen og det kunstige påbygget',
+              questions: [
+                q({
+                  n: 1, set: 1, local: 1,
+                  text: 'Kva slags kulturminne er Stampehaug?',
+                  options: ['Ein gravhaug', 'Ei gravrøys av berre laus stein', 'Ein langhustuft'],
+                  answer: 'Ein gravhaug',
+                  knowledge: 'Stampehaug på Meland er registrert som ein gravhaug som nyttar ei naturleg terrengform.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['gravhaug', 'gravminne'], tags: ['kulturminnetype', 'gravhaug'],
+                  claim: 'Askeladden-posten klassifiserer Stampehaug som gravhaug.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                }),
+                q({
+                  n: 2, set: 1, local: 2,
+                  text: 'Kvar plasserte Per Fett Stampehaug i høve til tunet og elva?',
+                  options: ['70–80 meter nord for tunet og tett vest for elva', 'Sør for tunet og aust for elva', 'Midt på kyrkjegarden langt frå elva'],
+                  answer: '70–80 meter nord for tunet og tett vest for elva',
+                  knowledge: 'Den eldre registreringa plasserer haugen 70–80 meter nord for Meland-tunet, tett vest for elva.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['landskapsplassering', 'elv', 'gardstun'], tags: ['plassering', 'meland'],
+                  claim: 'Per Fett oppgav både avstanden nord for tunet og plasseringa vest for elva.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                }),
+                q({
+                  n: 3, set: 1, local: 3,
+                  text: 'Kva danna grunnforma under gravminnet?',
+                  options: ['Ein naturleg terrenghump eller rygg', 'Ei flat betongplate', 'Ein kunstig voll utan naturleg underlag'],
+                  answer: 'Ein naturleg terrenghump eller rygg',
+                  knowledge: 'Stampehaug vart ikkje bygd frå flat mark. Ei naturleg rygg danna fundamentet for det menneskeskapte påbygget.',
+                  type: 'observation', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['naturleg rygg', 'terrengform', 'fundament'], tags: ['naturgrunn', 'terreng'],
+                  claim: 'Kjelda skil eksplisitt mellom den naturlege humpen og det kunstige påbygget.',
+                  sources: ['b2find_stampehaug']
+                }),
+                q({
+                  n: 4, set: 1, local: 4,
+                  text: 'Kor stort vart det kunstige påbygget anslått av Per Fett?',
+                  options: ['Om lag åtte meter vidt og ein meter høgt', 'Om lag tjue meter vidt og fire meter høgt', 'Om lag tre meter vidt og tre meter høgt'],
+                  answer: 'Om lag åtte meter vidt og ein meter høgt',
+                  knowledge: 'Den menneskeskapte delen vart anslått til kring åtte meter i breidd og om lag ein meter i høgd.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['kunstig påbygg', 'tverrmål', 'høgd'], tags: ['mal', 'pabygg'],
+                  claim: 'Per Fett målte det kunstige påbygget til om lag åtte meter og ein meter høgd.',
+                  sources: ['b2find_stampehaug']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_2`, level: 2, order: 2, xp: 50,
+              title: 'Seinare mål og ulik bevaring',
+              questions: [
+                q({
+                  n: 5, set: 2, local: 1,
+                  text: 'Kva mål oppgir den seinare registreringa?',
+                  options: ['Vel åtte meter i tverrmål og mellom ein halv og ein meter høg', 'Om lag femten meter og fire meter høg', 'Mindre enn to meter og heilt flat'],
+                  answer: 'Vel åtte meter i tverrmål og mellom ein halv og ein meter høg',
+                  knowledge: 'Den seinare dokumentasjonen held tverrmålet kring åtte meter og oppgir høgda til mellom ein halv og ein meter.',
+                  type: 'fact', difficulty: 2,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['seinare måling', 'tverrmål', 'høgd'], tags: ['mal', 'registreringshistorie'],
+                  claim: 'Nyare mål ligg framleis kring åtte meter, med ei høgd på 0,5–1 meter.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                }),
+                q({
+                  n: 6, set: 2, local: 2,
+                  text: 'Kva skjuler delar av haugforma?',
+                  options: ['Kratt', 'Ein moderne steinkyrkje', 'Eit ope vassmagasin'],
+                  answer: 'Kratt',
+                  knowledge: 'Stampehaug ligg delvis i kratt, slik at ikkje heile terrengforma er like lett å lese.',
+                  type: 'observation', difficulty: 1,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['kratt', 'synlegheit', 'bevaringstilstand'], tags: ['overgroing', 'observasjon'],
+                  claim: 'Den seinare registreringa skildrar haugen som delvis krattkledd.',
+                  sources: ['b2find_stampehaug']
+                }),
+                q({
+                  n: 7, set: 2, local: 3,
+                  text: 'Kva seinare inngrep er særleg knytt til sørsida?',
+                  options: ['Utflating der det mellom anna hadde stått ein revegard', 'Oppføring av eit middelaldertårn', 'Ei arkeologisk fullrekonstruksjon'],
+                  answer: 'Utflating der det mellom anna hadde stått ein revegard',
+                  knowledge: 'Sørkanten er noko utflata, mellom anna i området der det tidlegare stod ein revegard.',
+                  type: 'fact', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['utflating', 'revegard', 'terrenginngrep'], tags: ['sorside', 'bevaring'],
+                  claim: 'Kjelda knyter den endra sørkanten til seinare bruk, mellom anna ein revegard.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                }),
+                q({
+                  n: 8, set: 2, local: 4,
+                  text: 'Kvifor er haugen tydelegare sett frå nord enn frå sør?',
+                  options: ['Sørsida er utflata, medan nordsida framleis er markert', 'Nordsida er nybygd i betong', 'Elva har flytta heile haugen mot nord'],
+                  answer: 'Sørsida er utflata, medan nordsida framleis er markert',
+                  knowledge: 'Ulik seinare påverknad har gjort sørkanten svakare, medan den opphavlege ryggforma framleis er lettare å lese frå nord.',
+                  type: 'analysis', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['retningsavhengig synlegheit', 'utflating', 'bevaringsspor'], tags: ['analyse', 'nord_sor'],
+                  claim: 'Den dokumenterte utflatinga i sør forklarer den sterkare profilen sett frå nord.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_3`, level: 3, order: 3, xp: 50,
+              title: 'Naturform og bygd monument',
+              questions: [
+                q({
+                  n: 9, set: 3, local: 1,
+                  text: 'Kva betyr «terrengtilpassa monument» ved Stampehaug?',
+                  options: ['Eit monument som byggjer vidare på ei naturleg landform', 'Eit monument flytta frå ein annan kommune', 'Ei naturform utan menneskeleg inngrep'],
+                  answer: 'Eit monument som byggjer vidare på ei naturleg landform',
+                  knowledge: 'Eit terrengtilpassa monument utnyttar landskapet som del av forma. På Stampehaug vart ei naturleg rygg forsterka.',
+                  type: 'concept', difficulty: 2,
+                  emne: 'em_his_landskap_makt_identitet', method: 'met_sporlesning',
+                  concepts: ['terrengtilpassa monument', 'landskapsarkeologi'], focus: ['terrengtilpassa monument'], tags: ['begrep', 'landskap'],
+                  claim: 'Kombinasjonen av naturleg rygg og bygd del gjer omgrepet konkret.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                }),
+                q({
+                  n: 10, set: 3, local: 2,
+                  text: 'Kva er eit «kunstig påbygg» i denne samanhengen?',
+                  options: ['Massar lagde av menneske oppå ei eksisterande terrengform', 'Ein naturleg rygg utan endringar', 'Eit moderne hus over heile haugen'],
+                  answer: 'Massar lagde av menneske oppå ei eksisterande terrengform',
+                  knowledge: 'Det kunstige påbygget er den menneskeskapte delen som gjorde den naturlege ryggen til eit gravmonument.',
+                  type: 'concept', difficulty: 2,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['kunstig påbygg', 'menneskeskapte massar', 'naturgrunn'], focus: ['kunstig påbygg'], tags: ['begrep', 'konstruksjon'],
+                  claim: 'Registreringa skil det kunstige påbygget frå den naturlege terrenghumpen.',
+                  sources: ['b2find_stampehaug']
+                }),
+                q({
+                  n: 11, set: 3, local: 3,
+                  text: 'Kvifor er det misvisande å kalle heile Stampehaug menneskeskapt frå grunnen?',
+                  options: ['Den naturlege ryggen er ein vesentleg del av den samla forma', 'Kjeldene seier at ingen menneske endra staden', 'Alle gravhaugar er reine naturformer'],
+                  answer: 'Den naturlege ryggen er ein vesentleg del av den samla forma',
+                  knowledge: 'Monumentet består av både naturgrunn og bygd tillegg. Å slå dei saman til éin heilt kunstig haug ville miste det viktigaste kjenneteiknet.',
+                  type: 'analysis', difficulty: 3,
+                  emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+                  concepts: ['natur og kultur', 'samansett form', 'tolkingspresisjon'], tags: ['analyse', 'natur_kultur'],
+                  claim: 'Kjelda dokumenterer ei samansett form, ikkje ein haug bygd heilt frå flat mark.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                }),
+                q({
+                  n: 12, set: 3, local: 4,
+                  text: 'Kva kan dei liknande eldre og seinare måla dokumentere?',
+                  options: ['At hovudstorleiken har vore relativt stabil, sjølv om sidene er ulikt endra', 'At haugen er fullstendig urørt', 'At byggjedato og gravlagd person er kjende'],
+                  answer: 'At hovudstorleiken har vore relativt stabil, sjølv om sidene er ulikt endra',
+                  knowledge: 'Måla kring åtte meter viser kontinuitet i hovudstorleiken. Kratt og utflating viser samtidig at bevaringstilstanden ikkje er uendra.',
+                  type: 'analysis', difficulty: 3,
+                  emne: 'em_his_kilder_taushet_blindsoner', method: 'met_kildekritikk',
+                  concepts: ['målesamanlikning', 'relativ stabilitet', 'bevaringsendring'], tags: ['analyse', 'registreringshistorie'],
+                  claim: 'Liknande tverrmål kan dokumentere stabil hovudstorleik utan å bevise intaktheit.',
+                  sources: ['b2find_stampehaug', 'etne_register']
+                })
+              ]
+            }
+          ];
+
+          const quiz = {
+            targetId,
+            categoryId: 'historie',
+            generator_version: 'quiz_standard_canonical_v2_manual_source_based_source_sized',
+            generated_from: [
+              'data/places/historie/vestland/etne/stampehaug_meland.json',
+              'data/stories/stories_etne_historie_rounds_batch6.json',
+              'reports/etne-historie-batch-6-research.md',
+              'data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md'
+            ],
+            sources: {
+              b2find_stampehaug: 'https://b2find.eudat.eu/dataset/de27b312-d96c-52e9-8bc8-b50e0ed56d98',
+              etne_register: 'https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf'
+            },
+            profile_snapshot: {
+              place_type: 'gravhaug',
+              subtype: 'gravhaug_bygd_pa_naturleg_terrenghump',
+              signature_features: [
+                'naturleg rygg tett vest for elva og 70–80 meter nord for tunet',
+                'kunstig påbygg kring åtte meter og opp mot ein meter høgt',
+                'kratt, utflata sørside og framleis markert nordside'
+              ],
+              primary_angles: ['gravskikk', 'landskapsbruk', 'bevaringshistorie', 'kildekritikk'],
+              avoid_angles: [
+                'presentere heile haugen som kunstig bygd frå grunnen',
+                'tolke liknande mål som full intaktheit',
+                'gi sikker eksakt datering eller identitet'
+              ]
+            },
+            sets
+          };
+
+          fs.mkdirSync('data/quiz/historie', { recursive: true });
+          fs.writeFileSync(quizPath, JSON.stringify(quiz, null, 2) + '\n');
+
+          const manifestPath = 'data/quiz/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.sets = manifest.sets.filter(entry => entry.targetId !== targetId);
+          manifest.sets.push({ targetId, file: quizPath });
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Validate source-sized contract
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'stampehaug_meland';
+          const data = JSON.parse(fs.readFileSync(`data/quiz/historie/${targetId}_sets.json`, 'utf8'));
+          const qs = data.sets.flatMap(set => set.questions);
+          const counts = {
+            total: qs.length,
+            concrete: qs.filter(q => ['fact', 'observation'].includes(q.question_type)).length,
+            context: qs.filter(q => ['analysis', 'context', 'comparison'].includes(q.question_type)).length,
+            concept: qs.filter(q => q.question_type === 'concept').length
+          };
+          const expected = { total: 12, concrete: 7, context: 3, concept: 2 };
+          if (JSON.stringify(counts) !== JSON.stringify(expected)) throw new Error(`${JSON.stringify(counts)} != ${JSON.stringify(expected)}`);
+          for (const set of data.sets) {
+            if (set.questions.length !== 4) throw new Error(`${set.set_id}: expected 4 questions`);
+          }
+          for (const question of qs) {
+            if (question.targetId !== targetId || question.placeId !== targetId || question.question_scope !== 'place') throw new Error(`${question.id}: invalid target contract`);
+            if (!question.options.includes(question.answer) || question.options[question.answerIndex] !== question.answer) throw new Error(`${question.id}: invalid answer contract`);
+          }
+          NODE
+
+      - name: Build canonical Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Run quiz and Knowledge validation
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run knowledge:canonical:check
+
+      - name: Remove temporary files
+        run: |
+          rm -f .github/workflows/build-stampehaug-source-sized-quiz.yml
+          rm -f .tmp/trigger-stampehaug-source-sized-quiz.txt
+
+      - name: Commit final Stampehaug package
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Add source-sized Stampehaug quiz"
+          git push
