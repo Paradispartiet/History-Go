@@ -1,0 +1,49 @@
+name: Apply hidden test mode
+
+on:
+  push:
+    branches:
+      - agent/remove-public-test-mode-toggle
+    paths:
+      - 'scripts/apply-hidden-test-mode.mjs'
+      - '.github/workflows/apply-hidden-test-mode.yml'
+  pull_request:
+    paths:
+      - 'scripts/apply-hidden-test-mode.mjs'
+      - '.github/workflows/apply-hidden-test-mode.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/remove-public-test-mode-toggle
+
+      - name: Apply migration
+        run: node scripts/apply-hidden-test-mode.mjs
+
+      - name: Test hidden test mode
+        run: |
+          node tests/hg-test-mode.test.js
+          node tests/header-search-menu.test.js
+          node --check js/debug/HGTestMode.js
+          node --check js/ui/dom.js
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html js/debug/HGTestMode.js js/ui/dom.js css/components.css tests/hg-test-mode.test.js tests/header-search-menu.test.js docs/HG_TEST_MODE.md schemas/globals.d.ts schemas/app-globals.d.ts .github/workflows/typescript-guard.yml
+          if git diff --cached --quiet; then
+            echo "Hidden test mode changes already applied."
+            exit 0
+          fi
+          git commit -m "Hide test mode from public menu"
+          git push
