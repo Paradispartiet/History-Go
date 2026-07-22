@@ -1,0 +1,292 @@
+name: Build Dysjanes source-sized quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-dysjanes-source-sized-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-dysjanes-source-sized-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize source-sized Dysjanes quiz
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'dysjanes_rivaisen_gravroys';
+          const quizPath = `data/quiz/historie/${targetId}_sets.json`;
+          const guidanceFiles = [
+            'data/fag/historie/emner_historie_canonical_v4_5.json',
+            'data/fag/historie/supersetQUIZMAL_historie.json',
+            'data/fag/historie/methods_historie_canonical_v4_5.json'
+          ];
+
+          function q({n, set, text, options, answer, knowledge, type, difficulty, emne, method, concepts, tags, claim, sources, focus = []}) {
+            const answerIndex = options.indexOf(answer);
+            if (answerIndex < 0) throw new Error(`Answer missing for ${n}`);
+            return {
+              id: `${targetId}_quiz_${n}`,
+              quiz_id: `historie_${targetId}_set_${set}_q${((n - 1) % 3) + 1}`,
+              categoryId: 'historie',
+              placeId: targetId,
+              targetId,
+              question_scope: 'place',
+              question: text,
+              options,
+              answer,
+              answerIndex,
+              knowledge,
+              difficulty,
+              question_type: type,
+              year: null,
+              epoke_id: null,
+              epoke_domain: 'historie',
+              emne_id: emne,
+              related_emner: [],
+              source: sources,
+              source_origin: 'mixed',
+              claim_basis: claim,
+              guidance_basis: {
+                emne_id: emne,
+                canonical_files_used_as_guidance_only: guidanceFiles,
+                method_id: method
+              },
+              method_id: method,
+              core_concepts: concepts,
+              concept_focus: focus,
+              tags: [targetId, ...tags]
+            };
+          }
+
+          const sets = [
+            {
+              set_id: `historie_${targetId}_set_1`, level: 1, order: 1, xp: 50,
+              title: 'Røysresten på neset',
+              questions: [
+                q({
+                  n: 1, set: 1,
+                  text: 'Kva slags kulturminne er registrert på Dysjanes?',
+                  options: ['Restane etter ei gravrøys', 'Ein intakt steinring', 'Ei langhustuft'],
+                  answer: 'Restane etter ei gravrøys',
+                  knowledge: 'På Dysjanes er det registrert ein låg og forstyrra rest etter ei førhistorisk gravrøys.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['gravrøys', 'røysrest'], tags: ['kulturminnetype', 'gravroys'],
+                  claim: 'Askeladden-posten klassifiserer lokaliteten som restane etter ei gravrøys.',
+                  sources: ['b2find_dysjanes', 'etne_register']
+                }),
+                q({
+                  n: 2, set: 1,
+                  text: 'Kva terreng kjenneteiknar plasseringa av røysa?',
+                  options: ['Eit bergfullt nes i utmarka', 'Ei flat elveslette midt i eit tun', 'Ein skogdal utan berg'],
+                  answer: 'Eit bergfullt nes i utmarka',
+                  knowledge: 'Røysresten ligg på det bergfulle Dysjanes ved Rivåsen, i eit sjøvendt utmarkslandskap.',
+                  type: 'observation', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['bergnes', 'utmark', 'kystlandskap'], tags: ['landskap', 'dysjanes'],
+                  claim: 'Registreringa plasserer gravminnet på eit bergfullt nes i utmarka.',
+                  sources: ['b2find_dysjanes', 'etne_register']
+                }),
+                q({
+                  n: 3, set: 1,
+                  text: 'Kva tverrmål oppgav Per Fett for røysa?',
+                  options: ['Om lag åtte til ni meter', 'Om lag tre til fire meter', 'Om lag tjue meter'],
+                  answer: 'Om lag åtte til ni meter',
+                  knowledge: 'Per Fett oppgav at røysa hadde vore om lag åtte til ni meter i tverrmål.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['tverrmål', 'eldre registrering'], tags: ['mal', 'per_fett'],
+                  claim: 'Den eldre registreringa oppgir eit tverrmål på om lag 8–9 meter.',
+                  sources: ['b2find_dysjanes']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_2`, level: 2, order: 2, xp: 50,
+              title: 'Den seinare tilstanden',
+              questions: [
+                q({
+                  n: 4, set: 2,
+                  text: 'Kva mål gir den seinare registreringa av røysresten?',
+                  options: ['Kring åtte meter og vel ein halv meter høg', 'Kring femten meter og tre meter høg', 'Kring to meter og heilt flat'],
+                  answer: 'Kring åtte meter og vel ein halv meter høg',
+                  knowledge: 'Den seinare registreringa omtalar røysa som kring åtte meter i tverrmål og vel ein halv meter høg.',
+                  type: 'fact', difficulty: 2,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['seinare måling', 'tverrmål', 'høgd'], tags: ['mal', 'seinare_registrering'],
+                  claim: 'Nyare dokumentasjon oppgir om lag 8 meter i tverrmål og over 0,5 meter høgd.',
+                  sources: ['b2find_dysjanes']
+                }),
+                q({
+                  n: 5, set: 2,
+                  text: 'Kva skjuler mykje av røysresten i den seinare skildringa?',
+                  options: ['Buskar og kratt', 'Ein moderne murbygning', 'Eit tjukt lag asfalt'],
+                  answer: 'Buskar og kratt',
+                  knowledge: 'Røysresten er overgrodd av buskar og kratt, noko som gjer den låge forma vanskelegare å lese.',
+                  type: 'observation', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['overgroing', 'synlegheit', 'bevaringstilstand'], tags: ['overgroing', 'observasjon'],
+                  claim: 'Den seinare registreringa skildrar røysa som overgrodd av buskar og kratt.',
+                  sources: ['b2find_dysjanes']
+                }),
+                q({
+                  n: 6, set: 2,
+                  text: 'Kva betyr ei «tilstandssamanlikning» mellom registreringane?',
+                  options: ['Å samanlikne mål, form og skade ved ulike registreringstidspunkt', 'Å gjette kven som låg i grava', 'Å gi røysa ein nøyaktig byggjedato'],
+                  answer: 'Å samanlikne mål, form og skade ved ulike registreringstidspunkt',
+                  knowledge: 'Ei tilstandssamanlikning undersøker kva som ser likt eller endra ut mellom dokumentasjonstidspunkt. Her vart hovudform og utsjånad samanlikna med 1957.',
+                  type: 'concept', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_kildekritikk',
+                  concepts: ['tilstandssamanlikning', 'registreringshistorie'], focus: ['tilstandssamanlikning'], tags: ['begrep', '1957'],
+                  claim: 'Kjelda samanliknar den seinare tilstanden med hovudform og utsjånad registrert i 1957.',
+                  sources: ['b2find_dysjanes', 'etne_register']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_3`, level: 3, order: 3, xp: 50,
+              title: 'Stabil rest og kjeldegrenser',
+              questions: [
+                q({
+                  n: 7, set: 3,
+                  text: 'Kvifor betyr «same hovudform som i 1957» ikkje at røysa er intakt?',
+                  options: ['Samanlikninga gjeld ein allereie låg og forstyrra rest', 'Alle gravrøyser blir automatisk intakte etter femti år', '1957-registreringa dokumenterte ein nybygd kopi'],
+                  answer: 'Samanlikninga gjeld ein allereie låg og forstyrra rest',
+                  knowledge: 'Relativ stabilitet kan vise at resten ikkje har endra seg mykje sidan 1957. Ho gjer ikkje den opphavlege røysa heil igjen.',
+                  type: 'analysis', difficulty: 3,
+                  emne: 'em_his_kilder_taushet_blindsoner', method: 'met_kildekritikk',
+                  concepts: ['relativ stabilitet', 'forstyrra monument', 'tolkingsgrense'], tags: ['analyse', 'bevaring'],
+                  claim: 'Begge registreringane omtalar ein låg og forstyrra rest; stabilitet er ikkje det same som intaktheit.',
+                  sources: ['b2find_dysjanes', 'etne_register']
+                }),
+                q({
+                  n: 8, set: 3,
+                  text: 'Kva betyr «røysrest» på Dysjanes?',
+                  options: ['Den bevarte delen av eit større steinmonument', 'Ei fullstendig urørt røys', 'Ei naturleg steinstrand utan registrert kulturminne'],
+                  answer: 'Den bevarte delen av eit større steinmonument',
+                  knowledge: 'Ein røysrest er det som står att etter at den opphavlege forma er skadd, utjamna eller delvis fjerna.',
+                  type: 'concept', difficulty: 2,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['røysrest', 'opphavleg form', 'bevaring'], focus: ['røysrest'], tags: ['begrep', 'restform'],
+                  claim: 'Dysjanes er dokumentert som ein låg rest, ikkje som eit komplett bevart monument.',
+                  sources: ['b2find_dysjanes', 'etne_register']
+                }),
+                q({
+                  n: 9, set: 3,
+                  text: 'Kva kan registreringane dokumentere utan å overtolke Dysjanes-røysa?',
+                  options: ['Mål, bevaringstilstand og plassering på neset', 'Namnet på den gravlagde og eit eksakt årstal', 'Alt gravinnhald som ein gong kan ha lege der'],
+                  answer: 'Mål, bevaringstilstand og plassering på neset',
+                  knowledge: 'Kjeldene dokumenterer mål, terreng og tilstand. Dei gir ikkje sikker presis datering, gravinnhald eller identitet.',
+                  type: 'analysis', difficulty: 3,
+                  emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+                  concepts: ['overflateregistrering', 'kunnskapsgrense', 'arkeologisk dokumentasjon'], tags: ['analyse', 'kildegrense'],
+                  claim: 'Overflateregistreringane har konkrete styrkar, men gir ikkje identitet eller eksakt datering.',
+                  sources: ['b2find_dysjanes', 'etne_register']
+                })
+              ]
+            }
+          ];
+
+          const quiz = {
+            targetId,
+            categoryId: 'historie',
+            generator_version: 'quiz_standard_canonical_v2_manual_source_based_source_sized',
+            generated_from: [
+              'data/places/historie/vestland/etne/dysjanes_rivaisen_gravroys.json',
+              'reports/etne-historie-batch-6-research.md',
+              'data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md'
+            ],
+            sources: {
+              b2find_dysjanes: 'https://b2find.eudat.eu/dataset/1c772026-6bab-525e-9862-d346e4d1bac0',
+              etne_register: 'https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf'
+            },
+            profile_snapshot: {
+              place_type: 'gravroys',
+              subtype: 'delvis_bevart_kystvendt_gravroys_pa_nes',
+              signature_features: [
+                'bergfullt nes i utmarka ved Rivåsen',
+                'eldre tverrmål på om lag åtte til ni meter',
+                'seinare låg, overgrodd rest med same hovudform som i 1957'
+              ],
+              primary_angles: ['gravskikk', 'kystlandskap', 'bevaringshistorie', 'kildekritikk'],
+              avoid_angles: [
+                'framstille røysa som intakt',
+                'tolke stabil tilstand som opphavleg tilstand',
+                'gi sikker eksakt datering eller identitet'
+              ]
+            },
+            sets
+          };
+
+          fs.mkdirSync('data/quiz/historie', { recursive: true });
+          fs.writeFileSync(quizPath, JSON.stringify(quiz, null, 2) + '\n');
+
+          const manifestPath = 'data/quiz/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.sets = manifest.sets.filter(entry => entry.targetId !== targetId);
+          manifest.sets.push({ targetId, file: quizPath });
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Validate source-sized contract
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'dysjanes_rivaisen_gravroys';
+          const data = JSON.parse(fs.readFileSync(`data/quiz/historie/${targetId}_sets.json`, 'utf8'));
+          const qs = data.sets.flatMap(set => set.questions);
+          const counts = {
+            total: qs.length,
+            concrete: qs.filter(q => ['fact', 'observation'].includes(q.question_type)).length,
+            context: qs.filter(q => ['analysis', 'context', 'comparison'].includes(q.question_type)).length,
+            concept: qs.filter(q => q.question_type === 'concept').length
+          };
+          const expected = { total: 9, concrete: 5, context: 2, concept: 2 };
+          if (JSON.stringify(counts) !== JSON.stringify(expected)) throw new Error(`${JSON.stringify(counts)} != ${JSON.stringify(expected)}`);
+          for (const set of data.sets) {
+            if (set.questions.length !== 3) throw new Error(`${set.set_id}: expected 3 questions`);
+          }
+          for (const question of qs) {
+            if (question.targetId !== targetId || question.placeId !== targetId || question.question_scope !== 'place') throw new Error(`${question.id}: invalid target contract`);
+            if (!question.options.includes(question.answer) || question.options[question.answerIndex] !== question.answer) throw new Error(`${question.id}: invalid answer contract`);
+          }
+          NODE
+
+      - name: Build canonical Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Run quiz and Knowledge validation
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run knowledge:canonical:check
+
+      - name: Remove temporary files
+        run: |
+          rm -f .github/workflows/build-dysjanes-source-sized-quiz.yml
+          rm -f .tmp/trigger-dysjanes-source-sized-quiz.txt
+
+      - name: Commit final Dysjanes package
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Add source-sized Dysjanes gravrøys quiz"
+          git push
