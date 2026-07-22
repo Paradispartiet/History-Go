@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 383 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 387 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -547,6 +547,14 @@ Batch 142 (2026-07-22) etterfører den mergede Subkultur-randsonebatchen. `plata
 | 143 | `ljanselva_skullerud` | Ljanselva ved Skullerud | verified_geometry | `osm-way:27271638` |
 
 Batch 143 (2026-07-22) løser `ljanselva_skullerud` som et eksplisitt line_anchor på OSM way 27271638. Batch 112 fant fem eksakt navngitte Ljanselva-segmenter i den forhåndsdefinerte lokale Skullerud-scope-boksen. Way 27271638 er det eneste av disse kandidatsegmentene hvis geometri omslutter recordens eksisterende lokale Skullerud-markør, og way-en har i tillegg alternativnavnet `Skullerudbekken`. Legacy-punktet brukes bare til identitets- og scope-disambiguering, ikke som koordinatbevis. Canonical lat/lon beregnes som lengdemidtpunkt langs selve OSM-geometrien og lagres som `semantic_anchor` / `line_anchor`; ingen nearest/first-hit-logikk brukes.
+
+
+| 144 | `brugata_storgata_rusmiljo` | Brugata / Storgata – det åpne rusmiljøet | verified | `geonorge-adresser-v1:0301:17059:33` |
+| 144 | `huset_oslo` | Huset Oslo | verified | `geonorge-adresser-v1:0301:17994:22` |
+| 144 | `nadheim_oslo` | Nadheim | verified | `geonorge-adresser-v1:0301:15107:45` |
+| 144 | `motestedet_tollbugata` | Møtestedet – Tollbugata | verified | `geonorge-adresser-v1:0301:17577:3` |
+
+Batch 144 (2026-07-22) utvider Subkultur med dokumenterte sosiale randsoner i Oslo. Brugata/Storgata-punktet bruker det offisielle Geonorge-adressepunktet for Storgata 33 som semantisk kryssanker for det åpne rusmiljøet Oslo kommune beskriver som både markedsplass og sosial møteplass; det er et eget sosialt stedsscope og ikke en duplikat av hele Storgata. Huset Oslo, Nadheim og Møtestedet følger address-first-policyen og bruker entydige Geonorge-adressepunkter på dokumenterte besøksadresser.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
