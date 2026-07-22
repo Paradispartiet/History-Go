@@ -37,4 +37,15 @@ jobs:
         run: npm run build:tools
 
       - name: Validate active Lesespor manifest
-        run: node dist/tools/validate_lesespor.mjs
+        shell: bash
+        run: |
+          set -o pipefail
+          node dist/tools/validate_lesespor.mjs 2>&1 | tee /tmp/lesespor-validation.log
+
+      - name: Upload Lesespor validation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lesespor-validation-log
+          path: /tmp/lesespor-validation.log
+          if-no-files-found: warn
