@@ -97,8 +97,8 @@
   {
     "id": "ljanselva_skullerud",
     "name": "Ljanselva ved Skullerud",
-    "lat": 59.8642,
-    "lon": 10.8423,
+    "lat": 59.8627529,
+    "lon": 10.8450942,
     "r": 180,
     "category": "natur",
     "desc": "Bekk-/elvestrekk gjennom skog og friområder ved Skullerud.",
@@ -109,11 +109,11 @@
       "grontdrag"
     ],
     "routeId": "ljanselva_grontdrag",
-    "sourceHint": "Koordinat satt på Ljanselvas løp ved Skullerud basert på turkart og vassdragskart.",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "ljanselva_skullerud_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
+    "sourceHint": "Koordinaten er lengdemidtpunktet på eksakt OSM way 27271638, Ljanselva / Skullerudbekken, valgt innenfor den allerede avgrensede Skullerud-strekningen.",
+    "coordType": "river_segment_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 27271638 – Ljanselva / Skullerudbekken",
+    "coordVerifiedAt": "2026-07-22",
     "popupDesc": "Ved Skullerud går Ljanselva som et elvestrekk gjennom skog og åpne friområder. Her blir overgangen tydelig fra markapreget terreng til grøntdrag nærmere boligområder. Følger du stiene i området, kan du lese hvordan vannløpet binder sammen ferdsel, naturkorridor og bynær bruk. Dette punktet viser den midtre delen av systemet før elva går videre mot mer utbygd bebyggelse.",
     "underbadge_ids": [
       "elv",
@@ -125,7 +125,13 @@
       "designCode": "waterfront_miniature"
     },
     "locatorType": "route",
-    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordNote": "Batch 142 verifiserer den lokale Ljanselva-strekningen ved Skullerud med eksakt OSM way 27271638. Batch 112 fant fem eksakt navngitte Ljanselva-segmenter i den forhåndsdefinerte lokale scope-boksen; way 27271638 er det eneste kandidatsegmentet hvis geometri omslutter recordens eksisterende Skullerud-markør, og way-en har i tillegg alternativnavnet Skullerudbekken. Legacy-punktet brukes bare til å løse hvilken kildegeometri den allerede definerte place-identiteten viser til, ikke som koordinatbevis. Canonical lat/lon er beregnet som lengdemidtpunkt langs selve OSM-geometrien, uten nearest/first-hit-logikk.",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:27271638",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-way:27271638",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/27271638"
   },
   {
     "id": "ljanselva_hauketo",
