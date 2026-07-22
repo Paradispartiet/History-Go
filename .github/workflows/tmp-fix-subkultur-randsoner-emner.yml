@@ -1,0 +1,52 @@
+name: Fix Subkultur randsoner canonical emner
+
+on:
+  push:
+    branches:
+      - agent/subkultur-randsoner-batch-02
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/subkultur-randsoner-batch-02
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fix canonical emne IDs
+        run: node scripts/tmp-fix-subkultur-randsoner-emner.mjs
+
+      - name: Regenerate split files and indexes
+        run: |
+          node scripts/split-subkultur-oslo-places.mjs
+          npm run places:index:build
+
+      - name: Revalidate place data
+        run: |
+          npm run audit:places-split-manifest-sync | tee reports/subkultur-oslo-randsoner-batch-02/validation/split-manifest-sync.txt
+          npm run places:index:check | tee reports/subkultur-oslo-randsoner-batch-02/validation/places-index-check.txt
+          npm run places:emners:check | tee reports/subkultur-oslo-randsoner-batch-02/validation/emne-check.txt
+          npm run places:coords:intake | tee reports/subkultur-oslo-randsoner-batch-02/validation/coordinate-intake.txt
+
+      - name: Remove one-shot fixer
+        run: git rm scripts/tmp-fix-subkultur-randsoner-emner.mjs .github/workflows/tmp-fix-subkultur-randsoner-emner.yml
+
+      - name: Commit fix
+        run: |
+          git config user.name "history-go-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/places/subkultur/oslo data/places/places_index.json reports/subkultur-oslo-randsoner-batch-02/validation
+          git commit -m "Fix canonical emner for Subkultur margins batch 02"
+          git push origin HEAD:agent/subkultur-randsoner-batch-02
