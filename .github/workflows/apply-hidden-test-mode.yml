@@ -44,10 +44,6 @@ jobs:
               (
                   '  fs.mkdirSync(path.split("/").slice(0, -1).join("/"), { recursive: true });',
                   '  const directory = path.split("/").slice(0, -1).join("/");\n  if (directory) fs.mkdirSync(directory, { recursive: true });'
-              ),
-              (
-                  '  const document = {\n    readyState: "complete",',
-                  '  const document = {\n    readyState: "complete",\n    querySelector(selector) {\n      return String(selector).startsWith("link[") ? fakeElement() : null;\n    },'
               )
           ]
           for old, new in replacements:
@@ -57,6 +53,16 @@ jobs:
           path.write_text(text)
           PY
           node scripts/apply-hidden-test-mode.mjs 2>&1 | tee /tmp/hidden-test-mode-apply.log
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tests/header-search-menu.test.js')
+          text = path.read_text()
+          old = '  const document = {\n    readyState: "complete",'
+          new = '  const document = {\n    readyState: "complete",\n    querySelector(selector) {\n      return String(selector).startsWith("link[") ? fakeElement() : null;\n    },'
+          if old not in text:
+              raise SystemExit('Fant ikke document-fixture i header-test')
+          path.write_text(text.replace(old, new, 1))
+          PY
 
       - name: Persist migration error
         if: steps.apply.outcome == 'failure'
