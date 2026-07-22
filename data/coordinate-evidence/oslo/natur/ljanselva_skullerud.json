@@ -2,57 +2,88 @@
   "schemaVersion": "1.0",
   "placeId": "ljanselva_skullerud",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.8642,
-    "lon": 10.8423,
+    "lat": 59.8627529,
+    "lon": 10.8450942,
     "r": 180,
-    "coordStatus": "needs_source",
-    "coordSource": "ljanselva_skullerud_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 27271638 – Ljanselva / Skullerudbekken",
+    "coordType": "river_segment_anchor",
+    "coordNote": "Batch 143 verifiserer den lokale Ljanselva-strekningen ved Skullerud med eksakt OSM way 27271638. Batch 112 fant fem eksakt navngitte Ljanselva-segmenter i den forhåndsdefinerte lokale scope-boksen; way 27271638 er det eneste kandidatsegmentet hvis geometri omslutter recordens eksisterende Skullerud-markør, og way-en har i tillegg alternativnavnet Skullerudbekken. Legacy-punktet brukes bare til å løse hvilken kildegeometri den allerede definerte place-identiteten viser til, ikke som koordinatbevis. Canonical lat/lon er beregnet som lengdemidtpunkt langs selve OSM-geometrien, uten nearest/first-hit-logikk."
   },
   "identity": {
     "currentName": "Ljanselva ved Skullerud",
-    "resolvedIdentity": "Lokal Ljanselva-strekning ved Skullerud",
+    "resolvedIdentity": "Den konkrete lokale Ljanselva-/Skullerudbekken-strekningen som OSM way 27271638 representerer ved Skullerud",
     "identityStatus": "resolved",
-    "identityProblem": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker.",
+    "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Ljanselva / Skullerudbekken ved Skullerud",
+      "sourceUrl": "https://www.openstreetmap.org/way/27271638",
+      "sourceObjectId": "osm-way:27271638",
+      "sourceQuality": "exact_named_waterway_segment_with_scope_disambiguation",
+      "finding": "Way 27271638 er navngitt Ljanselva, har alternativnavnet Skullerudbekken og er det eneste av de fem eksakte batch-112-kandidatsegmentene hvis geometri omslutter recordens eksisterende Skullerud-scopepunkt. Det nye kartankeret er beregnet fra way-geometrien selv (1113.7 m linjelengde).",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt fysisk vannveisgeometri med stabil OSM-id; legacy-punktet brukes bare til å velge riktig forhåndsdefinerte lokale place-scope, mens canonical lat/lon beregnes fra kildegeometrien."
+    },
+    {
       "sourceProvider": "manual_research",
-      "sourceName": "Route-scope coordinate audit",
+      "sourceName": "Store norske leksikon – Ljanselva",
       "sourceUrl": "https://snl.no/Ljanselva",
-      "sourceObjectId": "manual-audit:ljanselva_skullerud:unresolved",
-      "sourceQuality": "documented_route_scope_conflict",
-      "finding": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker.",
+      "sourceObjectId": "snl:ljanselva",
+      "sourceQuality": "documented_river_identity",
+      "finding": "Kilden kryssjekker Ljanselva som vassdragsidentitet; koordinaten verifiseres av OSM-geometrien, ikke av artikkelen.",
       "canVerifyCoordinate": false,
-      "reason": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+      "reason": "Brukes til identitetskryssjekk, ikke punkt- eller linjegeometri."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:27271638",
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "manual_research",
-      "sourceObjectId": "manual-audit:ljanselva_skullerud:unresolved",
+      "sourceObjectId": "snl:ljanselva",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:27271638",
+      "lat": 59.8627529,
+      "lon": 10.8450942,
+      "coordRole": "line_anchor",
+      "geometryType": "LineString",
+      "lineLengthM": 1113.7,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.8627529,
+      "lon": 10.8450942,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker.",
-    "nextAction": "Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og line_anchor er anvendt på canonical place."
   },
   "notes": [
-    "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "Batch 143 verifiserer den lokale Ljanselva-strekningen ved Skullerud med eksakt OSM way 27271638. Batch 112 fant fem eksakt navngitte Ljanselva-segmenter i den forhåndsdefinerte lokale scope-boksen; way 27271638 er det eneste kandidatsegmentet hvis geometri omslutter recordens eksisterende Skullerud-markør, og way-en har i tillegg alternativnavnet Skullerudbekken. Legacy-punktet brukes bare til å løse hvilken kildegeometri den allerede definerte place-identiteten viser til, ikke som koordinatbevis. Canonical lat/lon er beregnet som lengdemidtpunkt langs selve OSM-geometrien, uten nearest/first-hit-logikk."
   ]
 }
