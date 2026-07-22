@@ -1,35 +1,15 @@
 #!/usr/bin/env node
-import { readdir, readFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const currentDir = path.dirname(__filename);
-const repoRoot = path.basename(path.dirname(currentDir)) === 'dist'
-  ? path.resolve(currentDir, '..', '..')
-  : path.resolve(currentDir, '..');
-
-type JsonObject = Record<string, unknown>;
-type JsonArray = unknown[];
-type LesesporManifest = JsonObject & {
-  files?: unknown;
-};
-type BadgeIndex = JsonObject & {
-  files?: unknown;
-};
-type LesesporDocument = JsonObject & {
-  schema?: unknown;
-  city?: unknown;
-  category?: unknown;
-  rights_policy?: unknown;
-  items?: unknown;
-};
-type LesesporItem = JsonObject & {
+type Obj = Record<string, unknown>;
+type Item = Obj & {
   id?: unknown;
-  access?: unknown;
-  url?: unknown;
   title?: unknown;
   relevance?: unknown;
+  url?: unknown;
+  access?: unknown;
   source_quality?: unknown;
   curation_status?: unknown;
   category_hints?: unknown;
@@ -37,313 +17,188 @@ type LesesporItem = JsonObject & {
   person_ids?: unknown;
 };
 
-const MANIFEST_PATH = 'data/lesespor/manifest.json';
-const BADGE_INDEX_PATH = 'data/badges/index.json';
-const LESESPOR_DIR = 'data/lesespor/oslo';
-const PLACES_ROOT = 'data/places';
-const EXPECTED_SCHEMA = 'history_go_lesespor_v1';
-const EXPECTED_CITY = 'oslo';
-const ALLOWED_ACCESS = 'open';
-const ALLOWED_SOURCE_QUALITIES = new Set<unknown>([
-  'recognized',
-  'institutional',
-  'scholarly',
-  'canonical',
-]);
-const ALLOWED_CURATION_STATUSES = new Set<unknown>([
-  'strong_candidate',
-  'approved',
-]);
-const FORBIDDEN_ITEM_FIELDS = new Set([
-  'article_body',
-  'fulltext',
-  'body',
-  'text',
-  'content',
-]);
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.basename(path.dirname(here)) === 'dist'
+  ? path.resolve(here, '..', '..')
+  : path.resolve(here, '..');
+
+const MANIFEST = 'data/lesespor/manifest.json';
+const BADGES = 'data/badges/index.json';
+const PLACES = 'data/places/places_index.json';
+const SCHEMA = 'history_go_lesespor_v1';
+const sourceQualities = new Set(['recognized', 'institutional', 'scholarly', 'canonical']);
+const curationStatuses = new Set(['strong_candidate', 'approved']);
+const forbidden = new Set(['article_body', 'fulltext', 'body', 'text', 'content']);
 
 const errors: string[] = [];
 const warnings: string[] = [];
 
-function rel(...parts: string[]): string {
-  return path.join(...parts).split(path.sep).join('/');
-}
+const norm = (value: string): string => value.split(path.sep).join('/');
+const absolute = (relative: string): string => path.join(root, relative);
 
-function fromRoot(...parts: string[]): string {
-  return path.join(repoRoot, ...parts);
-}
-
-async function readJson(relativePath: string): Promise<unknown> {
-  const absolutePath = fromRoot(relativePath);
-  let raw;
+async function json(relative: string): Promise<unknown> {
   try {
-    raw = await readFile(absolutePath, 'utf8');
+    return JSON.parse(await readFile(absolute(relative), 'utf8'));
   } catch (error) {
-    throw new Error(`could not read ${relativePath}: ${(error as Error).message}`);
-  }
-
-  try {
-    return JSON.parse(raw);
-  } catch (error) {
-    throw new Error(`invalid JSON in ${relativePath}: ${(error as Error).message}`);
+    throw new Error(`${relative}: ${(error as Error).message}`);
   }
 }
 
-async function fileExists(relativePath: string): Promise<boolean> {
-  try {
-    await readFile(fromRoot(relativePath));
-    return true;
-  } catch {
-    return false;
-  }
+function strings(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((entry): entry is string => typeof entry === 'string' && entry.trim().length > 0)
+    : [];
 }
 
-async function findJsonFiles(relativeDir: string): Promise<string[]> {
-  const absoluteDir = fromRoot(relativeDir);
-  const entries = await readdir(absoluteDir, { withFileTypes: true });
-  const files: string[] = [];
-
-  for (const entry of entries) {
-    const relativePath = rel(relativeDir, entry.name);
-    if (entry.isDirectory()) {
-      files.push(...await findJsonFiles(relativePath));
-    } else if (entry.isFile() && entry.name.endsWith('.json')) {
-      files.push(relativePath);
+function placeIdsFromIndex(value: unknown): Set<string> {
+  const out = new Set<string>();
+  const rows = Array.isArray(value)
+    ? value
+    : (value && typeof value === 'object' && Array.isArray((value as Obj).places)
+      ? (value as Obj).places as unknown[]
+      : []);
+  for (const row of rows) {
+    if (row && typeof row === 'object' && typeof (row as Obj).id === 'string') {
+      out.add((row as Obj).id as string);
     }
   }
-
-  return files.sort();
+  return out;
 }
 
-function categoryFromLesesporFilename(relativePath: string): string | null {
-  const basename = path.basename(relativePath, '.json');
-  const match = basename.match(/^lesespor_oslo_(.+)$/);
-  return match?.[1] ?? null;
+function scopeAndCategory(relativeEntry: string): { scope: string; category: string } | null {
+  const normalized = norm(relativeEntry);
+  const dir = path.dirname(normalized);
+  const scope = path.basename(dir);
+  const name = path.basename(normalized, '.json');
+  const prefix = `lesespor_${scope}_`;
+  if (!scope || scope === '.' || !name.startsWith(prefix)) return null;
+  const category = name.slice(prefix.length);
+  return category ? { scope, category } : null;
 }
 
-function addError(message: string): void {
-  errors.push(message);
-}
-
-function addWarning(message: string): void {
-  warnings.push(message);
-}
-
-function extractPlaceIds(document: unknown): string[] {
-  if (Array.isArray(document)) {
-    return document
-      .filter((entry): entry is JsonObject & { id: string } => Boolean(entry) && typeof entry === 'object' && typeof (entry as JsonObject).id === 'string')
-      .map((entry) => entry.id);
-  }
-
-  if (!document || typeof document !== 'object') {
-    return [];
-  }
-
-  const documentObject = document as JsonObject;
-  for (const collectionKey of ['places', 'items', 'features']) {
-    if (Array.isArray(documentObject[collectionKey])) {
-      return documentObject[collectionKey]
-        .filter((entry): entry is JsonObject & { id: string } => Boolean(entry) && typeof entry === 'object' && typeof (entry as JsonObject).id === 'string')
-        .map((entry) => entry.id);
-    }
-  }
-
-  return typeof documentObject.id === 'string' ? [documentObject.id] : [];
-}
-
-function isNonEmptyString(value: unknown): boolean {
-  return typeof value === 'string' && value.trim().length > 0;
-}
-
-function validateArrayField(file: string, itemId: string, fieldName: string, value: unknown): JsonArray {
-  if (value === undefined) {
-    return [];
-  }
-
+function requireArray(file: string, itemId: string, field: string, value: unknown): unknown[] {
   if (!Array.isArray(value)) {
-    addError(`${file}: item ${itemId} has non-array ${fieldName}`);
+    errors.push(`${file}: item ${itemId} has non-array ${field}`);
     return [];
   }
-
   return value;
 }
 
-const manifest = await readJson(MANIFEST_PATH) as LesesporManifest;
-const badgeIndex = await readJson(BADGE_INDEX_PATH) as BadgeIndex;
-const badgeCategories = new Set<unknown>(
-  ((badgeIndex.files ?? []) as string[]).map((file) => path.basename(file, '.json')),
+const manifest = await json(MANIFEST) as Obj;
+const badgeIndex = await json(BADGES) as Obj;
+const placesIndex = await json(PLACES);
+
+const manifestFiles = strings(manifest.files);
+if (!Array.isArray(manifest.files)) errors.push(`${MANIFEST}: files must be an array`);
+
+const badgeCategories = new Set(
+  strings(badgeIndex.files).map((file) => path.basename(file, '.json')),
 );
-const manifestFiles = (manifest.files ?? []) as string[];
+const knownPlaces = placeIdsFromIndex(placesIndex);
+const seenItemFiles = new Map<string, string[]>();
+const scopes = new Set<string>();
 
-if (!Array.isArray(manifestFiles)) {
-  addError(`${MANIFEST_PATH}: files must be an array`);
-}
-
-const manifestFileSet = new Set(manifestFiles.map((file) => rel('data/lesespor', file)));
-
-for (const manifestEntry of manifestFiles) {
-  const relativePath = rel('data/lesespor', manifestEntry);
-  if (!await fileExists(relativePath)) {
-    addError(`${MANIFEST_PATH}: listed file does not exist: ${manifestEntry}`);
+for (const entry of manifestFiles) {
+  const file = norm(path.join('data/lesespor', entry));
+  const parsed = scopeAndCategory(entry);
+  if (!parsed) {
+    errors.push(`${file}: expected <scope>/lesespor_<scope>_<category>.json`);
+    continue;
   }
-}
+  scopes.add(parsed.scope);
 
-const osloLesesporFiles = await findJsonFiles(LESESPOR_DIR);
-for (const file of osloLesesporFiles) {
-  if (!manifestFileSet.has(file)) {
-    addWarning(`${file}: file is under ${LESESPOR_DIR} but is not listed in ${MANIFEST_PATH}`);
-  }
-}
-
-const placeIds = new Set<unknown>();
-const placeFiles = await findJsonFiles(PLACES_ROOT);
-for (const file of placeFiles.filter((candidate) => candidate.includes('/oslo/'))) {
+  let doc: Obj;
   try {
-    const document = await readJson(file);
-    for (const id of extractPlaceIds(document)) {
-      placeIds.add(id);
-    }
+    doc = await json(file) as Obj;
   } catch (error) {
-    addError((error as Error).message);
-  }
-}
-
-const itemCategoriesById = new Map<string, unknown[]>();
-
-for (const file of osloLesesporFiles) {
-  let document: LesesporDocument;
-  try {
-    document = await readJson(file) as LesesporDocument;
-  } catch (error) {
-    addError((error as Error).message);
+    errors.push((error as Error).message);
     continue;
   }
 
-  const expectedCategory = categoryFromLesesporFilename(file);
-  if (!expectedCategory) {
-    addError(`${file}: filename must match lesespor_oslo_<category>.json`);
+  if (doc.schema !== SCHEMA) errors.push(`${file}: schema must be ${SCHEMA}`);
+  if (doc.city !== parsed.scope) {
+    errors.push(`${file}: city ${JSON.stringify(doc.city)} must match scope ${JSON.stringify(parsed.scope)}`);
   }
-
-  if (document.schema !== EXPECTED_SCHEMA) {
-    addError(`${file}: schema must be ${EXPECTED_SCHEMA}`);
+  if (doc.category !== parsed.category) {
+    errors.push(`${file}: category ${JSON.stringify(doc.category)} must match filename category ${JSON.stringify(parsed.category)}`);
   }
-
-  if (document.city !== EXPECTED_CITY) {
-    addError(`${file}: city must be ${EXPECTED_CITY}`);
+  if (!badgeCategories.has(String(doc.category ?? ''))) {
+    errors.push(`${file}: category ${JSON.stringify(doc.category)} is not present in ${BADGES}`);
   }
-
-  if (document.category !== expectedCategory) {
-    addError(`${file}: category ${JSON.stringify(document.category)} must match filename category ${JSON.stringify(expectedCategory)}`);
+  if (!doc.rights_policy || typeof doc.rights_policy !== 'object' || Array.isArray(doc.rights_policy)) {
+    errors.push(`${file}: rights_policy must be an object`);
   }
-
-  if (!badgeCategories.has(document.category)) {
-    addError(`${file}: category ${JSON.stringify(document.category)} is not present in ${BADGE_INDEX_PATH}`);
-  }
-
-  if (!document.rights_policy || typeof document.rights_policy !== 'object' || Array.isArray(document.rights_policy)) {
-    addError(`${file}: rights_policy must be an object`);
-  }
-
-  if (!Array.isArray(document.items)) {
-    addError(`${file}: items must be an array`);
+  if (!Array.isArray(doc.items)) {
+    errors.push(`${file}: items must be an array`);
     continue;
   }
 
-  const idsInFile = new Set<string>();
-  for (const [index, item] of document.items.entries()) {
-    if (!item || typeof item !== 'object' || Array.isArray(item)) {
-      addError(`${file}: item at index ${index} must be an object`);
+  const localIds = new Set<string>();
+  for (const [index, raw] of doc.items.entries()) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+      errors.push(`${file}: item at index ${index} must be an object`);
       continue;
     }
+    const item = raw as Item;
+    const itemId = typeof item.id === 'string' && item.id.trim() ? item.id.trim() : `<index ${index}>`;
 
-    const itemRecord = item as LesesporItem;
-    const itemId = typeof itemRecord.id === 'string' && itemRecord.id.length > 0 ? itemRecord.id : `<index ${index}>`;
-    if (itemId.startsWith('<index ')) {
-      addError(`${file}: item at index ${index} must have a non-empty string id`);
-    } else if (idsInFile.has(itemId)) {
-      addError(`${file}: duplicate item id within category file: ${itemId}`);
-    } else {
-      idsInFile.add(itemId);
+    if (itemId.startsWith('<index ')) errors.push(`${file}: item at index ${index} must have a non-empty string id`);
+    else if (localIds.has(itemId)) errors.push(`${file}: duplicate item id within category file: ${itemId}`);
+    else localIds.add(itemId);
+
+    if (typeof item.title !== 'string' || !item.title.trim()) errors.push(`${file}: item ${itemId} must have a non-empty title`);
+    if (typeof item.relevance !== 'string' || !item.relevance.trim()) errors.push(`${file}: item ${itemId} must have a non-empty relevance`);
+    if (typeof item.url !== 'string' || !item.url.trim()) errors.push(`${file}: item ${itemId} must have a non-empty url`);
+    if (item.access !== 'open') errors.push(`${file}: item ${itemId} access must be \"open\"`);
+    if (!sourceQualities.has(String(item.source_quality ?? ''))) {
+      errors.push(`${file}: item ${itemId} has invalid source_quality ${JSON.stringify(item.source_quality)}`);
+    }
+    if (!curationStatuses.has(String(item.curation_status ?? ''))) {
+      errors.push(`${file}: item ${itemId} has invalid curation_status ${JSON.stringify(item.curation_status)}`);
     }
 
-    if (itemRecord.access !== ALLOWED_ACCESS) {
-      addError(`${file}: item ${itemId} access must be ${JSON.stringify(ALLOWED_ACCESS)}`);
+    for (const field of forbidden) {
+      if (Object.hasOwn(item, field)) errors.push(`${file}: item ${itemId} contains forbidden full-text field ${field}`);
     }
 
-    if (typeof itemRecord.url !== 'string' || itemRecord.url.trim().length === 0) {
-      addError(`${file}: item ${itemId} must have a non-empty string url`);
-    }
-
-    if (!isNonEmptyString(itemRecord.title)) {
-      addError(`${file}: item ${itemId} must have a non-empty title`);
-    }
-
-    if (!isNonEmptyString(itemRecord.relevance)) {
-      addError(`${file}: item ${itemId} must have a non-empty relevance`);
-    }
-
-    if (!ALLOWED_SOURCE_QUALITIES.has(itemRecord.source_quality)) {
-      addError(`${file}: item ${itemId} source_quality must be one of ${[...ALLOWED_SOURCE_QUALITIES].join(', ')}`);
-    }
-
-    if (!ALLOWED_CURATION_STATUSES.has(itemRecord.curation_status)) {
-      addError(`${file}: item ${itemId} curation_status must be one of ${[...ALLOWED_CURATION_STATUSES].join(', ')}`);
-    }
-
-    for (const forbiddenField of FORBIDDEN_ITEM_FIELDS) {
-      if (Object.hasOwn(itemRecord, forbiddenField)) {
-        addError(`${file}: item ${itemId} contains forbidden full-text field ${forbiddenField}`);
+    const hints = requireArray(file, itemId, 'category_hints', item.category_hints);
+    for (const hint of hints) {
+      if (typeof hint !== 'string' || !badgeCategories.has(hint)) {
+        errors.push(`${file}: item ${itemId} has invalid category_hints value ${JSON.stringify(hint)}`);
       }
     }
 
-    const categoryHints = validateArrayField(file, itemId, 'category_hints', itemRecord.category_hints);
-    for (const categoryHint of categoryHints) {
-      if (!badgeCategories.has(categoryHint)) {
-        addError(`${file}: item ${itemId} has category_hints value that is not a badge category: ${JSON.stringify(categoryHint)}`);
+    const placeIds = requireArray(file, itemId, 'place_ids', item.place_ids);
+    const personIds = requireArray(file, itemId, 'person_ids', item.person_ids);
+    if (placeIds.length === 0 && personIds.length === 0) {
+      errors.push(`${file}: item ${itemId} must reference at least one place_id or person_id`);
+    }
+    for (const placeId of placeIds) {
+      if (typeof placeId !== 'string' || !knownPlaces.has(placeId)) {
+        errors.push(`${file}: item ${itemId} references unknown place_id ${JSON.stringify(placeId)}`);
       }
     }
 
-    const itemPlaceIds = validateArrayField(file, itemId, 'place_ids', itemRecord.place_ids);
-    const itemPersonIds = validateArrayField(file, itemId, 'person_ids', itemRecord.person_ids);
-
-    if (itemPlaceIds.length === 0 && itemPersonIds.length === 0) {
-      addError(`${file}: item ${itemId} must reference at least one place_id or person_id`);
-    }
-
-    for (const placeId of itemPlaceIds) {
-      if (!placeIds.has(placeId)) {
-        addError(`${file}: item ${itemId} references unknown place_id ${JSON.stringify(placeId)}`);
-      }
-    }
-
-    if (!itemCategoriesById.has(itemId)) {
-      itemCategoriesById.set(itemId, []);
-    }
-    itemCategoriesById.get(itemId)?.push(document.category);
+    const files = seenItemFiles.get(itemId) ?? [];
+    files.push(file);
+    seenItemFiles.set(itemId, files);
   }
 }
 
-for (const [itemId, categories] of [...itemCategoriesById.entries()].sort(([a], [b]) => a.localeCompare(b))) {
-  const uniqueCategories = [...new Set(categories)];
-  if (uniqueCategories.length > 1) {
-    addWarning(`item id ${itemId} appears in multiple category files: ${uniqueCategories.join(', ')}`);
-  }
+for (const [itemId, files] of seenItemFiles) {
+  if (files.length > 1) warnings.push(`item id ${itemId} appears in multiple active files: ${files.join(', ')}`);
 }
 
-for (const warning of warnings) {
-  console.log(`WARN ${warning}`);
-}
+for (const warning of warnings) console.log(`WARN ${warning}`);
 
-if (errors.length > 0) {
-  for (const error of errors) {
-    console.error(`ERROR ${error}`);
-  }
+if (errors.length) {
+  for (const error of errors) console.error(`ERROR ${error}`);
   console.error(`\nLesespor validation failed with ${errors.length} error(s) and ${warnings.length} warning(s).`);
   process.exit(1);
 }
 
-console.log(`Lesespor validation passed for ${osloLesesporFiles.length} Oslo category file(s), ${manifestFiles.length} manifest entry/entries and ${placeIds.size} Oslo place id(s).`);
-if (warnings.length > 0) {
-  console.log(`Completed with ${warnings.length} warning(s); review cross-category item ids before removing any intentional overlaps.`);
-}
+console.log(
+  `Lesespor validation passed for ${manifestFiles.length} active file(s) across ${scopes.size} scope(s), ` +
+  `${knownPlaces.size} known place id(s) and ${seenItemFiles.size} unique item id(s).`,
+);
+if (warnings.length) console.log(`Completed with ${warnings.length} warning(s).`);
