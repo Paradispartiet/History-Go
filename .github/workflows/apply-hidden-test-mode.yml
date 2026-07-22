@@ -31,6 +31,17 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
+          rm -f reports/hidden-test-mode-apply-error.txt
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/apply-hidden-test-mode.mjs')
+          text = path.read_text()
+          old = '      const cleanUrl = `${url.pathname}${url.search}${url.hash}`;'
+          new = '      const cleanUrl = url.pathname + url.search + url.hash;'
+          if old not in text:
+              raise SystemExit('Fant ikke nested cleanUrl-template')
+          path.write_text(text.replace(old, new, 1))
+          PY
           node scripts/apply-hidden-test-mode.mjs 2>&1 | tee /tmp/hidden-test-mode-apply.log
 
       - name: Persist migration error
@@ -63,6 +74,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html js/debug/HGTestMode.js js/ui/dom.js css/components.css tests/hg-test-mode.test.js tests/header-search-menu.test.js docs/HG_TEST_MODE.md schemas/globals.d.ts schemas/app-globals.d.ts .github/workflows/typescript-guard.yml
+          git add -u reports/hidden-test-mode-apply-error.txt || true
           if git diff --cached --quiet; then
             echo "Hidden test mode changes already applied."
             exit 0
