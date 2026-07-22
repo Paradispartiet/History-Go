@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 383 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 384 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -548,6 +548,10 @@ Batch 142 (2026-07-22) etterfører den mergede Subkultur-randsonebatchen. `plata
 
 Batch 143 (2026-07-22) løser `ljanselva_skullerud` som et eksplisitt line_anchor på OSM way 27271638. Batch 112 fant fem eksakt navngitte Ljanselva-segmenter i den forhåndsdefinerte lokale Skullerud-scope-boksen. Way 27271638 er det eneste av disse kandidatsegmentene hvis geometri omslutter recordens eksisterende lokale Skullerud-markør, og way-en har i tillegg alternativnavnet `Skullerudbekken`. Legacy-punktet brukes bare til identitets- og scope-disambiguering, ikke som koordinatbevis. Canonical lat/lon beregnes som lengdemidtpunkt langs selve OSM-geometrien og lagres som `semantic_anchor` / `line_anchor`; ingen nearest/first-hit-logikk brukes.
 
+| 144 | `ljanselva_hauketo` | Ljanselva ved Hauketo | verified_geometry | `osm-way:695993872` |
+
+Batch 144 (2026-07-22) løser `ljanselva_hauketo` som den lange åpne Ljanselva-strekningen langs Hauketo-områdets nordside fram til Lja bru. Hauketo-kilden dokumenterer Ljanselva som strøkets nordgrense, Oslo byleksikon kryssjekker Hauketo-korridoren, og den dokumenterte Lja bru-koordinaten brukes som fysisk topologisk referanse. Av de fem eksakte batch-112-kandidatene er way 695993872 den eneste lange elvegeometrien som ender ved brua; korte koblingssegmenter og segmentene på motsatt side av brua brukes ikke som proxy. Canonical lat/lon beregnes som lengdemidtpunkt langs selve OSM-wayen og lagres som `semantic_anchor` / `line_anchor`. Legacy-punktet pensjoneres; ingen nearest/first-hit-logikk brukes.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)
@@ -675,7 +679,6 @@ Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller k
 | `bygdoy_natur` – Bygdøy natur- og kulturmiljø | needs_review | Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet. | Dokumenter en eksplisitt halvøy-/multi-anchor-modell eller offisiell områdegeometri som samsvarer med hele recordens scope. |
 | `ljanselva` – Ljanselva | needs_review | Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker. | Finn én stabil eksakt geometri for hele recordens fysiske scope, eller modeller eksplisitt flere kildebelagte ankere. |
 | `alnaelva_hovedsteder` – Alnaelva | needs_review | Recorden representerer samme overordnede vassdrag som canonical `alnaelva`, som allerede er kontrollert og står needs_source fordi elva består av flere separate og delvis tunnellagte geometrier. En ny hovedstedsmarkør med et annet vilkårlig midtpunkt ville duplisere den uavklarte identiteten. | Avklar canonical duplikat-/aliasmodell mot `alnaelva`; modeller deretter samlet rutegeometri eller flere kildebelagte delankre. |
-| `ljanselva_hauketo` – Ljanselva ved Hauketo | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
 | `ljanselva_ljan` – Ljanselva ved Ljan | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
 | `ljanselva_fiskevollen` – Ljanselva ved Fiskevollen | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
 | `ljanselva_bunnefjorden` – Ljanselva ut i Bunnefjorden | needs_review | Recorden gjelder selve overgangen fra elv til fjord. Et midtpunkt på et nærliggende elve-segment eller et generelt fjordpunkt dokumenterer ikke munningspunktet. Legacy-punktet kan derfor ikke beholdes som verified uten eksplisitt utløpsgeometri. | Dokumenter siste Ljanselva-segment og et eksplisitt kildebelagt endepunkt/munningspunkt mot Bunnefjorden. |

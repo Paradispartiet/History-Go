@@ -2,57 +2,118 @@
   "schemaVersion": "1.0",
   "placeId": "ljanselva_hauketo",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.8485,
-    "lon": 10.816,
+    "lat": 59.8506459,
+    "lon": 10.8094818,
     "r": 180,
-    "coordStatus": "needs_source",
-    "coordSource": "ljanselva_hauketo_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 695993872 – Ljanselva ved Hauketo/Ljabru",
+    "coordType": "river_segment_anchor",
+    "coordNote": "Batch 144 løser Hauketo-scope med kildebelagt stedsavgrensning og elvetopologi, ikke med legacy-punkt eller nearest-søk. Hauketo er dokumentert som strøket sør for Ljabru med Ljanselva som nordgrense, og Oslo byleksikon dokumenterer elvas korridor nord for Hauketo stasjon. I batch-112-kandidatsettet er OSM way 695993872 den eneste lange eksakt navngitte Ljanselva-geometrien som ender ved det dokumenterte Lja bru-krysset; de øvrige treffene er oppstrømssegmenter, korte koblingssegmenter ved brua eller segmentet videre vest for brua. Canonical lat/lon er beregnet som lengdemidtpunkt langs way 695993872."
   },
   "identity": {
     "currentName": "Ljanselva ved Hauketo",
-    "resolvedIdentity": "Lokal Ljanselva-strekning ved Hauketo",
+    "resolvedIdentity": "Den lange åpne Ljanselva-strekningen langs Hauketo-områdets nordside fram til Lja bru",
     "identityStatus": "resolved",
-    "identityProblem": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker.",
+    "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Ljanselva ved Hauketo/Ljabru",
+      "sourceUrl": "https://www.openstreetmap.org/way/695993872",
+      "sourceObjectId": "osm-way:695993872",
+      "sourceQuality": "exact_named_waterway_segment_with_landmark_topology",
+      "finding": "Eksakt navngitt Ljanselva-segment. Av de fem batch-112-kandidatene er dette den eneste lange (>500 m) linjegeometrien som ender ved Lja bru-referansen; fresh OSM-endepunkt ligger 10.1 m fra den dokumenterte brukoordinaten.",
+      "canVerifyCoordinate": true,
+      "reason": "Stabil OSM-way identifiserer selve elvestrekningen. Hauketo-scope er disambiguert med uavhengig dokumentasjon av Ljanselva som nordgrense og Lja bru som fysisk endepunkt, ikke med nearest/first-hit."
+    },
+    {
       "sourceProvider": "manual_research",
-      "sourceName": "Route-scope coordinate audit",
-      "sourceUrl": "https://snl.no/Ljanselva",
-      "sourceObjectId": "manual-audit:ljanselva_hauketo:unresolved",
-      "sourceQuality": "documented_route_scope_conflict",
-      "finding": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker.",
+      "sourceName": "Lokalhistoriewiki – Hauketo (strøk)",
+      "sourceUrl": "https://lokalhistoriewiki.no/index.php?title=Hauketo_(str%C3%B8k)",
+      "sourceObjectId": "lokalhistoriewiki:hauketo-strok",
+      "sourceQuality": "documented_local_scope_boundary",
+      "finding": "Kilden beskriver Hauketo som strøket sør for Ljabru og oppgir Ljanselva som nordgrense.",
       "canVerifyCoordinate": false,
-      "reason": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+      "reason": "Avgrenser place-identiteten mot riktig del av elva; koordinaten kommer fra OSM-way-geometrien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Ljanselva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Ljanselva",
+      "sourceObjectId": "oslobyleksikon:ljanselva",
+      "sourceQuality": "documented_river_corridor",
+      "finding": "Kilden dokumenterer Ljanselvas løp ved Hauketo-korridoren og at elva går i tunnel under jernbanen nord for Hauketo stasjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker den lokale elvekorridoren, men er ikke selve geometrikilden."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Lja bru",
+      "sourceUrl": "https://lokalhistoriewiki.no/Lja_bru",
+      "sourceObjectId": "lokalhistoriewiki:lja-bru",
+      "sourceQuality": "documented_landmark_coordinate",
+      "finding": "Kilden dokumenterer Lja bru over Ljanselva og oppgir koordinaten 59.8489644, 10.8043624, brukt som fysisk topologisk referanse for segmentenden.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukoordinaten brukes til segmentdisambiguering; canonical punkt beregnes fra elvegeometrien."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:695993872",
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "manual_research",
-      "sourceObjectId": "manual-audit:ljanselva_hauketo:unresolved",
+      "sourceObjectId": "lokalhistoriewiki:hauketo-strok",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:ljanselva",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:lja-bru",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:695993872",
+      "lat": 59.8506459,
+      "lon": 10.8094818,
+      "coordRole": "line_anchor",
+      "geometryType": "LineString",
+      "lineLengthM": 805.6,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.8506459,
+      "lon": 10.8094818,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker.",
-    "nextAction": "Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og line_anchor er anvendt på canonical place."
   },
   "notes": [
-    "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "Batch 144 løser Hauketo-scope med kildebelagt stedsavgrensning og elvetopologi, ikke med legacy-punkt eller nearest-søk. Hauketo er dokumentert som strøket sør for Ljabru med Ljanselva som nordgrense, og Oslo byleksikon dokumenterer elvas korridor nord for Hauketo stasjon. I batch-112-kandidatsettet er OSM way 695993872 den eneste lange eksakt navngitte Ljanselva-geometrien som ender ved det dokumenterte Lja bru-krysset; de øvrige treffene er oppstrømssegmenter, korte koblingssegmenter ved brua eller segmentet videre vest for brua. Canonical lat/lon er beregnet som lengdemidtpunkt langs way 695993872."
   ]
 }

@@ -1,8 +1,8 @@
 {
   "id": "ljanselva_hauketo",
   "name": "Ljanselva ved Hauketo",
-  "lat": 59.8485,
-  "lon": 10.816,
+  "lat": 59.8506459,
+  "lon": 10.8094818,
   "r": 180,
   "category": "natur",
   "desc": "Bynært elvestrekk med kantvegetasjon i Hauketo-området.",
@@ -13,11 +13,11 @@
     "grontdrag"
   ],
   "routeId": "ljanselva_grontdrag",
-  "sourceHint": "Koordinat satt ved Hauketo nær registrert elvekorridor for Ljanselva.",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "ljanselva_hauketo_canonical_geometry_unresolved",
-  "coordVerifiedAt": "2026-07-21",
+  "sourceHint": "Koordinaten er lengdemidtpunktet på OSM way 695993872, den lange Ljanselva-strekningen umiddelbart øst for Lja bru langs Hauketo-områdets nordside.",
+  "coordType": "river_segment_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 695993872 – Ljanselva ved Hauketo/Ljabru",
+  "coordVerifiedAt": "2026-07-22",
   "popupDesc": "I Hauketo-området leses Ljanselva som et bynært vassdrag med tydelig kantvegetasjon. Dette punktet viser hvordan elveløpet fortsetter i et daldrag der boligstruktur og infrastruktur ligger tett på grøntkorridoren. På stedet ser du kontrasten mellom vannets sammenhengende løp og et mer oppstykket bylandskap rundt. Det gjør Hauketo til et nøkkelpunkt for å forstå Ljanselva i den utbygde delen av ruta.",
   "nature_profile": {
     "type": "bynær elv / kantvegetasjon / oppstykket grøntdrag",
@@ -46,5 +46,11 @@
     "designCode": "waterfront_miniature"
   },
   "locatorType": "route",
-  "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker."
+  "coordNote": "Batch 144 løser Hauketo-scope med kildebelagt stedsavgrensning og elvetopologi, ikke med legacy-punkt eller nearest-søk. Hauketo er dokumentert som strøket sør for Ljabru med Ljanselva som nordgrense, og Oslo byleksikon dokumenterer elvas korridor nord for Hauketo stasjon. I batch-112-kandidatsettet er OSM way 695993872 den eneste lange eksakt navngitte Ljanselva-geometrien som ender ved det dokumenterte Lja bru-krysset; de øvrige treffene er oppstrømssegmenter, korte koblingssegmenter ved brua eller segmentet videre vest for brua. Canonical lat/lon er beregnet som lengdemidtpunkt langs way 695993872.",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:695993872",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "coordSourceId": "osm-way:695993872",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/695993872"
 }
