@@ -12,7 +12,6 @@ on:
       - 'js/ui/dom.js'
       - 'css/components.css'
       - 'tests/header-search-menu.test.js'
-      - '.github/workflows/typescript-guard.yml'
 
 concurrency:
   group: hidden-test-mode-final
@@ -115,14 +114,6 @@ jobs:
           if menu_new not in test:
               test = replace_once(test, menu_old, menu_new, 'header menytest')
           test_path.write_text(test)
-
-          guard_path = Path('.github/workflows/typescript-guard.yml')
-          guard = guard_path.read_text()
-          hidden_step = '      - name: Test hidden developer mode\n        run: node tests/hg-test-mode.test.js && node tests/header-search-menu.test.js\n'
-          if hidden_step not in guard:
-              anchor = '      - name: Social Meet Spotmeeting browser smoke\n        run: npm run test:social-meet-spotmeeting-smoke\n'
-              guard = replace_once(guard, anchor, anchor + '\n' + hidden_step, 'TypeScript guard teststeg')
-          guard_path.write_text(guard)
           PY
 
       - name: Test direct changes
@@ -138,7 +129,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html js/ui/dom.js css/components.css tests/header-search-menu.test.js .github/workflows/typescript-guard.yml
+          git add index.html js/ui/dom.js css/components.css tests/header-search-menu.test.js
           if git diff --cached --quiet; then
             echo "Direct changes already applied."
             exit 0
