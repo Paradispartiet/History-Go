@@ -59,6 +59,7 @@ const STARTUP_ENTRIES = [
   { in: "js/ui/nearbyPlaceSelector.ts", out: "nearbyPlaceSelector" },
   { in: "js/ui/nearbyPlacesList.ts", out: "nearbyPlacesList" },
   { in: "js/ui/nearbyPeopleList.ts", out: "nearbyPeopleList" },
+  { in: "js/ui/place-card-quizcards-patch.ts", out: "place-card-quizcards-patch" },
   { in: "js/social/HGSocialMeetFastApiClient.ts", out: "hgSocialMeetFastApiClient" }
 ];
 
@@ -73,7 +74,8 @@ const STARTUP_COMPATIBILITY_OUTPUTS = [
   { out: "layerManager", target: "js/core/layerManager.js" },
   { out: "map", target: "js/map.js" },
   { out: "search", target: "js/ui/search.js" },
-  { out: "nearbyDrawer", target: "js/ui/nearby-drawer.js" }
+  { out: "nearbyDrawer", target: "js/ui/nearby-drawer.js" },
+  { out: "place-card-quizcards-patch", target: "js/ui/place-card-quizcards-patch.js" }
 ];
 
 const COMPACT_COMPATIBILITY_OUTPUTS = [
