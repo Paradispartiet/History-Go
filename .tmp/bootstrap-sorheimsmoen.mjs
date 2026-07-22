@@ -1,0 +1,72 @@
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import path from 'node:path';
+
+const TARGET = 'sorheimsmoen_gravfelt';
+const OUT = 'data/quiz/historie/sorheimsmoen_gravfelt_sets.json';
+const MANIFEST = 'data/quiz/manifest.json';
+const SETS = [{"id":"historie_sorheimsmoen_gravfelt_set_1","level":1,"order":1,"xp":50,"title":"Gravlandskapet på terrassen","questions":[{"q":"Kva slags kulturminne er Sørheimsmoen?","o":["Ein del av eit stort førhistorisk gravlandskap","Eit mellomalderleg klosterområde","Eit helleristningsfelt utan graver"],"a":0,"k":"Sørheimsmoen er ein bevart del av det store førhistoriske gravlandskapet på terrassane ved Støle, Sørheim og Austrheim.","t":"fact","e":"em_his_spor_materialitet","s":["kringom_etne","vestland_stodleterrassen"],"c":["gravlandskap","Sørheimsmoen"],"g":["gravlandskap"],"m":"met_kontekstualisering","b":"Sørheimsmoen inngår i eit større landskap med gravminne frå bronse- og jernalder."},{"q":"Kor mange gravminne har det historisk vore på heile Støle–Sørheim–Austrheim-terrassen?","o":["Minst 100","Nøyaktig 25","Om lag 10"],"a":0,"k":"Kringom oppgir minst 100 gravminne for heile den vide terrassen ved Støle, Sørheim og Austrheim.","t":"fact","e":"em_his_kildekritikk_arkiv_spor","s":["kringom_etne"],"c":["gravminnetal","terrasselandskap"],"g":["minst_100_heile_terrassen"],"m":"met_kildekritikk","b":"Talet minst 100 gjeld det større terrassefeltet, ikkje berre markøren på Sørheimsmoen."},{"q":"Kva er framleis synleg på delar av Sørheimsmoen?","o":["Store gravhaugar og steinsetningar","Ei komplett rekonstruert bronsealderlandsby","Murar etter ein romersk festning"],"a":0,"k":"Fleire store haugar og nokre steinsetningar er framleis synlege i landskapet.","t":"observation","e":"em_his_spor_materialitet","s":["kringom_etne","vestland_stodleterrassen"],"c":["gravhaug","steinsetning"],"g":["synlege_haugar_og_steinsetningar"],"m":"met_sporlesning","b":"Bevarte gravhaugar og steinsetningar er dei viktigaste synlege spora ved staden."},{"q":"Kva tidsrom representerer gravlandskapet?","o":["Bronsealder og jernalder","Berre høgmellomalderen","Berre 1800-talet"],"a":0,"k":"Gravminna på terrassen omfattar både eldre bronsealdermonument og mange yngre graver frå jernalderen.","t":"fact","e":"em_his_spor_materialitet","s":["kringom_etne","vestland_stodleterrassen"],"c":["bronsealder","jernalder","lang tidsdjupn"],"g":["bronsealder_og_jernalder"],"m":"met_periodisering","b":"Kjeldene dokumenterer gravminne frå fleire førhistoriske periodar."},{"q":"Kva ligg fleire av dei store haugane langs?","o":["Vegen som fører over terrassen","Strandkanten ved Etnepollen","Toppen av Borgåsen"],"a":0,"k":"Fleire store jernalderhaugar ligg langs vegen over terrassen innover i bygda.","t":"observation","e":"em_his_spor_materialitet","s":["kringom_etne"],"c":["veg","gravhaugar","synleg plassering"],"g":["haugar_langs_vegen"],"m":"met_sporlesning","b":"Kringom omtalar store haugar langs ferdselslinja over terrassen."}]},{"id":"historie_sorheimsmoen_gravfelt_set_2","level":2,"order":2,"xp":70,"title":"Gravformer og bevarte spor","questions":[{"q":"Kva gravform finst i nokre av steinringane?","o":["Branngraver","Kammergraver med murte kvelv","Kristne kistegraver frå mellomalderen"],"a":0,"k":"Kringom omtalar steinringar med branngraver frå tida like før Kristi fødsel.","t":"fact","e":"em_his_spor_materialitet","s":["kringom_etne"],"c":["steinring","branngrav"],"g":["steinringar_med_branngraver"],"m":"met_sporlesning","b":"Steinringane er knytte til branngraver frå førromersk jernalder."},{"q":"Kva periode høyrer fleire av dei store haugane på Sørheimsmoen til?","o":["Jernalderen","Steinalderen","Nyare tid"],"a":0,"k":"Fleire store haugar som framleis står langs vegen, blir daterte til jernalderen.","t":"fact","e":"em_his_spor_materialitet","s":["kringom_etne"],"c":["jernalderhaug","gravminne"],"g":["store_jernalderhaugar"],"m":"met_periodisering","b":"Kringom identifiserer fleire av dei synlege store haugane som jernalderhaugar."},{"q":"Kva kom fram då nokre haugar på terrassebrotet vart undersøkte?","o":["Funn frå bronsealderen","Eit komplett vikingskip","Mellomaldermyntar frå 1300-talet"],"a":0,"k":"Fleire undersøkte haugar på terrassebrotet gav funn frå bronsealderen.","t":"fact","e":"em_his_kildekritikk_arkiv_spor","s":["kringom_etne"],"c":["arkeologisk undersøking","bronsealderfunn"],"g":["bronsealderfunn_i_haugar"],"m":"met_kildekritikk","b":"Arkeologiske undersøkingar har knytt nokre av terrassehaugane til bronsealderen."},{"q":"Kvifor vart gravhaugar lagde synleg langs terrassekanten og ferdselslinjer?","o":["Plasseringa kunne markere tilhøyrsle, minne og makt i landskapet","Haugane måtte skjulast frå gardane og vegane","Terrassekanten var den einaste staden med skog"],"a":0,"k":"Store monument nær åker, veg og terrassekant kunne vere synlege for folk som budde og ferdast der. Dei markerte gravminne, tilhøyrsle og sosial makt i eit brukt jordbrukslandskap.","t":"analysis","e":"em_his_spor_materialitet","s":["kringom_etne","vestland_stodleterrassen"],"c":["monumentalitet","synlegheit","maktlandskap"],"g":["synleg_plassering"],"m":"met_kontekstualisering","b":"Kjeldene framhevar gravhaugane som synlege markørar langs terrassekanten og i jordbrukslandskapet."},{"q":"Kvifor kan ikkje eitt kartpunkt representere alle gravminna på terrassen nøyaktig?","o":["Gravlandskapet strekkjer seg over eit stort område med mange separate minne","Alle gravminna er flytta til punktet ved Sørheimsmoen","Talet på gravminne gjeld berre éi enkelt haug"],"a":0,"k":"Sørheimsmoen-markøren er områdeanker for ein registrert lokalitet. Det historiske gravlandskapet strekte seg vidare over Støle, Sørheim og Austrheim.","t":"analysis","e":"em_his_kildekritikk_arkiv_spor","s":["kringom_etne","vestland_stodleterrassen"],"c":["områdeanker","romleg avgrensing","gravlandskap"],"g":["markor_ikkje_heile_feltet"],"m":"met_kildekritikk","b":"Eitt arkeologisk punkt kan ikkje gjere krav på å vere sentrum for heile det store terrassefeltet."}]},{"id":"historie_sorheimsmoen_gravfelt_set_3","level":3,"order":3,"xp":90,"title":"Gravskikk, tap og kjelder","questions":[{"q":"Kva er eit gravfelt?","o":["Eit område med fleire gravminne som høyrer saman i landskapet","Ei enkelt gravhaug utan andre spor i nærleiken","Ein moderne kyrkjegard med berre ståande gravsteinar"],"a":0,"k":"Eit gravfelt er ei samling av fleire graver eller gravminne innanfor eit avgrensa område. Sørheimsmoen inngår dessutan i eit endå større gravlandskap.","t":"concept","e":"em_his_spor_materialitet","s":["kringom_etne"],"c":["gravfelt","gravminne"],"g":["omgrep_gravfelt"],"m":"met_kontekstualisering","b":"Mange gravminne samla på terrassen gjer det mogleg å tale om gravfelt."},{"q":"Kva er ei branngrav?","o":["Ei grav der den døde vart kremert før restane vart gravlagde","Ei grav som vart øydelagd av ein moderne brann","Ei grav med eit bål som alltid brann over haugen"],"a":0,"k":"I ei branngrav vart den døde kremert, og brende bein og eventuelle gravgåver vart lagde ned i eller under gravminnet.","t":"concept","e":"em_his_spor_materialitet","s":["kringom_etne"],"c":["branngrav","kremasjon","gravskikk"],"g":["omgrep_branngrav"],"m":"met_sporlesning","b":"Steinringane på Sørheimsmoen er knytte til dokumenterte branngraver."},{"q":"Kva betyr gravlandskap?","o":["Eit større landskap der graver, busetnad, jordbruk og ferdsel må lesast i samanheng","Eit rom inne i ein gravhaug","Ei liste over lause gravfunn utan stad"],"a":0,"k":"Eit gravlandskap er meir enn enkeltgraver. Gravminna blir forstått saman med terreng, gardar, vegar, åkrar og andre kulturminne over tid.","t":"concept","e":"em_his_spor_materialitet","s":["kringom_etne","vestland_stodleterrassen"],"c":["gravlandskap","landskapsarkeologi"],"g":["omgrep_gravlandskap"],"m":"met_kontekstualisering","b":"Sørheimsmoen må lesast som del av det større kulturmiljøet på terrassen."},{"q":"Korleis kan arkeologar vite om gravminne som ikkje lenger er synlege?","o":["Gjennom eldre registreringar, utgravingar, funn og historiske bilete","Berre ved å gjette ut frå dagens terreng","Ved å rekne alle jordhaugar som graver utan undersøking"],"a":0,"k":"Eldre kartlegging, utgravingsrapportar, gjenstandsfunn, fotografi og skriftlege registreringar kan dokumentere minne som seinare er fjerna eller endra.","t":"analysis","e":"em_his_kildekritikk_arkiv_spor","s":["kringom_etne","vestland_stodleterrassen"],"c":["tapt kulturminne","dokumentasjon","arkeologisk kjelde"],"g":["kjelder_til_tapte_graver"],"m":"met_kildekritikk","b":"Det historiske omfanget er kjent gjennom dokumentasjon i tillegg til dagens synlege spor."},{"q":"Kva er den mest presise måten å bruke talet minst 100 på?","o":["Som tal for heile det historiske Støle–Sørheim–Austrheim-landskapet, ikkje for dagens markør","Som tal for gravhaugar som står synlege innanfor 320 meter i dag","Som sikkert tal på graver frå éin og same periode"],"a":0,"k":"Minst 100 viser det historiske omfanget av heile terrassefeltet. Gravminna var frå ulike periodar, og mange er ikkje lenger synlege.","t":"analysis","e":"em_his_kildekritikk_arkiv_spor","s":["kringom_etne"],"c":["talavgrensing","historisk omfang","kjeldepresisjon"],"g":["100_gjeld_heile_landsskapet"],"m":"met_kildekritikk","b":"Talet må avgrensast geografisk, kronologisk og bevaringsmessig for å unngå feil framstilling."}]}];
+const SOURCES = {
+  kringom_etne: 'https://www.kringom.no/nb/sunnhordland/etne',
+  vestland_stodleterrassen: 'https://www.vestlandfylke.no/nyheitsarkiv/2024/stodleterrassen-i-etne-er-freda/'
+};
+const GUIDANCE = [
+  'data/fag/historie/emner_historie_canonical_v4_5.json',
+  'data/fag/historie/supersetQUIZMAL_historie.json',
+  'data/fag/historie/methods_historie_canonical_v4_5.json'
+];
+
+function expandQuestion(row, setNo, pos, globalNo) {
+  const bronze = row.g.some((tag) => tag.includes('bronsealder'));
+  return {
+    id: `sorheimsmoen_gravfelt_quiz_${globalNo}`,
+    quiz_id: `historie_sorheimsmoen_gravfelt_set_${setNo}_q${pos}`,
+    categoryId: 'historie', placeId: TARGET, targetId: TARGET, question_scope: 'place',
+    question: row.q, options: row.o, answer: row.o[row.a], answerIndex: row.a,
+    knowledge: row.k, difficulty: setNo, question_type: row.t, year: null,
+    epoke_id: bronze ? 'bronsealder' : 'jernalder', epoke_domain: 'historie', emne_id: row.e,
+    source: row.s, source_origin: 'mixed', claim_basis: row.b,
+    guidance_basis: { emne_id: row.e, canonical_files_used_as_guidance_only: GUIDANCE, ...(row.m ? { method_id: row.m } : {}) },
+    core_concepts: row.c, tags: [TARGET, ...row.g]
+  };
+}
+
+function buildQuiz() {
+  let globalNo = 0;
+  return {
+    targetId: TARGET, categoryId: 'historie', generator_version: 'quiz_standard_canonical_v2_manual_source_based',
+    generated_from: ['data/places/historie/vestland/etne/sorheimsmoen_gravfelt.json','data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md','data/fag/historie/supersetQUIZMAL_historie.json'],
+    sources: SOURCES,
+    profile_snapshot: {
+      place_type: 'gravfelt', subtype: 'bevart_del_av_stort_forhistorisk_gravlandskap_pa_terrasse',
+      signature_features: ['del av Støle–Sørheim–Austrheim-landskapet med minst 100 historisk registrerte gravminne','bevarte store jernalderhaugar og steinringar','bronsealderfunn frå undersøkte haugar','branngraver frå tida før Kristi fødsel','områdeankeret representerer ikkje heile gravlandskapet'],
+      primary_angles: ['gravskikk','bronsealder og jernalder','maktlandskap','tapte kulturminne'],
+      avoid_angles: ['late som minst 100 gravminne står ved markøren i dag','gi alle gravene same datering','behandle gravlandskapet som éi enkelt gravhaug']
+    },
+    sets: SETS.map((set, setIndex) => ({ set_id: set.id, level: set.level, order: set.order, xp: set.xp, title: set.title, questions: set.questions.map((row, questionIndex) => { globalNo += 1; return expandQuestion(row, setIndex + 1, questionIndex + 1, globalNo); }) }))
+  };
+}
+
+async function readJson(file) { return JSON.parse(await readFile(file, 'utf8')); }
+async function assemble() {
+  const quiz = buildQuiz(); await mkdir(path.dirname(OUT), { recursive: true }); await writeFile(OUT, `${JSON.stringify(quiz, null, 2)}\n`, 'utf8');
+  const manifest = await readJson(MANIFEST); manifest.sets = Array.isArray(manifest.sets) ? manifest.sets : [];
+  const wanted = { targetId: TARGET, file: OUT }; const existing = manifest.sets.find((entry) => entry?.targetId === TARGET); if (existing) Object.assign(existing, wanted); else manifest.sets.push(wanted);
+  await writeFile(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+}
+async function validate() {
+  const quiz = await readJson(OUT); const questions = quiz.sets.flatMap((set) => set.questions);
+  if (quiz.targetId !== TARGET || quiz.categoryId !== 'historie' || quiz.sets.length !== 3 || questions.length !== 15) throw new Error('root/set/question mismatch');
+  const ids = new Set(); const quizIds = new Set(); const families = { fact: 0, context: 0, theory: 0 };
+  for (const q of questions) {
+    if (q.targetId !== TARGET || q.placeId !== TARGET || q.question_scope !== 'place') throw new Error(`target mismatch: ${q.id}`);
+    if (!Array.isArray(q.options) || q.options.length !== 3 || q.options[q.answerIndex] !== q.answer) throw new Error(`invalid answer: ${q.id}`);
+    if (ids.has(q.id) || quizIds.has(q.quiz_id)) throw new Error(`duplicate id: ${q.id}`); ids.add(q.id); quizIds.add(q.quiz_id);
+    if (q.question_type === 'concept') families.theory += 1; else if (q.question_type === 'analysis') families.context += 1; else families.fact += 1;
+    if (!q.emne_id || !q.knowledge || !q.claim_basis || !q.source?.length || !q.knowledge_unit_ids?.length || q.knowledge_link_status !== 'linked') throw new Error(`metadata/knowledge mismatch: ${q.id}`);
+  }
+  if (families.fact !== 8 || families.context !== 4 || families.theory !== 3) throw new Error(`wrong balance: ${JSON.stringify(families)}`);
+  const manifest = await readJson(MANIFEST); const hits = manifest.sets.filter((entry) => entry?.targetId === TARGET && entry?.file === OUT); if (hits.length !== 1) throw new Error(`manifest registration count: ${hits.length}`);
+  console.log(JSON.stringify({ target: TARGET, sets: quiz.sets.length, questions: questions.length, families }, null, 2));
+}
+
+const mode = process.argv[2]; if (mode === 'assemble') await assemble(); else if (mode === 'validate') await validate(); else throw new Error('Usage: node .tmp/bootstrap-sorheimsmoen.mjs assemble|validate');
