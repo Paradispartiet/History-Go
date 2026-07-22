@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          rm -f reports/hidden-test-mode-apply-error.txt
+          rm -f reports/hidden-test-mode-apply-error.txt reports/hidden-test-mode-test-error.txt
           python - <<'PY'
           from pathlib import Path
           path = Path('scripts/apply-hidden-test-mode.mjs')
@@ -69,22 +69,42 @@ jobs:
           exit 1
 
       - name: Test hidden test mode
+        id: test
         if: steps.apply.outcome == 'success'
+        continue-on-error: true
+        shell: bash
         run: |
-          node tests/hg-test-mode.test.js
-          node tests/header-search-menu.test.js
-          node --check js/debug/HGTestMode.js
-          node --check js/ui/dom.js
+          set -o pipefail
+          {
+            node tests/hg-test-mode.test.js
+            node tests/header-search-menu.test.js
+            node --check js/debug/HGTestMode.js
+            node --check js/ui/dom.js
+          } 2>&1 | tee /tmp/hidden-test-mode-test.log
+
+      - name: Persist test error
+        if: steps.apply.outcome == 'success' && steps.test.outcome == 'failure'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports
+          cp /tmp/hidden-test-mode-test.log reports/hidden-test-mode-test-error.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/hidden-test-mode-test-error.txt
+          git commit -m "Record hidden test mode test error"
+          git push
+          exit 1
 
       - name: Commit changes
-        if: steps.apply.outcome == 'success'
+        if: steps.apply.outcome == 'success' && steps.test.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html js/debug/HGTestMode.js js/ui/dom.js css/components.css tests/hg-test-mode.test.js tests/header-search-menu.test.js docs/HG_TEST_MODE.md schemas/globals.d.ts schemas/app-globals.d.ts .github/workflows/typescript-guard.yml
-          git add -u reports/hidden-test-mode-apply-error.txt || true
+          git add -u reports/hidden-test-mode-apply-error.txt reports/hidden-test-mode-test-error.txt || true
           if git diff --cached --quiet; then
             echo "Hidden test mode changes already applied."
             exit 0
