@@ -122,8 +122,6 @@
 
     <button id="btnSeeMap" class="iconbtn" type="button" aria-label="Kartmodus" title="Kartmodus" data-hg-i18n-aria-label="ui.attr.mapMode" data-hg-i18n-title="ui.attr.mapMode">⌖</button>
 
-    <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all" data-hg-i18n-aria-label="ui.attr.unlockAll" data-hg-i18n-title="ui.attr.unlockAll">🔓</button>
-
     <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus" data-hg-i18n-title="ui.attr.positionStatus">📍</span>
 
     <div class="header-menu" id="headerMenu">
@@ -199,14 +197,6 @@
             <span class="header-menu-action-label">Ruter / Utforsk</span>
           </button>
 
-          <label class="header-menu-action header-menu-toggle">
-            <span class="header-menu-action-icon" aria-hidden="true">🔓</span>
-            <span class="header-menu-action-label">Lås opp testmodus</span>
-            <span class="toggle">
-              <input id="openToggle" type="checkbox" aria-label="Lås opp testmodus" />
-              <span></span>
-            </span>
-          </label>
         </div>
       </div>
     </div>
@@ -391,6 +381,7 @@
   </footer>
 
   <!-- App scripts -->
+  <script src="js/debug/HGTestMode.js"></script>
   <script src="js/i18n.js"></script>
   <script src="dist/web/knowledge.js"></script>
   <script src="dist/web/hgInsights.js"></script>
