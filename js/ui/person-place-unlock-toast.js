@@ -1,6 +1,6 @@
 // js/ui/person-place-unlock-toast.js
 // HGTargetUnlockToast — lytter på "hg:target-unlock" og viser feirende
-// popup når quiz gir første samling av en person eller et sted.
+// popup når quiz gir første samling av en person eller fullfører stedskunnskap.
 // Kontrakt: detail = { kind: "person"|"place", id, name, image, quizId, categoryId }
 //
 // Gjenbruker nature-unlock-stacken og stil-klassene der det gir mening,
@@ -42,7 +42,8 @@
 
   function showTargetUnlock(detail) {
     const kind = detail?.kind === "place" ? "place" : "person";
-    const name = String(detail?.name || "").trim() || (kind === "place" ? tUI("ui.unlock.newPlace", "Nytt sted") : tUI("ui.unlock.newPerson", "Ny person"));
+    const isPlaceQuizReward = kind === "place" && !!detail?.quizId;
+    const name = String(detail?.name || "").trim() || (kind === "place" ? tUI("ui.unlock.place", "Sted") : tUI("ui.unlock.newPerson", "Ny person"));
     const image = String(detail?.image || "").trim();
     const id = String(detail?.id || "").trim();
     const stack = ensureStack();
@@ -51,7 +52,11 @@
     card.className = `nature-unlock-card is-target is-${kind}`;
 
     const fallbackIcon = kind === "place" ? "📍" : "👤";
-    const kicker = kind === "place" ? tUI("ui.unlock.placeCollected", "✨ Nytt sted samlet") : tUI("ui.unlock.personMet", "✨ Ny person møtt");
+    const kicker = isPlaceQuizReward
+      ? tUI("ui.quiz.placeKnowledgeCompleted", "✨ Stedskunnskap fullført")
+      : (kind === "place"
+          ? tUI("ui.unlock.placeCollected", "✨ Nytt sted samlet")
+          : tUI("ui.unlock.personMet", "✨ Ny person møtt"));
 
     const thumb = image
       ? `<img class="nature-unlock-thumb" src="${image}" alt=""
