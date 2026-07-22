@@ -50,7 +50,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npm run places:emners:check | tee reports/subkultur-oslo-randsoner-batch-03/validation/emne-check.txt
+          npm run places:emner:check | tee reports/subkultur-oslo-randsoner-batch-03/validation/emne-check.txt
 
       - name: Validate coordinate intake
         shell: bash
