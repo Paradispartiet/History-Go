@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: agent/remove-public-test-mode-toggle
+          show-progress: false
 
       - name: Apply migration
         run: node scripts/apply-hidden-test-mode.mjs
