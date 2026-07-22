@@ -23,3 +23,7 @@ Batchen utvider Subkultur fra Oslo-tyngde til en bredere nasjonal geografi. Brug
 ## Duplikatkontroll
 
 Repo-søk før batchen fant ingen eksisterende canonical IDs eller egne place-records for Nygårdsparken, UFFA eller Svartlamon. `storgata` finnes allerede under By, men den nye Brugata/Storgata-recorden har et annet fysisk og faglig scope og legges inn som sosialt lag, ikke som gate-duplikat.
+
+## Endelig QA
+
+Den genererte sluttbatchen passerte split-manifest-sync, global place-index-kontroll, canonical emne-kontroll, strict-new koordinat-intake og place health-kjøring. Nygårdsparken ble flyttet fra et ustabilt Overpass-oppslag til Kartverkets SSR før sluttgenereringen, slik at canonical koordinatkilde er offisiell og reproducerbar.
