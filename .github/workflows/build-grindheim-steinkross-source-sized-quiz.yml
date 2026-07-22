@@ -1,0 +1,304 @@
+name: Build Grindheim steinkross source-sized quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-grindheim-steinkross-source-sized-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-grindheim-steinkross-source-sized-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize source-sized Grindheim steinkross quiz
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'grindheim_steinkross';
+          const quizPath = `data/quiz/historie/${targetId}_sets.json`;
+          const guidanceFiles = [
+            'data/fag/historie/emner_historie_canonical_v4_5.json',
+            'data/fag/historie/supersetQUIZMAL_historie.json',
+            'data/fag/historie/methods_historie_canonical_v4_5.json'
+          ];
+
+          function q({n, set, local, text, options, answer, knowledge, type, difficulty, emne, method, concepts, tags, claim, sources, focus = []}) {
+            const answerIndex = options.indexOf(answer);
+            if (answerIndex < 0) throw new Error(`Answer missing for ${n}`);
+            return {
+              id: `${targetId}_quiz_${n}`,
+              quiz_id: `historie_${targetId}_set_${set}_q${local}`,
+              categoryId: 'historie',
+              placeId: targetId,
+              targetId,
+              question_scope: 'place',
+              question: text,
+              options,
+              answer,
+              answerIndex,
+              knowledge,
+              difficulty,
+              question_type: type,
+              year: null,
+              epoke_id: null,
+              epoke_domain: 'historie',
+              emne_id: emne,
+              related_emner: [],
+              source: sources,
+              source_origin: 'mixed',
+              claim_basis: claim,
+              guidance_basis: {
+                emne_id: emne,
+                canonical_files_used_as_guidance_only: guidanceFiles,
+                method_id: method
+              },
+              method_id: method,
+              core_concepts: concepts,
+              concept_focus: focus,
+              tags: [targetId, ...tags]
+            };
+          }
+
+          const sets = [
+            {
+              set_id: `historie_${targetId}_set_1`, level: 1, order: 1, xp: 50,
+              title: 'Steinkrossen ved kyrkjegardsmuren',
+              questions: [
+                q({
+                  n: 1, set: 1, local: 1,
+                  text: 'Kva slags monument er Grindheim-krossen?',
+                  options: ['Ein steinkross', 'Ein runestein med gravskrift', 'Ei gravrøys'],
+                  answer: 'Ein steinkross',
+                  knowledge: 'Monumentet ved Grindheim er ein gammal steinkross og må haldast skilt frå runesteinen ved same kyrkje.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['steinkross', 'steinmonument'], tags: ['kulturminnetype', 'steinkross'],
+                  claim: 'Kringom og Norges Kirker dokumenterer monumentet som ein steinkross.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                }),
+                q({
+                  n: 2, set: 1, local: 2,
+                  text: 'Kvar står steinkrossen i dag?',
+                  options: ['Like innanfor kyrkjegardsmuren ved Grindheim kyrkje', 'På Krossbakken som eit sikkert innmålt punkt', 'Inne i kyrkjetårnet'],
+                  answer: 'Like innanfor kyrkjegardsmuren ved Grindheim kyrkje',
+                  knowledge: 'Dagens fysiske plassering er like innanfor kyrkjegardsmuren ved Grindheim kyrkje.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['dagens plassering', 'kyrkjegardsmur'], tags: ['plassering', 'kyrkjegard'],
+                  claim: 'Kringom skildrar dagens plassering like innanfor kyrkjegardsmuren.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                }),
+                q({
+                  n: 3, set: 1, local: 3,
+                  text: 'Kva har skjedd med den øvste krossarmen?',
+                  options: ['Han er broten av, slik at monumentet no er T-forma', 'Han er måla raud og står urørt', 'Han vart erstatta av ein runestein'],
+                  answer: 'Han er broten av, slik at monumentet no er T-forma',
+                  knowledge: 'Brotet i den øvste armen er eit synleg bevaringsspor og forklarer T-forma i dag.',
+                  type: 'observation', difficulty: 1,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['T-form', 'broten krossarm', 'bevaringsspor'], tags: ['form', 'skade'],
+                  claim: 'Kjelda dokumenterer at den øvste armen er broten av.',
+                  sources: ['kringom_grindheim']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_2`, level: 2, order: 2, xp: 50,
+              title: 'Krossbakken, muren og flyttehistoria',
+              questions: [
+                q({
+                  n: 4, set: 2, local: 1,
+                  text: 'Kvar låg krossen før han vart reist ved kyrkja?',
+                  options: ['Inne i sjølve kyrkjegardsmuren', 'På botnen av ei gravrøys', 'I elva ved Meland'],
+                  answer: 'Inne i sjølve kyrkjegardsmuren',
+                  knowledge: 'Før dagens oppreiste plassering låg steinkrossen som del av kyrkjegardsmuren.',
+                  type: 'fact', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['murfasen', 'gjenbruk', 'flytta monument'], tags: ['kyrkjegardsmur', 'tidlegare_plassering'],
+                  claim: 'Kringom og Norges Kirker dokumenterer ein fase då krossen låg i muren.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                }),
+                q({
+                  n: 5, set: 2, local: 2,
+                  text: 'Kva seier tradisjonen om den opphavlege plasseringa?',
+                  options: ['Krossen skal ha stått på Krossbakken', 'Krossen stod sikkert inne i dagens kyrkje', 'Krossen vart hoggen på kyrkjegarden i moderne tid'],
+                  answer: 'Krossen skal ha stått på Krossbakken',
+                  knowledge: 'Krossbakken er ein tradert opphavsstad. Kjelda formulerer dette som noko krossen skal ha gjort, ikkje som ei sikkert innmålt plassering.',
+                  type: 'fact', difficulty: 2,
+                  emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+                  concepts: ['Krossbakken', 'tradisjon', 'opphavsstad'], tags: ['tradert_opplysning', 'krossbakken'],
+                  claim: 'Kjelda gjengir tradisjonen om Krossbakken med atterhald.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                }),
+                q({
+                  n: 6, set: 2, local: 3,
+                  text: 'Kva viser rekkjefølgja Krossbakken, kyrkjegardsmuren og dagens plassering?',
+                  options: ['At monumentet har skifta stad og bruk gjennom fleire fasar', 'At alle tre stadene er same sikre innmålte punkt', 'At krossen aldri har vore flytta'],
+                  answer: 'At monumentet har skifta stad og bruk gjennom fleire fasar',
+                  knowledge: 'Stadshistoria omfattar ein tradert opphavsstad, gjenbruk i muren og seinare oppreising som synleg kulturminne.',
+                  type: 'analysis', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_kildekritikk',
+                  concepts: ['monumentbiografi', 'flyttehistorie', 'bruksfase'], tags: ['analyse', 'for_og_na'],
+                  claim: 'Dei tre kjeldelagde fasane dokumenterer ei endra monumenthistorie.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                }),
+                q({
+                  n: 7, set: 2, local: 4,
+                  text: 'Kvifor kan ikkje dagens kartpunkt brukast som bevis for den nøyaktige plasseringa på Krossbakken?',
+                  options: ['Kartpunktet er eit kyrkjegardsanker for dagens monument, medan Krossbakken er tradert', 'Kartpunktet er eldre enn sjølve krossen', 'Alle historiske flyttingar endrar koordinatsystemet'],
+                  answer: 'Kartpunktet er eit kyrkjegardsanker for dagens monument, medan Krossbakken er tradert',
+                  knowledge: 'Dagens anker viser kvar krossen står no. Det dokumenterer ikkje eit eksakt opphavspunkt på Krossbakken.',
+                  type: 'analysis', difficulty: 3,
+                  emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+                  concepts: ['historisk anker', 'tradert plassering', 'kartgrense'], tags: ['analyse', 'koordinatkritikk'],
+                  claim: 'Stedsposten skil dagens kyrkjegardsanker frå den usikre opphavsplasseringa.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_3`, level: 3, order: 3, xp: 50,
+              title: 'Samlingsstad, tradisjon og gjenbruk',
+              questions: [
+                q({
+                  n: 8, set: 3, local: 1,
+                  text: 'Kvifor blir ei mogleg rolle som samlingsstad formulert med atterhald?',
+                  options: ['Kjelda omtalar ein mogleg generell funksjon for steinkrossar, ikkje eit sikkert bevis for Grindheim', 'Kjelda seier at Krossbakken aldri fanst', 'Alle steinkrossar hadde identisk dokumentert funksjon'],
+                  answer: 'Kjelda omtalar ein mogleg generell funksjon for steinkrossar, ikkje eit sikkert bevis for Grindheim',
+                  knowledge: 'Steinkrossar kan fleire stader ha markert samlingspunkt før kyrkjer vart bygde. Det gjer tolkinga relevant, men ikkje sikkert bevist ved Grindheim.',
+                  type: 'analysis', difficulty: 3,
+                  emne: 'em_his_kirke_kloster_middelalder', method: 'met_kildekritikk',
+                  concepts: ['mogleg samlingsstad', 'analogitolking', 'kildeatterhald'], tags: ['analyse', 'tidleg_kristendom'],
+                  claim: 'Kringom presenterer samlingsfunksjonen som ei mogleg tolking, ikkje ein stadsspesifikk sikker konklusjon.',
+                  sources: ['kringom_grindheim']
+                }),
+                q({
+                  n: 9, set: 3, local: 2,
+                  text: 'Kva betyr «tradert opphavsstad» for Krossbakken?',
+                  options: ['Ein stad knytt til monumentet gjennom overlevert tradisjon', 'Ein plass som er arkeologisk innmålt med sikker opphavskontekst', 'Dagens fysiske plassering ved muren'],
+                  answer: 'Ein stad knytt til monumentet gjennom overlevert tradisjon',
+                  knowledge: 'Ein tradert opphavsstad er bevart gjennom forteljing eller lokal opplysning og må skiljast frå sikkert dokumentert plassering.',
+                  type: 'concept', difficulty: 2,
+                  emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+                  concepts: ['tradert opphavsstad', 'stadstradisjon'], focus: ['tradert opphavsstad'], tags: ['begrep', 'krossbakken'],
+                  claim: 'Krossbakken er formidla som tradisjon, ikkje som sikker arkeologisk kontekst.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                }),
+                q({
+                  n: 10, set: 3, local: 3,
+                  text: 'Kva betyr «gjenbruk» i murfasen til steinkrossen?',
+                  options: ['At monumentet vart brukt som del av muren i ein ny samanheng', 'At ein ny kross vart laga på same tid', 'At krossen stod urørt på opphavsstaden'],
+                  answer: 'At monumentet vart brukt som del av muren i ein ny samanheng',
+                  knowledge: 'Gjenbruk inneber at eit eldre objekt får ein annan plass eller funksjon. Murfasen endra krossen frå fritt monument til byggjestein før han vart reist att.',
+                  type: 'concept', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['gjenbruk', 'murstein', 'funksjonsendring'], focus: ['gjenbruk'], tags: ['begrep', 'bevaringshistorie'],
+                  claim: 'Kjeldene dokumenterer at steinkrossen låg som del av kyrkjegardsmuren.',
+                  sources: ['kringom_grindheim', 'norges_kirker_grindheim']
+                })
+              ]
+            }
+          ];
+
+          const quiz = {
+            targetId,
+            categoryId: 'historie',
+            generator_version: 'quiz_standard_canonical_v2_manual_source_based_source_sized',
+            generated_from: [
+              'data/places/historie/vestland/etne/grindheim_steinkross.json',
+              'reports/etne-historie-batch-7-research.md',
+              'data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md'
+            ],
+            sources: {
+              kringom_grindheim: 'https://www.kringom.no/nb/grindheim-kyrkje',
+              norges_kirker_grindheim: 'https://norgeskirker.no/wiki/Grindheim_kyrkje'
+            },
+            profile_snapshot: {
+              place_type: 'steinkross',
+              subtype: 'tidligkristent_flytta_steinmonument',
+              signature_features: [
+                'står no like innanfor kyrkjegardsmuren',
+                'låg tidlegare i muren',
+                'skal etter tradisjonen ha stått på Krossbakken',
+                'øvste arm er broten av og gir T-form'
+              ],
+              primary_angles: ['tidleg kristendom', 'flyttehistorie', 'gjenbruk', 'kildekritikk'],
+              avoid_angles: [
+                'framstille Krossbakken som sikkert innmålt opphavsstad',
+                'gjere samlingsfunksjonen sikkert dokumentert ved Grindheim',
+                'blande steinkrossen med runesteinen'
+              ]
+            },
+            sets
+          };
+
+          fs.mkdirSync('data/quiz/historie', { recursive: true });
+          fs.writeFileSync(quizPath, JSON.stringify(quiz, null, 2) + '\n');
+
+          const manifestPath = 'data/quiz/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.sets = manifest.sets.filter(entry => entry.targetId !== targetId);
+          manifest.sets.push({ targetId, file: quizPath });
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Validate source-sized contract
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'grindheim_steinkross';
+          const data = JSON.parse(fs.readFileSync(`data/quiz/historie/${targetId}_sets.json`, 'utf8'));
+          const qs = data.sets.flatMap(set => set.questions);
+          const counts = {
+            total: qs.length,
+            concrete: qs.filter(q => ['fact', 'observation'].includes(q.question_type)).length,
+            context: qs.filter(q => ['analysis', 'context', 'comparison'].includes(q.question_type)).length,
+            concept: qs.filter(q => q.question_type === 'concept').length
+          };
+          const expected = { total: 10, concrete: 5, context: 3, concept: 2 };
+          if (JSON.stringify(counts) !== JSON.stringify(expected)) throw new Error(`${JSON.stringify(counts)} != ${JSON.stringify(expected)}`);
+          const sizes = data.sets.map(set => set.questions.length);
+          if (JSON.stringify(sizes) !== JSON.stringify([3,4,3])) throw new Error(`Invalid set sizes: ${sizes}`);
+          for (const question of qs) {
+            if (question.targetId !== targetId || question.placeId !== targetId || question.question_scope !== 'place') throw new Error(`${question.id}: invalid target contract`);
+            if (!question.options.includes(question.answer) || question.options[question.answerIndex] !== question.answer) throw new Error(`${question.id}: invalid answer contract`);
+          }
+          NODE
+
+      - name: Build canonical Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Run quiz and Knowledge validation
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run knowledge:canonical:check
+
+      - name: Remove temporary files
+        run: |
+          rm -f .github/workflows/build-grindheim-steinkross-source-sized-quiz.yml
+          rm -f .tmp/trigger-grindheim-steinkross-source-sized-quiz.txt
+
+      - name: Commit final Grindheim steinkross package
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Add source-sized Grindheim steinkross quiz"
+          git push
