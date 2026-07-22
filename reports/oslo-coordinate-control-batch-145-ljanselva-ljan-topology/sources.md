@@ -8,3 +8,7 @@ Kildegrunnlag for scope:
 - https://ljan.osloskolen.no/om-skolen/om-oss/skolen-og-naromradet/
 
 Ingen canonical koordinat endres i research-steget.
+
+## Production decision
+
+Batch 145 velger OSM way 98539575 som Ljan-stoppets canonical elvegeometri. Det er den eneste eksakt navngitte Ljanselva-wayen over én kilometer i korrigert Liadalen-scope og kobler eksakt til downstream way 156700580.
