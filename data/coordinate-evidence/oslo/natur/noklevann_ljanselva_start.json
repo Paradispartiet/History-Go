@@ -2,57 +2,79 @@
   "schemaVersion": "1.0",
   "placeId": "noklevann_ljanselva_start",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.8836,
-    "lon": 10.878,
-    "r": 150,
-    "coordStatus": "needs_source",
-    "coordSource": "noklevann_ljanselva_start_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert."
+    "lat": 59.8736207,
+    "lon": 10.8582866,
+    "r": 80,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 16661 (Nøklevann), way 89296578 (lake boundary), way 150774536 (dam), way 127882479 (Skraperudbekken), shared node 1636570783",
+    "coordType": "hydrological_outflow_topology_node",
+    "coordNote": "Batch 141 verifiserer Nøklevanns sørvestlige utløp med eksplisitt delt OSM-topologi: Nøklevann relation 16661 inneholder kant-way 89296578; denne kanten, dam-way 150774536 og Skraperudbekken way 127882479 deler node 1636570783. Canonical lat/lon er koordinaten til denne hydrologiske knutepunktsnoden. Punktet er derfor ikke et innsjømidtpunkt, nearest-segment eller et påstått direkte startpunkt for hele Ljanselva."
   },
   "identity": {
-    "currentName": "Nøklevann (Ljanselva start)",
-    "resolvedIdentity": "Ljanselva-rutens start-/utløpssone ved Nøklevann",
+    "currentName": "Nøklevann – utløp mot Skraperudbekken",
+    "resolvedIdentity": "Nøklevanns sørvestlige utløpspunkt mot Skraperudbekken",
     "identityStatus": "resolved",
-    "identityProblem": "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert.",
+    "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Dokumenter et eksplisitt hydrologisk utløpsobjekt eller en kildebelagt kobling mellom Nøklevann og første Ljanselva-segment."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "Route-scope coordinate audit",
-      "sourceUrl": "https://snl.no/Ljanselva",
-      "sourceObjectId": "manual-audit:noklevann_ljanselva_start:unresolved",
-      "sourceQuality": "documented_route_scope_conflict",
-      "finding": "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert.",
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 16661 – Nøklevann",
+      "sourceUrl": "https://www.openstreetmap.org/relation/16661",
+      "sourceObjectId": "osm-relation:16661",
+      "sourceQuality": "exact_named_lake_identity",
+      "finding": "Nøklevann er exact natural=water relation 16661 og inkluderer utløpskant-way 89296578.",
       "canVerifyCoordinate": false,
-      "reason": "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert."
+      "reason": "Parent-geometrien identifiserer innsjøen; utløpspunktet verifiseres av den delte topologinoden."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 150774536 – utløpsdam",
+      "sourceUrl": "https://www.openstreetmap.org/way/150774536",
+      "sourceObjectId": "osm-way:150774536",
+      "sourceQuality": "exact_outlet_structure",
+      "finding": "Dam-way 150774536 deler node 1636570783 med Nøklevanns kant og Skraperudbekken.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumenterer fysisk utløpsstruktur i samme topologiske knutepunkt."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 127882479 – Skraperudbekken",
+      "sourceUrl": "https://www.openstreetmap.org/way/127882479",
+      "sourceObjectId": "osm-way:127882479",
+      "sourceQuality": "exact_named_downstream_waterway",
+      "finding": "Skraperudbekken way 127882479 inneholder den delte node 1636570783.",
+      "canVerifyCoordinate": true,
+      "reason": "Knytter Nøklevanns utløp direkte til det navngitte nedstrøms bekkeløpet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1636570783 – delt hydrologisk topologinode",
+      "sourceUrl": "https://www.openstreetmap.org/node/1636570783",
+      "sourceObjectId": "osm-node:1636570783",
+      "sourceQuality": "explicit_shared_topology_node",
+      "finding": "Node 1636570783 på 59.8736207, 10.8582866 deles av Nøklevanns utløpskant, dammen og Skraperudbekken.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir ett eksplisitt fysisk og maskinsporbar utløpsanker uten nearest-/proxy-logikk."
     }
   ],
   "addressCandidates": [],
-  "sourceObjectCandidates": [
-    {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "manual-audit:noklevann_ljanselva_start:unresolved",
-      "canApplyToPlace": false
-    }
-  ],
+  "sourceObjectCandidates": [],
   "geometryCandidates": [],
   "coordinateCandidates": [],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert.",
-    "nextAction": "Dokumenter et eksplisitt hydrologisk utløpsobjekt eller en kildebelagt kobling mellom Nøklevann og første Ljanselva-segment."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied to canonical place as explicit Nøklevann outlet topology anchor."
   },
   "notes": [
-    "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert."
+    "Batch 141 verifiserer Nøklevanns sørvestlige utløp med eksplisitt delt OSM-topologi: Nøklevann relation 16661 inneholder kant-way 89296578; denne kanten, dam-way 150774536 og Skraperudbekken way 127882479 deler node 1636570783. Canonical lat/lon er koordinaten til denne hydrologiske knutepunktsnoden. Punktet er derfor ikke et innsjømidtpunkt, nearest-segment eller et påstått direkte startpunkt for hele Ljanselva."
   ]
 }

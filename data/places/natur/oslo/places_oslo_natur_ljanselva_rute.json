@@ -1,12 +1,12 @@
 [
   {
     "id": "noklevann_ljanselva_start",
-    "name": "Nøklevann (Ljanselva start)",
-    "lat": 59.8836,
-    "lon": 10.878,
-    "r": 150,
+    "name": "Nøklevann – utløp mot Skraperudbekken",
+    "lat": 59.8736207,
+    "lon": 10.8582866,
+    "r": 80,
     "category": "natur",
-    "desc": "Startpunkt for Ljanselva-vassdraget fra Nøklevann-området.",
+    "desc": "Utløpspunkt fra Nøklevann der vannet går videre som Skraperudbekken mot Skraperudtjern og videre inn i Ljanselvvassdraget.",
     "tags": [
       "innsjo",
       "kildesone",
@@ -14,12 +14,12 @@
       "ostmarka"
     ],
     "routeId": "ljanselva_grontdrag",
-    "sourceHint": "Koordinat satt ved Nøklevanns sørvestlige utløpsnære område mot Ljanselvas videre løp.",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "noklevann_ljanselva_start_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
-    "popupDesc": "Ved sørvestsiden av Nøklevann ligger dette startpunktet for Ljanselva-ruta. Her ser du hvordan et stort vannrom i Østmarka går over i et mer samlet elveløp videre ned i vassdraget. Stedet gjør det lett å lese hele systemet fra kildepreg og vannflate til bekk- og elvestrekninger lenger sør. Når du står ved vannkanten, kan du følge retningen ut av innsjøen som første etappe i det sammenhengende grøntdraget.",
+    "sourceHint": "Koordinaten er den eksplisitte delte OSM-noden mellom Nøklevanns vanngeometri, damstrukturen og Skraperudbekken.",
+    "coordType": "hydrological_outflow_topology_node",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 16661 (Nøklevann), way 89296578 (lake boundary), way 150774536 (dam), way 127882479 (Skraperudbekken), shared node 1636570783",
+    "coordVerifiedAt": "2026-07-22",
+    "popupDesc": "Ved sørvestenden av Nøklevann ligger det konkrete utløpspunktet der innsjøens kartgeometri, damstrukturen og Skraperudbekken møtes i samme topologiske node. Herfra går vannet videre mot Skraperudtjern og inn i resten av Ljanselvvassdraget. History Go modellerer derfor dette stoppet som Nøklevanns dokumenterte utløp mot Skraperudbekken, ikke som et vilkårlig punkt på vannflaten eller som et påstått direkte startpunkt for hele Ljanselva.",
     "underbadge_ids": [
       "innsjo",
       "elv",
@@ -30,7 +30,26 @@
       "designCode": "waterfront_miniature"
     },
     "locatorType": "route",
-    "coordNote": "Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert."
+    "coordNote": "Batch 141 verifiserer Nøklevanns sørvestlige utløp med eksplisitt delt OSM-topologi: Nøklevann relation 16661 inneholder kant-way 89296578; denne kanten, dam-way 150774536 og Skraperudbekken way 127882479 deler node 1636570783. Canonical lat/lon er koordinaten til denne hydrologiske knutepunktsnoden. Punktet er derfor ikke et innsjømidtpunkt, nearest-segment eller et påstått direkte startpunkt for hele Ljanselva.",
+    "nature_profile": {
+      "type": "skogssjø / utløpssone / vassdragskobling",
+      "title": "Fra Nøklevann til Skraperudbekken",
+      "summary": "Stoppet ligger ved Nøklevanns sørvestlige utløp, der vannet går gjennom den kartfestede dam- og utløpssonen og videre som Skraperudbekken mot Skraperudtjern. Punktet gjør overgangen fra innsjø til bekk lesbar uten å påstå at hele Ljanselva begynner direkte i Nøklevann.",
+      "themes": [
+        "skogssjø i Østmarka",
+        "eksplisitt utløpssone ved Nøklevann",
+        "overgangen fra innsjø til Skraperudbekken",
+        "damstruktur og hydrologisk knutepunkt",
+        "vannets vei mot Skraperudtjern",
+        "sammenhengen videre i Ljanselvvassdraget"
+      ]
+    },
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:1636570783",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-node:1636570783",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/1636570783"
   },
   {
     "id": "skraperudtjern",

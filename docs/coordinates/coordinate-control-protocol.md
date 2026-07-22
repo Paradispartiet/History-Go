@@ -1,6 +1,6 @@
 # Protokoll for koordinatkontroll
 
-Sist oppdatert: 2026-07-21
+Sist oppdatert: 2026-07-22
 
 Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det viser hvilke steder som faktisk er kontrollert, hvilken status som er godtatt, og hvilket stabilt kildeobjekt som støtter avgjørelsen. Protokollen utfyller koordinatkontrakten og evidensfilene; den erstatter dem ikke.
 
@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 377 aktive current `verified*` canonical Oslo-steder: 297 i den historiske batchtabellen og 75 i den retrospektive current-sett-tabellen. Batch 121 fullfører `places/sport/europa/norway/oslo_sport.json`: elleve steder får eksakt navngitt sportsgeometri, mens fire brede eller uavklarte arenaidentiteter avsluttes som needs_review uten proxy-gjetting.
+Oslo-protokollen dekker nå 378 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -532,6 +532,10 @@ Batch 139 (2026-07-21) løser `ibsen_quotes` som en distribuert fleranker-rute i
 
 Batch 140 (2026-07-21) løser kildesonen med eksplisitt hydrologisk nettverkstopologi og oppdaterer synlig innsjønavn til Kartverkets vedtatte `Alungsjøen`; place-id-en beholdes for kompatibilitet. Kartverket SSR stedsnummer 733527 fastsetter innsjøidentiteten. Oslo kommune og Oslo byleksikon dokumenterer Alna fra innsjøen. I OSM deler Alunsjødammen (way 70869529) og første lokale Alna-segment (way 70869513) nøyaktig node 844892785 ved 59.9665991, 10.8589871. Den delte noden brukes som `semantic_anchor`/`area_anchor` med eksplisitt anchor-metadata; legacy-punktet ved Gamle Gruvevei pensjoneres. Ingen nearest-/first-hit-logikk eller sjøsentrum-proxy brukes.
 
+| 141 | `noklevann_ljanselva_start` | Nøklevann – utløp mot Skraperudbekken | verified_geometry | `osm-node:1636570783` |
+
+Batch 141 (2026-07-22) løser `noklevann_ljanselva_start` som et eksplisitt hydrologisk utløpsanker i stedet for et vilkårlig innsjøpunkt. OSM relation 16661 identifiserer Nøklevann; utløpskant-way 89296578, dam-way 150774536 og Skraperudbekken-way 127882479 deler node 1636570783 på `59.8736207, 10.8582866`. Visningsnavnet korrigeres fra «Nøklevann (Ljanselva start)» til «Nøklevann – utløp mot Skraperudbekken» fordi canonical punkt representerer den dokumenterte overgangen fra Nøklevann til Skraperudbekken, ikke et påstått direkte startpunkt for hele Ljanselva.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)
@@ -659,7 +663,6 @@ Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller k
 | `bygdoy_natur` – Bygdøy natur- og kulturmiljø | needs_review | Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet. | Dokumenter en eksplisitt halvøy-/multi-anchor-modell eller offisiell områdegeometri som samsvarer med hele recordens scope. |
 | `ljanselva` – Ljanselva | needs_review | Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker. | Finn én stabil eksakt geometri for hele recordens fysiske scope, eller modeller eksplisitt flere kildebelagte ankere. |
 | `alnaelva_hovedsteder` – Alnaelva | needs_review | Recorden representerer samme overordnede vassdrag som canonical `alnaelva`, som allerede er kontrollert og står needs_source fordi elva består av flere separate og delvis tunnellagte geometrier. En ny hovedstedsmarkør med et annet vilkårlig midtpunkt ville duplisere den uavklarte identiteten. | Avklar canonical duplikat-/aliasmodell mot `alnaelva`; modeller deretter samlet rutegeometri eller flere kildebelagte delankre. |
-| `noklevann_ljanselva_start` – Nøklevann (Ljanselva start) | needs_review | Nøklevann er allerede verifisert som samlet innsjø, men denne recorden hevder et konkret start-/utløpspunkt for Ljanselva. Et vilkårlig punkt på innsjøgeometrien kan ikke dokumentere selve utløpet, og ingen eksplisitt kildebelagt utløpsnode er modellert. | Dokumenter et eksplisitt hydrologisk utløpsobjekt eller en kildebelagt kobling mellom Nøklevann og første Ljanselva-segment. |
 | `ljanselva_skullerud` – Ljanselva ved Skullerud | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
 | `ljanselva_hauketo` – Ljanselva ved Hauketo | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (ambiguous_exact_semantic_candidates:5). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |
 | `ljanselva_ljan` – Ljanselva ved Ljan | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig lokalt kildeobjekt eller flere eksplisitte kildebelagte ruteankre. |

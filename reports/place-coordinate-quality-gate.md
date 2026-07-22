@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-21T16:14:39.603Z
+Generert: 2026-07-22T13:25:20.033Z
 
 ## Oppsummering
 - Aktive filer validert: **601**
 - Antall steder validert: **1207**
 - Harde feil: **0**
-- Varsler: **448**
-- Coordinate review candidates: **714** signaler fordelt på **583** steder
+- Varsler: **446**
+- Coordinate review candidates: **712** signaler fordelt på **582** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -901,8 +901,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#hausmannsomradet_elvelop: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_hovedsteder.json#alnaelva_hovedsteder: lav koordinatpresisjon (<4 desimaler)
-- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_skullerud: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_hauketo: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_hauketo: lav koordinatpresisjon (<4 desimaler)
@@ -1075,15 +1073,15 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 714 signaler fordelt på 583 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 712 signaler fordelt på 582 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
 | coordStatus=verified uten coordPrecisionM | 154 |
-| lineært sted uten anchors | 79 |
-| lav koordinatpresisjon (<4 desimaler) | 85 |
+| lineært sted uten anchors | 78 |
+| lav koordinatpresisjon (<4 desimaler) | 84 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1250,7 +1248,7 @@ Totalt 714 signaler fordelt på 583 steder. Et sted kan ha flere signaler. Kandi
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bla_skilt_enerhaugen_samfund_smedgata_34 | Blått skilt: Enerhaugens Samfund | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.91369333254918 | 10.77036298230481 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (79)
+### lineært sted uten anchors (78)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1304,7 +1302,6 @@ Totalt 714 signaler fordelt på 583 steder. Et sted kan ha flere signaler. Kandi
 | elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.923 | 10.7407 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | fossveien_elvestrekning | Fossveien – elvestrekning | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9218 | 10.7391 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9197 | 10.7364 | 170 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| noklevann_ljanselva_start | Nøklevann (Ljanselva start) | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8836 | 10.878 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_skullerud | Ljanselva ved Skullerud | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8642 | 10.8423 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_hauketo | Ljanselva ved Hauketo | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8485 | 10.816 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_ljan | Ljanselva ved Ljan | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8359 | 10.8099 | 170 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -1334,7 +1331,7 @@ Totalt 714 signaler fordelt på 583 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (85)
+### lav koordinatpresisjon (<4 desimaler) (84)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1373,7 +1370,6 @@ Totalt 714 signaler fordelt på 583 steder. Et sted kan ha flere signaler. Kandi
 | furuset_haugerud_skogbelte | Furuset–Haugerud skogbelte | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9345 | 10.852 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.923 | 10.7407 | 130 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelva_hovedsteder | Alnaelva | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.9325 | 10.833 | 500 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| noklevann_ljanselva_start | Nøklevann (Ljanselva start) | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8836 | 10.878 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | ljanselva_hauketo | Ljanselva ved Hauketo | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8485 | 10.816 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | tjernsmyr_salamanderlokalitet | Tjernsmyr salamanderlokalitet | natur | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json | 59.911 | 10.62714 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | wembley_stadium_london | Wembley Stadium | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.556 | -0.2796 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
