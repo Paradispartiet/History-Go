@@ -1,0 +1,61 @@
+name: Build Stødle kyrkje quiz PR
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stodle-quiz-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-quiz:
+    if: github.head_ref == 'agent/etne-stodle-kyrkje-quiz'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-stodle-kyrkje-quiz
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Assemble and register quiz
+        run: node .tmp/bootstrap-stodle.mjs assemble
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build canonical Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Validate Stødle quiz contract
+        run: node .tmp/bootstrap-stodle.mjs validate
+
+      - name: Run quiz audits
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run knowledge:canonical:check
+
+      - name: Commit final quiz package
+        run: |
+          rm -rf .tmp
+          rm -f .github/workflows/stodle-quiz-bootstrap.yml
+          rm -f .github/workflows/stodle-pr-bootstrap.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Add Stødle kyrkje quiz'
+          git push origin HEAD:agent/etne-stodle-kyrkje-quiz
