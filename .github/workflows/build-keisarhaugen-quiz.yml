@@ -1,0 +1,97 @@
+name: Build Keisarhaugen quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-keisarhaugen-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  build-quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-keisarhaugen-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Materialize quiz and manifest
+        env:
+          QUIZ_GZIP_B64: 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
+        shell: bash
+        run: |
+          python3 <<'PY'
+          import os, base64, gzip, json
+          from pathlib import Path
+          raw = gzip.decompress(base64.b64decode(os.environ['QUIZ_GZIP_B64']))
+          quiz_path = Path('data/quiz/historie/keisarhaugen_frette_sets.json')
+          quiz_path.parent.mkdir(parents=True, exist_ok=True)
+          quiz_path.write_bytes(raw + (b'' if raw.endswith(b'\n') else b'\n'))
+          manifest_path = Path('data/quiz/manifest.json')
+          manifest = json.loads(manifest_path.read_text())
+          if not any(x.get('targetId') == 'keisarhaugen_frette' for x in manifest['sets']):
+              manifest['sets'].append({'targetId':'keisarhaugen_frette','file':str(quiz_path)})
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Validate quiz contract
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/quiz/historie/keisarhaugen_frette_sets.json';
+          const quiz = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const questions = quiz.sets.flatMap(set => set.questions);
+          if (quiz.targetId !== 'keisarhaugen_frette') throw new Error('Wrong targetId');
+          if (quiz.sets.length !== 3 || questions.length !== 15) throw new Error('Expected 3 sets and 15 questions');
+          const concrete = questions.filter(q => ['fact','observation'].includes(q.question_type)).length;
+          const context = questions.filter(q => ['context','analysis','comparison'].includes(q.question_type)).length;
+          const concepts = questions.filter(q => q.question_type === 'concept').length;
+          if (concrete !== 8 || context !== 4 || concepts !== 3) throw new Error(`Wrong balance: ${concrete}/${context}/${concepts}`);
+          for (const q of questions) {
+            if (q.options[q.answerIndex] !== q.answer) throw new Error(`Answer contract failed: ${q.id}`);
+            if (q.placeId !== quiz.targetId || q.targetId !== quiz.targetId || q.question_scope !== 'place') throw new Error(`Target contract failed: ${q.id}`);
+            if (q.knowledge_link_status !== 'linked') throw new Error(`Knowledge link failed: ${q.id}`);
+          }
+          const manifest = JSON.parse(fs.readFileSync('data/quiz/manifest.json','utf8'));
+          const matches = manifest.sets.filter(x => x.targetId === quiz.targetId);
+          if (matches.length !== 1 || matches[0].file !== path) throw new Error('Manifest registration failed');
+          console.log('Keisarhaugen quiz contract OK');
+          NODE
+
+      - name: Audit quiz content
+        run: npm run audit:quiz-content
+
+      - name: Audit quiz templates
+        run: npm run audit:quiz-templates
+
+      - name: Test quiz audit
+        run: npm run test:quiz-content-audit
+
+      - name: Check Knowledge data
+        run: npm run knowledge:canonical:check
+
+      - name: Commit final package
+        shell: bash
+        run: |
+          rm -f .github/workflows/build-keisarhaugen-quiz.yml
+          rm -f reports/keisarhaugen-build-trigger.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Keisarhaugen quiz package'
+            git push origin HEAD:agent/etne-keisarhaugen-quiz
+          fi
