@@ -1,0 +1,105 @@
+{
+  "placeId": "kloden_teater_pilotscenen",
+  "placeFile": "data/places/scenekunst/oslo/places_scenekunst/kloden_teater_pilotscenen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_named_osm_poi_after_documented_official_address_miss",
+  "currentCoordinate": {
+    "lat": 59.928103,
+    "lon": 10.8194263,
+    "r": 60,
+    "coordStatus": "verified_geometry",
+    "coordSource": "osm",
+    "coordType": "named_poi",
+    "coordNote": "Kloden teater oppgir Pilotscenen i Kabelgata 31. Address-first ble gjennomført med både fritekst- og strukturert Geonorge-søk, men Kartverket returnerte ingen matrikkeladresse for nummer 31. Nærmeste adressepunkt, Kabelgata 33, brukes uttrykkelig ikke som proxy. Det eksakt navngitte OSM-punktet node 13243059793, tagget amenity=theatre og name=Kloden Teater - Pilotscenen, brukes derfor som canonical display-marker."
+  },
+  "identity": {
+    "currentName": "Kloden teater – Pilotscenen",
+    "resolvedIdentity": "Kloden teater – den aktive Pilotscenen i Kabelgata 31",
+    "identityStatus": "resolved",
+    "identityProblem": "Institusjonen bruker Kabelgata 31, men Geonorge har ikke et matrikkeladresseobjekt for nummer 31.",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": "Pilotscenen er dagens aktive scene. Administrasjonen i Kabelgata 39 C og det planlagte permanente teaterhuset inngår ikke som samme fysiske markør."
+  },
+  "requiredEvidence": [
+    "offisiell institusjonskilde som dokumenterer Pilotscenen og besøksadressen Kabelgata 31",
+    "dokumentert address-first-forsøk i Geonorge uten eksakt adresseobjekt",
+    "ett eksakt navngitt og stabilt kartobjekt for selve Pilotscenen",
+    "canonical overlap-audit mot global stedindeks"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kloden teater – Besøk oss",
+      "sourceUrl": "https://www.kloden.no/besok-oss/",
+      "sourceObjectId": "kloden:pilotscenen:kabelgata-31",
+      "sourceQuality": "official_current_venue_address",
+      "finding": "Kloden teater oppgir Pilotscenen i Kabelgata 31, 0581 Oslo, separat fra administrasjonen i Kabelgata 39 C.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden verifiserer venue-identitet og besøksadresse, men publiserer ikke et stabilt koordinatobjekt."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Kabelgata&nummer=31&kommunenummer=0301",
+      "sourceObjectId": null,
+      "sourceQuality": "documented_address_first_no_exact_object",
+      "finding": "Både fritekst- og strukturert søk returnerte null eksakte adresseobjekter for Kabelgata 31. Kabelgata 33 ligger nærmest, men brukes ikke som proxy.",
+      "canVerifyCoordinate": false,
+      "reason": "Ingen offisiell adresseidentitet finnes for nummer 31 i API-responsen."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap API",
+      "sourceUrl": "https://api.openstreetmap.org/api/0.6/node/13243059793.json",
+      "sourceObjectId": "osm-node:13243059793",
+      "sourceQuality": "exact_named_current_theatre_poi",
+      "finding": "Node 13243059793 er navngitt Kloden Teater - Pilotscenen, tagget amenity=theatre og ligger på 59.928103, 10.8194263.",
+      "canVerifyCoordinate": true,
+      "reason": "Objektet identifiserer den aktive scenen direkte og har et stabilt OSM-ID."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kabelgata 31, 0581 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": null,
+      "canApplyToPlace": false,
+      "reason": "Offisiell besøksadresse, men ingen tilsvarende Geonorge-adresseidentitet."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:13243059793",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:13243059793",
+      "geometryType": "named_point",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.928103,
+      "lon": 10.8194263,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "finalStatus": "verified_geometry",
+    "blockedReason": "",
+    "nextAction": "Use the exact named OSM theatre node; review the record when the permanent Kloden theatre opens."
+  },
+  "notes": [
+    "Address-first was completed before OSM fallback.",
+    "Kabelgata 33 was rejected as a nearest-address proxy.",
+    "The active Pilotscenen remains the represented venue until the permanent theatre transition is verified."
+  ]
+}
