@@ -1,0 +1,67 @@
+name: Review Etne quiz sizing
+
+on:
+  push:
+    branches:
+      - agent/etne-quiz-source-sizing-revision
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-quiz-source-sizing-revision
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build compact question inventory
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targets = [
+            'varhaug_nervik',
+            'nesjarhaugen_byrkjenes',
+            'keisarhaugen_frette',
+            'vardahaugen_lauareid'
+          ];
+          const result = {};
+          for (const targetId of targets) {
+            const path = `data/quiz/historie/${targetId}_sets.json`;
+            const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+            result[targetId] = {
+              file: path,
+              question_count: data.sets.flatMap(s => s.questions).length,
+              sets: data.sets.map(set => ({
+                set_id: set.set_id,
+                title: set.title,
+                questions: set.questions.map(q => ({
+                  id: q.id,
+                  type: q.question_type,
+                  question: q.question,
+                  answer: q.answer,
+                  knowledge: q.knowledge,
+                  claim_basis: q.claim_basis,
+                  source: q.source
+                }))
+              }))
+            };
+          }
+          fs.mkdirSync('.tmp', { recursive: true });
+          fs.writeFileSync('.tmp/etne-quiz-sizing-review.json', JSON.stringify(result, null, 2) + '\n');
+          NODE
+
+      - name: Commit inventory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .tmp/etne-quiz-sizing-review.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Inventory Etne quiz questions for source sizing"
+          git push
