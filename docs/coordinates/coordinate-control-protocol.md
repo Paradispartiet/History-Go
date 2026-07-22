@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 385 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 389 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -555,6 +555,14 @@ Batch 144 (2026-07-22) løser `ljanselva_hauketo` som den lange åpne Ljanselva-
 | 145 | `ljanselva_ljan` | Ljanselva ved Ljan | verified_geometry | `osm-way:98539575` |
 
 Batch 145 (2026-07-22) korrigerer den opprinnelige batch-112-scope-boksen, som lå for langt øst og derfor ga null eksakte Ljanselva-treff for Ljan. Uavhengige kilder dokumenterer Liadalen som Ljanselvas dalføre ved Ljan. Den korrigerte Liadalen-auditen finner fem eksakt navngitte elveways; way 98539575 er den eneste over én kilometer og dekker hovedstrekningen gjennom dalen. Nedstrøms kobler den eksakt til way 156700580, som holdes av til den separate utløpsnære Fiskevollen-kontrollen. Canonical lat/lon er lengdemidtpunktet på fresh way-geometri og lagres som `semantic_anchor` / `line_anchor`. Legacy-punktet brukes ikke; ingen nearest/first-hit-logikk brukes.
+
+
+| 146 | `brugata_storgata_rusmiljo` | Brugata / Storgata – det åpne rusmiljøet | verified | `geonorge-adresser-v1:0301:17059:33` |
+| 146 | `huset_oslo` | Huset Oslo | verified | `geonorge-adresser-v1:0301:17994:22` |
+| 146 | `nadheim_oslo` | Nadheim | verified | `geonorge-adresser-v1:0301:15107:45` |
+| 146 | `motestedet_tollbugata` | Møtestedet – Tollbugata | verified | `geonorge-adresser-v1:0301:17577:3` |
+
+Batch 146 (2026-07-22) etterfører Subkultur-randsonebatch 03. `brugata_storgata_rusmiljo` bruker det offisielle Geonorge-adressepunktet for Storgata 33 som semantisk områdeanker for det dokumenterte miljøet rundt Storgata/Brugata. `huset_oslo`, `nadheim_oslo` og `motestedet_tollbugata` bruker entydige Geonorge-adressepunkter på dokumenterte besøksadresser.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
