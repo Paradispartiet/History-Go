@@ -1,0 +1,67 @@
+name: Fix national Subkultur batch 04 place wrappers
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/subkultur-norge-batch-04
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Wrap the four regional place files
+        run: node scripts/tmp-wrap-subkultur-norge-batch-04-place-files.mjs
+
+      - name: Rebuild global places index
+        run: npm run places:index:build
+
+      - name: Validate hard place gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/subkultur-norge-batch-04/validation
+          npm run places:index:check | tee reports/subkultur-norge-batch-04/validation/places-index-check.txt
+          npm run places:emner:check | tee reports/subkultur-norge-batch-04/validation/emne-check.txt
+          npm run places:coords:intake | tee reports/subkultur-norge-batch-04/validation/coordinate-intake.txt
+
+      - name: Re-run place health and reject new batch errors
+        shell: bash
+        run: |
+          set -o pipefail
+          set +e
+          npm run health:places | tee reports/subkultur-norge-batch-04/validation/health-places.txt
+          status=${PIPESTATUS[0]}
+          echo "$status" > reports/subkultur-norge-batch-04/validation/health-places-exit-code.txt
+          awk '/^Errors:/{flag=1;next}/^Warnings:/{flag=0}flag' reports/subkultur-norge-batch-04/validation/health-places.txt > /tmp/place-health-errors.txt
+          if grep -E 'uffa_huset_trondheim|ressurssenter_kvinner_trondheim|nygardsparken_bergen|svartlamon_trondheim' /tmp/place-health-errors.txt; then
+            echo 'New batch still contributes place-health errors.' >&2
+            exit 1
+          fi
+          echo "No place-health errors from national Subkultur batch 04; global health exit code remains $status due to pre-existing repository errors."
+
+      - name: Remove one-shot fixer
+        run: git rm scripts/tmp-wrap-subkultur-norge-batch-04-place-files.mjs .github/workflows/tmp-fix-subkultur-norge-batch-04-place-wrapper.yml
+
+      - name: Commit corrected batch
+        run: |
+          git config user.name "history-go-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/places/subkultur/trondelag data/places/subkultur/vestland data/places/places_index.json reports/subkultur-norge-batch-04
+          git commit -m "Fix national Subkultur batch 04 place wrappers"
+          git push origin HEAD:agent/subkultur-norge-batch-04
