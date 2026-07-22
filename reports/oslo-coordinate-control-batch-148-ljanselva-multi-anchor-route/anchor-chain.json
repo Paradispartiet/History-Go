@@ -1,25 +1,22 @@
 {
-  "id": "ljanselva",
-  "name": "Ljanselva",
-  "lat": 59.8506459,
-  "lon": 10.8094818,
-  "r": 750,
-  "category": "natur",
-  "desc": "Vassdrag fra Østmarka og Nøklevann-området til Bunnefjorden, med skog, raviner, kantvegetasjon og fjordnær overgang.",
-  "tags": [
-    "elv",
-    "vassdrag",
-    "grontdrag",
-    "ostmarka",
-    "fjordovergang",
-    "kantvegetasjon"
-  ],
-  "sourceHint": "Hovedstedet modelleres som en verifisert multi-anchor vassdragskjede fra Nøklevann/Skraperud-systemet gjennom de dokumenterte Ljanselva-strekningene til munningsnoden i Fiskevollbukta. Hauketo-wayen brukes kun som sentralt displayanker.",
-  "coordType": "multi_anchor_route_display_anchor",
-  "coordStatus": "verified_geometry",
-  "coordSource": "Verifisert Ljanselva multi-anchor chain; display-anchor OpenStreetMap way 695993872 – Ljanselva ved Hauketo; anchors: osm-node:1636570783, osm-way:23761672, osm-way:27271638, osm-way:695993872, osm-way:98539575, osm-way:156700580, osm-node:1689201164",
-  "coordVerifiedAt": "2026-07-22",
-  "coordNote": "Batch 148 løser hovedrecorden Ljanselva som et eksplisitt multi-anchor vassdrag i stedet for å late som ett punkt eller én OSM-way representerer hele elva. Scope dokumenteres av sju allerede verified_geometry-ankre: Nøklevanns utløp, Skraperudtjern, Skullerud-segmentet, Hauketo-segmentet, Liadalen/Ljan-segmentet, den nedre Fiskevollen-korridoren og munningsnoden i Fiskevollbukta. Canonical lat/lon er Hauketo-segmentets verifiserte line-anchor fordi det ligger sentralt i den modellerte kjeden; punktet er bare displayanker og ikke et påstått geometrisk sentrum for hele vassdraget. Ingen legacy-koordinat, nearest/first-hit eller syntetisk enkeltgeometri brukes.",
+  "generatedAt": "2026-07-22T21:56:17.132Z",
+  "batch": 148,
+  "placeId": "ljanselva",
+  "displayAnchorId": "ljanselva_hauketo",
+  "displayAnchor": {
+    "id": "ljanselva_hauketo",
+    "name": "Ljanselva ved Hauketo",
+    "lat": 59.8506459,
+    "lon": 10.8094818,
+    "r": 180,
+    "type": "line_anchor",
+    "role": "display_anchor",
+    "coordStatus": "verified_geometry",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:695993872",
+    "sourceUrl": "https://www.openstreetmap.org/way/695993872",
+    "note": "Batch 144 løser Hauketo-scope med kildebelagt stedsavgrensning og elvetopologi, ikke med legacy-punkt eller nearest-søk. Hauketo er dokumentert som strøket sør for Ljabru med Ljanselva som nordgrense, og Oslo byleksikon dokumenterer elvas korridor nord for Hauketo stasjon. I batch-112-kandidatsettet er OSM way 695993872 den eneste lange eksakt navngitte Ljanselva-geometrien som ender ved det dokumenterte Lja bru-krysset; de øvrige treffene er oppstrømssegmenter, korte koblingssegmenter ved brua eller segmentet videre vest for brua. Canonical lat/lon er beregnet som lengdemidtpunkt langs way 695993872."
+  },
   "anchors": [
     {
       "id": "noklevann_ljanselva_start",
@@ -120,80 +117,14 @@
       "note": "Batch 147 verifiserer Ljanselvas konkrete munningsanker med eksplisitt OSM-topologi. Node 1689201164 er et endepunkt på den eksakt navngitte Ljanselva-wayen 156700580 og deles samtidig med coastline way 4154785. Noden ligger 113.6 meter fra den uavhengige Fiskevollbukta-referansen. Oslo byleksikon dokumenterer at Ljanselva munner i Fiskevollbukta og at nederste del er kulvertert. Punktet representerer derfor munningen i Fiskevollbukta, ikke et generelt Bunnefjorden-punkt og ikke et påstått åpent elveløp gjennom hele nedre strekning. Legacy-punktet 59.8288, 10.8034 pensjoneres; ingen nearest/first-hit-logikk brukes."
     }
   ],
-  "year": 1977,
-  "popupDesc": "Ljanselva er et sammenhengende marka–fjord-vassdrag som binder Østmarka og innsjøsystemene i øst sammen med Bunnefjorden. Langs løpet veksler elva mellom skog, tjernnære partier, raviner, kantvegetasjon og mer bynære overgangssoner.\n\nI History Go bør Ljanselva leses som et naturfaglig hovedsted der vassdrag, grønn korridor, landskapsform og utløpssone står i sentrum. Spørsmål skal starte i vannsystem, kantvegetasjon, raviner, kilde–utløp-logikk og natur–by-overgang, ikke i generisk tursti eller løs bydelsgeografi.",
-  "emne_ids": [
-    "em_natur_elver_bekker_vassdrag",
-    "em_natur_bekkeapning_overvann"
+  "sourceObjectChain": [
+    "osm-node:1636570783",
+    "osm-way:23761672",
+    "osm-way:27271638",
+    "osm-way:695993872",
+    "osm-way:98539575",
+    "osm-way:156700580",
+    "osm-node:1689201164"
   ],
-  "nature_profile": {
-    "type": "marka–fjord-vassdrag / raviner / grønn korridor",
-    "title": "Vassdraget fra Østmarka til Bunnefjorden",
-    "summary": "Ljanselva er hovedinngangen til et vassdrag som begynner i innsjø- og skogsystemet ved Nøklevann og beveger seg gjennom tjern, skogpartier, raviner og boligområder før det møter Bunnefjorden. Delpunktene viser hvordan elverommet endrer karakter underveis, mens hovedstedet binder sammen vannets løp, kantvegetasjonen og forbindelsen mellom marka og fjorden. Natur-rundingen bruker bare arter som allerede er kartlagt direkte på hoved-ID-en.",
-    "themes": [
-      "kildeområde ved Nøklevann",
-      "elveløp gjennom skog og raviner",
-      "kantvegetasjon som grønn korridor",
-      "overgang mellom marka og boligområder",
-      "utløp i Bunnefjorden",
-      "sammenheng mellom ruteleddene"
-    ],
-    "nearby_place_ids": [
-      "noklevann_ljanselva_start",
-      "ljanselva_hauketo",
-      "ljanselva_bunnefjorden"
-    ]
-  },
-  "quiz_profile": {
-    "place_type": "elv",
-    "subtype": "marka_fjord_vassdrag",
-    "signature_features": [
-      "binder Nøklevann- og Østmarka-området til Bunnefjorden",
-      "varierer mellom tjernnære partier, skog, raviner og bynære strekk",
-      "har tydelig utløpssone mot fjorden"
-    ],
-    "primary_angles": [
-      "vassdrag_og_hydrologi",
-      "gronnkorridor",
-      "landskapsform_og_topografi",
-      "fjordovergang"
-    ],
-    "question_families": [
-      "kilde_til_utlop",
-      "kantvegetasjon_og_korridor",
-      "marka_til_fjord",
-      "landskapsrom_og_bruk"
-    ],
-    "avoid_angles": [
-      "generisk_skogstur",
-      "kun_bydelsgrenser",
-      "for_spesifikke_artslister_uten_kilde",
-      "ren_rekreasjonsquiz"
-    ],
-    "must_include": [
-      "marka–fjord-koblingen",
-      "elvas rolle som økologisk og landskapelig korridor",
-      "at ruteobjektene er underlag til hovedstedet, ikke konkurrerende hovedposter"
-    ],
-    "contrast_targets": [
-      "alnaelva",
-      "akerselva",
-      "maridalsvannet",
-      "noklevann"
-    ],
-    "notes": "Bruk bare em_natur_* og naturankre. Spør Ljanselva som vassdrag og korridor, ikke som løs tursti."
-  },
-  "underbadge_ids": [
-    "elv",
-    "vann_og_vassdrag",
-    "kantvegetasjon",
-    "kyst_og_fjord"
-  ],
-  "locatorType": "route",
-  "sourceProvider": "osm",
-  "sourceObjectId": "osm-way:695993872",
-  "geocodeAccuracy": "semantic_anchor",
-  "coordRole": "line_anchor",
-  "coordSourceId": "osm-way:695993872",
-  "coordSourceUrl": "https://www.openstreetmap.org/way/695993872"
+  "rule": "Whole-river scope is represented by the ordered verified component anchor chain. Canonical lat/lon is a declared display anchor on the Hauketo river segment, not a claimed centroid of the full river."
 }

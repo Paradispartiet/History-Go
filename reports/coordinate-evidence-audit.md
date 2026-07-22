@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-22T21:50:08.395Z
+Generert: 2026-07-22T21:56:41.167Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -250,7 +250,7 @@ Generert: 2026-07-22T21:50:08.395Z
 | hovedoya | data/coordinate-evidence/oslo/natur/hovedoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kuba_parken | data/coordinate-evidence/oslo/natur/kuba_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kvaernerbyen_alna | data/coordinate-evidence/oslo/natur/kvaernerbyen_alna.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| ljanselva | data/coordinate-evidence/oslo/natur/ljanselva.json | needs_research | needs_geometry | OK |
+| ljanselva | data/coordinate-evidence/oslo/natur/ljanselva.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | maerradalen | data/coordinate-evidence/oslo/natur/maerradalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | malmoya | data/coordinate-evidence/oslo/natur/malmoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | maridalsvannet | data/coordinate-evidence/oslo/natur/maridalsvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |

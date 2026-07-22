@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-22T21:50:00.765Z
+Generert: 2026-07-22T21:56:33.759Z
 
 ## Oppsummering
-- Aktive filer validert: **611**
-- Antall steder validert: **1228**
+- Aktive filer validert: **615**
+- Antall steder validert: **1232**
 - Harde feil: **0**
-- Varsler: **464**
-- Coordinate review candidates: **730** signaler fordelt på **601** steder
+- Varsler: **466**
+- Coordinate review candidates: **732** signaler fordelt på **603** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -629,6 +629,10 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/vestland/teater_vestland_nynorskhuset.json
 - data/places/scenekunst/vestland/det_vestnorske_teateret.json
 - data/places/scenekunst/finnmark/beaivvas_coarvematta.json
+- data/places/subkultur/trondelag/uffa_huset_trondheim.json
+- data/places/subkultur/trondelag/ressurssenter_kvinner_trondheim.json
+- data/places/subkultur/vestland/nygardsparken_bergen.json
+- data/places/subkultur/trondelag/svartlamon_trondheim.json
 
 ## Harde feil
 - Ingen
@@ -1098,16 +1102,18 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/vestland/teater_vestland_nynorskhuset.json#teater_vestland_nynorskhuset: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/vestland/det_vestnorske_teateret.json#det_vestnorske_teateret: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/finnmark/beaivvas_coarvematta.json#beaivvas_coarvematta: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/trondelag/uffa_huset_trondheim.json#uffa_huset_trondheim: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/trondelag/ressurssenter_kvinner_trondheim.json#ressurssenter_kvinner_trondheim: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 730 signaler fordelt på 601 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 732 signaler fordelt på 603 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 173 |
+| coordStatus=verified uten coordPrecisionM | 175 |
 | lineært sted uten anchors | 78 |
 | lav koordinatpresisjon (<4 desimaler) | 83 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1117,7 +1123,7 @@ Totalt 730 signaler fordelt på 601 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (173)
+### coordStatus=verified uten coordPrecisionM (175)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1294,6 +1300,8 @@ Totalt 730 signaler fordelt på 601 steder. Et sted kan ha flere signaler. Kandi
 | teater_vestland_nynorskhuset | Teater Vestland – Nynorskhuset | scenekunst | data/places/scenekunst/vestland/teater_vestland_nynorskhuset.json | 61.45241505945064 | 5.851296643693358 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | det_vestnorske_teateret | Det Vestnorske Teateret | scenekunst | data/places/scenekunst/vestland/det_vestnorske_teateret.json | 60.39209329114837 | 5.321321455865965 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | beaivvas_coarvematta | Beaivváš – Čoarvemátta | scenekunst | data/places/scenekunst/finnmark/beaivvas_coarvematta.json | 69.02031504216781 | 23.03692544410359 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| uffa_huset_trondheim | UFFA-huset | subkultur | data/places/subkultur/trondelag/uffa_huset_trondheim.json | 63.436369375015 | 10.429891680665307 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| ressurssenter_kvinner_trondheim | Ressurssenter for kvinner | subkultur | data/places/subkultur/trondelag/ressurssenter_kvinner_trondheim.json | 63.427397941829156 | 10.392090968181554 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (78)
 
