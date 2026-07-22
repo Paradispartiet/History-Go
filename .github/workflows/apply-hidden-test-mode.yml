@@ -44,6 +44,10 @@ jobs:
               (
                   '  fs.mkdirSync(path.split("/").slice(0, -1).join("/"), { recursive: true });',
                   '  const directory = path.split("/").slice(0, -1).join("/");\n  if (directory) fs.mkdirSync(directory, { recursive: true });'
+              ),
+              (
+                  '  const document = {\n    readyState: "complete",',
+                  '  const document = {\n    readyState: "complete",\n    querySelector(selector) {\n      return String(selector).startsWith("link[") ? fakeElement() : null;\n    },'
               )
           ]
           for old, new in replacements:
