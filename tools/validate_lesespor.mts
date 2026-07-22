@@ -77,6 +77,7 @@ function scopeAndCategory(relativeEntry: string): { scope: string; category: str
 }
 
 function requireArray(file: string, itemId: string, field: string, value: unknown): unknown[] {
+  if (value === undefined) return [];
   if (!Array.isArray(value)) {
     errors.push(`${file}: item ${itemId} has non-array ${field}`);
     return [];
@@ -149,7 +150,7 @@ for (const entry of manifestFiles) {
     if (typeof item.title !== 'string' || !item.title.trim()) errors.push(`${file}: item ${itemId} must have a non-empty title`);
     if (typeof item.relevance !== 'string' || !item.relevance.trim()) errors.push(`${file}: item ${itemId} must have a non-empty relevance`);
     if (typeof item.url !== 'string' || !item.url.trim()) errors.push(`${file}: item ${itemId} must have a non-empty url`);
-    if (item.access !== 'open') errors.push(`${file}: item ${itemId} access must be \"open\"`);
+    if (item.access !== 'open') errors.push(`${file}: item ${itemId} access must be "open"`);
     if (!sourceQualities.has(String(item.source_quality ?? ''))) {
       errors.push(`${file}: item ${itemId} has invalid source_quality ${JSON.stringify(item.source_quality)}`);
     }
