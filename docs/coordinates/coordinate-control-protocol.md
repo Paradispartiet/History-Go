@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 384 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 385 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -551,6 +551,11 @@ Batch 143 (2026-07-22) løser `ljanselva_skullerud` som et eksplisitt line_ancho
 | 144 | `ljanselva_hauketo` | Ljanselva ved Hauketo | verified_geometry | `osm-way:695993872` |
 
 Batch 144 (2026-07-22) løser `ljanselva_hauketo` som den lange åpne Ljanselva-strekningen langs Hauketo-områdets nordside fram til Lja bru. Hauketo-kilden dokumenterer Ljanselva som strøkets nordgrense, Oslo byleksikon kryssjekker Hauketo-korridoren, og den dokumenterte Lja bru-koordinaten brukes som fysisk topologisk referanse. Av de fem eksakte batch-112-kandidatene er way 695993872 den eneste lange elvegeometrien som ender ved brua; korte koblingssegmenter og segmentene på motsatt side av brua brukes ikke som proxy. Canonical lat/lon beregnes som lengdemidtpunkt langs selve OSM-wayen og lagres som `semantic_anchor` / `line_anchor`. Legacy-punktet pensjoneres; ingen nearest/first-hit-logikk brukes.
+
+
+| 145 | `brugata_storgata_rusmiljo` | Brugata/Storgata – åpent rusmiljø | verified | `geonorge-adresser-v1:0301:17059:33` |
+
+Batch 145 (2026-07-22) legger til `brugata_storgata_rusmiljo` som et eget sosialt Subkultur-lag rundt Brugata/Storgata. Oslo kommune identifiserer krysset som den største åpne markedsplassen for illegale rusmidler og beskriver samtidig miljøet som sosial møteplass. Det eksakte Geonorge-adressepunktet for Storgata 33 brukes som representativt `area_anchor` fordi kommunens kartlegging fremhever arkaden ved denne adressen som et sentralt konfliktpunkt. Punktet er ikke en påstand om at hele rusmiljøet befinner seg i én bygning, og recorden dupliserer ikke canonical `storgata`, som fortsatt representerer gaten som handels- og transportakse.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
