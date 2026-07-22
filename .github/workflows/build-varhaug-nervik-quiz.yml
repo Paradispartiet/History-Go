@@ -1,0 +1,304 @@
+name: Build Varhaug Nervik quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-varhaug-nervik-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  build-quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-varhaug-nervik-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Assemble quiz
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'varhaug_nervik';
+          const canonicalGuidance = [
+            'data/fag/historie/emner_historie_canonical_v4_5.json',
+            'data/fag/historie/supersetQUIZMAL_historie.json',
+            'data/fag/historie/methods_historie_canonical_v4_5.json'
+          ];
+          const rows = [
+            {
+              question: 'Kvar ligg Varhaug gravrøys i Etne?',
+              options: ['På toppen av Varhaug sør for Norevågen', 'På elvesletta ved Etneelva', 'På kyrkjegarden ved Grindheim'], answerIndex: 0,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Gravrøysa ligg på toppen av bergkollen Varhaug ved Nervik, sør for Norevågen.',
+              claim: 'Lokalitetsregistreringa plasserer gravrøysa på toppen av Varhaug sør for Norevågen.',
+              concepts: ['Varhaug', 'Nervik', 'Norevågen'], tags: ['plassering', 'nervik'], source: ['kulturminnesok_90182_1', 'etne_register']
+            },
+            {
+              question: 'Kva slags kulturminne er registrert på Varhaug?',
+              options: ['Ein langhustuft', 'Ei gravrøys av stein', 'Ein steinkross'], answerIndex: 1,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Varhaug er registrert som ei gravrøys, altså eit gravminne bygd opp av stein.',
+              claim: 'Riksantikvaren har registrert lokaliteten som gravrøys 90182-1.',
+              concepts: ['gravrøys', 'gravminne'], tags: ['kulturminnetype', 'gravroys'], source: ['kulturminnesok_90182_1', 'etne_register']
+            },
+            {
+              question: 'Korleis er røysa på Varhaug bygd?',
+              options: ['Som torvhaug over trekasse', 'Som teglmur med kalkmørtel', 'Som tørrmur av stein utan mørtel'], answerIndex: 2,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Røysa er tørrmura: steinane er lagde og stabla utan mørtel som bindemiddel.',
+              claim: 'Registreringa skildrar monumentet som ei stor tørrmura gravrøys.',
+              concepts: ['tørrmur', 'steinbygging'], tags: ['materiale', 'torrmur'], source: ['kulturminnesok_90182_1', 'b2find_varhaug']
+            },
+            {
+              question: 'Kva mål er registrerte for Varhaug-røysa?',
+              options: ['Om lag 13 × 10 meter', 'Om lag 6 × 5 meter', 'Om lag 25 × 20 meter'], answerIndex: 0,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Per Fetts registrering oppgir røysa til om lag 13 meter i lengd og 10 meter i breidd.',
+              claim: 'Den registrerte utstrekninga er om lag 13 ganger 10 meter.',
+              concepts: ['målestokk', '13 × 10 meter'], tags: ['mal', 'storleik'], source: ['b2find_varhaug', 'etne_register']
+            },
+            {
+              question: 'Kor høg er røysa registrert til å vere på det meste?',
+              options: ['Om lag tre meter', 'Om lag éin meter', 'Om lag fem meter'], answerIndex: 1,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Den registrerte høgda er opptil om lag éin meter. Røysa er stor i flata, men relativt låg.',
+              claim: 'Registreringa oppgir ei maksimal høgd på om lag éin meter.',
+              concepts: ['høgd', 'gravrøys'], tags: ['hogd', 'mal'], source: ['b2find_varhaug']
+            },
+            {
+              question: 'Kva form har Varhaug-røysa etter dei registrerte måla?',
+              options: ['Ho er heilt kvadratisk', 'Ho er forma som ein smal sirkelring', 'Ho er avlang eller oval'], answerIndex: 2,
+              type: 'observation', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Måla 13 × 10 meter viser ei avlang eller oval form, ikkje ein perfekt sirkel.',
+              claim: 'Ulike lengde- og breiddemål dokumenterer ei avlang røysform.',
+              concepts: ['oval form', 'arkeologiske mål'], tags: ['form', 'observasjon'], source: ['b2find_varhaug']
+            },
+            {
+              question: 'Kva er den tryggaste dateringa av Varhaug-røysa?',
+              options: ['Bronsealder eller jernalder', 'Sikkert året 793', 'Sikkert 1600-talet'], answerIndex: 0,
+              type: 'fact', difficulty: 2, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_periodisering',
+              knowledge: 'Røysa blir plassert i bronsealder eller jernalder, men kjeldene gir ikkje ei sikker, eksakt datering.',
+              claim: 'Lokaliteten er førhistorisk, medan nøyaktig byggjetid ikkje er fastslått.',
+              concepts: ['bronsealder', 'jernalder', 'usikker datering'], tags: ['datering', 'periode'], source: ['kulturminnesok_90182_1', 'etne_register']
+            },
+            {
+              question: 'Kva landskapstrekk er mest direkte knytt til plasseringa av røysa?',
+              options: ['Ei lukka skogsgrop utan utsyn', 'Bergkollen med utsyn mot fjorden', 'Ei flat myr langt frå sjøen'], answerIndex: 1,
+              type: 'observation', difficulty: 2, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Røysa ligg på eit markert toppunkt på ein bergkoll, vend mot fjorden og Norevågen.',
+              claim: 'Topografien og kartplasseringa viser eit høgt, sjøvendt monument.',
+              concepts: ['bergkoll', 'fjordutsyn', 'topografi'], tags: ['landskap', 'sikt'], source: ['kulturminnesok_90182_1', 'etne_register']
+            },
+            {
+              question: 'Kva skil Varhaug tydelegast frå dei store gravfelta på terrassane i indre Etne?',
+              options: ['Ei jordhauggruppe på ei brei jordbruksterrasse', 'Ei rekkje langhus under flat dyrkingsjord', 'Ei steinrøys på ein sjøvend bergkoll'], answerIndex: 2,
+              type: 'comparison', difficulty: 2, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Varhaug er eit enkelt, steinbygd monument på ein kystvend bergkoll. Sørheimsmoen og Grindheim er større gravlandskap på jordbruksterrassar.',
+              claim: 'Materiale, topografi og skala skil Varhaug frå terrassegravfelta i indre Etne.',
+              concepts: ['kystgravrøys', 'terrassegravfelt', 'landskapssamanlikning'], tags: ['samanlikning', 'kyst_og_innland'], source: ['b2find_varhaug', 'etne_register']
+            },
+            {
+              question: 'Kva kan den høge, fjordvende plasseringa seie med rimeleg sikkerheit?',
+              options: ['Monumentet var synleg i kystlandskapet', 'Den gravlagde var ein namngjeven konge', 'Røysa vart bygd på ein bestemt dato'], answerIndex: 0,
+              type: 'analysis', difficulty: 2, emne: 'em_his_kilder_taushet_blindsoner', method: 'met_kildekritikk',
+              knowledge: 'Plasseringa viser at røysa var eit synleg monument i landskapet. Ho avslører ikkje åleine identiteten eller statusen til den gravlagde.',
+              claim: 'Topografien dokumenterer synlegheit, men ikkje ein bestemt biografi eller eksakt dato.',
+              concepts: ['synlegheit', 'landskapsplassering', 'tolkingsgrense'], tags: ['analyse', 'siktline'], source: ['kulturminnesok_90182_1', 'etne_register']
+            },
+            {
+              question: 'Kva betyr «tørrmur» ved Varhaug?',
+              options: ['Stein støypte saman med betong', 'Stein lagd utan mørtel', 'Torv lagd over ein trevegg'], answerIndex: 1,
+              type: 'concept', difficulty: 2, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Tørrmur er ein konstruksjon der steinane blir lagde slik at form, tyngd og friksjon held muren saman utan mørtel.',
+              claim: 'Røysa er skildra som tørrmura og gir ein konkret situasjon for faguttrykket.',
+              concepts: ['tørrmur', 'konstruksjon'], tags: ['begrep', 'torrmur'], source: ['b2find_varhaug']
+            },
+            {
+              question: 'Kva er den viktigaste skilnaden mellom ei gravrøys og ein gravhaug i denne samanhengen?',
+              options: ['Gravrøysa er alltid kristen, gravhaugen alltid heidensk', 'Gravrøysa ligg alltid ved sjøen, gravhaugen alltid i fjellet', 'Gravrøysa er hovudsakleg bygd av stein, gravhaugen av jord og torv'], answerIndex: 2,
+              type: 'concept', difficulty: 2, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Skiljet gjeld først og fremst byggjematerialet: ei røys er dominert av stein, medan ein haug vanlegvis er bygd opp av jord, torv eller blanda massar.',
+              claim: 'Varhaug er ei steinrøys og kan samanliknast med jordhaugane i indre Etne.',
+              concepts: ['gravrøys', 'gravhaug', 'byggjemateriale'], tags: ['begrep', 'gravminne'], source: ['b2find_varhaug', 'etne_register']
+            },
+            {
+              question: 'Kva kan måla og plasseringa dokumentere utan ei utgraving?',
+              options: ['Forma, storleiken og plasseringa i landskapet', 'Namnet på den gravlagde og dødsåret', 'Alle gjenstandane som opphavleg låg i grava'], answerIndex: 0,
+              type: 'analysis', difficulty: 3, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+              knowledge: 'Ei overflateregistrering kan dokumentere mål, form, materiale og topografi. Identitet, gravinnhald og presis datering krev andre kjelder eller undersøkingar.',
+              claim: 'Registrerte overflatespor gir konkret kunnskap, men har klare grenser.',
+              concepts: ['overflateregistrering', 'kildekritikk', 'arkeologisk dokumentasjon'], tags: ['kildegrense', 'registrering'], source: ['kulturminnesok_90182_1', 'etne_register']
+            },
+            {
+              question: 'Kva betyr det at kartpunktet er eit «lokalitetsanker»?',
+              options: ['Det viser nøyaktig kvar den gravlagde låg i røysa', 'Det peikar på den registrerte gravrøysa, ikkje på heile Nervik', 'Det markerer sentrum for alle gravminne i ytre Etne'], answerIndex: 1,
+              type: 'concept', difficulty: 3, emne: 'em_his_kulturminner_bevaring', method: 'met_kildekritikk',
+              knowledge: 'Kartpunktet representerer den registrerte arkeologiske lokaliteten 90182-1. Det er ikkje eit generelt punkt for bygda Nervik eller for alle gravminne i området.',
+              claim: 'Koordinatet er knytt til éi dokumentert lokalitet og må ikkje overtolkast romleg.',
+              concepts: ['lokalitetsanker', 'kartpunkt', 'arkeologisk lokalitet'], tags: ['begrep', 'kartlesing'], source: ['kulturminnesok_90182_1']
+            },
+            {
+              question: 'Kva er den mest forsvarlege samanlikninga mellom Varhaug og Sørheimsmoen?',
+              options: ['Begge er identiske gravrøyser med same sikre datering', 'Begge er synlege rekonstruksjonar laga i moderne tid', 'Begge er gravlandskap, men Varhaug er ei kystvendt steinrøys og Sørheimsmoen eit større terrassefelt'], answerIndex: 2,
+              type: 'comparison', difficulty: 3, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+              knowledge: 'Begge stadene viser førhistorisk gravskikk, men monumenttype, topografi og skala er ulike. Samanlikninga må bevare desse forskjellane.',
+              claim: 'Varhaug og Sørheimsmoen kan samanliknast som gravminne utan å gjerast til same type stad.',
+              concepts: ['samanliknande arkeologi', 'kystlandskap', 'terrasselandskap'], tags: ['samanlikning', 'kildekritikk'], source: ['etne_register', 'b2find_varhaug']
+            }
+          ];
+
+          function question(index, row) {
+            const setNo = Math.floor((index - 1) / 5) + 1;
+            const qNo = ((index - 1) % 5) + 1;
+            return {
+              id: `${targetId}_quiz_${index}`,
+              quiz_id: `historie_${targetId}_set_${setNo}_q${qNo}`,
+              categoryId: 'historie',
+              placeId: targetId,
+              targetId,
+              question_scope: 'place',
+              question: row.question,
+              options: row.options,
+              answer: row.options[row.answerIndex],
+              answerIndex: row.answerIndex,
+              knowledge: row.knowledge,
+              difficulty: row.difficulty,
+              question_type: row.type,
+              year: null,
+              epoke_id: null,
+              epoke_domain: 'historie',
+              emne_id: row.emne,
+              related_emner: [],
+              source: row.source,
+              source_origin: 'mixed',
+              claim_basis: row.claim,
+              guidance_basis: {
+                emne_id: row.emne,
+                canonical_files_used_as_guidance_only: canonicalGuidance,
+                method_id: row.method
+              },
+              method_id: row.method,
+              core_concepts: row.concepts,
+              concept_focus: row.type === 'concept' ? row.concepts : [],
+              tags: [targetId, ...row.tags]
+            };
+          }
+
+          const titles = ['Røysa på Varhaug', 'Gravminnet i kystlandskapet', 'Kjeldekritikk og fagomgrep'];
+          const sets = [1, 2, 3].map(setNo => ({
+            set_id: `historie_${targetId}_set_${setNo}`,
+            level: setNo,
+            order: setNo,
+            xp: 50,
+            title: titles[setNo - 1],
+            questions: rows.slice((setNo - 1) * 5, setNo * 5).map((row, offset) => question((setNo - 1) * 5 + offset + 1, row))
+          }));
+
+          const quiz = {
+            targetId,
+            categoryId: 'historie',
+            generator_version: 'quiz_standard_canonical_v2_manual_source_based',
+            generated_from: [
+              'data/places/historie/vestland/etne/varhaug_nervik.json',
+              'data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md'
+            ],
+            sources: {
+              etne_register: 'https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf',
+              b2find_varhaug: 'https://b2find.eudat.eu/group/nordicar?author=Vestland+fylkeskommune&extras_OpenAccess=true&groups=nordicar&page=70&tags=Arkeologisk+minne&tags=Funerary',
+              kulturminnesok_90182_1: 'Riksantikvaren/Kulturminnesøk, gravrøys 90182-1'
+            },
+            profile_snapshot: {
+              place_type: 'gravroys',
+              subtype: 'stor_kystvendt_gravroys_pa_bergkoll',
+              signature_features: [
+                'toppen av Varhaug ved Nervik sør for Norevågen',
+                'tørrmura steinrøys på om lag 13 × 10 meter og opptil éin meter høg',
+                'sjøvendt plassering på bergkoll',
+                'usikker datering til bronsealder eller jernalder'
+              ],
+              primary_angles: ['gravskikk', 'kystlandskap', 'arkeologi', 'kildekritikk'],
+              avoid_angles: [
+                'blande med tettstaden Varhaug på Jæren',
+                'gi røysa ei sikker eksakt datering',
+                'dikte identitet eller status for den gravlagde'
+              ]
+            },
+            sets
+          };
+
+          fs.mkdirSync('data/quiz/historie', { recursive: true });
+          fs.writeFileSync(`data/quiz/historie/${targetId}_sets.json`, JSON.stringify(quiz, null, 2) + '\n');
+
+          const manifestPath = 'data/quiz/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          if (!manifest.sets.some(entry => entry.targetId === targetId)) {
+            manifest.sets.push({ targetId, file: `data/quiz/historie/${targetId}_sets.json` });
+          }
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Validate quiz
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/quiz/historie/varhaug_nervik_sets.json';
+          const quiz = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const questions = quiz.sets.flatMap(set => set.questions);
+          if (quiz.targetId !== 'varhaug_nervik') throw new Error('Wrong targetId');
+          if (quiz.sets.length !== 3 || questions.length !== 15) throw new Error('Expected 3 sets and 15 questions');
+          if (quiz.sets.some(set => set.questions.length !== 5)) throw new Error('Every set must contain 5 questions');
+          const concrete = questions.filter(q => ['fact', 'observation'].includes(q.question_type)).length;
+          const context = questions.filter(q => ['context', 'analysis', 'comparison'].includes(q.question_type)).length;
+          const concepts = questions.filter(q => q.question_type === 'concept').length;
+          if (concrete !== 8 || context !== 4 || concepts !== 3) throw new Error(`Wrong balance: ${concrete}/${context}/${concepts}`);
+          for (const q of questions) {
+            if (q.placeId !== quiz.targetId || q.targetId !== quiz.targetId || q.question_scope !== 'place') throw new Error(`Target contract failed: ${q.id}`);
+            if (!Array.isArray(q.options) || q.options.length !== 3) throw new Error(`Option contract failed: ${q.id}`);
+            if (q.options[q.answerIndex] !== q.answer) throw new Error(`Answer contract failed: ${q.id}`);
+            if (!q.source?.length || !q.claim_basis || !q.emne_id || !q.method_id) throw new Error(`Metadata contract failed: ${q.id}`);
+            if (q.knowledge_link_status !== 'linked') throw new Error(`Knowledge link failed: ${q.id}`);
+          }
+          const manifest = JSON.parse(fs.readFileSync('data/quiz/manifest.json', 'utf8'));
+          const entries = manifest.sets.filter(entry => entry.targetId === quiz.targetId);
+          if (entries.length !== 1 || entries[0].file !== path) throw new Error('Manifest registration failed');
+          console.log('Varhaug Nervik quiz contract OK');
+          NODE
+
+      - name: Audit quiz content
+        run: npm run audit:quiz-content
+
+      - name: Audit quiz templates
+        run: npm run audit:quiz-templates
+
+      - name: Test quiz audit
+        run: npm run test:quiz-content-audit
+
+      - name: Check Knowledge data
+        run: npm run knowledge:canonical:check
+
+      - name: Commit quiz package
+        shell: bash
+        run: |
+          rm -f .github/workflows/build-varhaug-nervik-quiz.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Varhaug Nervik quiz package'
+            git push origin HEAD:agent/etne-varhaug-nervik-quiz
+          fi
