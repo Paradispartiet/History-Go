@@ -1,0 +1,306 @@
+name: Build Høyland source-sized quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-hoyland-source-sized-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-hoyland-source-sized-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize source-sized Høyland quiz
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'hoyland_gravhaug_etne';
+          const quizPath = `data/quiz/historie/${targetId}_sets.json`;
+          const sourceFiles = [
+            'data/places/historie/vestland/etne/hoyland_gravhaug_etne.json',
+            'data/stories/stories_etne_historie_rounds_batch6.json',
+            'reports/etne-historie-batch-6-research.md',
+            'data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md'
+          ];
+          const guidanceFiles = [
+            'data/fag/historie/emner_historie_canonical_v4_5.json',
+            'data/fag/historie/supersetQUIZMAL_historie.json',
+            'data/fag/historie/methods_historie_canonical_v4_5.json'
+          ];
+
+          function question({n, set, text, options, answer, knowledge, type, difficulty, emne, method, concepts, tags, claim, sources, focus = []}) {
+            const answerIndex = options.indexOf(answer);
+            if (answerIndex < 0) throw new Error(`Answer missing from options for question ${n}`);
+            return {
+              id: `${targetId}_quiz_${n}`,
+              quiz_id: `historie_${targetId}_set_${set}_q${n - (set === 1 ? 0 : set === 2 ? 3 : 7)}`,
+              categoryId: 'historie',
+              placeId: targetId,
+              targetId,
+              question_scope: 'place',
+              question: text,
+              options,
+              answer,
+              answerIndex,
+              knowledge,
+              difficulty,
+              question_type: type,
+              year: null,
+              epoke_id: null,
+              epoke_domain: 'historie',
+              emne_id: emne,
+              related_emner: [],
+              source: sources,
+              source_origin: 'mixed',
+              claim_basis: claim,
+              guidance_basis: {
+                emne_id: emne,
+                canonical_files_used_as_guidance_only: guidanceFiles,
+                method_id: method
+              },
+              method_id: method,
+              core_concepts: concepts,
+              concept_focus: focus,
+              tags: [targetId, ...tags]
+            };
+          }
+
+          const sets = [
+            {
+              set_id: `historie_${targetId}_set_1`, level: 1, order: 1, xp: 50,
+              title: 'Den eldre haugen ved låven',
+              questions: [
+                question({
+                  n: 1, set: 1,
+                  text: 'Kva slags kulturminne registrerte Per Fett på Høyland?',
+                  options: ['Ein steinbygd gravhaug', 'Ein tørrmura bygdeborg', 'Ein steinring på ein bergkoll'],
+                  answer: 'Ein steinbygd gravhaug',
+                  knowledge: 'Per Fett registrerte ein gravhaug bygd av stein i gardstunet på Høyland.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['gravhaug', 'steinbygd monument'], tags: ['kulturminnetype', 'gravhaug'],
+                  claim: 'Den eldre registreringa klassifiserer sporet som ein steinbygd gravhaug.',
+                  sources: ['b2find_hoyland', 'etne_register']
+                }),
+                question({
+                  n: 2, set: 1,
+                  text: 'Kva mål oppgav Per Fett for Høyland-haugen?',
+                  options: ['Om lag 10 meter i tverrmål og 1,25 meter høg', 'Om lag 5 meter i tverrmål og 0,25 meter høg', 'Om lag 20 meter i tverrmål og 3 meter høg'],
+                  answer: 'Om lag 10 meter i tverrmål og 1,25 meter høg',
+                  knowledge: 'Den eldre registreringa oppgir eit tverrmål på om lag ti meter og ei høgd på 1,25 meter.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['arkeologiske mål', 'tverrmål', 'høgd'], tags: ['mal', 'storleik'],
+                  claim: 'Per Fett målte haugen til om lag 10 meter i tverrmål og 1,25 meter i høgd.',
+                  sources: ['b2find_hoyland', 'etne_register']
+                }),
+                question({
+                  n: 3, set: 1,
+                  text: 'Korleis var steinmassen dekt i den eldre skildringa?',
+                  options: ['Med eit tynt torvlag', 'Med eit tjukt lag teglstein', 'Med eit golv av treplankar'],
+                  answer: 'Med eit tynt torvlag',
+                  knowledge: 'Haugen var bygd av stein med eit tynt torvdekke og hadde noko skade i kantane.',
+                  type: 'observation', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['torvdekke', 'steinmasse', 'kantskade'], tags: ['materiale', 'bevaring'],
+                  claim: 'Den eldre registreringa skildrar stein med tynt torvdekke og litt skade langs kantane.',
+                  sources: ['b2find_hoyland']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_2`, level: 2, order: 2, xp: 50,
+              title: 'Frå gravhaug til køyrebru',
+              questions: [
+                question({
+                  n: 4, set: 2,
+                  text: 'Kvar låg haugen i Per Fett si registrering?',
+                  options: ['Like framfor køyrebrua til låven', 'På kyrkjegarden ved Stødle', 'På eit nes sør for Norevågen'],
+                  answer: 'Like framfor køyrebrua til låven',
+                  knowledge: 'Per Fett plasserte gravhaugen like framfor køyrebrua som førte opp til låven.',
+                  type: 'fact', difficulty: 1,
+                  emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+                  concepts: ['køyrebru', 'låve', 'gardstun'], tags: ['eldre_registrering', 'gardstun'],
+                  claim: 'Den eldre skildringa plasserer haugen umiddelbart framfor køyrebrua til låven.',
+                  sources: ['b2find_hoyland', 'etne_register']
+                }),
+                question({
+                  n: 5, set: 2,
+                  text: 'Kvar plasserer den seinare registreringa det moglege haugsporet?',
+                  options: ['Under sjølve køyrebrua på bruk 3', 'I elveløpet nedanfor garden', 'Inne i våningshuset'],
+                  answer: 'Under sjølve køyrebrua på bruk 3',
+                  knowledge: 'Den seinare registreringa knyter sporet til jordfyllinga under køyrebrua til låven på bruk 3.',
+                  type: 'fact', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['jordfylling', 'køyrebru', 'bruk 3'], tags: ['seinare_registrering', 'koyrebru'],
+                  claim: 'Seinare dokumentasjon plasserer den moglege haugforma under køyrebrua på bruk 3.',
+                  sources: ['b2find_hoyland', 'etne_register']
+                }),
+                question({
+                  n: 6, set: 2,
+                  text: 'Kva skildrar den synlege tilstanden best i dag?',
+                  options: ['Konturane er lite synlege i ei jordfylling', 'Haugen står som ein fullstendig rekonstruert pyramide', 'Heile haugen er grave fram og open for innsyn'],
+                  answer: 'Konturane er lite synlege i ei jordfylling',
+                  knowledge: 'Den eldre haugforma er ikkje tydeleg intakt. Konturane er svake og inngår i jordfyllinga ved brua.',
+                  type: 'observation', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+                  concepts: ['svake terrengkonturar', 'jordfylling', 'bevaringstilstand'], tags: ['observasjon', 'bevaring'],
+                  claim: 'Den seinare registreringa omtalar lite synlege konturar ved jordfyllinga under brua.',
+                  sources: ['b2find_hoyland']
+                }),
+                question({
+                  n: 7, set: 2,
+                  text: 'Kvifor er den opphavlege avgrensinga av haugen vanskeleg å lese no?',
+                  options: ['Køyrebrua og vidare gardsdrift har endra og teke opp terrengforma', 'Haugen vart flytta heil til ein annan kommune', 'Kjeldene seier at haugen aldri fanst'],
+                  answer: 'Køyrebrua og vidare gardsdrift har endra og teke opp terrengforma',
+                  knowledge: 'Når ei eldre haugform blir del av ei bru og jordfylling, blir kanten mellom gravminnet og seinare massar usikker.',
+                  type: 'analysis', difficulty: 2,
+                  emne: 'em_his_kulturminner_bevaring', method: 'met_kildekritikk',
+                  concepts: ['bevaringshistorie', 'terrengendring', 'avgrensing'], tags: ['analyse', 'gardsdrift'],
+                  claim: 'Aktiv gardsdrift og bruoppbygging har gjort den eldre monumentforma vanskelegare å avgrense.',
+                  sources: ['b2find_hoyland', 'etne_register']
+                })
+              ]
+            },
+            {
+              set_id: `historie_${targetId}_set_3`, level: 3, order: 3, xp: 50,
+              title: 'Atterhald og seinare bruk',
+              questions: [
+                question({
+                  n: 8, set: 3,
+                  text: 'Kva betyr formuleringa at jordfyllinga «godt kan vere» haugen Fett omtalte?',
+                  options: ['Kjelda vurderer koplinga som mogleg, men ikkje endeleg bevist', 'Kjelda har sikkert datert kvart jordlag', 'Kjelda avviser all samanheng mellom strukturane'],
+                  answer: 'Kjelda vurderer koplinga som mogleg, men ikkje endeleg bevist',
+                  knowledge: '«Godt kan vere» er eit kjeldeatterhald. Registreringa peikar på ei sannsynleg kopling utan å gjere henne sikker.',
+                  type: 'concept', difficulty: 2,
+                  emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+                  concepts: ['kjeldeatterhald', 'sannsynleg kopling', 'sikkerheitsgrad'], focus: ['kjeldeatterhald'], tags: ['begrep', 'kildegrad'],
+                  claim: 'Ordlyden markerer at koplinga mellom jordfyllinga og den eldre haugen har atterhald.',
+                  sources: ['b2find_hoyland']
+                }),
+                question({
+                  n: 9, set: 3,
+                  text: 'Kva kan dei to registreringane dokumentere med størst sikkerheit når dei blir samanlikna?',
+                  options: ['Ei eldre målt haugform og eit seinare, usikkert spor ved brua', 'Eit intakt gravkammer som er undersøkt under brua', 'Namnet og dødsåret til den gravlagde'],
+                  answer: 'Ei eldre målt haugform og eit seinare, usikkert spor ved brua',
+                  knowledge: 'Den eldre kjelda dokumenterer mål og konstruksjon. Den seinare dokumenterer dagens plassering og uvisse, men ikkje eit arkeologisk bevist snitt gjennom haugen.',
+                  type: 'analysis', difficulty: 3,
+                  emne: 'em_his_kilder_taushet_blindsoner', method: 'met_kildekritikk',
+                  concepts: ['registreringssamanlikning', 'kunnskapsgrense', 'bevaringshistorie'], tags: ['analyse', 'for_og_na'],
+                  claim: 'Kjeldene dokumenterer ulike tilstandar og ulik sikkerheitsgrad, ikkje ein intakt utgraven konstruksjon.',
+                  sources: ['b2find_hoyland', 'etne_register']
+                }),
+                question({
+                  n: 10, set: 3,
+                  text: 'Kva betyr «sekundær bruk» dersom den eldre haugforma vart del av køyrebrua?',
+                  options: ['At ei eldre terrengform eller masse fekk ein ny praktisk funksjon', 'At gravhaugen vart bygd for lastebilar frå starten', 'At brua er eldre enn gravminnet'],
+                  answer: 'At ei eldre terrengform eller masse fekk ein ny praktisk funksjon',
+                  knowledge: 'Sekundær bruk betyr at noko eldre blir teke inn i ein ny funksjon. Her kan den tidlegare haugforma ha blitt del av brua og den vidare gardsdrifta.',
+                  type: 'concept', difficulty: 3,
+                  emne: 'em_his_hverdagsliv_praksiser', method: 'met_sporlesning',
+                  concepts: ['sekundær bruk', 'gardsdrift', 'kulturminne i bruk'], focus: ['sekundær bruk'], tags: ['begrep', 'historisk_kontinuitet'],
+                  claim: 'Høyland gir ein konkret situasjon der eit eldre monument kan ha blitt teke opp i ein seinare gardsfunksjon.',
+                  sources: ['b2find_hoyland', 'etne_register']
+                })
+              ]
+            }
+          ];
+
+          const quiz = {
+            targetId,
+            categoryId: 'historie',
+            generator_version: 'quiz_standard_canonical_v2_manual_source_based_source_sized',
+            generated_from: sourceFiles,
+            sources: {
+              b2find_hoyland: 'https://b2find.eudat.eu/dataset/1ff7596a-1b81-5b64-9244-85993e071426',
+              etne_register: 'https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf'
+            },
+            profile_snapshot: {
+              place_type: 'gravhaug',
+              subtype: 'steinbygd_gravhaug_i_aktivt_gardstun',
+              signature_features: [
+                'ti meter i tverrmål og 1,25 meter høg i eldre registrering',
+                'steinbygd med tynt torvdekke og noko kantskade',
+                'seinare knytt med atterhald til jordfyllinga under køyrebrua'
+              ],
+              primary_angles: ['gravskikk', 'gardsdrift', 'bevaringshistorie', 'kildekritikk'],
+              avoid_angles: [
+                'framstille jordfyllinga som sikkert identisk med heile den eldre haugen',
+                'presentere køyrebrua som eit arkeologisk dokumentert snitt',
+                'gi gravminnet ei sikker eksakt datering eller identitet'
+              ]
+            },
+            sets
+          };
+
+          fs.mkdirSync('data/quiz/historie', { recursive: true });
+          fs.writeFileSync(quizPath, JSON.stringify(quiz, null, 2) + '\n');
+
+          const manifestPath = 'data/quiz/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.sets = manifest.sets.filter(entry => entry.targetId !== targetId);
+          manifest.sets.push({ targetId, file: quizPath });
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Validate source-sized contract
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'hoyland_gravhaug_etne';
+          const data = JSON.parse(fs.readFileSync(`data/quiz/historie/${targetId}_sets.json`, 'utf8'));
+          const qs = data.sets.flatMap(set => set.questions);
+          const counts = {
+            total: qs.length,
+            concrete: qs.filter(q => ['fact', 'observation'].includes(q.question_type)).length,
+            context: qs.filter(q => ['analysis', 'context', 'comparison'].includes(q.question_type)).length,
+            concept: qs.filter(q => q.question_type === 'concept').length
+          };
+          const expected = { total: 10, concrete: 6, context: 2, concept: 2 };
+          if (JSON.stringify(counts) !== JSON.stringify(expected)) throw new Error(`${JSON.stringify(counts)} != ${JSON.stringify(expected)}`);
+          for (const set of data.sets) {
+            if (set.questions.length < 3 || set.questions.length > 5) throw new Error(`${set.set_id}: invalid size`);
+          }
+          for (const q of qs) {
+            if (q.targetId !== targetId || q.placeId !== targetId || q.question_scope !== 'place') throw new Error(`${q.id}: invalid target contract`);
+            if (!q.options.includes(q.answer) || q.options[q.answerIndex] !== q.answer) throw new Error(`${q.id}: invalid answer contract`);
+          }
+          NODE
+
+      - name: Build canonical Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Run quiz and Knowledge validation
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run knowledge:canonical:check
+
+      - name: Remove temporary workflow and trigger
+        run: |
+          rm -f .github/workflows/build-hoyland-source-sized-quiz.yml
+          rm -f .tmp/trigger-hoyland-source-sized-quiz.txt
+
+      - name: Commit final Høyland package
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Add source-sized Høyland gravhaug quiz"
+          git push
