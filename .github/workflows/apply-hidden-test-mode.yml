@@ -36,11 +36,21 @@ jobs:
           from pathlib import Path
           path = Path('scripts/apply-hidden-test-mode.mjs')
           text = path.read_text()
-          old = '      const cleanUrl = `${url.pathname}${url.search}${url.hash}`;'
-          new = '      const cleanUrl = url.pathname + url.search + url.hash;'
-          if old not in text:
-              raise SystemExit('Fant ikke nested cleanUrl-template')
-          path.write_text(text.replace(old, new, 1))
+          replacements = [
+              (
+                  '      const cleanUrl = `${url.pathname}${url.search}${url.hash}`;',
+                  '      const cleanUrl = url.pathname + url.search + url.hash;'
+              ),
+              (
+                  '  fs.mkdirSync(path.split("/").slice(0, -1).join("/"), { recursive: true });',
+                  '  const directory = path.split("/").slice(0, -1).join("/");\n  if (directory) fs.mkdirSync(directory, { recursive: true });'
+              )
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'Fant ikke migreringsblokk: {old}')
+              text = text.replace(old, new, 1)
+          path.write_text(text)
           PY
           node scripts/apply-hidden-test-mode.mjs 2>&1 | tee /tmp/hidden-test-mode-apply.log
 
