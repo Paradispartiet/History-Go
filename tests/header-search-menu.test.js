@@ -67,6 +67,9 @@ function testHeaderMenuApi() {
   const documentListeners = new Map();
   const document = {
     readyState: "complete",
+    querySelector(selector) {
+      return String(selector).startsWith("link[") ? fakeElement() : null;
+    },
     getElementById(id) {
       return elements[id] || null;
     },
@@ -120,7 +123,17 @@ function testPlaceSelectionClosesWholeMenu() {
   };
   window.window = window;
 
-  runScript("js/ui/search.js", { window, document, console });
+  class HTMLInputElement {
+    static [Symbol.hasInstance](value) { return value === input; }
+  }
+  class Element {
+    static [Symbol.hasInstance](value) { return !!value && typeof value.closest === "function"; }
+  }
+  class HTMLElement {
+    static [Symbol.hasInstance](value) { return !!value && typeof value === "object" && "dataset" in value; }
+  }
+
+  runScript("js/ui/search.js", { window, document, console, HTMLInputElement, Element, HTMLElement });
 
   const item = { dataset: { place: selectedPlace.id } };
   results.dispatch("click", {
@@ -150,8 +163,10 @@ function testMenuLabelsDescribeTheirRealDestinations() {
   const index = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
 
   assert.match(index, /class="header-menu-action[^\"]*civication-nav-link"[\s\S]*aria-label="Civication"[\s\S]*<span class="header-menu-action-label">Civication<\/span>/);
-  assert.match(index, /<span class="header-menu-action-label">Lås opp testmodus<\/span>[\s\S]*<input id="openToggle"/);
-  assert.doesNotMatch(index, /<span class="header-menu-action-label">Vis åpne steder<\/span>/);
+  assert.doesNotMatch(index, /Lås opp testmodus/);
+  assert.doesNotMatch(index, /id="openToggle"/);
+  assert.doesNotMatch(index, /id="btnUnlockAll"/);
+  assert.match(index, /<script src="js\/debug\/HGTestMode\.js"><\/script>/);
 }
 
 testHeaderMenuApi();

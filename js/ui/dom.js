@@ -9,7 +9,6 @@ const el = {
   btnSeeMap:  document.getElementById("btnSeeMap"),
   btnExitMap: document.getElementById("btnExitMap"),
   btnCenter:  document.getElementById("btnCenter"),
-  open:       document.getElementById("openToggle"),
 
   list:       document.getElementById("nearbyList"),
   nearPeople: document.getElementById("nearbyPeople"),
