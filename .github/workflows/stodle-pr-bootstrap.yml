@@ -28,12 +28,21 @@ jobs:
         run: node .tmp/bootstrap-stodle.mjs assemble
 
       - name: Audit quiz manifest
-        run: |
-          set +e
-          node scripts/audit-quiz-manifest-v2.mjs >/dev/null
-          status=$?
-          node -e "const r=require('./reports/quiz_manifest_v2_audit_report.json'); console.log(JSON.stringify({status:r.status,missingFiles:r.missingFiles,missingSetIds:r.missingSetIds,invalidQuestions:r.invalidQuestions,targetMismatchQuestions:r.targetMismatchQuestions,duplicateQuizItemIds:r.duplicateQuizItemIds,duplicateSetKeys:r.duplicateSetKeys,notes:r.notes},null,2))"
-          exit $status
+        id: manifest_audit
+        continue-on-error: true
+        run: node scripts/audit-quiz-manifest-v2.mjs
+
+      - name: Upload manifest audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stodle-manifest-audit
+          path: reports/quiz_manifest_v2_audit_report.json
+          if-no-files-found: error
+
+      - name: Stop on manifest audit failure
+        if: steps.manifest_audit.outcome == 'failure'
+        run: exit 1
 
       - name: Set up Node
         uses: actions/setup-node@v4
