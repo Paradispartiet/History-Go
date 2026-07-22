@@ -17,3 +17,7 @@ Metropolis Stavanger ble vurdert, men er bevisst utsatt fordi den midlertidige l
 ## Koordinater
 
 Alle tre stedene bruker address-first mot Geonorge på dokumenterte besøksadresser. Rå oppslag og valgt eksakt treff lagres under `geonorge/`.
+
+## Runtime og QA
+
+Alle tre regionale place-filene er eksplisitt registrert i `data/places/manifest.json`, og global `places_index.json` er regenerert etter registreringen. Sluttsettet passerer split-manifest-sync, global place-index-kontroll, canonical emne-kontroll og strict-new koordinat-intake. `health:places` er lagret som ikke-blokkerende repo-rapport fordi den fortsatt inneholder kjent global backlog utenfor denne batchen.
