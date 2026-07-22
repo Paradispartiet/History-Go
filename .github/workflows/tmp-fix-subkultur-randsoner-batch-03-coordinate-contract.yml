@@ -1,0 +1,55 @@
+name: Fix Subkultur batch 03 coordinate contract
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/subkultur-randsoner-batch-03
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fix Brugata coordinate-contract fields
+        run: node scripts/tmp-fix-subkultur-randsoner-batch-03-coordinate-contract.mjs
+
+      - name: Regenerate split files and global index
+        run: |
+          node scripts/split-subkultur-oslo-places.mjs
+          npm run places:index:build
+
+      - name: Revalidate batch with real pipeline exit codes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/subkultur-oslo-randsoner-batch-03/validation
+          npm run audit:places-split-manifest-sync | tee reports/subkultur-oslo-randsoner-batch-03/validation/split-manifest-sync.txt
+          npm run places:index:check | tee reports/subkultur-oslo-randsoner-batch-03/validation/places-index-check.txt
+          npm run places:emners:check | tee reports/subkultur-oslo-randsoner-batch-03/validation/emne-check.txt
+          npm run places:coords:intake | tee reports/subkultur-oslo-randsoner-batch-03/validation/coordinate-intake.txt
+
+      - name: Remove one-shot fixer
+        run: git rm scripts/tmp-fix-subkultur-randsoner-batch-03-coordinate-contract.mjs .github/workflows/tmp-fix-subkultur-randsoner-batch-03-coordinate-contract.yml
+
+      - name: Commit fix
+        run: |
+          git config user.name "history-go-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/places/subkultur/oslo data/places/places_index.json reports/subkultur-oslo-randsoner-batch-03/validation
+          git commit -m "Fix Subkultur batch 03 coordinate contract"
+          git push origin HEAD:agent/subkultur-randsoner-batch-03
