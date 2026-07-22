@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 390 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 391 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -560,6 +560,10 @@ Batch 145 (2026-07-22) korrigerer den opprinnelige batch-112-scope-boksen, som l
 
 Batch 146 (2026-07-22) avgrenser `ljanselva_fiskevollen` som den nedre Ljanselva-korridoren mellom Liadalen og Fiskevollbukta. OSM way 156700580 er eksakt navngitt Ljanselva, kobler eksakt oppstrøms til Ljan/Liadalen-way 98539575 og ender i shared node 1689201164 med coastline way 4154785; denne kystnoden ligger 113.6 meter fra den uavhengige Fiskevollbukta-referansen. Oslo byleksikon og Ljan skole dokumenterer samtidig at den nederste fysiske delen av elva er kulvertert. Wayen brukes derfor som `semantic_anchor` / `line_anchor` for vassdragskorridoren, ikke som påstand om at hele linjen er synlig åpen elv eller som dokumentasjon av eksakt tunnelløp. Legacy-punktet brukes ikke; ingen nearest/first-hit-logikk brukes.
 
+| 147 | `ljanselva_bunnefjorden` | Ljanselva – utløp i Fiskevollbukta | verified_geometry | `osm-node:1689201164` |
+
+Batch 147 (2026-07-22) løser `ljanselva_bunnefjorden` som et eksplisitt hydrologisk munningsanker og presiserer visningsnavnet til «Ljanselva – utløp i Fiskevollbukta». OSM node 1689201164 er et endepunkt på den eksakt navngitte Ljanselva-wayen 156700580 og deles med coastline way 4154785. Noden ligger 113.6 meter fra den uavhengige Fiskevollbukta-referansen. Oslo byleksikon dokumenterer munningen i Fiskevollbukta og at nederste elvedel er kulvertert. Punktet representerer derfor den konkrete elv–fjord-overgangen, ikke et generelt Bunnefjorden-punkt eller et midtpunkt på en nærliggende elvegeometri. Legacy-punktet pensjoneres; ingen nearest/first-hit-logikk brukes.
+
 
 | 146 | `brugata_storgata_rusmiljo` | Brugata / Storgata – det åpne rusmiljøet | verified | `geonorge-adresser-v1:0301:17059:33` |
 | 146 | `huset_oslo` | Huset Oslo | verified | `geonorge-adresser-v1:0301:17994:22` |
@@ -695,7 +699,6 @@ Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller k
 | `bygdoy_natur` – Bygdøy natur- og kulturmiljø | needs_review | Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet. | Dokumenter en eksplisitt halvøy-/multi-anchor-modell eller offisiell områdegeometri som samsvarer med hele recordens scope. |
 | `ljanselva` – Ljanselva | needs_review | Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker. | Finn én stabil eksakt geometri for hele recordens fysiske scope, eller modeller eksplisitt flere kildebelagte ankere. |
 | `alnaelva_hovedsteder` – Alnaelva | needs_review | Recorden representerer samme overordnede vassdrag som canonical `alnaelva`, som allerede er kontrollert og står needs_source fordi elva består av flere separate og delvis tunnellagte geometrier. En ny hovedstedsmarkør med et annet vilkårlig midtpunkt ville duplisere den uavklarte identiteten. | Avklar canonical duplikat-/aliasmodell mot `alnaelva`; modeller deretter samlet rutegeometri eller flere kildebelagte delankre. |
-| `ljanselva_bunnefjorden` – Ljanselva ut i Bunnefjorden | needs_review | Recorden gjelder selve overgangen fra elv til fjord. Et midtpunkt på et nærliggende elve-segment eller et generelt fjordpunkt dokumenterer ikke munningspunktet. Legacy-punktet kan derfor ikke beholdes som verified uten eksplisitt utløpsgeometri. | Dokumenter siste Ljanselva-segment og et eksplisitt kildebelagt endepunkt/munningspunkt mot Bunnefjorden. |
 | `ostensjovannet_nord` – Østensjøvannet nord | needs_review | Recorden beskriver en retningsbestemt del av det større Østensjøvannet naturreservat uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt nordpunkt. | Dokumenter en eksplisitt lokal sonegeometri eller flere kildebelagte våtmarksankre som avgrenser nordsonen. |
 | `ostensjovannet_fugletarn` – Østensjøvannet fugletårn | needs_review | Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker. | Dokumenter ett entydig eksakt fugletårn-/observasjonsobjekt med fysisk punkt eller geometri. |
 | `ostensjovannet_sivbelte` – Østensjøvannet sivbelte | needs_review | Recorden beskriver et habitatbelte med skiftende utstrekning, ikke ett dokumentert navngitt fysisk objekt med stabil grense. Reservatets samlede polygon kan ikke verifisere ett vilkårlig sivbelte-midpunkt. | Dokumenter eksplisitt kartlagt siv-/våtmarksgeometri eller flere kildebelagte habitatankre før et canonical punkt godkjennes. |

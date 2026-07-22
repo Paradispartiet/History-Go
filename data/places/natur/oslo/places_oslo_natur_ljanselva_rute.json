@@ -250,25 +250,25 @@
   },
   {
     "id": "ljanselva_bunnefjorden",
-    "name": "Ljanselva ut i Bunnefjorden",
-    "lat": 59.8288,
-    "lon": 10.8034,
+    "name": "Ljanselva – utløp i Fiskevollbukta",
+    "lat": 59.8420614,
+    "lon": 10.775801,
     "r": 120,
     "category": "natur",
-    "desc": "Utløpsområde der Ljanselva møter Bunnefjorden.",
+    "desc": "Eksplisitt munningspunkt der den kartfestede Ljanselva-linjen møter kystlinjen i Fiskevollbukta, en vik i Bunnefjorden.",
     "tags": [
       "elv",
       "utlop",
       "fjord",
-      "delta"
+      "munning"
     ],
     "routeId": "ljanselva_grontdrag",
-    "sourceHint": "Koordinat lagt i Ljanselvas utløpssone mot Bunnefjorden ved Ljansbrukorridoren.",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "ljanselva_bunnefjorden_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
-    "popupDesc": "Her munner Ljanselva ut i Bunnefjorden og avslutter det sammenhengende løpet fra øvre vannpunkter i Østmarka. Dette stedet viser den konkrete overgangen fra elveløp til et større fjordrom med annen skala og vannbevegelse. Når du står i utløpssonen, blir hele vassdragsretningen lesbar bakover gjennom daldraget. Punktet er sluttleddet i Ljanselva-systemet, ikke et generelt fjordstopp.",
+    "sourceHint": "Koordinaten er OSM node 1689201164, delt mellom den eksakt navngitte Ljanselva-wayen 156700580 og kystlinje-way 4154785 i Fiskevollbukta.",
+    "coordType": "hydrological_mouth_topology_node",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 156700580 (Ljanselva) + coastline way 4154785, shared node 1689201164",
+    "coordVerifiedAt": "2026-07-22",
+    "popupDesc": "Her ender den kartfestede Ljanselva-korridoren i Fiskevollbukta, som ligger i Bunnefjorden. Den nederste fysiske delen av elva er dokumentert lagt i kulvert, så munningspunktet skal forstås som selve overgangen der vassdraget kommer ut til fjorden – ikke som et tilfeldig punkt i fjorden eller et midtpunkt på en elvestrekning. Kartankeret er den delte topologiske noden mellom den navngitte Ljanselva-linjen og kystlinjen.",
     "underbadge_ids": [
       "elv",
       "vann_og_vassdrag",
@@ -278,6 +278,25 @@
       "designCode": "waterfront_miniature"
     },
     "locatorType": "route",
-    "coordNote": "Recorden gjelder selve overgangen fra elv til fjord. Et midtpunkt på et nærliggende elve-segment eller et generelt fjordpunkt dokumenterer ikke munningspunktet. Legacy-punktet kan derfor ikke beholdes som verified uten eksplisitt utløpsgeometri."
+    "coordNote": "Batch 147 verifiserer Ljanselvas konkrete munningsanker med eksplisitt OSM-topologi. Node 1689201164 er et endepunkt på den eksakt navngitte Ljanselva-wayen 156700580 og deles samtidig med coastline way 4154785. Noden ligger 113.6 meter fra den uavhengige Fiskevollbukta-referansen. Oslo byleksikon dokumenterer at Ljanselva munner i Fiskevollbukta og at nederste del er kulvertert. Punktet representerer derfor munningen i Fiskevollbukta, ikke et generelt Bunnefjorden-punkt og ikke et påstått åpent elveløp gjennom hele nedre strekning. Legacy-punktet 59.8288, 10.8034 pensjoneres; ingen nearest/first-hit-logikk brukes.",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:1689201164",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-node:1689201164",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/1689201164",
+    "nature_profile": {
+      "type": "elvemunning / kulvertutløp / fjordovergang",
+      "title": "Ljanselva kommer ut i Fiskevollbukta",
+      "summary": "I Fiskevollbukta avsluttes Ljanselvas vassdragskorridor ved møtet med Bunnefjorden. Den nederste delen av elva er dokumentert kulvertert, og munningsankeret markerer derfor overgangen fra et skjult, teknisk omformet elveløp til fjordens åpne vannrom. Natur-rundingen viser sluttpunktet for vassdraget uten å fremstille den nedre kulvertstrekningen som synlig elv.",
+      "themes": [
+        "Ljanselvas dokumenterte munning i Fiskevollbukta",
+        "overgang fra kulvertert elv til fjord",
+        "Fiskevollbukta som del av Bunnefjorden",
+        "delt topologisk node mellom elvelinje og kystlinje",
+        "sluttpunkt for Ljanselva-vassdraget",
+        "forbindelsen tilbake gjennom Liadalen og Østmarka"
+      ]
+    }
   }
 ]
