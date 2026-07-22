@@ -66,7 +66,8 @@ export function createPlaceVisitButtonController(options: {
 
       const gate = getPhysicalVisitGate(runtime, place);
       if (!gate.ok) {
-        if (gate.reason === "no_pos") {
+        const reason = "reason" in gate ? gate.reason : "too_far";
+        if (reason === "no_pos") {
           setButton(true, tUI("ui.position.loading", "Henter posisjon…"));
           return;
         }
@@ -101,7 +102,8 @@ export function createPlaceVisitButtonController(options: {
 
       const gate = getPhysicalVisitGate(runtime, place);
       if (!gate.ok) {
-        if (gate.reason === "no_pos") {
+        const reason = "reason" in gate ? gate.reason : "too_far";
+        if (reason === "no_pos") {
           runtime.showToast?.(tUI("ui.position.loading", "Henter posisjon…"));
           return;
         }
