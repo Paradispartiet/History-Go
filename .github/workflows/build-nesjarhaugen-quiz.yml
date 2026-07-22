@@ -1,0 +1,303 @@
+name: Build Nesjarhaugen quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-nesjarhaugen-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  build-quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-nesjarhaugen-quiz
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Assemble quiz
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targetId = 'nesjarhaugen_byrkjenes';
+          const canonicalGuidance = [
+            'data/fag/historie/emner_historie_canonical_v4_5.json',
+            'data/fag/historie/supersetQUIZMAL_historie.json',
+            'data/fag/historie/methods_historie_canonical_v4_5.json'
+          ];
+          const rows = [
+            {
+              question: 'Kvar ligg Nesjarhaugen?',
+              options: ['På Byrkjenes i Etne', 'På Grindheim-terrassen', 'Ved ferjekaia i Skånevik'], answerIndex: 0,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Nesjarhaugen er den registrerte steinringen på Byrkjenes i Etne.',
+              claim: 'Kulturminne 90161-1 er registrert på Byrkjenes.',
+              concepts: ['Nesjarhaugen', 'Byrkjenes'], tags: ['plassering', 'byrkjenes'], source: ['b2find_nesjarhaugen', 'etne_register']
+            },
+            {
+              question: 'Kva slags førhistorisk kulturminne er Nesjarhaugen?',
+              options: ['Ei gravrøys på ein bergkoll', 'Ein steinring', 'Ein langhustuft'], answerIndex: 1,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Nesjarhaugen er registrert som ein steinring, eit ringforma monument bygd av stein.',
+              claim: 'Askeladden-registreringa klassifiserer kulturminnet som steinring.',
+              concepts: ['steinring', 'gravminne'], tags: ['kulturminnetype', 'steinring'], source: ['b2find_nesjarhaugen', 'etne_register']
+            },
+            {
+              question: 'Kor stort tverrmål er registrert for steinringen?',
+              options: ['Om lag tolv meter', 'Om lag tjue meter', 'Vel fem meter'], answerIndex: 2,
+              type: 'fact', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Registreringa oppgir eit tverrmål på vel fem meter for den opphavlege ringforma.',
+              claim: 'Steinringen er registrert med tverrmål på vel fem meter.',
+              concepts: ['tverrmål', 'fem meter'], tags: ['mal', 'ringform'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kvar er steinringen mest synleg i dag?',
+              options: ['Langs den nordre kanten', 'Langs den sørlege kanten', 'Berre i sentrum'], answerIndex: 0,
+              type: 'observation', difficulty: 1, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Den overgrodde steinrekkja er tydelegast langs den nordre kanten av ringen.',
+              claim: 'Registreringa skildrar nordkanten som den best synlege delen.',
+              concepts: ['nordre kant', 'steinrekkje'], tags: ['synleg_spor', 'nordkant'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kva skildrar bevaringstilstanden best?',
+              options: ['Ein nybygd og komplett ring', 'Ein delvis synleg, overgrodd og skadd rest', 'Ein flytta ring på museum'], answerIndex: 1,
+              type: 'observation', difficulty: 1, emne: 'em_his_kulturminner_bevaring', method: 'met_sporlesning',
+              knowledge: 'Monumentet er ikkje intakt. Delar av steinrekkja er overgrodde, og den opphavlege ringforma må lesast gjennom restane.',
+              claim: 'Kjelda skildrar ein delvis bevart og overgrodd steinring.',
+              concepts: ['bevaringstilstand', 'kulturminnerest'], tags: ['bevaring', 'overgroing'], source: ['b2find_nesjarhaugen', 'etne_register']
+            },
+            {
+              question: 'Kva seinare inngrep er dokumentert i sentrum av ringen?',
+              options: ['Ein brønn vart graven', 'Ei gravhelle vart reist', 'Eit fastpunkt vart bora ned'], answerIndex: 2,
+              type: 'fact', difficulty: 1, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_sporlesning',
+              knowledge: 'Eit moderne fastpunkt vart bora ned i sentrum og er eit konkret spor etter seinare oppmåling.',
+              claim: 'Registreringa dokumenterer eit bora fastpunkt i sentrum av steinringen.',
+              concepts: ['fastpunkt', 'moderne inngrep'], tags: ['inngrep', 'fastpunkt'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kva seier registreringa med atterhald om skaden på Nesjarhaugen?',
+              options: ['Han skal ha blitt skadd av tyske styrkar under krigen', 'Han vart flytta under jordskiftet i 1877', 'Han vart bygd som tysk skytestilling'], answerIndex: 0,
+              type: 'fact', difficulty: 2, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+              knowledge: 'Registreringa seier at steinringen skal ha blitt skadd av tyske styrkar under andre verdskrigen. Ordlyden viser at dette er ei overlevert opplysning med atterhald.',
+              claim: 'Kjelda bruker atterhaldet «skal ha blitt» om den moglege krigsskaden.',
+              concepts: ['andre verdskrigen', 'krigsskade', 'kildeatterhald'], tags: ['krigstid', 'opplysning_med_atterhald'], source: ['b2find_nesjarhaugen', 'etne_register']
+            },
+            {
+              question: 'Kva konkret form kan framleis lesast i restane?',
+              options: ['Ei rett husrekkje', 'Ei rund grunnform', 'Ei trekanta murflate'], answerIndex: 1,
+              type: 'observation', difficulty: 2, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Den synlege nordkanten og steinrekkja gjer det mogleg å lese ei rund grunnform, sjølv om ringen ikkje er komplett.',
+              claim: 'Restane held delar av den opphavlege ringforma lesbare.',
+              concepts: ['rund grunnform', 'restform'], tags: ['form', 'observasjon'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kvifor har Nesjarhaugen minst tre historiske lag?',
+              options: ['Han vart bygd, flytta og rekonstruert i same år', 'Han er både kyrkje, gravfelt og vegminne', 'Han kombinerer eit førhistorisk monument, ei mogleg krigsskade og eit moderne fastpunkt'], answerIndex: 2,
+              type: 'analysis', difficulty: 2, emne: 'em_his_kulturminner_bevaring', method: 'met_kildekritikk',
+              knowledge: 'Steinringen høyrer til førhistoria, den moglege krigsskaden til 1900-talet og fastpunktet til moderne oppmåling. Dei må haldast frå kvarandre.',
+              claim: 'Kulturminnet samlar spor og opplysningar frå minst tre ulike tidslag.',
+              concepts: ['historiske lag', 'inngrepshistorie', 'bevaring'], tags: ['tidslag', 'samanheng'], source: ['b2find_nesjarhaugen', 'etne_register']
+            },
+            {
+              question: 'Kva kan dei synlege restane og registreringa dokumentere?',
+              options: ['Mål, restform og seinare inngrep', 'Namnet på den gravlagde og dødsåret', 'Ei sikker eksakt datering av ringen'], answerIndex: 0,
+              type: 'analysis', difficulty: 2, emne: 'em_his_kilder_taushet_blindsoner', method: 'met_kildekritikk',
+              knowledge: 'Mål, synleg restform og seinare inngrep kan dokumenterast. Kjeldene gir ikkje sikker datering eller identitet for menneska bak monumentet.',
+              claim: 'Overflateregistreringa har tydelege kunnskapsgrenser.',
+              concepts: ['overflateregistrering', 'kunnskapsgrense'], tags: ['kildekritikk', 'avgrensing'], source: ['b2find_nesjarhaugen', 'etne_register']
+            },
+            {
+              question: 'Kva betyr «fastpunkt» ved Nesjarhaugen?',
+              options: ['Ein laus stein frå den opphavlege ringen', 'Eit varig referansepunkt brukt i oppmåling', 'Ei markering av den førhistoriske grava'], answerIndex: 1,
+              type: 'concept', difficulty: 2, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_sporlesning',
+              knowledge: 'Eit fastpunkt er eit stabilt, innmålt referansepunkt for landmåling. Her vart det bora ned i eit mykje eldre kulturminne.',
+              claim: 'Det dokumenterte inngrepet gir ein konkret situasjon for oppmålingsomgrepet fastpunkt.',
+              concepts: ['fastpunkt', 'landmåling'], tags: ['begrep', 'oppmaling'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kva betyr «restform» i denne steinringen?',
+              options: ['Ei full rekonstruksjon av den opphavlege ringen', 'Ei teikning utan samband med landskapet', 'Den forma som kan lesast i dei bevarte delane'], answerIndex: 2,
+              type: 'concept', difficulty: 2, emne: 'em_his_spor_materialitet', method: 'met_sporlesning',
+              knowledge: 'Restform er den delen av ei opphavleg form som framleis kan observerast. På Nesjarhaugen er særleg nordkanten viktig.',
+              claim: 'Den delvis bevarte ringen gjer omgrepet restform konkret.',
+              concepts: ['restform', 'bevart del'], tags: ['begrep', 'bevaring'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kvifor må krigsskaden og fastpunktet formidlast ulikt?',
+              options: ['Krigsskaden er gjengitt med atterhald, medan fastpunktet er eit konkret registrert inngrep', 'Fastpunktet er berre ei segn, medan krigsskaden er presist datert', 'Begge opplysningane er like sikre og samtidige'], answerIndex: 0,
+              type: 'analysis', difficulty: 3, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+              knowledge: 'Kjelda seier at krigsskaden «skal ha» skjedd, men dokumenterer fastpunktet som eit fysisk inngrep. Ulik kjeldegrad krev ulik ordbruk.',
+              claim: 'Opplysningane har ulik dokumentasjonsstyrke og må ikkje likestillast.',
+              concepts: ['kildegrad', 'fysisk spor', 'overlevert opplysning'], tags: ['kildekritikk', 'sikkerheitsgrad'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kva viser uttrykket «skal ha blitt skadd»?',
+              options: ['At hendinga er målt med moderne instrument', 'At kjelda formidlar ei opplysning med atterhald', 'At hendinga er arkeologisk datert til ein bestemt dag'], answerIndex: 1,
+              type: 'concept', difficulty: 3, emne: 'em_his_kildekritikk_arkiv_spor', method: 'met_kildekritikk',
+              knowledge: 'Formuleringa markerer kjeldeatterhald: opplysninga er registrert, men detaljane er ikkje dokumenterte like sikkert som eit observert fysisk spor.',
+              claim: 'Ordvalet i kjelda er sjølv viktig informasjon om sikkerheitsgraden.',
+              concepts: ['kildeatterhald', 'ordlyd', 'sikkerheitsgrad'], tags: ['begrep', 'kildeordlyd'], source: ['b2find_nesjarhaugen']
+            },
+            {
+              question: 'Kva er den mest presise samanlikninga mellom Nesjarhaugen og Varhaug-røysa?',
+              options: ['Begge er intakte steinringar med same mål', 'Begge er moderne oppmålingsmerke', 'Begge er steinbygde gravminne, men Nesjarhaugen er ein skadd ring og Varhaug ei stor kystvendt røys'], answerIndex: 2,
+              type: 'comparison', difficulty: 3, emne: 'em_his_spor_materialitet', method: 'met_kildekritikk',
+              knowledge: 'Begge er steinbygde førhistoriske gravminne i ytre Etne, men form, storleik, topografi og bevaringstilstand er ulike.',
+              claim: 'Samanlikninga må bevare skiljet mellom steinring og gravrøys.',
+              concepts: ['steinring', 'gravrøys', 'samanliknande arkeologi'], tags: ['samanlikning', 'varhaug'], source: ['b2find_nesjarhaugen', 'etne_register']
+            }
+          ];
+
+          function question(index, row) {
+            const setNo = Math.floor((index - 1) / 5) + 1;
+            const qNo = ((index - 1) % 5) + 1;
+            return {
+              id: `${targetId}_quiz_${index}`,
+              quiz_id: `historie_${targetId}_set_${setNo}_q${qNo}`,
+              categoryId: 'historie',
+              placeId: targetId,
+              targetId,
+              question_scope: 'place',
+              question: row.question,
+              options: row.options,
+              answer: row.options[row.answerIndex],
+              answerIndex: row.answerIndex,
+              knowledge: row.knowledge,
+              difficulty: row.difficulty,
+              question_type: row.type,
+              year: null,
+              epoke_id: null,
+              epoke_domain: 'historie',
+              emne_id: row.emne,
+              related_emner: [],
+              source: row.source,
+              source_origin: 'mixed',
+              claim_basis: row.claim,
+              guidance_basis: {
+                emne_id: row.emne,
+                canonical_files_used_as_guidance_only: canonicalGuidance,
+                method_id: row.method
+              },
+              method_id: row.method,
+              core_concepts: row.concepts,
+              concept_focus: row.type === 'concept' ? row.concepts : [],
+              tags: [targetId, ...row.tags]
+            };
+          }
+
+          const titles = ['Steinringen på Byrkjenes', 'Tre historiske lag', 'Kjeldegrad og omgrep'];
+          const sets = [1, 2, 3].map(setNo => ({
+            set_id: `historie_${targetId}_set_${setNo}`,
+            level: setNo,
+            order: setNo,
+            xp: 50,
+            title: titles[setNo - 1],
+            questions: rows.slice((setNo - 1) * 5, setNo * 5).map((row, offset) => question((setNo - 1) * 5 + offset + 1, row))
+          }));
+
+          const quiz = {
+            targetId,
+            categoryId: 'historie',
+            generator_version: 'quiz_standard_canonical_v2_manual_source_based',
+            generated_from: [
+              'data/places/historie/vestland/etne/nesjarhaugen_byrkjenes.json',
+              'data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md'
+            ],
+            sources: {
+              b2find_nesjarhaugen: 'https://b2find.eudat.eu/dataset/e28f44b4-ff7e-53d9-bf65-5a9133a8cf4e',
+              etne_register: 'https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf'
+            },
+            profile_snapshot: {
+              place_type: 'steinring',
+              subtype: 'skadet_forhistorisk_steinring_i_gardslandskap',
+              signature_features: [
+                'steinring på Byrkjenes med tverrmål på vel fem meter',
+                'mest synleg som overgrodd steinrekkje langs nordkanten',
+                'opplysning med atterhald om skade frå tyske styrkar under krigen',
+                'moderne fastpunkt bora ned i sentrum'
+              ],
+              primary_angles: ['gravskikk', 'bevaringshistorie', 'krigsskade', 'kildekritikk'],
+              avoid_angles: [
+                'påstå ei sikker eksakt datering',
+                'framstille steinringen som intakt',
+                'gjere krigsskaden sikrare enn kjeldeordlyden tillèt'
+              ]
+            },
+            sets
+          };
+
+          fs.mkdirSync('data/quiz/historie', { recursive: true });
+          fs.writeFileSync(`data/quiz/historie/${targetId}_sets.json`, JSON.stringify(quiz, null, 2) + '\n');
+
+          const manifestPath = 'data/quiz/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          if (!manifest.sets.some(entry => entry.targetId === targetId)) {
+            manifest.sets.push({ targetId, file: `data/quiz/historie/${targetId}_sets.json` });
+          }
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Validate quiz
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/quiz/historie/nesjarhaugen_byrkjenes_sets.json';
+          const quiz = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const questions = quiz.sets.flatMap(set => set.questions);
+          if (quiz.targetId !== 'nesjarhaugen_byrkjenes') throw new Error('Wrong targetId');
+          if (quiz.sets.length !== 3 || questions.length !== 15) throw new Error('Expected 3 sets and 15 questions');
+          if (quiz.sets.some(set => set.questions.length !== 5)) throw new Error('Every set must contain 5 questions');
+          const concrete = questions.filter(q => ['fact', 'observation'].includes(q.question_type)).length;
+          const context = questions.filter(q => ['context', 'analysis', 'comparison'].includes(q.question_type)).length;
+          const concepts = questions.filter(q => q.question_type === 'concept').length;
+          if (concrete !== 8 || context !== 4 || concepts !== 3) throw new Error(`Wrong balance: ${concrete}/${context}/${concepts}`);
+          for (const q of questions) {
+            if (q.placeId !== quiz.targetId || q.targetId !== quiz.targetId || q.question_scope !== 'place') throw new Error(`Target contract failed: ${q.id}`);
+            if (!Array.isArray(q.options) || q.options.length !== 3) throw new Error(`Option contract failed: ${q.id}`);
+            if (q.options[q.answerIndex] !== q.answer) throw new Error(`Answer contract failed: ${q.id}`);
+            if (!q.source?.length || !q.claim_basis || !q.emne_id || !q.method_id) throw new Error(`Metadata contract failed: ${q.id}`);
+            if (q.knowledge_link_status !== 'linked') throw new Error(`Knowledge link failed: ${q.id}`);
+          }
+          const manifest = JSON.parse(fs.readFileSync('data/quiz/manifest.json', 'utf8'));
+          const entries = manifest.sets.filter(entry => entry.targetId === quiz.targetId);
+          if (entries.length !== 1 || entries[0].file !== path) throw new Error('Manifest registration failed');
+          console.log('Nesjarhaugen quiz contract OK');
+          NODE
+
+      - name: Audit quiz content
+        run: npm run audit:quiz-content
+
+      - name: Audit quiz templates
+        run: npm run audit:quiz-templates
+
+      - name: Test quiz audit
+        run: npm run test:quiz-content-audit
+
+      - name: Check Knowledge data
+        run: npm run knowledge:canonical:check
+
+      - name: Commit quiz package
+        shell: bash
+        run: |
+          rm -f .github/workflows/build-nesjarhaugen-quiz.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Nesjarhaugen quiz package'
+            git push origin HEAD:agent/etne-nesjarhaugen-quiz
+          fi
