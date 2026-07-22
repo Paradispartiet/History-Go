@@ -1,0 +1,18 @@
+hidden test mode tests passed
+js/ui/header-menu.js:5
+    const existing = document.querySelector('link[data-hg-lesespor-styles="1"], link[href*="css/lesespor.css"]');
+                              ^
+
+TypeError: document.querySelector is not a function
+    at ensureLesesporStyles (js/ui/header-menu.js:5:31)
+    at js/ui/header-menu.js:21:3
+    at js/ui/header-menu.js:135:3
+    at Script.runInContext (node:vm:149:12)
+    at Object.runInContext (node:vm:301:6)
+    at runScript (/home/runner/work/History-Go/History-Go/tests/header-search-menu.test.js:59:6)
+    at testHeaderMenuApi (/home/runner/work/History-Go/History-Go/tests/header-search-menu.test.js:79:3)
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/header-search-menu.test.js:159:1)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+
+Node.js v22.23.1
