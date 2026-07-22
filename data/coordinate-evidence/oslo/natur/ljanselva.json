@@ -2,57 +2,227 @@
   "schemaVersion": "1.0",
   "placeId": "ljanselva",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.8551,
-    "lon": 10.7941,
+    "lat": 59.8506459,
+    "lon": 10.8094818,
     "r": 750,
-    "coordStatus": "needs_source",
-    "coordSource": "ljanselva_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker."
+    "coordStatus": "verified_geometry",
+    "coordSource": "Verifisert Ljanselva multi-anchor chain; display-anchor OpenStreetMap way 695993872 – Ljanselva ved Hauketo; anchors: osm-node:1636570783, osm-way:23761672, osm-way:27271638, osm-way:695993872, osm-way:98539575, osm-way:156700580, osm-node:1689201164",
+    "coordType": "multi_anchor_route_display_anchor",
+    "coordNote": "Batch 148 løser hovedrecorden Ljanselva som et eksplisitt multi-anchor vassdrag i stedet for å late som ett punkt eller én OSM-way representerer hele elva. Scope dokumenteres av sju allerede verified_geometry-ankre: Nøklevanns utløp, Skraperudtjern, Skullerud-segmentet, Hauketo-segmentet, Liadalen/Ljan-segmentet, den nedre Fiskevollen-korridoren og munningsnoden i Fiskevollbukta. Canonical lat/lon er Hauketo-segmentets verifiserte line-anchor fordi det ligger sentralt i den modellerte kjeden; punktet er bare displayanker og ikke et påstått geometrisk sentrum for hele vassdraget. Ingen legacy-koordinat, nearest/first-hit eller syntetisk enkeltgeometri brukes."
   },
   "identity": {
     "currentName": "Ljanselva",
-    "resolvedIdentity": "Ljanselva som sammenhengende marka–fjord-vassdrag",
+    "resolvedIdentity": "Ljanselva som sammenhengende marka–fjord-vassdrag modellert med en verifisert multi-anchor-kjede",
     "identityStatus": "resolved",
-    "identityProblem": "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker.",
+    "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Finn én stabil eksakt geometri for hele recordens fysiske scope, eller modeller eksplisitt flere kildebelagte ankere."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
       "sourceProvider": "manual_research",
-      "sourceName": "Bounded exact-name OSM audit",
-      "sourceUrl": "",
-      "sourceObjectId": "osm-audit:ljanselva:ambiguous_exact_semantic_candidates:16",
-      "sourceQuality": "negative_or_ambiguous_geometry_audit",
-      "finding": "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker.",
+      "sourceName": "Oslo byleksikon – Ljanselva",
+      "sourceUrl": "https://oslobyleksikon.no/side/Ljanselva",
+      "sourceObjectId": "oslobyleksikon:ljanselva",
+      "sourceQuality": "documented_whole_river_identity",
+      "finding": "Kilden dokumenterer Ljanselva som vassdrag fra Østmarka-systemet til munningen i Fiskevollbukta og forklarer den kulverterte nederste delen.",
       "canVerifyCoordinate": false,
-      "reason": "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker."
+      "reason": "Fastsetter hovedidentiteten og hele vassdragsscope; de konkrete koordinatene kommer fra de verifiserte delankrene."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Verifisert ruteanker – Nøklevann – utløp mot Skraperudbekken",
+      "sourceUrl": "https://www.openstreetmap.org/node/1636570783",
+      "sourceObjectId": "osm-node:1636570783",
+      "sourceQuality": "verified_component_upper_context_anchor",
+      "finding": "noklevann_ljanselva_start er et allerede verifisert komponentanker i Ljanselva-kjeden med coordStatus verified_geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Komponentankeret dokumenterer fysisk scope for hovedvassdraget, men brukes ikke alene som canonical display-marker."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Verifisert ruteanker – Skraperudtjern",
+      "sourceUrl": "https://www.openstreetmap.org/way/23761672",
+      "sourceObjectId": "osm-way:23761672",
+      "sourceQuality": "verified_component_upper_context_anchor",
+      "finding": "skraperudtjern er et allerede verifisert komponentanker i Ljanselva-kjeden med coordStatus verified_geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Komponentankeret dokumenterer fysisk scope for hovedvassdraget, men brukes ikke alene som canonical display-marker."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Verifisert ruteanker – Ljanselva ved Skullerud",
+      "sourceUrl": "https://www.openstreetmap.org/way/27271638",
+      "sourceObjectId": "osm-way:27271638",
+      "sourceQuality": "verified_component_river_segment_anchor",
+      "finding": "ljanselva_skullerud er et allerede verifisert komponentanker i Ljanselva-kjeden med coordStatus verified_geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Komponentankeret dokumenterer fysisk scope for hovedvassdraget, men brukes ikke alene som canonical display-marker."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Verifisert ruteanker – Ljanselva ved Hauketo",
+      "sourceUrl": "https://www.openstreetmap.org/way/695993872",
+      "sourceObjectId": "osm-way:695993872",
+      "sourceQuality": "verified_component_display_anchor",
+      "finding": "ljanselva_hauketo er et allerede verifisert komponentanker i Ljanselva-kjeden med coordStatus verified_geometry.",
+      "canVerifyCoordinate": true,
+      "reason": "Dette verifiserte line-ankeret brukes som canonical display-marker for hovedrecorden; resten av scope dokumenteres av hele anchor-kjeden."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Verifisert ruteanker – Ljanselva ved Ljan",
+      "sourceUrl": "https://www.openstreetmap.org/way/98539575",
+      "sourceObjectId": "osm-way:98539575",
+      "sourceQuality": "verified_component_river_segment_anchor",
+      "finding": "ljanselva_ljan er et allerede verifisert komponentanker i Ljanselva-kjeden med coordStatus verified_geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Komponentankeret dokumenterer fysisk scope for hovedvassdraget, men brukes ikke alene som canonical display-marker."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Verifisert ruteanker – Ljanselva ved Fiskevollen",
+      "sourceUrl": "https://www.openstreetmap.org/way/156700580",
+      "sourceObjectId": "osm-way:156700580",
+      "sourceQuality": "verified_component_lower_corridor_anchor",
+      "finding": "ljanselva_fiskevollen er et allerede verifisert komponentanker i Ljanselva-kjeden med coordStatus verified_geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Komponentankeret dokumenterer fysisk scope for hovedvassdraget, men brukes ikke alene som canonical display-marker."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Verifisert ruteanker – Ljanselva – utløp i Fiskevollbukta",
+      "sourceUrl": "https://www.openstreetmap.org/node/1689201164",
+      "sourceObjectId": "osm-node:1689201164",
+      "sourceQuality": "verified_component_mouth_anchor",
+      "finding": "ljanselva_bunnefjorden er et allerede verifisert komponentanker i Ljanselva-kjeden med coordStatus verified_geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Komponentankeret dokumenterer fysisk scope for hovedvassdraget, men brukes ikke alene som canonical display-marker."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "osm-audit:ljanselva:ambiguous_exact_semantic_candidates:16",
-      "canApplyToPlace": false
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1636570783",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:23761672",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:27271638",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:695993872",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:98539575",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:156700580",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1689201164",
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1636570783",
+      "lat": 59.8736207,
+      "lon": 10.8582866,
+      "coordRole": "line_anchor",
+      "componentRole": "upper_context_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:23761672",
+      "lat": 59.869215693088535,
+      "lon": 10.851491730900063,
+      "coordRole": "area_anchor",
+      "componentRole": "upper_context_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:27271638",
+      "lat": 59.8627529,
+      "lon": 10.8450942,
+      "coordRole": "line_anchor",
+      "componentRole": "river_segment_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:695993872",
+      "lat": 59.8506459,
+      "lon": 10.8094818,
+      "coordRole": "line_anchor",
+      "componentRole": "display_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:98539575",
+      "lat": 59.8465614,
+      "lon": 10.7911851,
+      "coordRole": "line_anchor",
+      "componentRole": "river_segment_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:156700580",
+      "lat": 59.842638,
+      "lon": 10.7799991,
+      "coordRole": "line_anchor",
+      "componentRole": "lower_corridor_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1689201164",
+      "lat": 59.8420614,
+      "lon": 10.775801,
+      "coordRole": "line_anchor",
+      "componentRole": "mouth_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.8506459,
+      "lon": 10.8094818,
+      "coordRole": "line_anchor",
+      "sourceObjectId": "osm-way:695993872",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker.",
-    "nextAction": "Finn én stabil eksakt geometri for hele recordens fysiske scope, eller modeller eksplisitt flere kildebelagte ankere."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Multi-anchor-kjeden er anvendt på hovedrecorden; Hauketo-wayen brukes som eksplisitt displayanker."
   },
   "notes": [
-    "Identiteten er dokumentert, men OSM/Nominatim-kontrollen ga ikke ett entydig eksakt navngitt objekt som passer den forhåndsdefinerte objekttypen (ambiguous_exact_semantic_candidates:16). Det gamle repo-syntetiske punktet beholdes kun som legacy-kartanker."
+    "Batch 148 løser hovedrecorden Ljanselva som et eksplisitt multi-anchor vassdrag i stedet for å late som ett punkt eller én OSM-way representerer hele elva. Scope dokumenteres av sju allerede verified_geometry-ankre: Nøklevanns utløp, Skraperudtjern, Skullerud-segmentet, Hauketo-segmentet, Liadalen/Ljan-segmentet, den nedre Fiskevollen-korridoren og munningsnoden i Fiskevollbukta. Canonical lat/lon er Hauketo-segmentets verifiserte line-anchor fordi det ligger sentralt i den modellerte kjeden; punktet er bare displayanker og ikke et påstått geometrisk sentrum for hele vassdraget. Ingen legacy-koordinat, nearest/first-hit eller syntetisk enkeltgeometri brukes."
   ]
 }
