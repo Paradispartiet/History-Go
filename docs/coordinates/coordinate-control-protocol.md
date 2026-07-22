@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 378 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 382 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -535,6 +535,14 @@ Batch 140 (2026-07-21) løser kildesonen med eksplisitt hydrologisk nettverkstop
 | 141 | `noklevann_ljanselva_start` | Nøklevann – utløp mot Skraperudbekken | verified_geometry | `osm-node:1636570783` |
 
 Batch 141 (2026-07-22) løser `noklevann_ljanselva_start` som et eksplisitt hydrologisk utløpsanker i stedet for et vilkårlig innsjøpunkt. OSM relation 16661 identifiserer Nøklevann; utløpskant-way 89296578, dam-way 150774536 og Skraperudbekken-way 127882479 deler node 1636570783 på `59.8736207, 10.8582866`. Visningsnavnet korrigeres fra «Nøklevann (Ljanselva start)» til «Nøklevann – utløp mot Skraperudbekken» fordi canonical punkt representerer den dokumenterte overgangen fra Nøklevann til Skraperudbekken, ikke et påstått direkte startpunkt for hele Ljanselva.
+
+
+| 142 | `plata_oslo` | Plata | verified_historical_source | `lokalhistoriewiki:plata-oslo` |
+| 142 | `prindsen_mottakssenter` | Prindsen mottakssenter | verified | `geonorge-adresser-v1:0301:12782:11` |
+| 142 | `fyrlyset_oslo` | Fyrlyset | verified | `geonorge-adresser-v1:0301:18016:16A` |
+| 142 | `evangeliesenteret_kontaktsenter_oslo` | Evangeliesenterets kontaktsenter | verified | `geonorge-adresser-v1:0301:15458:1` |
+
+Batch 142 (2026-07-22) etterfører den mergede Subkultur-randsonebatchen. `plata_oslo` bruker et dokumentert historisk områdeanker for den tidligere åpne russcenen ved Christian Frederiks plass. `prindsen_mottakssenter`, `fyrlyset_oslo` og `evangeliesenteret_kontaktsenter_oslo` følger address-first-policyen og bruker entydige Geonorge-adressepunkter på dokumentert besøksadresse. Batchen skiller mellom historisk åpen russcene, sosial møteplass og dagens lavterskel hjelpeinfrastruktur.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
