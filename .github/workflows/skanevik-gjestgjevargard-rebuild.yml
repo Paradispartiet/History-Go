@@ -23,7 +23,7 @@ jobs:
       - name: Restore quiz and register manifest
         run: |
           mkdir -p data/quiz/historie
-          git show fc0134cab755d5a53ddf3770a07dc473be5ea563:data/quiz/historie/skanevik_gjestgjevargarden_sets.json > data/quiz/historie/skanevik_gjestgjevargarden_sets.json
+          curl -fL 'https://raw.githubusercontent.com/Paradispartiet/History-Go/fc0134cab755d5a53ddf3770a07dc473be5ea563/data/quiz/historie/skanevik_gjestgjevargarden_sets.json' -o data/quiz/historie/skanevik_gjestgjevargarden_sets.json
           node --input-type=module <<'NODE'
           import { readFile, writeFile } from 'node:fs/promises';
           const file = 'data/quiz/manifest.json';
