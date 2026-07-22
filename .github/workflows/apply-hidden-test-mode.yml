@@ -57,11 +57,21 @@ jobs:
           from pathlib import Path
           path = Path('tests/header-search-menu.test.js')
           text = path.read_text()
-          old = '  const document = {\n    readyState: "complete",'
-          new = '  const document = {\n    readyState: "complete",\n    querySelector(selector) {\n      return String(selector).startsWith("link[") ? fakeElement() : null;\n    },'
-          if old not in text:
-              raise SystemExit('Fant ikke document-fixture i header-test')
-          path.write_text(text.replace(old, new, 1))
+          replacements = [
+              (
+                  '  const document = {\n    readyState: "complete",',
+                  '  const document = {\n    readyState: "complete",\n    querySelector(selector) {\n      return String(selector).startsWith("link[") ? fakeElement() : null;\n    },'
+              ),
+              (
+                  '  runScript("js/ui/search.js", { window, document, console });',
+                  '  class HTMLInputElement {\n    static [Symbol.hasInstance](value) { return value === input; }\n  }\n  class Element {\n    static [Symbol.hasInstance](value) { return !!value && typeof value.closest === "function"; }\n  }\n  class HTMLElement {\n    static [Symbol.hasInstance](value) { return !!value && typeof value === "object" && "dataset" in value; }\n  }\n\n  runScript("js/ui/search.js", { window, document, console, HTMLInputElement, Element, HTMLElement });'
+              )
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'Fant ikke test-fixture: {old}')
+              text = text.replace(old, new, 1)
+          path.write_text(text)
           PY
 
       - name: Persist migration error
