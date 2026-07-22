@@ -41,13 +41,20 @@ jobs:
       - name: Validate Stødle quiz contract
         run: node .tmp/bootstrap-stodle.mjs validate
 
-      - name: Run quiz audits
-        run: |
-          npm run audit:quiz-manifest:v2
-          npm run audit:quiz-content
-          npm run audit:quiz-templates
-          npm run test:quiz-content-audit
-          npm run knowledge:canonical:check
+      - name: Audit quiz manifest
+        run: npm run audit:quiz-manifest:v2
+
+      - name: Audit quiz content
+        run: npm run audit:quiz-content
+
+      - name: Audit quiz templates
+        run: npm run audit:quiz-templates
+
+      - name: Test quiz content audit
+        run: npm run test:quiz-content-audit
+
+      - name: Check canonical Knowledge data
+        run: npm run knowledge:canonical:check
 
       - name: Commit final quiz package
         run: |
