@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-22T21:33:56.277Z
+Generert: 2026-07-22T21:46:23.739Z
 
 ## Oppsummering
 - Aktive filer validert: **611**
-- Antall steder validert: **1224**
+- Antall steder validert: **1228**
 - Harde feil: **0**
-- Varsler: **460**
-- Coordinate review candidates: **726** signaler fordelt på **597** steder
+- Varsler: **464**
+- Coordinate review candidates: **730** signaler fordelt på **601** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -963,6 +963,10 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/oslo/places_subkultur.json#prindsen_mottakssenter: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#fyrlyset_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#evangeliesenteret_kontaktsenter_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#brugata_storgata_rusmiljo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#huset_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#nadheim_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/oslo/places_subkultur.json#motestedet_tollbugata: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetets_gamle_kjemi: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetet_i_oslo_blindern: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/oslo/places_vitenskap.json#rikshospitalet: lav koordinatpresisjon (<4 desimaler)
@@ -1097,13 +1101,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 726 signaler fordelt på 597 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 730 signaler fordelt på 601 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 169 |
+| coordStatus=verified uten coordPrecisionM | 173 |
 | lineært sted uten anchors | 78 |
 | lav koordinatpresisjon (<4 desimaler) | 83 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1113,7 +1117,7 @@ Totalt 726 signaler fordelt på 597 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (169)
+### coordStatus=verified uten coordPrecisionM (173)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1217,6 +1221,10 @@ Totalt 726 signaler fordelt på 597 steder. Et sted kan ha flere signaler. Kandi
 | prindsen_mottakssenter | Prindsen mottakssenter | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91573563125075 | 10.756875795973647 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | fyrlyset_oslo | Fyrlyset | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91519741735937 | 10.76402173101248 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | evangeliesenteret_kontaktsenter_oslo | Evangeliesenterets kontaktsenter | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91558667149652 | 10.755045241412303 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| brugata_storgata_rusmiljo | Brugata / Storgata – det åpne rusmiljøet | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9146165881438 | 10.753026513871012 | 100 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| huset_oslo | Huset Oslo | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.923969075170824 | 10.726541485081306 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| nadheim_oslo | Nadheim | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91270580984919 | 10.765642283295504 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| motestedet_tollbugata | Møtestedet – Tollbugata | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.90976205545865 | 10.747280208188046 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.917023156193885 | 10.73472914137377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | grannar_redaksjon_etne | Grannar-redaksjonen i Etne | media | data/places/media/vestland/etne/grannar_redaksjon_etne.json | 59.66414439895677 | 5.940649457868514 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | psykisk_helse_rus_etne | Psykisk helse og rus – Etne | psykologi | data/places/psykologi/vestland/etne/psykisk_helse_rus_etne.json | 59.66534125070043 | 5.943034081601908 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1344,7 +1352,7 @@ Totalt 726 signaler fordelt på 597 steder. Et sted kan ha flere signaler. Kandi
 | ljanselva_skullerud | Ljanselva ved Skullerud | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8627529 | 10.8450942 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_hauketo | Ljanselva ved Hauketo | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8506459 | 10.8094818 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_ljan | Ljanselva ved Ljan | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8465614 | 10.7911851 | 170 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| ljanselva_fiskevollen | Ljanselva ved Fiskevollen | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8319 | 10.8048 | 140 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ljanselva_fiskevollen | Ljanselva ved Fiskevollen | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.842638 | 10.7799991 | 140 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_bunnefjorden | Ljanselva ut i Bunnefjorden | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8288 | 10.8034 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
