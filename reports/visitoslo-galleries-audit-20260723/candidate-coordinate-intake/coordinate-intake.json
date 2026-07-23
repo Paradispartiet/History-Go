@@ -1,0 +1,1013 @@
+{
+  "version": "2026-07-23",
+  "method": "Repository address-first-coordinate-finder using Geonorge Adresser API, followed by canonical coordinate overlap lead audit",
+  "candidateCount": 10,
+  "addressReadyCount": 9,
+  "counts": {
+    "verifiedAddressReady": 9,
+    "blockedAddressReady": 0,
+    "addressReadyWithExactOrNearCollision": 0,
+    "sharedPropertyControls": 1
+  },
+  "guards": [
+    "A verified address candidate is only an address coordinate candidate, not automatic production approval.",
+    "Nearby canonical points are overlap leads only; physical identity must be resolved manually.",
+    "ROM's Maridalsveien 3 lookup is control evidence only and must not be used as its canonical marker because X-Ray already uses the ordinary address point.",
+    "VisitOSLO source coordinates are not used by this intake."
+  ],
+  "rows": [
+    {
+      "placeId": "edvard_munchs_atelier_ekely",
+      "address": "Jarlsborgveien 14 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Jarlsborgveien%2014%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13413:14",
+      "coordinate": {
+        "lat": 59.92918854127767,
+        "lon": 10.670165670212224,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:13413:14",
+        "address": {
+          "street": "Jarlsborgveien",
+          "number": "14",
+          "postcode": "0377",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Jarlsborgveien 14, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Jarlsborgveien",
+        "adressetekst": "Jarlsborgveien 14",
+        "adressetilleggsnavn": null,
+        "adressekode": 13413,
+        "nummer": 14,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 29,
+        "bruksnummer": 506,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0377",
+        "adressetekstutenadressetilleggsnavn": "Jarlsborgveien 14",
+        "stedfestingverifisert": true,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.92918854127767,
+          "lon": 10.670165670212224
+        },
+        "oppdateringsdato": "2020-06-15T18:03:03"
+      },
+      "nearbyCanonical": [],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "tegnerforbundet",
+      "address": "Rådhusgata 17 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=R%C3%A5dhusgata%2017%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:17",
+      "coordinate": {
+        "lat": 59.9099817152299,
+        "lon": 10.74092866640025,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:16115:17",
+        "address": {
+          "street": "Rådhusgata",
+          "number": "17",
+          "postcode": "0158",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 17, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Rådhusgata",
+        "adressetekst": "Rådhusgata 17",
+        "adressetilleggsnavn": null,
+        "adressekode": 16115,
+        "nummer": 17,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 207,
+        "bruksnummer": 225,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [
+          "H0101",
+          "H0102"
+        ],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0158",
+        "adressetekstutenadressetilleggsnavn": "Rådhusgata 17",
+        "stedfestingverifisert": true,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.9099817152299,
+          "lon": 10.74092866640025
+        },
+        "oppdateringsdato": "2020-06-15T18:06:06"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "nordisk_bibelmuseum",
+          "name": "Nordisk Bibelmuseum",
+          "category": "historie",
+          "distanceMeters": 33.15,
+          "lat": 59.910279645957665,
+          "lon": 10.740947844594505
+        },
+        {
+          "id": "radmannsgarden_og_anatomibygget",
+          "name": "Rådmannsgården og Anatomibygget",
+          "category": "historie",
+          "distanceMeters": 38.03,
+          "lat": 59.91014146776003,
+          "lon": 10.740325400685213
+        },
+        {
+          "id": "gamle_radhus",
+          "name": "Gamle rådhus",
+          "category": "by",
+          "distanceMeters": 45.96,
+          "lat": 59.909847408217715,
+          "lon": 10.740149053425348
+        },
+        {
+          "id": "sjofartsbygningen",
+          "name": "Sjøfartsbygningen",
+          "category": "naeringsliv",
+          "distanceMeters": 51,
+          "lat": 59.90991497265444,
+          "lon": 10.741833670297687
+        },
+        {
+          "id": "christiania_torv",
+          "name": "Christiania Torv",
+          "category": "by",
+          "distanceMeters": 79.88,
+          "lat": 59.9102351,
+          "lon": 10.7395879
+        },
+        {
+          "id": "mustadgarden_kongens_gate_3",
+          "name": "Mustadgården – Kongens gate 3",
+          "category": "historie",
+          "distanceMeters": 80.85,
+          "lat": 59.90925646800815,
+          "lon": 10.740826309073695
+        },
+        {
+          "id": "fotografiens_hus",
+          "name": "Fotografiens Hus",
+          "category": "kunst",
+          "distanceMeters": 83.28,
+          "lat": 59.90951628354778,
+          "lon": 10.74209892031479
+        },
+        {
+          "id": "waisenhuset_kongens_gate",
+          "name": "Waisenhuset",
+          "category": "historie",
+          "distanceMeters": 101.07,
+          "lat": 59.90908688101301,
+          "lon": 10.740609982142896
+        },
+        {
+          "id": "kirkegata_5",
+          "name": "Kirkegata 5",
+          "category": "naeringsliv",
+          "distanceMeters": 120,
+          "lat": 59.90929426367078,
+          "lon": 10.742588024864189
+        }
+      ],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "unge_kunstneres_samfund",
+      "address": "Keysers gate 1 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Keysers%20gate%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13669:1",
+      "coordinate": {
+        "lat": 59.917046487498816,
+        "lon": 10.743853067869056,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:13669:1",
+        "address": {
+          "street": "Keysers gate",
+          "number": "1",
+          "postcode": "0165",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Keysers gate 1, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Keysers gate",
+        "adressetekst": "Keysers gate 1",
+        "adressetilleggsnavn": null,
+        "adressekode": 13669,
+        "nummer": 1,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 208,
+        "bruksnummer": 358,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0165",
+        "adressetekstutenadressetilleggsnavn": "Keysers gate 1",
+        "stedfestingverifisert": false,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.917046487498816,
+          "lon": 10.743853067869056
+        },
+        "oppdateringsdato": "2026-03-26T19:41:41"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "trefoldighetskirken",
+          "name": "Trefoldighetskirken",
+          "category": "religion",
+          "distanceMeters": 61.96,
+          "lat": 59.91672903151453,
+          "lon": 10.744766562559661
+        }
+      ],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "norske_grafikere",
+      "address": "Tollbugata 24 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Tollbugata%2024%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17577:24",
+      "coordinate": {
+        "lat": 59.91091311290161,
+        "lon": 10.741742892068546,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:17577:24",
+        "address": {
+          "street": "Tollbugata",
+          "number": "24",
+          "postcode": "0157",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tollbugata 24, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Tollbugata",
+        "adressetekst": "Tollbugata 24",
+        "adressetilleggsnavn": null,
+        "adressekode": 17577,
+        "nummer": 24,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 207,
+        "bruksnummer": 355,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0157",
+        "adressetekstutenadressetilleggsnavn": "Tollbugata 24",
+        "stedfestingverifisert": false,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.91091311290161,
+          "lon": 10.741742892068546
+        },
+        "oppdateringsdato": "2020-06-15T18:06:06"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "telegrafbygningen",
+          "name": "Telegrafbygningen",
+          "category": "naeringsliv",
+          "distanceMeters": 51.98,
+          "lat": 59.91128055555556,
+          "lon": 10.742319444444444
+        },
+        {
+          "id": "skulptursonen_ovre_slottsgate",
+          "name": "Skulptursonen i Øvre Slottsgate",
+          "category": "kunst",
+          "distanceMeters": 73.93,
+          "lat": 59.9112353280587,
+          "lon": 10.740582917313654
+        },
+        {
+          "id": "nordisk_bibelmuseum",
+          "name": "Nordisk Bibelmuseum",
+          "category": "historie",
+          "distanceMeters": 83.22,
+          "lat": 59.910279645957665,
+          "lon": 10.740947844594505
+        },
+        {
+          "id": "steen_og_strom",
+          "name": "Steen & Strøm",
+          "category": "naeringsliv",
+          "distanceMeters": 103.2,
+          "lat": 59.911562042330516,
+          "lon": 10.743066380237748
+        },
+        {
+          "id": "universitetets_gamle_hovedbygning",
+          "name": "Universitetets gamle hovedbygning",
+          "category": "vitenskap",
+          "distanceMeters": 104.93,
+          "lat": 59.9118,
+          "lon": 10.7411
+        },
+        {
+          "id": "sjofartsbygningen",
+          "name": "Sjøfartsbygningen",
+          "category": "naeringsliv",
+          "distanceMeters": 111.1,
+          "lat": 59.90991497265444,
+          "lon": 10.741833670297687
+        },
+        {
+          "id": "radmannsgarden_og_anatomibygget",
+          "name": "Rådmannsgården og Anatomibygget",
+          "category": "historie",
+          "distanceMeters": 116.65,
+          "lat": 59.91014146776003,
+          "lon": 10.740325400685213
+        }
+      ],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "rom_for_kunst_og_arkitektur",
+      "address": "Maridalsveien 3 Oslo",
+      "mode": "shared_property_control_only",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte flere treff, men ett eksakt adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Maridalsveien%203%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:3",
+      "coordinate": {
+        "lat": 59.92065765555904,
+        "lon": 10.751597362221323,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:14622:3",
+        "address": {
+          "street": "Maridalsveien",
+          "number": "3",
+          "postcode": "0178",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Maridalsveien 3, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Maridalsveien",
+        "adressetekst": "Maridalsveien 3",
+        "adressetilleggsnavn": null,
+        "adressekode": 14622,
+        "nummer": 3,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 208,
+        "bruksnummer": 395,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0178",
+        "adressetekstutenadressetilleggsnavn": "Maridalsveien 3",
+        "stedfestingverifisert": true,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.92065765555904,
+          "lon": 10.751597362221323
+        },
+        "oppdateringsdato": "2026-03-26T19:41:41"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "xray_ungdomskulturhus",
+          "name": "X-Ray Ungdomskulturhus",
+          "category": "subkultur",
+          "distanceMeters": 0,
+          "lat": 59.92065765555904,
+          "lon": 10.751597362221323
+        },
+        {
+          "id": "blaa",
+          "name": "Blå",
+          "category": "musikk",
+          "distanceMeters": 88.85,
+          "lat": 59.920159,
+          "lon": 10.752843
+        },
+        {
+          "id": "dansens_hus_oslo",
+          "name": "Dansens Hus",
+          "category": "scenekunst",
+          "distanceMeters": 97.61,
+          "lat": 59.921391233585794,
+          "lon": 10.752559156734778
+        },
+        {
+          "id": "elvestrekning_bla_brenneriveien",
+          "name": "Elvestrekning ved Blå (Brenneriveien)",
+          "category": "natur",
+          "distanceMeters": 114.85,
+          "lat": 59.92000495695905,
+          "lon": 10.753194575921878
+        }
+      ],
+      "exactOrNearCollision": [
+        {
+          "id": "xray_ungdomskulturhus",
+          "name": "X-Ray Ungdomskulturhus",
+          "category": "subkultur",
+          "distanceMeters": 0,
+          "lat": 59.92065765555904,
+          "lon": 10.751597362221323
+        }
+      ]
+    },
+    {
+      "placeId": "the_mini_bottle_gallery",
+      "address": "Kirkegata 10 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kirkegata%2010%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13707:10",
+      "coordinate": {
+        "lat": 59.90962587013713,
+        "lon": 10.743320753338548,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:13707:10",
+        "address": {
+          "street": "Kirkegata",
+          "number": "10",
+          "postcode": "0153",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kirkegata 10, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Kirkegata",
+        "adressetekst": "Kirkegata 10",
+        "adressetilleggsnavn": null,
+        "adressekode": 13707,
+        "nummer": 10,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 207,
+        "bruksnummer": 115,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0153",
+        "adressetekstutenadressetilleggsnavn": "Kirkegata 10",
+        "stedfestingverifisert": false,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.90962587013713,
+          "lon": 10.743320753338548
+        },
+        "oppdateringsdato": "2020-06-15T18:04:04"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "stattholdergarden",
+          "name": "Stattholdergården",
+          "category": "historie",
+          "distanceMeters": 28.81,
+          "lat": 59.909372909195,
+          "lon": 10.74343267394393
+        },
+        {
+          "id": "kirkegata_5",
+          "name": "Kirkegata 5",
+          "category": "naeringsliv",
+          "distanceMeters": 55.03,
+          "lat": 59.90929426367078,
+          "lon": 10.742588024864189
+        },
+        {
+          "id": "fotografiens_hus",
+          "name": "Fotografiens Hus",
+          "category": "kunst",
+          "distanceMeters": 69.2,
+          "lat": 59.90951628354778,
+          "lon": 10.74209892031479
+        },
+        {
+          "id": "centralbanken_kirkegata",
+          "name": "Centralbanken",
+          "category": "naeringsliv",
+          "distanceMeters": 70.52,
+          "lat": 59.910183744652514,
+          "lon": 10.743922294639356
+        },
+        {
+          "id": "avisen_tiden_radhusgata_10",
+          "name": "Avisen Tiden – Rådhusgata 10",
+          "category": "historie",
+          "distanceMeters": 81.37,
+          "lat": 59.909004916311204,
+          "lon": 10.744092944484954
+        },
+        {
+          "id": "sjofartsbygningen",
+          "name": "Sjøfartsbygningen",
+          "category": "naeringsliv",
+          "distanceMeters": 88.92,
+          "lat": 59.90991497265444,
+          "lon": 10.741833670297687
+        },
+        {
+          "id": "garmanngarden",
+          "name": "Garmanngården",
+          "category": "historie",
+          "distanceMeters": 102.52,
+          "lat": 59.90905001695339,
+          "lon": 10.744756995654964
+        },
+        {
+          "id": "cafe_engebret",
+          "name": "Café Engebret",
+          "category": "naeringsliv",
+          "distanceMeters": 103.46,
+          "lat": 59.9089234456751,
+          "lon": 10.742103623159887
+        },
+        {
+          "id": "magistratgarden",
+          "name": "Magistratgården",
+          "category": "historie",
+          "distanceMeters": 104.08,
+          "lat": 59.9092795875744,
+          "lon": 10.745055179458067
+        },
+        {
+          "id": "hotel_du_nord",
+          "name": "Hotel du Nord",
+          "category": "naeringsliv",
+          "distanceMeters": 110.51,
+          "lat": 59.90947510065043,
+          "lon": 10.745280045026805
+        }
+      ],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "galleri_lnm",
+      "address": "Rådhusgata 37 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=R%C3%A5dhusgata%2037%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:37",
+      "coordinate": {
+        "lat": 59.91082571186472,
+        "lon": 10.7367950879606,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:16115:37",
+        "address": {
+          "street": "Rådhusgata",
+          "number": "37",
+          "postcode": "0158",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 37, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Rådhusgata",
+        "adressetekst": "Rådhusgata 37",
+        "adressetilleggsnavn": null,
+        "adressekode": 16115,
+        "nummer": 37,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 507,
+        "bruksnummer": 8,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0158",
+        "adressetekstutenadressetilleggsnavn": "Rådhusgata 37",
+        "stedfestingverifisert": false,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.91082571186472,
+          "lon": 10.7367950879606
+        },
+        "oppdateringsdato": "2025-10-03T12:48:48"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "kontraskjaeret",
+          "name": "Kontraskjæret",
+          "category": "historie",
+          "distanceMeters": 69.74,
+          "lat": 59.9102177,
+          "lon": 10.7364883
+        }
+      ],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "ram_galleri",
+      "address": "Kongens gate 15 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongens%20gate%2015%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13846:15",
+      "coordinate": {
+        "lat": 59.91045277823502,
+        "lon": 10.741915500125605,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:13846:15",
+        "address": {
+          "street": "Kongens gate",
+          "number": "15",
+          "postcode": "0153",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongens gate 15, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Kongens gate",
+        "adressetekst": "Kongens gate 15",
+        "adressetilleggsnavn": null,
+        "adressekode": 13846,
+        "nummer": 15,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 207,
+        "bruksnummer": 145,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0153",
+        "adressetekstutenadressetilleggsnavn": "Kongens gate 15",
+        "stedfestingverifisert": false,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.91045277823502,
+          "lon": 10.741915500125605
+        },
+        "oppdateringsdato": "2020-06-15T18:03:03"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "nordisk_bibelmuseum",
+          "name": "Nordisk Bibelmuseum",
+          "category": "historie",
+          "distanceMeters": 57.28,
+          "lat": 59.910279645957665,
+          "lon": 10.740947844594505
+        },
+        {
+          "id": "sjofartsbygningen",
+          "name": "Sjøfartsbygningen",
+          "category": "naeringsliv",
+          "distanceMeters": 59.97,
+          "lat": 59.90991497265444,
+          "lon": 10.741833670297687
+        },
+        {
+          "id": "telegrafbygningen",
+          "name": "Telegrafbygningen",
+          "category": "naeringsliv",
+          "distanceMeters": 94.76,
+          "lat": 59.91128055555556,
+          "lon": 10.742319444444444
+        },
+        {
+          "id": "radmannsgarden_og_anatomibygget",
+          "name": "Rådmannsgården og Anatomibygget",
+          "category": "historie",
+          "distanceMeters": 95.16,
+          "lat": 59.91014146776003,
+          "lon": 10.740325400685213
+        },
+        {
+          "id": "fotografiens_hus",
+          "name": "Fotografiens Hus",
+          "category": "kunst",
+          "distanceMeters": 104.63,
+          "lat": 59.90951628354778,
+          "lon": 10.74209892031479
+        },
+        {
+          "id": "skulptursonen_ovre_slottsgate",
+          "name": "Skulptursonen i Øvre Slottsgate",
+          "category": "kunst",
+          "distanceMeters": 114.41,
+          "lat": 59.9112353280587,
+          "lon": 10.740582917313654
+        },
+        {
+          "id": "centralbanken_kirkegata",
+          "name": "Centralbanken",
+          "category": "naeringsliv",
+          "distanceMeters": 115.81,
+          "lat": 59.910183744652514,
+          "lon": 10.743922294639356
+        },
+        {
+          "id": "gamle_radhus",
+          "name": "Gamle rådhus",
+          "category": "by",
+          "distanceMeters": 119.28,
+          "lat": 59.909847408217715,
+          "lon": 10.740149053425348
+        }
+      ],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "galleri_schaeffers_gate_5",
+      "address": "Schæffers gate 5 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Sch%C3%A6ffers%20gate%205%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16269:5",
+      "coordinate": {
+        "lat": 59.92127390279403,
+        "lon": 10.762304822006952,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:16269:5",
+        "address": {
+          "street": "Schæffers gate",
+          "number": "5",
+          "postcode": "0558",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Schæffers gate 5, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Schæffers gate",
+        "adressetekst": "Schæffers gate 5",
+        "adressetilleggsnavn": null,
+        "adressekode": 16269,
+        "nummer": 5,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 228,
+        "bruksnummer": 327,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [
+          "H0101",
+          "H0201",
+          "H0202",
+          "H0203",
+          "H0301",
+          "H0302",
+          "H0303",
+          "H0401",
+          "H0402",
+          "H0403",
+          "L0101"
+        ],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0558",
+        "adressetekstutenadressetilleggsnavn": "Schæffers gate 5",
+        "stedfestingverifisert": false,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.92127390279403,
+          "lon": 10.762304822006952
+        },
+        "oppdateringsdato": "2020-06-15T18:05:05"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "mir_grunerlokka_lufthavn",
+          "name": "MIR / Grünerløkka Lufthavn",
+          "category": "subkultur",
+          "distanceMeters": 77.94,
+          "lat": 59.92154264383429,
+          "lon": 10.761013090288696
+        }
+      ],
+      "exactOrNearCollision": []
+    },
+    {
+      "placeId": "grafill",
+      "address": "Møllergata 39 Oslo",
+      "mode": "address_ready",
+      "commandStatus": 0,
+      "finderStatus": "verified_candidate",
+      "finderReason": "Geonorge returnerte ett tydelig adressetreff.",
+      "sourceProvider": "official_address",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=M%C3%B8llergata%2039%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:39",
+      "coordinate": {
+        "lat": 59.91646694157906,
+        "lon": 10.748956340457859,
+        "r": 60,
+        "locatorType": "building",
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:14943:39",
+        "address": {
+          "street": "Møllergata",
+          "number": "39",
+          "postcode": "0179",
+          "city": "Oslo",
+          "country": "NO"
+        },
+        "geocodeAccuracy": "rooftop",
+        "coordRole": "display_marker",
+        "coordStatus": "verified",
+        "coordSource": "geonorge_adresser_v1",
+        "coordType": "address_point",
+        "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 39, OSLO. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som kai-, vei-, vannflate- eller generelt områdeanker."
+      },
+      "rawHit": {
+        "adressenavn": "Møllergata",
+        "adressetekst": "Møllergata 39",
+        "adressetilleggsnavn": null,
+        "adressekode": 14943,
+        "nummer": 39,
+        "bokstav": "",
+        "kommunenummer": "0301",
+        "kommunenavn": "OSLO",
+        "gardsnummer": 208,
+        "bruksnummer": 435,
+        "festenummer": 0,
+        "undernummer": null,
+        "bruksenhetsnummer": [],
+        "objtype": "Vegadresse",
+        "poststed": "OSLO",
+        "postnummer": "0179",
+        "adressetekstutenadressetilleggsnavn": "Møllergata 39",
+        "stedfestingverifisert": false,
+        "representasjonspunkt": {
+          "epsg": "EPSG:4258",
+          "lat": 59.91646694157906,
+          "lon": 10.748956340457859
+        },
+        "oppdateringsdato": "2026-03-26T19:41:41"
+      },
+      "nearbyCanonical": [
+        {
+          "id": "revolver_oslo",
+          "name": "Revolver",
+          "category": "musikk",
+          "distanceMeters": 73.71,
+          "lat": 59.91699988365845,
+          "lon": 10.749742822662785
+        },
+        {
+          "id": "rockefeller",
+          "name": "Rockefeller Music Hall",
+          "category": "musikk",
+          "distanceMeters": 80.43,
+          "lat": 59.916235041685646,
+          "lon": 10.750323246840185
+        },
+        {
+          "id": "john_dee",
+          "name": "John Dee",
+          "category": "musikk",
+          "distanceMeters": 83.65,
+          "lat": 59.916145361023055,
+          "lon": 10.750313157984397
+        },
+        {
+          "id": "the_villa",
+          "name": "The Villa",
+          "category": "musikk",
+          "distanceMeters": 95.09,
+          "lat": 59.91563512459411,
+          "lon": 10.74856019808857
+        }
+      ],
+      "exactOrNearCollision": []
+    }
+  ]
+}

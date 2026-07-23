@@ -1,0 +1,124 @@
+{
+  "version": "2026-07-23",
+  "status": "manual_identity_resolution_closed",
+  "sourceClassification": "reports/visitoslo-galleries-audit-20260723/full-scope-classification/final-classification.json",
+  "machineAudit": "reports/visitoslo-galleries-audit-20260723/candidate-identity-audit/candidate-identity-audit.json",
+  "summary": {
+    "candidates": 10,
+    "distinctAddressFirstReady": 9,
+    "distinctSharedPropertyAnchorResearch": 1,
+    "parentReuse": 0,
+    "duplicateExisting": 0,
+    "unresolvedIdentity": 0
+  },
+  "decisions": [
+    {
+      "placeId": "edvard_munchs_atelier_ekely",
+      "name": "Edvard Munchs atelier på Ekely",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Jarlsborgveien 14, 0377 Oslo",
+      "basis": "The preserved Ekely studio is a separate physical cultural site from MUNCH in Bjørvika, and the current-main audit found no direct canonical duplicate signal.",
+      "sources": [
+        "https://edvard-munchs-atelier.no/visit-us/?lang=en"
+      ]
+    },
+    {
+      "placeId": "tegnerforbundet",
+      "name": "Tegnerforbundet – senter for tegnekunst",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Rådhusgata 17, 0158 Oslo",
+      "basis": "Dedicated public gallery premises at its own documented address; nearby canonical places are different buildings/institutions.",
+      "sources": [
+        "https://www.tegnerforbundet.no/om-oss/ansatte-og-styret"
+      ]
+    },
+    {
+      "placeId": "unge_kunstneres_samfund",
+      "name": "Unge Kunstneres Samfund",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Keysers gate 1, 0165 Oslo",
+      "basis": "Independent long-running artist membership organisation and exhibition space; no direct canonical duplicate or physical-parent signal was found.",
+      "sources": [
+        "https://www.uks.no/"
+      ]
+    },
+    {
+      "placeId": "norske_grafikere",
+      "name": "Galleri Norske Grafikere",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Tollbugata 24, 0157 Oslo",
+      "basis": "Independent artist organisation with its own gallery address; the nearby Telegrafbygningen lead is not the same physical identity.",
+      "sources": [
+        "https://norske-grafikere.no/"
+      ]
+    },
+    {
+      "placeId": "rom_for_kunst_og_arkitektur",
+      "name": "ROM for kunst og arkitektur",
+      "decision": "distinct_shared_property_requires_anchor_research",
+      "officialAddress": "Maridalsveien 3, bygning O, 0178 Oslo",
+      "basis": "ROM and X-Ray share the broad Maridalsveien 3 property, but ROM documents a separate building O and its own entrances. The existing X-Ray canonical record uses the ordinary Maridalsveien 3 address point, so ROM must not reuse that point or collapse into X-Ray. Production requires a distinct authoritative building/entrance anchor.",
+      "sources": [
+        "https://rom.no/kontakt",
+        "https://www.oslo.kommune.no/natur-kultur-og-fritid/fritidsklubber/x-ray-ungdomskulturhus/"
+      ]
+    },
+    {
+      "placeId": "the_mini_bottle_gallery",
+      "name": "The Mini Bottle Gallery",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Kirkegata 10, 0153 Oslo",
+      "basis": "Distinct public specialty museum/event venue with its own visitor address; nearby canonical places are separate properties or institutions.",
+      "sources": [
+        "https://www.minibottlegallery.com/"
+      ]
+    },
+    {
+      "placeId": "galleri_lnm",
+      "name": "Galleri LNM",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Rådhusgata 37, 0158 Oslo",
+      "basis": "Independent professional artist organisation and public gallery with its own documented address; no direct current-main duplicate signal.",
+      "sources": [
+        "https://lnm.no/"
+      ]
+    },
+    {
+      "placeId": "ram_galleri",
+      "name": "RAM galleri",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Kongens gate 15, 0153 Oslo",
+      "basis": "Long-running non-commercial artist-run exhibition institution at its own current address; no direct current-main duplicate signal.",
+      "sources": [
+        "https://ramgalleri.no/"
+      ]
+    },
+    {
+      "placeId": "galleri_schaeffers_gate_5",
+      "name": "Galleri Schaeffers Gate 5",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Schæffers gate 5, 0558 Oslo",
+      "basis": "Independent art, music and performance space established at this address in 2011 and still publishing a 2026 exhibition programme; no direct canonical duplicate signal.",
+      "sources": [
+        "https://schaeffersgate5.wordpress.com/exhibitions/",
+        "https://www.visitoslo.com/no/produkt/?name=Galleri-Schaeffers-Gate-5&tlp=2997543"
+      ]
+    },
+    {
+      "placeId": "grafill",
+      "name": "Grafill",
+      "decision": "distinct_address_first_ready",
+      "officialAddress": "Møllergata 39, 0179 Oslo",
+      "basis": "Non-profit professional organisation with dedicated public exhibition/activity premises at its own documented address; no direct canonical duplicate signal.",
+      "sources": [
+        "https://www.grafill.no/"
+      ]
+    }
+  ],
+  "nextActions": [
+    "Run normative Geonorge address-first lookups for the nine distinct address-ready candidates.",
+    "For each verified address candidate, perform current-main coordinate overlap audit before production.",
+    "Keep ROM out of address-point production until a distinct authoritative building O or entrance anchor is resolved.",
+    "Do not use VisitOSLO coordinates as canonical coordinate evidence."
+  ]
+}
