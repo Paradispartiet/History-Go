@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T09:10:02.251Z
+Generert: 2026-07-23T09:31:51.427Z
 
 ## Oppsummering
-- Aktive filer validert: **648**
-- Antall steder validert: **1268**
+- Aktive filer validert: **657**
+- Antall steder validert: **1277**
 - Harde feil: **0**
-- Varsler: **500**
-- Coordinate review candidates: **766** signaler fordelt på **637** steder
+- Varsler: **503**
+- Coordinate review candidates: **769** signaler fordelt på **640** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -666,6 +666,15 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/more_og_romsdal/fabrikken_kulturscene.json
 - data/places/scenekunst/rogaland/rimi_imir_scenekunst.json
 - data/places/scenekunst/vestfold/papirhuset_teater.json
+- data/places/natur/vestland/etne/folgefonnanasjonalpark_etne.json
+- data/places/natur/vestland/etne/mosneselva_etne.json
+- data/places/natur/vestland/etne/etnefjella.json
+- data/places/natur/vestland/etne/skaneviksfjella.json
+- data/places/natur/vestland/etne/bokeskogen_milja.json
+- data/places/natur/vestland/etne/vannes_geologiske_omrade.json
+- data/places/natur/vestland/etne/flateskar_stordalen.json
+- data/places/natur/vestland/etne/terrasselandskapet_etne.json
+- data/places/natur/vestland/etne/rullestadvatnet.json
 
 ## Harde feil
 - Ingen
@@ -1171,17 +1180,20 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/more_og_romsdal/fabrikken_kulturscene.json#fabrikken_kulturscene: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/rogaland/rimi_imir_scenekunst.json#rimi_imir_scenekunst: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/vestfold/papirhuset_teater.json#papirhuset_teater: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/mosneselva_etne.json#mosneselva_etne: lineært sted uten anchors
+- data/places/natur/vestland/etne/flateskar_stordalen.json#flateskar_stordalen: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/rullestadvatnet.json#rullestadvatnet: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 766 signaler fordelt på 637 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 210 |
-| lineært sted uten anchors | 79 |
+| coordStatus=verified uten coordPrecisionM | 212 |
+| lineært sted uten anchors | 80 |
 | lav koordinatpresisjon (<4 desimaler) | 81 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
 | park/stort område uten anchors eller coordNote | 130 |
@@ -1190,7 +1202,7 @@ Totalt 766 signaler fordelt på 637 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (210)
+### coordStatus=verified uten coordPrecisionM (212)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1404,8 +1416,10 @@ Totalt 766 signaler fordelt på 637 steder. Et sted kan ha flere signaler. Kandi
 | fabrikken_kulturscene | Fabrikken Kulturscene | scenekunst | data/places/scenekunst/more_og_romsdal/fabrikken_kulturscene.json | 62.47325881959121 | 6.1457628556440245 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | rimi_imir_scenekunst | RIMI/IMIR Scenekunst | scenekunst | data/places/scenekunst/rogaland/rimi_imir_scenekunst.json | 58.97217649362363 | 5.749894964318001 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | papirhuset_teater | Papirhuset Teater | scenekunst | data/places/scenekunst/vestfold/papirhuset_teater.json | 59.26724668104939 | 10.415907691710105 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| flateskar_stordalen | Flåteskar i Stordalen | natur | data/places/natur/vestland/etne/flateskar_stordalen.json | 59.70495 | 6.15875 | 320 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| rullestadvatnet | Rullestadvatnet | natur | data/places/natur/vestland/etne/rullestadvatnet.json | 59.8722 | 6.42074 | 720 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (79)
+### lineært sted uten anchors (80)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1488,6 +1502,7 @@ Totalt 766 signaler fordelt på 637 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | teateret_kristiansand | Teateret Kristiansand | scenekunst | data/places/scenekunst/agder/teateret_kristiansand.json | 58.14294361484816 | 7.99551802723939 | 80 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| mosneselva_etne | Mosneselva | natur | data/places/natur/vestland/etne/mosneselva_etne.json | 59.86656 | 6.32955 | 1000 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
 ### lav koordinatpresisjon (<4 desimaler) (81)
 
