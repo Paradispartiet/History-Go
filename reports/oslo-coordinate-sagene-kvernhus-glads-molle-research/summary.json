@@ -1,0 +1,67 @@
+{
+  "version": "2026-07-23",
+  "placeId": "sagene_kvernhus",
+  "legacyIdentity": {
+    "name": "Sagene mølle og kvernhus",
+    "coordinate": {
+      "lat": 59.9368,
+      "lon": 10.7569,
+      "r": 200
+    },
+    "status": "needs_identity_split",
+    "problem": "Legacy-recorden kombinerer møller, sagbruk og tekstilindustri uten ett entydig fysisk hovedobjekt. Hjula kan ikke brukes som standardanker fordi ovre_foss allerede representerer Hjula Væverier."
+  },
+  "resolvedIdentity": {
+    "name": "Glads mølle (Nedre Papirmølle)",
+    "physicalScope": "den bevarte mølle- og industribygningen fra 1736 ved Akerselva",
+    "address": "Sandakerveien 10A, 0473 Oslo",
+    "year": 1736,
+    "identityStatus": "resolved"
+  },
+  "identityEvidence": [
+    {
+      "source": "Oslo kommune Byplan",
+      "url": "https://magasin.oslo.kommune.no/byplan/sagene-et-unikt-omrade",
+      "finding": "Glads mølle ble oppført i 1736 og omtales som Norges eldste bevarte fabrikkbygning i tre."
+    },
+    {
+      "source": "Oslo byleksikon – Glads mølle",
+      "url": "https://oslobyleksikon.no/side/Glads_m%C3%B8lle",
+      "finding": "Glads mølle identifiseres som Sandakerveien 10A, tidligere Nedre Papirmølle, oppført i 1736."
+    },
+    {
+      "source": "Oslo byleksikon – Hjula Væverier",
+      "url": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+      "finding": "Glads mølle ble senere del av Hjula, men er et eget fysisk bygg på motsatt side av Akerselva fra Hjulas hovedanlegg. Dette skiller kandidaten fra eksisterende canonical ovre_foss."
+    }
+  ],
+  "coordinateCandidate": {
+    "status": "verified_candidate",
+    "sourceProvider": "official_address",
+    "sourceName": "Geonorge Adresser API v1",
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Sandakerveien%2010A%20Oslo",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16161:10A",
+    "lat": 59.931850362845985,
+    "lon": 10.757873019733754,
+    "r": 60,
+    "locatorType": "building",
+    "geocodeAccuracy": "rooftop",
+    "coordRole": "display_marker",
+    "coordType": "address_point",
+    "address": {
+      "street": "Sandakerveien",
+      "number": "10A",
+      "postcode": "0473",
+      "city": "Oslo",
+      "country": "NO"
+    }
+  },
+  "duplicateAndOverlapDecision": {
+    "canonicalNameDuplicateFound": false,
+    "addressDuplicateFound": false,
+    "existingRelatedPlace": "ovre_foss",
+    "relationship": "distinct physical building; Glads mølle is not Hjula Væveriers existing canonical anchor",
+    "placeIdDecision": "preserve sagene_kvernhus for existing relations, including Harald Aars, while correcting the visible identity"
+  },
+  "conclusion": "Avgrens sagene_kvernhus til det konkrete bevarte bygget Glads mølle (Nedre Papirmølle). Bruk det eksakte offisielle adressepunktet for Sandakerveien 10A. Behold den bredere Sagene-industrihistorien som kontekst, ikke som områdegeometri."
+}
