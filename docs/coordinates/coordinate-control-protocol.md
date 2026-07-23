@@ -735,6 +735,10 @@ Batch 166 (2026-07-23) løser den repo-syntetiske identiteten «Trosterud friomr
 
 Batch 167 (2026-07-23) pensjonerer den repo-syntetiske identiteten «Furuset–Haugerud skogbelte» og modellerer recorden som det dokumenterte friområdet Haugerudparken. OSM har ingen samlet eksakt navngitt parkpolygon som kan brukes som falsk yttergrense. I stedet identifiseres ett kildebeskrevet internt anker: Oslo kommune dokumenterer en ubelyst sykkelbane bygget som grusbane, og bounded live OSM-research finner nøyaktig én særskilt match, way 643537729 (leisure=track, cycling=pump_track, sport=bmx, surface=fine_gravel). Canonical lat/lon er lengdemidtpunktet langs denne fresh geometrien. Ankeret representerer et dokumentert sted inne i parken, ikke parkens fulle areal eller geometriske sentrum; legacy-punkt og nearest/first-hit brukes ikke.
 
+| 168 | `lillomarka` | Lillomarka | verified_geometry | `osm-relation:5806405` |
+
+Batch 168 (2026-07-23) oppretter Lillomarka som ett bredt navngitt Marka- og skogsområde, ikke som et utfartssted eller en løypestart. Oslo kommune navngir Lillomarka som en egen del av Oslomarka og knytter Marka til friluftsliv, folkehelse og naturmangfold. Fresh exact-object lookup hard-gater OSM relation 5806405 som name=Lillomarka, category=place, type=woodland med arealgeometri. Canonical lat/lon er det geometriske representasjonspunktet for den eksakte relationen. Lilloseter, vann, stier og startpunkter brukes ikke som proxy; nearest/first-hit brukes ikke.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 411 verifiserte canonical Oslo-stedene.
