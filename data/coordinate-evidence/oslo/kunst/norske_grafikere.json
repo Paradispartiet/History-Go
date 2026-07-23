@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "norske_grafikere",
+  "placeFile": "data/places/kunst/oslo/places_kunst/norske_grafikere.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91091311290161,
+    "lon": 10.741742892068546,
+    "r": 55,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Tollbugata 24, 0157 Oslo. Norske Grafikere dokumenterer samme adresse som sitt galleri og har hatt dagens adresse siden 2002; punktet brukes som canonical display-marker for foreningen og galleriet som én varig kunstinstitusjon."
+  },
+  "identity": {
+    "currentName": "Galleri Norske Grafikere",
+    "resolvedIdentity": "Norske Grafikere som landsdekkende fagorganisasjon og kunstnerstyrt galleri i Tollbugata 24",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "canonical identitets- og nærhetskontroll",
+    "dokumentert institusjonell kontinuitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Tollbugata 24",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Tollbugata%2024%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17577:24",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Tollbugata 24 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Tollbugata 24, 0157 Oslo. Norske Grafikere dokumenterer samme adresse som sitt galleri og har hatt dagens adresse siden 2002; punktet brukes som canonical display-marker for foreningen og galleriet som én varig kunstinstitusjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Norske Grafikere – Om oss",
+      "sourceUrl": "https://norske-grafikere.no/norske-grafikere/om-oss/",
+      "sourceObjectId": "norske-grafikere:about",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Dokumenterer stiftelsen i 1919, galleriet fra 1972, flyttingen til Tollbugata 24 i 2002 og rollen som fagorganisasjon og kunnskapssenter.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og institusjonshistorisk kryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Norske Grafikere – Besøk oss",
+      "sourceUrl": "https://norske-grafikere.no/besok-oss/",
+      "sourceObjectId": "norske-grafikere:visit",
+      "sourceQuality": "official_site_identity",
+      "finding": "Dokumenterer det publikumsåpne galleriet og foreningens formidlingsrolle.",
+      "canVerifyCoordinate": false,
+      "reason": "Nåværende offentlig funksjon."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Tollbugata 24, 0157 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17577:24",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17577:24",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "norske-grafikere:about",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "norske-grafikere:visit",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91091311290161,
+      "lon": 10.741742892068546,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17577:24",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Tollbugata 24 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Tollbugata 24, 0157 Oslo. Norske Grafikere dokumenterer samme adresse som sitt galleri og har hatt dagens adresse siden 2002; punktet brukes som canonical display-marker for foreningen og galleriet som én varig kunstinstitusjon.",
+    "Nærmeste eksisterende canonical marker ved write-time var telegrafbygningen på 51.98 meter; ingen markør lå innen 3 meter."
+  ]
+}

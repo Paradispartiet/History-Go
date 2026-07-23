@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T20:02:34.253Z
+Generert: 2026-07-23T20:06:19.707Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -339,3 +339,4 @@ Generert: 2026-07-23T20:02:34.253Z
 | edvard_munchs_atelier_ekely | data/coordinate-evidence/oslo/kunst/edvard_munchs_atelier_ekely.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tegnerforbundet | data/coordinate-evidence/oslo/kunst/tegnerforbundet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | unge_kunstneres_samfund | data/coordinate-evidence/oslo/kunst/unge_kunstneres_samfund.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| norske_grafikere | data/coordinate-evidence/oslo/kunst/norske_grafikere.json | applied_to_place | do_not_change_coordinates_yet | OK |
