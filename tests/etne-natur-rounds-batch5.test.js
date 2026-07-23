@@ -1,0 +1,6 @@
+const fs=require('fs'),assert=require('assert');
+const paths={"etneelva":"data/places/natur/vestland/etneelva.json","krokavatnet_etneforkastningen":"data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json","terrasselandskapet_etne":"data/places/natur/vestland/etne/terrasselandskapet_etne.json"};
+const ids=Object.keys(paths);
+for(const id of ids){const p=JSON.parse(fs.readFileSync(paths[id],'utf8'))[0];assert.ok(p.tasks_profile.tasks.length>=4,id+' tasks');assert.ok(p.nature_profile.summary.length>=100,id+' nature');assert.ok(p.underbadge_ids.length>=4,id+' badges');assert.ok(p.training_profile.exercises.length>=3,id+' training');assert.ok(p.civication_store.length>=4,id+' civication');assert.ok(p.brands.length>=4,id+' brands');assert.ok(p.for_na.before&&p.for_na.now&&p.for_na.change,id+' for_na');assert.ok(!p.rounds&&!p.rundinger,id+' override');}
+const s=JSON.parse(fs.readFileSync('data/stories/stories_etne_natur_rounds_batch5.json','utf8')),l=JSON.parse(fs.readFileSync('data/leksikon/places/vestland/etne/natur/leksikon_etne_natur_rounds_batch5.json','utf8'));for(const id of ids){assert.ok(s.some(x=>x.place_id===id&&x.story.length>=900),id+' story');const a=l.find(x=>x.place_id===id);assert.ok(a&&a.wikiText.length>=5&&a.facts.length>=10,id+' leksikon');}
+console.log('Etne nature rounds batch 5 OK');
