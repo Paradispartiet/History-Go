@@ -1,0 +1,566 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "hoyland_gravhaug_etne",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1091,
+    "selection_sha256": "e66fc3f3f93d798661c496feb7c860a3a67be23041d487530c945b560364b306",
+    "category_id": "historie",
+    "target_id": "hoyland_gravhaug_etne"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 16370,
+      "sha256": "f49bdb526d27d99bedcc8a79977aaec9d531bf7cdca94175e8217fa522536e44",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 323744,
+      "sha256": "455b9ca591ac33e7c5ca69912692780de99d4b7d109d362a6303613f7ef54f4d",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 64833,
+      "sha256": "fdd3eef114c6578d8fa357e4eae1bd9ed21a0208e863e9ac809a9bc92bbc3e15",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 26040,
+      "sha256": "cc7b56cd47f7faa92cfde6fe25b725f3fdbc9cd6e1b9615ba8e5303df23ca3b3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 10420,
+      "sha256": "f64a00bd951ae44ea19d4d2fba3628bfaf16b6688c21494c90fd59bbcb91d5f1",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 3642,
+      "sha256": "a0b22f8e1091c459b700b3782b9841323c8cfc3dac1e8c92e416dc01c2d6ca04",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/hoyland_gravhaug_etne.json",
+      "bytes": 12174,
+      "sha256": "98168bd48317dc704b84e927136b2d03b71a82a2dcb25466784082a751d37123"
+    },
+    "target": {
+      "path": "data/places/historie/vestland/etne/hoyland_gravhaug_etne.json",
+      "bytes": 7059,
+      "sha256": "4fa609cb43a87c9e76d583bbcfd75ff53e1e6434d23b5d1f5bf364993aa47aca"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 939,
+      "selection_sha256": "7e2a40c0ee416cab1f64357772743da630a7a069cab922b5a4cf16c034213127"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 359,
+        "selection_sha256": "82a6cd285a889a585885e7762a7dcf37a6ffef9bebfe193c0fd65a5fdef7031f"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_etne_historie_rounds_batch6.json",
+        "matches": 1,
+        "selection_bytes": 1940,
+        "selection_sha256": "915195847b540e01930670ebbba629714e6235f45b65bf15f697cb86b62bc523"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+  "source_registry": {
+    "place_record_hoyland": {
+      "url": "https://github.com/Paradispartiet/History-Go/blob/main/data/places/historie/vestland/etne/hoyland_gravhaug_etne.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Brukt for markøromfanget, kulturminne-ID 90156-1, den verifiserte plasseringa og den redaksjonelle avgrensinga mellom eldre haugform og seinare jordfylling."
+    },
+    "b2find_hoyland": {
+      "url": "https://b2find.eudat.eu/dataset/1ff7596a-1b81-5b64-9244-85993e071426",
+      "source_type": "official_archaeological_metadata",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Per Fett si eldre skildring av plassering, mål, materiale, torvdekke og kantskade, og for den seinare enkeltminneskildringa av bruk 3, køyrebrua, jordfyllinga, dei svake konturane og formuleringa «godt kan vera»."
+    },
+    "etne_archaeological_register": {
+      "url": "https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf",
+      "source_type": "municipal_archaeological_register",
+      "review_status": "reviewed",
+      "review_note": "Brukt for at 90156-1 er registrert på Høyland som «Høyland - Fetts fk. 3» med opphavleg funksjon gravminne."
+    }
+  },
+  "source_review_status": "reviewed",
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 12,
+      "emner": 45,
+      "topic_hooks": 15,
+      "methods": 12
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_kilder_taushet_blindsoner",
+        "title": "Kilder, taushet og blindsoner",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_historiebruk_minne",
+        "title": "Historiebruk og minnekultur",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kilder_taushet_blindsoner",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_for_etter_historisk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Etne kommune fører Høyland-lokaliteten 90156-1 som gravminne.",
+      "source_ids": [
+        "b2find_hoyland",
+        "etne_archaeological_register"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Per Fett oppgav eit tverrmål på om lag 10 meter for Høyland-haugen.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Steinen i haugen hadde eit tynt torvdekke i Per Fett si skildring.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Per Fett oppgav ei høgd på 1,25 meter for Høyland-haugen.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den eldre skildringa seier at haugen var bygd av stein.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Per Fett registrerte litt skade i kantane på haugen.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Dei eldre måla og materialopplysningane kjem frå Per Fett si skildring, ikkje frå den seinare enkeltminneskildringa.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Per Fett plasserte haugen like framfor køyrebrua til låven.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den seinare enkeltminneskildringa plasserer haugen under køyrebrua opp til låven på bruk 3.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den seinare skildringa seier at det i dag er lite synlege konturar av haugen.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_13",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den eldre haugforma og den seinare jordfyllinga ligg så tett saman at den opphavlege avgrensinga ikkje lenger kan lesast sikkert i terrenget.",
+      "source_ids": [
+        "place_record_hoyland",
+        "b2find_hoyland"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_11",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Køyrebrua blir skildra som ei jordfylling.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_12",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den seinare kjelda seier at jordfyllinga «godt kan vera» haugen Fett nemner.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kjeldene viser ei endring frå ein målt og synleg haug framfor brua til eit lite synleg og usikkert spor i eller under jordfyllinga.",
+      "source_ids": [
+        "place_record_hoyland",
+        "b2find_hoyland"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_18",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Formuleringa «godt kan vera» er eit kjeldeatterhald som markerer ei mogleg, men ikkje sikker kopling.",
+      "source_ids": [
+        "b2find_hoyland"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_kildekritikk"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_15",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Saman dokumenterer kjeldene ei eldre målt haugform og eit seinare usikkert terrengspor, ikkje eit sikkert intakt gravkammer under brua.",
+      "source_ids": [
+        "place_record_hoyland",
+        "b2find_hoyland"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kilder_taushet_blindsoner"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Dersom jordfyllinga inneheld den eldre haugen, har ein del av gravminnet fått ein seinare praktisk funksjon i gardsdrifta.",
+      "source_ids": [
+        "place_record_hoyland",
+        "b2find_hoyland"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_16",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Kjeldene oppgir ikkje ei sikker førhistorisk datering eller identiteten til den gravlagde.",
+      "source_ids": [
+        "b2find_hoyland",
+        "etne_archaeological_register"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kilder_taushet_blindsoner"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ei historisk før/etter-analyse av Høyland må samanlikne Per Fett si målsette haugskildring med den seinare tilstanden utan å gjere jordfyllinga til sikkert same struktur.",
+      "source_ids": [
+        "place_record_hoyland",
+        "b2find_hoyland"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_for_etter_historisk"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Marc Bloch si kjeldekritiske tilnærming skjerpar Høyland-analysen ved å spørje om den seinare skildringa beviser identitet eller berre uttrykkjer ei mogleg kopling.",
+      "source_ids": [
+        "place_record_hoyland",
+        "b2find_hoyland"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "guidance_basis": [
+        "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "thinker_id": "marc_bloch",
+      "work": "The Historian's Craft"
+    },
+    {
+      "claim_id": "claim_hoyland_gravhaug_etne_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ei presis sporlesning kombinerer dei eldre måla og materialopplysningane med dagens terreng og den seinare kjelda sitt atterhald.",
+      "source_ids": [
+        "place_record_hoyland",
+        "b2find_hoyland"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_spor_materialitet",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_sporlesning"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_hoyland_gravmiljoet",
+      "source_file": "data/relations.json",
+      "summary": "Eldre mål og køyrebrua viser fleire tidslag, men identiteten til menneska bak er ukjend."
+    },
+    {
+      "type": "story",
+      "id": "st_hoyland_haugen_under_koyrebrua",
+      "source_file": "data/stories/stories_etne_historie_rounds_batch6.json",
+      "summary": "Eldre mål og ei seinare køyrebru viser korleis gravhaugen vart bygd inn i det aktive gardstunet."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_hoyland_gravhaug_etne_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_hoyland_gravhaug_etne_01",
+        "claim_hoyland_gravhaug_etne_02",
+        "claim_hoyland_gravhaug_etne_03",
+        "claim_hoyland_gravhaug_etne_04",
+        "claim_hoyland_gravhaug_etne_05",
+        "claim_hoyland_gravhaug_etne_06",
+        "claim_hoyland_gravhaug_etne_07"
+      ]
+    },
+    {
+      "set_id": "historie_hoyland_gravhaug_etne_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_hoyland_gravhaug_etne_08",
+        "claim_hoyland_gravhaug_etne_09",
+        "claim_hoyland_gravhaug_etne_10",
+        "claim_hoyland_gravhaug_etne_13",
+        "claim_hoyland_gravhaug_etne_11",
+        "claim_hoyland_gravhaug_etne_12",
+        "claim_hoyland_gravhaug_etne_14"
+      ]
+    },
+    {
+      "set_id": "historie_hoyland_gravhaug_etne_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_hoyland_gravhaug_etne_18",
+        "claim_hoyland_gravhaug_etne_15",
+        "claim_hoyland_gravhaug_etne_17",
+        "claim_hoyland_gravhaug_etne_16",
+        "claim_hoyland_gravhaug_etne_19",
+        "claim_hoyland_gravhaug_etne_20",
+        "claim_hoyland_gravhaug_etne_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}
