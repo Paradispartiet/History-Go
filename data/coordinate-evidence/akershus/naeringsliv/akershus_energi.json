@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "akershus_energi",
+  "placeFile": "data/places/naeringsliv/akershus/akershus_energipark.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.97151165737936,
+    "lon": 11.072630258843615,
+    "r": 100,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Rolf Olsens vei 50, 2007 Kjeller. Akershus Energis egen omtale dokumenterer Akershus EnergiPark som det fysiske fjernvarmeanlegget som åpnet i 2011. Punktet brukes som canonical display-marker for energiparken; det er ikke konsernets kontoradresse i Brogata og ikke den tidligere udokumenterte Oslo-markøren."
+  },
+  "identity": {
+    "currentName": "Akershus EnergiPark",
+    "resolvedIdentity": "Akershus EnergiPark, det fysiske fjernvarmeanlegget på Rolf Olsens vei 50 på Kjeller",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-recorden het Akershus Energi Varme og var plassert på en udokumentert Oslo-koordinat som ikke representerte det identifiserte fysiske anlegget.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt fysisk anleggsidentitet",
+    "offisiell adressekoordinat",
+    "geografisk korrigering fra Oslo til Lillestrøm"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Rolf Olsens vei 50",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Rolf%20Olsens%20vei%2050%202007%20Kjeller",
+      "sourceObjectId": "geonorge-adresser-v1:3205:11500:50",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Rolf Olsens vei 50, 2007 Kjeller i Lillestrøm kommune.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Rolf Olsens vei 50, 2007 Kjeller. Akershus Energis egen omtale dokumenterer Akershus EnergiPark som det fysiske fjernvarmeanlegget som åpnet i 2011. Punktet brukes som canonical display-marker for energiparken; det er ikke konsernets kontoradresse i Brogata og ikke den tidligere udokumenterte Oslo-markøren."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Akershus Energi – Akershus EnergiPark",
+      "sourceUrl": "https://akershusenergi.no/varmesentraler/lillestrom/",
+      "sourceObjectId": "akershus-energi:energipark-lillestrom-current",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Akershus Energis egen anleggsside identifiserer Akershus EnergiPark som fjernvarmeanlegget som åpnet i Lillestrøm i 2011 og beskriver anleggets funksjon i fjernvarmenettet.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer fysisk institusjonsidentitet og anleggets funksjon; Geonorge brukes som koordinatkilde."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Rolf Olsens vei 50, 2007 Kjeller",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:11500:50",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:11500:50",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "akershus-energi:energipark-lillestrom-current",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.97151165737936,
+      "lon": 11.072630258843615,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:3205:11500:50",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical-recorden er flyttet til Akershus og forankret på det eksakte offisielle adressepunktet for energiparken."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Rolf Olsens vei 50, 2007 Kjeller. Akershus Energis egen omtale dokumenterer Akershus EnergiPark som det fysiske fjernvarmeanlegget som åpnet i 2011. Punktet brukes som canonical display-marker for energiparken; det er ikke konsernets kontoradresse i Brogata og ikke den tidligere udokumenterte Oslo-markøren.",
+    "Nærmeste andre canonical marker ved write-time var kjeller_flyplass på 1891.63 meter; ingen markør lå innen 3 meter.",
+    "Legacy-koordinaten 59.947, 10.8355 er pensjonert som udokumentert og geografisk feil for den løste identiteten."
+  ]
+}

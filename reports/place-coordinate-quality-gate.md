@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T20:49:02.591Z
+Generert: 2026-07-23T21:28:25.476Z
 
 ## Oppsummering
-- Aktive filer validert: **687**
-- Antall steder validert: **1290**
+- Aktive filer validert: **688**
+- Antall steder validert: **1289**
 - Harde feil: **0**
-- Varsler: **509**
-- Coordinate review candidates: **775** signaler fordelt på **647** steder
+- Varsler: **507**
+- Coordinate review candidates: **773** signaler fordelt på **646** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -705,6 +705,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/ram_galleri.json
 - data/places/kunst/oslo/places_kunst/galleri_schaeffers_gate_5.json
 - data/places/kunst/oslo/places_kunst/grafill.json
+- data/places/naeringsliv/akershus/akershus_energipark.json
 
 ## Harde feil
 - Ingen
@@ -712,7 +713,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 ## Varsler
 - data/places/by/oslo/places_by.json#gronland_basarene: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
-- data/places/by/oslo/places_by.json#ring_3: coordinate_regression_risk (3366 m fra tidligere semantic_anchor)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
@@ -965,7 +965,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv.json#jernbaneverkstedet_lodalen: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#grunnlovsbygget_bankplassen: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#fornebu_teknologipark: stort område uten coordNote/coordStatus
-- data/places/naeringsliv/oslo/places_naeringsliv.json#akershus_energi: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/oslo/places_naeringsliv.json#schous_bryggeri: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#ringnes_bryggeri: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: coordStatus=verified uten coordPrecisionM
@@ -1222,28 +1221,21 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 773 signaler fordelt på 646 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordinate_regression_risk | 1 |
 | coordStatus=verified uten coordPrecisionM | 220 |
 | lineært sted uten anchors | 81 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
-| lav koordinatpresisjon (<4 desimaler) | 77 |
+| lav koordinatpresisjon (<4 desimaler) | 76 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
-
-### coordinate_regression_risk (1)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.952359965835846 | 10.74918431139814 | 500 | Flyttet ~3366 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (220)
 
@@ -1633,7 +1625,7 @@ Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandi
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
-### lav koordinatpresisjon (<4 desimaler) (77)
+### lav koordinatpresisjon (<4 desimaler) (76)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1663,7 +1655,6 @@ Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandi
 | stamford_bridge_battlefield | Stamford Bridge battlefield | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 53.989 | -0.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | jelling_kongsgard | Jelling kongsgård og monumentområde | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 55.756 | 9.419 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | orkney_birsay | Brough of Birsay / Orknøyene | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.136 | -3.322 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| akershus_energi | Akershus Energi Varme | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.947 | 10.8355 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelva_hovedsteder | Alnaelva | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.9325 | 10.833 | 500 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | tjernsmyr_salamanderlokalitet | Tjernsmyr salamanderlokalitet | natur | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json | 59.911 | 10.62714 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
