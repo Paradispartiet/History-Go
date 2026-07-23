@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-07-23T16:24:49.075Z",
+  "batch": 166,
+  "targetId": "bantjern_salamanderlokalitet",
+  "action": "retired_private_proxy",
+  "disabledPlaceIdsAdded": [
+    "bantjern_salamanderlokalitet"
+  ],
+  "civicationMappingRemoved": "map_bantjern_salamanderlokalitet",
+  "nearbyReferencesRemoved": [
+    {
+      "placeId": "maerradalen",
+      "splitFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder/maerradalen.json",
+      "before": [
+        "bantjern_salamanderlokalitet",
+        "bygdoy_natur",
+        "maridalsvannet"
+      ],
+      "after": [
+        "bygdoy_natur",
+        "maridalsvannet"
+      ]
+    },
+    {
+      "placeId": "maridalsvannet",
+      "splitFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder/maridalsvannet.json",
+      "before": [
+        "frysjadammen",
+        "akerselva",
+        "bantjern_salamanderlokalitet"
+      ],
+      "after": [
+        "frysjadammen",
+        "akerselva"
+      ]
+    },
+    {
+      "placeId": "blindern_forskningsparken_salamanderdam",
+      "splitFile": "data/places/natur/oslo/places_oslo_natur_salamanderdammer/blindern_forskningsparken_salamanderdam.json",
+      "before": [
+        "bygdoy_kongsgard_salamanderdam",
+        "bantjern_salamanderlokalitet",
+        "tjernsmyr_salamanderlokalitet"
+      ],
+      "after": [
+        "bygdoy_kongsgard_salamanderdam",
+        "tjernsmyr_salamanderlokalitet"
+      ]
+    },
+    {
+      "placeId": "bygdoy_kongsgard_salamanderdam",
+      "splitFile": "data/places/natur/oslo/places_oslo_natur_salamanderdammer/bygdoy_kongsgard_salamanderdam.json",
+      "before": [
+        "bantjern_salamanderlokalitet",
+        "tjernsmyr_salamanderlokalitet",
+        "blindern_forskningsparken_salamanderdam"
+      ],
+      "after": [
+        "tjernsmyr_salamanderlokalitet",
+        "blindern_forskningsparken_salamanderdam"
+      ]
+    },
+    {
+      "placeId": "tjernsmyr_salamanderlokalitet",
+      "splitFile": "data/places/natur/oslo/places_oslo_natur_salamanderdammer/tjernsmyr_salamanderlokalitet.json",
+      "before": [
+        "bygdoy_kongsgard_salamanderdam",
+        "bantjern_salamanderlokalitet",
+        "blindern_forskningsparken_salamanderdam"
+      ],
+      "after": [
+        "bygdoy_kongsgard_salamanderdam",
+        "blindern_forskningsparken_salamanderdam"
+      ]
+    }
+  ],
+  "sourceRecordPreserved": "data/places/natur/oslo/places_oslo_natur_salamanderdammer/bantjern_salamanderlokalitet.json",
+  "coordinatePromotionPerformed": false,
+  "reason": "The documented salamander pond is private, while the active coordinate was only a public near-anchor at the separate Båntjern lake. The proxy cannot be promoted to verified geometry and a precise private habitat coordinate is not an appropriate History Go destination."
+}
