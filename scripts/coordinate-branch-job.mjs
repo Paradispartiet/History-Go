@@ -10,48 +10,118 @@ fs.mkdirSync(reportDir, { recursive: true });
 const streetWayId = 3235603;
 const southBridgeWayId = 457755404;
 const northBridgeWayId = 3236542;
-const endpoint = 'https://overpass-api.de/api/interpreter';
+const overpassEndpoints = [
+  'https://overpass-api.de/api/interpreter',
+  'https://overpass.kumi.systems/api/interpreter',
+];
 
-async function overpass(query, label) {
-  const response = await fetch(`${endpoint}?data=${encodeURIComponent(query)}`, {
-    headers: { Accept: 'application/json', 'User-Agent': 'History-Go-coordinate-audit/1.0' },
-  });
-  if (!response.ok) throw new Error(`${label}: HTTP ${response.status}`);
-  return response.json();
+function parseAttrs(text) {
+  const attrs = {};
+  for (const match of text.matchAll(/([A-Za-z0-9_:-]+)="([^"]*)"/g)) attrs[match[1]] = match[2];
+  return attrs;
 }
 
-const seedQuery = `[out:json][timeout:25];way(${streetWayId});way(${southBridgeWayId});way(${northBridgeWayId});out body geom;`;
-const seed = await overpass(seedQuery, 'seed ways');
-const seedWays = new Map((seed.elements || []).filter((e) => e.type === 'way').map((e) => [Number(e.id), e]));
-const street = seedWays.get(streetWayId);
-const southBridge = seedWays.get(southBridgeWayId);
-const northBridge = seedWays.get(northBridgeWayId);
-if (!street || !southBridge || !northBridge) throw new Error('Missing one or more seed ways');
-if (street?.tags?.name !== 'Fossveien') throw new Error('Street seed is not Fossveien');
+function parseWayXml(xml, expectedWayId) {
+  const nodes = new Map();
+  for (const match of xml.matchAll(/<node\b([^>]*)\/?\s*>/g)) {
+    const attrs = parseAttrs(match[1]);
+    if (attrs.id && attrs.lat != null && attrs.lon != null) {
+      nodes.set(Number(attrs.id), { id: Number(attrs.id), lat: Number(attrs.lat), lon: Number(attrs.lon) });
+    }
+  }
+  const wayMatch = [...xml.matchAll(/<way\b([^>]*)>([\s\S]*?)<\/way>/g)]
+    .map((match) => ({ attrs: parseAttrs(match[1]), body: match[2] }))
+    .find((row) => Number(row.attrs.id) === expectedWayId);
+  if (!wayMatch) throw new Error(`Primary OSM response missing way ${expectedWayId}`);
+  const nodeIds = [...wayMatch.body.matchAll(/<nd\b([^>]*)\/?\s*>/g)].map((match) => Number(parseAttrs(match[1]).ref));
+  const tags = {};
+  for (const match of wayMatch.body.matchAll(/<tag\b([^>]*)\/?\s*>/g)) {
+    const attrs = parseAttrs(match[1]);
+    if (attrs.k != null) tags[attrs.k] = attrs.v ?? '';
+  }
+  const geometry = nodeIds.map((id) => nodes.get(id)).filter(Boolean);
+  if (geometry.length !== nodeIds.length || geometry.length < 2) throw new Error(`Way ${expectedWayId} missing full node geometry`);
+  return { id: expectedWayId, nodes: nodeIds, tags, geometry };
+}
 
-const streetNodes = street.nodes || [];
-const streetEndpoints = [streetNodes[0], streetNodes.at(-1)];
-const streetGeometry = street.geometry || [];
-const streetEndpointCoords = [streetGeometry[0], streetGeometry.at(-1)];
+async function fetchWayFull(wayId, label) {
+  const url = `https://api.openstreetmap.org/api/0.6/way/${wayId}/full`;
+  let lastError = null;
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    try {
+      const response = await fetch(url, { headers: { Accept: 'application/xml', 'User-Agent': 'History-Go-coordinate-audit/1.0' } });
+      if (!response.ok) {
+        lastError = new Error(`${label}: HTTP ${response.status}`);
+      } else {
+        const xml = await response.text();
+        fs.writeFileSync(path.join(reportDir, `osm-way-${wayId}-full.xml`), xml);
+        return parseWayXml(xml, wayId);
+      }
+    } catch (error) {
+      lastError = error;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+  }
+  throw lastError || new Error(`${label}: primary OSM lookup failed`);
+}
+
+async function overpass(query, label) {
+  let lastError = null;
+  for (const endpoint of overpassEndpoints) {
+    try {
+      const response = await fetch(`${endpoint}?data=${encodeURIComponent(query)}`, {
+        headers: { Accept: 'application/json', 'User-Agent': 'History-Go-coordinate-audit/1.0' },
+      });
+      if (!response.ok) {
+        lastError = new Error(`${label}: ${endpoint} HTTP ${response.status}`);
+        continue;
+      }
+      return { endpoint, payload: await response.json() };
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error(`${label}: all Overpass endpoints failed`);
+}
+
+const [street, southBridge, northBridge] = await Promise.all([
+  fetchWayFull(streetWayId, 'Fossveien'),
+  fetchWayFull(southBridgeWayId, 'south candidate bridge'),
+  fetchWayFull(northBridgeWayId, 'north candidate bridge'),
+]);
+if (street.tags.name !== 'Fossveien') throw new Error(`Way ${streetWayId} is not Fossveien`);
+if (southBridge.tags.bridge !== 'yes' || northBridge.tags.bridge !== 'yes') throw new Error('Candidate bracket ways must remain bridge=yes');
+
+const streetEndpoints = [street.nodes[0], street.nodes.at(-1)];
+const streetEndpointCoords = [street.geometry[0], street.geometry.at(-1)];
 
 const graphQuery = `[out:json][timeout:35];(
-  way["highway"](around:350,${streetEndpointCoords[0].lat},${streetEndpointCoords[0].lon});
-  way["highway"](around:350,${streetEndpointCoords[1].lat},${streetEndpointCoords[1].lon});
+  way["highway"](around:400,${streetEndpointCoords[0].lat},${streetEndpointCoords[0].lon});
+  way["highway"](around:400,${streetEndpointCoords[1].lat},${streetEndpointCoords[1].lon});
 );out body geom;`;
-const graphPayload = await overpass(graphQuery, 'local highway graph');
-fs.writeFileSync(path.join(reportDir, 'endpoint-highway-graph.json'), `${JSON.stringify(graphPayload, null, 2)}\n`);
+const graphResult = await overpass(graphQuery, 'local highway graph');
+const graphPayload = graphResult.payload;
+fs.writeFileSync(path.join(reportDir, 'endpoint-highway-graph.json'), `${JSON.stringify({ endpoint: graphResult.endpoint, payload: graphPayload }, null, 2)}\n`);
 
-const ways = (graphPayload.elements || []).filter((e) => e.type === 'way' && Array.isArray(e.nodes));
+const ways = (graphPayload.elements || []).filter((element) => element.type === 'way' && Array.isArray(element.nodes));
+// Ensure the exact seed ways are present in the graph even if Overpass omitted one due to its radius geometry rules.
+for (const seed of [street, southBridge, northBridge]) {
+  if (!ways.some((way) => Number(way.id) === seed.id)) ways.push(seed);
+}
+
 const nodeToWays = new Map();
 const nodeCoords = new Map();
 for (const way of ways) {
   const geometry = way.geometry || [];
-  for (let i = 0; i < way.nodes.length; i += 1) {
-    const nodeId = Number(way.nodes[i]);
+  for (let index = 0; index < way.nodes.length; index += 1) {
+    const nodeId = Number(way.nodes[index]);
     if (!nodeToWays.has(nodeId)) nodeToWays.set(nodeId, []);
     nodeToWays.get(nodeId).push(way);
-    if (geometry[i]) nodeCoords.set(nodeId, geometry[i]);
+    if (geometry[index]) nodeCoords.set(nodeId, geometry[index]);
   }
+}
+for (const seed of [street, southBridge, northBridge]) {
+  for (let index = 0; index < seed.nodes.length; index += 1) nodeCoords.set(Number(seed.nodes[index]), seed.geometry[index]);
 }
 
 const toRad = (value) => value * Math.PI / 180;
@@ -65,32 +135,28 @@ function distance(a, b) {
   return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-function buildAdjacency() {
-  const adjacency = new Map();
-  const addEdge = (a, b, way) => {
-    if (!adjacency.has(a)) adjacency.set(a, []);
-    adjacency.get(a).push({ nodeId: b, wayId: way.id, wayName: way.tags?.name || null, highway: way.tags?.highway || null });
-  };
-  for (const way of ways) {
-    for (let i = 0; i < way.nodes.length - 1; i += 1) {
-      const a = Number(way.nodes[i]);
-      const b = Number(way.nodes[i + 1]);
-      addEdge(a, b, way);
-      addEdge(b, a, way);
-    }
+const adjacency = new Map();
+function addEdge(a, b, way) {
+  if (!adjacency.has(a)) adjacency.set(a, []);
+  adjacency.get(a).push({ nodeId: b, wayId: Number(way.id), wayName: way.tags?.name || null, highway: way.tags?.highway || null });
+}
+for (const way of ways) {
+  for (let index = 0; index < way.nodes.length - 1; index += 1) {
+    const a = Number(way.nodes[index]);
+    const b = Number(way.nodes[index + 1]);
+    addEdge(a, b, way);
+    addEdge(b, a, way);
   }
-  return adjacency;
 }
 
-const adjacency = buildAdjacency();
-function bfs(startNode, targetNodes, maxSteps = 30) {
+function bfs(startNode, targetNodes, maxEdges = 50) {
   const targets = new Set(targetNodes.map(Number));
   const queue = [{ nodeId: Number(startNode), path: [] }];
   const visited = new Set([Number(startNode)]);
   while (queue.length) {
     const current = queue.shift();
     if (targets.has(current.nodeId)) return current.path;
-    if (current.path.length >= maxSteps) continue;
+    if (current.path.length >= maxEdges) continue;
     for (const edge of adjacency.get(current.nodeId) || []) {
       if (visited.has(edge.nodeId)) continue;
       visited.add(edge.nodeId);
@@ -100,50 +166,50 @@ function bfs(startNode, targetNodes, maxSteps = 30) {
   return null;
 }
 
-const bridgeTargets = {
-  south: (southBridge.nodes || []).map(Number),
-  north: (northBridge.nodes || []).map(Number),
-};
-
-const endpointRows = streetEndpoints.map((nodeId, index) => ({
-  endpointIndex: index,
-  nodeId: Number(nodeId),
-  coordinate: streetEndpointCoords[index],
-  connectedWaysAtNode: (nodeToWays.get(Number(nodeId)) || []).map((way) => ({ id: way.id, name: way.tags?.name || null, highway: way.tags?.highway || null })),
-  pathToSouthBridge: bfs(nodeId, bridgeTargets.south),
-  pathToNorthBridge: bfs(nodeId, bridgeTargets.north),
-}));
-
-for (const row of endpointRows) {
-  for (const key of ['pathToSouthBridge', 'pathToNorthBridge']) {
-    const path = row[key];
-    if (!path) continue;
-    let lengthM = 0;
-    let prev = row.nodeId;
-    for (const edge of path) {
-      const a = nodeCoords.get(prev);
-      const b = nodeCoords.get(edge.nodeId);
-      if (a && b) lengthM += distance(a, b);
-      prev = edge.nodeId;
-    }
-    row[`${key}LengthM`] = Number(lengthM.toFixed(1));
+function summarizePath(startNode, path) {
+  if (!path) return null;
+  let lengthM = 0;
+  let previousNode = Number(startNode);
+  const waySequence = [];
+  for (const edge of path) {
+    const a = nodeCoords.get(previousNode);
+    const b = nodeCoords.get(edge.nodeId);
+    if (a && b) lengthM += distance(a, b);
+    const last = waySequence.at(-1);
+    if (!last || last.wayId !== edge.wayId) waySequence.push({ wayId: edge.wayId, wayName: edge.wayName, highway: edge.highway });
+    previousNode = edge.nodeId;
   }
+  return { edgeCount: path.length, lengthM: Number(lengthM.toFixed(1)), terminalNodeId: previousNode, waySequence };
 }
+
+const endpointRows = streetEndpoints.map((nodeId, index) => {
+  const southPath = bfs(nodeId, southBridge.nodes);
+  const northPath = bfs(nodeId, northBridge.nodes);
+  return {
+    endpointIndex: index,
+    nodeId: Number(nodeId),
+    coordinate: streetEndpointCoords[index],
+    connectedWaysAtNode: (nodeToWays.get(Number(nodeId)) || []).map((way) => ({ id: Number(way.id), name: way.tags?.name || null, highway: way.tags?.highway || null })),
+    pathToSouthBridge: summarizePath(nodeId, southPath),
+    pathToNorthBridge: summarizePath(nodeId, northPath),
+  };
+});
 
 const summary = {
   generatedAt: new Date().toISOString(),
+  graphEndpoint: graphResult.endpoint,
   street: {
     wayId: streetWayId,
-    name: street.tags?.name || null,
+    name: street.tags.name,
     endpointNodes: streetEndpoints,
     endpointCoords: streetEndpointCoords,
   },
   candidateBridges: {
-    south: { wayId: southBridgeWayId, tags: southBridge.tags || {}, nodes: southBridge.nodes || [], geometry: southBridge.geometry || [] },
-    north: { wayId: northBridgeWayId, tags: northBridge.tags || {}, nodes: northBridge.nodes || [], geometry: northBridge.geometry || [] },
+    south: { wayId: southBridgeWayId, tags: southBridge.tags, endpointNodes: [southBridge.nodes[0], southBridge.nodes.at(-1)] },
+    north: { wayId: northBridgeWayId, tags: northBridge.tags, endpointNodes: [northBridge.nodes[0], northBridge.nodes.at(-1)] },
   },
   endpointRows,
-  interpretationRule: 'A topological path only demonstrates network connectivity. It does not by itself authorize production; the connected path must also match the documented Fossveien endpoint identity and the intended local river scope.',
+  interpretationRule: 'A topological path demonstrates network connectivity only. Production still requires the connected bridge pair to match the documented Fossveien endpoint identity and intended local river scope; proximity alone is insufficient.',
 };
 
 fs.writeFileSync(path.join(reportDir, 'endpoint-bridge-topology.json'), `${JSON.stringify(summary, null, 2)}\n`);
