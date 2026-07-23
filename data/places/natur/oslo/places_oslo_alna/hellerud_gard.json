@@ -3,9 +3,9 @@
   "visual": {
     "designCode": "farm_estate_miniature"
   },
-  "name": "Hellerud gård",
-  "lat": 59.9295,
-  "lon": 10.8485,
+  "name": "Nedre Hellerud – historisk gårdssted",
+  "lat": 59.913209930064305,
+  "lon": 10.847479273804518,
   "r": 160,
   "category": "historie",
   "badge_refs": {
@@ -18,10 +18,13 @@
     "also": []
   },
   "year": null,
-  "desc": "Historisk gårdsnavn knyttet til Hellerud-området. Den eksisterende recorden har en uløst identitetskonflikt og er ikke sikkert koblet til ett bestemt bevart gårdsanlegg.",
+  "desc": "Historisk gårdssted for Nedre Hellerud, forankret i matrikkelen til gnr. 143 / bnr. 3 ved Hellerud gårdsvei 7.",
   "tags": [
     "gård",
-    "jordbruk"
+    "jordbruk",
+    "Nedre Hellerud",
+    "historisk gårdssted",
+    "matrikkel"
   ],
   "knagger": [
     "førbyen"
@@ -32,9 +35,9 @@
     "popup": "bilder/places/hellerud_gard_popup.JPG"
   },
   "links": {
-    "website": "",
+    "website": "https://oslobyleksikon.no/side/Hellerud%2C_Nordre",
     "wikipedia": "",
-    "map": ""
+    "map": "https://ws.geonorge.no/adresser/v1/sok?sok=Hellerud%20g%C3%A5rdsvei%207%20Oslo"
   },
   "connections_preview": [],
   "meta": {
@@ -43,17 +46,34 @@
     "source_note": "",
     "updated": "2026-01-09"
   },
-  "popupDesc": "Hellerud-navnet er knyttet til flere historiske gårdsbruk. Oslo byleksikon beskriver Øvre og Nedre Hellerud i området, mens den bevarte gården på Haugerudtunet 1 er Østre Haugerud gård – et annet gårdsnavn. Den eksisterende History Go-recorden hevdet et bevart Hellerud-gårdsanlegg, men kontrollen kan ikke dokumentere hvilket fysisk anlegg dette skulle være. Punktet beholdes derfor bare som legacy inntil riktig gård og fysisk identitet er avklart.",
+  "popupDesc": "Nedre Hellerud er ett av de historiske gårdsbrukene som oppstod etter delingen av Nordre Hellerud. History Go bruker Hellerud gårdsvei 7 som et kildebelagt anker for det historiske matrikkelstedet gnr. 143 / bnr. 3. Punktet dokumenterer hvor det historiske gårdsstedet er forankret i dagens matrikkel og adresseverk, men er ikke i seg selv bevis for at bygningen som står der i dag er den opprinnelige gårdsbygningen fra 1700-tallet.",
   "locatorType": "historic_site",
   "sourceProvider": "manual_research",
-  "sourceObjectId": "oslobyleksikon:hellerud-nordre:identity-conflict",
-  "geocodeAccuracy": "unknown",
-  "coordRole": "display_marker",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "farm_identity_unresolved",
-  "coordSourceId": "oslobyleksikon:hellerud-nordre:identity-conflict",
-  "coordSourceUrl": "https://oslobyleksikon.no/side/Hellerud%2C_Nordre",
-  "coordVerifiedAt": "2026-07-19",
-  "coordNote": "Recorden har en dokumentert identitetskonflikt. Nordre Hellerud omfatter historisk Øvre og Nedre Hellerud, mens det entydige Geonorge-punktet Haugerudtunet 1 gjelder den separate Østre Haugerud gård og kan ikke brukes som erstatning. Eksisterende lat/lon beholdes kun som legacy til riktig Hellerud-gård og fysisk hovedanker er identifisert."
+  "sourceObjectId": "history-go-research:nedre-hellerud-cadastral:143-3",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "historical_anchor",
+  "coordType": "cadastral_site_anchor",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Pinned Nedre Hellerud cadastral identity research + exact Geonorge Hellerud gårdsvei 7 match for gnr. 143 / bnr. 3",
+  "coordSourceId": "history-go-research:nedre-hellerud-cadastral:143-3",
+  "coordSourceUrl": "https://raw.githubusercontent.com/Paradispartiet/History-Go/bc778b5dc7e2cd9fd03927246e052a6b711c16be/reports/oslo-coordinate-control-batch-168-nedre-hellerud-cadastral-research/cadastral-summary.json",
+  "coordVerifiedAt": "2026-07-23",
+  "coordNote": "Batch 176 historical-site resolution: pinned research resolves the intended identity as Nedre Hellerud and the historical cadastral site as gnr. 143 / bnr. 3. Current Geonorge address Hellerud gårdsvei 7 matches that cadastral identity exactly and supplies the site anchor coordinate. Because this is a historical place, the canonical trust is manual_research / verified_historical_source / historical_anchor rather than treating the modern address as the sole historical proof. The marker anchors the historical cadastral farm site and does not claim that the present building is the original eighteenth-century farmhouse. Haugerudtunet 1, Tvetenveien 157 and the legacy point remain rejected proxies.",
+  "address": {
+    "street": "Hellerud gårdsvei",
+    "number": "7",
+    "postcode": "0671",
+    "city": "Oslo",
+    "country": "NO"
+  },
+  "anchors": [
+    {
+      "id": "nedre_hellerud_cadastral_site_143_3",
+      "name": "Nedre Hellerud – gnr. 143 / bnr. 3",
+      "type": "historical_anchor",
+      "lat": 59.913209930064305,
+      "lon": 10.847479273804518,
+      "r": 160
+    }
+  ]
 }
