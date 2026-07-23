@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fotogalleriet",
+  "placeFile": "data/places/kunst/oslo/places_kunst/fotogalleriet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.917455556790614,
+    "lon": 10.750260519179827,
+    "r": 55,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell Geonorge-adressekoordinat for Møllergata 34A, valgt blant Møllergata 34A–D ved hjelp av Fotogalleriets egen besøksides konkrete kartlenke som disambigueringsbevis. Kartlenkens koordinat brukes ikke som canonical kilde; den identifiserer bare hvilket offisielt Geonorge-adresseobjekt institusjonens egen kartlenke peker klart nærmest på."
+  },
+  "identity": {
+    "currentName": "Fotogalleriet",
+    "resolvedIdentity": "Fotogalleriet som egen ikke-kommersiell kunstinstitusjon for fotografi, kamerabasert kunst og visuell kultur i Møllergata 34",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "nåværende institusjonsidentitet og besøksadresse",
+    "offisiell Geonorge-adresseklynge for Møllergata 34A–D",
+    "institusjonens egen kartlenke som disambigueringsbevis",
+    "current-main duplicate gate immediately before production"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Møllergata 34A",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=M%C3%B8llergata%2034%200179%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:34A",
+      "sourceQuality": "official_address_disambiguated_by_institution_map_link",
+      "finding": "Møllergata 34A er det offisielle Geonorge-adresseobjektet som Fotogalleriets egen kartlenke peker entydig nærmest på.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell Geonorge-adressekoordinat for Møllergata 34A, valgt blant Møllergata 34A–D ved hjelp av Fotogalleriets egen besøksides konkrete kartlenke som disambigueringsbevis. Kartlenkens koordinat brukes ikke som canonical kilde; den identifiserer bare hvilket offisielt Geonorge-adresseobjekt institusjonens egen kartlenke peker klart nærmest på."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Fotogalleriet – official visit and institution pages",
+      "sourceUrl": "https://fotogalleriet.no/visit/",
+      "sourceObjectId": "fotogalleriet:official",
+      "sourceQuality": "official_institution_identity_and_disambiguation",
+      "finding": "Institusjonen publiserer Møllergata 34 som besøksadresse og lenker til et konkret kartpunkt; kartpunktet brukes bare til å velge blant offisielle Geonorge 34A–D-objekter.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og adresse-disambigueringskryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Møllergata 34A, 0179 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:34A",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:34A",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "fotogalleriet:official",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.917455556790614,
+      "lon": 10.750260519179827,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:34A",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Møllergata 34A Geonorge-punktet er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell Geonorge-adressekoordinat for Møllergata 34A, valgt blant Møllergata 34A–D ved hjelp av Fotogalleriets egen besøksides konkrete kartlenke som disambigueringsbevis. Kartlenkens koordinat brukes ikke som canonical kilde; den identifiserer bare hvilket offisielt Geonorge-adresseobjekt institusjonens egen kartlenke peker klart nærmest på.",
+    "Fotogalleriets egen kartlenke ble kun brukt til disambiguering; canonical koordinatkilde er Geonorge.",
+    "Merged gallery scope records no canonical identity match and no canonical place within 35 m of the site address cluster."
+  ]
+}
