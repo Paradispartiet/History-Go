@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 408 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 409 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -877,3 +877,7 @@ Batch 120 (2026-07-21) produserer `holmenkollen_skimuseum` som egen museumsident
 | 137 | `grusomhetens_teater` | Grusomhetens Teater | verified | `geonorge-adresser-v1:0301:12782:34` |
 
 Batch 137 (2026-07-21) oppretter tre fysisk avgrensede Scenekunst-steder. `centralteatret` og `grusomhetens_teater` bruker entydige Geonorge-adressepunkter etter address-first-policyen; Grusomhetens Teater deler bevisst adresseanker med Hausmania, men representerer en selvstendig teaterscene. `kloden_teater_pilotscenen` oppgir Kabelgata 31 som besøksadresse, men Geonorge returnerer ingen matrikkeladresse for nummer 31. Nærmeste adresse, Kabelgata 33, avvises som proxy. Etter dokumentert address-first-miss brukes derfor det eksakt navngitte OSM-punktet `osm-node:13243059793`, tagget `amenity=theatre` og `name=Kloden Teater - Pilotscenen`, som verified_geometry display-marker. Kloden-recorden gjelder dagens aktive Pilotscene og skal revurderes ved åpningen av det permanente teaterhuset.
+
+| 167 | `kunstnerforbundet` | Kunstnerforbundet | verified | `geonorge-adresser-v1:0301:13743:3` |
+
+Batch 167 (2026-07-23) produserer `kunstnerforbundet` etter den lukkede VisitOSLO gallery-priority scope-auditen. Institusjonen har ingen canonical identitetsduplikat eller markør innen 35 meter og bruker det eksakte Geonorge-adressepunktet for Kjeld Stubs gate 3.
