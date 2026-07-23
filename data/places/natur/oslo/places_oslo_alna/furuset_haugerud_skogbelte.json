@@ -1,27 +1,31 @@
 {
   "id": "furuset_haugerud_skogbelte",
-  "name": "Furuset–Haugerud skogbelte",
-  "lat": 59.9345,
-  "lon": 10.852,
-  "r": 300,
+  "name": "Haugerudparken",
+  "lat": 59.92010474562568,
+  "lon": 10.858999936198689,
+  "r": 220,
   "category": "natur",
   "badge_refs": {
     "primary": "natur",
     "subs": [
       "skog",
-      "randnatur",
-      "bygrense"
+      "park",
+      "friluftsliv"
     ],
     "also": []
   },
-  "year": null,
-  "desc": "Sammenhengende skog som markerer overgangen mellom bolig og mark.",
+  "year": 2019,
+  "desc": "Kommunalt friområde på Haugerud med skog, stier, sitteplasser, griller og aktivitetsområder, sikret for allmenn friluftsbruk.",
   "tags": [
     "skog",
-    "randnatur"
+    "haugerudparken",
+    "park",
+    "friluftsliv",
+    "sykkelbane"
   ],
   "knagger": [
-    "bygrense"
+    "nærnatur",
+    "aktivitet"
   ],
   "images": {
     "map": "bilder/places/furuset_haugerud_skogbelte.JPG",
@@ -38,27 +42,51 @@
     "status": "active",
     "priority": 55,
     "source_note": "",
-    "updated": "2026-01-09"
+    "updated": "2026-07-23"
   },
-  "popupDesc": "Skogbeltet mellom Furuset og Haugerud danner en sammenhengende grønn korridor mellom boligområdene. Vegetasjon og terreng binder sammen stier, snarveier og oppholdsflater som brukes gjennom hele året. Sonen demper overgangen mellom bebyggelse og større naturarealer lenger øst. Stedet viser hvordan bynatur kan fungere både som ferdselsåre og lokalt pusterom.",
+  "popupDesc": "Haugerudparken er et kommunalt friområde på Haugerud som kombinerer skog og nærnatur med stier, oppholdssteder og aktivitet. Parken ble utviklet trinnvis med vegetasjonsarbeid, hovedgangvei, tverrstier, sitteområder, griller og bålpanne, og området ble statlig sikret for friluftslivsformål. Senere kom nye aktivitetstiltak, blant annet en ubelyst sykkelbane bygget som grusbane.\n\nHistory Go-markøren bruker denne fysisk kartlagte sykkelbanen som et internt parkanker. Punktet representerer derfor et dokumentert sted inne i Haugerudparken, ikke en påstand om parkens geometriske sentrum eller fulle yttergrense.",
   "underbadge_ids": [
     "skog",
-    "gronn_korridor",
-    "tursti"
+    "tursti",
+    "friluftsliv"
   ],
   "visual": {
     "designCode": "park_miniature"
   },
   "locatorType": "natural_area",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "oslo-kommune:alna-grontdrag-unresolved",
-  "geocodeAccuracy": "unknown",
-  "coordRole": "display_marker",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "named_area_identity_unresolved",
-  "coordSourceId": "oslo-kommune:alna-grontdrag-unresolved",
-  "coordSourceUrl": "https://www.oslo.kommune.no/fag-og-utviklingsprosjekter/omradesatsingenes-prosjekter/omradeloft-trosterud-og-haugerud-2017-2026/",
-  "coordVerifiedAt": "2026-07-19",
-  "coordNote": "Kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Furuset–Haugerud skogbelte». Navnet beskriver et bredt grønt overgangsområde, og ett legacy-punkt kan ikke verifisere utstrekningen. Recorden må kobles til dokumentert grøntdrag-/skoggeometri eller erstattes med et konkret navngitt naturområde før koordinaten kan godkjennes."
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:643537729",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "coordType": "source_defined_internal_park_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 643537729 – source-identified internal gravel bicycle track in Haugerudparken",
+  "coordSourceId": "osm-way:643537729",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/643537729",
+  "coordVerifiedAt": "2026-07-23",
+  "coordNote": "Batch 167 pensjonerer den repo-syntetiske identiteten «Furuset–Haugerud skogbelte» og erstatter den med det dokumenterte friområdet Haugerudparken, mens placeId beholdes for kompatibilitet. Oslo kommune dokumenterer parken som kommunalt regulert friområde, statlig sikret for friluftsliv, med skog, stier og en ny sykkelbane som skal være gruslagt og uten belysning. Bounded research fant mange ordinære sykkelveier, men nøyaktig ett særskilt OSM-objekt som matcher denne kildebeskrivelsen: way 643537729 med leisure=track, cycling=pump_track, sport=bmx og surface=fine_gravel. Fresh OSM-geometri hard-gates objektet, og canonical lat/lon er det deterministiske lengdemidtpunktet langs banen (129.0 m). Ankeret ligger 160.1 m sør for fresh Haugerud kirke way 154762904. Sykkelbanen brukes eksplisitt som internt parkanker, ikke som parkgrense eller geometrisk sentrum. Legacy-punktet og nearest/first-hit brukes ikke.",
+  "identityScope": {
+    "method": "official_park_identity_plus_unique_source_defined_internal_feature",
+    "correctedLegacyName": "Furuset–Haugerud skogbelte",
+    "resolvedIdentity": "Haugerudparken",
+    "stablePlaceIdRetained": true,
+    "internalAnchor": {
+      "sourceObjectId": "osm-way:643537729",
+      "role": "documented_internal_gravel_bicycle_track",
+      "lengthM": 129,
+      "representsFullParkBoundary": false
+    },
+    "topologyCrosscheck": {
+      "sourceObjectId": "osm-way:154762904",
+      "name": "Haugerud kirke",
+      "relation": "internal anchor south of church",
+      "distanceM": 160.1
+    },
+    "excludedProxies": [
+      "legacy coordinate",
+      "unnamed nearby wood polygons",
+      "three rejected leisure=park polygons",
+      "nearest/first-hit candidate"
+    ]
+  }
 }
