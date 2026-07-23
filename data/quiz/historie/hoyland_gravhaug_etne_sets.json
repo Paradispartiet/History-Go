@@ -1,44 +1,72 @@
 {
   "targetId": "hoyland_gravhaug_etne",
   "categoryId": "historie",
-  "generator_version": "quiz_standard_canonical_v2_manual_source_based_source_sized",
-  "generated_from": [
-    "data/places/historie/vestland/etne/hoyland_gravhaug_etne.json",
-    "data/stories/stories_etne_historie_rounds_batch6.json",
-    "reports/etne-historie-batch-6-research.md",
-    "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md"
-  ],
   "sources": {
+    "place_record_hoyland": "https://github.com/Paradispartiet/History-Go/blob/main/data/places/historie/vestland/etne/hoyland_gravhaug_etne.json",
     "b2find_hoyland": "https://b2find.eudat.eu/dataset/1ff7596a-1b81-5b64-9244-85993e071426",
-    "etne_register": "https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf"
+    "etne_archaeological_register": "https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf"
   },
-  "profile_snapshot": {
-    "place_type": "gravhaug",
-    "subtype": "steinbygd_gravhaug_i_aktivt_gardstun",
-    "signature_features": [
-      "ti meter i tverrmål og 1,25 meter høg i eldre registrering",
-      "steinbygd med tynt torvdekke og noko kantskade",
-      "seinare knytt med atterhald til jordfyllinga under køyrebrua"
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.0",
+    "source_brief": "data/quiz/production_briefs/historie/hoyland_gravhaug_etne.json",
+    "context_artifact": "data/quiz/production_context/historie/hoyland_gravhaug_etne.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
     ],
-    "primary_angles": [
-      "gravskikk",
-      "gardsdrift",
-      "bevaringshistorie",
-      "kildekritikk"
+    "pensum_module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
     ],
-    "avoid_angles": [
-      "framstille jordfyllinga som sikkert identisk med heile den eldre haugen",
-      "presentere køyrebrua som eit arkeologisk dokumentert snitt",
-      "gi gravminnet ei sikker eksakt datering eller identitet"
-    ]
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kilder_taushet_blindsoner",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_for_etter_historisk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
   },
   "sets": [
     {
       "set_id": "historie_hoyland_gravhaug_etne_set_1",
       "level": 1,
       "order": 1,
+      "phase": "opening",
       "xp": 50,
-      "title": "Den eldre haugen ved låven",
+      "title": "Den målsette steinhaugen",
       "questions": [
         {
           "id": "hoyland_gravhaug_etne_quiz_1",
@@ -47,56 +75,33 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kva slags kulturminne registrerte Per Fett på Høyland?",
+          "question": "Kva opphavleg funksjon er kulturminne 90156-1 på Høyland registrert med?",
           "options": [
-            "Ein steinbygd gravhaug",
-            "Ein tørrmura bygdeborg",
-            "Ein steinring på ein bergkoll"
+            "Gravminne",
+            "Busetjingsspor",
+            "Forsvarsanlegg"
           ],
-          "answer": "Ein steinbygd gravhaug",
+          "answer": "Gravminne",
           "answerIndex": 0,
-          "knowledge": "Per Fett registrerte ein gravhaug bygd av stein i gardstunet på Høyland.",
+          "knowledge": "Kommuneregisteret fører lokaliteten som «Høyland – Fetts fk. 3» og oppgir gravminne som opphavleg funksjon. Nummeret bind staden til den registrerte enkeltminneposten.",
           "difficulty": 1,
           "question_type": "fact",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_spor_materialitet",
-          "related_emner": [],
           "source": [
             "b2find_hoyland",
-            "etne_register"
+            "etne_archaeological_register"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Den eldre registreringa klassifiserer sporet som ein steinbygd gravhaug.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "gravhaug",
-            "steinbygd monument"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "kulturminnetype",
-            "gravhaug"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_per_fett_registrerte_ein_fb86e35eae",
+          "source_origin": "external",
+          "claim_basis": "Etne kommune fører Høyland-lokaliteten 90156-1 som gravminne.",
+          "claim_id": "claim_hoyland_gravhaug_etne_01",
+          "primary_knowledge_unit_id": "ku_historie_kommuneregisteret_f_rer__c311d3d71e",
           "knowledge_unit_ids": [
-            "ku_historie_per_fett_registrerte_ein_fb86e35eae"
+            "ku_historie_kommuneregisteret_f_rer__c311d3d71e",
+            "ku_historie_3_og_oppgir_gravminne_so_779efe3b8f",
+            "ku_historie_nummeret_bind_staden_til_93805ee118"
           ],
-          "concept_ids": [
-            "co_historie_gravhaug_3647ef5e61",
-            "co_historie_steinbygd_monument_ad8da8aa26"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -108,58 +113,31 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kva mål oppgav Per Fett for Høyland-haugen?",
+          "question": "Kva tverrmål oppgav Per Fett for Høyland-haugen?",
           "options": [
-            "Om lag 10 meter i tverrmål og 1,25 meter høg",
-            "Om lag 5 meter i tverrmål og 0,25 meter høg",
-            "Om lag 20 meter i tverrmål og 3 meter høg"
+            "Om lag 6 meter",
+            "Om lag 10 meter",
+            "Om lag 15 meter"
           ],
-          "answer": "Om lag 10 meter i tverrmål og 1,25 meter høg",
-          "answerIndex": 0,
-          "knowledge": "Den eldre registreringa oppgir eit tverrmål på om lag ti meter og ei høgd på 1,25 meter.",
+          "answer": "Om lag 10 meter",
+          "answerIndex": 1,
+          "knowledge": "Tverrmålet fortel kor brei haugen var i den eldre registreringa. Høgda vart oppgitt separat, så dei to måla bør ikkje blandast.",
           "difficulty": 1,
           "question_type": "fact",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_spor_materialitet",
-          "related_emner": [],
           "source": [
-            "b2find_hoyland",
-            "etne_register"
+            "b2find_hoyland"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Per Fett målte haugen til om lag 10 meter i tverrmål og 1,25 meter i høgd.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "arkeologiske mål",
-            "tverrmål",
-            "høgd"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "mal",
-            "storleik"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_den_eldre_registreringa__5107a6a224",
+          "source_origin": "external",
+          "claim_basis": "Per Fett oppgav eit tverrmål på om lag 10 meter for Høyland-haugen.",
+          "claim_id": "claim_hoyland_gravhaug_etne_02",
+          "primary_knowledge_unit_id": "ku_historie_tverrmalet_fortel_kor_br_14f568141f",
           "knowledge_unit_ids": [
-            "ku_historie_den_eldre_registreringa__5107a6a224"
+            "ku_historie_tverrmalet_fortel_kor_br_14f568141f",
+            "ku_historie_h_gda_vart_oppgitt_separ_41bc62c64b"
           ],
-          "concept_ids": [
-            "co_historie_arkeologiske_mal_826ef36183",
-            "co_historie_tverrmal_14c41d514d",
-            "co_historie_h_gd_7aaca2ca09"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -171,57 +149,174 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Korleis var steinmassen dekt i den eldre skildringa?",
+          "question": "Korleis var steinen i haugen dekt i Per Fett si skildring?",
           "options": [
-            "Med eit tynt torvlag",
-            "Med eit tjukt lag teglstein",
-            "Med eit golv av treplankar"
+            "Med eit tjukt jordlag",
+            "Med eit lag av heller",
+            "Med eit tynt torvdekke"
           ],
-          "answer": "Med eit tynt torvlag",
-          "answerIndex": 0,
-          "knowledge": "Haugen var bygd av stein med eit tynt torvdekke og hadde noko skade i kantane.",
+          "answer": "Med eit tynt torvdekke",
+          "answerIndex": 2,
+          "knowledge": "Torvdekket var tynt nok til at steinmaterialet framleis var ein viktig del av skildringa. Opplysninga høyrer til den eldre, synlege haugforma.",
           "difficulty": 1,
-          "question_type": "observation",
+          "question_type": "fact",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_spor_materialitet",
-          "related_emner": [],
           "source": [
             "b2find_hoyland"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Den eldre registreringa skildrar stein med tynt torvdekke og litt skade langs kantane.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "torvdekke",
-            "steinmasse",
-            "kantskade"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "materiale",
-            "bevaring"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_haugen_var_bygd_av_stein_2d68c1adc1",
+          "source_origin": "external",
+          "claim_basis": "Steinen i haugen hadde eit tynt torvdekke i Per Fett si skildring.",
+          "claim_id": "claim_hoyland_gravhaug_etne_03",
+          "primary_knowledge_unit_id": "ku_historie_torvdekket_var_tynt_nok__bf4d084615",
           "knowledge_unit_ids": [
-            "ku_historie_haugen_var_bygd_av_stein_2d68c1adc1"
+            "ku_historie_torvdekket_var_tynt_nok__bf4d084615",
+            "ku_historie_opplysninga_h_yrer_til_d_a2cd348af8"
           ],
-          "concept_ids": [
-            "co_historie_torvdekke_c0dc4ac035",
-            "co_historie_steinmasse_2e6ce7676f",
-            "co_historie_kantskade_fd151b32bb"
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_11",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kor høg oppgav Per Fett at Høyland-haugen var?",
+          "options": [
+            "Om lag 1,25 meter",
+            "Om lag 0,75 meter",
+            "Om lag 2,5 meter"
           ],
+          "answer": "Om lag 1,25 meter",
+          "answerIndex": 0,
+          "knowledge": "Ei høgd på 1,25 meter saman med eit tverrmål på om lag ti meter gjer den eldre haugforma konkret, sjølv om konturane er svake i dag.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "b2find_hoyland"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Per Fett oppgav ei høgd på 1,25 meter for Høyland-haugen.",
+          "claim_id": "claim_hoyland_gravhaug_etne_04",
+          "primary_knowledge_unit_id": "ku_historie_ei_h_gd_pa_1_25_meter_sa_1bc611c0d4",
+          "knowledge_unit_ids": [
+            "ku_historie_ei_h_gd_pa_1_25_meter_sa_1bc611c0d4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_12",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva materiale var sjølve haugen bygd av i den eldre skildringa?",
+          "options": [
+            "Jord utan registrert stein",
+            "Stein",
+            "Ståande heller i ein ring"
+          ],
+          "answer": "Stein",
+          "answerIndex": 1,
+          "knowledge": "Per Fett skildra ein steinbygd haug, ikkje berre ei jordform. Det tynne torvdekket låg over steinmassen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "b2find_hoyland"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den eldre skildringa seier at haugen var bygd av stein.",
+          "claim_id": "claim_hoyland_gravhaug_etne_05",
+          "primary_knowledge_unit_id": "ku_historie_per_fett_skildra_ein_ste_1be9ff7ab0",
+          "knowledge_unit_ids": [
+            "ku_historie_per_fett_skildra_ein_ste_1be9ff7ab0",
+            "ku_historie_det_tynne_torvdekket_lag_38f37a5e8e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_13",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva skade registrerte Per Fett på haugen?",
+          "options": [
+            "Ei stor grop midt i haugen",
+            "Ingen synleg skade",
+            "Litt skade i kantane"
+          ],
+          "answer": "Litt skade i kantane",
+          "answerIndex": 2,
+          "knowledge": "Kantskaden viser at haugen alt var påverka då han vart skildra. Kjelda omtalar likevel ikkje eit ope eller undersøkt gravkammer.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "b2find_hoyland"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Per Fett registrerte litt skade i kantane på haugen.",
+          "claim_id": "claim_hoyland_gravhaug_etne_06",
+          "primary_knowledge_unit_id": "ku_historie_kantskaden_viser_at_haug_fb1fa22d3d",
+          "knowledge_unit_ids": [
+            "ku_historie_kantskaden_viser_at_haug_fb1fa22d3d",
+            "ku_historie_kjelda_omtalar_likevel_i_33add24759"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_14",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva opplysningar høyrer til Per Fett si eldre skildring?",
+          "options": [
+            "Tverrmål, høgd, steinmateriale og torvdekke",
+            "Bruk 3, jordfyllinga og dei svake konturane",
+            "Kulturminne-ID-en og den kommunale registerføringa"
+          ],
+          "answer": "Tverrmål, høgd, steinmateriale og torvdekke",
+          "answerIndex": 0,
+          "knowledge": "Per Fett dokumenterte den målsette og synlege haugforma. Opplysningane om bruk 3 og jordfyllinga kjem frå den seinare enkeltminneskildringa.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "b2find_hoyland"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Dei eldre måla og materialopplysningane kjem frå Per Fett si skildring, ikkje frå den seinare enkeltminneskildringa.",
+          "claim_id": "claim_hoyland_gravhaug_etne_07",
+          "primary_knowledge_unit_id": "ku_historie_per_fett_dokumenterte_de_f50f298d25",
+          "knowledge_unit_ids": [
+            "ku_historie_per_fett_dokumenterte_de_f50f298d25",
+            "ku_historie_opplysningane_om_bruk_3__caf6093cc8"
+          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -232,8 +327,9 @@
       "set_id": "historie_hoyland_gravhaug_etne_set_2",
       "level": 2,
       "order": 2,
-      "xp": 50,
-      "title": "Frå gravhaug til køyrebru",
+      "phase": "bridge",
+      "xp": 70,
+      "title": "Frå haug til jordfylling",
       "questions": [
         {
           "id": "hoyland_gravhaug_etne_quiz_4",
@@ -242,58 +338,31 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kvar låg haugen i Per Fett si registrering?",
+          "question": "Kvar plasserte Per Fett haugen i den eldre registreringa?",
           "options": [
+            "Under køyrebrua på bruk 3",
             "Like framfor køyrebrua til låven",
-            "På kyrkjegarden ved Stødle",
-            "På eit nes sør for Norevågen"
+            "Mellom våningshuset og offentleg veg"
           ],
           "answer": "Like framfor køyrebrua til låven",
-          "answerIndex": 0,
-          "knowledge": "Per Fett plasserte gravhaugen like framfor køyrebrua som førte opp til låven.",
-          "difficulty": 1,
+          "answerIndex": 1,
+          "knowledge": "Den eldre plasseringa er formulert i høve til låven og køyrebrua. Dette blir viktig når ho blir samanlikna med den seinare skildringa.",
+          "difficulty": 2,
           "question_type": "fact",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_spor_materialitet",
-          "related_emner": [],
           "source": [
-            "b2find_hoyland",
-            "etne_register"
+            "b2find_hoyland"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Den eldre skildringa plasserer haugen umiddelbart framfor køyrebrua til låven.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "køyrebru",
-            "låve",
-            "gardstun"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "eldre_registrering",
-            "gardstun"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_per_fett_plasserte_gravh_176ac43cc7",
+          "source_origin": "external",
+          "claim_basis": "Per Fett plasserte haugen like framfor køyrebrua til låven.",
+          "claim_id": "claim_hoyland_gravhaug_etne_08",
+          "primary_knowledge_unit_id": "ku_historie_den_eldre_plasseringa_er_90ae8f3957",
           "knowledge_unit_ids": [
-            "ku_historie_per_fett_plasserte_gravh_176ac43cc7"
+            "ku_historie_den_eldre_plasseringa_er_90ae8f3957",
+            "ku_historie_dette_blir_viktig_nar_ho_0aa24dcd24"
           ],
-          "concept_ids": [
-            "co_historie_k_yrebru_52ce0b6628",
-            "co_historie_lave_083b58aa09",
-            "co_historie_gardstun_27b62563a0"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -305,58 +374,30 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kvar plasserer den seinare registreringa det moglege haugsporet?",
+          "question": "Kvar plasserer den seinare enkeltminneskildringa haugen?",
           "options": [
-            "Under sjølve køyrebrua på bruk 3",
-            "I elveløpet nedanfor garden",
-            "Inne i våningshuset"
+            "Framfor våningshuset på bruk 1",
+            "Ved sida av køyrevegen på bruk 2",
+            "Under køyrebrua opp til låven på bruk 3"
           ],
-          "answer": "Under sjølve køyrebrua på bruk 3",
-          "answerIndex": 0,
-          "knowledge": "Den seinare registreringa knyter sporet til jordfyllinga under køyrebrua til låven på bruk 3.",
+          "answer": "Under køyrebrua opp til låven på bruk 3",
+          "answerIndex": 2,
+          "knowledge": "Den seinare skildringa flyttar blikket frå haugen framfor brua til terrenget under sjølve køyrebrua på bruk 3.",
           "difficulty": 2,
           "question_type": "fact",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
-          "emne_id": "em_his_kulturminner_bevaring",
-          "related_emner": [],
+          "emne_id": "em_his_spor_materialitet",
           "source": [
-            "b2find_hoyland",
-            "etne_register"
+            "b2find_hoyland"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Seinare dokumentasjon plasserer den moglege haugforma under køyrebrua på bruk 3.",
-          "guidance_basis": {
-            "emne_id": "em_his_kulturminner_bevaring",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "jordfylling",
-            "køyrebru",
-            "bruk 3"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "seinare_registrering",
-            "koyrebru"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_den_seinare_registrering_e8f3381ec1",
+          "source_origin": "external",
+          "claim_basis": "Den seinare enkeltminneskildringa plasserer haugen under køyrebrua opp til låven på bruk 3.",
+          "claim_id": "claim_hoyland_gravhaug_etne_09",
+          "primary_knowledge_unit_id": "ku_historie_den_seinare_skildringa_f_9c45e8fa1b",
           "knowledge_unit_ids": [
-            "ku_historie_den_seinare_registrering_e8f3381ec1"
+            "ku_historie_den_seinare_skildringa_f_9c45e8fa1b"
           ],
-          "concept_ids": [
-            "co_historie_jordfylling_2932c72327",
-            "co_historie_k_yrebru_52ce0b6628",
-            "co_historie_bruk_3_1fb7b07947"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -368,58 +409,31 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kva skildrar den synlege tilstanden best i dag?",
+          "question": "Kor synleg er haugforma i den seinare skildringa?",
           "options": [
-            "Konturane er lite synlege i ei jordfylling",
-            "Haugen står som ein fullstendig rekonstruert pyramide",
-            "Heile haugen er grave fram og open for innsyn"
+            "Konturane er lite synlege",
+            "Kanten er tydeleg rundt heile haugen",
+            "Toppen og foten er målte på nytt"
           ],
-          "answer": "Konturane er lite synlege i ei jordfylling",
+          "answer": "Konturane er lite synlege",
           "answerIndex": 0,
-          "knowledge": "Den eldre haugforma er ikkje tydeleg intakt. Konturane er svake og inngår i jordfyllinga ved brua.",
+          "knowledge": "Den seinare registreringa gir ikkje ei ny full oppmåling av ein tydeleg haug. Ho skildrar eit svakt terrengspor ved jordfyllinga.",
           "difficulty": 2,
           "question_type": "observation",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kulturminner_bevaring",
-          "related_emner": [],
           "source": [
             "b2find_hoyland"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Den seinare registreringa omtalar lite synlege konturar ved jordfyllinga under brua.",
-          "guidance_basis": {
-            "emne_id": "em_his_kulturminner_bevaring",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "svake terrengkonturar",
-            "jordfylling",
-            "bevaringstilstand"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "observasjon",
-            "bevaring"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_den_eldre_haugforma_er_i_358a4ee078",
+          "source_origin": "external",
+          "claim_basis": "Den seinare skildringa seier at det i dag er lite synlege konturar av haugen.",
+          "claim_id": "claim_hoyland_gravhaug_etne_10",
+          "primary_knowledge_unit_id": "ku_historie_den_seinare_registrering_5c86b94f49",
           "knowledge_unit_ids": [
-            "ku_historie_den_eldre_haugforma_er_i_358a4ee078",
-            "ku_historie_konturane_er_svake_og_in_8257b9a662"
+            "ku_historie_den_seinare_registrering_5c86b94f49",
+            "ku_historie_ho_skildrar_eit_svakt_te_e9e968f48a"
           ],
-          "concept_ids": [
-            "co_historie_svake_terrengkonturar_306f394806",
-            "co_historie_jordfylling_2932c72327",
-            "co_historie_bevaringstilstand_a5a6db5c57"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -431,58 +445,140 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kvifor er den opphavlege avgrensinga av haugen vanskeleg å lese no?",
+          "question": "Kvifor kan den opphavlege kanten på haugen ikkje lesast sikkert i dag?",
           "options": [
-            "Køyrebrua og vidare gardsdrift har endra og teke opp terrengforma",
-            "Haugen vart flytta heil til ein annan kommune",
-            "Kjeldene seier at haugen aldri fanst"
+            "Fordi Per Fett ikkje oppgav nokon plassering",
+            "Fordi den eldre haugforma og den seinare jordfyllinga overlappar",
+            "Fordi kulturminnet berre er kjent frå eit lausfunn"
           ],
-          "answer": "Køyrebrua og vidare gardsdrift har endra og teke opp terrengforma",
-          "answerIndex": 0,
-          "knowledge": "Når ei eldre haugform blir del av ei bru og jordfylling, blir kanten mellom gravminnet og seinare massar usikker.",
+          "answer": "Fordi den eldre haugforma og den seinare jordfyllinga overlappar",
+          "answerIndex": 1,
+          "knowledge": "Køyrebrua og jordmassane har teke opp eller endra terrengforma. Då blir grensa mellom eldre gravminne og seinare inngrep vanskeleg å trekkje.",
           "difficulty": 2,
-          "question_type": "analysis",
+          "question_type": "context",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kulturminner_bevaring",
-          "related_emner": [],
           "source": [
-            "b2find_hoyland",
-            "etne_register"
+            "place_record_hoyland",
+            "b2find_hoyland"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Aktiv gardsdrift og bruoppbygging har gjort den eldre monumentforma vanskelegare å avgrense.",
-          "guidance_basis": {
-            "emne_id": "em_his_kulturminner_bevaring",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "core_concepts": [
-            "bevaringshistorie",
-            "terrengendring",
-            "avgrensing"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "analyse",
-            "gardsdrift"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_nar_ei_eldre_haugform_bl_ee25b98c8c",
+          "claim_basis": "Den eldre haugforma og den seinare jordfyllinga ligg så tett saman at den opphavlege avgrensinga ikkje lenger kan lesast sikkert i terrenget.",
+          "claim_id": "claim_hoyland_gravhaug_etne_13",
+          "primary_knowledge_unit_id": "ku_historie_k_yrebrua_og_jordmassane_d0a41b6f69",
           "knowledge_unit_ids": [
-            "ku_historie_nar_ei_eldre_haugform_bl_ee25b98c8c"
+            "ku_historie_k_yrebrua_og_jordmassane_d0a41b6f69",
+            "ku_historie_da_blir_grensa_mellom_el_e330d5634d"
           ],
-          "concept_ids": [
-            "co_historie_bevaringshistorie_98a382aedb",
-            "co_historie_terrengendring_bacb46a1d0",
-            "co_historie_avgrensing_520f609f68"
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_15",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Korleis blir sjølve køyrebrua skildra i den seinare kjelda?",
+          "options": [
+            "Som ei steinhellebru",
+            "Som ei trebru på stolpar",
+            "Som ei jordfylling"
           ],
+          "answer": "Som ei jordfylling",
+          "answerIndex": 2,
+          "knowledge": "Ordet jordfylling forklarer kvifor den seinare konstruksjonen kan skjule eller innehalde eldre massar utan at grensa er synleg.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "b2find_hoyland"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Køyrebrua blir skildra som ei jordfylling.",
+          "claim_id": "claim_hoyland_gravhaug_etne_11",
+          "primary_knowledge_unit_id": "ku_historie_ordet_jordfylling_forkla_98455b66fd",
+          "knowledge_unit_ids": [
+            "ku_historie_ordet_jordfylling_forkla_98455b66fd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_16",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kor sterkt bind den seinare kjelda jordfyllinga til Fett sin haug?",
+          "options": [
+            "Ho seier at fyllinga «godt kan vera» haugen",
+            "Ho slår fast at fyllinga er heile haugen",
+            "Ho avviser at fyllinga kan ha samanheng med haugen"
+          ],
+          "answer": "Ho seier at fyllinga «godt kan vera» haugen",
+          "answerIndex": 0,
+          "knowledge": "Ordlyden opnar for ei sannsynleg kopling, men gjer henne ikkje sikker. Det er derfor feil å omtale jordfyllinga som eit bevist snitt gjennom haugen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "b2find_hoyland"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den seinare kjelda seier at jordfyllinga «godt kan vera» haugen Fett nemner.",
+          "claim_id": "claim_hoyland_gravhaug_etne_12",
+          "primary_knowledge_unit_id": "ku_historie_ordlyden_opnar_for_ei_sa_16159347b6",
+          "knowledge_unit_ids": [
+            "ku_historie_ordlyden_opnar_for_ei_sa_16159347b6",
+            "ku_historie_det_er_derfor_feil_a_omt_7c054954fb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_17",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva endring viser dei to registreringane når dei blir lesne etter kvarandre?",
+          "options": [
+            "Frå eit usikkert jordspor til ein nyoppbygd og tydeleg haug",
+            "Frå ein målt haug framfor brua til eit svakt spor ved jordfyllinga",
+            "Frå ei utgraven grav til eit museumsmagasin utanfor garden"
+          ],
+          "answer": "Frå ein målt haug framfor brua til eit svakt spor ved jordfyllinga",
+          "answerIndex": 1,
+          "knowledge": "Samanlikninga viser ei endring i kva som kan observerast og dokumenterast. Den eldre forma var målbar; den seinare er svak og meir usikker.",
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "place_record_hoyland",
+            "b2find_hoyland"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "Kjeldene viser ei endring frå ein målt og synleg haug framfor brua til eit lite synleg og usikkert spor i eller under jordfyllinga.",
+          "claim_id": "claim_hoyland_gravhaug_etne_14",
+          "primary_knowledge_unit_id": "ku_historie_samanlikninga_viser_ei_e_88d4ab57fe",
+          "knowledge_unit_ids": [
+            "ku_historie_samanlikninga_viser_ei_e_88d4ab57fe",
+            "ku_historie_den_eldre_forma_var_malb_3081a84752"
+          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -493,8 +589,9 @@
       "set_id": "historie_hoyland_gravhaug_etne_set_3",
       "level": 3,
       "order": 3,
-      "xp": 50,
-      "title": "Atterhald og seinare bruk",
+      "phase": "final",
+      "xp": 90,
+      "title": "Atterhald, endring og spor",
       "questions": [
         {
           "id": "hoyland_gravhaug_etne_quiz_8",
@@ -503,59 +600,47 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kva betyr formuleringa at jordfyllinga «godt kan vere» haugen Fett omtalte?",
+          "question": "Kva betyr uttrykket «godt kan vera» i den seinare registreringa?",
           "options": [
-            "Kjelda vurderer koplinga som mogleg, men ikkje endeleg bevist",
-            "Kjelda har sikkert datert kvart jordlag",
-            "Kjelda avviser all samanheng mellom strukturane"
+            "At koplinga er fullstendig dokumentert",
+            "At koplinga er avvist av registratoren",
+            "At koplinga er mogleg, men ikkje sikker"
           ],
-          "answer": "Kjelda vurderer koplinga som mogleg, men ikkje endeleg bevist",
-          "answerIndex": 0,
-          "knowledge": "«Godt kan vere» er eit kjeldeatterhald. Registreringa peikar på ei sannsynleg kopling utan å gjere henne sikker.",
-          "difficulty": 2,
+          "answer": "At koplinga er mogleg, men ikkje sikker",
+          "answerIndex": 2,
+          "knowledge": "Uttrykket er eit kjeldeatterhald. Det viser graden av sikkerheit i sjølve kjelda og hindrar at ei mogleg kopling blir gjort om til eit bevist faktum.",
+          "difficulty": 3,
           "question_type": "concept",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kildekritikk_arkiv_spor",
-          "related_emner": [],
           "source": [
             "b2find_hoyland"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Ordlyden markerer at koplinga mellom jordfyllinga og den eldre haugen har atterhald.",
-          "guidance_basis": {
-            "emne_id": "em_his_kildekritikk_arkiv_spor",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
+          "source_origin": "external",
+          "claim_basis": "Formuleringa «godt kan vera» er eit kjeldeatterhald som markerer ei mogleg, men ikkje sikker kopling.",
+          "claim_id": "claim_hoyland_gravhaug_etne_18",
           "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
           "core_concepts": [
             "kjeldeatterhald",
-            "sannsynleg kopling",
-            "sikkerheitsgrad"
+            "sikkerheitsgrad",
+            "mogleg kopling"
           ],
           "concept_focus": [
             "kjeldeatterhald"
           ],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "begrep",
-            "kildegrad"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_godt_kan_vere_er_eit_kje_b0fc9168b1",
+          "primary_knowledge_unit_id": "ku_historie_uttrykket_er_eit_kjeldea_79ac9ba9bb",
           "knowledge_unit_ids": [
-            "ku_historie_godt_kan_vere_er_eit_kje_b0fc9168b1",
-            "ku_historie_registreringa_peikar_pa__f454ef6d00"
+            "ku_historie_uttrykket_er_eit_kjeldea_79ac9ba9bb",
+            "ku_historie_det_viser_graden_av_sikk_824abbfc3f"
           ],
           "concept_ids": [
             "co_historie_kjeldeatterhald_4c9c58394c",
-            "co_historie_sannsynleg_kopling_de5171dd0b",
-            "co_historie_sikkerheitsgrad_f89a18e560"
+            "co_historie_sikkerheitsgrad_f89a18e560",
+            "co_historie_mogleg_kopling_5a1e6de41e"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
@@ -568,59 +653,32 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kva kan dei to registreringane dokumentere med størst sikkerheit når dei blir samanlikna?",
+          "question": "Kva dokumenterer dei to skildringane samla med størst sikkerheit?",
           "options": [
-            "Ei eldre målt haugform og eit seinare, usikkert spor ved brua",
-            "Eit intakt gravkammer som er undersøkt under brua",
-            "Namnet og dødsåret til den gravlagde"
+            "Ein eldre målt haug og eit seinare usikkert terrengspor",
+            "Den same intakte haugen med uendra kantar i begge skildringane",
+            "Eit undersøkt gravkammer under den noverande køyrebrua"
           ],
-          "answer": "Ei eldre målt haugform og eit seinare, usikkert spor ved brua",
+          "answer": "Ein eldre målt haug og eit seinare usikkert terrengspor",
           "answerIndex": 0,
-          "knowledge": "Den eldre kjelda dokumenterer mål og konstruksjon. Den seinare dokumenterer dagens plassering og uvisse, men ikkje eit arkeologisk bevist snitt gjennom haugen.",
+          "knowledge": "Den eldre kjelda dokumenterer mål og materiale, medan den seinare dokumenterer plassering og uvisse. Ingen av dei dokumenterer eit intakt gravkammer under brua.",
           "difficulty": 3,
-          "question_type": "analysis",
+          "question_type": "context",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kilder_taushet_blindsoner",
-          "related_emner": [],
           "source": [
-            "b2find_hoyland",
-            "etne_register"
+            "place_record_hoyland",
+            "b2find_hoyland"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Kjeldene dokumenterer ulike tilstandar og ulik sikkerheitsgrad, ikkje ein intakt utgraven konstruksjon.",
-          "guidance_basis": {
-            "emne_id": "em_his_kilder_taushet_blindsoner",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "core_concepts": [
-            "registreringssamanlikning",
-            "kunnskapsgrense",
-            "bevaringshistorie"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "analyse",
-            "for_og_na"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_den_eldre_kjelda_dokumen_da19fb1b16",
+          "claim_basis": "Saman dokumenterer kjeldene ei eldre målt haugform og eit seinare usikkert terrengspor, ikkje eit sikkert intakt gravkammer under brua.",
+          "claim_id": "claim_hoyland_gravhaug_etne_15",
+          "primary_knowledge_unit_id": "ku_historie_den_eldre_kjelda_dokumen_c112bae0f6",
           "knowledge_unit_ids": [
-            "ku_historie_den_eldre_kjelda_dokumen_da19fb1b16",
-            "ku_historie_den_seinare_dokumenterer_7464ba767c"
+            "ku_historie_den_eldre_kjelda_dokumen_c112bae0f6",
+            "ku_historie_ingen_av_dei_dokumentere_34acfd648a"
           ],
-          "concept_ids": [
-            "co_historie_registreringssamanlikning_3f543a95e0",
-            "co_historie_kunnskapsgrense_f6e2012513",
-            "co_historie_bevaringshistorie_98a382aedb"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -632,60 +690,241 @@
           "placeId": "hoyland_gravhaug_etne",
           "targetId": "hoyland_gravhaug_etne",
           "question_scope": "place",
-          "question": "Kva betyr «sekundær bruk» dersom den eldre haugforma vart del av køyrebrua?",
+          "question": "Kva bruksendring kan ha skjedd dersom jordfyllinga inneheld delar av haugen?",
           "options": [
-            "At ei eldre terrengform eller masse fekk ein ny praktisk funksjon",
-            "At gravhaugen vart bygd for lastebilar frå starten",
-            "At brua er eldre enn gravminnet"
+            "Gravminnet vart flytta til kyrkjegarden som eiga markering",
+            "Eldre massar fekk ein praktisk funksjon i køyrebrua",
+            "Haugen vart bygd opp att som eit nytt minnesmerke"
           ],
-          "answer": "At ei eldre terrengform eller masse fekk ein ny praktisk funksjon",
+          "answer": "Eldre massar fekk ein praktisk funksjon i køyrebrua",
+          "answerIndex": 1,
+          "knowledge": "Påstanden er vilkårsbunden: dersom den eldre haugen finst i fyllinga, er delar av gravminnet tekne inn i den seinare gardsdrifta.",
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "place_record_hoyland",
+            "b2find_hoyland"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "Dersom jordfyllinga inneheld den eldre haugen, har ein del av gravminnet fått ein seinare praktisk funksjon i gardsdrifta.",
+          "claim_id": "claim_hoyland_gravhaug_etne_17",
+          "primary_knowledge_unit_id": "ku_historie_pastanden_er_vilkarsbund_6840892c97",
+          "knowledge_unit_ids": [
+            "ku_historie_pastanden_er_vilkarsbund_6840892c97"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_18",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva kan kjeldene ikkje slå fast om Høyland-haugen?",
+          "options": [
+            "At Per Fett oppgav mål og materiale",
+            "At den seinare kjelda omtalar ei jordfylling",
+            "Ei sikker førhistorisk datering og identiteten til den gravlagde"
+          ],
+          "answer": "Ei sikker førhistorisk datering og identiteten til den gravlagde",
+          "answerIndex": 2,
+          "knowledge": "Kjeldene dokumenterer sjølve kulturminnesporet, men ikkje eit sikkert årstal eller ein namngitt person. Det er ei reell grense i kunnskapsgrunnlaget.",
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kilder_taushet_blindsoner",
+          "source": [
+            "b2find_hoyland",
+            "etne_archaeological_register"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kjeldene oppgir ikkje ei sikker førhistorisk datering eller identiteten til den gravlagde.",
+          "claim_id": "claim_hoyland_gravhaug_etne_16",
+          "primary_knowledge_unit_id": "ku_historie_kjeldene_dokumenterer_sj_26423fb6ea",
+          "knowledge_unit_ids": [
+            "ku_historie_kjeldene_dokumenterer_sj_26423fb6ea",
+            "ku_historie_det_er_ei_reell_grense_i_3fd31a2878"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_19",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva samanlikning følgjer best ein historisk før/etter-analyse av Høyland?",
+          "options": [
+            "Per Fett sine mål mot det seinare svake sporet, med uvisse om identiteten",
+            "Dagens køyrebru mot andre låvebruer, utan den eldre registreringa",
+            "Ei tenkt opphavleg form mot ei sikker datering som kjeldene ikkje gir"
+          ],
+          "answer": "Per Fett sine mål mot det seinare svake sporet, med uvisse om identiteten",
           "answerIndex": 0,
-          "knowledge": "Sekundær bruk betyr at noko eldre blir teke inn i ein ny funksjon. Her kan den tidlegare haugforma ha blitt del av brua og den vidare gardsdrifta.",
+          "knowledge": "Før/etter-analysen gjer endringa synleg ved å halde dei to dokumenterte tilstandane saman. Metoden krev òg at kjeldeatterhaldet blir bevart.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "place_record_hoyland",
+            "b2find_hoyland"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "Ei historisk før/etter-analyse av Høyland må samanlikne Per Fett si målsette haugskildring med den seinare tilstanden utan å gjere jordfyllinga til sikkert same struktur.",
+          "claim_id": "claim_hoyland_gravhaug_etne_19",
+          "method_id": "met_for_etter_historisk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "core_concepts": [
+            "før/etter-analyse",
+            "historisk endring",
+            "kjeldevurdering"
+          ],
+          "concept_focus": [
+            "før/etter-analyse"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_f_r_etter_analysen_gjer__2588db003e",
+          "knowledge_unit_ids": [
+            "ku_historie_f_r_etter_analysen_gjer__2588db003e",
+            "ku_historie_metoden_krev_og_at_kjeld_078d417be0"
+          ],
+          "concept_ids": [
+            "co_historie_f_r_etter_analyse_31d2dc0f28",
+            "co_historie_historisk_endring_84be686aa4",
+            "co_historie_kjeldevurdering_2d75f7966c"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_20",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva spørsmål skjerpar ei Bloch-inspirert undersøking av uttrykket «godt kan vera»?",
+          "options": [
+            "Kva minnefunksjon har jordfyllinga fått i lokalsamfunnet?",
+            "Kva kan skildringa dokumentere, og kva held ho berre ope?",
+            "Kva tidsperiode liknar jordfyllinga mest på i form og materiale?"
+          ],
+          "answer": "Kva kan skildringa dokumentere, og kva held ho berre ope?",
+          "answerIndex": 1,
+          "knowledge": "Marc Bloch la vekt på å stille presise spørsmål til kjelder. Her hjelper tilnærminga oss å skilje dokumentert plassering og ordlyd frå ei identitet kjelda ikkje beviser.",
           "difficulty": 3,
           "question_type": "concept",
           "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
-          "emne_id": "em_his_hverdagsliv_praksiser",
-          "related_emner": [],
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
           "source": [
-            "b2find_hoyland",
-            "etne_register"
+            "place_record_hoyland",
+            "b2find_hoyland"
           ],
           "source_origin": "mixed",
-          "claim_basis": "Høyland gir ein konkret situasjon der eit eldre monument kan ha blitt teke opp i ein seinare gardsfunksjon.",
-          "guidance_basis": {
-            "emne_id": "em_his_hverdagsliv_praksiser",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
+          "claim_basis": "Marc Bloch si kjeldekritiske tilnærming skjerpar Høyland-analysen ved å spørje om den seinare skildringa beviser identitet eller berre uttrykkjer ei mogleg kopling.",
+          "claim_id": "claim_hoyland_gravhaug_etne_20",
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "work": "The Historian's Craft",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
           "core_concepts": [
-            "sekundær bruk",
-            "gardsdrift",
-            "kulturminne i bruk"
+            "kjeldekritikk",
+            "dokumentasjon",
+            "tolkingsgrense"
           ],
           "concept_focus": [
-            "sekundær bruk"
+            "kjeldekritikk"
           ],
-          "tags": [
-            "hoyland_gravhaug_etne",
-            "begrep",
-            "historisk_kontinuitet"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_sekund_r_bruk_betyr_at_n_6fb92048e2",
+          "thinker_name": "Marc Bloch",
+          "theory_focus": "skiljet mellom dokumentert identitet og mogleg kopling",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Blochs kjeldekritiske spørsmål skil det den seinare skildringa faktisk dokumenterer frå identiteten mellom strukturane som ho berre held open."
+          },
+          "primary_knowledge_unit_id": "ku_historie_marc_bloch_la_vekt_pa_a__43005a2062",
           "knowledge_unit_ids": [
-            "ku_historie_sekund_r_bruk_betyr_at_n_6fb92048e2",
-            "ku_historie_her_kan_den_tidlegare_ha_5ebaa4dad2"
+            "ku_historie_marc_bloch_la_vekt_pa_a__43005a2062",
+            "ku_historie_her_hjelper_tiln_rminga__556e226661"
           ],
           "concept_ids": [
-            "co_historie_sekund_r_bruk_1f01e80d90",
-            "co_historie_gardsdrift_bcd1b0ea60",
-            "co_historie_kulturminne_i_bruk_4f6c855c2f"
+            "co_historie_kjeldekritikk_3383e9e245",
+            "co_historie_dokumentasjon_798499e562",
+            "co_historie_tolkingsgrense_2b50b734a9"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "hoyland_gravhaug_etne_quiz_21",
+          "quiz_id": "historie_hoyland_gravhaug_etne_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "hoyland_gravhaug_etne",
+          "targetId": "hoyland_gravhaug_etne",
+          "question_scope": "place",
+          "question": "Kva kombinasjon gir den mest presise sporlesinga av Høyland?",
+          "options": [
+            "Berre dagens jordfylling, utan den eldre registreringa",
+            "Eit gardsnamn, ei tenkt datering og ein ukjend person",
+            "Eldre mål og materiale, dagens terreng og kjeldeatterhaldet"
+          ],
+          "answer": "Eldre mål og materiale, dagens terreng og kjeldeatterhaldet",
+          "answerIndex": 2,
+          "knowledge": "Sporlesning blir sterkast når ulike typar evidens blir kombinerte utan å blandast saman. Mål, materiale, terreng og ordlyd viser kvar kunnskapen er presis og kvar han er usikker.",
+          "difficulty": 3,
+          "question_type": "observation",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "place_record_hoyland",
+            "b2find_hoyland"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "Ei presis sporlesning kombinerer dei eldre måla og materialopplysningane med dagens terreng og den seinare kjelda sitt atterhald.",
+          "claim_id": "claim_hoyland_gravhaug_etne_21",
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "core_concepts": [
+            "sporlesning",
+            "materialitet",
+            "kjeldeatterhald"
+          ],
+          "concept_focus": [
+            "sporlesning"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_sporlesning_blir_sterkas_0343b7f49b",
+          "knowledge_unit_ids": [
+            "ku_historie_sporlesning_blir_sterkas_0343b7f49b",
+            "ku_historie_mal_materiale_terreng_og_451232d539"
+          ],
+          "concept_ids": [
+            "co_historie_sporlesning_7193e6018d",
+            "co_historie_materialitet_657cac5ea7",
+            "co_historie_kjeldeatterhald_4c9c58394c"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
