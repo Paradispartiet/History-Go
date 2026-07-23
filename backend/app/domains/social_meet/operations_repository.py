@@ -600,7 +600,9 @@ def _last_retention_run(connection: Connection) -> LastRetentionRun | None:
         return None
     raw_counts = row.get("deleted_counts") or {}
     counts = json.loads(raw_counts) if isinstance(raw_counts, str) else raw_counts
-    deleted_total = sum(int(value) for value in cast(dict[str, object], counts).values())
+    deleted_total = sum(
+        int(str(value)) for value in cast(dict[str, object], counts).values()
+    )
     return LastRetentionRun(
         run_id=cast(UUID, row["id"]),
         status=str(row["status"]),
