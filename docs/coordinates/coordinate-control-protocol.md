@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 400 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 401 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -607,6 +607,10 @@ Batch 156 (2026-07-23) løser utløpsrecordens tidslag med to separate ankere. C
 | 157 | `alnaelva` | Alnaelva | verified_geometry | `osm-way:22698275` |
 
 Batch 157 (2026-07-23) løser hovedrecorden Alnaelva som et eksplisitt multi-anchor vassdrag fra Alungsjøens utløp gjennom Groruddammen, Alnaparken, Smalvoll, Bryn, Svartdalen og Kværnerbyen til dagens hydrologiske utløp ved Kongshavn. Vannspeilet/Tenerife beholdes som separat historisk utløpsmarkør og brukes ikke som dagens mouth-anchor. Canonical lat/lon er den allerede verifiserte Smalvoll-wayens line-anchor og deklareres bare som displayanker, ikke som geometrisk sentrum for hele elva. Alle delankre leses fra canonical verified_geometry-komponenter; legacy-punktet, nearest/first-hit og syntetisk enkeltgeometri brukes ikke.
+
+| 159 | `alnaelvstien` | Alnastien – Svartdalen og Bryn | verified_geometry | `osm-way:113281394` |
+
+Batch 159 (2026-07-23) retter den brede legacy-identiteten «Alnaelvstien» til den konkrete kartlagte Alnastien-komponenten gjennom Svartdalen og Bryn. Elleve fresh OSM-ways med eksakt name=Alnastien danner én uforgrenet endepunktkoblet kjede på 1642 meter. Alle ways lagres eksplisitt som routeSegments. Canonical lat/lon beregnes deterministisk som lengdemidtpunkt for hele kjeden og ligger på way 113281394, som brukes som displaykilde i coordinate-source-contract. Oslo kommune kryssjekker turveien gjennom Svartdalsparken og Alnastien-navnet i Bryn/Etterstad-scope. Modellen hevder ikke at denne komponenten er hele turveisystemet langs Alnaelva. Legacy-punktet og nearest/first-hit brukes ikke.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 

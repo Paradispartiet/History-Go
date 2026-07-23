@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-07-23T08:52:21.495Z",
+  "status": "validated",
+  "category": "scenekunst",
+  "batch": "oslo_missing_split_venues_after_batch_5",
+  "excludedExistingIds": [
+    "teater_manu",
+    "vega_scene"
+  ],
+  "addedPlaceIds": [
+    "rommen_scene",
+    "salt_oslo",
+    "det_andre_teatret_intimscenen"
+  ],
+  "coordinateResults": [
+    {
+      "id": "rommen_scene",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13621:31",
+      "coordinate": {
+        "lat": 59.96736733733063,
+        "lon": 10.914417596858193
+      },
+      "address": {
+        "street": "Karen Platous vei",
+        "number": "31",
+        "postcode": "0988",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "salt_oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+      "coordinate": {
+        "lat": 59.90760281927637,
+        "lon": 10.746880614147818
+      },
+      "address": {
+        "street": "Langkaia",
+        "number": "1",
+        "postcode": "0150",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [
+        "havnelageret"
+      ],
+      "overlapDecision": "intentional_shared_anchor"
+    },
+    {
+      "id": "det_andre_teatret_intimscenen",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21385:28",
+      "coordinate": {
+        "lat": 59.93829179264618,
+        "lon": 10.765140986301802
+      },
+      "address": {
+        "street": "Ivan Bjørndals gate",
+        "number": "28",
+        "postcode": "0472",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    }
+  ],
+  "physicalScopeDecisions": {
+    "rommen_scene": "Rommen Scenes profesjonelle scene, dansesal og publikumsfunksjoner i Karen Platous vei 31. Rommen skole og flerbrukshallen behandles som andre funksjoner i samme kompleks.",
+    "salt_oslo": "SALT-områdets scener, publikumsarealer og modulære kulturkonstruksjoner ved Langkaia 1. Den øvrige havnepromenaden og nabofunksjoner inngår ikke.",
+    "det_andre_teatret_intimscenen": "Det Andre Teatrets Intimscene i Ivan Bjørndals gate 28. Hovedscene, bar og uteservering i nummer 9 inngår ikke i denne markøren."
+  },
+  "hybridCategoryDecisions": {
+    "rommen_scene": [
+      "scenekunst",
+      "musikk",
+      "by"
+    ],
+    "salt_oslo": [
+      "scenekunst",
+      "musikk",
+      "by"
+    ]
+  },
+  "validation": {
+    "duplicateIdGuard": "pass",
+    "splitAggregateBuild": "pass",
+    "splitManifestBuild": "pass",
+    "splitIndexBuild": "pass",
+    "placesIndexBuild": "pass",
+    "placesChecks": "pass",
+    "categoryAudit": "pass"
+  },
+  "validatedAt": "2026-07-23T08:52:58.979Z"
+}
