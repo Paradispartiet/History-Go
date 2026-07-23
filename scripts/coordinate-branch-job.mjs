@@ -1,3 +1,4 @@
+// Final batch 159 trigger after Scenekunst batch 6 stabilized main.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
