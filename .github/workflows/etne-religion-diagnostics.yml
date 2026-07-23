@@ -1,0 +1,57 @@
+name: Diagnose Etne religion batch
+
+on:
+  pull_request:
+    types: [synchronize, reopened]
+    branches: [main]
+    paths:
+      - .github/workflows/etne-religion-diagnostics.yml
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    if: github.event.pull_request.head.ref == 'agent/etne-religion-subculture-fresh'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-religion-subculture-fresh
+      - name: Run diagnostics
+        shell: bash
+        run: |
+          mkdir -p diagnostics
+          node <<'NODE'
+          const fs = require('node:fs');
+          const lines = [];
+          const log = (s) => { lines.push(String(s)); console.log(s); };
+          async function geo(street, number) {
+            const url = new URL('https://ws.geonorge.no/adresser/v1/sok');
+            url.searchParams.set('adressenavn', street);
+            url.searchParams.set('nummer', String(number));
+            url.searchParams.set('kommunenummer', '4611');
+            url.searchParams.set('treffPerSide', '100');
+            const r = await fetch(url);
+            log(`${street} ${number}: HTTP ${r.status}`);
+            const p = await r.json();
+            log(JSON.stringify(p.adresser || [], null, 2));
+          }
+          async function main() {
+            for (const [street, number] of [['Enge',5],['Prestavegen',11],['Tjedlavegen',38]]) {
+              try { await geo(street, number); } catch (e) { log(`${street} ${number} ERROR: ${e.stack || e}`); }
+            }
+            try {
+              const q='[out:json];way(557505490);out center tags;';
+              const r=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({data:q})});
+              log(`Overpass: HTTP ${r.status}`);
+              log(await r.text());
+            } catch(e) { log(`Overpass ERROR: ${e.stack || e}`); }
+            fs.writeFileSync('diagnostics/result.txt', lines.join('\n'));
+          }
+          main();
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: etne-religion-diagnostics
+          path: diagnostics/result.txt
