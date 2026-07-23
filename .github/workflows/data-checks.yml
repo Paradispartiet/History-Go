@@ -39,6 +39,7 @@ on:
       - 'tests/knowledge-v2-model.test.js'
       - 'tests/knowledge-canonical-storage-contract.test.js'
       - '.github/workflows/data-checks.yml'
+      - '.github/gh-cli-bootstrap-trigger.txt'
   workflow_dispatch:
 
 permissions:
@@ -210,3 +211,27 @@ jobs:
             reports/knowledge-id-backfill.json
             reports/knowledge-universe-readers.json
           if-no-files-found: warn
+
+  bootstrap-gh-cli:
+    name: Bootstrap gh CLI artifact
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 3338
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy preinstalled GitHub CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+          GH_PATH="$(command -v gh)"
+          gh --version
+          install -m 0755 "$GH_PATH" gh
+          sha256sum gh > gh.sha256
+
+      - name: Upload GitHub CLI binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: gh-linux-amd64
+          path: |
+            gh
+            gh.sha256
+          if-no-files-found: error
+          retention-days: 1
