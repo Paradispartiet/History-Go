@@ -1,0 +1,144 @@
+{
+  "version": "2026-07-23",
+  "source": {
+    "name": "VisitOSLO — Kunsthovedstaden / Flere kunstgallerier",
+    "url": "https://www.visitoslo.com/no/artikler/kunsthovedstaden/",
+    "sourceItems": 13,
+    "scopeBoundary": "Official current 13-item VisitOSLO editorial gallery tranche. This is not a full snapshot or closure of the client-rendered Galleries category page."
+  },
+  "status": "priority_tranche_scope_closed",
+  "summary": {
+    "sourceItems": 13,
+    "sourceItemsResolved": 13,
+    "existingCanonical": 5,
+    "deferredPrivateCommercialByExistingPolicy": 4,
+    "approvedNewInstitutionalCandidates": 3,
+    "approvedCandidatesCoordinateReady": 1,
+    "approvedCandidatesCoordinateBlocked": 2,
+    "parentReuseEnrichment": 1,
+    "unresolvedScopeItems": 0,
+    "fullGalleryCategoryClosed": false
+  },
+  "existingCanonical": [
+    { "sourceItem": "Fotografiens Hus", "placeId": "fotografiens_hus" },
+    { "sourceItem": "Kunsthall Oslo", "placeId": "kunsthall_oslo" },
+    { "sourceItem": "VI, VII", "placeId": "vi_vii_gallery" },
+    { "sourceItem": "KÖSK", "placeId": "kosk_oslo" },
+    { "sourceItem": "Van Etten", "placeId": "van_etten" }
+  ],
+  "deferredPrivateCommercial": [
+    {
+      "sourceItem": "Fineart Oslo",
+      "status": "deferred_by_existing_gallery_policy",
+      "basis": "Already explicitly deferred in the completed museum-source pass and Aker Brygge/Tjuvholmen closure."
+    },
+    {
+      "sourceItem": "Galleri Haaken",
+      "status": "deferred_by_existing_gallery_policy",
+      "basis": "Already explicitly deferred in the Aker Brygge/Tjuvholmen closure."
+    },
+    {
+      "sourceItem": "Galleri K",
+      "status": "deferred_pending_consistent_commercial_gallery_policy",
+      "basis": "Private/commercial gallery. The existing Oslo West gallery policy forbids opportunistic one-off inclusion without a consistent longevity, cultural-significance, independent-place-identity and coordinate-stability framework."
+    },
+    {
+      "sourceItem": "Buer Gallery",
+      "status": "deferred_pending_consistent_commercial_gallery_policy",
+      "basis": "Private/commercial gallery. The existing Oslo West gallery policy forbids opportunistic one-off inclusion without a consistent longevity, cultural-significance, independent-place-identity and coordinate-stability framework."
+    }
+  ],
+  "approvedInstitutionalCandidates": [
+    {
+      "placeId": "kunstnerforbundet",
+      "name": "Kunstnerforbundet",
+      "primaryCategory": "kunst",
+      "institutionalScope": "Independent artist-run, non-commercial exhibition and mediation institution established in 1910, in the same self-owned Kjeld Stubs gate 3 building since 1917.",
+      "scopeStatus": "approved_new_canonical_candidate",
+      "coordinateStatus": "ready",
+      "coordinate": {
+        "lat": 59.91286247033279,
+        "lon": 10.735585135946035,
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:13743:3",
+        "address": "Kjeld Stubs gate 3, 0160 Oslo"
+      },
+      "overlapAudit": "No canonical place within 35 m and no current canonical identity match.",
+      "officialSources": [
+        "https://kunstnerforbundet.no/om-kunstnerforbundet",
+        "https://kunstnerforbundet.no/besok"
+      ]
+    },
+    {
+      "placeId": "fotogalleriet",
+      "name": "Fotogalleriet",
+      "primaryCategory": "kunst",
+      "institutionalScope": "Independent non-commercial photographic art institution founded in 1977, with a persistent public exhibition identity and current main premises in Møllergata 34.",
+      "scopeStatus": "approved_new_canonical_candidate",
+      "coordinateStatus": "blocked_pending_exact_entrance_or_building_anchor",
+      "coordinateBlockReason": "The official institution address is published as Møllergata 34 without a letter. Geonorge exposes four distinct address points 34A-D, and no exact named OSM institution object was found. No first-hit, nearest-letter or synthetic centroid may be used as canonical coordinate.",
+      "officialAddressCluster": [
+        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34A", "lat": 59.917455556790614, "lon": 10.750260519179827 },
+        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34B", "lat": 59.91750466107661, "lon": 10.750620864386786 },
+        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34C", "lat": 59.91734358250927, "lon": 10.7505766041933 },
+        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34D", "lat": 59.91729352883408, "lon": 10.750287762207929 }
+      ],
+      "overlapAudit": "No canonical identity match and no canonical place within 35 m of the address-cluster audit centroid.",
+      "officialSources": [
+        "https://fotogalleriet.no/visit/",
+        "https://fotogalleriet.no/about/"
+      ]
+    },
+    {
+      "placeId": "soft_galleri",
+      "name": "SOFT galleri",
+      "primaryCategory": "kunst",
+      "institutionalScope": "Independent textile-art gallery founded in 2006 and operated by Norske Tekstilkunstnere, with its own exhibition programme, public visitor function and dedicated exhibition room at Rådhusgata 20.",
+      "scopeStatus": "approved_new_canonical_candidate",
+      "coordinateStatus": "blocked_pending_distinct_entrance_anchor",
+      "coordinateBlockReason": "The ordinary official address point for Rådhusgata 20 is exactly the same canonical display marker already used by the institution-specific place `fotografiens_hus`. SOFT is a different institution, but production must wait for a separately documented entrance/visitor anchor or other non-duplicate physical marker rather than creating two exact-overlap map points.",
+      "addressCrosscheck": {
+        "lat": 59.90951628354778,
+        "lon": 10.74209892031479,
+        "sourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+        "existingExactMarker": "fotografiens_hus"
+      },
+      "officialSources": [
+        "https://www.softgalleri.no/about-soft-gallery/",
+        "https://www.softgalleri.no/kontakt/"
+      ]
+    }
+  ],
+  "parentReuse": [
+    {
+      "sourceItem": "Oslo Kunstforening",
+      "institutionId": "oslo_kunstforening",
+      "parentPlaceId": "radmannsgarden_og_anatomibygget",
+      "decision": "no_new_marker_enrich_existing_parent",
+      "basis": "Oslo Kunstforening is a persistent non-commercial institution founded in 1836 and has occupied the second floor of Rådmannsgården since 1936. Its exact Geonorge address point at Rådhusgata 19 is identical to the existing canonical Rådmannsgården/Anatomibygget marker. The existing parent record explicitly uses one shared marker to avoid overlapping places on the same cultural-historic property. Add Oslo Kunstforening as a current institutional layer to the parent instead of creating a duplicate marker.",
+      "coordinate": {
+        "lat": 59.91014146776003,
+        "lon": 10.740325400685213,
+        "sourceObjectId": "geonorge-adresser-v1:0301:16115:19"
+      },
+      "officialSources": [
+        "https://oslokunstforening.no/om-oss",
+        "https://oslokunstforening.no/bes%C3%B8k"
+      ]
+    }
+  ],
+  "scopeGuards": [
+    "This report closes only the 13-item official VisitOSLO curated gallery priority tranche, not the full client-rendered Galleries category.",
+    "The failed full-category source-discovery PR #3433 remains a technical audit trail; no full-category completeness claim is permitted until a reproducible source snapshot exists.",
+    "Private/commercial gallery listings remain deferred under the existing Oslo gallery policy unless a consistent inclusion framework is explicitly adopted.",
+    "Institutional durability can justify a new canonical place, but exact co-location must still pass the one-place/one-physical-identity and map-marker overlap gates.",
+    "Fotogalleriet and SOFT galleri are scope-approved but must not be produced until exact non-guessed coordinate anchors are resolved.",
+    "Oslo Kunstforening resolves to the existing Rådmannsgården parent and should be added as a current-use/institution layer, not as a new marker."
+  ],
+  "nextActions": [
+    "Produce Kunstnerforbundet through the coordinate branch runner after re-auditing current main.",
+    "Enrich radmannsgarden_og_anatomibygget with the current Oslo Kunstforening institutional layer and official source, without changing the existing coordinate.",
+    "Continue dedicated physical-anchor research for Fotogalleriet and SOFT galleri.",
+    "Do not treat the 13-item tranche closure as closure of the full VisitOSLO Galleries category."
+  ]
+}
