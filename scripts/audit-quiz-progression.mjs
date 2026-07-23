@@ -12,6 +12,24 @@ import {
   summarizeQuestionBalance
 } from "./quiz-production-lib.mjs";
 
+const NORMAL_OPENING_POLICY_PATH = "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json";
+
+const OPENING_SURFACE_RULES = [
+  ["emne_prompt", /\b(?:passer|relevant)\b.{0,45}\b(?:emnet|temaet|fagfeltet)\b/iu],
+  ["place_as_example", /\bhva gjør\b.{0,50}\b(?:til et eksempel på|relevant for)\b|\bkva gjer\b.{0,50}\b(?:til eit døme på|relevant for)\b/iu],
+  ["reading_language", /\b(?:leses|lesast|lesningen|lesinga|faglig lesning|fagleg lesing|tolkes som|tolkast som)\b/iu],
+  ["most_precise", /\b(?:mest presise|mest presist|mest treffende|mest treffande)\b/iu],
+  ["concept_pick", /\b(?:hvilket|kva) begrep\b.{0,45}\b(?:passer|beskriver|forklarer|høver|skildrar|forklarar)\b/iu],
+  ["theory_pick", /\b(?:hvilken|kva) (?:teori|teoretiker|teoretikar|metode|hook)\b/iu],
+  ["curriculum_language", /\b(?:fagplan|fagkart|topic hook|emnekart|mapping|generator)\b/iu],
+  ["institutional_reading", /\b(?:lese|lesa|lesast)\b.{0,35}\bsom (?:institusjon|byrom|møtested|møtestad|symbol)\b/iu],
+  ["player_instruction", /\b(?:hva|kva) bør (?:spilleren|spelaren|du)\b|\b(?:hva|kva) skal (?:spilleren|spelaren|du) (?:se|sjå) etter\b/iu],
+  ["question_about_question", /\b(?:hvilket|hvilke|kva|kva for eit) spørsmål\b/iu],
+  ["quiz_about_quiz", /\b(?:god|beste|sterk)\b.{0,35}\bquiz\b|\bquiz\b.{0,45}\b(?:trene|trenar|lære|lærer|teste|testar)\b/iu],
+  ["history_go_question", /\b(?:history go|history-go)\b.{0,25}\bspørsmål\b|\bspørsmål\b.{0,25}\b(?:history go|history-go)\b/iu],
+  ["more_than_place", /\bhva gjør\b.{0,55}\bmer enn\b|\bkva gjer\b.{0,55}\bmeir enn\b/iu]
+];
+
 function addFailure(failures, file, reason, details = {}) {
   failures.push({ file, reason, ...details });
 }
@@ -20,8 +38,110 @@ function isTheoryBound(question) {
   return Boolean(question.topic_hook_id || question.thinker_id || question.theory_ref);
 }
 
+function normalizedQuestionType(question) {
+  return String(question?.question_type ?? "").trim().toLowerCase();
+}
+
+function normalOpeningProblems(question, openingPolicy) {
+  const opening = openingPolicy.opening_block || {};
+  const problems = [];
+
+  for (const field of asArray(opening.forbidden_binding_fields)) {
+    if (question?.[field]) problems.push(`forbidden_binding:${field}`);
+  }
+
+  const questionType = normalizedQuestionType(question);
+  if (!questionType) {
+    problems.push("missing_question_type");
+  } else if (asArray(opening.forbidden_question_types).includes(questionType)) {
+    problems.push(`forbidden_question_type:${questionType}`);
+  } else {
+    const allowedTypes = asArray(opening.allowed_question_types);
+    if (allowedTypes.length && !allowedTypes.includes(questionType)) {
+      problems.push(`question_type_not_allowed_in_opening:${questionType}`);
+    }
+  }
+
+  const enabledSurfaceRules = new Set(asArray(opening.forbidden_surface_rule_ids));
+  for (const [ruleId, regex] of OPENING_SURFACE_RULES) {
+    if (enabledSurfaceRules.has(ruleId) && regex.test(String(question?.question ?? ""))) {
+      problems.push(`forbidden_surface:${ruleId}`);
+    }
+  }
+
+  return problems;
+}
+
+function auditNormalOpening({ quizPath, targetId, sets, openingPolicy, failures }) {
+  const grandfathered = openingPolicy.grandfathered_targets?.[targetId] || null;
+  if (grandfathered) {
+    return {
+      status: "grandfathered",
+      reason: grandfathered.reason || null,
+      temporary: grandfathered.temporary === true
+    };
+  }
+
+  const requiredSets = Number(openingPolicy.opening_block?.sets || 2);
+  const questionsPerSet = Number(openingPolicy.opening_block?.questions_per_set || 7);
+  const requiredTotal = Number(openingPolicy.opening_block?.total_questions || requiredSets * questionsPerSet);
+  const openingSets = sets.slice(0, requiredSets);
+
+  if (sets.length < requiredSets) {
+    addFailure(failures, quizPath, "quizen mangler to normale åpningssett", {
+      targetId,
+      expectedSets: requiredSets,
+      actualSets: sets.length
+    });
+    return { status: "failed", checkedQuestions: 0 };
+  }
+
+  let checkedQuestions = 0;
+  for (const [setIndex, set] of openingSets.entries()) {
+    const questions = asArray(set.questions);
+    if (questions.length !== questionsPerSet) {
+      addFailure(failures, quizPath, "åpningssett har ikke sju spørsmål", {
+        targetId,
+        setId: set.set_id,
+        order: setIndex + 1,
+        expected: questionsPerSet,
+        actual: questions.length
+      });
+    }
+
+    for (const question of questions) {
+      checkedQuestions += 1;
+      const problems = normalOpeningProblems(question, openingPolicy);
+      if (problems.length) {
+        addFailure(failures, quizPath, "første 2×7 er ikke normale quizspørsmål", {
+          targetId,
+          setId: set.set_id,
+          questionId: question.quiz_id || question.id || null,
+          question: question.question,
+          problems
+        });
+      }
+    }
+  }
+
+  if (checkedQuestions !== requiredTotal) {
+    addFailure(failures, quizPath, "åpningsblokken inneholder ikke fjorten spørsmål", {
+      targetId,
+      expected: requiredTotal,
+      actual: checkedQuestions
+    });
+  }
+
+  return {
+    status: "checked",
+    checkedSets: openingSets.length,
+    checkedQuestions
+  };
+}
+
 export async function auditQuizProgression({ root = process.cwd() } = {}) {
   const manifest = await readJson(root, MANIFEST_PATH);
+  const openingPolicy = await readJson(root, NORMAL_OPENING_POLICY_PATH);
   const failures = [];
   const checked = [];
 
@@ -39,7 +159,19 @@ export async function auditQuizProgression({ root = process.cwd() } = {}) {
       const sets = asArray(quiz.sets);
       const questions = collectQuestions(quiz);
       const balance = summarizeQuestionBalance(questions);
-      checked.push({ file: quizPath, profile: context.profile, balance });
+      const normalOpening = auditNormalOpening({
+        quizPath,
+        targetId,
+        sets,
+        openingPolicy,
+        failures
+      });
+      checked.push({
+        file: quizPath,
+        profile: context.profile,
+        balance,
+        normalOpening
+      });
 
       if (!profile) {
         addFailure(failures, quizPath, "ugyldig profilformat", { profile: context.profile });
@@ -153,6 +285,7 @@ export async function auditQuizProgression({ root = process.cwd() } = {}) {
   return {
     status: failures.length ? "failed" : "passed",
     quizFilesChecked: checked.length,
+    openingPolicy: NORMAL_OPENING_POLICY_PATH,
     checked,
     failures
   };
