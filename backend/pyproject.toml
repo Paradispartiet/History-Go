@@ -51,10 +51,11 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 
 [tool.ruff.lint.per-file-ignores]
 "app/api/**/*.py" = ["B008"]
-# The moderation repository contains long SQL predicates inside Python strings.
-# The two test helpers below contain compact formatter-owned conditional expressions.
-# Keep these line-length exceptions narrow; all other Ruff rules remain active.
+# The moderation and operations repositories contain long SQL predicates inside
+# Python strings. Keep these line-length exceptions narrow; all other Ruff rules
+# remain active.
 "app/domains/social_meet/moderation_repository.py" = ["E501"]
+"app/domains/social_meet/operations_repository.py" = ["E501"]
 # Spotmeeting creation intentionally keeps connection lifetime and transaction scope
 # as two explicit contexts because serialization errors are classified at that boundary.
 "app/domains/social_meet/spotmeeting_repository.py" = ["SIM117"]
@@ -65,8 +66,11 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 quote-style = "double"
 indent-style = "space"
 # SQL-heavy repository formatting is kept manual so Ruff does not churn embedded
-# SQL layout while lint/type checks remain active for the file.
-exclude = ["app/domains/social_meet/moderation_repository.py"]
+# SQL layout while lint/type checks remain active for these files.
+exclude = [
+  "app/domains/social_meet/moderation_repository.py",
+  "app/domains/social_meet/operations_repository.py",
+]
 
 [tool.mypy]
 python_version = "3.12"
