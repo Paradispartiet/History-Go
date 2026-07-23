@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T19:11:27.489Z
+Generert: 2026-07-23T19:28:27.659Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -246,7 +246,7 @@ Generert: 2026-07-23T19:11:27.489Z
 | groruddammen | data/coordinate-evidence/oslo/natur/groruddammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hausmannsbrua | data/coordinate-evidence/oslo/natur/hausmannsbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hausmannsomradet_elvelop | data/coordinate-evidence/oslo/natur/hausmannsomradet_elvelop.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| hellerud_gard | data/coordinate-evidence/oslo/natur/hellerud_gard.json | needs_research | needs_identity_split | OK |
+| hellerud_gard | data/coordinate-evidence/oslo/natur/hellerud_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hovedoya | data/coordinate-evidence/oslo/natur/hovedoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kuba_parken | data/coordinate-evidence/oslo/natur/kuba_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kvaernerbyen_alna | data/coordinate-evidence/oslo/natur/kvaernerbyen_alna.json | applied_to_place | do_not_change_coordinates_yet | OK |

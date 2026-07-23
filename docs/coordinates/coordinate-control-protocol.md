@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 417 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 418 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -749,13 +749,13 @@ Batch 168 (2026-07-23) oppretter Lillomarka som ett bredt navngitt Marka- og sko
 | 171 | `aamot_bru` | Åmot bru | verified_geometry | `osm-way:791117473` |
 | 172 | `klosterenga_skulpturpark` | Klosterenga skulpturpark | verified_geometry | `osm-way:4874898` |
 | 173 | `peer_gynt_parken` | Peer Gynt-parken | verified_geometry | `osm-way:126850692` |
+| 176 | `hellerud_gard` | Nedre Hellerud – historisk gårdssted | verified_historical_source | `history-go-research:nedre-hellerud-cadastral:143-3` |
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 411 verifiserte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
-| `hellerud_gard` – Hellerud gård | needs_review | Hellerud-navnet dekker flere historiske gårdsbruk. Det entydige Haugerudtunet 1 gjelder separate Østre Haugerud gård og kan ikke brukes som automatisk erstatning for den uklare Hellerud-recorden. | Avklar hvilken Hellerud-gård recorden representerer og dokumenter fysisk hovedanker før koordinaten godkjennes. |
 | `sigrid_undset_statue` – Sigrid Undset-skulpturen | needs_review | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
 | `alf_proysen_statue_nittedal` – Alf Prøysen-monumentet ved Kulturverket Flammen | needs_review; moved to Akershus/Nittedal | Recorden lå feilaktig i Oslo-kilden. Kulturverket Flammen er dokumentert på Borghild Ruds vei 3 og kommunens kunstdatabase plasserer monumentet utenfor nedre inngang, men Geonorge-adressepunktet er ikke selve sokkelen. | Finn eksakt monument-/sokkelpunkt; behold Flammen-adressen kun som foreløpig host/site-anchor. |
 | `ring_3` – Ring 3 | needs_review | Offisiell rv. 150-identitet er dokumentert, men ett lavpresisjonspunkt kan ikke verifisere hele ringveitraseen. | Krever routeSegments/traségeometri eller flere kildebelagte ruteankre. |
