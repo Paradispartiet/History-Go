@@ -1,6 +1,6 @@
 # Protokoll for koordinatkontroll
 
-Sist oppdatert: 2026-07-22
+Sist oppdatert: 2026-07-23
 
 Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det viser hvilke steder som faktisk er kontrollert, hvilken status som er godtatt, og hvilket stabilt kildeobjekt som støtter avgjørelsen. Protokollen utfyller koordinatkontrakten og evidensfilene; den erstatter dem ikke.
 
@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 401 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 402 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -612,6 +612,10 @@ Batch 157 (2026-07-23) løser hovedrecorden Alnaelva som et eksplisitt multi-anc
 
 Batch 159 (2026-07-23) retter den brede legacy-identiteten «Alnaelvstien» til den konkrete kartlagte Alnastien-komponenten gjennom Svartdalen og Bryn. Elleve fresh OSM-ways med eksakt name=Alnastien danner én uforgrenet endepunktkoblet kjede på 1642 meter. Alle ways lagres eksplisitt som routeSegments. Canonical lat/lon beregnes deterministisk som lengdemidtpunkt for hele kjeden og ligger på way 113281394, som brukes som displaykilde i coordinate-source-contract. Oslo kommune kryssjekker turveien gjennom Svartdalsparken og Alnastien-navnet i Bryn/Etterstad-scope. Modellen hevder ikke at denne komponenten er hele turveisystemet langs Alnaelva. Legacy-punktet og nearest/first-hit brukes ikke.
 
+| 160 | `elvestrekning_bla_brenneriveien` | Elvestrekning ved Blå (Brenneriveien) | verified_geometry | `osm-way:80915045` |
+
+Batch 160 (2026-07-23) løser den lokalt definerte Akerselva-strekningen ved Blå/Brenneriveien med eksplisitt bracket-geometri i stedet for legacy-punkt eller nearest-søk. Fresh OSM way 80915045 er Akerselva. Delstrekningen klippes mellom den fysiske Grünerbrua/Nordre gate-kryssingen (way 4826556) og Elvebakken bru-kryssingen (way 4826553); gangbroen ved Blå/Ingens gate (way 4826555) ligger strengt inne i intervallet og kryssjekkes mot Ingens gate way 4826554 og Blå node 4312299494. Canonical lat/lon er det deterministiske lengdemidtpunktet langs den klippede ca. 286.3 meter lange elvegeometrien. Hele 5,2 km-Akerselva-wayen brukes ikke som recordens scope, og legacy-koordinaten brukes ikke.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)
@@ -709,7 +713,6 @@ Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller k
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
-| `elvestrekning_bla_brenneriveien` – Elvestrekning ved Blå (Brenneriveien) | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
 | `fossveien_elvestrekning` – Fossveien – elvestrekning | needs_review | Lokalt definert elvestrekning uten ett entydig navngitt kildeobjekt; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
 | `hausmannsomradet_elvelop` – Hausmannsområdet (elveløp) | needs_review | Bredt elveløp uten stabil fysisk avgrensning i recorden; tidligere manuelle ankere lå feilplassert vest for Akerselva. | Dokumenter eksplisitt elvegeometri eller flere kildebelagte ankere. |
 | `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
