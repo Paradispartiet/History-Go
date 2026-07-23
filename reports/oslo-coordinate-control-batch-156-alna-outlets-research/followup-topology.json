@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-07-23T04:11:01.855Z",
+  "placeId": "alna_utlop_bjorvika",
+  "historicalMarker": {
+    "park": {
+      "osmType": "way",
+      "osmId": 31258136,
+      "name": "Middelalderparken",
+      "category": "leisure",
+      "type": "park",
+      "boundingbox": [
+        "59.9018937",
+        "59.9064557",
+        "10.7601734",
+        "10.7671454"
+      ]
+    },
+    "waterCandidateCountInsidePark": 1,
+    "waterCandidatesInsidePark": [
+      {
+        "osmType": "way",
+        "osmId": 4258487,
+        "tags": {
+          "name": "Tenerife",
+          "natural": "water",
+          "water": "lake",
+          "wikidata": "Q12005478",
+          "wikipedia": "no:Tenerife (Oslo)"
+        },
+        "center": {
+          "lat": 59.90369511341463,
+          "lon": 10.761523201219514
+        },
+        "geometryPointCount": 82
+      }
+    ],
+    "selectionRule": "A Vannspeilet geometry is defensible only if exactly one substantial mapped water polygon has its center inside the exact Middelalderparken geometry."
+  },
+  "currentOutlet": {
+    "tunnelWay": {
+      "id": 130106085,
+      "tags": {
+        "alt_name": "Loelva",
+        "layer": "-2",
+        "name": "Alna",
+        "tunnel": "yes",
+        "waterway": "river"
+      }
+    },
+    "openOutletWay": {
+      "id": 131984275,
+      "tags": {
+        "alt_name": "Loelva",
+        "name": "Alna",
+        "waterway": "river"
+      },
+      "points": [
+        {
+          "id": "1434044641",
+          "lat": 59.8960114,
+          "lon": 10.7560872
+        },
+        {
+          "id": "8067877481",
+          "lat": 59.8959696,
+          "lon": 10.7559331
+        },
+        {
+          "id": "8067892897",
+          "lat": 59.895923,
+          "lon": 10.7555928
+        }
+      ]
+    },
+    "outletWaterArea": {
+      "id": 865565720,
+      "tags": {
+        "natural": "water",
+        "water": "river"
+      },
+      "sharedNodesWithOpenWay": [
+        "1434044641"
+      ]
+    },
+    "tunnelOpenSharedNode": "1434044641",
+    "downstreamNode": {
+      "id": "8067877481",
+      "lat": 59.8959696,
+      "lon": 10.7559331
+    },
+    "downstreamConnectedWays": [],
+    "coastlineWaysAtDownstreamNode": []
+  },
+  "officialInterpretation": {
+    "historical": "Vannspeilet is an official physical marker of the original Alna outlet; it is not itself proof of an exact separate medieval mouth point.",
+    "current": "The current hydrological outlet must follow the tunnel-to-open-water topology, not the historical Bjørvika coordinate."
+  },
+  "nextAction": "Use the unique water polygon inside Middelalderparken as the historical outlet marker candidate. Resolve the current open outlet endpoint against coastline or harbour-water geometry before production."
+}
