@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T22:13:37.366Z
+Generert: 2026-07-23T22:21:06.353Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -186,7 +186,6 @@ Generert: 2026-07-23T22:13:37.366Z
 | akershus_slott_bakeriet | data/coordinate-evidence/oslo/naeringsliv/akershus_slott_bakeriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bryn_industriomrade | data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json | needs_research | needs_geometry | OK |
 | christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| fornebu_teknologipark | data/coordinate-evidence/oslo/naeringsliv/fornebu_teknologipark.json | needs_research | needs_identity_split | OK |
 | frysja_industriomrade | data/coordinate-evidence/oslo/naeringsliv/frysja_industriomrade.json | needs_research | needs_geometry | OK |
 | grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | needs_research | needs_geometry | OK |
@@ -344,3 +343,4 @@ Generert: 2026-07-23T22:13:37.366Z
 | galleri_schaeffers_gate_5 | data/coordinate-evidence/oslo/kunst/galleri_schaeffers_gate_5.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grafill | data/coordinate-evidence/oslo/kunst/grafill.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_energi | data/coordinate-evidence/akershus/naeringsliv/akershus_energi.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| fornebu_teknologipark | data/coordinate-evidence/akershus/naeringsliv/fornebu_teknologipark.json | applied_to_place | do_not_change_coordinates_yet | OK |
