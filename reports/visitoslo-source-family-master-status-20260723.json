@@ -1,0 +1,80 @@
+{
+  "version": "2026-07-23",
+  "officialAreaSource": {
+    "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/omraader/",
+    "currentAreas": [
+      "Aker Brygge & Tjuvholmen",
+      "Bjørvika",
+      "Bygdøy",
+      "Grünerløkka",
+      "Holmenkollen",
+      "Oslo sentrum",
+      "Oslo vest",
+      "Oslo øst",
+      "Oslofjorden"
+    ]
+  },
+  "areaSeries": {
+    "status": "closed",
+    "closedCount": 9,
+    "totalCurrentAreas": 9,
+    "remainingAreaAudits": 0,
+    "closures": [
+      { "area": "Oslo sentrum", "closurePr": 2804, "repoAuditName": "VisitOSLO City Centre" },
+      { "area": "Oslo vest", "closurePr": 2749 },
+      { "area": "Oslo øst", "closurePr": 2966 },
+      { "area": "Grünerløkka", "closurePr": 3034 },
+      { "area": "Bygdøy", "closurePr": 3048, "supportingClosurePr": 3047 },
+      { "area": "Aker Brygge & Tjuvholmen", "closurePr": 3052 },
+      { "area": "Bjørvika", "closurePr": 3430, "productionPr": 3080 },
+      { "area": "Oslofjorden", "closurePr": 3120 },
+      { "area": "Holmenkollen", "closurePr": 3150 }
+    ]
+  },
+  "thematicSources": [
+    {
+      "sourceFamily": "VisitOSLO museums / visitor museum list",
+      "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/attraksjoner/museer/",
+      "status": "research_and_production_closed",
+      "closurePr": 2584,
+      "approvedNewCandidatesProduced": 18,
+      "remainingApprovedProductionBacklog": 0,
+      "note": "The durable closure report on current main states that all 18 approved candidates were produced and that there is no remaining approved backlog from this source pass."
+    },
+    {
+      "sourceFamily": "VisitOSLO parks / natural attractions",
+      "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/attraksjoner/parker-naturattraksjoner/",
+      "status": "scope_closed_production_chain_not_master_closed",
+      "scopeClosurePr": 3144,
+      "scope": {
+        "visibleRows": 30,
+        "alreadyCovered": 17,
+        "outsideOslo": 3,
+        "approvedDistinctNewPlaces": 7,
+        "canonicalIdentityMigrations": 3,
+        "unresolved": 0
+      },
+      "knownProductionPrs": [3146, 3178, 3180],
+      "nextAction": "Do not start a competing parks/nature audit. Reconcile current production state and write one final thematic closure when the existing chain is complete."
+    },
+    {
+      "sourceFamily": "VisitOSLO galleries",
+      "url": "https://www.visitoslo.com/no/aktiviteter-og-attraksjoner/attraksjoner/galleri/",
+      "status": "next_unstarted_systematic_source_family",
+      "repoSearchResult": "No dedicated systematic VisitOSLO Galleries completeness audit or closure found in current PR history.",
+      "policyDependencies": [
+        "Oslo West commercial/private gallery deferral policy",
+        "Aker Brygge & Tjuvholmen six-gallery deferral decisions",
+        "Fineart Oslo deferral in the completed museum-source pass"
+      ],
+      "nextAction": "Run one bounded source snapshot and classify every visible gallery row against current canonical coverage and the existing gallery-inclusion policy before approving any production candidate."
+    }
+  ],
+  "masterDecision": {
+    "areaSeriesComplete": true,
+    "museumSourceComplete": true,
+    "parksNatureDoNotDuplicate": true,
+    "nextNewSourceFamily": "VisitOSLO galleries",
+    "guard": "Do not reopen closed area or museum sources merely because the same place appears in a thematic list. The gallery audit must reuse existing canonical and policy decisions first."
+  }
+}
