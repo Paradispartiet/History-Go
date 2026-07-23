@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-23T21:13:19.922Z
+Generert: 2026-07-23T21:31:29.801Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **6beb3c8ef0aca6968a101485379791c619a97927**
+- Base for nye/endrede place-objekter: **d7b3482298b14860f5f9a78f4da7395d283b98a1**
 - Base method: **git merge-base HEAD origin/main**
-- Aktive manifest-filer lest: **687**
-- Place-objekter validert: **1290**
+- Aktive manifest-filer lest: **688**
+- Place-objekter validert: **1289**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **2955**
+- Backlog-funn: **2950**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -543,4 +543,4 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 2955 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 2950 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T21:13:22.861Z
+Generert: 2026-07-23T21:31:32.670Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -183,7 +183,6 @@ Generert: 2026-07-23T21:13:22.861Z
 | dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klassekampen_redaksjon | data/coordinate-evidence/oslo/media/klassekampen_redaksjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva_industri | data/coordinate-evidence/oslo/naeringsliv/akerselva_industri.json | needs_research | needs_geometry | OK |
-| akershus_energi | data/coordinate-evidence/oslo/naeringsliv/akershus_energi.json | needs_research | needs_identity_split | OK |
 | akershus_slott_bakeriet | data/coordinate-evidence/oslo/naeringsliv/akershus_slott_bakeriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bryn_industriomrade | data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json | needs_research | needs_geometry | OK |
 | christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -345,3 +344,4 @@ Generert: 2026-07-23T21:13:22.861Z
 | ram_galleri | data/coordinate-evidence/oslo/kunst/ram_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galleri_schaeffers_gate_5 | data/coordinate-evidence/oslo/kunst/galleri_schaeffers_gate_5.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grafill | data/coordinate-evidence/oslo/kunst/grafill.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akershus_energi | data/coordinate-evidence/akershus/naeringsliv/akershus_energi.json | applied_to_place | do_not_change_coordinates_yet | OK |
