@@ -25,15 +25,25 @@ const CONTEXT_RULES = [
 
 const BALANCE_POLICY = Object.freeze({
   minimumFactRatio: 0.5,
-  maximumFactRatio: 0.65,
+  maximumFactRatio: 0.6,
   minimumContextRatio: 0.2,
-  maximumContextRatio: 0.35,
+  maximumContextRatio: 0.3,
   minimumTheoryRatio: 0.15,
   maximumTheoryRatio: 0.25,
   balanceAppliedFromQuestionCount: 10
 });
 
-const SKIP_DIRS = new Set(["arkiv", "regler", "reports", "report", "fixtures", "node_modules", ".git"]);
+const SKIP_DIRS = new Set([
+  "arkiv",
+  "regler",
+  "reports",
+  "report",
+  "fixtures",
+  "production_briefs",
+  "production_context",
+  "node_modules",
+  ".git"
+]);
 const SKIP_FILES = [/manifest/iu, /schema/iu, /report/iu, /profile/iu, /mapping/iu, /index/iu];
 
 function normalizeText(value) {
@@ -58,6 +68,10 @@ function classifyQuestion(item) {
   const question = String(item?.question ?? "");
   const theorySignals = findTheorySignals(question);
   if (theorySignals.length) return { family: "theory", theorySignals };
+
+  if (item?.topic_hook_id || item?.thinker_id || item?.theory_ref || item?.method_id) {
+    return { family: "theory", theorySignals: ["declared_method_or_theory_binding"] };
+  }
 
   const declared = normalizeText(item?.question_type);
   if (["concept", "theory", "definition", "begrep"].includes(declared)) {
@@ -145,9 +159,9 @@ function assessGroup(group) {
 
   if (total >= BALANCE_POLICY.balanceAppliedFromQuestionCount) {
     if (ratios.fact < BALANCE_POLICY.minimumFactRatio) violations.push(`fact_ratio_below_50_percent:${ratios.fact}`);
-    if (ratios.fact > BALANCE_POLICY.maximumFactRatio) violations.push(`fact_ratio_above_65_percent:${ratios.fact}`);
+    if (ratios.fact > BALANCE_POLICY.maximumFactRatio) violations.push(`fact_ratio_above_60_percent:${ratios.fact}`);
     if (ratios.context < BALANCE_POLICY.minimumContextRatio) violations.push(`context_ratio_below_20_percent:${ratios.context}`);
-    if (ratios.context > BALANCE_POLICY.maximumContextRatio) violations.push(`context_ratio_above_35_percent:${ratios.context}`);
+    if (ratios.context > BALANCE_POLICY.maximumContextRatio) violations.push(`context_ratio_above_30_percent:${ratios.context}`);
     if (ratios.theory < BALANCE_POLICY.minimumTheoryRatio) violations.push(`theory_ratio_below_15_percent:${ratios.theory}`);
     if (ratios.theory > BALANCE_POLICY.maximumTheoryRatio) violations.push(`theory_ratio_above_25_percent:${ratios.theory}`);
   }
@@ -202,7 +216,8 @@ export async function auditQuizContent({ rootDir = "data/quiz" } = {}) {
     .sort((a, b) => b.count - a.count || b.files.length - a.files.length);
 
   const theoryQuestions = questions.filter((question) => question.family === "theory");
-  const templateViolations = theoryQuestions.filter((question) => question.theorySignals.some((signal) => signal !== "declared_concept_or_theory"));
+  const declaredSignals = new Set(["declared_concept_or_theory", "declared_method_or_theory_binding"]);
+  const templateViolations = theoryQuestions.filter((question) => question.theorySignals.some((signal) => !declaredSignals.has(signal)));
   const optionLengthSignals = questions.filter((question) => question.optionLengthSignal);
   const balanceViolations = groups.filter((group) => group.violations.length);
 

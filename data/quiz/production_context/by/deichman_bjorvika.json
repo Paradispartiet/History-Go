@@ -1,0 +1,956 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "by",
+  "targetId": "deichman_bjorvika",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "bytes": 9015,
+    "sha256": "d745ae5011557f41f9421e29c607e55acffc764264e5555ef70a8802ac208fe3"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/by/pensum_by.json",
+      "bytes": 16713,
+      "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/by/emner_by.json",
+      "bytes": 579055,
+      "sha256": "32a01997c62a05f731d48c1249e0d9bc74ca1aacec87672876ef40c751301a57",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/by/fagkart_by.json",
+      "bytes": 370422,
+      "sha256": "9e0eccf7cab5ba11824dfc926064009419a3d155b2939d42ec09cf340bc185cd",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/by/methods_by.json",
+      "bytes": 29296,
+      "sha256": "6a2a8e92bead149d2b28e6d4edf0e9b7db52e39ed92f742b5c3b7c70f3a9b5f2",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/by/supersetQUIZMAL_by.json",
+      "bytes": 6860,
+      "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 10420,
+      "sha256": "f64a00bd951ae44ea19d4d2fba3628bfaf16b6688c21494c90fd59bbcb91d5f1",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 3642,
+      "sha256": "a0b22f8e1091c459b700b3782b9841323c8cfc3dac1e8c92e416dc01c2d6ca04",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/by/deichman_bjorvika.json",
+      "bytes": 19298,
+      "sha256": "aa6e05970a6a434c6a6aa61f608485e5bccc685e4ca16fde1d9512610a53b48c"
+    },
+    "target": {
+      "path": "data/places/by/oslo/places/deichman_bjorvika.json",
+      "bytes": 5730,
+      "sha256": "86eca7b17e6d89be44c19234506adb28c8e076307dd5cb42a0cb15744763e5a5"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1254,
+      "selection_sha256": "76536cc9107e734939e0a173057c4772ed13c6b10ce303414b076c6c6de83203"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 3,
+        "selection_bytes": 618,
+        "selection_sha256": "6253c98c42971ef4a6b5252ddf201c2651394c30c771c20a932f4571e6e9ca6c"
+      },
+      {
+        "path": "data/relations_philanthropy.json",
+        "matches": 1,
+        "selection_bytes": 305,
+        "selection_sha256": "e81b3ba063e3bc339975b5b2e8fca61e8b2912d0a61c8093a432777bfc05e52c"
+      }
+    ],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/by/deichman_bjorvika_sets.json",
+  "source_registry": {
+    "oslo_deichman": {
+      "url": "https://www.oslo.kommune.no/etater-foretak-og-ombud/deichman-bibliotek/",
+      "source_type": "official_institution",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommunes institusjonsside for Deichman; brukt for bibliotekets historie, gratis tilgang og samfunnsoppdrag."
+    },
+    "oslo_meeting": {
+      "url": "https://magasin.oslo.kommune.no/byplan/biblioteket-en-m%C3%B8teplass-for-alle",
+      "source_type": "official_municipal_article",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommunes Byplan-artikkel; brukt for møteplassfunksjon, etasjer og ikke-kommersiell offentlighet."
+    },
+    "atelier_oslo": {
+      "url": "https://atelieroslo.no/project/deichman",
+      "source_type": "architect_project_documentation",
+      "review_status": "reviewed",
+      "review_note": "Arkitektens prosjektdokumentasjon; brukt for åpning, innganger, lyssjakter, boktårn, fasade og romorganisering."
+    },
+    "futurebuilt": {
+      "url": "https://www.futurebuilt.no/forbildeprosjekter/deichman-bjoervika",
+      "source_type": "official_project_documentation",
+      "review_status": "reviewed",
+      "review_note": "FutureBuilt-prosjektet; brukt for miljømål, materialer, transport, fasade og etasjeprogram."
+    },
+    "ifla_2021": {
+      "url": "https://www.ifla.org/news/new-public-library-world-champion-named/",
+      "source_type": "professional_organization",
+      "review_status": "reviewed",
+      "review_note": "IFLAs prisomtale; brukt for 2021-prisen, samlingshistorie, etasjer og publikumsfunksjoner."
+    }
+  },
+  "source_review_status": "reviewed",
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 7,
+      "emner": 82,
+      "topic_hooks": 81,
+      "methods": 14
+    },
+    "candidate_emner": [
+      {
+        "id": "em_by_materialitet_og_sanseerfaring",
+        "title": "Materialitet og sanseerfaring",
+        "score": 125
+      },
+      {
+        "id": "em_by_offentlige_rom_motesteder",
+        "title": "Offentlige rom og møtesteder",
+        "score": 100
+      },
+      {
+        "id": "em_by_symbolsk_makt_og_representasjon",
+        "title": "Symbolsk makt og representasjon",
+        "score": 100
+      },
+      {
+        "id": "em_by_boligstruktur",
+        "title": "Boligstruktur og nabolagstyper",
+        "score": 25
+      },
+      {
+        "id": "em_by_bygningstyper_og_typologier",
+        "title": "Bygningstyper og typologier",
+        "score": 25
+      },
+      {
+        "id": "em_by_estetikk_vs_funksjon",
+        "title": "Estetikk, funksjon og teknisk løsning",
+        "score": 25
+      },
+      {
+        "id": "em_by_gangstrommer_snarveier",
+        "title": "Gangstrømmer og snarveier",
+        "score": 25
+      },
+      {
+        "id": "em_by_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "score": 25
+      },
+      {
+        "id": "em_by_tilgjengelighet_universell_utforming",
+        "title": "Tilgjengelighet, universell utforming og kroppslig inkludering",
+        "score": 25
+      },
+      {
+        "id": "em_by_transformasjon_ombruk",
+        "title": "Transformasjon og ombruk",
+        "score": 25
+      },
+      {
+        "id": "em_by_venting_som_bypraksis",
+        "title": "Venting som bypraksis",
+        "score": 25
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "ark_estetikk_funksjon",
+        "title": "Estetikk vs funksjon",
+        "category_id": "arkitektur",
+        "score": 33
+      },
+      {
+        "id": "ark_materialbruk",
+        "title": "Materialbruk",
+        "category_id": "arkitektur",
+        "score": 33
+      },
+      {
+        "id": "ark_symbolbygg",
+        "title": "Symbolbygg",
+        "category_id": "arkitektur",
+        "score": 33
+      },
+      {
+        "id": "ark_bygningstyper",
+        "title": "Bygningstyper",
+        "category_id": "arkitektur",
+        "score": 23
+      },
+      {
+        "id": "ark_transformasjon",
+        "title": "Ombygging og transformasjon",
+        "category_id": "arkitektur",
+        "score": 23
+      },
+      {
+        "id": "byliv_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "category_id": "byliv",
+        "score": 23
+      },
+      {
+        "id": "his_ombruk",
+        "title": "Ombruk",
+        "category_id": "historiske_lag",
+        "score": 23
+      },
+      {
+        "id": "universell_utforming_inkludering",
+        "title": "Tilgjengelighet, universell utforming og kroppslig inkludering",
+        "category_id": "klima_og_helse",
+        "score": 23
+      },
+      {
+        "id": "arb_turisme",
+        "title": "Turisme",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "ark_makt",
+        "title": "Arkitektur og makt",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "bolig_identitet",
+        "title": "Lokal identitet",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "byliv_aapne_rom",
+        "title": "Bruk av åpne rom",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "byliv_stemning_sansning",
+        "title": "Stemning, lyd og sansning",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "his_navn_symboler",
+        "title": "Navn og symboler",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_tid_materialer",
+        "title": "Tid i materialer",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "makt_politisk_symbolikk",
+        "title": "Politisk symbolikk",
+        "category_id": "makt_og_konflikt",
+        "score": 10
+      },
+      {
+        "id": "plan_skilting_regulering",
+        "title": "Skilting og regulering",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      },
+      {
+        "id": "urb_offentlig_rom_ide",
+        "title": "Offentlig rom som idé",
+        "category_id": "urbanisme",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_06_makt_symboler_og_representasjon"
+    ],
+    "emne_ids": [
+      "em_by_offentlige_rom_motesteder",
+      "em_by_materialitet_og_sanseerfaring",
+      "em_by_symbolsk_makt_og_representasjon"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "ark_materialbruk"
+    ],
+    "method_ids": [
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [
+      "william_h_whyte",
+      "richard_sennett",
+      "juhani_pallasmaa"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces",
+      "The Fall of Public Man",
+      "The Eyes of the Skin"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_deichman_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Carl Deichman testamenterte boksamlingen sin til innbyggerne i Christiania. Gaven ble grunnlaget for biblioteket som åpnet i 1785.",
+      "source_ids": [
+        "oslo_deichman",
+        "ifla_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gaven besto av rundt 6 000 bøker og ble starten på det offentlige Deichman-biblioteket.",
+      "source_ids": [
+        "ifla_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Deichman åpnet i 1785 og regnes som Norges eldste folkebibliotek.",
+      "source_ids": [
+        "oslo_deichman",
+        "oslo_meeting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det gamle hovedbiblioteket åpnet på Hammersborg i 1933 og hadde rollen fram til flyttingen til Bjørvika.",
+      "source_ids": [
+        "oslo_meeting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "concept_theory",
+      "statement": "Sosial infrastruktur er steder og institusjoner som støtter hverdagsliv, læring og møter mellom mennesker. Deichman gjør dette gjennom gratis tilgang til kunnskap, arbeidsplasser, aktiviteter og opphold.",
+      "source_ids": [
+        "oslo_meeting",
+        "oslo_deichman"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_24",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Atelier Oslo oppgir at bygget åpnet for publikum 18. juni 2020.",
+      "source_ids": [
+        "atelier_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon",
+      "guidance_basis": [
+        "data/fag/by/pensum_by.json",
+        "data/fag/by/emner_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_25",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Atelier Oslo og FutureBuilt beskriver tre publikumsinnganger fra gateplan i ulike retninger.",
+      "source_ids": [
+        "atelier_oslo",
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "guidance_basis": [
+        "data/fag/by/emner_by.json",
+        "data/fag/by/fagkart_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_6",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Atelier Oslo og Lund Hagem vant plan- og designkonkurransen i 2009 og utviklet bygget sammen.",
+      "source_ids": [
+        "atelier_oslo",
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_7",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Utkragingene ga større gulvareal på den lille tomten, samtidig som bygget kunne holdes relativt lavt og siktlinjen mot Operaen ble bevart.",
+      "source_ids": [
+        "atelier_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_8",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den største utkragingen strekker seg nesten 20 meter ut over plassen ved inngangen.",
+      "source_ids": [
+        "atelier_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_9",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Lyssjaktene gir innblikk i andre deler av biblioteket og fordeler dagslys fra takvinduene ned gjennom etasjene.",
+      "source_ids": [
+        "atelier_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_10",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den foldede geometrien gir takkonstruksjonen styrke og er samtidig et tydelig arkitektonisk kjennetegn.",
+      "source_ids": [
+        "atelier_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_26",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arkitekt- og FutureBuilt-kildene beskriver gatefasaden som transparent.",
+      "source_ids": [
+        "atelier_oslo",
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring",
+      "guidance_basis": [
+        "data/fag/by/emner_by.json",
+        "data/fag/by/fagkart_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_27",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Atelier Oslo beskriver hvordan rom og nisjer er organisert rundt tre frittstående boktårn.",
+      "source_ids": [
+        "atelier_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring",
+      "guidance_basis": [
+        "data/fag/by/emner_by.json",
+        "data/fag/by/fagkart_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_11",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Deichman Bjørvika er organisert over seks etasjer med ulike tilbud, arbeidsformer og samlinger.",
+      "source_ids": [
+        "ifla_2021",
+        "oslo_meeting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_12",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Biblioteket har et automatisk sorteringssystem som håndterer innleverte bøker og sender dem videre i bygget.",
+      "source_ids": [
+        "ifla_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_13",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tredje etasje er viet levende medier og populærkultur, blant annet lyd, film, spill, tegneserier og digitale verksteder.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_14",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Femte etasje rommer blant annet lesesal, stille arbeidsplasser, slektshistorie, Oslo-litteratur og den opprinnelige Deichman-samlingen.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_15",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "concept_theory",
+      "statement": "Lav terskel betyr at økonomiske, sosiale og praktiske barrierer er små. På Deichman kan du lese, arbeide, møte andre eller ta en pause uten kjøpspress.",
+      "source_ids": [
+        "oslo_deichman",
+        "oslo_meeting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_28",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "FutureBuilt og IFLA beskriver kino, sal og magasiner i etasjen under gateplanet.",
+      "source_ids": [
+        "futurebuilt",
+        "ifla_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "guidance_basis": [
+        "data/fag/by/emner_by.json",
+        "data/fag/by/pensum_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_29",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Etasjeoversiktene viser en overgang fra aktive publikumsfunksjoner nederst til lesing og fordypning øverst.",
+      "source_ids": [
+        "futurebuilt",
+        "ifla_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "guidance_basis": [
+        "data/fag/by/emner_by.json",
+        "data/fag/by/methods_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_16",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Biblioteket oppfyller passivhuskriteriene i Norsk Standard 3701.",
+      "source_ids": [
+        "atelier_oslo",
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_17",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "FutureBuilt oppgir at det ferdige bygget hadde omtrent 69 prosent lavere beregnede klimagassutslipp enn referansebygget.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_18",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Betongens termiske masse tar opp og avgir varme langsomt. Sammen med ventilasjon langs dekkene demper dette temperatursvingninger og reduserer kjølebehovet.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_19",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Bygget bruker blant annet lavkarbonbetong og resirkulert stål for å redusere utslipp fra materialene.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_20",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "IFLA kåret Deichman Bjørvika til verdens beste nye folkebibliotek i 2021.",
+      "source_ids": [
+        "ifla_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_symbolsk_makt_og_representasjon"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_30",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "FutureBuilt knytter kollektivnær lokalisering og fravær av bilparkering til prosjektets viktigste klimatiltak.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "guidance_basis": [
+        "data/fag/by/emner_by.json",
+        "data/fag/by/methods_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_31",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "FutureBuilt beskriver en fasade som både sprer dagslys, isolerer og skjermer mot solvarme.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring",
+      "guidance_basis": [
+        "data/fag/by/emner_by.json",
+        "data/fag/by/fagkart_by.json"
+      ]
+    },
+    {
+      "claim_id": "claim_deichman_quiz_21",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Deichman viser hvordan folkebiblioteket har utviklet seg fra først og fremst å formidle bøker til også å gi rom for læring, skapende arbeid, arrangementer og sosialt samvær.",
+      "source_ids": [
+        "oslo_deichman",
+        "oslo_meeting",
+        "ifla_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_22",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Termisk masse er et materiales evne til å lagre varme og avgi den senere. Betongdekkene bidrar derfor til jevnere temperatur og lavere kjølebehov.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_23",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lavkarbonbetong er utviklet for å redusere utslippene fra sement og betongproduksjon. I Deichman inngår materialvalget i prosjektets samlede klimaarbeid.",
+      "source_ids": [
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene beskriver Deichman som åpent offentlig rom med varierte soner og aktiviteter; faktisk bruk må undersøkes empirisk.",
+      "source_ids": [
+        "oslo_meeting",
+        "atelier_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "guidance_basis": [
+        "data/fag/by/methods_by.json",
+        "data/fag/by/emner_by.json"
+      ],
+      "method_id": "met_feltobservasjon"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Atelier Oslo beskriver et åpent offentlig interiør med varierte møbler og aktiviteter, mens Oslo kommune beskriver biblioteket som møteplass.",
+      "source_ids": [
+        "atelier_oslo",
+        "oslo_meeting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "guidance_basis": [
+        "data/fag/by/fagkart_by.json",
+        "data/fag/by/methods_by.json",
+        "data/fag/by/emner_by.json"
+      ],
+      "method_id": "met_feltobservasjon",
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "william_h_whyte",
+      "work": "The Social Life of Small Urban Spaces"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo kommune beskriver Deichman som gratis møteplass der mennesker kan oppholde seg på lik linje utenfor den kommersielle sfæren.",
+      "source_ids": [
+        "oslo_deichman",
+        "oslo_meeting"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder",
+      "guidance_basis": [
+        "data/fag/by/fagkart_by.json",
+        "data/fag/by/emner_by.json"
+      ],
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "richard_sennett",
+      "work": "The Fall of Public Man"
+    },
+    {
+      "claim_id": "claim_deichman_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arkitekt- og FutureBuilt-kildene dokumenterer lyssjakter, diffust dagslys, robuste materialer og romlige overganger.",
+      "source_ids": [
+        "atelier_oslo",
+        "futurebuilt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring",
+      "guidance_basis": [
+        "data/fag/by/fagkart_by.json",
+        "data/fag/by/emner_by.json"
+      ],
+      "topic_hook_id": "ark_materialbruk",
+      "thinker_id": "juhani_pallasmaa",
+      "work": "The Eyes of the Skin"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "mig_linn_ullmann_deichman_bjorvika_96c7da8f9e",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_vigdis_hjorth_deichman_bjorvika_d5777d102c",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_karl_ove_knausgard_deichman_bjorvika_ab15510989",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "rel_carl_deichman_deichman_bjorvika_filantropi",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Dagens Deichman viderefører bibliotekinstitusjonen som startet med Deichmans samling."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "by_deichman_bjorvika_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_deichman_quiz_1",
+        "claim_deichman_quiz_2",
+        "claim_deichman_quiz_3",
+        "claim_deichman_quiz_4",
+        "claim_deichman_quiz_5",
+        "claim_deichman_quiz_24",
+        "claim_deichman_quiz_25"
+      ]
+    },
+    {
+      "set_id": "by_deichman_bjorvika_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_deichman_quiz_6",
+        "claim_deichman_quiz_7",
+        "claim_deichman_quiz_8",
+        "claim_deichman_quiz_9",
+        "claim_deichman_quiz_10",
+        "claim_deichman_quiz_26",
+        "claim_deichman_quiz_27"
+      ]
+    },
+    {
+      "set_id": "by_deichman_bjorvika_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_deichman_quiz_11",
+        "claim_deichman_quiz_12",
+        "claim_deichman_quiz_13",
+        "claim_deichman_quiz_14",
+        "claim_deichman_quiz_15",
+        "claim_deichman_quiz_28",
+        "claim_deichman_quiz_29"
+      ]
+    },
+    {
+      "set_id": "by_deichman_bjorvika_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_deichman_quiz_16",
+        "claim_deichman_quiz_17",
+        "claim_deichman_quiz_18",
+        "claim_deichman_quiz_19",
+        "claim_deichman_quiz_20",
+        "claim_deichman_quiz_30",
+        "claim_deichman_quiz_31"
+      ]
+    },
+    {
+      "set_id": "by_deichman_bjorvika_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_deichman_quiz_21",
+        "claim_deichman_quiz_22",
+        "claim_deichman_quiz_23",
+        "claim_deichman_quiz_32",
+        "claim_deichman_quiz_33",
+        "claim_deichman_quiz_34",
+        "claim_deichman_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 19,
+      "context": 8,
+      "concept_theory": 8
+    },
+    "ratios": {
+      "fact": 0.543,
+      "context": 0.229,
+      "concept_theory": 0.229
+    }
+  }
+}

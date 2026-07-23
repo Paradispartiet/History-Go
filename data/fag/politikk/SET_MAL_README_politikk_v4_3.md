@@ -6,7 +6,7 @@ Denne filen beholdes bare for historikk og definerer ingen selvstendige quizregl
 
 Gjeldende filer er:
 
-1. `data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md` – eneste bindende produksjonsstandard
+1. `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` – eneste bindende produksjonsprosedyre
 2. `data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json` – teknisk spørsmålsskjema
 3. `data/fag/politikk/supersetQUIZMAL_politikk.json` – Politikk-fagets prioriteringer, begreper og kildetyper
 

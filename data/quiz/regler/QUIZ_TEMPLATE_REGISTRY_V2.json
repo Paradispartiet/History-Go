@@ -1,20 +1,26 @@
 {
-  "version": "2.1",
+  "version": "3.0",
   "status": "canonical",
   "authority_order": [
-    "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md",
-    "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "data/fag/fag_manifest.json",
+    "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
     "category_profile"
   ],
   "rule": "Ingen andre quizmaler, generatorpatcher, README-filer eller pseudokodefiler kan overstyre authority_order.",
   "canonical_files": {
     "category_contract": "data/categories/category_contract.json",
-    "production_standard": "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md",
+    "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
     "subject_manifest": "data/fag/fag_manifest.json",
+    "context_builder": "scripts/build-quiz-production-context.mjs",
     "content_audit": "scripts/audit-quiz-content-quality.mjs",
-    "template_audit": "scripts/audit-quiz-template-governance.mjs"
+    "template_audit": "scripts/audit-quiz-template-governance.mjs",
+    "production_context_audit": "scripts/audit-quiz-production-context.mjs",
+    "progression_audit": "scripts/audit-quiz-progression.mjs",
+    "theory_binding_audit": "scripts/audit-quiz-theory-binding.mjs"
   },
   "category_profiles": {
     "by": "data/fag/by/supersetQUIZMAL_by.json",
@@ -36,6 +42,7 @@
     "film_tv": "data/fag/TV_og_Film/supersetQUIZMAL_film_tv.json"
   },
   "non_authoritative_patterns": [
+    "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V*.md",
     "data/quiz/regler/SET_MAL_README_*.md",
     "data/quiz/regler/quiz_generator_rules_*.json",
     "data/quiz/regler/quiz_generator_rules_*.md",

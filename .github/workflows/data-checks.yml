@@ -24,7 +24,13 @@ on:
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/audit-category-governance.mjs'
       - 'scripts/audit-quiz-content-quality.mjs'
+      - 'scripts/audit-quiz-production-context.mjs'
+      - 'scripts/audit-quiz-progression.mjs'
       - 'scripts/audit-quiz-template-governance.mjs'
+      - 'scripts/audit-quiz-theory-binding.mjs'
+      - 'scripts/build-quiz-production-context.mjs'
+      - 'scripts/quiz-production-lib.mjs'
+      - 'tests/quiz-production-pipeline.test.mjs'
       - 'data/Civication/historyPeople_index.json'
       - 'data/Civication/people_access_map.json'
       - 'tools/**'
@@ -161,8 +167,16 @@ jobs:
       - name: Audit canonical quiz templates
         run: npm run audit:quiz-templates
 
+      - name: Audit quiz production packages
+        run: |
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+
       - name: Test quiz content audit and repaired quizzes
-        run: npm run test:quiz-content-audit
+        run: |
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
 
   knowledge:
     name: Knowledge V2

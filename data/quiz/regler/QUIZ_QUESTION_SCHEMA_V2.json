@@ -1,7 +1,7 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "status": "canonical",
-  "purpose": "Teknisk feltkontrakt for quizspørsmål. Innholdsreglene ligger kun i QUIZ_STANDARD_CANONICAL_V2.md.",
+  "purpose": "Teknisk feltkontrakt for quizspørsmål. Produksjons- og innholdsreglene ligger kun i QUIZ_PRODUCTION_CANONICAL.md.",
   "required_fields": [
     "id",
     "quiz_id",
@@ -48,6 +48,11 @@
     "core_concepts": "Sentrale faguttrykk som spørsmålet eller forklaringen faktisk bruker.",
     "concept_focus": "Begreper spilleren særlig skal forstå.",
     "method_id": "Relevant faglig metode når den faktisk brukes.",
+    "claim_id": "Påstands-ID i quizpakkens resolverte source_brief. Obligatorisk for kategorier med aktiv quizProduction.",
+    "topic_hook_id": "Eksakt teorihook i kategoriens fagkart når spørsmålet bruker teori.",
+    "thinker_id": "Eksakt teoretiker-ID fra valgt teorihook.",
+    "work": "Verk fra valgt teoretiker når verket tilfører faglig presisjon.",
+    "theory_ref": "Strukturert teoribinding med hook, teoretiker eller verk og forklaring på hvorfor teorien hjelper.",
     "source": "Konkrete kilder eller kilde-ID-er for synlige påstander.",
     "source_origin": "external, mixed eller observation. internal_only er ikke tillatt for synlige faktapåstander.",
     "claim_basis": "Den konkrete påstanden eller observasjonen spørsmålet bygger på.",
@@ -61,6 +66,13 @@
     "core_concepts",
     "concept_focus",
     "method_id",
+    "claim_id",
+    "topic_hook_id",
+    "thinker_id",
+    "thinker_name",
+    "work",
+    "theory_focus",
+    "theory_ref",
     "tags",
     "source_origin",
     "claim_basis",
@@ -73,8 +85,9 @@
     "answer_index_must_match_answer": true
   },
   "authority": {
-    "content_standard": "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md",
+    "content_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "category_profiles": "data/fag/fag_manifest.json",
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
     "registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json"
   }
 }
