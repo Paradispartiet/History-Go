@@ -38,7 +38,7 @@ Generert: 2026-07-23T07:21:39.228Z
 - Adresse: Langkaia 1, 0150 Oslo
 - Geonorge-objekt: `geonorge-adresser-v1:0301:14150:1`
 - Punkt: 59.90760281927637, 10.746880614147818
-- Overlap: intentional_shared_anchor (havnelageret)
+- Overlap: intentional_shared_anchor (`havnelageret`)
 
 ### `det_andre_teatret_intimscenen`
 
@@ -60,3 +60,9 @@ Generert: 2026-07-23T07:21:39.228Z
 - Vega Scene er primært Scenekunst med Popkultur som sekundær kobling.
 - SALT er primært Scenekunst med Musikk og By som sekundære koblinger.
 - Rommen Scene er primært Scenekunst med Musikk og By som sekundære koblinger.
+
+## Sluttstatus
+
+- Oslo-aggregat, fem enkeltfiler, splitmanifest, splitindeks og global place-indeks er bygget og validert.
+- SALT–Havnelageret er den eneste godkjente samlokaliseringen i batchen.
+- Builder, workflow, triggerfil og diagnostisk feillogg er fjernet fra sluttdiffen.
