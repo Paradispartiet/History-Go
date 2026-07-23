@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-20T08:22:07.366Z
+Generert: 2026-07-23T21:59:32.011Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-20T08:22:07.366Z |
-| peopleFilesRead | 628 |
-| totalPeople | 1228 |
-| uniquePeopleIds | 1228 |
+| generatedAt | 2026-07-23T21:59:32.011Z |
+| peopleFilesRead | 640 |
+| totalPeople | 1240 |
+| uniquePeopleIds | 1240 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 628 |
+| geographicPeopleFiles | 640 |
 | categoriesRepresented | 16 |
 
 ## People-filer
@@ -91,6 +91,10 @@ Generert: 2026-07-20T08:22:07.366Z
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch7.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json | historie | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch9.json | historie | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/akershus/hadeland_glassverk/arne_jon_jutrem.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/akershus/hadeland_glassverk/ragnvald_hansen.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/akershus/hadeland_glassverk/willy_johansson.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/buskerud/hagan_skredsvig/christian_skredsvig.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json | kunst | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/christiania_torv/wenche_gulbransen.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/dyre_vaa.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -102,7 +106,9 @@ Generert: 2026-07-20T08:22:07.366Z
 | data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json | kunst | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/pippifestivalen/people_pippifestivalen_batch1.json | kunst | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/skakke/goril_eidhammer.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/litteratur/buskerud/portaasen_wildenvey/herman_wildenvey.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/litteratur/innlandet/aulestad_bjornson/karoline_bjornson.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/bla_skilt_2026/stein_mehren.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -124,7 +130,6 @@ Generert: 2026-07-20T08:22:07.366Z
 | data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/litteratur/oslo/nationaltheatret/bjornstjerne_bjornson.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/charles_marowitz.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/david_knudsen.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -154,7 +159,6 @@ Generert: 2026-07-20T08:22:07.366Z
 | data/people/litteratur/oslo/nationaltheatret/hauk_aabel.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/henki_kolstad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/henrik_bull.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/litteratur/oslo/nationaltheatret/henrik_ibsen.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/henrik_mestad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/ingar_helge_gimle.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/ingerid_vardund.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -312,8 +316,16 @@ Generert: 2026-07-20T08:22:07.366Z
 | data/people/musikk/vestland/etne/abc_studio/stig_morten_sorheim.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json | musikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/vestland/etne/old_river_saloon/people_old_river_saloon_batch1.json | musikk | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/agder/froland_verk/magdalene_marie_smith.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/agder/nes_jernverk_tvedestrand/heinrich_meldahl.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/agder/nes_jernverk_tvedestrand/thomas_crawfurd.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/buskerud/blaafarvevaerket_modum/benjamin_wegner.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/buskerud/blaafarvevaerket_modum/friedrich_roscher.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/buskerud/blaafarvevaerket_modum/karl_friedrich_bobert.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/buskerud/blaafarvevaerket_modum/wilhelm_christian_benecke.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | naeringsliv | ja | 33 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/telemark/dalen_hotel_tokke/haldor_larsen_borve.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/vestland/etne/people_hardeland_kraftverk_batch1.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch1.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -659,11 +671,11 @@ Generert: 2026-07-20T08:22:07.366Z
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 23 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 195 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| kunst | 41 | 0 | 12 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 45 | 0 | 16 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 168 | 0 | 125 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 27 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 116 | 0 | 82 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| naeringsliv | 62 | 0 | 7 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| naeringsliv | 70 | 0 | 15 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 22 | 0 | 4 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 77 | 0 | 46 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 24 | 0 | 24 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -674,7 +686,7 @@ Generert: 2026-07-20T08:22:07.366Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 628
+- Allerede geografisk strukturert: 640
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -768,6 +780,10 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch7.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch8.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch9.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=historie
+- data/people/kunst/akershus/hadeland_glassverk/arne_jon_jutrem.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
+- data/people/kunst/akershus/hadeland_glassverk/ragnvald_hansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
+- data/people/kunst/akershus/hadeland_glassverk/willy_johansson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
+- data/people/kunst/buskerud/hagan_skredsvig/christian_skredsvig.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=kunst
 - data/people/kunst/oslo/christiania_torv/wenche_gulbransen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/dyre_vaa.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
@@ -779,7 +795,9 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=kunst
 - data/people/kunst/vestland/etne/pippifestivalen/people_pippifestivalen_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=kunst
 - data/people/kunst/vestland/etne/skakke/goril_eidhammer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
+- data/people/litteratur/buskerud/portaasen_wildenvey/herman_wildenvey.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
+- data/people/litteratur/innlandet/aulestad_bjornson/karoline_bjornson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/bla_skilt_2026/stein_mehren.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
@@ -801,7 +819,6 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
-- data/people/litteratur/oslo/nationaltheatret/bjornstjerne_bjornson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/charles_marowitz.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/david_knudsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
@@ -831,7 +848,6 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/litteratur/oslo/nationaltheatret/hauk_aabel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/henki_kolstad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/henrik_bull.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
-- data/people/litteratur/oslo/nationaltheatret/henrik_ibsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/henrik_mestad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/ingar_helge_gimle.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/ingerid_vardund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
@@ -989,8 +1005,16 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/musikk/vestland/etne/abc_studio/stig_morten_sorheim.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/vestland/etne/house_of_blues/people_house_of_blues_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=musikk
 - data/people/musikk/vestland/etne/old_river_saloon/people_old_river_saloon_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=musikk
+- data/people/naeringsliv/agder/froland_verk/magdalene_marie_smith.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/agder/nes_jernverk_tvedestrand/heinrich_meldahl.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/agder/nes_jernverk_tvedestrand/thomas_crawfurd.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/benjamin_wegner.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/friedrich_roscher.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/karl_friedrich_bobert.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/wilhelm_christian_benecke.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=33/33; source_place_id=0/33; placesArray=33/33; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=22/22; placesArray=22/22; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
+- data/people/naeringsliv/telemark/dalen_hotel_tokke/haldor_larsen_borve.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/vestland/etne/people_hardeland_kraftverk_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/vestland/etne/people_naeringsliv_etne_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
