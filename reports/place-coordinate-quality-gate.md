@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T20:06:12.659Z
+Generert: 2026-07-23T20:13:25.317Z
 
 ## Oppsummering
-- Aktive filer validert: **682**
+- Aktive filer validert: **683**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -700,6 +700,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/tegnerforbundet.json
 - data/places/kunst/oslo/places_kunst/unge_kunstneres_samfund.json
 - data/places/kunst/oslo/places_kunst/norske_grafikere.json
+- data/places/historie/oslo/places_historie/the_mini_bottle_gallery.json
 
 ## Harde feil
 - Ingen

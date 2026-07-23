@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 422 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 423 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -917,3 +917,7 @@ Batch 179 (2026-07-23) produserer `unge_kunstneres_samfund` etter den lukkede Vi
 | 180 | `norske_grafikere` | Galleri Norske Grafikere | verified | `geonorge-adresser-v1:0301:17577:24` |
 
 Batch 180 (2026-07-23) produserer `norske_grafikere` etter den lukkede VisitOSLO Galleries scope-auditen og kandidat-readiness-auditen. Det eksakte Geonorge-adressepunktet for Tollbugata 24 brukes som display-marker for Norske Grafikere som egen fagorganisasjon og kunstnerstyrt galleriinstitusjon.
+
+| 181 | `the_mini_bottle_gallery` | The Mini Bottle Gallery | verified | `geonorge-adresser-v1:0301:13707:10` |
+
+Batch 181 (2026-07-23) produserer `the_mini_bottle_gallery` etter den lukkede VisitOSLO Galleries scope-auditen og kandidat-readiness-auditen. Stedet kategoriseres som `historie` fordi det er et spesialmuseum, og det eksakte Geonorge-adressepunktet for Kirkegata 10 brukes som display-marker.
