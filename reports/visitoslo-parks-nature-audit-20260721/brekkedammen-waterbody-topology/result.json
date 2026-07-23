@@ -1,0 +1,109 @@
+{
+  "version": "2026-07-23",
+  "placeId": "brekkedammen",
+  "status": "coordinate_blocked_waterbody_identity_or_topology_not_proven",
+  "scopeStatus": "approved_new_physical_place",
+  "representationDecision": "No production decision. Do not invent a bathing-place pin and do not use nearest/first-hit selection.",
+  "lockedObjects": {
+    "waterbody": "osm-relation:14334474",
+    "weir": "osm-way:66357555"
+  },
+  "gates": {
+    "acceptedWaterbodyIdentity": true,
+    "acceptedWeirIdentity": true,
+    "relationSemanticGate": true,
+    "weirSemanticGate": true,
+    "weirTouchesWaterbodyBoundary": true,
+    "centroidInside": false,
+    "officialSemanticGate": true,
+    "officialLinkGate": true
+  },
+  "waterbody": {
+    "sourceObjectId": "osm-relation:14334474",
+    "sourceUrl": "https://www.openstreetmap.org/relation/14334474",
+    "displayName": "Frysja, Kjelsås, Nordre Aker, Oslo, Norge",
+    "category": "water",
+    "type": "reservoir",
+    "geojsonType": "Polygon",
+    "namedetails": {
+      "name": "Frysja",
+      "alt_name": "Brekkedammen"
+    },
+    "extratags": {
+      "natural": "water"
+    },
+    "apiTags": {
+      "alt_name": "Brekkedammen",
+      "name": "Frysja",
+      "natural": "water",
+      "type": "multipolygon",
+      "water": "reservoir"
+    },
+    "acceptedNames": [
+      {
+        "raw": "Frysja",
+        "normalized": "frysja"
+      },
+      {
+        "raw": "Brekkedammen",
+        "normalized": "brekkedammen"
+      }
+    ],
+    "proposedCoordinate": {
+      "lat": 59.96736101152158,
+      "lon": 10.78160000527367,
+      "coordType": "polygon_centroid",
+      "insideGeometry": false
+    }
+  },
+  "weir": {
+    "sourceObjectId": "osm-way:66357555",
+    "sourceUrl": "https://www.openstreetmap.org/way/66357555",
+    "displayName": "Brekkedammen, Kjelsås, Nordre Aker, Oslo, 0884, Norge",
+    "category": "waterway",
+    "type": "weir",
+    "geojsonType": "LineString",
+    "namedetails": {
+      "name": "Brekkedammen"
+    },
+    "extratags": {
+      "website": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser-og-temperaturer/brekkedammen-ved-frysja/#gref"
+    },
+    "apiTags": {
+      "name": "Brekkedammen",
+      "waterway": "weir",
+      "website": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser-og-temperaturer/brekkedammen-ved-frysja/#gref"
+    },
+    "acceptedNames": [
+      {
+        "raw": "Brekkedammen",
+        "normalized": "brekkedammen"
+      }
+    ],
+    "boundaryTopology": {
+      "minDistanceM": 3.9,
+      "maxDistanceM": 7.8,
+      "meanDistanceM": 5.4,
+      "pointsWithin20m": 3,
+      "pointCount": 3
+    }
+  },
+  "officialSource": {
+    "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/brekkedammen-ved-frysja/",
+    "finalUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/brekkedammen-ved-frysja/",
+    "semanticGate": true,
+    "statement": "Oslo kommune treats Brekkedammen ved Frysja as a bathing place in the upper Akerselva. This is interpreted as a present-day use layer of the same named physical dam/pond when the exact OSM waterbody identity and boundary topology are independently verified."
+  },
+  "duplicateGate": {
+    "canonicalIdentityMatches": []
+  },
+  "methodology": {
+    "selection": "exact locked OSM object IDs and explicit name/topology gates only",
+    "rejected": [
+      "nearest selection",
+      "first-hit selection",
+      "arbitrary beach pin",
+      "using the weir centroid as the whole waterbody"
+    ]
+  }
+}
