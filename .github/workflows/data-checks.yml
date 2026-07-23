@@ -39,7 +39,7 @@ on:
       - 'tests/knowledge-v2-model.test.js'
       - 'tests/knowledge-canonical-storage-contract.test.js'
       - '.github/workflows/data-checks.yml'
-      - '.github/scenekunst-batch-5-integration-trigger-v3.txt'
+      - '.github/scenekunst-batch-5-integration-trigger-v4.txt'
   workflow_dispatch:
 
 permissions:
@@ -214,7 +214,7 @@ jobs:
 
   integrate-scenekunst-batch-5:
     name: Integrate Scenekunst batch 5
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/integrate-scenekunst-batch-5-trigger-v3'
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/integrate-scenekunst-batch-5-trigger-v4'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -234,40 +234,27 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Validate and integrate against latest main
+      - name: Prepare batch on latest main
         shell: bash
         run: |
           set -euo pipefail
-
+          exec > >(tee -a /tmp/scenekunst-batch5-integration.log) 2>&1
           SOURCE_BRANCH='agent/scenekunst-venues-05-replayed'
-          WORKFLOW_FILE='.github/workflows/data-checks.yml'
-          TRIGGER_PATH="      - '.github/scenekunst-batch-5-integration-trigger-v3.txt'"
-          JOB_MARKER='  integrate-scenekunst-batch-5:'
-          FILES=(
-            'data/places/scenekunst/akershus/baerum_kulturhus.json'
-            'data/places/scenekunst/buskerud/drammens_teater.json'
-            'data/places/scenekunst/oslo/dramatikkens_hus.json'
-            'data/places/scenekunst/oslo/teater_manu.json'
-            'data/places/scenekunst/oslo/vega_scene.json'
-            'reports/scenekunst-new-venues-batch-5-2026-07-23.json'
-            'reports/scenekunst-new-venues-batch-5-2026-07-23.md'
-          )
-
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-
-          for attempt in 1 2 3 4 5; do
-            echo "Integration attempt ${attempt}"
-            git reset --hard
-            git clean -fd
-            git fetch origin main "${SOURCE_BRANCH}"
-            BASE_SHA="$(git rev-parse origin/main)"
-            echo "Latest main: ${BASE_SHA}"
-
-            git checkout -B integrate-scenekunst-batch-5 "${BASE_SHA}"
-            git checkout "origin/${SOURCE_BRANCH}" -- "${FILES[@]}"
-
-            node <<'NODE'
+          git fetch origin main "${SOURCE_BRANCH}"
+          BASE_SHA="$(git rev-parse origin/main)"
+          echo "${BASE_SHA}" > /tmp/scenekunst-batch5-base-sha
+          git checkout -B integrate-scenekunst-batch-5 "${BASE_SHA}"
+          git checkout "origin/${SOURCE_BRANCH}" -- \
+            data/places/scenekunst/akershus/baerum_kulturhus.json \
+            data/places/scenekunst/buskerud/drammens_teater.json \
+            data/places/scenekunst/oslo/dramatikkens_hus.json \
+            data/places/scenekunst/oslo/teater_manu.json \
+            data/places/scenekunst/oslo/vega_scene.json \
+            reports/scenekunst-new-venues-batch-5-2026-07-23.json \
+            reports/scenekunst-new-venues-batch-5-2026-07-23.md
+          node <<'NODE'
           const fs = require('fs');
           const file = 'data/places/manifest.json';
           const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -283,30 +270,65 @@ jobs:
           }
           fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
           NODE
+          npm run places:index:build
 
-            npm run places:index:build
-            bash scripts/check-places.sh
-            bash scripts/check-people.sh
-            npm run audit:categories
-            npm run audit:quiz-templates
-            npm run test:quiz-content-audit
-            npm run build:tools
-            node dist/tools/validate_nature_maps.mjs
-            node dist/tools/validate_lesespor.mjs
-            npm run typecheck:web
-            npm run build:scripts
-            npm run knowledge:canonical:check
-            npm run knowledge:legacy:check
-            npm run audit:knowledge
-            npm run test:knowledge-v2
-            node --test tests/knowledge-canonical-storage-contract.test.js
-            git diff --check
+      - name: Validate Places and People
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec > >(tee -a /tmp/scenekunst-batch5-integration.log) 2>&1
+          bash scripts/check-places.sh
+          bash scripts/check-people.sh
 
-            python3 <<'PY'
+      - name: Validate category and quiz governance
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec > >(tee -a /tmp/scenekunst-batch5-integration.log) 2>&1
+          npm run audit:categories
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+
+      - name: Validate Nature and Lesespor
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec > >(tee -a /tmp/scenekunst-batch5-integration.log) 2>&1
+          npm run build:tools
+          node dist/tools/validate_nature_maps.mjs
+          node dist/tools/validate_lesespor.mjs
+
+      - name: Validate Knowledge
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec > >(tee -a /tmp/scenekunst-batch5-integration.log) 2>&1
+          npm run typecheck:web
+          npm run build:scripts
+          npm run knowledge:canonical:check
+          npm run knowledge:legacy:check
+          npm run audit:knowledge
+          npm run test:knowledge-v2
+          node --test tests/knowledge-canonical-storage-contract.test.js
+
+      - name: Commit and fast-forward main
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec > >(tee -a /tmp/scenekunst-batch5-integration.log) 2>&1
+          git diff --check
+          git fetch origin main
+          EXPECTED_BASE="$(cat /tmp/scenekunst-batch5-base-sha)"
+          CURRENT_MAIN="$(git rev-parse origin/main)"
+          if [ "${CURRENT_MAIN}" != "${EXPECTED_BASE}" ]; then
+            echo "main moved from ${EXPECTED_BASE} to ${CURRENT_MAIN}; refusing unvalidated push"
+            exit 2
+          fi
+          python3 <<'PY'
           from pathlib import Path
           path = Path('.github/workflows/data-checks.yml')
           text = path.read_text()
-          trigger = "      - '.github/scenekunst-batch-5-integration-trigger-v3.txt'\n"
+          trigger = "      - '.github/scenekunst-batch-5-integration-trigger-v4.txt'\n"
           marker = "\n  integrate-scenekunst-batch-5:\n"
           if trigger not in text:
               raise SystemExit('temporary trigger path not found')
@@ -317,23 +339,24 @@ jobs:
           text = text.split(marker, 1)[0].rstrip() + '\n'
           path.write_text(text)
           PY
+          git add \
+            .github/workflows/data-checks.yml \
+            data/places/manifest.json \
+            data/places/places_index.json \
+            data/places/scenekunst/akershus/baerum_kulturhus.json \
+            data/places/scenekunst/buskerud/drammens_teater.json \
+            data/places/scenekunst/oslo/dramatikkens_hus.json \
+            data/places/scenekunst/oslo/teater_manu.json \
+            data/places/scenekunst/oslo/vega_scene.json \
+            reports/scenekunst-new-venues-batch-5-2026-07-23.json \
+            reports/scenekunst-new-venues-batch-5-2026-07-23.md
+          git commit -m 'Integrate fifth Scenekunst venue batch'
+          git push origin HEAD:main
 
-            git add \
-              .github/workflows/data-checks.yml \
-              data/places/manifest.json \
-              data/places/places_index.json \
-              "${FILES[@]}"
-
-            git commit -m 'Integrate fifth Scenekunst venue batch'
-
-            if git push origin HEAD:main; then
-              echo "Integrated batch 5 on ${BASE_SHA}"
-              exit 0
-            fi
-
-            echo 'Main moved before push; retrying from the new head.'
-            sleep 2
-          done
-
-          echo 'Failed to integrate after five attempts.'
-          exit 1
+      - name: Upload integration log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scenekunst-batch5-integration-log
+          path: /tmp/scenekunst-batch5-integration.log
+          if-no-files-found: warn
