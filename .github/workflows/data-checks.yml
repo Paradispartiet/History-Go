@@ -240,9 +240,6 @@ jobs:
           set -euo pipefail
 
           SOURCE_BRANCH='agent/scenekunst-venues-05-replayed'
-          WORKFLOW_FILE='.github/workflows/data-checks.yml'
-          TRIGGER_PATH="      - '.github/scenekunst-batch-5-integration-trigger-v3.txt'"
-          JOB_MARKER='  integrate-scenekunst-batch-5:'
           FILES=(
             'data/places/scenekunst/akershus/baerum_kulturhus.json'
             'data/places/scenekunst/buskerud/drammens_teater.json'
@@ -302,24 +299,7 @@ jobs:
             node --test tests/knowledge-canonical-storage-contract.test.js
             git diff --check
 
-            python3 <<'PY'
-          from pathlib import Path
-          path = Path('.github/workflows/data-checks.yml')
-          text = path.read_text()
-          trigger = "      - '.github/scenekunst-batch-5-integration-trigger-v3.txt'\n"
-          marker = "\n  integrate-scenekunst-batch-5:\n"
-          if trigger not in text:
-              raise SystemExit('temporary trigger path not found')
-          if marker not in text:
-              raise SystemExit('temporary integration job not found')
-          text = text.replace(trigger, '', 1)
-          text = text.replace('permissions:\n  contents: write\n', 'permissions:\n  contents: read\n', 1)
-          text = text.split(marker, 1)[0].rstrip() + '\n'
-          path.write_text(text)
-          PY
-
             git add \
-              .github/workflows/data-checks.yml \
               data/places/manifest.json \
               data/places/places_index.json \
               "${FILES[@]}"
