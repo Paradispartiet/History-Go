@@ -1,8 +1,8 @@
 {
   "id": "blindern_forskningsparken_salamanderdam",
   "name": "Blindern/Forskningsparken salamanderdam",
-  "lat": 59.94371,
-  "lon": 10.72085,
+  "lat": 59.943093038810886,
+  "lon": 10.718231028911767,
   "r": 260,
   "category": "natur",
   "badge_refs": {
@@ -30,15 +30,15 @@
   ],
   "routeId": "oslo_salamanderdammer",
   "sourceHint": "Oslo kommune viser salamandere i dam ved Forskningsparken på Blindern i omtale av kartlegging av Oslos amfibiedammer. Koordinatet er lagt som nærområdeanker ved Forskningsparken stasjon/campus, ikke som presis artsposisjon.",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "blindern_forskningsparken_salamanderdam_canonical_geometry_unresolved",
-  "coordVerifiedAt": "2026-07-21",
-  "coordNote": "Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam.",
+  "coordType": "pond_area_centroid",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 94984903 – unique pond in the source-defined IFI–Forskningsparken corridor",
+  "coordVerifiedAt": "2026-07-23",
+  "coordNote": "Batch 175 erstatter det generiske campus-nærankeret med selve den offentlige damgeometrien. Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, og Forskningsparken avgrenser dammen mellom UiOs Institutt for informatikk/Ole-Johan Dahls hus og Forskningsparken. Bounded research fant fire vannobjekter i den brede campus-scope-boksen, men bare OSM way 94984903 ligger i den kildefestede korridoren og innen 350 meter fra begge uavhengig identifiserte institusjonsankre. Fresh way 94984903 hard-gates som lukket natural=water/water=pond-polygon; canonical lat/lon er polygonets arealsentrum og ligger inne i polygonet. Punktet representerer den offentlige dammen som habitatsted, ikke en presis posisjon for salamanderindivider. Legacy-punktet og nearest/first-hit brukes ikke.",
   "links": {
     "website": "https://aktuelt.oslo.kommune.no/oslos-ukjente-amfibiedammer-kartlegges",
     "wikipedia": "https://snl.no/storsalamander",
-    "map": ""
+    "map": "https://www.openstreetmap.org/way/94984903"
   },
   "popupDesc": "Dammen ved Forskningsparken på Blindern er et godt eksempel på at viktig bynatur kan ligge midt mellom forskning, campus, kollektivtrafikk og tett byggesone. Oslo kommune bruker salamandere i dam ved Forskningsparken som bilde og eksempel i arbeidet med å kartlegge Oslos ukjente amfibiedammer.\n\nI History Go bør dette stedet brukes til å forklare hvordan kommunen, biologer og naturkart kan gjøre små natursteder synlige. Gode spørsmål bør handle om hvorfor dammer kartlegges, hva biologer ser etter, hvordan dammer gror igjen, og hvorfor amfibier trenger både vannspeil, vegetasjon og skånsom forvaltning.",
   "emne_ids": [
@@ -100,9 +100,42 @@
     ],
     "nearby_place_ids": [
       "bygdoy_kongsgard_salamanderdam",
-      "bantjern_salamanderlokalitet",
       "tjernsmyr_salamanderlokalitet"
     ]
   },
-  "locatorType": "thematic_locality"
+  "locatorType": "natural_area",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:94984903",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "area_anchor",
+  "coordSourceId": "osm-way:94984903",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/94984903",
+  "pondScope": {
+    "method": "source_defined_institution_corridor_unique_pond_polygon",
+    "osmWayId": 94984903,
+    "sourceDefinedBetween": [
+      "Ole-Johan Dahls hus / Institutt for informatikk",
+      "Forskningsparken"
+    ],
+    "ifiAnchor": {
+      "lat": 59.9436145,
+      "lon": 10.7182883,
+      "osmType": "way",
+      "osmId": 94984893,
+      "displayName": "Ole-Johan Dahls hus, Problemveien, Gaustadbekkdalen, Blindern, Nordre Aker, Oslo, 0349, Norge"
+    },
+    "forskningsparkenAnchor": {
+      "lat": 59.9437046,
+      "lon": 10.7208514,
+      "osmType": "node",
+      "osmId": 5218231662,
+      "displayName": "Forskningsparken, Problemveien, Gaustadbekkdalen, Blindern, Nordre Aker, Oslo, 0349, Norge"
+    },
+    "researchDistanceToIfiM": 51,
+    "researchDistanceToForskningsparkenM": 155.1,
+    "candidateCountInCorridor": 1,
+    "displayAnchorMethod": "polygon_area_centroid",
+    "publicHabitatGeometry": true,
+    "individualAnimalLocationClaimed": false
+  }
 }
