@@ -13,8 +13,8 @@
     "existingCanonical": 5,
     "deferredPrivateCommercialByExistingPolicy": 4,
     "approvedNewInstitutionalCandidates": 3,
-    "approvedCandidatesCoordinateReady": 1,
-    "approvedCandidatesCoordinateBlocked": 2,
+    "approvedCandidatesCoordinateReady": 2,
+    "approvedCandidatesCoordinateBlocked": 1,
     "parentReuseEnrichment": 1,
     "unresolvedScopeItems": 0,
     "fullGalleryCategoryClosed": false
@@ -75,15 +75,23 @@
       "primaryCategory": "kunst",
       "institutionalScope": "Independent non-commercial photographic art institution founded in 1977, with a persistent public exhibition identity and current main premises in Møllergata 34.",
       "scopeStatus": "approved_new_canonical_candidate",
-      "coordinateStatus": "blocked_pending_exact_entrance_or_building_anchor",
-      "coordinateBlockReason": "The official institution address is published as Møllergata 34 without a letter. Geonorge exposes four distinct address points 34A-D, and no exact named OSM institution object was found. No first-hit, nearest-letter or synthetic centroid may be used as canonical coordinate.",
-      "officialAddressCluster": [
-        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34A", "lat": 59.917455556790614, "lon": 10.750260519179827 },
-        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34B", "lat": 59.91750466107661, "lon": 10.750620864386786 },
-        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34C", "lat": 59.91734358250927, "lon": 10.7505766041933 },
-        { "sourceObjectId": "geonorge-adresser-v1:0301:14943:34D", "lat": 59.91729352883408, "lon": 10.750287762207929 }
-      ],
-      "overlapAudit": "No canonical identity match and no canonical place within 35 m of the address-cluster audit centroid.",
+      "coordinateStatus": "ready",
+      "coordinate": {
+        "lat": 59.917455556790614,
+        "lon": 10.750260519179827,
+        "sourceProvider": "official_address",
+        "sourceObjectId": "geonorge-adresser-v1:0301:14943:34A",
+        "address": "Møllergata 34A, 0179 Oslo"
+      },
+      "coordinateDisambiguation": {
+        "publishedInstitutionAddress": "Møllergata 34, 0179 Oslo",
+        "officialMapLink": "https://maps.app.goo.gl/AaMRNLjcry6DSwZT9",
+        "mapPoint": { "lat": 59.917456, "lon": 10.7502678 },
+        "selectedDistanceM": 0.4,
+        "marginToSecondNearestM": 17.7,
+        "rule": "Fotogalleriet's own map link was used only to disambiguate among four official Geonorge 34A-D address objects. The applied coordinate source remains Geonorge."
+      },
+      "overlapAudit": "No canonical identity match and no canonical place within 35 m of the site address cluster.",
       "officialSources": [
         "https://fotogalleriet.no/visit/",
         "https://fotogalleriet.no/about/"
@@ -96,7 +104,7 @@
       "institutionalScope": "Independent textile-art gallery founded in 2006 and operated by Norske Tekstilkunstnere, with its own exhibition programme, public visitor function and dedicated exhibition room at Rådhusgata 20.",
       "scopeStatus": "approved_new_canonical_candidate",
       "coordinateStatus": "blocked_pending_distinct_entrance_anchor",
-      "coordinateBlockReason": "The ordinary official address point for Rådhusgata 20 is exactly the same canonical display marker already used by the institution-specific place `fotografiens_hus`. SOFT is a different institution, but production must wait for a separately documented entrance/visitor anchor or other non-duplicate physical marker rather than creating two exact-overlap map points.",
+      "coordinateBlockReason": "The ordinary official address point for Rådhusgata 20 is exactly the same canonical display marker already used by the institution-specific place `fotografiens_hus`. A dedicated exact-name OSM search found no distinct SOFT gallery object. Production must therefore wait for a separately documented entrance/visitor anchor rather than creating two exact-overlap map points.",
       "addressCrosscheck": {
         "lat": 59.90951628354778,
         "lon": 10.74209892031479,
@@ -115,7 +123,7 @@
       "institutionId": "oslo_kunstforening",
       "parentPlaceId": "radmannsgarden_og_anatomibygget",
       "decision": "no_new_marker_enrich_existing_parent",
-      "basis": "Oslo Kunstforening is a persistent non-commercial institution founded in 1836 and has occupied the second floor of Rådmannsgården since 1936. Its exact Geonorge address point at Rådhusgata 19 is identical to the existing canonical Rådmannsgården/Anatomibygget marker. The existing parent record explicitly uses one shared marker to avoid overlapping places on the same cultural-historic property. Add Oslo Kunstforening as a current institutional layer to the parent instead of creating a duplicate marker.",
+      "basis": "Oslo Kunstforening is a persistent non-commercial institution founded in 1836 and has occupied the second floor of Rådmannsgården since 1936. Its exact Geonorge address point at Rådhusgata 19 is identical to the existing canonical Rådmannsgården/Anatomibygget marker. The existing parent record explicitly uses one shared marker to avoid overlapping place records on the same cultural-historic property. Add Oslo Kunstforening as a current institutional layer to the parent instead of creating a duplicate marker.",
       "coordinate": {
         "lat": 59.91014146776003,
         "lon": 10.740325400685213,
@@ -132,13 +140,13 @@
     "The failed full-category source-discovery PR #3433 remains a technical audit trail; no full-category completeness claim is permitted until a reproducible source snapshot exists.",
     "Private/commercial gallery listings remain deferred under the existing Oslo gallery policy unless a consistent inclusion framework is explicitly adopted.",
     "Institutional durability can justify a new canonical place, but exact co-location must still pass the one-place/one-physical-identity and map-marker overlap gates.",
-    "Fotogalleriet and SOFT galleri are scope-approved but must not be produced until exact non-guessed coordinate anchors are resolved.",
+    "Fotogalleriet is coordinate-ready after official-map-link disambiguation to Geonorge Møllergata 34A; SOFT galleri remains coordinate-blocked.",
     "Oslo Kunstforening resolves to the existing Rådmannsgården parent and should be added as a current-use/institution layer, not as a new marker."
   ],
   "nextActions": [
-    "Produce Kunstnerforbundet through the coordinate branch runner after re-auditing current main.",
+    "Produce Kunstnerforbundet and Fotogalleriet through coordinate branch runners after current-main duplicate checks.",
     "Enrich radmannsgarden_og_anatomibygget with the current Oslo Kunstforening institutional layer and official source, without changing the existing coordinate.",
-    "Continue dedicated physical-anchor research for Fotogalleriet and SOFT galleri.",
+    "Continue dedicated physical-anchor research for SOFT galleri.",
     "Do not treat the 13-item tranche closure as closure of the full VisitOSLO Galleries category."
   ]
 }
