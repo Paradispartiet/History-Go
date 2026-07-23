@@ -1,0 +1,32 @@
+name: Bootstrap gh CLI artifact
+
+on:
+  push:
+    branches:
+      - agent/bootstrap-gh-cli-artifact
+
+permissions:
+  contents: read
+
+jobs:
+  package-gh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy preinstalled GitHub CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+          GH_PATH="$(command -v gh)"
+          gh --version
+          install -m 0755 "$GH_PATH" gh
+          sha256sum gh > gh.sha256
+
+      - name: Upload GitHub CLI binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: gh-linux-amd64
+          path: |
+            gh
+            gh.sha256
+          if-no-files-found: error
+          retention-days: 1
