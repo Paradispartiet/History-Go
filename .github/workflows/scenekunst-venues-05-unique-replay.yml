@@ -1,0 +1,175 @@
+name: Replay unique Scenekunst batch 5
+
+on:
+  pull_request:
+    branches:
+      - agent/scenekunst-oslo-split-venues-01-final
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out replay branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/scenekunst-venues-05-unique-replay
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Copy three unique validated place packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/scenekunst-venues-05
+          files=(
+            data/places/scenekunst/oslo/dramatikkens_hus.json
+            data/places/scenekunst/akershus/baerum_kulturhus.json
+            data/places/scenekunst/buskerud/drammens_teater.json
+          )
+          for file in "${files[@]}"; do
+            if [ -e "$file" ]; then
+              echo "Target already exists: $file"
+              exit 1
+            fi
+            mkdir -p "$(dirname "$file")"
+            git show "origin/agent/scenekunst-venues-05:$file" > "$file"
+          done
+
+      - name: Register sources and write unique replay report
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const sources = [
+            { id: 'dramatikkens_hus', source: 'places/scenekunst/oslo/dramatikkens_hus.json' },
+            { id: 'baerum_kulturhus', source: 'places/scenekunst/akershus/baerum_kulturhus.json' },
+            { id: 'drammens_teater', source: 'places/scenekunst/buskerud/drammens_teater.json' }
+          ];
+          const manifestPath = 'data/places/manifest.json';
+          const indexPath = 'data/places/places_index.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          if (!Array.isArray(manifest.files) || !Array.isArray(index)) throw new Error('Unexpected manifest or index shape');
+
+          const existingIds = new Set(index.map((row) => row.id));
+          for (const row of sources) {
+            if (existingIds.has(row.id)) throw new Error(`Canonical ID already exists: ${row.id}`);
+            if (manifest.files.includes(row.source)) throw new Error(`Manifest source already exists: ${row.source}`);
+            manifest.files.push(row.source);
+          }
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+          const places = sources.map((row) => {
+            const payload = JSON.parse(fs.readFileSync(path.join('data', row.source), 'utf8'));
+            const place = Array.isArray(payload) ? payload[0] : payload;
+            if (!place || place.id !== row.id) throw new Error(`Unexpected place payload for ${row.id}`);
+            if (place.coordStatus !== 'verified' || place.coordSource !== 'geonorge_adresser_v1') {
+              throw new Error(`Coordinate evidence not verified for ${row.id}`);
+            }
+            return { ...place, sourceFile: row.source };
+          });
+
+          const report = {
+            generatedAt: new Date().toISOString(),
+            status: 'replayed_pending_validation',
+            category: 'scenekunst',
+            batch: 'batch_5_unique_replay',
+            dependsOn: 'PR #3343',
+            sourcePullRequest: 3308,
+            excludedDuplicateIds: ['teater_manu', 'vega_scene'],
+            addedPlaceIds: places.map((place) => place.id),
+            sourceFiles: places.map((place) => place.sourceFile),
+            coordinateResults: places.map((place) => ({
+              id: place.id,
+              sourceObjectId: place.sourceObjectId,
+              coordinate: { lat: place.lat, lon: place.lon },
+              address: place.address,
+              coordStatus: place.coordStatus,
+              coordSource: place.coordSource,
+              exactOverlapIds: place.coLocationAudit?.nearbyCanonicalIds ?? [],
+              overlapDecision: place.coLocationAudit?.intentionalSharedAnchor ? 'intentional_shared_anchor' : 'no_overlap'
+            })),
+            physicalScopeDecisions: Object.fromEntries(places.map((place) => [place.id, place.physicalScope])),
+            validation: {
+              reusedValidatedPlacePackages: 'pass',
+              duplicateIdGuard: 'pass',
+              manifestSourceGuard: 'pass',
+              placesIndexBuild: 'pending_workflow',
+              placesChecks: 'pending_workflow',
+              categoryAudit: 'pending_workflow'
+            }
+          };
+          fs.writeFileSync('reports/scenekunst-venues-batch-5-unique-replay-2026-07-23.json', JSON.stringify(report, null, 2) + '\n');
+
+          const md = [
+            '# Scenekunst – batch 5, unik replay', '',
+            `Generert: ${report.generatedAt}`, '',
+            '## Nye steder', '',
+            ...places.map((place) => `- \`${place.id}\` – ${place.name}`), '',
+            '## Koordinater', '',
+            ...places.flatMap((place) => [
+              `### \`${place.id}\``, '',
+              `- Adresse: ${place.address.street} ${place.address.number}, ${place.address.postcode} ${place.address.city}`,
+              `- Geonorge-objekt: \`${place.sourceObjectId}\``,
+              `- Punkt: ${place.lat}, ${place.lon}`,
+              `- Overlap: ${place.coLocationAudit?.intentionalSharedAnchor ? 'intentional_shared_anchor' : 'no_overlap'}`, ''
+            ]),
+            '## Fysisk scope', '',
+            ...places.map((place) => `- \`${place.id}\`: ${place.physicalScope}`), '',
+            '## Duplikatvalg', '',
+            '- `teater_manu` og `vega_scene` er utelatt fordi de bygges i PR #3343.',
+            '- Denne replayen inneholder bare de tre unike stedene fra PR #3308.', ''
+          ];
+          fs.mkdirSync('reports', { recursive: true });
+          fs.writeFileSync('reports/scenekunst-venues-batch-5-unique-replay-2026-07-23.md', md.join('\n'));
+          NODE
+
+      - name: Regenerate place index and validate
+        run: |
+          npm run build:tools
+          npm run places:index:build
+          bash scripts/check-places.sh
+          npm run audit:categories
+
+      - name: Mark replay validated
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'reports/scenekunst-venues-batch-5-unique-replay-2026-07-23.json';
+          const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+          report.status = 'validated';
+          report.validatedAt = new Date().toISOString();
+          report.validation.placesIndexBuild = 'pass';
+          report.validation.placesChecks = 'pass';
+          report.validation.categoryAudit = 'pass';
+          fs.writeFileSync(file, JSON.stringify(report, null, 2) + '\n');
+          NODE
+
+      - name: Commit production result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/manifest.json
+          git add data/places/places_index.json
+          git add data/places/scenekunst/oslo/dramatikkens_hus.json
+          git add data/places/scenekunst/akershus/baerum_kulturhus.json
+          git add data/places/scenekunst/buskerud/drammens_teater.json
+          git add reports/scenekunst-venues-batch-5-unique-replay-2026-07-23.json
+          git add reports/scenekunst-venues-batch-5-unique-replay-2026-07-23.md
+          git diff --cached --stat
+          git diff --cached --quiet && { echo "No production changes produced"; exit 1; }
+          git commit -m "Replay three unique Scenekunst batch 5 venues"
+          git push origin HEAD:agent/scenekunst-venues-05-unique-replay
