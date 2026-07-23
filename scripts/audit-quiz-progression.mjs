@@ -17,7 +17,7 @@ const NORMAL_OPENING_POLICY_PATH = "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_
 const OPENING_SURFACE_RULES = [
   ["emne_prompt", /\b(?:passer|relevant)\b.{0,45}\b(?:emnet|temaet|fagfeltet)\b/iu],
   ["place_as_example", /\bhva gjør\b.{0,50}\b(?:til et eksempel på|relevant for)\b|\bkva gjer\b.{0,50}\b(?:til eit døme på|relevant for)\b/iu],
-  ["reading_language", /\b(?:leses|lesast|lesningen|lesinga|faglig lesning|fagleg lesing|tolkes som|tolkast som)\b/iu],
+  ["reading_language", /\b(?:faglig lesning|fagleg lesing|leses som|lesast som|tolkes som|tolkast som)\b/iu],
   ["most_precise", /\b(?:mest presise|mest presist|mest treffende|mest treffande)\b/iu],
   ["concept_pick", /\b(?:hvilket|kva) begrep\b.{0,45}\b(?:passer|beskriver|forklarer|høver|skildrar|forklarar)\b/iu],
   ["theory_pick", /\b(?:hvilken|kva) (?:teori|teoretiker|teoretikar|metode|hook)\b/iu],
