@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 399 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 400 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -603,6 +603,10 @@ Batch 155 (2026-07-23) løser Alna ved Bryn som den lange åpne Alna-strekningen
 | 156 | `alna_utlop_bjorvika` | Alnas historiske utløp ved Vannspeilet | verified_geometry | `osm-way:4258487` |
 
 Batch 156 (2026-07-23) løser utløpsrecordens tidslag med to separate ankere. Canonical displayanker er Vannspeilet i Middelalderparken, fysisk kartlagt som OSM way 4258487 med navnet Tenerife; Oslo kommune dokumenterer at vannspeilet markerer Alnaelvas opprinnelige utløp, og uavhengig kildebruk kryssjekker Tenerife som tilnavn på vannspeilet. Modellen hevder ikke et eget eksakt middelaldermunningspunkt. Dagens faktiske utløp lagres separat på node 8067892897, som er endepunkt på den åpne Alna-wayen 131984275 og samtidig node på coastline way 865225826 etter tunnelstrekningen fra Kværner. Legacy-punktet og nearest/first-hit brukes ikke.
+
+| 157 | `alnaelva` | Alnaelva | verified_geometry | `osm-way:22698275` |
+
+Batch 157 (2026-07-23) løser hovedrecorden Alnaelva som et eksplisitt multi-anchor vassdrag fra Alungsjøens utløp gjennom Groruddammen, Alnaparken, Smalvoll, Bryn, Svartdalen og Kværnerbyen til dagens hydrologiske utløp ved Kongshavn. Vannspeilet/Tenerife beholdes som separat historisk utløpsmarkør og brukes ikke som dagens mouth-anchor. Canonical lat/lon er den allerede verifiserte Smalvoll-wayens line-anchor og deklareres bare som displayanker, ikke som geometrisk sentrum for hele elva. Alle delankre leses fra canonical verified_geometry-komponenter; legacy-punktet, nearest/first-hit og syntetisk enkeltgeometri brukes ikke.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
