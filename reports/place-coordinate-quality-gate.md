@@ -1,6 +1,6 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T19:45:58.044Z
+Generert: 2026-07-23T19:57:39.896Z
 
 ## Oppsummering
 - Aktive filer validert: **678**
@@ -703,7 +703,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 ## Varsler
 - data/places/by/oslo/places_by.json#gronland_basarene: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
-- data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#ring_3: coordinate_regression_risk (3366 m fra tidligere semantic_anchor)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
@@ -1219,15 +1219,22 @@ Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandi
 
 | Grunn | Antall |
 | --- | --- |
+| coordinate_regression_risk | 1 |
 | coordStatus=verified uten coordPrecisionM | 220 |
 | lineært sted uten anchors | 81 |
-| lav koordinatpresisjon (<4 desimaler) | 78 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
+| lav koordinatpresisjon (<4 desimaler) | 77 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
+
+### coordinate_regression_risk (1)
+
+| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.952359965835846 | 10.74918431139814 | 500 | Flyttet ~3366 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (220)
 
@@ -1458,7 +1465,7 @@ Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandi
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.952359965835846 | 10.74918431139814 | 500 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | christiania_torv | Christiania Torv | by | data/places/by/oslo/places_by.json | 59.9102351 | 10.7395879 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | prinds_christian_augusts_minde | Prinds Christian Augusts Minde | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.9150905 | 10.7569061 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | naeringsliv | data/places/naeringsliv/akershus/eidsvoll_verk_andelva.json | 60.3297 | 11.2575 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -1540,11 +1547,87 @@ Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandi
 | mosneselva_etne | Mosneselva | natur | data/places/natur/vestland/etne/mosneselva_etne.json | 59.86656 | 6.32955 | 1000 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | vaulaelva_vassdraget | Vaulaelva og Vaulovassdraget | natur | data/places/natur/vestland/etne/vaulaelva_vassdraget.json | 59.81337 | 6.35371 | 1400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (78)
+### stasjon/park/gate/torg/elv uten coordinate metadata (72)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| nostvet_boplass | Nøstvet-boplassen | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.75109 | 10.7996 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | naeringsliv | data/places/naeringsliv/akershus/eidsvoll_verk_andelva.json | 60.3297 | 11.2575 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kjeller_flyplass | Kjeller flyplass | by | data/places/by/akershus/kjeller_flyplass.json | 59.96944 | 11.03889 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| stunner_boplass | Stunner steinalderboplass | historie | data/places/historie/akershus/places_historie_akershus_batch3.json | 59.74657 | 10.91747 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | by | data/places/by/ostfold/kornsjo_grensestasjon.json | 59.0974 | 11.6682 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| momarken_markedsplass | Momarken markedsplass | historie | data/places/historie/ostfold/places_historie_ostfold_batch6.json | 59.5584 | 11.3229 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| veien_kulturminnepark | Veien Kulturminnepark | historie | data/places/historie/buskerud/places_historie_buskerud_batch1.json | 60.1842 | 10.2504 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | by | data/places/by/buskerud/kroderbanen_kroderen_stasjon.json | 60.1359 | 9.7829 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| vikersund_stasjon_randsfjordbanen | Vikersund stasjon / Randsfjordbanen | by | data/places/by/buskerud/vikersund_stasjon_randsfjordbanen.json | 59.9655 | 9.9986 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| raufoss_industripark_ammunisjon | Raufoss industripark / ammunisjonsfabrikken | naeringsliv | data/places/naeringsliv/innlandet/raufoss_industripark_ammunisjon.json | 60.7299 | 10.6164 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| elverum_folkehogskole_1940 | Elverum folkehøgskole / Elverumsfullmakten | politikk | data/places/politikk/innlandet/elverum_folkehogskole_1940.json | 60.8828 | 11.5599 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| hamar_stasjon_jernbanebyen | Hamar stasjon / jernbanebyen | by | data/places/by/innlandet/hamar_stasjon_jernbanebyen.json | 60.7949 | 11.0678 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| koppangtunet_stor_elvdal | Koppangtunet / Stor-Elvdal museum | historie | data/places/historie/innlandet/places_historie_innlandet_batch9.json | 61.5708 | 11.0552 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| mustad_hunnselva_gjovik | Mustad / Hunnselva industrimiljø | naeringsliv | data/places/naeringsliv/innlandet/mustad_hunnselva_gjovik.json | 60.7894 | 10.6798 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| eina_stasjon_totenbanen | Eina stasjon / Totenbanen | by | data/places/by/innlandet/eina_stasjon_totenbanen.json | 60.6286 | 10.5988 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| espedalen_nikkelverk | Espedalen nikkelverk | naeringsliv | data/places/naeringsliv/innlandet/espedalen_nikkelverk.json | 61.4248 | 9.6036 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| fagernes_stasjon_valdresbanen | Fagernes stasjon / Valdresbanen | by | data/places/by/innlandet/fagernes_stasjon_valdresbanen.json | 60.9856 | 9.2339 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| lillehammer_stasjon | Lillehammer stasjon | by | data/places/by/innlandet/lillehammer_stasjon.json | 61.1152 | 10.4637 | 280 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| dombas_stasjon_jernbaneknutepunkt | Dombås stasjon / jernbaneknutepunkt | by | data/places/by/innlandet/dombas_stasjon_jernbaneknutepunkt.json | 62.0697 | 9.1239 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| otta_stasjon_gudbrandsdalen | Otta stasjon / Gudbrandsdalen | by | data/places/by/innlandet/otta_stasjon_gudbrandsdalen.json | 61.7712 | 9.5352 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kongsvinger_stasjon_grensebanen | Kongsvinger stasjon / grensebanen | by | data/places/by/innlandet/kongsvinger_stasjon_grensebanen.json | 60.1907 | 12.0007 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| elverum_stasjon_jernbanemiljo | Elverum stasjon / jernbanemiljø | by | data/places/by/innlandet/elverum_stasjon_jernbanemiljo.json | 60.8818 | 11.5621 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| tynset_stasjon_rorosbanen | Tynset stasjon / Rørosbanen | by | data/places/by/innlandet/tynset_stasjon_rorosbanen.json | 62.2757 | 10.7828 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| moelv_stasjon_mjoslinjen | Moelv stasjon / Mjøslinjen | by | data/places/by/innlandet/moelv_stasjon_mjoslinjen.json | 60.9337 | 10.7005 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| stange_stasjon_dovrebanen | Stange stasjon / Dovrebanen | by | data/places/by/innlandet/stange_stasjon_dovrebanen.json | 60.7181 | 11.1941 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| gran_stasjon_gjovikbanen | Gran stasjon / Gjøvikbanen | by | data/places/by/innlandet/gran_stasjon_gjovikbanen.json | 60.3665 | 10.5608 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| lena_stasjon_totenbanen | Lena stasjon / Totenbanen | by | data/places/by/innlandet/lena_stasjon_totenbanen.json | 60.6744 | 10.8138 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| reinsvoll_stasjon_totenbanen | Reinsvoll stasjon / Totenbanen | by | data/places/by/innlandet/reinsvoll_stasjon_totenbanen.json | 60.6798 | 10.6225 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| dokka_stasjon_valdresbanen | Dokka stasjon / Valdresbanen | by | data/places/by/innlandet/dokka_stasjon_valdresbanen.json | 60.8352 | 10.0719 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| skarnes_stasjon_kongsvingerbanen | Skarnes stasjon / Kongsvingerbanen | by | data/places/by/innlandet/skarnes_stasjon_kongsvingerbanen.json | 60.2536 | 11.6819 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| skreia_stasjon_totenbanen | Skreia stasjon / Totenbanen | by | data/places/by/innlandet/skreia_stasjon_totenbanen.json | 60.6504 | 10.9357 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| flisa_stasjon_solorbanen | Flisa stasjon / Solørbanen | by | data/places/by/innlandet/flisa_stasjon_solorbanen.json | 60.6095 | 12.0116 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| os_stasjon_rorosbanen | Os stasjon / Rørosbanen | by | data/places/by/innlandet/os_stasjon_rorosbanen.json | 62.4957 | 11.2235 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| borrerhaugene_midgard | Borreparken / Borre-haugene | historie | data/places/historie/vestfold/places_historie_vestfold_batch1.json | 59.3805 | 10.4686 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| horten_stasjon_vestfoldbanen | Horten stasjon / Vestfoldbanen | by | data/places/by/vestfold/horten_stasjon_vestfoldbanen.json | 59.4129 | 10.4825 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| tonsberg_stasjon_vestfoldbanen | Tønsberg stasjon / Vestfoldbanen | by | data/places/by/vestfold/tonsberg_stasjon_vestfoldbanen.json | 59.2709 | 10.4121 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| sandefjord_stasjon_vestfoldbanen | Sandefjord stasjon / Vestfoldbanen | by | data/places/by/vestfold/sandefjord_stasjon_vestfoldbanen.json | 59.1317 | 10.2244 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| larvik_stasjon_vestfoldbanen | Larvik stasjon / Vestfoldbanen | by | data/places/by/vestfold/larvik_stasjon_vestfoldbanen.json | 59.0525 | 10.0352 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| brekkeparken_skien | Brekkeparken Skien | historie | data/places/historie/telemark/places_historie_telemark_batch1.json | 59.2072 | 9.6005 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| rjukanbanen_rjukan_stasjon | Rjukanbanen / Rjukan stasjon | by | data/places/by/telemark/rjukanbanen_rjukan_stasjon.json | 59.8789 | 8.5927 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| tinnoset_stasjon_tinnosbanen | Tinnoset stasjon / Tinnosbanen | by | data/places/by/telemark/tinnoset_stasjon_tinnosbanen.json | 59.7048 | 9.0362 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| mael_stasjon_rjukanbanen | Mæl stasjon / Rjukanbanen | by | data/places/by/telemark/mael_stasjon_rjukanbanen.json | 59.8842 | 8.7526 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| notodden_stasjon_industriarv | Notodden stasjon / industriarv | by | data/places/by/telemark/notodden_stasjon_industriarv.json | 59.5602 | 9.2601 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| heroya_industripark_porsgrunn | Herøya industripark | naeringsliv | data/places/naeringsliv/telemark/heroya_industripark_porsgrunn.json | 59.1117 | 9.6405 | 520 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kragero_stasjon_kragerobanen | Kragerø stasjon / Kragerøbanen | by | data/places/by/telemark/kragero_stasjon_kragerobanen.json | 58.8699 | 9.4107 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| treungen_stasjon_treungenbanen | Treungen stasjon / Treungenbanen | by | data/places/by/telemark/treungen_stasjon_treungenbanen.json | 59.0215 | 8.5215 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| bo_stasjon_sorlandsbanen | Bø stasjon / Sørlandsbanen | by | data/places/by/telemark/bo_stasjon_sorlandsbanen.json | 59.4128 | 9.066 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| nelaug_stasjon_amli | Nelaug stasjon Åmli | by | data/places/by/agder/nelaug_stasjon_amli.json | 58.6592 | 8.6318 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kristiansand_stasjon | Kristiansand stasjon | by | data/places/by/agder/kristiansand_stasjon.json | 58.1457 | 7.9875 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| lista_flystasjon_farsund | Lista flystasjon Farsund | by | data/places/by/agder/lista_flystasjon_farsund.json | 58.099 | 6.626 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| arendal_stasjon | Arendal stasjon | by | data/places/by/agder/arendal_stasjon.json | 58.4619 | 8.7723 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| grimstad_stasjon_grimstadbanen | Grimstad stasjon / Grimstadbanen | by | data/places/by/agder/grimstad_stasjon_grimstadbanen.json | 58.342 | 8.5938 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| tingvatn_fornminnepark_haegebostad | Tingvatn fornminnepark Hægebostad | historie | data/places/historie/agder/tingvatn_fornminnepark_haegebostad.json | 58.3752 | 7.2049 | 520 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| furulunden_mandal_kulturpark | Furulunden Mandal kulturpark | natur | data/places/natur/agder/furulunden_mandal_kulturpark.json | 58.0207 | 7.4525 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| setesdal_mineralpark_evje | Setesdal mineralpark Evje | vitenskap | data/places/vitenskap/agder/setesdal_mineralpark_evje.json | 58.5949 | 7.7867 | 460 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | natur | data/places/natur/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | by | data/places/by/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| ulven_handelspark | Ulven handelspark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9229 | 10.8215 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| gardermoen_motorpark | Gardermoen Motorpark | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1832 | 11.1399 | 280 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| selhurst_park_london | Selhurst Park | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.3983 | -0.0855 | 190 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kuba_akselpassasjer | Kuba-passasjene ved Akerselva | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9236 | 10.7558 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| forskningsparken | Forskningsparken | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.9426 | 10.7192 | 150 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| lisbon_maat | MAAT / Tejo-kraftstasjonen | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.6953 | -9.1937 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| lisbon_terminal_de_cruzeiros | Terminal de Cruzeiros de Lisboa | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7142 | -9.1242 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| lisbon_santa_apolonia_station | Santa Apolónia Station | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.714 | -9.1228 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| etnesjoen_torg_og_kai | Etnesjøen torg og kai | by | data/places/by/vestland/etne/etnesjoen_torg_og_kai.json | 59.66489494369154 | 5.934465720587056 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+
+### lav koordinatpresisjon (<4 desimaler) (77)
+
+| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | oscarsborg_festning | Oscarsborg festning | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.676 | 10.606 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | nannestad_bygdemuseum | Nannestad bygdemuseum | historie | data/places/historie/akershus/places_historie_akershus_batch5.json | 60.217 | 11.012 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | fiskum_gamle_kirke | Fiskum gamle kirke | historie | data/places/historie/buskerud/places_historie_buskerud_batch4.json | 59.7069 | 9.805 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1622,83 +1705,6 @@ Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandi
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-
-### stasjon/park/gate/torg/elv uten coordinate metadata (72)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| nostvet_boplass | Nøstvet-boplassen | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.75109 | 10.7996 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | naeringsliv | data/places/naeringsliv/akershus/eidsvoll_verk_andelva.json | 60.3297 | 11.2575 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kjeller_flyplass | Kjeller flyplass | by | data/places/by/akershus/kjeller_flyplass.json | 59.96944 | 11.03889 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| stunner_boplass | Stunner steinalderboplass | historie | data/places/historie/akershus/places_historie_akershus_batch3.json | 59.74657 | 10.91747 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | by | data/places/by/ostfold/kornsjo_grensestasjon.json | 59.0974 | 11.6682 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| momarken_markedsplass | Momarken markedsplass | historie | data/places/historie/ostfold/places_historie_ostfold_batch6.json | 59.5584 | 11.3229 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| veien_kulturminnepark | Veien Kulturminnepark | historie | data/places/historie/buskerud/places_historie_buskerud_batch1.json | 60.1842 | 10.2504 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | by | data/places/by/buskerud/kroderbanen_kroderen_stasjon.json | 60.1359 | 9.7829 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| vikersund_stasjon_randsfjordbanen | Vikersund stasjon / Randsfjordbanen | by | data/places/by/buskerud/vikersund_stasjon_randsfjordbanen.json | 59.9655 | 9.9986 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| raufoss_industripark_ammunisjon | Raufoss industripark / ammunisjonsfabrikken | naeringsliv | data/places/naeringsliv/innlandet/raufoss_industripark_ammunisjon.json | 60.7299 | 10.6164 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| elverum_folkehogskole_1940 | Elverum folkehøgskole / Elverumsfullmakten | politikk | data/places/politikk/innlandet/elverum_folkehogskole_1940.json | 60.8828 | 11.5599 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| hamar_stasjon_jernbanebyen | Hamar stasjon / jernbanebyen | by | data/places/by/innlandet/hamar_stasjon_jernbanebyen.json | 60.7949 | 11.0678 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| koppangtunet_stor_elvdal | Koppangtunet / Stor-Elvdal museum | historie | data/places/historie/innlandet/places_historie_innlandet_batch9.json | 61.5708 | 11.0552 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| mustad_hunnselva_gjovik | Mustad / Hunnselva industrimiljø | naeringsliv | data/places/naeringsliv/innlandet/mustad_hunnselva_gjovik.json | 60.7894 | 10.6798 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| eina_stasjon_totenbanen | Eina stasjon / Totenbanen | by | data/places/by/innlandet/eina_stasjon_totenbanen.json | 60.6286 | 10.5988 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| espedalen_nikkelverk | Espedalen nikkelverk | naeringsliv | data/places/naeringsliv/innlandet/espedalen_nikkelverk.json | 61.4248 | 9.6036 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| fagernes_stasjon_valdresbanen | Fagernes stasjon / Valdresbanen | by | data/places/by/innlandet/fagernes_stasjon_valdresbanen.json | 60.9856 | 9.2339 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| lillehammer_stasjon | Lillehammer stasjon | by | data/places/by/innlandet/lillehammer_stasjon.json | 61.1152 | 10.4637 | 280 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| dombas_stasjon_jernbaneknutepunkt | Dombås stasjon / jernbaneknutepunkt | by | data/places/by/innlandet/dombas_stasjon_jernbaneknutepunkt.json | 62.0697 | 9.1239 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| otta_stasjon_gudbrandsdalen | Otta stasjon / Gudbrandsdalen | by | data/places/by/innlandet/otta_stasjon_gudbrandsdalen.json | 61.7712 | 9.5352 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kongsvinger_stasjon_grensebanen | Kongsvinger stasjon / grensebanen | by | data/places/by/innlandet/kongsvinger_stasjon_grensebanen.json | 60.1907 | 12.0007 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| elverum_stasjon_jernbanemiljo | Elverum stasjon / jernbanemiljø | by | data/places/by/innlandet/elverum_stasjon_jernbanemiljo.json | 60.8818 | 11.5621 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| tynset_stasjon_rorosbanen | Tynset stasjon / Rørosbanen | by | data/places/by/innlandet/tynset_stasjon_rorosbanen.json | 62.2757 | 10.7828 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| moelv_stasjon_mjoslinjen | Moelv stasjon / Mjøslinjen | by | data/places/by/innlandet/moelv_stasjon_mjoslinjen.json | 60.9337 | 10.7005 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| stange_stasjon_dovrebanen | Stange stasjon / Dovrebanen | by | data/places/by/innlandet/stange_stasjon_dovrebanen.json | 60.7181 | 11.1941 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| gran_stasjon_gjovikbanen | Gran stasjon / Gjøvikbanen | by | data/places/by/innlandet/gran_stasjon_gjovikbanen.json | 60.3665 | 10.5608 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| lena_stasjon_totenbanen | Lena stasjon / Totenbanen | by | data/places/by/innlandet/lena_stasjon_totenbanen.json | 60.6744 | 10.8138 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| reinsvoll_stasjon_totenbanen | Reinsvoll stasjon / Totenbanen | by | data/places/by/innlandet/reinsvoll_stasjon_totenbanen.json | 60.6798 | 10.6225 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| dokka_stasjon_valdresbanen | Dokka stasjon / Valdresbanen | by | data/places/by/innlandet/dokka_stasjon_valdresbanen.json | 60.8352 | 10.0719 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| skarnes_stasjon_kongsvingerbanen | Skarnes stasjon / Kongsvingerbanen | by | data/places/by/innlandet/skarnes_stasjon_kongsvingerbanen.json | 60.2536 | 11.6819 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| skreia_stasjon_totenbanen | Skreia stasjon / Totenbanen | by | data/places/by/innlandet/skreia_stasjon_totenbanen.json | 60.6504 | 10.9357 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| flisa_stasjon_solorbanen | Flisa stasjon / Solørbanen | by | data/places/by/innlandet/flisa_stasjon_solorbanen.json | 60.6095 | 12.0116 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| os_stasjon_rorosbanen | Os stasjon / Rørosbanen | by | data/places/by/innlandet/os_stasjon_rorosbanen.json | 62.4957 | 11.2235 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| borrerhaugene_midgard | Borreparken / Borre-haugene | historie | data/places/historie/vestfold/places_historie_vestfold_batch1.json | 59.3805 | 10.4686 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| horten_stasjon_vestfoldbanen | Horten stasjon / Vestfoldbanen | by | data/places/by/vestfold/horten_stasjon_vestfoldbanen.json | 59.4129 | 10.4825 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| tonsberg_stasjon_vestfoldbanen | Tønsberg stasjon / Vestfoldbanen | by | data/places/by/vestfold/tonsberg_stasjon_vestfoldbanen.json | 59.2709 | 10.4121 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| sandefjord_stasjon_vestfoldbanen | Sandefjord stasjon / Vestfoldbanen | by | data/places/by/vestfold/sandefjord_stasjon_vestfoldbanen.json | 59.1317 | 10.2244 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| larvik_stasjon_vestfoldbanen | Larvik stasjon / Vestfoldbanen | by | data/places/by/vestfold/larvik_stasjon_vestfoldbanen.json | 59.0525 | 10.0352 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| brekkeparken_skien | Brekkeparken Skien | historie | data/places/historie/telemark/places_historie_telemark_batch1.json | 59.2072 | 9.6005 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| rjukanbanen_rjukan_stasjon | Rjukanbanen / Rjukan stasjon | by | data/places/by/telemark/rjukanbanen_rjukan_stasjon.json | 59.8789 | 8.5927 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| tinnoset_stasjon_tinnosbanen | Tinnoset stasjon / Tinnosbanen | by | data/places/by/telemark/tinnoset_stasjon_tinnosbanen.json | 59.7048 | 9.0362 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| mael_stasjon_rjukanbanen | Mæl stasjon / Rjukanbanen | by | data/places/by/telemark/mael_stasjon_rjukanbanen.json | 59.8842 | 8.7526 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| notodden_stasjon_industriarv | Notodden stasjon / industriarv | by | data/places/by/telemark/notodden_stasjon_industriarv.json | 59.5602 | 9.2601 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| heroya_industripark_porsgrunn | Herøya industripark | naeringsliv | data/places/naeringsliv/telemark/heroya_industripark_porsgrunn.json | 59.1117 | 9.6405 | 520 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kragero_stasjon_kragerobanen | Kragerø stasjon / Kragerøbanen | by | data/places/by/telemark/kragero_stasjon_kragerobanen.json | 58.8699 | 9.4107 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| treungen_stasjon_treungenbanen | Treungen stasjon / Treungenbanen | by | data/places/by/telemark/treungen_stasjon_treungenbanen.json | 59.0215 | 8.5215 | 320 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| bo_stasjon_sorlandsbanen | Bø stasjon / Sørlandsbanen | by | data/places/by/telemark/bo_stasjon_sorlandsbanen.json | 59.4128 | 9.066 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| nelaug_stasjon_amli | Nelaug stasjon Åmli | by | data/places/by/agder/nelaug_stasjon_amli.json | 58.6592 | 8.6318 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kristiansand_stasjon | Kristiansand stasjon | by | data/places/by/agder/kristiansand_stasjon.json | 58.1457 | 7.9875 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| lista_flystasjon_farsund | Lista flystasjon Farsund | by | data/places/by/agder/lista_flystasjon_farsund.json | 58.099 | 6.626 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| arendal_stasjon | Arendal stasjon | by | data/places/by/agder/arendal_stasjon.json | 58.4619 | 8.7723 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| grimstad_stasjon_grimstadbanen | Grimstad stasjon / Grimstadbanen | by | data/places/by/agder/grimstad_stasjon_grimstadbanen.json | 58.342 | 8.5938 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| tingvatn_fornminnepark_haegebostad | Tingvatn fornminnepark Hægebostad | historie | data/places/historie/agder/tingvatn_fornminnepark_haegebostad.json | 58.3752 | 7.2049 | 520 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| furulunden_mandal_kulturpark | Furulunden Mandal kulturpark | natur | data/places/natur/agder/furulunden_mandal_kulturpark.json | 58.0207 | 7.4525 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| setesdal_mineralpark_evje | Setesdal mineralpark Evje | vitenskap | data/places/vitenskap/agder/setesdal_mineralpark_evje.json | 58.5949 | 7.7867 | 460 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | natur | data/places/natur/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | by | data/places/by/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| ulven_handelspark | Ulven handelspark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9229 | 10.8215 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| gardermoen_motorpark | Gardermoen Motorpark | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1832 | 11.1399 | 280 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| selhurst_park_london | Selhurst Park | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.3983 | -0.0855 | 190 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kuba_akselpassasjer | Kuba-passasjene ved Akerselva | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9236 | 10.7558 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| forskningsparken | Forskningsparken | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.9426 | 10.7192 | 150 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| lisbon_maat | MAAT / Tejo-kraftstasjonen | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.6953 | -9.1937 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| lisbon_terminal_de_cruzeiros | Terminal de Cruzeiros de Lisboa | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7142 | -9.1242 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| lisbon_santa_apolonia_station | Santa Apolónia Station | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.714 | -9.1228 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| etnesjoen_torg_og_kai | Etnesjøen torg og kai | by | data/places/by/vestland/etne/etnesjoen_torg_og_kai.json | 59.66489494369154 | 5.934465720587056 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
 ### park/stort område uten anchors eller coordNote (130)
 
