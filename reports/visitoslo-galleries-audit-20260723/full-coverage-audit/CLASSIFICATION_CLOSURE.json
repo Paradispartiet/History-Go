@@ -1,0 +1,91 @@
+{
+  "version": "2026-07-23",
+  "status": "full_source_classification_closed",
+  "source": {
+    "snapshot": "reports/visitoslo-galleries-audit-20260723/api-source-discovery/gallery-source-snapshot.json",
+    "sourceItems": 66,
+    "pageId": "735"
+  },
+  "summary": {
+    "sourceItems": 66,
+    "sourceItemsClassified": 66,
+    "machineExactCanonicalCoverage": 18,
+    "manualCanonicalReuseOrEnrichment": 4,
+    "totalCoveredOrReused": 22,
+    "policyDeferredPrivateCommercial": 30,
+    "approvedDistinctCandidatesOslo": 12,
+    "approvedDistinctCandidatesOutsideOslo": 1,
+    "approvedCoordinateBacklog": 1,
+    "unresolvedClassificationItems": 0,
+    "productionCoverageClosed": false
+  },
+  "coveredByManualResolution": [
+    {
+      "sourceItem": "Purenkel",
+      "target": "purenkel_galleri",
+      "decision": "covered_name_variant"
+    },
+    {
+      "sourceItem": "Oslo Kunstforening",
+      "target": "radmannsgarden_og_anatomibygget",
+      "decision": "covered_parent_enrichment"
+    },
+    {
+      "sourceItem": "BO Billedkunstnerne i Oslo",
+      "target": "radmannsgarden_og_anatomibygget",
+      "decision": "covered_parent_enrichment"
+    },
+    {
+      "sourceItem": "Atelier Nord",
+      "target": "hauges_minde",
+      "decision": "covered_parent_enrichment"
+    }
+  ],
+  "approvedDistinctCandidatesOslo": [
+    "Format Oslo",
+    "Edvard Munchs atelier på Ekely",
+    "Tegnerforbundet - senter for tegnekunst",
+    "Unge Kunstneres Samfund",
+    "Galleri Norske Grafikere",
+    "Galleri ROM for kunst og arkitektur",
+    "The Mini Bottle Gallery",
+    "Galleri LNM",
+    "RAM galleri",
+    "Galleri Schaeffers Gate 5",
+    "Grafill",
+    "SKOG Art Space"
+  ],
+  "approvedDistinctCandidatesOutsideOslo": [
+    {
+      "sourceItem": "Henie Onstad Kunstsenter",
+      "productionRegion": "Akershus/Bærum"
+    }
+  ],
+  "coordinateBacklog": [
+    {
+      "sourceItem": "Soft galleri: Norske tekstilkunstnere",
+      "proposedId": "soft_galleri",
+      "blocker": "Ordinary official address marker overlaps fotografiens_hus; production requires a separately documented authoritative entrance/site anchor."
+    }
+  ],
+  "policy": {
+    "deferredCount": 30,
+    "rule": "Private commercial galleries, sales galleries, auction houses, shops, showrooms and high-churn art venues are not mandatory canonical gaps under the current bounded completeness model unless a separate consistent inclusion framework is adopted.",
+    "institutionalException": "Durable artist/member organisations, nonprofit or association-run exhibition spaces, museums and organisation-owned public exhibition institutions may qualify as distinct candidates when physical identity and coordinate gates pass."
+  },
+  "scopeGuards": [
+    "This closes classification of the exact 66-item current VisitOSLO Galleries source snapshot, not production of every approved candidate.",
+    "Approved candidates must be re-audited against current main before any new canonical record is created.",
+    "No nearest-place or coordinate-proximity lead is treated as identity.",
+    "Parent reuse must remain one physical marker with institutional/current-use enrichment rather than duplicate points.",
+    "SOFT remains blocked until a distinct authoritative physical anchor is resolved.",
+    "Henie Onstad must be produced, if still absent after current-main audit, in Bærum/Akershus rather than Oslo."
+  ],
+  "nextActions": [
+    "Run a fresh current-main duplicate and physical-identity audit over the 12 approved Oslo candidates.",
+    "Split the surviving Oslo candidates into coordinate-ready, coordinate-research and parent-reuse outcomes.",
+    "Produce coordinate-ready candidates in bounded batches using dynamic next Oslo batch numbers.",
+    "Handle Henie Onstad separately in Bærum/Akershus.",
+    "Keep SOFT in coordinate-only backlog until a distinct authoritative anchor exists."
+  ]
+}
