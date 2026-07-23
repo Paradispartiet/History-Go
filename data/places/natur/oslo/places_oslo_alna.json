@@ -491,10 +491,10 @@
   },
   {
     "id": "trosterud_friomrade",
-    "name": "Trosterud friområde",
-    "lat": 59.9305,
-    "lon": 10.846,
-    "r": 220,
+    "name": "Lille Wembley",
+    "lat": 59.91881406647298,
+    "lon": 10.864232430094178,
+    "r": 180,
     "category": "natur",
     "badge_refs": {
       "primary": "natur",
@@ -505,14 +505,20 @@
       ],
       "also": []
     },
-    "year": null,
-    "desc": "Uformelt friområde brukt til ferdsel, lek og nærrekreasjon.",
+    "year": 2020,
+    "desc": "Statlig sikret friluftsområde ved inngangen til Østmarka på Haugerud, tilrettelagt for lek, aktivitet, naturmiljø og nærrekreasjon.",
     "tags": [
       "nærnatur",
-      "friområde"
+      "friområde",
+      "lille_wembley",
+      "haugerud",
+      "friluftsområde",
+      "østmarka"
     ],
     "knagger": [
-      "hverdag"
+      "hverdag",
+      "nærmiljø",
+      "aktivitet"
     ],
     "images": {
       "map": "bilder/places/trosterud_friomrade.JPG",
@@ -531,7 +537,7 @@
       "source_note": "",
       "updated": "2026-01-09"
     },
-    "popupDesc": "Trosterud friområde er et nært skogpreget område brukt til tur, lek og uformell rekreasjon i hverdagen. Stier gjennom terrenget kobler boligsoner til grønnere partier mot marka. Vegetasjonen skjermer for trafikk og gir en tydelig overgang fra byrom til naturpreg. Stedet fungerer som lavterskel inngang til friluftsliv for nærmiljøet.",
+    "popupDesc": "Lille Wembley ligger ved inngangen til Østmarka på Haugerud og er et offentlig frilufts- og aktivitetsområde for nærmiljøet. Området startet som en liten grusbane, men ble i 2020 tilrettelagt som møteplass for lek, aktivitet, grilling og sosialt samvær. Skogen rundt ble ryddet og det ble gjort tiltak for naturmiljø og insekter, samtidig som deler av området fungerer som kommunalt dressurområde for hund.\n\nStedet passer den opprinnelige History Go-intensjonen langt bedre enn det syntetiske navnet «Trosterud friområde»: et konkret, navngitt og offentlig tilgjengelig nærfriluftsområde mellom boligbyen og marka.",
     "underbadge_ids": [
       "skog",
       "tursti",
@@ -541,17 +547,34 @@
       "designCode": "park_miniature"
     },
     "locatorType": "natural_area",
-    "sourceProvider": "manual_research",
-    "sourceObjectId": "oslo-kommune:trosterud-haugerud-planprogram",
-    "geocodeAccuracy": "unknown",
-    "coordRole": "display_marker",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "named_area_identity_unresolved",
-    "coordSourceId": "oslo-kommune:trosterud-haugerud-planprogram",
-    "coordSourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/planprogram-for-trosterud-og-haugerud",
-    "coordVerifiedAt": "2026-07-19",
-    "coordNote": "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt."
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:220842445",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "recreation_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 220842445 – Lille Wembley, source-identified by Oslo kommune and Lovdata",
+    "coordSourceId": "osm-way:220842445",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/220842445",
+    "coordVerifiedAt": "2026-07-23",
+    "coordNote": "Batch 166 pensjonerer den repo-syntetiske identiteten «Trosterud friområde» og erstatter den med det konkrete navngitte friluftsområdet Lille Wembley, mens placeId beholdes for kompatibilitet. Oslo kommune dokumenterer Lille Wembley som et statlig sikret friluftsområde og møteplass ved inngangen til marka, tilrettelagt i 2020 for lek, aktivitet, naturmiljø og sosialt opphold. Lovdata dokumenterer Lille Wembley, Haugerud som kommunalt dressurområde for hund. Fresh OSM way 220842445 er eksakt navngitt «Lille Wembley», er et lukket rekreasjonsområde og bærer leisure=dog_park. Canonical lat/lon er deterministisk polygoncentroid for denne eksakte arealgeometrien. Det gamle legacy-punktet, nearest/first-hit og de bredere Trosterud/Haugerud-planområdene brukes ikke som koordinatkilde.",
+    "identityScope": {
+      "method": "official_identity_plus_exact_named_recreation_polygon",
+      "correctedLegacyName": "Trosterud friområde",
+      "resolvedIdentity": "Lille Wembley",
+      "stablePlaceIdRetained": true,
+      "osmWayId": 220842445,
+      "officialContext": [
+        "Oslo kommune – Planprogram for Trosterud og Haugerud: Lille Wembley",
+        "Lovdata – forskrift om dressurområder for hund: Lille Wembley, Haugerud"
+      ],
+      "excludedProxies": [
+        "Trosterudparken",
+        "Haugerudparken",
+        "generic Trosterud/Haugerud plan area",
+        "legacy coordinate"
+      ]
+    }
   },
   {
     "id": "furuset_haugerud_skogbelte",
