@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "lillomarka",
+  "placeFile": "data/places/natur/oslo/lillomarka.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 60.0056538,
+    "lon": 10.8585573,
+    "r": 450,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 5806405 – Lillomarka; scope cross-checked with Oslo kommune – Marka",
+    "coordType": "woodland_area_anchor",
+    "coordNote": "Batch 168 oppretter Lillomarka som ett bredt, navngitt Marka- og skogsområde. Oslo kommune omtaler Lillomarka som en egen del av Oslomarka og knytter området til friluftsliv, folkehelse og naturmangfold. Fresh exact-object lookup hard-gater OSM relation 5806405 som name=Lillomarka, category=place, type=woodland med polygongeometri. Canonical lat/lon er karttjenestens geometriske representasjonspunkt for den eksakte relationen. Punktet representerer hele det navngitte skogsområdet og er ikke en løypestart, markastue, innsjø eller nearest/first-hit-proxy."
+  },
+  "identity": {
+    "currentName": "Lillomarka",
+    "resolvedIdentity": "Lillomarka som ett bredt navngitt Marka- og skogsområde",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "exact locked OSM area identity",
+    "official municipal scope cross-check",
+    "canonical duplicate control against current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Lillomarka relation 5806405",
+      "sourceUrl": "https://www.openstreetmap.org/relation/5806405",
+      "sourceObjectId": "osm-relation:5806405",
+      "sourceQuality": "unique_exact_named_woodland_relation",
+      "finding": "Fresh lookup resolves relation 5806405 as name=Lillomarka, category=place, type=woodland and Polygon geometry. Geometric representation point: 60.0056538, 10.8585573.",
+      "canVerifyCoordinate": true,
+      "reason": "Exact named physical area geometry; no nearest or first-hit selection."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Marka",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/marka/",
+      "sourceObjectId": "oslo-kommune:marka:lillomarka",
+      "sourceQuality": "official_named_marka_scope",
+      "finding": "Oslo kommune names Lillomarka as one of the Marka areas and connects Oslomarka to outdoor life, public health and biodiversity.",
+      "canVerifyCoordinate": false,
+      "reason": "Official identity and scope cross-check; exact area geometry comes from the locked OSM relation."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:5806405",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:marka:lillomarka",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:5806405",
+      "geometryType": "Polygon",
+      "boundingBox": [
+        59.9479182,
+        60.0632239,
+        10.7881057,
+        10.9290175
+      ],
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 60.0056538,
+      "lon": 10.8585573,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-relation:5806405",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact Lillomarka area identity and geometric representation point are applied to canonical place."
+  },
+  "notes": [
+    "Batch 168 oppretter Lillomarka som ett bredt, navngitt Marka- og skogsområde. Oslo kommune omtaler Lillomarka som en egen del av Oslomarka og knytter området til friluftsliv, folkehelse og naturmangfold. Fresh exact-object lookup hard-gater OSM relation 5806405 som name=Lillomarka, category=place, type=woodland med polygongeometri. Canonical lat/lon er karttjenestens geometriske representasjonspunkt for den eksakte relationen. Punktet representerer hele det navngitte skogsområdet og er ikke en løypestart, markastue, innsjø eller nearest/first-hit-proxy.",
+    "Fresh anchor drift from the locked intake coordinate: 0.00 m.",
+    "Place-id and normalized name were absent from all current manifest-loaded canonical place data before production."
+  ]
+}

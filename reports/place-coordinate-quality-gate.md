@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T17:06:37.449Z
+Generert: 2026-07-23T17:17:46.532Z
 
 ## Oppsummering
-- Aktive filer validert: **672**
+- Aktive filer validert: **673**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -690,6 +690,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json
 - data/places/kunst/oslo/places_kunst/fotogalleriet.json
 - data/places/kunst/oslo/places_kunst/kunstnerforbundet.json
+- data/places/natur/oslo/lillomarka.json
 
 ## Harde feil
 - Ingen
