@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 419 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 420 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -905,3 +905,7 @@ Batch 168 (2026-07-23) produserer `kunstnerforbundet` etter den lukkede VisitOSL
 | 177 | `edvard_munchs_atelier_ekely` | Edvard Munchs atelier på Ekely | verified | `geonorge-adresser-v1:0301:13413:14` |
 
 Batch 177 (2026-07-23) produserer `edvard_munchs_atelier_ekely` etter den lukkede 66-item VisitOSLO Galleries scope-auditen og den separate kandidat-readiness-auditen. Det eksakte Geonorge-adressepunktet for Jarlsborgveien 14 brukes som display-marker for det bevarte atelierstedet på Ekely; identiteten er separat fra MUNCH-museet i Bjørvika.
+
+| 178 | `tegnerforbundet` | Tegnerforbundet – senter for tegnekunst | verified | `geonorge-adresser-v1:0301:16115:17` |
+
+Batch 178 (2026-07-23) produserer `tegnerforbundet` etter den lukkede 66-item VisitOSLO Galleries scope-auditen og kandidat-readiness-auditen. Det eksakte Geonorge-adressepunktet for Rådhusgata 17 brukes som display-marker for Tegnerforbundet som egen kunstnerorganisasjon og offentlig visningsinstitusjon.

@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T19:45:58.044Z
+Generert: 2026-07-23T19:58:03.491Z
 
 ## Oppsummering
-- Aktive filer validert: **678**
+- Aktive filer validert: **680**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -696,6 +696,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/aamot_bru.json
 - data/places/kunst/oslo/places_kunst/klosterenga_skulpturpark.json
 - data/places/kunst/oslo/places_kunst/peer_gynt_parken.json
+- data/places/kunst/oslo/places_kunst/edvard_munchs_atelier_ekely.json
+- data/places/kunst/oslo/places_kunst/tegnerforbundet.json
 
 ## Harde feil
 - Ingen

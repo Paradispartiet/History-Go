@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tegnerforbundet",
+  "placeFile": "data/places/kunst/oslo/places_kunst/tegnerforbundet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9099817152299,
+    "lon": 10.74092866640025,
+    "r": 55,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 17, 0158 Oslo. Tegnerforbundets egen organisasjonsside dokumenterer samme adresse og et stort offentlig galleri i lokalene; punktet brukes som canonical display-marker for Tegnerforbundet som egen kunstnerorganisasjon og visningsinstitusjon."
+  },
+  "identity": {
+    "currentName": "Tegnerforbundet – senter for tegnekunst",
+    "resolvedIdentity": "Tegnerforbundet som egen kunstnerorganisasjon og offentlig tegnekunstinstitusjon i Rådhusgata 17",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "canonical identitets- og nærhetskontroll",
+    "dokumentert institusjonell kontinuitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Rådhusgata 17",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=R%C3%A5dhusgata%2017%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:17",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Rådhusgata 17 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 17, 0158 Oslo. Tegnerforbundets egen organisasjonsside dokumenterer samme adresse og et stort offentlig galleri i lokalene; punktet brukes som canonical display-marker for Tegnerforbundet som egen kunstnerorganisasjon og visningsinstitusjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Tegnerforbundet – Organisasjon",
+      "sourceUrl": "https://www.tegnerforbundet.no/om-oss/organisasjon",
+      "sourceObjectId": "tegnerforbundet:organization",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Dokumenterer organisasjonens rolle som senter for tegnekunst, galleri i Rådhusgata 17 og fagorganisasjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Tegnerforbundet – 110 år",
+      "sourceUrl": "https://www.tegnerforbundet.no/aktuelle-saker/tegnerforbundet-fyller-110-ar-jubileumsutstilling-og-jubileumsbok",
+      "sourceObjectId": "tegnerforbundet:110-years",
+      "sourceQuality": "official_institution_history",
+      "finding": "2026-jubileet dokumenterer at Tegnerforbundet fyller 110 år og dermed etableringsåret 1916.",
+      "canVerifyCoordinate": false,
+      "reason": "Institusjonshistorisk kryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Rådhusgata 17, 0158 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:17",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:17",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "tegnerforbundet:organization",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "tegnerforbundet:110-years",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9099817152299,
+      "lon": 10.74092866640025,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:17",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Rådhusgata 17 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Rådhusgata 17, 0158 Oslo. Tegnerforbundets egen organisasjonsside dokumenterer samme adresse og et stort offentlig galleri i lokalene; punktet brukes som canonical display-marker for Tegnerforbundet som egen kunstnerorganisasjon og visningsinstitusjon.",
+    "Nærmeste eksisterende canonical marker ved write-time var nordisk_bibelmuseum på 33.15 meter; ingen markør lå innen 3 meter."
+  ]
+}
