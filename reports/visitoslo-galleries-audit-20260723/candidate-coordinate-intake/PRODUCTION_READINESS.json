@@ -1,0 +1,111 @@
+{
+  "version": "2026-07-23",
+  "status": "candidate_coordinate_readiness_resolved",
+  "summary": {
+    "approvedCandidates": 10,
+    "coordinateReady": 9,
+    "distinctAnchorResearchBacklog": 1,
+    "duplicateExisting": 0,
+    "parentReuse": 0,
+    "unresolvedIdentity": 0
+  },
+  "coordinateReady": [
+    {
+      "placeId": "edvard_munchs_atelier_ekely",
+      "name": "Edvard Munchs atelier på Ekely",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13413:14",
+      "lat": 59.92918854127767,
+      "lon": 10.670165670212224,
+      "address": "Jarlsborgveien 14, 0377 Oslo"
+    },
+    {
+      "placeId": "tegnerforbundet",
+      "name": "Tegnerforbundet – senter for tegnekunst",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:17",
+      "lat": 59.9099817152299,
+      "lon": 10.74092866640025,
+      "address": "Rådhusgata 17, 0158 Oslo"
+    },
+    {
+      "placeId": "unge_kunstneres_samfund",
+      "name": "Unge Kunstneres Samfund",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13669:1",
+      "lat": 59.917046487498816,
+      "lon": 10.743853067869056,
+      "address": "Keysers gate 1, 0165 Oslo"
+    },
+    {
+      "placeId": "norske_grafikere",
+      "name": "Galleri Norske Grafikere",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17577:24",
+      "lat": 59.91091311290161,
+      "lon": 10.741742892068546,
+      "address": "Tollbugata 24, 0157 Oslo"
+    },
+    {
+      "placeId": "the_mini_bottle_gallery",
+      "name": "The Mini Bottle Gallery",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13707:10",
+      "lat": 59.90962587013713,
+      "lon": 10.743320753338548,
+      "address": "Kirkegata 10, 0153 Oslo"
+    },
+    {
+      "placeId": "galleri_lnm",
+      "name": "Galleri LNM",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16115:37",
+      "lat": 59.91082571186472,
+      "lon": 10.7367950879606,
+      "address": "Rådhusgata 37, 0158 Oslo"
+    },
+    {
+      "placeId": "ram_galleri",
+      "name": "RAM galleri",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13846:15",
+      "lat": 59.91045277823502,
+      "lon": 10.741915500125605,
+      "address": "Kongens gate 15, 0153 Oslo"
+    },
+    {
+      "placeId": "galleri_schaeffers_gate_5",
+      "name": "Galleri Schaeffers Gate 5",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16269:5",
+      "lat": 59.92127390279403,
+      "lon": 10.762304822006952,
+      "address": "Schæffers gate 5, 0558 Oslo"
+    },
+    {
+      "placeId": "grafill",
+      "name": "Grafill",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:39",
+      "lat": 59.91646694157906,
+      "lon": 10.748956340457859,
+      "address": "Møllergata 39, 0179 Oslo"
+    }
+  ],
+  "anchorResearchBacklog": [
+    {
+      "placeId": "rom_for_kunst_og_arkitektur",
+      "name": "ROM for kunst og arkitektur",
+      "status": "distinct_shared_property_coordinate_blocked",
+      "ordinaryAddress": "Maridalsveien 3, 0178 Oslo",
+      "ordinaryAddressSourceObjectId": "geonorge-adresser-v1:0301:14622:3",
+      "ordinaryAddressLat": 59.92065765555904,
+      "ordinaryAddressLon": 10.751597362221323,
+      "exactExistingMarker": "xray_ungdomskulturhus",
+      "basis": "ROM documents a distinct building O and separate entrances within the same former NORA factory property, but the ordinary Geonorge address point is exactly the canonical X-Ray marker. A distinct authoritative building O or entrance anchor is required before production."
+    }
+  ],
+  "guards": [
+    "The nine Geonorge address candidates were produced by the repository's normative address-first coordinate finder.",
+    "No coordinate-ready candidate has an existing canonical display marker within 3 metres in the current audit snapshot.",
+    "Production must still re-check current main immediately before writing each canonical place.",
+    "ROM must not use the ordinary Maridalsveien 3 address point or a synthetic offset.",
+    "VisitOSLO coordinates are not canonical coordinate evidence."
+  ],
+  "nextActions": [
+    "Replay this readiness result cleanly onto latest main.",
+    "Produce the nine coordinate-ready candidates in bounded coordinate batches with dynamic next batch numbers.",
+    "Research a distinct source-defined building O or entrance anchor for ROM separately."
+  ]
+}
