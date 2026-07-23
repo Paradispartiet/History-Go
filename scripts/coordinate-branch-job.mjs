@@ -12,9 +12,14 @@ const response = await fetch(sourceUrl, {
 });
 if (!response.ok) throw new Error(`Could not fetch validated batch 167-168 production script: ${response.status} ${response.statusText}`);
 let source = await response.text();
-source = source.replace("place.geocodeAccuracy = 'polygon_centroid';", "place.geocodeAccuracy = 'geometric_center';");
+source = source
+  .replace("place.geocodeAccuracy = 'polygon_centroid';", "place.geocodeAccuracy = 'geometric_center';")
+  .replace("place.locatorType = 'area';", "place.locatorType = 'natural_area';");
 if (!source.includes("place.geocodeAccuracy = 'geometric_center';")) {
-  throw new Error('Could not patch batch 168 geocodeAccuracy to the coordinate-contract value geometric_center');
+  throw new Error('Could not patch batch 168 geocodeAccuracy to geometric_center');
+}
+if (!source.includes("place.locatorType = 'natural_area';")) {
+  throw new Error('Could not patch batch 168 locatorType to natural_area');
 }
 const tempScript = path.join('/tmp', `history-go-batches-167-168-${Date.now()}.mjs`);
 fs.writeFileSync(tempScript, source);
@@ -58,6 +63,7 @@ evidence.currentCoordinate = {
   coordType: active.place?.coordType ?? '',
   coordNote: active.place?.coordNote ?? '',
 };
+if (evidence.identity) evidence.identity.locatorTypeCandidate = active.place?.locatorType ?? 'natural_area';
 fs.writeFileSync(evidencePath, `${JSON.stringify(evidence, null, 2)}\n`);
 
 console.log(JSON.stringify({
@@ -66,5 +72,6 @@ console.log(JSON.stringify({
     activePlaceFile: active.file,
     currentCoordinate: evidence.currentCoordinate,
     geocodeAccuracy: active.place?.geocodeAccuracy ?? null,
+    locatorType: active.place?.locatorType ?? null,
   },
 }, null, 2));
