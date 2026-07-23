@@ -1,71 +1,11 @@
 {
-  "id": "alnaelvstien",
-  "name": "Alnastien – Svartdalen og Bryn",
-  "lat": 59.9059364,
-  "lon": 10.8030114,
-  "r": 250,
-  "category": "natur",
-  "badge_refs": {
-    "primary": "natur",
-    "subs": [
-      "turvei",
-      "tilgjengelighet",
-      "byutvikling"
-    ],
-    "also": []
-  },
-  "year": null,
-  "desc": "Sammenhengende Alnastien-strekning gjennom Svartdalen og Bryn, eksplisitt modellert som elleve navngitte OSM-segmenter.",
-  "popupDesc": "Denne konkrete delen av Alnastien følger Alna gjennom Svartdalen og videre mot Bryn. Traséen består av grus- og asfaltpartier, gang- og sykkelvei, bordgang og flere broer, blant annet hengebrua i Svartdalsparken. Strekningen viser hvordan turveien må tilpasse seg både ravinedal, elveløp, jernbane og tett bystruktur.\n\nHistory Go modellerer her den faktisk kartlagte, sammenhengende Alnastien-komponenten på rundt 1,64 kilometer. Posten skal ikke tolkes som en komplett geometrisk modell av alle turveier langs hele Alnaelva.",
-  "tags": [
-    "turvei",
-    "rekreasjon",
-    "alnastien",
-    "svartdalen",
-    "bryn"
-  ],
-  "knagger": [
-    "tilgjengelig_natur"
-  ],
-  "images": {
-    "map": "bilder/places/alnaelvstien.JPG",
-    "card": "bilder/kort/places/alnaelvstien.PNG",
-    "popup": "bilder/places/alnaelvstien_popup.JPG"
-  },
-  "links": {
-    "website": "",
-    "wikipedia": "",
-    "map": ""
-  },
-  "connections_preview": [],
-  "meta": {
-    "status": "active",
-    "priority": 65,
-    "source_note": "",
-    "updated": "2026-01-09"
-  },
-  "underbadge_ids": [
-    "elv",
-    "tursti",
-    "friluftsliv",
-    "gronn_korridor"
-  ],
-  "visual": {
-    "designCode": "waterfront_miniature"
-  },
-  "locatorType": "route",
+  "generatedAt": "2026-07-23T09:09:45.113Z",
+  "batch": 159,
+  "placeId": "alnaelvstien",
+  "status": "verified_geometry",
   "sourceProvider": "osm",
   "sourceObjectId": "osm-way:113281394",
-  "geocodeAccuracy": "semantic_anchor",
-  "coordRole": "line_anchor",
-  "coordType": "multi_segment_route_display_anchor",
-  "coordStatus": "verified_geometry",
-  "coordSource": "OpenStreetMap Alnastien routeSegments (31989054, 1527826111, 1527826112, 113281394, 113281380, 945870545, 112543906, 1085893555, 385329987, 385329986, 674182052); display midpoint on way 113281394",
-  "coordSourceId": "osm-way:113281394",
-  "coordSourceUrl": "https://www.openstreetmap.org/way/113281394",
-  "coordVerifiedAt": "2026-07-23",
-  "coordNote": "Batch 159 retter den tidligere brede og uverifiserte «Alnaelvstien»-representasjonen til den konkrete kartlagte Alnastien-komponenten gjennom Svartdalen og Bryn. Fresh OSM validerer elleve ways med eksakt name=Alnastien. De danner én uforgrenet endepunktkoblet kjede uten isolerte segmenter eller forgreningsnoder. Samlet lengde er 1642 meter. Canonical lat/lon er deterministisk lengdemidtpunkt for den sammensatte kjeden og ligger på OSM way 113281394; denne wayen brukes derfor som coordinate-source-contract displaykilde. Alle elleve ways lagres eksplisitt som routeSegments. Oslo kommune dokumenterer turveien langs Alnaelva gjennom Svartdalsparken og omtaler Alnastien i Etterstad/Bryn-kontekst. Modellen hevder ikke at disse 1,64 kilometerne er hele turveisystemet langs Alna. Legacy-punktet og nearest/first-hit brukes ikke.",
-  "sourceHint": "Canonical route er bygget av elleve ferskt validerte OSM-ways med eksakt navn Alnastien. Segmentene danner én uforgrenet endepunktkoblet kjede fra Svartdalen/Kværner-siden til Bryn/Etterstad-siden.",
+  "routeSegmentCount": 11,
   "routeSegments": [
     {
       "id": "alnastien_segment_01",
@@ -236,5 +176,30 @@
     },
     "segmentCount": 11,
     "modelScope": "explicit_exact_named_alnastien_component_svartdalen_bryn"
-  }
+  },
+  "displayAnchor": {
+    "lat": 59.9059364,
+    "lon": 10.8030114,
+    "sourceObjectId": "osm-way:113281394"
+  },
+  "before": {
+    "name": "Alnaelvstien",
+    "lat": 59.931,
+    "lon": 10.83,
+    "coordStatus": "needs_source",
+    "coordSource": "trail_route_geometry_unresolved",
+    "coordType": "legacy_unverified"
+  },
+  "after": {
+    "name": "Alnastien – Svartdalen og Bryn",
+    "lat": 59.9059364,
+    "lon": 10.8030114,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap Alnastien routeSegments (31989054, 1527826111, 1527826112, 113281394, 113281380, 945870545, 112543906, 1085893555, 385329987, 385329986, 674182052); display midpoint on way 113281394",
+    "coordType": "multi_segment_route_display_anchor",
+    "sourceObjectId": "osm-way:113281394",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor"
+  },
+  "method": "fresh exact-name OSM routeSegments + explicit endpoint topology + deterministic composite-route midpoint + official local scope crosschecks; no legacy point, nearest/first-hit or claim that the component covers the entire Alna trail system"
 }
