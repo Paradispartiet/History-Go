@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fornebu_teknologipark",
+  "placeFile": "data/places/naeringsliv/akershus/it_fornebu_terminalbygget.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.89478742780154,
+    "lon": 10.629427258419572,
+    "r": 180,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Martin Linges vei 25, 1364 Fornebu i Bærum. IT Fornebu, Bærum kommune og Store norske leksikon identifiserer det tidligere terminalbygget som det konkrete fysiske stedet som senere ble kunnskaps- og teknologimiljø. Punktet brukes som canonical display-marker for Terminalbygget / IT Fornebu, ikke som et generelt områdeanker for hele Fornebu."
+  },
+  "identity": {
+    "currentName": "IT Fornebu – Terminalbygget",
+    "resolvedIdentity": "IT Fornebu / Terminalbygget, det tidligere terminalbygget på Oslo lufthavn Fornebu i Martin Linges vei 25",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-recorden var geografisk feilplassert i Oslo-kilden og beskrev et bredt «Fornebu Teknologipark»-område. Den er avgrenset til det konkrete terminalbygget som kildene knytter til IT Fornebu og teknologisk kunnskapsnæring.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig fysisk terminalbygg",
+    "korrekt Bærum/Akershus-geografi",
+    "offisiell adressekoordinat",
+    "fersk canonical kollisjonskontroll"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Martin Linges vei 25",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Martin%20Linges%20vei%2025%201364%20Fornebu",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1566:25",
+      "sourceQuality": "official_address",
+      "finding": "Ett entydig offisielt adressepunkt for Martin Linges vei 25 i Bærum kommune.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Martin Linges vei 25, 1364 Fornebu i Bærum. IT Fornebu, Bærum kommune og Store norske leksikon identifiserer det tidligere terminalbygget som det konkrete fysiske stedet som senere ble kunnskaps- og teknologimiljø. Punktet brukes som canonical display-marker for Terminalbygget / IT Fornebu, ikke som et generelt områdeanker for hele Fornebu."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "IT Fornebu Properties – Terminalbygget",
+      "sourceUrl": "https://nor.itfornebu.no/terminalbygget/",
+      "sourceObjectId": "it-fornebu:terminalbygget",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Identifiserer bygget som den tidligere terminalbygningen på Oslo Flyplass Fornebu og som miljø for kunnskapsbaserte bedrifter.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer den fysiske identiteten og næringsfunksjonen; Geonorge brukes som koordinatkilde."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Bærum kommune – Rik på historie: nyere arkitektur",
+      "sourceUrl": "https://www.baerum.kommune.no/tjenester/kultur-idrett-og-fritid/kunst-og-kultur/rik-pa-historie/12.-nyere-arkitektur/",
+      "sourceObjectId": "baerum-kommune:it-fornebu-terminalbygget",
+      "sourceQuality": "municipal_identity_context",
+      "finding": "Kommunen beskriver det tidligere terminalbygget som transformert til et senter for bedrifter som arbeider med digital teknologi.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig kommunal kryssjekk av identitet og geografi."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Oslo lufthavn, Fornebu",
+      "sourceUrl": "https://snl.no/Oslo_lufthavn%2C_Fornebu",
+      "sourceObjectId": "snl:oslo-lufthavn-fornebu-terminal-it-fornebu",
+      "sourceQuality": "reference_identity_context",
+      "finding": "SNL knytter terminalbygningen til næringshagen og kunnskapsparken IT-Fornebu.",
+      "canVerifyCoordinate": false,
+      "reason": "Historisk og institusjonell kryssjekk av ombruken."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Martin Linges vei 25, 1364 Fornebu",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1566:25",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1566:25",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "it-fornebu:terminalbygget",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "baerum-kommune:it-fornebu-terminalbygget",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.89478742780154,
+      "lon": 10.629427258419572,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1566:25",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical-recorden er flyttet til Akershus/Bærum og forankret på det eksakte offisielle adressepunktet for Terminalbygget."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Martin Linges vei 25, 1364 Fornebu i Bærum. IT Fornebu, Bærum kommune og Store norske leksikon identifiserer det tidligere terminalbygget som det konkrete fysiske stedet som senere ble kunnskaps- og teknologimiljø. Punktet brukes som canonical display-marker for Terminalbygget / IT Fornebu, ikke som et generelt områdeanker for hele Fornebu.",
+    "Nærmeste andre canonical marker ved write-time var tjernsmyr_salamanderlokalitet på 1807.26 meter; ingen markør lå innen 3 meter.",
+    "Legacy-koordinaten 59.8939, 10.6262 og den brede identiteten «Fornebu Teknologipark» er pensjonert."
+  ]
+}
