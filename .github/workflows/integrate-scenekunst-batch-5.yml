@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   integrate:
-    if: github.event.pull_request.head.ref == 'agent/integrate-scenekunst-batch-5-trigger'
+    if: startsWith(github.event.pull_request.head.ref, 'agent/integrate-scenekunst-batch-5-trigger')
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
