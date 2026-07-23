@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T16:06:58.462Z
+Generert: 2026-07-23T16:20:32.544Z
 
 ## Oppsummering
-- Aktive filer validert: **665**
-- Antall steder validert: **1285**
+- Aktive filer validert: **670**
+- Antall steder validert: **1290**
 - Harde feil: **0**
-- Varsler: **506**
-- Coordinate review candidates: **772** signaler fordelt på **644** steder
+- Varsler: **511**
+- Coordinate review candidates: **777** signaler fordelt på **649** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -683,6 +683,11 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/etne/taraldsoy.json
 - data/places/natur/vestland/etne/osnes_honsvikjo.json
 - data/places/natur/vestland/etne/vikedalsvassdraget_bjonndalen.json
+- data/places/scenekunst/telemark/grenland_friteater.json
+- data/places/scenekunst/finnmark/samovarteateret_sor_varanger_kultursal.json
+- data/places/scenekunst/troms/radstua_teaterhus.json
+- data/places/scenekunst/innlandet/hamar_teater.json
+- data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json
 
 ## Harde feil
 - Ingen
@@ -1194,16 +1199,21 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json#krokavatnet_etneforkastningen: coordStatus=verified uten coordPrecisionM
 - data/places/natur/vestland/etne/sandvikevatnet_etne.json#sandvikevatnet_etne: coordStatus=verified uten coordPrecisionM
 - data/places/natur/vestland/etne/taraldsoy.json#taraldsoy: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/telemark/grenland_friteater.json#grenland_friteater: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/finnmark/samovarteateret_sor_varanger_kultursal.json#samovarteateret_sor_varanger_kultursal: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/troms/radstua_teaterhus.json#radstua_teaterhus: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/innlandet/hamar_teater.json#hamar_teater: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json#radhus_teatret_kongsvinger: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 772 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 777 signaler fordelt på 649 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 215 |
+| coordStatus=verified uten coordPrecisionM | 220 |
 | lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1213,7 +1223,7 @@ Totalt 772 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (215)
+### coordStatus=verified uten coordPrecisionM (220)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1432,6 +1442,11 @@ Totalt 772 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | krokavatnet_etneforkastningen | Krokavatnet og Etneforkastningen | natur | data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json | 59.62412 | 6.0786 | 750 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | sandvikevatnet_etne | Sandvikevatnet | natur | data/places/natur/vestland/etne/sandvikevatnet_etne.json | 59.91597 | 6.36086 | 650 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | taraldsoy | Taraldsøy | natur | data/places/natur/vestland/etne/taraldsoy.json | 59.71786 | 5.84176 | 420 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| grenland_friteater | Grenland Friteater | scenekunst | data/places/scenekunst/telemark/grenland_friteater.json | 59.1372387523214 | 9.64295875271934 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| samovarteateret_sor_varanger_kultursal | Samovarteateret – Sør-Varanger kultursal | scenekunst | data/places/scenekunst/finnmark/samovarteateret_sor_varanger_kultursal.json | 69.72363475034705 | 30.05829806321774 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| radstua_teaterhus | Rådstua Teaterhus | scenekunst | data/places/scenekunst/troms/radstua_teaterhus.json | 69.65177803248783 | 18.95448465131434 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| hamar_teater | Hamar Teater | scenekunst | data/places/scenekunst/innlandet/hamar_teater.json | 60.79276378226065 | 11.073747082855698 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| radhus_teatret_kongsvinger | Rådhus-Teatret | scenekunst | data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json | 60.19148958316322 | 11.999663619048425 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (81)
 
