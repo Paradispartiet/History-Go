@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 397 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 398 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -595,6 +595,10 @@ Batch 153 (2026-07-23) erstatter den repo-syntetiske «Østensjøvannet sør»-i
 | 154 | `alna_smalvoll` | Alna ved Smalvoll | verified_geometry | `osm-way:22698275` |
 
 Batch 154 (2026-07-23) løser Alna ved Smalvoll som den lange åpne Alna-strekningen på OSM way 22698275. Wayen er topologisk koblet oppstrøms til den korte tunnel-wayen 22698285 og følger hovedspennet til Smalvollveien-korridoren gjennom det området kildene beskriver som Smalvolldalen. Fresh Smalvollveien-way 652471071 brukes bare som uavhengig geografisk korridoravgrensning; canonical lat/lon beregnes deterministisk som lengdemidtpunkt langs selve elvegeometrien. Legacy-punktet og nearest/first-hit brukes ikke.
+
+| 155 | `alna_bryn` | Alna ved Bryn | verified_geometry | `osm-way:112543919` |
+
+Batch 155 (2026-07-23) løser Alna ved Bryn som den lange åpne Alna-strekningen på OSM way 112543919. Fresh topologi validerer en eksakt sammenhengende Alna-way-kjede fra det allerede verifiserte Smalvoll-segmentet 22698275 fram til valgt segment, og wayen kobler direkte nedstrøms til culvert-way 113281373. Den uavhengige OSM place=Bryn-noden brukes bare som geografisk scope-kryssjekk; Bryn bru brukes ikke som proxy for den bredere elverecorden. Canonical lat/lon beregnes deterministisk som lengdemidtpunkt langs selve elvegeometrien. Legacy-punktet og nearest/first-hit brukes ikke.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T04:00:11.293Z
+Generert: 2026-07-23T04:05:39.819Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -211,7 +211,7 @@ Generert: 2026-07-23T04:00:11.293Z
 | vinmonopolet_lager | data/coordinate-evidence/oslo/naeringsliv/vinmonopolet_lager.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vippetangen_fisketorg | data/coordinate-evidence/oslo/naeringsliv/vippetangen_fisketorg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva_utlop_bjorvika | data/coordinate-evidence/oslo/natur/akerselva_utlop_bjorvika.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| alna_bryn | data/coordinate-evidence/oslo/natur/alna_bryn.json | needs_research | needs_geometry | OK |
+| alna_bryn | data/coordinate-evidence/oslo/natur/alna_bryn.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alna_smalvoll | data/coordinate-evidence/oslo/natur/alna_smalvoll.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alna_utlop_bjorvika | data/coordinate-evidence/oslo/natur/alna_utlop_bjorvika.json | needs_research | needs_geometry | OK |
 | alnabru_jernbane_og_logistikk | data/coordinate-evidence/oslo/natur/alnabru_jernbane_og_logistikk.json | applied_to_place | do_not_change_coordinates_yet | OK |
