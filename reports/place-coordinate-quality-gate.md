@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T09:31:51.427Z
+Generert: 2026-07-23T10:14:38.711Z
 
 ## Oppsummering
-- Aktive filer validert: **657**
-- Antall steder validert: **1277**
+- Aktive filer validert: **664**
+- Antall steder validert: **1284**
 - Harde feil: **0**
-- Varsler: **503**
-- Coordinate review candidates: **769** signaler fordelt på **640** steder
+- Varsler: **506**
+- Coordinate review candidates: **772** signaler fordelt på **644** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -675,6 +675,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/etne/flateskar_stordalen.json
 - data/places/natur/vestland/etne/terrasselandskapet_etne.json
 - data/places/natur/vestland/etne/rullestadvatnet.json
+- data/places/natur/vestland/etne/vaulaelva_vassdraget.json
+- data/places/natur/vestland/etne/saltana_etne.json
+- data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json
+- data/places/natur/vestland/etne/moreneryggen_skanevik.json
+- data/places/natur/vestland/etne/sandvikevatnet_etne.json
+- data/places/natur/vestland/etne/taraldsoy.json
+- data/places/natur/vestland/etne/osnes_honsvikjo.json
 
 ## Harde feil
 - Ingen
@@ -956,7 +963,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#voien_gard_voienvolden: coordStatus=verified uten coordPrecisionM
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#vulkan_industriomrade: coordStatus=verified uten coordPrecisionM
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#hausmannsomradet_elvelop: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_hovedsteder.json#alnaelva_hovedsteder: lav koordinatpresisjon (<4 desimaler)
@@ -1183,18 +1189,22 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/etne/mosneselva_etne.json#mosneselva_etne: lineært sted uten anchors
 - data/places/natur/vestland/etne/flateskar_stordalen.json#flateskar_stordalen: coordStatus=verified uten coordPrecisionM
 - data/places/natur/vestland/etne/rullestadvatnet.json#rullestadvatnet: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/vaulaelva_vassdraget.json#vaulaelva_vassdraget: lineært sted uten anchors
+- data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json#krokavatnet_etneforkastningen: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/sandvikevatnet_etne.json#sandvikevatnet_etne: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/taraldsoy.json#taraldsoy: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 772 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 212 |
-| lineært sted uten anchors | 80 |
-| lav koordinatpresisjon (<4 desimaler) | 81 |
+| coordStatus=verified uten coordPrecisionM | 215 |
+| lineært sted uten anchors | 81 |
+| lav koordinatpresisjon (<4 desimaler) | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1202,7 +1212,7 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (212)
+### coordStatus=verified uten coordPrecisionM (215)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1418,8 +1428,11 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | papirhuset_teater | Papirhuset Teater | scenekunst | data/places/scenekunst/vestfold/papirhuset_teater.json | 59.26724668104939 | 10.415907691710105 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | flateskar_stordalen | Flåteskar i Stordalen | natur | data/places/natur/vestland/etne/flateskar_stordalen.json | 59.70495 | 6.15875 | 320 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | rullestadvatnet | Rullestadvatnet | natur | data/places/natur/vestland/etne/rullestadvatnet.json | 59.8722 | 6.42074 | 720 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| krokavatnet_etneforkastningen | Krokavatnet og Etneforkastningen | natur | data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json | 59.62412 | 6.0786 | 750 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| sandvikevatnet_etne | Sandvikevatnet | natur | data/places/natur/vestland/etne/sandvikevatnet_etne.json | 59.91597 | 6.36086 | 650 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| taraldsoy | Taraldsøy | natur | data/places/natur/vestland/etne/taraldsoy.json | 59.71786 | 5.84176 | 420 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (80)
+### lineært sted uten anchors (81)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1470,7 +1483,7 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | alnaelvstien | Alnastien – Svartdalen og Bryn | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9059364 | 10.8030114 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | stilla_nydalen | Stilla ved Nydalen | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9449 | 10.7654 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bjoelsenparken_elvenaer | Bjølsenparken (elvenær del) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.93914 | 10.75891 | 160 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.923 | 10.7407 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.92000495695905 | 10.753194575921878 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | fossveien_elvestrekning | Fossveien – elvestrekning | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9218 | 10.7391 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9197 | 10.7364 | 170 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | ljanselva_skullerud | Ljanselva ved Skullerud | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8627529 | 10.8450942 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -1503,8 +1516,9 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | teateret_kristiansand | Teateret Kristiansand | scenekunst | data/places/scenekunst/agder/teateret_kristiansand.json | 58.14294361484816 | 7.99551802723939 | 80 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | mosneselva_etne | Mosneselva | natur | data/places/natur/vestland/etne/mosneselva_etne.json | 59.86656 | 6.32955 | 1000 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| vaulaelva_vassdraget | Vaulaelva og Vaulovassdraget | natur | data/places/natur/vestland/etne/vaulaelva_vassdraget.json | 59.81337 | 6.35371 | 1400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (81)
+### lav koordinatpresisjon (<4 desimaler) (80)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1539,7 +1553,6 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trosterud_friomrade | Trosterud friområde | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9305 | 10.846 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | furuset_haugerud_skogbelte | Furuset–Haugerud skogbelte | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9345 | 10.852 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.923 | 10.7407 | 130 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelva_hovedsteder | Alnaelva | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.9325 | 10.833 | 500 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | tjernsmyr_salamanderlokalitet | Tjernsmyr salamanderlokalitet | natur | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json | 59.911 | 10.62714 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | wembley_stadium_london | Wembley Stadium | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.556 | -0.2796 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |

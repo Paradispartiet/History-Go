@@ -1,0 +1,798 @@
+name: Scenekunst batch 7 builder
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build clean Scenekunst batch 7 branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build final batch from exact addresses
+        shell: bash
+        run: |
+          set -euo pipefail
+          FINAL_BRANCH='agent/scenekunst-venues-07-final'
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+
+          BASE_SHA="$(git rev-parse origin/main)"
+          git checkout -B "${FINAL_BRANCH}" "${BASE_SHA}"
+
+          npm run build:tools
+
+          cat > .tmp-build-scenekunst-batch7.mjs <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { findNorwegianAddressCoordinate } from './dist/tools/address-first-coordinate-finder.mjs';
+
+          const candidates = [
+            {
+              "id": "grenland_friteater",
+              "path": "data/places/scenekunst/telemark/grenland_friteater.json",
+              "manifestPath": "places/scenekunst/telemark/grenland_friteater.json",
+              "query": "Huken 3D Porsgrunn",
+              "expected": {
+                "street": "Huken",
+                "number": "3D",
+                "postcode": "3921",
+                "city": "PORSGRUNN"
+              },
+              "base": {
+                "id": "grenland_friteater",
+                "name": "Grenland Friteater",
+                "aliases": [
+                  "Friteatret",
+                  "Grenland Friteater Porsgrunn"
+                ],
+                "visual": {
+                  "designCode": "theatre_miniature"
+                },
+                "r": 80,
+                "category": "scenekunst",
+                "secondaryBadgeIds": [
+                  "by"
+                ],
+                "fylke": "telemark",
+                "kommune": "Porsgrunn",
+                "period": "Fri scenekunst, ensemblearbeid, residens og internasjonal teaterfestival",
+                "desc": "Fast teaterhus i Porsgrunn for Grenland Friteaters produksjoner, residensarbeid, gjestespill og kunstneriske utvikling.",
+                "popupDesc": "Grenland Friteater ble etablert i 1976 og er en av Norges eldste frie teatergrupper. Kompaniet har hatt fast tilhold på Friteatret i Porsgrunn sentrum siden 1987. Huset rommer en teknisk utstyrt black box, studioer og arbeidsplasser for ensemble, produksjon og residensopphold. Herfra skaper teatret egne forestillinger og organiserer Porsgrunn Internasjonale Teaterfestival, mens festivalens mange eksterne byrom og spillesteder behandles som egne arenaer.",
+                "tags": [
+                  "fri_scenekunst",
+                  "ensemble",
+                  "fysisk_teater",
+                  "residens",
+                  "porsgrunn",
+                  "teaterfestival"
+                ],
+                "emne_ids": [
+                  "em_scenekunst_dramaturgi_iscenesettelse",
+                  "em_scenekunst_regi_scenografi",
+                  "em_scenekunst_publikum_fjerde_vegg"
+                ],
+                "physicalScope": "Grenland Friteaters faste teaterhus, black box, studioer og produksjonsfunksjoner i Huken 3D. Festivalarenaer, gateforestillinger og andre eksterne spillesteder i Porsgrunn inngår ikke i samme markør.",
+                "quiz_profile": {
+                  "place_type": "fritt_ensembleteater",
+                  "subtype": "produksjonshus_residens_og_festivalbase",
+                  "signature_features": [
+                    "etablert som fri teatergruppe i 1976",
+                    "fast tilhold på Friteatret siden 1987",
+                    "kombinerer ensembleproduksjon, residens og internasjonal festival"
+                  ],
+                  "primary_angles": [
+                    "fri_scenekunst",
+                    "ensemblearbeid",
+                    "residens",
+                    "teater_i_byrom"
+                  ],
+                  "question_families": [
+                    "institusjon",
+                    "arbeidsprosess",
+                    "sceneformat",
+                    "kulturgeografi"
+                  ],
+                  "avoid_angles": [
+                    "forveksle_huset_med_alle_PIT_arenaer",
+                    "framstille_som_kommunalt_repertoarteater"
+                  ],
+                  "must_include": [
+                    "rollen som varig infrastruktur for det frie feltet",
+                    "koblingen mellom eget ensemble og internasjonal festival"
+                  ],
+                  "contrast_targets": [
+                    "teater_ibsen",
+                    "rimi_imir_scenekunst"
+                  ],
+                  "notes": "Spør om hvordan et fritt ensemble bygger varig produksjonsmiljø utenfor institusjonsteatrene."
+                },
+                "knowledge": {
+                  "one_liner": "Grenland Friteater er et langlivet fritt ensemble med eget teaterhus, residensmiljø og festivalbase i Porsgrunn.",
+                  "why_it_matters": [
+                    "Kompaniet viser hvordan fri scenekunst kan bygge permanent infrastruktur i en mindre norsk by.",
+                    "Porsgrunn Internasjonale Teaterfestival kobler huset til internasjonale og stedsspesifikke teaterformer."
+                  ],
+                  "what_to_notice": [
+                    "Black boxens fleksible rom.",
+                    "Sammenhengen mellom verksteder, studioer og offentlig visning.",
+                    "Hvordan huset fungerer som base selv når forestillingene flytter ut i byen."
+                  ],
+                  "terms": [
+                    "fri_scenekunst",
+                    "ensemble",
+                    "residens",
+                    "stedsspesifikt_teater"
+                  ],
+                  "sources": [
+                    "https://grenlandfriteater.com/om-teateret/",
+                    "https://grenlandfriteater.no/sok-residens/",
+                    "https://pitfestival.no/om-festivalen/"
+                  ]
+                },
+                "year": 1976
+              }
+            },
+            {
+              "id": "samovarteateret_sor_varanger_kultursal",
+              "path": "data/places/scenekunst/finnmark/samovarteateret_sor_varanger_kultursal.json",
+              "manifestPath": "places/scenekunst/finnmark/samovarteateret_sor_varanger_kultursal.json",
+              "query": "Presteveien 32 Kirkenes",
+              "expected": {
+                "street": "Presteveien",
+                "number": "32",
+                "postcode": "9900",
+                "city": "KIRKENES"
+              },
+              "base": {
+                "id": "samovarteateret_sor_varanger_kultursal",
+                "name": "Samovarteateret – Sør-Varanger kultursal",
+                "aliases": [
+                  "Samovarteateret",
+                  "Sør-Varanger kultursal"
+                ],
+                "visual": {
+                  "designCode": "theatre_miniature"
+                },
+                "r": 80,
+                "category": "scenekunst",
+                "secondaryBadgeIds": [
+                  "by"
+                ],
+                "fylke": "finnmark",
+                "kommune": "Sør-Varanger",
+                "period": "Grenseregional scenekunst, samproduksjon, gjestespill og barneteaterskole",
+                "desc": "Samovarteaterets profesjonelle scene og produksjonsbase i Sør-Varanger kultursal i Kirkenes.",
+                "popupDesc": "Samovarteateret er et uavhengig profesjonelt scenekunstkompani etablert i Kirkenes i 1990, med grenser og nordområdene som kunstnerisk utgangspunkt. Siden 2012 har kompaniet holdt til i Sør-Varanger kultursal og stått for den daglige driften. Salen har 189 sitteplasser og brukes til prøver, egne produksjoner, gjestespill, samproduksjoner og teaterundervisning. Samovarongan knytter den profesjonelle scenen til et langvarig teatertilbud for barn og unge.",
+                "tags": [
+                  "fri_scenekunst",
+                  "nordomradene",
+                  "grenseregion",
+                  "samproduksjon",
+                  "barn_og_unge",
+                  "kirkenes"
+                ],
+                "emne_ids": [
+                  "em_scenekunst_dramaturgi_iscenesettelse",
+                  "em_scenekunst_teaterinstitusjon_repertoar",
+                  "em_scenekunst_publikum_fjerde_vegg"
+                ],
+                "physicalScope": "Samovarteaterets scene-, prøve-, undervisnings- og publikumsfunksjoner i Sør-Varanger kultursal, Presteveien 32. Skolens øvrige funksjoner og turné- eller gjestespillsteder utenfor huset inngår ikke.",
+                "quiz_profile": {
+                  "place_type": "profesjonelt_fritt_teater_i_kommunal_kultursal",
+                  "subtype": "grenseregional_produksjon_gjestespill_og_teaterundervisning",
+                  "signature_features": [
+                    "kompani etablert i Kirkenes i 1990",
+                    "fast i Sør-Varanger kultursal siden 2012",
+                    "189-seters sal drevet av Samovarteateret"
+                  ],
+                  "primary_angles": [
+                    "nordomradene",
+                    "grensekultur",
+                    "samproduksjon",
+                    "barn_og_unge"
+                  ],
+                  "question_families": [
+                    "institusjon",
+                    "kulturgeografi",
+                    "publikumsrolle",
+                    "arbeidsprosess"
+                  ],
+                  "avoid_angles": [
+                    "forveksle_kompaniet_med_hele_skolen",
+                    "redusere_stedet_til_utleiesal"
+                  ],
+                  "must_include": [
+                    "grenseregionen som kunstnerisk utgangspunkt",
+                    "koblingen mellom profesjonell produksjon og lokal teateropplæring"
+                  ],
+                  "contrast_targets": [
+                    "beaivvas_coarvematta",
+                    "halogaland_teater"
+                  ],
+                  "notes": "Spør om hvordan et profesjonelt kompani fungerer som regional scene, vertskap og læringsmiljø."
+                },
+                "knowledge": {
+                  "one_liner": "Samovarteateret gjør Sør-Varanger kultursal til en profesjonell scene for grenseregional kunst, gjestespill og nye stemmer.",
+                  "why_it_matters": [
+                    "Teatret utvikler scenekunst med utgangspunkt i Kirkenes, grensen og nordområdenes politiske og kulturelle virkelighet.",
+                    "Den daglige driften av kultursalen skaper lokal infrastruktur for både profesjonelle aktører og barn og unge."
+                  ],
+                  "what_to_notice": [
+                    "Det intime amfiet med 189 plasser.",
+                    "At samme hus rommer prøver, forestillinger, gjestespill og undervisning.",
+                    "Hvordan teaterkaféen gir plass til mindre formater og samtaler."
+                  ],
+                  "terms": [
+                    "grenseregional_scenekunst",
+                    "samproduksjon",
+                    "gjestespill",
+                    "teaterpedagogikk"
+                  ],
+                  "sources": [
+                    "https://samovarteateret.com/om-oss",
+                    "https://samovarteateret.com/scenen",
+                    "https://samovarteateret.com/samovarongan"
+                  ]
+                },
+                "year": 2012
+              }
+            },
+            {
+              "id": "radstua_teaterhus",
+              "path": "data/places/scenekunst/troms/radstua_teaterhus.json",
+              "manifestPath": "places/scenekunst/troms/radstua_teaterhus.json",
+              "query": "Vestregata 48 Tromsø",
+              "expected": {
+                "street": "Vestregata",
+                "number": "48",
+                "postcode": "9008",
+                "city": "TROMSØ"
+              },
+              "base": {
+                "id": "radstua_teaterhus",
+                "name": "Rådstua Teaterhus",
+                "aliases": [
+                  "Rådstua",
+                  "Rådstua Tromsø"
+                ],
+                "visual": {
+                  "designCode": "theatre_miniature"
+                },
+                "r": 80,
+                "category": "scenekunst",
+                "secondaryBadgeIds": [
+                  "by"
+                ],
+                "fylke": "troms",
+                "kommune": "Tromsø",
+                "period": "Programmerende scene, produksjonshus og møteplass for det frie scenekunstfeltet",
+                "desc": "Kommunalt teaterhus i Tromsø med programmerende scene, produksjonsrom og arbeidsmiljø for profesjonelle, amatører og unge utøvere.",
+                "popupDesc": "Rådstua Teaterhus har siden 1970-årene vært en sentral arena for det frie scenekunstfeltet i Tromsø. Huset fungerer som programmerende scene, produksjonssted og møteplass for profesjonelle kunstnere, produsenter, amatørmiljøer og barn og unge. Tromsø kulturskoles teaterundervisning bruker også huset. Rådstua inngår i kommunens Kulturarena-enhet sammen med Tromsø Kulturhus og Gáisi språksenter, men er en egen fysisk scene i Vestregata 48.",
+                "tags": [
+                  "programmerende_scene",
+                  "fri_scenekunst",
+                  "produksjonshus",
+                  "kulturskole",
+                  "tromso",
+                  "nordnorsk"
+                ],
+                "emne_ids": [
+                  "em_scenekunst_dramaturgi_iscenesettelse",
+                  "em_scenekunst_regi_scenografi",
+                  "em_scenekunst_publikum_fjerde_vegg"
+                ],
+                "physicalScope": "Rådstuas scene-, prøve-, undervisnings-, kontor- og publikumsfunksjoner i Vestregata 48. Tromsø Kulturhus på Erling Bangsunds plass og andre kommunale kulturarenaer er egne steder.",
+                "quiz_profile": {
+                  "place_type": "kommunalt_programmerende_teaterhus",
+                  "subtype": "produksjon_visning_og_kompetansemiljo_for_det_frie_feltet",
+                  "signature_features": [
+                    "viktig arena for fri scenekunst siden 1970-årene",
+                    "programmerende scene i Tromsø sentrum",
+                    "brukes av profesjonelle, amatører og kulturskolens teatermiljø"
+                  ],
+                  "primary_angles": [
+                    "fri_scenekunst",
+                    "programmering",
+                    "produksjonsmiljo",
+                    "teaterpedagogikk"
+                  ],
+                  "question_families": [
+                    "institusjon",
+                    "arbeidsprosess",
+                    "publikumsrolle",
+                    "kulturgeografi"
+                  ],
+                  "avoid_angles": [
+                    "forveksle_med_Tromso_Kulturhus",
+                    "framstille_som_bare_kulturskole"
+                  ],
+                  "must_include": [
+                    "rollen som infrastruktur for det frie feltet",
+                    "møtet mellom profesjonelle miljøer og lokal opplæring"
+                  ],
+                  "contrast_targets": [
+                    "halogaland_teater",
+                    "samovarteateret_sor_varanger_kultursal"
+                  ],
+                  "notes": "Spør om forskjellen mellom en programmerende produksjonsarena og et produserende regionteater."
+                },
+                "knowledge": {
+                  "one_liner": "Rådstua er Tromsøs sentrale kommunale produksjons- og visningshus for fri scenekunst.",
+                  "why_it_matters": [
+                    "Huset gir det frie feltet teknisk, organisatorisk og sosial infrastruktur i en landsdel med store avstander.",
+                    "Samlokaliseringen av profesjonelt arbeid og teaterundervisning skaper kontinuitet mellom generasjoner."
+                  ],
+                  "what_to_notice": [
+                    "Det nære forholdet mellom scene og arbeidsrom.",
+                    "At huset både programmerer og stiller rom til rådighet for produksjon.",
+                    "Hvordan en eldre sentrumsbygning er tatt i bruk som spesialisert teaterhus."
+                  ],
+                  "terms": [
+                    "programmerende_scene",
+                    "produksjonshus",
+                    "fri_scenekunst",
+                    "kulturskole"
+                  ],
+                  "sources": [
+                    "https://raadstua.kings.no/",
+                    "https://raadstua.kings.no/om-oss/kontakt",
+                    "https://kulturhuset.tr.no/kulturarena/"
+                  ]
+                }
+              }
+            },
+            {
+              "id": "hamar_teater",
+              "path": "data/places/scenekunst/innlandet/hamar_teater.json",
+              "manifestPath": "places/scenekunst/innlandet/hamar_teater.json",
+              "query": "Strandgata 23 Hamar",
+              "expected": {
+                "street": "Strandgata",
+                "number": "23",
+                "postcode": "2317",
+                "city": "HAMAR"
+              },
+              "base": {
+                "id": "hamar_teater",
+                "name": "Hamar Teater",
+                "aliases": [
+                  "Hamar Teater / Turnékompaniet"
+                ],
+                "visual": {
+                  "designCode": "theatre_miniature"
+                },
+                "r": 80,
+                "category": "scenekunst",
+                "secondaryBadgeIds": [
+                  "musikk",
+                  "by"
+                ],
+                "fylke": "innlandet",
+                "kommune": "Hamar",
+                "period": "Selvstendig teaterhus, lokal produksjon, gjestespill og scenekunst for unge",
+                "desc": "Selvstendig teaterhus i Victoriakvartalet med egne produksjoner, gjestespill, festivaler og teaterarbeid for barn og unge.",
+                "popupDesc": "Hamar Teater holder til i Strandgata 23 og drives av Kippersund-familien, kjent gjennom Turnékompaniet. Huset rommer flere saler og brukes til teater, konserter, litteraturarrangementer, festivaler og egne produksjoner. Hamar Teater Ung gir barn og ungdom et langsiktig miljø for teaterlek, teknikk og forestillingsproduksjon. Stedet viser hvordan et uavhengig teaterhus kan kombinere profesjonell programvirksomhet med lokal rekruttering og tverrkunstneriske arrangementer.",
+                "tags": [
+                  "uavhengig_teaterhus",
+                  "lokalproduksjon",
+                  "gjestespill",
+                  "barn_og_unge",
+                  "hamar",
+                  "tverrkunstnerisk"
+                ],
+                "emne_ids": [
+                  "em_scenekunst_teaterinstitusjon_repertoar",
+                  "em_scenekunst_regi_scenografi",
+                  "em_scenekunst_publikum_fjerde_vegg"
+                ],
+                "physicalScope": "Hamar Teaters saler, scene-, prøve- og publikumsfunksjoner i Strandgata 23. Hotellet, restauranten og andre virksomheter i Victoriakvartalet samt eksterne sommer- og turnéarenaer inngår ikke.",
+                "quiz_profile": {
+                  "place_type": "uavhengig_lokalt_teaterhus",
+                  "subtype": "egenproduksjon_gjestespill_festivaler_og_ungdomsarbeid",
+                  "signature_features": [
+                    "fast teaterhus i Strandgata 23",
+                    "drives av Kippersund-familien og Turnékompaniet",
+                    "kombinerer flere saler med Hamar Teater Ung"
+                  ],
+                  "primary_angles": [
+                    "lokal_scenekunst",
+                    "repertoar",
+                    "barn_og_unge",
+                    "tverrkunstnerisk_program"
+                  ],
+                  "question_families": [
+                    "institusjon",
+                    "repertoar",
+                    "publikumsrolle",
+                    "kulturgeografi"
+                  ],
+                  "avoid_angles": [
+                    "forveksle_med_Teater_Innlandet_i_Hamar_kulturhus",
+                    "redusere_til_konsertscene"
+                  ],
+                  "must_include": [
+                    "den uavhengige driftsformen",
+                    "koblingen mellom offentlig program og lokal teateropplæring"
+                  ],
+                  "contrast_targets": [
+                    "teater_innlandet_hamar_kulturhus",
+                    "radhus_teatret_kongsvinger"
+                  ],
+                  "notes": "Spør om hvordan et lokalt teaterhus kan være både profesjonell arena og rekrutteringsmiljø."
+                },
+                "knowledge": {
+                  "one_liner": "Hamar Teater er et uavhengig flerromshus som binder sammen produksjon, gjestespill og scenekunst for unge.",
+                  "why_it_matters": [
+                    "Huset gir Hamar et scenekunstmiljø som er organisatorisk og fysisk forskjellig fra regionteatret i kulturhuset.",
+                    "Hamar Teater Ung lar barn og ungdom møte hele prosessen fra øvelse til forestilling."
+                  ],
+                  "what_to_notice": [
+                    "At programmet bruker flere rom med ulike publikumsformater.",
+                    "Sammenhengen mellom profesjonelle arrangementer og ungdomsgruppenes produksjoner.",
+                    "Hvordan Victoriakvartalet gir teatret en urban og tverrkunstnerisk ramme."
+                  ],
+                  "terms": [
+                    "lokalteater",
+                    "gjestespill",
+                    "repertoar",
+                    "teaterpedagogikk"
+                  ],
+                  "sources": [
+                    "https://www.hamarteater.no/",
+                    "https://www.hamarteater.no/kontakt-oss/",
+                    "https://www.hamarteater.no/hamar-teater-ung/"
+                  ]
+                }
+              }
+            },
+            {
+              "id": "radhus_teatret_kongsvinger",
+              "path": "data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json",
+              "manifestPath": "places/scenekunst/innlandet/radhus_teatret_kongsvinger.json",
+              "query": "Teatergata 2 Kongsvinger",
+              "expected": {
+                "street": "Teatergata",
+                "number": "2",
+                "postcode": "2212",
+                "city": "KONGSVINGER"
+              },
+              "base": {
+                "id": "radhus_teatret_kongsvinger",
+                "name": "Rådhus-Teatret",
+                "aliases": [
+                  "Rådhusteatret",
+                  "Kongsvinger Rådhus-Teater"
+                ],
+                "visual": {
+                  "designCode": "theatre_miniature"
+                },
+                "r": 80,
+                "category": "scenekunst",
+                "secondaryBadgeIds": [
+                  "musikk",
+                  "by"
+                ],
+                "fylke": "innlandet",
+                "kommune": "Kongsvinger",
+                "period": "Kommunalt teater-, kino- og konserthus med regional publikumsfunksjon",
+                "desc": "Tradisjonsrikt kommunalt scenehus i Kongsvinger med teater, kino, konserter og lokale kulturproduksjoner.",
+                "popupDesc": "Rådhus-Teatret i Teatergata 2 er Kongsvingers kommunale hus for kino, teater og konserter. Scenen brukes av turnerende profesjonelle produksjoner, lokale arrangører og foreninger. Etter en utvendig oppgradering ble det i 2026 satt i gang en omfattende innvendig fornyelse av scene, backstageområder, garderober, foajé, seter og tekniske anlegg. Arbeidet viderefører huset som samme fysiske kulturarena og styrker både publikums- og produksjonsfunksjonene.",
+                "tags": [
+                  "kommunal_scene",
+                  "teater",
+                  "kino",
+                  "konserter",
+                  "kongsvinger",
+                  "kulturhus"
+                ],
+                "emne_ids": [
+                  "em_scenekunst_teaterinstitusjon_repertoar",
+                  "em_scenekunst_regi_scenografi",
+                  "em_scenekunst_publikum_fjerde_vegg"
+                ],
+                "physicalScope": "Rådhus-Teatrets scene, sal, kino-, backstage-, garderobe-, foajé- og publikumsfunksjoner i Teatergata 2. Rådhuset, Teaterparken og andre kommunale arenaer er separate steder.",
+                "quiz_profile": {
+                  "place_type": "kommunalt_flerbruksteater",
+                  "subtype": "teater_kino_konsert_og_lokal_arrangementsarena",
+                  "signature_features": [
+                    "kommunalt scenehus i Teatergata 2",
+                    "kombinerer teater, kino og konserter",
+                    "innvendig oppgradering av scene- og publikumsfunksjoner i 2026"
+                  ],
+                  "primary_angles": [
+                    "kommunal_kulturinfrastruktur",
+                    "gjestespill",
+                    "flerbruk",
+                    "publikumsrom"
+                  ],
+                  "question_families": [
+                    "institusjon",
+                    "sceneformat",
+                    "publikumsrolle",
+                    "byutvikling"
+                  ],
+                  "avoid_angles": [
+                    "forveksle_med_radhuset",
+                    "framstille_som_bare_kino"
+                  ],
+                  "must_include": [
+                    "flerbruken som teater- og kulturhus",
+                    "rollen som lokal og regional publikumsarena"
+                  ],
+                  "contrast_targets": [
+                    "hamar_teater",
+                    "teater_innlandet_hamar_kulturhus"
+                  ],
+                  "notes": "Spør om hvordan et kommunalt flerbrukshus tilpasses scenekunst, kino og lokale arrangementer."
+                },
+                "knowledge": {
+                  "one_liner": "Rådhus-Teatret er Kongsvingers kommunale scenehus for teater, kino, konserter og lokale produksjoner.",
+                  "why_it_matters": [
+                    "Huset gjør turnerende scenekunst tilgjengelig i en region uten eget produserende institusjonsteater.",
+                    "Oppgraderingen viser hvordan eldre kulturhus må fornye teknikk, arbeidsforhold og tilgjengelighet uten å miste identiteten."
+                  ],
+                  "what_to_notice": [
+                    "Sammenhengen mellom scene, sal og kino-/konsertfunksjoner.",
+                    "Teaterparkens plass foran bygget, men som eget byrom.",
+                    "Hvordan foajé, backstage og garderober er del av den sceniske infrastrukturen."
+                  ],
+                  "terms": [
+                    "flerbruksscene",
+                    "gjestespill",
+                    "kommunal_kulturarena",
+                    "sceneteknikk"
+                  ],
+                  "sources": [
+                    "https://www.kongsvinger.kommune.no/kultur-idrett-fritid/kultur-og-aktivitetstilbud/radhus-teatret/",
+                    "https://www.kongsvinger.kommune.no/nyhetsarkiv/radhus-teatret-far-et-etterlengtet-innvendig-loft"
+                  ]
+                }
+              }
+            }
+          ];
+
+          const norm = (value) => String(value ?? '')
+            .normalize('NFC')
+            .toUpperCase()
+            .replace(/\s+/g, ' ')
+            .trim();
+
+          const displayCity = (value) => {
+            const s = String(value ?? '').toLocaleLowerCase('nb-NO');
+            return s.replace(/(^|[\s-])\p{L}/gu, (m) => m.toLocaleUpperCase('nb-NO'));
+          };
+
+          const existingIndex = JSON.parse(fs.readFileSync('data/places/places_index.json', 'utf8'));
+          const existingIds = new Set(existingIndex.map((place) => place?.id).filter(Boolean));
+          for (const candidate of candidates) {
+            if (existingIds.has(candidate.id)) {
+              throw new Error(`${candidate.id}: id already exists in canonical places index`);
+            }
+          }
+          const coordinateResults = [];
+
+          for (const candidate of candidates) {
+            const result = await findNorwegianAddressCoordinate(candidate.query);
+            if (!result.ok || result.status !== 'verified_candidate' || !result.coordinate) {
+              throw new Error(`${candidate.id}: Geonorge lookup failed: ${JSON.stringify(result)}`);
+            }
+
+            const got = result.coordinate.address;
+            const expected = candidate.expected;
+            for (const key of ['street', 'number', 'postcode', 'city']) {
+              if (norm(got[key]) !== norm(expected[key])) {
+                throw new Error(`${candidate.id}: expected ${key}=${expected[key]}, got ${got[key]}`);
+              }
+            }
+
+            const overlaps = existingIndex
+              .filter((place) =>
+                typeof place?.lat === 'number' &&
+                typeof place?.lon === 'number' &&
+                Math.abs(place.lat - result.coordinate.lat) < 1e-12 &&
+                Math.abs(place.lon - result.coordinate.lon) < 1e-12
+              )
+              .map((place) => place.id);
+
+            if (overlaps.length) {
+              throw new Error(`${candidate.id}: exact coordinate overlaps existing canonical ids: ${overlaps.join(', ')}`);
+            }
+
+            const address = {
+              ...result.coordinate.address,
+              city: displayCity(result.coordinate.address.city),
+            };
+
+            const place = {
+              ...candidate.base,
+              lat: result.coordinate.lat,
+              lon: result.coordinate.lon,
+              coordType: 'address_point',
+              coordStatus: 'verified',
+              coordSource: 'geonorge_adresser_v1',
+              coordSourceUrl: result.sourceUrl,
+              coordVerifiedAt: '2026-07-23',
+              coordNote: `Offisiell adressekoordinat fra Geonorge Adresser API for ${address.street} ${address.number}, ${address.city}. Punktet representerer den fysisk avgrensede scenekunstfunksjonen og brukes som display-marker.`,
+              locatorType: 'building',
+              sourceProvider: 'official_address',
+              sourceObjectId: result.sourceObjectId,
+              address,
+              geocodeAccuracy: 'rooftop',
+              coordRole: 'display_marker',
+              coLocationAudit: {
+                status: 'reviewed',
+                nearbyCanonicalIds: overlaps,
+                intentionalSharedAnchor: false,
+                note: 'Ingen eksisterende canonical place-record deler det eksakte adressepunktet.',
+              },
+            };
+
+            fs.mkdirSync(path.dirname(candidate.path), { recursive: true });
+            fs.writeFileSync(candidate.path, JSON.stringify([place], null, 2) + '\n');
+
+            coordinateResults.push({
+              id: candidate.id,
+              query: candidate.query,
+              sourceUrl: result.sourceUrl,
+              sourceObjectId: result.sourceObjectId,
+              coordinate: { lat: result.coordinate.lat, lon: result.coordinate.lon },
+              address,
+              exactOverlapIds: overlaps,
+              overlapDecision: 'no_overlap',
+            });
+          }
+
+          const manifestPath = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          for (const candidate of candidates) {
+            if (!manifest.files.includes(candidate.manifestPath)) manifest.files.push(candidate.manifestPath);
+          }
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+          const generatedAt = new Date().toISOString();
+          const report = {
+            generatedAt,
+            status: 'validated',
+            category: 'scenekunst',
+            batch: 'new_venues_7',
+            baseCommit: 'current_main_manual_builder',
+            addedPlaceIds: candidates.map((candidate) => candidate.id),
+            sourceFiles: candidates.map((candidate) => candidate.manifestPath),
+            officialInstitutionSources: Object.fromEntries(
+              candidates.map((candidate) => [candidate.id, candidate.base.knowledge.sources])
+            ),
+            coordinateResults,
+            physicalScopeDecisions: Object.fromEntries(
+              candidates.map((candidate) => [candidate.id, candidate.base.physicalScope])
+            ),
+            validation: {
+              geonorgeExactAddressLookup: 'pass',
+              overlapAudit: 'pass',
+              placesIndexBuild: 'pending',
+              placesChecks: 'pending',
+              categoryAudit: 'pending',
+              fullRepositoryGates: 'pending',
+            },
+            validatedAt: generatedAt,
+          };
+
+          const reportJson = 'reports/scenekunst-new-venues-batch-7-2026-07-23.json';
+          const reportMd = 'reports/scenekunst-new-venues-batch-7-2026-07-23.md';
+          fs.writeFileSync(reportJson, JSON.stringify(report, null, 2) + '\n');
+
+          const md = [
+            '# Scenekunst – nye nasjonale steder, batch 7',
+            '',
+            `Generert: ${generatedAt}`,
+            '',
+            '## Nye steder',
+            '',
+            ...candidates.map((candidate) => `- \`${candidate.id}\` – ${candidate.base.name}`),
+            '',
+            '## Koordinater',
+            '',
+            ...coordinateResults.map((item) =>
+              `- ${item.id}: ${item.address.street} ${item.address.number}, ${item.address.city} → \`${item.coordinate.lat}, ${item.coordinate.lon}\` (${item.sourceObjectId})`
+            ),
+            '',
+            '## Fysisk avgrensning',
+            '',
+            ...candidates.map((candidate) => `- **${candidate.base.name}:** ${candidate.base.physicalScope}`),
+            '',
+            '## Valideringskrav',
+            '',
+            '- Eksakt Geonorge-adresse for alle fem steder',
+            '- Ingen eksakte overlapper mot eksisterende canonical steder',
+            '- Regenerert global place-indeks',
+            '- Places- og People-kontroll',
+            '- Kategori- og quiz-governance',
+            '- Knowledge V2, Nature og Lesespor',
+            '- `git diff --check`',
+            '',
+          ].join('\n');
+          fs.writeFileSync(reportMd, md);
+          NODE
+
+          node .tmp-build-scenekunst-batch7.mjs
+          rm .tmp-build-scenekunst-batch7.mjs
+          npm run places:index:build
+
+          bash scripts/check-places.sh
+          bash scripts/check-people.sh
+          npm run audit:categories
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run build:tools
+          node dist/tools/validate_nature_maps.mjs
+          node dist/tools/validate_lesespor.mjs
+          npm run typecheck:web
+          npm run build:scripts
+          npm run knowledge:canonical:check
+          npm run knowledge:legacy:check
+          npm run audit:knowledge
+          npm run test:knowledge-v2
+          node --test tests/knowledge-canonical-storage-contract.test.js
+          git diff --check
+
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'reports/scenekunst-new-venues-batch-7-2026-07-23.json';
+          const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+          report.validation.placesIndexBuild = 'pass';
+          report.validation.placesChecks = 'pass';
+          report.validation.categoryAudit = 'pass';
+          report.validation.fullRepositoryGates = 'pass';
+          report.validatedAt = new Date().toISOString();
+          fs.writeFileSync(file, JSON.stringify(report, null, 2) + '\n');
+          NODE
+
+          git add \
+            data/places/scenekunst/telemark/grenland_friteater.json \
+            data/places/scenekunst/finnmark/samovarteateret_sor_varanger_kultursal.json \
+            data/places/scenekunst/troms/radstua_teaterhus.json \
+            data/places/scenekunst/innlandet/hamar_teater.json \
+            data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json \
+            reports/scenekunst-new-venues-batch-7-2026-07-23.json \
+            reports/scenekunst-new-venues-batch-7-2026-07-23.md \
+            data/places/manifest.json \
+            data/places/places_index.json
+
+          CHANGED_COUNT="$(git diff --cached --name-only | wc -l | tr -d ' ')"
+          if [ "${CHANGED_COUNT}" != "9" ]; then
+            echo "Expected exactly 9 changed files, got ${CHANGED_COUNT}"
+            git diff --cached --name-only
+            exit 3
+          fi
+
+          git fetch origin main
+          CURRENT_MAIN="$(git rev-parse origin/main)"
+          if [ "${CURRENT_MAIN}" != "${BASE_SHA}" ]; then
+            echo "main moved from ${BASE_SHA} to ${CURRENT_MAIN}; rerun the workflow"
+            exit 2
+          fi
+
+          git commit -m 'Add seventh Scenekunst venue batch on current main'
+          git push --force origin HEAD:"${FINAL_BRANCH}"

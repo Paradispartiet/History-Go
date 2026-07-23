@@ -1244,11 +1244,11 @@
   {
     "id": "elvestrekning_bla_brenneriveien",
     "name": "Elvestrekning ved Blå (Brenneriveien)",
-    "lat": 59.923,
-    "lon": 10.7407,
+    "lat": 59.92000495695905,
+    "lon": 10.753194575921878,
     "r": 130,
     "category": "natur",
-    "desc": "Smal elvestrekning med tett vegetasjon i urbant miljø.",
+    "desc": "Akerselva-strekningen mellom Grünerbrua og Elvebakken bru, med Blå og Ingens gate som et sentralt kultur- og bynaturpunkt langs elva.",
     "routeId": "akerselva_grontdrag",
     "tags": [
       "elvekant",
@@ -1294,10 +1294,10 @@
       ],
       "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
     },
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "named_river_segment_unresolved",
-    "coordVerifiedAt": "2026-07-19",
+    "coordType": "clipped_river_segment_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 80915045 – Akerselva clipped between Grünerbrua and Elvebakken bru",
+    "coordVerifiedAt": "2026-07-23",
     "primary_category": "natur",
     "secondary_category": "by",
     "hybrid": true,
@@ -1307,11 +1307,57 @@
       "kantvegetasjon"
     ],
     "locatorType": "route",
-    "sourceProvider": "manual_research",
-    "sourceObjectId": "akerselva-segment:bla-brenneriveien:unresolved",
-    "geocodeAccuracy": "unknown",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:80915045",
+    "geocodeAccuracy": "semantic_anchor",
     "coordRole": "line_anchor",
-    "coordNote": "Recorden beskriver en lokalt definert Akerselva-strekning ved Blå/Brenneriveien, men kontrollen fant ikke ett entydig navngitt kildeobjekt som avgrenser akkurat denne strekningen. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
+    "coordNote": "Batch 160 avgrenser Akerselva-strekningen ved Blå/Brenneriveien med eksplisitt fysisk bracket-topologi på fresh OSM way 80915045. Delstrekningen klippes mellom Grünerbrua/Nordre gate-kryssingen (way 4826556) og Elvebakken bru-kryssingen (way 4826553); gangbroen ved Blå/Ingens gate (way 4826555) ligger strengt inne i intervallet og kryssjekkes mot Ingens gate way 4826554 og den allerede verifiserte Blå-node 4312299494. Canonical lat/lon er lengdemidtpunktet langs den klippede elvegeometrien, ikke sentrum av hele Akerselva-wayen og ikke et nearest/first-hit-resultat.",
+    "sourceHint": "Canonical scope er den fresh OSM-elvestrekningen som klippes mellom de fysiske kryssingene ved Grünerbrua og Elvebakken bru; Blå/Ingens gate-broen ligger inne i intervallet.",
+    "coordSourceId": "osm-way:80915045",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/80915045",
+    "segmentScope": {
+      "method": "clipped_river_geometry_between_physical_crossings",
+      "riverWayId": 80915045,
+      "upperCrossing": {
+        "name": "Grünerbrua / Nordre gate",
+        "crossingWayId": 4826556,
+        "lat": 59.921142237224046,
+        "lon": 10.7539976558539
+      },
+      "internalCrossing": {
+        "name": "Gangbro ved Blå / Ingens gate",
+        "crossingWayId": 4826555,
+        "ingensGateWayId": 4826554,
+        "blaNodeId": 4312299494,
+        "lat": 59.91991456226684,
+        "lon": 10.7530859975757
+      },
+      "lowerCrossing": {
+        "name": "Elvebakken bru",
+        "crossingWayId": 4826553,
+        "lat": 59.91942572237372,
+        "lon": 10.754529750518405
+      },
+      "clippedLengthM": 286.3
+    },
+    "nature_profile": {
+      "type": "smal byelv / tett kantvegetasjon / kulturmiljø",
+      "title": "Den trange grønne elvekanten ved Brenneriveien",
+      "summary": "Ved Blå presses Akerselva inn i et smalt byrom mellom mur, gangvei, kulturarenaer og tett vegetasjon langs vannet. Elva er fortsatt tydelig som levende naturstruktur, men breddene er korte, bratte og sterkt påvirket av den bygde byen. Natur-rundingen viser hvordan røtter, busker og skyggefulle kantsoner kan holde fast et grønt bånd selv der plassen er knapp, og hvordan vannløpet fortsatt binder dette kulturmiljøet sammen med parkene oppstrøms og elvestrekningene videre sør.",
+      "themes": [
+        "smalt elveløp i tett by",
+        "tett vegetasjon på begrensede bredder",
+        "skygge mellom mur og trær",
+        "røtter i bratte kantsoner",
+        "naturstruktur gjennom kulturmiljøet",
+        "forbindelse mellom Kuba og Fossveien"
+      ],
+      "nearby_place_ids": [
+        "kuba_parken",
+        "fossveien_elvestrekning",
+        "myralokka"
+      ]
+    }
   },
   {
     "id": "fossveien_elvestrekning",
