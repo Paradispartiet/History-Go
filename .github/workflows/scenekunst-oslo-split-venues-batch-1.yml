@@ -28,6 +28,42 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Apply documented SALT co-location rule
+        run: |
+          rm -f reports/scenekunst-oslo-split-venues-batch-1-runner-error.log
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/add-scenekunst-oslo-split-venues-batch-1.mjs')
+          s = p.read_text()
+          replacements = [
+            (
+              "    id: 'salt_oslo',\n    name: 'SALT',",
+              "    id: 'salt_oslo',\n    name: 'SALT',\n    allowedCoLocationIds: ['havnelageret'],"
+            ),
+            (
+              "  if (nearby.length) throw new Error(`${venue.id}: unexpected canonical overlap with ${nearby.map((row) => row.id).join(', ')}`);",
+              "  const allowedCoLocations = new Set(venue.allowedCoLocationIds ?? []);\n  const unexpectedOverlaps = nearby.filter((row) => !allowedCoLocations.has(row.id));\n  if (unexpectedOverlaps.length) throw new Error(`${venue.id}: unexpected canonical overlap with ${unexpectedOverlaps.map((row) => row.id).join(', ')}`);"
+            ),
+            (
+              "      nearbyCanonicalIds: nearby.map((row) => row.id),\n      intentionalSharedAnchor: false,\n      note: 'Ingen eksisterende canonical place-record deler det eksakte adressepunktet.'",
+              "      nearbyCanonicalIds: nearby.map((row) => row.id),\n      intentionalSharedAnchor: nearby.length > 0,\n      note: nearby.length > 0\n        ? `Dokumentert samlokalisering med ${nearby.map((row) => row.id).join(', ')}. Stedene representerer ulike fysiske funksjoner på samme offisielle adressepunkt.`\n        : 'Ingen eksisterende canonical place-record deler det eksakte adressepunktet.'"
+            ),
+            (
+              "    exactOverlapIds: [],\n    overlapDecision: 'no_overlap'",
+              "    exactOverlapIds: nearby.map((row) => row.id),\n    overlapDecision: nearby.length ? 'intentional_shared_anchor' : 'no_overlap'"
+            ),
+            (
+              "    '- Overlap: no_overlap', ''",
+              "    `- Overlap: ${row.overlapDecision}${row.exactOverlapIds.length ? ` (${row.exactOverlapIds.join(', ')})` : ''}`, ''"
+            )
+          ]
+          for old, new in replacements:
+              if old not in s:
+                  raise SystemExit(f'Expected builder fragment not found: {old[:80]}')
+              s = s.replace(old, new, 1)
+          p.write_text(s)
+          PY
+
       - name: Build five Oslo split venue packages
         id: venue_build
         shell: bash
