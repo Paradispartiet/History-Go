@@ -1,9 +1,9 @@
 {
   "id": "voienfossen",
   "name": "Vøyenfallene",
-  "lat": 59.9359,
-  "lon": 10.7547,
-  "r": 140,
+  "lat": 59.93121433388882,
+  "lon": 10.757552353232686,
+  "r": 180,
   "category": "historie",
   "desc": "Tre fossefall i Akerselva som drev kornmølle, spinnerier, veveri og mekanisk industri.",
   "routeId": "akerselva_grontdrag",
@@ -70,15 +70,15 @@
   "secondary_category": "natur",
   "hybrid": true,
   "locatorType": "natural_area",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "wikidata:Q114345801",
-  "geocodeAccuracy": "unknown",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:80915045",
+  "geocodeAccuracy": "semantic_anchor",
   "coordRole": "area_anchor",
-  "coordType": "waterfall_system_anchor",
-  "coordStatus": "needs_source",
-  "coordSource": "Vøyenfallene identity documented; exact multi-fall geometry unresolved",
-  "coordNote": "Vøyenfallene består av tre dokumenterte fall mellom Bentsebrua og Sannerbrua. Det finnes ingen entydig navngitt OSM-geometri i kontrollen, og Wikidata Q114345801 har ingen koordinat. Eksisterende lat/lon beholdes kun som legacy representasjonspunkt til fallrekken modelleres med flere ankere eller dokumentert geometri.",
-  "coordVerifiedAt": "2026-07-19",
+  "coordType": "bridge_bounded_three_waterfall_system_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 80915045 – Akerselva between Bentsebrua and Sannerbrua with three explicit waterfall nodes",
+  "coordNote": "Batch 163 modellerer Vøyenfallene som et tre-fallsystem, ikke som ett enkelt foss-punkt. Den synlige Akerselva-wayen 80915045 klippes mellom de eksakte navngitte broflatene Bentsebrua (way 381743815) og Sannerbrua (way 381749952). Nøyaktig tre waterway=waterfall-noder er medlemmer av samme elveway inne i intervallet: 7876345836, 10820084635, 5169533163. Canonical lat/lon er et semantisk systemanker langs elva midt i spennvidden mellom første og siste fossanker; hele bro-til-bro-geometrien og alle tre fossankrene lagres eksplisitt.",
+  "coordVerifiedAt": "2026-07-23",
   "externalLinks": [
     {
       "type": "reference",
@@ -467,6 +467,108 @@
       "myralokka"
     ]
   },
-  "coordSourceId": "wikidata:Q114345801",
-  "coordSourceUrl": "https://www.wikidata.org/wiki/Q114345801"
+  "coordSourceId": "osm-way:80915045",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/80915045",
+  "sourceHint": "Canonical scope er hele Vøyenfallene-systemet mellom Bentsebrua og Sannerbrua, med tre eksakte waterfall-noder som interne fossankre.",
+  "segmentScope": {
+    "method": "bridge_bounded_river_geometry_with_three_explicit_waterfall_node_anchors",
+    "riverWayId": 80915045,
+    "upstreamBoundary": {
+      "name": "Bentsebrua",
+      "bridgePolygonWayId": 381743815,
+      "crossingCenter": {
+        "lat": 59.93662657061695,
+        "lon": 10.761312252905089
+      },
+      "widthAlongRiverM": 14.3
+    },
+    "downstreamBoundary": {
+      "name": "Sannerbrua",
+      "bridgePolygonWayId": 381749952,
+      "crossingCenter": {
+        "lat": 59.9282574234149,
+        "lon": 10.755116762451594
+      },
+      "widthAlongRiverM": 15.6
+    },
+    "clippedLengthM": 1148.2,
+    "systemAnchorMethod": "midpoint_along_river_between_first_and_last_waterfall_anchors",
+    "systemAnchorMeasureM": 2545.8,
+    "waterfallAnchors": [
+      {
+        "order": 1,
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-node:7876345836",
+        "nodeId": 7876345836,
+        "lat": 59.9318548,
+        "lon": 10.7574458,
+        "r": 70,
+        "coordRole": "waterfall_anchor",
+        "measureM": 2460.2,
+        "distanceFromPreviousM": null
+      },
+      {
+        "order": 2,
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-node:10820084635",
+        "nodeId": 10820084635,
+        "lat": 59.930795,
+        "lon": 10.7571549,
+        "r": 70,
+        "coordRole": "waterfall_anchor",
+        "measureM": 2597.9,
+        "distanceFromPreviousM": 137.7
+      },
+      {
+        "order": 3,
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-node:5169533163",
+        "nodeId": 5169533163,
+        "lat": 59.9304977,
+        "lon": 10.7571015,
+        "r": 70,
+        "coordRole": "waterfall_anchor",
+        "measureM": 2631.4,
+        "distanceFromPreviousM": 33.4
+      }
+    ]
+  },
+  "fallAnchors": [
+    {
+      "order": 1,
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:7876345836",
+      "nodeId": 7876345836,
+      "lat": 59.9318548,
+      "lon": 10.7574458,
+      "r": 70,
+      "coordRole": "waterfall_anchor",
+      "measureM": 2460.2,
+      "distanceFromPreviousM": null
+    },
+    {
+      "order": 2,
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:10820084635",
+      "nodeId": 10820084635,
+      "lat": 59.930795,
+      "lon": 10.7571549,
+      "r": 70,
+      "coordRole": "waterfall_anchor",
+      "measureM": 2597.9,
+      "distanceFromPreviousM": 137.7
+    },
+    {
+      "order": 3,
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5169533163",
+      "nodeId": 5169533163,
+      "lat": 59.9304977,
+      "lon": 10.7571015,
+      "r": 70,
+      "coordRole": "waterfall_anchor",
+      "measureM": 2631.4,
+      "distanceFromPreviousM": 33.4
+    }
+  ]
 }

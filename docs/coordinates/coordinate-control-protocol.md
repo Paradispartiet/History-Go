@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 404 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 405 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -624,6 +624,10 @@ Batch 161 (2026-07-23) løser Fossveien-recorden som Akerselva-strekningen som s
 
 Batch 162 (2026-07-23) løser den tidligere brede «Hausmannsområdet»-recorden som Hausmannskvartalenes dokumenterte Akerselva-grense mellom Nybrua og Hausmanns bru. Oslo byleksikon avgrenser Hausmannskvartalene med Hausmanns gate i nord, Akerselva i nordøst og Storgata i sørøst. Fresh OSM way 80915045 er den synlige Akerselva-geometrien; de eksakte navngitte broflatene Nybrua (way 315066295) og Hausmanns bru (way 377766486) skjærer samme elveway og brukes som fysiske yttergrenser. Canonical lat/lon er lengdemidtpunktet langs den klippede ca. 409.3 meter lange elvegeometrien. Legacy-punktet vest for elva og nearest/first-hit brukes ikke.
 
+| 163 | `voienfossen` | Vøyenfallene | verified_geometry | `osm-way:80915045` |
+
+Batch 163 (2026-07-23) løser Vøyenfallene som et eksplisitt tre-fallsystem i stedet for ett tilfeldig foss-punkt. Fresh OSM way 80915045 er den synlige Akerselva-geometrien mellom de eksakte navngitte broflatene Bentsebrua (way 381743815) og Sannerbrua (way 381749952), en strekning på ca. 1148.2 meter. Nøyaktig tre waterway=waterfall-noder (7876345836, 10820084635, 5169533163) er medlemmer av samme elveway strengt inne i intervallet og lagres som egne fossankre. Canonical lat/lon er et semantisk systemanker langs elva midt i spennvidden mellom første og siste fossanker; hele segmentet og alle tre fallene er bevart i scope-metadata.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)
@@ -721,7 +725,6 @@ Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller k
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
-| `voienfossen` – Vøyenfallene | needs_review | Vøyenfallene består av tre dokumenterte fall. Kontrollen fant ingen entydig navngitt OSM-geometri, og Wikidata Q114345801 har ingen koordinat; dagens enkeltpunkt er derfor ikke et stabilt kildeobjekt for hele fallrekken. | Modeller fallrekken med flere kildebelagte ankere eller en eksplisitt dokumentert geometri før canonical koordinat godkjennes. |
 | `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
 | `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
 | `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |

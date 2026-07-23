@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T10:58:29.362Z
+Generert: 2026-07-23T11:27:57.161Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -275,7 +275,7 @@ Generert: 2026-07-23T10:58:29.362Z
 | vaterlandsparken | data/coordinate-evidence/oslo/natur/vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vettakollen | data/coordinate-evidence/oslo/natur/vettakollen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | voien_gard_voienvolden | data/coordinate-evidence/oslo/natur/voien_gard_voienvolden.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| voienfossen | data/coordinate-evidence/oslo/natur/voienfossen.json | needs_research | needs_geometry | OK |
+| voienfossen | data/coordinate-evidence/oslo/natur/voienfossen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vulkan_industriomrade | data/coordinate-evidence/oslo/natur/vulkan_industriomrade.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | eidsvolls_plass | data/coordinate-evidence/oslo/politikk/eidsvolls_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | folkets_hus_oslo | data/coordinate-evidence/oslo/politikk/folkets_hus_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
