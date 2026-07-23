@@ -1362,11 +1362,11 @@
   {
     "id": "fossveien_elvestrekning",
     "name": "Fossveien – elvestrekning",
-    "lat": 59.9218,
-    "lon": 10.7391,
-    "r": 130,
+    "lat": 59.9232309947939,
+    "lon": 10.753360734775319,
+    "r": 150,
     "category": "natur",
-    "desc": "Elvenær strekning ved Fossveien med kantkratt.",
+    "desc": "Akerselva-strekningen som følger Fossveiens historiske og urbane korridor fra Grünerbrua ved Nordre gate til området ved Seilduksgata og Kunsthøgskolen.",
     "routeId": "akerselva_grontdrag",
     "tags": [
       "foss",
@@ -1412,10 +1412,10 @@
       ],
       "notes": "Spør konkret om vannløp, funksjon og endring over tid, ikke generelt om Oslo."
     },
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "named_river_segment_unresolved",
-    "coordVerifiedAt": "2026-07-19",
+    "coordType": "clipped_river_segment_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 80915045 – Akerselva clipped from Grünerbrua/Nordre gate to the Kunsthøgskolen/Seilduksgata bridge scope",
+    "coordVerifiedAt": "2026-07-23",
     "primary_category": "natur",
     "secondary_category": "historie",
     "hybrid": true,
@@ -1424,12 +1424,99 @@
       "vann_og_vassdrag",
       "foss_og_stryk"
     ],
+    "nature_profile": {
+      "type": "strømmende byelv / kantkratt / fossenær overgangssone",
+      "title": "Elvestrømmen gjennom det tette bypartiet",
+      "summary": "Ved Fossveien går Akerselva gjennom et trangt overgangsrom mellom boligkvartaler, historiske industrimiljøer og vegeterte bredder. Strømmen er mer merkbar enn i de rolige partiene oppstrøms, og kantkrattet følger elva der terrenget faller videre mot de nedre fossene. Natur-rundingen viser hvordan vannbevegelse, fuktige bredder og buskvegetasjon fortsatt danner et sammenhengende naturrom i en hardt utbygd del av byen, samtidig som fosse- og industrihistorien preger landskapet.",
+      "themes": [
+        "strømmende elv i tett by",
+        "fossenær vannbevegelse",
+        "kantkratt langs bratte bredder",
+        "fuktige overgangssoner",
+        "natur mellom bolig og industrihistorie",
+        "videreføring av Akerselvas grøntdrag"
+      ],
+      "nearby_place_ids": [
+        "elvestrekning_bla_brenneriveien",
+        "nedre_foss",
+        "kuba_parken"
+      ]
+    },
     "locatorType": "route",
-    "sourceProvider": "manual_research",
-    "sourceObjectId": "akerselva-segment:fossveien:unresolved",
-    "geocodeAccuracy": "unknown",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:80915045",
+    "geocodeAccuracy": "semantic_anchor",
     "coordRole": "line_anchor",
-    "coordNote": "Recorden beskriver en lokalt definert Akerselva-strekning ved Fossveien, men kontrollen fant ikke ett entydig navngitt kildeobjekt som avgrenser akkurat denne strekningen. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
+    "coordNote": "Batch 161 avgrenser Fossveien-recordens Akerselva-scope etter Fossveiens dokumenterte gateomfang fra Nordre gate til Seilduksgata. Sørgrensen er Grünerbrua/Nordre gate (OSM way 4826556); nordgrensen er den fysiske broen ved Kunsthøgskolen/Seilduksgata-scope (way 3236542), med live topologisk gang-/servicekobling fra Fossveiens Seilduksgata-endepunkt. Broene 457755404 og 4826557 ligger strengt inne i intervallet. Canonical lat/lon er lengdemidtpunktet langs den klippede Akerselva-geometrien, ikke en projeksjon fra Fossveien og ikke nearest/first-hit.",
+    "sourceHint": "Scope følger Fossveiens dokumenterte utstrekning fra Nordre gate til Seilduksgata og klippes fysisk i Akerselva mellom korresponderende brogrenser.",
+    "coordSourceId": "osm-way:80915045",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/80915045",
+    "segmentScope": {
+      "method": "clipped_river_geometry_matching_documented_street_extent",
+      "streetIdentity": {
+        "name": "Fossveien",
+        "sourceProvider": "manual_research",
+        "sourceUrl": "https://oslobyleksikon.no/side/Fossveien",
+        "documentedExtent": "fra Nordre gate til Seilduksgata",
+        "osmWayId": 3235603,
+        "northEndpointNodeId": 12534281,
+        "seilduksgataWayId": 3235625
+      },
+      "riverWayId": 80915045,
+      "southBoundary": {
+        "name": "Grünerbrua / Nordre gate",
+        "crossingWayId": 4826556,
+        "lat": 59.921142237224046,
+        "lon": 10.7539976558539
+      },
+      "internalCrossings": [
+        {
+          "crossingWayId": 457755404,
+          "lat": 59.92247257693518,
+          "lon": 10.752662749501532
+        },
+        {
+          "crossingWayId": 4826557,
+          "lat": 59.924084784555404,
+          "lon": 10.753001550289818
+        }
+      ],
+      "northBoundary": {
+        "name": "Bro ved Kunsthøgskolen / Seilduksgata-scope",
+        "crossingWayId": 3236542,
+        "lat": 59.92537617029916,
+        "lon": 10.75322552870322,
+        "endpointToBridgePathLengthM": 80.4,
+        "endpointToBridgeWaySequence": [
+          {
+            "wayId": 941452472,
+            "wayName": null,
+            "highway": "service"
+          },
+          {
+            "wayId": 941452473,
+            "wayName": null,
+            "highway": "service"
+          },
+          {
+            "wayId": 72141365,
+            "wayName": null,
+            "highway": "footway"
+          },
+          {
+            "wayId": 72141363,
+            "wayName": null,
+            "highway": "steps"
+          },
+          {
+            "wayId": 457755401,
+            "wayName": null,
+            "highway": "cycleway"
+          }
+        ]
+      },
+      "clippedLengthM": 584.8
+    }
   },
   {
     "id": "hausmannsbrua",

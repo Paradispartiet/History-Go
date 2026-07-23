@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T10:14:46.387Z
+Generert: 2026-07-23T10:35:39.428Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -238,7 +238,7 @@ Generert: 2026-07-23T10:14:46.387Z
 | bygdoy_paradisbukta | data/coordinate-evidence/oslo/natur/bygdoy_paradisbukta.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_roykenvika | data/coordinate-evidence/oslo/natur/bygdoy_roykenvika.json | needs_research | needs_geometry | OK |
 | elvestrekning_bla_brenneriveien | data/coordinate-evidence/oslo/natur/elvestrekning_bla_brenneriveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| fossveien_elvestrekning | data/coordinate-evidence/oslo/natur/fossveien_elvestrekning.json | needs_research | needs_geometry | OK |
+| fossveien_elvestrekning | data/coordinate-evidence/oslo/natur/fossveien_elvestrekning.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frysjadammen | data/coordinate-evidence/oslo/natur/frysjadammen.json | needs_research | needs_identity_split | OK |
 | furuset_haugerud_skogbelte | data/coordinate-evidence/oslo/natur/furuset_haugerud_skogbelte.json | needs_research | needs_geometry | OK |
 | glads_molle | data/coordinate-evidence/oslo/natur/glads_molle.json | applied_to_place | do_not_change_coordinates_yet | OK |
