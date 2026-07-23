@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "brekkedammen",
+  "placeFile": "data/places/natur/oslo/brekkedammen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.967732,
+    "lon": 10.7816029,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 14334474 – Frysja (alt_name Brekkedammen); boundary cross-checked with way 66357555 and Oslo kommune",
+    "coordType": "reservoir_area_anchor",
+    "coordNote": "Object-type-first production: exact OSM relation 14334474 is the reservoir named Frysja with alt_name=Brekkedammen, and exact OSM way 66357555 is the named Brekkedammen weir on its downstream boundary. The ordinary polygon centroid is rejected because it falls outside the concave geometry; the exact relation representation point is accepted only after an explicit point-in-polygon check. Oslo kommune documents Brekkedammen ved Frysja as a bathing place, so bathing/recreation is modeled as a current use layer of the same physical waterbody rather than as an invented standalone beach pin. No nearest/first-hit selection is used."
+  },
+  "identity": {
+    "currentName": "Brekkedammen ved Frysja",
+    "resolvedIdentity": "Den fysiske oppdemmede vannflaten Frysja / Brekkedammen, med bade- og rekreasjonsbruk som innholdslag og den navngitte demningen som grense-subfeature",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt eller eksplisitt aliasert vannflategeometri",
+    "fysisk/topologisk kobling mellom vannflaten og den navngitte Brekkedammen-demningen",
+    "offisiell kilde for bade- og rekreasjonsbruken"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – relation 14334474 Frysja / Brekkedammen",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14334474",
+      "sourceObjectId": "osm-relation:14334474",
+      "sourceQuality": "exact_named_polygon_with_explicit_alt_name",
+      "finding": "Eksakt reservoir/multipolygon med name=Frysja og alt_name=Brekkedammen. Det eksakte objektrepresentasjonspunktet ligger inne i polygonet og brukes som area-anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Object-type-first production: exact OSM relation 14334474 is the reservoir named Frysja with alt_name=Brekkedammen, and exact OSM way 66357555 is the named Brekkedammen weir on its downstream boundary. The ordinary polygon centroid is rejected because it falls outside the concave geometry; the exact relation representation point is accepted only after an explicit point-in-polygon check. Oslo kommune documents Brekkedammen ved Frysja as a bathing place, so bathing/recreation is modeled as a current use layer of the same physical waterbody rather than as an invented standalone beach pin. No nearest/first-hit selection is used."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – way 66357555 Brekkedammen",
+      "sourceUrl": "https://www.openstreetmap.org/way/66357555",
+      "sourceObjectId": "osm-way:66357555",
+      "sourceQuality": "exact_named_boundary_subfeature",
+      "finding": "Eksakt navngitt weir. Alle tre geometripunkter ligger innen 20 meter fra vannflategrensen; målt minimum 3.9 m og maksimum 7.8 m.",
+      "canVerifyCoordinate": false,
+      "reason": "Verifiserer fysisk grense og identitet, men brukes ikke alene som koordinat for hele vannflaten."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Brekkedammen ved Frysja",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/brekkedammen-ved-frysja/",
+      "sourceObjectId": "oslo-kommune:badeplass:brekkedammen-ved-frysja",
+      "sourceQuality": "official_scope_and_use_definition",
+      "finding": "Oslo kommune dokumenterer Brekkedammen ved Frysja som badeplass i øvre Akerselva.",
+      "canVerifyCoordinate": false,
+      "reason": "Fastsetter dagens bruk og navn, mens den eksakte fysiske geometrien kommer fra OSM-relasjonen."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14334474",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:66357555",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14334474",
+      "lat": 59.967732,
+      "lon": 10.7816029,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:66357555",
+      "lat": 59.9667474,
+      "lon": 10.7767656,
+      "coordRole": "boundary_anchor",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14334474",
+      "lat": 59.967732,
+      "lon": 10.7816029,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Canonical Brekkedammen ved Frysja er produsert som den eksakte Frysja/Brekkedammen-vannflaten; demningen beholdes som grenseanker og badebruk som innholdslag."
+  },
+  "notes": [
+    "Object-type-first production: exact OSM relation 14334474 is the reservoir named Frysja with alt_name=Brekkedammen, and exact OSM way 66357555 is the named Brekkedammen weir on its downstream boundary. The ordinary polygon centroid is rejected because it falls outside the concave geometry; the exact relation representation point is accepted only after an explicit point-in-polygon check. Oslo kommune documents Brekkedammen ved Frysja as a bathing place, so bathing/recreation is modeled as a current use layer of the same physical waterbody rather than as an invented standalone beach pin. No nearest/first-hit selection is used."
+  ]
+}

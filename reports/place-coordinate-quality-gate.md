@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T17:33:42.950Z
+Generert: 2026-07-23T18:36:14.193Z
 
 ## Oppsummering
-- Aktive filer validert: **673**
+- Aktive filer validert: **674**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -691,6 +691,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/fotogalleriet.json
 - data/places/kunst/oslo/places_kunst/kunstnerforbundet.json
 - data/places/natur/oslo/lillomarka.json
+- data/places/natur/oslo/brekkedammen.json
 
 ## Harde feil
 - Ingen

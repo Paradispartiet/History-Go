@@ -24494,5 +24494,25 @@
     "coordVerifiedAt": "2026-07-23",
     "coordNote": "Batch 168 oppretter Lillomarka som ett bredt, navngitt Marka- og skogsområde. Oslo kommune omtaler Lillomarka som en egen del av Oslomarka og knytter området til friluftsliv, folkehelse og naturmangfold. Fresh exact-object lookup hard-gater OSM relation 5806405 som name=Lillomarka, category=place, type=woodland med polygongeometri. Canonical lat/lon er karttjenestens geometriske representasjonspunkt for den eksakte relationen. Punktet representerer hele det navngitte skogsområdet og er ikke en løypestart, markastue, innsjø eller nearest/first-hit-proxy.",
     "sourceFile": "places/natur/oslo/lillomarka.json"
+  },
+  {
+    "id": "brekkedammen",
+    "name": "Brekkedammen ved Frysja",
+    "lat": 59.967732,
+    "lon": 10.7816029,
+    "r": 320,
+    "category": "natur",
+    "desc": "Oppdemmet vannflate i øvre Akerselva ved Frysja, kartlagt som Frysja med Brekkedammen som alternativt navn og brukt som bade- og rekreasjonsområde.",
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:14334474",
+    "geocodeAccuracy": "geometric_center",
+    "coordRole": "area_anchor",
+    "coordType": "reservoir_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 14334474 – Frysja (alt_name Brekkedammen); boundary cross-checked with way 66357555 and Oslo kommune",
+    "coordVerifiedAt": "2026-07-23",
+    "coordNote": "Object-type-first production: exact OSM relation 14334474 is the reservoir named Frysja with alt_name=Brekkedammen, and exact OSM way 66357555 is the named Brekkedammen weir on its downstream boundary. The ordinary polygon centroid is rejected because it falls outside the concave geometry; the exact relation representation point is accepted only after an explicit point-in-polygon check. Oslo kommune documents Brekkedammen ved Frysja as a bathing place, so bathing/recreation is modeled as a current use layer of the same physical waterbody rather than as an invented standalone beach pin. No nearest/first-hit selection is used.",
+    "sourceFile": "places/natur/oslo/brekkedammen.json"
   }
 ]
