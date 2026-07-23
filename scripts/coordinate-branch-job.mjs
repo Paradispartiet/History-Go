@@ -49,7 +49,7 @@ const place = {
   category: "kunst",
   year: 1910,
   desc: "Kunstnerstyrt og ikke-kommersiell visnings- og formidlingsinstitusjon etablert i 1910, med fast tilhold i egen bygård i Kjeld Stubs gate 3 siden 1917.",
-  popupDesc: "Kunstnerforbundet ble opprettet i 1910 av en gruppe yngre kunstnere og er blant Skandinavias eldste kunstnerstyrte gallerier. Siden 1917 har institusjonen holdt til i Kjeld Stubs gate 3, og den eier selv bygården. Dette gir stedet en uvanlig sterk kobling mellom kunstnerorganisering, institusjon og fysisk rom: huset rommer både utstillingssaler, formidlingsrom, salgsavdeling, kunstlager, kontorer og atelierer.\n\nInstitusjonen er ikke-kommersiell i organisasjons- og formidlingsprofilen, men har samtidig en lang historie med å legge til rette for salg, offentlig innkjøp og økonomiske muligheter for kunstnere. Det gjør Kunstnerforbundet særlig egnet til å undersøke hvordan kunstfeltet organiserer kvalitet, adgang, profesjonsmakt og økonomi uten å være et vanlig privat markedsdrevet galleri.\n\nI History Go skal stedet behandles som én varig kunstinstitusjon med over hundre års kontinuitet i samme bygning. Skiftende enkeltutstillinger er innholdslag og kilder, ikke egne steder. Synlige quizspørsmål skal forankres i institusjonens dokumenterte historie, kunstnerstyring, bygning, utstillingspraksis og rolle i kunstfeltet — ikke i generisk samtidskunsttrivia.",
+  popupDesc: "Kunstnerforbundet ble opprettet i 1910 av en gruppe yngre kunstnere og er blant Skandinavias eldste kunstnerstyrte gallerier. Siden 1917 har institusjonen holdt til i Kjeld Stubs gate 3, og den eier selv bygården. Dette gir stedet en uvanlig sterk kobling mellom kunstnerorganisering, institusjon og fysisk rom: huset rommer utstillingssaler, formidlingsrom, kunstlager, kontorer og atelierer.\n\nInstitusjonen er ikke-kommersiell i organisasjons- og formidlingsprofilen, men har samtidig en lang historie med å legge til rette for salg, offentlig innkjøp og økonomiske muligheter for kunstnere. Det gjør Kunstnerforbundet særlig egnet til å undersøke hvordan kunstfeltet organiserer kvalitet, adgang, profesjonsmakt og økonomi uten å være et vanlig privat markedsdrevet galleri.\n\nI History Go skal stedet behandles som én varig kunstinstitusjon med over hundre års kontinuitet i samme bygning. Skiftende enkeltutstillinger er innholdslag og kilder, ikke egne steder. Synlige quizspørsmål skal forankres i institusjonens dokumenterte historie, kunstnerstyring, bygning, utstillingspraksis og rolle i kunstfeltet — ikke i generisk samtidskunsttrivia.",
   emne_ids: [
     "em_kunst_institusjonskritikk_og_representasjon",
     "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
@@ -62,8 +62,7 @@ const place = {
       "etablert i 1910 av kunstnere",
       "har holdt til i Kjeld Stubs gate 3 siden 1917",
       "eier bygården med utstillingsrom, formidling, lager og atelierer",
-      "kunstnerstyrt og ikke-kommersiell institusjonsmodell",
-      "kombinerer utstillinger, formidling og økonomisk støtte til kunstneres profesjonelle virke"
+      "kunstnerstyrt og ikke-kommersiell institusjonsmodell"
     ],
     primary_angles: [
       "kunstnerstyring",
@@ -93,23 +92,13 @@ const place = {
       "kunstnerstyringen og den ikke-kommersielle institusjonsmodellen",
       "bygningen som fysisk ramme for visning, formidling og kunstnerisk arbeid"
     ],
-    contrast_targets: [
-      "kunstnernes_hus",
-      "vi_vii_gallery",
-      "fotografiens_hus"
-    ],
+    contrast_targets: ["kunstnernes_hus", "vi_vii_gallery", "fotografiens_hus"],
     notes: "Spør Kunstnerforbundet som konkret kunstnerstyrt institusjon og historisk kunstfeltaktør. Offisielle institusjons-, arkiv- og utstillingskilder skal dominere synlig quizinnhold."
   },
   locatorType: "building",
   sourceProvider: "official_address",
   sourceObjectId: c.sourceObjectId,
-  address: {
-    street: "Kjeld Stubs gate",
-    number: "3",
-    postcode: "0160",
-    city: "Oslo",
-    country: "NO"
-  },
+  address: { street: "Kjeld Stubs gate", number: "3", postcode: "0160", city: "Oslo", country: "NO" },
   geocodeAccuracy: "rooftop",
   coordRole: "display_marker",
   coordType: "address_point",
@@ -120,20 +109,8 @@ const place = {
   coordVerifiedAt: DATE,
   coordNote,
   externalLinks: [
-    {
-      type: "official",
-      label: "Kunstnerforbundet – om institusjonen",
-      url: "https://kunstnerforbundet.no/om-kunstnerforbundet",
-      lang: "nb",
-      verifiedAt: DATE
-    },
-    {
-      type: "official",
-      label: "Kunstnerforbundet – besøk",
-      url: "https://kunstnerforbundet.no/besok",
-      lang: "nb",
-      verifiedAt: DATE
-    }
+    { type: "official", label: "Kunstnerforbundet – om institusjonen", url: "https://kunstnerforbundet.no/om-kunstnerforbundet", lang: "nb", verifiedAt: DATE },
+    { type: "official", label: "Kunstnerforbundet – besøk", url: "https://kunstnerforbundet.no/besok", lang: "nb", verifiedAt: DATE }
   ]
 };
 
@@ -190,12 +167,7 @@ const evidence = {
     }
   ],
   addressCandidates: [
-    {
-      address: "Kjeld Stubs gate 3, 0160 Oslo",
-      sourceProvider: "official_address",
-      sourceObjectId: c.sourceObjectId,
-      canApplyToPlace: true
-    }
+    { address: "Kjeld Stubs gate 3, 0160 Oslo", sourceProvider: "official_address", sourceObjectId: c.sourceObjectId, canApplyToPlace: true }
   ],
   sourceObjectCandidates: [
     { sourceProvider: "official_address", sourceObjectId: c.sourceObjectId, canApplyToPlace: true },
@@ -205,11 +177,7 @@ const evidence = {
   coordinateCandidates: [
     { lat: c.lat, lon: c.lon, coordRole: "display_marker", sourceObjectId: c.sourceObjectId, canApplyToPlace: true }
   ],
-  decision: {
-    canBecomeVerified: true,
-    blockedReason: "",
-    nextAction: "Kjeld Stubs gate 3 er anvendt som canonical display-marker."
-  },
+  decision: { canBecomeVerified: true, blockedReason: "", nextAction: "Kjeld Stubs gate 3 er anvendt som canonical display-marker." },
   notes: [
     coordNote,
     "Ingen canonical Kunstnerforbundet-identitet og ingen eksisterende canonical markør innen 35 meter ble funnet i den lukkede gallery-priority scope-auditen."
@@ -227,13 +195,17 @@ if (protocol.includes(`\`${placeId}\``)) throw new Error(`${placeId} already exi
 const batches = [...protocol.matchAll(/^\|\s*(\d+)\s*\|\s*`[^`]+`/gm)].map((match) => Number(match[1]));
 if (!batches.length) throw new Error("Could not parse current Oslo coordinate batches.");
 const nextBatch = Math.max(...batches) + 1;
-const countMatch = protocol.match(/Oslo-tabellen inneholder nå (\d+) [^\n]*canonical steder\./);
+
+const currentHeader = /Oslo-protokollen dekker nå (\d+) aktive current `verified\*` canonical Oslo-steder\./;
+const legacyHeader = /Oslo-tabellen inneholder nå (\d+) [^\n]*canonical steder\./;
+const countMatch = protocol.match(currentHeader) ?? protocol.match(legacyHeader);
 if (!countMatch) throw new Error("Could not parse current Oslo protocol place count.");
 const newCount = Number(countMatch[1]) + 1;
-protocol = protocol.replace(
-  /Oslo-tabellen inneholder nå \d+ [^\n]*canonical steder\./,
-  `Oslo-tabellen inneholder nå ${newCount} dokumenterte verifiserte eller kildekontrollerte canonical steder. Batch ${nextBatch} legger til Kunstnerforbundet som egen kunstnerstyrt, ikke-kommersiell kunstinstitusjon med stabil adresse i Kjeld Stubs gate 3.`
-);
+if (currentHeader.test(protocol)) {
+  protocol = protocol.replace(currentHeader, `Oslo-protokollen dekker nå ${newCount} aktive current \`verified*\` canonical Oslo-steder.`);
+} else {
+  protocol = protocol.replace(legacyHeader, `Oslo-tabellen inneholder nå ${newCount} dokumenterte verifiserte eller kildekontrollerte canonical steder.`);
+}
 protocol = `${protocol.trimEnd()}\n\n| ${nextBatch} | \`${placeId}\` | Kunstnerforbundet | verified | \`${c.sourceObjectId}\` |\n\nBatch ${nextBatch} (${DATE}) produserer \`${placeId}\` etter den lukkede VisitOSLO gallery-priority scope-auditen. Institusjonen har ingen canonical identitetsduplikat eller markør innen 35 meter, og bruker det eksakte Geonorge-adressepunktet for Kjeld Stubs gate 3.\n`;
 writeFileSync(protocolPath, protocol, "utf8");
 
@@ -248,3 +220,5 @@ writeJson("reports/visitoslo-galleries-audit-20260723/priority-tranche/kunstnerf
 });
 
 console.log(`Produced ${placeId} as Oslo coordinate batch ${nextBatch}.`);
+console.log(`Place file: ${placeFile}`);
+console.log(`Evidence file: ${evidenceFile}`);
