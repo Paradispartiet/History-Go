@@ -1,0 +1,95 @@
+name: Build final Oslo Scenekunst split venues
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+    paths:
+      - '.github/oslo-scenekunst-three-final-trigger.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  build-final-files:
+    if: github.event.pull_request.head.ref == 'agent/oslo-scenekunst-three-final-trigger'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out clean current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Fetch validated source branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/scenekunst-oslo-three-archive-v1
+          git checkout origin/agent/scenekunst-oslo-three-archive-v1 -- \
+            data/places/scenekunst/oslo/places_scenekunst/rommen_scene.json \
+            data/places/scenekunst/oslo/places_scenekunst/salt_oslo.json \
+            data/places/scenekunst/oslo/places_scenekunst/det_andre_teatret_intimscenen.json \
+            tools/add-oslo-scenekunst-three-split-venues.mjs
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build Oslo aggregate, split metadata and reports
+        run: node tools/add-oslo-scenekunst-three-split-venues.mjs
+
+      - name: Validate canonical data
+        run: |
+          bash scripts/check-places.sh
+          bash scripts/check-people.sh
+          npm run audit:categories
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run build:tools
+          node dist/tools/validate_nature_maps.mjs
+          node dist/tools/validate_lesespor.mjs
+          npm run typecheck:web
+          npm run build:scripts
+          npm run knowledge:canonical:check
+          npm run knowledge:legacy:check
+          npm run audit:knowledge
+          npm run test:knowledge-v2
+          node --test tests/knowledge-canonical-storage-contract.test.js
+          git diff --check
+
+      - name: Mark report validated
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'reports/scenekunst-oslo-missing-split-venues-2026-07-23.json';
+          const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+          report.status = 'validated';
+          report.validatedAt = new Date().toISOString();
+          report.validation.placesIndexBuild = 'pass';
+          report.validation.placesChecks = 'pass';
+          report.validation.categoryAudit = 'pass';
+          fs.writeFileSync(file, JSON.stringify(report, null, 2) + '\n');
+          NODE
+
+      - name: Upload clean production files
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-scenekunst-three-final-files
+          path: |
+            data/places/places_index.json
+            data/places/scenekunst/oslo/places_scenekunst.json
+            data/places/scenekunst/oslo/places_scenekunst_index.json
+            data/places/scenekunst/oslo/places_scenekunst_manifest.json
+            data/places/scenekunst/oslo/places_scenekunst/rommen_scene.json
+            data/places/scenekunst/oslo/places_scenekunst/salt_oslo.json
+            data/places/scenekunst/oslo/places_scenekunst/det_andre_teatret_intimscenen.json
+            reports/scenekunst-oslo-missing-split-venues-2026-07-23.json
+            reports/scenekunst-oslo-missing-split-venues-2026-07-23.md
+          if-no-files-found: error
+          retention-days: 7
