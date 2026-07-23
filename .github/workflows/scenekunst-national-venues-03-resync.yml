@@ -1,0 +1,100 @@
+name: Resync Scenekunst national venues batch 3
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  resync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/scenekunst-national-venues-03
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Merge current main with guarded conflict resolution
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          set +e
+          git merge --no-ff --no-commit origin/main
+          merge_status=$?
+          set -e
+
+          if [ "$merge_status" -ne 0 ]; then
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            printf 'Conflicts:\n%s\n' "${conflicts[*]}"
+            for path in "${conflicts[@]}"; do
+              case "$path" in
+                data/places/manifest.json|data/places/places_index.json) ;;
+                *) echo "Unexpected merge conflict: $path"; exit 1 ;;
+              esac
+            done
+
+            if printf '%s\n' "${conflicts[@]}" | grep -qx 'data/places/manifest.json'; then
+              git show :2:data/places/manifest.json > /tmp/manifest-ours.json
+              git show :3:data/places/manifest.json > /tmp/manifest-main.json
+              node <<'NODE'
+              const fs = require('fs');
+              const ours = JSON.parse(fs.readFileSync('/tmp/manifest-ours.json', 'utf8'));
+              const main = JSON.parse(fs.readFileSync('/tmp/manifest-main.json', 'utf8'));
+              if (!Array.isArray(ours.files) || !Array.isArray(main.files)) throw new Error('Unexpected manifest shape');
+              const files = [...main.files];
+              const seen = new Set(files);
+              for (const file of ours.files) {
+                if (!seen.has(file)) {
+                  files.push(file);
+                  seen.add(file);
+                }
+              }
+              fs.writeFileSync('data/places/manifest.json', JSON.stringify({ ...main, files }, null, 2) + '\n');
+              NODE
+              git add data/places/manifest.json
+            fi
+
+            if printf '%s\n' "${conflicts[@]}" | grep -qx 'data/places/places_index.json'; then
+              git checkout --ours data/places/places_index.json
+              git add data/places/places_index.json
+            fi
+          fi
+
+          unresolved=$(git diff --name-only --diff-filter=U)
+          test -z "$unresolved" || { echo "Unresolved conflicts: $unresolved"; exit 1; }
+
+      - name: Regenerate place index and validate
+        run: |
+          npm run build:tools
+          npm run places:index:build
+          bash scripts/check-places.sh
+          npm run audit:categories
+
+      - name: Commit and push resync
+        run: |
+          git add data/places/manifest.json data/places/places_index.json
+          git diff --cached --stat
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "No resync changes required"
+            git merge --abort 2>/dev/null || true
+            exit 0
+          fi
+          git commit -m "Resync Scenekunst batch 3 with main"
+          git push origin HEAD:agent/scenekunst-national-venues-03
