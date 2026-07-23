@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T20:26:08.468Z
+Generert: 2026-07-23T20:29:37.741Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -344,3 +344,4 @@ Generert: 2026-07-23T20:26:08.468Z
 | galleri_lnm | data/coordinate-evidence/oslo/kunst/galleri_lnm.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ram_galleri | data/coordinate-evidence/oslo/kunst/ram_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galleri_schaeffers_gate_5 | data/coordinate-evidence/oslo/kunst/galleri_schaeffers_gate_5.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grafill | data/coordinate-evidence/oslo/kunst/grafill.json | applied_to_place | do_not_change_coordinates_yet | OK |

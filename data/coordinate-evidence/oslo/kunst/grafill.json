@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "grafill",
+  "placeFile": "data/places/kunst/oslo/places_kunst/grafill.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91646694157906,
+    "lon": 10.748956340457859,
+    "r": 65,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 39, 0179 Oslo. Grafill dokumenterer samme adresse som Grafills hus og et aktivt offentlig utstillings- og samlingssted; punktet brukes som canonical display-marker for foreningen og huset som én varig institusjon."
+  },
+  "identity": {
+    "currentName": "Grafill",
+    "resolvedIdentity": "Grafill som landsomfattende fagorganisasjon og Grafills hus som offentlig utstillings- og samlingssted i Møllergata 39",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "canonical identitets- og nærhetskontroll",
+    "dokumentert institusjonell kontinuitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Møllergata 39",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=M%C3%B8llergata%2039%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:39",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Møllergata 39 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 39, 0179 Oslo. Grafill dokumenterer samme adresse som Grafills hus og et aktivt offentlig utstillings- og samlingssted; punktet brukes som canonical display-marker for foreningen og huset som én varig institusjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Grafill – Om oss",
+      "sourceUrl": "https://www.grafill.no/om-oss",
+      "sourceObjectId": "grafill:about",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Dokumenterer Grafill som landsomfattende forening for design, illustrasjon og visuell kommunikasjon, stiftet i 1991, og dagens kontaktadresse i Møllergata 39.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og institusjonshistorisk kryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Grafills hus",
+      "sourceUrl": "https://www.grafill.no/om-grafill/grafills-hus",
+      "sourceObjectId": "grafill:house",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer Møllergata 39 som Grafills offentlige utstillings- og samlingssted med helårsprogram.",
+      "canVerifyCoordinate": false,
+      "reason": "Nåværende fysisk funksjon og adressekryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Møllergata 39, 0179 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:39",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:39",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "grafill:about",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "grafill:house",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91646694157906,
+      "lon": 10.748956340457859,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14943:39",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Møllergata 39 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Møllergata 39, 0179 Oslo. Grafill dokumenterer samme adresse som Grafills hus og et aktivt offentlig utstillings- og samlingssted; punktet brukes som canonical display-marker for foreningen og huset som én varig institusjon.",
+    "Nærmeste eksisterende canonical marker ved write-time var revolver_oslo på 73.71 meter; ingen markør lå innen 3 meter."
+  ]
+}
