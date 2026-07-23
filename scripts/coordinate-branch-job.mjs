@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { extname, join, relative } from "node:path";
 
 const OLD_ID = "sagene_kvernhus";
@@ -6,10 +6,11 @@ const NEW_ID = "glads_molle";
 const REPORT_DIR = "reports/oslo-coordinate-sagene-kvernhus-duplicate-reference-audit";
 mkdirSync(REPORT_DIR, { recursive: true });
 
-const roots = ["data", "src", "tests", "docs"];
+const roots = ["data", "tests", "docs", "app", "public"];
 const allowed = new Set([".json", ".jsonl", ".js", ".mjs", ".cjs", ".ts", ".tsx", ".md"]);
 const files = [];
 const walk = (path) => {
+  if (!existsSync(path)) return;
   const stat = statSync(path);
   if (stat.isDirectory()) {
     for (const name of readdirSync(path)) walk(join(path, name));
