@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T03:42:38.828Z
+Generert: 2026-07-23T04:00:03.967Z
 
 ## Oppsummering
-- Aktive filer validert: **625**
-- Antall steder validert: **1242**
+- Aktive filer validert: **628**
+- Antall steder validert: **1245**
 - Harde feil: **0**
-- Varsler: **476**
-- Coordinate review candidates: **742** signaler fordelt på **613** steder
+- Varsler: **478**
+- Coordinate review candidates: **744** signaler fordelt på **615** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -643,6 +643,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/vestland/mo_senteret_gyldenpris.json
 - data/places/subkultur/rogaland/matfellesskap_st_petri_stavanger.json
 - data/places/subkultur/troms/kafe_x_tromso.json
+- data/places/religion/vestland/etne/etne_kyrkje.json
+- data/places/religion/vestland/etne/skanevik_kyrkje.json
+- data/places/religion/vestland/etne/frette_kapell.json
 
 ## Harde feil
 - Ingen
@@ -1124,16 +1127,18 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/vestland/mo_senteret_gyldenpris.json#mo_senteret_gyldenpris: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/rogaland/matfellesskap_st_petri_stavanger.json#matfellesskap_st_petri_stavanger: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/troms/kafe_x_tromso.json#kafe_x_tromso: coordStatus=verified uten coordPrecisionM
+- data/places/religion/vestland/etne/etne_kyrkje.json#etne_kyrkje: coordStatus=verified uten coordPrecisionM
+- data/places/religion/vestland/etne/skanevik_kyrkje.json#skanevik_kyrkje: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 742 signaler fordelt på 613 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 744 signaler fordelt på 615 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 185 |
+| coordStatus=verified uten coordPrecisionM | 187 |
 | lineært sted uten anchors | 78 |
 | lav koordinatpresisjon (<4 desimaler) | 83 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1143,7 +1148,7 @@ Totalt 742 signaler fordelt på 613 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (185)
+### coordStatus=verified uten coordPrecisionM (187)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1332,6 +1337,8 @@ Totalt 742 signaler fordelt på 613 steder. Et sted kan ha flere signaler. Kandi
 | mo_senteret_gyldenpris | MO-senteret Gyldenpris | subkultur | data/places/subkultur/vestland/mo_senteret_gyldenpris.json | 60.38300262501348 | 5.314376782207994 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | matfellesskap_st_petri_stavanger | Matfellesskap St. Petri | subkultur | data/places/subkultur/rogaland/matfellesskap_st_petri_stavanger.json | 58.97006703664689 | 5.7375038082000955 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kafe_x_tromso | Kafe X | subkultur | data/places/subkultur/troms/kafe_x_tromso.json | 69.65340838746769 | 18.95628570193868 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| etne_kyrkje | Etne kyrkje | religion | data/places/religion/vestland/etne/etne_kyrkje.json | 59.66966917268966 | 5.944394800224875 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| skanevik_kyrkje | Skånevik kyrkje | religion | data/places/religion/vestland/etne/skanevik_kyrkje.json | 59.731915140528194 | 5.939778902454844 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (78)
 
