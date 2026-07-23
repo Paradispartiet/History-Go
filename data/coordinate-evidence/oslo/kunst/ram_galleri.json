@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "ram_galleri",
+  "placeFile": "data/places/kunst/oslo/places_kunst/ram_galleri.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91045277823502,
+    "lon": 10.741915500125605,
+    "r": 55,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongens gate 15, 0153 Oslo. RAM dokumenterer selv dagens galleriadresse og at institusjonen flyttet hit i 2019; punktet brukes som canonical display-marker for RAM som eget ikke-kommersielt, kunstnerstyrt visningssted."
+  },
+  "identity": {
+    "currentName": "RAM galleri",
+    "resolvedIdentity": "RAM som eget ikke-kommersielt, kunstnerstyrt og tverrfaglig visningssted i Kongens gate 15",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "canonical identitets- og nærhetskontroll",
+    "dokumentert institusjonell kontinuitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Kongens gate 15",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kongens%20gate%2015%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13846:15",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Kongens gate 15 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Kongens gate 15, 0153 Oslo. RAM dokumenterer selv dagens galleriadresse og at institusjonen flyttet hit i 2019; punktet brukes som canonical display-marker for RAM som eget ikke-kommersielt, kunstnerstyrt visningssted."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "RAM galleri – About",
+      "sourceUrl": "https://www.ramgalleri.no/about",
+      "sourceObjectId": "ram:about",
+      "sourceQuality": "official_institution_history",
+      "finding": "Dokumenterer etableringen i 1989, kunstnerstyrt ikke-kommersiell modell, eierstruktur og flyttingen til Kongens gate 15 i 2019.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og institusjonshistorisk kryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "RAM galleri – current site",
+      "sourceUrl": "https://www.ramgalleri.no/",
+      "sourceObjectId": "ram:current",
+      "sourceQuality": "official_site_address",
+      "finding": "Dokumenterer aktivt program og Kongens gate 15, 0153 Oslo som dagens adresse.",
+      "canVerifyCoordinate": false,
+      "reason": "Nåværende adressekryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kongens gate 15, 0153 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13846:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13846:15",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ram:about",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ram:current",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91045277823502,
+      "lon": 10.741915500125605,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13846:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kongens gate 15 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Kongens gate 15, 0153 Oslo. RAM dokumenterer selv dagens galleriadresse og at institusjonen flyttet hit i 2019; punktet brukes som canonical display-marker for RAM som eget ikke-kommersielt, kunstnerstyrt visningssted.",
+    "Nærmeste eksisterende canonical marker ved write-time var norske_grafikere på 52.08 meter; ingen markør lå innen 3 meter."
+  ]
+}
