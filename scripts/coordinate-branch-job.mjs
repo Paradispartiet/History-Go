@@ -49,8 +49,15 @@ const replacement = `function parseWayXml(xml, expectedWayId) {
 
 function haversine`;
 
-const patched = source.replace(/function parseWayXml[\s\S]*?\n}\n\nfunction haversine/, replacement);
+let patched = source.replace(/function parseWayXml[\s\S]*?\n}\n\nfunction haversine/, replacement);
 if (patched === source) throw new Error('Could not patch parseWayXml in validated batch 164 production script');
+patched = patched.replace(
+  '  slusebruWayId,\n  anleggsbruWayId,',
+  '  slusebruWayId: sluseWayId,\n  anleggsbruWayId: anleggsWayId,'
+);
+if (patched.includes('  slusebruWayId,\n  anleggsbruWayId,')) {
+  throw new Error('Could not patch batch 164 result-report variable names');
+}
 
 const tempScript = path.join('/tmp', `history-go-batch-164-production-${Date.now()}.mjs`);
 fs.writeFileSync(tempScript, patched);
