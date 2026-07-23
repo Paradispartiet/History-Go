@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 396 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 397 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -591,6 +591,10 @@ Batch 151 (2026-07-23) løser Bogerudmyra som et konkret navngitt våtmarksobjek
 | 153 | `ostensjovannet_sor` | Bølerbekkens utløp i Østensjøvannet | verified_geometry | `osm-node:1110773258` |
 
 Batch 153 (2026-07-23) erstatter den repo-syntetiske «Østensjøvannet sør»-identiteten med det konkrete hydrologiske munningspunktet der Bølerbekken møter innsjøen. Fresh OSM validerer way 1456532473 som Bølerbekken/waterway=stream og relation 33561 som Østensjøvannet/water=lake. Bekkewayen ender i node 1110773258, som samtidig ligger på outer-memberway 1122249176 i innsjø-relationen. Østensjøvannets Venner dokumenterer Bølerbekken som en viktig tilløpsbekk og fremhever sørenden/Bølerbekkens utløp som fuglerikt observasjonsområde. Canonical punkt er den eksakte delte topologinoden; legacy-punktet og nearest/first-hit brukes ikke.
+
+| 154 | `alna_smalvoll` | Alna ved Smalvoll | verified_geometry | `osm-way:22698275` |
+
+Batch 154 (2026-07-23) løser Alna ved Smalvoll som den lange åpne Alna-strekningen på OSM way 22698275. Wayen er topologisk koblet oppstrøms til den korte tunnel-wayen 22698285 og følger hovedspennet til Smalvollveien-korridoren gjennom det området kildene beskriver som Smalvolldalen. Fresh Smalvollveien-way 652471071 brukes bare som uavhengig geografisk korridoravgrensning; canonical lat/lon beregnes deterministisk som lengdemidtpunkt langs selve elvegeometrien. Legacy-punktet og nearest/first-hit brukes ikke.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
