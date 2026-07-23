@@ -1,0 +1,119 @@
+{
+  "version": "2026-07-23",
+  "source": {
+    "name": "VisitOSLO — Kunsthovedstaden / Flere kunstgallerier",
+    "url": "https://www.visitoslo.com/no/artikler/kunsthovedstaden/",
+    "sourceItems": 13,
+    "boundary": "Official current 13-item editorial priority tranche. This is not a full snapshot or closure of the client-rendered VisitOSLO Galleries category."
+  },
+  "status": "priority_tranche_production_complete_except_one_coordinate_blocked_candidate",
+  "summary": {
+    "sourceItems": 13,
+    "sourceItemsScopeResolved": 13,
+    "existingCanonical": 5,
+    "privateCommercialDeferred": 4,
+    "newCanonicalPlacesProduced": 2,
+    "parentReuseEnrichmentsCompleted": 1,
+    "approvedCoordinateBlockedBacklog": 1,
+    "unresolvedScopeItems": 0,
+    "fullGalleryCategoryClosed": false
+  },
+  "existingCanonical": [
+    "fotografiens_hus",
+    "kunsthall_oslo",
+    "vi_vii_gallery",
+    "kosk_oslo",
+    "van_etten"
+  ],
+  "deferredPrivateCommercial": [
+    "Fineart Oslo",
+    "Galleri Haaken",
+    "Galleri K",
+    "Buer Gallery"
+  ],
+  "newCanonicalProduction": [
+    {
+      "placeId": "fotogalleriet",
+      "category": "kunst",
+      "year": 1977,
+      "coordinateBatch": 167,
+      "coordinateSourceObjectId": "geonorge-adresser-v1:0301:14943:34A",
+      "coordinate": {
+        "lat": 59.917455556790614,
+        "lon": 10.750260519179827
+      },
+      "productionPr": 3472,
+      "mergeSha": "43cc25235ccd14b269b14b02834a22f3e5e2e1eb",
+      "coordinateDecisionPr": 3466,
+      "coordinateDisambiguationAuditPr": 3455
+    },
+    {
+      "placeId": "kunstnerforbundet",
+      "category": "kunst",
+      "year": 1910,
+      "coordinateBatch": 168,
+      "coordinateSourceObjectId": "geonorge-adresser-v1:0301:13743:3",
+      "coordinate": {
+        "lat": 59.91286247033279,
+        "lon": 10.735585135946035
+      },
+      "productionPr": 3476,
+      "mergeSha": "88bbf2448bc170faccfab5de698db53463138cdb"
+    }
+  ],
+  "parentReuseEnrichment": {
+    "institution": "Oslo Kunstforening",
+    "parentPlaceId": "radmannsgarden_og_anatomibygget",
+    "decision": "no_new_marker_enrich_existing_parent",
+    "enrichmentPr": 3468,
+    "mergeSha": "8e28674bd9b1560d350a4ac22bf211b453d0e2cf",
+    "result": "Existing parent now includes Oslo Kunstforening as the current institution/use layer, including its 1836 founding and presence in Rådmannsgården since 1936, without changing the shared Rådhusgata 19 coordinate."
+  },
+  "coordinateBlockedBacklog": [
+    {
+      "placeId": "soft_galleri",
+      "name": "SOFT galleri",
+      "category": "kunst",
+      "scopeStatus": "approved_new_canonical_candidate",
+      "coordinateStatus": "blocked_pending_distinct_entrance_anchor",
+      "reason": "The ordinary Rådhusgata 20 Geonorge point is exactly the existing `fotografiens_hus` marker. SOFT documents a separate corner entrance and dedicated 33 m² exhibition room, but no exact separate OSM gallery object or authoritative entrance coordinate has been resolved. No exact-overlap duplicate marker is permitted.",
+      "ordinaryAddressSourceObjectId": "geonorge-adresser-v1:0301:16115:20",
+      "ordinaryAddressCoordinate": {
+        "lat": 59.90951628354778,
+        "lon": 10.74209892031479
+      },
+      "coLocatedCanonicalPlaceId": "fotografiens_hus",
+      "failedDistinctAnchorAuditPr": 3452,
+      "nextAction": "Keep blocked until an authoritative separate entrance, door, room or visitor-anchor coordinate is documented."
+    }
+  ],
+  "auditChain": [
+    {
+      "pr": 3448,
+      "purpose": "13-item curated priority tranche scope closure"
+    },
+    {
+      "pr": 3466,
+      "purpose": "Fotogalleriet official-address disambiguation and updated scope status"
+    },
+    {
+      "pr": 3468,
+      "purpose": "Oslo Kunstforening parent enrichment on Rådmannsgården"
+    },
+    {
+      "pr": 3472,
+      "purpose": "Fotogalleriet canonical production as Oslo coordinate batch 167"
+    },
+    {
+      "pr": 3476,
+      "purpose": "Kunstnerforbundet canonical production as Oslo coordinate batch 168"
+    }
+  ],
+  "closureGuards": [
+    "This status closes production work for all currently producible outcomes of the bounded 13-item editorial tranche, but does not close the full VisitOSLO Galleries category.",
+    "SOFT galleri remains an approved institutional backlog rather than an unresolved scope case; the only missing requirement is a non-guessed, non-overlapping physical coordinate anchor.",
+    "Private/commercial galleries remain deferred under the existing consistent gallery policy.",
+    "Oslo Kunstforening remains a parent-enrichment case and must not be recreated as a duplicate Rådhusgata 19 marker.",
+    "Future full-category work must begin from a reproducible source snapshot or an explicitly bounded new delta source."
+  ]
+}
