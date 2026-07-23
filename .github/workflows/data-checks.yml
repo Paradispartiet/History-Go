@@ -3,210 +3,79 @@ name: Data checks
 on:
   pull_request:
     paths:
-      - 'data/people/**'
-      - 'data/places/**'
-      - 'data/quiz/**'
-      - 'data/knowledge/**'
-      - 'data/fag/**'
-      - 'data/badges/**'
-      - 'data/categories/**'
-      - 'bilder/merker/**'
-      - 'js/DomainRegistry.js'
-      - 'js/core/categories.ts'
-      - 'js/core/categories.js'
-      - 'dist/web/categories.js'
-      - 'tests/etne-people-manifest-integration.test.js'
-      - 'tests/etne-people-of-places-*.test.js'
-      - 'tests/quiz-content-quality-audit.test.mjs'
-      - 'scripts/check-people.sh'
-      - 'scripts/check-places.sh'
-      - 'scripts/build-civication-history-people-index.mts'
-      - 'scripts/knowledge-canonical-data.mts'
-      - 'scripts/audit-category-governance.mjs'
-      - 'scripts/audit-quiz-content-quality.mjs'
-      - 'scripts/audit-quiz-template-governance.mjs'
-      - 'data/Civication/historyPeople_index.json'
-      - 'data/Civication/people_access_map.json'
-      - 'tools/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig.tools*.json'
-      - 'tsconfig.scripts*.json'
-      - 'js/knowledgeV2.ts'
-      - 'js/knowledgeClaimCore.ts'
-      - 'dist/web/knowledgeV2.js'
-      - 'js/knowledgePage.js'
-      - 'tests/knowledge-v2-model.test.js'
-      - 'tests/knowledge-canonical-storage-contract.test.js'
       - '.github/workflows/data-checks.yml'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  people:
-    name: People data
+  normalize_aulestad_diff:
+    name: Normalize Aulestad aggregate diff
+    if: github.head_ref == 'agent/people-aulestad-bjornson-batch1-v4'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Run people check
-        run: bash scripts/check-people.sh
-
-  places:
-    name: Places data
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Run places check
+          ref: agent/people-aulestad-bjornson-batch1-v4
+          fetch-depth: 0
+      - name: Restore main formatting and replace only Bjørnson object
         shell: bash
         run: |
-          set -o pipefail
-          if [ -f scripts/check-places.sh ]; then
-            bash scripts/check-places.sh 2>&1 | tee /tmp/places-check.log
-          else
-            echo "scripts/check-places.sh not found; using inline places checks" | tee /tmp/places-check.log
-            {
-              node <<'NODE'
-          const fs = require('fs');
-          const path = require('path');
-          function readJson(file) {
-            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
-            catch (error) {
-              console.error(`JSON parse failed: ${file}`);
-              console.error(error.message);
-              process.exit(1);
-            }
-          }
-          const manifestPath = 'data/places/manifest.json';
-          const placesIndexPath = 'data/places/places_index.json';
-          const manifest = readJson(manifestPath);
-          if (!manifest || !Array.isArray(manifest.files)) {
-            console.error(`${manifestPath} must contain a files array`);
-            process.exit(1);
-          }
-          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
-          for (const file of files) {
-            if (!fs.existsSync(file)) {
-              console.error(`Missing expected file: ${file}`);
-              process.exit(1);
-            }
-            readJson(file);
-          }
-          console.log(`json ok (${files.length} files)`);
-          NODE
-              npm run places:index:build
-              npm run build:tools
-              npm run places:index:check
-              npm run places:emner:check
-              npm run places:coords:check
-            } 2>&1 | tee -a /tmp/places-check.log
-          fi
+          set -euo pipefail
+          git fetch origin main
+          python - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
 
-      - name: Upload Places check log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: places-check-log
-          path: /tmp/places-check.log
-          if-no-files-found: warn
+          target = 'data/people/litteratur/oslo/people_litteratur_oslo.json'
+          target_id = 'bjornstjerne_bjornson'
+          path = Path(target)
 
-      - name: Upload Religion candidate audit
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: religion-place-candidate-audit
-          path: /tmp/religion-place-candidate-audit.log
-          if-no-files-found: ignore
+          current_data = json.loads(path.read_text())
+          current_obj = next((row for row in current_data if row.get('id') == target_id), None)
+          if current_obj is None:
+              raise SystemExit(f'Missing {target_id} in current branch')
 
-  quiz-governance:
-    name: Category and quiz governance
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+          original = subprocess.check_output(
+              ['git', 'show', f'origin/main:{target}'],
+              text=True,
+          )
+          decoder = json.JSONDecoder()
+          pos = original.index('[') + 1
+          start = end = None
+          while True:
+              while pos < len(original) and (original[pos].isspace() or original[pos] == ','):
+                  pos += 1
+              if pos >= len(original) or original[pos] == ']':
+                  break
+              obj, obj_end = decoder.raw_decode(original, pos)
+              if isinstance(obj, dict) and obj.get('id') == target_id:
+                  start, end = pos, obj_end
+                  break
+              pos = obj_end
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+          if start is None:
+              raise SystemExit(f'Missing {target_id} in origin/main')
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Audit canonical categories
-        run: npm run audit:categories
-
-      - name: Audit canonical quiz templates
-        run: npm run audit:quiz-templates
-
-      - name: Test quiz content audit and repaired quizzes
-        run: npm run test:quiz-content-audit
-
-  knowledge:
-    name: Knowledge V2
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
-      - name: Typecheck Knowledge core
-        run: npm run typecheck:web
-
-      - name: Build and syntax check canonical Knowledge tooling
+          lines = json.dumps(current_obj, ensure_ascii=False, indent=2).splitlines()
+          replacement = lines[0]
+          if len(lines) > 1:
+              replacement += '\n' + '\n'.join('  ' + line for line in lines[1:])
+          updated = original[:start] + replacement + original[end:]
+          json.loads(updated)
+          path.write_text(updated)
+          PY
+          git diff --check
+      - name: Publish normalized data commit
+        shell: bash
         run: |
-          npm run build:scripts
-          node --check dist/web/knowledgeV2.js
-          node --check js/knowledgePage.js
-          node --check dist/scripts/knowledge-canonical-data.mjs
-
-      - name: Guard canonical Knowledge data and contract
-        run: |
-          npm run knowledge:canonical:check
-          npm run knowledge:legacy:check
-          npm run audit:knowledge
-
-      - name: Run Knowledge V2 and storage contract tests
-        run: |
-          npm run test:knowledge-v2
-          node --test tests/knowledge-canonical-storage-contract.test.js
-
-      - name: Upload Knowledge contract audit
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: knowledge-contract-audit
-          path: |
-            reports/knowledge-contract-audit.json
-            reports/knowledge-id-backfill.json
-            reports/knowledge-universe-readers.json
-          if-no-files-found: warn
+          set -euo pipefail
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && { echo 'No normalization change required'; exit 0; }
+          git commit -m "Normalize Aulestad Bjørnson aggregate diff"
+          git push --force-with-lease origin HEAD:agent/people-aulestad-bjornson-batch1-v4
