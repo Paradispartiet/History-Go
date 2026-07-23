@@ -74,7 +74,9 @@ if (!way) throw new Error("OSM API did not return the exact Åmot bru way metada
 const names = acceptedNames(bridge);
 const exactNameGate = names.some((name) => [norm("Åmot bru"), norm("Aamot bru")].includes(norm(name))) || [norm("Åmot bru"), norm("Aamot bru")].includes(norm(way.tags?.name));
 const bridgeTagGate = way.tags?.bridge === "yes" || way.tags?.man_made === "bridge";
-const geometryGate = bridge.geojson?.type === "LineString" && Array.isArray(bridge.geojson.coordinates) && bridge.geojson.coordinates.length >= 2;
+const acceptedGeometryTypes = new Set(["LineString", "Polygon", "MultiPolygon"]);
+const geometryGate = acceptedGeometryTypes.has(bridge.geojson?.type);
+const coordRole = bridge.geojson?.type === "LineString" ? "line_anchor" : "area_anchor";
 const coordinate = { lat: Number(bridge.lat), lon: Number(bridge.lon) };
 const coordinateGate = Number.isFinite(coordinate.lat) && Number.isFinite(coordinate.lon);
 const driftM = coordinateGate ? haversineMeters(coordinate, LOCKED) : Infinity;
@@ -85,7 +87,7 @@ if (!exactNameGate || !bridgeTagGate || !geometryGate || !coordinateGate || !loc
   throw new Error(`Åmot bru production gate failed: ${JSON.stringify({ exactNameGate, bridgeTagGate, geometryGate, coordinateGate, lockedCoordinateGate, historyGate, names, tags: way.tags, geojsonType: bridge.geojson?.type, coordinate, driftM })}`);
 }
 
-const coordNote = `Batch ${EXPECTED_BATCH} object-type-first: exact OSM way ${OSM_WAY_ID} carries the Åmot bru identity and bridge=yes, with LineString bridge geometry. Fresh exact-object representation point is ${coordinate.lat}, ${coordinate.lon}, ${driftM.toFixed(2)} m from the locked revalidation coordinate. Oslo byleksikon documents the iron chain suspension bridge as built in 1851 for Åmotsund, later dismantled and re-erected at Akerselva in 1957. Canonical scope is the bridge itself; no nearby Akerselva feature, road crossing or nearest/first-hit proxy is used.`;
+const coordNote = `Batch ${EXPECTED_BATCH} object-type-first: exact OSM way ${OSM_WAY_ID} carries the Åmot bru identity and man_made=bridge, with exact ${bridge.geojson.type} bridge geometry. Fresh exact-object representation point is ${coordinate.lat}, ${coordinate.lon}, ${driftM.toFixed(2)} m from the locked revalidation coordinate. Oslo byleksikon documents the iron chain suspension bridge as built in 1851 for Åmotsund, later dismantled and re-erected at Akerselva in 1957. Canonical scope is the bridge itself; no nearby Akerselva feature, road crossing or nearest/first-hit proxy is used.`;
 
 const place = {
   id: placeId,
@@ -114,7 +116,7 @@ const place = {
   sourceProvider: "osm",
   sourceObjectId: `osm-way:${OSM_WAY_ID}`,
   geocodeAccuracy: "geometric_center",
-  coordRole: "line_anchor",
+  coordRole,
   coordStatus: "verified_geometry",
   coordSource: `OpenStreetMap way ${OSM_WAY_ID} – Åmot bru; historical identity cross-checked with Oslo byleksikon`,
   coordSourceId: `osm-way:${OSM_WAY_ID}`,
@@ -153,7 +155,7 @@ const evidence = {
     requiresSplit: false,
     splitReason: ""
   },
-  requiredEvidence: ["exact locked named bridge object", "OSM bridge tag and line geometry", "historical identity/source cross-check", "canonical duplicate control against current main"],
+  requiredEvidence: ["exact locked named bridge object", "OSM bridge tag and exact bridge geometry", "historical identity/source cross-check", "canonical duplicate control against current main"],
   evidence: [
     {
       sourceProvider: "osm",
@@ -161,7 +163,7 @@ const evidence = {
       sourceUrl: `https://www.openstreetmap.org/way/${OSM_WAY_ID}`,
       sourceObjectId: `osm-way:${OSM_WAY_ID}`,
       sourceQuality: "unique_exact_named_bridge_way",
-      finding: `Exact OSM way ${OSM_WAY_ID} carries the Åmot bru identity, bridge=yes and LineString geometry. Representation point: ${coordinate.lat}, ${coordinate.lon}.`,
+      finding: `Exact OSM way ${OSM_WAY_ID} carries the Åmot bru identity, man_made=bridge and ${bridge.geojson.type} geometry. Representation point: ${coordinate.lat}, ${coordinate.lon}.`,
       canVerifyCoordinate: true,
       reason: "Exact physical bridge object and geometry; no nearest or first-hit selection."
     },
@@ -182,10 +184,10 @@ const evidence = {
     { sourceProvider: "manual_research", sourceObjectId: "oslobyleksikon:aamot-bru", canApplyToPlace: false }
   ],
   geometryCandidates: [
-    { sourceProvider: "osm", sourceObjectId: `osm-way:${OSM_WAY_ID}`, geometryType: bridge.geojson.type, coordRole: "line_anchor", canApplyToPlace: true }
+    { sourceProvider: "osm", sourceObjectId: `osm-way:${OSM_WAY_ID}`, geometryType: bridge.geojson.type, coordRole, canApplyToPlace: true }
   ],
   coordinateCandidates: [
-    { lat: coordinate.lat, lon: coordinate.lon, coordRole: "line_anchor", sourceObjectId: `osm-way:${OSM_WAY_ID}`, canApplyToPlace: true }
+    { lat: coordinate.lat, lon: coordinate.lon, coordRole, sourceObjectId: `osm-way:${OSM_WAY_ID}`, canApplyToPlace: true }
   ],
   decision: {
     canBecomeVerified: true,
@@ -232,7 +234,7 @@ writeJson(`${reportDir}/batch-${batch}-result.json`, {
   placeId,
   status: "verified_geometry_applied_to_place",
   coordinate: { lat: place.lat, lon: place.lon, r: place.r, coordRole: place.coordRole, coordType: place.coordType },
-  sourceObject: { sourceObjectId: `osm-way:${OSM_WAY_ID}`, name: way.tags?.name ?? bridge.name, bridge: way.tags?.bridge ?? null, highway: way.tags?.highway ?? null, geometryType: bridge.geojson.type },
+  sourceObject: { sourceObjectId: `osm-way:${OSM_WAY_ID}`, name: way.tags?.name ?? bridge.name, bridge: way.tags?.bridge ?? null, manMade: way.tags?.man_made ?? null, highway: way.tags?.highway ?? null, geometryType: bridge.geojson.type },
   gates: { exactNameGate, bridgeTagGate, geometryGate, coordinateGate, lockedCoordinateGate, historyGate, duplicateIdentityMatches: identityMatches.length },
   driftFromLockedCoordinateM: Math.round(driftM * 100) / 100,
   representationLock: "Exact historic iron chain suspension bridge object; surrounding Akerselva landscape remains separate."
@@ -241,4 +243,4 @@ writeJson(`${reportDir}/nominatim-way-${OSM_WAY_ID}.json`, bridge);
 writeJson(`${reportDir}/osm-way-${OSM_WAY_ID}.json`, way);
 writeFileSync(`${reportDir}/sources.md`, `# Åmot bru production sources\n\n- Oslo byleksikon: ${HISTORY_PAGE}\n- OSM exact bridge object: https://www.openstreetmap.org/way/${OSM_WAY_ID}\n\nCanonical scope: the exact historic iron chain suspension bridge, built in 1851 and re-erected at Akerselva in 1957.\n`, "utf8");
 
-console.log(`Produced ${placeId} as batch ${batch}: ${place.lat},${place.lon}; source=osm-way:${OSM_WAY_ID}; drift=${driftM.toFixed(2)}m`);
+console.log(`Produced ${placeId} as batch ${batch}: ${place.lat},${place.lon}; source=osm-way:${OSM_WAY_ID}; geometry=${bridge.geojson.type}; drift=${driftM.toFixed(2)}m`);
