@@ -2,57 +2,97 @@
   "schemaVersion": "1.0",
   "placeId": "ostensjovannet_sor",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_ostensjovannet.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.8834,
-    "lon": 10.8272,
+    "lat": 59.8833054,
+    "lon": 10.8331603,
     "r": 120,
-    "coordStatus": "needs_source",
-    "coordSource": "ostensjovannet_sor_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Recorden beskriver en retningsbestemt sørsone uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt sørpunkt."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 1456532473 (Bølerbekken) + Østensjøvannet relation 33561, shared node 1110773258",
+    "coordType": "hydrological_mouth_topology_node",
+    "coordNote": "Batch 153 erstatter den repo-syntetiske «Østensjøvannet sør»-identiteten med det konkrete hydrologiske munningspunktet der Bølerbekken møter innsjøen. Fresh OSM validerer way 1456532473 som name=Bølerbekken/waterway=stream og relation 33561 som Østensjøvannet natural=water/water=lake. Bekkewayen ender i node 1110773258, som samtidig ligger på outer-memberway 1122249176 i innsjø-relationen. Østensjøvannets Venner dokumenterer Bølerbekken som en viktig tilløpsbekk som renner ut i vannet og fremhever sørenden/Bølerbekkens utløp som fuglerikt observasjonsområde. Legacy-punktet og nearest/first-hit brukes ikke."
   },
   "identity": {
-    "currentName": "Østensjøvannet sør",
-    "resolvedIdentity": "Sørlige del av Østensjøvannet naturreservat som lokal vannkant- og våtmarkssone",
+    "currentName": "Bølerbekkens utløp i Østensjøvannet",
+    "resolvedIdentity": "Det konkrete hydrologiske munningspunktet der Bølerbekken møter Østensjøvannet",
     "identityStatus": "resolved",
-    "identityProblem": "Recorden beskriver en retningsbestemt sørsone uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt sørpunkt.",
-    "locatorTypeCandidate": "natural_area",
+    "identityProblem": "",
+    "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Dokumenter en eksplisitt lokal sonegeometri eller flere kildebelagte vannkant-/våtmarksankre som avgrenser sørsonen."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
-      "sourceProvider": "miljodirektoratet",
-      "sourceName": "Naturbase – Østensjøvannet naturreservat",
-      "sourceUrl": "https://faktaark.naturbase.no/?id=VV00000972",
-      "sourceObjectId": "miljodirektoratet-naturvern:VV00000972",
-      "sourceQuality": "official_parent_area_geometry_only",
-      "finding": "Recorden beskriver en retningsbestemt sørsone uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt sørpunkt.",
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Bølerbekken og Østensjøvannet",
+      "sourceUrl": "https://www.openstreetmap.org/node/1110773258",
+      "sourceObjectId": "osm-node:1110773258",
+      "sourceQuality": "explicit_shared_stream_lake_boundary_topology_node",
+      "finding": "Bølerbekken-way 1456532473 ender i node 1110773258 på 59.8833054, 10.8331603; samme node ligger på outer-memberway 1122249176 i Østensjøvannet-relation 33561.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt delt hydrologisk topologinode mellom navngitt tilløpsbekk og innsjøgrense."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Østensjøvannets Venner – Vassdrag",
+      "sourceUrl": "https://www.ostensjovannet.no/kopi-av-naturtyper",
+      "sourceObjectId": "ostensjovannets-venner:vassdrag:bolerbekken",
+      "sourceQuality": "documented_named_tributary_context",
+      "finding": "Kilden dokumenterer Bølerbekken som en av Østensjøvannets viktigste tilløpsbekker og beskriver at den renner ut i vannet etter passering under broen i Valborgs vei.",
       "canVerifyCoordinate": false,
-      "reason": "Den offisielle reservatgeometrien dokumenterer parent-området, men kan ikke alene verifisere denne lokale delsonen eller dette lokale objektet."
+      "reason": "Fastsetter hydrologisk identitet og sekvens; eksakt topologinode kommer fra OSM."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Østensjøvannets Venner – Turforslag og adkomst",
+      "sourceUrl": "https://www.ostensjovannet.no/turforslag",
+      "sourceObjectId": "ostensjovannets-venner:bolerbekken-outlet-observation-context",
+      "sourceQuality": "documented_local_south_end_context",
+      "finding": "Kilden anbefaler sørenden og Bølerbekkens utløp som observasjonsområde med mye fugl og dokumenterer sørenden som et tydelig besøksområde.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker lokal funksjon og sørende-scope, men brukes ikke som koordinatbevis."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "miljodirektoratet",
-      "sourceObjectId": "miljodirektoratet-naturvern:VV00000972",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1110773258",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ostensjovannets-venner:vassdrag:bolerbekken",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1110773258",
+      "lat": 59.8833054,
+      "lon": 10.8331603,
+      "coordRole": "line_anchor",
+      "geometryType": "Point",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.8833054,
+      "lon": 10.8331603,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Recorden beskriver en retningsbestemt sørsone uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt sørpunkt.",
-    "nextAction": "Dokumenter en eksplisitt lokal sonegeometri eller flere kildebelagte vannkant-/våtmarksankre som avgrenser sørsonen."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Den eksplisitte delte munningsnoden er anvendt på canonical place; den syntetiske sørsonen er pensjonert som identitet."
   },
   "notes": [
-    "Recorden beskriver en retningsbestemt sørsone uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt sørpunkt."
+    "Batch 153 erstatter den repo-syntetiske «Østensjøvannet sør»-identiteten med det konkrete hydrologiske munningspunktet der Bølerbekken møter innsjøen. Fresh OSM validerer way 1456532473 som name=Bølerbekken/waterway=stream og relation 33561 som Østensjøvannet natural=water/water=lake. Bekkewayen ender i node 1110773258, som samtidig ligger på outer-memberway 1122249176 i innsjø-relationen. Østensjøvannets Venner dokumenterer Bølerbekken som en viktig tilløpsbekk som renner ut i vannet og fremhever sørenden/Bølerbekkens utløp som fuglerikt observasjonsområde. Legacy-punktet og nearest/first-hit brukes ikke."
   ]
 }
