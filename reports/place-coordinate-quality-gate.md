@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T20:22:26.748Z
+Generert: 2026-07-23T20:26:00.315Z
 
 ## Oppsummering
-- Aktive filer validert: **685**
+- Aktive filer validert: **686**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -703,6 +703,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/oslo/places_historie/the_mini_bottle_gallery.json
 - data/places/kunst/oslo/places_kunst/galleri_lnm.json
 - data/places/kunst/oslo/places_kunst/ram_galleri.json
+- data/places/kunst/oslo/places_kunst/galleri_schaeffers_gate_5.json
 
 ## Harde feil
 - Ingen
