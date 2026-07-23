@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-22T21:56:33.759Z
+Generert: 2026-07-23T02:51:18.202Z
 
 ## Oppsummering
-- Aktive filer validert: **615**
-- Antall steder validert: **1232**
+- Aktive filer validert: **622**
+- Antall steder validert: **1239**
 - Harde feil: **0**
-- Varsler: **466**
-- Coordinate review candidates: **732** signaler fordelt på **603** steder
+- Varsler: **473**
+- Coordinate review candidates: **739** signaler fordelt på **610** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -633,6 +633,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/trondelag/ressurssenter_kvinner_trondheim.json
 - data/places/subkultur/vestland/nygardsparken_bergen.json
 - data/places/subkultur/trondelag/svartlamon_trondheim.json
+- data/places/subkultur/vestland/hulen_bergen.json
+- data/places/subkultur/vestland/bergen_kjott_kulturhus.json
+- data/places/subkultur/rogaland/tou_stavanger.json
+- data/places/sport/oslo/voldslokka_pumptrack.json
+- data/places/subkultur/trondelag/trikkestallen_skatepark_trondheim.json
+- data/places/sport/vestland/fysak_slettebakken.json
+- data/places/subkultur/akershus/arena_bekkestua.json
 
 ## Harde feil
 - Ingen
@@ -1104,16 +1111,23 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/finnmark/beaivvas_coarvematta.json#beaivvas_coarvematta: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/trondelag/uffa_huset_trondheim.json#uffa_huset_trondheim: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/trondelag/ressurssenter_kvinner_trondheim.json#ressurssenter_kvinner_trondheim: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/vestland/hulen_bergen.json#hulen_bergen: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/vestland/bergen_kjott_kulturhus.json#bergen_kjott_kulturhus: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/rogaland/tou_stavanger.json#tou_stavanger: coordStatus=verified uten coordPrecisionM
+- data/places/sport/oslo/voldslokka_pumptrack.json#voldslokka_pumptrack: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/trondelag/trikkestallen_skatepark_trondheim.json#trikkestallen_skatepark_trondheim: coordStatus=verified uten coordPrecisionM
+- data/places/sport/vestland/fysak_slettebakken.json#fysak_slettebakken: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/akershus/arena_bekkestua.json#arena_bekkestua: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 732 signaler fordelt på 603 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 739 signaler fordelt på 610 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 175 |
+| coordStatus=verified uten coordPrecisionM | 182 |
 | lineært sted uten anchors | 78 |
 | lav koordinatpresisjon (<4 desimaler) | 83 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1123,7 +1137,7 @@ Totalt 732 signaler fordelt på 603 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (175)
+### coordStatus=verified uten coordPrecisionM (182)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1302,6 +1316,13 @@ Totalt 732 signaler fordelt på 603 steder. Et sted kan ha flere signaler. Kandi
 | beaivvas_coarvematta | Beaivváš – Čoarvemátta | scenekunst | data/places/scenekunst/finnmark/beaivvas_coarvematta.json | 69.02031504216781 | 23.03692544410359 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | uffa_huset_trondheim | UFFA-huset | subkultur | data/places/subkultur/trondelag/uffa_huset_trondheim.json | 63.436369375015 | 10.429891680665307 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | ressurssenter_kvinner_trondheim | Ressurssenter for kvinner | subkultur | data/places/subkultur/trondelag/ressurssenter_kvinner_trondheim.json | 63.427397941829156 | 10.392090968181554 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| hulen_bergen | Hulen | subkultur | data/places/subkultur/vestland/hulen_bergen.json | 60.38476280849749 | 5.325363307407874 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| bergen_kjott_kulturhus | Bergen Kjøtt | subkultur | data/places/subkultur/vestland/bergen_kjott_kulturhus.json | 60.40188735772789 | 5.320559974203892 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| tou_stavanger | Tou | subkultur | data/places/subkultur/rogaland/tou_stavanger.json | 58.96917440876424 | 5.75829995261127 | 110 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| voldslokka_pumptrack | Voldsløkka pumptrack | sport | data/places/sport/oslo/voldslokka_pumptrack.json | 59.943145607547194 | 10.754419844962298 | 140 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| trikkestallen_skatepark_trondheim | Trikkestallen Skatepark | subkultur | data/places/subkultur/trondelag/trikkestallen_skatepark_trondheim.json | 63.43966117350392 | 10.431940352632845 | 90 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| fysak_slettebakken | Fysak Slettebakken | sport | data/places/sport/vestland/fysak_slettebakken.json | 60.34892315756406 | 5.361581721031116 | 110 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| arena_bekkestua | Arena Bekkestua | subkultur | data/places/subkultur/akershus/arena_bekkestua.json | 59.920536290445376 | 10.582550428755052 | 100 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (78)
 
