@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 
 const DATE = "2026-07-23", BATCH = 187, PLACE_ID = "akershus_energi";
@@ -8,7 +8,11 @@ const SPLIT_MANIFEST = "data/places/naeringsliv/oslo/places_naeringsliv_manifest
 const SPLIT_INDEX = "data/places/naeringsliv/oslo/places_naeringsliv_index.json";
 const SPLIT_FILE = "data/places/naeringsliv/oslo/places_naeringsliv/akershus_energi.json";
 const PLACE_FILE = "data/places/naeringsliv/akershus/akershus_energipark.json";
+const OLD_EVIDENCE_FILE = "data/coordinate-evidence/oslo/naeringsliv/akershus_energi.json";
+const OLD_EVIDENCE_MANIFEST_ENTRY = "oslo/naeringsliv/akershus_energi.json";
 const EVIDENCE_FILE = "data/coordinate-evidence/akershus/naeringsliv/akershus_energi.json";
+const EVIDENCE_MANIFEST_ENTRY = "akershus/naeringsliv/akershus_energi.json";
+const EVIDENCE_MANIFEST = "data/coordinate-evidence/manifest.json";
 const REPORT_DIR = "reports/oslo-coordinate-control-batch-187-akershus-energipark-relocation";
 const OFFICIAL_URL = "https://akershusenergi.no/varmesentraler/lillestrom/";
 mkdirSync(REPORT_DIR, { recursive: true });
@@ -22,6 +26,11 @@ const extractPlaces = (root) => { const out=[],seen=new Set(); const visit=(v,d=
 const appendManifest = (p,item) => { const m=readJson(p); if(!Array.isArray(m.files))throw new Error(`${p} missing files[]`); if(!m.files.includes(item))m.files.push(item); writeJson(p,m); };
 
 if (existsSync(PLACE_FILE) || existsSync(EVIDENCE_FILE)) throw new Error("Dedicated EnergiPark place/evidence already exists");
+if (!existsSync(OLD_EVIDENCE_FILE)) throw new Error(`Expected stale Oslo evidence ${OLD_EVIDENCE_FILE}`);
+const oldEvidence = readJson(OLD_EVIDENCE_FILE);
+if (oldEvidence.placeId !== PLACE_ID || oldEvidence.coordinateDecision !== "needs_identity_split") {
+  throw new Error("Unexpected stale Oslo evidence state");
+}
 let protocol = readFileSync("docs/coordinates/coordinate-control-protocol.md", "utf8");
 const maxBatch = Math.max(...[...protocol.matchAll(/^\|\s*(\d+)\s*\|\s*`/gm)].map((m)=>Number(m[1])));
 if (maxBatch !== 186) throw new Error(`Expected previous batch 186, got ${maxBatch}`);
@@ -90,23 +99,22 @@ writeJson(SPLIT_INDEX, splitIndex.filter((p)=>p?.id!==PLACE_ID));
 if (!existsSync(SPLIT_FILE)) throw new Error(`Expected old split file ${SPLIT_FILE}`);
 rmSync(SPLIT_FILE);
 
-writeJson(PLACE_FILE, place); writeJson(EVIDENCE_FILE, evidence);
+writeJson(PLACE_FILE, place);
+writeJson(EVIDENCE_FILE, evidence);
+rmSync(OLD_EVIDENCE_FILE);
 appendManifest("data/places/manifest.json","places/naeringsliv/akershus/akershus_energipark.json");
-appendManifest("data/coordinate-evidence/manifest.json","akershus/naeringsliv/akershus_energi.json");
+const evidenceManifest = readJson(EVIDENCE_MANIFEST);
+if (!Array.isArray(evidenceManifest.files)) throw new Error(`${EVIDENCE_MANIFEST} missing files[]`);
+if (!evidenceManifest.files.includes(OLD_EVIDENCE_MANIFEST_ENTRY)) throw new Error("Stale Oslo evidence manifest entry missing");
+evidenceManifest.files = evidenceManifest.files.filter((entry)=>entry!==OLD_EVIDENCE_MANIFEST_ENTRY && entry!==EVIDENCE_MANIFEST_ENTRY);
+evidenceManifest.files.push(EVIDENCE_MANIFEST_ENTRY);
+writeJson(EVIDENCE_MANIFEST,evidenceManifest);
 
 const lines = protocol.split("\n");
 const oldRows = lines.map((line,i)=>line.includes("`akershus_energi`")?i:-1).filter((i)=>i>=0);
 if (oldRows.length !== 1) throw new Error(`Expected one protocol row for ${PLACE_ID}, got ${oldRows.length}`);
 protocol = lines.filter((_,i)=>!oldRows.includes(i)).join("\n");
-protocol = `${protocol.trimEnd()}\n\n| ${BATCH} | \`${PLACE_ID}\` | Akershus EnergiPark | verified; moved to Akershus | \`${found.sourceObjectId}\` |\n\nBatch ${BATCH} (${DATE}) løser \`${PLACE_ID}\` ved geografisk identitetskorreksjon. Legacy-recorden «Akershus Energi Varme» hadde en udokumentert Oslo-markør, mens source-first-kontrollen identifiserer det konkrete fysiske stedet som Akershus EnergiPark på Kjeller. Geonorge gir ett eksakt adresseobjekt for Rolf Olsens vei 50 i Lillestrøm kommune. Canonical placeId beholdes av kompatibilitetshensyn, men recorden flyttes fra Oslo-aggregatet og tilhørende Oslo-splitfiler til egen Akershus-kildefil. Oslo-totalen for aktive current \`verified*\`-steder økes ikke, fordi dette er en utflytting av en tidligere uverifisert Oslo-køpost.\n`;
+protocol = `${protocol.trimEnd()}\n\n| ${BATCH} | \`${PLACE_ID}\` | Akershus EnergiPark | verified; moved to Akershus | \`${found.sourceObjectId}\` |\n\nBatch ${BATCH} (${DATE}) løser \`${PLACE_ID}\` ved geografisk identitetskorreksjon. Legacy-recorden «Akershus Energi Varme» hadde en udokumentert Oslo-markør, mens source-first-kontrollen identifiserer det konkrete fysiske stedet som Akershus EnergiPark på Kjeller. Geonorge gir ett eksakt adresseobjekt for Rolf Olsens vei 50 i Lillestrøm kommune. Canonical placeId beholdes av kompatibilitetshensyn, men recorden flyttes fra Oslo-aggregatet og tilhørende Oslo-splitfiler til egen Akershus-kildefil. Den gamle Oslo-evidensfilen med \`needs_identity_split\` pensjoneres samtidig og erstattes av den anvendte Akershus-evidensen. Oslo-totalen for aktive current \`verified*\`-steder økes ikke, fordi dette er en utflytting av en tidligere uverifisert Oslo-køpost.\n`;
 writeFileSync("docs/coordinates/coordinate-control-protocol.md",protocol,"utf8");
-writeJson(`${REPORT_DIR}/batch-187-result.json`,{version:DATE,batch:BATCH,placeId:PLACE_ID,status:"produced_by_geographic_relocation",old:{file:LEGACY_FILE,name:oldPlace.name,coordinate:{lat:oldPlace.lat,lon:oldPlace.lon}},current:{file:PLACE_FILE,name:place.name,coordinate:{lat,lon},sourceObjectId:found.sourceObjectId,coordStatus:place.coordStatus},nearestCanonicalBeforeWrite:nearby[0]??null,checks:{expectedPreviousBatch:186,legacyRecordRemoved:true,oldSplitRecordRemoved:true,dedicatedAkershusFileCreated:true,noOtherCanonicalWithin3m:true,unresolvedProtocolRowRemoved:true}});
-
-const diagnostic = spawnSync("npm", ["run","places:coords:evidence:audit"], { encoding:"utf8" });
-writeFileSync(`${REPORT_DIR}/coordinate-evidence-diagnostic.log`, `${diagnostic.stdout??""}${diagnostic.stderr??""}`, "utf8");
-if (existsSync("reports/coordinate-evidence-audit.md")) {
-  copyFileSync("reports/coordinate-evidence-audit.md", `${REPORT_DIR}/coordinate-evidence-diagnostic.md`);
-  if (diagnostic.status !== 0) console.error(readFileSync("reports/coordinate-evidence-audit.md", "utf8"));
-}
-
-console.log(JSON.stringify({batch:BATCH,placeId:PLACE_ID,sourceObjectId:found.sourceObjectId,coordinate:{lat,lon},movedFrom:"oslo",movedTo:"akershus",nearestCanonicalBeforeWrite:nearby[0]??null,evidenceDiagnosticExitCode:diagnostic.status},null,2));
+writeJson(`${REPORT_DIR}/batch-187-result.json`,{version:DATE,batch:BATCH,placeId:PLACE_ID,status:"produced_by_geographic_relocation",old:{file:LEGACY_FILE,name:oldPlace.name,coordinate:{lat:oldPlace.lat,lon:oldPlace.lon},evidenceFile:OLD_EVIDENCE_FILE},current:{file:PLACE_FILE,name:place.name,coordinate:{lat,lon},sourceObjectId:found.sourceObjectId,coordStatus:place.coordStatus,evidenceFile:EVIDENCE_FILE},nearestCanonicalBeforeWrite:nearby[0]??null,checks:{expectedPreviousBatch:186,legacyRecordRemoved:true,oldSplitRecordRemoved:true,dedicatedAkershusFileCreated:true,noOtherCanonicalWithin3m:true,oldOsloEvidenceRetired:true,evidenceManifestMoved:true,unresolvedProtocolRowRemoved:true}});
+console.log(JSON.stringify({batch:BATCH,placeId:PLACE_ID,sourceObjectId:found.sourceObjectId,coordinate:{lat,lon},movedFrom:"oslo",movedTo:"akershus",nearestCanonicalBeforeWrite:nearby[0]??null,oldEvidenceRetired:true},null,2));
