@@ -2,72 +2,97 @@
   "schemaVersion": "1.0",
   "placeId": "alna_smalvoll",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.92452,
-    "lon": 10.84269,
+    "lat": 59.9180929,
+    "lon": 10.8322346,
     "r": 160,
-    "coordStatus": "needs_source",
-    "coordSource": "alna_smalvoll_segment_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 22698275 – Alna gjennom Smalvoll/Smalvolldalen",
+    "coordType": "river_segment_anchor",
+    "coordNote": "Batch 154 avgrenser Alna ved Smalvoll til OSM way 22698275. Wayen er en 1725.4 meter lang åpen name=Alna/waterway=river-strekning med alt_name=Loelva. Den deler sin oppstrøms endenode 243479395 eksakt med den korte tunnel-wayen 22698285. Fresh Smalvollveien-way 652471071 brukes som uavhengig geografisk korridoravgrensning: 100 % av veiens nord–sør-spenn ligger innenfor elvewayens nord–sør-spenn, mens den oppstrøms Alna-wayen ligger nord for denne korridoren. Canonical lat/lon beregnes deterministisk som lengdemidtpunkt langs selve elvegeometrien. Legacy-punktet og nearest/first-hit brukes ikke."
   },
   "identity": {
     "currentName": "Alna ved Smalvoll",
-    "resolvedIdentity": "Lokal Alna-strekning ved Smalvoll",
+    "resolvedIdentity": "Lokal Alna-strekning gjennom Smalvoll/Smalvolldalen langs Smalvollveien-korridoren",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "eksplisitt avgrenset Alna-segment ved Smalvoll eller flere kildebelagte ruteankre"
-  ],
+  "requiredEvidence": [],
   "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Alna gjennom Smalvoll",
+      "sourceUrl": "https://www.openstreetmap.org/way/22698275",
+      "sourceObjectId": "osm-way:22698275",
+      "sourceQuality": "exact_named_long_river_segment_with_corridor_and_tunnel_topology",
+      "finding": "Way 22698275 er en 1725.4 m lang name=Alna/waterway=river-geometri, deler node 243479395 eksakt med upstream tunnel-way 22698285 og dekker 100 % av Smalvollveiens nord–sør-spenn.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt fysisk elvegeometri eksplisitt avgrenset av dokumentert Smalvollveien-korridor og topologisk upstream-overgang."
+    },
     {
       "sourceProvider": "manual_research",
       "sourceName": "Oslo byleksikon – Alnaelva",
       "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
-      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceObjectId": "oslobyleksikon:alnaelva:smalvolldalen",
       "sourceQuality": "documented_local_river_identity",
       "finding": "Kilden dokumenterer Alnas mange buktninger særlig i Smalvolldalen.",
       "canVerifyCoordinate": false,
-      "reason": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+      "reason": "Fastsetter lokal Smalvolldalen-identitet; eksakt geometri kommer fra OSM."
     },
     {
-      "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap – flere Alna-segmenter ved Smalvoll",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Smalvoll%20Oslo",
-      "sourceObjectId": "osm:alna-smalvoll-multiple-waterway-ways",
-      "sourceQuality": "multiple_plausible_local_segments",
-      "finding": "Flere separate navngitte Alna-way-er passer kontrollområdet uten at recordens scope velger ett av dem.",
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Alnastien",
+      "sourceUrl": "https://oslobyleksikon.no/side/Alnastien",
+      "sourceObjectId": "oslobyleksikon:alnastien:smalvollveien",
+      "sourceQuality": "documented_route_corridor_context",
+      "finding": "Kilden dokumenterer Alnastien videre langs Smalvollveien mot Bryn og avgrenser dermed den lokale elvekorridoren.",
       "canVerifyCoordinate": false,
-      "reason": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+      "reason": "Kryssjekker geografisk korridor; canonical geometri kommer fra OSM."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:alnaelva",
-      "canApplyToPlace": false
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:22698275",
+      "canApplyToPlace": true
     },
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm:alna-smalvoll-multiple-waterway-ways",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:alnaelva:smalvolldalen",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:22698275",
+      "lat": 59.9180929,
+      "lon": 10.8322346,
+      "coordRole": "line_anchor",
+      "geometryType": "LineString",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9180929,
+      "lon": 10.8322346,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre.",
-    "nextAction": "eksplisitt avgrenset Alna-segment ved Smalvoll eller flere kildebelagte ruteankre"
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Den eksplisitt avgrensede Alna-geometrien gjennom Smalvoll er anvendt på canonical place."
   },
   "notes": [
-    "Alna ved Smalvoll er en lokalt definert elvestrekning. Flere separate navngitte Alna-way-er passer området, men recorden avgrenser ikke hvilken strekning som er canonical. Dagens punkt ved Smalvollveien er ikke i seg selv bevis for elvegeometrien. Krever eksplisitt avgrenset segment eller flere kildebelagte ruteankre."
+    "Batch 154 avgrenser Alna ved Smalvoll til OSM way 22698275. Wayen er en 1725.4 meter lang åpen name=Alna/waterway=river-strekning med alt_name=Loelva. Den deler sin oppstrøms endenode 243479395 eksakt med den korte tunnel-wayen 22698285. Fresh Smalvollveien-way 652471071 brukes som uavhengig geografisk korridoravgrensning: 100 % av veiens nord–sør-spenn ligger innenfor elvewayens nord–sør-spenn, mens den oppstrøms Alna-wayen ligger nord for denne korridoren. Canonical lat/lon beregnes deterministisk som lengdemidtpunkt langs selve elvegeometrien. Legacy-punktet og nearest/first-hit brukes ikke."
   ]
 }
