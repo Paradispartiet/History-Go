@@ -2,8 +2,10 @@
 
 Date: 2026-07-23
 
-Status: **coordinate_blocked_waterbody_identity_or_topology_not_proven**
+Status: **verified_named_waterbody_geometry_candidate**
 
-This pass tests whether exact OSM relation 14334474 is the named Brekkedammen/Kjelsåsdammen waterbody and whether exact weir way 66357555 forms its physical boundary. It does not select by proximity and it does not invent a bathing-place point.
+Exact OSM relation 14334474 is the reservoir named **Frysja** with **Brekkedammen** as an exact alternate name. Exact OSM way 66357555 is the named Brekkedammen weir and is topologically on the waterbody boundary.
 
-If all gates pass, the correct canonical model is the physical impounded waterbody with bathing/recreation as a use layer and the named weir as a boundary subfeature.
+The ordinary polygon centroid is rejected because it falls outside the concave reservoir polygon. The exact relation representation point is accepted only after an explicit point-in-polygon check proves it lies inside the locked geometry.
+
+Canonical interpretation: the whole physical impounded waterbody is the place; bathing/recreation is a present-day use layer, and the weir is a boundary subfeature. No nearest/first-hit selection or arbitrary bathing-place pin is used.

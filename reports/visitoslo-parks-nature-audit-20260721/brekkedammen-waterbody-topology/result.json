@@ -1,9 +1,9 @@
 {
   "version": "2026-07-23",
   "placeId": "brekkedammen",
-  "status": "coordinate_blocked_waterbody_identity_or_topology_not_proven",
+  "status": "verified_named_waterbody_geometry_candidate",
   "scopeStatus": "approved_new_physical_place",
-  "representationDecision": "No production decision. Do not invent a bathing-place pin and do not use nearest/first-hit selection.",
+  "representationDecision": "Model the physical impounded waterbody Frysja / Brekkedammen as the canonical place. The exact OSM waterbody relation carries alt_name=Brekkedammen; exact weir 66357555 is its named downstream boundary; bathing and recreation are current use layers of the same physical place.",
   "lockedObjects": {
     "waterbody": "osm-relation:14334474",
     "weir": "osm-way:66357555"
@@ -16,7 +16,8 @@
     "weirTouchesWaterbodyBoundary": true,
     "centroidInside": false,
     "officialSemanticGate": true,
-    "officialLinkGate": true
+    "officialLinkGate": true,
+    "representationPointInside": true
   },
   "waterbody": {
     "sourceObjectId": "osm-relation:14334474",
@@ -50,6 +51,14 @@
       }
     ],
     "proposedCoordinate": {
+      "lat": 59.967732,
+      "lon": 10.7816029,
+      "coordType": "area_anchor",
+      "coordinateMethod": "nominatim_exact_object_representation_point",
+      "insideGeometry": true,
+      "sourceObjectId": "osm-relation:14334474"
+    },
+    "rejectedArithmeticCentroid": {
       "lat": 59.96736101152158,
       "lon": 10.78160000527367,
       "coordType": "polygon_centroid",
@@ -105,5 +114,10 @@
       "arbitrary beach pin",
       "using the weir centroid as the whole waterbody"
     ]
+  },
+  "representationPointResolution": {
+    "reason": "The ordinary polygon area centroid falls outside this concave reservoir geometry. The exact Nominatim representation point for the already locked OSM relation is used instead, but only after an explicit point-in-polygon gate proves that it lies inside the same exact geometry.",
+    "rejectedMethod": "arithmetic_polygon_centroid_outside_geometry",
+    "acceptedMethod": "exact_object_representation_point_inside_geometry"
   }
 }
